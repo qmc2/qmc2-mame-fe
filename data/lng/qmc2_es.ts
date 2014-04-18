@@ -13130,7 +13130,7 @@ Por favor, revisa la opción &apos;rompath&apos; en la configuración global del
     <message>
         <location filename="../../options.ui" line="5252"/>
         <source>Clean up user data database (removes obsolete entries)</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpiar la base de datos de usuario (elimina entradas obsoletas)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5269"/>
@@ -13399,7 +13399,7 @@ Por favor, revisa la opción &apos;rompath&apos; en la configuración global del
     <message>
         <location filename="../../options.ui" line="2939"/>
         <source>Browse MESS machine information database (sysinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a la base de datos de información de máquinas MESS (sysinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4713"/>
@@ -13420,7 +13420,7 @@ Por favor, revisa la opción &apos;rompath&apos; en la configuración global del
     <message>
         <location filename="../../options.ui" line="5235"/>
         <source>Recreate user data database (removes &lt;b&gt;all&lt;/b&gt; entries)</source>
-        <translation type="unfinished"></translation>
+        <translation>Recrear base de datos de datos de usuario (elimina &lt;b&gt;todas&lt;b&gt; las entradas)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5373"/>
@@ -13618,32 +13618,32 @@ Por favor, revisa la opción &apos;rompath&apos; en la configuración global del
     <message>
         <location filename="../../options.ui" line="5168"/>
         <source>XML cache database</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de datos de cache XML</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5282"/>
         <source>Database file for caching the output from -listxml (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de base de datos para almacenar la salida de -listxml (escritura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5181"/>
         <source>Browse XML cache database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar al archivo de caché de base de datos XML</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5192"/>
         <source>User data database</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de datos de datos de usuario</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5205"/>
         <source>Database file for storing/retrieving user data (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de base de datos para almacenar/recuperar datos de usuario (escritura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5218"/>
         <source>Browse user data database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar al archivo de base de datos de datos de usuario</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5465"/>
@@ -14314,17 +14314,17 @@ Por favor, revisa la opción &apos;rompath&apos; en la configuración global del
     <message>
         <location filename="../../options.cpp" line="326"/>
         <source>Switch between specifying a logo directory or a compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar entre especificar un directorio de logos o un archivo comprimido de logos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="328"/>
         <source>Compressed logo file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo comprimido de logos (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="330"/>
         <source>Browse compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a archivo comprimido de logos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="347"/>
@@ -14530,14 +14530,14 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="2220"/>
         <source>FATAL: can&apos;t open %1 file %2</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede abrir archivo %1 %2</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2220"/>
         <location filename="../../options.cpp" line="2255"/>
         <location filename="../../options.cpp" line="2288"/>
         <source>7z error</source>
-        <translation type="unfinished">error 7z</translation>
+        <translation>error 7z</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2247"/>
@@ -14547,7 +14547,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="2255"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede abrir archivo de instantánea de software %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2280"/>
@@ -14557,7 +14557,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="2288"/>
         <source>FATAL: can&apos;t open icon file %1</source>
-        <translation type="unfinished">ERROR: no se puede abrir archivo de icono %1</translation>
+        <translation>ERROR: no se puede abrir archivo de icono %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2298"/>
@@ -14828,28 +14828,29 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="3401"/>
         <source>Choose XML cache database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo de base de datos de caché XML</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3414"/>
         <source>This will remove &lt;b&gt;all&lt;/b&gt; existing user data and recreate the database.
 Are you sure you want to do this?</source>
-        <translation type="unfinished"></translation>
+        <translation>Esto eliminará &lt;b&gt;todos&lt;b&gt; los datos de usuario actuales y creará una nueva base de datos.
+¿Estás seguro de querer hacerlo?</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3414"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sí</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3414"/>
         <source>&amp;No</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;No</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3444"/>
         <source>Choose user data database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo de base de datos de datos de usuario</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3456"/>
@@ -14864,7 +14865,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="3480"/>
         <source>Choose 7-zip tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar herramienta 7-zip</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3492"/>
@@ -14951,7 +14952,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="3973"/>
         <source>Choose compressed preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo comprimido de previsualización</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3973"/>
@@ -14965,7 +14966,7 @@ Are you sure you want to do this?</source>
         <location filename="../../options.cpp" line="4096"/>
         <location filename="../../options.cpp" line="4127"/>
         <source>ZIP archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos ZIP</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3973"/>
@@ -14979,7 +14980,7 @@ Are you sure you want to do this?</source>
         <location filename="../../options.cpp" line="4096"/>
         <location filename="../../options.cpp" line="4127"/>
         <source>7z archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos 7z</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3973"/>
@@ -14993,52 +14994,52 @@ Are you sure you want to do this?</source>
         <location filename="../../options.cpp" line="4096"/>
         <location filename="../../options.cpp" line="4127"/>
         <source>All files</source>
-        <translation type="unfinished">Todos los archivos</translation>
+        <translation>Todos los archivos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3990"/>
         <source>Choose compressed flyer file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo comprimido de flyers</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4007"/>
         <source>Choose compressed icon file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo comprimido de iconos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4024"/>
         <source>Choose compressed cabinet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo comprimido de cabinas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4041"/>
         <source>Choose compressed controller file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo comprimido de mandos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4059"/>
         <source>Choose compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo comprimido de logos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4061"/>
         <source>Choose compressed marquee file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo comprimido de marquesinas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4079"/>
         <source>Choose compressed title file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo comprimido de títulos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4096"/>
         <source>Choose compressed PCB file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo comprimido de PCB</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4127"/>
         <source>Choose compressed software snap file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo comprimido de instantánea de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4113"/>
@@ -15048,22 +15049,22 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="3673"/>
         <source>Choose MAME game info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar BD de info de juegos MAME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3685"/>
         <source>Choose MESS machine info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar BD de info de máquina MESS</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3697"/>
         <source>Choose MAME emulator info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar BD de info de emulador MAME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3709"/>
         <source>Choose MESS emulator info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar BD de info de emulador MESS</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4144"/>
@@ -15476,96 +15477,105 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../qftp/qftp.cpp" line="841"/>
         <source>Not connected</source>
-        <translation type="unfinished"></translation>
+        <translation>No conectado</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="909"/>
         <source>Host %1 not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Host %1 no encontrado</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="913"/>
         <source>Connection refused to host %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Conexión rechazada al host %1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="917"/>
         <source>Connection timed out to host %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Agotado tiempo de espera a host %1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="1021"/>
         <source>Connected to host %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectado a host %1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="1240"/>
         <source>Connection refused for data connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Conexión rechazada para datos</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="1414"/>
         <source>Unknown error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error desconocido</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2314"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo al conectar a host:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2318"/>
         <source>Login failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Identificación fallida:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2322"/>
         <source>Listing directory failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Listado de directorio fallido:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2326"/>
         <source>Changing directory failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambio de directorio fallido:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2330"/>
         <source>Downloading file failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Descarga de archivo fallida:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2334"/>
         <source>Uploading file failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Subida de archivo fallida:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2338"/>
         <source>Removing file failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminación de archivo fallida:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2342"/>
         <source>Creating directory failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Creación de directorio fallida:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2346"/>
         <source>Removing directory failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminación de directorio fallida:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2374"/>
         <source>Connection closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Conexión cerrada</translation>
     </message>
 </context>
 <context>
@@ -15994,72 +16004,72 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../arcade/keysequences.h" line="79"/>
         <source>[context] Previous component / List page up / Info page up</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Componente anterior / Listado re pág / Info re pág</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="80"/>
         <source>[context] Next component / List page down / Info page down</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Siguiente componente / Listado av pág / Info av pág</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="81"/>
         <source>[context] Hide list / Previous item / Slide left / Cycle backwards</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Ocultar lista / Objeto anterior / Mover izquierda / Mover hacia atrás</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="82"/>
         <source>[context] Show list / Next item / Slide right / Cycle forwards</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Mostrar lista / Siguiente objeto / Mover derecha / Mover hacia delante</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="83"/>
         <source>[context] Show toolbar / List up / Info up / Previous widget</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Mostrar barra de herramientas / Listado arriba / Info arriba / Widget anterior</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="84"/>
         <source>[context] Hide toolbar / List down / Info down / Next widget</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Ocultar barra de herramientas / Listado abajo / Info abajo / Widget siguiente</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="85"/>
         <source>[context] Select / Set / Toggle details / Start emulation</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Seleccionar / Establecer / Cambiar detalles / Iniciar emulación</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="86"/>
         <source>[context] Abort game launch / Hide preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Abortar lanzamiento de juego / Ocultar preferencias</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="87"/>
         <source>[context] Zoom in / List top</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Zoom in / Lista arriba</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="88"/>
         <source>[context] Zoom out / List bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Zoom out / Lista abajo</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="89"/>
         <source>[context] List page up / Flick page up</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Listado página arriba / Mover página arriba</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="90"/>
         <source>[context] List page down / Flick page down</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Listado página abajo / Mover página abajo</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="91"/>
         <source>[context] List top</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Listado arriba</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="92"/>
         <source>[context] List bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Listado abajo</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="93"/>
