@@ -103,14 +103,6 @@
       <description lang="fr" text="Répertoire pour enregistrer les contenus NVRAM"/>
       <description lang="pt" text="Diretório para salvar o conteúdo de nvram"/>
     </option>
-    <option default="memcard" name="memcard_directory" type="directory">
-      <description lang="es" text="Directorio para guardar contenidos de memory card"/>
-      <description lang="us" text="Directory to save memory card contents"/>
-      <description lang="de" text="Verzeichnis zur Speicherung von Memcard-Inhalten"/>
-      <description lang="pl" text="Katalog do zapisywania zawartości kart pamięci"/>
-      <description lang="fr" text="Répertoire pour enregistrer les contenus des cartes mémoire"/>
-      <description lang="pt" text="Diretório para salvar conteúdo do cartão de memória"/>
-    </option>
     <option default="inp" name="input_directory" type="directory">
       <description lang="es" text="Directorio para guardar logs de dispositivo de entrada"/>
       <description lang="us" text="Directory to save input device logs"/>

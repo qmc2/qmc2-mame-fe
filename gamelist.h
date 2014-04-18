@@ -10,6 +10,7 @@
 #include <QMap>
 
 #include "xmldbmgr.h"
+#include "userdatadbmgr.h"
 #include "macros.h"
 
 class Gamelist : public QObject
@@ -93,6 +94,7 @@ class Gamelist : public QObject
 		void clearVersionNames();
 #endif
 		XmlDatabaseManager *xmlDb() { return m_xmlDb; }
+		UserDataDatabaseManager *userDataDb() { return m_userDataDb; }
 
 		Gamelist(QObject *parent = 0);
 		~Gamelist();
@@ -139,6 +141,7 @@ class Gamelist : public QObject
 
 	private:
 		XmlDatabaseManager *m_xmlDb;
+		UserDataDatabaseManager *m_userDataDb;
 };
 
 class GamelistItem : public QTreeWidgetItem
