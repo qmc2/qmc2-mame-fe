@@ -106,6 +106,9 @@
 // current format version of the XML cache database schema
 #define QMC2_XMLCACHE_VERSION			1
 
+// current format version of the user data database schema
+#define QMC2_USERDATA_VERSION			1
+
 // number of rows added to the XML cache database in *one* transaction
 #define QMC2_XMLCACHE_COMMIT			1000
 

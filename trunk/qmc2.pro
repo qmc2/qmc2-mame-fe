@@ -103,6 +103,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			audioeffects.cpp \
 			romdbmgr.cpp \
 			xmldbmgr.cpp \
+			userdatadbmgr.cpp \
 			customidsetup.cpp \
 			toolbarcustomizer.cpp \
 			iconlineedit.cpp \
@@ -215,6 +216,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			audioeffects.h \
 			romdbmgr.h \
 			xmldbmgr.h \
+			userdatadbmgr.h \
 			customidsetup.h \
 			toolbarcustomizer.h \
 			iconlineedit.h \

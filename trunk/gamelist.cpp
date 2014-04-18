@@ -208,6 +208,7 @@ Gamelist::Gamelist(QObject *parent)
   }
 
   m_xmlDb = new XmlDatabaseManager(this);
+  m_userDataDb = new UserDataDatabaseManager(this);
 }
 
 Gamelist::~Gamelist()
@@ -238,6 +239,7 @@ Gamelist::~Gamelist()
 	}
 
 	delete m_xmlDb;
+	delete m_userDataDb;
 }
 
 void Gamelist::enableWidgets(bool enable)
@@ -303,6 +305,9 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseEmulatorLogFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseOptionsTemplateFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseXmlCacheDatabase->setEnabled(enable);
+  qmc2Options->toolButtonBrowseUserDataDatabase->setEnabled(enable);
+  qmc2Options->toolButtonCleanupUserDataDatabase->setEnabled(enable);
+  qmc2Options->toolButtonClearUserDataDatabase->setEnabled(enable);
   qmc2Options->toolButtonBrowseFavoritesFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseHistoryFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseGamelistCacheFile->setEnabled(enable);
@@ -913,6 +918,10 @@ void Gamelist::load()
     loadProc->setProcessChannelMode(QProcess::MergedChannels);
     loadProc->start(command, args);
   }
+
+  userDataDb()->setEmulatorVersion(emulatorVersion);
+  userDataDb()->setQmc2Version(XSTR(QMC2_VERSION));
+  userDataDb()->setUserDataVersion(QMC2_USERDATA_VERSION);
 }
 
 void Gamelist::verify(bool currentOnly)
