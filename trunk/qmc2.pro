@@ -56,6 +56,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			softwarestatefilter.ui \
 			additionalartworksetup.ui \
 			imageformatsetup.ui \
+			rankitemwidget.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
 			htmleditor/tablepropertydialog.ui
@@ -123,6 +124,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			networkaccessmanager.cpp \
 			ftpreply.cpp \
 			fileiconprovider.cpp \
+			rankitemwidget.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -237,6 +239,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			networkaccessmanager.h \
 			ftpreply.h \
 			fileiconprovider.h \
+			rankitemwidget.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h
