@@ -552,6 +552,14 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void signalStyleSheetSetupRequested(QString styleSheet) { emit styleSheetSetupRequested(styleSheet); }
 		void signalPaletteSetupRequested(QString style) { emit paletteSetupRequested(style); }
 
+		// callbacks for horizontal scroll-bar value changes
+		void treeWidgetGamelist_horizontalScrollChanged(int value = -1);
+		void treeWidgetHierarchy_horizontalScrollChanged(int value = -1);
+		void treeWidgetCategoryView_horizontalScrollChanged(int value = -1);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		void treeWidgetVersionView_horizontalScrollChanged(int value = -1);
+#endif
+
 	protected:
 		void closeEvent(QCloseEvent *);
 		void showEvent(QShowEvent *);

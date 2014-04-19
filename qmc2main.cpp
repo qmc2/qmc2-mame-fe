@@ -1602,6 +1602,13 @@ MainWindow::MainWindow(QWidget *parent)
   connect(&memoryUpdateTimer, SIGNAL(timeout()), this, SLOT(memoryUpdateTimer_timeout()));
 #endif
 
+  connect(treeWidgetGamelist->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetGamelist_horizontalScrollChanged(int)));
+  connect(treeWidgetHierarchy->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetHierarchy_horizontalScrollChanged(int)));
+  connect(treeWidgetCategoryView->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetCategoryView_horizontalScrollChanged(int)));
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  connect(treeWidgetVersionView->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetVersionView_horizontalScrollChanged(int)));
+#endif
+
   QTimer::singleShot(0, this, SLOT(init()));
 }
 
@@ -11787,6 +11794,28 @@ void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
 	if ( tabWidgetGamelist->currentIndex() == QMC2_SEARCH_INDEX )
 		comboBoxSearch->lineEdit()->setText(text);
 }
+
+void MainWindow::treeWidgetGamelist_horizontalScrollChanged(int /*value*/)
+{
+	// FIXME
+}
+
+void MainWindow::treeWidgetHierarchy_horizontalScrollChanged(int /*value*/)
+{
+	// FIXME
+}
+
+void MainWindow::treeWidgetCategoryView_horizontalScrollChanged(int /*value*/)
+{
+	// FIXME
+}
+
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+void MainWindow::treeWidgetVersionView_horizontalScrollChanged(int /*value*/)
+{
+	// FIXME
+}
+#endif
 
 void MainWindow::checkRomPath()
 {
