@@ -1532,6 +1532,7 @@ void Gamelist::parse()
       qmc2MainWindow->progressBarGamelist->setValue(0);
       QString readBuffer;
       QList<QTreeWidgetItem *> itemList;
+      QList <QTreeWidgetItem *> hideList;
       while ( (!tsGamelistCache.atEnd() || !readBuffer.isEmpty() ) && !qmc2StopParser ) {
         readBuffer += tsGamelistCache.read(QMC2_FILE_BUFFER_SIZE);
         bool endsWithNewLine = readBuffer.endsWith("\n");
@@ -1562,9 +1563,11 @@ void Gamelist::parse()
 #endif
 
             GamelistItem *gameDescriptionItem = new GamelistItem();
-	    gameDescriptionItem->setHidden((isBIOS && !showBiosSets) || (isDevice && !showDeviceSets));
             gameDescriptionItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
             gameDescriptionItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
+
+	    if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
+		    hideList << gameDescriptionItem;
 
             if ( !gameCloneOf.isEmpty() )
               qmc2HierarchyMap[gameCloneOf].append(gameName);
@@ -1695,6 +1698,8 @@ void Gamelist::parse()
           readBuffer = lines.last();
       }
       qmc2MainWindow->treeWidgetGamelist->addTopLevelItems(itemList);
+      foreach (QTreeWidgetItem *hiddenItem, hideList)
+	      hiddenItem->setHidden(true);
       qmc2MainWindow->progressBarGamelist->setValue(numGames);
       qApp->processEvents();
 
@@ -1760,6 +1765,7 @@ void Gamelist::parse()
     qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
 
     QList <QTreeWidgetItem *> itemList;
+    QList <QTreeWidgetItem *> hideList;
     int xmlRowCount = xmlDb()->xmlRowCount();
     for (int rowCounter = 1; rowCounter <= xmlRowCount && !qmc2StopParser; rowCounter++) {
       QStringList xmlLines = xmlDb()->xml(rowCounter).split("\n", QString::SkipEmptyParts);
@@ -1788,9 +1794,11 @@ void Gamelist::parse()
 		QString gameCloneOf = value(gameElement, "cloneof");
 		QString gameDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
 		GamelistItem *gameDescriptionItem = new GamelistItem();
-		gameDescriptionItem->setHidden((isBIOS && !showBiosSets) || (isDevice && !showDeviceSets));
 		gameDescriptionItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
 		gameDescriptionItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
+
+		if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
+			hideList << gameDescriptionItem;
 
 		// find year & manufacturer and determine ROM/CHD requirements
 		bool endGame = false;
@@ -1963,6 +1971,8 @@ void Gamelist::parse()
       }
     }
     qmc2MainWindow->treeWidgetGamelist->addTopLevelItems(itemList);
+    foreach (QTreeWidgetItem *hiddenItem, hideList)
+	    hiddenItem->setHidden(true);
   }
 
   if ( gamelistCache.isOpen() )
