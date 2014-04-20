@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QMap>
+#include <QMultiMap>
+#include <QHash>
 #include <QStyleFactory>
 #include <QHeaderView>
 #include <QBitArray>
@@ -138,9 +140,9 @@ extern QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
 extern QMap<QString, QString> qmc2CustomShortcutMap;
 extern KeyPressFilter *qmc2KeyPressFilter;
 extern QMap<QString, QKeySequence> qmc2QtKeyMap;
-extern QMap<QString, QByteArray *> qmc2GameInfoDB;
-extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
-extern QMap<QString, QByteArray *> qmc2SoftwareInfoDB;
+extern QHash<QString, QByteArray *> qmc2GameInfoDB;
+extern QHash<QString, QByteArray *> qmc2EmuInfoDB;
+extern QHash<QString, QByteArray *> qmc2SoftwareInfoDB;
 extern MiniWebBrowser *qmc2MAWSLookup;
 extern MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup;
 extern DetailSetup *qmc2DetailSetup;
@@ -178,6 +180,9 @@ extern QPalette qmc2CustomPalette;
 extern QMap<QString, QPalette> qmc2StandardPalettes;
 extern bool qmc2CategoryInfoUsed;
 extern bool qmc2VersionInfoUsed;
+#if defined(QMC2_EMUTYPE_UME)
+extern QMultiMap<QString, QString> qmc2GameInfoSourceMap;
+#endif
 
 QBrush Options::greenBrush(QColor(0, 255, 0));
 QBrush Options::yellowBrush(QColor(255, 255, 0));
@@ -1844,7 +1849,7 @@ void Options::on_pushButtonApply_clicked()
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("invalidating machine info DB"));
 #endif
-    QMapIterator<QString, QByteArray *> it(qmc2GameInfoDB);
+    QHashIterator<QString, QByteArray *> it(qmc2GameInfoDB);
     QList<QByteArray *> deletedRecords;
     while ( it.hasNext() ) {
       it.next();
@@ -1856,11 +1861,16 @@ void Options::on_pushButtonApply_clicked()
     }
     deletedRecords.clear();
     qmc2GameInfoDB.clear();
+#if defined(QMC2_EMUTYPE_UME)
+    foreach (QString key, qmc2GameInfoSourceMap)
+	    qmc2GameInfoSourceMap.remove(key);
+    qmc2GameInfoSourceMap.clear();
+#endif
   }
 
   if ( invalidateEmuInfoDB ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("invalidating emulator info DB"));
-    QMapIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
+    QHashIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
     QList<QByteArray *> deletedRecords;
     while ( it.hasNext() ) {
       it.next();
@@ -1876,7 +1886,7 @@ void Options::on_pushButtonApply_clicked()
 
   if ( invalidateSoftwareInfoDB ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("invalidating software info DB"));
-    QMapIterator<QString, QByteArray *> it(qmc2SoftwareInfoDB);
+    QHashIterator<QString, QByteArray *> it(qmc2SoftwareInfoDB);
     QList<QByteArray *> deletedRecords;
     while ( it.hasNext() ) {
       it.next();

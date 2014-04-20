@@ -10,6 +10,8 @@
 #include <QTime>
 #include <QFile>
 #include <QMap>
+#include <QMultiMap>
+#include <QHash>
 #include <QStyleFactory>
 #include <QBitArray>
 #include <QFileInfo>
@@ -202,10 +204,10 @@ QTreeWidgetItem *qmc2LastConfigItem = NULL;
 QTreeWidgetItem *qmc2LastGameInfoItem = NULL;
 bool qmc2LoadingEmuInfoDB = false;
 QTreeWidgetItem *qmc2LastEmuInfoItem = NULL;
-QMap<QString, QByteArray *> qmc2EmuInfoDB;
+QHash<QString, QByteArray *> qmc2EmuInfoDB;
 bool qmc2LoadingSoftwareInfoDB = false;
 QTreeWidgetItem *qmc2LastSoftwareInfoItem = NULL;
-QMap<QString, QByteArray *> qmc2SoftwareInfoDB;
+QHash<QString, QByteArray *> qmc2SoftwareInfoDB;
 MiniWebBrowser *qmc2MAWSLookup = NULL;
 QTreeWidgetItem *qmc2LastMAWSItem = NULL;
 QCache<QString, QByteArray> qmc2MAWSCache;
@@ -247,7 +249,7 @@ QMap<QString, QString> qmc2ParentMap;
 QMap<QString, QIcon> qmc2IconMap;
 QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
 QMap<QString, QString> qmc2CustomShortcutMap;
-QMap<QString, QByteArray *> qmc2GameInfoDB;
+QHash<QString, QByteArray *> qmc2GameInfoDB;
 QList<QWidget *> qmc2ActiveViews;
 QString qmc2DemoGame;
 QStringList qmc2DemoArgs;
@@ -284,6 +286,9 @@ QMap<QString, QPalette> qmc2StandardPalettes;
 bool qmc2CategoryInfoUsed = false;
 bool qmc2VersionInfoUsed = false;
 QMap<QWidget *, Qt::WindowStates> qmc2AutoMinimizedWidgets;
+#if defined(QMC2_EMUTYPE_UME)
+QMultiMap<QString, QString> qmc2GameInfoSourceMap;
+#endif
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -4919,33 +4924,36 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
             }
           if ( updateInfo ) {
             if ( newGameInfo ) {
-              QString gameInfoText;
+		    QString gameInfoText;
 #if defined(QMC2_EMUTYPE_MESS)
-              if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat").toBool() )
-                gameInfoText = QString(QMC2_UNCOMPRESS(*newGameInfo));
-              else
-                gameInfoText = QString(*newGameInfo);
-              textBrowserGameInfo->setHtml(messWikiToHtml(gameInfoText));
-#else
-              if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool() )
-                gameInfoText = QString(QMC2_UNCOMPRESS(*newGameInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-              else
-                gameInfoText = QString(*newGameInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-              textBrowserGameInfo->setHtml(gameInfoText);
+		    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat").toBool() )
+			    gameInfoText = QString(QMC2_UNCOMPRESS(*newGameInfo));
+		    else
+			    gameInfoText = QString(*newGameInfo);
+		    textBrowserGameInfo->setHtml(messWikiToHtml(gameInfoText));
+#elif defined(QMC2_EMUTYPE_MAME)
+		    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool() )
+			    gameInfoText = QString(QMC2_UNCOMPRESS(*newGameInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+		    else
+			    gameInfoText = QString(*newGameInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+		    textBrowserGameInfo->setHtml(gameInfoText);
+#elif defined(QMC2_EMUTYPE_UME)
+		    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool() )
+			    gameInfoText = QString(QMC2_UNCOMPRESS(*newGameInfo));
+		    else
+			    gameInfoText = QString(*newGameInfo);
+		    if ( qmc2GameInfoSourceMap.values("MESS").contains(gameName) )
+			    textBrowserGameInfo->setHtml(messWikiToHtml(gameInfoText));
+		    else if ( qmc2GameInfoSourceMap.values("MESS").contains(qmc2ParentMap[gameName]) )
+			    textBrowserGameInfo->setHtml(messWikiToHtml(gameInfoText));
+		    else
+			    textBrowserGameInfo->setHtml(gameInfoText.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
 #endif
             } else
-#if defined(QMC2_EMUTYPE_MESS)
-              textBrowserGameInfo->setHtml("<h2>" + qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME) + "</h2>" + tr("<p>No data available</p>"));
-#else
-              textBrowserGameInfo->setHtml("<b>" + qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME) + "</b><p>" + tr("No data available"));
-#endif
+		    textBrowserGameInfo->setHtml("<h2>" + qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME) + "</h2>" + tr("<p>No data available</p>"));
           }
         } else
-#if defined(QMC2_EMUTYPE_MESS)
           textBrowserGameInfo->setHtml("<h2>" + qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME) + "</h2>" + tr("<p>No data available</p>"));
-#else
-          textBrowserGameInfo->setHtml("<b>" + qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME) + "</b><p>" + tr("No data available"));
-#endif
         qmc2LastGameInfoItem = qmc2CurrentItem;
         tabGameInfo->setUpdatesEnabled(true);
       }
@@ -5202,17 +5210,29 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 			      newGameInfo = qmc2GameInfoDB[qmc2ParentMap[gameName]];
 		      if ( newGameInfo ) {
 #if defined(QMC2_EMUTYPE_MESS)
-			      QString machineInfoString;
+			      QString systemInfoString;
 			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat").toBool() )
-				      machineInfoString = QString(QMC2_UNCOMPRESS(*newGameInfo));
+				      systemInfoString = QString(QMC2_UNCOMPRESS(*newGameInfo));
 			      else
-				      machineInfoString = QString(*newGameInfo);
-			      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = messWikiToHtml(machineInfoString);
-#else
+				      systemInfoString = QString(*newGameInfo);
+			      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = messWikiToHtml(systemInfoString);
+#elif defined(QMC2_EMUTYPE_MAME)
 			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool() )
 				      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = QString(QMC2_UNCOMPRESS(*newGameInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 			      else
 				      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = QString(*newGameInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+#elif defined(QMC2_EMUTYPE_UME)
+			      QString systemInfoString;
+			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool() )
+				      systemInfoString = QString(QMC2_UNCOMPRESS(*newGameInfo));
+			      else
+				      systemInfoString = QString(*newGameInfo);
+			      if ( qmc2GameInfoSourceMap.values("MESS").contains(gameName) )
+				      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = messWikiToHtml(systemInfoString);
+			      else if ( qmc2GameInfoSourceMap.values("MESS").contains(qmc2ParentMap[gameName]) )
+				      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = messWikiToHtml(systemInfoString);
+			      else
+				      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = systemInfoString.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 #endif
 			      qmc2SystemNotesEditor->templateMap["$GAME_INFO_STATUS$"] = "OK";
 		      } else {
@@ -6994,7 +7014,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #elif defined(QMC2_EMUTYPE_MESS)
     log(QMC2_LOG_FRONTEND, tr("destroying machine info DB"));
 #endif
-    QMapIterator<QString, QByteArray *> it(qmc2GameInfoDB);
+    QHashIterator<QString, QByteArray *> it(qmc2GameInfoDB);
     QList<QByteArray *> deletedRecords;
     while ( it.hasNext() ) {
       it.next();
@@ -7009,7 +7029,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
   }
   if ( !qmc2EmuInfoDB.isEmpty() ) {
     log(QMC2_LOG_FRONTEND, tr("destroying emulator info DB"));
-    QMapIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
+    QHashIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
     QList<QByteArray *> deletedRecords;
     while ( it.hasNext() ) {
       it.next();
@@ -7024,7 +7044,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
   }
   if ( !qmc2SoftwareInfoDB.isEmpty() ) {
     log(QMC2_LOG_FRONTEND, tr("destroying software info DB"));
-    QMapIterator<QString, QByteArray *> it(qmc2SoftwareInfoDB);
+    QHashIterator<QString, QByteArray *> it(qmc2SoftwareInfoDB);
     QList<QByteArray *> deletedRecords;
     while ( it.hasNext() ) {
       it.next();
@@ -7550,7 +7570,7 @@ void MainWindow::loadGameInfoDB()
   gameInfoTimer.start();
 
   // clear game/machine info DB
-  QMapIterator<QString, QByteArray *> it(qmc2GameInfoDB);
+  QHashIterator<QString, QByteArray *> it(qmc2GameInfoDB);
   QList<QByteArray *> deletedRecords;
   while ( it.hasNext() ) {
     it.next();
@@ -7572,17 +7592,21 @@ void MainWindow::loadGameInfoDB()
 #elif defined(QMC2_EMUTYPE_UME)
   QList<bool> compressDataList;
   QStringList pathToGameInfoDBList;
+  QStringList gameInfoSourceList;
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() ) {
 	  compressDataList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool();
 	  pathToGameInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString();
+	  gameInfoSourceList << "MAME";
   }
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() ) {
 	  compressDataList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat").toBool();
 	  pathToGameInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
+	  gameInfoSourceList << "MESS";
   }
   for (int index = 0; index < compressDataList.count(); index++) {
 	  QString pathToGameInfoDB = pathToGameInfoDBList[index];
 	  bool compressData = compressDataList[index];
+	  QString gameInfoSource = gameInfoSourceList[index];
 #endif
   QFile gameInfoDB(pathToGameInfoDB);
   gameInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -7630,27 +7654,22 @@ void MainWindow::loadGameInfoDB()
         if ( startsWithDollarBio ) {
           QString gameInfoString;
           bool firstLine = true;
+	  bool lastLineWasHeader = false;
 	  bool startsWithDollarEnd = false;
           while ( !startsWithDollarEnd && !ts.atEnd() ) {
             singleLine = ts.readLine();
 	    singleLineSimplified = singleLine.simplified();
 	    startsWithDollarEnd = singleLineSimplified.startsWith("$end");
             if ( !startsWithDollarEnd ) {
-#if defined(QMC2_EMUTYPE_MESS)
               if ( !firstLine ) {
-                  gameInfoString.append(singleLine + "<br>");
+		      if ( !lastLineWasHeader )
+			      gameInfoString.append(singleLine + "<br>");
+		      lastLineWasHeader = false;
               } else if ( !singleLine.isEmpty() ) {
-                gameInfoString.append("<b>" + singleLine + "</b><br>");
+                gameInfoString.append("<h2>" + singleLine + "</h2>");
                 firstLine = false;
+		lastLineWasHeader = true;
               }
-#else
-              if ( !firstLine ) {
-                  gameInfoString.append(singleLine.trimmed() + "<br>");
-              } else if ( !singleLine.isEmpty() ) {
-                gameInfoString.append("<b>" + singleLine.trimmed() + "</b><br>");
-                firstLine = false;
-              }
-#endif
             }
             if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
               progressBarGamelist->setValue(gameInfoDB.pos());
@@ -7676,8 +7695,13 @@ void MainWindow::loadGameInfoDB()
 #endif
             int i;
             for (i = 0; i < gameWords.count(); i++) {
-              if ( !gameWords[i].isEmpty() )
-                qmc2GameInfoDB[gameWords[i]] = gameInfo;
+		    QString setName = gameWords[i];
+		    if ( !setName.isEmpty() ) {
+			    qmc2GameInfoDB[setName] = gameInfo;
+#if defined(QMC2_EMUTYPE_UME)
+			    qmc2GameInfoSourceMap.insert(gameInfoSource, setName);
+#endif
+		    }
             }
           } else {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -7730,7 +7754,7 @@ void MainWindow::loadGameInfoDB()
   if ( qmc2StopParser ) {
     log(QMC2_LOG_FRONTEND, tr("invalidating machine info DB"));
 #endif
-    QMapIterator<QString, QByteArray *> it(qmc2GameInfoDB);
+    QHashIterator<QString, QByteArray *> it(qmc2GameInfoDB);
     QList<QByteArray *> deletedRecords;
     while ( it.hasNext() ) {
       it.next();
@@ -7742,6 +7766,11 @@ void MainWindow::loadGameInfoDB()
     }
     deletedRecords.clear();
     qmc2GameInfoDB.clear();
+#if defined(QMC2_EMUTYPE_UME)
+    foreach (QString key, qmc2GameInfoSourceMap)
+	    qmc2GameInfoSourceMap.remove(key);
+    qmc2GameInfoSourceMap.clear();
+#endif
   }
   qmc2LoadingGameInfoDB = false;
   qmc2MainWindow->progressBarGamelist->reset();
@@ -7762,7 +7791,7 @@ void MainWindow::loadEmuInfoDB()
   emuInfoTimer.start();
 
   // clear emulator info DB
-  QMapIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
+  QHashIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
   QList<QByteArray *> deletedRecords;
   while ( it.hasNext() ) {
     it.next();
@@ -7868,10 +7897,10 @@ void MainWindow::loadEmuInfoDB()
             else
               emuInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString));
 #endif
-            int i;
-            for (i = 0; i < gameWords.count(); i++) {
-              if ( !gameWords[i].isEmpty() )
-                qmc2EmuInfoDB[gameWords[i]] = emuInfo;
+            for (int i = 0; i < gameWords.count(); i++) {
+		    QString setName = gameWords[i];
+		    if ( !setName.isEmpty() )
+			    qmc2EmuInfoDB[setName] = emuInfo;
             }
           } else {
             log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in emulator info DB %1").arg(pathToEmuInfoDB));
@@ -7900,7 +7929,7 @@ void MainWindow::loadEmuInfoDB()
   log(QMC2_LOG_FRONTEND, tr("%n emulator info record(s) loaded", "", qmc2EmuInfoDB.count()));
   if ( qmc2StopParser ) {
     log(QMC2_LOG_FRONTEND, tr("invalidating emulator info DB"));
-    QMapIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
+    QHashIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
     QList<QByteArray *> deletedRecords;
     while ( it.hasNext() ) {
       it.next();
@@ -7931,7 +7960,7 @@ void MainWindow::loadSoftwareInfoDB()
 	swInfoTimer.start();
 
 	// clear software info DB
-	QMapIterator<QString, QByteArray *> it(qmc2SoftwareInfoDB);
+	QHashIterator<QString, QByteArray *> it(qmc2SoftwareInfoDB);
 	QList<QByteArray *> deletedRecords;
 	while ( it.hasNext() ) {
 		it.next();
@@ -8044,7 +8073,7 @@ void MainWindow::loadSoftwareInfoDB()
 	log(QMC2_LOG_FRONTEND, tr("%n software info record(s) loaded", "", qmc2SoftwareInfoDB.count()));
 	if ( qmc2StopParser ) {
 		log(QMC2_LOG_FRONTEND, tr("invalidating software info DB"));
-		QMapIterator<QString, QByteArray *> it(qmc2SoftwareInfoDB);
+		QHashIterator<QString, QByteArray *> it(qmc2SoftwareInfoDB);
 		QList<QByteArray *> deletedRecords;
 		while ( it.hasNext() ) {
 			it.next();
@@ -11547,7 +11576,7 @@ void MainWindow::on_actionSearchInternalBrowser_triggered(bool checked)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "WebSearch/InternalBrowser", checked);
 }
 
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 // note: - this routine is far from "elegant" but basically works (there may be minor conversion "bugs", though, depending on the quality of the wiki source data)
 //       - if someone knows a CLEAN wiki2html converter that's not "bloated" and written in C/C++ (and legally redistributable open source code), please let us know!
 QString &MainWindow::messWikiToHtml(QString &wikiText)
@@ -11619,11 +11648,11 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 			}
 		}
 		wikiLine.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-		if ( wikiLine.startsWith("&lt;b&gt;======") && wikiLine.endsWith("======&lt;/b&gt;") ) {
+		if ( wikiLine.startsWith("&lt;h2&gt;======") && wikiLine.endsWith("======&lt;/h2&gt;") ) {
 			if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
 			if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
 			if ( olLevel > 0 ) { for (int i = 0; i < olLevel; i++) wikiText += "</ol>"; olLevel = 0; wikiText += "<p>"; }
-			wikiText += "<h2>" + wikiLine.mid(15, wikiLine.length() - 31) + "</h2>";
+			wikiText += "<h2>" + wikiLine.mid(16, wikiLine.length() - 33) + "</h2>";
 		} else if ( wikiLine.startsWith("=====") && wikiLine.endsWith("=====") ) {
 			if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
 			if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
