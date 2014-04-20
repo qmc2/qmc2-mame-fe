@@ -1,6 +1,6 @@
 <!--
 SHIDERAVAN SYSTEM TEMPLATE
-LAST MODIFICATION: 06/05/2014
+LAST MODIFICATION: 19/04/2014
 
 This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.43 by Shideravan. Enjoy!
 
@@ -275,6 +275,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Manufacturer'] = 'Fabricante';
       trMap['Release Date'] = 'Lançamento';      
       trMap['Players'] = 'Nº de Jogadores';
+      trMap['Version'] = 'Versão';
       trMap['Clone of'] = 'Clone de';
       trMap['MAIN SYSTEM'] = 'SISTEMA PAI';  
       
@@ -366,6 +367,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Manufacturer'] = 'Hersteller';
       trMap['Release Date'] = 'Erscheinungsdatum';      
       trMap['Players'] = 'Anzahl der Spieler';
+      trMap['Version'] = 'Version';
       trMap['Clone of'] = 'Klon von';
       trMap['MAIN SYSTEM'] = 'Hauptsystem';      
       
@@ -458,6 +460,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Manufacturer'] = 'Fabricant';
       trMap['Release Date'] = 'Année';      
       trMap['Players'] = 'Joueurs';
+      trMap['Version'] = 'Version';
       trMap['Clone of'] = 'Clone de';
       trMap['MAIN SYSTEM'] = '???';
 
@@ -550,6 +553,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Manufacturer'] = 'Fabricante';
       trMap['Release Date'] = 'Año'; 
       trMap['Players'] = 'Jugadores';
+      trMap['Version'] = 'Versión';
       trMap['Clone of'] = 'Clon de';
       trMap['MAIN SYSTEM'] = 'SISTEMA PRINCIPAL'; 
 
@@ -642,6 +646,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Manufacturer'] = 'Tillverkare';
       trMap['Release Date'] = 'Årtal';      
       trMap['Players'] = 'Antal spelare';
+      trMap['Version'] = 'Version';
       trMap['Clone of'] = 'Klona av';
       trMap['MAIN SYSTEM'] = '???';    
       
@@ -734,6 +739,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Manufacturer'] = 'Construttore';
       trMap['Release Date'] = 'Anno';      
       trMap['Players'] = 'Numero di Giocatori';
+      trMap['Version'] = 'Versione';
       trMap['Clone of'] = 'Clone di';
       trMap['MAIN SYSTEM'] = '???';    
       
@@ -826,6 +832,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Manufacturer'] = '???';
       trMap['Release Date'] = '???';
       trMap['Players'] = '???';
+      trMap['Version'] = '???';
       trMap['Clone of'] = '???';
       trMap['MAIN SYSTEM'] = '???';    
       
@@ -918,6 +925,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Manufacturer'] = '???';
       trMap['Release Date'] = '???';
       trMap['Players'] = '???';
+      trMap['Version'] = '???';
       trMap['Clone of'] = '???';
       trMap['MAIN SYSTEM'] = '???';    
       
@@ -1010,6 +1018,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Manufacturer'] = '???';
       trMap['Release Date'] = '???';
       trMap['Players'] = '???';
+      trMap['Version'] = '???';
       trMap['Clone of'] = '???';
       trMap['MAIN SYSTEM'] = '???';    
       
@@ -1988,8 +1997,8 @@ else
    if ("$PLAYERS$"!=0)
       document.write("<br><b>"+tr('Players')+": </b></b>$PLAYERS$");
                            
-   if ("$EMULATOR_TYPE$" == "MAME") 
-      document.write("<br><b>MAME: </b>$VERSION$");                  
+   if ("$VERSION$" != "?") 
+      document.write("<br><b>"+tr('Version')+": </b>$VERSION$");                  
   
    document.write("<br><b>");        
 
