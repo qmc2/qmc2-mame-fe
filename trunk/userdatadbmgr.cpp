@@ -342,15 +342,17 @@ void UserDataDatabaseManager::cleanUp()
 	int row = nextRowId(true);
 	while ( row > 0 ) {
 		QString idOfCurrentRow = id(row);
-		if ( !qmc2Gamelist->xmlDb()->exists(idOfCurrentRow) ) {
-			QSqlQuery query(m_db);
-			query.prepare(QString("DELETE FROM %1 WHERE rowid=:row").arg(m_tableBasename));
-			query.bindValue(":row", row);
-			if ( query.exec() ) {
-				query.finish();
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("removed obsolete ID '%1'").arg(idOfCurrentRow));
-			} else
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(idOfCurrentRow).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		if ( !idOfCurrentRow.isEmpty() ) {
+			if ( !qmc2Gamelist->xmlDb()->exists(idOfCurrentRow) ) {
+				QSqlQuery query(m_db);
+				query.prepare(QString("DELETE FROM %1 WHERE rowid=:row").arg(m_tableBasename));
+				query.bindValue(":row", row);
+				if ( query.exec() ) {
+					query.finish();
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("removed obsolete ID '%1'").arg(idOfCurrentRow));
+				} else
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(idOfCurrentRow).arg(query.lastQuery()).arg(m_db.lastError().text()));
+			}
 		}
 		row = nextRowId();
 	}
