@@ -1191,9 +1191,19 @@ QString HtmlEditor::getImage(QString currentImage)
 		return currentImage;
 }
 
-bool HtmlEditor::queryLocalXml(QString id, QString queryString, bool sort)
+bool HtmlEditor::queryLocalXml(QString id, QString queryString, bool sort, QString systemEntityName)
 {
 	QByteArray localXmlDocument(ROMAlyzer::getXmlData(id, true).toLocal8Bit());
+	if ( !systemEntityName.isEmpty() ) {
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		QString realEntityName = "game";
+#elif defined(QMC2_EMUTYPE_MESS)
+		QString realEntityName = "machine";
+#else
+		QString realEntityName = "unknown";
+#endif
+		localXmlDocument.replace(realEntityName.toLocal8Bit(), systemEntityName.toLocal8Bit());
+	}
 	QBuffer localXmlQueryBuffer(&localXmlDocument);
 	localXmlQueryBuffer.open(QIODevice::ReadOnly);
 	xmlQuery.bindVariable("xmlDocument", &localXmlQueryBuffer);
