@@ -88,6 +88,8 @@ class Gamelist : public QObject
 		char romState(QString);
 		bool isBios(QString systemName) { return biosSets.contains(systemName); }
 		bool isDevice(QString systemName) { return deviceSets.contains(systemName); }
+		int rank(QString systemName) { return userDataDb()->rank(systemName); }
+		QString comment(QString systemName) { return userDataDb()->comment(systemName); }
 
 		void clearCategoryNames();
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)

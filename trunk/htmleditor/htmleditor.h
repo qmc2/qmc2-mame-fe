@@ -164,6 +164,8 @@ public slots:
     bool isBios(QString id);
     bool isDevice(QString id);
     QString romStatus(QString id, bool translated = false);
+    int rank(QString id);
+    QString comment(QString id);
 
 private:
     Ui_HTMLEditorMainWindow *ui;
