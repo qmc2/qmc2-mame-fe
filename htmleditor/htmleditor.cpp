@@ -1222,6 +1222,16 @@ QString HtmlEditor::romStatus(QString id, bool translated)
 	return qmc2Gamelist->romStatus(id, translated);
 }
 
+int HtmlEditor::rank(QString id)
+{
+	return qmc2Gamelist->rank(id);
+}
+
+QString HtmlEditor::comment(QString id)
+{
+	return qmc2Gamelist->comment(id);
+}
+
 void HtmlEditor::closeXmlBuffer()
 {
 	if ( xmlQueryBuffer ) {
