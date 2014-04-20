@@ -158,8 +158,8 @@ public slots:
     QString getImage(QString currentImage = QString());
     bool isZippedImage(QString imageType);
     QString getImageData(QString imageType);
-    bool queryXml(QString id, QString queryString, bool sort = true) { return queryLocalXml(id, queryString, sort); }
-    bool queryLocalXml(QString id, QString queryString, bool sort = true);
+    bool queryXml(QString id, QString queryString, bool sort = true, QString systemEntityName = QString()) { return queryLocalXml(id, queryString, sort, systemEntityName); }
+    bool queryLocalXml(QString id, QString queryString, bool sort = true, QString systemEntityName = QString());
     QStringList getXmlResult() { return xmlResult; }
     bool isBios(QString id);
     bool isDevice(QString id);
