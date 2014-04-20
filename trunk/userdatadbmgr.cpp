@@ -29,6 +29,7 @@ UserDataDatabaseManager::UserDataDatabaseManager(QObject *parent)
 			recreateDatabase();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to open user data database '%1': error = '%2'").arg(m_db.databaseName()).arg(m_db.lastError().text()));
+	m_lastRowId = -1;
 }
 
 UserDataDatabaseManager::~UserDataDatabaseManager()
@@ -273,6 +274,35 @@ int UserDataDatabaseManager::userDataRowCount()
 	}	return -1;
 }
 
+int UserDataDatabaseManager::nextRowId(bool refreshRowIds)
+{
+	if ( refreshRowIds ) {
+		m_rowIdList.clear();
+		m_lastRowId = -1;
+		// FIXME: get list of row IDs and return the first one
+		QSqlQuery query(m_db);
+		if ( query.exec(QString("SELECT rowid FROM %1").arg(m_tableBasename)) ) {
+			if ( query.first() ) {
+				do {
+					m_rowIdList << query.value(0).toInt();
+				} while ( query.next() );
+				m_lastRowId = 0;
+				return m_rowIdList[0];
+			}
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row IDs from user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+			return -1;
+		}
+	} else if ( m_lastRowId > -1 ) {
+		m_lastRowId++;
+		if ( m_lastRowId < m_rowIdList.count() )
+			return m_rowIdList[m_lastRowId];
+		else
+			return -1;
+	} else
+		return -1;
+}
+
 QString UserDataDatabaseManager::id(int rowid)
 {
 	QSqlQuery query(m_db);
@@ -308,14 +338,26 @@ bool UserDataDatabaseManager::exists(QString id)
 void UserDataDatabaseManager::cleanUp()
 {
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("cleaning up user data database '%1'").arg(m_db.databaseName()));
-	for (int row = 0; row < userDataRowCount(); row++) {
-		QString rowId = id(row);
-		if ( !qmc2Gamelist->xmlDb()->exists(rowId) ) {
-			// FIXME
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("removed obsolete ID '%1'").arg(rowId));
-			row--;
+
+	int row = nextRowId(true);
+	while ( row > 0 ) {
+		QString idOfCurrentRow = id(row);
+		if ( !qmc2Gamelist->xmlDb()->exists(idOfCurrentRow) ) {
+			QSqlQuery query(m_db);
+			query.prepare(QString("DELETE FROM %1 WHERE rowid=:row").arg(m_tableBasename));
+			query.bindValue(":row", row);
+			if ( query.exec() ) {
+				query.finish();
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("removed obsolete ID '%1'").arg(idOfCurrentRow));
+			} else
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(idOfCurrentRow).arg(query.lastQuery()).arg(m_db.lastError().text()));
 		}
+		row = nextRowId();
 	}
+	QSqlQuery query(m_db);
+	// vaccum'ing the database frees all disk-space previously used
+	query.exec("VACUUM");
+	query.finish();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (cleaning up user data database '%1')").arg(m_db.databaseName()));
 }
 

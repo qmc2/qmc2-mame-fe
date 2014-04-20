@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QSqlDatabase>
 #include <QSqlDriver>
+#include <QList>
 
 class UserDataDatabaseManager : public QObject
 {
@@ -33,6 +34,7 @@ class UserDataDatabaseManager : public QObject
 		void setLogActive(bool enable) { m_logActive = enable; }
 
 		int userDataRowCount();
+		int nextRowId(bool refreshRowIds = false);
 
 	public slots:
 		void recreateDatabase();
@@ -43,6 +45,8 @@ class UserDataDatabaseManager : public QObject
 		mutable QSqlDatabase m_db;
 		QString m_tableBasename;
 		bool m_logActive;
+		QList<int> m_rowIdList;
+		int m_lastRowId;
 };
 
 #endif
