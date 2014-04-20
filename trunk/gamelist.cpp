@@ -13,6 +13,7 @@
 #include <QFont>
 #include <QTimer>
 #include <QMap>
+#include <QHash>
 #include <QSet>
 #include <QDir>
 #include <QBitArray>
@@ -102,7 +103,7 @@ extern QBitArray qmc2Filter;
 extern QMap<QString, unzFile> qmc2IconFileMap;
 extern QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
 extern QMap<QString, QIcon> qmc2IconMap;
-extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
+extern QHash<QString, QByteArray *> qmc2EmuInfoDB;
 extern QTreeWidgetItem *qmc2LastMAWSItem;
 extern MiniWebBrowser *qmc2MAWSLookup;
 extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
