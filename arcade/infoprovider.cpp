@@ -44,6 +44,9 @@ void InfoProvider::clearGameInfoDB() {
         }
         deletedRecords.clear();
         qmc2GameInfoDB.clear();
+        foreach (QString key, qmc2GameInfoSourceMap)
+            qmc2GameInfoSourceMap.remove(key);
+        qmc2GameInfoSourceMap.clear();
     }
 }
 
@@ -84,19 +87,23 @@ void InfoProvider::loadGameInfoDB()
 
     QList<bool> compressDataList;
     QStringList gameInfoPathList;
+    QStringList gameInfoSourceList;
 
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
         compressDataList << globalConfig->compressMameHistoryDat();
         gameInfoPathList << globalConfig->mameHistoryDat();
+        gameInfoSourceList << "MAME";
         break;
     case QMC2_ARCADE_EMUMODE_MESS:
         compressDataList << globalConfig->compressMessSysinfoDat();
         gameInfoPathList << globalConfig->messSysinfoDat();
+        gameInfoSourceList << "MESS";
         break;
     case QMC2_ARCADE_EMUMODE_UME:
         compressDataList << globalConfig->compressMameHistoryDat() << globalConfig->compressMessSysinfoDat();
         gameInfoPathList << globalConfig->mameHistoryDat() << globalConfig->messSysinfoDat();
+        gameInfoSourceList << "MAME" << "MESS";
         break;
     default:
         return;
@@ -105,6 +112,7 @@ void InfoProvider::loadGameInfoDB()
     for (int index = 0; index < compressDataList.count(); index++) {
         bool compressData = compressDataList[index];
         QString pathToGameInfoDB = gameInfoPathList[index];
+        QString gameInfoSource = gameInfoSourceList[index];
         QFile gameInfoDB(pathToGameInfoDB);
         gameInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
         if ( gameInfoDB.isOpen() ) {
@@ -121,14 +129,18 @@ void InfoProvider::loadGameInfoDB()
                     if ( singleLine.simplified().startsWith("$bio") ) {
                         QString gameInfoString;
                         bool firstLine = true;
+                        bool lastLineWasHeader = false;
                         while ( !singleLine.simplified().startsWith("$end") && !ts.atEnd() ) {
                             singleLine = ts.readLine();
                             if ( !singleLine.simplified().startsWith("$end") ) {
-                                if ( !firstLine )
-                                    gameInfoString.append(singleLine.trimmed() + "<br>");
-                                else if ( !singleLine.isEmpty() ) {
-                                    gameInfoString.append("<b>" + singleLine.trimmed() + "</b><br>");
+                                if ( !firstLine ) {
+                                    if ( !lastLineWasHeader )
+                                        gameInfoString.append(singleLine.trimmed() + "<br>");
+                                    lastLineWasHeader = false;
+                                } else if ( !singleLine.isEmpty() ) {
+                                    gameInfoString.append("<h2>" + singleLine.trimmed() + "</h2>");
                                     firstLine = false;
+                                    lastLineWasHeader = true;
                                 }
                             }
                         }
@@ -149,9 +161,13 @@ void InfoProvider::loadGameInfoDB()
                             else
                                 gameInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString));
     #endif
-                            for (int i = 0; i < gameWords.count(); i++)
-                                if ( !gameWords[i].isEmpty() )
-                                    qmc2GameInfoDB[gameWords[i]] = gameInfo;
+                            for (int i = 0; i < gameWords.count(); i++) {
+                                QString setName = gameWords[i];
+                                if ( !setName.isEmpty() ) {
+                                    qmc2GameInfoDB[setName] = gameInfo;
+                                    qmc2GameInfoSourceMap.insert(gameInfoSource, setName);
+                                }
+                            }
                         } else {
                             switch ( emulatorMode ) {
                             case QMC2_ARCADE_EMUMODE_MAME:
@@ -327,17 +343,27 @@ QString InfoProvider::requestInfo(const QString &id, InfoClass infoClass)
             if ( newGameInfo ) {
                 switch ( emulatorMode ) {
                 case QMC2_ARCADE_EMUMODE_MAME:
-                case QMC2_ARCADE_EMUMODE_UME:
                     if ( globalConfig->compressMameHistoryDat() )
                         infoText = QString(QMC2_ARCADE_UNCOMPRESS(*newGameInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
                     else
                         infoText = QString(*newGameInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+                    break;
+                case QMC2_ARCADE_EMUMODE_UME:
+                    if ( globalConfig->compressMameHistoryDat() )
+                        infoText = QString(QMC2_ARCADE_UNCOMPRESS(*newGameInfo));
+                    else
+                        infoText = QString(*newGameInfo);
+                    if ( isMessGameInfo(id) )
+                        infoText = messWikiToHtml(infoText);
+                    else
+                        infoText.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
                     break;
                 case QMC2_ARCADE_EMUMODE_MESS:
                     if ( globalConfig->compressMameHistoryDat() )
                         infoText = QString(QMC2_ARCADE_UNCOMPRESS(*newGameInfo));
                     else
                         infoText = QString(*newGameInfo);
+                    infoText = messWikiToHtml(infoText);
                     break;
                 }
             } else
@@ -361,4 +387,156 @@ QString InfoProvider::requestInfo(const QString &id, InfoClass infoClass)
     }
 
     return infoText;
+}
+
+QString &InfoProvider::messWikiToHtml(QString &wikiText)
+{
+    int ulLevel = 0;
+    int olLevel = 0;
+    bool tableOpen = false;
+    bool preOn = false;
+    bool codeOn = false;
+    int preCounter = 0;
+    QStringList wikiLines = wikiText.split("<p>");
+    wikiText.clear();
+    foreach (QString wikiLine, wikiLines) {
+            QString wikiLineTrimmed = wikiLine.trimmed();
+            if ( wikiLine.indexOf(QRegExp("\\s*<code>")) == 0 ) {
+                    codeOn = true;
+                    continue;
+            }
+            if ( wikiLine.indexOf(QRegExp("\\s*</code>")) == 0 )
+                    codeOn = false;
+            bool listDetected = ( (wikiLineTrimmed.startsWith("* ") && wikiLine[wikiLine.indexOf("*") + 2] != ' ') || wikiLineTrimmed.startsWith("- ") );
+            if ( wikiLine == "  * " || wikiLine == "  - " || wikiLine == "  *" || wikiLine == "  -" ) continue; // this is an "artifact"... ignore :)
+            if ( !listDetected && (wikiLine.startsWith("  ") || codeOn) ) {
+                    if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
+                    if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
+                    if ( olLevel > 0 ) { for (int i = 0; i < olLevel; i++) wikiText += "</ol>"; olLevel = 0; wikiText += "<p>"; }
+                    if ( wikiLine == "  "  && preCounter == 0 ) {
+                            preCounter++;
+                            wikiText += "\n";
+                            continue;
+                    }
+                    if ( !preOn ) {
+                            wikiText += "<p><table border=\"1\"><tr><td><pre>";
+                            preOn = true;
+                    }
+                    if ( wikiLine == "  " ) {
+                            wikiText += "\n";
+                            continue;
+                    }
+            } else if ( preOn ) {
+                    preCounter++;
+                    wikiText += "</pre></td></tr></table><p>";
+                    preOn = codeOn = false;
+            }
+            int listDepth = 0;
+            if ( listDetected ) listDepth = wikiLine.indexOf(QRegExp("[\\-\\*]")) / 2;
+            if ( !preOn ) {
+                    wikiLine = wikiLineTrimmed;
+                    preCounter = 0;
+            }
+            if ( wikiLine.isEmpty() )
+                    continue;
+            wikiLine.replace("<", "&lt;").replace(">", "&gt;");
+            if ( wikiLine.startsWith("//") && wikiLine.endsWith("//") ) {
+                    wikiLine.replace(0, 2, "<i>");
+                    wikiLine.replace(wikiLine.length() - 2, 2, "</i>");
+            }
+            foreach (QString snippet, wikiLine.split("//")) {
+                    if ( snippet.indexOf(QRegExp("^.*(http:|https:|ftp:)$")) < 0 )
+                            wikiLine.replace(QString("//%1//").arg(snippet), QString("<i>%1</i>").arg(snippet));
+            }
+            wikiLine.replace(QRegExp("\\*\\*(.*)\\*\\*"), "<b>\\1</b>");
+            wikiLine.replace(QRegExp("__(.*)__"), "<u>\\1</u>");
+            wikiLine.replace(QRegExp("\\[\\[wp>([^\\]]*)\\]\\]"), QLatin1String("\\1 -- http://en.wikipedia.org/wiki/\\1"));
+            foreach (QString snippet, wikiLine.split("[[")) {
+                    if ( snippet.indexOf(QRegExp("\\]\\]|\\|")) > 0 ) {
+                            QStringList subSnippets = snippet.split(QRegExp("\\]\\]|\\|"));
+                            wikiLine.replace(QString("[[%1]]").arg(snippet), subSnippets[0]);
+                    }
+            }
+            wikiLine.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+            if ( wikiLine.startsWith("&lt;h2&gt;======") && wikiLine.endsWith("======&lt;/h2&gt;") ) {
+                    if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
+                    if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
+                    if ( olLevel > 0 ) { for (int i = 0; i < olLevel; i++) wikiText += "</ol>"; olLevel = 0; wikiText += "<p>"; }
+                    wikiText += "<h2>" + wikiLine.mid(16, wikiLine.length() - 33) + "</h2>";
+            } else if ( wikiLine.startsWith("=====") && wikiLine.endsWith("=====") ) {
+                    if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
+
+                    if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
+                    if ( olLevel > 0 ) { for (int i = 0; i < olLevel; i++) wikiText += "</ol>"; olLevel = 0; wikiText += "<p>"; }
+                    wikiText += "<h3>" + wikiLine.mid(6, wikiLine.length() - 12) + "</h3>";
+            } else if ( wikiLine.startsWith("====") && wikiLine.endsWith("====") ) {
+                    if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
+                    if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
+                    if ( olLevel > 0 ) { for (int i = 0; i < olLevel; i++) wikiText += "</ol>"; olLevel = 0; wikiText += "<p>"; }
+                    wikiText += "<h4>" + wikiLine.mid(5, wikiLine.length() - 10) + "</h4>";
+            } else if ( wikiLine.startsWith("===") && wikiLine.endsWith("===") ) {
+                    if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
+                    if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
+                    if ( olLevel > 0 ) { for (int i = 0; i < olLevel; i++) wikiText += "</ol>"; olLevel = 0; wikiText += "<p>"; }
+                    wikiText += "<b>" + wikiLine.mid(4, wikiLine.length() - 8) + "</b>";
+            } else if ( wikiLine.startsWith("==") && wikiLine.endsWith("==") ) {
+                    if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
+                    if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
+                    if ( olLevel > 0 ) { for (int i = 0; i < olLevel; i++) wikiText += "</ol>"; olLevel = 0; wikiText += "<p>"; }
+                    wikiText += "<b>" + wikiLine.mid(3, wikiLine.length() - 6) + "</b>";
+            } else if ( wikiLine.indexOf(QRegExp("\\* \\S")) == 0 ) {
+                    if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
+                    if ( olLevel > 0 ) { for (int i = 0; i < olLevel; i++) wikiText += "</ol>"; olLevel = 0; wikiText += "<p>"; }
+                    if ( listDepth > ulLevel ) {
+                            wikiText += "<ul style=\"list-style-type:square;\">";
+                            ulLevel++;
+                    } else if ( listDepth < ulLevel ) {
+                            wikiText += "</ul>";
+                            ulLevel--;
+                    }
+                    wikiText += "<li>" + wikiLine.mid(2) + "</li>";
+            } else if ( wikiLine.indexOf(QRegExp("\\- \\S")) == 0 ) {
+                    if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
+                    if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
+                    if ( listDepth > olLevel ) {
+                            wikiText += "<ol style=\"list-style-type:decimal;\">";
+                            olLevel++;
+                    } else if ( listDepth < olLevel ) {
+                            wikiText += "</ol>";
+                            olLevel--;
+                    }
+                    wikiText += "<li>" + wikiLine.mid(2) + "</li>";
+            } else if ( ( wikiLine.startsWith("| ") && wikiLine.endsWith(" |") ) || ( wikiLine.startsWith("^ ") && wikiLine.endsWith(" |") ) ) {
+                    if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
+                    if ( olLevel > 0 ) { for (int i = 0; i < olLevel; i++) wikiText += "</ol>"; olLevel = 0; wikiText += "<p>"; }
+                    if ( !tableOpen ) { wikiText += "<p><table border=\"1\">"; tableOpen = true; }
+                    wikiText += "<tr>";
+                    foreach (QString cell, wikiLine.split(QRegExp("\\^|\\|"), QString::SkipEmptyParts)) wikiText += "<td>" + cell + "</td>";
+                    wikiText += "</tr>";
+            } else if ( wikiLine.startsWith("^ ") && wikiLine.endsWith(" ^") ) {
+                    if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
+                    if ( olLevel > 0 ) { for (int i = 0; i < olLevel; i++) wikiText += "</ol>"; olLevel = 0; wikiText += "<p>"; }
+                    if ( !tableOpen ) { wikiText += "<p><table border=\"1\">"; tableOpen = true; }
+                    wikiText += "<tr>";
+                    foreach (QString cell, wikiLine.split("^", QString::SkipEmptyParts)) wikiText += "<td><b>" + cell + "</b></td>";
+                    wikiText += "</tr>";
+            } else {
+                    if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
+                    if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
+                    if ( olLevel > 0 ) { for (int i = 0; i < olLevel; i++) wikiText += "</ol>"; olLevel = 0; wikiText += "<p>"; }
+                    if ( preOn ) {
+                            wikiText += wikiLine.mid(2) + "\n";
+                    } else if ( codeOn ) {
+                            wikiText += wikiLine + "\n";
+                    } else
+                            wikiText += "<p>" + wikiLine + "</p>";
+            }
+    }
+
+    if ( ulLevel > 0 )
+            for (int i = 0; i < ulLevel; i++) wikiText += "</ul>";
+    else if ( olLevel > 0 )
+            for (int i = 0; i < olLevel; i++) wikiText += "</ol>";
+
+    return wikiText;
 }
