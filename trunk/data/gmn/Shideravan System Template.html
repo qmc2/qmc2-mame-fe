@@ -1,6 +1,9 @@
 <!--
 SHIDERAVAN SYSTEM TEMPLATE
-LAST MODIFICATION: 19/04/2014
+LAST MODIFICATION: 20/04/2014
+
+*TODO:
+*Software and Samples have to be disponible to MAME, MESS, UME. There's necessary to create a new checkbox for each option.
 
 This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.43 by Shideravan. Enjoy!
 
@@ -113,6 +116,13 @@ status of the languages supported:
       height: 45;
       width: 100%;
    }
+   #footerume 
+   {
+      position: absolute;
+      bottom: 0;
+      height: 56;
+      width: 100%;
+   }   
    #footernolink 
    {
       position: absolute;
@@ -1549,7 +1559,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SoftlistXML'
       document.write("</b></font></td></tr></tbody></table>");
    }     
    
-   else
+  /* else if ("$EMULATOR_TYPE$" == "MAME")
    {
       document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tbody><tr>"); 
    
@@ -1575,7 +1585,57 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SoftlistXML'
          document.write(tr('XML query error!'));
    
       document.write("</b></font></td></tr></tbody></table>");
-   } 
+   } */
+   
+   else
+   {
+      document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>"); 
+   
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/@sampleof/string()", false) ) 
+      {
+         var result = qmc2NEO.getXmlResult();
+         var len = result.length;
+            
+         if (len > 0) 
+         {
+            document.write("<td bgcolor=\"#700000\" width=\"50%\" align=\"left\"><font color=\"white\"><b>"+tr('Samples')+": ");
+         
+            for (var i = 0; i < len; i++)
+               document.write((i > 0 ? ", " : " ") + result[i]);   
+         } 
+      
+         else
+            document.write("<td bgcolor=\"#005000\" width=\"50%\" align=\"left\"><font color=\"white\"><b>"+tr('Samples')+": "+tr('Not necessary')); 
+      } 
+   
+      else
+         document.write(tr('XML query error!'));
+   
+      document.write("</font></td>");
+          
+   
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/softwarelist/@name/string()", false) ) 
+      {
+         var result = qmc2NEO.getXmlResult();
+         var len = result.length;
+            
+         if (len > 0) 
+         {
+            document.write("<td bgcolor=\"#005000\" width=\"50%\" align=\"right\"><font color=\"white\"><b>"+tr('Software List')+": ");
+         
+            for (var i = 0; i < len; i++)
+               document.write((i > 0 ? ", " : " ") + result[i]);   
+         } 
+      
+         else
+            document.write("<td bgcolor=\"#005000\" width=\"50%\" align=\"right\"><font color=\"white\"><b>"+tr('Software List')+": "+tr('Unsupported'));      
+      } 
+   
+      else
+         document.write(tr('XML query error!'));
+   
+      document.write("</b></font></td></tr></tbody></table>");         
+   }   
 }  
    
 
@@ -1846,13 +1906,21 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleInfo']
 
 if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/InfoXML'] == 'true')
 {
-   if ("$EMULATOR_TYPE$" == "MESS")
-   {
-      document.write("<font size=\"3\"><br><i>$MANUFACTURER$, $YEAR$</i><br>");
-   
-      /*Driver and source*/             
-         document.write("<br><b>"+tr('Driver')+": </b><a href=http://mamedev.org/source/src/mess/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>");             
 
+   document.write("<font size=\"3\"><br><i>$MANUFACTURER$, $YEAR$</i><br>");
+   document.write("<br><b>"+tr('Driver'));   
+          
+   
+   /*Driver and source*/ 
+   if ("$EMULATOR_TYPE$" == "MESS")            
+      document.write(": </b><a href=http://mamedev.org/source/src/mess/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>");         
+   else if ("$EMULATOR_TYPE$" == "MAME")     
+      document.write(": </b><a href=http://mamedev.org/source/src/mame/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>");           
+   else
+      document.write("(MESS): </b><a href=http://mamedev.org/source/src/mess/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a><br><b>"+tr('Driver')+"(MAME): </b><a href=http://mamedev.org/source/src/mame/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>");  
+
+   if ("$EMULATOR_TYPE$" == "MESS")
+   {           
       /*Screen*/  
       if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/display/@type/string()", false)) 
       {
@@ -1919,12 +1987,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/InfoXML'] ==
    }
   
    else
-   {  
-      document.write("<font size=\"3\"><br><i>$MANUFACTURER$, $YEAR$</i><br>");
-   
-      /*Driver and source*/        
-            document.write("<br><b>"+tr('Driver')+": </b><a href=http://mamedev.org/source/src/mame/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>");                      
-
+   {                 
       /*Screen*/  
       if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/display/@type/string()", false)) 
       {
@@ -2674,7 +2737,12 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
 else
 {
    if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BottomInfo'] == 'true')
-      document.write("<div id=\"footerno\">");
+   {
+      if ("$EMULATOR_TYPE$" != "UME")
+         document.write("<div id=\"footerno\">");
+      else
+         document.write("<div id=\"footerume\">");
+   }      
    else   
       document.write("<div id=\"footernolink\">");   
 }
@@ -3057,15 +3125,15 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BottomInfo']
    
    document.write("</b><a style=\"color: lime;\" href=http://mametesters.org/search.php?sticky_issues=off&sortby=last_updated&dir=DESC&hide_status_id=-2&custom_field_4=$ID$ title=\"All related bugs with this system in MAME Testers\">Related Bugs</a>.");
     
-<!--If MESS, will have the P. MESS, Edit Sysinfo links and preliminar link for MESS source code-->
-   if ("$EMULATOR_TYPE$" == "MESS")
+<!--If MESS or UME, will have the P. MESS, Edit Sysinfo links and preliminar link for MESS source code-->
+   if ("$EMULATOR_TYPE$" != "MAME")
    {
       document.write("<a style=\"color: orange;\" href=http://www.progettoemma.net/mess/system.php?machine=$ID$ title=\"Project MESS Page for this system\">P.MESS</a>.");
-      document.write("<a style=\"color: grey;\" href=http://www.progettoemma.net/mess/edit.php?game=$ID$,&list=mess title=\"Click to edit sysinfo in the project website\">EditSysinfo</a>");
+      document.write("<a style=\"color: grey;\" href=http://www.progettoemma.net/mess/edit.php?game=$ID$,&list=mess title=\"Click to edit sysinfo in the project website\">EditSysinfo</a><br>");
    }
    
 <!--If MAME/UME, will have Videos, P.EMMA, A.Hits, Commands and Manual links-->    
-   else
+   if ("$EMULATOR_TYPE$" != "MESS")
    {  
       document.write("<a style=\"color: violet;\" href=http://www.progettoemma.net/stream/index.php?movie=$ID$ title=\"Play Video about this system\">Videos</a>.");    
       document.write("<a style=\"color: cyan;\" href=http://www.progettoemma.net/gioco.php?game=$ID$ title=\"ProgettoEMMA Page for this system\">P.EMMA</a>.");
