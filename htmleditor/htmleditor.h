@@ -153,6 +153,7 @@ public slots:
 
     // helper functions (not only) for template use
     bool loadCurrentTemplate();
+    bool reloadTemplate() { return loadCurrentTemplate(); }
     QString getIconData();
     QString getColor(QString currentColor = QString());
     QString getImage(QString currentImage = QString());
