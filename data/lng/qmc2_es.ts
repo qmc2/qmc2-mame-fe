@@ -16072,116 +16072,116 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../arcade/keysequences.h" line="93"/>
         <source>[context] Set primary display data item</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Establecer el objeto de presentación primario</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="94"/>
         <source>[context] Set secondary display data item</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Establecer el objeto de presentación secundario</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="99"/>
         <source>[global] Zoom in</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="100"/>
         <source>[global] Zoom out</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="13"/>
         <location filename="../../arcade/keysequences.h" line="46"/>
         <location filename="../../arcade/keysequences.h" line="47"/>
         <source>[global] Start emulation</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Iniciar emulación</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="101"/>
         <source>[global] Search</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Buscar</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="18"/>
         <source>[global] Toggle preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Cambiar preferencias</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="36"/>
         <source>[global] Cursor up</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Cursor arriba</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="37"/>
         <source>[global] Cursor down</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Cursor abajo</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="38"/>
         <source>[global] Cursor left</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Cursor izquierda</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="39"/>
         <source>[global] Cursor right</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Cursor derecha</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="40"/>
         <source>[global] Page up</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Av Página</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="41"/>
         <source>[global] Page down</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Re página</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="42"/>
         <source>[global] Start of list</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Comienzo de lista</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="43"/>
         <source>[global] End of list</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Final de lista</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="44"/>
         <source>[global] Focus search box</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Enfocar caja de búsqueda</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="45"/>
         <source>[global] Toggle menu-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Cambiar barra de menú</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="50"/>
         <source>[global] Flip cabinet / game-card</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Girar cabina / game-card</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="95"/>
         <location filename="../../arcade/keysequences.h" line="96"/>
         <source>[global] Next component</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Siguiente componente</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="97"/>
         <location filename="../../arcade/keysequences.h" line="98"/>
         <source>[global] Previous component</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Anterior componente</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="102"/>
         <source>[global] Toggle list</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Cambiar lista</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="103"/>
         <source>[global] Toggle toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Cambiar barra de herramientas</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="14"/>
@@ -16189,14 +16189,14 @@ Are you sure you want to do this?</source>
         <location filename="../../arcade/keysequences.h" line="16"/>
         <location filename="../../arcade/keysequences.h" line="17"/>
         <source>[global] Toggle full-screen / windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Cambiar pantalla completa / modo ventana</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="48"/>
         <location filename="../../arcade/keysequences.h" line="49"/>
         <location filename="../../arcade/keysequences.h" line="104"/>
         <source>[global] Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Salir</translation>
     </message>
 </context>
 <context>
@@ -16219,7 +16219,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="45"/>
         <source>Tools menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Menú de herramientas</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="62"/>
@@ -17181,7 +17181,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="188"/>
         <source>Import from data file</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar desde archivo de datos</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="261"/>
@@ -17831,7 +17831,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="1759"/>
         <location filename="../../romalyzer.cpp" line="1797"/>
         <source>optional</source>
-        <translation type="unfinished"></translation>
+        <translation>opcional</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1696"/>
@@ -17871,29 +17871,29 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="1709"/>
         <source>ERROR</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1711"/>
         <location filename="../../romalyzer.cpp" line="1716"/>
         <source>WARNING</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1711"/>
         <source>actual bytes read != file size in header</source>
-        <translation type="unfinished"></translation>
+        <translation>bytes leídos != tamaño de archivo en cabecera</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1711"/>
         <location filename="../../romalyzer.cpp" line="1716"/>
         <source>check archive integrity</source>
-        <translation type="unfinished"></translation>
+        <translation>comprobar integridad de archivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1716"/>
         <source>actual CRC != CRC in header</source>
-        <translation type="unfinished"></translation>
+        <translation>CRC leído != CRC en cabecera</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2023"/>
@@ -18108,12 +18108,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="2622"/>
         <source>Choose data file to import</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo de datos a importar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2622"/>
         <source>Data files (*.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos de datos (*.dat)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2902"/>
@@ -19094,7 +19094,7 @@ Are you sure you want to do this?</source>
         <location filename="../../samplechecker.cpp" line="230"/>
         <location filename="../../samplechecker.cpp" line="375"/>
         <source>done (verifying samples, elapsed time = %1)</source>
-        <translation type="unfinished">hecho (verificando muestras, tiempo transcurrido = %1)</translation>
+        <translation>hecho (verificando muestras, tiempo transcurrido = %1)</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="142"/>
@@ -19119,27 +19119,27 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../samplechecker.cpp" line="245"/>
         <source>WARNING: XML bug: the following machines are referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MESS developers</source>
-        <translation type="unfinished">ATENCIÓN: error de XML: las máquinas siguientes hacen referencia a un set de muestras que no es necesario (sampleof=&quot;%1&quot;): %2 -- por favor informa a los desarrolladores de MESS</translation>
+        <translation>ATENCIÓN: error de XML: las máquinas siguientes hacen referencia a un set de muestras que no es necesario (sampleof=&quot;%1&quot;): %2 -- por favor informa a los desarrolladores de MESS</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="247"/>
         <source>WARNING: XML bug: the following machine is referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MESS developers</source>
-        <translation type="unfinished">ATENCIÓN: error de XML: la máquina siguiente hace referencia a un set de muestras que no es necesario (sampleof=&quot;%1&quot;): %2 -- por favor informa a los desarrolladores de MESS</translation>
+        <translation>ATENCIÓN: error de XML: la máquina siguiente hace referencia a un set de muestras que no es necesario (sampleof=&quot;%1&quot;): %2 -- por favor informa a los desarrolladores de MESS</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="250"/>
         <source>WARNING: XML bug: the following games are referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
-        <translation type="unfinished">ATENCIÓN: error de XML: los juegos siguientes hacen referencia a un set de muestras que no es necesario (sampleof=&quot;%1&quot;): %2 -- por favor informa a los desarrolladores de MAME</translation>
+        <translation>ATENCIÓN: error de XML: los juegos siguientes hacen referencia a un set de muestras que no es necesario (sampleof=&quot;%1&quot;): %2 -- por favor informa a los desarrolladores de MAME</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="252"/>
         <source>WARNING: XML bug: the following game is referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
-        <translation type="unfinished">ATENCIÓN: error de XML: el juego siguiente hace referencia a un set de muestras que no es necesario (sampleof=&quot;%1&quot;): %2 -- por favor informa a los desarrolladores de MAME</translation>
+        <translation>ATENCIÓN: error de XML: el juego siguiente hace referencia a un set de muestras que no es necesario (sampleof=&quot;%1&quot;): %2 -- por favor informa a los desarrolladores de MAME</translation>
     </message>
     <message numerus="yes">
         <location filename="../../samplechecker.cpp" line="259"/>
         <source>found %n individual sample set(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>encontrado %n set de muestras individual</numerusform>
             <numerusform>encontrados %n sets de muestras individuales</numerusform>
         </translation>
@@ -19147,12 +19147,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../samplechecker.cpp" line="259"/>
         <source>and</source>
-        <translation type="unfinished">y</translation>
+        <translation>y</translation>
     </message>
     <message numerus="yes">
         <location filename="../../samplechecker.cpp" line="259"/>
         <source>%n system(s) using samples</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n sistema usando muestras</numerusform>
             <numerusform>%n sistemas usando muestras</numerusform>
         </translation>
@@ -19160,48 +19160,48 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../samplechecker.cpp" line="263"/>
         <source>Checking sample status</source>
-        <translation type="unfinished">Comprobando el estado de las muestras</translation>
+        <translation>Comprobando el estado de las muestras</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="264"/>
         <source>check pass 1: checking sample status</source>
-        <translation type="unfinished">pase de comprobación 1: comprobando el estado de las muestras</translation>
+        <translation>pase de comprobación 1: comprobando el estado de las muestras</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="317"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">ERROR: no se puede iniciar el ejecutable del emulador en un tiempo razonable, abandonando</translation>
+        <translation>ERROR: no se puede iniciar el ejecutable del emulador en un tiempo razonable, abandonando</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="347"/>
         <source>Good: %1</source>
-        <translation type="unfinished">Bien: %1</translation>
+        <translation>Bien: %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="350"/>
         <source>Bad: %1</source>
-        <translation type="unfinished">Mal: %1</translation>
+        <translation>Mal: %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="353"/>
         <source>Missing: %1</source>
-        <translation type="unfinished">Ausente: %1</translation>
+        <translation>Ausente: %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="355"/>
         <source>WARNING: received unknown output when checking the sample status of &apos;%1&apos;: &apos;%2&apos;</source>
-        <translation type="unfinished">ATENCIÓN: salida desconocida recibida al comprobar el estado de la muestra de &apos;%1&apos;: &apos;%2&apos;</translation>
+        <translation>ATENCIÓN: salida desconocida recibida al comprobar el estado de la muestra de &apos;%1&apos;: &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="358"/>
         <location filename="../../samplechecker.cpp" line="360"/>
         <source>WARNING: received no output when checking the sample status of &apos;%1&apos;</source>
-        <translation type="unfinished">ATENCIÓN: no se ha recibido respuesta al comprobar el estado de la muestra de &apos;%1&apos;</translation>
+        <translation>ATENCIÓN: no se ha recibido respuesta al comprobar el estado de la muestra de &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="376"/>
         <source>%1 good, %2 bad, %3 missing, %4 obsolete</source>
-        <translation type="unfinished">%1 bueno, %2 malo %3 ausente %4 obsoleto</translation>
+        <translation>%1 bueno, %2 malo %3 ausente %4 obsoleto</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="392"/>
@@ -19264,115 +19264,115 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../sevenzipfile.cpp" line="36"/>
         <source>file name &apos;%1&apos; not found</source>
-        <translation type="unfinished"></translation>
+        <translation>archivo &apos;%1&apos; no encontrado</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="47"/>
         <source>archive not open</source>
-        <translation type="unfinished"></translation>
+        <translation>archivo no abierto</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="53"/>
         <source>null-buffer not allowed</source>
-        <translation type="unfinished"></translation>
+        <translation>buffer nulo no permitido</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="80"/>
         <location filename="../../sevenzipfile.cpp" line="101"/>
         <location filename="../../sevenzipfile.cpp" line="119"/>
         <source>extraction of file &apos;%1&apos; (index %2) failed</source>
-        <translation type="unfinished"></translation>
+        <translation>extracción de archivo &apos;%1&apos; (índice %2) fallida</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="149"/>
         <source>no error</source>
-        <translation type="unfinished">sin error</translation>
+        <translation>sin error</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="151"/>
         <source>incorrect data</source>
-        <translation type="unfinished"></translation>
+        <translation>datos incorrectos</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="153"/>
         <source>out of memory</source>
-        <translation type="unfinished"></translation>
+        <translation>sin memoria</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="155"/>
         <source>incorrect CRC</source>
-        <translation type="unfinished"></translation>
+        <translation>CRC incorrecto</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="157"/>
         <source>unsupported compression</source>
-        <translation type="unfinished"></translation>
+        <translation>método de compresión no soportado</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="159"/>
         <source>incorrect properties</source>
-        <translation type="unfinished"></translation>
+        <translation>propiedades incorrectas</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="161"/>
         <source>premature end-of-file (input)</source>
-        <translation type="unfinished"></translation>
+        <translation>fin de archivo prematuro (input)</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="163"/>
         <source>premature end-of-file (output)</source>
-        <translation type="unfinished"></translation>
+        <translation>fin de archivo prematuro (output)</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="165"/>
         <source>failed reading</source>
-        <translation type="unfinished"></translation>
+        <translation>fallo al leer</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="167"/>
         <source>failed writing</source>
-        <translation type="unfinished"></translation>
+        <translation>fallo al escribir</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="169"/>
         <source>failed signalling progress</source>
-        <translation type="unfinished"></translation>
+        <translation>fallo señalando progreso</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="171"/>
         <source>fatal error</source>
-        <translation type="unfinished">error fatal</translation>
+        <translation>error fatal</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="173"/>
         <source>thread error</source>
-        <translation type="unfinished"></translation>
+        <translation>error de hilo</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="175"/>
         <source>invalid archive structure</source>
-        <translation type="unfinished"></translation>
+        <translation>estructura de archivo inválida</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="177"/>
         <source>invalid header structure</source>
-        <translation type="unfinished"></translation>
+        <translation>estructura de cabecera inválida</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="179"/>
         <source>unknown error</source>
-        <translation type="unfinished">error desconocido</translation>
+        <translation>error desconocido</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="194"/>
         <source>no file name specified</source>
-        <translation type="unfinished"></translation>
+        <translation>nombre de archivo no especificado</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="201"/>
         <location filename="../../sevenzipfile.cpp" line="221"/>
         <source>can&apos;t open archive &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>no se puede abrir el archivo &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
@@ -20602,13 +20602,13 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="3670"/>
         <location filename="../../softwarelist.cpp" line="4027"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
-        <translation type="unfinished">ERROR: no se puede abrir archivo de instantánea de software %1</translation>
+        <translation>ERROR: no se puede abrir archivo de instantánea de software %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3670"/>
         <location filename="../../softwarelist.cpp" line="4027"/>
         <source>7z error</source>
-        <translation type="unfinished">error 7z</translation>
+        <translation>error 7z</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3723"/>
@@ -20633,7 +20633,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwarelist.cpp" line="4062"/>
         <source>Decompressing archive, please wait...</source>
-        <translation type="unfinished">Descomprimiendo archivo, por favor espera...</translation>
+        <translation>Descomprimiendo archivo, por favor espera...</translation>
     </message>
 </context>
 <context>
@@ -20661,17 +20661,17 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwarelist.cpp" line="4797"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
-        <translation type="unfinished">ERROR: no se puede abrir archivo de instantánea de software %1</translation>
+        <translation>ERROR: no se puede abrir archivo de instantánea de software %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4797"/>
         <source>7z error</source>
-        <translation type="unfinished">error 7z</translation>
+        <translation>error 7z</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4830"/>
         <source>Decompressing archive, please wait...</source>
-        <translation type="unfinished">Descomprimiendo archivo, por favor espera...</translation>
+        <translation>Descomprimiendo archivo, por favor espera...</translation>
     </message>
 </context>
 <context>
@@ -20959,7 +20959,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="31"/>
         <source>WARNING: failed to open user data database &apos;%1&apos;: error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al abrir la base de datos de datos de usuario &apos;%1&apos;: error = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="51"/>
@@ -20977,7 +20977,7 @@ Are you sure you want to do this?</source>
         <location filename="../../userdatadbmgr.cpp" line="317"/>
         <location filename="../../userdatadbmgr.cpp" line="333"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al recuperar &apos;%1&apos; de la base de datos de datos de usuario: petición = &apos;%2&apos;, error = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="65"/>
@@ -20986,7 +20986,7 @@ Are you sure you want to do this?</source>
         <location filename="../../userdatadbmgr.cpp" line="194"/>
         <location filename="../../userdatadbmgr.cpp" line="250"/>
         <source>WARNING: failed to add &apos;%1&apos; to user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al añadir &apos;%1&apos; a la base de datos de datos de usuario: petición = &apos;%2&apos;, error = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="71"/>
@@ -20995,56 +20995,56 @@ Are you sure you want to do this?</source>
         <location filename="../../userdatadbmgr.cpp" line="201"/>
         <location filename="../../userdatadbmgr.cpp" line="257"/>
         <source>WARNING: failed to update &apos;%1&apos; in user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al actualizar &apos;%1&apos; en la base de datos de datos de usuario: peticion = &apos;%2&apos;, error = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="273"/>
         <source>WARNING: failed to fetch row count from user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al recuperar la cuenta de filas de la base de datos de usuario: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="293"/>
         <source>WARNING: failed to fetch row IDs from user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al recuperar las IDs de filas de la base de datos de usuario: petición = &apos;%1&apos;, error =&apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="340"/>
         <source>cleaning up user data database &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>limpiando la base de datos de datos de usuario &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="352"/>
         <source>removed obsolete ID &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ID obsoleta eliminada &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="354"/>
         <source>WARNING: failed to remove &apos;%1&apos; from user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al eliminar &apos;%1&apos; de la base de datos de datos de usuario: petición = &apos;%2&apos;, error = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="363"/>
         <source>done (cleaning up user data database &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>hecho (limpiando la base de datos de datos de usuario &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="370"/>
         <location filename="../../userdatadbmgr.cpp" line="375"/>
         <location filename="../../userdatadbmgr.cpp" line="380"/>
         <source>WARNING: failed to remove user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al eliminar la base de datos de datos de usuario: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="388"/>
         <location filename="../../userdatadbmgr.cpp" line="393"/>
         <location filename="../../userdatadbmgr.cpp" line="398"/>
         <source>WARNING: failed to create user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al crear la base de datos de datos de usuario: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="402"/>
         <source>user data database &apos;%1&apos; initialized</source>
-        <translation type="unfinished"></translation>
+        <translation>base de datos de datos de usuario &apos;%1&apos; iniciada</translation>
     </message>
 </context>
 <context>
@@ -21312,7 +21312,7 @@ Aunque puede que sean los restos de una caida previa.
     <message>
         <location filename="../../xmldbmgr.cpp" line="29"/>
         <source>WARNING: failed to open XML cache database &apos;%1&apos;: error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN fallo al abrir la base de datos de caché XML &apos;%1&apos; error = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="48"/>
@@ -21328,7 +21328,7 @@ Aunque puede que sean los restos de una caida previa.
         <location filename="../../xmldbmgr.cpp" line="239"/>
         <location filename="../../xmldbmgr.cpp" line="266"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN fallo al recuperar &apos;%1&apos; de la base de datos de caché XML: petición = &apos;%2&apos;, error = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="62"/>
@@ -21337,7 +21337,7 @@ Aunque puede que sean los restos de una caida previa.
         <location filename="../../xmldbmgr.cpp" line="173"/>
         <location filename="../../xmldbmgr.cpp" line="228"/>
         <source>WARNING: failed to add &apos;%1&apos; to XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al añadir &apos;%1&apos; a la base de datos de caché XML: petición = &apos;%2&apos;, error = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="68"/>
@@ -21346,31 +21346,31 @@ Aunque puede que sean los restos de una caida previa.
         <location filename="../../xmldbmgr.cpp" line="179"/>
         <location filename="../../xmldbmgr.cpp" line="235"/>
         <source>WARNING: failed to update &apos;%1&apos; in XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al actualizar &apos;%1&apos; en la base de datos de caché XML: peticion = &apos;%2&apos;, error = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="251"/>
         <source>WARNING: failed to fetch row count from XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al recuperar la cuenta de filas de la base de datos de caché XML: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="275"/>
         <location filename="../../xmldbmgr.cpp" line="280"/>
         <location filename="../../xmldbmgr.cpp" line="285"/>
         <source>WARNING: failed to remove XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al eliminar la base de datos de caché XML: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="293"/>
         <location filename="../../xmldbmgr.cpp" line="298"/>
         <location filename="../../xmldbmgr.cpp" line="303"/>
         <source>WARNING: failed to create XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al crear la base de datos de datos de caché XML: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="307"/>
         <source>XML cache database &apos;%1&apos; initialized</source>
-        <translation type="unfinished"></translation>
+        <translation>base de datos de caché XML &apos;%1&apos; iniciada</translation>
     </message>
 </context>
 <context>
@@ -21494,13 +21494,13 @@ Aunque puede que sean los restos de una caida previa.
         <location filename="../../youtubevideoplayer.cpp" line="1123"/>
         <location filename="../../youtubevideoplayer.cpp" line="1169"/>
         <source>Remaining</source>
-        <translation type="unfinished"></translation>
+        <translation>Restante</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="353"/>
         <location filename="../../youtubevideoplayer.cpp" line="1824"/>
         <source>Volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Volumen</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="394"/>
@@ -21550,7 +21550,7 @@ Aunque puede que sean los restos de una caida previa.
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="135"/>
         <source>Volume level</source>
-        <translation type="unfinished"></translation>
+        <translation>Nivel de volumen</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="136"/>
