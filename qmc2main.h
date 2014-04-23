@@ -552,23 +552,39 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void signalStyleSheetSetupRequested(QString styleSheet) { emit styleSheetSetupRequested(styleSheet); }
 		void signalPaletteSetupRequested(QString style) { emit paletteSetupRequested(style); }
 
-		// callbacks for horizontal scroll-bar value changes
-		void treeWidgetGamelist_horizontalScrollChanged(int value = -1);
-		void treeWidgetHierarchy_horizontalScrollChanged(int value = -1);
-		void treeWidgetCategoryView_horizontalScrollChanged(int value = -1);
+		// callbacks for dynamically updated list contents
+		void treeWidgetGamelist_verticalScrollChanged(int value = -1);
+		void treeWidgetGamelist_updateRanks();
+		void treeWidgetHierarchy_verticalScrollChanged(int value = -1);
+		void treeWidgetHierarchy_updateRanks();
+		void on_treeWidgetHierarchy_itemExpanded(QTreeWidgetItem *);
+		void treeWidgetCategoryView_verticalScrollChanged(int value = -1);
+		void treeWidgetCategoryView_updateRanks();
+		void on_treeWidgetCategoryView_itemExpanded(QTreeWidgetItem *);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		void treeWidgetVersionView_horizontalScrollChanged(int value = -1);
+		void treeWidgetVersionView_verticalScrollChanged(int value = -1);
+		void treeWidgetVersionView_updateRanks();
+		void on_treeWidgetVersionView_itemExpanded(QTreeWidgetItem *);
 #endif
+
 
 	protected:
 		void closeEvent(QCloseEvent *);
 		void showEvent(QShowEvent *);
-
+		void resizeEvent(QResizeEvent *);
 
 	signals:
 		void styleSetupRequested(QString);
 		void styleSheetSetupRequested(QString);
 		void paletteSetupRequested(QString);
+
+	private:
+		QTimer m_glRankUpdateTimer;
+		QTimer m_hlRankUpdateTimer;
+		QTimer m_clRankUpdateTimer;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		QTimer m_vlRankUpdateTimer;
+#endif
 };
 
 #endif

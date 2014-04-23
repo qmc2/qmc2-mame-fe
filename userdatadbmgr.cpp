@@ -151,7 +151,7 @@ void UserDataDatabaseManager::setUserDataVersion(int userdata_version)
 
 int UserDataDatabaseManager::rank(QString id)
 {
-	int rank = -1;
+	int rank = 0;
 	QSqlQuery query(m_db);
 	query.prepare(QString("SELECT rank FROM %1 WHERE id=:id").arg(m_tableBasename));
 	query.bindValue(":id", id);
@@ -361,6 +361,15 @@ void UserDataDatabaseManager::cleanUp()
 	query.exec("VACUUM");
 	query.finish();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (cleaning up user data database '%1')").arg(m_db.databaseName()));
+}
+
+void UserDataDatabaseManager::remove(QString id)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("DELETE FROM %1 WHERE id=:id").arg(m_tableBasename));
+	query.bindValue(":id", id);
+	if ( !query.exec() )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
 void UserDataDatabaseManager::recreateDatabase()

@@ -1,6 +1,9 @@
 #ifndef _RANKITEMWIDGET_H_
 #define _RANKITEMWIDGET_H_
 
+#include <QFontMetrics>
+#include <QMouseEvent>
+
 #include "ui_rankitemwidget.h"
 
 class RankItemWidget : public QWidget, public Ui::RankItemWidget
@@ -8,12 +11,21 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 	Q_OBJECT
 
        	public:
-		RankItemWidget(QWidget *parent = 0);
-		~RankItemWidget();
+		RankItemWidget(QString id, QWidget *parent = 0);
+
+		bool checkSize(QFontMetrics *fm) { return size().height() == fm->height(); }
 
 	public slots:
+		void updateSize(QFontMetrics *fm = 0);
+		void updateRankFromDb();
+		void updateRank(int mouseX = 0);
 
-	signals:
+	protected:
+		void mousePressEvent(QMouseEvent *e);
+		void mouseMoveEvent(QMouseEvent *e);
+
+	private:
+		QString m_id;
 };
 
 #endif

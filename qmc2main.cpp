@@ -89,6 +89,7 @@
 #include "htmleditor/htmleditor.h"
 #include "arcademodesetup.h"
 #include "fileiconprovider.h"
+#include "rankitemwidget.h"
 
 #ifdef __APPLE__
 #include <ApplicationServices/ApplicationServices.h>
@@ -1302,6 +1303,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
   action = menuGamelistHeader->addAction(tr("Source file"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_SRCFILE);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_SRCFILE));
+  action = menuGamelistHeader->addAction(tr("Rank"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_RANK);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_RANK));
   action = menuGamelistHeader->addAction(tr("Category"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_CATEGORY);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY));
   actionMenuGamelistHeaderCategory = action;
@@ -1346,6 +1349,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
   action = menuHierarchyHeader->addAction(tr("Source file"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_SRCFILE);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_SRCFILE));
+  action = menuHierarchyHeader->addAction(tr("Rank"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_RANK);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_RANK));
   action = menuHierarchyHeader->addAction(tr("Category"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_CATEGORY);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY));
   actionMenuHierarchyHeaderCategory = action;
@@ -1385,6 +1390,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
   action = menuCategoryHeader->addAction(tr("Source file"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_SRCFILE);
   action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_SRCFILE));
+  action = menuCategoryHeader->addAction(tr("Rank"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_RANK);
+  action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_RANK));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   action = menuCategoryHeader->addAction(tr("Version"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_VERSION);
   action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION));
@@ -1417,6 +1424,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
   action = menuVersionHeader->addAction(tr("Source file"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_SRCFILE);
   action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_SRCFILE));
+  action = menuVersionHeader->addAction(tr("Rank"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_RANK);
+  action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_RANK));
   action = menuVersionHeader->addAction(tr("Category"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_CATEGORY);
   action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY));
   menuVersionHeader->addSeparator();
@@ -1607,11 +1616,19 @@ MainWindow::MainWindow(QWidget *parent)
   connect(&memoryUpdateTimer, SIGNAL(timeout()), this, SLOT(memoryUpdateTimer_timeout()));
 #endif
 
-  connect(treeWidgetGamelist->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetGamelist_horizontalScrollChanged(int)));
-  connect(treeWidgetHierarchy->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetHierarchy_horizontalScrollChanged(int)));
-  connect(treeWidgetCategoryView->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetCategoryView_horizontalScrollChanged(int)));
+  connect(treeWidgetGamelist->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetGamelist_verticalScrollChanged(int)));
+  m_glRankUpdateTimer.setSingleShot(true);
+  connect(&m_glRankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetGamelist_updateRanks()));
+  connect(treeWidgetHierarchy->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetHierarchy_verticalScrollChanged(int)));
+  m_hlRankUpdateTimer.setSingleShot(true);
+  connect(&m_hlRankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetHierarchy_updateRanks()));
+  connect(treeWidgetCategoryView->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetCategoryView_verticalScrollChanged(int)));
+  m_clRankUpdateTimer.setSingleShot(true);
+  connect(&m_clRankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetCategoryView_updateRanks()));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  connect(treeWidgetVersionView->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetVersionView_horizontalScrollChanged(int)));
+  connect(treeWidgetVersionView->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetVersionView_verticalScrollChanged(int)));
+  m_vlRankUpdateTimer.setSingleShot(true);
+  connect(&m_vlRankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetVersionView_updateRanks()));
 #endif
 
   QTimer::singleShot(0, this, SLOT(init()));
@@ -3837,6 +3854,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 	      case QMC2_VIEW_TREE_INDEX:
 		      treeWidgetHierarchy->activateWindow();
 		      treeWidgetHierarchy->setFocus();
+		      QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetHierarchy_verticalScrollChanged()));
 		      break;
 	      case QMC2_VIEW_CATEGORY_INDEX:
 		      treeWidgetCategoryView->activateWindow();
@@ -3854,6 +3872,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 	      default:
 		      treeWidgetGamelist->activateWindow();
 		      treeWidgetGamelist->setFocus();
+		      QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetGamelist_verticalScrollChanged()));
 		      break;
       }
       break;
@@ -7130,6 +7149,34 @@ void MainWindow::showEvent(QShowEvent *e)
 	}
 }
 
+void MainWindow::resizeEvent(QResizeEvent *e)
+{
+	if ( e )
+		QMainWindow::resizeEvent(e);
+
+	switch ( tabWidgetGamelist->currentIndex() ) {
+		case QMC2_GAMELIST_INDEX:
+			switch ( stackedWidgetView->currentIndex() ) {
+				case QMC2_VIEW_TREE_INDEX:
+					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetHierarchy_verticalScrollChanged()));
+					break;
+				case QMC2_VIEW_CATEGORY_INDEX:
+					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
+					break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+				case QMC2_VIEW_VERSION_INDEX:
+					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
+					break;
+#endif
+				case QMC2_VIEW_DETAIL_INDEX:
+				default:
+					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetGamelist_verticalScrollChanged()));
+					break;
+			}
+			break;
+	}
+}
+
 void MainWindow::init()
 {
 	if ( qmc2SplashScreen ) {
@@ -7331,6 +7378,8 @@ void MainWindow::viewByCategory()
   if ( item ) {
     if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
       QTimer::singleShot(0, qmc2Gamelist, SLOT(createCategoryView()));
+    else
+      QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
   } else
     QTimer::singleShot(0, qmc2Gamelist, SLOT(createCategoryView()));
   treeWidgetCategoryView->setFocus();
@@ -7353,6 +7402,8 @@ void MainWindow::viewByVersion()
   if ( item ) {
     if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
       QTimer::singleShot(0, qmc2Gamelist, SLOT(createVersionView()));
+    else
+      QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
   } else
     QTimer::singleShot(0, qmc2Gamelist, SLOT(createVersionView()));
   treeWidgetVersionView->setFocus();
@@ -11824,25 +11875,256 @@ void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
 		comboBoxSearch->lineEdit()->setText(text);
 }
 
-void MainWindow::treeWidgetGamelist_horizontalScrollChanged(int /*value*/)
+void MainWindow::treeWidgetGamelist_verticalScrollChanged(int)
 {
-	// FIXME
+	if ( !treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_RANK) )
+		m_glRankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
 }
 
-void MainWindow::treeWidgetHierarchy_horizontalScrollChanged(int /*value*/)
+void MainWindow::treeWidgetGamelist_updateRanks()
 {
-	// FIXME
+  	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+		return;
+
+	QTreeWidget *treeWidget = treeWidgetGamelist;
+
+	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
+	QPoint bottomPoint = treeWidget->viewport()->rect().bottomLeft();
+	QTreeWidgetItem *endItem = treeWidget->itemAt(bottomPoint);
+	QFontMetrics fm = treeWidget->fontMetrics();
+	if ( startItem ) {
+		while ( !endItem && endItem != startItem ) {
+			bottomPoint.setY(bottomPoint.y() - fm.height());
+			endItem = treeWidget->itemAt(bottomPoint);
+		}
+	}
+
+	if ( startItem && endItem ) {
+		while ( startItem->parent() )
+			startItem = startItem->parent();
+		while ( endItem->parent() )
+			endItem = endItem->parent();
+		int startIndex = treeWidget->indexOfTopLevelItem(startItem);
+		if ( startIndex > 0 )
+			startIndex -= 1;
+		int endIndex = treeWidget->indexOfTopLevelItem(endItem);
+		if ( endIndex + 1 < treeWidget->topLevelItemCount() )
+			endIndex += 1;
+		int minWidth = 0;
+		for (int i = startIndex; i <= endIndex && !m_glRankUpdateTimer.isActive(); i++) {
+			QTreeWidgetItem *item = treeWidget->topLevelItem(i);
+			RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+			if ( riw ) {
+				if ( !riw->checkSize(&fm) )
+					riw->updateSize(&fm);
+				minWidth = qMax(minWidth, riw->width());
+			} else
+				treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item->text(QMC2_GAMELIST_COLUMN_NAME)));
+		}
+		if ( treeWidget->columnWidth(QMC2_GAMELIST_COLUMN_RANK) < minWidth )
+			treeWidget->resizeColumnToContents(QMC2_GAMELIST_COLUMN_RANK);
+	}
 }
 
-void MainWindow::treeWidgetCategoryView_horizontalScrollChanged(int /*value*/)
+void MainWindow::treeWidgetHierarchy_verticalScrollChanged(int)
 {
-	// FIXME
+	if ( !treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_RANK) )
+		m_hlRankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
+}
+
+void MainWindow::treeWidgetHierarchy_updateRanks()
+{
+  	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+		return;
+
+	QTreeWidget *treeWidget = treeWidgetHierarchy;
+
+	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
+	QPoint bottomPoint = treeWidget->viewport()->rect().bottomLeft();
+	QTreeWidgetItem *endItem = treeWidget->itemAt(bottomPoint);
+	QFontMetrics fm = treeWidget->fontMetrics();
+	if ( startItem ) {
+		while ( !endItem && endItem != startItem ) {
+			bottomPoint.setY(bottomPoint.y() - fm.height());
+			endItem = treeWidget->itemAt(bottomPoint);
+		}
+	}
+
+	if ( startItem && endItem ) {
+		QTreeWidgetItem *item;
+		item = treeWidget->itemBelow(endItem);
+		if ( item )
+			endItem = item;
+		item = treeWidget->itemAbove(startItem);
+		if ( item )
+			startItem = item;
+		item = startItem;
+		QFontMetrics fm = treeWidget->fontMetrics();
+		int minWidth = 0;
+		while ( item && item != endItem && !m_hlRankUpdateTimer.isActive() ) {
+			RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+			if ( riw ) {
+				if ( !riw->checkSize(&fm) )
+					riw->updateSize(&fm);
+				minWidth = qMax(minWidth, riw->width());
+			} else
+				treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item->text(QMC2_GAMELIST_COLUMN_NAME)));
+			item = treeWidget->itemBelow(item);
+		}
+		if ( item == endItem && !m_hlRankUpdateTimer.isActive() ) {
+			RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+			if ( riw ) {
+				if ( !riw->checkSize(&fm) )
+					riw->updateSize(&fm);
+				minWidth = qMax(minWidth, riw->width());
+			} else
+				treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item->text(QMC2_GAMELIST_COLUMN_NAME)));
+		}
+		if ( treeWidget->columnWidth(QMC2_GAMELIST_COLUMN_RANK) < minWidth )
+			treeWidget->resizeColumnToContents(QMC2_GAMELIST_COLUMN_RANK);
+	}
+}
+
+void MainWindow::on_treeWidgetHierarchy_itemExpanded(QTreeWidgetItem *item)
+{
+	treeWidgetHierarchy_verticalScrollChanged();
+}
+
+void MainWindow::treeWidgetCategoryView_verticalScrollChanged(int)
+{
+	if ( !treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_RANK) )
+		m_clRankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
+}
+
+void MainWindow::treeWidgetCategoryView_updateRanks()
+{
+  	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+		return;
+
+	QTreeWidget *treeWidget = treeWidgetCategoryView;
+
+	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
+	QPoint bottomPoint = treeWidget->viewport()->rect().bottomLeft();
+	QTreeWidgetItem *endItem = treeWidget->itemAt(bottomPoint);
+	QFontMetrics fm = treeWidget->fontMetrics();
+	if ( startItem ) {
+		while ( !endItem && endItem != startItem ) {
+			bottomPoint.setY(bottomPoint.y() - fm.height());
+			endItem = treeWidget->itemAt(bottomPoint);
+		}
+	}
+
+	if ( startItem && endItem ) {
+		QTreeWidgetItem *item;
+		item = treeWidget->itemBelow(endItem);
+		if ( item )
+			endItem = item;
+		item = treeWidget->itemAbove(startItem);
+		if ( item )
+			startItem = item;
+		item = startItem;
+		QFontMetrics fm = treeWidget->fontMetrics();
+		int minWidth = 0;
+		while ( item && item != endItem && !m_clRankUpdateTimer.isActive() ) {
+			if ( item->parent() ) {
+				RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+				if ( riw ) {
+					if ( !riw->checkSize(&fm) )
+						riw->updateSize(&fm);
+					minWidth = qMax(minWidth, riw->width());
+				} else
+					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item->text(QMC2_GAMELIST_COLUMN_NAME)));
+			}
+			item = treeWidget->itemBelow(item);
+		}
+		if ( item == endItem && !m_clRankUpdateTimer.isActive() ) {
+			if ( item->parent() ) {
+				RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+				if ( riw ) {
+					if ( !riw->checkSize(&fm) )
+						riw->updateSize(&fm);
+					minWidth = qMax(minWidth, riw->width());
+				} else
+					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item->text(QMC2_GAMELIST_COLUMN_NAME)));
+			}
+		}
+		if ( treeWidget->columnWidth(QMC2_GAMELIST_COLUMN_RANK) < minWidth )
+			treeWidget->resizeColumnToContents(QMC2_GAMELIST_COLUMN_RANK);
+	}
+}
+
+void MainWindow::on_treeWidgetCategoryView_itemExpanded(QTreeWidgetItem *item)
+{
+	treeWidgetCategoryView_verticalScrollChanged();
 }
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-void MainWindow::treeWidgetVersionView_horizontalScrollChanged(int /*value*/)
+void MainWindow::treeWidgetVersionView_verticalScrollChanged(int)
 {
-	// FIXME
+	if ( !treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_RANK) )
+		m_vlRankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
+}
+
+void MainWindow::treeWidgetVersionView_updateRanks()
+{
+  	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+		return;
+
+	QTreeWidget *treeWidget = treeWidgetVersionView;
+
+	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
+	QPoint bottomPoint = treeWidget->viewport()->rect().bottomLeft();
+	QTreeWidgetItem *endItem = treeWidget->itemAt(bottomPoint);
+	QFontMetrics fm = treeWidget->fontMetrics();
+	if ( startItem ) {
+		while ( !endItem && endItem != startItem ) {
+			bottomPoint.setY(bottomPoint.y() - fm.height());
+			endItem = treeWidget->itemAt(bottomPoint);
+		}
+	}
+
+	if ( startItem && endItem ) {
+		QTreeWidgetItem *item;
+		item = treeWidget->itemBelow(endItem);
+		if ( item )
+			endItem = item;
+		item = treeWidget->itemAbove(startItem);
+		if ( item )
+			startItem = item;
+		item = startItem;
+		QFontMetrics fm = treeWidget->fontMetrics();
+		int minWidth = 0;
+		while ( item && item != endItem && !m_clRankUpdateTimer.isActive() ) {
+			if ( item->parent() ) {
+				RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+				if ( riw ) {
+					if ( !riw->checkSize(&fm) )
+						riw->updateSize(&fm);
+					minWidth = qMax(minWidth, riw->width());
+				} else
+					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item->text(QMC2_GAMELIST_COLUMN_NAME)));
+			}
+			item = treeWidget->itemBelow(item);
+		}
+		if ( item == endItem && !m_clRankUpdateTimer.isActive() ) {
+			if ( item->parent() ) {
+				RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+				if ( riw ) {
+					if ( !riw->checkSize(&fm) )
+						riw->updateSize(&fm);
+					minWidth = qMax(minWidth, riw->width());
+				} else
+					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item->text(QMC2_GAMELIST_COLUMN_NAME)));
+			}
+		}
+		if ( treeWidget->columnWidth(QMC2_GAMELIST_COLUMN_RANK) < minWidth )
+			treeWidget->resizeColumnToContents(QMC2_GAMELIST_COLUMN_RANK);
+	}
+}
+
+void MainWindow::on_treeWidgetVersionView_itemExpanded(QTreeWidgetItem *item)
+{
+	treeWidgetVersionView_verticalScrollChanged();
 }
 #endif
 
