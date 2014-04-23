@@ -71,6 +71,7 @@
 #include "htmleditor/htmleditor.h"
 #include "customidsetup.h"
 #include "samplechecker.h"
+#include "rankitemwidget.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;

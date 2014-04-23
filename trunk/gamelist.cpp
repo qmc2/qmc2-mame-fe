@@ -886,6 +886,22 @@ void Gamelist::load()
 				    break;
 		    }
 	    }
+	    switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
+		    case QMC2_VIEW_DETAIL_INDEX:
+			    qmc2MainWindow->treeWidgetGamelist_verticalScrollChanged();
+			    break;
+		    case QMC2_VIEW_TREE_INDEX:
+			    qmc2MainWindow->treeWidgetHierarchy_verticalScrollChanged();
+			    break;
+		    case QMC2_VIEW_CATEGORY_INDEX:
+			    qmc2MainWindow->treeWidgetCategoryView_verticalScrollChanged();
+			    break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		    case QMC2_VIEW_VERSION_INDEX:
+			    qmc2MainWindow->treeWidgetVersionView_verticalScrollChanged();
+			    break;
+#endif
+	    }
     }
 
     qApp->processEvents();
@@ -3939,6 +3955,8 @@ void Gamelist::createCategoryView()
 		qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		qmc2MainWindow->progressBarGamelist->reset();
 		qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+
+		QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
 	}
 
 	qmc2MainWindow->labelCreatingCategoryView->hide();
@@ -4159,6 +4177,8 @@ void Gamelist::createVersionView()
 		qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		qmc2MainWindow->progressBarGamelist->reset();
 		qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+
+		QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetVersionView_verticalScrollChanged()));
 	}
 
 	qmc2MainWindow->labelCreatingVersionView->hide();

@@ -29,6 +29,7 @@ class UserDataDatabaseManager : public QObject
 		QString id(int rowid);
 		bool exists(QString id);
 		void cleanUp();
+		void remove(QString id);
 
 		bool logActive() { return m_logActive; }
 		void setLogActive(bool enable) { m_logActive = enable; }

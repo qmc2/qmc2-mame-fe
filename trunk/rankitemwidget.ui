@@ -6,21 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>320</width>
-    <height>64</height>
+    <width>326</width>
+    <height>72</height>
    </rect>
   </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
-   <property name="sizeConstraint">
-    <enum>QLayout::SetFixedSize</enum>
-   </property>
    <property name="margin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <item row="0" column="0">
     <widget class="QLabel" name="rankImage">
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
      <property name="pixmap">
       <pixmap resource="qmc2.qrc">:/data/img/rank_bg.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

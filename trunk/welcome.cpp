@@ -484,6 +484,26 @@ bool Welcome::checkConfig()
 			}
 #endif
 		}
+		if ( oldMinor < 44 || (oldSvnRevision < 5837 && oldSvnRevision > 0) ) {
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState") ||
+			     startupConfig->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState") ||
+			     startupConfig->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState") ||
+			     startupConfig->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState") ) {
+#if defined(QMC2_EMUTYPE_MESS)
+				QMessageBox::information(this,
+						tr("Important upgrade information"),
+						tr("<p>A new data column ('%1') has been added to all machine lists!</p>"
+						   "<p>Please check/adapt column visibility <a href=\"%2\">as shown in our wiki</a>!</p>"
+						   "<p>Note that you'll have to do this for the other QMC2 variants as well (this message will not be shown again).</p>").arg("Rank").arg("http://wiki.batcom-it.net/index.php?title=The_'ultimate'_guide_to_QMC2#Customizing_columns"));
+#else
+				QMessageBox::information(this,
+						tr("Important upgrade information"),
+						tr("<p>A new data column ('%1') has been added to all game lists!</p>"
+						   "<p>Please check/adapt column visibility <a href=\"%2\">as shown in our wiki</a>!</p>"
+						   "<p>Note that you'll have to do this for the other QMC2 variants as well (this message will not be shown again).</p>").arg("Rank").arg("http://wiki.batcom-it.net/index.php?title=The_'ultimate'_guide_to_QMC2#Customizing_columns"));
+#endif
+			}
+		}
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();
