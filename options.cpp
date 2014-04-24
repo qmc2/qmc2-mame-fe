@@ -3432,12 +3432,13 @@ void Options::on_toolButtonClearUserDataDatabase_clicked()
 		}
 	}
 
-	// FIXME: reset all ranks & comments
-
+	qmc2Gamelist->userDataDb()->clearRankCache();
+	qmc2Gamelist->userDataDb()->clearCommentCache();
 	qmc2Gamelist->userDataDb()->recreateDatabase();
 	qmc2Gamelist->userDataDb()->setEmulatorVersion(qmc2Gamelist->emulatorVersion);
 	qmc2Gamelist->userDataDb()->setQmc2Version(XSTR(QMC2_VERSION));
 	qmc2Gamelist->userDataDb()->setUserDataVersion(QMC2_USERDATA_VERSION);
+	QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 }
 
 void Options::on_toolButtonCleanupUserDataDatabase_clicked()

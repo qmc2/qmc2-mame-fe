@@ -42,6 +42,8 @@ class UserDataDatabaseManager : public QObject
 		void recreateDatabase();
 		void beginTransaction() { m_db.driver()->beginTransaction(); }
 		void commitTransaction() { m_db.driver()->commitTransaction(); }
+		void clearRankCache() { m_rankCache.clear(); }
+		void clearCommentCache() { m_commentCache.clear(); }
 
 	private:
 		mutable QSqlDatabase m_db;
