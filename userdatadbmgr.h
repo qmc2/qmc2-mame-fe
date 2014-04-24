@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QSqlDriver>
 #include <QList>
+#include <QHash>
 
 class UserDataDatabaseManager : public QObject
 {
@@ -48,6 +49,8 @@ class UserDataDatabaseManager : public QObject
 		bool m_logActive;
 		QList<int> m_rowIdList;
 		int m_lastRowId;
+		QHash<QString, int> m_rankCache;
+		QHash<QString, QString> m_commentCache;
 };
 
 #endif
