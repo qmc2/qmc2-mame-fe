@@ -4,6 +4,7 @@
 #include <QFontMetrics>
 #include <QMouseEvent>
 #include <QImage>
+#include <QLinearGradient>
 
 #include "ui_rankitemwidget.h"
 
@@ -16,8 +17,9 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 
 		bool checkSize(QFontMetrics *fm) { return rankImage->pixmap()->height() == fm->height(); }
 
-		static QImage rank_bg;
-		static QImage rank;
+		static QImage rankBackround;
+		static QImage rankSingle;
+		static QLinearGradient rankGradient;
 
 	public slots:
 		void updateSize(QFontMetrics *fm = 0);

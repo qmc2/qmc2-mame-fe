@@ -2470,9 +2470,6 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
   checkBoxNativeFileDialogs->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", false).toBool());
 
-  if ( !qmc2EarlyStartup )
-	  qmc2MainWindow->updateAllRanks();
-  
   // Files / Directories
 #if defined(QMC2_YOUTUBE_ENABLED)
   QDir youTubeCacheDir(config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", userScopePath + "/youtube/").toString());
