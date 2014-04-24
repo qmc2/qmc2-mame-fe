@@ -151,6 +151,9 @@ void UserDataDatabaseManager::setUserDataVersion(int userdata_version)
 
 int UserDataDatabaseManager::rank(QString id)
 {
+	if ( m_rankCache.contains(id) )
+		return m_rankCache[id];
+
 	int rank = 0;
 	QSqlQuery query(m_db);
 	query.prepare(QString("SELECT rank FROM %1 WHERE id=:id").arg(m_tableBasename));
@@ -184,6 +187,7 @@ void UserDataDatabaseManager::setRank(QString id, int rank)
 	QSqlQuery query(m_db);
 	query.prepare(QString("SELECT rank FROM %1 WHERE id=:id").arg(m_tableBasename));
 	query.bindValue(":id", id);
+	m_rankCache[id] = rank;
 	if ( query.exec() ) {
 		if ( !query.next() ) {
 			query.finish();
@@ -207,6 +211,9 @@ void UserDataDatabaseManager::setRank(QString id, int rank)
 
 QString UserDataDatabaseManager::comment(QString id)
 {
+	if ( m_commentCache.contains(id) )
+		return m_commentCache[id];
+
 	QString comment;
 	QSqlQuery query(m_db);
 	query.prepare(QString("SELECT comment FROM %1 WHERE id=:id").arg(m_tableBasename));
@@ -240,6 +247,7 @@ void UserDataDatabaseManager::setComment(QString id, QString comment)
 	QSqlQuery query(m_db);
 	query.prepare(QString("SELECT comment FROM %1 WHERE id=:id").arg(m_tableBasename));
 	query.bindValue(":id", id);
+	m_commentCache[id] = comment;
 	if ( query.exec() ) {
 		if ( !query.next() ) {
 			query.finish();
