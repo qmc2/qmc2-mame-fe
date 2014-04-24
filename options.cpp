@@ -2469,6 +2469,9 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxMemoryIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", false).toBool());
 #endif
   checkBoxNativeFileDialogs->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", false).toBool());
+
+  if ( !qmc2EarlyStartup )
+	  qmc2MainWindow->updateAllRanks();
   
   // Files / Directories
 #if defined(QMC2_YOUTUBE_ENABLED)

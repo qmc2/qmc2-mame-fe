@@ -566,7 +566,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void treeWidgetVersionView_updateRanks();
 		void on_treeWidgetVersionView_itemExpanded(QTreeWidgetItem *);
 #endif
-
+		void updateAllRanks();
 
 	protected:
 		void closeEvent(QCloseEvent *);
