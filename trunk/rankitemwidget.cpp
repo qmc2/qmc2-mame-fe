@@ -1,4 +1,5 @@
 #include <QPainter>
+#include <QBrush>
 #include <QPixmap>
 
 #include "rankitemwidget.h"
@@ -7,16 +8,20 @@
 
 extern Gamelist *qmc2Gamelist;
 
-QImage RankItemWidget::rank_bg;
-QImage RankItemWidget::rank;
+QImage RankItemWidget::rankBackround;
+QImage RankItemWidget::rankSingle;
+QLinearGradient RankItemWidget::rankGradient;
 
 RankItemWidget::RankItemWidget(QString id, QWidget *parent)
 	: QWidget(parent)
 {
 	m_id = id;
-	if ( rank_bg.isNull() ) {
-		rank_bg = QImage(QString::fromUtf8(":/data/img/rank_bg.png"));
-		rank = QImage(QString::fromUtf8(":/data/img/rank.png"));
+	if ( rankBackround.isNull() ) {
+		rankBackround = QImage(QString::fromUtf8(":/data/img/rank_bg.png"));
+		rankSingle = QImage(QString::fromUtf8(":/data/img/rank.png"));
+		rankGradient = QLinearGradient(0, 0, rankBackround.width() - 1, 0);
+		rankGradient.setColorAt(0, QColor(255, 255, 255, 128));
+		rankGradient.setColorAt(1, Qt::transparent);
 	}
 	setupUi(this);
 	setMouseTracking(true);
@@ -36,34 +41,38 @@ void RankItemWidget::updateSize(QFontMetrics *fm)
 
 void RankItemWidget::updateRankFromDb()
 {
-	QPixmap newPixmap(rank_bg.size());
-	newPixmap.fill(Qt::transparent);
+	QPixmap pm(rankBackround.size());
+	pm.fill(Qt::transparent);
 	QPainter p;
-	p.begin(&newPixmap);
+	p.begin(&pm);
+	p.setBrush(rankGradient);
 	int selectedRank = qmc2Gamelist->userDataDb()->rank(m_id);
 	for (int r = 0; r < selectedRank; r++) {
-		int x = r * rank.width();
-		p.drawImage(x, 0, rank);
+		int x = r * rankSingle.width();
+		p.drawImage(x, 0, rankSingle);
+		p.drawRoundedRect(x + 2, 3, rankSingle.width() - 2, rankSingle.height() - 3, 5, 5, Qt::RelativeSize);
 	}
-	p.drawImage(0, 0, rank_bg);
+	p.drawImage(0, 0, rankBackround);
 	p.end();
-	rankImage->setPixmap(newPixmap.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+	rankImage->setPixmap(pm.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
 
 void RankItemWidget::updateRank(int mouseX)
 {
-	QPixmap newPixmap(rank_bg.size());
-	newPixmap.fill(Qt::transparent);
+	QPixmap pm(rankBackround.size());
+	pm.fill(Qt::transparent);
 	QPainter p;
-	p.begin(&newPixmap);
+	p.begin(&pm);
+	p.setBrush(rankGradient);
 	int selectedRank = int(0.5f + 6.0f * (double)mouseX / (double)(width()));
 	for (int r = 0; r < selectedRank; r++) {
-		int x = r * rank.width();
-		p.drawImage(x, 0, rank);
+		int x = r * rankSingle.width();
+		p.drawImage(x, 0, rankSingle);
+		p.drawRoundedRect(x + 2, 3, rankSingle.width() - 2, rankSingle.height() - 3, 5, 5, Qt::RelativeSize);
 	}
-	p.drawImage(0, 0, rank_bg);
+	p.drawImage(0, 0, rankBackround);
 	p.end();
-	rankImage->setPixmap(newPixmap.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+	rankImage->setPixmap(pm.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	qmc2Gamelist->userDataDb()->setRank(m_id, selectedRank);
 }
 
