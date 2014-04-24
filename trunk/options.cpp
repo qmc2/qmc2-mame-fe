@@ -1970,6 +1970,9 @@ void Options::on_pushButtonApply_clicked()
         case QMC2_SORT_BY_SRCFILE:
           sortCriteria = QObject::tr("source file");
           break;
+        case QMC2_SORT_BY_RANK:
+          sortCriteria = QObject::tr("rank");
+          break;
         case QMC2_SORT_BY_CATEGORY:
           sortCriteria = QObject::tr("category");
           break;
@@ -2002,6 +2005,8 @@ void Options::on_pushButtonApply_clicked()
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->treeWidgetVersionView->setUpdatesEnabled(false);
 #endif
+      if ( qmc2SortCriteria == QMC2_SORT_BY_RANK && !qmc2Gamelist->userDataDb()->rankCacheComplete() )
+        qmc2Gamelist->userDataDb()->fillUpRankCache();
       qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
       qApp->processEvents();
       qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
@@ -2141,6 +2146,19 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_SRCFILE, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+#endif
+      break;
+
+    case QMC2_SORT_BY_RANK:
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RANK, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RANK, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RANK, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RANK, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
 #endif
       break;

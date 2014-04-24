@@ -891,7 +891,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>349</width>
+                <width>545</width>
                 <height>793</height>
                </rect>
               </property>
@@ -2973,8 +2973,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>505</width>
-                <height>248</height>
+                <width>559</width>
+                <height>542</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
@@ -3119,6 +3119,11 @@
                    <item>
                     <property name="text">
                      <string>Source file</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Rank</string>
                     </property>
                    </item>
                   </widget>
@@ -4744,8 +4749,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>559</width>
-                <height>542</height>
+                <width>242</width>
+                <height>492</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_23">

@@ -5,6 +5,7 @@
 #include <QMouseEvent>
 #include <QImage>
 #include <QLinearGradient>
+#include <QTreeWidgetItem>
 
 #include "ui_rankitemwidget.h"
 
@@ -13,7 +14,7 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 	Q_OBJECT
 
        	public:
-		RankItemWidget(QString id, QWidget *parent = 0);
+		RankItemWidget(QTreeWidgetItem *item, QWidget *parent = 0);
 
 		bool checkSize(QFontMetrics *fm) { return rankImage->pixmap()->height() == fm->height(); }
 
@@ -34,8 +35,9 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 		void mouseMoveEvent(QMouseEvent *e);
 
 	private:
-		QString m_id;
+		void updateForeignItems();
 		int m_rank;
+		QTreeWidgetItem *m_item;
 };
 
 #endif

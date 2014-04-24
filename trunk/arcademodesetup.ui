@@ -707,6 +707,11 @@
            <string>Source file</string>
           </property>
          </item>
+         <item>
+          <property name="text">
+           <string>Rank</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item row="3" column="0" colspan="4">
