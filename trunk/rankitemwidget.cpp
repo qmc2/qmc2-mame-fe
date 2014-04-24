@@ -31,30 +31,36 @@ void RankItemWidget::updateRankFromDb()
 {
 	QPixmap rank_bg(QString::fromUtf8(":/data/img/rank_bg.png"));
 	QPixmap rank(QString::fromUtf8(":/data/img/rank.png"));
+	QPixmap newPixmap(rank_bg.size());
+	newPixmap.fill(Qt::transparent);
 	QPainter p;
-	p.begin(&rank_bg);
+	p.begin(&newPixmap);
 	int selectedRank = qmc2Gamelist->userDataDb()->rank(m_id);
 	for (int r = 0; r < selectedRank; r++) {
 		int x = r * rank.width();
 		p.drawPixmap(x, 0, rank);
 	}
+	p.drawPixmap(0, 0, rank_bg);
 	p.end();
-	rankImage->setPixmap(rank_bg);
+	rankImage->setPixmap(newPixmap);
 }
 
 void RankItemWidget::updateRank(int mouseX)
 {
 	QPixmap rank_bg(QString::fromUtf8(":/data/img/rank_bg.png"));
 	QPixmap rank(QString::fromUtf8(":/data/img/rank.png"));
+	QPixmap newPixmap(rank_bg.size());
+	newPixmap.fill(Qt::transparent);
 	QPainter p;
-	p.begin(&rank_bg);
+	p.begin(&newPixmap);
 	int selectedRank = int(0.5f + 6.0f * (double)mouseX / (double)(width()));
 	for (int r = 0; r < selectedRank; r++) {
 		int x = r * rank.width();
 		p.drawPixmap(x, 0, rank);
 	}
+	p.drawPixmap(0, 0, rank_bg);
 	p.end();
-	rankImage->setPixmap(rank_bg);
+	rankImage->setPixmap(newPixmap);
 	qmc2Gamelist->userDataDb()->setRank(m_id, selectedRank);
 }
 
