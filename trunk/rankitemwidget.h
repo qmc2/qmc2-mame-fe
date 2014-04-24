@@ -21,10 +21,13 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 		static QImage rankSingle;
 		static QLinearGradient rankGradient;
 
+		void setRank(int rank);
+		int rank() { return m_rank; }
+
 	public slots:
 		void updateSize(QFontMetrics *fm = 0);
 		void updateRankFromDb();
-		void updateRank(int mouseX = 0);
+		void updateRankFromMousePos(int mouseX = 0);
 
 	protected:
 		void mousePressEvent(QMouseEvent *e);
@@ -32,6 +35,7 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 
 	private:
 		QString m_id;
+		int m_rank;
 };
 
 #endif

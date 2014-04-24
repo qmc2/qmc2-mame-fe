@@ -20973,93 +20973,99 @@ Are you sure you want to do this?</source>
 <context>
     <name>UserDataDatabaseManager</name>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="31"/>
+        <location filename="../../userdatadbmgr.cpp" line="32"/>
         <source>WARNING: failed to open user data database &apos;%1&apos;: error = &apos;%2&apos;</source>
         <translation>ATENCIÓN: fallo al abrir la base de datos de datos de usuario &apos;%1&apos;: error = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="51"/>
-        <location filename="../../userdatadbmgr.cpp" line="75"/>
-        <location filename="../../userdatadbmgr.cpp" line="88"/>
-        <location filename="../../userdatadbmgr.cpp" line="112"/>
-        <location filename="../../userdatadbmgr.cpp" line="125"/>
-        <location filename="../../userdatadbmgr.cpp" line="149"/>
-        <location filename="../../userdatadbmgr.cpp" line="163"/>
-        <location filename="../../userdatadbmgr.cpp" line="178"/>
-        <location filename="../../userdatadbmgr.cpp" line="205"/>
-        <location filename="../../userdatadbmgr.cpp" line="219"/>
-        <location filename="../../userdatadbmgr.cpp" line="234"/>
-        <location filename="../../userdatadbmgr.cpp" line="261"/>
-        <location filename="../../userdatadbmgr.cpp" line="317"/>
-        <location filename="../../userdatadbmgr.cpp" line="333"/>
+        <location filename="../../userdatadbmgr.cpp" line="52"/>
+        <location filename="../../userdatadbmgr.cpp" line="76"/>
+        <location filename="../../userdatadbmgr.cpp" line="89"/>
+        <location filename="../../userdatadbmgr.cpp" line="113"/>
+        <location filename="../../userdatadbmgr.cpp" line="126"/>
+        <location filename="../../userdatadbmgr.cpp" line="150"/>
+        <location filename="../../userdatadbmgr.cpp" line="167"/>
+        <location filename="../../userdatadbmgr.cpp" line="182"/>
+        <location filename="../../userdatadbmgr.cpp" line="210"/>
+        <location filename="../../userdatadbmgr.cpp" line="227"/>
+        <location filename="../../userdatadbmgr.cpp" line="242"/>
+        <location filename="../../userdatadbmgr.cpp" line="270"/>
+        <location filename="../../userdatadbmgr.cpp" line="326"/>
+        <location filename="../../userdatadbmgr.cpp" line="342"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>ATENCIÓN: fallo al recuperar &apos;%1&apos; de la base de datos de datos de usuario: petición = &apos;%2&apos;, error = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="65"/>
-        <location filename="../../userdatadbmgr.cpp" line="102"/>
-        <location filename="../../userdatadbmgr.cpp" line="139"/>
-        <location filename="../../userdatadbmgr.cpp" line="194"/>
-        <location filename="../../userdatadbmgr.cpp" line="250"/>
+        <location filename="../../userdatadbmgr.cpp" line="66"/>
+        <location filename="../../userdatadbmgr.cpp" line="103"/>
+        <location filename="../../userdatadbmgr.cpp" line="140"/>
+        <location filename="../../userdatadbmgr.cpp" line="199"/>
+        <location filename="../../userdatadbmgr.cpp" line="259"/>
         <source>WARNING: failed to add &apos;%1&apos; to user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>ATENCIÓN: fallo al añadir &apos;%1&apos; a la base de datos de datos de usuario: petición = &apos;%2&apos;, error = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="71"/>
-        <location filename="../../userdatadbmgr.cpp" line="108"/>
-        <location filename="../../userdatadbmgr.cpp" line="145"/>
-        <location filename="../../userdatadbmgr.cpp" line="201"/>
-        <location filename="../../userdatadbmgr.cpp" line="257"/>
+        <location filename="../../userdatadbmgr.cpp" line="72"/>
+        <location filename="../../userdatadbmgr.cpp" line="109"/>
+        <location filename="../../userdatadbmgr.cpp" line="146"/>
+        <location filename="../../userdatadbmgr.cpp" line="206"/>
+        <location filename="../../userdatadbmgr.cpp" line="266"/>
         <source>WARNING: failed to update &apos;%1&apos; in user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>ATENCIÓN: fallo al actualizar &apos;%1&apos; en la base de datos de datos de usuario: peticion = &apos;%2&apos;, error = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="273"/>
+        <location filename="../../userdatadbmgr.cpp" line="282"/>
         <source>WARNING: failed to fetch row count from user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>ATENCIÓN: fallo al recuperar la cuenta de filas de la base de datos de usuario: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="293"/>
+        <location filename="../../userdatadbmgr.cpp" line="302"/>
         <source>WARNING: failed to fetch row IDs from user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>ATENCIÓN: fallo al recuperar las IDs de filas de la base de datos de usuario: petición = &apos;%1&apos;, error =&apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="340"/>
+        <location filename="../../userdatadbmgr.cpp" line="349"/>
         <source>cleaning up user data database &apos;%1&apos;</source>
         <translation>limpiando la base de datos de datos de usuario &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="352"/>
+        <location filename="../../userdatadbmgr.cpp" line="362"/>
         <source>removed obsolete ID &apos;%1&apos;</source>
         <translation>ID obsoleta eliminada &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="354"/>
-        <location filename="../../userdatadbmgr.cpp" line="372"/>
+        <location filename="../../userdatadbmgr.cpp" line="364"/>
+        <location filename="../../userdatadbmgr.cpp" line="373"/>
+        <location filename="../../userdatadbmgr.cpp" line="393"/>
         <source>WARNING: failed to remove &apos;%1&apos; from user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>ATENCIÓN: fallo al eliminar &apos;%1&apos; de la base de datos de datos de usuario: petición = &apos;%2&apos;, error = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="363"/>
+        <location filename="../../userdatadbmgr.cpp" line="371"/>
+        <source>removed ID &apos;%1&apos; due to no data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../userdatadbmgr.cpp" line="384"/>
         <source>done (cleaning up user data database &apos;%1&apos;)</source>
         <translation>hecho (limpiando la base de datos de datos de usuario &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="379"/>
-        <location filename="../../userdatadbmgr.cpp" line="384"/>
-        <location filename="../../userdatadbmgr.cpp" line="389"/>
+        <location filename="../../userdatadbmgr.cpp" line="400"/>
+        <location filename="../../userdatadbmgr.cpp" line="405"/>
+        <location filename="../../userdatadbmgr.cpp" line="410"/>
         <source>WARNING: failed to remove user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>ATENCIÓN: fallo al eliminar la base de datos de datos de usuario: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="397"/>
-        <location filename="../../userdatadbmgr.cpp" line="402"/>
-        <location filename="../../userdatadbmgr.cpp" line="407"/>
+        <location filename="../../userdatadbmgr.cpp" line="418"/>
+        <location filename="../../userdatadbmgr.cpp" line="423"/>
+        <location filename="../../userdatadbmgr.cpp" line="428"/>
         <source>WARNING: failed to create user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>ATENCIÓN: fallo al crear la base de datos de datos de usuario: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="411"/>
+        <location filename="../../userdatadbmgr.cpp" line="432"/>
         <source>user data database &apos;%1&apos; initialized</source>
         <translation>base de datos de datos de usuario &apos;%1&apos; iniciada</translation>
     </message>

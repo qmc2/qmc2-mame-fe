@@ -1,3 +1,4 @@
+#include <QApplication>
 #include <QSqlDriver>
 #include <QSqlQuery>
 #include <QSqlError>
@@ -169,7 +170,7 @@ int UserDataDatabaseManager::rank(QString id)
 
 int UserDataDatabaseManager::rank(int rowid)
 {
-	int rank = -1;
+	int rank = 0;
 	QSqlQuery query(m_db);
 	query.prepare(QString("SELECT rank FROM %1 WHERE rowid=:rowid").arg(m_tableBasename));
 	query.bindValue(":rowid", rowid);
@@ -184,6 +185,11 @@ int UserDataDatabaseManager::rank(int rowid)
 
 void UserDataDatabaseManager::setRank(QString id, int rank)
 {
+	if ( rank == 0 && comment(id).isEmpty() ) {
+		remove(id);
+		return;
+	}
+
 	QSqlQuery query(m_db);
 	query.prepare(QString("SELECT rank FROM %1 WHERE id=:id").arg(m_tableBasename));
 	query.bindValue(":id", id);
@@ -244,6 +250,11 @@ QString UserDataDatabaseManager::comment(int rowid)
 
 void UserDataDatabaseManager::setComment(QString id, QString comment)
 {
+	if ( comment.isEmpty() && rank(id) == 0 ) {
+		remove(id);
+		return;
+	}
+
 	QSqlQuery query(m_db);
 	query.prepare(QString("SELECT comment FROM %1 WHERE id=:id").arg(m_tableBasename));
 	query.bindValue(":id", id);
@@ -348,6 +359,7 @@ void UserDataDatabaseManager::cleanUp()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("cleaning up user data database '%1'").arg(m_db.databaseName()));
 
 	int row = nextRowId(true);
+	beginTransaction();
 	while ( row > 0 ) {
 		QString idOfCurrentRow = id(row);
 		if ( !idOfCurrentRow.isEmpty() ) {
@@ -360,14 +372,25 @@ void UserDataDatabaseManager::cleanUp()
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("removed obsolete ID '%1'").arg(idOfCurrentRow));
 				} else
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(idOfCurrentRow).arg(query.lastQuery()).arg(m_db.lastError().text()));
+			} else if ( rank(idOfCurrentRow) == 0 && comment(idOfCurrentRow).isEmpty() ) {
+				QSqlQuery query(m_db);
+				query.prepare(QString("DELETE FROM %1 WHERE rowid=:row").arg(m_tableBasename));
+				query.bindValue(":row", row);
+				if ( query.exec() ) {
+					query.finish();
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("removed ID '%1' due to no data").arg(idOfCurrentRow));
+				} else
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(idOfCurrentRow).arg(query.lastQuery()).arg(m_db.lastError().text()));
 			}
 		}
+		qApp->processEvents();
 		row = nextRowId();
 	}
 	QSqlQuery query(m_db);
 	// vaccum'ing the database frees all disk-space previously used
 	query.exec("VACUUM");
 	query.finish();
+	commitTransaction();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (cleaning up user data database '%1')").arg(m_db.databaseName()));
 }
 

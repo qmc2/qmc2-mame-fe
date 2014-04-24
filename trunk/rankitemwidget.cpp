@@ -20,7 +20,7 @@ RankItemWidget::RankItemWidget(QString id, QWidget *parent)
 		rankBackround = QImage(QString::fromUtf8(":/data/img/rank_bg.png"));
 		rankSingle = QImage(QString::fromUtf8(":/data/img/rank.png"));
 		rankGradient = QLinearGradient(0, 0, rankBackround.width() - 1, 0);
-		rankGradient.setColorAt(0, QColor(255, 255, 255, 128));
+		rankGradient.setColorAt(0, QColor(255, 255, 255, 127));
 		rankGradient.setColorAt(1, Qt::transparent);
 	}
 	setupUi(this);
@@ -39,6 +39,13 @@ void RankItemWidget::updateSize(QFontMetrics *fm)
 	QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
 }
 
+void RankItemWidget::setRank(int rank)
+{
+	m_rank = rank;
+	qmc2Gamelist->userDataDb()->setRank(m_id, m_rank);
+	QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
+}
+
 void RankItemWidget::updateRankFromDb()
 {
 	QPixmap pm(rankBackround.size());
@@ -46,8 +53,8 @@ void RankItemWidget::updateRankFromDb()
 	QPainter p;
 	p.begin(&pm);
 	p.setBrush(rankGradient);
-	int selectedRank = qmc2Gamelist->userDataDb()->rank(m_id);
-	for (int r = 0; r < selectedRank; r++) {
+	m_rank = qmc2Gamelist->userDataDb()->rank(m_id);
+	for (int r = 0; r < m_rank; r++) {
 		int x = r * rankSingle.width();
 		p.drawImage(x, 0, rankSingle);
 		p.drawRoundedRect(x + 2, 3, rankSingle.width() - 2, rankSingle.height() - 3, 5, 5, Qt::RelativeSize);
@@ -57,15 +64,15 @@ void RankItemWidget::updateRankFromDb()
 	rankImage->setPixmap(pm.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
 
-void RankItemWidget::updateRank(int mouseX)
+void RankItemWidget::updateRankFromMousePos(int mouseX)
 {
 	QPixmap pm(rankBackround.size());
 	pm.fill(Qt::transparent);
 	QPainter p;
 	p.begin(&pm);
 	p.setBrush(rankGradient);
-	int selectedRank = int(0.5f + 6.0f * (double)mouseX / (double)(width()));
-	for (int r = 0; r < selectedRank; r++) {
+	m_rank = int(0.5f + 6.0f * (double)mouseX / (double)(width()));
+	for (int r = 0; r < m_rank; r++) {
 		int x = r * rankSingle.width();
 		p.drawImage(x, 0, rankSingle);
 		p.drawRoundedRect(x + 2, 3, rankSingle.width() - 2, rankSingle.height() - 3, 5, 5, Qt::RelativeSize);
@@ -73,19 +80,19 @@ void RankItemWidget::updateRank(int mouseX)
 	p.drawImage(0, 0, rankBackround);
 	p.end();
 	rankImage->setPixmap(pm.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
-	qmc2Gamelist->userDataDb()->setRank(m_id, selectedRank);
+	qmc2Gamelist->userDataDb()->setRank(m_id, m_rank);
 }
 
 void RankItemWidget::mousePressEvent(QMouseEvent *e)
 {
 	if ( e->buttons() & Qt::LeftButton )
 		if ( rect().contains(e->pos()) )
-			updateRank(e->x());
+			updateRankFromMousePos(e->x());
 }
 
 void RankItemWidget::mouseMoveEvent(QMouseEvent *e)
 {
 	if ( e->buttons() & Qt::LeftButton )
 		if ( rect().contains(e->pos()) )
-			updateRank(e->x());
+			updateRankFromMousePos(e->x());
 }
