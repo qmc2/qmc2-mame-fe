@@ -7,14 +7,20 @@
 
 extern Gamelist *qmc2Gamelist;
 
+QImage RankItemWidget::rank_bg;
+QImage RankItemWidget::rank;
+
 RankItemWidget::RankItemWidget(QString id, QWidget *parent)
 	: QWidget(parent)
 {
 	m_id = id;
+	if ( rank_bg.isNull() ) {
+		rank_bg = QImage(QString::fromUtf8(":/data/img/rank_bg.png"));
+		rank = QImage(QString::fromUtf8(":/data/img/rank.png"));
+	}
 	setupUi(this);
 	setMouseTracking(true);
 	updateSize();
-	QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
 }
 
 void RankItemWidget::updateSize(QFontMetrics *fm)
@@ -25,12 +31,11 @@ void RankItemWidget::updateSize(QFontMetrics *fm)
 	else
 		newSize.scale(width(), fontMetrics().height(), Qt::KeepAspectRatio);
 	setFixedSize(newSize);
+	QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
 }
 
 void RankItemWidget::updateRankFromDb()
 {
-	QPixmap rank_bg(QString::fromUtf8(":/data/img/rank_bg.png"));
-	QPixmap rank(QString::fromUtf8(":/data/img/rank.png"));
 	QPixmap newPixmap(rank_bg.size());
 	newPixmap.fill(Qt::transparent);
 	QPainter p;
@@ -38,17 +43,15 @@ void RankItemWidget::updateRankFromDb()
 	int selectedRank = qmc2Gamelist->userDataDb()->rank(m_id);
 	for (int r = 0; r < selectedRank; r++) {
 		int x = r * rank.width();
-		p.drawPixmap(x, 0, rank);
+		p.drawImage(x, 0, rank);
 	}
-	p.drawPixmap(0, 0, rank_bg);
+	p.drawImage(0, 0, rank_bg);
 	p.end();
-	rankImage->setPixmap(newPixmap);
+	rankImage->setPixmap(newPixmap.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
 
 void RankItemWidget::updateRank(int mouseX)
 {
-	QPixmap rank_bg(QString::fromUtf8(":/data/img/rank_bg.png"));
-	QPixmap rank(QString::fromUtf8(":/data/img/rank.png"));
 	QPixmap newPixmap(rank_bg.size());
 	newPixmap.fill(Qt::transparent);
 	QPainter p;
@@ -56,11 +59,11 @@ void RankItemWidget::updateRank(int mouseX)
 	int selectedRank = int(0.5f + 6.0f * (double)mouseX / (double)(width()));
 	for (int r = 0; r < selectedRank; r++) {
 		int x = r * rank.width();
-		p.drawPixmap(x, 0, rank);
+		p.drawImage(x, 0, rank);
 	}
-	p.drawPixmap(0, 0, rank_bg);
+	p.drawImage(0, 0, rank_bg);
 	p.end();
-	rankImage->setPixmap(newPixmap);
+	rankImage->setPixmap(newPixmap.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	qmc2Gamelist->userDataDb()->setRank(m_id, selectedRank);
 }
 

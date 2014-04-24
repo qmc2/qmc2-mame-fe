@@ -12128,6 +12128,17 @@ void MainWindow::on_treeWidgetVersionView_itemExpanded(QTreeWidgetItem *item)
 }
 #endif
 
+void MainWindow::updateAllRanks()
+{
+	QMC2_PRINT_TXT(MainWindow::updateAllRanks());
+	treeWidgetGamelist_verticalScrollChanged();
+	treeWidgetHierarchy_verticalScrollChanged();
+	treeWidgetCategoryView_verticalScrollChanged();
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	treeWidgetVersionView_verticalScrollChanged();
+#endif
+}
+
 void MainWindow::checkRomPath()
 {
 #ifdef QMC2_DEBUG
