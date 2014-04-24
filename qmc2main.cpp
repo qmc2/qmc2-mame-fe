@@ -6327,6 +6327,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
           treeWidgetHierarchy->scrollToItem(hierarchyItem, qmc2CursorPositioningMode);
           hierarchyItem->setSelected(true);
         }
+        treeWidgetHierarchy_verticalScrollChanged();
       }
       break;
 
@@ -6340,6 +6341,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
           treeWidgetCategoryView->scrollToItem(categoryItem, qmc2CursorPositioningMode);
           categoryItem->setSelected(true);
         }
+        treeWidgetCategoryView_verticalScrollChanged();
       }
       break;
 
@@ -6354,6 +6356,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
           treeWidgetVersionView->scrollToItem(versionItem, qmc2CursorPositioningMode);
           versionItem->setSelected(true);
         }
+        treeWidgetVersionView_verticalScrollChanged();
       }
       break;
 #endif
@@ -6361,6 +6364,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
     case QMC2_VIEWGAMELIST_INDEX:
     default:
       scrollToCurrentItem();
+      treeWidgetGamelist_verticalScrollChanged();
       break;
   }
 }
@@ -9178,6 +9182,13 @@ void MainWindow::treeWidgetGamelist_headerSectionClicked(int logicalIndex)
         qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_SRCFILE);
       break;
 
+    case QMC2_GAMELIST_COLUMN_RANK:
+      if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_RANK )
+        qmc2Options->comboBoxSortOrder->setCurrentIndex(qmc2Options->comboBoxSortOrder->currentIndex() == 0 ? 1 : 0);
+      else
+        qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_RANK);
+      break;
+
     case QMC2_GAMELIST_COLUMN_CATEGORY:
       if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_CATEGORY )
         qmc2Options->comboBoxSortOrder->setCurrentIndex(qmc2Options->comboBoxSortOrder->currentIndex() == 0 ? 1 : 0);
@@ -10484,6 +10495,9 @@ int MainWindow::sortCriteriaLogicalIndex() {
 
     case QMC2_SORT_BY_SRCFILE:
       return QMC2_GAMELIST_COLUMN_SRCFILE;
+
+    case QMC2_SORT_BY_RANK:
+      return QMC2_GAMELIST_COLUMN_RANK;
 
     case QMC2_SORT_BY_CATEGORY:
       return QMC2_GAMELIST_COLUMN_CATEGORY;
@@ -11919,7 +11933,7 @@ void MainWindow::treeWidgetGamelist_updateRanks()
 					riw->updateSize(&fm);
 				minWidth = qMax(minWidth, riw->width());
 			} else
-				treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item->text(QMC2_GAMELIST_COLUMN_NAME)));
+				treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item));
 		}
 		if ( treeWidget->columnWidth(QMC2_GAMELIST_COLUMN_RANK) < minWidth )
 			treeWidget->resizeColumnToContents(QMC2_GAMELIST_COLUMN_RANK);
@@ -11968,7 +11982,7 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
 					riw->updateSize(&fm);
 				minWidth = qMax(minWidth, riw->width());
 			} else
-				treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item->text(QMC2_GAMELIST_COLUMN_NAME)));
+				treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item));
 			item = treeWidget->itemBelow(item);
 		}
 		if ( item == endItem && !m_hlRankUpdateTimer.isActive() ) {
@@ -11978,7 +11992,7 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
 					riw->updateSize(&fm);
 				minWidth = qMax(minWidth, riw->width());
 			} else
-				treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item->text(QMC2_GAMELIST_COLUMN_NAME)));
+				treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item));
 		}
 		if ( treeWidget->columnWidth(QMC2_GAMELIST_COLUMN_RANK) < minWidth )
 			treeWidget->resizeColumnToContents(QMC2_GAMELIST_COLUMN_RANK);
@@ -12033,7 +12047,7 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
 						riw->updateSize(&fm);
 					minWidth = qMax(minWidth, riw->width());
 				} else
-					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item->text(QMC2_GAMELIST_COLUMN_NAME)));
+					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item));
 			}
 			item = treeWidget->itemBelow(item);
 		}
@@ -12045,7 +12059,7 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
 						riw->updateSize(&fm);
 					minWidth = qMax(minWidth, riw->width());
 				} else
-					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item->text(QMC2_GAMELIST_COLUMN_NAME)));
+					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item));
 			}
 		}
 		if ( treeWidget->columnWidth(QMC2_GAMELIST_COLUMN_RANK) < minWidth )
@@ -12102,7 +12116,7 @@ void MainWindow::treeWidgetVersionView_updateRanks()
 						riw->updateSize(&fm);
 					minWidth = qMax(minWidth, riw->width());
 				} else
-					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item->text(QMC2_GAMELIST_COLUMN_NAME)));
+					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item));
 			}
 			item = treeWidget->itemBelow(item);
 		}
@@ -12114,7 +12128,7 @@ void MainWindow::treeWidgetVersionView_updateRanks()
 						riw->updateSize(&fm);
 					minWidth = qMax(minWidth, riw->width());
 				} else
-					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item->text(QMC2_GAMELIST_COLUMN_NAME)));
+					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item));
 			}
 		}
 		if ( treeWidget->columnWidth(QMC2_GAMELIST_COLUMN_RANK) < minWidth )

@@ -429,6 +429,8 @@ void Gamelist::load()
   deviceSets.clear();
   qmc2HierarchyItemMap.clear();
   qmc2ExpandedGamelistItems.clear();
+  userDataDb()->clearRankCache();
+  userDataDb()->clearCommentCache();
 
   enableWidgets(false);
 
@@ -2233,6 +2235,9 @@ void Gamelist::parse()
     case QMC2_SORT_BY_SRCFILE:
       sortCriteria = QObject::tr("source file");
       break;
+    case QMC2_SORT_BY_RANK:
+      sortCriteria = QObject::tr("rank");
+      break;
     case QMC2_SORT_BY_CATEGORY:
       sortCriteria = QObject::tr("category");
       break;
@@ -2256,6 +2261,8 @@ void Gamelist::parse()
   // sort the master-list
   qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
   qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
+  if ( !qmc2Gamelist->userDataDb()->rankCacheComplete() )
+	  qmc2Gamelist->userDataDb()->fillUpRankCache();
   qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
   qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
   qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
@@ -3901,6 +3908,7 @@ void Gamelist::createCategoryView()
 			gameItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
 			gameItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
 			gameItem->setText(QMC2_GAMELIST_COLUMN_VERSION, baseItem->text(QMC2_GAMELIST_COLUMN_VERSION));
+			gameItem->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, baseItem->whatsThis(QMC2_GAMELIST_COLUMN_RANK));
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
 				switch ( gameStatusHash[gameName] ) {
 					case 'C':
@@ -4123,6 +4131,7 @@ void Gamelist::createVersionView()
 			gameItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
 			gameItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
 			gameItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, baseItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
+			gameItem->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, baseItem->whatsThis(QMC2_GAMELIST_COLUMN_RANK));
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
 				switch ( gameStatusHash[gameName] ) {
 					case 'C':
@@ -4314,6 +4323,9 @@ bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
 
     case QMC2_SORT_BY_SRCFILE:
       return (text(QMC2_GAMELIST_COLUMN_SRCFILE).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_SRCFILE).toUpper());
+
+    case QMC2_SORT_BY_RANK:
+      return (whatsThis(QMC2_GAMELIST_COLUMN_RANK).toInt() < otherItem.whatsThis(QMC2_GAMELIST_COLUMN_RANK).toInt());
 
     case QMC2_SORT_BY_CATEGORY:
       return (text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper());

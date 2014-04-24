@@ -2,8 +2,10 @@
 #include <QSqlDriver>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QTreeWidgetItem>
 #include <QDir>
 #include <QUuid>
+#include <QMap>
 
 #include "macros.h"
 #include "qmc2main.h"
@@ -15,6 +17,12 @@
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern Gamelist *qmc2Gamelist;
+extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
+extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
+extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
+#endif
 
 UserDataDatabaseManager::UserDataDatabaseManager(QObject *parent)
 	: QObject(parent)
@@ -401,6 +409,8 @@ void UserDataDatabaseManager::remove(QString id)
 	query.bindValue(":id", id);
 	if ( !query.exec() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
+	m_rankCache.remove(id);
+	m_commentCache.remove(id);
 }
 
 void UserDataDatabaseManager::recreateDatabase()
@@ -440,4 +450,41 @@ void UserDataDatabaseManager::recreateDatabase()
 	}
 	if ( logActive() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("user data database '%1' initialized").arg(m_db.databaseName()));
+}
+
+void UserDataDatabaseManager::fillUpRankCache()
+{
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("filling up rank cache from user data database '%1'").arg(m_db.databaseName()));
+	int row = nextRowId(true);
+	while ( row > 0 ) {
+		QString idString = id(row);
+		if ( !m_rankCache.contains(idString) ) {
+			int rankInt = rank(row);
+			m_rankCache[idString] = rankInt;
+			QString rankString = QString::number(rankInt);
+			QTreeWidgetItem *item = qmc2GamelistItemMap[idString];
+			if ( item )
+				item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, rankString);
+			item = qmc2HierarchyItemMap[idString];
+			if ( item)
+				item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, rankString);
+			item = qmc2CategoryItemMap[idString];
+			if ( item )
+				item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, rankString);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+			item = qmc2VersionItemMap[idString];
+			if ( item )
+				item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, rankString);
+#endif
+		}
+		if ( row % 25 == 0 )
+			qApp->processEvents();
+		row = nextRowId();
+	}
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (filling up rank cache from user data database '%1')").arg(m_db.databaseName()));
+}
+
+void UserDataDatabaseManager::fillUpCommentCache()
+{
+	// FIXME
 }

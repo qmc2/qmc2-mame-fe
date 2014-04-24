@@ -38,6 +38,11 @@ class UserDataDatabaseManager : public QObject
 		int userDataRowCount();
 		int nextRowId(bool refreshRowIds = false);
 
+		bool rankCacheComplete() { return userDataRowCount() == m_rankCache.count(); }
+		void fillUpRankCache();
+		bool commentCacheComplete() { return userDataRowCount() == m_commentCache.count(); }
+		void fillUpCommentCache();
+
 	public slots:
 		void recreateDatabase();
 		void beginTransaction() { m_db.driver()->beginTransaction(); }
