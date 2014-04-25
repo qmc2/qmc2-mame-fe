@@ -1,13 +1,14 @@
 #include <QPainter>
-#include <QBrush>
 #include <QPixmap>
 #include <QMap>
 
 #include "rankitemwidget.h"
 #include "gamelist.h"
+#include "settings.h"
 #include "macros.h"
 
 extern Gamelist *qmc2Gamelist;
+extern Settings *qmc2Config;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
@@ -17,22 +18,40 @@ extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 
 QImage RankItemWidget::rankBackround;
 QImage RankItemWidget::rankSingle;
+QImage RankItemWidget::rankSingleFlat;
 QLinearGradient RankItemWidget::rankGradient;
+bool RankItemWidget::useFlatRankImage;
+QColor RankItemWidget::rankImageColor;
 
 RankItemWidget::RankItemWidget(QTreeWidgetItem *item, QWidget *parent)
 	: QWidget(parent)
 {
 	m_item = item;
-	if ( rankBackround.isNull() ) {
-		rankBackround = QImage(QString::fromUtf8(":/data/img/rank_bg.png"));
-		rankSingle = QImage(QString::fromUtf8(":/data/img/rank.png"));
-		rankGradient = QLinearGradient(0, 0, rankBackround.width() - 1, 0);
-		rankGradient.setColorAt(0, QColor(255, 255, 255, 127));
-		rankGradient.setColorAt(1, Qt::transparent);
-	}
 	setupUi(this);
 	setMouseTracking(true);
 	updateSize();
+}
+
+QIcon RankItemWidget::gradientRankIcon()
+{
+	QPixmap pmRank = QPixmap::fromImage(rankSingle);
+	QPainter pRank;
+	pRank.begin(&pmRank);
+	pRank.setCompositionMode(QPainter::CompositionMode_Overlay);
+	pRank.fillRect(pmRank.rect(), rankImageColor);
+	pRank.end();
+	return QIcon(pmRank);
+}
+
+QIcon RankItemWidget::flatRankIcon()
+{
+	QPixmap pmRank = QPixmap::fromImage(rankSingleFlat);
+	QPainter pRank;
+	pRank.begin(&pmRank);
+	pRank.setCompositionMode(QPainter::CompositionMode_Overlay);
+	pRank.fillRect(pmRank.rect(), rankImageColor);
+	pRank.end();
+	return QIcon(pmRank);
 }
 
 void RankItemWidget::updateSize(QFontMetrics *fm)
@@ -55,9 +74,15 @@ void RankItemWidget::setRank(int rank)
 	p.setBrush(rankGradient);
 	m_rank = rank;
 	m_item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, QString::number(m_rank));
+	QPixmap pmRank = useFlatRankImage ? QPixmap::fromImage(rankSingleFlat) : QPixmap::fromImage(rankSingle);
+	QPainter pRank;
+	pRank.begin(&pmRank);
+	pRank.setCompositionMode(QPainter::CompositionMode_Overlay);
+	pRank.fillRect(pmRank.rect(), rankImageColor);
+	pRank.end();
 	for (int r = 0; r < m_rank; r++) {
 		int x = r * rankSingle.width();
-		p.drawImage(x, 0, rankSingle);
+		p.drawPixmap(x, 0, pmRank);
 		p.drawRoundedRect(x + 2, 3, rankSingle.width() - 2, rankSingle.height() - 3, 5, 5, Qt::RelativeSize);
 	}
 	QPixmap pmBackground = QPixmap::fromImage(rankBackround);
@@ -69,6 +94,26 @@ void RankItemWidget::setRank(int rank)
 	p.drawPixmap(0, 0, pmBackground);
 	p.end();
 	rankImage->setPixmap(pm.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+}
+
+void RankItemWidget::increaseRank()
+{
+	int newRank = m_rank + 1;
+	if ( newRank < 6 ) {
+		setRank(newRank);
+		qmc2Gamelist->userDataDb()->setRank(m_item->text(QMC2_GAMELIST_COLUMN_NAME), m_rank);
+		updateForeignItems();
+	}
+}
+
+void RankItemWidget::decreaseRank()
+{
+	int newRank = m_rank - 1;
+	if ( newRank >= 0 ) {
+		setRank(newRank);
+		qmc2Gamelist->userDataDb()->setRank(m_item->text(QMC2_GAMELIST_COLUMN_NAME), m_rank);
+		updateForeignItems();
+	}
 }
 
 void RankItemWidget::updateRankFromDb()
