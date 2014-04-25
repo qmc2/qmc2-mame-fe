@@ -1152,6 +1152,7 @@ void Options::on_pushButtonApply_clicked()
 #endif
 
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", checkBoxNativeFileDialogs->isChecked());
+  QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 
   // Files and directories
   config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", lineEditTemporaryFile->text());
@@ -4381,11 +4382,11 @@ void Options::on_pushButtonEditPalette_clicked()
 	qmc2PaletteEditor->toolButtonPreview->blockSignals(false);
 	qmc2PaletteEditor->activePalette = currentPalette;
 	qmc2PaletteEditor->show();
-	if ( qmc2PaletteEditor->toolButtonPreview->isChecked() )
+	if ( qmc2PaletteEditor->toolButtonPreview->isChecked() ) {
 		qApp->setPalette(qmc2PaletteEditor->customPalette);
-	else
+		QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
+	} else
 		qApp->setPalette(currentPalette);
-
 	if ( qmc2PaletteEditor->exec() == QDialog::Accepted ) {
 		config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", false);
 		qmc2CustomPalette = qmc2PaletteEditor->customPalette;
@@ -4397,6 +4398,7 @@ void Options::on_pushButtonEditPalette_clicked()
 		else
 			qApp->setPalette(qmc2CustomPalette);
 	}
+	QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 }
 
 void Options::checkShortcuts()
