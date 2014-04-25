@@ -2692,6 +2692,7 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	}
 
 	parse();
+  	QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 	loadFavorites();
 	loadPlayHistory();
 
