@@ -12530,6 +12530,8 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+Alt+PgUp"].second = qmc2MainWindow->actionAudioRaiseVolume;
   qmc2ShortcutMap["Ctrl+Alt+PgDown"].second = qmc2MainWindow->actionAudioLowerVolume;
 #endif
+  qmc2ShortcutMap["Alt+PgUp"].second = qmc2MainWindow->actionIncreaseRank;
+  qmc2ShortcutMap["Alt+PgDown"].second = qmc2MainWindow->actionDecreaseRank;
 
   // special keys
   qmc2ShortcutMap["+"].second = NULL;

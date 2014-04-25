@@ -4305,7 +4305,7 @@
     <string>Increase rank</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Alt++</string>
+    <string notr="true">Alt+PgUp</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -4323,7 +4323,7 @@
     <string>Decrease rank</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Alt+-</string>
+    <string notr="true">Alt+PgDown</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>

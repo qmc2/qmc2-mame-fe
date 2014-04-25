@@ -502,6 +502,8 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+Alt+PgUp"] = QPair<QString, QAction *>(tr("Raise volume (audio player)"), NULL);
   qmc2ShortcutMap["Ctrl+Alt+PgDown"] = QPair<QString, QAction *>(tr("Lower volume (audio player)"), NULL);
 #endif
+  qmc2ShortcutMap["Alt+PgUp"] = QPair<QString, QAction *>(tr("Increase rank"), NULL);
+  qmc2ShortcutMap["Alt+PgDown"] = QPair<QString, QAction *>(tr("Decrease rank"), NULL);
 
   // special keys
   qmc2ShortcutMap["+"] = QPair<QString, QAction *>(tr("Plus (+)"), NULL);
