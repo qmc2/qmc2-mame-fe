@@ -552,7 +552,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void signalStyleSheetSetupRequested(QString styleSheet) { emit styleSheetSetupRequested(styleSheet); }
 		void signalPaletteSetupRequested(QString style) { emit paletteSetupRequested(style); }
 
-		// callbacks for dynamically updated list contents
+		// callbacks for dynamically updated list contents (ranks and comments)
 		void treeWidgetGamelist_verticalScrollChanged(int value = -1);
 		void treeWidgetGamelist_updateRanks();
 		void treeWidgetHierarchy_verticalScrollChanged(int value = -1);
@@ -567,6 +567,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_treeWidgetVersionView_itemExpanded(QTreeWidgetItem *);
 #endif
 		void updateUserData() { resizeEvent(0); }
+		void on_actionIncreaseRank_triggered(bool checked = false);
+		void on_actionDecreaseRank_triggered(bool checked = false);
+		void on_actionRankImageGradient_triggered(bool checked = false);
+		void on_actionRankImageFlat_triggered(bool checked = false);
+		void on_actionRankImageColor_triggered(bool checked = false);
 
 	protected:
 		void closeEvent(QCloseEvent *);

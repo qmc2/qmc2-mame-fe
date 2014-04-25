@@ -2656,6 +2656,21 @@
      <addaction name="actionViewByCategory"/>
      <addaction name="actionViewByVersion"/>
     </widget>
+    <widget class="QMenu" name="menuSearchWeb">
+     <property name="title">
+      <string>Search web</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/world.png</normaloff>:/data/img/world.png</iconset>
+     </property>
+     <addaction name="actionSearchGoogle"/>
+     <addaction name="actionSearchWikipedia"/>
+     <addaction name="actionSearchDuckDuckGo"/>
+     <addaction name="actionSearchYandex"/>
+     <addaction name="separator"/>
+     <addaction name="actionSearchInternalBrowser"/>
+    </widget>
     <widget class="QMenu" name="menuTag">
      <property name="title">
       <string>&amp;Tag</string>
@@ -2679,20 +2694,27 @@
      <addaction name="actionUntagVisible"/>
      <addaction name="actionInvertVisibleTags"/>
     </widget>
-    <widget class="QMenu" name="menuSearchWeb">
+    <widget class="QMenu" name="menuRank">
      <property name="title">
-      <string>Search web</string>
+      <string>Rank</string>
      </property>
      <property name="icon">
       <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/world.png</normaloff>:/data/img/world.png</iconset>
+       <normaloff>:/data/img/rank.png</normaloff>:/data/img/rank.png</iconset>
      </property>
-     <addaction name="actionSearchGoogle"/>
-     <addaction name="actionSearchWikipedia"/>
-     <addaction name="actionSearchDuckDuckGo"/>
-     <addaction name="actionSearchYandex"/>
+     <widget class="QMenu" name="menuRankImage">
+      <property name="title">
+       <string>Rank image</string>
+      </property>
+      <addaction name="actionRankImageGradient"/>
+      <addaction name="actionRankImageFlat"/>
+      <addaction name="separator"/>
+      <addaction name="actionRankImageColor"/>
+     </widget>
+     <addaction name="actionIncreaseRank"/>
+     <addaction name="actionDecreaseRank"/>
      <addaction name="separator"/>
-     <addaction name="actionSearchInternalBrowser"/>
+     <addaction name="menuRankImage"/>
     </widget>
     <addaction name="actionPlay"/>
     <addaction name="actionPlayTagged"/>
@@ -2708,6 +2730,8 @@
     <addaction name="menuView"/>
     <addaction name="menuCheck"/>
     <addaction name="menuTag"/>
+    <addaction name="separator"/>
+    <addaction name="menuRank"/>
     <addaction name="menuSearchWeb"/>
     <addaction name="separator"/>
     <addaction name="actionExitStop"/>
@@ -4267,6 +4291,96 @@
    </property>
    <property name="statusTip">
     <string>Open a new empty PDF viewer window</string>
+   </property>
+  </action>
+  <action name="actionIncreaseRank">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
+   </property>
+   <property name="text">
+    <string>Increase rank</string>
+   </property>
+   <property name="statusTip">
+    <string>Increase rank</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Alt++</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionDecreaseRank">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
+   </property>
+   <property name="text">
+    <string>Decrease rank</string>
+   </property>
+   <property name="statusTip">
+    <string>Decrease rank</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Alt+-</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionRankImageFlat">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/rank_flat.png</normaloff>:/data/img/rank_flat.png</iconset>
+   </property>
+   <property name="text">
+    <string>Flat</string>
+   </property>
+   <property name="statusTip">
+    <string>Use flat rank image</string>
+   </property>
+   <property name="whatsThis">
+    <string>Use flat rank image</string>
+   </property>
+  </action>
+  <action name="actionRankImageGradient">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/rank.png</normaloff>:/data/img/rank.png</iconset>
+   </property>
+   <property name="text">
+    <string>Gradient</string>
+   </property>
+   <property name="toolTip">
+    <string>Use gradient rank image</string>
+   </property>
+   <property name="statusTip">
+    <string>Use gradient rank image</string>
+   </property>
+  </action>
+  <action name="actionRankImageColor">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/colors.png</normaloff>:/data/img/colors.png</iconset>
+   </property>
+   <property name="text">
+    <string>Overlay color...</string>
+   </property>
+   <property name="toolTip">
+    <string>Choose overlay color for rank image</string>
+   </property>
+   <property name="statusTip">
+    <string>Choose overlay color for rank image</string>
    </property>
   </action>
  </widget>

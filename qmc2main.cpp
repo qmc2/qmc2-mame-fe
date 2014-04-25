@@ -25,6 +25,7 @@
 #include <QNetworkAccessManager>
 #include <QSplashScreen>
 #include <QTest>
+#include <QColorDialog>
 #if QT_VERSION >= 0x050000
 #include <QInputDialog>
 #include <QDesktopWidget>
@@ -960,6 +961,7 @@ MainWindow::MainWindow(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
   qmc2GameMenu->addSeparator();
+  qmc2GameMenu->addMenu(menuRank);
   qmc2GameMenu->addMenu(menuSearchWeb);
 
   qmc2SearchMenu = new QMenu(0);
@@ -1630,6 +1632,19 @@ MainWindow::MainWindow(QWidget *parent)
   m_vlRankUpdateTimer.setSingleShot(true);
   connect(&m_vlRankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetVersionView_updateRanks()));
 #endif
+
+  RankItemWidget::rankSingle = QImage(QString::fromUtf8(":/data/img/rank.png"));
+  RankItemWidget::rankSingleFlat = QImage(QString::fromUtf8(":/data/img/rank_flat.png"));
+  RankItemWidget::rankBackround = QImage(QString::fromUtf8(":/data/img/rank_bg.png"));
+  RankItemWidget::rankGradient = QLinearGradient(0, 0, RankItemWidget::rankBackround.width() - 1, 0);
+  RankItemWidget::rankGradient.setColorAt(0, QColor(255, 255, 255, 127));
+  RankItemWidget::rankGradient.setColorAt(1, Qt::transparent);
+  RankItemWidget::useFlatRankImage = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", false).toBool();
+  RankItemWidget::rankImageColor = QColor(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/RankImageColor", "#7F7F7F").toString());
+  if ( RankItemWidget::useFlatRankImage )
+  	on_actionRankImageFlat_triggered(true);
+  else
+  	on_actionRankImageGradient_triggered(true);
 
   QTimer::singleShot(0, this, SLOT(init()));
 }
@@ -12148,6 +12163,119 @@ void MainWindow::on_treeWidgetVersionView_itemExpanded(QTreeWidgetItem *item)
 	treeWidgetVersionView_verticalScrollChanged();
 }
 #endif
+
+void MainWindow::on_actionIncreaseRank_triggered(bool)
+{
+	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+		return;
+
+	QTreeWidget *treeWidget;
+	QTreeWidgetItem *item;
+	switch ( stackedWidgetView->currentIndex() ) {
+		case QMC2_VIEW_TREE_INDEX:
+			treeWidget = treeWidgetHierarchy;
+			item = qmc2HierarchyItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
+			break;
+		case QMC2_VIEW_CATEGORY_INDEX:
+			treeWidget = treeWidgetCategoryView;
+			item = qmc2CategoryItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
+			break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		case QMC2_VIEW_VERSION_INDEX:
+			treeWidget = treeWidgetVersionView;
+			item = qmc2VersionItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
+			break;
+#endif
+		case QMC2_VIEW_DETAIL_INDEX:
+		default:
+			treeWidget = treeWidgetGamelist;
+			item = qmc2CurrentItem;
+			break;
+	}
+
+	if ( item ) {
+		RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+		if ( riw )
+			riw->increaseRank();
+	}
+}
+
+void MainWindow::on_actionDecreaseRank_triggered(bool)
+{
+	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+		return;
+
+	QTreeWidget *treeWidget;
+	QTreeWidgetItem *item;
+	switch ( stackedWidgetView->currentIndex() ) {
+		case QMC2_VIEW_TREE_INDEX:
+			treeWidget = treeWidgetHierarchy;
+			item = qmc2HierarchyItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
+			break;
+		case QMC2_VIEW_CATEGORY_INDEX:
+			treeWidget = treeWidgetCategoryView;
+			item = qmc2CategoryItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
+			break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		case QMC2_VIEW_VERSION_INDEX:
+			treeWidget = treeWidgetVersionView;
+			item = qmc2VersionItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
+			break;
+#endif
+		case QMC2_VIEW_DETAIL_INDEX:
+		default:
+			treeWidget = treeWidgetGamelist;
+			item = qmc2CurrentItem;
+			break;
+	}
+
+	if ( item ) {
+		RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+		if ( riw )
+			riw->decreaseRank();
+	}
+}
+
+void MainWindow::on_actionRankImageGradient_triggered(bool checked)
+{
+	if ( checked ) {
+		actionRankImageGradient->setChecked(true);
+		actionRankImageFlat->setChecked(false);
+		RankItemWidget::useFlatRankImage = false;
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", RankItemWidget::useFlatRankImage);
+		menuRank->setIcon(RankItemWidget::gradientRankIcon());
+		actionRankImageGradient->setIcon(RankItemWidget::gradientRankIcon());
+		actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
+		QTimer::singleShot(0, this, SLOT(updateUserData()));
+	}
+}
+
+void MainWindow::on_actionRankImageFlat_triggered(bool checked)
+{
+	if ( checked ) {
+		actionRankImageGradient->setChecked(false);
+		actionRankImageFlat->setChecked(true);
+		RankItemWidget::useFlatRankImage = true;
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", RankItemWidget::useFlatRankImage);
+		menuRank->setIcon(RankItemWidget::flatRankIcon());
+		actionRankImageGradient->setIcon(RankItemWidget::gradientRankIcon());
+		actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
+		QTimer::singleShot(0, this, SLOT(updateUserData()));
+	}
+}
+
+void MainWindow::on_actionRankImageColor_triggered(bool)
+{
+	QColor color = QColorDialog::getColor(RankItemWidget::rankImageColor, this, tr("Choose overlay color"), QColorDialog::DontUseNativeDialog | QColorDialog::ShowAlphaChannel);
+	if ( color.isValid() ) {
+		RankItemWidget::rankImageColor = color;
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/RankImageColor", RankItemWidget::rankImageColor.name());
+		menuRank->setIcon(RankItemWidget::currentRankIcon());
+		actionRankImageGradient->setIcon(RankItemWidget::gradientRankIcon());
+		actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
+		QTimer::singleShot(0, this, SLOT(updateUserData()));
+	}
+}
 
 void MainWindow::checkRomPath()
 {

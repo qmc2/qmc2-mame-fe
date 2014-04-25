@@ -4,6 +4,9 @@
 #include <QFontMetrics>
 #include <QMouseEvent>
 #include <QImage>
+#include <QPixmap>
+#include <QColor>
+#include <QIcon>
 #include <QLinearGradient>
 #include <QTreeWidgetItem>
 
@@ -20,12 +23,20 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 
 		static QImage rankBackround;
 		static QImage rankSingle;
+		static QImage rankSingleFlat;
 		static QLinearGradient rankGradient;
+		static bool useFlatRankImage;
+		static QColor rankImageColor;
+		static QIcon currentRankIcon() { return useFlatRankImage ? flatRankIcon() : gradientRankIcon(); }
+		static QIcon gradientRankIcon();
+		static QIcon flatRankIcon();
 
 		void setRank(int rank);
 		int rank() { return m_rank; }
 
 	public slots:
+		void increaseRank();
+		void decreaseRank();
 		void updateSize(QFontMetrics *fm = 0);
 		void updateRankFromDb();
 		void updateRankFromMousePos(int mouseX = 0);
