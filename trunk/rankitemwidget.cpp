@@ -60,7 +60,13 @@ void RankItemWidget::setRank(int rank)
 		p.drawImage(x, 0, rankSingle);
 		p.drawRoundedRect(x + 2, 3, rankSingle.width() - 2, rankSingle.height() - 3, 5, 5, Qt::RelativeSize);
 	}
-	p.drawImage(0, 0, rankBackround);
+	QPixmap pmBackground = QPixmap::fromImage(rankBackround);
+	QPainter pBackground;
+	pBackground.begin(&pmBackground);
+	pBackground.setCompositionMode(QPainter::CompositionMode_SourceIn);
+	pBackground.fillRect(pmBackground.rect(), m_item->treeWidget()->palette().color(QPalette::Text));
+	pBackground.end();
+	p.drawPixmap(0, 0, pmBackground);
 	p.end();
 	rankImage->setPixmap(pm.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }

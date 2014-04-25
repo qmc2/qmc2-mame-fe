@@ -220,8 +220,10 @@ void PaletteEditor::colorChanged(QPalette::ColorGroup cg, QPalette::ColorRole cr
 		}
 	}
 
-	if ( toolButtonPreview->isChecked() )
+	if ( toolButtonPreview->isChecked() ) {
 		qApp->setPalette(customPalette);
+		QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
+	}
 
 	pushButtonRestore->setEnabled(true);
 }
@@ -297,8 +299,10 @@ void PaletteEditor::on_pushButtonRestore_clicked()
 		}
 	}
 
-	if ( toolButtonPreview->isChecked() )
+	if ( toolButtonPreview->isChecked() ) {
 		qApp->setPalette(customPalette);
+		QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
+	}
 
 	pushButtonRestore->setEnabled(false);
 }
@@ -345,8 +349,10 @@ void PaletteEditor::on_checkBoxCalculateDetails_toggled(bool checked)
 
 	resizeEvent(NULL);
 
-	if ( toolButtonPreview->isChecked() )
+	if ( toolButtonPreview->isChecked() ) {
 		qApp->setPalette(customPalette);
+		QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
+	}
 }
 
 void PaletteEditor::showEvent(QShowEvent *e)
@@ -370,9 +376,10 @@ void PaletteEditor::showEvent(QShowEvent *e)
 	adjustSize();
 	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/PaletteEditor/Geometry", QByteArray()).toByteArray());
 
-	if ( toolButtonPreview->isChecked() )
+	if ( toolButtonPreview->isChecked() ) {
 		qApp->setPalette(customPalette);
-	else
+		QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
+	} else
 		qApp->setPalette(activePalette);
 
 	if ( e )
