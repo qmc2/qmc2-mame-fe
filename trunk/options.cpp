@@ -132,7 +132,6 @@ extern ROMStatusExporter *qmc2ROMStatusExporter;
 extern DocBrowser *qmc2DocBrowser;
 extern int qmc2SortCriteria;
 extern Qt::SortOrder qmc2SortOrder;
-extern QMap<QString, QString> qmc2GamelistNameMap;
 extern Settings *qmc2Config;
 extern QBitArray qmc2Filter;
 extern QMap<QString, unzFile> qmc2IconFileMap;
@@ -1998,7 +1997,7 @@ void Options::on_pushButtonApply_clicked()
 		      delete ci;
 	      QTreeWidgetItem *nameItem = new QTreeWidgetItem(ti);
 	      nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
-	      nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, qmc2GamelistNameMap[ti->text(QMC2_GAMELIST_COLUMN_GAME)]);
+	      nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, ti->text(QMC2_GAMELIST_COLUMN_NAME));
       }
       qmc2ExpandedGamelistItems.clear();
       qApp->processEvents();
