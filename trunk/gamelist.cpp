@@ -2449,7 +2449,15 @@ void Gamelist::filter(bool initial)
 			  break;
 	  }
   } else {
-	  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
+	  qmc2MainWindow->treeWidgetGamelist->setVisible(false);
+	  QString curText = qmc2MainWindow->labelLoadingGamelist->text();
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	  qmc2MainWindow->labelLoadingGamelist->setText(tr("Filtering game list, please wait..."));
+#elif defined(QMC2_EMUTYPE_MESs)
+	  qmc2MainWindow->labelLoadingGamelist->setText(tr("Filtering machine list, please wait..."));
+#endif
+	  qmc2MainWindow->labelLoadingGamelist->setVisible(true);
+	  qApp->processEvents();
 	  int filterResponse = numGames / QMC2_STATEFILTER_UPDATES;
 	  for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount() && !qmc2StopParser; i++) {
 		  if ( i % filterResponse == 0 ) {
@@ -2481,7 +2489,9 @@ void Gamelist::filter(bool initial)
 				  break;
 		  }
 	  }
-	  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+	  qmc2MainWindow->treeWidgetGamelist->setVisible(true);
+	  qmc2MainWindow->labelLoadingGamelist->setVisible(false);
+	  qmc2MainWindow->labelLoadingGamelist->setText(curText);
   }
   qmc2MainWindow->progressBarGamelist->setValue(numGames - 1);
   qmc2FilterActive = false;
@@ -2492,6 +2502,7 @@ void Gamelist::filter(bool initial)
   qApp->processEvents();
   enableWidgets(true);
   qmc2StatesTogglesEnabled = true;
+  QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 }
 
 void Gamelist::save()
