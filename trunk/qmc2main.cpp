@@ -1640,7 +1640,7 @@ MainWindow::MainWindow(QWidget *parent)
   RankItemWidget::rankGradient.setColorAt(0, QColor(255, 255, 255, 127));
   RankItemWidget::rankGradient.setColorAt(1, Qt::transparent);
   RankItemWidget::useFlatRankImage = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", false).toBool();
-  RankItemWidget::rankImageColor = QColor(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/RankImageColor", "#7F7F7F").toString());
+  RankItemWidget::rankImageColor = QColor(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/RankImageColor", "#646464").toString());
   if ( RankItemWidget::useFlatRankImage )
   	on_actionRankImageFlat_triggered(true);
   else
