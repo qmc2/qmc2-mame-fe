@@ -4321,7 +4321,7 @@ bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
       return (text(QMC2_GAMELIST_COLUMN_SRCFILE).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_SRCFILE).toUpper());
 
     case QMC2_SORT_BY_RANK:
-      return (whatsThis(QMC2_GAMELIST_COLUMN_RANK).toInt() < otherItem.whatsThis(QMC2_GAMELIST_COLUMN_RANK).toInt());
+      return (whatsThis(QMC2_GAMELIST_COLUMN_RANK).toInt() > otherItem.whatsThis(QMC2_GAMELIST_COLUMN_RANK).toInt());
 
     case QMC2_SORT_BY_CATEGORY:
       return (text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper());
