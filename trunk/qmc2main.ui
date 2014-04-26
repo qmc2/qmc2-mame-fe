@@ -2702,6 +2702,16 @@
       <iconset resource="qmc2.qrc">
        <normaloff>:/data/img/rank.png</normaloff>:/data/img/rank.png</iconset>
      </property>
+     <widget class="QMenu" name="menuRankImage">
+      <property name="title">
+       <string>Rank image</string>
+      </property>
+      <addaction name="actionRankImageGradient"/>
+      <addaction name="actionRankImageFlat"/>
+      <addaction name="actionRankImagePlain"/>
+      <addaction name="separator"/>
+      <addaction name="actionRankImageColor"/>
+     </widget>
      <widget class="QMenu" name="menuSetRank">
       <property name="title">
        <string>Set rank</string>
@@ -2713,16 +2723,6 @@
       <addaction name="actionSetRank3"/>
       <addaction name="actionSetRank4"/>
       <addaction name="actionSetRank5"/>
-     </widget>
-     <widget class="QMenu" name="menuRankImage">
-      <property name="title">
-       <string>Rank image</string>
-      </property>
-      <addaction name="actionRankImageGradient"/>
-      <addaction name="actionRankImageFlat"/>
-      <addaction name="actionRankImagePlain"/>
-      <addaction name="separator"/>
-      <addaction name="actionRankImageColor"/>
      </widget>
      <addaction name="menuSetRank"/>
      <addaction name="separator"/>
@@ -4464,10 +4464,10 @@
    <property name="text">
     <string>Rank 4</string>
    </property>
-   <property name="statusTip">
+   <property name="toolTip">
     <string>Set rank to 4</string>
    </property>
-   <property name="whatsThis">
+   <property name="statusTip">
     <string>Set rank to 4</string>
    </property>
   </action>
@@ -4476,6 +4476,9 @@
     <string>Rank 5</string>
    </property>
    <property name="toolTip">
+    <string>Set rank to 5 (highest rank)</string>
+   </property>
+   <property name="statusTip">
     <string>Set rank to 5 (highest rank)</string>
    </property>
   </action>
