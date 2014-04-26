@@ -2702,6 +2702,18 @@
       <iconset resource="qmc2.qrc">
        <normaloff>:/data/img/rank.png</normaloff>:/data/img/rank.png</iconset>
      </property>
+     <widget class="QMenu" name="menuSetRank">
+      <property name="title">
+       <string>Set rank</string>
+      </property>
+      <addaction name="actionSetRank0"/>
+      <addaction name="separator"/>
+      <addaction name="actionSetRank1"/>
+      <addaction name="actionSetRank2"/>
+      <addaction name="actionSetRank3"/>
+      <addaction name="actionSetRank4"/>
+      <addaction name="actionSetRank5"/>
+     </widget>
      <widget class="QMenu" name="menuRankImage">
       <property name="title">
        <string>Rank image</string>
@@ -2712,6 +2724,8 @@
       <addaction name="separator"/>
       <addaction name="actionRankImageColor"/>
      </widget>
+     <addaction name="menuSetRank"/>
+     <addaction name="separator"/>
      <addaction name="actionIncreaseRank"/>
      <addaction name="actionDecreaseRank"/>
      <addaction name="separator"/>
@@ -4400,6 +4414,69 @@
    </property>
    <property name="whatsThis">
     <string>Use plain color rank image</string>
+   </property>
+  </action>
+  <action name="actionSetRank0">
+   <property name="text">
+    <string>Rank 0</string>
+   </property>
+   <property name="toolTip">
+    <string>Set rank to 0 (no rank)</string>
+   </property>
+   <property name="statusTip">
+    <string>Set rank to 0 (no rank)</string>
+   </property>
+  </action>
+  <action name="actionSetRank1">
+   <property name="text">
+    <string>Rank 1</string>
+   </property>
+   <property name="toolTip">
+    <string>Set rank to 1 (lowest rank)</string>
+   </property>
+   <property name="statusTip">
+    <string>Set rank to 1 (lowest rank)</string>
+   </property>
+  </action>
+  <action name="actionSetRank2">
+   <property name="text">
+    <string>Rank 2</string>
+   </property>
+   <property name="toolTip">
+    <string>Set rank to 2</string>
+   </property>
+   <property name="statusTip">
+    <string>Set rank to 2</string>
+   </property>
+  </action>
+  <action name="actionSetRank3">
+   <property name="text">
+    <string>Rank 3</string>
+   </property>
+   <property name="toolTip">
+    <string>Set rank to 3</string>
+   </property>
+   <property name="statusTip">
+    <string>Set rank to 3</string>
+   </property>
+  </action>
+  <action name="actionSetRank4">
+   <property name="text">
+    <string>Rank 4</string>
+   </property>
+   <property name="statusTip">
+    <string>Set rank to 4</string>
+   </property>
+   <property name="whatsThis">
+    <string>Set rank to 4</string>
+   </property>
+  </action>
+  <action name="actionSetRank5">
+   <property name="text">
+    <string>Rank 5</string>
+   </property>
+   <property name="toolTip">
+    <string>Set rank to 5 (highest rank)</string>
    </property>
   </action>
  </widget>

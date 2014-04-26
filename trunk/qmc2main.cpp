@@ -90,7 +90,6 @@
 #include "htmleditor/htmleditor.h"
 #include "arcademodesetup.h"
 #include "fileiconprovider.h"
-#include "rankitemwidget.h"
 
 #ifdef __APPLE__
 #include <ApplicationServices/ApplicationServices.h>
@@ -12177,72 +12176,18 @@ void MainWindow::on_actionIncreaseRank_triggered(bool)
 {
 	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
 		return;
-
-	QTreeWidget *treeWidget;
-	QTreeWidgetItem *item;
-	switch ( stackedWidgetView->currentIndex() ) {
-		case QMC2_VIEW_TREE_INDEX:
-			treeWidget = treeWidgetHierarchy;
-			item = qmc2HierarchyItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
-			break;
-		case QMC2_VIEW_CATEGORY_INDEX:
-			treeWidget = treeWidgetCategoryView;
-			item = qmc2CategoryItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
-			break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		case QMC2_VIEW_VERSION_INDEX:
-			treeWidget = treeWidgetVersionView;
-			item = qmc2VersionItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
-			break;
-#endif
-		case QMC2_VIEW_DETAIL_INDEX:
-		default:
-			treeWidget = treeWidgetGamelist;
-			item = qmc2CurrentItem;
-			break;
-	}
-
-	if ( item ) {
-		RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
-		if ( riw )
-			riw->increaseRank();
-	}
+	RankItemWidget *riw = getCurrentRankItemWidget();
+	if ( riw )
+		riw->increaseRank();
 }
 
 void MainWindow::on_actionDecreaseRank_triggered(bool)
 {
 	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
 		return;
-
-	QTreeWidget *treeWidget;
-	QTreeWidgetItem *item;
-	switch ( stackedWidgetView->currentIndex() ) {
-		case QMC2_VIEW_TREE_INDEX:
-			treeWidget = treeWidgetHierarchy;
-			item = qmc2HierarchyItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
-			break;
-		case QMC2_VIEW_CATEGORY_INDEX:
-			treeWidget = treeWidgetCategoryView;
-			item = qmc2CategoryItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
-			break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		case QMC2_VIEW_VERSION_INDEX:
-			treeWidget = treeWidgetVersionView;
-			item = qmc2VersionItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
-			break;
-#endif
-		case QMC2_VIEW_DETAIL_INDEX:
-		default:
-			treeWidget = treeWidgetGamelist;
-			item = qmc2CurrentItem;
-			break;
-	}
-
-	if ( item ) {
-		RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
-		if ( riw )
-			riw->decreaseRank();
-	}
+	RankItemWidget *riw = getCurrentRankItemWidget();
+	if ( riw )
+		riw->decreaseRank();
 }
 
 void MainWindow::on_actionRankImageGradient_triggered(bool checked)
@@ -12311,6 +12256,77 @@ void MainWindow::on_actionRankImageColor_triggered(bool)
 		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
 		QTimer::singleShot(0, this, SLOT(updateUserData()));
 	}
+}
+
+void MainWindow::on_actionSetRank0_triggered(bool)
+{
+	RankItemWidget *riw = getCurrentRankItemWidget();
+	if ( riw )
+		riw->setRankComplete(0);
+}
+
+void MainWindow::on_actionSetRank1_triggered(bool)
+{
+	RankItemWidget *riw = getCurrentRankItemWidget();
+	if ( riw )
+		riw->setRankComplete(1);
+}
+
+void MainWindow::on_actionSetRank2_triggered(bool)
+{
+	RankItemWidget *riw = getCurrentRankItemWidget();
+	if ( riw )
+		riw->setRankComplete(2);
+}
+
+void MainWindow::on_actionSetRank3_triggered(bool)
+{
+	RankItemWidget *riw = getCurrentRankItemWidget();
+	if ( riw )
+		riw->setRankComplete(3);
+}
+
+void MainWindow::on_actionSetRank4_triggered(bool)
+{
+	RankItemWidget *riw = getCurrentRankItemWidget();
+	if ( riw )
+		riw->setRankComplete(4);
+}
+
+void MainWindow::on_actionSetRank5_triggered(bool)
+{
+	RankItemWidget *riw = getCurrentRankItemWidget();
+	if ( riw )
+		riw->setRankComplete(5);
+}
+
+RankItemWidget *MainWindow::getCurrentRankItemWidget()
+{
+	QTreeWidget *treeWidget;
+	QTreeWidgetItem *item;
+	switch ( stackedWidgetView->currentIndex() ) {
+		case QMC2_VIEW_TREE_INDEX:
+			treeWidget = treeWidgetHierarchy;
+			item = qmc2HierarchyItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
+			break;
+		case QMC2_VIEW_CATEGORY_INDEX:
+			treeWidget = treeWidgetCategoryView;
+			item = qmc2CategoryItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
+			break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		case QMC2_VIEW_VERSION_INDEX:
+			treeWidget = treeWidgetVersionView;
+			item = qmc2VersionItemMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
+			break;
+#endif
+		case QMC2_VIEW_DETAIL_INDEX:
+		default:
+			treeWidget = treeWidgetGamelist;
+			item = qmc2CurrentItem;
+			break;
+	}
+
+	return (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
 }
 
 void MainWindow::checkRomPath()
