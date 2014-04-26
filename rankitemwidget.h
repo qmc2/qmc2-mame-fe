@@ -37,6 +37,8 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 		void setRank(int rank);
 		int rank() { return m_rank; }
 
+		void setRankComplete(int rank);
+
 	public slots:
 		void increaseRank();
 		void decreaseRank();

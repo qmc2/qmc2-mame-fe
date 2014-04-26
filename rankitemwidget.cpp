@@ -108,24 +108,25 @@ void RankItemWidget::setRank(int rank)
 	rankImage->setPixmap(pm.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
 
+void RankItemWidget::setRankComplete(int rank)
+{
+	setRank(rank);
+	qmc2Gamelist->userDataDb()->setRank(m_item->text(QMC2_GAMELIST_COLUMN_NAME), m_rank);
+	updateForeignItems();
+}
+
 void RankItemWidget::increaseRank()
 {
 	int newRank = m_rank + 1;
-	if ( newRank < 6 ) {
-		setRank(newRank);
-		qmc2Gamelist->userDataDb()->setRank(m_item->text(QMC2_GAMELIST_COLUMN_NAME), m_rank);
-		updateForeignItems();
-	}
+	if ( newRank < 6 )
+		setRankComplete(newRank);
 }
 
 void RankItemWidget::decreaseRank()
 {
 	int newRank = m_rank - 1;
-	if ( newRank >= 0 ) {
-		setRank(newRank);
-		qmc2Gamelist->userDataDb()->setRank(m_item->text(QMC2_GAMELIST_COLUMN_NAME), m_rank);
-		updateForeignItems();
-	}
+	if ( newRank >= 0 )
+		setRankComplete(newRank);
 }
 
 void RankItemWidget::updateRankFromDb()
@@ -135,9 +136,7 @@ void RankItemWidget::updateRankFromDb()
 
 void RankItemWidget::updateRankFromMousePos(int mouseX)
 {
-	setRank(int(0.5f + 6.0f * (double)mouseX / (double)(width())));
-	qmc2Gamelist->userDataDb()->setRank(m_item->text(QMC2_GAMELIST_COLUMN_NAME), m_rank);
-	updateForeignItems();
+	setRankComplete(int(0.5f + 6.0f * (double)mouseX / (double)(width())));
 }
 
 void RankItemWidget::mousePressEvent(QMouseEvent *e)

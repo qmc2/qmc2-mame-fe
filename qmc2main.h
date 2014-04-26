@@ -19,6 +19,7 @@
 #include "qmc2_phonon.h"
 #endif
 #include "imagewidget.h"
+#include "rankitemwidget.h"
 
 class ProxyStyle : public QProxyStyle
 {
@@ -573,6 +574,13 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_actionRankImageFlat_triggered(bool checked = false);
 		void on_actionRankImagePlain_triggered(bool checked = false);
 		void on_actionRankImageColor_triggered(bool checked = false);
+		void on_actionSetRank0_triggered(bool);
+		void on_actionSetRank1_triggered(bool);
+		void on_actionSetRank2_triggered(bool);
+		void on_actionSetRank3_triggered(bool);
+		void on_actionSetRank4_triggered(bool);
+		void on_actionSetRank5_triggered(bool);
+		RankItemWidget *getCurrentRankItemWidget();
 
 	protected:
 		void closeEvent(QCloseEvent *);
