@@ -1633,15 +1633,19 @@ MainWindow::MainWindow(QWidget *parent)
   connect(&m_vlRankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetVersionView_updateRanks()));
 #endif
 
+  // rank related
   RankItemWidget::rankSingle = QImage(QString::fromUtf8(":/data/img/rank.png"));
   RankItemWidget::rankSingleFlat = QImage(QString::fromUtf8(":/data/img/rank_flat.png"));
   RankItemWidget::rankBackround = QImage(QString::fromUtf8(":/data/img/rank_bg.png"));
   RankItemWidget::rankGradient = QLinearGradient(0, 0, RankItemWidget::rankBackround.width() - 1, 0);
   RankItemWidget::rankGradient.setColorAt(0, QColor(255, 255, 255, 127));
   RankItemWidget::rankGradient.setColorAt(1, Qt::transparent);
+  RankItemWidget::useColorRankImage = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ColorRankImage", false).toBool();
   RankItemWidget::useFlatRankImage = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", false).toBool();
   RankItemWidget::rankImageColor = QColor(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/RankImageColor", "#646464").toString());
-  if ( RankItemWidget::useFlatRankImage )
+  if ( RankItemWidget::useColorRankImage )
+  	on_actionRankImagePlain_triggered(true);
+  else if ( RankItemWidget::useFlatRankImage )
   	on_actionRankImageFlat_triggered(true);
   else
   	on_actionRankImageGradient_triggered(true);
@@ -12241,11 +12245,15 @@ void MainWindow::on_actionRankImageGradient_triggered(bool checked)
 	if ( checked ) {
 		actionRankImageGradient->setChecked(true);
 		actionRankImageFlat->setChecked(false);
+		actionRankImagePlain->setChecked(false);
 		RankItemWidget::useFlatRankImage = false;
+		RankItemWidget::useColorRankImage = false;
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", RankItemWidget::useFlatRankImage);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ColorRankImage", RankItemWidget::useColorRankImage);
 		menuRank->setIcon(RankItemWidget::gradientRankIcon());
 		actionRankImageGradient->setIcon(RankItemWidget::gradientRankIcon());
 		actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
+		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
 		QTimer::singleShot(0, this, SLOT(updateUserData()));
 	}
 }
@@ -12255,11 +12263,33 @@ void MainWindow::on_actionRankImageFlat_triggered(bool checked)
 	if ( checked ) {
 		actionRankImageGradient->setChecked(false);
 		actionRankImageFlat->setChecked(true);
+		actionRankImagePlain->setChecked(false);
 		RankItemWidget::useFlatRankImage = true;
+		RankItemWidget::useColorRankImage = false;
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", RankItemWidget::useFlatRankImage);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ColorRankImage", RankItemWidget::useColorRankImage);
 		menuRank->setIcon(RankItemWidget::flatRankIcon());
 		actionRankImageGradient->setIcon(RankItemWidget::gradientRankIcon());
 		actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
+		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
+		QTimer::singleShot(0, this, SLOT(updateUserData()));
+	}
+}
+
+void MainWindow::on_actionRankImagePlain_triggered(bool checked)
+{
+	if ( checked ) {
+		actionRankImageGradient->setChecked(false);
+		actionRankImageFlat->setChecked(false);
+		actionRankImagePlain->setChecked(true);
+		RankItemWidget::useFlatRankImage = true;
+		RankItemWidget::useColorRankImage = true;
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", RankItemWidget::useFlatRankImage);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ColorRankImage", RankItemWidget::useColorRankImage);
+		menuRank->setIcon(RankItemWidget::colorRankIcon());
+		actionRankImageGradient->setIcon(RankItemWidget::gradientRankIcon());
+		actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
+		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
 		QTimer::singleShot(0, this, SLOT(updateUserData()));
 	}
 }
@@ -12273,6 +12303,7 @@ void MainWindow::on_actionRankImageColor_triggered(bool)
 		menuRank->setIcon(RankItemWidget::currentRankIcon());
 		actionRankImageGradient->setIcon(RankItemWidget::gradientRankIcon());
 		actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
+		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
 		QTimer::singleShot(0, this, SLOT(updateUserData()));
 	}
 }
