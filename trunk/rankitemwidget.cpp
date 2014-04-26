@@ -21,6 +21,7 @@ QImage RankItemWidget::rankSingle;
 QImage RankItemWidget::rankSingleFlat;
 QLinearGradient RankItemWidget::rankGradient;
 bool RankItemWidget::useFlatRankImage;
+bool RankItemWidget::useColorRankImage;
 QColor RankItemWidget::rankImageColor;
 
 RankItemWidget::RankItemWidget(QTreeWidgetItem *item, QWidget *parent)
@@ -54,6 +55,17 @@ QIcon RankItemWidget::flatRankIcon()
 	return QIcon(pmRank);
 }
 
+QIcon RankItemWidget::colorRankIcon()
+{
+	QPixmap pmRank = QPixmap::fromImage(rankSingleFlat);
+	QPainter pRank;
+	pRank.begin(&pmRank);
+	pRank.setCompositionMode(QPainter::CompositionMode_SourceIn);
+	pRank.fillRect(pmRank.rect(), rankImageColor);
+	pRank.end();
+	return QIcon(pmRank);
+}
+
 void RankItemWidget::updateSize(QFontMetrics *fm)
 {
 	QSize newSize = size();
@@ -74,10 +86,10 @@ void RankItemWidget::setRank(int rank)
 	p.setBrush(rankGradient);
 	m_rank = rank;
 	m_item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, QString::number(m_rank));
-	QPixmap pmRank = useFlatRankImage ? QPixmap::fromImage(rankSingleFlat) : QPixmap::fromImage(rankSingle);
+	QPixmap pmRank = useFlatRankImage || useColorRankImage ? QPixmap::fromImage(rankSingleFlat) : QPixmap::fromImage(rankSingle);
 	QPainter pRank;
 	pRank.begin(&pmRank);
-	pRank.setCompositionMode(QPainter::CompositionMode_Overlay);
+	pRank.setCompositionMode(useColorRankImage ? QPainter::CompositionMode_SourceIn : QPainter::CompositionMode_Overlay);
 	pRank.fillRect(pmRank.rect(), rankImageColor);
 	pRank.end();
 	for (int r = 0; r < m_rank; r++) {

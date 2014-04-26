@@ -571,6 +571,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_actionDecreaseRank_triggered(bool checked = false);
 		void on_actionRankImageGradient_triggered(bool checked = false);
 		void on_actionRankImageFlat_triggered(bool checked = false);
+		void on_actionRankImagePlain_triggered(bool checked = false);
 		void on_actionRankImageColor_triggered(bool checked = false);
 
 	protected:

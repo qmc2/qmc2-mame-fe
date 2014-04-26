@@ -26,10 +26,13 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 		static QImage rankSingleFlat;
 		static QLinearGradient rankGradient;
 		static bool useFlatRankImage;
+		static bool useColorRankImage;
 		static QColor rankImageColor;
-		static QIcon currentRankIcon() { return useFlatRankImage ? flatRankIcon() : gradientRankIcon(); }
+
 		static QIcon gradientRankIcon();
 		static QIcon flatRankIcon();
+		static QIcon colorRankIcon();
+		static QIcon currentRankIcon() { return useFlatRankImage ? (useColorRankImage ? colorRankIcon() : flatRankIcon()) : gradientRankIcon(); }
 
 		void setRank(int rank);
 		int rank() { return m_rank; }

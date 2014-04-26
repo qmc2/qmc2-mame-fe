@@ -2708,6 +2708,7 @@
       </property>
       <addaction name="actionRankImageGradient"/>
       <addaction name="actionRankImageFlat"/>
+      <addaction name="actionRankImagePlain"/>
       <addaction name="separator"/>
       <addaction name="actionRankImageColor"/>
      </widget>
@@ -4381,6 +4382,24 @@
    </property>
    <property name="statusTip">
     <string>Choose overlay color for rank image</string>
+   </property>
+  </action>
+  <action name="actionRankImagePlain">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/rank_flat.png</normaloff>:/data/img/rank_flat.png</iconset>
+   </property>
+   <property name="text">
+    <string>Color</string>
+   </property>
+   <property name="statusTip">
+    <string>Use plain color rank image</string>
+   </property>
+   <property name="whatsThis">
+    <string>Use plain color rank image</string>
    </property>
   </action>
  </widget>
