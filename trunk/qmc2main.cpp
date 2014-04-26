@@ -1638,7 +1638,7 @@ MainWindow::MainWindow(QWidget *parent)
   RankItemWidget::rankSingleFlat = QImage(QString::fromUtf8(":/data/img/rank_flat.png"));
   RankItemWidget::rankBackround = QImage(QString::fromUtf8(":/data/img/rank_bg.png"));
   RankItemWidget::rankGradient = QLinearGradient(0, 0, RankItemWidget::rankBackround.width() - 1, 0);
-  RankItemWidget::rankGradient.setColorAt(0, QColor(255, 255, 255, 127));
+  RankItemWidget::rankGradient.setColorAt(0, QColor(255, 255, 255, 100));
   RankItemWidget::rankGradient.setColorAt(1, Qt::transparent);
   RankItemWidget::useColorRankImage = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ColorRankImage", false).toBool();
   RankItemWidget::useFlatRankImage = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", false).toBool();
