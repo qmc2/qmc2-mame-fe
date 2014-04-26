@@ -7,7 +7,7 @@
 
 #if (defined(_MSC_VER) && !defined(MY_CPU_AMD64)) || defined(__GNUC__) && !defined(__APPLE__)
 #define USE_ASM
-#else
+#elif defined(__APPLE__)
 static void __cpuid(int *cpuinfo, UInt32_7z function) {}
 #endif
 
