@@ -1016,6 +1016,7 @@ MainWindow::MainWindow(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
   qmc2SearchMenu->addSeparator();
+  qmc2SearchMenu->addMenu(menuRank);
   qmc2SearchMenu->addMenu(menuSearchWeb);
 
   qmc2FavoritesMenu = new QMenu(0);
@@ -1062,6 +1063,7 @@ MainWindow::MainWindow(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
   qmc2FavoritesMenu->addSeparator();
+  qmc2FavoritesMenu->addMenu(menuRank);
   qmc2FavoritesMenu->addMenu(menuSearchWeb);
   qmc2FavoritesMenu->addSeparator();
   s = tr("Remove from favorites");
@@ -1133,6 +1135,7 @@ MainWindow::MainWindow(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
   qmc2PlayedMenu->addSeparator();
+  qmc2PlayedMenu->addMenu(menuRank);
   qmc2PlayedMenu->addMenu(menuSearchWeb);
   qmc2PlayedMenu->addSeparator();
   s = tr("Remove from played");
@@ -2187,6 +2190,7 @@ void MainWindow::on_actionPlay_triggered(bool)
     } else {
       playedItem = new QListWidgetItem();
       playedItem->setText(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME));
+      playedItem->setWhatsThis(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_NAME));
     }
     listWidgetPlayed->insertItem(0, playedItem);
     listWidgetPlayed->setCurrentItem(playedItem);
@@ -2281,6 +2285,7 @@ void MainWindow::on_actionToFavorites_triggered(bool)
     return;
 
   QString itemText = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
+  QString itemName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
 
   if ( itemText == tr("Waiting for data...") )
     return;
@@ -2289,6 +2294,7 @@ void MainWindow::on_actionToFavorites_triggered(bool)
   if ( matches.count() <= 0 ) {
     QListWidgetItem *item = new QListWidgetItem(listWidgetFavorites);
     item->setText(itemText);
+    item->setWhatsThis(itemName);
     listWidgetFavorites->sortItems();
   }
 }
