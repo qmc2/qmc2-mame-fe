@@ -8,7 +8,10 @@ DIST="`uname -r`"
 if [ "${OS}" = "Linux" ] ; then
   if [ -f /etc/os-release ] ; then
     VERSION=$(cat /etc/os-release | egrep "\bVERSION_ID\b" | sed 's/VERSION_ID=//g' | sed 's/\"//g')
-    NAME=$(cat /etc/os-release | egrep "\bNAME\b"  | sed 's/NAME=//g' | sed 's/\"//g')
+    NAME=$(cat /etc/os-release | egrep "\bNAME\b" | sed 's/NAME=//g' | sed 's/\"//g' | tr " " '_')
+    if [ "$NAME" == "Fedora" ]; then
+    	NAME="Fedora_release"
+    fi
     DIST="$(echo $NAME)_$(echo $VERSION)"
   elif [ -f /etc/mandriva-release ] ; then
     DIST="$(cat /etc/mandriva-release | sed 's/\ for .*//' | sed 's/\ (.*)//')"
