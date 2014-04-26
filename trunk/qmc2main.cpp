@@ -10611,6 +10611,7 @@ void MainWindow::actionGamelistHeader_triggered()
 		action->blockSignals(true);
 		action->setChecked(visibility);
 		action->blockSignals(false);
+		QTimer::singleShot(0, this, SLOT(updateUserData()));
 	}
 }
 
@@ -10664,6 +10665,7 @@ void MainWindow::actionHierarchyHeader_triggered()
 		action->blockSignals(true);
 		action->setChecked(visibility);
 		action->blockSignals(false);
+		QTimer::singleShot(0, this, SLOT(updateUserData()));
 	}
 }
 
@@ -10863,6 +10865,7 @@ void MainWindow::actionCategoryHeader_triggered()
 		action->blockSignals(true);
 		action->setChecked(visibility);
 		action->blockSignals(false);
+		QTimer::singleShot(0, this, SLOT(updateUserData()));
 	}
 }
 
@@ -10915,6 +10918,7 @@ void MainWindow::actionVersionHeader_triggered()
 		action->blockSignals(true);
 		action->setChecked(visibility);
 		action->blockSignals(false);
+		QTimer::singleShot(0, this, SLOT(updateUserData()));
 	}
 }
 #endif
