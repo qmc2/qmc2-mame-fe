@@ -11954,6 +11954,8 @@ void MainWindow::treeWidgetGamelist_updateRanks()
 		int minWidth = 0;
 		for (int i = startIndex; i <= endIndex && !m_glRankUpdateTimer.isActive(); i++) {
 			QTreeWidgetItem *item = treeWidget->topLevelItem(i);
+			if ( item->isHidden() )
+				continue;
 			RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
 			if ( riw ) {
 				if ( !riw->checkSize(&fm) )
