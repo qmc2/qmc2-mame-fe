@@ -234,7 +234,7 @@ HtmlEditor *qmc2SoftwareNotesEditor = NULL;
 #if defined(QMC2_YOUTUBE_ENABLED)
 YouTubeVideoPlayer *qmc2YouTubeWidget = NULL;
 QTreeWidgetItem *qmc2LastYouTubeItem = NULL;
-QMap <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoMap;
+QMap<QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoMap;
 bool qmc2YouTubeVideoInfoMapChanged = false;
 #endif
 QTreeWidgetItem *qmc2HierarchySelectedItem = NULL;
@@ -245,7 +245,6 @@ QMenu *qmc2EmulatorMenu = NULL,
       *qmc2SearchMenu = NULL;
 QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
-QMap<QString, QString> qmc2GamelistNameMap;
 QMap<QString, QStringList> qmc2HierarchyMap;
 QMap<QString, QString> qmc2ParentMap;
 QMap<QString, QIcon> qmc2IconMap;
@@ -3648,15 +3647,18 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	for (int i = 0; i < treeWidgetGamelist->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
 		QTreeWidgetItem *item = treeWidgetGamelist->topLevelItem(i);
 		QString itemText = item->text(QMC2_GAMELIST_COLUMN_GAME);
-		bool matched = itemText.indexOf(patternRx) > -1 || item->text(QMC2_GAMELIST_COLUMN_NAME).indexOf(patternRx) > -1;
+		QString itemName = item->text(QMC2_GAMELIST_COLUMN_NAME);
+		bool matched = itemText.indexOf(patternRx) > -1 || itemName.indexOf(patternRx) > -1;
 		if ( negatedMatch )
 			matched = !matched;
 		if ( matched ) {
 			matches << item;
-			itemList << new QListWidgetItem();
-			itemList.last()->setText(itemText);
+			QListWidgetItem *newItem = new QListWidgetItem();
+			newItem->setText(itemText);
+			newItem->setWhatsThis(itemName);
+			itemList << newItem;
 			if ( currentItemText == itemText )
-				currentItemPendant = itemList.last();
+				currentItemPendant = newItem;
 		}
 		progressBarSearch->setValue(progressBarSearch->value() + 1);
 		if ( i % QMC2_SEARCH_RESULT_UPDATE == 0 ) {
@@ -3715,11 +3717,8 @@ void MainWindow::on_listWidgetSearch_currentItemChanged(QListWidgetItem *current
 	  return;
   isActive = true;
   QTreeWidgetItem *glItem = NULL;
-  if ( current ) {
-    QList<QTreeWidgetItem *> matchItemList = treeWidgetGamelist->findItems(current->text(), Qt::MatchExactly);
-    if ( !matchItemList.isEmpty() )
-      glItem = matchItemList[0];
-  }
+  if ( current )
+    glItem = qmc2GamelistItemMap[current->whatsThis()];
   if ( glItem ) {
     qmc2CheckItemVisibility = false;
     treeWidgetGamelist->clearSelection();

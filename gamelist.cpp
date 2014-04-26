@@ -94,7 +94,6 @@ extern QString swlBuffer;
 extern bool swlSupported;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
-extern QMap<QString, QString> qmc2GamelistNameMap;
 extern QMap<QString, QStringList> qmc2HierarchyMap;
 extern QMap<QString, QString> qmc2ParentMap;
 extern int qmc2SortCriteria;
@@ -424,7 +423,6 @@ void Gamelist::load()
   qmc2StopParser = false;
   gameStatusHash.clear();
   qmc2GamelistItemMap.clear();
-  qmc2GamelistNameMap.clear();
   biosSets.clear();
   deviceSets.clear();
   qmc2HierarchyItemMap.clear();
@@ -1694,7 +1692,6 @@ void Gamelist::parse()
             nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
             nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, gameName);
             qmc2GamelistItemMap[gameName] = gameDescriptionItem;
-            qmc2GamelistNameMap[gameDescription] = gameName;
 
             loadIcon(gameName, gameDescriptionItem);
 
@@ -1966,7 +1963,6 @@ void Gamelist::parse()
 		nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
 		nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, gameName);
 		qmc2GamelistItemMap[gameName] = gameDescriptionItem;
-		qmc2GamelistNameMap[gameDescription] = gameName;
 		loadIcon(gameName, gameDescriptionItem);
 
 		if ( gamelistCache.isOpen() )
@@ -2533,6 +2529,7 @@ void Gamelist::loadFavorites()
         if ( gameItem ) {
           QListWidgetItem *item = new QListWidgetItem(qmc2MainWindow->listWidgetFavorites);
           item->setText(gameItem->text(QMC2_GAMELIST_COLUMN_GAME));
+          item->setWhatsThis(gameItem->text(QMC2_GAMELIST_COLUMN_NAME));
 	  if ( gameItem->isSelected() )
 		  item->setSelected(true);
         }
@@ -2560,10 +2557,8 @@ void Gamelist::saveFavorites()
   QFile f(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FavoritesFile").toString());
   if ( f.open(QIODevice::WriteOnly | QIODevice::Text) ) {
     QTextStream ts(&f);
-    int i;
-    for (i = 0; i < qmc2MainWindow->listWidgetFavorites->count(); i++) {
-      ts << qmc2GamelistNameMap[qmc2MainWindow->listWidgetFavorites->item(i)->text()] << "\n";
-    }
+    for (int i = 0; i < qmc2MainWindow->listWidgetFavorites->count(); i++)
+      ts << qmc2MainWindow->listWidgetFavorites->item(i)->whatsThis() << "\n";
     f.close();
   } else
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open favorites file for writing, path = %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FavoritesFile").toString()));
@@ -2590,6 +2585,7 @@ void Gamelist::loadPlayHistory()
         if ( gameItem ) {
           QListWidgetItem *item = new QListWidgetItem(qmc2MainWindow->listWidgetPlayed);
           item->setText(gameItem->text(QMC2_GAMELIST_COLUMN_GAME));
+          item->setWhatsThis(gameItem->text(QMC2_GAMELIST_COLUMN_NAME));
 	  if ( gameItem->isSelected() )
 		  item->setSelected(true);
         }
@@ -2617,9 +2613,8 @@ void Gamelist::savePlayHistory()
   if ( f.open(QIODevice::WriteOnly | QIODevice::Text) ) {
     QTextStream ts(&f);
     int i;
-    for (i = 0; i < qmc2MainWindow->listWidgetPlayed->count(); i++) {
-      ts << qmc2GamelistNameMap[qmc2MainWindow->listWidgetPlayed->item(i)->text()] << "\n";
-    }
+    for (i = 0; i < qmc2MainWindow->listWidgetPlayed->count(); i++)
+      ts << qmc2MainWindow->listWidgetPlayed->item(i)->whatsThis() << "\n";
     f.close();
   } else {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open play history file for writing, path = %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/HistoryFile").toString()));
@@ -3256,7 +3251,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
           delete childrenList[j];
         QTreeWidgetItem *nameItem = new QTreeWidgetItem(item);
         nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
-        nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, qmc2GamelistNameMap[item->text(QMC2_GAMELIST_COLUMN_GAME)]);
+        nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, item->text(QMC2_GAMELIST_COLUMN_NAME));
         qApp->processEvents();
       }
     }
