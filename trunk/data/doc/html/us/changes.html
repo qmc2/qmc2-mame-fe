@@ -18,6 +18,7 @@ inf: informational only
 <ul>
   <li>fix: Mac OS X build: resolved type conflicts between LZMA SDK and older XCode headers (&lt; 4.x)</li>
   <li>fix: corrected device and BIOS set hiding in the master list when ROM state filtering is disabled</li>
+  <li>fix: corrected initial opening of zip/7z image archives when the splash screen is disabled</li>
   <li>imp: MAME/MESS/UME emulator templates updated to SVN r30024 (removed 'hlsl_write' from Windows OSD templates, removed 'memcard_directory' from all templates)</li>
   <li>imp: speeded up ROM- and software-state filtering as well as game-/machine-/emu-info lookups by using QHash [<i>amortized O(1)</i>] instead of QMap [<i>O(log n)</i>] to store/retrieve states &amp; infos internally</li>
   <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to SVN r30024</li>
