@@ -7211,9 +7211,9 @@ void MainWindow::init()
 		qmc2SplashScreen->show();
 		qmc2SplashScreen->raise();
 		qmc2SplashScreen->repaint();
-		qApp->processEvents();
 		QTimer::singleShot(QMC2_SPLASH_DURATION, qmc2SplashScreen, SLOT(hide()));
 	}
+	qApp->processEvents();
 
 	// tool-bar customization
 	qmc2ToolBarCustomizer = new ToolBarCustomizer(qmc2Options);
