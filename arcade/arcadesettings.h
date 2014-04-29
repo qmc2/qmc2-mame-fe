@@ -196,6 +196,9 @@ public slots:
     int joystickDeadzone(int, int);
     int joystickSensitivity(int, int);
 #endif
+
+private:
+    QMap<QString, QMap<QString, QVariant> > m_themeDefaults;
 };
 
 #endif

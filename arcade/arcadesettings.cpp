@@ -43,6 +43,9 @@ ArcadeSettings::ArcadeSettings(QString theme)
     languageMap["ro"] = QLocale::Romanian;
     languageMap["sv"] = QLocale::Swedish;
     languageMap["us"] = QLocale::English;
+
+    // theme-specific default values (add only if different from global default)
+    m_themeDefaults["darkone"]["sortByName"] = true;
 }
 
 ArcadeSettings::~ArcadeSettings()
@@ -395,6 +398,7 @@ void ArcadeSettings::setListHidden(bool hidden)
 {
     setValue(QString("Arcade/%1/listHidden").arg(arcadeTheme), hidden);
 }
+
 bool ArcadeSettings::listHidden()
 {
     return value(QString("Arcade/%1/listHidden").arg(arcadeTheme), false).toBool();
@@ -404,9 +408,10 @@ void ArcadeSettings::setSortByName(bool sortByName)
 {
     setValue(QString("Arcade/%1/sortByName").arg(arcadeTheme), sortByName);
 }
+
 bool ArcadeSettings::sortByName()
 {
-    return value(QString("Arcade/%1/sortByName").arg(arcadeTheme), true).toBool();
+    return value(QString("Arcade/%1/sortByName").arg(arcadeTheme), m_themeDefaults[arcadeTheme]["sortByName"].toBool()).toBool();
 }
 
 void ArcadeSettings::setToolbarAutoHide(bool toolbarAutoHide)
