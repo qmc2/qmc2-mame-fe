@@ -1,5 +1,6 @@
 #include <QTextStream>
 #include <QTextCodec>
+#include <QApplication>
 
 #include "infoprovider.h"
 #include "arcadesettings.h"
@@ -110,6 +111,8 @@ void InfoProvider::loadGameInfoDB()
     }
 
     for (int index = 0; index < compressDataList.count(); index++) {
+        if ( index % QMC2_ARCADE_LOAD_RESPONSE == 0 )
+            qApp->processEvents();
         bool compressData = compressDataList[index];
         QString pathToGameInfoDB = gameInfoPathList[index];
         QString gameInfoSource = gameInfoSourceList[index];
@@ -266,6 +269,8 @@ void InfoProvider::loadEmuInfoDB()
     }
 
     for (int index = 0; index < compressDataList.count(); index++) {
+        if ( index % QMC2_ARCADE_LOAD_RESPONSE == 0 )
+            qApp->processEvents();
         bool compressData = compressDataList[index];
         QString pathToEmuInfoDB = emuInfoPathList[index];
         QFile emuInfoDB(pathToEmuInfoDB);

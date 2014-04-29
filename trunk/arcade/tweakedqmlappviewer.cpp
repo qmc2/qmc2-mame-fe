@@ -394,12 +394,15 @@ void TweakedQmlApplicationViewer::loadGamelist()
     if ( romStateCache.exists() ) {
         if ( romStateCache.open(QIODevice::ReadOnly | QIODevice::Text) ) {
             QTextStream tsRomCache(&romStateCache);
+            int lineCounter = 0;
             while ( !tsRomCache.atEnd() ) {
                 QString line = tsRomCache.readLine();
                 if ( !line.isEmpty() && !line.startsWith("#") ) {
                     QStringList words = line.split(" ");
                     rscMap[words[0]] = words[1].at(0).toLatin1();
                 }
+                if ( lineCounter++ % QMC2_ARCADE_LOAD_RESPONSE == 0 )
+                    qApp->processEvents();
             }
         } else
             QMC2_ARCADE_LOG_STR(tr("WARNING: Can't open ROM state cache file '%1', please check permissions").
@@ -414,12 +417,15 @@ void TweakedQmlApplicationViewer::loadGamelist()
             QTextStream tsGameListCache(&gameListCache);
             tsGameListCache.readLine();
             tsGameListCache.readLine();
+            int lineCounter = 0;
             while ( !tsGameListCache.atEnd() ) {
                 QStringList words = tsGameListCache.readLine().split("\t");
                 if ( words[QMC2_ARCADE_GLC_DEVICE] != "1" ) {
                     QString gameId = words[QMC2_ARCADE_GLC_ID];
                     gameList.append(new GameObject(gameId, words[QMC2_ARCADE_GLC_DESCRIPTION], romStateCharToInt(rscMap[gameId])));
                 }
+                if ( lineCounter++ % QMC2_ARCADE_LOAD_RESPONSE == 0 )
+                    qApp->processEvents();
             }
         } else
             QMC2_ARCADE_LOG_STR(tr("FATAL: Can't open %1 cache file '%2', please check permissions").

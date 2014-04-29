@@ -91,7 +91,7 @@
 #define QMC2_ARCADE_EMUOPT_FLOAT3       9
 
 // ZIP read buffer size
-#define QMC2_ARCADE_ZIP_BUFSIZE         64*1024
+#define QMC2_ARCADE_ZIP_BUFSIZE         65536
 
 // number of image- & pixmap-cache slots
 #define QMC2_ARCADE_IMGCACHE_SIZE       1000
@@ -173,5 +173,8 @@
 // indexes in compressed image file type selectors
 #define QMC2_ARCADE_IMG_FILETYPE_ZIP    0
 #define QMC2_ARCADE_IMG_FILETYPE_7Z     1
+
+// responsiveness when loading data from files (game/machine info DBs, ROM state cache and game/machine list caches)
+#define QMC2_ARCADE_LOAD_RESPONSE       500
 
 #endif
