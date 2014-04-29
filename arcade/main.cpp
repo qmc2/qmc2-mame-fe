@@ -423,6 +423,9 @@ int main(int argc, char *argv[])
         else
             viewer->switchToWindowed(true);
 
+        viewer->activateWindow();
+        viewer->setFocus();
+
         // ... and run the application
         returnCode = app->exec();
 
