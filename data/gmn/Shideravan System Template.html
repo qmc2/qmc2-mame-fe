@@ -1,9 +1,6 @@
 <!--
 SHIDERAVAN SYSTEM TEMPLATE
-LAST MODIFICATION: 20/04/2014
-
-*TODO:
-*Software and Samples have to be disponible to MAME, MESS, UME. There's necessary to create a new checkbox for each option.
+LAST MODIFICATION: 28/04/2014
 
 This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.43 by Shideravan. Enjoy!
 
@@ -1532,214 +1529,102 @@ else
 
 if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SoftlistXML'] == 'true')
 {
-   if ("$EMULATOR_TYPE$" == "MESS")
+   document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>"); 
+   
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/@sampleof/string()", false, "system") ) 
    {
-      document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tbody><tr>"); 
-   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/softwarelist/@name/string()", false) ) 
+      var result = qmc2NEO.getXmlResult();
+      var len = result.length;
+           
+      if (len > 0) 
       {
-         var result = qmc2NEO.getXmlResult();
-         var len = result.length;
-            
-         if (len > 0) 
-         {
-            document.write("<td bgcolor=\"#005000\" width=\"100%\" align=\"center\"><font color=\"white\"><b>"+tr('Software List')+": ");
+         document.write("<td bgcolor=\"#700000\" width=\"50%\" align=\"left\"><font color=\"white\"><b>"+tr('Samples')+": ");
          
-            for (var i = 0; i < len; i++)
-               document.write((i > 0 ? ", " : " ") + result[i]);   
-         } 
-      
-         else
-            document.write("<td bgcolor=\"#7f7f7f\" width=\"100%\" align=\"center\"><font color=\"white\"><b>"+tr('Software List')+": "+tr('Unsupported'));      
+         for (var i = 0; i < len; i++)
+            document.write((i > 0 ? ", " : " ") + result[i]);   
       } 
-   
-      else
-         document.write(tr('XML query error!'));
-   
-      document.write("</b></font></td></tr></tbody></table>");
-   }     
-   
-  /* else if ("$EMULATOR_TYPE$" == "MAME")
-   {
-      document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tbody><tr>"); 
-   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/@sampleof/string()", false) ) 
-      {
-         var result = qmc2NEO.getXmlResult();
-         var len = result.length;
-            
-         if (len > 0) 
-         {
-            document.write("<td bgcolor=\"#700000\" width=\"100%\" align=\"center\"><font color=\"white\"><b>"+tr('Samples')+": ");
-         
-            for (var i = 0; i < len; i++)
-               document.write((i > 0 ? ", " : " ") + result[i]);   
-         } 
       
-         else
-            document.write("<td bgcolor=\"#005000\" width=\"100%\" align=\"center\"><font color=\"white\"><b>"+tr('Samples')+": "+tr('Not necessary'));   
-      
-      } 
-   
       else
-         document.write(tr('XML query error!'));
-   
-      document.write("</b></font></td></tr></tbody></table>");
-   } */
+         document.write("<td bgcolor=\"#005000\" width=\"50%\" align=\"left\"><font color=\"white\"><b>"+tr('Samples')+": "+tr('Not necessary')); 
+   } 
    
    else
+      document.write(tr('XML query error!'));
+   
+   document.write("</font></td>");
+           
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/softwarelist/@name/string()", false, "system") ) 
    {
-      document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>"); 
-   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/@sampleof/string()", false) ) 
-      {
-         var result = qmc2NEO.getXmlResult();
-         var len = result.length;
+      var result = qmc2NEO.getXmlResult();
+      var len = result.length;
             
-         if (len > 0) 
-         {
-            document.write("<td bgcolor=\"#700000\" width=\"50%\" align=\"left\"><font color=\"white\"><b>"+tr('Samples')+": ");
-         
-            for (var i = 0; i < len; i++)
-               document.write((i > 0 ? ", " : " ") + result[i]);   
-         } 
-      
-         else
-            document.write("<td bgcolor=\"#005000\" width=\"50%\" align=\"left\"><font color=\"white\"><b>"+tr('Samples')+": "+tr('Not necessary')); 
-      } 
-   
-      else
-         document.write(tr('XML query error!'));
-   
-      document.write("</font></td>");
-          
-   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/softwarelist/@name/string()", false) ) 
+      if (len > 0) 
       {
-         var result = qmc2NEO.getXmlResult();
-         var len = result.length;
-            
-         if (len > 0) 
-         {
-            document.write("<td bgcolor=\"#005000\" width=\"50%\" align=\"right\"><font color=\"white\"><b>"+tr('Software List')+": ");
+         document.write("<td bgcolor=\"#005000\" width=\"50%\" align=\"right\"><font color=\"white\"><b>"+tr('Software List')+": ");
          
-            for (var i = 0; i < len; i++)
-               document.write((i > 0 ? ", " : " ") + result[i]);   
-         } 
-      
-         else
-            document.write("<td bgcolor=\"#005000\" width=\"50%\" align=\"right\"><font color=\"white\"><b>"+tr('Software List')+": "+tr('Unsupported'));      
+         for (var i = 0; i < len; i++)
+            document.write((i > 0 ? ", " : " ") + result[i]);   
       } 
-   
+      
       else
-         document.write(tr('XML query error!'));
+         document.write("<td bgcolor=\"#356035\" width=\"50%\" align=\"right\"><font color=\"white\"><b>"+tr('Software List')+": "+tr('Unsupported'));      
+   } 
    
-      document.write("</b></font></td></tr></tbody></table>");         
-   }   
+   else
+      document.write(tr('XML query error!'));
+   
+   document.write("</b></font></td></tr></tbody></table>");            
 }  
    
 
 if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SearchXML'] == 'true')
 {  
-   if ("$EMULATOR_TYPE$" == "MESS")
-   { 
-      document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>");
+   document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>");
    
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/driver/@emulation/string()", false) ) 
-      {
-         tdCor("Emulation", qmc2NEO.getXmlResult());         
-      } 
-   
-      else
-         document.write(tr('XML query error!'));
-   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/driver/@graphic/string()", false) ) 
-      {
-         tdCor("Graphics", qmc2NEO.getXmlResult());            
-      } 
-   
-      else
-         document.write(tr('XML query error!'));
-   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/driver/@color/string()", false) ) 
-      {
-         tdCor("Color", qmc2NEO.getXmlResult());            
-      } 
-   
-      else
-         document.write(tr('XML query error!'));
-   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/driver/@sound/string()", false) ) 
-      {
-         tdCor("Sound", qmc2NEO.getXmlResult());            
-      } 
-   
-      else
-         document.write(tr('XML query error!'));
-   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/driver/@savestate/string()", false) ) 
-      {
-         if (qmc2NEO.getXmlResult()=="supported")
-            document.write("</font></td><td width=\"20%\" align=\"center\" bgcolor=\"#005000\"><font color=\"white\">"+tr('S.State')+": "+tr('Supported'));
-      
-         else
-            document.write("</font></td><td width=\"20%\" align=\"center\" bgcolor=\"#7f7f7f\"><font color=\"white\">"+tr('S.State')+": "+tr('Unsupported'));         
-      } 
-   
-      else
-         document.write(tr('XML query error!'));                
-      document.write("</font></td></tr></table>");
-   } 
-  
-   else   
-   { 
-      document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>");
-   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/driver/@emulation/string()", false) ) 
-      {
-         tdCor("Emulation", qmc2NEO.getXmlResult());         
-      } 
-   
-      else
-         document.write(tr('XML query error!'));
-   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/driver/@graphic/string()", false) ) 
-      {
-         tdCor("Graphics", qmc2NEO.getXmlResult());            
-      } 
-   
-      else
-         document.write(tr('XML query error!'));
-   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/driver/@color/string()", false) ) 
-      {
-         tdCor("Color", qmc2NEO.getXmlResult());            
-      } 
-   
-      else
-         document.write(tr('XML query error!'));
-   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/driver/@sound/string()", false) ) 
-      {
-         tdCor("Sound", qmc2NEO.getXmlResult());            
-      } 
-   
-      else
-         document.write(tr('XML query error!'));
-   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/driver/@savestate/string()", false) ) 
-      {
-         if (qmc2NEO.getXmlResult()=="supported")
-            document.write("</font></td><td width=\"20%\" align=\"center\" bgcolor=\"#005000\"><font color=\"white\">"+tr('S.State')+": "+tr('Supported'));
-      
-         else
-            document.write("</font></td><td width=\"20%\" align=\"center\" bgcolor=\"#7f7f7f\"><font color=\"white\">"+tr('S.State')+": "+tr('Unsupported'));         
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@emulation/string()", false, "system") ) 
+   {
+      tdCor("Emulation", qmc2NEO.getXmlResult());         
    } 
    
+   else
+      document.write(tr('XML query error!'));     
+   
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@graphic/string()", false, "system") ) 
+   {
+      tdCor("Graphics", qmc2NEO.getXmlResult());            
+   } 
+   
+   else
+      document.write(tr('XML query error!'));
+   
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@color/string()", false, "system") ) 
+   {
+      tdCor("Color", qmc2NEO.getXmlResult());            
+   } 
+   
+   else
+      document.write(tr('XML query error!'));
+   
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@sound/string()", false, "system") ) 
+   {
+      tdCor("Sound", qmc2NEO.getXmlResult());            
+   } 
+   
+   else
+      document.write(tr('XML query error!'));
+   
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@savestate/string()", false, "system") ) 
+   {
+      if (qmc2NEO.getXmlResult()=="supported")
+            document.write("</font></td><td width=\"20%\" align=\"center\" bgcolor=\"#005000\"><font color=\"white\">"+tr('S.State')+": "+tr('Supported'));
+      
       else
-         document.write(tr('XML query error!'));                
-      document.write("</font></td></tr></table>");
-   }        
+         document.write("</font></td><td width=\"20%\" align=\"center\" bgcolor=\"#7f7f7f\"><font color=\"white\">"+tr('S.State')+": "+tr('Unsupported'));         
+   } 
+   
+   else
+      document.write(tr('XML query error!'));                
+   document.write("</font></td></tr></table>");        
 }
 </script>
 <!--Would be good if was possible to check if artwork is disponible too...-->
@@ -1918,140 +1803,70 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/InfoXML'] ==
       document.write(": </b><a href=http://mamedev.org/source/src/mame/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>");           
    else
       document.write("(MESS): </b><a href=http://mamedev.org/source/src/mess/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a><br><b>"+tr('Driver')+"(MAME): </b><a href=http://mamedev.org/source/src/mame/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>");  
+     
+   /*Screen*/  
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/display/@type/string()", false, "system")) 
+   {
+      var type = qmc2NEO.getXmlResult(); 
+      var len = type.length;                
 
-   if ("$EMULATOR_TYPE$" == "MESS")
-   {           
-      /*Screen*/  
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/display/@type/string()", false)) 
+      if (len > 0) 
       {
-         var type = qmc2NEO.getXmlResult(); 
-         var len = type.length;                
-
-         if (len > 0) 
+         for (var i = 0; i < len; i++)
          {
-            for (var i = 0; i < len; i++)
-            {
-               document.write("<br><b>"+tr('Screen')+" "+(i+1)+": </b>"+type[i]);
+            document.write("<br><b>"+tr('Screen')+" "+(i+1)+": </b>"+type[i]);
             
-               qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/display/@width/string()", false);
-               var width = qmc2NEO.getXmlResult(); 
+            qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/display/@width/string()", false, "system");
+            var width = qmc2NEO.getXmlResult(); 
             
-               if (width[i])
-               {             
-                  qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/display/@height/string()", false);
-                  var height = qmc2NEO.getXmlResult();
+            if (width[i])
+            {             
+               qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/display/@height/string()", false, "system");
+               var height = qmc2NEO.getXmlResult();
                
-                  document.write(" ("+width[i]+"x"+height[i]+")");
-               }   
-            }
-         } 
-         else
-            document.write("<br><b>"+tr('Screen')+": </b>"+tr('None'));                        
+               document.write(" ("+width[i]+"x"+height[i]+")");
+            }   
+         }
       } 
       else
-         document.write(tr('XML query error!'));
-      
-      /*Controls*/   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/input/control/@type/string()", false)) 
-      {
-         var result = qmc2NEO.getXmlResult();  
-         var tam = result.length;
-      
-         qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/input/@buttons/string()", false);
-         var buttons = qmc2NEO.getXmlResult();   
-      
-         qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/input/control/@ways/string()", false);
-         var ways = qmc2NEO.getXmlResult();              
-
-         if (tam > 0) 
-         {
-            for (var i = 0; i < tam; i++)
-            {
-               document.write("<br><b>"+tr('Control')+" - "+result[i]);
-               if (buttons>0)
-               {
-                  document.write(":</b> "+buttons+" buttons");   
-               } 
-               if (ways[i])
-               {
-                  document.write("</b> ("+ways[i]+" ways)");
-               }   
-            }
-         } 
-         else
-            document.write("<br><b>"+tr('Control')+":</b> "+tr('None'));            
-             
-      } 
-      else
-         document.write(tr('XML query error!'));   
-   }
-  
+         document.write("<br><b>"+tr('Screen')+": </b>"+tr('None'));                        
+   } 
    else
-   {                 
-      /*Screen*/  
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/display/@type/string()", false)) 
-      {
-         var type = qmc2NEO.getXmlResult(); 
-         var len = type.length;                
+      document.write(tr('XML query error!'));
+      
+   /*Controls*/   
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/input/control/@type/string()", false, "system")) 
+   {
+      var result = qmc2NEO.getXmlResult();  
+      var tam = result.length;
+   
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/input/@buttons/string()", false, "system");
+      var buttons = qmc2NEO.getXmlResult();   
+      
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/input/control/@ways/string()", false, "system");
+      var ways = qmc2NEO.getXmlResult();              
 
-         if (len > 0) 
+      if (tam > 0) 
+      {
+         for (var i = 0; i < tam; i++)
          {
-            for (var i = 0; i < len; i++)
+            document.write("<br><b>"+tr('Control')+" - "+result[i]);
+            if (buttons>0)
             {
-               document.write("<br><b>"+tr('Screen')+" "+(i+1)+": </b>"+type[i]);
-            
-               qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/display/@width/string()", false);
-               var width = qmc2NEO.getXmlResult(); 
-            
-               if (width[i])
-               {             
-                  qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/display/@height/string()", false);
-                  var height = qmc2NEO.getXmlResult();
-               
-                  document.write(" ("+width[i]+"x"+height[i]+")");
-               }   
-            }
-         } 
-         else
-            document.write("<br><b>"+tr('Screen')+": </b>"+tr('None'));                         
+               document.write(":</b> "+buttons+" buttons");   
+            } 
+            if (ways[i])
+            {
+               document.write("</b> ("+ways[i]+" ways)");
+            }   
+         }
       } 
       else
-         document.write(tr('XML query error!'));
-      
-      /*Controls*/   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/input/control/@type/string()", false)) 
-      {
-         var result = qmc2NEO.getXmlResult();  
-         var tam = result.length;
-      
-         qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/input/@buttons/string()", false);
-         var buttons = qmc2NEO.getXmlResult();   
-      
-         qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/input/control/@ways/string()", false);
-         var ways = qmc2NEO.getXmlResult();              
-
-         if (tam > 0) 
-         {
-            for (var i = 0; i < tam; i++)
-            {
-               document.write("<br><b>"+tr('Control')+" - "+result[i]);
-               if (buttons>0)
-               {
-                  document.write(":</b> "+buttons+" buttons");   
-               } 
-               if (ways[i])
-               {
-                  document.write("</b> ("+ways[i]+" ways)");
-               }   
-            }
-         } 
-         else
-            document.write("<br><b>"+tr('Control')+":</b> "+tr('None'));                         
-      } 
-      else
-         document.write(tr('XML query error!'));   
-   }                    
-                      
+         document.write("<br><b>"+tr('Control')+":</b> "+tr('None'));            
+             
+   } 
+   else
+      document.write(tr('XML query error!'));                                          
 }
 else
 {
@@ -2078,178 +1893,88 @@ else
 
 if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ProcXML'] == 'true')
 {
-   if ("$EMULATOR_TYPE$" == "MESS")
+   /*CPU*/   
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/chip/@name/string()", false, "system")) 
    {
-      /*CPU*/   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/chip/@name/string()", false)) 
+      var result = qmc2NEO.getXmlResult(); 
+      var len = result.length;        
+
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/chip/@tag/string()", false, "system");  
+      var tag = qmc2NEO.getXmlResult();      
+      
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/chip/@type/string()", false, "system");  
+      var type = qmc2NEO.getXmlResult();
+      
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/chip/@clock/string()", false, "system");
+      var clock = qmc2NEO.getXmlResult(); 
+      
+      document.write("<td max-width=\"25%\" align=\"center\"><b><u>"+len+" "+tr('PROCESSORS')+" </u></b><br>"); 
+      
+      if (len > 0) 
       {
-         var result = qmc2NEO.getXmlResult(); 
-         var len = result.length;        
-
-         qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/chip/@tag/string()", false);  
-         var tag = qmc2NEO.getXmlResult();      
-      
-         qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/chip/@type/string()", false);  
-         var type = qmc2NEO.getXmlResult();
-      
-         qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/chip/@clock/string()", false);
-         var clock = qmc2NEO.getXmlResult(); 
-      
-         document.write("<td max-width=\"25%\" align=\"center\"><b><u>"+len+" "+tr('PROCESSORS')+" </u></b><br>"); 
-      
-         if (len > 0) 
-         {
-            var i=0;
+         var i=0;
             
-            if (type[i]=="cpu") 
-               document.write("<br><b>"+tr('CPU')+":</b><br>");
-            while (type[i]=="cpu")
-            {
-               document.write("<b>"+tag[i]+":</b> "+result[i]);
-               if (clock[i])
-               {
-                  c = (clock[i] / 1048576);
-                  
-                  c=Math.round(c*100)/100;
-                 
-                  document.write(" ("+c+" MHz)<br>");
-               }   
-               else
-                  document.write("<br>");
-               i++;
-            }
-
-            if (type[i]=="audio") 
-               document.write("<br><b>"+tr('Audio')+":</b><br>");
-            while (type[i]=="audio")
-            {
-               document.write("<b>"+tag[i]+":</b> "+result[i]);
-               if (clock[i])
-               {
-                  c = (clock[i] / 1048576);
-                  
-                  c=Math.round(c*100)/100;
-                 
-                  document.write(" ("+c+" MHz)<br>");
-               } 
-               else
-                  document.write("<br>");                 
-               i++;
-            }
-                 
-            if (i<len) 
-               document.write("<br><b>"+tr('Others')+":</b><br>");                        
-            while (i<len)
-            {
-               document.write("<b>"+tag[i]+" ("+type[i]+"):</b> "+result[i]);
-               if (clock[i])
-               {
-                  c = (clock[i] / 1048576);
-                  
-                  c=Math.round(c*100)/100;
-                 
-                  document.write(" ("+c+" MHz)<br>");
-               } 
-               else
-                  document.write("<br>");                 
-               i++;
-            }  
-            document.write("</td>");
-         } 
-         else
-            document.write("<td max-width=\"25%\" align=\"center\"><br><b>"+tr('PROCESSORS')+": </b>"+tr('None')+"</td>");                    
-      } 
-      else
-         document.write(tr('XML query error!'));
-   }
-   
-   else
-   {
-      /*CPU*/   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/chip/@name/string()", false)) 
-      {
-         var result = qmc2NEO.getXmlResult(); 
-         var len = result.length;        
-
-         qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/chip/@tag/string()", false);  
-         var tag = qmc2NEO.getXmlResult();      
-      
-         qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/chip/@type/string()", false);  
-         var type = qmc2NEO.getXmlResult();
-      
-         qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/chip/@clock/string()", false);
-         var clock = qmc2NEO.getXmlResult(); 
-      
-         document.write("<td max-width=\"25%\" align=\"center\"><b><u>"+len+" "+tr('PROCESSORS')+": </u></b>"); 
-      
-         if (len > 0) 
+         if (type[i]=="cpu") 
+            document.write("<br><b>"+tr('CPU')+":</b><br>");
+         while (type[i]=="cpu")
          {
-            var i=0;
-            
-            if (type[i]=="cpu") 
-               document.write("<br><b>"+tr('CPU')+":</b><br>");
-            while (type[i]=="cpu")
+            document.write("<b>"+tag[i]+":</b> "+result[i]);
+            if (clock[i])
             {
-               document.write("<b>"+tag[i]+":</b> "+result[i]);
-               if (clock[i])
-               {
-                  c = (clock[i] / 1048576);
+               c = (clock[i] / 1048576);
                   
-                  c=Math.round(c*100)/100;
+               c=Math.round(c*100)/100;
                  
-                  document.write(" ("+c+" MHz)<br>");
-               }   
-               else
-                  document.write("<br>");
-               i++;
-            }
+               document.write(" ("+c+" MHz)<br>");
+            }   
+            else
+               document.write("<br>");
+            i++;
+         }
 
-            if (type[i]=="audio") 
-               document.write("<br><b>"+tr('Audio')+":</b><br>");
-            while (type[i]=="audio")
+         if (type[i]=="audio") 
+            document.write("<br><b>"+tr('Audio')+":</b><br>");
+         while (type[i]=="audio")
+         {
+            document.write("<b>"+tag[i]+":</b> "+result[i]);
+            if (clock[i])
             {
-               document.write("<b>"+tag[i]+":</b> "+result[i]);
-               if (clock[i])
-               {
-                  c = (clock[i] / 1048576);
-                  
-                  c=Math.round(c*100)/100;
+               c = (clock[i] / 1048576);
+               
+               c=Math.round(c*100)/100;
                  
-                  document.write(" ("+c+" MHz)<br>");
-               } 
-               else
-                  document.write("<br>");                 
-               i++;
-            }
-                 
-            if (i<len) 
-               document.write("<br><b>"+tr('Others')+":</b><br>");                        
-            while (i<len)
+               document.write(" ("+c+" MHz)<br>");
+            } 
+            else
+               document.write("<br>");                 
+            i++;
+         }
+              
+         if (i<len) 
+            document.write("<br><b>"+tr('Others')+":</b><br>");                        
+         while (i<len)
+         {
+            document.write("<b>"+tag[i]+" ("+type[i]+"):</b> "+result[i]);
+            if (clock[i])
             {
-               document.write("<b>"+tag[i]+" ("+type[i]+"):</b> "+result[i]);
-               if (clock[i])
-               {
-                  c = (clock[i] / 1048576);
+               c = (clock[i] / 1048576);
                   
-                  c=Math.round(c*100)/100;
-                 
-                  document.write(" ("+c+" MHz)<br>");
-               } 
-               else
-                  document.write("<br>");                 
-               i++;
-            }  
-            document.write("</td>");
+               c=Math.round(c*100)/100;
+               
+               document.write(" ("+c+" MHz)<br>");
+            } 
+            else
+               document.write("<br>");                 
+            i++;
          }  
-         else
-            document.write("<td max-width=\"25%\" align=\"center\"><br><b>"+tr('PROCESSORS')+": </b>"+tr('None')+"</td>");                    
+         document.write("</td>");
       } 
       else
-         document.write(tr('XML query error!'));
-   }   
-}      
-
-                   
+         document.write("<td max-width=\"25%\" align=\"center\"><br><b>"+tr('PROCESSORS')+": </b>"+tr('None')+"</td>");                    
+   } 
+   else
+      document.write(tr('XML query error!'));
+}                         
 </script>
 </font> 
   
