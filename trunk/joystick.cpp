@@ -1,5 +1,7 @@
 #if QMC2_JOYSTICK == 1
 
+#include <QRegExp>
+
 #include "settings.h"
 #include "joystick.h"
 #include "qmc2main.h"
@@ -18,8 +20,12 @@ Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat,
 #endif
 
 	if ( SDL_Init(SDL_INIT_JOYSTICK) == 0 ) {
-		for (int i = 0; i < SDL_NumJoysticks(); i++)
-			joystickNames.append(SDL_JoystickName(i));
+		QRegExp rx("(\\b.*\\b)\\1");
+		for (int i = 0; i < SDL_NumJoysticks(); i++) {
+			QString jsName = SDL_JoystickName(i);
+			jsName.replace(rx, "\\1"); // remove consecutive duplicate words in the joystick name (i. e. "Logitech Logitech Extreme 3D" becomes "Logitech Extreme 3D")
+			joystickNames.append(jsName);
+		}
 		connect(&joystickTimer, SIGNAL(timeout()), this, SLOT(processEvents()));
 	}
 

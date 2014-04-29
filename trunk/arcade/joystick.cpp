@@ -1,5 +1,7 @@
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
 
+#include <QRegExp>
+
 #include "joystick.h"
 #include "arcadesettings.h"
 #include "consolewindow.h"
@@ -12,13 +14,15 @@ Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat,
     : QObject(parent)
 {
     if ( SDL_Init(SDL_INIT_JOYSTICK) == 0 ) {
-        int i;
-        for (i = 0; i < SDL_NumJoysticks(); i++)
-            joystickNames.append(SDL_JoystickName(i));
+        QRegExp rx("(\\b.*\\b)\\1");
+        for (int i = 0; i < SDL_NumJoysticks(); i++) {
+            QString jsName = SDL_JoystickName(i);
+            jsName.replace(rx, "\\1"); // remove consecutive duplicate words in the joystick name (i. e. "Logitech Logitech Extreme 3D" becomes "Logitech Extreme 3D")
+            joystickNames.append(jsName);
+        }
         connect(&joystickTimer, SIGNAL(timeout()), this, SLOT(processEvents()));
-    } else {
+    } else
         QMC2_ARCADE_LOG_STR(tr("ERROR: couldn't initialize SDL joystick support"));
-    }
 
     joystick = NULL;
     jsIndex = -1;
