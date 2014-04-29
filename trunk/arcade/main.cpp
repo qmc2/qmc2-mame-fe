@@ -417,17 +417,21 @@ int main(int argc, char *argv[])
         viewer->setSource(QString("qrc:/qml/%1/2.0/%1.qml").arg(theme));
 #endif
 
-        // set up display mode initially...
+        // set up display mode initially
         if ( globalConfig->fullScreen() )
             viewer->switchToFullScreen(true);
         else
             viewer->switchToWindowed(true);
 
-        // ... and run the application
+        // start counting frames per second
+        if ( viewer->rootObject() )
+            viewer->frameCheckTimer.start(QMC2_ARCADE_FPS_UPDATE_INTERVAL);
+
+        // run the event loop
         returnCode = app->exec();
 
         // remove the key-event filter before destroying the viewer, otherwise there's a small possibility
-        // for an exit-crash as the event-filter uses the key-sequence-map object from the viewer
+        // for an exit-crash because the event-filter uses the key-sequence-map instance from the viewer
         app->removeEventFilter(&keyEventFilter);
         delete viewer;
     } else {

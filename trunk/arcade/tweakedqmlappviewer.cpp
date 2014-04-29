@@ -121,27 +121,29 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
     engine()->addImportPath(QDir::fromNativeSeparators(XSTR(QMC2_ARCADE_QML_IMPORT_PATH)));
     rootContext()->setContextProperty("viewer", this);  
 
-    // theme-specific initialisation
-    if ( globalConfig->arcadeTheme == "ToxicWaste" ) {
+    // theme-specific initialization
+    switch ( themeIndex() ) {
+    case QMC2_ARCADE_THEME_TOXICWASTE:
         loadGamelist();
-    } else if ( globalConfig->arcadeTheme == "darkone" ) {
+        break;
+    case QMC2_ARCADE_THEME_DARKONE:
         // propagate empty gameList to QML
         rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
         rootContext()->setContextProperty("gameListModelCount", gameList.count());
+        break;
     }
-
-    connect(&frameCheckTimer, SIGNAL(timeout()), this, SLOT(fpsReady()));
-    frameCheckTimer.start(1000);
 
 #if QT_VERSION >= 0x050000
     connect(this, SIGNAL(frameSwapped()), this, SLOT(frameBufferSwapped()));
     connect(engine(), SIGNAL(quit()), this, SLOT(handleQuit()));
 #endif
+
+    connect(&frameCheckTimer, SIGNAL(timeout()), this, SLOT(fpsReady()));
 }
 
 TweakedQmlApplicationViewer::~TweakedQmlApplicationViewer()
 {
-    if (initialised)
+    if ( initialised )
         saveSettings();
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
     delete joystickManager;
@@ -157,8 +159,7 @@ int TweakedQmlApplicationViewer::themeIndex()
 
 void TweakedQmlApplicationViewer::fpsReady()
 {
-    if ( rootObject() )
-        rootObject()->setProperty("fps", numFrames);
+    rootObject()->setProperty("fps", numFrames);
     numFrames = 0;
 }
 
@@ -281,9 +282,9 @@ void TweakedQmlApplicationViewer::saveSettings()
 void TweakedQmlApplicationViewer::goFullScreen()
 {
     showFullScreen();
+    raise();
 #if QT_VERSION < 0x050000
     qApp->processEvents();
-    raise();
     activateWindow();
     setFocus();
 #endif
@@ -309,12 +310,12 @@ void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
     QTimer::singleShot(100, this, SLOT(goFullScreen()));
 #else
     showFullScreen();
-    windowModeSwitching = false;
-#if QT_VERSION < 0x050000
     raise();
+#if QT_VERSION < 0x050000
     activateWindow();
     setFocus();
 #endif
+    windowModeSwitching = false;
 #endif
 }
 
@@ -336,8 +337,8 @@ void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
         showMaximized();
     else
         showNormal();
-#if QT_VERSION < 0x050000
     raise();
+#if QT_VERSION < 0x050000
     activateWindow();
     setFocus();
 #endif
@@ -599,11 +600,6 @@ QString TweakedQmlApplicationViewer::emuMode()
 }
 
 #if QT_VERSION >= 0x050000
-void TweakedQmlApplicationViewer::frameBufferSwapped()
-{
-    numFrames++;
-}
-
 void TweakedQmlApplicationViewer::handleQuit()
 {
     QMC2_ARCADE_LOG_STR(tr("Stopping QML viewer"));
@@ -622,8 +618,8 @@ void TweakedQmlApplicationViewer::handleQuit()
 #else
 void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
 {
-    numFrames++;
     QmlApplicationViewer::paintEvent(e);
+    numFrames++;
 }
 
 void TweakedQmlApplicationViewer::closeEvent(QCloseEvent *e)

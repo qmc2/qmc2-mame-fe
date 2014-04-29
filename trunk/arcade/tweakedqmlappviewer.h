@@ -118,7 +118,7 @@ public slots:
     void linkActivated(QString);
     QString emuMode();
 #if QT_VERSION >= 0x050000
-    void frameBufferSwapped();
+    void frameBufferSwapped() { numFrames++; }
     void handleQuit();
 #endif
     int runningEmulators() { return processManager->runningProcesses(); }

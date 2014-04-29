@@ -96,6 +96,9 @@
 // number of image- & pixmap-cache slots
 #define QMC2_ARCADE_IMGCACHE_SIZE       1000
 
+// FPS counter update interval
+#define QMC2_ARCADE_FPS_UPDATE_INTERVAL 1000
+
 // indexed QML themes
 #define QMC2_ARCADE_THEME_TOXICWASTE    0
 #define QMC2_ARCADE_THEME_DARKONE       1
