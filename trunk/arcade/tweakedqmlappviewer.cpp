@@ -281,9 +281,11 @@ void TweakedQmlApplicationViewer::saveSettings()
 void TweakedQmlApplicationViewer::goFullScreen()
 {
     showFullScreen();
-    raise();
 #if QT_VERSION < 0x050000
     qApp->processEvents();
+    raise();
+    activateWindow();
+    setFocus();
 #endif
     windowModeSwitching = false;
 }
@@ -308,6 +310,11 @@ void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
 #else
     showFullScreen();
     windowModeSwitching = false;
+#if QT_VERSION < 0x050000
+    raise();
+    activateWindow();
+    setFocus();
+#endif
 #endif
 }
 
@@ -329,7 +336,11 @@ void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
         showMaximized();
     else
         showNormal();
+#if QT_VERSION < 0x050000
     raise();
+    activateWindow();
+    setFocus();
+#endif
     windowModeSwitching = false;
 }
 
