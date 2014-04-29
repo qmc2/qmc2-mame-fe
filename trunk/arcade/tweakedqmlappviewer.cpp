@@ -108,11 +108,13 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
 
 #if QT_VERSION < 0x050000
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
+    setResizeMode(QDeclarativeView::SizeRootObjectToView);
     imageProvider = new ImageProvider(QDeclarativeImageProvider::Image);
 #else
     setResizeMode(QQuickView::SizeRootObjectToView);
     imageProvider = new ImageProvider(QQuickImageProvider::Image);
 #endif
+
     connect(imageProvider, SIGNAL(imageDataUpdated(QString)), this, SLOT(imageDataUpdate(QString)), Qt::DirectConnection);
     engine()->addImageProvider(QString("qmc2"), imageProvider);
 
