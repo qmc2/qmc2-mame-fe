@@ -1941,7 +1941,8 @@ void ImageChecker::recursiveZipList(unzFile zip, QStringList *fileNames, QString
 					char unzFileName[QMC2_MAX_PATH_LENGTH];
 					if ( i % 25 == 0 )
 						qApp->processEvents();
-					if ( unzGetCurrentFileInfo(zip, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK )
+					unz_file_info unzFileInfo;
+					if ( unzGetCurrentFileInfo(zip, &unzFileInfo, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK )
 						if ( unzFileName != NULL )
 							fileNames->append(prependString + unzFileName);
 					i++;
