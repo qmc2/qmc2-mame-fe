@@ -1733,11 +1733,11 @@ void Gamelist::parse()
 
   if ( reparseGamelist && !qmc2StopParser ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing game data and (re)creating game list cache"));
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing game data and recreating game list cache"));
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
       qmc2MainWindow->progressBarGamelist->setFormat(tr("Game data - %p%"));
 #elif defined(QMC2_EMUTYPE_MESS)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing machine data and (re)creating machine list cache"));
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing machine data and recreating machine list cache"));
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
       qmc2MainWindow->progressBarGamelist->setFormat(tr("Machine data - %p%"));
 #endif

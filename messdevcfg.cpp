@@ -701,7 +701,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 		QStringList args;
 		args << "-listslots";
 		
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading available system slots and (re-)creating cache"));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading available system slots and recreating cache"));
 		qApp->processEvents();
 
 		int retries = 0;
@@ -837,7 +837,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 	if ( fromCache )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading available system slots from cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading available system slots and (re-)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading available system slots and recreating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	setEnabled(qmc2UseDefaultEmulator);
 	return retVal;
 }

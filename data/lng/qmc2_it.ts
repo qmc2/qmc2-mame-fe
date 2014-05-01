@@ -2991,7 +2991,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../gamelist.cpp" line="727"/>
         <location filename="../../gamelist.cpp" line="791"/>
         <location filename="../../gamelist.cpp" line="794"/>
-        <location filename="../../gamelist.cpp" line="4242"/>
+        <location filename="../../gamelist.cpp" line="4260"/>
         <source>unknown</source>
         <translation>sconosciuto</translation>
     </message>
@@ -3953,8 +3953,8 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../gamelist.cpp" line="3232"/>
         <location filename="../../gamelist.cpp" line="3233"/>
         <location filename="../../gamelist.cpp" line="3234"/>
-        <location filename="../../gamelist.cpp" line="3893"/>
-        <location filename="../../gamelist.cpp" line="4116"/>
+        <location filename="../../gamelist.cpp" line="3911"/>
+        <location filename="../../gamelist.cpp" line="4134"/>
         <source>?</source>
         <translation>?</translation>
     </message>
@@ -3982,16 +3982,6 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../gamelist.cpp" line="1726"/>
         <source>done (loading machine data from machine list cache, elapsed time = %1)</source>
         <translation>completato (caricamento dati da cache lista macchine, tempo impiegato = %1)</translation>
-    </message>
-    <message>
-        <location filename="../../gamelist.cpp" line="1736"/>
-        <source>parsing game data and (re)creating game list cache</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../gamelist.cpp" line="1740"/>
-        <source>parsing machine data and (re)creating machine list cache</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1749"/>
@@ -4032,6 +4022,16 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../gamelist.cpp" line="2247"/>
         <location filename="../../gamelist.cpp" line="3250"/>
         <source>sorting game list by %1 in %2 order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../gamelist.cpp" line="1736"/>
+        <source>parsing game data and recreating game list cache</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../gamelist.cpp" line="1740"/>
+        <source>parsing machine data and recreating machine list cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4419,62 +4419,62 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3821"/>
+        <location filename="../../gamelist.cpp" line="3839"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no category.ini data available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3830"/>
+        <location filename="../../gamelist.cpp" line="3848"/>
         <source>done (loading category.ini, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3998"/>
+        <location filename="../../gamelist.cpp" line="4016"/>
         <source>loading catver.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4004"/>
+        <location filename="../../gamelist.cpp" line="4022"/>
         <source>Catver.ini - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4045"/>
+        <location filename="../../gamelist.cpp" line="4063"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4054"/>
+        <location filename="../../gamelist.cpp" line="4072"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4055"/>
+        <location filename="../../gamelist.cpp" line="4073"/>
         <source>%1 category / %2 version records loaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4217"/>
+        <location filename="../../gamelist.cpp" line="4235"/>
         <source>correct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4223"/>
+        <location filename="../../gamelist.cpp" line="4241"/>
         <source>mostly correct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4229"/>
+        <location filename="../../gamelist.cpp" line="4247"/>
         <source>incorrect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4235"/>
+        <location filename="../../gamelist.cpp" line="4253"/>
         <source>not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3868"/>
+        <location filename="../../gamelist.cpp" line="3886"/>
         <source>Category view - %p%</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4484,7 +4484,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3831"/>
+        <location filename="../../gamelist.cpp" line="3849"/>
         <source>%n category record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -4492,7 +4492,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4091"/>
+        <location filename="../../gamelist.cpp" line="4109"/>
         <source>Version view - %p%</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6859,11 +6859,6 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="704"/>
-        <source>loading available system slots and (re-)creating cache</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../messdevcfg.cpp" line="723"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
         <translation type="unfinished">FATALE: impossibile avviare eseguibile MESS in un tempo ragionevole, mi arrendo</translation>
@@ -6885,6 +6880,11 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.cpp" line="734"/>
         <source>WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="840"/>
+        <source>done (loading available system slots and recreating cache, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6920,6 +6920,11 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.cpp" line="704"/>
+        <source>loading available system slots and recreating cache</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../messdevcfg.cpp" line="725"/>
         <source>FATAL: can&apos;t start UME executable within a reasonable time frame, giving up</source>
         <translation type="unfinished"></translation>
@@ -6932,11 +6937,6 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.cpp" line="838"/>
         <source>done (loading available system slots from cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../messdevcfg.cpp" line="840"/>
-        <source>done (loading available system slots and (re-)creating cache, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -20108,11 +20108,6 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="997"/>
-        <source>loading XML software list data and (re)creating cache</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../softwarelist.cpp" line="1000"/>
         <source>SWL data - %p%</source>
         <translation type="unfinished"></translation>
@@ -20182,11 +20177,6 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwarelist.cpp" line="1372"/>
         <source>WARNING: the external process called to load the UME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../softwarelist.cpp" line="1378"/>
-        <source>done (loading XML software list data and (re)creating cache, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -20268,6 +20258,16 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwarelist.cpp" line="1493"/>
         <source>Checking software-states, please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="997"/>
+        <source>loading XML software list data and recreating cache</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="1378"/>
+        <source>done (loading XML software list data and recreating cache, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
