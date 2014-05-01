@@ -14,7 +14,7 @@ dateString="'Updated $(date "+%B %Y")'"
 sed "1s/^.*$/$dateString/g" /tmp/category.ini > /tmp/category.ini.new
 rm /tmp/category.ini
 mv /tmp/category.ini.new /tmp/category.ini
-for i in $(cat /tmp/category.ini | grep -v "^\\[" | grep "^[0-9a-z]"); do
+for i in $(cat /tmp/category.ini | grep -v "^\\[" | grep -v "^tr\\[" | grep "^[0-9a-z]"); do
 	j=$(sqlite3 ~/.qmc2/mess-xml-cache.db "select id from mess_xml_cache where id='$i'")
 	if [ "$j" != "$i" ]; then
 		grep -v "^${i}$" /tmp/category.ini > /tmp/category.ini.new
