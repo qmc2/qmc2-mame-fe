@@ -1,8 +1,8 @@
 <!--
 SHIDERAVAN SYSTEM TEMPLATE
-LAST MODIFICATION: 29/04/2014
+LAST MODIFICATION: 01/04/2014
 
-This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.43 by Shideravan. Enjoy!
+This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.44 by Shideravan. Enjoy!
 
 This file is an example HTML template created by José Marcio Rezende Franco for use in QMC2 frontend (0.43 and far)
 
@@ -1514,24 +1514,35 @@ var corFun;
 if (corFun == undefined)
    corFun = "background-color: #ffffe2";  
    
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundMode'] == 'default')
-   corFun = "background-color: #ffffe2";  
-   
-else if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundMode'] == 'color')  
-   corFun = "background-color:"+localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundColor'];
-   
-else
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundImage']) 
+switch (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundMode'])
+{
+   case 'default':
    {
-      if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundMode'] == 'image-tiled')
-         corFun = "background-image: url('"+localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundImage']+"'); background-repeat: repeat;";
-         
-      else
-         corFun = "background-image: url('"+localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundImage']+"'); background-repeat: none; background-size: 100% 100%;";
-   }
+      corFun = "background-color: #ffffe2"; 
+      break;
+   }    
    
-   else
-      corFun = "background-color: #ffffe2";
+   case 'color':
+   { 
+      corFun = "background-color:"+localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundColor'];
+      break;
+   }   
+   
+   default:
+   {
+      if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundImage']) 
+      {
+         if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundMode'] == 'image-tiled')
+            corFun = "background-image: url('"+localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundImage']+"'); background-repeat: repeat;";
+         
+         else
+            corFun = "background-image: url('"+localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundImage']+"'); background-repeat: none; background-size: 100% 100%;";
+      }
+   
+      else
+         corFun = "background-color: #ffffe2";
+   }   
+}      
 
 var textCor = localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/TextCor'];
 
@@ -1676,17 +1687,17 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleTitCab
             break;        
          }
            
-         case ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProjectMess'] == 'true'):
+         case (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProjectMess'] == 'true'):
          {
             switch (true)
             {
-               case ( imagemExiste("http://www.progettoemma.net/mess/snaps/mess/pics/$ID$.png")):
+               case (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/pics/$ID$.png")):
                { 
                   mostraImagem("http://www.progettoemma.net/mess/snaps/mess/pics/$ID$.png", "CABINET", "pmess", "cab"); 
                   break;
                }
               
-               case ( imagemExiste("http://www.progettoemma.net/mess/snaps/mess/pics/$PARENT_ID$.png")):
+               case (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/pics/$PARENT_ID$.png")):
                { 
                   mostraImagem("http://www.progettoemma.net/mess/snaps/mess/pics/$PARENT_ID$.png", "PARENT CABINET", "pmess", "cab"); 
                   break;
@@ -1724,7 +1735,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleTitCab
             break;            
          }  
            
-         case ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProgettoEmma'] == 'true'):
+         case (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProgettoEmma'] == 'true'):
          {
             switch (true)
             {                                                     
@@ -1752,7 +1763,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleTitCab
             }   
          }    
         
-         case ( (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseArcadeHits'] == 'true')):
+         case ((localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseArcadeHits'] == 'true')):
          {   
             if (a==0)
             {  
@@ -1825,14 +1836,26 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/InfoXML'] ==
           
    
    /*Driver and source*/ 
-   if ("$EMULATOR_TYPE$" == "MESS")            
-      document.write(": </b><a href=http://mamedev.org/source/src/mess/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>");      
+   switch ("$EMULATOR_TYPE$")
+   {
+      case "UME":
+      {  
+         document.write("(MESS): </b><a href=http://mamedev.org/source/src/mess/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a><br><b>"+tr('Driver')+"(MAME): </b><a href=http://mamedev.org/source/src/mame/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>");              
+         break;
+      }   
+      
+      case "MESS":
+      {
+         document.write(": </b><a href=http://mamedev.org/source/src/mess/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>"); 
+         break;
+      }        
          
-   else if ("$EMULATOR_TYPE$" == "MAME")     
-      document.write(": </b><a href=http://mamedev.org/source/src/mame/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>");      
-           
-   else
-      document.write("(MESS): </b><a href=http://mamedev.org/source/src/mess/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a><br><b>"+tr('Driver')+"(MAME): </b><a href=http://mamedev.org/source/src/mame/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>");  
+         
+      default:
+      {    
+         document.write(": </b><a href=http://mamedev.org/source/src/mame/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>"); 
+      }        
+   } 
      
    /*Screen*/  
    if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/display/@type/string()", false, "system")) 
@@ -2074,7 +2097,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMod
          var b=0;
          switch (true)
          {          
-            case ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProgettoEmma'] == 'true'):
+            case (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProgettoEmma'] == 'true'):
             {
                switch (true)
                {                                                     
@@ -2130,9 +2153,8 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMod
                         break;     
                      }                                                      
                   }
-                  break;
                } 
-            }     
+            }                          
            
             default:
             {
@@ -2618,7 +2640,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
    
    document.write("</td><td width=\"30%\" align=\"right\"><font color=\"white\">");  
 
-/*Maybe a switch could give a speedup*/
+/*Selecting kind of image for preview*/
    switch (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMode'])
    {
       case  'no':
@@ -2698,6 +2720,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
    {
       document.write("<input name=\"cshadows\" type=\"checkbox\" id=\"cshadows\" onclick=\"toggleShadows(this.checked);\" title=\"Show shadows under images?\"/> <label>"+tr('Shadows')+"</label>");      
    }       
+   
    if ("$EMULATOR_TYPE$" == "MESS") 
    {
       document.write("</td></tr><tr><td width=\"10%\"><font color=\"white\">"+tr('Internet Databases'));
@@ -2714,7 +2737,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
       }       
    } 
    
-   else 
+   else  
    {  
       document.write("</td><td align=\"right\"><font color=\"white\">");     
       if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SearchExtraImages'] == 'true')
@@ -2739,6 +2762,20 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
       {
          document.write("<input name=\"cpemma\" type=\"checkbox\" id=\"cpemma\" onclick=\"toggleProgettoEmma(this.checked);\" title=\"Try to load images from P.EMMA if not found on local disk?\"/> <label>P.EMMA</label>");
       }   
+      
+      /* ***MAYBE ONE DAY... WHO KNOW's... Project MESS for UME (don't worked properly in my tests when active with A.Hits and P.MAME too... And could be confusing for normal users...)***
+      
+      document.write("</td><td align=\"left\"><font color=\"white\">");        
+      
+      if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProjectMess'] == 'true' )
+      {
+         document.write("<input name=\"cpmess\" type=\"checkbox\" id=\"cpmess\" checked=\"checked\" onclick=\"toggleProjectMess(this.checked);\" title=\"Try to load images from P.MESS if not found on local disk?\"/> <label>P.MESS</label>");
+      }
+      
+      else
+      {
+         document.write("<input name=\"cpmess\" type=\"checkbox\" id=\"cpmess\" onclick=\"toggleProjectMess(this.checked);\" title=\"Try to load images from P.MESS if not found on local disk?\"/> <label>P.MESS</label>");  
+      }     */          
              
       document.write("</td><td></td><td align=\"right\"><font color=\"white\">");             
              
@@ -2882,36 +2919,40 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BottomInfo']
       {
    
 <!--Layout controle-->
-         if ( imagemExiste("http://www.arcadehits.net/mmedia/cplayouts/jpeg/$ID$.png.jpg"))
-            document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/mmedia/cplayouts/jpeg/$ID$.png.jpg title=\"Controller Layout image (ArcadeHits)\">C.Layout</a>."); 
+         if ( imagemExiste("http://www.arcadehits.net/mmedia/cplayouts/$ID$.png"))
+            document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/mmedia/cplayouts/jpeg/$ID$.png title=\"Controller Layout image (ArcadeHits)\">C.Layout</a>."); 
       
-<!--Bosses-->
+<!--**Bosses-->
          if ( imagemExiste("http://www.arcadehits.net/mmedia/bosses/$ID$.png"))
             document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/mmedia/bosses/$ID$.png title=\"Bosses image (ArcadeHits)\">Bosses</a>."); 
       
-<!--Select Screen-->
+<!--**Select Screen-->
          if ( imagemExiste("http://www.arcadehits.net/mmedia/select/$ID$.png"))
-            document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/mmedia/select/$ID$.png title=\"Bosses image (ArcadeHits)\">SelectSc</a>."); 
+            document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/mmedia/select/$ID$.png title=\"Select Screen image (ArcadeHits)\">SelectSc</a>."); 
              
-<!--Versus Screen--> 
+<!--**Versus Screen--> 
          if ( imagemExiste("http://www.arcadehits.net/mmedia/versus/$ID$.png"))
-            document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/mmedia/versus/$ID$.png title=\"Bosses image (ArcadeHits)\">Vs.</a>.");       
+            document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/mmedia/versus/$ID$.png title=\"Versus Screen image (ArcadeHits)\">Vs.</a>.");       
+            
+<!--Characters-->
+         if ( imagemExiste("http://www.arcadehits.net/mmedia/characters/$ID$.png"))
+            document.write("<a style=\"color: cyan;\" href=http://www.arcadehits.net/mmedia/characters/$ID$.png title=\"Game Over Screen image (ArcadeHits)\">G.Over</a>.");             
            
 <!--GameOver-->
-         if ( imagemExiste("http://www.progettoemma.net/snap/robby/$ID$.png"))
-            document.write("<a style=\"color: cyan;\" href=http://www.arcadehits.net/mmedia/bosses/$ID$.png title=\"Bosses image (P.EMMA)\">G.Over</a>."); 
+         if ( imagemExiste("http://www.arcadehits.net/mmedia/gameover/$ID$.png"))
+            document.write("<a style=\"color: cyan;\" href=http://www.arcadehits.net/mmedia/gameover/$ID$.png title=\"Game Over Screen image (ArcadeHits)\">G.Over</a>."); 
        
-<!--How To-->
+<!--**How To-->
          if ( imagemExiste("http://www.progettoemma.net/snap/$ID$/how_to.png"))
-            document.write("<a style=\"color: cyan;\" href=http://www.progettoemma.net/snap/$ID$/how_to.png\ title=\"HowTo image (ProgettoEMMA)\">HowTo </a>."); 
+            document.write("<a style=\"color: cyan;\" href=http://www.progettoemma.net/snap/$ID$/how_to.png\ title=\"How To Screen image (ProgettoEMMA)\">HowTo </a>."); 
 
-<!--Artwork preview-->
+<!--**Artwork preview-->
          if ( imagemExiste("http://www.arcadehits.net/mmedia/artwork/$ID$.png"))
             document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/mmedia/artwork/$ID$.png title=\"Artwork Preview image (ArcadeHits)\">Art.Prev.</a>."); 
          
-<!--LOGO-->       
+<!--**LOGO-->       
          if ( imagemExiste("http://www.arcadehits.net/mmedia/logo/$ID$.png"))
-            document.write("<a style=\"color: cyan;\" href=http://www.arcadehits.net/mmedia/logo/$ID$.png title=\"Artwork Preview image (ProgettoEMMA)\">Logo</a>.");            
+            document.write("<a style=\"color: cyan;\" href=http://www.arcadehits.net/mmedia/logo/$ID$.png title=\"Logo image (ProgettoEMMA)\">Logo</a>.");            
       }
    
       else
