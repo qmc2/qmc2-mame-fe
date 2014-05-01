@@ -3803,7 +3803,9 @@ void Gamelist::loadCategoryIni()
 		QTextStream tsCategoryIni(&categoryIniFile);
 		QString categoryName;
 		QRegExp rxCategoryName("^\\[.*\\]$");
-		QString language = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
+		QHash <QString, QString> translations;
+		QString guiLanguage = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
+		bool trFound = false;
 		while ( !tsCategoryIni.atEnd() ) {
 			QString categoryLine = tsCategoryIni.readLine().simplified().trimmed();
 			qmc2MainWindow->progressBarGamelist->setValue(categoryIniFile.pos());
@@ -3811,15 +3813,20 @@ void Gamelist::loadCategoryIni()
 				continue;
 			if ( categoryLine.indexOf(rxCategoryName) == 0 ) {
 				categoryName = categoryLine.mid(1, categoryLine.length() - 2);
+				translations.clear();
 				categoryLine = tsCategoryIni.readLine().simplified().trimmed();
-				QHash <QString, QString> translations;
+				trFound = false;
 				while ( !categoryLine.isEmpty() && categoryLine.startsWith("tr[") ) {
 					int endIndex = categoryLine.indexOf("]", 3);
-					translations[categoryLine.mid(3, endIndex - 3)] = categoryLine.mid(endIndex + 2, categoryLine.length() - endIndex - 2);
+					QString trLanguage = categoryLine.mid(3, endIndex - 3);
+					translations[trLanguage] = categoryLine.mid(endIndex + 2, categoryLine.length() - endIndex - 2);
+					trFound = (trLanguage == guiLanguage);
+					if ( trFound )
+						break;
 					categoryLine = tsCategoryIni.readLine().simplified().trimmed();
 				}
-				if ( translations.contains(language) )
-					categoryName = translations[language];
+				if ( trFound )
+					categoryName = translations[guiLanguage];
 			} else if ( !categoryName.isEmpty() ) {
 				if ( !categoryNames.contains(categoryName) )
 					categoryNames[categoryName] = new QString(categoryName);
