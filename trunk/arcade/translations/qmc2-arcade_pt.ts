@@ -36,22 +36,22 @@
 <context>
     <name>Joystick</name>
     <message>
-        <location filename="../joystick.cpp" line="20"/>
+        <location filename="../joystick.cpp" line="25"/>
         <source>ERROR: couldn&apos;t initialize SDL joystick support</source>
         <translation>ERRO: não foi possível inicializar o suporte a joystick do SDL</translation>
     </message>
     <message>
-        <location filename="../joystick.cpp" line="50"/>
+        <location filename="../joystick.cpp" line="54"/>
         <source>SDL joystick #%1 opened: name = %2, axes = %3, buttons = %4, hats = %5, trackballs = %6</source>
         <translation>Joystick SDL #%1 aberto: nome = %2, eixos = %3, botões = %4, hats = %5, trackballs = %6</translation>
     </message>
     <message>
-        <location filename="../joystick.cpp" line="61"/>
+        <location filename="../joystick.cpp" line="65"/>
         <source>ERROR: couldn&apos;t open SDL joystick #%1</source>
         <translation>ERRO: não foi possível abrir o joystick do SDL #%1</translation>
     </message>
     <message>
-        <location filename="../joystick.cpp" line="72"/>
+        <location filename="../joystick.cpp" line="76"/>
         <source>SDL joystick #%1 closed</source>
         <translation>Joystick SDL #%1 fechado</translation>
     </message>
@@ -422,62 +422,62 @@
         <translation>Iniciando visualizador QML usando o tema &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="436"/>
+        <location filename="../main.cpp" line="440"/>
         <source>QML viewer not started - please close the console window to exit</source>
         <translation>Visualizador QML não iniciado - por favor feche a janela do console para sair</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="72"/>
+        <location filename="../infoprovider.cpp" line="76"/>
         <source>Loading game info DB</source>
         <translation>Carregando BD de informações de jogo</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="75"/>
+        <location filename="../infoprovider.cpp" line="79"/>
         <source>Loading machine info DB</source>
         <translation>Carregando BD de informações de máquina</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="159"/>
+        <location filename="../infoprovider.cpp" line="178"/>
         <source>WARNING: Missing &apos;$end&apos; in game info DB %1</source>
         <translation>AVISO: Faltando &apos;$end&apos; no BD de informações de jogo %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="162"/>
+        <location filename="../infoprovider.cpp" line="181"/>
         <source>WARNING: Missing &apos;$end&apos; in machine info DB %1</source>
         <translation>AVISO: Faltando &apos;$end&apos; no BD de informações de máquina %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="170"/>
+        <location filename="../infoprovider.cpp" line="189"/>
         <source>WARNING: Missing &apos;$bio&apos; in game info DB %1</source>
         <translation>AVISO: Faltando &apos;$bio&apos; no BD de informações de jogo %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="173"/>
+        <location filename="../infoprovider.cpp" line="192"/>
         <source>WARNING: Missing &apos;$bio&apos; in machine info DB %1</source>
         <translation>AVISO: Faltando &apos;$end&apos; no BD de informações de máquina %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="181"/>
+        <location filename="../infoprovider.cpp" line="200"/>
         <source>WARNING: Missing &apos;$info&apos; in game info DB %1</source>
         <translation>AVISO: Faltando &apos;$info&apos; no BD de informações de jogo %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="184"/>
+        <location filename="../infoprovider.cpp" line="203"/>
         <source>WARNING: Missing &apos;$info&apos; in machine info DB %1</source>
         <translation>AVISO: Faltando &apos;$info&apos; no BD de informações de máquina %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="194"/>
+        <location filename="../infoprovider.cpp" line="213"/>
         <source>WARNING: Can&apos;t open game info DB %1</source>
         <translation>AVISO: Não foi possível abrir o BD de informações de jogo %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="197"/>
+        <location filename="../infoprovider.cpp" line="216"/>
         <source>WARNING: Can&apos;t open machine info DB %1</source>
         <translation>AVISO: Não foi possível abrir o BD de informações de máquina %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="215"/>
+        <location filename="../infoprovider.cpp" line="234"/>
         <source>%n machine info record(s) loaded</source>
         <translation>
             <numerusform>%n registro de informação de máquina carregado</numerusform>
@@ -485,52 +485,52 @@
         </translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="217"/>
+        <location filename="../infoprovider.cpp" line="236"/>
         <source>Invalidating machine info DB</source>
         <translation>Invalidando BD de informações de máquina</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="209"/>
+        <location filename="../infoprovider.cpp" line="228"/>
         <source>Invalidating game info DB</source>
         <translation>Invalidando BD de informações de jogo</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="226"/>
+        <location filename="../infoprovider.cpp" line="245"/>
         <source>Loading emulator info DB</source>
         <translation>Carregando BD de informações de emulador</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="298"/>
+        <location filename="../infoprovider.cpp" line="319"/>
         <source>WARNING: Missing &apos;$end&apos; in emulator info DB %1</source>
         <translation>AVISO: Faltando &apos;$end&apos; no BD de informações de emulador %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="300"/>
+        <location filename="../infoprovider.cpp" line="321"/>
         <source>WARNING: Missing &apos;$mame&apos; in emulator info DB %1</source>
         <translation>AVISO: Faltando &apos;$mame&apos; no BD de informações de emulador %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="303"/>
+        <location filename="../infoprovider.cpp" line="324"/>
         <source>WARNING: Missing &apos;$info&apos; in emulator info DB %1</source>
         <translation>AVISO: Faltando &apos;$info&apos; no BD de informações de emulador %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="308"/>
+        <location filename="../infoprovider.cpp" line="329"/>
         <source>WARNING: Can&apos;t open emulator info DB %1</source>
         <translation>AVISO: Não foi possível abrir o BD de informações de emulador %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="311"/>
+        <location filename="../infoprovider.cpp" line="332"/>
         <source>Done (Loading emulator info DB)</source>
         <translation>Feito (Carregando BD de informações de emulador)</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="314"/>
+        <location filename="../infoprovider.cpp" line="335"/>
         <source>Invalidating emulator info DB</source>
         <translation>Invalidando BD de informações de emulador</translation>
     </message>
     <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="207"/>
+        <location filename="../infoprovider.cpp" line="226"/>
         <source>%n game info record(s) loaded</source>
         <translation>
             <numerusform>%n registro de informação de jogo carregado</numerusform>
@@ -538,17 +538,17 @@
         </translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="214"/>
+        <location filename="../infoprovider.cpp" line="233"/>
         <source>Done (Loading machine info DB)</source>
         <translation>Feito (Carregando BD de informações de máquina)</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="206"/>
+        <location filename="../infoprovider.cpp" line="225"/>
         <source>Done (Loading game info DB)</source>
         <translation>Feito (Carregando BD de informações de jogo)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="312"/>
+        <location filename="../infoprovider.cpp" line="333"/>
         <source>%n emulator info record(s) loaded</source>
         <translation>
             <numerusform>%n registro de informação de emulador carregado</numerusform>
@@ -556,10 +556,10 @@
         </translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="344"/>
-        <location filename="../infoprovider.cpp" line="346"/>
-        <location filename="../infoprovider.cpp" line="357"/>
-        <location filename="../infoprovider.cpp" line="359"/>
+        <location filename="../infoprovider.cpp" line="375"/>
+        <location filename="../infoprovider.cpp" line="377"/>
+        <location filename="../infoprovider.cpp" line="388"/>
+        <location filename="../infoprovider.cpp" line="390"/>
         <source>no info available</source>
         <translation>informação não disponível</translation>
     </message>
@@ -1135,105 +1135,105 @@ terem efeito, por favor reinicie o Arcade do QMC2!</translation>
         <translation>Língua</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="167"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="170"/>
         <source>Loading global and theme-specific settings</source>
         <translation>Carregando configurações globais e específicas do tema</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="223"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="226"/>
         <source>Saving global and theme-specific settings</source>
         <translation>Salvando configurações globais e específicas do tema</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="296"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="301"/>
         <source>Activating full-screen display</source>
         <translation>Ativando tela cheia</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="319"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="329"/>
         <source>Activating windowed display</source>
         <translation>Ativando modo janela</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="340"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="354"/>
         <source>correct</source>
         <translation>correto</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="342"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="356"/>
         <source>mostly correct</source>
         <translation>maioria correto</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="344"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="358"/>
         <source>incorrect</source>
         <translation>incorreto</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="346"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="360"/>
         <source>not found</source>
         <translation>não encontrado</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="349"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="363"/>
         <source>unknown</source>
         <translation>desconhecido</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="378"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="392"/>
         <source>WARNING: filtered list file &apos;%1&apos; doesn&apos;t exist or isn&apos;t accessible, falling back to the full %2</source>
         <translation>AVISO: arquivo de lista filtrado &apos;%1&apos; não existe ou não está acessível, revertendo para a %2 completa</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="380"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="389"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="426"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="430"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="441"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="394"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="403"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="446"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="450"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="461"/>
         <source>game list</source>
         <translation>lista de jogos</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="380"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="389"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="426"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="430"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="441"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="394"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="403"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="446"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="450"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="461"/>
         <source>machine list</source>
         <translation>lista de máquinas</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="388"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="402"/>
         <source>Loading %1 from &apos;%2&apos;</source>
         <translation>Carregando %1 de &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="405"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="422"/>
         <source>WARNING: Can&apos;t open ROM state cache file &apos;%1&apos;, please check permissions</source>
         <translation>AVISO: Não foi possível abrir o arquivo de cache de estados de ROM &apos;%1&apos;, por favor verifque as permissões</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="408"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="425"/>
         <source>WARNING: The ROM state cache file &apos;%1&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>AVISO: O arquivo de cache de estados de ROM &apos;%1&apos; não existe, por favor rode o executável do front-end principal para criá-lo</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="425"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="445"/>
         <source>FATAL: Can&apos;t open %1 cache file &apos;%2&apos;, please check permissions</source>
         <translation>FATAL: Não foi possível abrir o arquivo de cache de %1 &apos;%2&apos;, por favor verifique as permissões</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="429"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="449"/>
         <source>FATAL: The %1 cache file &apos;%2&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>AVISO: O arquivo de cache de %1 &apos;%2&apos; não existe, por favor rode o executável do front-end principal para criá-lo</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="440"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="460"/>
         <source>Done (loading %1 from &apos;%2&apos;)</source>
         <translation>Feito (carregando %1 de &apos;%2&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tweakedqmlappviewer.cpp" line="441"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="461"/>
         <source>%n non-device set(s) loaded</source>
         <translation>
             <numerusform>%n conjunto de não-dispositivo carregado</numerusform>
@@ -1241,39 +1241,39 @@ terem efeito, por favor reinicie o Arcade do QMC2!</translation>
         </translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="447"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="467"/>
         <source>Starting emulator #%1 for %2 ID &apos;%3&apos;</source>
         <translation>Iniciando emulador #%1 para %2 ID &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="447"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="467"/>
         <source>game</source>
         <translation>jogo</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="447"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="467"/>
         <source>machine</source>
         <translation>máquina</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="464"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="484"/>
         <source>WARNING: TweakedQmlApplicationViewer::requestInfo(): unsupported info class &apos;%1&apos;</source>
         <translation>AVISO:TweakedQmlApplicationViewer::requestInfo(): classe de informação não suportada &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="465"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="485"/>
         <source>no info available</source>
         <translation>informação não disponível</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="592"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="614"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="607"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="629"/>
         <source>Stopping QML viewer</source>
         <translation>Parando visualizador QML</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="595"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="617"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="610"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="632"/>
         <source>QML viewer stopped - please close the console window to exit</source>
         <translation>Visualizador QML parado - por favor feche a janela do console para sair</translation>
     </message>

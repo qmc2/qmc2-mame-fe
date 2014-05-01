@@ -3351,6 +3351,16 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <source>WARNING: can&apos;t open ROM state cache, please check ROMs</source>
         <translation>WARNUNG: kann ROM-Status Cache nicht öffnen, bitte ROMs verifizieren</translation>
     </message>
+    <message>
+        <location filename="../../gamelist.cpp" line="1736"/>
+        <source>parsing game data and recreating game list cache</source>
+        <translation>Lese Spieldaten und erzeuge Spielelisten Cache neu</translation>
+    </message>
+    <message>
+        <location filename="../../gamelist.cpp" line="1740"/>
+        <source>parsing machine data and recreating machine list cache</source>
+        <translation>Lese Maschinendaten und erzeuge Maschinenlisten Cache neu</translation>
+    </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="2320"/>
         <source>%n machine(s)</source>
@@ -3570,7 +3580,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../gamelist.cpp" line="727"/>
         <location filename="../../gamelist.cpp" line="791"/>
         <location filename="../../gamelist.cpp" line="794"/>
-        <location filename="../../gamelist.cpp" line="4242"/>
+        <location filename="../../gamelist.cpp" line="4260"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
@@ -4112,22 +4122,22 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Fertig (Prüfe ROM Status aller Sets, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4217"/>
+        <location filename="../../gamelist.cpp" line="4235"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4223"/>
+        <location filename="../../gamelist.cpp" line="4241"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4229"/>
+        <location filename="../../gamelist.cpp" line="4247"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4235"/>
+        <location filename="../../gamelist.cpp" line="4253"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
@@ -4158,8 +4168,8 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../gamelist.cpp" line="3232"/>
         <location filename="../../gamelist.cpp" line="3233"/>
         <location filename="../../gamelist.cpp" line="3234"/>
-        <location filename="../../gamelist.cpp" line="3893"/>
-        <location filename="../../gamelist.cpp" line="4116"/>
+        <location filename="../../gamelist.cpp" line="3911"/>
+        <location filename="../../gamelist.cpp" line="4134"/>
         <source>?</source>
         <translation>?</translation>
     </message>
@@ -4184,14 +4194,12 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Fertig (Lade Spieldaten aus dem Spielelisten Cache, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1736"/>
         <source>parsing game data and (re)creating game list cache</source>
-        <translation>Lese Spieldaten und erzeuge Spielelisten Cache neu</translation>
+        <translation type="obsolete">Lese Spieldaten und erzeuge Spielelisten Cache neu</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1740"/>
         <source>parsing machine data and (re)creating machine list cache</source>
-        <translation>Lese Maschinendaten und erzeuge Maschinenlisten Cache neu</translation>
+        <translation type="obsolete">Lese Maschinendaten und erzeuge Maschinenlisten Cache neu</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1749"/>
@@ -4375,47 +4383,47 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Category.ini - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3821"/>
+        <location filename="../../gamelist.cpp" line="3839"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no category.ini data available</source>
         <translation>FEHLER: kann &apos;%1&apos; nicht zum Lesen öffnen -- keine category.ini Daten verfügbar</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3830"/>
+        <location filename="../../gamelist.cpp" line="3848"/>
         <source>done (loading category.ini, elapsed time = %1)</source>
         <translation>Fertig (Lade category.ini, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3998"/>
+        <location filename="../../gamelist.cpp" line="4016"/>
         <source>loading catver.ini</source>
         <translation>Lade catver.ini</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4004"/>
+        <location filename="../../gamelist.cpp" line="4022"/>
         <source>Catver.ini - %p%</source>
         <translation>Catver.ini - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4045"/>
+        <location filename="../../gamelist.cpp" line="4063"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation>FEHLER: kann &apos;%1&apos; nicht zum Lesen öffnen -- keine catver.ini Daten verfügbar</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4054"/>
+        <location filename="../../gamelist.cpp" line="4072"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation>Fertig (Lade catver.ini, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4055"/>
+        <location filename="../../gamelist.cpp" line="4073"/>
         <source>%1 category / %2 version records loaded</source>
         <translation>%1 Kategorie- / %2 Versions-Datensätze geladen</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3868"/>
+        <location filename="../../gamelist.cpp" line="3886"/>
         <source>Category view - %p%</source>
         <translation>Kategorieansicht - %p%</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3831"/>
+        <location filename="../../gamelist.cpp" line="3849"/>
         <source>%n category record(s) loaded</source>
         <translation>
             <numerusform>%n Kategorie-Datensatz geladen</numerusform>
@@ -4423,7 +4431,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4091"/>
+        <location filename="../../gamelist.cpp" line="4109"/>
         <source>Version view - %p%</source>
         <translation>Versionsansicht - %p%</translation>
     </message>
@@ -6854,6 +6862,11 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>FATAL: ungültige XML Daten für &apos;%1&apos; erhalten</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.cpp" line="704"/>
+        <source>loading available system slots and recreating cache</source>
+        <translation>Lade verfügbare System-Slots und erzeuge den Cache neu</translation>
+    </message>
+    <message>
         <location filename="../../messdevcfg.cpp" line="723"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
         <translation>FATAL: kann ausführbare MESS Datei nicht in einem angemessenen Zeitraum starten, gebe auf</translation>
@@ -6880,6 +6893,11 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../messdevcfg.cpp" line="734"/>
         <source>WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete</source>
         <translation>WARNUNG: das externe Kommando zum Laden verfügbarer System-Slots ist abgebrochen, Slot-Optionen sind möglicherweise unvollständig</translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="840"/>
+        <source>done (loading available system slots and recreating cache, elapsed time = %1)</source>
+        <translation>Fertig (Lade verfügbare System-Slots und erzeuge den Cache neu, benötigte Zeit = %1)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1046"/>
@@ -6909,9 +6927,8 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Standard Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="704"/>
         <source>loading available system slots and (re-)creating cache</source>
-        <translation>Lade verfügbare System-Slots und erzeuge den Cache neu</translation>
+        <translation type="obsolete">Lade verfügbare System-Slots und erzeuge den Cache neu</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="725"/>
@@ -6929,9 +6946,8 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Fertig (Lade verfügbare System-Slots aus dem Cache, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="840"/>
         <source>done (loading available system slots and (re-)creating cache, elapsed time = %1)</source>
-        <translation>Fertig (Lade verfügbare System-Slots und erzeuge den Cache neu, benötigte Zeit = %1)</translation>
+        <translation type="obsolete">Fertig (Lade verfügbare System-Slots und erzeuge den Cache neu, benötigte Zeit = %1)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="878"/>
@@ -20125,9 +20141,8 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>FEHLER: Der Dateiname für den UME Softwarelisten-Cache ist leer -- bitte korrigieren und anschließend Spieleliste neu laden</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="997"/>
         <source>loading XML software list data and (re)creating cache</source>
-        <translation>Lade XML Softwarelisten-Daten und erzeuge Cache neu</translation>
+        <translation type="obsolete">Lade XML Softwarelisten-Daten und erzeuge Cache neu</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1000"/>
@@ -20202,9 +20217,8 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>WARNUNG: Der externe Prozess, der zum Laden der UME Softwarelisten gestartet wurde, konnte nicht ordentlich beendet werden -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1378"/>
         <source>done (loading XML software list data and (re)creating cache, elapsed time = %1)</source>
-        <translation>Fertig (Lade XML Softwarelisten-Daten und erzeuge Cache neu, benötigte Zeit = %1)</translation>
+        <translation type="obsolete">Fertig (Lade XML Softwarelisten-Daten und erzeuge Cache neu, benötigte Zeit = %1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1431"/>
@@ -20286,6 +20300,16 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.cpp" line="1493"/>
         <source>Checking software-states, please wait...</source>
         <translation>Prüfe Software-Stati, bitte warten...</translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="997"/>
+        <source>loading XML software list data and recreating cache</source>
+        <translation>Lade XML Softwarelisten-Daten und erzeuge Cache neu</translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="1378"/>
+        <source>done (loading XML software list data and recreating cache, elapsed time = %1)</source>
+        <translation>Fertig (Lade XML Softwarelisten-Daten und erzeuge Cache neu, benötigte Zeit = %1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1674"/>
