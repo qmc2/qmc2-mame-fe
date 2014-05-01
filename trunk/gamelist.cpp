@@ -3802,14 +3802,25 @@ void Gamelist::loadCategoryIni()
 		qmc2MainWindow->progressBarGamelist->setRange(0, categoryIniFile.size());
 		QTextStream tsCategoryIni(&categoryIniFile);
 		QString categoryName;
+		QRegExp rxCategoryName("^\\[.*\\]$");
+		QString language = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
 		while ( !tsCategoryIni.atEnd() ) {
 			QString categoryLine = tsCategoryIni.readLine().simplified().trimmed();
 			qmc2MainWindow->progressBarGamelist->setValue(categoryIniFile.pos());
 			if ( categoryLine.isEmpty() )
 				continue;
-			if ( categoryLine.indexOf(QRegExp("^\\[.*\\]$")) == 0 )
+			if ( categoryLine.indexOf(rxCategoryName) == 0 ) {
 				categoryName = categoryLine.mid(1, categoryLine.length() - 2);
-			else if ( !categoryName.isEmpty() ) {
+				categoryLine = tsCategoryIni.readLine().simplified().trimmed();
+				QHash <QString, QString> translations;
+				while ( !categoryLine.isEmpty() && categoryLine.startsWith("tr[") ) {
+					int endIndex = categoryLine.indexOf("]", 3);
+					translations[categoryLine.mid(3, endIndex - 3)] = categoryLine.mid(endIndex + 2, categoryLine.length() - endIndex - 2);
+					categoryLine = tsCategoryIni.readLine().simplified().trimmed();
+				}
+				if ( translations.contains(language) )
+					categoryName = translations[language];
+			} else if ( !categoryName.isEmpty() ) {
 				if ( !categoryNames.contains(categoryName) )
 					categoryNames[categoryName] = new QString(categoryName);
 				categoryMap.insert(categoryLine, categoryNames[categoryName]);
