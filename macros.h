@@ -777,6 +777,9 @@
 // when analyzing sets that were not mentioned during full audit, be responsive every n'th line in the XML that's being read
 #define QMC2_AUDIT_NMS_RESPONSE			1000
 
+// responsiveness upon reading the slot-info cache
+#define QMC2_SLOTINFO_READ_RESPONSE		500
+
 // default launch-modes
 #define QMC2_LAUNCH_MODE_INDEPENDENT		0
 #define QMC2_LAUNCH_MODE_EMBEDDED		1

@@ -675,6 +675,9 @@ bool MESSDeviceConfigurator::readSystemSlots()
 	bool fromCache = true;
 	bool commandProcStarted = false;
 	QFile slotInfoFile(slotInfoCachePath);
+	listWidgetDeviceConfigurations->setUpdatesEnabled(true);
+	qApp->processEvents();
+	listWidgetDeviceConfigurations->setUpdatesEnabled(false);
 	if ( !slotInfoFile.exists() ) {
 		fromCache = false;
 		if ( slotInfoFile.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text) ) {
@@ -708,8 +711,8 @@ bool MESSDeviceConfigurator::readSystemSlots()
 		commandProc.start(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString(), args);
 		bool started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
 		while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
-			started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
 			qApp->processEvents();
+			started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
 		}
 		if ( started ) {
 			commandProcStarted = true;
@@ -737,56 +740,57 @@ bool MESSDeviceConfigurator::readSystemSlots()
 	bool retVal = true;
 	if ( (fromCache || commandProcStarted) && slotInfoFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		QTextStream ts(&slotInfoFile);
-		qApp->processEvents();
-		QString s = ts.readAll();
-		qApp->processEvents();
-		slotInfoFile.close();
 
-		QStringList slotLines = s.split("\n");
-		slotLines.removeFirst(); // comment line
-		QStringList versionWords = slotLines[0].split("\t");
-		bool sameVersion = true;
+		QString slotLine = ts.readLine(); // comment line
+		slotLine = ts.readLine();
+
+		QStringList versionWords = slotLine.split("\t");
+		bool sameVersion = false;
+
 		if ( versionWords.count() >= 2 ) {
 #if defined(QMC2_EMUTYPE_MESS)
-			if ( versionWords[0] == "MESS_VERSION" ) {
+			if ( versionWords[0] == "MESS_VERSION" )
 				sameVersion = (versionWords[1] == qmc2Gamelist->emulatorVersion);
-			}
 #elif defined(QMC2_EMUTYPE_UME)
-			if ( versionWords[0] == "UME_VERSION" ) {
+			if ( versionWords[0] == "UME_VERSION" )
 				sameVersion = (versionWords[1] == qmc2Gamelist->emulatorVersion);
-			}
 #endif
 		}
+
 		if ( !sameVersion ) {
+			slotInfoFile.close();
 			slotInfoFile.remove();
 			return readSystemSlots();
 		}
+
 		if ( fromCache ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading available system slots from cache"));
 			loadTimer.start();
 		}
-		slotLines.removeFirst(); // version info line
-		if ( slotLines.count() > 1 ) {
-			// we don't want the first two header lines
-			slotLines.removeFirst();
-			slotLines.removeFirst();
-		}
 
 		QString systemName, slotName, slotOption, slotDeviceName;
 
-		for (int i = 0; i < slotLines.count(); i++) {
-			QString slotLine = slotLines[i];
-			if ( !slotLine.trimmed().isEmpty() ) {
+		QRegExp rxSlotDev1("^\\S+\\s+\\S+\\s+\\S+\\s+");
+		QRegExp rxSlotDev2("^\\S+\\s+");
+		QRegExp rxSlotDev3("^\\S+\\s+\\S+\\s+");
+
+		int lineCounter = 0;
+		while ( !ts.atEnd() ) {
+			slotLine = ts.readLine();
+			QString slotLineTrimmed = slotLine.trimmed();
+			if ( lineCounter++ % QMC2_SLOTINFO_READ_RESPONSE == 0 )
+				qApp->processEvents();
+			if ( !slotLineTrimmed.isEmpty() ) {
 				if ( !slotLine.startsWith(" ") ) {
-					QStringList slotWords = slotLine.trimmed().split(" ", QString::SkipEmptyParts);
+					QStringList slotWords = slotLineTrimmed.split(" ", QString::SkipEmptyParts);
 					if ( slotWords.count() >= 4 ) {
 						systemName = slotWords[0];
 						slotName = slotWords[1];
 						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 && slotWords.count() > 2 ) {
 							slotOption = slotWords[2];
 							if ( slotOption != "[none]" ) {
-								slotDeviceName = slotLine.trimmed();
-								slotDeviceName.remove(QRegExp("^\\S+\\s+\\S+\\s+\\S+\\s+"));
+								slotDeviceName = slotLineTrimmed;
+								slotDeviceName.remove(rxSlotDev1);
 								messSlotNameMap[slotOption] = slotDeviceName;
 								messSystemSlotMap[systemName][slotName] << slotOption;
 							} else
@@ -798,13 +802,13 @@ bool MESSDeviceConfigurator::readSystemSlots()
 						messSystemSlotMap[systemName].clear();
 					}
 				} else {
-					QStringList slotWords = slotLine.trimmed().split(" ", QString::SkipEmptyParts);
+					QStringList slotWords = slotLineTrimmed.split(" ", QString::SkipEmptyParts);
 					if ( slotLine[13] == ' ' ) { // this isn't nice, but I see no other way at the moment...
 						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 ) {
 							slotOption = slotWords[0];
 							if ( slotOption != "[none]" ) {
-								slotDeviceName = slotLine.trimmed();
-								slotDeviceName.remove(QRegExp("^\\S+\\s+"));
+								slotDeviceName = slotLineTrimmed;
+								slotDeviceName.remove(rxSlotDev2);
 								messSlotNameMap[slotOption] = slotDeviceName;
 								messSystemSlotMap[systemName][slotName] << slotOption;
 							} else
@@ -815,8 +819,8 @@ bool MESSDeviceConfigurator::readSystemSlots()
 						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 && slotWords.count() > 1 ) {
 							slotOption = slotWords[1];
 							if ( slotOption != "[none]" ) {
-								slotDeviceName = slotLine.trimmed();
-								slotDeviceName.remove(QRegExp("^\\S+\\s+\\S+\\s+"));
+								slotDeviceName = slotLineTrimmed;
+								slotDeviceName.remove(rxSlotDev3);
 								messSlotNameMap[slotOption] = slotDeviceName;
 								messSystemSlotMap[systemName][slotName] << slotOption;
 							} else
@@ -827,6 +831,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 				}
 			}
 		}
+		slotInfoFile.close();
 	} else {
 		lineEditConfigurationName->blockSignals(true);
 		lineEditConfigurationName->setText(tr("Failed to read slot info"));
