@@ -769,10 +769,11 @@ bool MESSDeviceConfigurator::readSystemSlots()
 		}
 
 		QString systemName, slotName, slotOption, slotDeviceName;
-
 		QRegExp rxSlotDev1("^\\S+\\s+\\S+\\s+\\S+\\s+");
 		QRegExp rxSlotDev2("^\\S+\\s+");
 		QRegExp rxSlotDev3("^\\S+\\s+\\S+\\s+");
+		QString strNone("[none]");
+		QString strUnused("QMC2_UNUSED_SLOTS");
 
 		int lineCounter = 0;
 		while ( !ts.atEnd() ) {
@@ -788,13 +789,13 @@ bool MESSDeviceConfigurator::readSystemSlots()
 						slotName = slotWords[1];
 						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 && slotWords.count() > 2 ) {
 							slotOption = slotWords[2];
-							if ( slotOption != "[none]" ) {
+							if ( slotOption != strNone ) {
 								slotDeviceName = slotLineTrimmed;
 								slotDeviceName.remove(rxSlotDev1);
 								messSlotNameMap[slotOption] = slotDeviceName;
 								messSystemSlotMap[systemName][slotName] << slotOption;
 							} else
-								messSystemSlotMap[systemName]["QMC2_UNUSED_SLOTS"] << slotName;
+								messSystemSlotMap[systemName][strUnused] << slotName;
 						} else
 							messSystemSlotMap[systemName].remove(slotName);
 					} else {
@@ -806,25 +807,25 @@ bool MESSDeviceConfigurator::readSystemSlots()
 					if ( slotLine[13] == ' ' ) { // this isn't nice, but I see no other way at the moment...
 						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 ) {
 							slotOption = slotWords[0];
-							if ( slotOption != "[none]" ) {
+							if ( slotOption != strNone ) {
 								slotDeviceName = slotLineTrimmed;
 								slotDeviceName.remove(rxSlotDev2);
 								messSlotNameMap[slotOption] = slotDeviceName;
 								messSystemSlotMap[systemName][slotName] << slotOption;
 							} else
-								messSystemSlotMap[systemName]["QMC2_UNUSED_SLOTS"] << slotName;
+								messSystemSlotMap[systemName][strUnused] << slotName;
 						}
 					} else {
 						slotName = slotWords[0];
 						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 && slotWords.count() > 1 ) {
 							slotOption = slotWords[1];
-							if ( slotOption != "[none]" ) {
+							if ( slotOption != strNone ) {
 								slotDeviceName = slotLineTrimmed;
 								slotDeviceName.remove(rxSlotDev3);
 								messSlotNameMap[slotOption] = slotDeviceName;
 								messSystemSlotMap[systemName][slotName] << slotOption;
 							} else
-								messSystemSlotMap[systemName]["QMC2_UNUSED_SLOTS"] << slotName;
+								messSystemSlotMap[systemName][strUnused] << slotName;
 						} else
 							messSystemSlotMap[systemName].remove(slotName);
 					}
