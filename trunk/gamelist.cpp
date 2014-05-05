@@ -1777,7 +1777,6 @@ void Gamelist::parse()
 
     // parse XML data
     numGames = numUnknownGames = numDevices = 0;
-    bool endParser = qmc2StopParser;
     qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
 
     QList <QTreeWidgetItem *> itemList;
@@ -1785,11 +1784,10 @@ void Gamelist::parse()
     int xmlRowCount = xmlDb()->xmlRowCount();
     for (int rowCounter = 1; rowCounter <= xmlRowCount && !qmc2StopParser; rowCounter++) {
       QStringList xmlLines = xmlDb()->xml(rowCounter).split("\n", QString::SkipEmptyParts);
-      endParser = qmc2StopParser;
-      for (int lineCounter = 0; lineCounter < xmlLines.count() && !endParser; lineCounter++) {
+      for (int lineCounter = 0; lineCounter < xmlLines.count() && !qmc2StopParser; lineCounter++) {
 	      while ( lineCounter < xmlLines.count() && !xmlLines[lineCounter].contains("<description>") )
 		      lineCounter++;
-	      if ( !endParser && lineCounter < xmlLines.count() ) {
+	      if ( !qmc2StopParser && lineCounter < xmlLines.count() ) {
 		QString descriptionElement = xmlLines[lineCounter].simplified();
 		QString gameElement = xmlLines[lineCounter - 1].simplified();
 		if ( !gameElement.contains(" name=\"") )
@@ -2009,7 +2007,7 @@ void Gamelist::parse()
   QMapIterator<QString, QStringList> i(qmc2HierarchyMap);
   QList<QTreeWidgetItem *> itemList;
   QList<QTreeWidgetItem *> hideList;
-  while ( i.hasNext() ) {
+  while ( i.hasNext() && !qmc2StopParser ) {
     i.next();
     QString iValue = i.key();
     QString iDescription = qmc2GamelistItemMap[iValue]->text(QMC2_GAMELIST_COLUMN_GAME);
@@ -2356,14 +2354,14 @@ void Gamelist::parse()
   if ( qmc2StopParser ) {
 	  if ( loadProc )
 		  loadProc->kill();
+	  autoRomCheck = false;
   } else {
 	  if ( romStateCacheUpdate || cachedGamesCounter - numDevices != numTotalGames ) {
 		  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck").toBool() ) {
 			  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ROM state cache is incomplete or not up to date, triggering an automatic ROM check"));
 			  autoRomCheck = true;
-		  } else {
+		  } else
 			  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ROM state cache is incomplete or not up to date, please re-check ROMs"));
-		  }
 	  }
   }
 
@@ -2371,7 +2369,7 @@ void Gamelist::parse()
 
   if ( autoRomCheck )
 	  QTimer::singleShot(QMC2_AUTOROMCHECK_DELAY, qmc2MainWindow->actionCheckROMs, SLOT(trigger()));
-  else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool() )
+  else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool() && !qmc2StopParser )
 	  filter(true);
 
   enableWidgets(true);
