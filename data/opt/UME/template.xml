@@ -905,6 +905,14 @@
       <description lang="pt" text="Habilitar/desativar debugger"/>
       <description lang="es" text="Activar/desactivar depurador"/>
     </option>
+    <option default="auto" name="debugger" type="combo">
+      <description lang="us" text="Debugger used: none, internal, windows or auto"/>
+      <description lang="de" text="Verwendeter Debugger: none, internal, windows oder auto"/>
+      <choice name="none"/>
+      <choice name="internal"/>
+      <choice name="windows"/>
+      <choice name="auto"/>
+    </option>
     <option default="" name="debugscript" type="file">
       <description lang="us" text="Script for debugger"/>
       <description lang="de" text="Skript für Debugger"/>
@@ -936,14 +944,6 @@
       <description lang="fr" text="Forcer le programme à quitter si rien ne se passe au bout du nombre de secondes spécifié"/>
       <description lang="pt" text="Forçar o programa a terminar se não houver atualizações dentro de um número especificado de segundos"/>
       <description lang="es" text="Fuerza el programa a terminar si no se actualiza en un número concreto de segundos"/>
-    </option>
-    <option default="false" name="debug_internal" type="bool">
-      <description lang="us" text="Use the internal debugger for debugging"/>
-      <description lang="de" text="Internen Debugger verwenden"/>
-      <description lang="pl" text="Używaj wewnętrznego debuggera"/>
-      <description lang="fr" text="Utiliser le débogueur interne pour débuguer"/>
-      <description lang="pt" text="Usar o depurador interno"/>
-      <description lang="es" text="Usar el depurador interno para depurar"/>
     </option>
   </section>
   <section name="video">
