@@ -885,6 +885,14 @@
       <description lang="fr" text="Active/désactive le débogueur"/>
       <description lang="pt" text="Habilitar/desativar debugger"/>
     </option>
+    <option default="auto" name="debugger" type="combo">
+      <description lang="us" text="Debugger used: none, internal, qt or auto"/>
+      <description lang="de" text="Verwendeter Debugger: none, internal, qt oder auto"/>
+      <choice name="none"/>
+      <choice name="internal"/>
+      <choice name="qt"/>
+      <choice name="auto"/>
+    </option>
     <option default="" name="debugscript" type="file">
       <description lang="es" text="Script para depurador"/>
       <description lang="us" text="Script for debugger"/>
@@ -892,14 +900,6 @@
       <description lang="pl" text="Skrypt dla debuggera"/>
       <description lang="fr" text="Script pour le débogueur"/>
       <description lang="pt" text="Script para o debugger"/>
-    </option>
-    <option default="false" name="debug_internal" type="bool">
-      <description lang="es" text="Usar el depurador interno para depurar"/>
-      <description lang="us" text="Use the internal debugger for debugging"/>
-      <description lang="de" text="Internen Debugger verwenden"/>
-      <description lang="pl" text="Używaj wewnętrznego debuggera"/>
-      <description lang="fr" text="Utiliser le débogueur interne pour débuguer"/>
-      <description lang="pt" text="Usar o depurador interno"/>
     </option>
     <option default="0" name="watchdog" type="int">
       <description lang="es" text="Fuerza el programa a terminar si no se actualiza en un número concreto de segundos"/>
@@ -917,13 +917,14 @@
     <description lang="pl" text="Obraz"/>
     <description lang="fr" text="Vidéo"/>
     <description lang="pt" text="Vídeo"/>
-    <option default="soft" default.Darwin="opengl" name="video" type="combo">
+    <option default="auto" default.Darwin="opengl" name="video" type="combo">
       <description lang="es" text="Método de salida de vídeo: ninguno, gdi, ddraw o d3d"/>
       <description lang="us" text="Video output method: none, soft or opengl"/>
       <description lang="de" text="Methode zur Video-Ausgabe: none, soft oder opengl"/>
       <description lang="pl" text="Metoda wyjścia obrazu: none, soft lub opengl"/>
       <description lang="fr" text="Méthode de sortie vidéo: none, soft ou opengl"/>
       <description lang="pt" text="Método de saída de vídeo: none, soft ou opengl"/>
+      <choice name="auto"/>
       <choice name="none"/>
       <choice name="soft"/>
       <choice name="opengl"/>
