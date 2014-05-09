@@ -12648,9 +12648,9 @@ int main(int argc, char *argv[])
 
   if ( QMC2_CLI_OPT_HELP ) {
 	  printf("Usage: %s [-config_path <config_path>] [-cc] [-h|-?|-help] [qt_arguments]\n\n"
-		 "-config_path    Use specified configuration path\n"
+		 "-config_path    Use specified configuration path (default: %s)\n"
 		 "-cc             Clear all caches before starting up\n"
-		 "-h|-?|-help     Show this help text and exit\n", argv[0]);
+		 "-h|-?|-help     Show this help text and exit\n", argv[0], QString(QMC2_DOT_PATH).toLocal8Bit().constData());
 	  return 1;
   }
 
