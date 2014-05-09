@@ -7178,29 +7178,35 @@ void MainWindow::showEvent(QShowEvent *e)
 
 void MainWindow::resizeEvent(QResizeEvent *e)
 {
-	if ( e )
-		QMainWindow::resizeEvent(e);
+	bool refreshViews = true;
 
-	switch ( tabWidgetGamelist->currentIndex() ) {
-		case QMC2_GAMELIST_INDEX:
-			switch ( stackedWidgetView->currentIndex() ) {
-				case QMC2_VIEW_TREE_INDEX:
-					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetHierarchy_verticalScrollChanged()));
-					break;
-				case QMC2_VIEW_CATEGORY_INDEX:
-					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
-					break;
+	if ( e ) {
+		refreshViews = (e->oldSize().height() != e->size().height());
+		QMainWindow::resizeEvent(e);
+	}
+
+	if ( refreshViews ) {
+		switch ( tabWidgetGamelist->currentIndex() ) {
+			case QMC2_GAMELIST_INDEX:
+				switch ( stackedWidgetView->currentIndex() ) {
+					case QMC2_VIEW_TREE_INDEX:
+						QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetHierarchy_verticalScrollChanged()));
+						break;
+					case QMC2_VIEW_CATEGORY_INDEX:
+						QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
+						break;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-				case QMC2_VIEW_VERSION_INDEX:
-					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
-					break;
+					case QMC2_VIEW_VERSION_INDEX:
+						QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
+						break;
 #endif
-				case QMC2_VIEW_DETAIL_INDEX:
-				default:
-					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetGamelist_verticalScrollChanged()));
-					break;
-			}
-			break;
+					case QMC2_VIEW_DETAIL_INDEX:
+					default:
+						QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetGamelist_verticalScrollChanged()));
+						break;
+				}
+				break;
+		}
 	}
 }
 
