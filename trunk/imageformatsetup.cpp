@@ -42,6 +42,16 @@ ImageFormatSetup::ImageFormatSetup(QWidget *parent)
 	}
 #endif
 
+	restoreActiveFormats(true);
+	connect(treeWidget->model(), SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(rowsInserted(const QModelIndex &, int, int)));
+}
+
+void ImageFormatSetup::restoreActiveFormats(bool init)
+{
+	foreach (QString fmt, mActiveFormats.keys())
+		mActiveFormats[fmt].clear();
+	mActiveFormats.clear();
+
 	// FIXME: add support for additional artwork classes
 
 	for (int i = 0; i < artworkClassPrefixes.count(); i++) {
@@ -50,13 +60,36 @@ ImageFormatSetup::ImageFormatSetup(QWidget *parent)
 			mActiveFormats[artworkClassPrefixes[i]] << QMC2_IMAGE_FORMAT_INDEX_PNG;
 		else for (int j = 0; j < imgFmts.count(); j++)
 			mActiveFormats[artworkClassPrefixes[i]] << imgFmts[j].toInt();
-		comboBoxImageType->addItem(QIcon(artworkClassIcons[i]), artworkClassNames[i], artworkClassPrefixes[i]);
+		if ( init )
+			comboBoxImageType->addItem(QIcon(artworkClassIcons[i]), artworkClassNames[i], artworkClassPrefixes[i]);
 	}
 }
 
-ImageFormatSetup::~ImageFormatSetup()
+void ImageFormatSetup::checkForModifications()
 {
-	// NOP
+	bool modified = false;
+	for (int i = 0; i < artworkClassPrefixes.count() && !modified; i++) {
+		QList<int> storedFormats;
+		QStringList imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(artworkClassPrefixes[i]), QStringList()).toStringList();
+		if ( imgFmts.isEmpty() )
+			storedFormats << QMC2_IMAGE_FORMAT_INDEX_PNG;
+		else for (int j = 0; j < imgFmts.count(); j++)
+			storedFormats << imgFmts[j].toInt();
+		modified = (mActiveFormats[artworkClassPrefixes[i]] != storedFormats);
+	}
+	pushButtonRestore->setEnabled(modified);
+}
+
+void ImageFormatSetup::rowsInserted(const QModelIndex &, int, int)
+{
+	QString artworkClass = comboBoxImageType->itemData(comboBoxImageType->currentIndex()).toString();
+	mActiveFormats[artworkClass].clear();
+	for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
+		QTreeWidgetItem *tlItem = treeWidget->topLevelItem(i);
+		if ( tlItem->checkState(QMC2_IMGFMT_SETUP_COLUMN_ACT) == Qt::Checked )
+			mActiveFormats[artworkClass] << ImageWidget::formatNames.indexOf(tlItem->text(QMC2_IMGFMT_SETUP_COLUMN_NAME));
+	}
+	QTimer::singleShot(0, this, SLOT(checkForModifications()));
 }
 
 void ImageFormatSetup::adjustIconSizes()
@@ -103,7 +136,10 @@ void ImageFormatSetup::on_pushButtonCancel_clicked()
 
 void ImageFormatSetup::on_pushButtonRestore_clicked()
 {
-	// FIXME
+	restoreActiveFormats();
+	mPreviousClassIndex = -1;
+	on_comboBoxImageType_currentIndexChanged(comboBoxImageType->currentIndex());
+	QTimer::singleShot(0, this, SLOT(checkForModifications()));
 }
 
 void ImageFormatSetup::on_comboBoxImageType_currentIndexChanged(int index)
@@ -175,6 +211,7 @@ void ImageFormatSetup::on_treeWidget_itemClicked(QTreeWidgetItem *item, int colu
 			if ( tlItem->checkState(QMC2_IMGFMT_SETUP_COLUMN_ACT) == Qt::Checked )
 				mActiveFormats[artworkClass] << ImageWidget::formatNames.indexOf(tlItem->text(QMC2_IMGFMT_SETUP_COLUMN_NAME));
 		}
+		QTimer::singleShot(0, this, SLOT(checkForModifications()));
 	}
 }
 
