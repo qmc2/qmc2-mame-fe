@@ -13,7 +13,6 @@ class ImageFormatSetup : public QDialog, public Ui::ImageFormatSetup
 
        	public:
 		ImageFormatSetup(QWidget *parent = 0);
-		~ImageFormatSetup();
 
 		static QStringList artworkClassPrefixes;
 		static QStringList artworkClassNames;
@@ -32,8 +31,14 @@ class ImageFormatSetup : public QDialog, public Ui::ImageFormatSetup
 		void hideEvent(QHideEvent *);
 
 	private:
+		void restoreActiveFormats(bool init = false);
+
 		QMap<QString, QList<int> > mActiveFormats;
 		int mPreviousClassIndex;
+
+	private slots:
+		void checkForModifications();
+		void rowsInserted(const QModelIndex &, int, int);
 };
 
 #endif
