@@ -592,6 +592,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		RankItemWidget *getCurrentRankItemWidget();
 		QList<RankItemWidget *> *getTaggedRankItemWidgets();
 
+		// foreign IDs tree-widget
+		void on_treeWidgetForeignIDs_itemActivated(QTreeWidgetItem *, int);
+		void on_treeWidgetForeignIDs_itemDoubleClicked(QTreeWidgetItem *, int); 
+		void on_treeWidgetForeignIDs_customContextMenuRequested(const QPoint &);
+
 	protected:
 		void closeEvent(QCloseEvent *);
 		void showEvent(QShowEvent *);
