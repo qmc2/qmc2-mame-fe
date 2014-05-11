@@ -6876,7 +6876,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
   QTreeWidgetItem *foreignItem = treeWidgetForeignIDs->currentItem();
   if ( foreignItem && foreignItem->parent() && foreignItem->isSelected() ) {
-      log(QMC2_LOG_FRONTEND, tr("saving foreign ID selection"));
       QTreeWidgetItem *parentItem = foreignItem->parent();
       QStringList foreignIdState;
       foreignIdState << QString::number(treeWidgetForeignIDs->indexOfTopLevelItem(parentItem)) << QString::number(parentItem->indexOfChild(foreignItem));
