@@ -7210,12 +7210,12 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="9669"/>
         <location filename="../../qmc2main.cpp" line="9757"/>
         <location filename="../../qmc2main.cpp" line="9774"/>
-        <location filename="../../qmc2main.cpp" line="11934"/>
-        <location filename="../../qmc2main.cpp" line="11988"/>
-        <location filename="../../qmc2main.cpp" line="12054"/>
-        <location filename="../../qmc2main.cpp" line="12125"/>
-        <location filename="../../qmc2main.cpp" line="12190"/>
-        <location filename="../../qmc2main.cpp" line="12199"/>
+        <location filename="../../qmc2main.cpp" line="11911"/>
+        <location filename="../../qmc2main.cpp" line="11965"/>
+        <location filename="../../qmc2main.cpp" line="12031"/>
+        <location filename="../../qmc2main.cpp" line="12102"/>
+        <location filename="../../qmc2main.cpp" line="12167"/>
+        <location filename="../../qmc2main.cpp" line="12176"/>
         <source>Waiting for data...</source>
         <translation>Esperando datos...</translation>
     </message>
@@ -8903,7 +8903,7 @@ Do you want to choose a different name?</source>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4272"/>
-        <location filename="../../qmc2main.cpp" line="11672"/>
+        <location filename="../../qmc2main.cpp" line="11649"/>
         <source>Internal browser</source>
         <translation>Navegador interno</translation>
     </message>
@@ -10977,73 +10977,73 @@ Should they be killed on exit?</source>
         <translation>En uso: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10941"/>
-        <location filename="../../qmc2main.cpp" line="10975"/>
+        <location filename="../../qmc2main.cpp" line="10918"/>
+        <location filename="../../qmc2main.cpp" line="10952"/>
         <source>Play tagged - %p%</source>
         <translation>Jugar etiquetados - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11011"/>
+        <location filename="../../qmc2main.cpp" line="10988"/>
         <source>Add favorites - %p%</source>
         <translation>Añadir favoritos - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11044"/>
-        <location filename="../../qmc2main.cpp" line="11072"/>
-        <location filename="../../qmc2main.cpp" line="11112"/>
+        <location filename="../../qmc2main.cpp" line="11021"/>
+        <location filename="../../qmc2main.cpp" line="11049"/>
+        <location filename="../../qmc2main.cpp" line="11089"/>
         <source>please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)</source>
         <translation>por favor espera a que la actividad actual finalice y vuelve a intentarlo (esta operación en lote solo puede ejecutarse exclusivamente)</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11118"/>
+        <location filename="../../qmc2main.cpp" line="11095"/>
         <source>ROM tool tagged - %p%</source>
         <translation>Herramienta ROM (etiquetados) - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11341"/>
-        <location filename="../../qmc2main.cpp" line="11477"/>
+        <location filename="../../qmc2main.cpp" line="11318"/>
+        <location filename="../../qmc2main.cpp" line="11454"/>
         <source>Tag - %p%</source>
         <translation>Etiquetar - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11385"/>
-        <location filename="../../qmc2main.cpp" line="11522"/>
+        <location filename="../../qmc2main.cpp" line="11362"/>
+        <location filename="../../qmc2main.cpp" line="11499"/>
         <source>Untag - %p%</source>
         <translation>Desetiquetar - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11429"/>
-        <location filename="../../qmc2main.cpp" line="11567"/>
+        <location filename="../../qmc2main.cpp" line="11406"/>
+        <location filename="../../qmc2main.cpp" line="11544"/>
         <source>Invert tag - %p%</source>
         <translation>Invertir etiqueta - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11674"/>
+        <location filename="../../qmc2main.cpp" line="11651"/>
         <source>External browser</source>
         <translation>Navegador externo</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11856"/>
+        <location filename="../../qmc2main.cpp" line="11833"/>
         <source>Software detail</source>
         <translation>Detalle de software</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12262"/>
+        <location filename="../../qmc2main.cpp" line="12239"/>
         <source>Choose overlay color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12467"/>
+        <location filename="../../qmc2main.cpp" line="12444"/>
         <source>WARNING: ROM path &apos;%1&apos; doesn&apos;t exist</source>
         <translation>ATENCIÓN: la ruta de ROM &apos;%1&apos; no existe</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12471"/>
+        <location filename="../../qmc2main.cpp" line="12448"/>
         <source>WARNING: ROM path &apos;%1&apos; isn&apos;t accessible</source>
         <translation>ATENCIÓN: la ruta de ROM &apos;%1&apos; no es accesible</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12480"/>
+        <location filename="../../qmc2main.cpp" line="12457"/>
         <source>The ROM path &apos;%1&apos; doesn&apos;t exist or isn&apos;t accessible.
 
 Please check the &apos;rompath&apos; option in the global emulator configuration to fix this, otherwise ROMs will probably not be available to the emulator!</source>
@@ -11052,7 +11052,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
 Por favor, revisa la opción &apos;rompath&apos; en la configuración global del emulador para arreglarlo, ¡de lo contrario las ROMs no estarán disponibles para el emulador!</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12483"/>
+        <location filename="../../qmc2main.cpp" line="12460"/>
         <source>The ROM paths
 
 %1
@@ -11067,7 +11067,7 @@ no existen o no son accesibles
 Por favor, revisa la opción &apos;rompath&apos; en la configuración global del emulador para arreglarlo, ¡de lo contrario las ROMs no estarán disponibles para el emulador!</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12486"/>
+        <location filename="../../qmc2main.cpp" line="12463"/>
         <source>Check ROM path</source>
         <translation>Comprobar la ruta ROM</translation>
     </message>
@@ -15953,7 +15953,7 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4892"/>
-        <location filename="../../qmc2main.cpp" line="12896"/>
+        <location filename="../../qmc2main.cpp" line="12857"/>
         <source>Import from...</source>
         <translation>Importar desde...</translation>
     </message>
@@ -15970,113 +15970,113 @@ Are you sure you want to do this?</source>
         <translation>Importar la configuración MESS específica de la máquina</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12782"/>
+        <location filename="../../qmc2main.cpp" line="12759"/>
         <source>Setting up the GUI, please wait...</source>
         <translation>Creando la GUI, por favor espera...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12830"/>
+        <location filename="../../qmc2main.cpp" line="12807"/>
         <source>M.E.S.S. Catalog / Launcher II v</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12832"/>
-        <location filename="../../qmc2main.cpp" line="12836"/>
+        <location filename="../../qmc2main.cpp" line="12809"/>
+        <location filename="../../qmc2main.cpp" line="12813"/>
         <source>M.A.M.E. Catalog / Launcher II v</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12834"/>
+        <location filename="../../qmc2main.cpp" line="12811"/>
         <source>U.M.E. Catalog / Launcher II v</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12840"/>
+        <location filename="../../qmc2main.cpp" line="12817"/>
         <source>SVN r%1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12862"/>
+        <location filename="../../qmc2main.cpp" line="12823"/>
         <source>OpenGL features enabled</source>
         <translation>Funciones OpenGL activadas</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12866"/>
+        <location filename="../../qmc2main.cpp" line="12827"/>
         <source>Phonon features enabled - using Phonon v%1</source>
         <translation>Funciones Phonon activadas - usando Phonon v%1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12871"/>
+        <location filename="../../qmc2main.cpp" line="12832"/>
         <source>SDL joystick support enabled - using SDL v%1.%2.%3</source>
         <translation>Soporte de joystick SDL activado - usando SDL v%1.%2.%3</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12875"/>
+        <location filename="../../qmc2main.cpp" line="12836"/>
         <source>processing global emulator configuration</source>
         <translation>procesando configuración de emulador global</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12885"/>
+        <location filename="../../qmc2main.cpp" line="12846"/>
         <source>Export to...</source>
         <translation>Exportar a...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12887"/>
-        <location filename="../../qmc2main.cpp" line="12888"/>
+        <location filename="../../qmc2main.cpp" line="12848"/>
+        <location filename="../../qmc2main.cpp" line="12849"/>
         <source>Export global MAME configuration</source>
         <translation>Exportar configuración MAME global</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12890"/>
-        <location filename="../../qmc2main.cpp" line="12891"/>
+        <location filename="../../qmc2main.cpp" line="12851"/>
+        <location filename="../../qmc2main.cpp" line="12852"/>
         <source>Export global MESS configuration</source>
         <translation>Exportar configuración MESS global</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12893"/>
-        <location filename="../../qmc2main.cpp" line="12894"/>
+        <location filename="../../qmc2main.cpp" line="12854"/>
+        <location filename="../../qmc2main.cpp" line="12855"/>
         <source>Export global UME configuration</source>
         <translation>Exportar configuración UME global</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12898"/>
-        <location filename="../../qmc2main.cpp" line="12899"/>
+        <location filename="../../qmc2main.cpp" line="12859"/>
+        <location filename="../../qmc2main.cpp" line="12860"/>
         <source>Import global MAME configuration</source>
         <translation>Importar configuración MAME global</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12901"/>
-        <location filename="../../qmc2main.cpp" line="12902"/>
+        <location filename="../../qmc2main.cpp" line="12862"/>
+        <location filename="../../qmc2main.cpp" line="12863"/>
         <source>Import global MESS configuration</source>
         <translation>Importar configuración MESS global</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12904"/>
-        <location filename="../../qmc2main.cpp" line="12905"/>
+        <location filename="../../qmc2main.cpp" line="12865"/>
+        <location filename="../../qmc2main.cpp" line="12866"/>
         <source>Import global UME configuration</source>
         <translation>Importar configuración UME global</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12914"/>
-        <location filename="../../qmc2main.cpp" line="12924"/>
+        <location filename="../../qmc2main.cpp" line="12875"/>
+        <location filename="../../qmc2main.cpp" line="12885"/>
         <source>&lt;inipath&gt;/mame.ini</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12916"/>
-        <location filename="../../qmc2main.cpp" line="12926"/>
+        <location filename="../../qmc2main.cpp" line="12877"/>
+        <location filename="../../qmc2main.cpp" line="12887"/>
         <source>&lt;inipath&gt;/mess.ini</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12918"/>
-        <location filename="../../qmc2main.cpp" line="12928"/>
+        <location filename="../../qmc2main.cpp" line="12879"/>
+        <location filename="../../qmc2main.cpp" line="12889"/>
         <source>&lt;inipath&gt;/ume.ini</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="12920"/>
-        <location filename="../../qmc2main.cpp" line="12930"/>
+        <location filename="../../qmc2main.cpp" line="12881"/>
+        <location filename="../../qmc2main.cpp" line="12891"/>
         <source>Select file...</source>
         <translation>Seleccionar archivo...</translation>
     </message>

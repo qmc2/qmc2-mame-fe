@@ -10456,110 +10456,87 @@ void MainWindow::memoryUpdateTimer_timeout() { ; }
 
 void MainWindow::checkActivity()
 {
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkActivity()");
-#endif
+	// resync timer (as far as possible)
+	activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 
-  // resync timer (as far as possible)
-  activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
+	if ( qmc2ReloadActive || qmc2VerifyActive || qmc2FilterActive || qmc2ImageCheckActive || qmc2SampleCheckActive || qmc2ROMAlyzerActive || qmc2LoadingGameInfoDB || qmc2LoadingSoftwareInfoDB || qmc2LoadingEmuInfoDB || (qmc2SoftwareList && qmc2SoftwareList->isLoading) ) {
+		activityState = !activityState;
+		if ( activityState )
+			actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/activity_green.png")));
+		else
+			actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/activity_red.png")));
+		toolbar->update();
+		isActiveState = true;
+	} else {
+		if ( isActiveState ) {
+			actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/exit.png")));
+			toolbar->update();
+			activityState = false;
+		}
+		isActiveState = false;
+	}
 
-  if ( qmc2ReloadActive ||
-       qmc2VerifyActive ||
-       qmc2FilterActive ||
-       qmc2ImageCheckActive ||
-       qmc2SampleCheckActive ||
-       qmc2ROMAlyzerActive ||
-       qmc2LoadingGameInfoDB ||
-       qmc2LoadingSoftwareInfoDB ||
-       qmc2LoadingEmuInfoDB ||
-       (qmc2SoftwareList && qmc2SoftwareList->isLoading) )
-  {
-    activityState = !activityState;
-    if ( activityState )
-      actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/activity_green.png")));
-    else
-      actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/activity_red.png")));
-    toolbar->update();
-    isActiveState = true;
-  } else {
-    if ( isActiveState ) {
-      actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/exit.png")));
-      toolbar->update();
-      activityState = false;
-    }
-    isActiveState = false;
-  }
+	if ( qmc2SystemNotesEditor ) {
+		qmc2SystemNotesEditor->move(0, 0);
+		qmc2SystemNotesEditor->resize(qmc2SystemNotesEditor->parentWidget()->size());
+	}
 
-  if ( qmc2SystemNotesEditor ) {
-	  qmc2SystemNotesEditor->move(0, 0);
-	  qmc2SystemNotesEditor->resize(qmc2SystemNotesEditor->parentWidget()->size());
-  }
+	if ( menuRank->isVisible() || menuRank->isTearOffMenuVisible() )
+		QTimer::singleShot(0, this, SLOT(menuRank_aboutToShow()));
 }
 
-int MainWindow::sortCriteriaLogicalIndex() {
-  switch ( qmc2SortCriteria ) {
-    case QMC2_SORT_BY_DESCRIPTION:
-    case QMC2_SORT_BY_ROM_STATE:
-      return QMC2_GAMELIST_COLUMN_GAME;
-
-    case QMC2_SORT_BY_TAG:
-      return QMC2_GAMELIST_COLUMN_TAG;
-
-    case QMC2_SORT_BY_YEAR:
-      return QMC2_GAMELIST_COLUMN_YEAR;
-
-    case QMC2_SORT_BY_MANUFACTURER:
-      return QMC2_GAMELIST_COLUMN_MANU;
-
-    case QMC2_SORT_BY_NAME:
-      return QMC2_GAMELIST_COLUMN_NAME;
-
-    case QMC2_SORT_BY_ROMTYPES:
-      return QMC2_GAMELIST_COLUMN_RTYPES;
-
-    case QMC2_SORT_BY_PLAYERS:
-      return QMC2_GAMELIST_COLUMN_PLAYERS;
-
-    case QMC2_SORT_BY_DRVSTAT:
-      return QMC2_GAMELIST_COLUMN_DRVSTAT;
-
-    case QMC2_SORT_BY_SRCFILE:
-      return QMC2_GAMELIST_COLUMN_SRCFILE;
-
-    case QMC2_SORT_BY_RANK:
-      return QMC2_GAMELIST_COLUMN_RANK;
-
-    case QMC2_SORT_BY_CATEGORY:
-      return QMC2_GAMELIST_COLUMN_CATEGORY;
-
+int MainWindow::sortCriteriaLogicalIndex()
+{
+	switch ( qmc2SortCriteria ) {
+		case QMC2_SORT_BY_TAG:
+			return QMC2_GAMELIST_COLUMN_TAG;
+		case QMC2_SORT_BY_YEAR:
+			return QMC2_GAMELIST_COLUMN_YEAR;
+		case QMC2_SORT_BY_MANUFACTURER:
+			return QMC2_GAMELIST_COLUMN_MANU;
+		case QMC2_SORT_BY_NAME:
+			return QMC2_GAMELIST_COLUMN_NAME;
+		case QMC2_SORT_BY_ROMTYPES:
+			return QMC2_GAMELIST_COLUMN_RTYPES;
+		case QMC2_SORT_BY_PLAYERS:
+			return QMC2_GAMELIST_COLUMN_PLAYERS;
+		case QMC2_SORT_BY_DRVSTAT:
+			return QMC2_GAMELIST_COLUMN_DRVSTAT;
+		case QMC2_SORT_BY_SRCFILE:
+			return QMC2_GAMELIST_COLUMN_SRCFILE;
+		case QMC2_SORT_BY_RANK:
+			return QMC2_GAMELIST_COLUMN_RANK;
+		case QMC2_SORT_BY_CATEGORY:
+			return QMC2_GAMELIST_COLUMN_CATEGORY;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    case QMC2_SORT_BY_VERSION:
-      return QMC2_GAMELIST_COLUMN_VERSION;
+		case QMC2_SORT_BY_VERSION:
+			return QMC2_GAMELIST_COLUMN_VERSION;
 #endif
-
-    default:
-      return QMC2_GAMELIST_COLUMN_GAME;
-  }
+		case QMC2_SORT_BY_DESCRIPTION:
+		case QMC2_SORT_BY_ROM_STATE:
+		default:
+			return QMC2_GAMELIST_COLUMN_GAME;
+	}
 }
 
 QPoint MainWindow::adjustedWidgetPosition(QPoint p, QWidget *w)
 {
-  static QPoint adjustedPosition;
-  static QList<QWidget *> adjustedWidgets;
+	static QPoint adjustedPosition;
+	static QList<QWidget *> adjustedWidgets;
 
-  if ( !adjustedWidgets.contains(w) ) {
-    w->move(p);
-    w->show();
-    adjustedWidgets.append(w);
-  }
+	if ( !adjustedWidgets.contains(w) ) {
+		w->move(p);
+		w->show();
+		adjustedWidgets.append(w);
+	}
 
-  adjustedPosition = p;
-  if ( p.x() + w->width() > desktopGeometry.width() )
-    adjustedPosition.setX(desktopGeometry.width() - w->width());
-  if ( p.y() + w->height() > desktopGeometry.height() )
-    adjustedPosition.setY(desktopGeometry.height() - w->height());
+	adjustedPosition = p;
+	if ( p.x() + w->width() > desktopGeometry.width() )
+		adjustedPosition.setX(desktopGeometry.width() - w->width());
+	if ( p.y() + w->height() > desktopGeometry.height() )
+		adjustedPosition.setY(desktopGeometry.height() - w->height());
 
-  return adjustedPosition;
+	return adjustedPosition;
 }
 
 void MainWindow::enableContextMenuPlayActions(bool enable)
@@ -12371,7 +12348,7 @@ void MainWindow::on_actionTaggedSetRank5_triggered(bool)
 
 void MainWindow::menuRank_aboutToShow()
 {
-	bool taggedItemsVisible = (qmc2Gamelist->numTaggedSets > 0 && menuGame->isVisible());
+	bool taggedItemsVisible = (qmc2Gamelist->numTaggedSets > 0 && (menuGame->isVisible() || menuRank->isTearOffMenuVisible()));
 	menuTaggedSetRank->menuAction()->setVisible(taggedItemsVisible);
 	actionTaggedIncreaseRank->setVisible(taggedItemsVisible);
 	actionTaggedDecreaseRank->setVisible(taggedItemsVisible);
@@ -12595,128 +12572,128 @@ void myQtMessageHandler(QtMsgType type, const QMessageLogContext &, const QStrin
 
 void prepareShortcuts()
 {
-  // shortcuts
-  qmc2ShortcutMap["Ctrl+1"].second = qmc2MainWindow->actionCheckROMs;
+	// shortcuts
+	qmc2ShortcutMap["Ctrl+1"].second = qmc2MainWindow->actionCheckROMs;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  qmc2ShortcutMap["Ctrl+2"].second = qmc2MainWindow->actionCheckSamples;
+	qmc2ShortcutMap["Ctrl+2"].second = qmc2MainWindow->actionCheckSamples;
 #endif
-  qmc2ShortcutMap["Ctrl+3"].second = qmc2MainWindow->actionCheckImagesAndIcons;
-  qmc2ShortcutMap["Ctrl+B"].second = qmc2MainWindow->actionAbout;
-  qmc2ShortcutMap["Ctrl+D"].second = qmc2MainWindow->actionAnalyseCurrentROM;
-  qmc2ShortcutMap["Ctrl+Shift+D"].second = qmc2MainWindow->actionAnalyseROMTagged;
-  qmc2ShortcutMap["Ctrl+E"].second = qmc2MainWindow->actionExportROMStatus;
-  qmc2ShortcutMap["Ctrl+J"].second = qmc2MainWindow->actionToFavorites;
-  qmc2ShortcutMap["Ctrl+Shift+J"].second = qmc2MainWindow->actionToFavoritesTagged;
-  qmc2ShortcutMap["Ctrl+H"].second = qmc2MainWindow->actionDocumentation;
-  qmc2ShortcutMap["Ctrl+I"].second = qmc2MainWindow->actionClearImageCache;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME) // FIXME: we have no MESS arcade theme yet!
-  qmc2ShortcutMap["Ctrl+Shift+A"].second = qmc2MainWindow->actionArcadeSetup;
+	qmc2ShortcutMap["Ctrl+3"].second = qmc2MainWindow->actionCheckImagesAndIcons;
+	qmc2ShortcutMap["Ctrl+B"].second = qmc2MainWindow->actionAbout;
+	qmc2ShortcutMap["Ctrl+D"].second = qmc2MainWindow->actionAnalyseCurrentROM;
+	qmc2ShortcutMap["Ctrl+Shift+D"].second = qmc2MainWindow->actionAnalyseROMTagged;
+	qmc2ShortcutMap["Ctrl+E"].second = qmc2MainWindow->actionExportROMStatus;
+	qmc2ShortcutMap["Ctrl+J"].second = qmc2MainWindow->actionToFavorites;
+	qmc2ShortcutMap["Ctrl+Shift+J"].second = qmc2MainWindow->actionToFavoritesTagged;
+	qmc2ShortcutMap["Ctrl+H"].second = qmc2MainWindow->actionDocumentation;
+	qmc2ShortcutMap["Ctrl+I"].second = qmc2MainWindow->actionClearImageCache;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	qmc2ShortcutMap["Ctrl+Shift+A"].second = qmc2MainWindow->actionArcadeSetup;
 #endif
-  qmc2ShortcutMap["Ctrl+M"].second = qmc2MainWindow->actionClearMAWSCache;
-  qmc2ShortcutMap["Ctrl+N"].second = qmc2MainWindow->actionClearIconCache;
+	qmc2ShortcutMap["Ctrl+M"].second = qmc2MainWindow->actionClearMAWSCache;
+	qmc2ShortcutMap["Ctrl+N"].second = qmc2MainWindow->actionClearIconCache;
 #if defined(QMC2_OS_MAC)
-  qmc2ShortcutMap["Ctrl+,"].second = qmc2MainWindow->actionOptions;
+	qmc2ShortcutMap["Ctrl+,"].second = qmc2MainWindow->actionOptions;
 #else
-  qmc2ShortcutMap["Ctrl+O"].second = qmc2MainWindow->actionOptions;
+	qmc2ShortcutMap["Ctrl+O"].second = qmc2MainWindow->actionOptions;
 #endif
-  qmc2ShortcutMap["Ctrl+P"].second = qmc2MainWindow->actionPlay;
+	qmc2ShortcutMap["Ctrl+P"].second = qmc2MainWindow->actionPlay;
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-  qmc2ShortcutMap["Ctrl+Shift+P"].second = qmc2MainWindow->actionPlayEmbedded;
+	qmc2ShortcutMap["Ctrl+Shift+P"].second = qmc2MainWindow->actionPlayEmbedded;
 #endif
-  qmc2ShortcutMap["Ctrl+Q"].second = qmc2MainWindow->actionAboutQt;
-  qmc2ShortcutMap["Ctrl+R"].second = qmc2MainWindow->actionReload;
-  qmc2ShortcutMap["Ctrl+S"].second = qmc2MainWindow->actionCheckCurrentROM;
-  qmc2ShortcutMap["Ctrl+Shift+S"].second = qmc2MainWindow->actionCheckROMStateTagged;
-  qmc2ShortcutMap["Ctrl+T"].second = qmc2MainWindow->actionRecreateTemplateMap;
-  qmc2ShortcutMap["Ctrl+Shift+C"].second = qmc2MainWindow->actionCheckTemplateMap;
-  qmc2ShortcutMap["Ctrl+X"].second = qmc2MainWindow->actionExitStop;
+	qmc2ShortcutMap["Ctrl+Q"].second = qmc2MainWindow->actionAboutQt;
+	qmc2ShortcutMap["Ctrl+R"].second = qmc2MainWindow->actionReload;
+	qmc2ShortcutMap["Ctrl+S"].second = qmc2MainWindow->actionCheckCurrentROM;
+	qmc2ShortcutMap["Ctrl+Shift+S"].second = qmc2MainWindow->actionCheckROMStateTagged;
+	qmc2ShortcutMap["Ctrl+T"].second = qmc2MainWindow->actionRecreateTemplateMap;
+	qmc2ShortcutMap["Ctrl+Shift+C"].second = qmc2MainWindow->actionCheckTemplateMap;
+	qmc2ShortcutMap["Ctrl+X"].second = qmc2MainWindow->actionExitStop;
 #if defined(QMC2_YOUTUBE_ENABLED)
-  qmc2ShortcutMap["Ctrl+Y"].second = qmc2MainWindow->actionClearYouTubeCache;
+	qmc2ShortcutMap["Ctrl+Y"].second = qmc2MainWindow->actionClearYouTubeCache;
 #endif
-  qmc2ShortcutMap["Ctrl+Z"].second = qmc2MainWindow->actionROMAlyzer;
-  qmc2ShortcutMap["Ctrl+Alt+C"].second = qmc2MainWindow->actionRomStatusFilterC;
-  qmc2ShortcutMap["Ctrl+Alt+M"].second = qmc2MainWindow->actionRomStatusFilterM;
-  qmc2ShortcutMap["Ctrl+Alt+I"].second = qmc2MainWindow->actionRomStatusFilterI;
-  qmc2ShortcutMap["Ctrl+Alt+N"].second = qmc2MainWindow->actionRomStatusFilterN;
-  qmc2ShortcutMap["Ctrl+Alt+U"].second = qmc2MainWindow->actionRomStatusFilterU;
+	qmc2ShortcutMap["Ctrl+Z"].second = qmc2MainWindow->actionROMAlyzer;
+	qmc2ShortcutMap["Ctrl+Alt+C"].second = qmc2MainWindow->actionRomStatusFilterC;
+	qmc2ShortcutMap["Ctrl+Alt+M"].second = qmc2MainWindow->actionRomStatusFilterM;
+	qmc2ShortcutMap["Ctrl+Alt+I"].second = qmc2MainWindow->actionRomStatusFilterI;
+	qmc2ShortcutMap["Ctrl+Alt+N"].second = qmc2MainWindow->actionRomStatusFilterN;
+	qmc2ShortcutMap["Ctrl+Alt+U"].second = qmc2MainWindow->actionRomStatusFilterU;
 #if defined(QMC2_VARIANT_LAUNCHER)
-  qmc2ShortcutMap["Ctrl+Alt+1"].second = qmc2MainWindow->actionLaunchQMC2MAME;
-  qmc2ShortcutMap["Ctrl+Alt+2"].second = qmc2MainWindow->actionLaunchQMC2MESS;
-  qmc2ShortcutMap["Ctrl+Alt+3"].second = qmc2MainWindow->actionLaunchQMC2UME;
+	qmc2ShortcutMap["Ctrl+Alt+1"].second = qmc2MainWindow->actionLaunchQMC2MAME;
+	qmc2ShortcutMap["Ctrl+Alt+2"].second = qmc2MainWindow->actionLaunchQMC2MESS;
+	qmc2ShortcutMap["Ctrl+Alt+3"].second = qmc2MainWindow->actionLaunchQMC2UME;
 #endif
-  qmc2ShortcutMap["Ctrl+Shift+T"].second = qmc2MainWindow->actionSetTag;
-  qmc2ShortcutMap["Ctrl+Shift+U"].second = qmc2MainWindow->actionUnsetTag;
-  qmc2ShortcutMap["Ctrl+Shift+G"].second = qmc2MainWindow->actionToggleTag;
-  qmc2ShortcutMap["Shift+Down"].second = qmc2MainWindow->actionToggleTagCursorDown;
-  qmc2ShortcutMap["Shift+Up"].second = qmc2MainWindow->actionToggleTagCursorUp;
-  qmc2ShortcutMap["Ctrl+Shift+L"].second = qmc2MainWindow->actionTagAll;
-  qmc2ShortcutMap["Ctrl+Shift+N"].second = qmc2MainWindow->actionUntagAll;
-  qmc2ShortcutMap["Ctrl+Shift+I"].second = qmc2MainWindow->actionInvertTags;
-  qmc2ShortcutMap["Ctrl+Shift+X"].second = qmc2MainWindow->actionTagVisible;
-  qmc2ShortcutMap["Ctrl+Shift+Y"].second = qmc2MainWindow->actionUntagVisible;
-  qmc2ShortcutMap["Ctrl+Shift+Z"].second = qmc2MainWindow->actionInvertVisibleTags;
-  qmc2ShortcutMap["F5"].second = qmc2MainWindow->actionViewFullDetail;
-  qmc2ShortcutMap["F6"].second = qmc2MainWindow->actionViewParentClones;
-  qmc2ShortcutMap["F7"].second = qmc2MainWindow->actionViewByCategory;
+	qmc2ShortcutMap["Ctrl+Shift+T"].second = qmc2MainWindow->actionSetTag;
+	qmc2ShortcutMap["Ctrl+Shift+U"].second = qmc2MainWindow->actionUnsetTag;
+	qmc2ShortcutMap["Ctrl+Shift+G"].second = qmc2MainWindow->actionToggleTag;
+	qmc2ShortcutMap["Shift+Down"].second = qmc2MainWindow->actionToggleTagCursorDown;
+	qmc2ShortcutMap["Shift+Up"].second = qmc2MainWindow->actionToggleTagCursorUp;
+	qmc2ShortcutMap["Ctrl+Shift+L"].second = qmc2MainWindow->actionTagAll;
+	qmc2ShortcutMap["Ctrl+Shift+N"].second = qmc2MainWindow->actionUntagAll;
+	qmc2ShortcutMap["Ctrl+Shift+I"].second = qmc2MainWindow->actionInvertTags;
+	qmc2ShortcutMap["Ctrl+Shift+X"].second = qmc2MainWindow->actionTagVisible;
+	qmc2ShortcutMap["Ctrl+Shift+Y"].second = qmc2MainWindow->actionUntagVisible;
+	qmc2ShortcutMap["Ctrl+Shift+Z"].second = qmc2MainWindow->actionInvertVisibleTags;
+	qmc2ShortcutMap["F5"].second = qmc2MainWindow->actionViewFullDetail;
+	qmc2ShortcutMap["F6"].second = qmc2MainWindow->actionViewParentClones;
+	qmc2ShortcutMap["F7"].second = qmc2MainWindow->actionViewByCategory;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  qmc2ShortcutMap["F8"].second = qmc2MainWindow->actionViewByVersion;
+	qmc2ShortcutMap["F8"].second = qmc2MainWindow->actionViewByVersion;
 #endif
-  qmc2ShortcutMap["F9"].second = qmc2MainWindow->actionRunRomTool;
-  qmc2ShortcutMap["Ctrl+Shift+F9"].second = qmc2MainWindow->actionRunRomToolTagged;
-  qmc2ShortcutMap["F10"].second = NULL; // for "check software-states"
-  qmc2ShortcutMap["F11"].second = qmc2MainWindow->actionFullscreenToggle;
+	qmc2ShortcutMap["F9"].second = qmc2MainWindow->actionRunRomTool;
+	qmc2ShortcutMap["Ctrl+Shift+F9"].second = qmc2MainWindow->actionRunRomToolTagged;
+	qmc2ShortcutMap["F10"].second = NULL; // for "check software-states"
+	qmc2ShortcutMap["F11"].second = qmc2MainWindow->actionFullscreenToggle;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME) // FIXME: we have no MESS arcade theme yet!
-  qmc2ShortcutMap["F12"].second = qmc2MainWindow->actionLaunchArcade;
+	qmc2ShortcutMap["F12"].second = qmc2MainWindow->actionLaunchArcade;
 #endif
 #if QMC2_USE_PHONON_API
-  qmc2ShortcutMap["Ctrl+Alt+Left"].second = qmc2MainWindow->actionAudioPreviousTrack;
-  qmc2ShortcutMap["Ctrl+Alt+Right"].second = qmc2MainWindow->actionAudioNextTrack;
-  qmc2ShortcutMap["Ctrl+Alt+B"].second = qmc2MainWindow->actionAudioFastBackward;
-  qmc2ShortcutMap["Ctrl+Alt+F"].second = qmc2MainWindow->actionAudioFastForward;
-  qmc2ShortcutMap["Ctrl+Alt+S"].second = qmc2MainWindow->actionAudioStopTrack;
-  qmc2ShortcutMap["Ctrl+Alt+#"].second = qmc2MainWindow->actionAudioPauseTrack;
-  qmc2ShortcutMap["Ctrl+Alt+P"].second = qmc2MainWindow->actionAudioPlayTrack;
-  qmc2ShortcutMap["Ctrl+Alt+PgUp"].second = qmc2MainWindow->actionAudioRaiseVolume;
-  qmc2ShortcutMap["Ctrl+Alt+PgDown"].second = qmc2MainWindow->actionAudioLowerVolume;
+	qmc2ShortcutMap["Ctrl+Alt+Left"].second = qmc2MainWindow->actionAudioPreviousTrack;
+	qmc2ShortcutMap["Ctrl+Alt+Right"].second = qmc2MainWindow->actionAudioNextTrack;
+	qmc2ShortcutMap["Ctrl+Alt+B"].second = qmc2MainWindow->actionAudioFastBackward;
+	qmc2ShortcutMap["Ctrl+Alt+F"].second = qmc2MainWindow->actionAudioFastForward;
+	qmc2ShortcutMap["Ctrl+Alt+S"].second = qmc2MainWindow->actionAudioStopTrack;
+	qmc2ShortcutMap["Ctrl+Alt+#"].second = qmc2MainWindow->actionAudioPauseTrack;
+	qmc2ShortcutMap["Ctrl+Alt+P"].second = qmc2MainWindow->actionAudioPlayTrack;
+	qmc2ShortcutMap["Ctrl+Alt+PgUp"].second = qmc2MainWindow->actionAudioRaiseVolume;
+	qmc2ShortcutMap["Ctrl+Alt+PgDown"].second = qmc2MainWindow->actionAudioLowerVolume;
 #endif
-  qmc2ShortcutMap["Alt+PgUp"].second = qmc2MainWindow->actionIncreaseRank;
-  qmc2ShortcutMap["Alt+PgDown"].second = qmc2MainWindow->actionDecreaseRank;
+	qmc2ShortcutMap["Alt+PgUp"].second = qmc2MainWindow->actionIncreaseRank;
+	qmc2ShortcutMap["Alt+PgDown"].second = qmc2MainWindow->actionDecreaseRank;
 
-  // special keys
-  qmc2ShortcutMap["+"].second = NULL;
-  qmc2QtKeyMap["+"] = QKeySequence("+", QKeySequence::PortableText);
-  qmc2ShortcutMap["-"].second = NULL;
-  qmc2QtKeyMap["-"] = QKeySequence("-", QKeySequence::PortableText);
-  qmc2ShortcutMap["Down"].second = NULL;
-  qmc2QtKeyMap["Down"] = QKeySequence("Down", QKeySequence::PortableText);
-  qmc2ShortcutMap["End"].second = NULL;
-  qmc2QtKeyMap["End"] = QKeySequence("End", QKeySequence::PortableText);
-  qmc2ShortcutMap["Esc"].second = NULL;
-  qmc2QtKeyMap["Esc"] = QKeySequence("Esc", QKeySequence::PortableText);
-  qmc2ShortcutMap["Left"].second = NULL;
-  qmc2QtKeyMap["Left"] = QKeySequence("Left", QKeySequence::PortableText);
-  qmc2ShortcutMap["Home"].second = NULL;
-  qmc2QtKeyMap["Home"] = QKeySequence("Home", QKeySequence::PortableText);
-  qmc2ShortcutMap["PgDown"].second = NULL;
-  qmc2QtKeyMap["PgDown"] = QKeySequence("PgDown", QKeySequence::PortableText);
-  qmc2ShortcutMap["PgUp"].second = NULL;
-  qmc2QtKeyMap["PgUp"] = QKeySequence("PgUp", QKeySequence::PortableText);
-  qmc2ShortcutMap["Return"].second = NULL;
-  qmc2QtKeyMap["Return"] = QKeySequence("Return", QKeySequence::PortableText);
-  qmc2ShortcutMap["Enter"].second = NULL;
-  qmc2QtKeyMap["Enter"] = QKeySequence("Enter", QKeySequence::PortableText);
-  qmc2ShortcutMap["Right"].second = NULL;
-  qmc2QtKeyMap["Right"] = QKeySequence("Right", QKeySequence::PortableText);
-  qmc2ShortcutMap["Tab"].second = NULL;
-  qmc2QtKeyMap["Tab"] = QKeySequence("Tab", QKeySequence::PortableText);
-  qmc2ShortcutMap["Up"].second = NULL;
-  qmc2QtKeyMap["Up"] = QKeySequence("Up", QKeySequence::PortableText);
+	// special keys
+	qmc2ShortcutMap["+"].second = NULL;
+	qmc2QtKeyMap["+"] = QKeySequence("+", QKeySequence::PortableText);
+	qmc2ShortcutMap["-"].second = NULL;
+	qmc2QtKeyMap["-"] = QKeySequence("-", QKeySequence::PortableText);
+	qmc2ShortcutMap["Down"].second = NULL;
+	qmc2QtKeyMap["Down"] = QKeySequence("Down", QKeySequence::PortableText);
+	qmc2ShortcutMap["End"].second = NULL;
+	qmc2QtKeyMap["End"] = QKeySequence("End", QKeySequence::PortableText);
+	qmc2ShortcutMap["Esc"].second = NULL;
+	qmc2QtKeyMap["Esc"] = QKeySequence("Esc", QKeySequence::PortableText);
+	qmc2ShortcutMap["Left"].second = NULL;
+	qmc2QtKeyMap["Left"] = QKeySequence("Left", QKeySequence::PortableText);
+	qmc2ShortcutMap["Home"].second = NULL;
+	qmc2QtKeyMap["Home"] = QKeySequence("Home", QKeySequence::PortableText);
+	qmc2ShortcutMap["PgDown"].second = NULL;
+	qmc2QtKeyMap["PgDown"] = QKeySequence("PgDown", QKeySequence::PortableText);
+	qmc2ShortcutMap["PgUp"].second = NULL;
+	qmc2QtKeyMap["PgUp"] = QKeySequence("PgUp", QKeySequence::PortableText);
+	qmc2ShortcutMap["Return"].second = NULL;
+	qmc2QtKeyMap["Return"] = QKeySequence("Return", QKeySequence::PortableText);
+	qmc2ShortcutMap["Enter"].second = NULL;
+	qmc2QtKeyMap["Enter"] = QKeySequence("Enter", QKeySequence::PortableText);
+	qmc2ShortcutMap["Right"].second = NULL;
+	qmc2QtKeyMap["Right"] = QKeySequence("Right", QKeySequence::PortableText);
+	qmc2ShortcutMap["Tab"].second = NULL;
+	qmc2QtKeyMap["Tab"] = QKeySequence("Tab", QKeySequence::PortableText);
+	qmc2ShortcutMap["Up"].second = NULL;
+	qmc2QtKeyMap["Up"] = QKeySequence("Up", QKeySequence::PortableText);
 #if defined(QMC2_OS_MAC)
-  qmc2ShortcutMap["Ctrl+O"].second = NULL;
-  qmc2QtKeyMap["Ctrl+O"] = QKeySequence("Ctrl+O", QKeySequence::PortableText);
+	qmc2ShortcutMap["Ctrl+O"].second = NULL;
+	qmc2QtKeyMap["Ctrl+O"] = QKeySequence("Ctrl+O", QKeySequence::PortableText);
 #endif
 
-  qmc2Options->setupShortcutActions();
+	qmc2Options->setupShortcutActions();
 }
 
 #if defined(QMC2_MINGW)
@@ -12725,223 +12702,207 @@ void prepareShortcuts()
 
 int main(int argc, char *argv[])
 {
-  qsrand(QDateTime::currentDateTime().toTime_t());
+	qsrand(QDateTime::currentDateTime().toTime_t());
 
-  // install message handler
+	// install message handler
 #if QT_VERSION < 0x050000
-  qInstallMsgHandler(myQtMessageHandler);
+	qInstallMsgHandler(myQtMessageHandler);
 #else
-  qInstallMessageHandler(myQtMessageHandler);
+	qInstallMessageHandler(myQtMessageHandler);
 #endif
 
-  // prepare application and resources
-  QApplication qmc2App(argc, argv);
+	// prepare application and resources
+	QApplication qmc2App(argc, argv);
 
-  if ( QMC2_CLI_OPT_HELP ) {
-	  printf("Usage: %s [-config_path <config_path>] [-cc] [-h|-?|-help] [qt_arguments]\n\n"
-		 "-config_path    Use specified configuration path (default: %s)\n"
-		 "-cc             Clear all caches before starting up\n"
-		 "-h|-?|-help     Show this help text and exit\n", argv[0], QString(QMC2_DOT_PATH).toLocal8Bit().constData());
+	if ( QMC2_CLI_OPT_HELP ) {
+		printf("Usage: %s [-config_path <config_path>] [-cc] [-h|-?|-help] [qt_arguments]\n\n"
+		       "-config_path    Use specified configuration path (default: %s)\n"
+		       "-cc             Clear all emulator caches before starting up\n"
+		       "-h|-?|-help     Show this help text and exit\n", argv[0], QString(QMC2_DOT_PATH).toLocal8Bit().constData());
 	  return 1;
   }
 
-  Q_INIT_RESOURCE(qmc2);
+	Q_INIT_RESOURCE(qmc2);
 #if defined(QMC2_EMUTYPE_MESS)
-  qmc2App.setWindowIcon(QIcon(QString::fromUtf8(":/data/img/mess.png")));
-  QPixmap splashPixmap(QString::fromUtf8(":/data/img/qmc2_mess_splash.png"));
+	qmc2App.setWindowIcon(QIcon(QString::fromUtf8(":/data/img/mess.png")));
+	QPixmap splashPixmap(QString::fromUtf8(":/data/img/qmc2_mess_splash.png"));
 #elif defined(QMC2_EMUTYPE_MAME)
-  qmc2App.setWindowIcon(QIcon(QString::fromUtf8(":/data/img/mame.png")));
-  QPixmap splashPixmap(QString::fromUtf8(":/data/img/qmc2_mame_splash.png"));
+	qmc2App.setWindowIcon(QIcon(QString::fromUtf8(":/data/img/mame.png")));
+	QPixmap splashPixmap(QString::fromUtf8(":/data/img/qmc2_mame_splash.png"));
 #elif defined(QMC2_EMUTYPE_UME)
-  qmc2App.setWindowIcon(QIcon(QString::fromUtf8(":/data/img/ume.png")));
-  QPixmap splashPixmap(QString::fromUtf8(":/data/img/qmc2_ume_splash.png"));
+	qmc2App.setWindowIcon(QIcon(QString::fromUtf8(":/data/img/ume.png")));
+	QPixmap splashPixmap(QString::fromUtf8(":/data/img/qmc2_ume_splash.png"));
 #endif
 
-  // check configuration
-  int checkReturn = QDialog::Accepted;
-  qmc2Welcome = new Welcome(0);
-  if ( !qmc2Welcome->checkOkay )
-    checkReturn = qmc2Welcome->exec();
-  bool showSplashScreen = qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ShowSplashScreen", true).toBool();
-  QFont splashFont = qApp->font();
-  if ( !qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString().isEmpty() )
-    splashFont.fromString(qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
-  delete qmc2Welcome;
-  if ( checkReturn != QDialog::Accepted )
-    return 1;
+	// check configuration
+	int checkReturn = QDialog::Accepted;
+	qmc2Welcome = new Welcome(0);
+	if ( !qmc2Welcome->checkOkay )
+		checkReturn = qmc2Welcome->exec();
+	bool showSplashScreen = qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ShowSplashScreen", true).toBool();
+	QFont splashFont = qApp->font();
+	if ( !qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString().isEmpty() )
+		splashFont.fromString(qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+	delete qmc2Welcome;
+	if ( checkReturn != QDialog::Accepted )
+		return 1;
 
-  // setup splash screen
-  if ( showSplashScreen ) {
-	qmc2SplashScreen = new QSplashScreen(splashPixmap);
-	splashFont.setBold(true);
-	qmc2SplashScreen->setFont(splashFont);
-	qmc2SplashScreen->setAttribute(Qt::WA_ShowWithoutActivating);
-	qmc2SplashScreen->setMask(splashPixmap.mask());
-	qmc2SplashScreen->setWindowOpacity(0.8);
+	// setup splash screen
+	if ( showSplashScreen ) {
+		qmc2SplashScreen = new QSplashScreen(splashPixmap);
+		splashFont.setBold(true);
+		qmc2SplashScreen->setFont(splashFont);
+		qmc2SplashScreen->setAttribute(Qt::WA_ShowWithoutActivating);
+		qmc2SplashScreen->setMask(splashPixmap.mask());
+		qmc2SplashScreen->setWindowOpacity(0.8);
 #if defined(QMC2_OS_UNIX)
-	qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait..."), Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
-	qmc2SplashScreen->show();
-	qmc2SplashScreen->raise();
-	qmc2SplashScreen->repaint();
-	qApp->processEvents();
+		qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait..."), Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
+		qmc2SplashScreen->show();
+		qmc2SplashScreen->raise();
+		qmc2SplashScreen->repaint();
+		qApp->processEvents();
 #endif
-  }
+	}
 
-  // setup key event filter
-  qmc2KeyPressFilter = new KeyPressFilter(0);
-  qmc2App.installEventFilter(qmc2KeyPressFilter);
+	// setup key event filter
+	qmc2KeyPressFilter = new KeyPressFilter(0);
+	qmc2App.installEventFilter(qmc2KeyPressFilter);
 
-  // create mandatory objects and prepare shortcuts
-  qmc2Options = new Options(0);
-  qmc2Config = qmc2Options->config;
-  qmc2ProcessManager = new ProcessManager(0);
-  qmc2MainWindow = new MainWindow(0);
+	// create mandatory objects and prepare shortcuts
+	qmc2Options = new Options(0);
+	qmc2Config = qmc2Options->config;
+	qmc2ProcessManager = new ProcessManager(0);
+	qmc2MainWindow = new MainWindow(0);
 
-  // prepare & restore game/machine detail setup
-  qmc2DetailSetup = new DetailSetup(qmc2MainWindow);
-  qmc2DetailSetup->saveDetail();
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
+	// prepare & restore game/machine detail setup
+	qmc2DetailSetup = new DetailSetup(qmc2MainWindow);
+	qmc2DetailSetup->saveDetail();
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    qmc2MainWindow->tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
+		qmc2MainWindow->tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
 #elif defined(QMC2_EMUTYPE_MESS)
-    qmc2MainWindow->tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineDetailTab", 0).toInt());
+		qmc2MainWindow->tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineDetailTab", 0).toInt());
 #endif
-  }
+	}
 
-  // finalize initial setup
-  qmc2Options->apply();
-  qmc2GuiReady = true;
-  prepareShortcuts();
-  QTimer::singleShot(0, qmc2Options, SLOT(on_pushButtonApply_clicked()));
-  QTimer::singleShot(0, qmc2Options, SLOT(checkShortcuts()));
+	// finalize initial setup
+	qmc2Options->apply();
+	qmc2GuiReady = true;
+	prepareShortcuts();
+	QTimer::singleShot(0, qmc2Options, SLOT(on_pushButtonApply_clicked()));
+	QTimer::singleShot(0, qmc2Options, SLOT(checkShortcuts()));
 #if QMC2_JOYSTICK == 1
-  QTimer::singleShot(0, qmc2Options, SLOT(checkJoystickMappings()));
+	QTimer::singleShot(0, qmc2Options, SLOT(checkJoystickMappings()));
 #endif
 
 #if QT_VERSION < 0x050000
-  // this effectively enables support for unicode characters in C strings
-  QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
-  QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+	// this effectively enables support for unicode characters in C strings
+	QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+	QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 #endif
 
-  // create & show greeting string
-  QString greeting;
+	// create & show greeting string
+	QString greeting;
 #if defined(QMC2_EMUTYPE_MESS)
-  greeting = QObject::tr("M.E.S.S. Catalog / Launcher II v") +
+	greeting = QObject::tr("M.E.S.S. Catalog / Launcher II v") +
 #elif defined(QMC2_EMUTYPE_MAME)
-  greeting = QObject::tr("M.A.M.E. Catalog / Launcher II v") +
+	greeting = QObject::tr("M.A.M.E. Catalog / Launcher II v") +
 #elif defined(QMC2_EMUTYPE_UME)
-  greeting = QObject::tr("U.M.E. Catalog / Launcher II v") +
+	greeting = QObject::tr("U.M.E. Catalog / Launcher II v") +
 #else
-  greeting = QObject::tr("M.A.M.E. Catalog / Launcher II v") +
+	greeting = QObject::tr("M.A.M.E. Catalog / Launcher II v") +
 #endif
-             QString(XSTR(QMC2_VERSION)) +
+	QString(XSTR(QMC2_VERSION)) +
 #if QMC2_SVN_REV > 0
-             ", " + QObject::tr("SVN r%1").arg(QMC2_SVN_REV) +
+		", " + QObject::tr("SVN r%1").arg(QMC2_SVN_REV) +
 #endif
-             " (Qt " + qVersion() +
-#if defined(QMC2_SDLMAME)
-             ", SDLMAME, " +
-#elif defined(QMC2_SDLMESS)
-             ", SDLMESS, " +
-#elif defined(QMC2_SDLUME)
-             ", SDLUME, " +
-#elif defined(QMC2_MAME)
-             ", MAME, " +
-#elif defined(QMC2_MESS)
-             ", MESS, " +
-#elif defined(QMC2_UME)
-             ", UME, " +
-#else
-             ", ???, " +
-#endif
-             qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString() + ")";
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, greeting);
+		" (Qt " + qVersion() + ", " + QMC2_EMU_NAME_VARIANT + ", " + qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString() + ")";
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, greeting);
 
 #if QMC2_OPENGL == 1
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("OpenGL features enabled"));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("OpenGL features enabled"));
 #endif
 
 #if QMC2_USE_PHONON_API
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("Phonon features enabled - using Phonon v%1").arg(Phonon::phononVersion()));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("Phonon features enabled - using Phonon v%1").arg(Phonon::phononVersion()));
 #endif
 
 #if QMC2_JOYSTICK == 1
-  const SDL_version *sdlVersion = SDL_Linked_Version();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("SDL joystick support enabled - using SDL v%1.%2.%3").arg(sdlVersion->major).arg(sdlVersion->minor).arg(sdlVersion->patch));
+	const SDL_version *sdlVersion = SDL_Linked_Version();
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("SDL joystick support enabled - using SDL v%1.%2.%3").arg(sdlVersion->major).arg(sdlVersion->minor).arg(sdlVersion->patch));
 #endif
 
-  // process global emulator configuration and create import/export popup menus
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("processing global emulator configuration"));
-  int left, top, right, bottom;
-  qmc2MainWindow->gridLayout->getContentsMargins(&left, &top, &right, &bottom);
-  QVBoxLayout *layout = new QVBoxLayout;
-  qmc2GlobalEmulatorOptions = new EmulatorOptions(QMC2_EMULATOR_PREFIX + "Configuration/Global", qmc2Options->tabGlobalConfiguration);
-  qmc2GlobalEmulatorOptions->load();
-  qmc2GlobalEmulatorOptions->show();
-  layout->addWidget(qmc2GlobalEmulatorOptions);
-  layout->setContentsMargins(left, top, right, bottom);
-  QHBoxLayout *buttonLayout = new QHBoxLayout();
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile = new QPushButton(QObject::tr("Export to..."), qmc2Options);
+	// process global emulator configuration and create import/export popup menus
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("processing global emulator configuration"));
+	int left, top, right, bottom;
+	qmc2MainWindow->gridLayout->getContentsMargins(&left, &top, &right, &bottom);
+	QVBoxLayout *layout = new QVBoxLayout;
+	qmc2GlobalEmulatorOptions = new EmulatorOptions(QMC2_EMULATOR_PREFIX + "Configuration/Global", qmc2Options->tabGlobalConfiguration);
+	qmc2GlobalEmulatorOptions->load();
+	qmc2GlobalEmulatorOptions->show();
+	layout->addWidget(qmc2GlobalEmulatorOptions);
+	layout->setContentsMargins(left, top, right, bottom);
+	QHBoxLayout *buttonLayout = new QHBoxLayout();
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile = new QPushButton(QObject::tr("Export to..."), qmc2Options);
 #if defined(QMC2_EMUTYPE_MAME)
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global MAME configuration"));
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global MAME configuration"));
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global MAME configuration"));
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global MAME configuration"));
 #elif defined(QMC2_EMUTYPE_MESS)
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global MESS configuration"));
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global MESS configuration"));
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global MESS configuration"));
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global MESS configuration"));
 #elif defined(QMC2_EMUTYPE_UME)
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global UME configuration"));
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global UME configuration"));
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global UME configuration"));
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global UME configuration"));
 #endif
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile = new QPushButton(QObject::tr("Import from..."), qmc2Options);
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile = new QPushButton(QObject::tr("Import from..."), qmc2Options);
 #if defined(QMC2_EMUTYPE_MAME)
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setToolTip(QObject::tr("Import global MAME configuration"));
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setStatusTip(QObject::tr("Import global MAME configuration"));
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setToolTip(QObject::tr("Import global MAME configuration"));
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setStatusTip(QObject::tr("Import global MAME configuration"));
 #elif defined(QMC2_EMUTYPE_MESS)
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setToolTip(QObject::tr("Import global MESS configuration"));
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setStatusTip(QObject::tr("Import global MESS configuration"));
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setToolTip(QObject::tr("Import global MESS configuration"));
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setStatusTip(QObject::tr("Import global MESS configuration"));
 #elif defined(QMC2_EMUTYPE_UME)
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setToolTip(QObject::tr("Import global UME configuration"));
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setStatusTip(QObject::tr("Import global UME configuration"));
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setToolTip(QObject::tr("Import global UME configuration"));
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setStatusTip(QObject::tr("Import global UME configuration"));
 #endif
-  buttonLayout->addWidget(qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile);
-  buttonLayout->addWidget(qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile);
-  layout->addLayout(buttonLayout);
-  qmc2Options->tabGlobalConfiguration->setLayout(layout);
-  // export/import menus
-  qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile = new QMenu(qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile);
+	buttonLayout->addWidget(qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile);
+	buttonLayout->addWidget(qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile);
+	layout->addLayout(buttonLayout);
+	qmc2Options->tabGlobalConfiguration->setLayout(layout);
+	// export/import menus
+	qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile = new QMenu(qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile);
 #if defined(QMC2_EMUTYPE_MAME)
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
+	QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
 #elif defined(QMC2_EMUTYPE_MESS)
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mess.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
+	QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mess.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
 #elif defined(QMC2_EMUTYPE_UME)
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/ume.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
+	QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/ume.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
 #endif
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()));
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setMenu(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile);
-  qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile = new QMenu(qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile);
+	QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()));
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setMenu(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile);
+	qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile = new QMenu(qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile);
 #if defined(QMC2_EMUTYPE_MAME)
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
+	QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
 #elif defined(QMC2_EMUTYPE_MESS)
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mess.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
+	QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mess.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
 #elif defined(QMC2_EMUTYPE_MESS)
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/ume.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
+	QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/ume.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
 #endif
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()));
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setMenu(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile);
+	QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()));
+	qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setMenu(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile);
 
-  // if CLI option -cc is set, clear all emulator caches before starting up
-  if ( QMC2_CLI_OPT_CLEAR_ALL_CACHES )
-	  qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered();
+	// if CLI option -cc is set, clear all emulator caches before starting up
+	if ( QMC2_CLI_OPT_CLEAR_ALL_CACHES )
+		qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered();
 
-  // finally run the application
-  int retCode = qmc2App.exec();
+	// finally run the application
+	int retCode = qmc2App.exec();
 
-  if ( qmc2SplashScreen )
-	  qmc2SplashScreen->deleteLater();
+	if ( qmc2SplashScreen )
+		qmc2SplashScreen->deleteLater();
 
-  // wait for all application threads to finish
-  QThreadPool::globalInstance()->waitForDone();
+	// wait for all application threads to finish
+	QThreadPool::globalInstance()->waitForDone();
 
-  return retCode;
+	return retCode;
 }
