@@ -3042,6 +3042,18 @@ void Options::applyDelayed()
   // redraw detail if setup changed
   qmc2MainWindow->on_tabWidgetGameDetail_currentChanged(qmc2MainWindow->tabWidgetGameDetail->currentIndex());
 
+  if ( !qmc2EarlyStartup ) {
+	  // save foreign ID selection
+	  QTreeWidgetItem *foreignItem = qmc2MainWindow->treeWidgetForeignIDs->currentItem();
+	  if ( foreignItem && foreignItem->parent() && foreignItem->isSelected() ) {
+		  QTreeWidgetItem *parentItem = foreignItem->parent();
+		  QStringList foreignIdState;
+		  foreignIdState << QString::number(qmc2MainWindow->treeWidgetForeignIDs->indexOfTopLevelItem(parentItem)) << QString::number(parentItem->indexOfChild(foreignItem));
+		  qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedForeignID", foreignIdState);
+	  } else
+		  qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedForeignID");
+  }
+
   // (re)create foreign ID menu & tree-widget, if applicable
   qmc2MainWindow->menuForeignIDs->clear();
   qmc2MainWindow->treeWidgetForeignIDs->clear();
@@ -3107,6 +3119,7 @@ void Options::applyDelayed()
   qmc2Config->endGroup();
   checkPlaceholderStatus();
 
+  // restore foreign ID selection
   QStringList foreignIdState = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedForeignID", QStringList()).toStringList();
   if ( foreignIdState.count() == 2 ) {
 	  int parentIndex = foreignIdState[0].toInt();
