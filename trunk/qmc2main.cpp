@@ -4001,6 +4001,11 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
       }
       break;
 
+    case QMC2_FOREIGN_INDEX:
+      treeWidgetForeignIDs->activateWindow();
+      treeWidgetForeignIDs->setFocus();
+      break;
+
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
     case QMC2_EMBED_INDEX: {
         actionToggleTagCursorDown->setVisible(false);
