@@ -699,7 +699,7 @@ MainWindow::MainWindow(QWidget *parent)
   actionCheckCurrentROM->setStatusTip(tr("Check current machine's ROM state"));
   actionAnalyseCurrentROM->setToolTip(tr("Analyse current machine with ROMAlyzer"));
   actionAnalyseCurrentROM->setStatusTip(tr("Analyse current machine with ROMAlyzer"));
-  menu_Game->setTitle(tr("M&achine"));
+  menuGame->setTitle(tr("M&achine"));
   comboBoxViewSelect->setItemText(QMC2_VIEW_DETAIL_INDEX, tr("Machine list with full detail (filtered)"));
   comboBoxViewSelect->setToolTip(tr("Select between detailed machine list and parent / clone hierarchy"));
   comboBoxViewSelect->setStatusTip(tr("Select between detailed machine list and parent / clone hierarchy"));
@@ -1491,7 +1491,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 #if !(QMC2_USE_PHONON_API)
   tabWidgetLogsAndEmulators->removeTab(tabWidgetLogsAndEmulators->indexOf(tabAudioPlayer));
-  menu_Tools->removeAction(menuAudioPlayer->menuAction());
+  menuTools->removeAction(menuAudioPlayer->menuAction());
 #else
   audioState = Phonon::StoppedState;
   phononAudioPlayer = new Phonon::MediaObject(this);
@@ -1650,6 +1650,7 @@ MainWindow::MainWindow(QWidget *parent)
   	on_actionRankImageFlat_triggered(true);
   else
   	on_actionRankImageGradient_triggered(true);
+  connect(menuRank, SIGNAL(aboutToShow()), this, SLOT(menuRank_aboutToShow()));
 
   QTimer::singleShot(0, this, SLOT(init()));
 }
@@ -12312,6 +12313,70 @@ void MainWindow::on_actionSetRank5_triggered(bool)
 		riw->setRankComplete(5);
 }
 
+void MainWindow::on_actionTaggedIncreaseRank_triggered(bool)
+{
+	QList<RankItemWidget *> *riwList = getTaggedRankItemWidgets();
+	foreach (RankItemWidget *riw, *riwList)
+		riw->increaseRank();
+}
+
+void MainWindow::on_actionTaggedDecreaseRank_triggered(bool)
+{
+	QList<RankItemWidget *> *riwList = getTaggedRankItemWidgets();
+	foreach (RankItemWidget *riw, *riwList)
+		riw->decreaseRank();
+}
+
+void MainWindow::on_actionTaggedSetRank0_triggered(bool)
+{
+	QList<RankItemWidget *> *riwList = getTaggedRankItemWidgets();
+	foreach (RankItemWidget *riw, *riwList)
+		riw->setRankComplete(0);
+}
+
+void MainWindow::on_actionTaggedSetRank1_triggered(bool)
+{
+	QList<RankItemWidget *> *riwList = getTaggedRankItemWidgets();
+	foreach (RankItemWidget *riw, *riwList)
+		riw->setRankComplete(1);
+}
+
+void MainWindow::on_actionTaggedSetRank2_triggered(bool)
+{
+	QList<RankItemWidget *> *riwList = getTaggedRankItemWidgets();
+	foreach (RankItemWidget *riw, *riwList)
+		riw->setRankComplete(2);
+}
+
+void MainWindow::on_actionTaggedSetRank3_triggered(bool)
+{
+	QList<RankItemWidget *> *riwList = getTaggedRankItemWidgets();
+	foreach (RankItemWidget *riw, *riwList)
+		riw->setRankComplete(3);
+}
+
+void MainWindow::on_actionTaggedSetRank4_triggered(bool)
+{
+	QList<RankItemWidget *> *riwList = getTaggedRankItemWidgets();
+	foreach (RankItemWidget *riw, *riwList)
+		riw->setRankComplete(4);
+}
+
+void MainWindow::on_actionTaggedSetRank5_triggered(bool)
+{
+	QList<RankItemWidget *> *riwList = getTaggedRankItemWidgets();
+	foreach (RankItemWidget *riw, *riwList)
+		riw->setRankComplete(5);
+}
+
+void MainWindow::menuRank_aboutToShow()
+{
+	bool taggedItemsVisible = (qmc2Gamelist->numTaggedSets > 0 && menuGame->isVisible());
+	menuTaggedSetRank->menuAction()->setVisible(taggedItemsVisible);
+	actionTaggedIncreaseRank->setVisible(taggedItemsVisible);
+	actionTaggedDecreaseRank->setVisible(taggedItemsVisible);
+}
+
 RankItemWidget *MainWindow::getCurrentRankItemWidget()
 {
 	QTreeWidget *treeWidget;
@@ -12339,6 +12404,26 @@ RankItemWidget *MainWindow::getCurrentRankItemWidget()
 	}
 
 	return (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+}
+
+QList<RankItemWidget *> *MainWindow::getTaggedRankItemWidgets()
+{
+	static QList<RankItemWidget *> taggedRiwList;
+
+	taggedRiwList.clear();
+
+	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
+	QTreeWidgetItem *item;
+	while ( it.hasNext() ) {
+		it.next();
+		item = qmc2GamelistItemMap[it.key()];
+		if ( item ) {
+			if ( item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked )
+				taggedRiwList << (RankItemWidget *)treeWidgetGamelist->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+		}
+	}
+
+	return &taggedRiwList;
 }
 
 void MainWindow::checkRomPath()

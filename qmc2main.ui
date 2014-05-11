@@ -2546,7 +2546,7 @@
      <height>17</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_Help">
+   <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>&amp;Help</string>
     </property>
@@ -2559,7 +2559,7 @@
     <addaction name="separator"/>
     <addaction name="actionAboutQt"/>
    </widget>
-   <widget class="QMenu" name="menu_Tools">
+   <widget class="QMenu" name="menuTools">
     <property name="title">
      <string>&amp;Tools</string>
     </property>
@@ -2622,7 +2622,7 @@
     <addaction name="separator"/>
     <addaction name="menuCleanUp"/>
    </widget>
-   <widget class="QMenu" name="menu_Game">
+   <widget class="QMenu" name="menuGame">
     <property name="title">
      <string>&amp;Game</string>
     </property>
@@ -2712,6 +2712,18 @@
       <addaction name="separator"/>
       <addaction name="actionRankImageColor"/>
      </widget>
+     <widget class="QMenu" name="menuTaggedSetRank">
+      <property name="title">
+       <string>Set rank (tagged)</string>
+      </property>
+      <addaction name="actionTaggedSetRank0"/>
+      <addaction name="separator"/>
+      <addaction name="actionTaggedSetRank1"/>
+      <addaction name="actionTaggedSetRank2"/>
+      <addaction name="actionTaggedSetRank3"/>
+      <addaction name="actionTaggedSetRank4"/>
+      <addaction name="actionTaggedSetRank5"/>
+     </widget>
      <widget class="QMenu" name="menuSetRank">
       <property name="title">
        <string>Set rank</string>
@@ -2725,9 +2737,12 @@
       <addaction name="actionSetRank5"/>
      </widget>
      <addaction name="menuSetRank"/>
+     <addaction name="menuTaggedSetRank"/>
      <addaction name="separator"/>
      <addaction name="actionIncreaseRank"/>
+     <addaction name="actionTaggedIncreaseRank"/>
      <addaction name="actionDecreaseRank"/>
+     <addaction name="actionTaggedDecreaseRank"/>
      <addaction name="separator"/>
      <addaction name="menuRankImage"/>
     </widget>
@@ -2751,7 +2766,7 @@
     <addaction name="separator"/>
     <addaction name="actionExitStop"/>
    </widget>
-   <widget class="QMenu" name="menu_Display">
+   <widget class="QMenu" name="menuDisplay">
     <property name="title">
      <string>&amp;Display</string>
     </property>
@@ -2774,16 +2789,16 @@
     <addaction name="actionLaunchQMC2MESS"/>
     <addaction name="actionLaunchQMC2UME"/>
    </widget>
-   <widget class="QMenu" name="menu_ForeignIDs">
+   <widget class="QMenu" name="menuForeignIDs">
     <property name="title">
      <string>&amp;Foreign IDs</string>
     </property>
    </widget>
-   <addaction name="menu_Game"/>
-   <addaction name="menu_Tools"/>
-   <addaction name="menu_Display"/>
-   <addaction name="menu_ForeignIDs"/>
-   <addaction name="menu_Help"/>
+   <addaction name="menuGame"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuDisplay"/>
+   <addaction name="menuForeignIDs"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolbar">
@@ -4480,6 +4495,96 @@
    </property>
    <property name="statusTip">
     <string>Set rank to 5 (highest rank)</string>
+   </property>
+  </action>
+  <action name="actionTaggedSetRank0">
+   <property name="text">
+    <string>Rank 0</string>
+   </property>
+   <property name="toolTip">
+    <string>Set rank to 0 (no rank)</string>
+   </property>
+   <property name="statusTip">
+    <string>Set rank to 0 (no rank)</string>
+   </property>
+  </action>
+  <action name="actionTaggedSetRank1">
+   <property name="text">
+    <string>Rank 1</string>
+   </property>
+   <property name="toolTip">
+    <string>Set rank to 1 (lowest rank)</string>
+   </property>
+   <property name="statusTip">
+    <string>Set rank to 1 (lowest rank)</string>
+   </property>
+  </action>
+  <action name="actionTaggedSetRank2">
+   <property name="text">
+    <string>Rank 2</string>
+   </property>
+   <property name="toolTip">
+    <string>Set rank to 2</string>
+   </property>
+   <property name="statusTip">
+    <string>Set rank to 2</string>
+   </property>
+  </action>
+  <action name="actionTaggedSetRank3">
+   <property name="text">
+    <string>Rank 3</string>
+   </property>
+   <property name="toolTip">
+    <string>Set rank to 3</string>
+   </property>
+   <property name="statusTip">
+    <string>Set rank to 3</string>
+   </property>
+  </action>
+  <action name="actionTaggedSetRank4">
+   <property name="text">
+    <string>Rank 4</string>
+   </property>
+   <property name="toolTip">
+    <string>Set rank to 4</string>
+   </property>
+   <property name="statusTip">
+    <string>Set rank to 4</string>
+   </property>
+  </action>
+  <action name="actionTaggedSetRank5">
+   <property name="text">
+    <string>Rank 5</string>
+   </property>
+   <property name="toolTip">
+    <string>Set rank to 5 (highest rank)</string>
+   </property>
+   <property name="statusTip">
+    <string>Set rank to 5 (highest rank)</string>
+   </property>
+  </action>
+  <action name="actionTaggedIncreaseRank">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/plus_multiple.png</normaloff>:/data/img/plus_multiple.png</iconset>
+   </property>
+   <property name="text">
+    <string>Increase rank (tagged)</string>
+   </property>
+   <property name="statusTip">
+    <string>Increase rank (tagged)</string>
+   </property>
+  </action>
+  <action name="actionTaggedDecreaseRank">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/minus_multiple.png</normaloff>:/data/img/minus_multiple.png</iconset>
+   </property>
+   <property name="text">
+    <string>Decrease rank (tagged)</string>
+   </property>
+   <property name="statusTip">
+    <string>Decrease rank (tagged)</string>
    </property>
   </action>
  </widget>

@@ -3043,14 +3043,14 @@ void Options::applyDelayed()
   qmc2MainWindow->on_tabWidgetGameDetail_currentChanged(qmc2MainWindow->tabWidgetGameDetail->currentIndex());
 
   // (re)create foreign ID menu, if applicable
-  qmc2MainWindow->menu_ForeignIDs->clear();
+  qmc2MainWindow->menuForeignIDs->clear();
   QString displayFormat = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/DisplayFormat", "$ID$ - $DESCRIPTION$").toString();
   config->beginGroup(QMC2_EMULATOR_PREFIX + "CustomIDs");
   QStringList childGroups = config->childGroups();
   if ( !childGroups.isEmpty() ) {
 	  bool showMenu = false;
 	  foreach (QString emuName, childGroups) {
-		  QMenu *menu = qmc2MainWindow->menu_ForeignIDs->addMenu(emuName);
+		  QMenu *menu = qmc2MainWindow->menuForeignIDs->addMenu(emuName);
 		  // FIXME: add support for individual icons for foreign emulators
 		  menu->setIcon(QIcon(QString::fromUtf8(":/data/img/arcademode.png")));
 		  menu->setTearOffEnabled(true);
@@ -3076,9 +3076,9 @@ void Options::applyDelayed()
 			  }
 		  }
 	  }
-	  qmc2MainWindow->menu_ForeignIDs->menuAction()->setVisible(showMenu);
+	  qmc2MainWindow->menuForeignIDs->menuAction()->setVisible(showMenu);
   } else
-	  qmc2MainWindow->menu_ForeignIDs->menuAction()->setVisible(false);
+	  qmc2MainWindow->menuForeignIDs->menuAction()->setVisible(false);
   qmc2Config->endGroup();
   checkPlaceholderStatus();
   

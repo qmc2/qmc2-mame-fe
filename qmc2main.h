@@ -568,19 +568,29 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_treeWidgetVersionView_itemExpanded(QTreeWidgetItem *);
 #endif
 		void updateUserData() { resizeEvent(0); }
-		void on_actionIncreaseRank_triggered(bool checked = false);
-		void on_actionDecreaseRank_triggered(bool checked = false);
+		void on_actionIncreaseRank_triggered(bool);
+		void on_actionDecreaseRank_triggered(bool);
 		void on_actionRankImageGradient_triggered(bool checked = false);
 		void on_actionRankImageFlat_triggered(bool checked = false);
 		void on_actionRankImagePlain_triggered(bool checked = false);
-		void on_actionRankImageColor_triggered(bool checked = false);
+		void on_actionRankImageColor_triggered(bool);
 		void on_actionSetRank0_triggered(bool);
 		void on_actionSetRank1_triggered(bool);
 		void on_actionSetRank2_triggered(bool);
 		void on_actionSetRank3_triggered(bool);
 		void on_actionSetRank4_triggered(bool);
 		void on_actionSetRank5_triggered(bool);
+		void on_actionTaggedIncreaseRank_triggered(bool);
+		void on_actionTaggedDecreaseRank_triggered(bool);
+		void on_actionTaggedSetRank0_triggered(bool);
+		void on_actionTaggedSetRank1_triggered(bool);
+		void on_actionTaggedSetRank2_triggered(bool);
+		void on_actionTaggedSetRank3_triggered(bool);
+		void on_actionTaggedSetRank4_triggered(bool);
+		void on_actionTaggedSetRank5_triggered(bool);
+		void menuRank_aboutToShow();
 		RankItemWidget *getCurrentRankItemWidget();
+		QList<RankItemWidget *> *getTaggedRankItemWidgets();
 
 	protected:
 		void closeEvent(QCloseEvent *);

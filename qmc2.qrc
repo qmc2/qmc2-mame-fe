@@ -133,6 +133,7 @@
         <file>data/img/minimize.png</file>
         <file>data/img/minus.png</file>
         <file>data/img/minus_all.png</file>
+        <file>data/img/minus_multiple.png</file>
         <file>data/img/movie.png</file>
         <file>data/img/music.png</file>
         <file>data/img/next-sail.png</file>
@@ -148,6 +149,7 @@
         <file>data/img/pencils.png</file>
         <file>data/img/plus.png</file>
         <file>data/img/plus_all.png</file>
+        <file>data/img/plus_multiple.png</file>
         <file>data/img/postscript.png</file>
         <file>data/img/preview.png</file>
         <file>data/img/previous-sail.png</file>
