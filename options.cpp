@@ -4476,28 +4476,29 @@ void Options::setupShortcutActions()
 
 void Options::on_toolButtonBrowseAdditionalEmulatorExecutable_clicked()
 {
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseAdditionalEmulatorExecutable_clicked()");
-#endif
-
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), lineEditAdditionalEmulatorExecutableFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditAdditionalEmulatorExecutableFile->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), lineEditAdditionalEmulatorExecutableFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditAdditionalEmulatorExecutableFile->setText(s);
+	raise();
 }
 
 void Options::on_toolButtonBrowseAdditionalEmulatorWorkingDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseAdditionalEmulatorWorkingDirectory_clicked()");
-#endif
-
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), lineEditAdditionalEmulatorWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() ) {
-    if ( !s.endsWith("/") ) s += "/";
-    lineEditAdditionalEmulatorWorkingDirectory->setText(s);
-  }
-  raise();
+	QString startPath = lineEditAdditionalEmulatorWorkingDirectory->text();
+	if ( startPath.isEmpty() ) {
+		QString exePath = lineEditAdditionalEmulatorExecutableFile->text();
+		if ( !exePath.isEmpty() ) {
+			QFileInfo fi(exePath);
+			startPath = fi.absolutePath();
+		}
+	}
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), startPath, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
+	if ( !s.isNull() ) {
+		if ( !s.endsWith("/") )
+			s += "/";
+		lineEditAdditionalEmulatorWorkingDirectory->setText(s);
+	}
+	raise();
 }
 
 
