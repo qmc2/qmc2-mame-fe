@@ -56,7 +56,7 @@ void ToolBarCustomizer::refreshAvailableActions()
 	availableToolBarActions.clear();
 	availableActionsByName.clear();
 	foreach (QAction *menuBarAction, qmc2MainWindow->menuBar()->actions()) {
-		if ( menuBarAction->menu() == qmc2MainWindow->menu_ForeignIDs )
+		if ( menuBarAction->menu() == qmc2MainWindow->menuForeignIDs )
 			continue;
 		foreach (QAction *action, menuBarAction->menu()->actions()) {
 			if ( action->isSeparator() || !action->isVisible() || action->icon().isNull() )
