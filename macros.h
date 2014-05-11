@@ -69,7 +69,8 @@
 #define QMC2_SEARCH_INDEX			1
 #define QMC2_FAVORITES_INDEX			2
 #define QMC2_PLAYED_INDEX			3
-#define QMC2_EMBED_INDEX			4
+#define QMC2_FOREIGN_INDEX			4
+#define QMC2_EMBED_INDEX			5
 
 // index positions of all game/machine details (upper right)
 #define QMC2_PREVIEW_INDEX			0

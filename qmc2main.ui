@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>677</width>
-    <height>420</height>
+    <width>550</width>
+    <height>365</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -853,6 +853,44 @@
               <property name="statusTip">
                <string>Games last played</string>
               </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabForeignIDs">
+           <attribute name="icon">
+            <iconset resource="qmc2.qrc">
+             <normaloff>:/data/img/arcademode.png</normaloff>:/data/img/arcademode.png</iconset>
+           </attribute>
+           <attribute name="title">
+            <string>&amp;Foreign IDs</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayoutForeignIDs">
+            <property name="margin">
+             <number>2</number>
+            </property>
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QTreeWidget" name="treeWidgetForeignIDs">
+              <property name="contextMenuPolicy">
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
+              <property name="toolTip">
+               <string>Foreign emulators with custom IDs</string>
+              </property>
+              <property name="statusTip">
+               <string>Foreign emulators with custom IDs</string>
+              </property>
+              <property name="headerHidden">
+               <bool>true</bool>
+              </property>
+              <column>
+               <property name="text">
+                <string notr="true">1</string>
+               </property>
+              </column>
              </widget>
             </item>
            </layout>
@@ -2542,7 +2580,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>677</width>
+     <width>550</width>
      <height>17</height>
     </rect>
    </property>

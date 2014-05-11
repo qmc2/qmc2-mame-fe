@@ -241,7 +241,8 @@ QMenu *qmc2EmulatorMenu = NULL,
       *qmc2GameMenu = NULL,
       *qmc2FavoritesMenu = NULL,
       *qmc2PlayedMenu = NULL,
-      *qmc2SearchMenu = NULL;
+      *qmc2SearchMenu = NULL,
+      *qmc2ForeignIDsMenu = NULL;
 QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
 QMap<QString, QStringList> qmc2HierarchyMap;
@@ -905,6 +906,30 @@ MainWindow::MainWindow(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(action_copyEmulatorCommand_triggered()));
+
+  qmc2ForeignIDsMenu = new QMenu(0);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  s = tr("Play selected game");
+#elif defined(QMC2_EMUTYPE_MESS)
+  s = tr("Start selected machine");
+#endif
+  action = qmc2ForeignIDsMenu->addAction(tr("&Play"));
+  contextMenuPlayActions.append(action);
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  s = tr("Play selected game (embedded)");
+#elif defined(QMC2_EMUTYPE_MESS)
+  s = tr("Start selected machine (embedded)");
+#endif
+  action = qmc2ForeignIDsMenu->addAction(tr("Play &embedded"));
+  contextMenuPlayActions.append(action);
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_triggered()));
+#endif
 
   qmc2GameMenu = new QMenu(0);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -1780,6 +1805,21 @@ void MainWindow::on_actionPlay_triggered(bool)
 #else
   if ( registeredEmulators.count() > 0 ) {
 #endif
+    if ( !launchForeignID ) {
+	    if ( tabWidgetGamelist->currentIndex() == tabWidgetGamelist->indexOf(tabForeignIDs) ) {
+		    QTreeWidgetItem *item = treeWidgetForeignIDs->currentItem();
+		    if ( item && item->isSelected() ) {
+			    QStringList foreignInfo = item->whatsThis(0).split("\t");
+			    if ( foreignInfo.count() > 2 ) {
+				    // 0:emuName -- 1:id -- 2:description 
+				    foreignEmuName = foreignInfo[0];
+				    foreignID = foreignInfo[1];
+				    foreignDescription = foreignInfo[2];
+				    launchForeignID = true;
+			    }
+		    }
+	    }
+    }
     if ( launchForeignID ) {
 	foreignEmulator = true;
         QString emuCommand = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(foreignEmuName), QString()).toString();
@@ -5496,24 +5536,67 @@ void MainWindow::on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *item, int
   qmc2IgnoreItemActivation = false;
 }
 
+void MainWindow::on_treeWidgetForeignIDs_itemActivated(QTreeWidgetItem *item, int column)
+{
+	if ( qmc2DemoModeDialog )
+		if ( qmc2DemoModeDialog->demoModeRunning )
+			return;
+
+	if ( !item->parent() )
+		return;
+
+	QStringList foreignInfo = item->whatsThis(0).split("\t");
+	if ( foreignInfo.count() > 2 ) {
+		// 0:emuName -- 1:id -- 2:description 
+		foreignEmuName = foreignInfo[0];
+		foreignID = foreignInfo[1];
+		foreignDescription = foreignInfo[2];
+#ifdef QMC2_DEBUG
+		log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetForeignIDs_itemActivated(): foreignEmuName = %1, foreignID = %2, foreignDescription = %3").arg(foreignEmuName).arg(foreignID).arg(foreignDescription));
+#endif
+		launchForeignID = true;
+		qmc2StartEmbedded = false;
+      		switch ( qmc2DefaultLaunchMode ) {
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+			case QMC2_LAUNCH_MODE_EMBEDDED:
+				QTimer::singleShot(0, this, SLOT(on_actionPlayEmbedded_triggered()));
+				break;
+#endif
+			case QMC2_LAUNCH_MODE_INDEPENDENT:
+			default:
+				QTimer::singleShot(0, this, SLOT(on_actionPlay_triggered()));
+				break;
+		}
+	}
+	qmc2IgnoreItemActivation = false;
+}
+
 void MainWindow::on_treeWidgetGamelist_itemDoubleClicked(QTreeWidgetItem *item, int column)
 {
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetGamelist_itemDoubleClicked(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
-#endif
-
-  if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
-    qmc2IgnoreItemActivation = true;
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
+		qmc2IgnoreItemActivation = true;
 }
 
 void MainWindow::on_treeWidgetHierarchy_itemDoubleClicked(QTreeWidgetItem *item, int column)
 {
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetHierarchy_itemDoubleClicked(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
-#endif
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
+		qmc2IgnoreItemActivation = true;
+}
 
-  if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
-    qmc2IgnoreItemActivation = true;
+void MainWindow::on_treeWidgetForeignIDs_itemDoubleClicked(QTreeWidgetItem *item, int column)
+{
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
+		qmc2IgnoreItemActivation = true;
+}
+
+void MainWindow::on_treeWidgetForeignIDs_customContextMenuRequested(const QPoint &p)
+{
+	QTreeWidgetItem *item = treeWidgetForeignIDs->itemAt(p);
+	if ( item && item->parent() ) {
+		treeWidgetForeignIDs->setItemSelected(item, true);
+		qmc2ForeignIDsMenu->move(adjustedWidgetPosition(treeWidgetForeignIDs->viewport()->mapToGlobal(p), qmc2ForeignIDsMenu));
+		qmc2ForeignIDsMenu->show();
+	}
 }
 
 void MainWindow::on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *item)
@@ -6785,6 +6868,16 @@ void MainWindow::closeEvent(QCloseEvent *e)
     } else
       qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedGame");
   }
+
+  QTreeWidgetItem *foreignItem = treeWidgetForeignIDs->currentItem();
+  if ( foreignItem && foreignItem->parent() && foreignItem->isSelected() ) {
+      log(QMC2_LOG_FRONTEND, tr("saving foreign ID selection"));
+      QTreeWidgetItem *parentItem = foreignItem->parent();
+      QStringList foreignIdState;
+      foreignIdState << QString::number(treeWidgetForeignIDs->indexOfTopLevelItem(parentItem)) << QString::number(parentItem->indexOfChild(foreignItem));
+      qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedForeignID", foreignIdState);
+  } else
+      qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedForeignID");
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
     log(QMC2_LOG_FRONTEND, tr("saving main widget layout"));
