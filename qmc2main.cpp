@@ -5524,9 +5524,6 @@ void MainWindow::on_treeWidgetForeignIDs_itemActivated(QTreeWidgetItem *item, in
 		if ( qmc2DemoModeDialog->demoModeRunning )
 			return;
 
-	if ( !item->parent() )
-		return;
-
 	QStringList foreignInfo = item->whatsThis(0).split("\t");
 	if ( foreignInfo.count() > 2 ) {
 		// 0:emuName -- 1:id -- 2:description 
@@ -6855,10 +6852,15 @@ void MainWindow::closeEvent(QCloseEvent *e)
   }
 
   QTreeWidgetItem *foreignItem = treeWidgetForeignIDs->currentItem();
-  if ( foreignItem && foreignItem->parent() && foreignItem->isSelected() ) {
-      QTreeWidgetItem *parentItem = foreignItem->parent();
+  if ( foreignItem && foreignItem->isSelected() ) {
+      QTreeWidgetItem *parentItem = foreignItem;
+      if ( foreignItem->parent() )
+	      parentItem = foreignItem->parent();
       QStringList foreignIdState;
-      foreignIdState << QString::number(treeWidgetForeignIDs->indexOfTopLevelItem(parentItem)) << QString::number(parentItem->indexOfChild(foreignItem));
+      if ( parentItem == foreignItem )
+	      foreignIdState << QString::number(treeWidgetForeignIDs->indexOfTopLevelItem(parentItem));
+      else
+	      foreignIdState << QString::number(treeWidgetForeignIDs->indexOfTopLevelItem(parentItem)) << QString::number(parentItem->indexOfChild(foreignItem));
       qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedForeignID", foreignIdState);
   } else
       qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedForeignID");

@@ -3103,17 +3103,23 @@ void Options::applyDelayed()
 
   // restore foreign ID selection
   QStringList foreignIdState = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedForeignID", QStringList()).toStringList();
-  if ( foreignIdState.count() == 2 ) {
+  if ( !foreignIdState.isEmpty() ) {
 	  int parentIndex = foreignIdState[0].toInt();
-	  int childIndex = foreignIdState[1].toInt();
+	  int childIndex = -1;
+	  if ( foreignIdState.count() > 1 )
+		  childIndex = foreignIdState[1].toInt();
 	  if ( parentIndex >= 0 && parentIndex < qmc2MainWindow->treeWidgetForeignIDs->topLevelItemCount() ) {
 		  QTreeWidgetItem *parentItem = qmc2MainWindow->treeWidgetForeignIDs->topLevelItem(parentIndex);
-		  parentItem->setExpanded(true);
 		  if ( childIndex >= 0 && childIndex < parentItem->childCount() ) {
+			  parentItem->setExpanded(true);
 			  QTreeWidgetItem *childItem = parentItem->child(childIndex);
 			  childItem->setSelected(true);
 			  qmc2MainWindow->treeWidgetForeignIDs->setCurrentItem(childItem);
 			  qmc2MainWindow->treeWidgetForeignIDs->scrollToItem(childItem, qmc2CursorPositioningMode);
+		  } else {
+			  parentItem->setSelected(true);
+			  qmc2MainWindow->treeWidgetForeignIDs->setCurrentItem(parentItem);
+			  qmc2MainWindow->treeWidgetForeignIDs->scrollToItem(parentItem, qmc2CursorPositioningMode);
 		  }
 	  }
   }
