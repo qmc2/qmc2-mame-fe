@@ -857,13 +857,13 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tabForeignIDs">
+          <widget class="QWidget" name="tabForeignEmulators">
            <attribute name="icon">
             <iconset resource="qmc2.qrc">
-             <normaloff>:/data/img/arcademode.png</normaloff>:/data/img/arcademode.png</iconset>
+             <normaloff>:/data/img/alien.png</normaloff>:/data/img/alien.png</iconset>
            </attribute>
            <attribute name="title">
-            <string>&amp;Foreign IDs</string>
+            <string>&amp;Foreign emulators</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayoutForeignIDs">
             <property name="margin">
@@ -2827,15 +2827,9 @@
     <addaction name="actionLaunchQMC2MESS"/>
     <addaction name="actionLaunchQMC2UME"/>
    </widget>
-   <widget class="QMenu" name="menuForeignIDs">
-    <property name="title">
-     <string>&amp;Foreign IDs</string>
-    </property>
-   </widget>
    <addaction name="menuGame"/>
    <addaction name="menuTools"/>
    <addaction name="menuDisplay"/>
-   <addaction name="menuForeignIDs"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

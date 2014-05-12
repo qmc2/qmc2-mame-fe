@@ -522,7 +522,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void checkActivity();
 		void enableContextMenuPlayActions(bool);
 		void softwareLoadInterrupted();
-		void action_foreignIDsMenuItem_triggered();
 		void checkRomPath();
 		void negateSearchTriggered(bool);
 		void reloadImageFormats();
