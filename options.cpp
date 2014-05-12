@@ -3042,13 +3042,19 @@ void Options::applyDelayed()
   // redraw detail if setup changed
   qmc2MainWindow->on_tabWidgetGameDetail_currentChanged(qmc2MainWindow->tabWidgetGameDetail->currentIndex());
 
+  qmc2MainWindow->treeWidgetForeignIDs->setUpdatesEnabled(false);
   if ( !qmc2EarlyStartup ) {
 	  // save foreign ID selection
 	  QTreeWidgetItem *foreignItem = qmc2MainWindow->treeWidgetForeignIDs->currentItem();
-	  if ( foreignItem && foreignItem->parent() && foreignItem->isSelected() ) {
-		  QTreeWidgetItem *parentItem = foreignItem->parent();
+	  if ( foreignItem && foreignItem->isSelected() ) {
+		  QTreeWidgetItem *parentItem = foreignItem;
+		  if ( foreignItem->parent() )
+			  parentItem = foreignItem->parent();
 		  QStringList foreignIdState;
-		  foreignIdState << QString::number(qmc2MainWindow->treeWidgetForeignIDs->indexOfTopLevelItem(parentItem)) << QString::number(parentItem->indexOfChild(foreignItem));
+		  if ( parentItem == foreignItem )
+			  foreignIdState << QString::number(qmc2MainWindow->treeWidgetForeignIDs->indexOfTopLevelItem(parentItem));
+		  else
+			  foreignIdState << QString::number(qmc2MainWindow->treeWidgetForeignIDs->indexOfTopLevelItem(parentItem)) << QString::number(parentItem->indexOfChild(foreignItem));
 		  qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedForeignID", foreignIdState);
 	  } else
 		  qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedForeignID");
@@ -3123,6 +3129,8 @@ void Options::applyDelayed()
 		  }
 	  }
   }
+
+  qmc2MainWindow->treeWidgetForeignIDs->setUpdatesEnabled(true);
   
   // hide / show the menu bar
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
