@@ -1712,33 +1712,6 @@ void MainWindow::tabWidgetGameDetail_tabMoved(int from, int to)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ActiveDetails", activeIndexList);
 }
 
-void MainWindow::action_foreignIDsMenuItem_triggered()
-{
-	QAction *action = (QAction *)sender();
-	QStringList foreignInfo = action->data().toString().split("\t");
-	if ( foreignInfo.count() > 2 ) {
-		// 0:emuName -- 1:id -- 2:description 
-		foreignEmuName = foreignInfo[0];
-		foreignID = foreignInfo[1];
-		foreignDescription = foreignInfo[2];
-#ifdef QMC2_DEBUG
-		log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::action_foreignIDsMenuItem_triggered(): foreignEmuName = %1, foreignID = %2, foreignDescription = %3").arg(foreignEmuName).arg(foreignID).arg(foreignDescription));
-#endif
-		launchForeignID = true;
-      		switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-			case QMC2_LAUNCH_MODE_EMBEDDED:
-				QTimer::singleShot(0, this, SLOT(on_actionPlayEmbedded_triggered()));
-				break;
-#endif
-			case QMC2_LAUNCH_MODE_INDEPENDENT:
-			default:
-				QTimer::singleShot(0, this, SLOT(on_actionPlay_triggered()));
-				break;
-		}
-	}
-}
-
 void MainWindow::on_actionPlayEmbedded_triggered(bool)
 {
 #ifdef QMC2_DEBUG
@@ -1806,7 +1779,7 @@ void MainWindow::on_actionPlay_triggered(bool)
   if ( registeredEmulators.count() > 0 ) {
 #endif
     if ( !launchForeignID ) {
-	    if ( tabWidgetGamelist->currentIndex() == tabWidgetGamelist->indexOf(tabForeignIDs) ) {
+	    if ( tabWidgetGamelist->currentIndex() == tabWidgetGamelist->indexOf(tabForeignEmulators) ) {
 		    QTreeWidgetItem *item = treeWidgetForeignIDs->currentItem();
 		    if ( item && item->isSelected() ) {
 			    QStringList foreignInfo = item->whatsThis(0).split("\t");
@@ -1824,7 +1797,11 @@ void MainWindow::on_actionPlay_triggered(bool)
 	foreignEmulator = true;
         QString emuCommand = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(foreignEmuName), QString()).toString();
         QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(foreignEmuName), QString()).toString();
-        QString s = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(foreignEmuName), QString()).toString().replace("$ID$", foreignID).replace("$DESCRIPTION$", foreignDescription);
+	QString s;
+	if ( foreignID == tr("N/A") )
+		s = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(foreignEmuName), QString()).toString().replace("$ID$", "").replace("$DESCRIPTION$", "");
+	else
+		s = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(foreignEmuName), QString()).toString().replace("$ID$", foreignID).replace("$DESCRIPTION$", foreignDescription);
         QStringList emuArgs;
         QRegExp rx("([^ ]+|\"[^\"]+\")");
         int i = 0;
@@ -5597,7 +5574,7 @@ void MainWindow::on_treeWidgetForeignIDs_itemDoubleClicked(QTreeWidgetItem *item
 void MainWindow::on_treeWidgetForeignIDs_customContextMenuRequested(const QPoint &p)
 {
 	QTreeWidgetItem *item = treeWidgetForeignIDs->itemAt(p);
-	if ( item && item->parent() ) {
+	if ( item ) {
 		treeWidgetForeignIDs->setItemSelected(item, true);
 		qmc2ForeignIDsMenu->move(adjustedWidgetPosition(treeWidgetForeignIDs->viewport()->mapToGlobal(p), qmc2ForeignIDsMenu));
 		qmc2ForeignIDsMenu->show();
@@ -5823,23 +5800,23 @@ void MainWindow::action_embedEmulator_triggered()
       continue;
     }
 
+    QTreeWidgetItem *gameItem = qmc2GamelistItemMap[gameName];
 #if defined(QMC2_OS_UNIX)
     QList<WId> winIdList;
     int xwininfoRetries = 0;
     while ( winIdList.isEmpty() && xwininfoRetries++ < QMC2_MAX_XWININFO_RETRIES ) {
 #if defined(QMC2_EMUTYPE_MAME)
-	WId windowId = x11FindWindowId(QRegExp::escape(QString("MAME: %1").arg(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME))), QRegExp::escape(QString("QMC2-MAME-ID-%1").arg(gameID)));
+	    WId windowId = x11FindWindowId(QRegExp::escape(QString("MAME: %1").arg(gameItem ? gameItem->text(QMC2_GAMELIST_COLUMN_GAME) : "")), QRegExp::escape(QString("QMC2-MAME-ID-%1").arg(gameID)));
 #elif defined(QMC2_EMUTYPE_MESS)
-	WId windowId = x11FindWindowId(QRegExp::escape(QString("MESS: %1").arg(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME))), QRegExp::escape(QString("QMC2-MESS-ID-%1").arg(gameID)));
+	    WId windowId = x11FindWindowId(QRegExp::escape(QString("MESS: %1").arg(gameItem ? gameItem->text(QMC2_GAMELIST_COLUMN_GAME) : "")), QRegExp::escape(QString("QMC2-MESS-ID-%1").arg(gameID)));
 #elif defined(QMC2_EMUTYPE_UME)
-	WId windowId = x11FindWindowId(QRegExp::escape(QString("UME: %1").arg(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME))), QRegExp::escape(QString("QMC2-UME-ID-%1").arg(gameID)));
+	    WId windowId = x11FindWindowId(QRegExp::escape(QString("UME: %1").arg(gameItem ? gameItem->text(QMC2_GAMELIST_COLUMN_GAME) : "")), QRegExp::escape(QString("QMC2-UME-ID-%1").arg(gameID)));
 #endif
-	
-	if ( windowId )
-		winIdList << windowId;
+	    if ( windowId )
+		    winIdList << windowId;
 
-	if ( winIdList.isEmpty() && xwininfoRetries <= QMC2_MAX_XWININFO_RETRIES )
-		QTest::qWait(QMC2_XWININFO_DELAY);
+	    if ( winIdList.isEmpty() && xwininfoRetries <= QMC2_MAX_XWININFO_RETRIES )
+		    QTest::qWait(QMC2_XWININFO_DELAY);
     }
 #elif defined(QMC2_OS_WIN)
     QList<WId> winIdList;
@@ -5886,7 +5863,10 @@ void MainWindow::action_embedEmulator_triggered()
       Embedder *embedder = new Embedder(gameName, gameID, winIdList[0], false, this, qmc2IconMap[gameName]);
 #endif
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
-      tabWidgetEmbeddedEmulators->addTab(embedder, QString("#%1 - %2").arg(gameID).arg(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME)));
+      if ( gameItem )
+	      tabWidgetEmbeddedEmulators->addTab(embedder, QString("#%1 - %2").arg(gameID).arg(gameItem->text(QMC2_GAMELIST_COLUMN_GAME)));
+      else
+	      tabWidgetEmbeddedEmulators->addTab(embedder, QString("#%1").arg(gameID));
       tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->count() - 1);
 
       // serious hack to access the tab bar without sub-classing from QTabWidget ;)

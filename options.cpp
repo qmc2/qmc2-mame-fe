@@ -3054,69 +3054,51 @@ void Options::applyDelayed()
 		  qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedForeignID");
   }
 
-  // (re)create foreign ID menu & tree-widget, if applicable
-  qmc2MainWindow->menuForeignIDs->clear();
+  // (re)create foreign IDs tree-widget, if applicable
   qmc2MainWindow->treeWidgetForeignIDs->clear();
   QString displayFormat = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/DisplayFormat", "$ID$ - $DESCRIPTION$").toString();
-  config->beginGroup(QMC2_EMULATOR_PREFIX + "CustomIDs");
-  QStringList childGroups = config->childGroups();
-  if ( !childGroups.isEmpty() ) {
-	  bool showForeignIDs = false;
+  config->beginGroup(QMC2_EMULATOR_PREFIX + "RegisteredEmulators");
+  QStringList registeredEmus = config->childGroups();
+  config->endGroup();
+  if ( !registeredEmus.isEmpty() ) {
 	  QList<QTreeWidgetItem *> itemList;
-	  foreach (QString emuName, childGroups) {
-		  QMenu *menu = qmc2MainWindow->menuForeignIDs->addMenu(emuName);
-		  // FIXME: add support for individual icons for foreign emulators
-		  menu->setIcon(QIcon(QString::fromUtf8(":/data/img/arcademode.png")));
-		  menu->setTearOffEnabled(true);
+	  foreach (QString emuName, registeredEmus) {
 		  QTreeWidgetItem *emuItem = new QTreeWidgetItem();
 		  emuItem->setText(0, emuName);
 		  // FIXME: add support for individual icons for foreign emulators
-		  emuItem->setIcon(0, QIcon(QString::fromUtf8(":/data/img/arcademode.png")));
+		  emuItem->setIcon(0, QIcon(QString::fromUtf8(":/data/img/alien.png")));
+		  emuItem->setWhatsThis(0, emuName + "\t" + tr("N/A") + "\t" + tr("N/A"));
 		  itemList << emuItem;
-		  QStringList idList = config->value(QString("%1/IDs").arg(emuName), QStringList()).toStringList();
+		  QStringList idList = config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/IDs").arg(emuName), QStringList()).toStringList();
 		  if ( !idList.isEmpty() ) {
-			  QStringList descriptionList = config->value(QString("%1/Descriptions").arg(emuName), QStringList()).toStringList();
+			  QStringList descriptionList = config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/Descriptions").arg(emuName), QStringList()).toStringList();
 			  for (int i = 0; i < idList.count(); i++) {
 				  QString id = idList[i];
 				  if ( !id.isEmpty() ) {
 					  QString description = descriptionList[i];
 					  QString itemText = displayFormat;
 					  itemText.replace("$ID$", id).replace("$DESCRIPTION$", description);
-					  QAction *action = menu->addAction(itemText);
-					  // FIXME: add support for individual icons for foreign IDs
-					  action->setIcon(QIcon(QString::fromUtf8(":/data/img/pacman.png")));
-					  QString itemData = emuName + "\t" + id + "\t" + description;
-					  action->setData(itemData);
-					  QString tipText = menu->title() + " / " + action->text();
-					  action->setStatusTip(tr("Launch foreign ID '%1'").arg(tipText));
-					  action->setToolTip(tr("Launch foreign ID '%1'").arg(tipText));
-					  connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(action_foreignIDsMenuItem_triggered()));
 					  QTreeWidgetItem *idItem = new QTreeWidgetItem(emuItem);
 					  idItem->setText(0, itemText);
-					  idItem->setWhatsThis(0, itemData);
+					  idItem->setWhatsThis(0, emuName + "\t" + id + "\t" + description);
 					  // FIXME: add support for individual icons for foreign IDs
 					  idItem->setIcon(0, QIcon(QString::fromUtf8(":/data/img/pacman.png")));
-					  showForeignIDs = true;
 				  }
 			  }
 		  }
 	  }
 	  qmc2MainWindow->treeWidgetForeignIDs->insertTopLevelItems(0, itemList);
-	  if ( showForeignIDs ) {
-		  int index = qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabForeignIDs);
-		  if ( index == -1 ) {
-			  qmc2MainWindow->tabWidgetGamelist->insertTab(QMC2_FOREIGN_INDEX, qmc2MainWindow->tabForeignIDs, tr("Foreign IDs"));
-			  qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_FOREIGN_INDEX, QIcon(QString::fromUtf8(":/data/img/arcademode.png")));
-		  }
+	  int index = qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabForeignEmulators);
+	  if ( index == -1 ) {
+		  qmc2MainWindow->tabWidgetGamelist->insertTab(QMC2_FOREIGN_INDEX, qmc2MainWindow->tabForeignEmulators, tr("Foreign IDs"));
+		  qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_FOREIGN_INDEX, QIcon(QString::fromUtf8(":/data/img/alien.png")));
 	  }
-	  qmc2MainWindow->menuForeignIDs->menuAction()->setVisible(showForeignIDs);
   } else {
-	  int index = qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabForeignIDs);
+	  int index = qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabForeignEmulators);
 	  if ( index >= 0 )
 		  qmc2MainWindow->tabWidgetGamelist->removeTab(index);
-	  qmc2MainWindow->menuForeignIDs->menuAction()->setVisible(false);
   }
-  qmc2Config->endGroup();
+
   checkPlaceholderStatus();
 
   // restore foreign ID selection
