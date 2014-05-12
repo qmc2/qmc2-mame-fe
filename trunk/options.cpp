@@ -3042,95 +3042,98 @@ void Options::applyDelayed()
   // redraw detail if setup changed
   qmc2MainWindow->on_tabWidgetGameDetail_currentChanged(qmc2MainWindow->tabWidgetGameDetail->currentIndex());
 
-  qmc2MainWindow->treeWidgetForeignIDs->setUpdatesEnabled(false);
-  if ( !qmc2EarlyStartup ) {
-	  // save foreign ID selection
-	  QTreeWidgetItem *foreignItem = qmc2MainWindow->treeWidgetForeignIDs->currentItem();
-	  if ( foreignItem && foreignItem->isSelected() ) {
-		  QTreeWidgetItem *parentItem = foreignItem;
-		  if ( foreignItem->parent() )
-			  parentItem = foreignItem->parent();
-		  QStringList foreignIdState;
-		  if ( parentItem == foreignItem )
-			  foreignIdState << QString::number(qmc2MainWindow->treeWidgetForeignIDs->indexOfTopLevelItem(parentItem));
-		  else
-			  foreignIdState << QString::number(qmc2MainWindow->treeWidgetForeignIDs->indexOfTopLevelItem(parentItem)) << QString::number(parentItem->indexOfChild(foreignItem));
-		  qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedForeignID", foreignIdState);
-	  } else
-		  qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedForeignID");
-  }
+  if ( !cancelClicked ) {
+	  qmc2MainWindow->treeWidgetForeignIDs->setUpdatesEnabled(false);
+	  if ( !qmc2EarlyStartup ) {
+		  // save foreign ID selection
+		  QTreeWidgetItem *foreignItem = qmc2MainWindow->treeWidgetForeignIDs->currentItem();
+		  if ( foreignItem && foreignItem->isSelected() ) {
+			  QTreeWidgetItem *parentItem = foreignItem;
+			  if ( foreignItem->parent() )
+				  parentItem = foreignItem->parent();
+			  QStringList foreignIdState;
+			  if ( parentItem == foreignItem )
+				  foreignIdState << QString::number(qmc2MainWindow->treeWidgetForeignIDs->indexOfTopLevelItem(parentItem));
+			  else
+				  foreignIdState << QString::number(qmc2MainWindow->treeWidgetForeignIDs->indexOfTopLevelItem(parentItem)) << QString::number(parentItem->indexOfChild(foreignItem));
+			  qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedForeignID", foreignIdState);
+		  } else
+			  qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedForeignID");
+	  }
 
-  // (re)create foreign IDs tree-widget, if applicable
-  qmc2MainWindow->treeWidgetForeignIDs->clear();
-  QString displayFormat = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/DisplayFormat", "$ID$ - $DESCRIPTION$").toString();
-  config->beginGroup(QMC2_EMULATOR_PREFIX + "RegisteredEmulators");
-  QStringList registeredEmus = config->childGroups();
-  config->endGroup();
-  if ( !registeredEmus.isEmpty() ) {
-	  QList<QTreeWidgetItem *> itemList;
-	  foreach (QString emuName, registeredEmus) {
-		  QTreeWidgetItem *emuItem = new QTreeWidgetItem();
-		  emuItem->setText(0, emuName);
-		  // FIXME: add support for individual icons for foreign emulators
-		  emuItem->setIcon(0, QIcon(QString::fromUtf8(":/data/img/alien.png")));
-		  emuItem->setWhatsThis(0, emuName + "\t" + tr("N/A") + "\t" + tr("N/A"));
-		  itemList << emuItem;
-		  QStringList idList = config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/IDs").arg(emuName), QStringList()).toStringList();
-		  if ( !idList.isEmpty() ) {
-			  QStringList descriptionList = config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/Descriptions").arg(emuName), QStringList()).toStringList();
-			  for (int i = 0; i < idList.count(); i++) {
-				  QString id = idList[i];
-				  if ( !id.isEmpty() ) {
-					  QString description = descriptionList[i];
-					  QString itemText = displayFormat;
-					  itemText.replace("$ID$", id).replace("$DESCRIPTION$", description);
-					  QTreeWidgetItem *idItem = new QTreeWidgetItem(emuItem);
-					  idItem->setText(0, itemText);
-					  idItem->setWhatsThis(0, emuName + "\t" + id + "\t" + description);
-					  // FIXME: add support for individual icons for foreign IDs
-					  idItem->setIcon(0, QIcon(QString::fromUtf8(":/data/img/pacman.png")));
+	  // (re)create foreign IDs tree-widget, if applicable
+	  qmc2MainWindow->treeWidgetForeignIDs->clear();
+	  QString displayFormat = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/DisplayFormat", "$ID$ - $DESCRIPTION$").toString();
+	  config->beginGroup(QMC2_EMULATOR_PREFIX + "RegisteredEmulators");
+	  QStringList registeredEmus = config->childGroups();
+	  config->endGroup();
+	  if ( !registeredEmus.isEmpty() ) {
+		  QList<QTreeWidgetItem *> itemList;
+		  foreach (QString emuName, registeredEmus) {
+			  QTreeWidgetItem *emuItem = new QTreeWidgetItem();
+			  emuItem->setText(0, emuName);
+			  // FIXME: add support for individual icons for foreign emulators
+			  emuItem->setIcon(0, QIcon(QString::fromUtf8(":/data/img/alien.png")));
+			  emuItem->setWhatsThis(0, emuName + "\t" + tr("N/A") + "\t" + tr("N/A"));
+			  itemList << emuItem;
+			  QStringList idList = config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/IDs").arg(emuName), QStringList()).toStringList();
+			  if ( !idList.isEmpty() ) {
+				  QStringList descriptionList = config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/Descriptions").arg(emuName), QStringList()).toStringList();
+				  for (int i = 0; i < idList.count(); i++) {
+					  QString id = idList[i];
+					  if ( !id.isEmpty() ) {
+						  QString description = descriptionList[i];
+						  QString itemText = displayFormat;
+						  itemText.replace("$ID$", id).replace("$DESCRIPTION$", description);
+						  QTreeWidgetItem *idItem = new QTreeWidgetItem(emuItem);
+						  idItem->setText(0, itemText);
+						  idItem->setWhatsThis(0, emuName + "\t" + id + "\t" + description);
+						  // FIXME: add support for individual icons for foreign IDs
+						  idItem->setIcon(0, QIcon(QString::fromUtf8(":/data/img/pacman.png")));
+					  }
 				  }
 			  }
 		  }
+		  qmc2MainWindow->treeWidgetForeignIDs->insertTopLevelItems(0, itemList);
+		  int index = qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabForeignEmulators);
+		  if ( index == -1 ) {
+			  qmc2MainWindow->tabWidgetGamelist->insertTab(QMC2_FOREIGN_INDEX, qmc2MainWindow->tabForeignEmulators, tr("Foreign IDs"));
+			  qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_FOREIGN_INDEX, QIcon(QString::fromUtf8(":/data/img/alien.png")));
+		  }
+	  } else {
+		  int index = qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabForeignEmulators);
+		  if ( index >= 0 )
+			  qmc2MainWindow->tabWidgetGamelist->removeTab(index);
 	  }
-	  qmc2MainWindow->treeWidgetForeignIDs->insertTopLevelItems(0, itemList);
-	  int index = qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabForeignEmulators);
-	  if ( index == -1 ) {
-		  qmc2MainWindow->tabWidgetGamelist->insertTab(QMC2_FOREIGN_INDEX, qmc2MainWindow->tabForeignEmulators, tr("Foreign IDs"));
-		  qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_FOREIGN_INDEX, QIcon(QString::fromUtf8(":/data/img/alien.png")));
+
+
+	  // restore foreign ID selection
+	  QStringList foreignIdState = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedForeignID", QStringList()).toStringList();
+	  if ( !foreignIdState.isEmpty() ) {
+		  int parentIndex = foreignIdState[0].toInt();
+		  int childIndex = -1;
+		  if ( foreignIdState.count() > 1 )
+			  childIndex = foreignIdState[1].toInt();
+		  if ( parentIndex >= 0 && parentIndex < qmc2MainWindow->treeWidgetForeignIDs->topLevelItemCount() ) {
+			  QTreeWidgetItem *parentItem = qmc2MainWindow->treeWidgetForeignIDs->topLevelItem(parentIndex);
+			  if ( childIndex >= 0 && childIndex < parentItem->childCount() ) {
+				  parentItem->setExpanded(true);
+				  QTreeWidgetItem *childItem = parentItem->child(childIndex);
+				  childItem->setSelected(true);
+				  qmc2MainWindow->treeWidgetForeignIDs->setCurrentItem(childItem);
+				  qmc2MainWindow->treeWidgetForeignIDs->scrollToItem(childItem, qmc2CursorPositioningMode);
+			  } else {
+				  parentItem->setSelected(true);
+				  qmc2MainWindow->treeWidgetForeignIDs->setCurrentItem(parentItem);
+				  qmc2MainWindow->treeWidgetForeignIDs->scrollToItem(parentItem, qmc2CursorPositioningMode);
+			  }
+		  }
 	  }
-  } else {
-	  int index = qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabForeignEmulators);
-	  if ( index >= 0 )
-		  qmc2MainWindow->tabWidgetGamelist->removeTab(index);
+
+	  qmc2MainWindow->treeWidgetForeignIDs->setUpdatesEnabled(true);
   }
 
   checkPlaceholderStatus();
-
-  // restore foreign ID selection
-  QStringList foreignIdState = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedForeignID", QStringList()).toStringList();
-  if ( !foreignIdState.isEmpty() ) {
-	  int parentIndex = foreignIdState[0].toInt();
-	  int childIndex = -1;
-	  if ( foreignIdState.count() > 1 )
-		  childIndex = foreignIdState[1].toInt();
-	  if ( parentIndex >= 0 && parentIndex < qmc2MainWindow->treeWidgetForeignIDs->topLevelItemCount() ) {
-		  QTreeWidgetItem *parentItem = qmc2MainWindow->treeWidgetForeignIDs->topLevelItem(parentIndex);
-		  if ( childIndex >= 0 && childIndex < parentItem->childCount() ) {
-			  parentItem->setExpanded(true);
-			  QTreeWidgetItem *childItem = parentItem->child(childIndex);
-			  childItem->setSelected(true);
-			  qmc2MainWindow->treeWidgetForeignIDs->setCurrentItem(childItem);
-			  qmc2MainWindow->treeWidgetForeignIDs->scrollToItem(childItem, qmc2CursorPositioningMode);
-		  } else {
-			  parentItem->setSelected(true);
-			  qmc2MainWindow->treeWidgetForeignIDs->setCurrentItem(parentItem);
-			  qmc2MainWindow->treeWidgetForeignIDs->scrollToItem(parentItem, qmc2CursorPositioningMode);
-		  }
-	  }
-  }
-
-  qmc2MainWindow->treeWidgetForeignIDs->setUpdatesEnabled(true);
   
   // hide / show the menu bar
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
@@ -3141,6 +3144,7 @@ void Options::applyDelayed()
 #endif
   qApp->processEvents();
   qmc2VariantSwitchReady = true;
+  cancelClicked = false;
 }
 
 void Options::on_pushButtonClearCookieDatabase_clicked()
