@@ -648,6 +648,7 @@ void Options::apply()
   ((IconLineEdit *)qmc2MainWindow->comboBoxToolbarSearch->lineEdit())->setIconSize(iconSizeMiddle);
   qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSizeMiddle);
   qmc2MainWindow->treeWidgetHierarchy->setIconSize(iconSizeMiddle);
+  qmc2MainWindow->treeWidgetForeignIDs->setIconSize(iconSizeMiddle);
   qmc2MainWindow->treeWidgetEmulators->setIconSize(iconSizeMiddle);
   qmc2MainWindow->floatToggleButtonSoftwareDetail->setIconSize(iconSizeMiddle);
   pushButtonApply->setIconSize(iconSize);
