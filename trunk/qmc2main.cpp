@@ -3979,8 +3979,20 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
       break;
 
     case QMC2_FOREIGN_INDEX:
-      treeWidgetForeignIDs->activateWindow();
-      treeWidgetForeignIDs->setFocus();
+      actionToggleTagCursorDown->setVisible(true);
+      actionToggleTagCursorUp->setVisible(true);
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+      menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
+      statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
+      toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
+      frameStatus->show();
+#else
+      QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
+#endif
+      if ( treeWidgetForeignIDs->topLevelItemCount() > 0 ) {
+        treeWidgetForeignIDs->activateWindow();
+        treeWidgetForeignIDs->setFocus();
+      }
       break;
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
