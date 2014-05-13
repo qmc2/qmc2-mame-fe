@@ -891,8 +891,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>545</width>
-                <height>793</height>
+                <width>349</width>
+                <height>789</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
@@ -2973,8 +2973,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>559</width>
-                <height>542</height>
+                <width>505</width>
+                <height>244</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
@@ -5486,8 +5486,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>236</width>
-                <height>214</height>
+                <width>559</width>
+                <height>542</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_26" columnstretch="0,0,0,0,0,0,0,0,0">
@@ -5610,6 +5610,11 @@
                  <attribute name="verticalHeaderVisible">
                   <bool>false</bool>
                  </attribute>
+                 <column>
+                  <property name="text">
+                   <string>Icon</string>
+                  </property>
+                 </column>
                  <column>
                   <property name="text">
                    <string>Name</string>

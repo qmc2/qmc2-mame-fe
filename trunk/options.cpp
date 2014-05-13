@@ -1824,19 +1824,26 @@ void Options::on_pushButtonApply_clicked()
   tableWidgetRegisteredEmulators->setSortingEnabled(false);
   config->remove(QMC2_EMULATOR_PREFIX + "RegisteredEmulators");
   for (i = 0; i < tableWidgetRegisteredEmulators->rowCount(); i++) {
-    if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_NAME) ) {
-      QString emuName, emuCommand, emuWorkDir, emuArgs;
-      emuName = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_NAME)->text();
-      if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_EXEC) )
-        emuCommand = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_EXEC)->text();
-      if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_WDIR) )
-        emuWorkDir = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_WDIR)->text();
-      if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_ARGS) )
-        emuArgs = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_ARGS)->text();
-      config->setValue(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(emuName), emuCommand);
-      config->setValue(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(emuName), emuWorkDir);
-      config->setValue(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(emuName), emuArgs);
-    }
+	  if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_NAME) ) {
+		  QString emuIcon, emuName, emuCommand, emuWorkDir, emuArgs;
+		  emuName = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_NAME)->text();
+		  if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_EXEC) )
+			  emuCommand = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_EXEC)->text();
+		  if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_WDIR) )
+			  emuWorkDir = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_WDIR)->text();
+		  if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_ARGS) )
+			  emuArgs = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_ARGS)->text();
+		  config->setValue(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(emuName), emuCommand);
+		  config->setValue(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(emuName), emuWorkDir);
+		  config->setValue(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(emuName), emuArgs);
+		  QToolButton *tb = (QToolButton *)tableWidgetRegisteredEmulators->cellWidget(i, QMC2_ADDTLEMUS_COLUMN_ICON);
+		  if ( tb )
+			  emuIcon = tb->whatsThis();
+		  if ( !emuIcon.startsWith(":") && !emuIcon.isEmpty() )
+			  config->setValue(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Icon").arg(emuName), emuIcon);
+		  else
+			  config->remove(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Icon").arg(emuName));
+	  }
   }
   tableWidgetRegisteredEmulators->setSortingEnabled(true);
 
@@ -2946,25 +2953,43 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   config->beginGroup(QMC2_EMULATOR_PREFIX + "RegisteredEmulators");
   QStringList additionalEmulators = config->childGroups();
   tableWidgetRegisteredEmulators->setSortingEnabled(false);
+  QFontMetrics fm(qApp->font());
+  QSize iconSize(fm.height(), fm.height());
   foreach (QString emuName, additionalEmulators) {
-    QString emuCommand = config->value(QString("%1/Executable").arg(emuName)).toString();
-    QString emuWorkDir = config->value(QString("%1/WorkingDirectory").arg(emuName)).toString();
-    QString emuArgs = config->value(QString("%1/Arguments").arg(emuName)).toString();
-    int row = tableWidgetRegisteredEmulators->rowCount();
-    tableWidgetRegisteredEmulators->insertRow(row);
-    tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_NAME, new QTableWidgetItem(emuName));
-    tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(emuCommand));
-    tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(emuWorkDir));
-    tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(emuArgs));
-    QPushButton *pb = new QPushButton(0);
-    pb->setObjectName(emuName);
-    pb->setAutoFillBackground(true);
-    pb->setText(tr("Custom IDs..."));
-    pb->setToolTip(tr("Specify pre-defined foreign IDs for this emulator, launchable through the menu"));
-    // FIXME:
-    // pb->setIcon(QIcon(QString::fromUtf8(":/data/img/???.png")));
-    tableWidgetRegisteredEmulators->setCellWidget(row, QMC2_ADDTLEMUS_COLUMN_CUID, pb);
-    connect(pb, SIGNAL(clicked()), this, SLOT(setupCustomIDsClicked()));
+	  QString emuCommand = config->value(QString("%1/Executable").arg(emuName), QString()).toString();
+	  QString emuWorkDir = config->value(QString("%1/WorkingDirectory").arg(emuName), QString()).toString();
+	  QString emuArgs = config->value(QString("%1/Arguments").arg(emuName), QString()).toString();
+	  QString emuIcon = config->value(QString("%1/Icon").arg(emuName), QString()).toString();
+	  int row = tableWidgetRegisteredEmulators->rowCount();
+	  tableWidgetRegisteredEmulators->insertRow(row);
+	  tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_NAME, new QTableWidgetItem(emuName));
+	  tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(emuCommand));
+	  tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(emuWorkDir));
+	  tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(emuArgs));
+	  QToolButton *tb = new QToolButton(0);
+	  tb->setObjectName(emuName);
+	  tb->setAutoFillBackground(true);
+	  tb->setText(tr("Custom IDs..."));
+	  tb->setToolTip(tr("Specify pre-defined foreign IDs for this emulator, launchable from the 'foreign emulators' view"));
+	  tableWidgetRegisteredEmulators->setCellWidget(row, QMC2_ADDTLEMUS_COLUMN_CUID, tb);
+	  connect(tb, SIGNAL(clicked()), this, SLOT(setupCustomIDsClicked()));
+	  tb = new QToolButton(0);
+	  tb->setIconSize(iconSize);
+	  tb->setAutoFillBackground(true);
+	  if ( emuIcon.isEmpty() ) {
+		  tb->setIcon(QIcon(QString::fromUtf8(":/data/img/alien.png")));
+		  tb->setWhatsThis(":/data/img/alien.png");
+	  } else {
+		  tb->setIcon(QIcon(emuIcon));
+		  tb->setWhatsThis(emuIcon);
+	  }
+	  tb->setToolTip(tr("Choose icon for this foreign emulator (hold down for menu)"));
+	  QMenu *menu = new QMenu(tb);
+	  QAction *action = menu->addAction(QIcon(QString::fromUtf8(":/data/img/alien.png")), tr("Default icon"));
+	  connect(action, SIGNAL(triggered(bool)), this, SLOT(actionDefaultEmuIconTriggered()));
+	  tb->setMenu(menu);
+	  tableWidgetRegisteredEmulators->setCellWidget(row, QMC2_ADDTLEMUS_COLUMN_ICON, tb);
+	  connect(tb, SIGNAL(clicked()), this, SLOT(chooseEmuIconClicked()));
   }
   config->endGroup();
   tableWidgetRegisteredEmulators->setSortingEnabled(true);
@@ -3073,24 +3098,45 @@ void Options::applyDelayed()
 		  foreach (QString emuName, registeredEmus) {
 			  QTreeWidgetItem *emuItem = new QTreeWidgetItem();
 			  emuItem->setText(0, emuName);
-			  // FIXME: add support for individual icons for foreign emulators
-			  emuItem->setIcon(0, QIcon(QString::fromUtf8(":/data/img/alien.png")));
+			  QString emuIcon = config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Icon").arg(emuName), QString()).toString();
+			  if ( emuIcon.isEmpty() )
+				  emuItem->setIcon(0, QIcon(QString::fromUtf8(":/data/img/alien.png")));
+			  else {
+				  QIcon icon = QIcon(emuIcon);
+				  if ( !icon.isNull() )
+					  emuItem->setIcon(0, icon);
+				  else
+					  emuItem->setIcon(0, QIcon(QString::fromUtf8(":/data/img/alien.png")));
+			  }
 			  emuItem->setWhatsThis(0, emuName + "\t" + tr("N/A") + "\t" + tr("N/A"));
 			  itemList << emuItem;
 			  QStringList idList = config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/IDs").arg(emuName), QStringList()).toStringList();
 			  if ( !idList.isEmpty() ) {
 				  QStringList descriptionList = config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/Descriptions").arg(emuName), QStringList()).toStringList();
+				  while ( descriptionList.count() < idList.count() )
+					  descriptionList << QString();
+				  QStringList iconList = config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/Icons").arg(emuName), QStringList()).toStringList();
+				  while ( iconList.count() < idList.count() )
+					  iconList << QString();
 				  for (int i = 0; i < idList.count(); i++) {
 					  QString id = idList[i];
 					  if ( !id.isEmpty() ) {
 						  QString description = descriptionList[i];
+						  QString idIcon = iconList[i];
 						  QString itemText = displayFormat;
 						  itemText.replace("$ID$", id).replace("$DESCRIPTION$", description);
 						  QTreeWidgetItem *idItem = new QTreeWidgetItem(emuItem);
 						  idItem->setText(0, itemText);
 						  idItem->setWhatsThis(0, emuName + "\t" + id + "\t" + description);
-						  // FIXME: add support for individual icons for foreign IDs
-						  idItem->setIcon(0, QIcon(QString::fromUtf8(":/data/img/pacman.png")));
+						  if ( idIcon.isEmpty() )
+							  idItem->setIcon(0, QIcon(QString::fromUtf8(":/data/img/pacman.png")));
+						  else {
+							  QIcon icon(idIcon);
+							  if ( !icon.isNull() )
+								  idItem->setIcon(0, icon);
+							  else
+								  idItem->setIcon(0, QIcon(QString::fromUtf8(":/data/img/pacman.png")));
+						  }
 					  }
 				  }
 			  }
@@ -3132,6 +3178,8 @@ void Options::applyDelayed()
 	  }
 
 	  qmc2MainWindow->treeWidgetForeignIDs->setUpdatesEnabled(true);
+
+	  tableWidgetRegisteredEmulators->resizeRowsToContents();
   }
 
   checkPlaceholderStatus();
@@ -4465,68 +4513,68 @@ void Options::on_pushButtonEditPalette_clicked()
 void Options::checkShortcuts()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::checkShortcuts()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::checkShortcuts()");
 #endif
 
-  static char lastShortcutsState = -1;
+	static char lastShortcutsState = -1;
 
-  char shortcutsState = 1;
-  int itemCount = treeWidgetShortcuts->topLevelItemCount();
-  int i, j;
-  for (i = 0; i < itemCount; i++) {
-    QTreeWidgetItem *iItem = treeWidgetShortcuts->topLevelItem(i);
-    if ( iItem->text(2).isEmpty() )
-      iItem->setForeground(1, greenBrush);
-    else
-      iItem->setForeground(1, greyBrush);
-    iItem->setForeground(2, greenBrush);
-  }
-  for (i = 0; i < itemCount; i++) {
-    QTreeWidgetItem *iItem = treeWidgetShortcuts->topLevelItem(i);
-    QString iShortcut;
-    int iColumn = 1;
-    if ( !iItem->text(2).isEmpty() )
-      iColumn = 2;
-    iShortcut = iItem->text(iColumn);
-    for (j = i + 1; j < itemCount; j++) {
-      QTreeWidgetItem *jItem = treeWidgetShortcuts->topLevelItem(j);
-      QString jShortcut;
-      int jColumn = 1;
-      if ( !jItem->text(2).isEmpty() )
-        jColumn = 2;
-      jShortcut = jItem->text(jColumn);
-      if ( iShortcut == jShortcut ) {
-        iItem->setForeground(iColumn, redBrush);
-        jItem->setForeground(jColumn, redBrush);
-        shortcutsState = 0;
-      }
-    }
-  }
+	char shortcutsState = 1;
+	int itemCount = treeWidgetShortcuts->topLevelItemCount();
+	int i, j;
+	for (i = 0; i < itemCount; i++) {
+		QTreeWidgetItem *iItem = treeWidgetShortcuts->topLevelItem(i);
+		if ( iItem->text(2).isEmpty() )
+			iItem->setForeground(1, greenBrush);
+		else
+			iItem->setForeground(1, greyBrush);
+		iItem->setForeground(2, greenBrush);
+	}
+	for (i = 0; i < itemCount; i++) {
+		QTreeWidgetItem *iItem = treeWidgetShortcuts->topLevelItem(i);
+		QString iShortcut;
+		int iColumn = 1;
+		if ( !iItem->text(2).isEmpty() )
+			iColumn = 2;
+		iShortcut = iItem->text(iColumn);
+		for (j = i + 1; j < itemCount; j++) {
+			QTreeWidgetItem *jItem = treeWidgetShortcuts->topLevelItem(j);
+			QString jShortcut;
+			int jColumn = 1;
+			if ( !jItem->text(2).isEmpty() )
+				jColumn = 2;
+			jShortcut = jItem->text(jColumn);
+			if ( iShortcut == jShortcut ) {
+				iItem->setForeground(iColumn, redBrush);
+				jItem->setForeground(jColumn, redBrush);
+				shortcutsState = 0;
+			}
+		}
+	}
 
-  if ( shortcutsState != lastShortcutsState || lastShortcutsState == -1 ) {
-    if ( shortcutsState == 1 )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("shortcut map is clean"));
-    else
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: shortcut map contains duplicates"));
-  }
-  lastShortcutsState = shortcutsState;
+	if ( shortcutsState != lastShortcutsState || lastShortcutsState == -1 ) {
+		if ( shortcutsState == 1 )
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("shortcut map is clean"));
+		else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: shortcut map contains duplicates"));
+	}
+	lastShortcutsState = shortcutsState;
 }
 
 void Options::setupShortcutActions()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::setupShortcutActions()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::setupShortcutActions()");
 #endif
 
-  QMapIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutMap);
-  while ( it.hasNext() ) {
-    it.next();
-    QAction *action = it.value().second;
-    if ( action ) {
-      action->setShortcut(QKeySequence(qmc2CustomShortcutMap[it.key()]));
-      action->setShortcutContext(Qt::ApplicationShortcut);
-    }
-  }
+	QMapIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutMap);
+	while ( it.hasNext() ) {
+		it.next();
+		QAction *action = it.value().second;
+		if ( action ) {
+			action->setShortcut(QKeySequence(qmc2CustomShortcutMap[it.key()]));
+			action->setShortcutContext(Qt::ApplicationShortcut);
+		}
+	}
 }
 
 void Options::on_toolButtonBrowseAdditionalEmulatorExecutable_clicked()
@@ -4560,73 +4608,83 @@ void Options::on_toolButtonBrowseAdditionalEmulatorWorkingDirectory_clicked()
 void Options::on_toolButtonAddEmulator_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonAddEmulator_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonAddEmulator_clicked()");
 #endif
 
-  tableWidgetRegisteredEmulators->setSortingEnabled(false);
-  int row = tableWidgetRegisteredEmulators->rowCount();
-  tableWidgetRegisteredEmulators->insertRow(row);
-  tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_NAME, new QTableWidgetItem(lineEditAdditionalEmulatorName->text()));
-  tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(lineEditAdditionalEmulatorExecutableFile->text()));
-  tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(lineEditAdditionalEmulatorWorkingDirectory->text()));
-  tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(lineEditAdditionalEmulatorArguments->text()));
-  QPushButton *pb = new QPushButton(0);
-  pb->setObjectName(lineEditAdditionalEmulatorName->text());
-  pb->setAutoFillBackground(true);
-  pb->setText(tr("Custom IDs..."));
-  pb->setToolTip(tr("Specify pre-defined foreign IDs for this emulator, launchable through the menu"));
-  // FIXME:
-  // pb->setIcon(QIcon(QString::fromUtf8(":/data/img/???.png")));
-  tableWidgetRegisteredEmulators->setCellWidget(row, QMC2_ADDTLEMUS_COLUMN_CUID, pb);
-  connect(pb, SIGNAL(clicked()), this, SLOT(setupCustomIDsClicked()));
+	tableWidgetRegisteredEmulators->setSortingEnabled(false);
+	int row = tableWidgetRegisteredEmulators->rowCount();
+	tableWidgetRegisteredEmulators->insertRow(row);
+	tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_NAME, new QTableWidgetItem(lineEditAdditionalEmulatorName->text()));
+	tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(lineEditAdditionalEmulatorExecutableFile->text()));
+	tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(lineEditAdditionalEmulatorWorkingDirectory->text()));
+	tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(lineEditAdditionalEmulatorArguments->text()));
+	QToolButton *tb = new QToolButton(0);
+	tb->setObjectName(lineEditAdditionalEmulatorName->text());
+	tb->setAutoFillBackground(true);
+	tb->setText(tr("Custom IDs..."));
+	tb->setToolTip(tr("Specify pre-defined foreign IDs for this emulator, launchable from the 'foreign emulators' view"));
+	tableWidgetRegisteredEmulators->setCellWidget(row, QMC2_ADDTLEMUS_COLUMN_CUID, tb);
+	connect(tb, SIGNAL(clicked()), this, SLOT(setupCustomIDsClicked()));
+	tb = new QToolButton(0);
+	QFontMetrics fm(qApp->font());
+	tb->setIconSize(QSize(fm.height(), fm.height()));
+	tb->setIcon(QIcon(QString::fromUtf8(":/data/img/alien.png")));
+	tb->setWhatsThis(":/data/img/alien.png");
+	tb->setToolTip(tr("Choose icon for this foreign emulator (hold down for menu)"));
+	QMenu *menu = new QMenu(tb);
+	QAction *action = menu->addAction(QIcon(QString::fromUtf8(":/data/img/alien.png")), tr("Default icon"));
+	connect(action, SIGNAL(triggered(bool)), this, SLOT(actionDefaultEmuIconTriggered()));
+	tb->setMenu(menu);
+	tableWidgetRegisteredEmulators->setCellWidget(row, QMC2_ADDTLEMUS_COLUMN_ICON, tb);
+	connect(tb, SIGNAL(clicked()), this, SLOT(chooseEmuIconClicked()));
 
-  on_lineEditAdditionalEmulatorName_textChanged(lineEditAdditionalEmulatorName->text());
-  tableWidgetRegisteredEmulators->setSortingEnabled(true);
+	on_lineEditAdditionalEmulatorName_textChanged(lineEditAdditionalEmulatorName->text());
+	tableWidgetRegisteredEmulators->setSortingEnabled(true);
 }
 
 void Options::on_toolButtonSaveEmulator_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonSaveEmulator_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonSaveEmulator_clicked()");
 #endif
 
-  tableWidgetRegisteredEmulators->setSortingEnabled(false);
-  QString name = lineEditAdditionalEmulatorName->text();
-  if ( !name.isEmpty() ) {
-    QList<QTableWidgetItem *> il = tableWidgetRegisteredEmulators->findItems(name, Qt::MatchExactly);
-    int row = il[QMC2_ADDTLEMUS_COLUMN_NAME]->row();
-    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME) )
-      tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->setText(name);
-    else
-      tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_NAME, new QTableWidgetItem(lineEditAdditionalEmulatorName->text()));
-    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC) )
-      tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC)->setText(lineEditAdditionalEmulatorExecutableFile->text());
-    else
-      tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(lineEditAdditionalEmulatorExecutableFile->text()));
-    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR) )
-      tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR)->setText(lineEditAdditionalEmulatorWorkingDirectory->text());
-    else
-      tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(lineEditAdditionalEmulatorWorkingDirectory->text()));
-    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS) )
-      tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS)->setText(lineEditAdditionalEmulatorArguments->text());
-    else
-      tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(lineEditAdditionalEmulatorArguments->text()));
-  }
-  tableWidgetRegisteredEmulators->setSortingEnabled(true);
+	tableWidgetRegisteredEmulators->setSortingEnabled(false);
+	QString name = lineEditAdditionalEmulatorName->text();
+	if ( !name.isEmpty() ) {
+		QList<QTableWidgetItem *> il = tableWidgetRegisteredEmulators->findItems(name, Qt::MatchExactly);
+		int row = il[QMC2_ADDTLEMUS_COLUMN_NAME]->row();
+		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME) )
+			tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->setText(name);
+		else
+			tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_NAME, new QTableWidgetItem(lineEditAdditionalEmulatorName->text()));
+		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC) )
+			tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC)->setText(lineEditAdditionalEmulatorExecutableFile->text());
+		else
+			tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(lineEditAdditionalEmulatorExecutableFile->text()));
+		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR) )
+			tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR)->setText(lineEditAdditionalEmulatorWorkingDirectory->text());
+		else
+			tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(lineEditAdditionalEmulatorWorkingDirectory->text()));
+		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS) )
+			tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS)->setText(lineEditAdditionalEmulatorArguments->text());
+		else
+			tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(lineEditAdditionalEmulatorArguments->text()));
+	}
+	tableWidgetRegisteredEmulators->setSortingEnabled(true);
 }
 
 void Options::on_toolButtonRemoveEmulator_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonRemoveEmulator_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonRemoveEmulator_clicked()");
 #endif
 
-  QList<QTableWidgetItem *> sl = tableWidgetRegisteredEmulators->selectedItems();
-  if ( !sl.isEmpty() ) {
-    int row = sl[QMC2_ADDTLEMUS_COLUMN_NAME]->row();
-    registeredEmulatorsToBeRemoved << tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->text();
-    tableWidgetRegisteredEmulators->removeRow(row);
-  }
+	QList<QTableWidgetItem *> sl = tableWidgetRegisteredEmulators->selectedItems();
+	if ( !sl.isEmpty() ) {
+		int row = sl[QMC2_ADDTLEMUS_COLUMN_NAME]->row();
+		registeredEmulatorsToBeRemoved << tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->text();
+		tableWidgetRegisteredEmulators->removeRow(row);
+	}
 }
 
 void Options::checkPlaceholderStatus()
@@ -4651,85 +4709,124 @@ void Options::checkPlaceholderStatus()
 void Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()");
 #endif
 
-  QList<QTableWidgetItem *> sl = tableWidgetRegisteredEmulators->selectedItems();
-  if ( !sl.isEmpty() ) {
-    int row = sl[QMC2_ADDTLEMUS_COLUMN_NAME]->row();
-    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME) ) {
-      lineEditAdditionalEmulatorName->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->text());
-      toolButtonRemoveEmulator->setEnabled(true);
-    } else {
-      lineEditAdditionalEmulatorName->clear();
-      toolButtonRemoveEmulator->setEnabled(false);
-    }
-    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC) )
-      lineEditAdditionalEmulatorExecutableFile->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC)->text());
-    else
-      lineEditAdditionalEmulatorExecutableFile->clear();
-    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR) )
-      lineEditAdditionalEmulatorWorkingDirectory->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR)->text());
-    else
-      lineEditAdditionalEmulatorWorkingDirectory->clear();
-    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS) )
-      lineEditAdditionalEmulatorArguments->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS)->text());
-    else
-      lineEditAdditionalEmulatorArguments->clear();
-  } else {
-    lineEditAdditionalEmulatorName->clear();
-    lineEditAdditionalEmulatorExecutableFile->clear();
-    lineEditAdditionalEmulatorWorkingDirectory->clear();
-    lineEditAdditionalEmulatorArguments->clear();
-    toolButtonRemoveEmulator->setEnabled(false);
-  }
-  checkPlaceholderStatus();
+	QList<QTableWidgetItem *> sl = tableWidgetRegisteredEmulators->selectedItems();
+	if ( !sl.isEmpty() ) {
+		int row = sl[QMC2_ADDTLEMUS_COLUMN_NAME]->row();
+		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME) ) {
+			lineEditAdditionalEmulatorName->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->text());
+			toolButtonRemoveEmulator->setEnabled(true);
+		} else {
+			lineEditAdditionalEmulatorName->clear();
+			toolButtonRemoveEmulator->setEnabled(false);
+		}
+		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC) )
+			lineEditAdditionalEmulatorExecutableFile->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC)->text());
+		else
+			lineEditAdditionalEmulatorExecutableFile->clear();
+		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR) )
+			lineEditAdditionalEmulatorWorkingDirectory->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR)->text());
+		else
+			lineEditAdditionalEmulatorWorkingDirectory->clear();
+		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS) )
+			lineEditAdditionalEmulatorArguments->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS)->text());
+		else
+			lineEditAdditionalEmulatorArguments->clear();
+	} else {
+		lineEditAdditionalEmulatorName->clear();
+		lineEditAdditionalEmulatorExecutableFile->clear();
+		lineEditAdditionalEmulatorWorkingDirectory->clear();
+		lineEditAdditionalEmulatorArguments->clear();
+		toolButtonRemoveEmulator->setEnabled(false);
+	}
+	checkPlaceholderStatus();
 }
 
 void Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &text)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &text = %1)").arg(text));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &text = %1)").arg(text));
 #endif
 
-  if ( !text.isEmpty() ) {
-    if ( text == tr("Default") ) {
-      // this name isn't allowed!
-      toolButtonAddEmulator->setEnabled(false);
-      toolButtonSaveEmulator->setEnabled(false);
-      toolButtonRemoveEmulator->setEnabled(false);
-    } else {
-      QList<QTableWidgetItem *> il = tableWidgetRegisteredEmulators->findItems(text, Qt::MatchExactly);
-      toolButtonAddEmulator->setEnabled(il.isEmpty());
-      toolButtonSaveEmulator->setEnabled(!il.isEmpty());
-    }
-  } else {
-    toolButtonAddEmulator->setEnabled(false);
-    toolButtonSaveEmulator->setEnabled(false);
-  }
-  checkPlaceholderStatus();
+	if ( !text.isEmpty() ) {
+		if ( text == tr("Default") ) {
+			// this name isn't allowed!
+			toolButtonAddEmulator->setEnabled(false);
+			toolButtonSaveEmulator->setEnabled(false);
+			toolButtonRemoveEmulator->setEnabled(false);
+		} else {
+			QList<QTableWidgetItem *> il = tableWidgetRegisteredEmulators->findItems(text, Qt::MatchExactly);
+			toolButtonAddEmulator->setEnabled(il.isEmpty());
+			toolButtonSaveEmulator->setEnabled(!il.isEmpty());
+		}
+	} else {
+		toolButtonAddEmulator->setEnabled(false);
+		toolButtonSaveEmulator->setEnabled(false);
+	}
+	checkPlaceholderStatus();
 }
 
 void Options::on_lineEditAdditionalEmulatorArguments_textChanged(const QString &)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_lineEditAdditionalEmulatorArguments_textChanged(const QString &)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_lineEditAdditionalEmulatorArguments_textChanged(const QString &)");
 #endif
 
-  checkPlaceholderStatus();
+	checkPlaceholderStatus();
 }
 
 void Options::setupCustomIDsClicked()
 {
-	QPushButton *pb = (QPushButton *)sender();
+	QToolButton *tb = (QToolButton *)sender();
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::setupCustomIDsClicked() : pb = %1)").arg((qulonglong)pb));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::setupCustomIDsClicked() : tb = %1)").arg((qulonglong)tb));
 #endif
-	if ( pb ) {
-		if ( !pb->objectName().isEmpty() ) {
-			CustomIDSetup cidSetup(pb->objectName(), this);
+	if ( tb ) {
+		if ( !tb->objectName().isEmpty() ) {
+			CustomIDSetup cidSetup(tb->objectName(), this);
 			if ( cidSetup.exec() == QDialog::Accepted )
 				cidSetup.save();
+		}
+	}
+}
+
+void Options::chooseEmuIconClicked()
+{
+	QToolButton *tb = (QToolButton *)sender();
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::chooseEmuIconClicked() : tb = %1)").arg((qulonglong)tb));
+#endif
+	if ( tb ) {
+		QString emuIcon = tb->whatsThis();
+		if ( emuIcon.startsWith(":") )
+			emuIcon.clear();
+		QStringList imageFileTypes;
+		foreach (QByteArray imageFormat, QImageReader::supportedImageFormats())
+			imageFileTypes << "*." + QString(imageFormat).toLower();
+		QString fileName = QFileDialog::getOpenFileName(this, tr("Choose image file"), emuIcon, tr("Supported image files (%1)").arg(imageFileTypes.join(" ")) + ";;" + tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+		if ( !fileName.isEmpty() ) {
+			QIcon icon = QIcon(fileName);
+			if ( !icon.isNull() ) {
+				tb->setIcon(icon);
+				tb->setWhatsThis(fileName);
+			}
+		}
+	}
+}
+
+void Options::actionDefaultEmuIconTriggered()
+{
+	QAction *action = (QAction *)sender();
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::actionDefaultEmuIconTriggered() : action = %1)").arg((qulonglong)action));
+#endif
+	if ( action ) {
+		QToolButton *tb = (QToolButton *)action->parentWidget()->parentWidget();
+		if ( tb ) {
+			tb->setIcon(QIcon(QString::fromUtf8(":/data/img/alien.png")));
+			tb->setWhatsThis(":/data/img/alien.png");
 		}
 	}
 }
