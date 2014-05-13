@@ -367,8 +367,13 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->pushButtonAdditionalArtworkSetup->setEnabled(enable);
   qmc2Options->pushButtonImageFormats->setEnabled(enable);
   for (int row = 0; row < qmc2Options->tableWidgetRegisteredEmulators->rowCount(); row++) {
-	  QWidget *w = qmc2Options->tableWidgetRegisteredEmulators->cellWidget(row, QMC2_ADDTLEMUS_COLUMN_CUID);
-	  if ( w ) w->setEnabled(enable);
+	  QWidget *w;
+	  w = qmc2Options->tableWidgetRegisteredEmulators->cellWidget(row, QMC2_ADDTLEMUS_COLUMN_ICON);
+	  if ( w )
+		  w->setEnabled(enable);
+	  w = qmc2Options->tableWidgetRegisteredEmulators->cellWidget(row, QMC2_ADDTLEMUS_COLUMN_CUID);
+	  if ( w )
+		  w->setEnabled(enable);
   }
 #if QMC2_USE_PHONON_API
   qmc2MainWindow->toolButtonAudioAddTracks->setEnabled(enable);

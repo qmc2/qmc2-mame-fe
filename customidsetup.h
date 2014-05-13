@@ -31,6 +31,8 @@ class CustomIDSetup : public QDialog, public Ui::CustomIDSetup
 		void save();
 		void adjustFontAndIconSizes();
 		void setupCopyIDsMenu();
+		void chooseIdIconClicked();
+		void actionDefaultIdIconTriggered();
 };
 
 #endif

@@ -237,6 +237,8 @@ class Options : public QDialog, public Ui::Options
     void setupShortcutActions();
     void applyDelayed();
     void setupCustomIDsClicked();
+    void chooseEmuIconClicked();
+    void actionDefaultEmuIconTriggered();
     void checkPlaceholderStatus();
     void loadCustomPalette(QString);
     void saveCustomPalette();

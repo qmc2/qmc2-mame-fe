@@ -1,10 +1,15 @@
-
 #include <QtCore>
 #if QT_VERSION >= 0x050000
 #include <QMenu>
 #endif
+#include <QApplication>
+#include <QToolButton>
+#include <QFontMetrics>
+#include <QAction>
+#include <QFileDialog>
 
 #include "settings.h"
+#include "options.h"
 #include "customidsetup.h"
 #include "macros.h"
 #if defined(QMC2_DEBUG)
@@ -12,6 +17,7 @@
 extern MainWindow *qmc2MainWindow;
 #endif
 extern Settings *qmc2Config;
+extern Options *qmc2Options;
 
 CustomIDSetup::CustomIDSetup(QString foreignEmulatorName, QWidget *parent)
 	: QDialog(parent)
@@ -155,6 +161,18 @@ void CustomIDSetup::on_toolButtonAddID_clicked()
 	tableWidgetCustomIDs->insertRow(row);
 	tableWidgetCustomIDs->setItem(row, QMC2_CUSTOMIDS_COLUMN_ID, new QTableWidgetItem());
 	tableWidgetCustomIDs->setItem(row, QMC2_CUSTOMIDS_COLUMN_DESCRIPTION, new QTableWidgetItem());
+	QToolButton *tb = new QToolButton(0);
+	QFontMetrics fm(qApp->font());
+	tb->setIconSize(QSize(fm.height(), fm.height()));
+	tb->setIcon(QIcon(QString::fromUtf8(":/data/img/pacman.png")));
+	tb->setWhatsThis(":/data/img/pacman.png");
+	tb->setToolTip(tr("Choose icon for this foreign ID (hold down for menu)"));
+	QMenu *menu = new QMenu(tb);
+	QAction *action = menu->addAction(QIcon(QString::fromUtf8(":/data/img/pacman.png")), tr("Default icon"));
+	connect(action, SIGNAL(triggered(bool)), this, SLOT(actionDefaultIdIconTriggered()));
+	tb->setMenu(menu);
+	tableWidgetCustomIDs->setCellWidget(row, QMC2_CUSTOMIDS_COLUMN_ICON, tb);
+	connect(tb, SIGNAL(clicked()), this, SLOT(chooseIdIconClicked()));
 	tableWidgetCustomIDs->setSortingEnabled(oldSortingEnabled);
 }
 
@@ -219,6 +237,11 @@ void CustomIDSetup::load()
 	qmc2Config->beginGroup(groupKey);
 	QStringList idList = qmc2Config->value("IDs", QStringList()).toStringList();
 	QStringList descriptionList = qmc2Config->value("Descriptions", QStringList()).toStringList();
+	while ( descriptionList.count() < idList.count() )
+		descriptionList << QString();
+	QStringList iconList = qmc2Config->value("Icons", QStringList()).toStringList();
+	while ( iconList.count() < idList.count() )
+		iconList << QString();
 	qmc2Config->endGroup();
 
 	tableWidgetCustomIDs->clearContents();
@@ -229,9 +252,33 @@ void CustomIDSetup::load()
 		QString id = idList[i];
 		if ( !id.isEmpty() ) {
 			QString description = descriptionList[i];
+			QString idIcon = iconList[i];
 			tableWidgetCustomIDs->insertRow(row);
 			tableWidgetCustomIDs->setItem(row, QMC2_CUSTOMIDS_COLUMN_ID, new QTableWidgetItem(id));
 			tableWidgetCustomIDs->setItem(row, QMC2_CUSTOMIDS_COLUMN_DESCRIPTION, new QTableWidgetItem(description));
+			QToolButton *tb = new QToolButton(0);
+			QFontMetrics fm(qApp->font());
+			tb->setIconSize(QSize(fm.height(), fm.height()));
+			if ( idIcon.isEmpty() ) {
+				tb->setIcon(QIcon(QString::fromUtf8(":/data/img/pacman.png")));
+				tb->setWhatsThis(":/data/img/pacman.png");
+			} else {
+				QIcon icon = QIcon(idIcon);
+				if ( !icon.isNull() ) {
+					tb->setIcon(icon);
+					tb->setWhatsThis(idIcon);
+				} else {
+					tb->setIcon(QIcon(QString::fromUtf8(":/data/img/pacman.png")));
+					tb->setWhatsThis(":/data/img/pacman.png");
+				}
+			}
+			tb->setToolTip(tr("Choose icon for this foreign ID (hold down for menu)"));
+			QMenu *menu = new QMenu(tb);
+			QAction *action = menu->addAction(QIcon(QString::fromUtf8(":/data/img/pacman.png")), tr("Default icon"));
+			connect(action, SIGNAL(triggered(bool)), this, SLOT(actionDefaultIdIconTriggered()));
+			tb->setMenu(menu);
+			tableWidgetCustomIDs->setCellWidget(row, QMC2_CUSTOMIDS_COLUMN_ICON, tb);
+			connect(tb, SIGNAL(clicked()), this, SLOT(chooseIdIconClicked()));
 			row++;
 		}
 	}
@@ -249,7 +296,7 @@ void CustomIDSetup::save()
 	QString groupKey = QString(QMC2_EMULATOR_PREFIX + "CustomIDs/%1").arg(foreignEmulator);
 	qmc2Config->remove(groupKey);
 
-	QStringList idList, descriptionList;
+	QStringList idList, descriptionList, iconList;
 	for (int row = 0; row < tableWidgetCustomIDs->rowCount(); row++) {
 		QTableWidgetItem *idItem = tableWidgetCustomIDs->item(row, QMC2_CUSTOMIDS_COLUMN_ID);
 		QTableWidgetItem *descriptionItem = tableWidgetCustomIDs->item(row, QMC2_CUSTOMIDS_COLUMN_DESCRIPTION);
@@ -262,6 +309,15 @@ void CustomIDSetup::save()
 				idList << id;
 				descriptionList << description;
 			}
+			QToolButton *tb = (QToolButton *)tableWidgetCustomIDs->cellWidget(row, QMC2_CUSTOMIDS_COLUMN_ICON);
+			if ( tb ) {
+				QString idIcon = tb->whatsThis();
+				if ( !idIcon.startsWith(":") )
+					iconList << idIcon;
+				else
+					iconList << QString();
+			} else
+				iconList << QString();
 		}
 	}
 
@@ -269,6 +325,51 @@ void CustomIDSetup::save()
 		qmc2Config->beginGroup(groupKey);
 		qmc2Config->setValue("IDs", idList);
 		qmc2Config->setValue("Descriptions", descriptionList);
+		QStringList iconSaveList = iconList;
+		iconSaveList.removeAll(QString());
+		if ( !iconSaveList.isEmpty() )
+			qmc2Config->setValue("Icons", iconList);
+		else
+			qmc2Config->remove("Icons");
 		qmc2Config->endGroup();
+	}
+}
+
+void CustomIDSetup::chooseIdIconClicked()
+{
+	QToolButton *tb = (QToolButton *)sender();
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: CustomIDSetup::chooseIdIconClicked() : tb = %1)").arg((qulonglong)tb));
+#endif
+	if ( tb ) {
+		QString idIcon = tb->whatsThis();
+		if ( idIcon.startsWith(":") )
+			idIcon.clear();
+		QStringList imageFileTypes;
+		foreach (QByteArray imageFormat, QImageReader::supportedImageFormats())
+			imageFileTypes << "*." + QString(imageFormat).toLower();
+		QString fileName = QFileDialog::getOpenFileName(this, tr("Choose image file"), idIcon, tr("Supported image files (%1)").arg(imageFileTypes.join(" ")) + ";;" + tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+		if ( !fileName.isEmpty() ) {
+			QIcon icon = QIcon(fileName);
+			if ( !icon.isNull() ) {
+				tb->setIcon(icon);
+				tb->setWhatsThis(fileName);
+			}
+		}
+	}
+}
+
+void CustomIDSetup::actionDefaultIdIconTriggered()
+{
+	QAction *action = (QAction *)sender();
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: CustomIDSetup::actionDefaultIdIconTriggered() : action = %1)").arg((qulonglong)action));
+#endif
+	if ( action ) {
+		QToolButton *tb = (QToolButton *)action->parentWidget()->parentWidget();
+		if ( tb ) {
+			tb->setIcon(QIcon(QString::fromUtf8(":/data/img/pacman.png")));
+			tb->setWhatsThis(":/data/img/pacman.png");
+		}
 	}
 }
