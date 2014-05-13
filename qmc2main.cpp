@@ -5467,55 +5467,55 @@ void MainWindow::emuSelector_currentIndexChanged(const QString &text)
 void MainWindow::on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *item, int column)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
-  if ( qmc2DemoModeDialog )
-	  if ( qmc2DemoModeDialog->demoModeRunning )
-		  return;
+	if ( qmc2DemoModeDialog )
+		if ( qmc2DemoModeDialog->demoModeRunning )
+			return;
 
-  qmc2StartEmbedded = false;
-  if ( !qmc2IgnoreItemActivation ) {
-	  switch ( qmc2DefaultLaunchMode ) {
+	qmc2StartEmbedded = false;
+	if ( !qmc2IgnoreItemActivation ) {
+		switch ( qmc2DefaultLaunchMode ) {
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-		  case QMC2_LAUNCH_MODE_EMBEDDED:
-			  on_actionPlayEmbedded_triggered();
-			  break;
+			case QMC2_LAUNCH_MODE_EMBEDDED:
+				on_actionPlayEmbedded_triggered();
+				break;
 #endif
-		  case QMC2_LAUNCH_MODE_INDEPENDENT:
-		  default:
-			  on_actionPlay_triggered();
-			  break;
-	  }
-  }
-  qmc2IgnoreItemActivation = false;
+			case QMC2_LAUNCH_MODE_INDEPENDENT:
+			default:
+				on_actionPlay_triggered();
+				break;
+		}
+	}
+	qmc2IgnoreItemActivation = false;
 }
 
 void MainWindow::on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *item, int column)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
-  if ( qmc2DemoModeDialog )
-	  if ( qmc2DemoModeDialog->demoModeRunning )
-		  return;
+	if ( qmc2DemoModeDialog )
+		if ( qmc2DemoModeDialog->demoModeRunning )
+			return;
 
-  qmc2StartEmbedded = false;
-  if ( !qmc2IgnoreItemActivation ) {
-	  switch ( qmc2DefaultLaunchMode ) {
+	qmc2StartEmbedded = false;
+	if ( !qmc2IgnoreItemActivation ) {
+		switch ( qmc2DefaultLaunchMode ) {
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-		  case QMC2_LAUNCH_MODE_EMBEDDED:
-			  on_actionPlayEmbedded_triggered();
-			  break;
+			case QMC2_LAUNCH_MODE_EMBEDDED:
+				on_actionPlayEmbedded_triggered();
+				break;
 #endif
-		  case QMC2_LAUNCH_MODE_INDEPENDENT:
-		  default:
-			  on_actionPlay_triggered();
-			  break;
-	  }
-  }
-  qmc2IgnoreItemActivation = false;
+			case QMC2_LAUNCH_MODE_INDEPENDENT:
+			default:
+				on_actionPlay_triggered();
+				break;
+		}
+	}
+	qmc2IgnoreItemActivation = false;
 }
 
 void MainWindow::on_treeWidgetForeignIDs_itemActivated(QTreeWidgetItem *item, int column)
@@ -5524,27 +5524,30 @@ void MainWindow::on_treeWidgetForeignIDs_itemActivated(QTreeWidgetItem *item, in
 		if ( qmc2DemoModeDialog->demoModeRunning )
 			return;
 
-	QStringList foreignInfo = item->whatsThis(0).split("\t");
-	if ( foreignInfo.count() > 2 ) {
-		// 0:emuName -- 1:id -- 2:description 
-		foreignEmuName = foreignInfo[0];
-		foreignID = foreignInfo[1];
-		foreignDescription = foreignInfo[2];
+	qmc2StartEmbedded = false;
+	if ( !qmc2IgnoreItemActivation ) {
+		QStringList foreignInfo = item->whatsThis(0).split("\t");
+		if ( foreignInfo.count() > 2 ) {
+			// 0:emuName -- 1:id -- 2:description 
+			foreignEmuName = foreignInfo[0];
+			foreignID = foreignInfo[1];
+			foreignDescription = foreignInfo[2];
 #ifdef QMC2_DEBUG
-		log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetForeignIDs_itemActivated(): foreignEmuName = %1, foreignID = %2, foreignDescription = %3").arg(foreignEmuName).arg(foreignID).arg(foreignDescription));
+			log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetForeignIDs_itemActivated(): foreignEmuName = %1, foreignID = %2, foreignDescription = %3").arg(foreignEmuName).arg(foreignID).arg(foreignDescription));
 #endif
-		launchForeignID = true;
-		qmc2StartEmbedded = false;
-      		switch ( qmc2DefaultLaunchMode ) {
+			launchForeignID = true;
+			qmc2StartEmbedded = false;
+			switch ( qmc2DefaultLaunchMode ) {
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-			case QMC2_LAUNCH_MODE_EMBEDDED:
-				QTimer::singleShot(0, this, SLOT(on_actionPlayEmbedded_triggered()));
-				break;
+				case QMC2_LAUNCH_MODE_EMBEDDED:
+					QTimer::singleShot(0, this, SLOT(on_actionPlayEmbedded_triggered()));
+					break;
 #endif
-			case QMC2_LAUNCH_MODE_INDEPENDENT:
-			default:
-				QTimer::singleShot(0, this, SLOT(on_actionPlay_triggered()));
-				break;
+				case QMC2_LAUNCH_MODE_INDEPENDENT:
+				default:
+					QTimer::singleShot(0, this, SLOT(on_actionPlay_triggered()));
+					break;
+			}
 		}
 	}
 	qmc2IgnoreItemActivation = false;
