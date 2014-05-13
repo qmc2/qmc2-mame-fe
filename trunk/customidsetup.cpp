@@ -174,6 +174,7 @@ void CustomIDSetup::on_toolButtonAddID_clicked()
 	tableWidgetCustomIDs->setCellWidget(row, QMC2_CUSTOMIDS_COLUMN_ICON, tb);
 	connect(tb, SIGNAL(clicked()), this, SLOT(chooseIdIconClicked()));
 	tableWidgetCustomIDs->setSortingEnabled(oldSortingEnabled);
+	tableWidgetCustomIDs->resizeRowsToContents();
 }
 
 void CustomIDSetup::on_toolButtonRemoveID_clicked()
@@ -285,6 +286,7 @@ void CustomIDSetup::load()
 	tableWidgetCustomIDs->setSortingEnabled(oldSortingEnabled);
 	if ( oldSortingEnabled )
 		tableWidgetCustomIDs->sortByColumn(tableWidgetCustomIDs->horizontalHeader()->sortIndicatorSection(), tableWidgetCustomIDs->horizontalHeader()->sortIndicatorOrder());
+	tableWidgetCustomIDs->resizeRowsToContents();
 }
 
 void CustomIDSetup::save()
