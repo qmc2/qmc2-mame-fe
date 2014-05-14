@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '1.0.167';
-PDFJS.build = 'a26d28a';
+PDFJS.version = '1.0.207';
+PDFJS.build = '048c6d9';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -761,7 +761,22 @@ var Util = PDFJS.Util = (function UtilClosure() {
   return Util;
 })();
 
+/**
+ * PDF page viewport created based on scale, rotation and offset.
+ * @class
+ * @alias PDFJS.PageViewport
+ */
 var PageViewport = PDFJS.PageViewport = (function PageViewportClosure() {
+  /**
+   * @constructor
+   * @private
+   * @param viewBox {Array} xMin, yMin, xMax and yMax coordinates.
+   * @param scale {number} scale of the viewport.
+   * @param rotation {number} rotations of the viewport in degrees.
+   * @param offsetX {number} offset X
+   * @param offsetY {number} offset Y
+   * @param dontFlip {boolean} if true, axis Y will not be flipped.
+   */
   function PageViewport(viewBox, scale, rotation, offsetX, offsetY, dontFlip) {
     this.viewBox = viewBox;
     this.scale = scale;
@@ -825,7 +840,14 @@ var PageViewport = PDFJS.PageViewport = (function PageViewportClosure() {
     this.height = height;
     this.fontScale = scale;
   }
-  PageViewport.prototype = {
+  PageViewport.prototype = /** @lends PDFJS.PageViewport.prototype */ {
+    /**
+     * Clones viewport with additional properties.
+     * @param args {Object} (optional) If specified, may contain the 'scale' or
+     * 'rotation' properties to override the corresponding properties in
+     * the cloned viewport.
+     * @returns {PDFJS.PageViewport} Cloned viewport.
+     */
     clone: function PageViewPort_clone(args) {
       args = args || {};
       var scale = 'scale' in args ? args.scale : this.scale;
@@ -833,15 +855,41 @@ var PageViewport = PDFJS.PageViewport = (function PageViewportClosure() {
       return new PageViewport(this.viewBox.slice(), scale, rotation,
                               this.offsetX, this.offsetY, args.dontFlip);
     },
+    /**
+     * Converts PDF point to the viewport coordinates. For examples, useful for
+     * converting PDF location into canvas pixel coordinates.
+     * @param x {number} X coordinate.
+     * @param y {number} Y coordinate.
+     * @returns {Object} Object that contains 'x' and 'y' properties of the
+     * point in the viewport coordinate space.
+     * @see {@link convertToPdfPoint}
+     * @see {@link convertToViewportRectangle}
+     */
     convertToViewportPoint: function PageViewport_convertToViewportPoint(x, y) {
       return Util.applyTransform([x, y], this.transform);
     },
+    /**
+     * Converts PDF rectangle to the viewport coordinates.
+     * @param rect {Array} xMin, yMin, xMax and yMax coordinates.
+     * @returns {Array} Contains corresponding coordinates of the rectangle
+     * in the viewport coordinate space.
+     * @see {@link convertToViewportPoint}
+     */
     convertToViewportRectangle:
       function PageViewport_convertToViewportRectangle(rect) {
       var tl = Util.applyTransform([rect[0], rect[1]], this.transform);
       var br = Util.applyTransform([rect[2], rect[3]], this.transform);
       return [tl[0], tl[1], br[0], br[1]];
     },
+    /**
+     * Converts viewport coordinates to the PDF location. For examples, useful
+     * for converting canvas pixel location into PDF one.
+     * @param x {number} X coordinate.
+     * @param y {number} Y coordinate.
+     * @returns {Object} Object that contains 'x' and 'y' properties of the
+     * point in the PDF coordinate space.
+     * @see {@link convertToViewportPoint}
+     */
     convertToPdfPoint: function PageViewport_convertToPdfPoint(x, y) {
       return Util.applyInverseTransform([x, y], this.transform);
     }
@@ -971,6 +1019,8 @@ function isPDFFunction(v) {
 
 /**
  * Creates a promise capability object.
+ * @alias PDFJS.createPromiseCapability
+ *
  * @return {PromiseCapability} A capability object contains:
  * - a Promise, resolve and reject methods.
  */
@@ -1389,7 +1439,7 @@ function MessageHandler(name, comObj) {
   this.comObj = comObj;
   this.callbackIndex = 1;
   this.postMessageTransfers = true;
-  var callbacks = this.callbacks = {};
+  var callbacksCapabilities = this.callbacksCapabilities = {};
   var ah = this.actionHandler = {};
 
   ah['console_log'] = [function ahConsoleLog(data) {
@@ -1406,35 +1456,40 @@ function MessageHandler(name, comObj) {
     var data = event.data;
     if (data.isReply) {
       var callbackId = data.callbackId;
-      if (data.callbackId in callbacks) {
-        var callback = callbacks[callbackId];
-        delete callbacks[callbackId];
-        callback(data.data);
+      if (data.callbackId in callbacksCapabilities) {
+        var callback = callbacksCapabilities[callbackId];
+        delete callbacksCapabilities[callbackId];
+        if ('error' in data) {
+          callback.reject(data.error);
+        } else {
+          callback.resolve(data.data);
+        }
       } else {
         error('Cannot resolve callback ' + callbackId);
       }
     } else if (data.action in ah) {
       var action = ah[data.action];
       if (data.callbackId) {
-        var deferred = {};
-        var promise = new Promise(function (resolve, reject) {
-          deferred.resolve = resolve;
-          deferred.reject = reject;
-        });
-        deferred.promise = promise;
-        promise.then(function(resolvedData) {
+        Promise.resolve().then(function () {
+          return action[0].call(action[1], data.data);
+        }).then(function (result) {
           comObj.postMessage({
             isReply: true,
             callbackId: data.callbackId,
-            data: resolvedData
+            data: result
+          });
+        }, function (reason) {
+          comObj.postMessage({
+            isReply: true,
+            callbackId: data.callbackId,
+            error: reason
           });
         });
-        action[0].call(action[1], data.data, deferred);
       } else {
         action[0].call(action[1], data.data);
       }
     } else {
-      error('Unkown action from worker: ' + data.action);
+      error('Unknown action from worker: ' + data.action);
     }
   };
 }
@@ -1451,19 +1506,47 @@ MessageHandler.prototype = {
    * Sends a message to the comObj to invoke the action with the supplied data.
    * @param {String} actionName Action to call.
    * @param {JSON} data JSON data to send.
-   * @param {function} [callback] Optional callback that will handle a reply.
    * @param {Array} [transfers] Optional list of transfers/ArrayBuffers
    */
-  send: function messageHandlerSend(actionName, data, callback, transfers) {
+  send: function messageHandlerSend(actionName, data, transfers) {
     var message = {
       action: actionName,
       data: data
     };
-    if (callback) {
-      var callbackId = this.callbackIndex++;
-      this.callbacks[callbackId] = callback;
-      message.callbackId = callbackId;
+    this.postMessage(message, transfers);
+  },
+  /**
+   * Sends a message to the comObj to invoke the action with the supplied data.
+   * Expects that other side will callback with the response.
+   * @param {String} actionName Action to call.
+   * @param {JSON} data JSON data to send.
+   * @param {Array} [transfers] Optional list of transfers/ArrayBuffers.
+   * @returns {Promise} Promise to be resolved with response data.
+   */
+  sendWithPromise:
+    function messageHandlerSendWithPromise(actionName, data, transfers) {
+    var callbackId = this.callbackIndex++;
+    var message = {
+      action: actionName,
+      data: data,
+      callbackId: callbackId
+    };
+    var capability = createPromiseCapability();
+    this.callbacksCapabilities[callbackId] = capability;
+    try {
+      this.postMessage(message, transfers);
+    } catch (e) {
+      capability.reject(e);
     }
+    return capability.promise;
+  },
+  /**
+   * Sends raw message to the comObj.
+   * @private
+   * @param message {Object} Raw message.
+   * @param transfers List of transfers/ArrayBuffers, or undefined.
+   */
+  postMessage: function (message, transfers) {
     if (transfers && this.postMessageTransfers) {
       this.comObj.postMessage(message, transfers);
     } else {
@@ -3191,24 +3274,30 @@ var Annotation = (function AnnotationClosure() {
 
       // TODO: implement proper support for annotations with line dash patterns.
       var dashArray = borderArray[3];
-      if (data.borderWidth > 0 && dashArray && isArray(dashArray)) {
-        var dashArrayLength = dashArray.length;
-        if (dashArrayLength > 0) {
-          // According to the PDF specification: the elements in a dashArray
-          // shall be numbers that are nonnegative and not all equal to zero.
-          var isInvalid = false;
-          var numPositive = 0;
-          for (var i = 0; i < dashArrayLength; i++) {
-            var validNumber = (+dashArray[i] >= 0);
-            if (!validNumber) {
-              isInvalid = true;
-              break;
-            } else if (dashArray[i] > 0) {
-              numPositive++;
+      if (data.borderWidth > 0 && dashArray) {
+        if (!isArray(dashArray)) {
+          // Ignore the border if dashArray is not actually an array,
+          // this is consistent with the behaviour in Adobe Reader. 
+          data.borderWidth = 0;
+        } else {
+          var dashArrayLength = dashArray.length;
+          if (dashArrayLength > 0) {
+            // According to the PDF specification: the elements in a dashArray
+            // shall be numbers that are nonnegative and not all equal to zero.
+            var isInvalid = false;
+            var numPositive = 0;
+            for (var i = 0; i < dashArrayLength; i++) {
+              var validNumber = (+dashArray[i] >= 0);
+              if (!validNumber) {
+                isInvalid = true;
+                break;
+              } else if (dashArray[i] > 0) {
+                numPositive++;
+              }
             }
-          }
-          if (isInvalid || numPositive === 0) {
-            data.borderWidth = 0;
+            if (isInvalid || numPositive === 0) {
+              data.borderWidth = 0;
+            }
           }
         }
       }
@@ -5724,7 +5813,7 @@ var Catalog = (function CatalogClosure() {
       var xref = this.xref;
       var dests = {}, nameTreeRef, nameDictionaryRef;
       var obj = this.catDict.get('Names');
-      if (obj) {
+      if (obj && obj.has('Dests')) {
         nameTreeRef = obj.getRaw('Dests');
       } else if (this.catDict.has('Dests')) {
         nameDictionaryRef = this.catDict.get('Dests');
@@ -15588,7 +15677,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         then(function(imageObj) {
           var imgData = imageObj.createImageData(/* forceRGBA = */ false);
           self.handler.send('obj', [objId, self.pageIndex, 'Image', imgData],
-            null, [imgData.data.buffer]);
+            [imgData.data.buffer]);
         }).then(null, function (reason) {
           warn('Unable to decode image: ' + reason);
           self.handler.send('obj', [objId, self.pageIndex, 'Image', null]);
@@ -15664,11 +15753,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
       var isAddToPathSet = !!(state.textRenderingMode &
                               TextRenderingMode.ADD_TO_PATH_FLAG);
       if (font.data && (isAddToPathSet || PDFJS.disableFontFace)) {
-        for (var i = 0; i < glyphs.length; i++) {
-          if (glyphs[i] === null) {
-            continue;
-          }
-          var fontChar = glyphs[i].fontChar;
+        var buildPath = function (fontChar) {
           if (!font.renderer.hasBuiltPath(fontChar)) {
             var path = font.renderer.getPathJs(fontChar);
             this.handler.send('commonobj', [
@@ -15676,6 +15761,21 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
               'FontPath',
               path
             ]);
+          }
+        }.bind(this);
+
+        for (var i = 0, ii = glyphs.length; i < ii; i++) {
+          var glyph = glyphs[i];
+          if (glyph === null) {
+            continue;
+          }
+          buildPath(glyph.fontChar);
+
+          // If the glyph has an accent we need to build a path for its
+          // fontChar too, otherwise CanvasGraphics_paintChar will fail.
+          var accent = glyph.accent;
+          if (accent && accent.fontChar) {
+            buildPath(accent.fontChar);
           }
         }
       }
@@ -16986,7 +17086,7 @@ var OperatorList = (function OperatorListClosure() {
         },
         pageIndex: this.pageIndex,
         intent: this.intent
-      }, null, transfers);
+      }, transfers);
       this.dependencies = {};
       this.fnArray.length = 0;
       this.argsArray.length = 0;
@@ -30327,14 +30427,11 @@ var PDFImage = (function PDFImageClosure() {
       var colorSpace = dict.get('ColorSpace', 'CS');
       colorSpace = ColorSpace.parse(colorSpace, xref, res);
       var numComps = colorSpace.numComps;
-      var resolvePromise;
-      handler.send('JpegDecode', [image.getIR(), numComps], function(message) {
+      var decodePromise = handler.sendWithPromise('JpegDecode',
+                                                  [image.getIR(), numComps]);
+      return decodePromise.then(function (message) {
         var data = message.data;
-        var stream = new Stream(data, 0, data.length, image.dict);
-        resolvePromise(stream);
-      });
-      return new Promise(function (resolve) {
-        resolvePromise = resolve;
+        return new Stream(data, 0, data.length, image.dict);
       });
     } else {
       return Promise.resolve(image);
@@ -37563,81 +37660,64 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
       }, onFailure);
     });
 
-    handler.on('GetPageRequest', function wphSetupGetPage(data) {
-      var pageIndex = data.pageIndex;
-      pdfManager.getPage(pageIndex).then(function(page) {
+    handler.on('GetPage', function wphSetupGetPage(data) {
+      return pdfManager.getPage(data.pageIndex).then(function(page) {
         var rotatePromise = pdfManager.ensure(page, 'rotate');
         var refPromise = pdfManager.ensure(page, 'ref');
         var viewPromise = pdfManager.ensure(page, 'view');
 
-        Promise.all([rotatePromise, refPromise, viewPromise]).then(
+        return Promise.all([rotatePromise, refPromise, viewPromise]).then(
             function(results) {
-          var page = {
-            pageIndex: data.pageIndex,
+          return {
             rotate: results[0],
             ref: results[1],
             view: results[2]
           };
-
-          handler.send('GetPage', { pageInfo: page });
         });
       });
     });
 
-    handler.on('GetPageIndex', function wphSetupGetPageIndex(data, deferred) {
+    handler.on('GetPageIndex', function wphSetupGetPageIndex(data) {
       var ref = new Ref(data.ref.num, data.ref.gen);
       var catalog = pdfManager.pdfDocument.catalog;
-      catalog.getPageIndex(ref).then(function (pageIndex) {
-        deferred.resolve(pageIndex);
-      }, deferred.reject);
+      return catalog.getPageIndex(ref);
     });
 
     handler.on('GetDestinations',
-      function wphSetupGetDestinations(data, deferred) {
-        pdfManager.ensureCatalog('destinations').then(function(destinations) {
-          deferred.resolve(destinations);
-        });
+      function wphSetupGetDestinations(data) {
+        return pdfManager.ensureCatalog('destinations');
       }
     );
 
     handler.on('GetAttachments',
-      function wphSetupGetAttachments(data, deferred) {
-        pdfManager.ensureCatalog('attachments').then(function(attachments) {
-          deferred.resolve(attachments);
-        }, deferred.reject);
+      function wphSetupGetAttachments(data) {
+        return pdfManager.ensureCatalog('attachments');
       }
     );
 
     handler.on('GetJavaScript',
-      function wphSetupGetJavaScript(data, deferred) {
-        pdfManager.ensureCatalog('javaScript').then(function (js) {
-          deferred.resolve(js);
-        }, deferred.reject);
+      function wphSetupGetJavaScript(data) {
+        return pdfManager.ensureCatalog('javaScript');
       }
     );
 
     handler.on('GetOutline',
-      function wphSetupGetOutline(data, deferred) {
-        pdfManager.ensureCatalog('documentOutline').then(function (outline) {
-          deferred.resolve(outline);
-        }, deferred.reject);
+      function wphSetupGetOutline(data) {
+        return pdfManager.ensureCatalog('documentOutline');
       }
     );
 
     handler.on('GetMetadata',
-      function wphSetupGetMetadata(data, deferred) {
-        Promise.all([pdfManager.ensureDoc('documentInfo'),
-                     pdfManager.ensureCatalog('metadata')]).then(
-            function (results) {
-          deferred.resolve(results);
-        }, deferred.reject);
+      function wphSetupGetMetadata(data) {
+        return Promise.all([pdfManager.ensureDoc('documentInfo'),
+                            pdfManager.ensureCatalog('metadata')]);
       }
     );
 
-    handler.on('GetData', function wphSetupGetData(data, deferred) {
+    handler.on('GetData', function wphSetupGetData(data) {
       pdfManager.requestLoadedStream();
-      pdfManager.onLoadedStream().then(function(stream) {
-        deferred.resolve(stream.bytes);
+      return pdfManager.onLoadedStream().then(function(stream) {
+        return stream.bytes;
       });
     });
 
@@ -37645,16 +37725,9 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
       pdfManager.updatePassword(data);
     });
 
-    handler.on('GetAnnotationsRequest', function wphSetupGetAnnotations(data) {
-      pdfManager.getPage(data.pageIndex).then(function(page) {
-        pdfManager.ensure(page, 'getAnnotationsData', []).then(
-          function(annotationsData) {
-            handler.send('GetAnnotations', {
-              pageIndex: data.pageIndex,
-              annotations: annotationsData
-            });
-          }
-        );
+    handler.on('GetAnnotations', function wphSetupGetAnnotations(data) {
+      return pdfManager.getPage(data.pageIndex).then(function(page) {
+        return pdfManager.ensure(page, 'getAnnotationsData', []);
       });
     });
 
@@ -37703,29 +37776,25 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
       });
     }, this);
 
-    handler.on('GetTextContent', function wphExtractText(data, deferred) {
-      pdfManager.getPage(data.pageIndex).then(function(page) {
+    handler.on('GetTextContent', function wphExtractText(data) {
+      return pdfManager.getPage(data.pageIndex).then(function(page) {
         var pageNum = data.pageIndex + 1;
         var start = Date.now();
-        page.extractTextContent().then(function(textContent) {
-          deferred.resolve(textContent);
+        return page.extractTextContent().then(function(textContent) {
           info('text indexing: page=' + pageNum + ' - time=' +
                (Date.now() - start) + 'ms');
-        }, function (e) {
-          // Skip errored pages
-          deferred.reject(e);
+          return textContent;
         });
       });
     });
 
-    handler.on('Cleanup', function wphCleanup(data, deferred) {
+    handler.on('Cleanup', function wphCleanup(data) {
       pdfManager.cleanup();
-      deferred.resolve(true);
+      return true;
     });
 
-    handler.on('Terminate', function wphTerminate(data, deferred) {
+    handler.on('Terminate', function wphTerminate(data) {
       pdfManager.terminate();
-      deferred.resolve();
     });
   }
 };
