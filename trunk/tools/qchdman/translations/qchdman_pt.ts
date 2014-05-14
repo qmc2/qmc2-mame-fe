@@ -344,12 +344,12 @@
     <message>
         <location filename="../mainwindow.ui" line="352"/>
         <source>Bug tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema de gerenciamento de problemas...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="355"/>
         <source>Open our bug-tracking system in the default browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir nosso sistema de gerenciamento de problemas no navegador padrão</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="275"/>

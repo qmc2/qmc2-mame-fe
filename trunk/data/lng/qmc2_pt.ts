@@ -860,7 +860,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="712"/>
         <source>Rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="870"/>
@@ -1498,7 +1498,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../customidsetup.ui" line="199"/>
         <source>Icon</source>
-        <translation type="unfinished">Ícone</translation>
+        <translation>Ícone</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="204"/>
@@ -1564,28 +1564,28 @@ p, li { white-space: pre-wrap; }
         <location filename="../../customidsetup.cpp" line="169"/>
         <location filename="../../customidsetup.cpp" line="276"/>
         <source>Choose icon for this foreign ID (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o ícone para esse ID estrangeiro (segure para exibir o menu)</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="171"/>
         <location filename="../../customidsetup.cpp" line="278"/>
         <source>Default icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Ícone padrão</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="353"/>
         <source>Choose image file</source>
-        <translation type="unfinished">Escolhar arquivo de imagem</translation>
+        <translation>Escolher arquivo de imagem</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="353"/>
         <source>Supported image files (%1)</source>
-        <translation type="unfinished">Arquivos de imagem suportados (%1)</translation>
+        <translation>Arquivos de imagem suportados (%1)</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="353"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos os arquivos (*)</translation>
+        <translation>Todos os arquivos (*)</translation>
     </message>
 </context>
 <context>
@@ -2646,12 +2646,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../emuopt.cpp" line="1212"/>
         <source>relative to the emulator&apos;s working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>relativo ao diretório de trabalho do emulador</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1214"/>
         <source>relative to the path specified in &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>relativo ao caminho especificado em &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1223"/>
@@ -3655,12 +3655,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../gamelist.cpp" line="1741"/>
         <source>parsing game data and recreating game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>analisando dados dos jogos e recriando cache de lista de jogos</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1745"/>
         <source>parsing machine data and recreating machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>analisando dados das máquinas e recriando cache de lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2885"/>
@@ -4213,12 +4213,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../gamelist.cpp" line="2458"/>
         <source>Filtering game list, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrando lista de jogos, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2460"/>
         <source>Filtering machine list, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrando lista de máquinas, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2502"/>
@@ -6689,7 +6689,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../messdevcfg.cpp" line="707"/>
         <source>loading available system slots and recreating cache</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando slots de sistema disponíveis e recriando cache</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="726"/>
@@ -6730,7 +6730,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../messdevcfg.cpp" line="846"/>
         <source>done (loading available system slots and recreating cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando slots de sistema disponíveis e recriando cache, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1052"/>
@@ -8842,7 +8842,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="12333"/>
         <source>Choose overlay color</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha a cor de sobreposição</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="12538"/>
@@ -9265,7 +9265,7 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
     <message>
         <location filename="../../qmc2main.ui" line="866"/>
         <source>&amp;Foreign emulators</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Emuladores estrangeiros</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="926"/>
@@ -9884,7 +9884,7 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.cpp" line="1421"/>
         <location filename="../../qmc2main.cpp" line="1455"/>
         <source>Rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="788"/>
@@ -9932,23 +9932,23 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
     <message>
         <location filename="../../qmc2main.ui" line="2767"/>
         <source>Set rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir classificação</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2745"/>
         <source>Rank image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagem da classificação</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="881"/>
         <location filename="../../qmc2main.ui" line="884"/>
         <source>Foreign emulators with custom IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>Emuladores estrangeiros com IDs personalizados</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2755"/>
         <source>Set rank (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir classificação (etiquetado)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2909"/>
@@ -10705,63 +10705,63 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="4364"/>
         <location filename="../../qmc2main.ui" line="4367"/>
         <source>Increase rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Aumentar classificação</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4382"/>
         <location filename="../../qmc2main.ui" line="4385"/>
         <source>Decrease rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Diminuir classificação</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4403"/>
         <source>Flat</source>
-        <translation type="unfinished"></translation>
+        <translation>Simples</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4406"/>
         <location filename="../../qmc2main.ui" line="4409"/>
         <source>Use flat rank image</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar imagem de classificação simples</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4424"/>
         <source>Gradient</source>
-        <translation type="unfinished">Gradiente</translation>
+        <translation>Gradiente</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4427"/>
         <location filename="../../qmc2main.ui" line="4430"/>
         <source>Use gradient rank image</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar imagem de classificação com gradiente</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4439"/>
         <source>Overlay color...</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor de sobreposição...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4442"/>
         <location filename="../../qmc2main.ui" line="4445"/>
         <source>Choose overlay color for rank image</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher cor de sobreposição para a imagem de classificação</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4457"/>
         <source>Color</source>
-        <translation type="unfinished">Cor</translation>
+        <translation>Cor</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4460"/>
         <location filename="../../qmc2main.ui" line="4463"/>
         <source>Use plain color rank image</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar cor simples para imagem de classificação</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4468"/>
         <location filename="../../qmc2main.ui" line="4534"/>
         <source>Rank 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Classificação 0</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4471"/>
@@ -10769,13 +10769,13 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="4537"/>
         <location filename="../../qmc2main.ui" line="4540"/>
         <source>Set rank to 0 (no rank)</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir classificação para 0 (sem classificação)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4479"/>
         <location filename="../../qmc2main.ui" line="4545"/>
         <source>Rank 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Classificação 1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4482"/>
@@ -10783,13 +10783,13 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="4548"/>
         <location filename="../../qmc2main.ui" line="4551"/>
         <source>Set rank to 1 (lowest rank)</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir classificação para 1 (menor classificação)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4490"/>
         <location filename="../../qmc2main.ui" line="4556"/>
         <source>Rank 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Classificação 2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4493"/>
@@ -10797,13 +10797,13 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="4559"/>
         <location filename="../../qmc2main.ui" line="4562"/>
         <source>Set rank to 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir classificação para 2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4501"/>
         <location filename="../../qmc2main.ui" line="4567"/>
         <source>Rank 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Classificação 3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4504"/>
@@ -10811,13 +10811,13 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="4570"/>
         <location filename="../../qmc2main.ui" line="4573"/>
         <source>Set rank to 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir classificação para 3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4512"/>
         <location filename="../../qmc2main.ui" line="4578"/>
         <source>Rank 4</source>
-        <translation type="unfinished"></translation>
+        <translation>Classificação 4</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4515"/>
@@ -10825,13 +10825,13 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="4581"/>
         <location filename="../../qmc2main.ui" line="4584"/>
         <source>Set rank to 4</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir classificação para 4</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4523"/>
         <location filename="../../qmc2main.ui" line="4589"/>
         <source>Rank 5</source>
-        <translation type="unfinished"></translation>
+        <translation>Classificação 5</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4526"/>
@@ -10839,19 +10839,19 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="4592"/>
         <location filename="../../qmc2main.ui" line="4595"/>
         <source>Set rank to 5 (highest rank)</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir classificação para 5 (maior classificação)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4604"/>
         <location filename="../../qmc2main.ui" line="4607"/>
         <source>Increase rank (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aumentar classificação (etiquetado)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4616"/>
         <location filename="../../qmc2main.ui" line="4619"/>
         <source>Decrease rank (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diminuir classificação (etiquetado)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4154"/>
@@ -12065,12 +12065,12 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="504"/>
         <source>Increase rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Aumentar classificação</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="505"/>
         <source>Decrease rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Diminuir classificação</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="508"/>
@@ -12143,29 +12143,29 @@ Tentar novamente?</translation>
         <location filename="../../options.cpp" line="2973"/>
         <location filename="../../options.cpp" line="4625"/>
         <source>Specify pre-defined foreign IDs for this emulator, launchable from the &apos;foreign emulators&apos; view</source>
-        <translation type="unfinished"></translation>
+        <translation>Especificar IDs estrangeiros pré-definidos para este emulador, executável da tela de &apos;emuladores estrangeiros&apos;</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2986"/>
         <location filename="../../options.cpp" line="4633"/>
         <source>Choose icon for this foreign emulator (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o ícone para esse emulador estrangeiro (segure para exibir o menu)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2988"/>
         <location filename="../../options.cpp" line="4635"/>
         <source>Default icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Ícone padrão</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3111"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>N/D</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3147"/>
         <source>Foreign IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>IDs Estrangeiros</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3540"/>
@@ -12176,22 +12176,23 @@ Tentar novamente?</translation>
         <location filename="../../options.cpp" line="3553"/>
         <source>This will remove &lt;b&gt;all&lt;/b&gt; existing user data and recreate the database.
 Are you sure you want to do this?</source>
-        <translation type="unfinished"></translation>
+        <translation>Isso irá remover &lt;b&gt;todos&lt;/b&gt; os dados de usuário existentes e recriará o banco de dados
+Tem certeza que deseja fazer isso?</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3553"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sim</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3553"/>
         <source>&amp;No</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Não</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3587"/>
         <source>Choose user data database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo de base de dados do usuário</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3623"/>
@@ -12277,7 +12278,7 @@ Are you sure you want to do this?</source>
         <location filename="../../options.cpp" line="4239"/>
         <location filename="../../options.cpp" line="4270"/>
         <source>Supported archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos suportados</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4133"/>
@@ -12327,12 +12328,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="4808"/>
         <source>Choose image file</source>
-        <translation type="unfinished">Escolhar arquivo de imagem</translation>
+        <translation>Escolha o arquivo de imagem</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4808"/>
         <source>Supported image files (%1)</source>
-        <translation type="unfinished">Arquivos de imagem suportados (%1)</translation>
+        <translation>Arquivos de imagem suportados (%1)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4903"/>
@@ -14669,7 +14670,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="3126"/>
         <source>Rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3419"/>
@@ -15065,7 +15066,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="5257"/>
         <source>Clean up user data database (removes obsolete entries)</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar base de dados do usuário (remover entradas obsoletas)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5378"/>
@@ -15236,17 +15237,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="5197"/>
         <source>User data database</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de dados do usuário</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5210"/>
         <source>Database file for storing/retrieving user data (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de base de dados para guardar/recuperar dados de usuário (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5223"/>
         <source>Browse user data database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por arquivo de base de dados do usuário</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5512"/>
@@ -15351,17 +15352,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="5240"/>
         <source>Recreate user data database (removes &lt;b&gt;all&lt;/b&gt; entries)</source>
-        <translation type="unfinished"></translation>
+        <translation>Recriar base de dados do usuário (remove &lt;b&gt;todas&lt;/b&gt; as entradas)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5470"/>
         <source>Foreign &amp;emulators</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Emuladores estrangeiros</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5615"/>
         <source>Icon</source>
-        <translation type="unfinished">Ícone</translation>
+        <translation>Ícone</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5654"/>
@@ -15979,7 +15980,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../gamelist.cpp" line="2238"/>
         <location filename="../../options.cpp" line="1988"/>
         <source>rank</source>
-        <translation type="unfinished"></translation>
+        <translation>classificação</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3157"/>
@@ -20410,12 +20411,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="997"/>
         <source>loading XML software list data and recreating cache</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando dados da lista de software (XML) e recriando cache</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1378"/>
         <source>done (loading XML software list data and recreating cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando dados da lista de software (XML) e recriando cache, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1674"/>
@@ -21278,7 +21279,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../userdatadbmgr.cpp" line="40"/>
         <source>WARNING: failed to open user data database &apos;%1&apos;: error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao abrir base de dados do usuário &apos;%1&apos;: erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="60"/>
@@ -21296,7 +21297,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../userdatadbmgr.cpp" line="344"/>
         <location filename="../../userdatadbmgr.cpp" line="360"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao carregar &apos;%1&apos; da base de dados do usuário: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="74"/>
@@ -21305,7 +21306,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../userdatadbmgr.cpp" line="212"/>
         <location filename="../../userdatadbmgr.cpp" line="277"/>
         <source>WARNING: failed to add &apos;%1&apos; to user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao adicionar &apos;%1&apos; à base de dados do usuário: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="80"/>
@@ -21314,73 +21315,73 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../userdatadbmgr.cpp" line="219"/>
         <location filename="../../userdatadbmgr.cpp" line="284"/>
         <source>WARNING: failed to update &apos;%1&apos; in user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao atualizar &apos;%1&apos; na base de dados do usuário: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="300"/>
         <source>WARNING: failed to fetch row count from user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao ler quantidade de linhas da base de dados do usuário: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="320"/>
         <source>WARNING: failed to fetch row IDs from user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao ler IDs das linhas da base de dados do usuário: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="367"/>
         <source>cleaning up user data database &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>limpando base de dados do usuário &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="380"/>
         <source>removed obsolete ID &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ID obsoleto &apos;%1&apos; removido</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="382"/>
         <location filename="../../userdatadbmgr.cpp" line="391"/>
         <location filename="../../userdatadbmgr.cpp" line="411"/>
         <source>WARNING: failed to remove &apos;%1&apos; from user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao remover &apos;%1&apos; da base de dados do usuário: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="389"/>
         <source>removed ID &apos;%1&apos; due to no data</source>
-        <translation type="unfinished"></translation>
+        <translation>ID &apos;%1&apos; removido por não ter dados</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="402"/>
         <source>done (cleaning up user data database &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (limpando base de dados do usuário &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="420"/>
         <location filename="../../userdatadbmgr.cpp" line="425"/>
         <location filename="../../userdatadbmgr.cpp" line="430"/>
         <source>WARNING: failed to remove user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao remover base de dados do usuário: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="438"/>
         <location filename="../../userdatadbmgr.cpp" line="443"/>
         <location filename="../../userdatadbmgr.cpp" line="448"/>
         <source>WARNING: failed to create user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao criar base de dados do usuário: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="452"/>
         <source>user data database &apos;%1&apos; initialized</source>
-        <translation type="unfinished"></translation>
+        <translation>base de dados do usuário &apos;%1&apos; inicializada</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="457"/>
         <source>filling up rank cache from user data database &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>preenchendo cache de classificação a partir da base de dados do usuário &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="484"/>
         <source>done (filling up rank cache from user data database &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (preenchendo cache de classificação a partir da base de dados do usuário &apos;%1&apos;)</translation>
     </message>
 </context>
 <context>
@@ -21537,17 +21538,17 @@ Sair agora, aceitar uma vez ou ignorar completamente?</translation>
         <location filename="../../welcome.cpp" line="494"/>
         <location filename="../../welcome.cpp" line="500"/>
         <source>Important upgrade information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação importante de atualização</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="495"/>
         <source>&lt;p&gt;A new data column (&apos;%1&apos;) has been added to all machine lists!&lt;/p&gt;&lt;p&gt;Please check/adapt column visibility &lt;a href=&quot;%2&quot;&gt;as shown in our wiki&lt;/a&gt;!&lt;/p&gt;&lt;p&gt;Note that you&apos;ll have to do this for the other QMC2 variants as well (this message will not be shown again).&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Uma nova coluna de dados (&apos;%1&apos;) foi adicionada a todas as listas de máquinas!&lt;/p&gt;&lt;p&gt;Por favor verifique/adapte a visibilidade da coluna &lt;a href=&quot;%2&quot;&gt;como mostrado em nosso wiki&lt;/a&gt;!&lt;/p&gt;&lt;p&gt;Note que você terá de fazer isso também para as outras variantes do QMC2 (essa mensagem não será mostrada novamente).&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="501"/>
         <source>&lt;p&gt;A new data column (&apos;%1&apos;) has been added to all game lists!&lt;/p&gt;&lt;p&gt;Please check/adapt column visibility &lt;a href=&quot;%2&quot;&gt;as shown in our wiki&lt;/a&gt;!&lt;/p&gt;&lt;p&gt;Note that you&apos;ll have to do this for the other QMC2 variants as well (this message will not be shown again).&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Uma nova coluna de dados (&apos;%1&apos;) foi adicionada a todas as listas de jogos!&lt;/p&gt;&lt;p&gt;Por favor verifique/adapte a visibilidade da coluna &lt;a href=&quot;%2&quot;&gt;como mostrado em nosso wiki&lt;/a&gt;!&lt;/p&gt;&lt;p&gt;Note que você terá de fazer isso também para as outras variantes do QMC2 (essa mensagem não será mostrada novamente).&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="15"/>
