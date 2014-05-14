@@ -892,7 +892,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>349</width>
-                <height>789</height>
+                <height>793</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
@@ -2974,7 +2974,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>505</width>
-                <height>244</height>
+                <height>248</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
@@ -4749,8 +4749,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>242</width>
-                <height>492</height>
+                <width>559</width>
+                <height>542</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_23">
@@ -5467,7 +5467,7 @@
          </widget>
          <widget class="QWidget" name="tabAdditionalEmulators">
           <attribute name="title">
-           <string>Additional &amp;Emulators</string>
+           <string>Foreign &amp;emulators</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_25">
            <property name="margin">
