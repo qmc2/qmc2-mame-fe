@@ -27,19 +27,19 @@ http://sourceforge.net/adobe/cmap/wiki/License/
 
     <link rel="stylesheet" href="viewer.css"/>
 
-    <script type="text/javascript" src="compatibility.js"></script>
+    <script src="compatibility.js"></script>
 
 
 
 <!-- This snippet is used in production (included from viewer.html) -->
 <link rel="resource" type="application/l10n" href="locale/locale.properties"/>
-<script type="text/javascript" src="l10n.js"></script>
-<script type="text/javascript" src="../build/pdf.js"></script>
+<script src="l10n.js"></script>
+<script src="../build/pdf.js"></script>
 
 
 
-    <script type="text/javascript" src="debugger.js"></script>
-    <script type="text/javascript" src="viewer.js"></script>
+    <script src="debugger.js"></script>
+    <script src="viewer.js"></script>
 
   </head>
 
@@ -269,8 +269,8 @@ http://sourceforge.net/adobe/cmap/wiki/License/
       </div> <!-- mainContainer -->
 
       <div id="overlayContainer" class="hidden">
-        <div id="promptContainer" class="hidden">
-          <div id="passwordContainer" class="prompt doorHanger">
+        <div id="passwordOverlay" class="container hidden">
+          <div class="dialog">
             <div class="row">
               <p id="passwordText" data-l10n-id="password_label">Enter the password to open this PDF file:</p>
             </div>
@@ -283,8 +283,8 @@ http://sourceforge.net/adobe/cmap/wiki/License/
             </div>
           </div>
         </div>
-        <div id="documentPropertiesContainer" class="hidden">
-          <div class="doorHanger">
+        <div id="documentPropertiesOverlay" class="container hidden">
+          <div class="dialog">
             <div class="row">
               <span data-l10n-id="document_properties_file_name">File name:</span> <p id="fileNameField">-</p>
             </div>
@@ -324,7 +324,7 @@ http://sourceforge.net/adobe/cmap/wiki/License/
               <span data-l10n-id="document_properties_page_count">Page Count:</span> <p id="pageCountField">-</p>
             </div>
             <div class="buttonRow">
-	          <button id="documentPropertiesClose" class="overlayButton"><span data-l10n-id="document_properties_close">Close</span></button>
+              <button id="documentPropertiesClose" class="overlayButton"><span data-l10n-id="document_properties_close">Close</span></button>
             </div>
           </div>
         </div>
