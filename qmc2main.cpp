@@ -4646,11 +4646,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           delete qmc2SoftwareList;
           qmc2SoftwareList = NULL;
         }
-        QString machineName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
         gridLayout->getContentsMargins(&left, &top, &right, &bottom);
         QVBoxLayout *layout = new QVBoxLayout;
         layout->setContentsMargins(left, top, right, bottom);
-        qmc2SoftwareList = new SoftwareList(machineName, tabSoftwareList);
+        qmc2SoftwareList = new SoftwareList(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME), tabSoftwareList);
         layout->addWidget(qmc2SoftwareList);
         tabSoftwareList->setLayout(layout);
         qmc2SoftwareList->show();
@@ -4684,10 +4683,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           qmc2MESSDeviceConfigurator = NULL;
         }
         gridLayout->getContentsMargins(&left, &top, &right, &bottom);
-        QString machineName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
         QVBoxLayout *layout = new QVBoxLayout;
         layout->setContentsMargins(left, top, right, bottom);
-        qmc2MESSDeviceConfigurator = new MESSDeviceConfigurator(machineName, tabDevices);
+        qmc2MESSDeviceConfigurator = new MESSDeviceConfigurator(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME), tabDevices);
         connect(&messDevCfgTimer, SIGNAL(timeout()), qmc2MESSDeviceConfigurator, SLOT(load()));
         layout->addWidget(qmc2MESSDeviceConfigurator);
         if ( !tabDevices->layout() )
