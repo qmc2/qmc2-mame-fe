@@ -717,8 +717,8 @@ void SoftwareList::getXmlData()
 		QString filter;
 		QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(systemName).split("\n", QString::SkipEmptyParts);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		while ( !xmlLines[i].contains("</game>") && !interruptLoad ) {
-			QString line = xmlLines[i++].simplified();
+		while ( !interruptLoad && i < xmlLines.count() && !xmlLines[i].contains("</game>") ) {
+			QString line = xmlLines[i++];
 			if ( line.startsWith("<softwarelist name=\"") ) {
 				int startIndex = line.indexOf("\"") + 1;
 				int endIndex = line.indexOf("\"", startIndex);
@@ -732,8 +732,8 @@ void SoftwareList::getXmlData()
 			}
 		}
 #elif defined(QMC2_EMUTYPE_MESS)
-		while ( !xmlLines[i].contains("</machine>") && !interruptLoad ) {
-			QString line = xmlLines[i++].simplified();
+		while ( !interruptLoad && i < xmlLines.count() && !xmlLines[i].contains("</machine>") ) {
+			QString line = xmlLines[i++];
 			if ( line.startsWith("<softwarelist name=\"") ) {
 				int startIndex = line.indexOf("\"") + 1;
 				int endIndex = line.indexOf("\"", startIndex);
