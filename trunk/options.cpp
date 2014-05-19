@@ -2581,7 +2581,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxUseSystemNotesTemplate->setChecked(config->value("MAME/FilesAndDirectories/UseSystemNotesTemplate", false).toBool());
   lineEditMameHistoryDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
   lineEditMameInfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
-  lineEditCatverIniFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
+  lineEditCatverIniFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CatverIni", QMC2_DEFAULT_DATA_PATH + "/cat/catver.ini").toString());
   checkBoxUseCatverIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", false).toBool());
 #elif defined(QMC2_EMUTYPE_MESS)
 #if defined(QMC2_SDLMESS)
@@ -2653,7 +2653,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxUseSystemNotesTemplate->setChecked(config->value("MESS/FilesAndDirectories/UseSystemNotesTemplate", false).toBool());
   lineEditMessSysinfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
   lineEditMessInfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/messinfo.dat").toString());
-  lineEditCategoryIniFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/CategoryIni", userScopePath + "/category.ini").toString());
+  lineEditCategoryIniFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/CategoryIni", QMC2_DEFAULT_DATA_PATH + "/cat/category.ini").toString());
   checkBoxUseCategoryIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni", false).toBool());
 #elif defined(QMC2_EMUTYPE_UME)
 #if defined(QMC2_SDLUME)
@@ -2727,9 +2727,9 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditMessSysinfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
   lineEditMameInfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
   lineEditMessInfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/messinfo.dat").toString());
-  lineEditCatverIniFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
+  lineEditCatverIniFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/CatverIni", QMC2_DEFAULT_DATA_PATH + "/cat/catver.ini").toString());
   checkBoxUseCatverIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", false).toBool());
-  lineEditCategoryIniFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/CategoryIni", userScopePath + "/category.ini").toString());
+  lineEditCategoryIniFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/CategoryIni", QMC2_DEFAULT_DATA_PATH + "/cat/category.ini").toString());
   checkBoxUseCategoryIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni", false).toBool());
 #endif
   lineEditSoftwareInfoDB->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
