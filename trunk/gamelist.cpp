@@ -868,7 +868,7 @@ void Gamelist::load()
     loadPlayHistory();
 
     // show game list / hide loading animation
-    qmc2MainWindow->loadAnimMovie->stop();
+    qmc2MainWindow->loadAnimMovie->setPaused(true);
     qmc2MainWindow->labelLoadingGamelist->setVisible(false);
     qmc2MainWindow->treeWidgetGamelist->setVisible(true);
     qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
@@ -2495,7 +2495,7 @@ void Gamelist::filter(bool initial)
 	  }
 	  qmc2MainWindow->treeWidgetGamelist->setVisible(true);
 	  qmc2MainWindow->labelLoadingGamelist->setVisible(false);
-	  qmc2MainWindow->loadAnimMovie->stop();
+	  qmc2MainWindow->loadAnimMovie->setPaused(true);
   }
   qmc2MainWindow->progressBarGamelist->setValue(numGames - 1);
   qmc2FilterActive = false;
@@ -2707,7 +2707,7 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	loadPlayHistory();
 
 	// show game list / hide loading animation
-	qmc2MainWindow->loadAnimMovie->stop();
+	qmc2MainWindow->loadAnimMovie->setPaused(true);
 	qmc2MainWindow->labelLoadingGamelist->setVisible(false);
 	qmc2MainWindow->treeWidgetGamelist->setVisible(true);
 	qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
@@ -3901,9 +3901,14 @@ void Gamelist::createCategoryView()
 		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool();
 		QList<QTreeWidgetItem *> itemList;
 		QList<QTreeWidgetItem *> hideList;
+		int loadResponse = numGames / QMC2_GENERAL_LOADING_UPDATES;
 		while ( it.hasNext() ) {
+			if ( counter % loadResponse == 0 ) {
+				qmc2MainWindow->progressBarGamelist->setValue(counter);
+				qApp->processEvents();
+			}
+			counter++;
 			it.next();
-			qmc2MainWindow->progressBarGamelist->setValue(counter++);
 			QString gameName = it.key();
 			if ( gameName.isEmpty() )
 				continue;
@@ -3916,10 +3921,14 @@ void Gamelist::createCategoryView()
 				category = *categoryPtr;
 			else
 				category = tr("?");
-			QList<QTreeWidgetItem *> matchItems = qmc2MainWindow->treeWidgetCategoryView->findItems(category, Qt::MatchExactly);
+			QTreeWidgetItem *matchedItem = NULL;
+			for (int i = 0; i < itemList.count() && matchedItem == NULL; i++) {
+				if ( itemList[i]->text(QMC2_GAMELIST_COLUMN_GAME) == category )
+					matchedItem = itemList[i];
+			}
 			QTreeWidgetItem *categoryItem = NULL;
-			if ( matchItems.count() > 0 )
-				categoryItem = matchItems[0];
+			if ( matchedItem )
+				categoryItem = matchedItem;
 			if ( categoryItem == NULL ) {
 				categoryItem = new QTreeWidgetItem();
 				categoryItem->setText(QMC2_GAMELIST_COLUMN_GAME, category);
@@ -3989,8 +3998,8 @@ void Gamelist::createCategoryView()
 			}
 			loadIcon(gameName, gameItem);
 			qmc2CategoryItemMap[gameName] = gameItem;
-			qmc2MainWindow->treeWidgetCategoryView->insertTopLevelItems(0, itemList);
 		}
+		qmc2MainWindow->treeWidgetCategoryView->insertTopLevelItems(0, itemList);
 		foreach (QTreeWidgetItem *hiddenItem, hideList)
 			hiddenItem->setHidden(true);
 		qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
@@ -4000,7 +4009,7 @@ void Gamelist::createCategoryView()
 		QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
 	}
 
-	qmc2MainWindow->loadAnimMovie->stop();
+	qmc2MainWindow->loadAnimMovie->setPaused(true);
 	qmc2MainWindow->labelCreatingCategoryView->setVisible(false);
 	qmc2MainWindow->treeWidgetCategoryView->setVisible(true);
 
@@ -4127,9 +4136,14 @@ void Gamelist::createVersionView()
 		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool();
 		QList<QTreeWidgetItem *> itemList;
 		QList<QTreeWidgetItem *> hideList;
+		int loadResponse = numGames / QMC2_GENERAL_LOADING_UPDATES;
 		while ( it.hasNext() ) {
+			if ( counter % loadResponse == 0 ) {
+				qmc2MainWindow->progressBarGamelist->setValue(counter);
+				qApp->processEvents();
+			}
+			counter++;
 			it.next();
-			qmc2MainWindow->progressBarGamelist->setValue(counter++);
 			QString gameName = it.key();
 			if ( gameName.isEmpty() )
 				continue;
@@ -4142,10 +4156,14 @@ void Gamelist::createVersionView()
 				version = *versionPtr;
 			else
 				version = tr("?");
-			QList<QTreeWidgetItem *> matchItems = qmc2MainWindow->treeWidgetVersionView->findItems(version, Qt::MatchExactly);
+			QTreeWidgetItem *matchedItem = NULL;
+			for (int i = 0; i < itemList.count() && matchedItem == NULL; i++) {
+				if ( itemList[i]->text(QMC2_GAMELIST_COLUMN_GAME) == version )
+					matchedItem = itemList[i];
+			}
 			QTreeWidgetItem *versionItem = NULL;
-			if ( matchItems.count() > 0 )
-				versionItem = matchItems[0];
+			if ( matchedItem )
+				versionItem = matchedItem;
 			if ( versionItem == NULL ) {
 				versionItem = new QTreeWidgetItem();
 				versionItem->setText(QMC2_GAMELIST_COLUMN_GAME, version);
@@ -4215,8 +4233,8 @@ void Gamelist::createVersionView()
 			}
 			loadIcon(gameName, gameItem);
 			qmc2VersionItemMap[gameName] = gameItem;
-			qmc2MainWindow->treeWidgetVersionView->insertTopLevelItems(0, itemList);
 		}
+		qmc2MainWindow->treeWidgetVersionView->insertTopLevelItems(0, itemList);
 		foreach (QTreeWidgetItem *hiddenItem, hideList)
 			hiddenItem->setHidden(true);
 		qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
@@ -4226,7 +4244,7 @@ void Gamelist::createVersionView()
 		QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetVersionView_verticalScrollChanged()));
 	}
 
-	qmc2MainWindow->loadAnimMovie->stop();
+	qmc2MainWindow->loadAnimMovie->setPaused(true);
 	qmc2MainWindow->labelCreatingVersionView->setVisible(false);
 	qmc2MainWindow->treeWidgetVersionView->setVisible(true);
 

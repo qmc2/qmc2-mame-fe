@@ -560,6 +560,10 @@ MainWindow::MainWindow(QWidget *parent)
   // hide loading animation labels initially
   labelLoadingGamelist->setVisible(false);
   labelLoadingHierarchy->setVisible(false);
+  labelCreatingCategoryView->setVisible(false);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  labelCreatingVersionView->setVisible(false);
+#endif
 
   // hide memory indicator initially
   progressBarMemory->setVisible(false);
