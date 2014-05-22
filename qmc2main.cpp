@@ -90,6 +90,7 @@
 #include "htmleditor/htmleditor.h"
 #include "arcademodesetup.h"
 #include "fileiconprovider.h"
+#include "aspectratiolabel.h"
 
 #ifdef __APPLE__
 #include <ApplicationServices/ApplicationServices.h>
@@ -523,7 +524,40 @@ MainWindow::MainWindow(QWidget *parent)
   // disable the menu-bar's default context menu (may be irritating)
   menuBar()->setContextMenuPolicy(Qt::PreventContextMenu);
 
-  // hide "loading game list" labels initially
+  // loading animation
+  loadAnimMovie = new QMovie(QString::fromUtf8(":/data/img/loadanim.mng"), QByteArray(), this);
+  loadAnimMovie->setCacheMode(QMovie::CacheAll);
+  loadAnimMovie->setSpeed(50);
+  loadAnimMovie->stop();
+
+  // replace loading animation labels with aspect-ratio keeping ones
+  gridLayoutGamelistPage->removeWidget(labelLoadingGamelist);
+  delete labelLoadingGamelist;
+  labelLoadingGamelist = new AspectRatioLabel(this);
+  labelLoadingGamelist->setMovie(loadAnimMovie);
+  gridLayoutGamelistPage->addWidget(labelLoadingGamelist, 1, 0);
+
+  gridLayoutHierarchyPage->removeWidget(labelLoadingHierarchy);
+  delete labelLoadingHierarchy;
+  labelLoadingHierarchy = new AspectRatioLabel(this);
+  labelLoadingHierarchy->setMovie(loadAnimMovie);
+  gridLayoutHierarchyPage->addWidget(labelLoadingHierarchy, 1, 0);
+
+  gridLayoutCategoryPage->removeWidget(labelCreatingCategoryView);
+  delete labelCreatingCategoryView;
+  labelCreatingCategoryView = new AspectRatioLabel(this);
+  labelCreatingCategoryView->setMovie(loadAnimMovie);
+  gridLayoutCategoryPage->addWidget(labelCreatingCategoryView, 1, 0);
+
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  gridLayoutVersionPage->removeWidget(labelCreatingVersionView);
+  delete labelCreatingVersionView;
+  labelCreatingVersionView = new AspectRatioLabel(this);
+  labelCreatingVersionView->setMovie(loadAnimMovie);
+  gridLayoutVersionPage->addWidget(labelCreatingVersionView, 1, 0);
+#endif
+
+  // hide loading animation labels initially
   labelLoadingGamelist->setVisible(false);
   labelLoadingHierarchy->setVisible(false);
 
@@ -716,8 +750,6 @@ MainWindow::MainWindow(QWidget *parent)
   qmc2Options->checkBoxShowGameName->setText(tr("Show machine name"));
   qmc2Options->checkBoxShowGameName->setToolTip(tr("Show machine's description at the bottom of any images"));
   qmc2Options->checkBoxShowGameNameOnlyWhenRequired->setToolTip(tr("Show machine's description only when the machine list is not visible due to the current layout"));
-  labelLoadingGamelist->setText(tr("Loading machine list, please wait..."));
-  labelLoadingHierarchy->setText(tr("Loading machine list, please wait..."));
   comboBoxSearch->setToolTip(tr("Search for machines (not case-sensitive)"));
   comboBoxSearch->setStatusTip(tr("Search for machines"));
 #endif

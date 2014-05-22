@@ -47,6 +47,7 @@
 #include "youtubevideoplayer.h"
 #endif
 #include "htmleditor/htmleditor.h"
+#include "aspectratiolabel.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -851,11 +852,14 @@ void Gamelist::load()
     return;
   }
 
-  // hide game list
+  // hide game list / show loading animation
   qmc2MainWindow->treeWidgetGamelist->setVisible(false);
+  ((AspectRatioLabel *)qmc2MainWindow->labelLoadingGamelist)->setLabelText(tr("Loading, please wait..."));
   qmc2MainWindow->labelLoadingGamelist->setVisible(true);
   qmc2MainWindow->treeWidgetHierarchy->setVisible(false);
+  ((AspectRatioLabel *)qmc2MainWindow->labelLoadingHierarchy)->setLabelText(tr("Loading, please wait..."));
   qmc2MainWindow->labelLoadingHierarchy->setVisible(true);
+  qmc2MainWindow->loadAnimMovie->start();
   qApp->processEvents();
 
   if ( xmlCacheOkay ) {
@@ -863,7 +867,8 @@ void Gamelist::load()
     loadFavorites();
     loadPlayHistory();
 
-    // show game list
+    // show game list / hide loading animation
+    qmc2MainWindow->loadAnimMovie->stop();
     qmc2MainWindow->labelLoadingGamelist->setVisible(false);
     qmc2MainWindow->treeWidgetGamelist->setVisible(true);
     qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
@@ -2453,13 +2458,9 @@ void Gamelist::filter(bool initial)
 	  }
   } else {
 	  qmc2MainWindow->treeWidgetGamelist->setVisible(false);
-	  QString curText = qmc2MainWindow->labelLoadingGamelist->text();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	  qmc2MainWindow->labelLoadingGamelist->setText(tr("Filtering game list, please wait..."));
-#elif defined(QMC2_EMUTYPE_MESs)
-	  qmc2MainWindow->labelLoadingGamelist->setText(tr("Filtering machine list, please wait..."));
-#endif
+	  ((AspectRatioLabel *)qmc2MainWindow->labelLoadingGamelist)->setLabelText(tr("Filtering, please wait..."));
 	  qmc2MainWindow->labelLoadingGamelist->setVisible(true);
+	  qmc2MainWindow->loadAnimMovie->start();
 	  qApp->processEvents();
 	  int filterResponse = numGames / QMC2_STATEFILTER_UPDATES;
 	  for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount() && !qmc2StopParser; i++) {
@@ -2494,7 +2495,7 @@ void Gamelist::filter(bool initial)
 	  }
 	  qmc2MainWindow->treeWidgetGamelist->setVisible(true);
 	  qmc2MainWindow->labelLoadingGamelist->setVisible(false);
-	  qmc2MainWindow->labelLoadingGamelist->setText(curText);
+	  qmc2MainWindow->loadAnimMovie->stop();
   }
   qmc2MainWindow->progressBarGamelist->setValue(numGames - 1);
   qmc2FilterActive = false;
@@ -2705,7 +2706,8 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	loadFavorites();
 	loadPlayHistory();
 
-	// show game list
+	// show game list / hide loading animation
+	qmc2MainWindow->loadAnimMovie->stop();
 	qmc2MainWindow->labelLoadingGamelist->setVisible(false);
 	qmc2MainWindow->treeWidgetGamelist->setVisible(true);
 	qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
@@ -3860,8 +3862,10 @@ void Gamelist::createCategoryView()
 #endif
 
 	qmc2CategoryItemMap.clear();
-	qmc2MainWindow->treeWidgetCategoryView->hide();
-	qmc2MainWindow->labelCreatingCategoryView->show();
+	qmc2MainWindow->treeWidgetCategoryView->setVisible(false);
+	((AspectRatioLabel *)qmc2MainWindow->labelCreatingCategoryView)->setLabelText(tr("Loading, please wait..."));
+	qmc2MainWindow->labelCreatingCategoryView->setVisible(true);
+	qmc2MainWindow->loadAnimMovie->start();
 
 	if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_CATEGORY_INDEX ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
@@ -3996,8 +4000,9 @@ void Gamelist::createCategoryView()
 		QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
 	}
 
-	qmc2MainWindow->labelCreatingCategoryView->hide();
-	qmc2MainWindow->treeWidgetCategoryView->show();
+	qmc2MainWindow->loadAnimMovie->stop();
+	qmc2MainWindow->labelCreatingCategoryView->setVisible(false);
+	qmc2MainWindow->treeWidgetCategoryView->setVisible(true);
 
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 }
@@ -4083,8 +4088,10 @@ void Gamelist::createVersionView()
 #endif
 
 	qmc2VersionItemMap.clear();
-	qmc2MainWindow->treeWidgetVersionView->hide();
-	qmc2MainWindow->labelCreatingVersionView->show();
+	qmc2MainWindow->treeWidgetVersionView->setVisible(false);
+	((AspectRatioLabel *)qmc2MainWindow->labelCreatingVersionView)->setLabelText(tr("Loading, please wait..."));
+	qmc2MainWindow->labelCreatingVersionView->setVisible(true);
+	qmc2MainWindow->loadAnimMovie->start();
 
 	if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_VERSION_INDEX ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
@@ -4219,8 +4226,9 @@ void Gamelist::createVersionView()
 		QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetVersionView_verticalScrollChanged()));
 	}
 
-	qmc2MainWindow->labelCreatingVersionView->hide();
-	qmc2MainWindow->treeWidgetVersionView->show();
+	qmc2MainWindow->loadAnimMovie->stop();
+	qmc2MainWindow->labelCreatingVersionView->setVisible(false);
+	qmc2MainWindow->treeWidgetVersionView->setVisible(true);
 
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 }

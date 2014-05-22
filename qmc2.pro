@@ -125,6 +125,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			ftpreply.cpp \
 			fileiconprovider.cpp \
 			rankitemwidget.cpp \
+			aspectratiolabel.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -240,6 +241,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			ftpreply.h \
 			fileiconprovider.h \
 			rankitemwidget.h \
+			aspectratiolabel.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h
