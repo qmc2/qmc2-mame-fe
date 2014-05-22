@@ -25,8 +25,17 @@ void AspectRatioLabel::adjustMovieSize()
 	sz.scale(size() * 0.66, Qt::KeepAspectRatio);
 	movie()->setScaledSize(sz);
 	movie()->jumpToFrame(frame);
-	if ( state == QMovie::Running )
-		movie()->start();
+	switch ( state ) {
+		case QMovie::Running:
+			movie()->start();
+			break;
+		case QMovie::Paused:
+			movie()->setPaused(true);
+			break;
+		default:
+			movie()->stop();
+			break;
+	}
 }
 
 void AspectRatioLabel::setLabelText(QString text)
