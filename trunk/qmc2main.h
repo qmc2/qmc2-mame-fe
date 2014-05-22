@@ -10,6 +10,7 @@
 #include <QNetworkReply>
 #include <QWidgetAction>
 #include <QProxyStyle>
+#include <QMovie>
 
 #include "settings.h"
 #include "ui_qmc2main.h"
@@ -192,6 +193,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QAction *actionToolbarNegateSearch;
 		QList<QAction *> criticalActions;
 		bool negatedMatch;
+		QMovie *loadAnimMovie;
 
 		static QColor qmc2StatusColorGreen;
 		static QColor qmc2StatusColorYellowGreen;

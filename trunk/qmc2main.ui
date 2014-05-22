@@ -260,7 +260,7 @@
                 <item row="1" column="0">
                  <widget class="QLabel" name="labelLoadingGamelist">
                   <property name="sizePolicy">
-                   <sizepolicy hsizetype="Ignored" vsizetype="MinimumExpanding">
+                   <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
@@ -271,8 +271,8 @@
                   <property name="frameShadow">
                    <enum>QFrame::Sunken</enum>
                   </property>
-                  <property name="text">
-                   <string>Loading game list, please wait...</string>
+                  <property name="scaledContents">
+                   <bool>true</bool>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -408,7 +408,7 @@
                 <item row="1" column="0">
                  <widget class="QLabel" name="labelLoadingHierarchy">
                   <property name="sizePolicy">
-                   <sizepolicy hsizetype="Ignored" vsizetype="MinimumExpanding">
+                   <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
@@ -419,8 +419,8 @@
                   <property name="frameShadow">
                    <enum>QFrame::Sunken</enum>
                   </property>
-                  <property name="text">
-                   <string>Loading game list, please wait...</string>
+                  <property name="scaledContents">
+                   <bool>true</bool>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -559,7 +559,7 @@
                 <item row="1" column="0">
                  <widget class="QLabel" name="labelCreatingCategoryView">
                   <property name="sizePolicy">
-                   <sizepolicy hsizetype="Ignored" vsizetype="MinimumExpanding">
+                   <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
@@ -570,8 +570,8 @@
                   <property name="frameShadow">
                    <enum>QFrame::Sunken</enum>
                   </property>
-                  <property name="text">
-                   <string>Creating category view, please wait...</string>
+                  <property name="scaledContents">
+                   <bool>true</bool>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -710,7 +710,7 @@
                 <item row="1" column="0">
                  <widget class="QLabel" name="labelCreatingVersionView">
                   <property name="sizePolicy">
-                   <sizepolicy hsizetype="Ignored" vsizetype="MinimumExpanding">
+                   <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
@@ -721,8 +721,8 @@
                   <property name="frameShadow">
                    <enum>QFrame::Sunken</enum>
                   </property>
-                  <property name="text">
-                   <string>Creating version view, please wait...</string>
+                  <property name="scaledContents">
+                   <bool>true</bool>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
