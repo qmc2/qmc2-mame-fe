@@ -3888,11 +3888,11 @@ void Gamelist::createCategoryView()
 
 	qmc2MainWindow->stackedWidgetView->setCurrentIndex(QMC2_VIEW_CATEGORY_INDEX);
 	qmc2MainWindow->stackedWidgetView->update();
-	qApp->processEvents();
 
 	qmc2MainWindow->treeWidgetCategoryView->setColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY, true);
 
 	if ( !qmc2StopParser ) {
+		qmc2MainWindow->loadAnimMovie->start();
 		qmc2MainWindow->treeWidgetCategoryView->clear();
 		QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -4123,11 +4123,11 @@ void Gamelist::createVersionView()
 
 	qmc2MainWindow->stackedWidgetView->setCurrentIndex(QMC2_VIEW_VERSION_INDEX);
 	qmc2MainWindow->stackedWidgetView->update();
-	qApp->processEvents();
 
 	qmc2MainWindow->treeWidgetVersionView->setColumnHidden(QMC2_GAMELIST_COLUMN_VERSION, true);
 
 	if ( !qmc2StopParser ) {
+		qmc2MainWindow->loadAnimMovie->start();
 		qmc2MainWindow->treeWidgetVersionView->clear();
 		QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
