@@ -2017,8 +2017,13 @@ void Gamelist::parse()
   QMapIterator<QString, QStringList> i(qmc2HierarchyMap);
   QList<QTreeWidgetItem *> itemList;
   QList<QTreeWidgetItem *> hideList;
+  int loadResponse = numGames / QMC2_GENERAL_LOADING_UPDATES;
+  int counter = 0;
   while ( i.hasNext() && !qmc2StopParser ) {
     i.next();
+    if ( counter % loadResponse == 0 )
+	    qApp->processEvents();
+    counter++;
     QString iValue = i.key();
     QString iDescription = qmc2GamelistItemMap[iValue]->text(QMC2_GAMELIST_COLUMN_GAME);
     if ( iDescription.isEmpty() )
@@ -2271,6 +2276,7 @@ void Gamelist::parse()
   qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
   qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
   qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
+  qApp->processEvents();
 
   QTreeWidgetItem *ci = qmc2MainWindow->treeWidgetGamelist->currentItem();
   if ( ci ) {
