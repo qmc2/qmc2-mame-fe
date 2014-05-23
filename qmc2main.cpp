@@ -534,18 +534,21 @@ MainWindow::MainWindow(QWidget *parent)
   gridLayoutGamelistPage->removeWidget(labelLoadingGamelist);
   delete labelLoadingGamelist;
   labelLoadingGamelist = new AspectRatioLabel(this);
+  labelLoadingGamelist->setVisible(false);
   labelLoadingGamelist->setMovie(loadAnimMovie);
   gridLayoutGamelistPage->addWidget(labelLoadingGamelist, 1, 0);
 
   gridLayoutHierarchyPage->removeWidget(labelLoadingHierarchy);
   delete labelLoadingHierarchy;
   labelLoadingHierarchy = new AspectRatioLabel(this);
+  labelLoadingHierarchy->setVisible(false);
   labelLoadingHierarchy->setMovie(loadAnimMovie);
   gridLayoutHierarchyPage->addWidget(labelLoadingHierarchy, 1, 0);
 
   gridLayoutCategoryPage->removeWidget(labelCreatingCategoryView);
   delete labelCreatingCategoryView;
   labelCreatingCategoryView = new AspectRatioLabel(this);
+  labelCreatingCategoryView->setVisible(false);
   labelCreatingCategoryView->setMovie(loadAnimMovie);
   gridLayoutCategoryPage->addWidget(labelCreatingCategoryView, 1, 0);
 
@@ -553,16 +556,9 @@ MainWindow::MainWindow(QWidget *parent)
   gridLayoutVersionPage->removeWidget(labelCreatingVersionView);
   delete labelCreatingVersionView;
   labelCreatingVersionView = new AspectRatioLabel(this);
+  labelCreatingVersionView->setVisible(false);
   labelCreatingVersionView->setMovie(loadAnimMovie);
   gridLayoutVersionPage->addWidget(labelCreatingVersionView, 1, 0);
-#endif
-
-  // hide loading animation labels initially
-  labelLoadingGamelist->setVisible(false);
-  labelLoadingHierarchy->setVisible(false);
-  labelCreatingCategoryView->setVisible(false);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  labelCreatingVersionView->setVisible(false);
 #endif
 
   // hide memory indicator initially
