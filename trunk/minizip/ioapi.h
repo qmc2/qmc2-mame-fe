@@ -61,6 +61,12 @@
 #endif
 #endif
 
+#if defined(__APPLE__)
+#define fopen64 fopen
+#define ftello64 ftell
+#define fseeko64 fseek
+#endif
+
 /*
 #ifndef ZPOS64_T
   #ifdef _WIN32
