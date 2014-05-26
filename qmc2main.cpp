@@ -534,31 +534,31 @@ MainWindow::MainWindow(QWidget *parent)
   gridLayoutGamelistPage->removeWidget(labelLoadingGamelist);
   delete labelLoadingGamelist;
   labelLoadingGamelist = new AspectRatioLabel(this);
-  labelLoadingGamelist->setVisible(false);
   labelLoadingGamelist->setMovie(loadAnimMovie);
   gridLayoutGamelistPage->addWidget(labelLoadingGamelist, 1, 0);
+  labelLoadingGamelist->setVisible(false);
 
   gridLayoutHierarchyPage->removeWidget(labelLoadingHierarchy);
   delete labelLoadingHierarchy;
   labelLoadingHierarchy = new AspectRatioLabel(this);
-  labelLoadingHierarchy->setVisible(false);
   labelLoadingHierarchy->setMovie(loadAnimMovie);
   gridLayoutHierarchyPage->addWidget(labelLoadingHierarchy, 1, 0);
+  labelLoadingHierarchy->setVisible(false);
 
   gridLayoutCategoryPage->removeWidget(labelCreatingCategoryView);
   delete labelCreatingCategoryView;
   labelCreatingCategoryView = new AspectRatioLabel(this);
-  labelCreatingCategoryView->setVisible(false);
   labelCreatingCategoryView->setMovie(loadAnimMovie);
   gridLayoutCategoryPage->addWidget(labelCreatingCategoryView, 1, 0);
+  labelCreatingCategoryView->setVisible(false);
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   gridLayoutVersionPage->removeWidget(labelCreatingVersionView);
   delete labelCreatingVersionView;
   labelCreatingVersionView = new AspectRatioLabel(this);
-  labelCreatingVersionView->setVisible(false);
   labelCreatingVersionView->setMovie(loadAnimMovie);
   gridLayoutVersionPage->addWidget(labelCreatingVersionView, 1, 0);
+  labelCreatingVersionView->setVisible(false);
 #endif
 
   // hide memory indicator initially
@@ -7344,6 +7344,7 @@ void MainWindow::init()
 		qmc2SplashScreen->repaint();
 		QTimer::singleShot(QMC2_SPLASH_DURATION, qmc2SplashScreen, SLOT(hide()));
 	}
+
 	qApp->processEvents();
 
 	// tool-bar customization
@@ -7370,7 +7371,7 @@ void MainWindow::init()
 	qmc2GhostImagePixmap.isGhost = true;
 	progressBarMemory->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", false).toBool());
 
-	// make sure the logs are crolled to their maxima
+	// make sure the logs are scrolled to their maxima
 	textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
 	textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
 
@@ -7495,78 +7496,78 @@ void MainWindow::setupPalette(QString styleName)
 void MainWindow::viewFullDetail()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewFullDetail()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewFullDetail()");
 #endif
 
-  comboBoxViewSelect->setCurrentIndex(QMC2_VIEWGAMELIST_INDEX);
-  tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
-  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
-  menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/flat.png")));
-  treeWidgetGamelist->setFocus();
-  stackedWidgetView->update();
-  qApp->processEvents();
+	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWGAMELIST_INDEX);
+	tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
+	tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
+	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/flat.png")));
+	treeWidgetGamelist->setFocus();
+	stackedWidgetView->update();
+	qApp->processEvents();
 }
 
 void MainWindow::viewParentClones()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewParentClones()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewParentClones()");
 #endif
 
-  comboBoxViewSelect->setCurrentIndex(QMC2_VIEWHIERARCHY_INDEX);
-  tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
-  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
-  menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/clone.png")));
-  treeWidgetHierarchy->setFocus();
-  stackedWidgetView->update();
-  qApp->processEvents();
+	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWHIERARCHY_INDEX);
+	tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
+	tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
+	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/clone.png")));
+	treeWidgetHierarchy->setFocus();
+	stackedWidgetView->update();
+	qApp->processEvents();
 }
 
 void MainWindow::viewByCategory()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewByCategory()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewByCategory()");
 #endif
 
-  comboBoxViewSelect->setCurrentIndex(QMC2_VIEWCATEGORY_INDEX);
-  tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
-  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
-  menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/category.png")));
-  QTreeWidgetItem *item = treeWidgetCategoryView->topLevelItem(0);
-  if ( item ) {
-    if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
-      QTimer::singleShot(0, qmc2Gamelist, SLOT(createCategoryView()));
-    else
-      QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
-  } else
-    QTimer::singleShot(0, qmc2Gamelist, SLOT(createCategoryView()));
-  treeWidgetCategoryView->setFocus();
-  stackedWidgetView->update();
-  qApp->processEvents();
+	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWCATEGORY_INDEX);
+	tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
+	tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
+	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/category.png")));
+	QTreeWidgetItem *item = treeWidgetCategoryView->topLevelItem(0);
+	if ( item ) {
+		if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+			QTimer::singleShot(0, qmc2Gamelist, SLOT(createCategoryView()));
+		else
+			QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
+	} else
+		QTimer::singleShot(0, qmc2Gamelist, SLOT(createCategoryView()));
+	treeWidgetCategoryView->setFocus();
+	stackedWidgetView->update();
+	qApp->processEvents();
 }
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 void MainWindow::viewByVersion()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewByVersion()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewByVersion()");
 #endif
 
-  comboBoxViewSelect->setCurrentIndex(QMC2_VIEWVERSION_INDEX);
-  tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
-  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
-  menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/version.png")));
-  QTreeWidgetItem *item = treeWidgetVersionView->topLevelItem(0);
-  if ( item ) {
-    if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
-      QTimer::singleShot(0, qmc2Gamelist, SLOT(createVersionView()));
-    else
-      QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
-  } else
-    QTimer::singleShot(0, qmc2Gamelist, SLOT(createVersionView()));
-  treeWidgetVersionView->setFocus();
-  stackedWidgetView->update();
-  qApp->processEvents();
+	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWVERSION_INDEX);
+	tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
+	tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
+	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/version.png")));
+	QTreeWidgetItem *item = treeWidgetVersionView->topLevelItem(0);
+	if ( item ) {
+		if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+			QTimer::singleShot(0, qmc2Gamelist, SLOT(createVersionView()));
+		else
+			QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
+	} else
+		QTimer::singleShot(0, qmc2Gamelist, SLOT(createVersionView()));
+	treeWidgetVersionView->setFocus();
+	stackedWidgetView->update();
+	qApp->processEvents();
 }
 #endif
 
@@ -12843,10 +12844,11 @@ int main(int argc, char *argv[])
 		       "-config_path    Use specified configuration path (default: %s)\n"
 		       "-cc             Clear all emulator caches before starting up\n"
 		       "-h|-?|-help     Show this help text and exit\n", argv[0], QString(QMC2_DOT_PATH).toLocal8Bit().constData());
-	  return 1;
-  }
+		return 1;
+	}
 
 	Q_INIT_RESOURCE(qmc2);
+
 #if defined(QMC2_EMUTYPE_MESS)
 	qmc2App.setWindowIcon(QIcon(QString::fromUtf8(":/data/img/mess.png")));
 	QPixmap splashPixmap(QString::fromUtf8(":/data/img/qmc2_mess_splash.png"));
@@ -12926,21 +12928,20 @@ int main(int argc, char *argv[])
 #endif
 
 	// create & show greeting string
-	QString greeting;
 #if defined(QMC2_EMUTYPE_MESS)
-	greeting = QObject::tr("M.E.S.S. Catalog / Launcher II v") +
+	QString greeting = QObject::tr("M.E.S.S. Catalog / Launcher II v") +
 #elif defined(QMC2_EMUTYPE_MAME)
-	greeting = QObject::tr("M.A.M.E. Catalog / Launcher II v") +
+	QString greeting = QObject::tr("M.A.M.E. Catalog / Launcher II v") +
 #elif defined(QMC2_EMUTYPE_UME)
-	greeting = QObject::tr("U.M.E. Catalog / Launcher II v") +
+	QString greeting = QObject::tr("U.M.E. Catalog / Launcher II v") +
 #else
-	greeting = QObject::tr("M.A.M.E. Catalog / Launcher II v") +
+	QString greeting = QObject::tr("M.A.M.E. Catalog / Launcher II v") +
 #endif
-	QString(XSTR(QMC2_VERSION)) +
+			   QString(XSTR(QMC2_VERSION)) +
 #if QMC2_SVN_REV > 0
-		", " + QObject::tr("SVN r%1").arg(QMC2_SVN_REV) +
+			   ", " + QObject::tr("SVN r%1").arg(QMC2_SVN_REV) +
 #endif
-		" (Qt " + qVersion() + ", " + QMC2_EMU_NAME_VARIANT + ", " + qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString() + ")";
+			   " (Qt " + qVersion() + ", " + QMC2_EMU_NAME_VARIANT + ", " + qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString() + ")";
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, greeting);
 
 #if QMC2_OPENGL == 1
