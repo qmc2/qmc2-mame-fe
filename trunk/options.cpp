@@ -771,6 +771,11 @@ void Options::apply()
   labelLegend5Pic->setPixmap(reloadPixmap);
   
   tableWidgetRegisteredEmulators->resizeRowsToContents();
+  for (int i = 0; i < tableWidgetRegisteredEmulators->rowCount(); i++) {
+	  QToolButton *tb = (QToolButton *)tableWidgetRegisteredEmulators->cellWidget(i, QMC2_ADDTLEMUS_COLUMN_ICON);
+	  if ( tb )
+		  tb->setIconSize(iconSizeMiddle);
+  }
 
   // global web-browser fonts
   QWebSettings::globalSettings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
@@ -2974,8 +2979,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	  tableWidgetRegisteredEmulators->setCellWidget(row, QMC2_ADDTLEMUS_COLUMN_CUID, tb);
 	  connect(tb, SIGNAL(clicked()), this, SLOT(setupCustomIDsClicked()));
 	  tb = new QToolButton(0);
-	  tb->setIconSize(iconSize);
 	  tb->setAutoFillBackground(true);
+	  tb->setIconSize(iconSize);
 	  if ( emuIcon.isEmpty() ) {
 		  tb->setIcon(QIcon(QString::fromUtf8(":/data/img/alien.png")));
 		  tb->setWhatsThis(":/data/img/alien.png");
@@ -4637,6 +4642,8 @@ void Options::on_toolButtonAddEmulator_clicked()
 	tb->setMenu(menu);
 	tableWidgetRegisteredEmulators->setCellWidget(row, QMC2_ADDTLEMUS_COLUMN_ICON, tb);
 	connect(tb, SIGNAL(clicked()), this, SLOT(chooseEmuIconClicked()));
+
+	tableWidgetRegisteredEmulators->resizeRowsToContents();
 
 	on_lineEditAdditionalEmulatorName_textChanged(lineEditAdditionalEmulatorName->text());
 	tableWidgetRegisteredEmulators->setSortingEnabled(true);
