@@ -396,7 +396,7 @@
 #define QMC2_ROMSTATE_INT_U			4
 
 // indirectly controls the state filter / loading responsiveness (number of updates)
-#define QMC2_STATEFILTER_UPDATES		10
+#define QMC2_STATEFILTER_UPDATES		50
 #define QMC2_GENERAL_LOADING_UPDATES		100
 
 // responsiveness while reading the XML game/machine list cache
