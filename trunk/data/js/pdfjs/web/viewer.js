@@ -20,7 +20,7 @@
            Preferences, SidebarView, ViewHistory, PageView, ThumbnailView, URL,
            noContextMenuHandler, SecondaryToolbar, PasswordPrompt,
            PresentationMode, HandTool, Promise, DocumentProperties,
-           DocumentOutlineView, DocumentAttachmentsView */
+           DocumentOutlineView, DocumentAttachmentsView, OverlayManager */
 
 'use strict';
 
@@ -756,7 +756,7 @@ var ViewHistory = (function ViewHistoryClosure() {
         return;
       }
       this.file[name] = val;
-      this._writeToStorage();
+      return this._writeToStorage();
     },
 
     setMultiple: function ViewHistory_setMultiple(properties) {
@@ -766,7 +766,7 @@ var ViewHistory = (function ViewHistoryClosure() {
       for (var name in properties) {
         this.file[name] = properties[name];
       }
-      this._writeToStorage();
+      return this._writeToStorage();
     },
 
     get: function ViewHistory_get(name, defaultValue) {
@@ -1720,7 +1720,7 @@ var SecondaryToolbar = {
   },
 
   documentPropertiesClick: function secondaryToolbarDocumentPropsClick(evt) {
-    this.documentProperties.show();
+    this.documentProperties.open();
     this.close();
   },
 
@@ -1763,84 +1763,6 @@ var SecondaryToolbar = {
       this.close();
     } else {
       this.open();
-    }
-  }
-};
-
-
-var PasswordPrompt = {
-  visible: false,
-  updatePassword: null,
-  reason: null,
-  overlayContainer: null,
-  passwordField: null,
-  passwordText: null,
-  passwordSubmit: null,
-  passwordCancel: null,
-
-  initialize: function secondaryToolbarInitialize(options) {
-    this.overlayContainer = options.overlayContainer;
-    this.passwordField = options.passwordField;
-    this.passwordText = options.passwordText;
-    this.passwordSubmit = options.passwordSubmit;
-    this.passwordCancel = options.passwordCancel;
-
-    // Attach the event listeners.
-    this.passwordSubmit.addEventListener('click',
-      this.verifyPassword.bind(this));
-
-    this.passwordCancel.addEventListener('click', this.hide.bind(this));
-
-    this.passwordField.addEventListener('keydown',
-      function (e) {
-        if (e.keyCode === 13) { // Enter key
-          this.verifyPassword();
-        }
-      }.bind(this));
-
-    window.addEventListener('keydown',
-      function (e) {
-        if (e.keyCode === 27) { // Esc key
-          this.hide();
-        }
-      }.bind(this));
-  },
-
-  show: function passwordPromptShow() {
-    if (this.visible) {
-      return;
-    }
-    this.visible = true;
-    this.overlayContainer.classList.remove('hidden');
-    this.overlayContainer.firstElementChild.classList.remove('hidden');
-    this.passwordField.focus();
-
-    var promptString = mozL10n.get('password_label', null,
-      'Enter the password to open this PDF file.');
-
-    if (this.reason === PDFJS.PasswordResponses.INCORRECT_PASSWORD) {
-      promptString = mozL10n.get('password_invalid', null,
-        'Invalid password. Please try again.');
-    }
-
-    this.passwordText.textContent = promptString;
-  },
-
-  hide: function passwordPromptClose() {
-    if (!this.visible) {
-      return;
-    }
-    this.visible = false;
-    this.passwordField.value = '';
-    this.overlayContainer.classList.add('hidden');
-    this.overlayContainer.firstElementChild.classList.add('hidden');
-  },
-
-  verifyPassword: function passwordPromptVerifyPassword() {
-    var password = this.passwordField.value;
-    if (password && password.length > 0) {
-      this.hide();
-      return this.updatePassword(password);
     }
   }
 };
@@ -2348,11 +2270,201 @@ var HandTool = {
 };
 
 
+var OverlayManager = {
+  overlays: {},
+  active: null,
+
+  /**
+   * @param {string} name The name of the overlay that is registered. This must
+   *                 be equal to the ID of the overlay's DOM element.
+   * @param {function} callerCloseMethod (optional) The method that, if present,
+   *                   will call OverlayManager.close from the Object
+   *                   registering the overlay. Access to this method is
+   *                   necessary in order to run cleanup code when e.g.
+   *                   the overlay is force closed. The default is null.
+   * @param {boolean} canForceClose (optional) Indicates if opening the overlay
+   *                  will close an active overlay. The default is false.
+   * @returns {Promise} A promise that is resolved when the overlay has been
+   *                    registered.
+   */
+  register: function overlayManagerRegister(name,
+                                            callerCloseMethod, canForceClose) {
+    return new Promise(function (resolve) {
+      var element, container;
+      if (!name || !(element = document.getElementById(name)) ||
+          !(container = element.parentNode)) {
+        throw new Error('Not enough parameters.');
+      } else if (this.overlays[name]) {
+        throw new Error('The overlay is already registered.');
+      }
+      this.overlays[name] = { element: element,
+                              container: container,
+                              callerCloseMethod: (callerCloseMethod || null),
+                              canForceClose: (canForceClose || false) };
+      resolve();
+    }.bind(this));
+  },
+
+  /**
+   * @param {string} name The name of the overlay that is unregistered.
+   * @returns {Promise} A promise that is resolved when the overlay has been
+   *                    unregistered.
+   */
+  unregister: function overlayManagerUnregister(name) {
+    return new Promise(function (resolve) {
+      if (!this.overlays[name]) {
+        throw new Error('The overlay does not exist.');
+      } else if (this.active === name) {
+        throw new Error('The overlay cannot be removed while it is active.');
+      }
+      delete this.overlays[name];
+
+      resolve();
+    }.bind(this));
+  },
+
+  /**
+   * @param {string} name The name of the overlay that should be opened.
+   * @returns {Promise} A promise that is resolved when the overlay has been
+   *                    opened.
+   */
+  open: function overlayManagerOpen(name) {
+    return new Promise(function (resolve) {
+      if (!this.overlays[name]) {
+        throw new Error('The overlay does not exist.');
+      } else if (this.active) {
+        if (this.overlays[name].canForceClose) {
+          this._closeThroughCaller();
+        } else if (this.active === name) {
+          throw new Error('The overlay is already active.');
+        } else {
+          throw new Error('Another overlay is currently active.');
+        }
+      }
+      this.active = name;
+      this.overlays[this.active].element.classList.remove('hidden');
+      this.overlays[this.active].container.classList.remove('hidden');
+
+      window.addEventListener('keydown', this._keyDown);
+      resolve();
+    }.bind(this));
+  },
+
+  /**
+   * @param {string} name The name of the overlay that should be closed.
+   * @returns {Promise} A promise that is resolved when the overlay has been
+   *                    closed.
+   */
+  close: function overlayManagerClose(name) {
+    return new Promise(function (resolve) {
+      if (!this.overlays[name]) {
+        throw new Error('The overlay does not exist.');
+      } else if (!this.active) {
+        throw new Error('The overlay is currently not active.');
+      } else if (this.active !== name) {
+        throw new Error('Another overlay is currently active.');
+      }
+      this.overlays[this.active].container.classList.add('hidden');
+      this.overlays[this.active].element.classList.add('hidden');
+      this.active = null;
+
+      window.removeEventListener('keydown', this._keyDown);
+      resolve();
+    }.bind(this));
+  },
+
+  /**
+   * @private
+   */
+  _keyDown: function overlayManager_keyDown(evt) {
+    var self = OverlayManager;
+    if (self.active && evt.keyCode === 27) { // Esc key.
+      self._closeThroughCaller();
+      evt.preventDefault();
+    }
+  },
+
+  /**
+   * @private
+   */
+  _closeThroughCaller: function overlayManager_closeThroughCaller() {
+    if (this.overlays[this.active].callerCloseMethod) {
+      this.overlays[this.active].callerCloseMethod();
+    }
+    if (this.active) {
+      this.close(this.active);
+    }
+  }
+};
+
+
+var PasswordPrompt = {
+  overlayName: null,
+  updatePassword: null,
+  reason: null,
+  passwordField: null,
+  passwordText: null,
+  passwordSubmit: null,
+  passwordCancel: null,
+
+  initialize: function secondaryToolbarInitialize(options) {
+    this.overlayName = options.overlayName;
+    this.passwordField = options.passwordField;
+    this.passwordText = options.passwordText;
+    this.passwordSubmit = options.passwordSubmit;
+    this.passwordCancel = options.passwordCancel;
+
+    // Attach the event listeners.
+    this.passwordSubmit.addEventListener('click',
+      this.verifyPassword.bind(this));
+
+    this.passwordCancel.addEventListener('click', this.close.bind(this));
+
+    this.passwordField.addEventListener('keydown', function (e) {
+      if (e.keyCode === 13) { // Enter key
+        this.verifyPassword();
+      }
+    }.bind(this));
+
+    OverlayManager.register(this.overlayName, this.close.bind(this), true);
+  },
+
+  open: function passwordPromptOpen() {
+    OverlayManager.open(this.overlayName).then(function () {
+      this.passwordField.focus();
+
+      var promptString = mozL10n.get('password_label', null,
+        'Enter the password to open this PDF file.');
+
+      if (this.reason === PDFJS.PasswordResponses.INCORRECT_PASSWORD) {
+        promptString = mozL10n.get('password_invalid', null,
+          'Invalid password. Please try again.');
+      }
+
+      this.passwordText.textContent = promptString;
+    }.bind(this));
+  },
+
+  close: function passwordPromptClose() {
+    OverlayManager.close(this.overlayName).then(function () {
+      this.passwordField.value = '';
+    }.bind(this));
+  },
+
+  verifyPassword: function passwordPromptVerifyPassword() {
+    var password = this.passwordField.value;
+    if (password && password.length > 0) {
+      this.close();
+      return this.updatePassword(password);
+    }
+  }
+};
+
+
 var DocumentProperties = {
-  overlayContainer: null,
+  overlayName: null,
   fileName: '',
   fileSize: '',
-  visible: false,
 
   // Document property fields (in the viewer).
   fileNameField: null,
@@ -2369,7 +2481,7 @@ var DocumentProperties = {
   pageCountField: null,
 
   initialize: function documentPropertiesInitialize(options) {
-    this.overlayContainer = options.overlayContainer;
+    this.overlayName = options.overlayName;
 
     // Set the document property fields.
     this.fileNameField = options.fileNameField;
@@ -2387,24 +2499,18 @@ var DocumentProperties = {
 
     // Bind the event listener for the Close button.
     if (options.closeButton) {
-      options.closeButton.addEventListener('click', this.hide.bind(this));
+      options.closeButton.addEventListener('click', this.close.bind(this));
     }
 
     this.dataAvailablePromise = new Promise(function (resolve) {
       this.resolveDataAvailable = resolve;
     }.bind(this));
 
-    // Bind the event listener for the Esc key (to close the dialog).
-    window.addEventListener('keydown',
-      function (e) {
-        if (e.keyCode === 27) { // Esc key
-          this.hide();
-        }
-      }.bind(this));
+    OverlayManager.register(this.overlayName, this.close.bind(this));
   },
 
   getProperties: function documentPropertiesGetProperties() {
-    if (!this.visible) {
+    if (!OverlayManager.active) {
       // If the dialog was closed before dataAvailablePromise was resolved,
       // don't bother updating the properties.
       return;
@@ -2466,26 +2572,15 @@ var DocumentProperties = {
     }
   },
 
-  show: function documentPropertiesShow() {
-    if (this.visible) {
-      return;
-    }
-    this.visible = true;
-    this.overlayContainer.classList.remove('hidden');
-    this.overlayContainer.lastElementChild.classList.remove('hidden');
-
-    this.dataAvailablePromise.then(function () {
+  open: function documentPropertiesOpen() {
+    Promise.all([OverlayManager.open(this.overlayName),
+                 this.dataAvailablePromise]).then(function () {
       this.getProperties();
     }.bind(this));
   },
 
-  hide: function documentPropertiesClose() {
-    if (!this.visible) {
-      return;
-    }
-    this.visible = false;
-    this.overlayContainer.classList.add('hidden');
-    this.overlayContainer.lastElementChild.classList.add('hidden');
+  close: function documentPropertiesClose() {
+    OverlayManager.close(this.overlayName);
   },
 
   parseDate: function documentPropertiesParseDate(inputDate) {
@@ -2616,14 +2711,6 @@ var PDFView = {
       documentPropertiesButton: document.getElementById('documentProperties')
     });
 
-    PasswordPrompt.initialize({
-      overlayContainer: document.getElementById('overlayContainer'),
-      passwordField: document.getElementById('password'),
-      passwordText: document.getElementById('passwordText'),
-      passwordSubmit: document.getElementById('passwordSubmit'),
-      passwordCancel: document.getElementById('passwordCancel')
-    });
-
     PresentationMode.initialize({
       container: container,
       secondaryToolbar: SecondaryToolbar,
@@ -2633,8 +2720,16 @@ var PDFView = {
       pageRotateCcw: document.getElementById('contextPageRotateCcw')
     });
 
+    PasswordPrompt.initialize({
+      overlayName: 'passwordOverlay',
+      passwordField: document.getElementById('password'),
+      passwordText: document.getElementById('passwordText'),
+      passwordSubmit: document.getElementById('passwordSubmit'),
+      passwordCancel: document.getElementById('passwordCancel')
+    });
+
     DocumentProperties.initialize({
-      overlayContainer: document.getElementById('overlayContainer'),
+      overlayName: 'documentPropertiesOverlay',
       closeButton: document.getElementById('documentPropertiesClose'),
       fileNameField: document.getElementById('fileNameField'),
       fileSizeField: document.getElementById('fileSizeField'),
@@ -2968,7 +3063,7 @@ var PDFView = {
     var passwordNeeded = function passwordNeeded(updatePassword, reason) {
       PasswordPrompt.updatePassword = updatePassword;
       PasswordPrompt.reason = reason;
-      PasswordPrompt.show();
+      PasswordPrompt.open();
     };
 
     function getDocumentProgress(progressData) {
@@ -4053,12 +4148,13 @@ var PageView = function pageView(container, id, scale,
       // the text layer are rotated.
       // TODO: This could probably be simplified by drawing the text layer in
       // one orientation then rotating overall.
+      var textLayerViewport = this.textLayer.viewport;
       var textRelativeRotation = this.viewport.rotation -
-                                 this.textLayer.viewport.rotation;
+                                 textLayerViewport.rotation;
       var textAbsRotation = Math.abs(textRelativeRotation);
-      var scale = (width / canvas.width);
+      var scale = width / textLayerViewport.width;
       if (textAbsRotation === 90 || textAbsRotation === 270) {
-        scale = width / canvas.height;
+        scale = width / textLayerViewport.height;
       }
       var textLayerDiv = this.textLayer.textLayerDiv;
       var transX, transY;
@@ -5461,6 +5557,8 @@ function updateViewarea() {
       'zoom': normalizedScaleValue,
       'scrollLeft': intLeft,
       'scrollTop': intTop
+    }).catch(function() {
+      // unable to write to storage
     });
   });
   var href = PDFView.getAnchorUrl(pdfOpenParams);
@@ -5639,7 +5737,7 @@ window.addEventListener('click', function click(evt) {
 }, false);
 
 window.addEventListener('keydown', function keydown(evt) {
-  if (PasswordPrompt.visible) {
+  if (OverlayManager.active) {
     return;
   }
 
