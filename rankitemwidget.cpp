@@ -29,7 +29,6 @@ RankItemWidget::RankItemWidget(QTreeWidgetItem *item, QWidget *parent)
 {
 	m_item = item;
 	setupUi(this);
-	setMouseTracking(true);
 	updateSize();
 }
 
@@ -106,13 +105,16 @@ void RankItemWidget::setRank(int rank)
 	p.drawPixmap(0, 0, pmBackground);
 	p.end();
 	rankImage->setPixmap(pm.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+	update();
 }
 
 void RankItemWidget::setRankComplete(int rank)
 {
-	setRank(rank);
-	qmc2Gamelist->userDataDb()->setRank(m_item->text(QMC2_GAMELIST_COLUMN_NAME), m_rank);
-	updateForeignItems();
+	if ( rank != m_rank ) {
+		setRank(rank);
+		qmc2Gamelist->userDataDb()->setRank(m_item->text(QMC2_GAMELIST_COLUMN_NAME), m_rank);
+		updateForeignItems();
+	}
 }
 
 void RankItemWidget::increaseRank()
