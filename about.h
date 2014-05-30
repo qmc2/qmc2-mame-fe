@@ -6,28 +6,25 @@
 
 class About : public QDialog, public Ui::About
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  public:
-    QPoint widgetPos;
-    QSize widgetSize;
-    bool widgetPosValid;
-    bool ignoreResizeAndMove;
+	public:
+		QPoint widgetPos;
+		QSize widgetSize;
+		bool widgetPosValid;
+		bool ignoreResizeAndMove;
 #if defined(QMC2_OS_MAC)
-    QString macVersion;
+		QString macVersion;
 #elif defined(QMC2_OS_WIN)
-    QString winVersion;
+		QString winVersion;
 #endif
 
-    About(QWidget *parent = 0);
-    ~About();
+		About(QWidget *parent = 0);
 
-  public slots:
-
-  protected:
-    void showEvent(QShowEvent *);
-    void moveEvent(QMoveEvent *);
-    void resizeEvent(QResizeEvent *);
+	protected:
+		void showEvent(QShowEvent *);
+		void moveEvent(QMoveEvent *);
+		void resizeEvent(QResizeEvent *);
 };
 
 #endif
