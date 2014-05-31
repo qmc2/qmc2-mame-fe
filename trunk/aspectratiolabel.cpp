@@ -56,9 +56,11 @@ void AspectRatioLabel::paintEvent(QPaintEvent *e)
 {
 	QLabel::paintEvent(e);
 
-	QSize s(size());
+	QSize s;
 	if ( movie() )
 		s = movie()->currentPixmap().size();
+	if ( s.isNull() )
+		s = size();
 	QPixmap pm(s);
 	pm.fill(Qt::transparent);
 	QPainter p;
