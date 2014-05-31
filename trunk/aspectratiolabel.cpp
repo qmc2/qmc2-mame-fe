@@ -21,8 +21,8 @@ void AspectRatioLabel::adjustMovieSize()
 	QMovie::MovieState state = movie()->state();
 	int frame = movie()->currentFrameNumber();
 	movie()->setFileName(movie()->fileName());
-	QSize sz(200, 200);
-	sz.scale(size() * 0.66, Qt::KeepAspectRatio);
+	QSize sz(250, 250);
+	sz.scale(size() * 0.8, Qt::KeepAspectRatio);
 	movie()->setScaledSize(sz);
 	movie()->jumpToFrame(frame);
 	switch ( state ) {
@@ -58,7 +58,7 @@ void AspectRatioLabel::paintEvent(QPaintEvent *e)
 
 	QSize s(size());
 	if ( movie() )
-		s = movie()->currentPixmap().size() - QSize(20, 20);
+		s = movie()->currentPixmap().size();
 	QPixmap pm(s);
 	pm.fill(Qt::transparent);
 	QPainter p(&pm);
