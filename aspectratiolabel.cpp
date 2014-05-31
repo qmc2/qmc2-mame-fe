@@ -61,7 +61,8 @@ void AspectRatioLabel::paintEvent(QPaintEvent *e)
 		s = movie()->currentPixmap().size();
 	QPixmap pm(s);
 	pm.fill(Qt::transparent);
-	QPainter p(&pm);
+	QPainter p;
+	p.begin(&pm);
 	p.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
 	QFont f(qApp->font());
 	f.setWeight(QFont::Bold);
