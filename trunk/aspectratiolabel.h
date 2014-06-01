@@ -5,6 +5,7 @@
 #include <QString>
 #include <QResizeEvent>
 #include <QPaintEvent>
+#include <QPainter>
 
 class AspectRatioLabel : public QLabel
 {
@@ -16,6 +17,7 @@ class AspectRatioLabel : public QLabel
 	public slots:
 		void adjustMovieSize();
 		void setLabelText(QString text = QString());
+		void clearLabelText() { setLabelText(); }
 
 	protected:
 		void resizeEvent(QResizeEvent *);
@@ -23,6 +25,7 @@ class AspectRatioLabel : public QLabel
 
 	private:
 		QString m_labelText;
+		QPainter m_painter;
 };
 
 #endif
