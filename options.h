@@ -244,7 +244,6 @@ class Options : public QDialog, public Ui::Options
     void saveCustomPalette();
 
   protected:
-    void closeEvent(QCloseEvent *);
     void showEvent(QShowEvent *);
     void hideEvent(QHideEvent *);
     void moveEvent(QMoveEvent *);

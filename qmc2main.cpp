@@ -2351,117 +2351,90 @@ void MainWindow::on_actionToFavorites_triggered(bool)
 void MainWindow::on_actionReload_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionReload_triggered(bool)");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionReload_triggered(bool)");
 #endif
 
-  if ( qmc2FilterActive ) {
-    log(QMC2_LOG_FRONTEND, tr("please wait for ROM state filter to finish and try again"));
-    return;
-  }
+	if ( qmc2FilterActive ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for ROM state filter to finish and try again"));
+		return;
+	}
 
-  if ( qmc2VerifyActive ) {
-    log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
-    return;
-  }
+	if ( qmc2VerifyActive ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
+		return;
+	}
 
-  if ( qmc2ImageCheckActive ) {
-    log(QMC2_LOG_FRONTEND, tr("please wait for image check to finish and try again"));
-    return;
-  }
+	if ( qmc2ImageCheckActive ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for image check to finish and try again"));
+		return;
+	}
 
-  if ( qmc2SampleCheckActive ) {
-    log(QMC2_LOG_FRONTEND, tr("please wait for sample check to finish and try again"));
-    return;
-  }
+	if ( qmc2SampleCheckActive ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for sample check to finish and try again"));
+		return;
+	}
 
-  if ( qmc2ROMAlyzerActive ) {
-    log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
-    return;
-  }
+	if ( qmc2ROMAlyzerActive ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
+		return;
+	}
 
-  if ( qmc2ReloadActive ) {
+	if ( qmc2ReloadActive ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    log(QMC2_LOG_FRONTEND, tr("game list reload is already active"));
+		log(QMC2_LOG_FRONTEND, tr("game list reload is already active"));
 #elif defined(QMC2_EMUTYPE_MESS)
-    log(QMC2_LOG_FRONTEND, tr("machine list reload is already active"));
+		log(QMC2_LOG_FRONTEND, tr("machine list reload is already active"));
 #endif
-  } else {
-    qmc2StopParser = false;
-
+	} else {
+		qmc2StopParser = false;
+		qmc2Gamelist->enableWidgets(false);
 #if defined(QMC2_EMUTYPE_MAME)
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() ) {
-	    if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser ) {
-		    qmc2Gamelist->enableWidgets(false);
-		    loadGameInfoDB();
-		    qmc2Gamelist->enableWidgets(true);
-	    }
-    }
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() )
+			if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser )
+				loadGameInfoDB();
 #elif defined(QMC2_EMUTYPE_MESS)
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() ) {
-	    if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser ) {
-		    qmc2Gamelist->enableWidgets(false);
-		    loadGameInfoDB();
-		    qmc2Gamelist->enableWidgets(true);
-	    }
-    }
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() )
+			if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser )
+				loadGameInfoDB();
 #elif defined(QMC2_EMUTYPE_UME)
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() ) {
-	    if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser ) {
-		    qmc2Gamelist->enableWidgets(false);
-		    loadGameInfoDB();
-		    qmc2Gamelist->enableWidgets(true);
-	    }
-    }
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() )
+			if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser )
+				loadGameInfoDB();
 #endif
-
 #if defined(QMC2_EMUTYPE_MAME)
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() ) {
-	    if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser ) {
-		    qmc2Gamelist->enableWidgets(false);
-		    loadEmuInfoDB();
-		    qmc2Gamelist->enableWidgets(true);
-	    }
-    }
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() )
+			if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser )
+				loadEmuInfoDB();
 #elif defined(QMC2_EMUTYPE_MESS)
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() ) {
-	    if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser ) {
-		    qmc2Gamelist->enableWidgets(false);
-		    loadEmuInfoDB();
-		    qmc2Gamelist->enableWidgets(true);
-	    }
-    }
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() )
+			if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser )
+				loadEmuInfoDB();
 #elif defined(QMC2_EMUTYPE_UME)
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() ) {
-	    if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser ) {
-		    qmc2Gamelist->enableWidgets(false);
-		    loadEmuInfoDB();
-		    qmc2Gamelist->enableWidgets(true);
-	    }
-    }
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() )
+			if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser )
+				loadEmuInfoDB();
 #endif
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessSoftwareInfoDB").toBool() )
+			if ( qmc2SoftwareInfoDB.isEmpty() && !qmc2StopParser )
+				loadSoftwareInfoDB();
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection").toBool() && !qmc2StartingUp ) {
+			if ( qmc2CurrentItem ) {
+				log(QMC2_LOG_FRONTEND, tr("saving game selection"));
+				qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedGame", qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME));
+			} else
+				qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedGame");
+		}
+		if ( !qmc2StopParser ) {
+			qApp->processEvents();
+			qmc2Gamelist->load();
+		} else
+			qmc2Gamelist->enableWidgets(true);
+	}
 
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessSoftwareInfoDB").toBool() )
-      if ( qmc2SoftwareInfoDB.isEmpty() && !qmc2StopParser ) {
-        qmc2Gamelist->enableWidgets(false);
-        loadSoftwareInfoDB();
-        qmc2Gamelist->enableWidgets(true);
-      }
-
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection").toBool() && !qmc2StartingUp ) {
-      if ( qmc2CurrentItem ) {
-        log(QMC2_LOG_FRONTEND, tr("saving game selection"));
-        qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedGame", qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME));
-      } else
-        qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedGame");
-    }
-    if ( !qmc2StopParser )
-      qmc2Gamelist->load();
-  }
-
-  static bool initialCall = true;
-  if ( initialCall )
-  	QTimer::singleShot(0, this, SLOT(checkRomPath()));
-  initialCall = false;
+	static bool initialCall = true;
+	if ( initialCall )
+		QTimer::singleShot(0, this, SLOT(checkRomPath()));
+	initialCall = false;
 }
 
 void MainWindow::on_actionExitStop_triggered(bool)

@@ -2286,11 +2286,6 @@ void Gamelist::parse()
       QString selectedGame = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
       if ( !selectedGame.isEmpty() ) {
 	      QTreeWidgetItem *glItem = qmc2GamelistItemMap[selectedGame];
-	      if ( !glItem ) { // fallback for old value (game description)
-		      QList<QTreeWidgetItem *> il = qmc2MainWindow->treeWidgetGamelist->findItems(selectedGame, Qt::MatchExactly, QMC2_GAMELIST_COLUMN_GAME);
-		      if ( !il.isEmpty() )
-			      glItem = il[0];
-	      }
 	      if ( glItem ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring game selection"));
@@ -2306,11 +2301,6 @@ void Gamelist::parse()
     QString selectedGame = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
     if ( !selectedGame.isEmpty() ) {
 	    QTreeWidgetItem *glItem = qmc2GamelistItemMap[selectedGame];
-	    if ( !glItem ) { // fallback for old value (game description)
-		    QList<QTreeWidgetItem *> il = qmc2MainWindow->treeWidgetGamelist->findItems(selectedGame, Qt::MatchExactly, QMC2_GAMELIST_COLUMN_GAME);
-		    if ( !il.isEmpty() )
-			    glItem = il[0];
-	    }
 	    if ( glItem ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring game selection"));

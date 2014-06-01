@@ -383,6 +383,11 @@ Options::Options(QWidget *parent)
   lineEditMessInfoDat->setVisible(false);
   toolButtonBrowseMessInfoDat->setVisible(false);
 #endif
+#if defined(QMC2_EMUTYPE_UME)
+  labelMAWSCacheDirectory->setVisible(false);
+  lineEditMAWSCacheDirectory->setVisible(false);
+  toolButtonBrowseMAWSCacheDirectory->setVisible(false);
+#endif
   comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
@@ -1818,6 +1823,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("UME/FilesAndDirectories/SlotInfoCacheFile", lineEditSlotInfoCacheFile->text());
   config->setValue("UME/FilesAndDirectories/SoftwareListCache", lineEditSoftwareListCache->text());
   config->setValue("UME/FilesAndDirectories/SoftwareStateCache", lineEditSoftwareStateCache->text());
+  config->setValue("UME/FilesAndDirectories/GeneralSoftwareFolder", lineEditGeneralSoftwareFolder->text());
   s = lineEditOptionsTemplateFile->text();
   needRecreateTemplateMap = needRecreateTemplateMap || (config->value("UME/FilesAndDirectories/OptionsTemplateFile").toString() != s );
   config->setValue("UME/FilesAndDirectories/OptionsTemplateFile", s);
@@ -2915,7 +2921,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mess.rsc").toString());
   lineEditSlotInfoCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mess.sic").toString());
   lineEditSoftwareListCache->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/SoftwareListCache", userScopePath + "/mess.swl").toString());
-  lineEditGeneralSoftwareFolder->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", "").toString());
+  lineEditGeneralSoftwareFolder->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", QString()).toString());
 #if defined(QMC2_SDLMESS)
   lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMESS/template.xml").toString());
 #elif defined(QMC2_MESS)
@@ -2937,7 +2943,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/ume.rsc").toString());
   lineEditSlotInfoCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/ume.sic").toString());
   lineEditSoftwareListCache->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/SoftwareListCache", userScopePath + "/ume.swl").toString());
-  lineEditGeneralSoftwareFolder->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/GeneralSoftwareFolder", "").toString());
+  lineEditGeneralSoftwareFolder->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/GeneralSoftwareFolder", QString()).toString());
 #if defined(QMC2_SDLUME)
   lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLUME/template.xml").toString());
 #elif defined(QMC2_UME)
@@ -3610,99 +3616,99 @@ void Options::on_toolButtonBrowseCookieDatabase_clicked()
 void Options::on_toolButtonBrowseZipTool_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseZipTool_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseZipTool_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose zip tool"), lineEditZipTool->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditZipTool->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose zip tool"), lineEditZipTool->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditZipTool->setText(s);
+	raise();
 }
 
 void Options::on_toolButtonBrowseSevenZipTool_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSevenZipTool_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSevenZipTool_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose 7-zip tool"), lineEditSevenZipTool->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditSevenZipTool->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose 7-zip tool"), lineEditSevenZipTool->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditSevenZipTool->setText(s);
+	raise();
 }
 
 void Options::on_toolButtonBrowseRomTool_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseRomTool_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseRomTool_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose ROM tool"), lineEditRomTool->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditRomTool->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose ROM tool"), lineEditRomTool->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditRomTool->setText(s);
+	raise();
 }
 
 void Options::on_toolButtonBrowseRomToolWorkingDirectory_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseRomToolWorkingDirectory_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseRomToolWorkingDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), lineEditRomToolWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditRomToolWorkingDirectory->setText(s);
-  raise();
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), lineEditRomToolWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditRomToolWorkingDirectory->setText(s);
+	raise();
 }
 
 void Options::on_toolButtonBrowseFavoritesFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFavoritesFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFavoritesFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose game favorites file"), lineEditFavoritesFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditFavoritesFile->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose game favorites file"), lineEditFavoritesFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditFavoritesFile->setText(s);
+	raise();
 }
 
 void Options::on_toolButtonBrowseHistoryFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseHistoryFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseHistoryFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose play history file"), lineEditHistoryFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditHistoryFile->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose play history file"), lineEditHistoryFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditHistoryFile->setText(s);
+	raise();
 }
 
 void Options::on_toolButtonBrowseGamelistCacheFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseGamelistCacheFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseGamelistCacheFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose gamelist cache file"), lineEditGamelistCacheFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() ) {
-    if ( !s.endsWith("/") ) s += "/";
-    lineEditGamelistCacheFile->setText(s);
-  }
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose gamelist cache file"), lineEditGamelistCacheFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		if ( !s.endsWith("/") ) s += "/";
+		lineEditGamelistCacheFile->setText(s);
+	}
+	raise();
 }
 
 void Options::on_toolButtonBrowseROMStateCacheFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseROMStateCacheFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseROMStateCacheFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose ROM state cache file"), lineEditROMStateCacheFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditROMStateCacheFile->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose ROM state cache file"), lineEditROMStateCacheFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditROMStateCacheFile->setText(s);
+	raise();
 }
 
 void Options::on_toolButtonBrowseSlotInfoCacheFile_clicked()
@@ -3720,41 +3726,41 @@ void Options::on_toolButtonBrowseSlotInfoCacheFile_clicked()
 void Options::on_toolButtonBrowseWorkingDirectory_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseWorkingDirectory_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseWorkingDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), lineEditWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() ) {
-    if ( !s.endsWith("/") ) s += "/";
-    lineEditWorkingDirectory->setText(s);
-  }
-  raise();
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), lineEditWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		if ( !s.endsWith("/") ) s += "/";
+		lineEditWorkingDirectory->setText(s);
+	}
+	raise();
 }
 
 void Options::on_toolButtonBrowseMAWSCacheDirectory_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMAWSCacheDirectory_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMAWSCacheDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose MAWS cache directory"), lineEditMAWSCacheDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() ) {
-    if ( !s.endsWith("/") ) s += "/";
-    lineEditMAWSCacheDirectory->setText(s);
-  }
-  raise();
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose MAWS cache directory"), lineEditMAWSCacheDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		if ( !s.endsWith("/") ) s += "/";
+		lineEditMAWSCacheDirectory->setText(s);
+	}
+	raise();
 }
 
 void Options::on_toolButtonBrowseSoftwareListCache_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareListCache_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareListCache_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose software list cache file"), lineEditSoftwareListCache->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditSoftwareListCache->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose software list cache file"), lineEditSoftwareListCache->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditSoftwareListCache->setText(s);
+	raise();
 }
 
 void Options::on_toolButtonBrowseSoftwareStateCache_clicked()
@@ -3775,41 +3781,41 @@ void Options::on_toolButtonBrowseSoftwareStateCache_clicked()
 void Options::on_toolButtonBrowseGeneralSoftwareFolder_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseGeneralSoftwareFolder_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseGeneralSoftwareFolder_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose general software folder"), lineEditGeneralSoftwareFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() ) {
-    if ( !s.endsWith("/") ) s += "/";
-    lineEditGeneralSoftwareFolder->setText(s);
-  }
-  raise();
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose general software folder"), lineEditGeneralSoftwareFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		if ( !s.endsWith("/") ) s += "/";
+		lineEditGeneralSoftwareFolder->setText(s);
+	}
+	raise();
 }
 
 void Options::on_toolButtonBrowseFrontendLogFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFrontendLogFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFrontendLogFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose front end log file"), lineEditFrontendLogFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditFrontendLogFile->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose front end log file"), lineEditFrontendLogFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditFrontendLogFile->setText(s);
+	raise();
 }
 
 void Options::on_toolButtonBrowseDataDirectory_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseDataDirectory_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseDataDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose data directory"), lineEditDataDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() ) {
-    if ( !s.endsWith("/") ) s += "/";
-    lineEditDataDirectory->setText(s);
-  }
-  raise();
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose data directory"), lineEditDataDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		if ( !s.endsWith("/") ) s += "/";
+		lineEditDataDirectory->setText(s);
+	}
+	raise();
 }
 
 void Options::on_toolButtonBrowseMameHistoryDat_clicked()
@@ -3876,13 +3882,13 @@ void Options::on_toolButtonBrowseSoftwareInfoDB_clicked()
 void Options::on_toolButtonBrowseCatverIniFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseCatverIniFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseCatverIniFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose catver.ini file"), lineEditCatverIniFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditCatverIniFile->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose catver.ini file"), lineEditCatverIniFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditCatverIniFile->setText(s);
+	raise();
 }
 #endif
 
@@ -3890,226 +3896,217 @@ void Options::on_toolButtonBrowseCatverIniFile_clicked()
 void Options::on_toolButtonBrowseCategoryIniFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseCategoryIniFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseCategoryIniFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose category.ini file"), lineEditCategoryIniFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditCategoryIniFile->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose category.ini file"), lineEditCategoryIniFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditCategoryIniFile->setText(s);
+	raise();
 }
 #endif
 
 void Options::on_toolButtonBrowseFont_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFont_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFont_clicked()");
 #endif
 
-  bool ok;
-  QFont currentFont;
-  if ( lineEditFont->text().isEmpty() )
+	bool ok;
+	QFont currentFont;
+	if ( lineEditFont->text().isEmpty() )
 #if defined(QMC2_OS_MAC)
-    currentFont.fromString("Arial,10,-1,5,50,0,0,0,0,0");
+		currentFont.fromString("Arial,10,-1,5,50,0,0,0,0,0");
 #else
-    currentFont = QApplication::font();
+	currentFont = QApplication::font();
 #endif
-  else
-    currentFont.fromString(lineEditFont->text());
-  QFont f = QFontDialog::getFont(&ok, currentFont, 0);
-  if ( ok ) {
-    lineEditFont->setFont(f);
-    lineEditFont->setText(f.toString());
-  }
-  raise();
+	else
+		currentFont.fromString(lineEditFont->text());
+	QFont f = QFontDialog::getFont(&ok, currentFont, 0);
+	if ( ok ) {
+		lineEditFont->setFont(f);
+		lineEditFont->setText(f.toString());
+	}
+	raise();
 }
 
 void Options::on_toolButtonBrowseLogFont_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseLogFont_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseLogFont_clicked()");
 #endif
 
-  bool ok;
-  QFont currentFont;
-  if ( lineEditLogFont->text().isEmpty() )
+	bool ok;
+	QFont currentFont;
+	if ( lineEditLogFont->text().isEmpty() )
 #if defined(QMC2_OS_MAC)
-    currentFont.fromString("Courier New,10,-1,5,50,0,0,0,0,0");
+		currentFont.fromString("Courier New,10,-1,5,50,0,0,0,0,0");
 #else
-    currentFont = QApplication::font();
+	currentFont = QApplication::font();
 #endif
-  else
-    currentFont.fromString(lineEditLogFont->text());
-  QFont f = QFontDialog::getFont(&ok, currentFont, 0);
-  if ( ok ) {
-    lineEditLogFont->setFont(f);
-    lineEditLogFont->setText(f.toString());
-  }
-  raise();
-}
-
-void Options::closeEvent(QCloseEvent *e)
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
-#endif
-
-  e->accept();
+	else
+		currentFont.fromString(lineEditLogFont->text());
+	QFont f = QFontDialog::getFont(&ok, currentFont, 0);
+	if ( ok ) {
+		lineEditLogFont->setFont(f);
+		lineEditLogFont->setText(f.toString());
+	}
+	raise();
 }
 
 void Options::showEvent(QShowEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-    if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-      config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Visible", true);
+	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
+		if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
+			config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Visible", true);
 
-  e->accept();
+	e->accept();
 }
 
 void Options::hideEvent(QHideEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-    if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-      config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Visible", false);
+	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
+		if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
+			config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Visible", false);
 
-  e->accept();
+	e->accept();
 }
 
 void Options::moveEvent(QMoveEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::moveEvent(QMoveEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::moveEvent(QMoveEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-    if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-      config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Position", pos());
+	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
+		if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
+			config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Position", pos());
 
-  e->accept();
+	e->accept();
 }
 
 void Options::resizeEvent(QResizeEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-    if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-      config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Size", size());
+	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
+		if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
+			config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Size", size());
 
-  e->accept();
+	e->accept();
 }
 
 void Options::on_radioButtonPreviewSelect_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonPreviewSelect_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonPreviewSelect_clicked()");
 #endif
 
-  bool currentUsePreviewFile = (stackedWidgetPreview->currentIndex() == 1);
-  stackedWidgetPreview->setCurrentIndex(!currentUsePreviewFile);
-  radioButtonPreviewSelect->setText(!currentUsePreviewFile ? tr("Preview file") : tr("Preview directory"));
+	bool currentUsePreviewFile = (stackedWidgetPreview->currentIndex() == 1);
+	stackedWidgetPreview->setCurrentIndex(!currentUsePreviewFile);
+	radioButtonPreviewSelect->setText(!currentUsePreviewFile ? tr("Preview file") : tr("Preview directory"));
 }
 
 void Options::on_radioButtonFlyerSelect_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonFlyerSelect_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonFlyerSelect_clicked()");
 #endif
 
-  bool currentUseFlyerFile = (stackedWidgetFlyer->currentIndex() == 1);
-  stackedWidgetFlyer->setCurrentIndex(!currentUseFlyerFile);
-  radioButtonFlyerSelect->setText(!currentUseFlyerFile ? tr("Flyer file") : tr("Flyer directory"));
+	bool currentUseFlyerFile = (stackedWidgetFlyer->currentIndex() == 1);
+	stackedWidgetFlyer->setCurrentIndex(!currentUseFlyerFile);
+	radioButtonFlyerSelect->setText(!currentUseFlyerFile ? tr("Flyer file") : tr("Flyer directory"));
 }
 
 void Options::on_radioButtonIconSelect_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonIconSelect_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonIconSelect_clicked()");
 #endif
 
-  bool currentUseIconFile = (stackedWidgetIcon->currentIndex() == 1);
-  stackedWidgetIcon->setCurrentIndex(!currentUseIconFile);
-  radioButtonIconSelect->setText(!currentUseIconFile ? tr("Icon file") : tr("Icon directory"));
+	bool currentUseIconFile = (stackedWidgetIcon->currentIndex() == 1);
+	stackedWidgetIcon->setCurrentIndex(!currentUseIconFile);
+	radioButtonIconSelect->setText(!currentUseIconFile ? tr("Icon file") : tr("Icon directory"));
 }
 
 void Options::on_radioButtonCabinetSelect_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonCabinetSelect_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonCabinetSelect_clicked()");
 #endif
 
-  bool currentUseCabinetFile = (stackedWidgetCabinet->currentIndex() == 1);
-  stackedWidgetCabinet->setCurrentIndex(!currentUseCabinetFile);
-  radioButtonCabinetSelect->setText(!currentUseCabinetFile ? tr("Cabinet file") : tr("Cabinet directory"));
+	bool currentUseCabinetFile = (stackedWidgetCabinet->currentIndex() == 1);
+	stackedWidgetCabinet->setCurrentIndex(!currentUseCabinetFile);
+	radioButtonCabinetSelect->setText(!currentUseCabinetFile ? tr("Cabinet file") : tr("Cabinet directory"));
 }
 
 void Options::on_radioButtonControllerSelect_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonControllerSelect_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonControllerSelect_clicked()");
 #endif
 
-  bool currentUseControllerFile = (stackedWidgetController->currentIndex() == 1);
-  stackedWidgetController->setCurrentIndex(!currentUseControllerFile);
-  radioButtonControllerSelect->setText(!currentUseControllerFile ? tr("Controller file") : tr("Controller directory"));
+	bool currentUseControllerFile = (stackedWidgetController->currentIndex() == 1);
+	stackedWidgetController->setCurrentIndex(!currentUseControllerFile);
+	radioButtonControllerSelect->setText(!currentUseControllerFile ? tr("Controller file") : tr("Controller directory"));
 }
 
 void Options::on_radioButtonMarqueeSelect_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonMarqueeSelect_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonMarqueeSelect_clicked()");
 #endif
 
-  bool currentUseMarqueeFile = (stackedWidgetMarquee->currentIndex() == 1);
-  stackedWidgetMarquee->setCurrentIndex(!currentUseMarqueeFile);
+	bool currentUseMarqueeFile = (stackedWidgetMarquee->currentIndex() == 1);
+	stackedWidgetMarquee->setCurrentIndex(!currentUseMarqueeFile);
 #if defined(QMC2_EMUTYPE_MESS)
-  radioButtonMarqueeSelect->setText(!currentUseMarqueeFile ? tr("Logo file") : tr("Logo directory"));
+	radioButtonMarqueeSelect->setText(!currentUseMarqueeFile ? tr("Logo file") : tr("Logo directory"));
 #else
-  radioButtonMarqueeSelect->setText(!currentUseMarqueeFile ? tr("Marquee file") : tr("Marquee directory"));
+	radioButtonMarqueeSelect->setText(!currentUseMarqueeFile ? tr("Marquee file") : tr("Marquee directory"));
 #endif
 }
 
 void Options::on_radioButtonTitleSelect_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonTitleSelect_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonTitleSelect_clicked()");
 #endif
 
-  bool currentUseTitleFile = (stackedWidgetTitle->currentIndex() == 1);
-  stackedWidgetTitle->setCurrentIndex(!currentUseTitleFile);
-  radioButtonTitleSelect->setText(!currentUseTitleFile ? tr("Title file") : tr("Title directory"));
+	bool currentUseTitleFile = (stackedWidgetTitle->currentIndex() == 1);
+	stackedWidgetTitle->setCurrentIndex(!currentUseTitleFile);
+	radioButtonTitleSelect->setText(!currentUseTitleFile ? tr("Title file") : tr("Title directory"));
 }
 
 void Options::on_radioButtonPCBSelect_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonPCBSelect_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonPCBSelect_clicked()");
 #endif
 
-  bool currentUsePCBFile = (stackedWidgetPCB->currentIndex() == 1);
-  stackedWidgetPCB->setCurrentIndex(!currentUsePCBFile);
-  radioButtonPCBSelect->setText(!currentUsePCBFile ? tr("PCB file") : tr("PCB directory"));
+	bool currentUsePCBFile = (stackedWidgetPCB->currentIndex() == 1);
+	stackedWidgetPCB->setCurrentIndex(!currentUsePCBFile);
+	radioButtonPCBSelect->setText(!currentUsePCBFile ? tr("PCB file") : tr("PCB directory"));
 }
 
 void Options::on_radioButtonSoftwareSnapSelect_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonSoftwareSnapSelect_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonSoftwareSnapSelect_clicked()");
 #endif
 
-  bool currentUseSoftwareSnapFile = (stackedWidgetSWSnap->currentIndex() == 1);
-  stackedWidgetSWSnap->setCurrentIndex(!currentUseSoftwareSnapFile);
-  radioButtonSoftwareSnapSelect->setText(!currentUseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
+	bool currentUseSoftwareSnapFile = (stackedWidgetSWSnap->currentIndex() == 1);
+	stackedWidgetSWSnap->setCurrentIndex(!currentUseSoftwareSnapFile);
+	radioButtonSoftwareSnapSelect->setText(!currentUseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
 }
 
 void Options::on_toolButtonBrowsePreviewFile_clicked()
@@ -4286,183 +4283,181 @@ void Options::on_toolButtonBrowseSoftwareSnapFile_clicked()
 void Options::on_toolButtonBrowseSoftwareNotesFolder_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareNotesFolder_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareNotesFolder_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose software notes folder"), lineEditSoftwareNotesFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() ) {
-    if ( !s.endsWith("/") ) s += "/";
-    lineEditSoftwareNotesFolder->setText(s);
-  }
-  raise();
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose software notes folder"), lineEditSoftwareNotesFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		if ( !s.endsWith("/") ) s += "/";
+		lineEditSoftwareNotesFolder->setText(s);
+	}
+	raise();
 }
 
 void Options::on_toolButtonBrowseSoftwareNotesTemplate_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareNotesTemplate_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareNotesTemplate_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose software notes template"), lineEditSoftwareNotesTemplate->text(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditSoftwareNotesTemplate->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose software notes template"), lineEditSoftwareNotesTemplate->text(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditSoftwareNotesTemplate->setText(s);
+	raise();
 }
 
 void Options::on_toolButtonBrowseSystemNotesFolder_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSystemNotesFolder_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSystemNotesFolder_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose system notes folder"), lineEditSystemNotesFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() ) {
-    if ( !s.endsWith("/") ) s += "/";
-    lineEditSystemNotesFolder->setText(s);
-  }
-  raise();
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose system notes folder"), lineEditSystemNotesFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		if ( !s.endsWith("/") ) s += "/";
+		lineEditSystemNotesFolder->setText(s);
+	}
+	raise();
 }
 
 void Options::on_toolButtonBrowseSystemNotesTemplate_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSystemNotesTemplate_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSystemNotesTemplate_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose system notes template"), lineEditSystemNotesTemplate->text(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditSystemNotesTemplate->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose system notes template"), lineEditSystemNotesTemplate->text(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditSystemNotesTemplate->setText(s);
+	raise();
 }
 
 void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
-  if ( !item )
-    return;
+	if ( !item )
+		return;
 
-  qApp->removeEventFilter(qmc2KeyPressFilter);
+	qApp->removeEventFilter(qmc2KeyPressFilter);
 
-  KeySequenceScanner keySeqScanner(this, qmc2QtKeyMap.contains(item->text(1)));
-  if ( keySeqScanner.exec() == QDialog::Accepted ) {
-    QStringList words = item->text(1).split("+");
-    QString nativeShortcut = "";
-    int i;
-    for (i = 0; i < words.count(); i++) {
-      if ( i > 0 ) nativeShortcut += "+";
-      nativeShortcut += QObject::tr(words[i].toLocal8Bit());
-    }
+	KeySequenceScanner keySeqScanner(this, qmc2QtKeyMap.contains(item->text(1)));
+	if ( keySeqScanner.exec() == QDialog::Accepted ) {
+		QStringList words = item->text(1).split("+");
+		QString nativeShortcut = "";
+		for (int i = 0; i < words.count(); i++) {
+			if ( i > 0 ) nativeShortcut += "+";
+			nativeShortcut += QObject::tr(words[i].toLocal8Bit());
+		}
 
-    bool found = false;
-    QMapIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutMap);
-    while ( it.hasNext() && !found ) {
-      it.next();
-      words = it.key().split("+");
-      QString itShortcut = "";
-      for (i = 0; i < words.count(); i++) {
-        if ( i > 0 ) itShortcut += "+";
-        itShortcut += QObject::tr(words[i].toLocal8Bit());
-      }
+		bool found = false;
+		QMapIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutMap);
+		while ( it.hasNext() && !found ) {
+			it.next();
+			words = it.key().split("+");
+			QString itShortcut;
+			for (int i = 0; i < words.count(); i++) {
+				if ( i > 0 ) itShortcut += "+";
+				itShortcut += QObject::tr(words[i].toLocal8Bit());
+			}
 
-      if ( itShortcut == nativeShortcut ) {
-        found = true;
-        nativeShortcut = it.key();
-      }
-    }
+			if ( itShortcut == nativeShortcut ) {
+				found = true;
+				nativeShortcut = it.key();
+			}
+		}
 
-    if ( found ) {
-      qmc2CustomShortcutMap[nativeShortcut] = keySeqScanner.currentKeySequence;
-      item->setText(2, keySeqScanner.labelKeySequence->text());
-      QTimer::singleShot(0, this, SLOT(checkShortcuts()));
-    }
+		if ( found ) {
+			qmc2CustomShortcutMap[nativeShortcut] = keySeqScanner.currentKeySequence;
+			item->setText(2, keySeqScanner.labelKeySequence->text());
+			QTimer::singleShot(0, this, SLOT(checkShortcuts()));
+		}
 
-    pushButtonResetShortcut->setEnabled(true);
-  }
+		pushButtonResetShortcut->setEnabled(true);
+	}
 
-  qApp->installEventFilter(qmc2KeyPressFilter);
+	qApp->installEventFilter(qmc2KeyPressFilter);
 }
 
 void Options::on_treeWidgetShortcuts_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_treeWidgetShortcuts_itemSelectionChanged()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_treeWidgetShortcuts_itemSelectionChanged()");
 #endif
 
-  QList<QTreeWidgetItem *> selItems = treeWidgetShortcuts->selectedItems();
-  if ( selItems.count() > 0 ) {
-    pushButtonRedefineKeySequence->setEnabled(true);
-    pushButtonResetShortcut->setEnabled(selItems[0]->text(2).length() > 0);
-  } else {
-    pushButtonRedefineKeySequence->setEnabled(false);
-    pushButtonResetShortcut->setEnabled(false);
-  }
+	QList<QTreeWidgetItem *> selItems = treeWidgetShortcuts->selectedItems();
+	if ( selItems.count() > 0 ) {
+		pushButtonRedefineKeySequence->setEnabled(true);
+		pushButtonResetShortcut->setEnabled(selItems[0]->text(2).length() > 0);
+	} else {
+		pushButtonRedefineKeySequence->setEnabled(false);
+		pushButtonResetShortcut->setEnabled(false);
+	}
 }
 
 void Options::on_pushButtonRedefineKeySequence_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonRedefineKeySequence_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonRedefineKeySequence_clicked()");
 #endif
 
-  QList<QTreeWidgetItem *> selItems = treeWidgetShortcuts->selectedItems();
-  if ( selItems.count() > 0 )
-    on_treeWidgetShortcuts_itemActivated(selItems[0]);
+	QList<QTreeWidgetItem *> selItems = treeWidgetShortcuts->selectedItems();
+	if ( selItems.count() > 0 )
+		on_treeWidgetShortcuts_itemActivated(selItems[0]);
 }
 
 void Options::on_pushButtonResetShortcut_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonResetShortcut_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonResetShortcut_clicked()");
 #endif
 
-  QList<QTreeWidgetItem *> selItems = treeWidgetShortcuts->selectedItems();
-  if ( selItems.count() > 0 ) {
-    QStringList words = selItems[0]->text(1).split("+");
-    QString nativeShortcut = "";
-    int i;
-    for (i = 0; i < words.count(); i++) {
-      if ( i > 0 ) nativeShortcut += "+";
-      nativeShortcut += QObject::tr(words[i].toLocal8Bit());
-    }
+	QList<QTreeWidgetItem *> selItems = treeWidgetShortcuts->selectedItems();
+	if ( selItems.count() > 0 ) {
+		QStringList words = selItems[0]->text(1).split("+");
+		QString nativeShortcut = "";
+		for (int i = 0; i < words.count(); i++) {
+			if ( i > 0 ) nativeShortcut += "+";
+			nativeShortcut += QObject::tr(words[i].toLocal8Bit());
+		}
 
-    bool found = false;
-    QMapIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutMap);
-    while ( it.hasNext() && !found ) {
-      it.next();
-      words = it.key().split("+");
-      QString itShortcut = "";
-      for (i = 0; i < words.count(); i++) {
-        if ( i > 0 ) itShortcut += "+";
-        itShortcut += QObject::tr(words[i].toLocal8Bit());
-      }
+		bool found = false;
+		QMapIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutMap);
+		while ( it.hasNext() && !found ) {
+			it.next();
+			words = it.key().split("+");
+			QString itShortcut;
+			for (int i = 0; i < words.count(); i++) {
+				if ( i > 0 ) itShortcut += "+";
+				itShortcut += QObject::tr(words[i].toLocal8Bit());
+			}
 
-      if ( itShortcut == nativeShortcut ) {
-        found = true;
-        nativeShortcut = it.key();
-      }
-    }
+			if ( itShortcut == nativeShortcut ) {
+				found = true;
+				nativeShortcut = it.key();
+			}
+		}
 
-    if ( found ) {
-      qmc2CustomShortcutMap[nativeShortcut] = nativeShortcut;
-      selItems[0]->setText(2, "");
-      QTimer::singleShot(0, this, SLOT(checkShortcuts()));
-    }
+		if ( found ) {
+			qmc2CustomShortcutMap[nativeShortcut] = nativeShortcut;
+			selItems[0]->setText(2, "");
+			QTimer::singleShot(0, this, SLOT(checkShortcuts()));
+		}
 
-    pushButtonResetShortcut->setEnabled(false);
-  }
+		pushButtonResetShortcut->setEnabled(false);
+	}
 }
 
 void Options::on_pushButtonDetailSetup_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonDetailSetup_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonDetailSetup_clicked()");
 #endif
 
-  qmc2DetailSetupParent = this;
-  qmc2MainWindow->menuTabWidgetGameDetail_Setup_activated();
+	qmc2DetailSetupParent = this;
+	qmc2MainWindow->menuTabWidgetGameDetail_Setup_activated();
 }
 
 void Options::on_pushButtonCustomizeToolBar_clicked()
