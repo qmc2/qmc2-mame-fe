@@ -1,8 +1,7 @@
 #include <QApplication>
-#include <QPainterPath>
 #include <QFontMetrics>
+#include <QPainterPath>
 #include <QFont>
-#include <QPainter>
 #include <QMovie>
 #include <QPixmap>
 #include <QTimer>
@@ -18,6 +17,7 @@ AspectRatioLabel::AspectRatioLabel(QWidget *parent)
 
 void AspectRatioLabel::adjustMovieSize()
 {
+	setUpdatesEnabled(false);
 	QMovie::MovieState state = movie()->state();
 	int frame = movie()->currentFrameNumber();
 	movie()->setFileName(movie()->fileName());
@@ -36,6 +36,7 @@ void AspectRatioLabel::adjustMovieSize()
 			movie()->stop();
 			break;
 	}
+	setUpdatesEnabled(true);
 }
 
 void AspectRatioLabel::setLabelText(QString text)
@@ -56,34 +57,24 @@ void AspectRatioLabel::paintEvent(QPaintEvent *e)
 {
 	QLabel::paintEvent(e);
 
-	QSize s;
-	if ( movie() )
-		s = movie()->currentPixmap().size();
-	if ( s.isNull() )
-		s = size();
-	QPixmap pm(s);
-	pm.fill(Qt::transparent);
-	QPainter p;
-	p.begin(&pm);
-	p.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
-	QFont f(qApp->font());
-	f.setWeight(QFont::Bold);
-	p.setFont(f);
-	QFontMetrics fm(f);
-	int adjustment = fm.height() / 2;
-	QRect r = pm.rect();
-	r = r.adjusted(+adjustment, +adjustment, -adjustment, -adjustment);
-	QRect outerRect = p.boundingRect(r, Qt::AlignCenter | Qt::TextWordWrap, m_labelText);
-	r = p.boundingRect(r, Qt::AlignCenter | Qt::TextWordWrap, m_labelText);
-	r = r.adjusted(-adjustment, -adjustment, +adjustment, +adjustment);
-	QPainterPath pp;
-	pp.addRoundedRect(r, 5, 5);
-	p.fillPath(pp, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
-	p.setPen(QPen(QColor(255, 255, 255, 255)));
-	p.drawText(r, Qt::AlignCenter | Qt::TextWordWrap, m_labelText);
-	p.end();
-
-	QPainter painter(this);
-	painter.drawPixmap((width() - pm.width()) / 2, (height() - pm.height()) / 2, pm);
-	painter.end();
+	if ( !m_labelText.isEmpty() ) {
+		m_painter.begin(this);
+		m_painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
+		QFont f(qApp->font());
+		f.setWeight(QFont::Bold);
+		m_painter.setFont(f);
+		QFontMetrics fm(f);
+		int adjustment = fm.height() / 2;
+		QRect r = rect();
+		r = r.adjusted(+adjustment, +adjustment, -adjustment, -adjustment);
+		QRect outerRect = m_painter.boundingRect(r, Qt::AlignCenter | Qt::TextWordWrap, m_labelText);
+		r = m_painter.boundingRect(r, Qt::AlignCenter | Qt::TextWordWrap, m_labelText);
+		r = r.adjusted(-adjustment, -adjustment, +adjustment, +adjustment);
+		QPainterPath pp;
+		pp.addRoundedRect(r, 5, 5);
+		m_painter.fillPath(pp, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
+		m_painter.setPen(QPen(QColor(255, 255, 255, 255)));
+		m_painter.drawText(r, Qt::AlignCenter | Qt::TextWordWrap, m_labelText);
+		m_painter.end();
+	}
 }
