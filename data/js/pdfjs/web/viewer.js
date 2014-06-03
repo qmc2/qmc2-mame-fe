@@ -39,7 +39,6 @@ var VIEW_HISTORY_MEMORY = 20;
 var SCALE_SELECT_CONTAINER_PADDING = 8;
 var SCALE_SELECT_PADDING = 22;
 var THUMBNAIL_SCROLL_MARGIN = -19;
-var USE_ONLY_CSS_ZOOM = false;
 var CLEANUP_TIMEOUT = 30000;
 var IGNORE_CURRENT_POSITION_ON_ZOOM = false;
 var RenderingStates = {
@@ -312,7 +311,12 @@ var DEFAULT_PREFERENCES = {
   defaultZoomValue: '',
   sidebarViewOnLoad: 0,
   enableHandToolOnLoad: false,
-  enableWebGL: false
+  enableWebGL: false,
+  disableRange: false,
+  disableAutoFetch: false,
+  disableFontFace: false,
+  disableTextLayer: false,
+  useOnlyCssZoom: false
 };
 
 
@@ -2752,12 +2756,27 @@ var PDFView = {
     var initializedPromise = Promise.all([
       Preferences.get('enableWebGL').then(function resolved(value) {
         PDFJS.disableWebGL = !value;
-      }, function rejected(reason) {}),
+      }),
       Preferences.get('sidebarViewOnLoad').then(function resolved(value) {
         self.preferenceSidebarViewOnLoad = value;
-      }, function rejected(reason) {})
+      }),
+      Preferences.get('disableTextLayer').then(function resolved(value) {
+        PDFJS.disableTextLayer = value;
+      }),
+      Preferences.get('disableRange').then(function resolved(value) {
+        PDFJS.disableRange = value;
+      }),
+      Preferences.get('disableAutoFetch').then(function resolved(value) {
+        PDFJS.disableAutoFetch = value;
+      }),
+      Preferences.get('disableFontFace').then(function resolved(value) {
+        PDFJS.disableFontFace = value;
+      }),
+      Preferences.get('useOnlyCssZoom').then(function resolved(value) {
+        PDFJS.useOnlyCssZoom = value;
+      })
       // TODO move more preferences and other async stuff here
-    ]);
+    ]).catch(function (reason) { });
 
     return initializedPromise.then(function () {
       PDFView.initialized = true;
@@ -4109,7 +4128,7 @@ var PageView = function pageView(container, id, scale,
       rotation: totalRotation
     });
 
-    if (USE_ONLY_CSS_ZOOM && this.canvas) {
+    if (PDFJS.useOnlyCssZoom && this.canvas) {
       this.cssTransform(this.canvas);
       return;
     } else if (this.canvas && !this.zoomLayer) {
@@ -4185,7 +4204,7 @@ var PageView = function pageView(container, id, scale,
       CustomStyle.setProp('transformOrigin', textLayerDiv, '0% 0%');
     }
 
-    if (USE_ONLY_CSS_ZOOM && this.annotationLayer) {
+    if (PDFJS.useOnlyCssZoom && this.annotationLayer) {
       setupAnnotations(div, this.pdfPage, this.viewport);
     }
   };
@@ -4482,7 +4501,7 @@ var PageView = function pageView(container, id, scale,
     var ctx = canvas.getContext('2d');
     var outputScale = getOutputScale(ctx);
 
-    if (USE_ONLY_CSS_ZOOM) {
+    if (PDFJS.useOnlyCssZoom) {
       var actualSizeViewport = viewport.clone({ scale: CSS_UNITS });
       // Use a scale that will make the canvas be the original intended size
       // of the page.
@@ -5331,7 +5350,7 @@ function webViewerInitialized() {
   }
 
   if ('useOnlyCssZoom' in hashParams) {
-    USE_ONLY_CSS_ZOOM = (hashParams['useOnlyCssZoom'] === 'true');
+    PDFJS.useOnlyCssZoom = (hashParams['useOnlyCssZoom'] === 'true');
   }
 
   if ('verbosity' in hashParams) {

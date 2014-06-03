@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '1.0.275';
-PDFJS.build = '3408921';
+PDFJS.version = '1.0.288';
+PDFJS.build = '2449142';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -2386,8 +2386,7 @@ var NetworkManager = (function NetworkManagerClosure() {
   }
 
   function getArrayBuffer(xhr) {
-    var data = (xhr.mozResponseArrayBuffer || xhr.mozResponse ||
-                xhr.responseArrayBuffer || xhr.response);
+    var data = xhr.response;
     if (typeof data !== 'string') {
       return data;
     }
@@ -2439,7 +2438,7 @@ var NetworkManager = (function NetworkManagerClosure() {
         pendingRequest.expectedStatus = 200;
       }
 
-      xhr.mozResponseType = xhr.responseType = 'arraybuffer';
+      xhr.responseType = 'arraybuffer';
 
       if (args.onProgress) {
         xhr.onprogress = args.onProgress;
@@ -18162,8 +18161,8 @@ var CMap = (function CMapClosure() {
     },
 
     mapRangeToArray: function(low, high, array) {
-      var i = 0;
-      while (low <= high) {
+      var i = 0, ii = array.length;
+      while (low <= high && i < ii) {
         this.map[low] = array[i++];
         ++low;
       }
@@ -21742,7 +21741,12 @@ var Font = (function FontClosure() {
 
         if (!potentialTable) {
           warn('Could not find a preferred cmap table.');
-          return [];
+          return {
+            platformId: -1,
+            encodingId: -1,
+            mappings: [],
+            hasShortCmap: false
+          };
         }
 
         font.pos = start + potentialTable.offset;
@@ -39278,20 +39282,6 @@ var JpxImage = (function JpxImageClosure() {
     this.failOnCorruptedImage = false;
   }
   JpxImage.prototype = {
-    load: function JpxImage_load(url) {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', url, true);
-      xhr.responseType = 'arraybuffer';
-      xhr.onload = (function() {
-        // TODO catch parse error
-        var data = new Uint8Array(xhr.response || xhr.mozResponseArrayBuffer);
-        this.parse(data);
-        if (this.onload) {
-          this.onload();
-        }
-      }).bind(this);
-      xhr.send(null);
-    },
     parse: function JpxImage_parse(data) {
 
       var head = readUint16(data, 0);
