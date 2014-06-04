@@ -18,6 +18,7 @@
 #include <QDir>
 #include <QBitArray>
 #include <QByteArray>
+#include <QCryptographicHash>
 
 #include "gamelist.h"
 #include "emuopt.h"
@@ -66,6 +67,7 @@ extern bool qmc2UseIconFile;
 extern bool qmc2IconsPreloaded;
 extern bool qmc2WidgetsEnabled;
 extern bool qmc2StatesTogglesEnabled;
+extern bool qmc2ForceCacheRefresh;
 extern int qmc2GamelistResponsiveness;
 extern Preview *qmc2Preview;
 extern Flyer *qmc2Flyer;
@@ -780,13 +782,18 @@ void Gamelist::load()
 #else
   QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
 #endif
+  QString listfullSha1;
   if ( commandProcStarted && qmc2Temp.open(QFile::ReadOnly) ) {
+    QCryptographicHash sha1(QCryptographicHash::Sha1);
     QTextStream ts(&qmc2Temp);
     qApp->processEvents();
-    numTotalGames = ts.readAll().count("\n") - 1;
+    QString listfullOutput = ts.readAll();
+    numTotalGames = listfullOutput.count("\n") - 1;
     qmc2Temp.close();
     qmc2Temp.remove();
     qApp->processEvents();
+    sha1.addData(listfullOutput.toLocal8Bit());
+    listfullSha1 = sha1.result().toHex();
     elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
   } else {
@@ -822,6 +829,16 @@ void Gamelist::load()
     enableWidgets(true);
     return;
   }
+
+  if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "ListfullSha1") && qmc2Config->value(QMC2_EMULATOR_PREFIX + "ListfullSha1", QString()).toString() != listfullSha1 ) {
+	  if ( !QMC2_CLI_OPT_CLEAR_ALL_CACHES ) {
+		  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the output of -listfull changed, forcing a refresh of all emulator caches"));
+		  qmc2ForceCacheRefresh = true;
+		  qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered();
+		  qmc2ForceCacheRefresh = false;
+	  }
+  }
+  qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "ListfullSha1", listfullSha1);
 
   categoryMap.clear();
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)

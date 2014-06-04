@@ -187,6 +187,7 @@ bool qmc2FifoIsOpen = false;
 bool qmc2SuppressQtMessages = false;
 bool qmc2CriticalSection = false;
 bool qmc2UseDefaultEmulator = true;
+bool qmc2ForceCacheRefresh = false;
 int qmc2GamelistResponsiveness = 100;
 int qmc2UpdateDelay = 10;
 QFile *qmc2FrontendLogFile = NULL;
@@ -2828,13 +2829,15 @@ void MainWindow::on_actionClearROMStateCache_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearROMStateCache_triggered(bool)");
 #endif
 
-	if ( qmc2ReloadActive ) {
-		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
-		return;
-	}
-	if ( qmc2VerifyActive ) {
-		log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
-		return;
+	if ( !qmc2ForceCacheRefresh ) {
+		if ( qmc2ReloadActive ) {
+			log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
+			return;
+		}
+		if ( qmc2VerifyActive ) {
+			log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
+			return;
+		}
 	}
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
@@ -2852,7 +2855,7 @@ void MainWindow::on_actionClearROMStateCache_triggered(bool)
 	QFile f(fileName);
 	if ( f.exists() ) {
 		if ( f.remove() )
-			log(QMC2_LOG_FRONTEND, tr("ROM state cache file '%1' forcedly removed upon user request").arg(fileName));
+			log(QMC2_LOG_FRONTEND, tr("ROM state cache file '%1' removed").arg(fileName));
 		else
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the ROM state cache file '%1', please check permissions").arg(fileName));
 	}
@@ -2869,9 +2872,11 @@ void MainWindow::on_actionClearGamelistCache_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearGamelistCache_triggered(bool)");
 #endif
 
-	if ( qmc2ReloadActive ) {
-		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
-		return;
+	if ( !qmc2ForceCacheRefresh ) {
+		if ( qmc2ReloadActive ) {
+			log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
+			return;
+		}
 	}
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
@@ -2890,12 +2895,12 @@ void MainWindow::on_actionClearGamelistCache_triggered(bool)
 	if ( f.exists() ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		if ( f.remove() )
-			log(QMC2_LOG_FRONTEND, tr("game list cache file '%1' forcedly removed upon user request").arg(fileName));
+			log(QMC2_LOG_FRONTEND, tr("game list cache file '%1' removed").arg(fileName));
 		else
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the game list cache file '%1', please check permissions").arg(fileName));
 #elif defined(QMC2_EMUTYPE_MESS)
 		if ( f.remove() )
-			log(QMC2_LOG_FRONTEND, tr("machine list cache file '%1' forcedly removed upon user request").arg(fileName));
+			log(QMC2_LOG_FRONTEND, tr("machine list cache file '%1' removed").arg(fileName));
 		else
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the machine list cache file '%1', please check permissions").arg(fileName));
 #endif
@@ -2908,29 +2913,11 @@ void MainWindow::on_actionClearXMLCache_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearXMLCache_triggered(bool)");
 #endif
 
-	if ( qmc2ReloadActive ) {
-		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
-		return;
-	}
-
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
-
-#if defined(QMC2_EMUTYPE_MAME)
-	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString();
-#elif defined(QMC2_EMUTYPE_MESS)
-	QString fileName = qmc2Config->value("MESS/FilesAndDirectories/ListXMLCache", userScopePath + "/mess.lxc").toString();
-#elif defined(QMC2_EMUTYPE_UME)
-	QString fileName = qmc2Config->value("UME/FilesAndDirectories/ListXMLCache", userScopePath + "/ume.lxc").toString();
-#else
-	return;
-#endif
-
-	QFile f(fileName);
-	if ( f.exists() ) {
-		if ( f.remove() )
-			log(QMC2_LOG_FRONTEND, tr("XML cache file '%1' forcedly removed upon user request").arg(fileName));
-		else
-			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the XML cache file '%1', please check permissions").arg(fileName));
+	if ( !qmc2ForceCacheRefresh ) {
+		if ( qmc2ReloadActive ) {
+			log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
+			return;
+		}
 	}
 
 	qmc2Gamelist->xmlDb()->recreateDatabase();
@@ -2947,9 +2934,11 @@ void MainWindow::on_actionClearSlotInfoCache_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearSlotInfoCache_triggered(bool)");
 #endif
 
-	if ( qmc2ReloadActive ) {
-		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
-		return;
+	if ( !qmc2ForceCacheRefresh ) {
+		if ( qmc2ReloadActive ) {
+			log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
+			return;
+		}
 	}
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
@@ -2967,7 +2956,7 @@ void MainWindow::on_actionClearSlotInfoCache_triggered(bool)
 	QFile f(fileName);
 	if ( f.exists() ) {
 		if ( f.remove() )
-			log(QMC2_LOG_FRONTEND, tr("slot info cache file '%1' forcedly removed upon user request").arg(fileName));
+			log(QMC2_LOG_FRONTEND, tr("slot info cache file '%1' removed").arg(fileName));
 		else
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the slot info cache file '%1', please check permissions").arg(fileName));
 	}
@@ -2980,9 +2969,11 @@ void MainWindow::on_actionClearSoftwareListCache_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearSoftwareListCache_triggered(bool)");
 #endif
 
-	if ( qmc2ReloadActive ) {
-		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
-		return;
+	if ( !qmc2ForceCacheRefresh ) {
+		if ( qmc2ReloadActive ) {
+			log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
+			return;
+		}
 	}
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
@@ -3000,7 +2991,7 @@ void MainWindow::on_actionClearSoftwareListCache_triggered(bool)
 	QFile f(fileName);
 	if ( f.exists() ) {
 		if ( f.remove() )
-			log(QMC2_LOG_FRONTEND, tr("software list cache file '%1' forcedly removed upon user request").arg(fileName));
+			log(QMC2_LOG_FRONTEND, tr("software list cache file '%1' removed").arg(fileName));
 		else
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the software list cache file '%1', please check permissions").arg(fileName));
 	}
