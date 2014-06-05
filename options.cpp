@@ -1830,6 +1830,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("UME/FilesAndDirectories/FavoritesFile", lineEditFavoritesFile->text());
   config->setValue("UME/FilesAndDirectories/HistoryFile", lineEditHistoryFile->text());
 #endif
+  config->setValue(QMC2_EMULATOR_PREFIX + "AutoClearEmuCaches", checkBoxAutoClearEmuCaches->isChecked());
 
   // Additional emulators
   tableWidgetRegisteredEmulators->setSortingEnabled(false);
@@ -2956,6 +2957,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   if ( !swStateCacheDir.exists() )
 	  swStateCacheDir.mkdir(swStateCacheDir.absolutePath());
   lineEditSoftwareStateCache->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareStateCache", userScopePath + "/sw-state-cache/").toString());
+  checkBoxAutoClearEmuCaches->setChecked(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "AutoClearEmuCaches", true).toBool());
 
   // Additional emulators
   tableWidgetRegisteredEmulators->clearContents();

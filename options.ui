@@ -4858,7 +4858,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="16" column="0" colspan="5">
+                 <item row="17" column="0" colspan="5">
                   <spacer name="spacer11">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -4912,7 +4912,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="17" column="0" colspan="5">
+                 <item row="18" column="0" colspan="5">
                   <layout class="QHBoxLayout" name="layout17">
                    <item>
                     <widget class="QLabel" name="labelLegend4Pic">
@@ -5457,6 +5457,16 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="16" column="0" colspan="5">
+                  <widget class="QCheckBox" name="checkBoxAutoClearEmuCaches">
+                   <property name="text">
+                    <string>Automatically recreate all emulator caches when the output from '-listfull' changes?</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -5486,8 +5496,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>559</width>
-                <height>542</height>
+                <width>236</width>
+                <height>214</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_26" columnstretch="0,0,0,0,0,0,0,0,0">
@@ -6130,6 +6140,7 @@
   <tabstop>toolButtonBrowseSoftwareStateCache</tabstop>
   <tabstop>lineEditGeneralSoftwareFolder</tabstop>
   <tabstop>toolButtonBrowseGeneralSoftwareFolder</tabstop>
+  <tabstop>checkBoxAutoClearEmuCaches</tabstop>
   <tabstop>tableWidgetRegisteredEmulators</tabstop>
   <tabstop>toolButtonAddEmulator</tabstop>
   <tabstop>toolButtonSaveEmulator</tabstop>
