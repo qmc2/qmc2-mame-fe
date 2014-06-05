@@ -3362,11 +3362,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="835"/>
-        <source>WARNING: the output of -listfull changed, forcing a refresh of all emulator caches</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../gamelist.cpp" line="874"/>
         <location filename="../../gamelist.cpp" line="877"/>
         <location filename="../../gamelist.cpp" line="3880"/>
@@ -3454,6 +3449,11 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../gamelist.cpp" line="1186"/>
         <source>ROM</source>
         <translation>ROM</translation>
+    </message>
+    <message>
+        <location filename="../../gamelist.cpp" line="835"/>
+        <source>WARNING: the output from -listfull changed, forcing a refresh of all emulator caches</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1191"/>

@@ -3934,6 +3934,11 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Schnappschuss</translation>
     </message>
     <message>
+        <location filename="../../gamelist.cpp" line="835"/>
+        <source>WARNING: the output from -listfull changed, forcing a refresh of all emulator caches</source>
+        <translation>WARNUNG: die Ausgabe von -listfull hat sich geändert, erzwinge Aktualisierung aller Emulators-Caches</translation>
+    </message>
+    <message>
         <location filename="../../gamelist.cpp" line="874"/>
         <location filename="../../gamelist.cpp" line="877"/>
         <location filename="../../gamelist.cpp" line="3880"/>
@@ -4237,11 +4242,6 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../gamelist.cpp" line="206"/>
         <source>7z error</source>
         <translation>7z Fehler</translation>
-    </message>
-    <message>
-        <location filename="../../gamelist.cpp" line="835"/>
-        <source>WARNING: the output of -listfull changed, forcing a refresh of all emulator caches</source>
-        <translation>WARNUNG: die Ausgabe von -listfull hat sich geändert, erzwinge Aktualisierung aller Emulators-Caches</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="937"/>
