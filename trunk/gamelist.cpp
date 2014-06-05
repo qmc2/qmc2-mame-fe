@@ -831,7 +831,7 @@ void Gamelist::load()
   }
 
   if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "ListfullSha1") && qmc2Config->value(QMC2_EMULATOR_PREFIX + "ListfullSha1", QString()).toString() != listfullSha1 ) {
-	  if ( !QMC2_CLI_OPT_CLEAR_ALL_CACHES ) {
+	  if ( !QMC2_CLI_OPT_CLEAR_ALL_CACHES && qmc2Config->value(QMC2_EMULATOR_PREFIX + "AutoClearEmuCaches", true).toBool() ) {
 		  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the output of -listfull changed, forcing a refresh of all emulator caches"));
 		  qmc2ForceCacheRefresh = true;
 		  qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered();
