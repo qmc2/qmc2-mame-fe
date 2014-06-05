@@ -3302,6 +3302,11 @@ Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością global
         <translation>ROM</translation>
     </message>
     <message>
+        <location filename="../../gamelist.cpp" line="835"/>
+        <source>WARNING: the output from -listfull changed, forcing a refresh of all emulator caches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../gamelist.cpp" line="1191"/>
         <source>BIOS</source>
         <translation>BIOS</translation>
@@ -3504,11 +3509,6 @@ Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością global
         <location filename="../../gamelist.cpp" line="1411"/>
         <source>Default</source>
         <translation>Domyślny</translation>
-    </message>
-    <message>
-        <location filename="../../gamelist.cpp" line="835"/>
-        <source>WARNING: the output of -listfull changed, forcing a refresh of all emulator caches</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="874"/>

@@ -3215,6 +3215,11 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
+        <location filename="../../gamelist.cpp" line="835"/>
+        <source>WARNING: the output from -listfull changed, forcing a refresh of all emulator caches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../gamelist.cpp" line="2474"/>
         <source>Filtering, please wait...</source>
         <translation type="unfinished"></translation>
@@ -3488,11 +3493,6 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../gamelist.cpp" line="1411"/>
         <source>Default</source>
         <translation>Défaut</translation>
-    </message>
-    <message>
-        <location filename="../../gamelist.cpp" line="835"/>
-        <source>WARNING: the output of -listfull changed, forcing a refresh of all emulator caches</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="874"/>

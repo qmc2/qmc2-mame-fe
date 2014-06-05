@@ -3379,11 +3379,6 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="835"/>
-        <source>WARNING: the output of -listfull changed, forcing a refresh of all emulator caches</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../gamelist.cpp" line="874"/>
         <location filename="../../gamelist.cpp" line="877"/>
         <location filename="../../gamelist.cpp" line="3880"/>
@@ -4090,6 +4085,11 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../gamelist.cpp" line="1047"/>
         <source>verifying ROM status for all sets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../gamelist.cpp" line="835"/>
+        <source>WARNING: the output from -listfull changed, forcing a refresh of all emulator caches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -832,7 +832,7 @@ void Gamelist::load()
 
   if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "ListfullSha1") && qmc2Config->value(QMC2_EMULATOR_PREFIX + "ListfullSha1", QString()).toString() != listfullSha1 ) {
 	  if ( !QMC2_CLI_OPT_CLEAR_ALL_CACHES && qmc2Config->value(QMC2_EMULATOR_PREFIX + "AutoClearEmuCaches", true).toBool() ) {
-		  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the output of -listfull changed, forcing a refresh of all emulator caches"));
+		  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the output from -listfull changed, forcing a refresh of all emulator caches"));
 		  qmc2ForceCacheRefresh = true;
 		  qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered();
 		  qmc2ForceCacheRefresh = false;
@@ -2977,13 +2977,15 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	    qmc2MainWindow->progressBarGamelist->setFormat(tr("ROM check - %p%"));
     QSet<QString> gameSet = QSet<QString>::fromList(qmc2GamelistItemMap.uniqueKeys());
     QList<QString> remainingGames = gameSet.subtract(QSet<QString>::fromList(verifiedList)).values();
-    int i;
+    int counter = qmc2MainWindow->progressBarGamelist->value();
     if ( qmc2StopParser || !cleanExit ) {
-      for (i = 0; i < remainingGames.count(); i++) {
-        qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + 1);
-        qmc2MainWindow->labelGamelistStatus->setText(status());
-	if ( i % QMC2_REMAINING_SETS_CHECK_RSP == 0 )
+      for (int i = 0; i < remainingGames.count(); i++) {
+	counter++;
+	if ( i % QMC2_REMAINING_SETS_CHECK_RSP == 0 || i == remainingGames.count() - 1 ) {
+		qmc2MainWindow->progressBarGamelist->setValue(counter);
+		qmc2MainWindow->labelGamelistStatus->setText(status());
 		qApp->processEvents();
+	}
         QString gameName = remainingGames[i];
 	gameStatusHash[gameName] = 'U';
         bool isBIOS = isBios(gameName);
@@ -3033,11 +3035,13 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
     } else {
       if ( !remainingGames.isEmpty() && !qmc2StopParser )
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("checking real status of %n set(s) not mentioned during full audit", "", remainingGames.count()));
-      for (i = 0; i < remainingGames.count() && !qmc2StopParser; i++) {
-        qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + 1);
-        qmc2MainWindow->labelGamelistStatus->setText(status());
-	if ( i % QMC2_REMAINING_SETS_CHECK_RSP == 0 )
+      for (int i = 0; i < remainingGames.count() && !qmc2StopParser; i++) {
+	counter++;
+	if ( i % QMC2_REMAINING_SETS_CHECK_RSP == 0 || i == remainingGames.count() - 1 ) {
+		qmc2MainWindow->progressBarGamelist->setValue(counter);
+		qmc2MainWindow->labelGamelistStatus->setText(status());
 		qApp->processEvents();
+	}
         QString gameName = remainingGames[i];
         bool isBIOS = isBios(gameName);
         bool isDevice = this->isDevice(gameName);

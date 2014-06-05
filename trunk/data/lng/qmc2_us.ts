@@ -3277,6 +3277,11 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation></translation>
     </message>
     <message>
+        <location filename="../../gamelist.cpp" line="835"/>
+        <source>WARNING: the output from -listfull changed, forcing a refresh of all emulator caches</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../../gamelist.cpp" line="1191"/>
         <source>BIOS</source>
         <translation></translation>
@@ -3478,11 +3483,6 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../gamelist.cpp" line="1361"/>
         <location filename="../../gamelist.cpp" line="1411"/>
         <source>Default</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../gamelist.cpp" line="835"/>
-        <source>WARNING: the output of -listfull changed, forcing a refresh of all emulator caches</source>
         <translation></translation>
     </message>
     <message>
