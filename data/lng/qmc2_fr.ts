@@ -13173,8 +13173,8 @@ Are you sure you want to do this?</source>
         <location filename="../../options.ui" line="4270"/>
         <location filename="../../options.ui" line="4349"/>
         <location filename="../../options.ui" line="4684"/>
-        <location filename="../../options.ui" line="5509"/>
-        <location filename="../../options.ui" line="5645"/>
+        <location filename="../../options.ui" line="5515"/>
+        <location filename="../../options.ui" line="5651"/>
         <source>Arguments</source>
         <translation>Arguments</translation>
     </message>
@@ -13210,7 +13210,7 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../options.ui" line="4798"/>
-        <location filename="../../options.ui" line="5717"/>
+        <location filename="../../options.ui" line="5723"/>
         <source>Browse emulator executable file</source>
         <translation>Parcourir pour l&apos;exécutable de l&apos;émulateur</translation>
     </message>
@@ -13221,7 +13221,7 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../options.ui" line="4783"/>
-        <location filename="../../options.ui" line="5543"/>
+        <location filename="../../options.ui" line="5549"/>
         <source>Executable file</source>
         <translation>Exécutable</translation>
     </message>
@@ -14274,37 +14274,37 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5522"/>
+        <location filename="../../options.ui" line="5528"/>
         <source>Indicates if the $ID$ placeholder is missing on the supplied command line (yellow) or not (green)</source>
         <translation>Indique si l&apos;$ID$ est manquant dans la ligne de commande envoyée (jaune) or pas (vert) </translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5563"/>
+        <location filename="../../options.ui" line="5569"/>
         <source>Replace</source>
         <translation>Remplacer</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5577"/>
+        <location filename="../../options.ui" line="5583"/>
         <source>Arguments passed to the emulator -- use $ID$ as placeholder for the unique set ID, $DESCRIPTION$ for its description</source>
         <translation>Arguments passés à l&apos;émulateur -- utiliser $ID$ comme base pour un set unique ID, $DESCRIPTION$ pour sa description</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4369"/>
         <location filename="../../options.ui" line="5077"/>
-        <location filename="../../options.ui" line="5584"/>
-        <location filename="../../options.ui" line="5640"/>
+        <location filename="../../options.ui" line="5590"/>
+        <location filename="../../options.ui" line="5646"/>
         <source>Working directory</source>
         <translation>Répertoire de travail</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5365"/>
-        <location filename="../../options.ui" line="5777"/>
+        <location filename="../../options.ui" line="5783"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
         <translation>Répertoire de travail utilisé quand l&apos;émulateur est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5090"/>
-        <location filename="../../options.ui" line="5684"/>
+        <location filename="../../options.ui" line="5690"/>
         <source>Browse working directory</source>
         <translation>Parcourir pour le répertoire de travail</translation>
     </message>
@@ -14324,47 +14324,54 @@ Are you sure you want to do this?</source>
         <translation>Parcourir pour le répertoire général des logiciels</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5591"/>
+        <location filename="../../options.ui" line="5463"/>
+        <location filename="../../options.ui" line="5466"/>
+        <location filename="../../options.ui" line="5469"/>
+        <source>Automatically recreate all emulator caches when the output from &apos;-listfull&apos; changes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="5597"/>
         <source>Registered emulators -- you may select one of these in the game-specific emulator configuration</source>
         <translation>Emulateurs enregistrés -- vous pouvez en sélectionner un dans la configuration spécifique du jeu</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5630"/>
+        <location filename="../../options.ui" line="5636"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5635"/>
+        <location filename="../../options.ui" line="5641"/>
         <source>Executable</source>
         <translation>Exécutable</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5650"/>
+        <location filename="../../options.ui" line="5656"/>
         <source>Custom IDs</source>
         <translation>IDs personnalisés</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5661"/>
+        <location filename="../../options.ui" line="5667"/>
         <source>Register emulator</source>
         <translation>Enregistrer l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5741"/>
+        <location filename="../../options.ui" line="5747"/>
         <source>Deregister emulator</source>
         <translation>Retire l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5550"/>
+        <location filename="../../options.ui" line="5556"/>
         <source>Registered emulator&apos;s name</source>
         <translation>nom des émulateurs enregistrés</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5764"/>
+        <location filename="../../options.ui" line="5770"/>
         <source>Command to execute the emulator (path to the executable file)</source>
         <translation>Commande pour exécuter l&apos;émulateur (chemin vers l&apos;exécutable)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5560"/>
+        <location filename="../../options.ui" line="5566"/>
         <source>Replace emulator registration</source>
         <translation>Retirer l&apos;enregistrement de l&apos;émulateur</translation>
     </message>
@@ -14409,82 +14416,77 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5463"/>
-        <source>Automatically recreate all emulator caches when the output from &apos;-listfull&apos; changes?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="5480"/>
+        <location filename="../../options.ui" line="5486"/>
         <source>Foreign &amp;emulators</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5625"/>
+        <location filename="../../options.ui" line="5631"/>
         <source>Icon</source>
         <translation type="unfinished">Icône</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5664"/>
+        <location filename="../../options.ui" line="5670"/>
         <source>New</source>
         <translation>Nouveau</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5731"/>
+        <location filename="../../options.ui" line="5737"/>
         <source>Emulator name</source>
         <translation>Nom de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5744"/>
+        <location filename="../../options.ui" line="5750"/>
         <source> Remove</source>
         <translation>Enlever</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5798"/>
+        <location filename="../../options.ui" line="5804"/>
         <source>Apply settings</source>
         <translation>Appliquer les paramètres</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5801"/>
+        <location filename="../../options.ui" line="5807"/>
         <source>&amp;Apply</source>
         <translation>&amp;Appliquer</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5815"/>
+        <location filename="../../options.ui" line="5821"/>
         <source>Restore currently applied settings</source>
         <translation>Restaurer les paramètres appliqués en cours</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5818"/>
+        <location filename="../../options.ui" line="5824"/>
         <source>&amp;Restore</source>
         <translation>&amp;Restaurer</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5832"/>
+        <location filename="../../options.ui" line="5838"/>
         <source>Reset to default settings (click &lt;i&gt;Restore&lt;/i&gt; to restore currently applied settings!)</source>
         <translation>Remettre au paramètres par défaut (cliquer &lt;i&gt;Restaurer&lt;/i&gt; pour restaurer les paramètres appliqués en cours)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5835"/>
+        <location filename="../../options.ui" line="5841"/>
         <source>&amp;Default</source>
         <translation>Par &amp;défaut</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5862"/>
+        <location filename="../../options.ui" line="5868"/>
         <source>Close and apply settings</source>
         <translation>Fermer et appliquer les paramètres</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5865"/>
+        <location filename="../../options.ui" line="5871"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5879"/>
+        <location filename="../../options.ui" line="5885"/>
         <source>Close and discard changes</source>
         <translation>Fermer et annuler les changements</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5882"/>
+        <location filename="../../options.ui" line="5888"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annuler</translation>
     </message>

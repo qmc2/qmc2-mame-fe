@@ -5459,8 +5459,14 @@
                  </item>
                  <item row="16" column="0" colspan="5">
                   <widget class="QCheckBox" name="checkBoxAutoClearEmuCaches">
+                   <property name="toolTip">
+                    <string>Automatically recreate all emulator caches when the output from '-listfull' changes</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>Automatically recreate all emulator caches when the output from '-listfull' changes</string>
+                   </property>
                    <property name="text">
-                    <string>Automatically recreate all emulator caches when the output from '-listfull' changes?</string>
+                    <string>Automatically recreate all emulator caches when the output from '-listfull' changes</string>
                    </property>
                    <property name="checked">
                     <bool>true</bool>
