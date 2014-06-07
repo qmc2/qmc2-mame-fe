@@ -831,6 +831,10 @@
       <description lang="us" text="Path to web files"/>
       <description lang="de" text="Pfad zu Web-Dateien"/>
     </option>
+    <option default="false" name="console" type="bool">
+      <description lang="us" text="Enable emulator LUA console"/>
+      <description lang="de" text="LUA Konsole aktivieren"/>
+    </option>
   </section>
   <section name="configuration">
     <description lang="es" text="Configuración"/>
