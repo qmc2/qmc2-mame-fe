@@ -28,13 +28,13 @@ var DEFAULT_URL = '';
 var DEFAULT_SCALE = 'auto';
 var DEFAULT_SCALE_DELTA = 1.1;
 var UNKNOWN_SCALE = 0;
-var CACHE_SIZE = 20;
+var DEFAULT_CACHE_SIZE = 10;
 var CSS_UNITS = 96.0 / 72.0;
 var SCROLLBAR_PADDING = 40;
 var VERTICAL_PADDING = 5;
 var MAX_AUTO_SCALE = 1.25;
 var MIN_SCALE = 0.25;
-var MAX_SCALE = 4.0;
+var MAX_SCALE = 10.0;
 var VIEW_HISTORY_MEMORY = 20;
 var SCALE_SELECT_CONTAINER_PADDING = 8;
 var SCALE_SELECT_PADDING = 22;
@@ -294,10 +294,16 @@ var Cache = function cacheCache(size) {
   this.push = function cachePush(view) {
     var i = data.indexOf(view);
     if (i >= 0) {
-      data.splice(i);
+      data.splice(i, 1);
     }
     data.push(view);
     if (data.length > size) {
+      data.shift().destroy();
+    }
+  };
+  this.resize = function (newSize) {
+    size = newSize;
+    while (data.length > size) {
       data.shift().destroy();
     }
   };
@@ -690,7 +696,7 @@ var DownloadManager = (function DownloadManagerClosure() {
 
 
 
-var cache = new Cache(CACHE_SIZE);
+var cache = new Cache(DEFAULT_CACHE_SIZE);
 var currentPageNumber = 1;
 
 
@@ -2761,15 +2767,24 @@ var PDFView = {
         self.preferenceSidebarViewOnLoad = value;
       }),
       Preferences.get('disableTextLayer').then(function resolved(value) {
+        if (PDFJS.disableTextLayer === true) {
+          return;
+        }
         PDFJS.disableTextLayer = value;
       }),
       Preferences.get('disableRange').then(function resolved(value) {
+        if (PDFJS.disableRange === true) {
+          return;
+        }
         PDFJS.disableRange = value;
       }),
       Preferences.get('disableAutoFetch').then(function resolved(value) {
         PDFJS.disableAutoFetch = value;
       }),
       Preferences.get('disableFontFace').then(function resolved(value) {
+        if (PDFJS.disableFontFace === true) {
+          return;
+        }
         PDFJS.disableFontFace = value;
       }),
       Preferences.get('useOnlyCssZoom').then(function resolved(value) {
@@ -3634,6 +3649,8 @@ var PDFView = {
       }
     }
     this.pdfDocument.cleanup();
+
+    ThumbnailView.tempImageCache = null;
   },
 
   getHighestPriority: function pdfViewGetHighestPriority(visible, views,
@@ -3702,6 +3719,9 @@ var PDFView = {
   },
 
   setHash: function pdfViewSetHash(hash) {
+    var validFitZoomValues = ['Fit','FitB','FitH','FitBH',
+      'FitV','FitBV','FitR'];
+
     if (!hash) {
       return;
     }
@@ -3726,10 +3746,13 @@ var PDFView = {
         // it should stay as it is.
         var zoomArg = zoomArgs[0];
         var zoomArgNumber = parseFloat(zoomArg);
+        var destName = 'XYZ';
         if (zoomArgNumber) {
           zoomArg = zoomArgNumber / 100;
+        } else if (validFitZoomValues.indexOf(zoomArg) >= 0) {
+          destName = zoomArg;
         }
-        dest = [null, {name: 'XYZ'},
+        dest = [null, { name: destName },
                 zoomArgs.length > 1 ? (zoomArgs[1] | 0) : null,
                 zoomArgs.length > 2 ? (zoomArgs[2] | 0) : null,
                 zoomArg];
@@ -3927,6 +3950,7 @@ var PDFView = {
     for (i = 0, ii = this.pages.length; i < ii; ++i) {
       this.pages[i].beforePrint();
     }
+
   },
 
   afterPrint: function pdfViewSetupAfterPrint() {
@@ -4038,6 +4062,7 @@ var PageView = function pageView(container, id, scale,
   this.scale = scale || 1.0;
   this.viewport = defaultViewport;
   this.pdfPageRotate = defaultViewport.rotation;
+  this.hasRestrictedScaling = false;
 
   this.renderingState = RenderingStates.INITIAL;
   this.resume = null;
@@ -4108,7 +4133,13 @@ var PageView = function pageView(container, id, scale,
       this.annotationLayer = null;
     }
 
-    delete this.canvas;
+    if (this.canvas) {
+      // Zeroing the width and height causes Firefox to release graphics
+      // resources immediately, which can greatly reduce memory consumption.
+      this.canvas.width = 0;
+      this.canvas.height = 0;
+      delete this.canvas;
+    }
 
     this.loadingIconDiv = document.createElement('div');
     this.loadingIconDiv.className = 'loadingIcon';
@@ -4128,8 +4159,23 @@ var PageView = function pageView(container, id, scale,
       rotation: totalRotation
     });
 
-    if (PDFJS.useOnlyCssZoom && this.canvas) {
-      this.cssTransform(this.canvas);
+    var isScalingRestricted = false;
+    if (this.canvas && PDFJS.maxCanvasPixels > 0) {
+      var ctx = this.canvas.getContext('2d');
+      var outputScale = getOutputScale(ctx);
+      var pixelsInViewport = this.viewport.width * this.viewport.height;
+      var maxScale = Math.sqrt(PDFJS.maxCanvasPixels / pixelsInViewport);
+      if (((Math.floor(this.viewport.width) * outputScale.sx) | 0) *
+          ((Math.floor(this.viewport.height) * outputScale.sy) | 0) >
+          PDFJS.maxCanvasPixels) {
+        isScalingRestricted = true;
+      }
+    }
+
+    if (this.canvas &&
+        (PDFJS.useOnlyCssZoom ||
+          (this.hasRestrictedScaling && isScalingRestricted))) {
+      this.cssTransform(this.canvas, true);
       return;
     } else if (this.canvas && !this.zoomLayer) {
       this.zoomLayer = this.canvas.parentNode;
@@ -4141,7 +4187,7 @@ var PageView = function pageView(container, id, scale,
     this.reset(true);
   };
 
-  this.cssTransform = function pageCssTransform(canvas) {
+  this.cssTransform = function pageCssTransform(canvas, redrawAnnotations) {
     // Scale canvas, canvas wrapper, and page container.
     var width = this.viewport.width;
     var height = this.viewport.height;
@@ -4204,7 +4250,7 @@ var PageView = function pageView(container, id, scale,
       CustomStyle.setProp('transformOrigin', textLayerDiv, '0% 0%');
     }
 
-    if (PDFJS.useOnlyCssZoom && this.annotationLayer) {
+    if (redrawAnnotations && this.annotationLayer) {
       setupAnnotations(div, this.pdfPage, this.viewport);
     }
   };
@@ -4510,6 +4556,19 @@ var PageView = function pageView(container, id, scale,
       outputScale.scaled = true;
     }
 
+    if (PDFJS.maxCanvasPixels > 0) {
+      var pixelsInViewport = viewport.width * viewport.height;
+      var maxScale = Math.sqrt(PDFJS.maxCanvasPixels / pixelsInViewport);
+      if (outputScale.sx > maxScale || outputScale.sy > maxScale) {
+        outputScale.sx = maxScale;
+        outputScale.sy = maxScale;
+        outputScale.scaled = true;
+        this.hasRestrictedScaling = true;
+      } else {
+        this.hasRestrictedScaling = false;
+      }
+    }
+
     canvas.width = (Math.floor(viewport.width) * outputScale.sx) | 0;
     canvas.height = (Math.floor(viewport.height) * outputScale.sy) | 0;
     canvas.style.width = Math.floor(viewport.width) + 'px';
@@ -4583,8 +4642,6 @@ var PageView = function pageView(container, id, scale,
         self.onAfterDraw();
       }
 
-      cache.push(self);
-
       var event = document.createEvent('CustomEvent');
       event.initCustomEvent('pagerender', true, true, {
         pageNumber: pdfPage.pageNumber
@@ -4631,6 +4688,10 @@ var PageView = function pageView(container, id, scale,
 
     setupAnnotations(div, pdfPage, this.viewport);
     div.setAttribute('data-loaded', true);
+
+    // Add the page to the cache at the start of drawing. That way it can be
+    // evicted from the cache and destroyed even if we pause its rendering.
+    cache.push(this);
   };
 
   this.beforePrint = function pageViewBeforePrint() {
@@ -4857,6 +4918,17 @@ var ThumbnailView = function thumbnailView(container, id, defaultViewport) {
     this.hasImage = true;
   };
 
+  function getTempCanvas(width, height) {
+    var tempCanvas = ThumbnailView.tempImageCache;
+    if (!tempCanvas) {
+      tempCanvas = document.createElement('canvas');
+      ThumbnailView.tempImageCache = tempCanvas;
+    }
+    tempCanvas.width = width;
+    tempCanvas.height = height;
+    return tempCanvas;
+  }
+
   this.setImage = function thumbnailViewSetImage(img) {
     if (!this.pdfPage) {
       var promise = PDFView.getPage(this.id);
@@ -4871,12 +4943,39 @@ var ThumbnailView = function thumbnailView(container, id, defaultViewport) {
     }
     this.renderingState = RenderingStates.FINISHED;
     var ctx = this.getPageDrawContext();
-    ctx.drawImage(img, 0, 0, img.width, img.height,
+
+    var reducedImage = img;
+    var reducedWidth = img.width;
+    var reducedHeight = img.height;
+
+    // drawImage does an awful job of rescaling the image, doing it gradually
+    var MAX_SCALE_FACTOR = 2.0;
+    if (Math.max(img.width / ctx.canvas.width,
+                 img.height / ctx.canvas.height) > MAX_SCALE_FACTOR) {
+      reducedWidth >>= 1;
+      reducedHeight >>= 1;
+      reducedImage = getTempCanvas(reducedWidth, reducedHeight);
+      var reducedImageCtx = reducedImage.getContext('2d');
+      reducedImageCtx.drawImage(img, 0, 0, img.width, img.height,
+                                0, 0, reducedWidth, reducedHeight);
+      while (Math.max(reducedWidth / ctx.canvas.width,
+                      reducedHeight / ctx.canvas.height) > MAX_SCALE_FACTOR) {
+        reducedImageCtx.drawImage(reducedImage,
+                                  0, 0, reducedWidth, reducedHeight,
+                                  0, 0, reducedWidth >> 1, reducedHeight >> 1);
+        reducedWidth >>= 1;
+        reducedHeight >>= 1;
+      }
+    }
+
+    ctx.drawImage(reducedImage, 0, 0, reducedWidth, reducedHeight,
                   0, 0, ctx.canvas.width, ctx.canvas.height);
 
     this.hasImage = true;
   };
 };
+
+ThumbnailView.tempImageCache = null;
 
 
 var FIND_SCROLL_OFFSET_TOP = -50;
@@ -5519,6 +5618,10 @@ function updateViewarea() {
     return;
   }
 
+  var suggestedCacheSize = Math.max(DEFAULT_CACHE_SIZE,
+      2 * visiblePages.length + 1);
+  cache.resize(suggestedCacheSize);
+
   PDFView.renderHighestPriority(visible);
 
   var currentId = PDFView.page;
@@ -5904,13 +6007,14 @@ window.addEventListener('keydown', function keydown(evt) {
         break;
 
       case 36: // home
-        if (PresentationMode.active) {
+        if (PresentationMode.active || PDFView.page > 1) {
           PDFView.page = 1;
           handled = true;
         }
         break;
       case 35: // end
-        if (PresentationMode.active) {
+        if (PresentationMode.active ||
+            PDFView.page < PDFView.pdfDocument.numPages) {
           PDFView.page = PDFView.pdfDocument.numPages;
           handled = true;
         }
