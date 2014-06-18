@@ -495,15 +495,32 @@ if (typeof PDFJS === 'undefined') {
   }
 })();
 
-// Support: IE<10, Android<4.0, iOS<5.0
+// Support: IE<10, Android<4.0, iOS
 (function checkRequestAnimationFrame() {
+  function fakeRequestAnimationFrame(callback) {
+    window.setTimeout(callback, 20);
+  }
+
+  var isIOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
+  if (isIOS) {
+    // requestAnimationFrame on iOS is broken, replacing with fake one.
+    window.requestAnimationFrame = fakeRequestAnimationFrame;
+    return;
+  }
   if ('requestAnimationFrame' in window) {
     return;
   }
   window.requestAnimationFrame =
     window.mozRequestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
-    (function fakeRequestAnimationFrame(callback) {
-      window.setTimeout(callback, 20);
-    });
+    fakeRequestAnimationFrame;
+})();
+
+(function checkCanvasSizeLimitation() {
+  var isIOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
+  var isAndroid = /Android/g.test(navigator.userAgent);
+  if (isIOS || isAndroid) {
+    // 5MP
+    PDFJS.maxCanvasPixels = 5242880;
+  }
 })();
