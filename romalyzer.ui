@@ -1358,7 +1358,7 @@
          </column>
          <column>
           <property name="text">
-           <string>Filename</string>
+           <string>File name</string>
           </property>
          </column>
          <column>
@@ -1545,12 +1545,12 @@
          </property>
          <column>
           <property name="text">
-           <string>ID / Filename</string>
+           <string>ID / File name</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>Old ID / FIlename</string>
+           <string>Old ID / File name</string>
           </property>
          </column>
          <column>
