@@ -6229,96 +6229,101 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 <context>
     <name>ItemDownloader</name>
     <message>
-        <location filename="../../downloaditem.cpp" line="103"/>
+        <location filename="../../downloaditem.cpp" line="87"/>
+        <source>FATAL: can&apos;t open network reply for reading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../downloaditem.cpp" line="101"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing</source>
         <translation>FATAL: nu pot deschide &apos;%1&apos; pentru scriere</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="118"/>
-        <location filename="../../downloaditem.cpp" line="205"/>
-        <location filename="../../downloaditem.cpp" line="233"/>
-        <location filename="../../downloaditem.cpp" line="267"/>
+        <location filename="../../downloaditem.cpp" line="117"/>
+        <location filename="../../downloaditem.cpp" line="204"/>
+        <location filename="../../downloaditem.cpp" line="232"/>
+        <location filename="../../downloaditem.cpp" line="266"/>
         <source>Source URL: %1</source>
         <translation>URL sursa: %1</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="119"/>
+        <location filename="../../downloaditem.cpp" line="118"/>
         <source>Local path: %2</source>
         <translation>Cale locala: %2</translation>
+    </message>
+    <message>
+        <location filename="../../downloaditem.cpp" line="119"/>
+        <location filename="../../downloaditem.cpp" line="207"/>
+        <location filename="../../downloaditem.cpp" line="235"/>
+        <location filename="../../downloaditem.cpp" line="274"/>
+        <source>Status: %1</source>
+        <translation>Status: %1</translation>
+    </message>
+    <message>
+        <location filename="../../downloaditem.cpp" line="119"/>
+        <source>initializing download</source>
+        <translation>initializez descarcarea</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="120"/>
         <location filename="../../downloaditem.cpp" line="208"/>
         <location filename="../../downloaditem.cpp" line="236"/>
         <location filename="../../downloaditem.cpp" line="275"/>
-        <source>Status: %1</source>
-        <translation>Status: %1</translation>
+        <source>Total size: %1</source>
+        <translation>Marime totala: %1</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="120"/>
-        <source>initializing download</source>
-        <translation>initializez descarcarea</translation>
+        <source>unknown</source>
+        <translation>necunoscut</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="121"/>
         <location filename="../../downloaditem.cpp" line="209"/>
         <location filename="../../downloaditem.cpp" line="237"/>
         <location filename="../../downloaditem.cpp" line="276"/>
-        <source>Total size: %1</source>
-        <translation>Marime totala: %1</translation>
-    </message>
-    <message>
-        <location filename="../../downloaditem.cpp" line="121"/>
-        <source>unknown</source>
-        <translation>necunoscut</translation>
-    </message>
-    <message>
-        <location filename="../../downloaditem.cpp" line="122"/>
-        <location filename="../../downloaditem.cpp" line="210"/>
-        <location filename="../../downloaditem.cpp" line="238"/>
-        <location filename="../../downloaditem.cpp" line="277"/>
         <source>Downloaded: %1 (%2%)</source>
         <translation>Descarcat: %1 (%2%)</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="123"/>
+        <location filename="../../downloaditem.cpp" line="122"/>
         <source>download started: URL = %1, local path = %2, reply ID = %3</source>
         <translation>descarcare inceputa: URL = %1, cale locala = %2, ID raspuns = %3</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="191"/>
+        <location filename="../../downloaditem.cpp" line="190"/>
         <source>Error #%1: </source>
         <translation>Eroare #%1: </translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="197"/>
+        <location filename="../../downloaditem.cpp" line="196"/>
         <source>download aborted: reason = %1, URL = %2, local path = %3, reply ID = %4</source>
         <translation>descarcare abandonata: motiv = %1, URL = %2, cale locala = %3, ID raspuns = %4</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="205"/>
-        <location filename="../../downloaditem.cpp" line="233"/>
-        <location filename="../../downloaditem.cpp" line="267"/>
+        <location filename="../../downloaditem.cpp" line="204"/>
+        <location filename="../../downloaditem.cpp" line="232"/>
+        <location filename="../../downloaditem.cpp" line="266"/>
         <source>Local path: %1</source>
         <translation type="unfinished">Cale locala: %1</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="208"/>
+        <location filename="../../downloaditem.cpp" line="207"/>
         <source>download aborted</source>
         <translation>descarcare abandonata</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="236"/>
+        <location filename="../../downloaditem.cpp" line="235"/>
         <source>downloading</source>
         <translation>descarc</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="265"/>
+        <location filename="../../downloaditem.cpp" line="264"/>
         <source>download finished: URL = %1, local path = %2, reply ID = %3</source>
         <translation>descarcare terminata: URL = %1, cale locala = %2, ID raspuns = %3</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="275"/>
+        <location filename="../../downloaditem.cpp" line="274"/>
         <source>download finished</source>
         <translation>descarcare terminata</translation>
     </message>

@@ -472,10 +472,10 @@
 
 // item downloader: base number of milliseconds to wait before automatic retries
 // (the real wait time will be between 5 and 10 times QMC2_DOWNLOAD_RETRY_DELAY)
-#define QMC2_DOWNLOAD_RETRY_DELAY		1000
+#define QMC2_DOWNLOAD_RETRY_DELAY		500
 
 // how many milliseconds between download connection checks
-#define QMC2_DOWNLOAD_CHECK_TIMEOUT		10000
+#define QMC2_DOWNLOAD_CHECK_TIMEOUT		5000
 
 // how many milliseconds before automatically cleaning up finished downloads
 #define QMC2_DOWNLOAD_CLEANUP_DELAY		250
