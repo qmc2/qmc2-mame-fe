@@ -6846,112 +6846,114 @@ void MainWindow::closeEvent(QCloseEvent *e)
   }
 #endif
 
-  if ( listWidgetFavorites->count() > 0 )
-    qmc2Gamelist->saveFavorites();
+  if ( !qmc2TemplateCheck ) {
+	  if ( listWidgetFavorites->count() > 0 )
+	    qmc2Gamelist->saveFavorites();
 
-  if ( listWidgetPlayed->count() > 0 )
-    qmc2Gamelist->savePlayHistory();
+	  if ( listWidgetPlayed->count() > 0 )
+	    qmc2Gamelist->savePlayHistory();
 
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", comboBoxViewSelect->currentIndex());
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection").toBool() ) {
-    if ( qmc2CurrentItem ) {
-      log(QMC2_LOG_FRONTEND, tr("saving game selection"));
-      qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedGame", qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME));
-    } else
-      qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedGame");
-  }
+	  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", comboBoxViewSelect->currentIndex());
+	  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection").toBool() ) {
+	    if ( qmc2CurrentItem ) {
+	      log(QMC2_LOG_FRONTEND, tr("saving game selection"));
+	      qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedGame", qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME));
+	    } else
+	      qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedGame");
+	  }
 
-  QTreeWidgetItem *foreignItem = treeWidgetForeignIDs->currentItem();
-  if ( foreignItem && foreignItem->isSelected() ) {
-      QTreeWidgetItem *parentItem = foreignItem;
-      if ( foreignItem->parent() )
-	      parentItem = foreignItem->parent();
-      QStringList foreignIdState;
-      if ( parentItem == foreignItem )
-	      foreignIdState << QString::number(treeWidgetForeignIDs->indexOfTopLevelItem(parentItem));
-      else
-	      foreignIdState << QString::number(treeWidgetForeignIDs->indexOfTopLevelItem(parentItem)) << QString::number(parentItem->indexOfChild(foreignItem));
-      qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedForeignID", foreignIdState);
-  } else
-      qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedForeignID");
+	  QTreeWidgetItem *foreignItem = treeWidgetForeignIDs->currentItem();
+	  if ( foreignItem && foreignItem->isSelected() ) {
+	      QTreeWidgetItem *parentItem = foreignItem;
+	      if ( foreignItem->parent() )
+		      parentItem = foreignItem->parent();
+	      QStringList foreignIdState;
+	      if ( parentItem == foreignItem )
+		      foreignIdState << QString::number(treeWidgetForeignIDs->indexOfTopLevelItem(parentItem));
+	      else
+		      foreignIdState << QString::number(treeWidgetForeignIDs->indexOfTopLevelItem(parentItem)) << QString::number(parentItem->indexOfChild(foreignItem));
+	      qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedForeignID", foreignIdState);
+	  } else
+	      qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedForeignID");
 
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
-    log(QMC2_LOG_FRONTEND, tr("saving main widget layout"));
-    if ( windowState() & Qt::WindowFullScreen ) {
-      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Fullscreen", true);
-    } else {
-      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Fullscreen", false);
-      if ( isMaximized() ) {
-        qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Maximized", true);
-      } else {
-        qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Maximized", false);
-        qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry", saveGeometry());
-        qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Position", pos());
-        qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size", size());
-      }
-    }
+	  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
+	    log(QMC2_LOG_FRONTEND, tr("saving main widget layout"));
+	    if ( windowState() & Qt::WindowFullScreen ) {
+	      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Fullscreen", true);
+	    } else {
+	      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Fullscreen", false);
+	      if ( isMaximized() ) {
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Maximized", true);
+	      } else {
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Maximized", false);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry", saveGeometry());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Position", pos());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size", size());
+	      }
+	    }
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-    if ( toolButtonEmbedderMaximizeToggle->isChecked() && tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
-      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitterSizes[0], hSplitterSizes[1]));
-    else
-      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitter->sizes().at(0), hSplitter->sizes().at(1)));
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Embedder/Maximize", toolButtonEmbedderMaximizeToggle->isChecked());
+	    if ( toolButtonEmbedderMaximizeToggle->isChecked() && tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
+	      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitterSizes[0], hSplitterSizes[1]));
+	    else
+	      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitter->sizes().at(0), hSplitter->sizes().at(1)));
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Embedder/Maximize", toolButtonEmbedderMaximizeToggle->isChecked());
 #if defined(QMC2_OS_UNIX)
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Embedder/AutoPause", toolButtonEmbedderAutoPause->isChecked());
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Embedder/AutoPause", toolButtonEmbedderAutoPause->isChecked());
 #endif
 #else
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitter->sizes().at(0), hSplitter->sizes().at(1)));
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitter->sizes().at(0), hSplitter->sizes().at(1)));
 #endif
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitterFlipped", hSplitter->orientation() != Qt::Horizontal);
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitterSwapped", hSplitter->widget(0) != hSplitterWidget0);
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter", QSize(vSplitterSizes.at(0), vSplitterSizes.at(1)));
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSoftwareDetail", QSize(vSplitterSizesSoftwareDetail.at(0), vSplitterSizesSoftwareDetail.at(1)));
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterFlipped", vSplitter->orientation() != Qt::Vertical);
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSwapped", vSplitter->widget(0) != vSplitterWidget0);
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitterFlipped", hSplitter->orientation() != Qt::Horizontal);
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitterSwapped", hSplitter->widget(0) != hSplitterWidget0);
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter", QSize(vSplitterSizes.at(0), vSplitterSizes.at(1)));
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSoftwareDetail", QSize(vSplitterSizesSoftwareDetail.at(0), vSplitterSizesSoftwareDetail.at(1)));
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterFlipped", vSplitter->orientation() != Qt::Vertical);
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSwapped", vSplitter->widget(0) != vSplitterWidget0);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-    if ( tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
-      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", qmc2LastListIndex);
-    else
-      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", tabWidgetGamelist->currentIndex());
+	    if ( tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
+	      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", qmc2LastListIndex);
+	    else
+	      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", tabWidgetGamelist->currentIndex());
 #else
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", tabWidgetGamelist->currentIndex());
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", tabWidgetGamelist->currentIndex());
 #endif
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", tabWidgetGameDetail->currentIndex());
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", tabWidgetGameDetail->currentIndex());
 #elif defined(QMC2_EMUTYPE_MESS)
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineDetailTab", tabWidgetGameDetail->currentIndex());
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineDetailTab", tabWidgetGameDetail->currentIndex());
 #endif
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", tabWidgetLogsAndEmulators->currentIndex());
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailTab", tabWidgetSoftwareDetail->currentIndex());
-    // save toolbar state
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolbarState", saveState());
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState", treeWidgetGamelist->header()->saveState());
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState", treeWidgetHierarchy->header()->saveState());
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState", treeWidgetCategoryView->header()->saveState());
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", tabWidgetLogsAndEmulators->currentIndex());
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailTab", tabWidgetSoftwareDetail->currentIndex());
+	    // save toolbar state
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolbarState", saveState());
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState", treeWidgetGamelist->header()->saveState());
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState", treeWidgetHierarchy->header()->saveState());
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState", treeWidgetCategoryView->header()->saveState());
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState", treeWidgetVersionView->header()->saveState());
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState", treeWidgetVersionView->header()->saveState());
 #endif
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState", treeWidgetEmulators->header()->saveState());
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState", treeWidgetEmulators->header()->saveState());
 
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailDocked", floatToggleButtonSoftwareDetail->isChecked());
-    if ( !floatToggleButtonSoftwareDetail->isChecked() )
-      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailGeometry", tabWidgetSoftwareDetail->saveGeometry());
-  }
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailDocked", floatToggleButtonSoftwareDetail->isChecked());
+	    if ( !floatToggleButtonSoftwareDetail->isChecked() )
+	      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailGeometry", tabWidgetSoftwareDetail->saveGeometry());
+	  }
 
 #if QMC2_USE_PHONON_API
-  QStringList psl;
-  for (int i = 0; i < listWidgetAudioPlaylist->count(); i++)
-	  psl << listWidgetAudioPlaylist->item(i)->text();
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList", psl);
-  if ( listWidgetAudioPlaylist->currentItem() )
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/LastTrack", listWidgetAudioPlaylist->currentItem()->text());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayOnStart", checkBoxAudioPlayOnStart->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/Shuffle", checkBoxAudioShuffle->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/Pause", checkBoxAudioPause->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/Fade", checkBoxAudioFade->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/Volume", dialAudioVolume->value());
+	  QStringList psl;
+	  for (int i = 0; i < listWidgetAudioPlaylist->count(); i++)
+		  psl << listWidgetAudioPlaylist->item(i)->text();
+	  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList", psl);
+	  if ( listWidgetAudioPlaylist->currentItem() )
+	    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/LastTrack", listWidgetAudioPlaylist->currentItem()->text());
+	  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayOnStart", checkBoxAudioPlayOnStart->isChecked());
+	  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/Shuffle", checkBoxAudioShuffle->isChecked());
+	  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/Pause", checkBoxAudioPause->isChecked());
+	  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/Fade", checkBoxAudioFade->isChecked());
+	  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/Volume", dialAudioVolume->value());
 #endif
+  }
 
   // download manager widget
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", checkBoxRemoveFinishedDownloads->isChecked());
