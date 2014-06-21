@@ -6231,96 +6231,101 @@ Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością global
 <context>
     <name>ItemDownloader</name>
     <message>
-        <location filename="../../downloaditem.cpp" line="103"/>
+        <location filename="../../downloaditem.cpp" line="87"/>
+        <source>FATAL: can&apos;t open network reply for reading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../downloaditem.cpp" line="101"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing</source>
         <translation>FATALNIE: nie można otworzyć &apos;%1&apos; do zapisu</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="118"/>
-        <location filename="../../downloaditem.cpp" line="205"/>
-        <location filename="../../downloaditem.cpp" line="233"/>
-        <location filename="../../downloaditem.cpp" line="267"/>
+        <location filename="../../downloaditem.cpp" line="117"/>
+        <location filename="../../downloaditem.cpp" line="204"/>
+        <location filename="../../downloaditem.cpp" line="232"/>
+        <location filename="../../downloaditem.cpp" line="266"/>
         <source>Source URL: %1</source>
         <translation>Adres źródłowy: %1</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="119"/>
+        <location filename="../../downloaditem.cpp" line="118"/>
         <source>Local path: %2</source>
         <translation>Lokalna ścieżka: %2</translation>
+    </message>
+    <message>
+        <location filename="../../downloaditem.cpp" line="119"/>
+        <location filename="../../downloaditem.cpp" line="207"/>
+        <location filename="../../downloaditem.cpp" line="235"/>
+        <location filename="../../downloaditem.cpp" line="274"/>
+        <source>Status: %1</source>
+        <translation>Stan: %1</translation>
+    </message>
+    <message>
+        <location filename="../../downloaditem.cpp" line="119"/>
+        <source>initializing download</source>
+        <translation>inicjalizacja pobierania</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="120"/>
         <location filename="../../downloaditem.cpp" line="208"/>
         <location filename="../../downloaditem.cpp" line="236"/>
         <location filename="../../downloaditem.cpp" line="275"/>
-        <source>Status: %1</source>
-        <translation>Stan: %1</translation>
+        <source>Total size: %1</source>
+        <translation>Całkowity rozmiar: %1</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="120"/>
-        <source>initializing download</source>
-        <translation>inicjalizacja pobierania</translation>
+        <source>unknown</source>
+        <translation>nieznany</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="121"/>
         <location filename="../../downloaditem.cpp" line="209"/>
         <location filename="../../downloaditem.cpp" line="237"/>
         <location filename="../../downloaditem.cpp" line="276"/>
-        <source>Total size: %1</source>
-        <translation>Całkowity rozmiar: %1</translation>
-    </message>
-    <message>
-        <location filename="../../downloaditem.cpp" line="121"/>
-        <source>unknown</source>
-        <translation>nieznany</translation>
-    </message>
-    <message>
-        <location filename="../../downloaditem.cpp" line="122"/>
-        <location filename="../../downloaditem.cpp" line="210"/>
-        <location filename="../../downloaditem.cpp" line="238"/>
-        <location filename="../../downloaditem.cpp" line="277"/>
         <source>Downloaded: %1 (%2%)</source>
         <translation>Pobrano: %1 (%2%)</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="123"/>
+        <location filename="../../downloaditem.cpp" line="122"/>
         <source>download started: URL = %1, local path = %2, reply ID = %3</source>
         <translation>rozpoczęto pobieranie: adres URL = %1, lokalna ścieżka = %2, ID odpowiedzi = %3</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="191"/>
+        <location filename="../../downloaditem.cpp" line="190"/>
         <source>Error #%1: </source>
         <translation>Błąd numer %1:</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="197"/>
+        <location filename="../../downloaditem.cpp" line="196"/>
         <source>download aborted: reason = %1, URL = %2, local path = %3, reply ID = %4</source>
         <translation>przerwano pobieranie: powód = %1, adres URL = %2, lokalna ścieżka = %3, ID odpowiedzi = %4</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="205"/>
-        <location filename="../../downloaditem.cpp" line="233"/>
-        <location filename="../../downloaditem.cpp" line="267"/>
+        <location filename="../../downloaditem.cpp" line="204"/>
+        <location filename="../../downloaditem.cpp" line="232"/>
+        <location filename="../../downloaditem.cpp" line="266"/>
         <source>Local path: %1</source>
         <translation>Lokalna ścieżka: %1</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="208"/>
+        <location filename="../../downloaditem.cpp" line="207"/>
         <source>download aborted</source>
         <translation>przerwano pobieranie</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="236"/>
+        <location filename="../../downloaditem.cpp" line="235"/>
         <source>downloading</source>
         <translation>pobieranie</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="265"/>
+        <location filename="../../downloaditem.cpp" line="264"/>
         <source>download finished: URL = %1, local path = %2, reply ID = %3</source>
         <translation>ukończono pobieranie: adres URL = %1, lokalna ścieżka = %2, ID odpowiedzi = %3</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="275"/>
+        <location filename="../../downloaditem.cpp" line="274"/>
         <source>download finished</source>
         <translation>ukończono pobieranie</translation>
     </message>

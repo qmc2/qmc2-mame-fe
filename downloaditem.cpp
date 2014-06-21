@@ -71,15 +71,7 @@ ItemDownloader::ItemDownloader(QNetworkReply *reply, QString file, QProgressBar 
 	downloadPercent = 0.0;
 
 	connect(&errorCheckTimer, SIGNAL(timeout()), this, SLOT(checkError()));
-	init();
-}
-
-ItemDownloader::~ItemDownloader()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ItemDownloader::~ItemDownloader()");
-#endif
-
+	QTimer::singleShot(0, this, SLOT(reload()));
 }
 
 void ItemDownloader::init()
@@ -91,6 +83,12 @@ void ItemDownloader::init()
 	if ( !networkReply )
 		return;
 
+	if ( !networkReply->open(QIODevice::ReadOnly) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open network reply for reading"));
+		finished();
+		return;
+	}
+
 	if ( localFile.isOpen() )
 		localFile.close();
 
@@ -101,6 +99,7 @@ void ItemDownloader::init()
 
 	if ( !localFile.open(QIODevice::WriteOnly) ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open '%1' for writing").arg(localPath));
+		finished();
 		return;
 	}
 

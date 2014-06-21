@@ -40,7 +40,6 @@ class ItemDownloader : public QObject
 		QTimer errorCheckTimer;
 
 		ItemDownloader(QNetworkReply *, QString, QProgressBar *, DownloadItem *);
-		~ItemDownloader();
 
 	public slots:
 		void init();
