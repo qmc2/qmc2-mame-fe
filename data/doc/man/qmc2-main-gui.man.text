@@ -16,7 +16,7 @@ OPTIONS
 
   -cc  This command line option will instruct QMC2 to clear (remove) all emulator related cache files while starting up in order to forcibly reload this data from the emulator.
 
-  -tc  Specifying this option on the command line will perform a template check against the current default emulator (if set), printing its output to stdout, and exit before real start-up occurs. 
+  -tc  Specifying this option on the command line will perform a template check against the current default emulator (if set), printing its output to stdout, and exit before actual start-up occurs. 
 
   -h|-?|-help  Shows a brief command line usage help.
 
