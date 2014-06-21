@@ -12805,7 +12805,7 @@ int main(int argc, char *argv[])
 	QApplication qmc2App(argc, argv);
 
 	if ( QMC2_CLI_OPT_HELP ) {
-		printf("Usage: %s [-config_path <config_path>] [-cc] [-h|-?|-help] [qt_arguments]\n\n"
+		printf("Usage: %s [-config_path <config_path>] [-cc] [-tc] [-h|-?|-help] [qt_arguments]\n\n"
 		       "-config_path    Use specified configuration path (default: %s)\n"
 		       "-cc             Clear all emulator caches before starting up\n"
 		       "-tc             Check the emulator configuration template and exit\n"
