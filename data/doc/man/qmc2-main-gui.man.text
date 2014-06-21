@@ -2,11 +2,11 @@ NAME
   qmc2-sdlmame, qmc2-sdlmess, qmc2-sdlume - QMC2 - MAME/MESS/UME Catalog/Launcher II
 
 SYNOPSIS
-  qmc2-sdlmame [-config_path path] [-cc] [-h|-?|-help] [qt_arguments]
+  qmc2-sdlmame [-config_path path] [-cc] [-tc] [-h|-?|-help] [qt_arguments]
 
-  qmc2-sdlmess [-config_path path] [-cc] [-h|-?|-help] [qt_arguments]
+  qmc2-sdlmess [-config_path path] [-cc] [-tc] [-h|-?|-help] [qt_arguments]
 
-  qmc2-sdlume [-config_path path] [-cc] [-h|-?|-help] [qt_arguments]
+  qmc2-sdlume [-config_path path] [-cc] [-tc] [-h|-?|-help] [qt_arguments]
 
 DESCRIPTION
   QMC2 is a graphical front-end based on Qt to drive the great MAME and MESS emulators - including UME, a unified version of both. Individual front-end binaries exist for each of the three emulator variants (qmc2-sdlmame, qmc2-sdlmess and qmc2-sdlume) and are configured independently, sharing just a few project-global settings.
@@ -15,6 +15,8 @@ OPTIONS
   -config_path path  Specify this argument to use the directory path instead of the default folder (CONFIG_PATH) to store QMC2's configuration, logs and cache-files / cache-folders.
 
   -cc  This command line option will instruct QMC2 to clear (remove) all emulator related cache files while starting up in order to forcibly reload this data from the emulator.
+
+  -tc  Specifying this option on the command line will perform a template check against the current default emulator (if set), printing its output to stdout, and exit before real start-up occurs. 
 
   -h|-?|-help  Shows a brief command line usage help.
 
