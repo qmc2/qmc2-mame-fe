@@ -199,6 +199,7 @@ class Options : public QDialog, public Ui::Options
     void on_toolButtonAddEmulator_clicked();
     void on_toolButtonSaveEmulator_clicked();
     void on_toolButtonRemoveEmulator_clicked();
+    void on_toolButtonCustomIDs_clicked();
     void on_tableWidgetRegisteredEmulators_itemSelectionChanged();
     void on_tableWidgetRegisteredEmulators_itemClicked(QTableWidgetItem *) { on_tableWidgetRegisteredEmulators_itemSelectionChanged(); }
     void on_lineEditAdditionalEmulatorName_textChanged(const QString &);

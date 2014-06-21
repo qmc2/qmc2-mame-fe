@@ -4687,9 +4687,26 @@ void Options::on_toolButtonRemoveEmulator_clicked()
 
 	QList<QTableWidgetItem *> sl = tableWidgetRegisteredEmulators->selectedItems();
 	if ( !sl.isEmpty() ) {
-		int row = sl[QMC2_ADDTLEMUS_COLUMN_NAME]->row();
+		int row = sl[0]->row();
 		registeredEmulatorsToBeRemoved << tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->text();
 		tableWidgetRegisteredEmulators->removeRow(row);
+	}
+}
+
+void Options::on_toolButtonCustomIDs_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonCustomIDs_clicked()");
+#endif
+
+	QList<QTableWidgetItem *> sl = tableWidgetRegisteredEmulators->selectedItems();
+	if ( !sl.isEmpty() ) {
+		int row = sl[0]->row();
+		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME) ) {
+			CustomIDSetup cidSetup(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->text(), this);
+			if ( cidSetup.exec() == QDialog::Accepted )
+				cidSetup.save();
+		}
 	}
 }
 
@@ -4720,13 +4737,15 @@ void Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()
 
 	QList<QTableWidgetItem *> sl = tableWidgetRegisteredEmulators->selectedItems();
 	if ( !sl.isEmpty() ) {
-		int row = sl[QMC2_ADDTLEMUS_COLUMN_NAME]->row();
+		int row = sl[0]->row();
 		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME) ) {
 			lineEditAdditionalEmulatorName->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->text());
 			toolButtonRemoveEmulator->setEnabled(true);
+			toolButtonCustomIDs->setEnabled(true);
 		} else {
 			lineEditAdditionalEmulatorName->clear();
 			toolButtonRemoveEmulator->setEnabled(false);
+			toolButtonCustomIDs->setEnabled(false);
 		}
 		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC) )
 			lineEditAdditionalEmulatorExecutableFile->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC)->text());
@@ -4746,6 +4765,7 @@ void Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()
 		lineEditAdditionalEmulatorWorkingDirectory->clear();
 		lineEditAdditionalEmulatorArguments->clear();
 		toolButtonRemoveEmulator->setEnabled(false);
+		toolButtonCustomIDs->setEnabled(false);
 	}
 	checkPlaceholderStatus();
 }
@@ -4762,14 +4782,19 @@ void Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &text)
 			toolButtonAddEmulator->setEnabled(false);
 			toolButtonSaveEmulator->setEnabled(false);
 			toolButtonRemoveEmulator->setEnabled(false);
+			toolButtonCustomIDs->setEnabled(false);
 		} else {
 			QList<QTableWidgetItem *> il = tableWidgetRegisteredEmulators->findItems(text, Qt::MatchExactly);
 			toolButtonAddEmulator->setEnabled(il.isEmpty());
 			toolButtonSaveEmulator->setEnabled(!il.isEmpty());
+			toolButtonRemoveEmulator->setEnabled(!il.isEmpty());
+			toolButtonCustomIDs->setEnabled(!il.isEmpty());
 		}
 	} else {
 		toolButtonAddEmulator->setEnabled(false);
 		toolButtonSaveEmulator->setEnabled(false);
+		toolButtonRemoveEmulator->setEnabled(false);
+		toolButtonCustomIDs->setEnabled(false);
 	}
 	checkPlaceholderStatus();
 }
