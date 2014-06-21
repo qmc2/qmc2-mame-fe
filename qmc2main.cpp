@@ -288,6 +288,7 @@ QPalette qmc2CustomPalette;
 QMap<QString, QPalette> qmc2StandardPalettes;
 bool qmc2CategoryInfoUsed = false;
 bool qmc2VersionInfoUsed = false;
+bool qmc2TemplateCheck = false;
 QMap<QWidget *, Qt::WindowStates> qmc2AutoMinimizedWidgets;
 #if defined(QMC2_EMUTYPE_UME)
 QMultiMap<QString, QString> qmc2GameInfoSourceMap;
@@ -12807,6 +12808,7 @@ int main(int argc, char *argv[])
 		printf("Usage: %s [-config_path <config_path>] [-cc] [-h|-?|-help] [qt_arguments]\n\n"
 		       "-config_path    Use specified configuration path (default: %s)\n"
 		       "-cc             Clear all emulator caches before starting up\n"
+		       "-tc             Check the emulator configuration template and exit\n"
 		       "-h|-?|-help     Show this help text and exit\n", argv[0], QString(QMC2_DOT_PATH).toLocal8Bit().constData());
 		return 1;
 	}
@@ -12824,12 +12826,16 @@ int main(int argc, char *argv[])
 	QPixmap splashPixmap(QString::fromUtf8(":/data/img/qmc2_ume_splash.png"));
 #endif
 
+	qmc2TemplateCheck = QMC2_CLI_OPT_TEMPLATE_CHECK;
+
 	// check configuration
 	int checkReturn = QDialog::Accepted;
 	qmc2Welcome = new Welcome(0);
-	if ( !qmc2Welcome->checkOkay )
+	if ( !qmc2Welcome->checkOkay ) {
 		checkReturn = qmc2Welcome->exec();
-	bool showSplashScreen = qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ShowSplashScreen", true).toBool();
+		qmc2TemplateCheck = false;
+	}
+	bool showSplashScreen = qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ShowSplashScreen", true).toBool() && !qmc2TemplateCheck;
 	QFont splashFont = qApp->font();
 	if ( !qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString().isEmpty() )
 		splashFont.fromString(qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
@@ -12863,6 +12869,7 @@ int main(int argc, char *argv[])
 	qmc2Config = qmc2Options->config;
 	qmc2ProcessManager = new ProcessManager(0);
 	qmc2MainWindow = new MainWindow(0);
+	qmc2MainWindow->setVisible(!qmc2TemplateCheck);
 
 	// prepare & restore game/machine detail setup
 	qmc2DetailSetup = new DetailSetup(qmc2MainWindow);
@@ -12980,12 +12987,19 @@ int main(int argc, char *argv[])
 	QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()));
 	qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setMenu(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile);
 
-	// if CLI option -cc is set, clear all emulator caches before starting up
-	if ( QMC2_CLI_OPT_CLEAR_ALL_CACHES )
-		qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered();
+	int retCode = 0;
+	if ( qmc2TemplateCheck ) {
+		qmc2GlobalEmulatorOptions->checkTemplateMap();
+		qmc2Options->applied = true;
+		qmc2MainWindow->close();
+	} else {
+		// if CLI option -cc is set, clear all emulator caches before starting up
+		if ( QMC2_CLI_OPT_CLEAR_ALL_CACHES )
+			qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered();
 
-	// finally run the application
-	int retCode = qmc2App.exec();
+		// finally run the application
+		retCode = qmc2App.exec();
+	}
 
 	if ( qmc2SplashScreen )
 		qmc2SplashScreen->deleteLater();

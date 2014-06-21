@@ -683,6 +683,9 @@
 // -cc: clear (all emulator) caches 
 #define QMC2_CLI_OPT_CLEAR_ALL_CACHES		(qApp->arguments().indexOf("-cc") >= 0)
 
+// -tc: check emulator configuration template (output is printed to stdout) and exit
+#define QMC2_CLI_OPT_TEMPLATE_CHECK		(qApp->arguments().indexOf("-tc") >= 0)
+
 // -help/-?/-h: show usage help and exit
 #define QMC2_CLI_OPT_HELP			(qApp->arguments().indexOf(QRegExp("(-help|-\\?|-h)")) >= 0)
 
