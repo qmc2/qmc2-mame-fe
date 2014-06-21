@@ -4656,23 +4656,25 @@ void Options::on_toolButtonSaveEmulator_clicked()
 	QString name = lineEditAdditionalEmulatorName->text();
 	if ( !name.isEmpty() ) {
 		QList<QTableWidgetItem *> il = tableWidgetRegisteredEmulators->findItems(name, Qt::MatchExactly);
-		int row = il[QMC2_ADDTLEMUS_COLUMN_NAME]->row();
-		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME) )
-			tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->setText(name);
-		else
-			tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_NAME, new QTableWidgetItem(lineEditAdditionalEmulatorName->text()));
-		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC) )
-			tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC)->setText(lineEditAdditionalEmulatorExecutableFile->text());
-		else
-			tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(lineEditAdditionalEmulatorExecutableFile->text()));
-		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR) )
-			tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR)->setText(lineEditAdditionalEmulatorWorkingDirectory->text());
-		else
-			tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(lineEditAdditionalEmulatorWorkingDirectory->text()));
-		if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS) )
-			tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS)->setText(lineEditAdditionalEmulatorArguments->text());
-		else
-			tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(lineEditAdditionalEmulatorArguments->text()));
+		if ( !il.isEmpty() ) {
+			int row = il[0]->row();
+			if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME) )
+				tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->setText(name);
+			else
+				tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_NAME, new QTableWidgetItem(lineEditAdditionalEmulatorName->text()));
+			if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC) )
+				tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC)->setText(lineEditAdditionalEmulatorExecutableFile->text());
+			else
+				tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(lineEditAdditionalEmulatorExecutableFile->text()));
+			if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR) )
+				tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR)->setText(lineEditAdditionalEmulatorWorkingDirectory->text());
+			else
+				tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(lineEditAdditionalEmulatorWorkingDirectory->text()));
+			if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS) )
+				tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS)->setText(lineEditAdditionalEmulatorArguments->text());
+			else
+				tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(lineEditAdditionalEmulatorArguments->text()));
+		}
 	}
 	tableWidgetRegisteredEmulators->setSortingEnabled(true);
 }
