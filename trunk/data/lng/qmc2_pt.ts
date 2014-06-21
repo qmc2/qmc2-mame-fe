@@ -6355,42 +6355,42 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
 <context>
     <name>JoystickCalibrationWidget</name>
     <message>
-        <location filename="../../options.cpp" line="5281"/>
+        <location filename="../../options.cpp" line="5308"/>
         <source>Enable/disable axis %1</source>
         <translation>Habilitar/desabilitar eixo %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5285"/>
+        <location filename="../../options.cpp" line="5312"/>
         <source>Axis %1:</source>
         <translation>Eixo %1:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5286"/>
+        <location filename="../../options.cpp" line="5313"/>
         <source>Reset calibration of axis %1</source>
         <translation>Reiniciar calibração do eixo %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5294"/>
+        <location filename="../../options.cpp" line="5321"/>
         <source>Current value of axis %1</source>
         <translation>Valor atual do eixo %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5298"/>
+        <location filename="../../options.cpp" line="5325"/>
         <source>DZ:</source>
         <translation>ZM:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5300"/>
+        <location filename="../../options.cpp" line="5327"/>
         <source>Deadzone of axis %1</source>
         <translation>Zona morta do eixo %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5306"/>
+        <location filename="../../options.cpp" line="5333"/>
         <source>S:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5308"/>
+        <location filename="../../options.cpp" line="5335"/>
         <source>Sensitivity of axis %1</source>
         <translation>Sensibilidade do eixo %1</translation>
     </message>
@@ -6444,67 +6444,67 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
 <context>
     <name>JoystickTestWidget</name>
     <message>
-        <location filename="../../options.cpp" line="5529"/>
+        <location filename="../../options.cpp" line="5556"/>
         <source>A%1: %v</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5530"/>
+        <location filename="../../options.cpp" line="5557"/>
         <source>Current value of axis %1</source>
         <translation>Valor atual do eixo %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5540"/>
+        <location filename="../../options.cpp" line="5567"/>
         <source>B%1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5541"/>
+        <location filename="../../options.cpp" line="5568"/>
         <source>Current state of button %1</source>
         <translation>Estado atual do botão %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5551"/>
+        <location filename="../../options.cpp" line="5578"/>
         <source>H%1: 0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5552"/>
+        <location filename="../../options.cpp" line="5579"/>
         <source>Current value of hat %1</source>
         <translation>Valor atual do hat %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5562"/>
+        <location filename="../../options.cpp" line="5589"/>
         <source>T%1 DX: 0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5563"/>
+        <location filename="../../options.cpp" line="5590"/>
         <source>Current X-delta of trackball %1</source>
         <translation>Diferença X atual do trackball %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5573"/>
+        <location filename="../../options.cpp" line="5600"/>
         <source>T%1 DY: 0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5574"/>
+        <location filename="../../options.cpp" line="5601"/>
         <source>Current Y-delta of trackball %1</source>
         <translation>Diferença Y atual do trackball %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5662"/>
+        <location filename="../../options.cpp" line="5689"/>
         <source>H%1: %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5696"/>
+        <location filename="../../options.cpp" line="5723"/>
         <source>T%1 DX: %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5697"/>
+        <location filename="../../options.cpp" line="5724"/>
         <source>T%1 DY: %2</source>
         <translation></translation>
     </message>
@@ -12131,6 +12131,7 @@ Tentar novamente?</translation>
         <translation>FATAL: impossível abrir arquivo de ícone %1</translation>
     </message>
     <message>
+        <location filename="../../options.ui" line="5682"/>
         <location filename="../../options.cpp" line="2986"/>
         <location filename="../../options.cpp" line="4627"/>
         <source>Specify pre-defined foreign IDs for this emulator, launchable from the &apos;foreign emulators&apos; view</source>
@@ -12317,17 +12318,17 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>Escolha o arquivo comprimido de snapshot de software</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4812"/>
+        <location filename="../../options.cpp" line="4839"/>
         <source>Choose image file</source>
         <translation>Escolha o arquivo de imagem</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4812"/>
+        <location filename="../../options.cpp" line="4839"/>
         <source>Supported image files (%1)</source>
         <translation>Arquivos de imagem suportados (%1)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4907"/>
+        <location filename="../../options.cpp" line="4934"/>
         <source>ERROR: couldn&apos;t initialize SDL joystick support</source>
         <translation>ERRO: impossível inicializar suporte a joysticks do SDL</translation>
     </message>
@@ -12745,7 +12746,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../options.cpp" line="4305"/>
         <location filename="../../options.cpp" line="4331"/>
         <location filename="../../options.cpp" line="4584"/>
-        <location filename="../../options.cpp" line="4812"/>
+        <location filename="../../options.cpp" line="4839"/>
         <source>All files (*)</source>
         <translation>Todos os arquivos (*)</translation>
     </message>
@@ -12928,6 +12929,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Arquivo de logo</translation>
     </message>
     <message>
+        <location filename="../../options.ui" line="5685"/>
         <location filename="../../options.cpp" line="2985"/>
         <location filename="../../options.cpp" line="4626"/>
         <source>Custom IDs...</source>
@@ -13053,20 +13055,20 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     </message>
     <message>
         <location filename="../../options.ui" line="3823"/>
-        <location filename="../../options.cpp" line="4896"/>
         <location filename="../../options.cpp" line="4923"/>
-        <location filename="../../options.cpp" line="4979"/>
-        <location filename="../../options.cpp" line="5068"/>
+        <location filename="../../options.cpp" line="4950"/>
+        <location filename="../../options.cpp" line="5006"/>
+        <location filename="../../options.cpp" line="5095"/>
         <source>No joysticks found</source>
         <translation>Nenhum joystick encontrado</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5246"/>
+        <location filename="../../options.cpp" line="5273"/>
         <source>joystick map is clean</source>
         <translation>mapa de joystick está limpo</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5248"/>
+        <location filename="../../options.cpp" line="5275"/>
         <source>WARNING: joystick map contains duplicates</source>
         <translation>AVISO: mapa de joystick contém itens duplicados</translation>
     </message>
@@ -14110,7 +14112,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../options.ui" line="3715"/>
         <location filename="../../options.cpp" line="559"/>
         <location filename="../../options.cpp" line="560"/>
-        <location filename="../../options.cpp" line="4758"/>
+        <location filename="../../options.cpp" line="4780"/>
         <source>Default</source>
         <translation>Padrão</translation>
     </message>
@@ -14918,8 +14920,8 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../options.ui" line="4270"/>
         <location filename="../../options.ui" line="4349"/>
         <location filename="../../options.ui" line="4684"/>
-        <location filename="../../options.ui" line="5515"/>
-        <location filename="../../options.ui" line="5651"/>
+        <location filename="../../options.ui" line="5567"/>
+        <location filename="../../options.ui" line="5793"/>
         <source>Arguments</source>
         <translation>Argumentos</translation>
     </message>
@@ -15050,7 +15052,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     </message>
     <message>
         <location filename="../../options.ui" line="4783"/>
-        <location filename="../../options.ui" line="5549"/>
+        <location filename="../../options.ui" line="5711"/>
         <source>Executable file</source>
         <translation>Arquivo executável</translation>
     </message>
@@ -15066,7 +15068,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     </message>
     <message>
         <location filename="../../options.ui" line="4798"/>
-        <location filename="../../options.ui" line="5723"/>
+        <location filename="../../options.ui" line="5737"/>
         <source>Browse emulator executable file</source>
         <translation>Procurar pelo executável do emulador</translation>
     </message>
@@ -15241,37 +15243,37 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Procurar por arquivo de base de dados do usuário</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5528"/>
+        <location filename="../../options.ui" line="5800"/>
         <source>Indicates if the $ID$ placeholder is missing on the supplied command line (yellow) or not (green)</source>
         <translation>Indica se a âncora $ID$ está faltando na linha de comando passada (amarelo) ou não (verde)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5569"/>
+        <location filename="../../options.ui" line="5646"/>
         <source>Replace</source>
         <translation>Substituir</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5583"/>
+        <location filename="../../options.ui" line="5821"/>
         <source>Arguments passed to the emulator -- use $ID$ as placeholder for the unique set ID, $DESCRIPTION$ for its description</source>
         <translation>Argumentos passados para o emulador -- use $ID$ como âncora para ID de conjunto, $DESCRIPTION$ para sua descrição</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4369"/>
         <location filename="../../options.ui" line="5077"/>
-        <location filename="../../options.ui" line="5590"/>
-        <location filename="../../options.ui" line="5646"/>
+        <location filename="../../options.ui" line="5562"/>
+        <location filename="../../options.ui" line="5751"/>
         <source>Working directory</source>
         <translation>Diretório de trabalho</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5365"/>
-        <location filename="../../options.ui" line="5783"/>
+        <location filename="../../options.ui" line="5764"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
         <translation>Diretório de trabalho que é usado quando o emulador é executado (se vazio, o diretório de trabalho do QMC2 é usado)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5090"/>
-        <location filename="../../options.ui" line="5690"/>
+        <location filename="../../options.ui" line="5777"/>
         <source>Browse working directory</source>
         <translation>Procurar diretório de trabalho</translation>
     </message>
@@ -15293,47 +15295,52 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5597"/>
+        <location filename="../../options.ui" line="5513"/>
         <source>Registered emulators -- you may select one of these in the game-specific emulator configuration</source>
         <translation>Emuladores registrados -- você pode selecionar um desses na configuração de emulador específica de jogo</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5636"/>
+        <location filename="../../options.ui" line="5552"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5641"/>
+        <location filename="../../options.ui" line="5557"/>
         <source>Executable</source>
         <translation>Executável</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5656"/>
+        <location filename="../../options.ui" line="5572"/>
         <source>Custom IDs</source>
         <translation>IDs customizados</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5667"/>
+        <location filename="../../options.ui" line="5591"/>
         <source>Register emulator</source>
         <translation>Registrar emulador</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5747"/>
+        <location filename="../../options.ui" line="5594"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="5617"/>
         <source>Deregister emulator</source>
         <translation>Desregistrar emulador</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5556"/>
+        <location filename="../../options.ui" line="5704"/>
         <source>Registered emulator&apos;s name</source>
         <translation>Nome do emulador registrado</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5770"/>
+        <location filename="../../options.ui" line="5724"/>
         <source>Command to execute the emulator (path to the executable file)</source>
         <translation>Comando para executar o emulador (caminho para o arquivo executável)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5566"/>
+        <location filename="../../options.ui" line="5643"/>
         <source>Replace emulator registration</source>
         <translation>Substituir registro do emulador</translation>
     </message>
@@ -15358,72 +15365,67 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>&amp;Emuladores estrangeiros</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5631"/>
+        <location filename="../../options.ui" line="5547"/>
         <source>Icon</source>
         <translation>Ícone</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5670"/>
-        <source>New</source>
-        <translation>Novo</translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="5737"/>
+        <location filename="../../options.ui" line="5697"/>
         <source>Emulator name</source>
         <translation>Nome do emulador</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5750"/>
+        <location filename="../../options.ui" line="5620"/>
         <source> Remove</source>
         <translation>Remover</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5804"/>
+        <location filename="../../options.ui" line="5842"/>
         <source>Apply settings</source>
         <translation>Aplicar configurações</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5807"/>
+        <location filename="../../options.ui" line="5845"/>
         <source>&amp;Apply</source>
         <translation>&amp;Aplicar</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5821"/>
+        <location filename="../../options.ui" line="5859"/>
         <source>Restore currently applied settings</source>
         <translation>Restaurar configurações atualmente aplicadas</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5824"/>
+        <location filename="../../options.ui" line="5862"/>
         <source>&amp;Restore</source>
         <translation>&amp;Restaurar</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5838"/>
+        <location filename="../../options.ui" line="5876"/>
         <source>Reset to default settings (click &lt;i&gt;Restore&lt;/i&gt; to restore currently applied settings!)</source>
         <translation>Redefinir para configurações padrão (clique &lt;i&gt;Restaurar&lt;/i&gt; para restaurar configurações aplicadas atualmente!)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5841"/>
+        <location filename="../../options.ui" line="5879"/>
         <source>&amp;Default</source>
         <translation>&amp;Padrão</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5868"/>
+        <location filename="../../options.ui" line="5906"/>
         <source>Close and apply settings</source>
         <translation>Fechar e aplicar configurações</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5871"/>
+        <location filename="../../options.ui" line="5909"/>
         <source>&amp;Ok</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5885"/>
+        <location filename="../../options.ui" line="5923"/>
         <source>Close and discard changes</source>
         <translation>Fechar e discartar mudanças</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5888"/>
+        <location filename="../../options.ui" line="5926"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancelar</translation>
     </message>

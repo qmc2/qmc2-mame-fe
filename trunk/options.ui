@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>591</width>
+    <width>580</width>
     <height>641</height>
    </rect>
   </property>
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>545</width>
+                <width>534</width>
                 <height>622</height>
                </rect>
               </property>
@@ -4749,7 +4749,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>559</width>
+                <width>548</width>
                 <height>542</height>
                </rect>
               </property>
@@ -5502,96 +5502,12 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>236</width>
-                <height>214</height>
+                <width>548</width>
+                <height>542</height>
                </rect>
               </property>
-              <layout class="QGridLayout" name="gridLayout_26" columnstretch="0,0,0,0,0,0,0,0,0">
-               <item row="5" column="0" colspan="2">
-                <layout class="QHBoxLayout" name="horizontalLayout_3">
-                 <item>
-                  <widget class="QLabel" name="labelAdditionalEmulatorArguments">
-                   <property name="text">
-                    <string>Arguments</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="labelIDStatus">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Indicates if the $ID$ placeholder is missing on the supplied command line (yellow) or not (green)</string>
-                   </property>
-                   <property name="autoFillBackground">
-                    <bool>true</bool>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::Box</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <property name="text">
-                    <string notr="true"> $ID$ </string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item row="3" column="0" colspan="2">
-                <widget class="QLabel" name="labelAdditionalEmulatorExecutableFile">
-                 <property name="text">
-                  <string>Executable file</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="2" colspan="7">
-                <widget class="QLineEdit" name="lineEditAdditionalEmulatorName">
-                 <property name="toolTip">
-                  <string>Registered emulator's name</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1" colspan="4">
-                <widget class="QToolButton" name="toolButtonSaveEmulator">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="toolTip">
-                  <string>Replace emulator registration</string>
-                 </property>
-                 <property name="text">
-                  <string>Replace</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
-                 </property>
-                 <property name="toolButtonStyle">
-                  <enum>Qt::ToolButtonTextBesideIcon</enum>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="2" colspan="7">
-                <widget class="QLineEdit" name="lineEditAdditionalEmulatorArguments">
-                 <property name="toolTip">
-                  <string>Arguments passed to the emulator -- use $ID$ as placeholder for the unique set ID, $DESCRIPTION$ for its description</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="0" colspan="2">
-                <widget class="QLabel" name="labelAdditionalEmulatorWorkingDirectory">
-                 <property name="text">
-                  <string>Working directory</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="0" colspan="9">
+              <layout class="QGridLayout" name="gridLayout_26">
+               <item row="0" column="0" colspan="3">
                 <widget class="QTableWidget" name="tableWidgetRegisteredEmulators">
                  <property name="toolTip">
                   <string>Registered emulators -- you may select one of these in the game-specific emulator configuration</string>
@@ -5658,63 +5574,161 @@
                  </column>
                 </widget>
                </item>
-               <item row="1" column="0">
-                <widget class="QToolButton" name="toolButtonAddEmulator">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="toolTip">
-                  <string>Register emulator</string>
-                 </property>
+               <item row="1" column="0" colspan="3">
+                <layout class="QHBoxLayout" name="horizontalLayout_11">
+                 <item>
+                  <widget class="QToolButton" name="toolButtonAddEmulator">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Register emulator</string>
+                   </property>
+                   <property name="text">
+                    <string>Add</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
+                   </property>
+                   <property name="toolButtonStyle">
+                    <enum>Qt::ToolButtonTextBesideIcon</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="toolButtonRemoveEmulator">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Deregister emulator</string>
+                   </property>
+                   <property name="text">
+                    <string> Remove</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
+                   </property>
+                   <property name="toolButtonStyle">
+                    <enum>Qt::ToolButtonTextBesideIcon</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="toolButtonSaveEmulator">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Replace emulator registration</string>
+                   </property>
+                   <property name="text">
+                    <string>Replace</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+                   </property>
+                   <property name="toolButtonStyle">
+                    <enum>Qt::ToolButtonTextBesideIcon</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>78</width>
+                     <height>22</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="toolButtonCustomIDs">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Specify pre-defined foreign IDs for this emulator, launchable from the 'foreign emulators' view</string>
+                   </property>
+                   <property name="text">
+                    <string>Custom IDs...</string>
+                   </property>
+                   <property name="toolButtonStyle">
+                    <enum>Qt::ToolButtonTextBesideIcon</enum>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="labelAdditionalEmulatorName">
                  <property name="text">
-                  <string>New</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
-                 </property>
-                 <property name="toolButtonStyle">
-                  <enum>Qt::ToolButtonTextBesideIcon</enum>
+                  <string>Emulator name</string>
                  </property>
                 </widget>
                </item>
-               <item row="4" column="8">
-                <widget class="QToolButton" name="toolButtonBrowseAdditionalEmulatorWorkingDirectory">
+               <item row="2" column="1" colspan="2">
+                <widget class="QLineEdit" name="lineEditAdditionalEmulatorName">
+                 <property name="toolTip">
+                  <string>Registered emulator's name</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="labelAdditionalEmulatorExecutableFile">
+                 <property name="text">
+                  <string>Executable file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLineEdit" name="lineEditAdditionalEmulatorExecutableFile">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
                  <property name="toolTip">
-                  <string>Browse working directory</string>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                  <string>Command to execute the emulator (path to the executable file)</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="5">
-                <spacer name="horizontalSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="3" column="8">
+               <item row="3" column="2">
                 <widget class="QToolButton" name="toolButtonBrowseAdditionalEmulatorExecutable">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -5731,47 +5745,14 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0" colspan="2">
-                <widget class="QLabel" name="labelAdditionalEmulatorName">
+               <item row="4" column="0">
+                <widget class="QLabel" name="labelAdditionalEmulatorWorkingDirectory">
                  <property name="text">
-                  <string>Emulator name</string>
+                  <string>Working directory</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="7" colspan="2">
-                <widget class="QToolButton" name="toolButtonRemoveEmulator">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="toolTip">
-                  <string>Deregister emulator</string>
-                 </property>
-                 <property name="text">
-                  <string> Remove</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
-                 </property>
-                 <property name="toolButtonStyle">
-                  <enum>Qt::ToolButtonTextBesideIcon</enum>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="2" colspan="6">
-                <widget class="QLineEdit" name="lineEditAdditionalEmulatorExecutableFile">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="toolTip">
-                  <string>Command to execute the emulator (path to the executable file)</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="2" colspan="6">
+               <item row="4" column="1">
                 <widget class="QLineEdit" name="lineEditAdditionalEmulatorWorkingDirectory">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -5781,6 +5762,63 @@
                  </property>
                  <property name="toolTip">
                   <string>Working directory that's used when the emulator is executed (if empty, QMC2's current working directory is used)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="2">
+                <widget class="QToolButton" name="toolButtonBrowseAdditionalEmulatorWorkingDirectory">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Browse working directory</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qmc2.qrc">
+                   <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <layout class="QHBoxLayout" name="horizontalLayout_3">
+                 <item>
+                  <widget class="QLabel" name="labelAdditionalEmulatorArguments">
+                   <property name="text">
+                    <string>Arguments</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="labelIDStatus">
+                   <property name="toolTip">
+                    <string>Indicates if the $ID$ placeholder is missing on the supplied command line (yellow) or not (green)</string>
+                   </property>
+                   <property name="autoFillBackground">
+                    <bool>true</bool>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Box</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <property name="text">
+                    <string notr="true"> $ID$ </string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="5" column="1" colspan="2">
+                <widget class="QLineEdit" name="lineEditAdditionalEmulatorArguments">
+                 <property name="toolTip">
+                  <string>Arguments passed to the emulator -- use $ID$ as placeholder for the unique set ID, $DESCRIPTION$ for its description</string>
                  </property>
                 </widget>
                </item>
@@ -6149,8 +6187,9 @@
   <tabstop>checkBoxAutoClearEmuCaches</tabstop>
   <tabstop>tableWidgetRegisteredEmulators</tabstop>
   <tabstop>toolButtonAddEmulator</tabstop>
-  <tabstop>toolButtonSaveEmulator</tabstop>
   <tabstop>toolButtonRemoveEmulator</tabstop>
+  <tabstop>toolButtonSaveEmulator</tabstop>
+  <tabstop>toolButtonCustomIDs</tabstop>
   <tabstop>lineEditAdditionalEmulatorName</tabstop>
   <tabstop>lineEditAdditionalEmulatorExecutableFile</tabstop>
   <tabstop>toolButtonBrowseAdditionalEmulatorExecutable</tabstop>
