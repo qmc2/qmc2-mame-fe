@@ -122,6 +122,7 @@ extern HtmlEditor *qmc2SystemNotesEditor;
 extern HtmlEditor *qmc2SoftwareNotesEditor;
 extern QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
 extern Gamelist *qmc2Gamelist;
+extern bool qmc2TemplateCheck;
 
 // local global variables
 QStringList Gamelist::phraseTranslatorList;

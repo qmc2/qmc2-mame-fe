@@ -28,6 +28,7 @@ extern bool qmc2CriticalSection;
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
 #endif
 extern bool qmc2UseDefaultEmulator;
+extern bool qmc2TemplateCheck;
 extern Options *qmc2Options;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 
