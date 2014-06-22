@@ -1282,7 +1282,7 @@ void EmulatorOptions::checkTemplateMap()
 	bool started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
 	while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
 		qApp->processEvents();
-		started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
+		started = commandProc.waitForStarted(qmc2TemplateCheck ? QMC2_PROCESS_POLL_TIME : QMC2_PROCESS_POLL_TIME_LONG);
 	}
 	if ( started ) {
 		commandProcStarted = true;

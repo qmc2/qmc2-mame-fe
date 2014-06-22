@@ -20,6 +20,7 @@ extern Gamelist *qmc2Gamelist;
 extern bool qmc2CleaningUp;
 extern bool qmc2SampleCheckActive;
 extern bool qmc2StopParser;
+extern bool qmc2TemplateCheck;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 
 SampleChecker::SampleChecker(QWidget *parent)

@@ -38,6 +38,7 @@ extern int qmc2DefaultLaunchMode;
 extern bool qmc2StopParser;
 extern bool qmc2CriticalSection;
 extern bool qmc2UseDefaultEmulator;
+extern bool qmc2TemplateCheck;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 extern QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
 extern QMap<QString, QString> qmc2CustomShortcutMap;
