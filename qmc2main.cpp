@@ -12807,11 +12807,17 @@ int main(int argc, char *argv[])
 	QApplication qmc2App(argc, argv);
 
 	if ( QMC2_CLI_OPT_HELP ) {
+#if defined(QMC2_OS_WIN)
+		winAllocConsole();
+#endif
 		printf("Usage: %s [-config_path <config_path>] [-cc] [-tc] [-h|-?|-help] [qt_arguments]\n\n"
 		       "-config_path    Use specified configuration path (default: %s)\n"
 		       "-cc             Clear all emulator caches before starting up\n"
 		       "-tc             Check the emulator configuration template and exit\n"
 		       "-h|-?|-help     Show this help text and exit\n", argv[0], QString(QMC2_DOT_PATH).toLocal8Bit().constData());
+#if defined(QMC2_OS_WIN)
+		winFreeConsole();
+#endif
 		return 1;
 	}
 
@@ -12871,7 +12877,9 @@ int main(int argc, char *argv[])
 	qmc2Config = qmc2Options->config;
 	qmc2ProcessManager = new ProcessManager(0);
 	qmc2MainWindow = new MainWindow(0);
-	qmc2MainWindow->setVisible(!qmc2TemplateCheck);
+
+	if ( qmc2TemplateCheck )
+		qmc2MainWindow->showMinimized();
 
 	// prepare & restore game/machine detail setup
 	qmc2DetailSetup = new DetailSetup(qmc2MainWindow);
@@ -12991,7 +12999,13 @@ int main(int argc, char *argv[])
 
 	int retCode = 0;
 	if ( qmc2TemplateCheck ) {
+#if defined(QMC2_OS_WIN)
+		winAllocConsole();
+#endif
 		qmc2GlobalEmulatorOptions->checkTemplateMap();
+#if defined(QMC2_OS_WIN)
+		winFreeConsole();
+#endif
 		qmc2Options->applied = true;
 		qmc2MainWindow->close();
 	} else {
