@@ -1287,7 +1287,7 @@ void EmulatorOptions::checkTemplateMap()
 	if ( started ) {
 		commandProcStarted = true;
 		bool commandProcRunning = (commandProc.state() == QProcess::Running);
-		while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
+		while ( commandProcRunning && !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) ) {
 			qApp->processEvents();
 			commandProcRunning = (commandProc.state() == QProcess::Running);
 		}
