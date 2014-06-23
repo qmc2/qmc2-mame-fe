@@ -3246,24 +3246,27 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			QHashIterator<QString, char> it(gameStatusHash);
 			while ( it.hasNext() ) {
 				it.next();
-				tsRomCache << it.key() << " ";
-				switch ( it.value() ) {
-					case 'C':
-						tsRomCache << "C\n";
-						break;
-					case 'M':
-						tsRomCache << "M\n";
-						break;
-					case 'I':
-						tsRomCache << "I\n";
-						break;
-					case 'N':
-						tsRomCache << "N\n";
-						break;
-					case 'U':
-					default:
-						tsRomCache << "U\n";
-						break;
+				QString gameName = it.key();
+				if ( !gameName.isEmpty() ) {
+					tsRomCache << gameName << " ";
+					switch ( it.value() ) {
+						case 'C':
+							tsRomCache << "C\n";
+							break;
+						case 'M':
+							tsRomCache << "M\n";
+							break;
+						case 'I':
+							tsRomCache << "I\n";
+							break;
+						case 'N':
+							tsRomCache << "N\n";
+							break;
+						case 'U':
+						default:
+							tsRomCache << "U\n";
+							break;
+					}
 				}
 			}
 		}
