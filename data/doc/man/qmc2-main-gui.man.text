@@ -49,7 +49,7 @@ FILES
 
   CONFIG_PATH/youtube/*.yti, CONFIG_PATH/youtube/*.png  YouTube video info/image cache (shared by all variants, but each one has its own qmc2-<variant>.yti index file for video meta data)
 
-  CONFIG_PATH/maws/*.wc  NAWS web-cache (MAME only)
+  CONFIG_PATH/maws/*.wc  MAWS web-cache (MAME only)
 
   CONFIG_PATH/LocalStorage/*.localstorage  Folder used by the built-in web-browser to create small database files for 'HTML5 localStorage' support
 
