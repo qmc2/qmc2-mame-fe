@@ -53,6 +53,7 @@ class UserDataDatabaseManager : public QObject
 	private:
 		mutable QSqlDatabase m_db;
 		QString m_tableBasename;
+		QString m_connectionName;
 		bool m_logActive;
 		QList<int> m_rowIdList;
 		int m_lastRowId;

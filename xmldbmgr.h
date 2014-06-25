@@ -39,6 +39,7 @@ class XmlDatabaseManager : public QObject
 	private:
 		mutable QSqlDatabase m_db;
 		QString m_tableBasename;
+		QString m_connectionName;
 		bool m_logActive;
 };
 
