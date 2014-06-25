@@ -18,7 +18,8 @@ XmlDatabaseManager::XmlDatabaseManager(QObject *parent)
 {
 	setLogActive(true);
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
-	m_db = QSqlDatabase::addDatabase("QSQLITE", "xml-cache-db-connection-" + QUuid::createUuid().toString());
+	m_connectionName = QString("xml-cache-db-connection-%1").arg(QUuid::createUuid().toString());
+	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
 	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/XmlCacheDatabase", QString(userScopePath + "/%1-xml-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
 	m_tableBasename = QString("%1_xml_cache").arg(QMC2_EMU_NAME.toLower());
 	if ( m_db.open() ) {
@@ -33,6 +34,8 @@ XmlDatabaseManager::~XmlDatabaseManager()
 {
 	if ( m_db.isOpen() )
 		m_db.close();
+
+	QSqlDatabase::removeDatabase(m_connectionName);
 }
 
 QString XmlDatabaseManager::emulatorVersion()
