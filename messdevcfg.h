@@ -153,6 +153,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		void on_treeViewDirChooser_customContextMenuRequested(const QPoint &);
 		void on_treeViewFileChooser_customContextMenuRequested(const QPoint &);
 		void on_treeViewFileChooser_activated(const QModelIndex &);
+		void on_treeViewFileChooser_clicked(const QModelIndex &);
 		void on_toolButtonChooserSaveConfiguration_clicked();
 		void on_toolButtonChooserReload_clicked();
 		void on_comboBoxChooserFilterPattern_editTextChanged(const QString &);
