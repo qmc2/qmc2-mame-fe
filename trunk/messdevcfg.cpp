@@ -2469,6 +2469,15 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(c
 	}
 }
 
+void MESSDeviceConfigurator::on_treeViewFileChooser_clicked(const QModelIndex &index)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_treeViewFileChooser_clicked(const QModelIndex &index = ...)");
+#endif
+
+	treeViewFileChooser_selectionChanged(QItemSelection(index, index), QItemSelection());
+}
+
 void MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex &index)
 {
 #ifdef QMC2_DEBUG
