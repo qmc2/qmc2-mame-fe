@@ -186,6 +186,9 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   // setup tools-menu
   toolsMenu = new QMenu(this);
   actionImportFromDataFile = toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Import from data file"), this, SLOT(importFromDataFile()));
+#if defined(QMC2_WIP_ENABLED)
+  actionExportToDataFile = toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")), tr("Export to data file"), this, SLOT(exportToDataFile()));
+#endif
   toolButtonToolsMenu->setMenu(toolsMenu);
 
 #if defined(QMC2_OS_MAC)
@@ -2619,7 +2622,7 @@ void ROMAlyzer::importFromDataFile()
 	QString storedPath;
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath") )
 		storedPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath").toString();
-	QString dataFilePath = QFileDialog::getOpenFileName(this, tr("Choose data file to import"), storedPath, tr("Data files (*.dat)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QString dataFilePath = QFileDialog::getOpenFileName(this, tr("Choose data file to import from"), storedPath, tr("Data files (*.dat)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !dataFilePath.isNull() ) {
 		QStringList nameList;
 		QFile dataFile(dataFilePath);
@@ -2634,6 +2637,27 @@ void ROMAlyzer::importFromDataFile()
 			dataFile.close();
 			if ( !nameList.isEmpty() )
 				lineEditGames->setText(nameList.join(" "));
+		}
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath", dataFilePath);
+	}
+}
+
+void ROMAlyzer::exportToDataFile()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::exportToDataFile()");
+#endif
+
+	QString storedPath;
+	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath") )
+		storedPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath").toString();
+	QString dataFilePath = QFileDialog::getSaveFileName(this, tr("Choose data file to export to"), storedPath, tr("Data files (*.dat)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !dataFilePath.isNull() ) {
+		QFile dataFile(dataFilePath);
+		if ( dataFile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
+			QTextStream ts(&dataFile);
+			// FIXME
+			dataFile.close();
 		}
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath", dataFilePath);
 	}
