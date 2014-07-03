@@ -196,6 +196,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		QAction *actionRewriteSet;
 		QAction *actionAnalyzeDeviceRefs;
 		QAction *actionImportFromDataFile;
+		QAction *actionExportToDataFile;
 		QString currentFilesSHA1Checksum;
 		QString currentFilesCrcChecksum;
 		QStringList wizardSelectedSets;
@@ -271,6 +272,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void copyToClipboard();
 		void analyzeDeviceRefs();
 		void importFromDataFile();
+		void exportToDataFile();
 
 		// CHD manager process control
 		void chdManagerStarted();
