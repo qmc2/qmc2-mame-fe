@@ -6,6 +6,7 @@
 #include <QDateTime>
 #include <QAbstractItemModel>
 #include <QFileSystemModel>
+#include <QFileInfo>
 #include <QApplication>
 #include <QThread>
 #include <QMutex>
@@ -673,7 +674,6 @@ class FileSystemModel : public QAbstractItemModel
 			QString lowerCaseFilePath = fileItem->absoluteFilePath().toLower();
 			if ( lowerCaseFilePath.endsWith(".zip") ) {
 				unzFile zipFile = unzOpen(fileItem->absoluteFilePath().toLocal8Bit().constData());
-
 				if ( zipFile ) {
 					char zipFileName[QMC2_ZIP_BUFFER_SIZE];
 					unz_file_info zipInfo;
@@ -685,6 +685,8 @@ class FileSystemModel : public QAbstractItemModel
 					// the zip-entry lists carry only one entry at a time for better GUI response
 					do {
 						if ( unzGetCurrentFileInfo(zipFile, &zipInfo, zipFileName, QMC2_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
+							if ( QString(zipFileName).endsWith("/") )
+								continue;
 							mZipEntryList << zipFileName;
 							mZipEntrySizes << zipInfo.uncompressed_size;
 							struct tm *t;
@@ -698,8 +700,8 @@ class FileSystemModel : public QAbstractItemModel
 							t->tm_mon  = ((int)(zipInfo.dosDate >> 21) & 0x0f) - 1;
 							t->tm_year = ((int)(zipInfo.dosDate >> 25) & 0x7f) + 80;
 							mZipEntryDates << QDateTime::fromTime_t(mktime(t));
+							insertRows(row, 1, index);
 						}
-						insertRows(row, 1, index);
 						mZipEntryList.clear();
 						mZipEntrySizes.clear();
 						mZipEntryDates.clear();
