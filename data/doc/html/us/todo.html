@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.44, 01-JUL-2014</h3>
+<h3>TODO - v0.44, 08-JUL-2014</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>The built-in joystick GUI control includes support for trackballs -- this is completely untested due to the lack of controllers with trackballs (it should basically work, but be prepared for bugs and unexpected behavior).</li>
@@ -18,7 +18,6 @@
   <li>The ROMAlyzer's <i>set rewriter</i> feature doesn't support reproduction of 7z archives (yet), only ZIPs or <i>regular files</i> in individual sub-directores can be created.</li> 
   <li>Due to a Qt restriction, a QTabWidget's corner-widget (if any) is only shown when the tab-position is either <i>north</i> or <i>south</i>.</li>
   <li>Windows only: There's a known issue for <u>embedded</u> emulators running in <i>Direct 3D</i> mode ('-video d3d'): full-screen switching will lead to a crash of the emulator. To work around this, you have to <i>release</i> the emulator first; you can re-embed it later from the emulator control panel.</li>
-  <li>Zip archives cannot be larger than 4GB. That's a limitation of the minizip version we're currently using (1.01h) and we will try to address that in a future release.</li>
 </ul>
 <p><b>Work in progress</b></p>
 <ul>
@@ -44,7 +43,7 @@
   <li>QMC2 Arcade: add support for dynamically changing background images based on the current game's category (category images being freely customizable)</li>
   <li>Add support for <b>multiple</b> images per image category</li>
   <li>Add <a href="https://developers.google.com/youtube/v3/" target="_blank">YouTube protocol 3.0</a> support (currently 'experimental')</li>
-  <li>Add support for 3D arcade cabinet models from the <a href="http://www.mameworld.info/3darcade/" target="_blank">3D Arcade</a> project -- this will likely not be done before Qt 5.3 is ready, provided it finally contains Qt3D (as expected)</li>
+  <li>Add support for 3D arcade cabinet models from the <a href="http://www.mameworld.info/3darcade/" target="_blank">3D Arcade</a> project -- this will likely not be done before Qt 5.4 is ready, provided it finally contains Qt3D (?)</li>
   <li>Add support for optional coloring of some game/machine list item cells, especially for the driver status column</li>
   <li>Add a 'record a video' dialog to make the creation of emulator session videos an easier task</li>
   <li>Allow changing the order and visibility of any 'special' widgets (emulator &amp; front-end logs, emulator control, audio player and downloads + tabs on the software-detail widget)</li>
