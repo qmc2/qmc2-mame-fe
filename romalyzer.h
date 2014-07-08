@@ -71,6 +71,7 @@
 #else
 #define QMC2_ROMALYZER_SEARCH_RESPONSE		5000
 #endif
+#define QMC2_ROMALYZER_EXPORT_RESPONSE		10
 #define QMC2_ROMALYZER_CKSUM_SEARCH_RESPONSE	500
 
 #define QMC2_ROMALYZER_FILE_TOO_BIG		"QMC2_FILE_TOO_BIG"
@@ -200,6 +201,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		QString currentFilesSHA1Checksum;
 		QString currentFilesCrcChecksum;
 		QStringList wizardSelectedSets;
+		QStringList analyzerBadSets;
 		QMultiMap<QString, QStringList> setRewriterFileMap;
 		QString setRewriterSetName;
 		QTreeWidgetItem *setRewriterItem;
