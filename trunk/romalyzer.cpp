@@ -9,6 +9,10 @@
 #include <QMap>
 #include <QFileDialog>
 #include <QClipboard>
+#include <QDateTime>
+#include <QDate>
+#include <QTime>
+#include <QXmlQuery>
 
 #include "romalyzer.h"
 #include "qmc2main.h"
@@ -186,9 +190,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   // setup tools-menu
   toolsMenu = new QMenu(this);
   actionImportFromDataFile = toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Import from data file"), this, SLOT(importFromDataFile()));
-#if defined(QMC2_WIP_ENABLED)
   actionExportToDataFile = toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")), tr("Export to data file"), this, SLOT(exportToDataFile()));
-#endif
   toolButtonToolsMenu->setMenu(toolsMenu);
 
 #if defined(QMC2_OS_MAC)
@@ -595,8 +597,9 @@ void ROMAlyzer::analyze()
   QStringList patternList = lineEditGames->text().simplified().split(" ", QString::SkipEmptyParts);
 
   if ( !checkBoxAppendReport->isChecked() ) {
-    treeWidgetChecksums->clear();
-    textBrowserLog->clear();
+	  treeWidgetChecksums->clear();
+	  textBrowserLog->clear();
+	  analyzerBadSets.clear();
   }
   qmc2ROMAlyzerPaused = false;
   animSeq = -1;
@@ -709,6 +712,7 @@ void ROMAlyzer::analyze()
 		      for (int j = 0; j < setsToBeRemoved; j++) {
 			      QTreeWidgetItem *ti = treeWidgetChecksums->topLevelItem(0);
 			      if ( ti ) {
+				      analyzerBadSets.removeAll(ti->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ")[0]);
 				      if ( ti->isSelected() )
 					      treeWidgetChecksums->selectionModel()->clear();
 				      delete treeWidgetChecksums->takeTopLevelItem(0);
@@ -1061,53 +1065,55 @@ void ROMAlyzer::analyze()
 	filesSkipped |= filesUnknown;
 	if ( !wizardSearch ) {
 		if ( gameOkay ) {
-		  if ( notFoundCounter == xmlHandler.fileCounter ) {
-		    if ( xmlHandler.fileCounter == 0 ) {
-			    xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good"));
-			    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
-		    } else {
-			    xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("not found"));
-			    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
-		    }
-		  } else if ( notFoundCounter > 0 ) {
-		    if ( filesSkipped )
-		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / not found / skipped"));
-		    else
-		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / not found"));
-		    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.brownBrush);
-		  } else if ( noDumpCounter > 0 ) {
-			  if ( filesSkipped )
-				  xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / no dump / skipped"));
-			  else
-				  xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / no dump"));
-			  xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.brownBrush);
-		  } else {
-		    if ( filesSkipped )
-		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / skipped"));
-		    else
-		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good"));
-		    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
-		  }
+			if ( notFoundCounter == xmlHandler.fileCounter ) {
+				if ( xmlHandler.fileCounter == 0 ) {
+					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good"));
+					xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
+				} else {
+					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("not found"));
+					xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
+					gameOkay = false;
+				}
+			} else if ( notFoundCounter > 0 ) {
+				if ( filesSkipped )
+					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / not found / skipped"));
+				else
+					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / not found"));
+				xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.brownBrush);
+				gameOkay = false;
+			} else if ( noDumpCounter > 0 ) {
+				if ( filesSkipped )
+					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / no dump / skipped"));
+				else
+					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / no dump"));
+				xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.brownBrush);
+			} else {
+				if ( filesSkipped )
+					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / skipped"));
+				else
+					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good"));
+				xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
+			}
 		} else {
-		  if ( notFoundCounter > 0 ) {
-		    if ( filesSkipped )
-		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / not found / skipped"));
-		    else
-		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / not found"));
-		    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
-		  } else if ( noDumpCounter > 0 ) {
-			  if ( filesSkipped )
-				  xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / no dump / skipped"));
-			  else
-				  xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / no dump"));
-			  xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
-		  } else {
-		    if ( filesSkipped )
-		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / skipped"));
-		    else
-		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad"));
-		    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
-		  }
+			if ( notFoundCounter > 0 ) {
+				if ( filesSkipped )
+					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / not found / skipped"));
+				else
+					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / not found"));
+				xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
+			} else if ( noDumpCounter > 0 ) {
+				if ( filesSkipped )
+					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / no dump / skipped"));
+				else
+					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / no dump"));
+				xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
+			} else {
+				if ( filesSkipped )
+					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / skipped"));
+				else
+					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad"));
+				xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
+			}
 		}
 		if ( !xmlHandler.parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
 			switch ( mergeStatus ) {
@@ -1125,7 +1131,11 @@ void ROMAlyzer::analyze()
 			}
 		}
 	}
+
 	log(tr("done (checking %n file(s) for '%1')", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(gameName));
+
+	if ( !gameOkay )
+		analyzerBadSets << gameName;
 
 	if ( gameOkay || !checkBoxSetRewriterGoodSetsOnly->isChecked() )
 		if ( groupBoxSetRewriter->isChecked() )
@@ -1158,6 +1168,8 @@ void ROMAlyzer::analyze()
   qApp->processEvents();
   elapsedTime = elapsedTime.addMSecs(analysisTimer.elapsed());
   log(tr("analysis ended") + " - " + tr("elapsed time = %1").arg(elapsedTime.toString("hh:mm:ss.zzz")));
+
+  actionExportToDataFile->setEnabled(!analyzerBadSets.isEmpty());
 
   if ( wizardSearch && wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_REPAIR && !qmc2StopParser ) {
     if ( pushButtonChecksumWizardRepairBadSets->isEnabled() )
@@ -2622,11 +2634,12 @@ void ROMAlyzer::importFromDataFile()
 	QString storedPath;
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath") )
 		storedPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath").toString();
-	QString dataFilePath = QFileDialog::getOpenFileName(this, tr("Choose data file to import from"), storedPath, tr("Data files (*.dat)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QString dataFilePath = QFileDialog::getOpenFileName(this, tr("Choose data file to import from"), storedPath, tr("Data files (*.dat)") + ";;" + tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !dataFilePath.isNull() ) {
 		QStringList nameList;
 		QFile dataFile(dataFilePath);
 		if ( dataFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+			qmc2ROMAlyzerActive = true;
 			QTextStream ts(&dataFile);
 			QString pattern = "<game name=\"";
 			while ( !ts.atEnd() ) {
@@ -2637,7 +2650,9 @@ void ROMAlyzer::importFromDataFile()
 			dataFile.close();
 			if ( !nameList.isEmpty() )
 				lineEditGames->setText(nameList.join(" "));
-		}
+			qmc2ROMAlyzerActive = false;
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open data file '%1' for reading").arg(dataFilePath));
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath", dataFilePath);
 	}
 }
@@ -2651,14 +2666,131 @@ void ROMAlyzer::exportToDataFile()
 	QString storedPath;
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath") )
 		storedPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath").toString();
-	QString dataFilePath = QFileDialog::getSaveFileName(this, tr("Choose data file to export to"), storedPath, tr("Data files (*.dat)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QString dataFilePath = QFileDialog::getSaveFileName(this, tr("Choose data file to export to"), storedPath, tr("Data files (*.dat)") + ";;" + tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !dataFilePath.isNull() ) {
 		QFile dataFile(dataFilePath);
+		QFileInfo fi(dataFilePath);
 		if ( dataFile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
+			qmc2ROMAlyzerActive = true;
+			progressBar->setRange(0, qmc2MainWindow->treeWidgetGamelist->topLevelItemCount());
+			labelStatus->setText(tr("Exporting"));
 			QTextStream ts(&dataFile);
-			// FIXME
+			ts << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+			ts << "<!DOCTYPE datafile PUBLIC \"-//Logiqx//DTD ROM Management Datafile//EN\" \"http://www.logiqx.com/Dats/datafile.dtd\">\n\n";
+			ts << "<datafile>\n";
+			ts << "\t<header>\n";
+			ts << "\t\t<name>" << fi.completeBaseName() << "</name>\n";
+			ts << "\t\t<description>" << fi.completeBaseName() << "</description>\n";
+			ts << "\t\t<category>FIXDATFILE</category>\n";
+			ts << "\t\t<version>" << QDateTime::currentDateTime().toString("MM/dd/yy hh:mm:ss") << "</version>\n";
+			ts << "\t\t<date>" << QDateTime::currentDateTime().toString("yyyy-MM-dd") << "</date>\n";
+			ts << "\t\t<author>auto-create</author>\n";
+			ts << "\t\t<email></email>\n";
+			ts << "\t\t<homepage></homepage>\n";
+			ts << "\t\t<url></url>\n";
+			ts << "\t\t<comment>" << tr("Created by QMC2 v%1").arg(XSTR(QMC2_VERSION)) << "</comment>\n";
+			ts << "\t</header>\n";
+#if defined(QMC2_EMUTYPE_MESS)
+			QString mainEntityName = "machine";
+#else
+			QString mainEntityName = "game";
+#endif
+			for (int i = 0; i < treeWidgetChecksums->topLevelItemCount(); i++) {
+				if ( i % QMC2_ROMALYZER_EXPORT_RESPONSE ) {
+					progressBar->setValue(i);
+					qApp->processEvents();
+				}
+				QTreeWidgetItem *item = treeWidgetChecksums->topLevelItem(i);
+				QString name = item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ")[0];
+				if ( analyzerBadSets.contains(name) ) {
+					QString sourcefile, isbios, cloneof, romof, sampleof;
+					QByteArray xmlDocument(ROMAlyzer::getXmlData(name, true).toLocal8Bit());
+					QBuffer xmlQueryBuffer(&xmlDocument);
+					xmlQueryBuffer.open(QIODevice::ReadOnly);
+					QXmlQuery xmlQuery(QXmlQuery::XQuery10);
+					xmlQuery.bindVariable("xmlDocument", &xmlQueryBuffer);
+					xmlQuery.setQuery(QString("doc($xmlDocument)//%1/@sourcefile/string()").arg(mainEntityName));
+					xmlQuery.evaluateTo(&sourcefile);
+					sourcefile = sourcefile.trimmed();
+					xmlQuery.setQuery(QString("doc($xmlDocument)//%1/@isbios/string()").arg(mainEntityName));
+					xmlQuery.evaluateTo(&isbios);
+					isbios = isbios.trimmed();
+					xmlQuery.setQuery(QString("doc($xmlDocument)//%1/@cloneof/string()").arg(mainEntityName));
+					xmlQuery.evaluateTo(&cloneof);
+					cloneof = cloneof.trimmed();
+					xmlQuery.setQuery(QString("doc($xmlDocument)//%1/@romof/string()").arg(mainEntityName));
+					xmlQuery.evaluateTo(&romof);
+					romof = romof.trimmed();
+					xmlQuery.setQuery(QString("doc($xmlDocument)//%1/@sampleof/string()").arg(mainEntityName));
+					xmlQuery.evaluateTo(&sampleof);
+					sampleof = sampleof.trimmed();
+					ts << "\t<game name=\"" << name << "\"";
+					if ( !sourcefile.isEmpty() )
+						ts << " sourcefile=\"" << sourcefile << "\"";
+					if ( !isbios.isEmpty() && isbios != "no" )
+						ts << " isbios=\"" << isbios << "\"";
+					if ( !cloneof.isEmpty() )
+						ts << " cloneof=\"" << cloneof << "\"";
+					if ( !romof.isEmpty() )
+						ts << " romof=\"" << romof << "\"";
+					if ( !sampleof.isEmpty() )
+						ts << " sampleof=\"" << sampleof << "\"";
+					ts << ">\n";
+					QString description, year, manufacturer;
+					xmlQuery.setQuery(QString("doc($xmlDocument)//%1/description/string()").arg(mainEntityName));
+					xmlQuery.evaluateTo(&description);
+					description = description.trimmed();
+					ts << "\t\t<description>" << description << "</description>\n";
+					xmlQuery.setQuery(QString("doc($xmlDocument)//%1/year/string()").arg(mainEntityName));
+					xmlQuery.evaluateTo(&year);
+					year = year.trimmed();
+					ts << "\t\t<year>" << year << "</year>\n";
+					xmlQuery.setQuery(QString("doc($xmlDocument)//%1/manufacturer/string()").arg(mainEntityName));
+					xmlQuery.evaluateTo(&manufacturer);
+					manufacturer = manufacturer.trimmed();
+					ts << "\t\t<manufacturer>" << manufacturer << "</manufacturer>\n";
+					// FIXME
+					for (int j = 0; j < item->childCount(); j++) {
+						QTreeWidgetItem *childItem = item->child(j);
+						QString filestatus = childItem->text(QMC2_ROMALYZER_COLUMN_FILESTATUS);
+						if ( filestatus == tr("not found") || filestatus.toUpper() != filestatus ) {
+							QString type = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE);
+							QString filename = childItem->text(QMC2_ROMALYZER_COLUMN_GAME);
+							QString size = childItem->text(QMC2_ROMALYZER_COLUMN_SIZE);
+							QString crc = childItem->text(QMC2_ROMALYZER_COLUMN_CRC);
+							QString sha1 = childItem->text(QMC2_ROMALYZER_COLUMN_SHA1);
+							QString merge = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
+							if ( type == "ROM" ) {
+								ts << "\t\t<rom name=\"" << filename;
+							       	if ( !size.isEmpty() )
+									ts << "\" size=\"" << size;
+								if ( !crc.isEmpty() )
+									ts << "\" crc=\"" << crc;
+								if ( !sha1.isEmpty() )
+									ts << "\" sha1=\"" << sha1;
+								if ( !merge.isEmpty() )
+									ts << "\" merge=\"" << merge;
+								ts << "\"/>\n";
+							} else {
+								ts << "\t\t<disk name=\"" << filename;
+								if ( !sha1.isEmpty() )
+									ts << "\" sha1=\"" << sha1;
+								if ( !merge.isEmpty() )
+									ts << "\" merge=\"" << merge;
+								ts << "\"/>\n";
+							}
+						}
+					}
+					ts << "\t</game>\n";
+				}
+			}
+			ts << "</datafile>\n";
 			dataFile.close();
-		}
+			progressBar->reset();
+			labelStatus->setText(tr("Idle"));
+			qmc2ROMAlyzerActive = false;
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open data file '%1' for writing").arg(dataFilePath));
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath", dataFilePath);
 	}
 }
