@@ -398,6 +398,7 @@
 // indirectly controls the state filter / loading responsiveness (number of updates)
 #define QMC2_STATEFILTER_UPDATES		50
 #define QMC2_GENERAL_LOADING_UPDATES		100
+#define QMC2_TAGGING_UPDATES			200
 
 // responsiveness while reading the XML game/machine list cache
 #define QMC2_XMLCACHE_RESPONSIVENESS		50

@@ -530,6 +530,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void updateTabWidgets();
 		void viewPdf(QString filePath = QString());
 		void viewHtml(QString filePath = QString());
+		void showLoadAnim(QString text, bool enable = true);
+		void hideLoadAnim() { showLoadAnim(QString(), false); }
 
 		// float toggle button callbacks for 'special' widgets
 		void floatToggleButtonSoftwareDetail_toggled(bool);
