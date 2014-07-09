@@ -11480,6 +11480,7 @@ void MainWindow::on_actionTagAll_triggered(bool)
 			qApp->processEvents();
 		}
 	}
+	labelGamelistStatus->setText(qmc2Gamelist->status());
 	hideLoadAnim();
 	progressBarGamelist->reset();
 	qmc2Gamelist->numTaggedSets = qmc2Gamelist->numGames;
@@ -11533,6 +11534,7 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 			qApp->processEvents();
 		}
 	}
+	labelGamelistStatus->setText(qmc2Gamelist->status());
 	hideLoadAnim();
 	progressBarGamelist->reset();
 	qmc2Gamelist->numTaggedSets = 0;
@@ -11590,6 +11592,7 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 			qApp->processEvents();
 		}
 	}
+	labelGamelistStatus->setText(qmc2Gamelist->status());
 	hideLoadAnim();
 	progressBarGamelist->reset();
 	progressBarGamelist->setFormat(oldFormat);
@@ -11643,6 +11646,7 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 			qApp->processEvents();
 		}
 	}
+	labelGamelistStatus->setText(qmc2Gamelist->status());
 	hideLoadAnim();
 	progressBarGamelist->reset();
 	labelGamelistStatus->setText(qmc2Gamelist->status());
@@ -11697,6 +11701,7 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 			qApp->processEvents();
 		}
 	}
+	labelGamelistStatus->setText(qmc2Gamelist->status());
 	hideLoadAnim();
 	progressBarGamelist->reset();
 	labelGamelistStatus->setText(qmc2Gamelist->status());
@@ -11755,6 +11760,7 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 			qApp->processEvents();
 		}
 	}
+	labelGamelistStatus->setText(qmc2Gamelist->status());
 	hideLoadAnim();
 	progressBarGamelist->reset();
 	progressBarGamelist->setFormat(oldFormat);
