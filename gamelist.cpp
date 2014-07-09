@@ -243,8 +243,16 @@ Gamelist::~Gamelist()
 		delete iconFile;
 	}
 
+	QString connectionName;
+
+	connectionName = m_xmlDb->connectionName();
 	delete m_xmlDb;
+	QSqlDatabase::removeDatabase(connectionName);
+
+	connectionName = m_userDataDb->connectionName();
 	delete m_userDataDb;
+	QSqlDatabase::removeDatabase(connectionName);
+
 }
 
 void Gamelist::enableWidgets(bool enable)
