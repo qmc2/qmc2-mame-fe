@@ -4262,62 +4262,64 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 void MainWindow::scrollToCurrentItem()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::scrollToCurrentItem()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::scrollToCurrentItem()");
 #endif
 
-  QTreeWidgetItem *ci;
+	QTreeWidgetItem *ci = NULL;
 
-  if ( qmc2CurrentItem )
-    ci = qmc2CurrentItem;
-  else
-    ci = treeWidgetGamelist->currentItem();
+	if ( qmc2CurrentItem )
+		ci = qmc2CurrentItem;
+	else
+		ci = treeWidgetGamelist->currentItem();
 
-  if ( ci ) {
-    if ( ci->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
-      return;
+	if ( ci ) {
+		if ( ci->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+			return;
 
-    switch ( stackedWidgetView->currentIndex() ) {
-      case QMC2_VIEWHIERARCHY_INDEX:
-        ci = qmc2HierarchyItemMap[ci->text(QMC2_GAMELIST_COLUMN_NAME)];
-        if ( ci ) {
-          treeWidgetHierarchy->clearSelection();
-          treeWidgetHierarchy->setCurrentItem(ci);
-          treeWidgetHierarchy->scrollToItem(ci, qmc2CursorPositioningMode);
-        }
-        break;
+		switch ( stackedWidgetView->currentIndex() ) {
+			case QMC2_VIEWHIERARCHY_INDEX:
+				ci = qmc2HierarchyItemMap[ci->text(QMC2_GAMELIST_COLUMN_NAME)];
+				if ( ci ) {
+					treeWidgetHierarchy->clearSelection();
+					treeWidgetHierarchy->setCurrentItem(ci);
+					treeWidgetHierarchy->scrollToItem(ci, qmc2CursorPositioningMode);
+				}
+				break;
 
-      case QMC2_VIEWCATEGORY_INDEX:
-        ci = qmc2CategoryItemMap[ci->text(QMC2_GAMELIST_COLUMN_NAME)];
-        if ( ci ) {
-          treeWidgetCategoryView->clearSelection();
-          treeWidgetCategoryView->setCurrentItem(ci);
-          treeWidgetCategoryView->scrollToItem(ci, qmc2CursorPositioningMode);
-        }
-        break;
+			case QMC2_VIEWCATEGORY_INDEX:
+				ci = qmc2CategoryItemMap[ci->text(QMC2_GAMELIST_COLUMN_NAME)];
+				if ( ci ) {
+					treeWidgetCategoryView->clearSelection();
+					treeWidgetCategoryView->setCurrentItem(ci);
+					treeWidgetCategoryView->scrollToItem(ci, qmc2CursorPositioningMode);
+				}
+				break;
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-      case QMC2_VIEWVERSION_INDEX:
-        ci = qmc2VersionItemMap[ci->text(QMC2_GAMELIST_COLUMN_NAME)];
-        if ( ci ) {
-          treeWidgetVersionView->clearSelection();
-          treeWidgetVersionView->setCurrentItem(ci);
-          treeWidgetVersionView->scrollToItem(ci, qmc2CursorPositioningMode);
-        }
-        break;
+			case QMC2_VIEWVERSION_INDEX:
+				ci = qmc2VersionItemMap[ci->text(QMC2_GAMELIST_COLUMN_NAME)];
+				if ( ci ) {
+					treeWidgetVersionView->clearSelection();
+					treeWidgetVersionView->setCurrentItem(ci);
+					treeWidgetVersionView->scrollToItem(ci, qmc2CursorPositioningMode);
+				}
+				break;
 #endif
 
-      case QMC2_VIEWGAMELIST_INDEX:
-      default:
-        qmc2CheckItemVisibility = false;
-        treeWidgetGamelist->clearSelection();
-        if ( !qmc2ReloadActive )
-          treeWidgetGamelist->setCurrentItem(ci);
-        treeWidgetGamelist->scrollToItem(ci, qmc2CursorPositioningMode);
-        break;
-    }
-    if ( !qmc2ReloadActive && ci )
-      ci->setSelected(true);
-  }
+			case QMC2_VIEWGAMELIST_INDEX:
+			default:
+				qmc2CheckItemVisibility = false;
+				treeWidgetGamelist->clearSelection();
+				if ( !qmc2ReloadActive )
+					treeWidgetGamelist->setCurrentItem(ci);
+				treeWidgetGamelist->scrollToItem(ci, qmc2CursorPositioningMode);
+				break;
+		}
+		if ( !qmc2ReloadActive && ci )
+			ci->setSelected(true);
+	}
+
+	QTimer::singleShot(0, this, SLOT(updateUserData()));
 }
 
 void MainWindow::checkCurrentSearchSelection()

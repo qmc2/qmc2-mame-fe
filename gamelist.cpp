@@ -2453,7 +2453,8 @@ void Gamelist::filter(bool initial)
 		qmc2MainWindow->progressBarGamelist->setFormat(tr("State filter - %p%"));
 	else
 		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-	qmc2MainWindow->progressBarGamelist->setRange(0, qmc2MainWindow->treeWidgetGamelist->topLevelItemCount() - 1);
+	int itemCount = qmc2MainWindow->treeWidgetGamelist->topLevelItemCount();
+	qmc2MainWindow->progressBarGamelist->setRange(0, itemCount - 1);
 	qApp->processEvents();
 	if ( verifyCurrentOnly && checkedItem ) {
 		QString gameName = checkedItem->text(QMC2_GAMELIST_COLUMN_NAME);
@@ -2485,8 +2486,8 @@ void Gamelist::filter(bool initial)
 		qmc2MainWindow->labelLoadingGamelist->setVisible(true);
 		qmc2MainWindow->loadAnimMovie->start();
 		qApp->processEvents();
-		int filterResponse = qmc2MainWindow->treeWidgetGamelist->topLevelItemCount() / QMC2_STATEFILTER_UPDATES;
-		for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount() && !qmc2StopParser; i++) {
+		int filterResponse = itemCount / QMC2_STATEFILTER_UPDATES;
+		for (int i = 0; i < itemCount && !qmc2StopParser; i++) {
 			QTreeWidgetItem *item = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i);
 			QString gameName = item->text(QMC2_GAMELIST_COLUMN_NAME);
 			if ( !showBiosSets && isBios(gameName) )
@@ -2521,16 +2522,15 @@ void Gamelist::filter(bool initial)
 		qmc2MainWindow->labelLoadingGamelist->setVisible(false);
 	}
 
-	qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->treeWidgetGamelist->topLevelItemCount() - 1);
+	qmc2MainWindow->progressBarGamelist->setValue(itemCount - 1);
 	qmc2FilterActive = false;
 	elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (applying ROM state filter, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	qmc2MainWindow->progressBarGamelist->reset();
-	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
-	qApp->processEvents();
 	enableWidgets(true);
+	qApp->processEvents();
+	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 	qmc2StatesTogglesEnabled = true;
-	QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 }
 
 void Gamelist::save()
