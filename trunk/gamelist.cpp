@@ -2482,6 +2482,8 @@ void Gamelist::filter(bool initial)
 		}
 	} else {
 		qmc2MainWindow->treeWidgetGamelist->setVisible(false);
+		// note: reset()'ing the tree-widget is essential to avoid an apparent Qt bug that slows down filtering under certain circumstances
+		qmc2MainWindow->treeWidgetGamelist->reset();
 		((AspectRatioLabel *)qmc2MainWindow->labelLoadingGamelist)->setLabelText(tr("Filtering, please wait..."));
 		qmc2MainWindow->labelLoadingGamelist->setVisible(true);
 		qmc2MainWindow->loadAnimMovie->start();
@@ -2521,14 +2523,12 @@ void Gamelist::filter(bool initial)
 		qmc2MainWindow->treeWidgetGamelist->setVisible(true);
 		qmc2MainWindow->labelLoadingGamelist->setVisible(false);
 	}
-
 	qmc2MainWindow->progressBarGamelist->setValue(itemCount - 1);
 	qmc2FilterActive = false;
 	elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (applying ROM state filter, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	qmc2MainWindow->progressBarGamelist->reset();
 	enableWidgets(true);
-	qApp->processEvents();
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 	qmc2StatesTogglesEnabled = true;
 }
