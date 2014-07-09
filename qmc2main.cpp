@@ -11400,11 +11400,48 @@ void MainWindow::on_actionToggleTagCursorUp_triggered(bool)
 	}
 }
 
+void MainWindow::showLoadAnim(QString text, bool enable)
+{
+	if ( enable ) {
+		treeWidgetGamelist->setVisible(false);
+		((AspectRatioLabel *)labelLoadingGamelist)->setLabelText(text);
+		labelLoadingGamelist->setVisible(true);
+		treeWidgetHierarchy->setVisible(false);
+		((AspectRatioLabel *)labelLoadingHierarchy)->setLabelText(text);
+		labelLoadingHierarchy->setVisible(true);
+		treeWidgetCategoryView->setVisible(false);
+		((AspectRatioLabel *)labelCreatingCategoryView)->setLabelText(text);
+		labelCreatingCategoryView->setVisible(true);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		treeWidgetVersionView->setVisible(false);
+		((AspectRatioLabel *)labelCreatingVersionView)->setLabelText(text);
+		labelCreatingVersionView->setVisible(true);
+#endif
+		loadAnimMovie->start();
+	} else {
+		loadAnimMovie->setPaused(true);
+		treeWidgetGamelist->setVisible(true);
+		labelLoadingGamelist->setVisible(false);
+		treeWidgetHierarchy->setVisible(true);
+		labelLoadingHierarchy->setVisible(false);
+		treeWidgetCategoryView->setVisible(true);
+		labelCreatingCategoryView->setVisible(false);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		treeWidgetVersionView->setVisible(true);
+		labelCreatingVersionView->setVisible(false);
+#endif
+	}
+	qApp->processEvents();
+}
+
 void MainWindow::on_actionTagAll_triggered(bool)
 {
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionTagAll_triggered(bool)");
 #endif
+
+	if ( qmc2ReloadActive )
+		return;
 
 	progressBarGamelist->reset();
 	QString oldFormat = progressBarGamelist->format();
@@ -11413,31 +11450,37 @@ void MainWindow::on_actionTagAll_triggered(bool)
 	else
 		progressBarGamelist->setFormat("%p%");
 	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
-	qApp->processEvents();
-	int count = 0;
-
+	showLoadAnim(tr("Tagging, please wait..."));
 	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
 	QTreeWidgetItem *item;
+	QString id;
+	int taggingResponse = qmc2GamelistItemMap.count() / QMC2_STATEFILTER_UPDATES;
+	int count = 0;
 	while ( it.hasNext() ) {
-		progressBarGamelist->setValue(count++);
 		it.next();
-		item = qmc2GamelistItemMap[it.key()];
+		id = it.key();
+		item = qmc2GamelistItemMap[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
-		item = qmc2HierarchyItemMap[it.key()];
+		item = qmc2HierarchyItemMap[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
-		item = qmc2CategoryItemMap[it.key()];
+		item = qmc2CategoryItemMap[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		item = qmc2VersionItemMap[it.key()];
+		item = qmc2VersionItemMap[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
 #endif
 		qmc2Gamelist->numTaggedSets++;
-		labelGamelistStatus->setText(qmc2Gamelist->status());
+		if ( count++ % taggingResponse == 0 ) {
+			progressBarGamelist->setValue(count);
+			labelGamelistStatus->setText(qmc2Gamelist->status());
+			qApp->processEvents();
+		}
 	}
+	hideLoadAnim();
 	progressBarGamelist->reset();
 	qmc2Gamelist->numTaggedSets = qmc2Gamelist->numGames;
 	labelGamelistStatus->setText(qmc2Gamelist->status());
@@ -11450,6 +11493,9 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionUntagAll_triggered(bool)");
 #endif
 
+	if ( qmc2ReloadActive )
+		return;
+
 	progressBarGamelist->reset();
 	QString oldFormat = progressBarGamelist->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -11457,31 +11503,37 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 	else
 		progressBarGamelist->setFormat("%p%");
 	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
-	qApp->processEvents();
-	int count = 0;
-
+	showLoadAnim(tr("Untagging, please wait..."));
 	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
 	QTreeWidgetItem *item;
+	QString id;
+	int taggingResponse = qmc2GamelistItemMap.count() / QMC2_STATEFILTER_UPDATES;
+	int count = 0;
 	while ( it.hasNext() ) {
-		progressBarGamelist->setValue(count++);
 		it.next();
-		item = qmc2GamelistItemMap[it.key()];
+		id = it.key();
+		item = qmc2GamelistItemMap[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
-		item = qmc2HierarchyItemMap[it.key()];
+		item = qmc2HierarchyItemMap[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
-		item = qmc2CategoryItemMap[it.key()];
+		item = qmc2CategoryItemMap[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		item = qmc2VersionItemMap[it.key()];
+		item = qmc2VersionItemMap[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
 #endif
 		qmc2Gamelist->numTaggedSets--;
-		labelGamelistStatus->setText(qmc2Gamelist->status());
+		if ( count++ % taggingResponse == 0 ) {
+			progressBarGamelist->setValue(count);
+			labelGamelistStatus->setText(qmc2Gamelist->status());
+			qApp->processEvents();
+		}
 	}
+	hideLoadAnim();
 	progressBarGamelist->reset();
 	qmc2Gamelist->numTaggedSets = 0;
 	labelGamelistStatus->setText(qmc2Gamelist->status());
@@ -11494,6 +11546,9 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionInvertTags_triggered(bool)");
 #endif
 
+	if ( qmc2ReloadActive )
+		return;
+
 	progressBarGamelist->reset();
 	QString oldFormat = progressBarGamelist->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -11501,37 +11556,41 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 	else
 		progressBarGamelist->setFormat("%p%");
 	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
-	qApp->processEvents();
-	int count = 0;
-
+	showLoadAnim(tr("Inverting tags, please wait..."));
 	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
 	QTreeWidgetItem *item;
+	QString id;
+	int taggingResponse = qmc2GamelistItemMap.count() / QMC2_STATEFILTER_UPDATES;
+	int count = 0;
 	while ( it.hasNext() ) {
-		progressBarGamelist->setValue(count++);
 		it.next();
-		item = qmc2GamelistItemMap[it.key()];
-		if ( item ) {
-			Qt::CheckState cs = (item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
-			bool wasTagged = (cs != Qt::Checked);
+		id = it.key();
+		item = qmc2GamelistItemMap[id];
+		Qt::CheckState cs = (item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+		bool wasTagged = (cs != Qt::Checked);
+		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+		item = qmc2HierarchyItemMap[id];
+		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
-			item = qmc2HierarchyItemMap[it.key()];
-			if ( item )
-				item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
-			item = qmc2CategoryItemMap[it.key()];
-			if ( item )
-				item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+		item = qmc2CategoryItemMap[id];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-			item = qmc2VersionItemMap[it.key()];
-			if ( item )
-				item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+		item = qmc2VersionItemMap[id];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
 #endif
-			if ( wasTagged )
-				qmc2Gamelist->numTaggedSets--;
-			else
-				qmc2Gamelist->numTaggedSets++;
+		if ( wasTagged )
+			qmc2Gamelist->numTaggedSets--;
+		else
+			qmc2Gamelist->numTaggedSets++;
+		if ( count++ % taggingResponse == 0 ) {
+			progressBarGamelist->setValue(count);
 			labelGamelistStatus->setText(qmc2Gamelist->status());
+			qApp->processEvents();
 		}
 	}
+	hideLoadAnim();
 	progressBarGamelist->reset();
 	progressBarGamelist->setFormat(oldFormat);
 }
@@ -11542,6 +11601,9 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionTagVisible_triggered(bool)");
 #endif
 
+	if ( qmc2ReloadActive )
+		return;
+
 	progressBarGamelist->reset();
 	QString oldFormat = progressBarGamelist->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -11549,33 +11611,39 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 	else
 		progressBarGamelist->setFormat("%p%");
 	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
-	qApp->processEvents();
-	int count = 0;
-
+	showLoadAnim(tr("Tagging, please wait..."));
 	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
 	QTreeWidgetItem *item;
+	QString id;
+	int taggingResponse = qmc2GamelistItemMap.count() / QMC2_STATEFILTER_UPDATES;
+	int count = 0;
 	while ( it.hasNext() ) {
-		progressBarGamelist->setValue(count++);
 		it.next();
-		item = qmc2GamelistItemMap[it.key()];
+		id = it.key();
+		item = qmc2GamelistItemMap[id];
 		if ( item->isHidden() )
 			continue;
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
-		item = qmc2HierarchyItemMap[it.key()];
+		item = qmc2HierarchyItemMap[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
-		item = qmc2CategoryItemMap[it.key()];
+		item = qmc2CategoryItemMap[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		item = qmc2VersionItemMap[it.key()];
+		item = qmc2VersionItemMap[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
 #endif
 		qmc2Gamelist->numTaggedSets++;
-		labelGamelistStatus->setText(qmc2Gamelist->status());
+		if ( count++ % taggingResponse == 0 ) {
+			progressBarGamelist->setValue(count);
+			labelGamelistStatus->setText(qmc2Gamelist->status());
+			qApp->processEvents();
+		}
 	}
+	hideLoadAnim();
 	progressBarGamelist->reset();
 	labelGamelistStatus->setText(qmc2Gamelist->status());
 	progressBarGamelist->setFormat(oldFormat);
@@ -11587,6 +11655,9 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionUntagVisible_triggered(bool)");
 #endif
 
+	if ( qmc2ReloadActive )
+		return;
+
 	progressBarGamelist->reset();
 	QString oldFormat = progressBarGamelist->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -11594,33 +11665,39 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 	else
 		progressBarGamelist->setFormat("%p%");
 	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
-	qApp->processEvents();
-	int count = 0;
-
+	showLoadAnim(tr("Untagging, please wait..."));
 	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
 	QTreeWidgetItem *item;
+	QString id;
+	int taggingResponse = qmc2GamelistItemMap.count() / QMC2_STATEFILTER_UPDATES;
+	int count = 0;
 	while ( it.hasNext() ) {
-		progressBarGamelist->setValue(count++);
 		it.next();
-		item = qmc2GamelistItemMap[it.key()];
+		id = it.key();
+		item = qmc2GamelistItemMap[id];
 		if ( item->isHidden() )
 			continue;
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
-		item = qmc2HierarchyItemMap[it.key()];
+		item = qmc2HierarchyItemMap[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
-		item = qmc2CategoryItemMap[it.key()];
+		item = qmc2CategoryItemMap[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		item = qmc2VersionItemMap[it.key()];
+		item = qmc2VersionItemMap[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
 #endif
 		qmc2Gamelist->numTaggedSets--;
-		labelGamelistStatus->setText(qmc2Gamelist->status());
+		if ( count++ % taggingResponse == 0 ) {
+			progressBarGamelist->setValue(count);
+			labelGamelistStatus->setText(qmc2Gamelist->status());
+			qApp->processEvents();
+		}
 	}
+	hideLoadAnim();
 	progressBarGamelist->reset();
 	labelGamelistStatus->setText(qmc2Gamelist->status());
 	progressBarGamelist->setFormat(oldFormat);
@@ -11632,6 +11709,9 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionInvertVisibleTags_triggered(bool)");
 #endif
 
+	if ( qmc2ReloadActive )
+		return;
+
 	progressBarGamelist->reset();
 	QString oldFormat = progressBarGamelist->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -11639,37 +11719,43 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 	else
 		progressBarGamelist->setFormat("%p%");
 	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
-	qApp->processEvents();
-	int count = 0;
-
+	showLoadAnim(tr("Inverting tags, please wait..."));
 	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
 	QTreeWidgetItem *item;
+	QString id;
+	int taggingResponse = qmc2GamelistItemMap.count() / QMC2_STATEFILTER_UPDATES;
+	int count = 0;
 	while ( it.hasNext() ) {
-		progressBarGamelist->setValue(count++);
 		it.next();
-		item = qmc2GamelistItemMap[it.key()];
-		if ( item && !item->isHidden() ) {
-			Qt::CheckState cs = (item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
-			bool wasTagged = (cs != Qt::Checked);
+		id = it.key();
+		item = qmc2GamelistItemMap[id];
+		if ( item->isHidden() )
+			continue;
+		Qt::CheckState cs = (item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+		bool wasTagged = (cs != Qt::Checked);
+		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+		item = qmc2HierarchyItemMap[id];
+		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
-			item = qmc2HierarchyItemMap[it.key()];
-			if ( item )
-				item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
-			item = qmc2CategoryItemMap[it.key()];
-			if ( item )
-				item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+		item = qmc2CategoryItemMap[id];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-			item = qmc2VersionItemMap[it.key()];
-			if ( item )
-				item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+		item = qmc2VersionItemMap[id];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
 #endif
-			if ( wasTagged )
-				qmc2Gamelist->numTaggedSets--;
-			else
-				qmc2Gamelist->numTaggedSets++;
+		if ( wasTagged )
+			qmc2Gamelist->numTaggedSets--;
+		else
+			qmc2Gamelist->numTaggedSets++;
+		if ( count++ % taggingResponse == 0 ) {
+			progressBarGamelist->setValue(count);
 			labelGamelistStatus->setText(qmc2Gamelist->status());
+			qApp->processEvents();
 		}
 	}
+	hideLoadAnim();
 	progressBarGamelist->reset();
 	progressBarGamelist->setFormat(oldFormat);
 }
