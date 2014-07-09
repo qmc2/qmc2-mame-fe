@@ -43,6 +43,8 @@ class UserDataDatabaseManager : public QObject
 		bool commentCacheComplete() { return userDataRowCount() == m_commentCache.count(); }
 		void fillUpCommentCache();
 
+		QString connectionName() { return m_connectionName; }
+
 	public slots:
 		void recreateDatabase();
 		void beginTransaction() { m_db.driver()->beginTransaction(); }

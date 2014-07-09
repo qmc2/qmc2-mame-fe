@@ -31,6 +31,8 @@ class XmlDatabaseManager : public QObject
 
 		int xmlRowCount();
 
+		QString connectionName() { return m_connectionName; }
+
 	public slots:
 		void recreateDatabase();
 		void beginTransaction() { m_db.driver()->beginTransaction(); }

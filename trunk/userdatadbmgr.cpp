@@ -46,8 +46,6 @@ UserDataDatabaseManager::~UserDataDatabaseManager()
 {
 	if ( m_db.isOpen() )
 		m_db.close();
-
-	QSqlDatabase::removeDatabase(m_connectionName);
 }
 
 QString UserDataDatabaseManager::emulatorVersion()
