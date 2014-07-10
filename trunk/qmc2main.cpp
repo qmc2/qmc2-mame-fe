@@ -425,7 +425,7 @@ void MainWindow::log(char logTarget, QString message)
 }
 
 MainWindow::MainWindow(QWidget *parent)
-  : QMainWindow(parent)
+  : QMainWindow(parent, qmc2TemplateCheck ? Qt::Tool | Qt::FramelessWindowHint : (Qt::WindowFlags)0)
 {
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::MainWindow(QWidget *parent = %1)").arg((qulonglong)parent));
@@ -448,6 +448,12 @@ MainWindow::MainWindow(QWidget *parent)
   connect(this, SIGNAL(styleSetupRequested(QString)), this, SLOT(setupStyle(QString)));
   connect(this, SIGNAL(styleSheetSetupRequested(QString)), this, SLOT(setupStyleSheet(QString)));
   connect(this, SIGNAL(paletteSetupRequested(QString)), this, SLOT(setupPalette(QString)));
+
+  if ( qmc2TemplateCheck ) {
+	  hide();
+	  qApp->processEvents();
+  } else
+	  setUpdatesEnabled(false); // update later when all initialization is finished
 
   setupUi(this);
 
@@ -519,9 +525,6 @@ MainWindow::MainWindow(QWidget *parent)
   // save splitter widgets at index 0 for later comparison
   hSplitterWidget0 = hSplitter->widget(0);
   vSplitterWidget0 = vSplitter->widget(0);
-
-  // updated later when all initialization is finished
-  setUpdatesEnabled(false);
 
   // disable the menu-bar's default context menu (may be irritating)
   menuBar()->setContextMenuPolicy(Qt::PreventContextMenu);
@@ -12972,9 +12975,6 @@ int main(int argc, char *argv[])
 	qmc2ProcessManager = new ProcessManager(0);
 	qmc2MainWindow = new MainWindow(0);
 
-	if ( qmc2TemplateCheck )
-		qmc2MainWindow->showMinimized();
-
 	// prepare & restore game/machine detail setup
 	qmc2DetailSetup = new DetailSetup(qmc2MainWindow);
 	qmc2DetailSetup->saveDetail();
@@ -13039,7 +13039,6 @@ int main(int argc, char *argv[])
 	QVBoxLayout *layout = new QVBoxLayout;
 	qmc2GlobalEmulatorOptions = new EmulatorOptions(QMC2_EMULATOR_PREFIX + "Configuration/Global", qmc2Options->tabGlobalConfiguration);
 	qmc2GlobalEmulatorOptions->load();
-	qmc2GlobalEmulatorOptions->show();
 	layout->addWidget(qmc2GlobalEmulatorOptions);
 	layout->setContentsMargins(left, top, right, bottom);
 	QHBoxLayout *buttonLayout = new QHBoxLayout();
