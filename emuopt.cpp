@@ -407,8 +407,6 @@ void EmulatorOptionDelegate::paint(QPainter *painter, const QStyleOptionViewItem
 EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
 	: QTreeWidget(parent)
 {
-	hide();
-
 	templateVersion = tr("unknown");
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(searchTimeout()));
 	lineEditSearch = NULL;
