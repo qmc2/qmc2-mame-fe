@@ -44,6 +44,7 @@ Rectangle {
         running: false
         repeat: false
         onTriggered: {
+            viewer.log("ToxicWaste: " + qsTr("Starting initialization"));
             ToxicWaste.init();
             restoreLastIndexTimer.start();
         }
@@ -1626,9 +1627,9 @@ Rectangle {
             duration: 3000
             onRunningChanged: {
                 if ( running )
-                    viewer.log(qsTr("Starting shader effect"));
+                    viewer.log("ToxicWaste: " + qsTr("Starting shader effect"));
                 else
-                    viewer.log(qsTr("Shader effect stopped"));
+                    viewer.log("ToxicWaste: " + qsTr("Shader effect stopped"));
             }
         }
     }

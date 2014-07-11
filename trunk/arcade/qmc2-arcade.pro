@@ -176,14 +176,17 @@ macx {
     !win32 {
         LIBS += -lSDL
     } else {
+        DEFINES += PSAPI_VERSION=1
+        SOURCES += ../windows_tools.cpp
         contains(DEFINES, QMC2_ARCADE_MINGW) {
                 CONFIG += windows
-                LIBS += -lSDLmain -lSDL.dll -lSDL
+                LIBS += -lSDLmain -lSDL.dll -lSDL -lole32 -lpsapi
                 QMAKE_CXXFLAGS += -Wl,-subsystem,windows
                 QMAKE_CFLAGS += -Wl,-subsystem,windows
                 QMAKE_LFLAGS += -Wl,-subsystem,windows
         } else {
                 CONFIG += embed_manifest_exe windows
+                LIBS += psapi.lib ole32.lib
         }
         RC_FILE = qmc2-arcade.rc
     }

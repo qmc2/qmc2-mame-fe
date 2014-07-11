@@ -7,6 +7,7 @@ var initializing = true;
 function init() {
     viewer.loadSettings();
     initializing = false;
+    viewer.log("ToxicWaste: " + qsTr("Initialization done"));
 }
 
 function restoreLastIndex() {

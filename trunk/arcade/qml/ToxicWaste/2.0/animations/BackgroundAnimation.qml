@@ -13,9 +13,9 @@ Item {
     anchors.fill: parent
     onRunningChanged: {
         if ( running )
-            viewer.log(qsTr("Starting animation"));
+            viewer.log("ToxicWaste: " + qsTr("Starting animation"));
         else
-            viewer.log(qsTr("Animation stopped"));
+            viewer.log("ToxicWaste: " + qsTr("Animation stopped"));
     }
     states: [
         State {

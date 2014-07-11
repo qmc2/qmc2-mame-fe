@@ -15,7 +15,7 @@ HANDLE winFindProcessHandle(QString);
 HWND winFindWindowHandle(QString);
 HWND winFindWindowHandleOfProcess(Q_PID, QString subString = QString());
 void winRefreshWindowMap();
-void winAllocConsole();
+void winAllocConsole(bool parentOnly = true);
 void winFreeConsole();
 
 #endif
