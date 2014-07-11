@@ -449,11 +449,8 @@ MainWindow::MainWindow(QWidget *parent)
   connect(this, SIGNAL(styleSheetSetupRequested(QString)), this, SLOT(setupStyleSheet(QString)));
   connect(this, SIGNAL(paletteSetupRequested(QString)), this, SLOT(setupPalette(QString)));
 
-  if ( qmc2TemplateCheck ) {
-	  hide();
-	  qApp->processEvents();
-  } else
-	  setUpdatesEnabled(false); // update later when all initialization is finished
+  // update later when all initialization is finished
+  setUpdatesEnabled(false);
 
   setupUi(this);
 
