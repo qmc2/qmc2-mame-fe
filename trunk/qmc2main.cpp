@@ -12617,9 +12617,9 @@ void MainWindow::checkRomPath()
 		}
 		myRomPath = romPaths.join(";");
 	} else if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory") )
-		myRomPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString() + "/roms";
+		myRomPath = QDir::cleanPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString() + "/roms");
 	else
-		myRomPath = QDir::currentPath() + "/roms";
+		myRomPath = QDir::cleanPath(QDir::currentPath() + "/roms");
 
 	bool allRomPathsOk = true;
 	QStringList pathsToCheck;
