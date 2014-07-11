@@ -96,6 +96,7 @@ class EmulatorOptions : public QTreeWidget
 		QString templateVersion;
 		QString templateFormat;
 		QMap<QString, QList<EmulatorOption> > optionsMap;
+		QStringList ignoredOptions;
 		static QMap<QString, QList<EmulatorOption> > templateMap;
 		static QMap<QString, bool> sectionExpansionMap;
 		static QMap<QString, QTreeWidgetItem *> sectionItemMap;

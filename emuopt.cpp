@@ -1124,6 +1124,7 @@ void EmulatorOptions::createTemplateMap()
 	sectionExpansionMap.clear();
 	optionExpansionMap.clear();
 	templateMap.clear();
+	ignoredOptions.clear();
 	templateEmulator = tr("unknown");
 	templateVersion = tr("unknown");
 	templateFormat = tr("unknown");
@@ -1213,7 +1214,8 @@ void EmulatorOptions::createTemplateMap()
 								}
 							}
 							templateMap[sectionTitle].append(EmulatorOption(name, shortName, type, defaultValue, optionDescription, QString::null, optionPart, NULL, false, decimals, optionChoices, visible, optionRelativeTo));
-						}
+						} else
+							ignoredOptions << name;
 					} else if ( elementType == "template" ) {
 						templateEmulator = attributes.value("emulator").toString();
 						templateVersion = attributes.value("version").toString();
@@ -1448,9 +1450,7 @@ void EmulatorOptions::checkTemplateMap()
 
 					case QMC2_EMUOPT_TYPE_BOOL: {
 						assumedType = "bool";
-						QString emuOpt = "true";
-						if ( emuOptions[option.name] == "0" )
-							emuOpt = "false";
+						QString emuOpt(emuOptions[option.name] == "0" ? "false" : "true");
 						if ( option.dvalue != emuOpt ) {
 							diffCount++;
 							if ( qmc2TemplateCheck ) {
@@ -1498,13 +1498,14 @@ void EmulatorOptions::checkTemplateMap()
 	QMapIterator<QString, QString> it(emuOptions);
 	while ( it.hasNext() ) {
 		it.next();
-		if ( !templateOptions.contains(it.key()) ) {
+		QString optName = it.key();
+		if ( !templateOptions.contains(optName) && !ignoredOptions.contains(optName) ) {
 			diffCount++;
 			if ( qmc2TemplateCheck ) {
-				printf("%s\n", tr("emulator option '%1' with default value '%2' is unknown to the template").arg(it.key()).arg(it.value()).toLocal8Bit().constData());
+				printf("%s\n", tr("emulator option '%1' with default value '%2' is unknown to the template").arg(optName).arg(it.value()).toLocal8Bit().constData());
 				fflush(stdout);
 			} else
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator option '%1' with default value '%2' is unknown to the template").arg(it.key()).arg(it.value()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator option '%1' with default value '%2' is unknown to the template").arg(optName).arg(it.value()));
 		}
 	}
 
