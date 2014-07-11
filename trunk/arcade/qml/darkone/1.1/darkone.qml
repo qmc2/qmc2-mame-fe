@@ -1601,12 +1601,16 @@ FocusScope {
                     }
                 }
                 onFocusChanged: {
-                    debug2 && console.log("[focus] preferences: '" + focus + "'" );
-                    debug2 && focus && DarkoneJS.inFocus();
+                    if (darkone.initialised) {
+                        debug2 && console.log("[focus] preferences: '" + focus + "'" );
+                        debug2 && focus && DarkoneJS.inFocus();
+                    }
                 }
                 onActiveFocusChanged: {
-                    debug2 && console.log("[activeFocus] preferences: '" + activeFocus + "'" );
-                    debug2 && activeFocus && DarkoneJS.inFocus();
+                    if (darkone.initialised) {
+                        debug2 && console.log("[activeFocus] preferences: '" + activeFocus + "'" );
+                        debug2 && activeFocus && DarkoneJS.inFocus();
+                    }
                 }
 
                 CursorShapeArea {
@@ -2388,14 +2392,18 @@ FocusScope {
                 ]
 
                 onFocusChanged: {
-                    debug2 && console.log("[focus] toolbar: '" + focus + "'" );
-                    debug2 && focus && DarkoneJS.inFocus();
+                    if (darkone.initialised) {
+                        debug2 && console.log("[focus] toolbar: '" + focus + "'" );
+                        debug2 && focus && DarkoneJS.inFocus();
+                    }
                     if (!toolbar.cycling)
                         toolbarFocusScope.focus = true;
                 }
                 onActiveFocusChanged: {
-                    debug2 && console.log("[activeFocus] toolbar: '" + activeFocus + "'" );
-                    debug2 && activeFocus && DarkoneJS.inFocus();
+                    if (darkone.initialised) {
+                        debug2 && console.log("[activeFocus] toolbar: '" + activeFocus + "'" );
+                        debug2 && activeFocus && DarkoneJS.inFocus();
+                    }
                     if (activeFocus) 
                         toolbar.activeItemBorders = false;
                 }
