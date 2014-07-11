@@ -3144,7 +3144,7 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
         showNormal();
       }
     } else {
-      resize(640, 480);
+      resize(QMC2_DEFAULT_WINDOW_SIZE);
       move((qApp->desktop()->availableGeometry().width() - width()) / 2, (qApp->desktop()->availableGeometry().height() - height()) / 2);
       showNormal();
     }

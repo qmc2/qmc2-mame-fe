@@ -878,6 +878,9 @@
 #define QMC2_SEARCH_RESULT_UPDATE		5000
 #endif
 
+// default size of the main-widget
+#define QMC2_DEFAULT_WINDOW_SIZE		QSize(1024, 768)
+
 // macros to determine ZIP / 7z compressed icon file type to use
 #define QMC2_ICON_FILETYPE_ZIP			(qmc2UseIconFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFileType").toInt() == QMC2_IMG_FILETYPE_ZIP)
 #define QMC2_ICON_FILETYPE_7Z			(qmc2UseIconFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFileType").toInt() == QMC2_IMG_FILETYPE_7Z)
