@@ -6,6 +6,8 @@
 #include <QPaintEngine>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QHash>
+#include <QMap>
 
 #if QT_VERSION < 0x050000
 #include <QDeclarativeContext>
@@ -397,7 +399,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
     } else
         gameListCachePath = QFileInfo(globalConfig->gameListCacheFile()).absoluteFilePath();
 
-    QMap<QString, char> rscMap;
+    QHash<QString, char> rscHash;
 
     QMC2_ARCADE_LOG_STR(tr("Loading %1 from '%2'").
                         arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
@@ -413,7 +415,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
                 QString line = tsRomCache.readLine();
                 if ( !line.isEmpty() && !line.startsWith("#") ) {
                     QStringList words = line.split(" ");
-                    rscMap[words[0]] = words[1].at(0).toLatin1();
+                    rscHash[words[0]] = words[1].at(0).toLatin1();
                 }
                 if ( lineCounter++ % QMC2_ARCADE_LOAD_RESPONSE == 0 )
                     qApp->processEvents();
@@ -436,7 +438,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
                 QStringList words = tsGameListCache.readLine().split("\t");
                 if ( words[QMC2_ARCADE_GLC_DEVICE] != "1" ) {
                     QString gameId = words[QMC2_ARCADE_GLC_ID];
-                    gameList.append(new GameObject(gameId, words[QMC2_ARCADE_GLC_DESCRIPTION], romStateCharToInt(rscMap[gameId])));
+                    gameList.append(new GameObject(gameId, words[QMC2_ARCADE_GLC_DESCRIPTION], romStateCharToInt(rscHash[gameId])));
                 }
                 if ( lineCounter++ % QMC2_ARCADE_LOAD_RESPONSE == 0 )
                     qApp->processEvents();

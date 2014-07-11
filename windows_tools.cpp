@@ -98,12 +98,15 @@ HWND winFindWindowHandleOfProcess(Q_PID processInfo, QString subString)
 	return handleFound ? windowHandle : NULL;
 }
 
-void winAllocConsole()
+void winAllocConsole(bool parentOnly)
 {
-        bool consoleAttached = true;
+        bool parentConsoleAttached = true;
 	if ( !AttachConsole(ATTACH_PARENT_PROCESS) ) {
-		AllocConsole();
-		consoleAttached = false;
+		if ( !parentOnly ) {
+			AllocConsole();
+			parentConsoleAttached = false;
+		} else
+			return;
 	}
 
 	HANDLE handle_out = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -118,7 +121,7 @@ void winAllocConsole()
 	setvbuf(hf_in, NULL, _IONBF, 128);
 	*stdin = *hf_in;
 
-	if ( consoleAttached ) {
+	if ( parentConsoleAttached ) {
 		printf("\n");
 		fflush(stdout);
 	}

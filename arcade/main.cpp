@@ -1,6 +1,7 @@
 #include <QTranslator>
 #include <QIcon>
 #include <QStyleFactory>
+#include <QUrl>
 #if QT_VERSION < 0x050000
 #include <QApplication>
 #else
@@ -13,6 +14,9 @@
 #include "macros.h"
 #include "joystick.h"
 #include "keyeventfilter.h"
+#if defined(QMC2_ARCADE_OS_WIN)
+#include "../windows_tools.h"
+#endif
 
 ArcadeSettings *globalConfig = NULL;
 ConsoleWindow *consoleWindow = NULL;
@@ -68,11 +72,8 @@ void qtMessageHandler(QtMsgType type, const QMessageLogContext &, const QString 
 void showHelp()
 {
 #if defined(QMC2_ARCADE_OS_WIN)
-    // we need the console window to display the help text on Windows because we have no terminal connection
-    if ( !consoleWindow ) {
-        consoleWindow = new ConsoleWindow(0);
-        consoleWindow->show();
-    }
+    if ( !consoleWindow )
+        winAllocConsole();
 #endif
 
     QString defTheme = globalConfig->defaultTheme();
@@ -149,6 +150,11 @@ void showHelp()
     helpMessage += "-nojoy           Disable joystick    N/A\n";
     helpMessage += QString("-joy             Use given joystick  SDL joystick index number [%1]\n").arg(globalConfig->joystickIndex());
     helpMessage += "-debugjoy        Debug joy-mapping   N/A\n";
+#endif
+
+#if defined(QMC2_ARCADE_OS_WIN)
+    if ( !consoleWindow )
+        helpMessage.remove(helpMessage.length() - 1, 1);
 #endif
 
     QMC2_ARCADE_LOG_STR_NT(helpMessage);
@@ -278,6 +284,11 @@ int main(int argc, char *argv[])
         } else
             runApp = false;
     }
+
+#if defined(QMC2_ARCADE_OS_WIN)
+    if ( console == "terminal" )
+        winAllocConsole();
+#endif
 
     QString theme = globalConfig->defaultTheme();
     if ( QMC2_ARCADE_CLI_THEME_VAL )
@@ -412,9 +423,9 @@ int main(int argc, char *argv[])
         QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using theme '%1'").arg(theme));
 
 #if QT_VERSION < 0x050000
-        viewer->setSource(QString("qrc:/qml/%1/1.1/%1.qml").arg(theme));
+        viewer->setSource(QUrl(QString("qrc:/qml/%1/1.1/%1.qml").arg(theme)));
 #else
-        viewer->setSource(QString("qrc:/qml/%1/2.0/%1.qml").arg(theme));
+        viewer->setSource(QUrl(QString("qrc:/qml/%1/2.0/%1.qml").arg(theme));
 #endif
 
         // set up display mode initially
