@@ -12134,10 +12134,10 @@ void MainWindow::treeWidgetGamelist_updateRanks()
 			endItem = endItem->parent();
 		int startIndex = treeWidget->indexOfTopLevelItem(startItem);
 		if ( startIndex > 0 )
-			startIndex -= 1;
+			startIndex--;
 		int endIndex = treeWidget->indexOfTopLevelItem(endItem);
 		if ( endIndex + 1 < treeWidget->topLevelItemCount() )
-			endIndex += 1;
+			endIndex++;
 		int minWidth = 0;
 		for (int i = startIndex; i <= endIndex && !m_glRankUpdateTimer.isActive(); i++) {
 			QTreeWidgetItem *item = treeWidget->topLevelItem(i);
