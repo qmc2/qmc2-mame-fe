@@ -22,6 +22,7 @@ QImage RankItemWidget::rankSingleFlat;
 QLinearGradient RankItemWidget::rankGradient;
 bool RankItemWidget::useFlatRankImage;
 bool RankItemWidget::useColorRankImage;
+bool RankItemWidget::ranksLocked = false;
 QColor RankItemWidget::rankImageColor;
 
 RankItemWidget::RankItemWidget(QTreeWidgetItem *item, QWidget *parent)
@@ -138,6 +139,9 @@ void RankItemWidget::updateRankFromDb()
 
 void RankItemWidget::updateRankFromMousePos(int mouseX)
 {
+	if ( RankItemWidget::ranksLocked )
+		return;
+
 	setRankComplete(int(0.5f + 6.0f * (double)mouseX / (double)(width())));
 }
 

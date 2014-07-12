@@ -2777,6 +2777,8 @@
      <addaction name="menuSetRank"/>
      <addaction name="menuTaggedSetRank"/>
      <addaction name="separator"/>
+     <addaction name="actionLockRanks"/>
+     <addaction name="separator"/>
      <addaction name="actionIncreaseRank"/>
      <addaction name="actionTaggedIncreaseRank"/>
      <addaction name="actionDecreaseRank"/>
@@ -4408,6 +4410,9 @@
    <property name="whatsThis">
     <string>Use flat rank image</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionRankImageGradient">
    <property name="checkable">
@@ -4429,6 +4434,9 @@
    <property name="statusTip">
     <string>Use gradient rank image</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionRankImageColor">
    <property name="icon">
@@ -4443,6 +4451,9 @@
    </property>
    <property name="statusTip">
     <string>Choose overlay color for rank image</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionRankImagePlain">
@@ -4462,6 +4473,9 @@
    <property name="whatsThis">
     <string>Use plain color rank image</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionSetRank0">
    <property name="text">
@@ -4472,6 +4486,9 @@
    </property>
    <property name="statusTip">
     <string>Set rank to 0 (no rank)</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionSetRank1">
@@ -4484,6 +4501,9 @@
    <property name="statusTip">
     <string>Set rank to 1 (lowest rank)</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionSetRank2">
    <property name="text">
@@ -4494,6 +4514,9 @@
    </property>
    <property name="statusTip">
     <string>Set rank to 2</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionSetRank3">
@@ -4506,6 +4529,9 @@
    <property name="statusTip">
     <string>Set rank to 3</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionSetRank4">
    <property name="text">
@@ -4516,6 +4542,9 @@
    </property>
    <property name="statusTip">
     <string>Set rank to 4</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionSetRank5">
@@ -4528,6 +4557,9 @@
    <property name="statusTip">
     <string>Set rank to 5 (highest rank)</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionTaggedSetRank0">
    <property name="text">
@@ -4538,6 +4570,9 @@
    </property>
    <property name="statusTip">
     <string>Set rank to 0 (no rank)</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionTaggedSetRank1">
@@ -4550,6 +4585,9 @@
    <property name="statusTip">
     <string>Set rank to 1 (lowest rank)</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionTaggedSetRank2">
    <property name="text">
@@ -4560,6 +4598,9 @@
    </property>
    <property name="statusTip">
     <string>Set rank to 2</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionTaggedSetRank3">
@@ -4572,6 +4613,9 @@
    <property name="statusTip">
     <string>Set rank to 3</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionTaggedSetRank4">
    <property name="text">
@@ -4583,6 +4627,9 @@
    <property name="statusTip">
     <string>Set rank to 4</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionTaggedSetRank5">
    <property name="text">
@@ -4593,6 +4640,9 @@
    </property>
    <property name="statusTip">
     <string>Set rank to 5 (highest rank)</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionTaggedIncreaseRank">
@@ -4606,6 +4656,9 @@
    <property name="statusTip">
     <string>Increase rank (tagged)</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionTaggedDecreaseRank">
    <property name="icon">
@@ -4617,6 +4670,24 @@
    </property>
    <property name="statusTip">
     <string>Decrease rank (tagged)</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionLockRanks">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/lock.png</normaloff>:/data/img/lock.png</iconset>
+   </property>
+   <property name="text">
+    <string>Lock ranks</string>
+   </property>
+   <property name="statusTip">
+    <string>Lock ranks</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
  </widget>

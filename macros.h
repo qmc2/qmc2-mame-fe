@@ -881,6 +881,9 @@
 // default size of the main-widget
 #define QMC2_DEFAULT_WINDOW_SIZE		QSize(1024, 768)
 
+// tests the (minor) version 'v' against the minimum (minor) version 'mv', and the SVN rev. 'r' against the minimum SVN rev. 'mr' (true if 'v' or 'r' are in the relevant ranges)
+#define QMC2_TEST_VERSION(v, mv, r, mr)		((v) < mv || ((r) > 0 && (r) < (mr)))
+
 // macros to determine ZIP / 7z compressed icon file type to use
 #define QMC2_ICON_FILETYPE_ZIP			(qmc2UseIconFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFileType").toInt() == QMC2_IMG_FILETYPE_ZIP)
 #define QMC2_ICON_FILETYPE_7Z			(qmc2UseIconFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFileType").toInt() == QMC2_IMG_FILETYPE_7Z)
