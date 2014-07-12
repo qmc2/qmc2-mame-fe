@@ -931,6 +931,8 @@ void Options::apply()
 
   if ( qmc2EmulatorOptions )
     QTimer::singleShot(0, qmc2EmulatorOptions, SLOT(adjustIconSizes()));
+
+  QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 }
 
 void Options::on_pushButtonOk_clicked()
@@ -1168,7 +1170,6 @@ void Options::on_pushButtonApply_clicked()
 #endif
 
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", checkBoxNativeFileDialogs->isChecked());
-  QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 
   // Files and directories
   config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", lineEditTemporaryFile->text());

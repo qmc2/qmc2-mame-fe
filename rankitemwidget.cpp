@@ -33,6 +33,7 @@ RankItemWidget::RankItemWidget(QTreeWidgetItem *item, QWidget *parent)
 	m_item = item;
 	setupUi(this);
 	updateSize();
+	QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
 }
 
 QIcon RankItemWidget::gradientRankIcon()
@@ -76,7 +77,6 @@ void RankItemWidget::updateSize(QFontMetrics *fm)
 	else
 		newSize.scale(width(), QMC2_MAX(qApp->style()->pixelMetric(QStyle::PM_IndicatorHeight), fontMetrics().height()), Qt::KeepAspectRatio);
 	setFixedSize(newSize);
-	QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
 }
 
 void RankItemWidget::setRank(int rank)
