@@ -12145,8 +12145,7 @@ void MainWindow::treeWidgetGamelist_updateRanks()
 				continue;
 			RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
 			if ( riw ) {
-				if ( !riw->checkSize(&fm) )
-					riw->updateSize(&fm);
+				riw->updateSize(&fm);
 				if ( minWidth == 0 )
 					minWidth = riw->width();
 			} else
@@ -12195,8 +12194,7 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
 		while ( item && item != endItem && !m_hlRankUpdateTimer.isActive() ) {
 			RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
 			if ( riw ) {
-				if ( !riw->checkSize(&fm) )
-					riw->updateSize(&fm);
+				riw->updateSize(&fm);
 				if ( minWidth == 0 )
 					minWidth = riw->width();
 			} else
@@ -12206,8 +12204,7 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
 		if ( item == endItem && !m_hlRankUpdateTimer.isActive() ) {
 			RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
 			if ( riw ) {
-				if ( !riw->checkSize(&fm) )
-					riw->updateSize(&fm);
+				riw->updateSize(&fm);
 				if ( minWidth == 0 )
 					minWidth = riw->width();
 			} else
@@ -12262,8 +12259,7 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
 			if ( item->parent() ) {
 				RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
 				if ( riw ) {
-					if ( !riw->checkSize(&fm) )
-						riw->updateSize(&fm);
+					riw->updateSize(&fm);
 					if ( minWidth == 0 )
 						minWidth = riw->width();
 				} else
@@ -12275,8 +12271,7 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
 			if ( item->parent() ) {
 				RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
 				if ( riw ) {
-					if ( !riw->checkSize(&fm) )
-						riw->updateSize(&fm);
+					riw->updateSize(&fm);
 					if ( minWidth == 0 )
 						minWidth = riw->width();
 				} else
@@ -12333,8 +12328,7 @@ void MainWindow::treeWidgetVersionView_updateRanks()
 			if ( item->parent() ) {
 				RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
 				if ( riw ) {
-					if ( !riw->checkSize(&fm) )
-						riw->updateSize(&fm);
+					riw->updateSize(&fm);
 					if ( minWidth == 0 )
 						minWidth = riw->width();
 				} else
@@ -12346,8 +12340,7 @@ void MainWindow::treeWidgetVersionView_updateRanks()
 			if ( item->parent() ) {
 				RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
 				if ( riw ) {
-					if ( !riw->checkSize(&fm) )
-						riw->updateSize(&fm);
+					riw->updateSize(&fm);
 					if ( minWidth == 0 )
 						minWidth = riw->width();
 				} else

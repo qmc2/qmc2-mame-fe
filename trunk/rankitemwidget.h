@@ -19,8 +19,6 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
        	public:
 		RankItemWidget(QTreeWidgetItem *item, QWidget *parent = 0);
 
-		bool checkSize(QFontMetrics *fm) { return rankImage->pixmap()->height() == fm->height(); }
-
 		static QImage rankBackround;
 		static QImage rankSingle;
 		static QImage rankSingleFlat;
