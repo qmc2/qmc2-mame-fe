@@ -27,6 +27,7 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 		static QLinearGradient rankGradient;
 		static bool useFlatRankImage;
 		static bool useColorRankImage;
+		static bool ranksLocked;
 		static QColor rankImageColor;
 
 		static QIcon gradientRankIcon();

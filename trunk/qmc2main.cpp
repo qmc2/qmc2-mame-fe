@@ -1523,7 +1523,7 @@ MainWindow::MainWindow(QWidget *parent)
   actionToolbarNegateSearch->setIcon(QIcon(QString::fromUtf8(":/data/img/find_negate.png")));
   actionNegateSearch->setCheckable(true);
   actionToolbarNegateSearch->setCheckable(true);
-  bool negated = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWindow/NegateSearch", false).toBool();
+  bool negated = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/NegateSearch", false).toBool();
   actionNegateSearch->setChecked(negated);
   actionToolbarNegateSearch->setChecked(negated);
   negateSearchTriggered(negated);
@@ -1537,6 +1537,21 @@ MainWindow::MainWindow(QWidget *parent)
   ileToolbarSearch->button()->setPopupMode(QToolButton::InstantPopup);
   ileSearch->button()->setMenu(menuSearchOptions);
   ileToolbarSearch->button()->setMenu(menuToolbarSearchOptions);
+
+  // rank locking
+  RankItemWidget::ranksLocked = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/RanksLocked", false).toBool();
+  if ( RankItemWidget::ranksLocked ) {
+	  actionLockRanks->setIcon(QIcon(QString::fromUtf8(":/data/img/unlock.png")));
+	  actionLockRanks->setText(tr("Unlock ranks"));
+	  actionLockRanks->setToolTip(tr("Unlock ranks"));
+	  actionLockRanks->setStatusTip(tr("Unlock ranks"));
+  } else {
+	  actionLockRanks->setIcon(QIcon(QString::fromUtf8(":/data/img/lock.png")));
+	  actionLockRanks->setText(tr("Lock ranks"));
+	  actionLockRanks->setToolTip(tr("Lock ranks"));
+	  actionLockRanks->setStatusTip(tr("Lock ranks"));
+  }
+  menuRank_enableActions(!RankItemWidget::ranksLocked);
 
   // restore toolbar state
   restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolbarState", QByteArray()).toByteArray());
@@ -6848,6 +6863,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
   }
 #endif
 
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/RanksLocked", RankItemWidget::ranksLocked);
+
   if ( !qmc2TemplateCheck ) {
 	  if ( listWidgetFavorites->count() > 0 )
 	    qmc2Gamelist->saveFavorites();
@@ -6961,7 +6978,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", checkBoxRemoveFinishedDownloads->isChecked());
 
   // search box options
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWindow/NegateSearch", actionNegateSearch->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/NegateSearch", actionNegateSearch->isChecked());
 
   if ( qmc2SoftwareSnap ) {
     qmc2SoftwareSnap->close();
@@ -12530,6 +12547,33 @@ void MainWindow::on_actionTaggedSetRank5_triggered(bool)
 	QList<RankItemWidget *> *riwList = getTaggedRankItemWidgets();
 	foreach (RankItemWidget *riw, *riwList)
 		riw->setRankComplete(5);
+}
+
+void MainWindow::on_actionLockRanks_triggered(bool)
+{
+	RankItemWidget::ranksLocked = !RankItemWidget::ranksLocked;
+	if ( RankItemWidget::ranksLocked ) {
+		actionLockRanks->setIcon(QIcon(QString::fromUtf8(":/data/img/unlock.png")));
+		actionLockRanks->setText(tr("Unlock ranks"));
+		actionLockRanks->setToolTip(tr("Unlock ranks"));
+		actionLockRanks->setStatusTip(tr("Unlock ranks"));
+	} else {
+		actionLockRanks->setIcon(QIcon(QString::fromUtf8(":/data/img/lock.png")));
+		actionLockRanks->setText(tr("Lock ranks"));
+		actionLockRanks->setToolTip(tr("Lock ranks"));
+		actionLockRanks->setStatusTip(tr("Lock ranks"));
+	}
+	menuRank_enableActions(!RankItemWidget::ranksLocked);
+}
+
+void MainWindow::menuRank_enableActions(bool enable)
+{
+	menuSetRank->menuAction()->setEnabled(enable);
+	menuTaggedSetRank->menuAction()->setEnabled(enable);
+	actionIncreaseRank->setEnabled(enable);
+	actionTaggedIncreaseRank->setEnabled(enable);
+	actionDecreaseRank->setEnabled(enable);
+	actionTaggedDecreaseRank->setEnabled(enable);
 }
 
 void MainWindow::menuRank_aboutToShow()

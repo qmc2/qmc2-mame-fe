@@ -175,16 +175,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QWidget *hSplitterWidget0;
 		QWidget *vSplitterWidget0;
 		QTimer activityCheckTimer;
-		bool activityState;
-		bool isCreatingSoftList;
-		QString urlSectionRegExp;
 		int retry_tabWidgetGameDetail_currentIndex;
-
+		QString urlSectionRegExp;
 		QString foreignEmuName;
 		QString foreignID;
 		QString foreignDescription;
-		bool launchForeignID;
-
 		QWidgetAction *widgetActionToolbarSearch;
 		QComboBox *comboBoxToolbarSearch;
 		QMenu *menuSearchOptions;
@@ -192,8 +187,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QAction *actionNegateSearch;
 		QAction *actionToolbarNegateSearch;
 		QList<QAction *> criticalActions;
-		bool negatedMatch;
 		QMovie *loadAnimMovie;
+		bool activityState;
+		bool isCreatingSoftList;
+		bool negatedMatch;
+		bool launchForeignID;
 
 		static QColor qmc2StatusColorGreen;
 		static QColor qmc2StatusColorYellowGreen;
@@ -591,6 +589,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_actionTaggedSetRank3_triggered(bool);
 		void on_actionTaggedSetRank4_triggered(bool);
 		void on_actionTaggedSetRank5_triggered(bool);
+		void on_actionLockRanks_triggered(bool);
+		void menuRank_enableActions(bool);
 		void menuRank_aboutToShow();
 		RankItemWidget *getCurrentRankItemWidget();
 		QList<RankItemWidget *> *getTaggedRankItemWidgets();

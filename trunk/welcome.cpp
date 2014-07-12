@@ -294,17 +294,16 @@ bool Welcome::checkConfig()
 
 	startupConfig->endGroup();
 
-	int oldMinor = 0;
-	QStringList versionList = startupConfig->value("Version").toString().split(".");
-	int oldSvnRevision = startupConfig->value("SVN_Revision").toInt();
-	if ( versionList.count() > 1 ) {
-		oldMinor = versionList[1].toInt();
-		if ( oldMinor < 37 || (oldSvnRevision < 3983 && oldSvnRevision > 0) ) {
+	QStringList verList = startupConfig->value("Version").toString().split(".");
+	if ( verList.count() > 1 ) {
+		int omv = verList[1].toInt();
+		int osr = startupConfig->value("SVN_Revision").toInt();
+		if ( QMC2_TEST_VERSION(omv, 37, osr, 3983) ) {
 			// add F7 standard-shortcut for all MESS targets
 			if ( !startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Shortcuts/F7") )
 				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "Shortcuts/F7", "F7");
 		}
-		if ( oldMinor < 37 || (oldSvnRevision < 4160 && oldSvnRevision > 0) ) {
+		if ( QMC2_TEST_VERSION(omv, 37, osr, 4160) ) {
 			// rename "HtmlEditor/*" keys
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/Zoom") ) {
 				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/SoftwareNotes/Zoom", startupConfig->value(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/Zoom", 100).toInt());
@@ -331,7 +330,7 @@ bool Welcome::checkConfig()
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/WidgetState");
 			}
 		}
-		if ( oldMinor < 38 || (oldSvnRevision < 4304 && oldSvnRevision > 0) ) {
+		if ( QMC2_TEST_VERSION(omv, 38, osr, 4304) ) {
 			// remove deprecated keys: "SampleChecker/SelectGame"
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "SampleChecker/SelectGame") )
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "SampleChecker/SelectGame");
@@ -340,7 +339,7 @@ bool Welcome::checkConfig()
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "SampleChecker/SelectGame") )
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "SampleChecker/SelectGame");
 		}
-		if ( oldMinor < 38 || (oldSvnRevision < 4327 && oldSvnRevision > 0) ) {
+		if ( QMC2_TEST_VERSION(omv, 38, osr, 4327) ) {
 			// remove deprecated keys: "Tools/FileRemovalTool*"
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Tools/FileRemovalTool") )
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Tools/FileRemovalTool");
@@ -355,7 +354,7 @@ bool Welcome::checkConfig()
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalToolArguments") )
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalToolArguments");
 		}
-		if ( oldMinor < 38 || (oldSvnRevision < 4420 && oldSvnRevision > 0) ) {
+		if ( QMC2_TEST_VERSION(omv, 38, osr, 4420) ) {
 			// remove deprecated keys: "Configuration/Global/OptionColumnWidth" keys
 			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_MAME + "Configuration/Global/OptionColumnWidth") )
 				startupConfig->remove(QMC2_EMULATOR_PREFIX_MAME + "Configuration/Global/OptionColumnWidth");
@@ -364,7 +363,7 @@ bool Welcome::checkConfig()
 			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_UME + "Configuration/Global/OptionColumnWidth") )
 				startupConfig->remove(QMC2_EMULATOR_PREFIX_UME + "Configuration/Global/OptionColumnWidth");
 		}
-		if ( oldMinor < 38 || (oldSvnRevision < 4433 && oldSvnRevision > 0) ) {
+		if ( QMC2_TEST_VERSION(omv, 38, osr, 4433) ) {
 			// remove old "Arcade" keys (will be replaced by new ones)
 			if ( startupConfig->childGroups().contains("Arcade") ) {
 				startupConfig->beginGroup("Arcade");
@@ -372,7 +371,7 @@ bool Welcome::checkConfig()
 				startupConfig->endGroup();
 			}
 		}
-		if ( oldMinor < 39 || (oldSvnRevision < 4813 && oldSvnRevision > 0) ) {
+		if ( QMC2_TEST_VERSION(omv, 39, osr, 4813) ) {
 			// remove deprecated keys: "Gamelist/SortOnline" & "Gamelist/HideWhileLoading"
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Gamelist/SortOnline") )
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Gamelist/SortOnline");
@@ -388,7 +387,7 @@ bool Welcome::checkConfig()
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Gamelist/HideWhileLoading");
 		}
 #if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
-		if ( oldMinor < 39 || (oldSvnRevision < 4818 && oldSvnRevision > 0) ) {
+		if ( QMC2_TEST_VERSION(omv, 39, osr, 4818) ) {
 			// remove deprecated keys: "Embedder/NativeSnapshotResolution"
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Embedder/NativeSnapshotResolution") )
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Embedder/NativeSnapshotResolution");
@@ -398,7 +397,7 @@ bool Welcome::checkConfig()
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Embedder/NativeSnapshotResolution");
 		}
 #endif
-		if ( oldMinor < 40 || (oldSvnRevision < 5171 && oldSvnRevision > 0) ) {
+		if ( QMC2_TEST_VERSION(omv, 40, osr, 5171) ) {
 			// reset "Layout/MainWidget/EmulatorControlHeaderState"
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/EmulatorControlHeaderState") )
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/EmulatorControlHeaderState");
@@ -407,7 +406,7 @@ bool Welcome::checkConfig()
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/EmulatorControlHeaderState") )
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/EmulatorControlHeaderState");
 		}
-		if ( oldMinor < 43 || (oldSvnRevision < 5640 && oldSvnRevision > 0) ) {
+		if ( QMC2_TEST_VERSION(omv, 43, osr, 5640) ) {
 			// remove the old list-xml-cache file and the deprecated "FilesAndDirectories/ListXMLCache" settings key
 			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ListXMLCache") ) {
 				QFile f(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ListXMLCache").toString());
@@ -416,7 +415,7 @@ bool Welcome::checkConfig()
 				startupConfig->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ListXMLCache");
 			}
 		}
-		if ( oldMinor < 43 || (oldSvnRevision < 5684 && oldSvnRevision > 0) ) {
+		if ( QMC2_TEST_VERSION(omv, 43, osr, 5684) ) {
 			// separate and rename MAME/MESS emulator info DB keys (in order to be able to merge them for UME)
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB") ) {
@@ -450,7 +449,7 @@ bool Welcome::checkConfig()
 			}
 #endif
 		}
-		if ( oldMinor < 43 || (oldSvnRevision < 5688 && oldSvnRevision > 0) ) {
+		if ( QMC2_TEST_VERSION(omv, 43, osr, 5688) ) {
 			// separate and rename MAME/MESS game/machine info DB keys (in order to be able to merge them for UME)
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB") ) {
@@ -484,7 +483,7 @@ bool Welcome::checkConfig()
 			}
 #endif
 		}
-		if ( oldMinor < 44 || (oldSvnRevision < 5837 && oldSvnRevision > 0) ) {
+		if ( QMC2_TEST_VERSION(omv, 44, osr, 5837) ) {
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState") ||
 			     startupConfig->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState") ||
 			     startupConfig->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState") ||
@@ -502,6 +501,21 @@ bool Welcome::checkConfig()
 						   "<p>Please check/adapt column visibility <a href=\"%2\">as shown in our wiki</a>!</p>"
 						   "<p>Note that you'll have to do this for the other QMC2 variants as well (this message will not be shown again).</p>").arg("Rank").arg("http://wiki.batcom-it.net/index.php?title=The_'ultimate'_guide_to_QMC2#Customizing_columns"));
 #endif
+			}
+		}
+		if ( QMC2_TEST_VERSION(omv, 44, osr, 6024) ) {
+			// rename "Layout/MainWindow/NegateSearch" to "Layout/MainWidget/NegateSearch" (as it should)
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWindow/NegateSearch") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/NegateSearch", startupConfig->value(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWindow/NegateSearch").toBool());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWindow/NegateSearch");
+			}
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWindow/NegateSearch") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/NegateSearch", startupConfig->value(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWindow/NegateSearch").toBool());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWindow/NegateSearch");
+			}
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWindow/NegateSearch") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/NegateSearch", startupConfig->value(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWindow/NegateSearch").toBool());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWindow/NegateSearch");
 			}
 		}
 	}
