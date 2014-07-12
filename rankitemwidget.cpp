@@ -1,6 +1,8 @@
 #include <QPainter>
 #include <QPixmap>
 #include <QMap>
+#include <QApplication>
+#include <QStyle>
 
 #include "rankitemwidget.h"
 #include "gamelist.h"
@@ -70,9 +72,9 @@ void RankItemWidget::updateSize(QFontMetrics *fm)
 {
 	QSize newSize = size();
 	if ( fm )
-		newSize.scale(width(), fm->height(), Qt::KeepAspectRatio);
+		newSize.scale(width(), QMC2_MAX(qApp->style()->pixelMetric(QStyle::PM_IndicatorHeight), fm->height()), Qt::KeepAspectRatio);
 	else
-		newSize.scale(width(), fontMetrics().height(), Qt::KeepAspectRatio);
+		newSize.scale(width(), QMC2_MAX(qApp->style()->pixelMetric(QStyle::PM_IndicatorHeight), fontMetrics().height()), Qt::KeepAspectRatio);
 	setFixedSize(newSize);
 	QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
 }
