@@ -22,6 +22,7 @@ inf: informational only
   <li>fix: avoid crash when the game/machine list cache creation is prematurely interrupted (upon user request)</li>
   <li>fix: MiniWebBrowser: corrected the network item downloader</li>
   <li>fix: fixed a bug with individual ROM checks that corrupted the ROM state cache with an invalid entry, causing it to be invalidated during the next reload</li>
+  <li>fix: welcome dialog: 'NativeFileDialogs' setting didn't work as expected with folder browsers</li>
   <li>imp: MAME/MESS/UME emulator templates updated to SVN r31263 (removed 'hlsl_write' from Windows OSD templates, removed 'memcard_directory' from all templates, added option 'console' to all templates)</li>
   <li>imp: speeded up ROM- and software-state filtering as well as game-/machine-/emu-info lookups by using QHash [<i>amortized O(1)</i>] instead of QMap [<i>O(log n)</i>] to store/retrieve states &amp; infos internally</li>
   <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to SVN r31263</li>
