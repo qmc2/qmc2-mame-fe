@@ -605,6 +605,7 @@ Rectangle {
                     smooth: true
                     fillMode: Image.PreserveAspectFit
                     height: gamelistItemBackground.height / 3
+                    asynchronous: true
                     Connections {
                         target: viewer
                         onImageDataUpdated: {

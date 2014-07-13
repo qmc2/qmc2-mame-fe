@@ -264,12 +264,10 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
                                 char imageBuffer[QMC2_ARCADE_ZIP_BUFSIZE];
                                 if ( unzOpenCurrentFile(imageFile) != UNZ_OK ) {
                                     QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::loadImage(): unable to load image file '%1' from ZIP").arg(imageFileName));
-                                } else {
+				} else {
                                     int len = 0;
-                                    while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ARCADE_ZIP_BUFSIZE)) > 0 ) {
-                                        for (int i = 0; i < len; i++)
-                                            imageData += imageBuffer[i];
-                                    }
+                                    while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ARCADE_ZIP_BUFSIZE)) > 0 )
+                                        imageData.append(imageBuffer, len);
                                     unzCloseCurrentFile(imageFile);
                                     if ( image.loadFromData(imageData, formatName.toLocal8Bit().constData()) )  {
                                         mImageCache.insert(cacheKey, new QImage(image));
@@ -353,12 +351,10 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
                                 char imageBuffer[QMC2_ARCADE_ZIP_BUFSIZE];
                                 if ( unzOpenCurrentFile(imageFile) != UNZ_OK ) {
                                     QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::loadImage(): unable to load image file '%1' from ZIP").arg(imageFileName));
-                                } else {
+				} else {
                                     int len = 0;
-                                    while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ARCADE_ZIP_BUFSIZE)) > 0 ) {
-                                        for (int i = 0; i < len; i++)
-                                            imageData += imageBuffer[i];
-                                    }
+                                    while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ARCADE_ZIP_BUFSIZE)) > 0 )
+                                        imageData.append(imageBuffer, len);
                                     unzCloseCurrentFile(imageFile);
                                     if ( image.loadFromData(imageData, formatName.toLocal8Bit().constData()) )  {
                                         mPixmapCache.insert(cacheKey, new QPixmap(image));

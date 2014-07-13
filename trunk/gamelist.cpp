@@ -123,6 +123,7 @@ extern HtmlEditor *qmc2SoftwareNotesEditor;
 extern QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
 extern Gamelist *qmc2Gamelist;
 extern bool qmc2TemplateCheck;
+extern bool qmc2ParentImageFallback;
 
 // local global variables
 QStringList Gamelist::phraseTranslatorList;
@@ -3701,8 +3702,7 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 						      imageData.clear();
 						      if ( unzOpenCurrentFile(iconFile) == UNZ_OK ) {
 							      while ( (len = unzReadCurrentFile(iconFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
-								      for (i = 0; i < len; i++)
-									      imageData += imageBuffer[i];
+								      imageData.append(imageBuffer, len);
 							      unzCloseCurrentFile(iconFile);
 							      QPixmap iconPixmap;
 							      if ( iconPixmap.loadFromData(imageData) ) {
