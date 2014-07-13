@@ -7837,7 +7837,7 @@ void MainWindow::loadGameInfoDB()
 					startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
 				}
 				if ( startsWithDollarInfo ) {
-					QStringList gameWords = singleLineSimplified.mid(6).split(",");
+					QStringList gameWords = singleLineSimplified.mid(6).split(",", QString::SkipEmptyParts);
 					bool startsWithDollarBio = false;
 					while ( !startsWithDollarBio && !ts.atEnd() ) {
 						singleLine = ts.readLine();
@@ -7890,14 +7890,11 @@ void MainWindow::loadGameInfoDB()
 							else
 								gameInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString));
 #endif
-							for (int i = 0; i < gameWords.count(); i++) {
-								QString setName = gameWords[i];
-								if ( !setName.isEmpty() ) {
-									qmc2GameInfoDB[setName] = gameInfo;
+							foreach (QString setName, gameWords) {
+								qmc2GameInfoDB[setName] = gameInfo;
 #if defined(QMC2_EMUTYPE_UME)
-									qmc2GameInfoSourceMap.insert(gameInfoSource, setName);
+								qmc2GameInfoSourceMap.insert(gameInfoSource, setName);
 #endif
-								}
 							}
 						} else {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -8050,7 +8047,7 @@ void MainWindow::loadEmuInfoDB()
 					startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
 				}
 				if ( startsWithDollarInfo ) {
-					QStringList gameWords = singleLineSimplified.mid(6).split(",");
+					QStringList gameWords = singleLineSimplified.mid(6).split(",", QString::SkipEmptyParts);
 					bool startsWithDollarMame = false;
 					while ( !startsWithDollarMame && !ts.atEnd() ) {
 						singleLine = ts.readLine();
@@ -8094,11 +8091,8 @@ void MainWindow::loadEmuInfoDB()
 							else
 								emuInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString));
 #endif
-							for (int i = 0; i < gameWords.count(); i++) {
-								QString setName = gameWords[i];
-								if ( !setName.isEmpty() )
-									qmc2EmuInfoDB[setName] = emuInfo;
-							}
+							foreach (QString setName, gameWords)
+								qmc2EmuInfoDB[setName] = emuInfo;
 						} else
 							log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in emulator info DB %1").arg(pathToEmuInfoDB));
 					} else if ( !ts.atEnd() )

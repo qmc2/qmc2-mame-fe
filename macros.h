@@ -716,7 +716,7 @@
 #define QMC2_WININFO_DELAY			50
 
 // responsiveness while loading an additional information source
-#define QMC2_INFOSOURCE_RESPONSIVENESS		10000
+#define QMC2_INFOSOURCE_RESPONSIVENESS		25000
 
 // software-info responsiveness
 #define QMC2_SWINFO_RESPONSIVENESS		25000
