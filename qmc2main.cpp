@@ -7749,397 +7749,395 @@ void MainWindow::loadYouTubeVideoInfoMap()
 void MainWindow::loadGameInfoDB()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadGameInfoDB()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadGameInfoDB()");
 #endif
 
-  QTime gameInfoElapsedTime(0, 0, 0, 0),
-        gameInfoTimer;
+	QTime gameInfoElapsedTime(0, 0, 0, 0),
+	      gameInfoTimer;
 
-  qmc2LoadingGameInfoDB = true;
-  qmc2StopParser = false;
+	qmc2LoadingGameInfoDB = true;
+	qmc2StopParser = false;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  log(QMC2_LOG_FRONTEND, tr("loading game info DB"));
+	log(QMC2_LOG_FRONTEND, tr("loading game info DB"));
 #elif defined(QMC2_EMUTYPE_MESS)
-  log(QMC2_LOG_FRONTEND, tr("loading machine info DB"));
+	log(QMC2_LOG_FRONTEND, tr("loading machine info DB"));
 #endif
 
-  gameInfoTimer.start();
+	gameInfoTimer.start();
 
-  // clear game/machine info DB
-  QHashIterator<QString, QByteArray *> it(qmc2GameInfoDB);
-  QList<QByteArray *> deletedRecords;
-  while ( it.hasNext() ) {
-    it.next();
-    if ( !deletedRecords.contains(it.value()) ) {
-      if ( it.value() )
-        delete it.value();
-      deletedRecords.append(it.value());
-    }
-  }
-  deletedRecords.clear();
-  qmc2GameInfoDB.clear();
+	// clear game/machine info DB
+	QHashIterator<QString, QByteArray *> it(qmc2GameInfoDB);
+	QList<QByteArray *> deletedRecords;
+	while ( it.hasNext() ) {
+		it.next();
+		if ( !deletedRecords.contains(it.value()) ) {
+			if ( it.value() )
+				delete it.value();
+			deletedRecords.append(it.value());
+		}
+	}
+	deletedRecords.clear();
+	qmc2GameInfoDB.clear();
 
 #if defined(QMC2_EMUTYPE_MAME)
-  bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool();
-  QString pathToGameInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString();
+	bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool();
+	QString pathToGameInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString();
 #elif defined(QMC2_EMUTYPE_MESS)
-  bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat").toBool();
-  QString pathToGameInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
+	bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat").toBool();
+	QString pathToGameInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
 #elif defined(QMC2_EMUTYPE_UME)
-  QList<bool> compressDataList;
-  QStringList pathToGameInfoDBList;
-  QStringList gameInfoSourceList;
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() ) {
-	  compressDataList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool();
-	  pathToGameInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString();
-	  gameInfoSourceList << "MAME";
-  }
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() ) {
-	  compressDataList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat").toBool();
-	  pathToGameInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
-	  gameInfoSourceList << "MESS";
-  }
-  for (int index = 0; index < compressDataList.count(); index++) {
-	  QString pathToGameInfoDB = pathToGameInfoDBList[index];
-	  bool compressData = compressDataList[index];
-	  QString gameInfoSource = gameInfoSourceList[index];
+	QList<bool> compressDataList;
+	QStringList pathToGameInfoDBList;
+	QStringList gameInfoSourceList;
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() ) {
+		compressDataList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool();
+		pathToGameInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString();
+		gameInfoSourceList << "MAME";
+	}
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() ) {
+		compressDataList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat").toBool();
+		pathToGameInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
+		gameInfoSourceList << "MESS";
+	}
+	for (int index = 0; index < compressDataList.count(); index++) {
+		QString pathToGameInfoDB = pathToGameInfoDBList[index];
+		bool compressData = compressDataList[index];
+		QString gameInfoSource = gameInfoSourceList[index];
 #endif
-  QFile gameInfoDB(pathToGameInfoDB);
-  gameInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
+		QFile gameInfoDB(pathToGameInfoDB);
+		gameInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
 
-  if ( gameInfoDB.isOpen() ) {
-    qmc2MainWindow->progressBarGamelist->reset();
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+		if ( gameInfoDB.isOpen() ) {
+			qmc2MainWindow->progressBarGamelist->reset();
+			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-      progressBarGamelist->setFormat(tr("Game info - %p%"));
+				progressBarGamelist->setFormat(tr("Game info - %p%"));
 #elif defined(QMC2_EMUTYPE_MESS)
-      progressBarGamelist->setFormat(tr("Machine info - %p%"));
+			progressBarGamelist->setFormat(tr("Machine info - %p%"));
 #endif
-    else
-      progressBarGamelist->setFormat("%p%");
-    progressBarGamelist->setRange(0, gameInfoDB.size());
-    qApp->processEvents();
-    QTextStream ts(&gameInfoDB);
-    ts.setCodec(QTextCodec::codecForName("UTF-8"));
-    int recordsProcessed = 0;
-    while ( !ts.atEnd() && !qmc2StopParser ) {
-      QString singleLine = ts.readLine();
-      QString singleLineSimplified = singleLine.simplified();
-      bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
-      while ( !startsWithDollarInfo && !ts.atEnd() ) {
-        singleLine = ts.readLine();
-	singleLineSimplified = singleLine.simplified();
-        if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-          progressBarGamelist->setValue(gameInfoDB.pos());
-          qApp->processEvents();
-        }
-	startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
-      }
-      if ( startsWithDollarInfo ) {
-        QStringList gameWords = singleLineSimplified.mid(6).split(",");
-	bool startsWithDollarBio = false;
-        while ( !startsWithDollarBio && !ts.atEnd() ) {
-          singleLine = ts.readLine();
-	  singleLineSimplified = singleLine.simplified();
-          if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-            progressBarGamelist->setValue(gameInfoDB.pos());
-            qApp->processEvents();
-          }
-	  startsWithDollarBio = singleLineSimplified.startsWith("$bio");
-        }
-        if ( startsWithDollarBio ) {
-          QString gameInfoString;
-          bool firstLine = true;
-	  bool lastLineWasHeader = false;
-	  bool startsWithDollarEnd = false;
-          while ( !startsWithDollarEnd && !ts.atEnd() ) {
-            singleLine = ts.readLine();
-	    singleLineSimplified = singleLine.simplified();
-	    startsWithDollarEnd = singleLineSimplified.startsWith("$end");
-            if ( !startsWithDollarEnd ) {
-              if ( !firstLine ) {
-		      if ( !lastLineWasHeader )
-			      gameInfoString.append(singleLine + "<br>");
-		      lastLineWasHeader = false;
-              } else if ( !singleLine.isEmpty() ) {
-                gameInfoString.append("<h2>" + singleLine + "</h2>");
-                firstLine = false;
-		lastLineWasHeader = true;
-              }
-            }
-            if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-              progressBarGamelist->setValue(gameInfoDB.pos());
-              qApp->processEvents();
-            }
-          }
-          if ( startsWithDollarEnd ) {
-            // reduce the number of line breaks
-            gameInfoString.replace(QRegExp("(<br>){2,}"), "<p>");
-            if ( gameInfoString.endsWith("<p>") )
-              gameInfoString.remove(gameInfoString.length() - 3, gameInfoString.length() - 1);
-            QByteArray *gameInfo;
+			else
+				progressBarGamelist->setFormat("%p%");
+			progressBarGamelist->setRange(0, gameInfoDB.size());
+			qApp->processEvents();
+			QTextStream ts(&gameInfoDB);
+			ts.setCodec(QTextCodec::codecForName("UTF-8"));
+			int recordsProcessed = 0;
+			QRegExp lineBreakRx("(<br>){2,}");
+			while ( !ts.atEnd() && !qmc2StopParser ) {
+				QString singleLine = ts.readLine();
+				QString singleLineSimplified = singleLine.simplified();
+				bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
+				while ( !startsWithDollarInfo && !ts.atEnd() ) {
+					singleLine = ts.readLine();
+					singleLineSimplified = singleLine.simplified();
+					if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+						progressBarGamelist->setValue(gameInfoDB.pos());
+						qApp->processEvents();
+					}
+					startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
+				}
+				if ( startsWithDollarInfo ) {
+					QStringList gameWords = singleLineSimplified.mid(6).split(",");
+					bool startsWithDollarBio = false;
+					while ( !startsWithDollarBio && !ts.atEnd() ) {
+						singleLine = ts.readLine();
+						singleLineSimplified = singleLine.simplified();
+						if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+							progressBarGamelist->setValue(gameInfoDB.pos());
+							qApp->processEvents();
+						}
+						startsWithDollarBio = singleLineSimplified.startsWith("$bio");
+					}
+					if ( startsWithDollarBio ) {
+						QString gameInfoString;
+						bool firstLine = true;
+						bool lastLineWasHeader = false;
+						bool startsWithDollarEnd = false;
+						while ( !startsWithDollarEnd && !ts.atEnd() ) {
+							singleLine = ts.readLine();
+							singleLineSimplified = singleLine.simplified();
+							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
+							if ( !startsWithDollarEnd ) {
+								if ( !firstLine ) {
+									if ( !lastLineWasHeader )
+										gameInfoString.append(singleLine + "<br>");
+									lastLineWasHeader = false;
+								} else if ( !singleLine.isEmpty() ) {
+									gameInfoString.append("<h2>" + singleLine + "</h2>");
+									firstLine = false;
+									lastLineWasHeader = true;
+								}
+							}
+							if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+								progressBarGamelist->setValue(gameInfoDB.pos());
+								qApp->processEvents();
+							}
+						}
+						if ( startsWithDollarEnd ) {
+							// reduce the number of line breaks
+							gameInfoString.replace(lineBreakRx, "<p>");
+							if ( gameInfoString.endsWith("<p>") )
+								gameInfoString.remove(gameInfoString.length() - 3, gameInfoString.length() - 1);
+							QByteArray *gameInfo;
 #if QT_VERSION >= 0x050000
-            if ( compressData )
-              gameInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForLocale()->fromUnicode(gameInfoString))); 
-            else
-              gameInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(gameInfoString));
+							if ( compressData )
+								gameInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForLocale()->fromUnicode(gameInfoString))); 
+							else
+								gameInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(gameInfoString));
 #else
-            if ( compressData )
-              gameInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString))); 
-            else
-              gameInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString));
+							if ( compressData )
+								gameInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString))); 
+							else
+								gameInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString));
 #endif
-            int i;
-            for (i = 0; i < gameWords.count(); i++) {
-		    QString setName = gameWords[i];
-		    if ( !setName.isEmpty() ) {
-			    qmc2GameInfoDB[setName] = gameInfo;
+							for (int i = 0; i < gameWords.count(); i++) {
+								QString setName = gameWords[i];
+								if ( !setName.isEmpty() ) {
+									qmc2GameInfoDB[setName] = gameInfo;
 #if defined(QMC2_EMUTYPE_UME)
-			    qmc2GameInfoSourceMap.insert(gameInfoSource, setName);
+									qmc2GameInfoSourceMap.insert(gameInfoSource, setName);
 #endif
-		    }
-            }
-          } else {
+								}
+							}
+						} else {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-            log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in game info DB %1").arg(pathToGameInfoDB));
+							log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in game info DB %1").arg(pathToGameInfoDB));
 #elif defined(QMC2_EMUTYPE_MESS)
-            log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in machine info DB %1").arg(pathToGameInfoDB));
+							log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in machine info DB %1").arg(pathToGameInfoDB));
 #endif
-          }
-        } else {
+						}
+					} else {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-          log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$bio' in game info DB %1").arg(pathToGameInfoDB));
+						log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$bio' in game info DB %1").arg(pathToGameInfoDB));
 #elif defined(QMC2_EMUTYPE_MESS)
-          log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$bio' in machine info DB %1").arg(pathToGameInfoDB));
+						log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$bio' in machine info DB %1").arg(pathToGameInfoDB));
 #endif
-        }
-      } else if ( !ts.atEnd() ) {
+					}
+				} else if ( !ts.atEnd() ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-        log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in game info DB %1").arg(pathToGameInfoDB));
+					log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in game info DB %1").arg(pathToGameInfoDB));
 #elif defined(QMC2_EMUTYPE_MESS)
-        log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in machine info DB %1").arg(pathToGameInfoDB));
+					log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in machine info DB %1").arg(pathToGameInfoDB));
 #endif
-      }
-      if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-        progressBarGamelist->setValue(gameInfoDB.pos());
-        qApp->processEvents();
-      }
-    }
-    progressBarGamelist->setValue(gameInfoDB.pos());
-    gameInfoDB.close();
-  } else {
+				}
+				if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+					progressBarGamelist->setValue(gameInfoDB.pos());
+					qApp->processEvents();
+				}
+			}
+			progressBarGamelist->setValue(gameInfoDB.pos());
+			gameInfoDB.close();
+		} else {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    log(QMC2_LOG_FRONTEND, tr("WARNING: can't open game info DB %1").arg(pathToGameInfoDB));
+			log(QMC2_LOG_FRONTEND, tr("WARNING: can't open game info DB %1").arg(pathToGameInfoDB));
 #elif defined(QMC2_EMUTYPE_MESS)
-    log(QMC2_LOG_FRONTEND, tr("WARNING: can't open machine info DB %1").arg(pathToGameInfoDB));
+			log(QMC2_LOG_FRONTEND, tr("WARNING: can't open machine info DB %1").arg(pathToGameInfoDB));
 #endif
-  }
+		}
 #if defined(QMC2_EMUTYPE_UME)
-  }
+	}
 #endif
 
-  gameInfoElapsedTime = gameInfoElapsedTime.addMSecs(gameInfoTimer.elapsed());
+	gameInfoElapsedTime = gameInfoElapsedTime.addMSecs(gameInfoTimer.elapsed());
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  log(QMC2_LOG_FRONTEND, tr("done (loading game info DB, elapsed time = %1)").arg(gameInfoElapsedTime.toString("mm:ss.zzz")));
-  log(QMC2_LOG_FRONTEND, tr("%n game info record(s) loaded", "", qmc2GameInfoDB.count()));
-  if ( qmc2StopParser ) {
-    log(QMC2_LOG_FRONTEND, tr("invalidating game info DB"));
+	log(QMC2_LOG_FRONTEND, tr("done (loading game info DB, elapsed time = %1)").arg(gameInfoElapsedTime.toString("mm:ss.zzz")));
+	log(QMC2_LOG_FRONTEND, tr("%n game info record(s) loaded", "", qmc2GameInfoDB.count()));
+	if ( qmc2StopParser ) {
+		log(QMC2_LOG_FRONTEND, tr("invalidating game info DB"));
 #elif defined(QMC2_EMUTYPE_MESS)
-  log(QMC2_LOG_FRONTEND, tr("done (loading machine info DB, elapsed time = %1)").arg(gameInfoElapsedTime.toString("mm:ss.zzz")));
-  log(QMC2_LOG_FRONTEND, tr("%n machine info record(s) loaded", "", qmc2GameInfoDB.count()));
-  if ( qmc2StopParser ) {
-    log(QMC2_LOG_FRONTEND, tr("invalidating machine info DB"));
+		log(QMC2_LOG_FRONTEND, tr("done (loading machine info DB, elapsed time = %1)").arg(gameInfoElapsedTime.toString("mm:ss.zzz")));
+		log(QMC2_LOG_FRONTEND, tr("%n machine info record(s) loaded", "", qmc2GameInfoDB.count()));
+		if ( qmc2StopParser ) {
+			log(QMC2_LOG_FRONTEND, tr("invalidating machine info DB"));
 #endif
-    QHashIterator<QString, QByteArray *> it(qmc2GameInfoDB);
-    QList<QByteArray *> deletedRecords;
-    while ( it.hasNext() ) {
-      it.next();
-      if ( !deletedRecords.contains(it.value()) ) {
-        if ( it.value() )
-          delete it.value();
-        deletedRecords.append(it.value());
-      }
-    }
-    deletedRecords.clear();
-    qmc2GameInfoDB.clear();
+			QHashIterator<QString, QByteArray *> it(qmc2GameInfoDB);
+			QList<QByteArray *> deletedRecords;
+			while ( it.hasNext() ) {
+				it.next();
+				if ( !deletedRecords.contains(it.value()) ) {
+					if ( it.value() )
+						delete it.value();
+					deletedRecords.append(it.value());
+				}
+			}
+			deletedRecords.clear();
+			qmc2GameInfoDB.clear();
 #if defined(QMC2_EMUTYPE_UME)
-    foreach (QString key, qmc2GameInfoSourceMap)
-	    qmc2GameInfoSourceMap.remove(key);
-    qmc2GameInfoSourceMap.clear();
+			foreach (QString key, qmc2GameInfoSourceMap)
+				qmc2GameInfoSourceMap.remove(key);
+			qmc2GameInfoSourceMap.clear();
 #endif
-  }
-  qmc2LoadingGameInfoDB = false;
-  qmc2MainWindow->progressBarGamelist->reset();
+		}
+		qmc2LoadingGameInfoDB = false;
+		qmc2MainWindow->progressBarGamelist->reset();
 }
 
 void MainWindow::loadEmuInfoDB()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadEmuInfoDB()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadEmuInfoDB()");
 #endif
 
-  QTime emuInfoElapsedTime(0, 0, 0, 0),
-        emuInfoTimer;
+	QTime emuInfoElapsedTime(0, 0, 0, 0),
+	      emuInfoTimer;
 
-  qmc2LoadingEmuInfoDB = true;
-  qmc2StopParser = false;
-  log(QMC2_LOG_FRONTEND, tr("loading emulator info DB"));
-  emuInfoTimer.start();
+	qmc2LoadingEmuInfoDB = true;
+	qmc2StopParser = false;
+	log(QMC2_LOG_FRONTEND, tr("loading emulator info DB"));
+	emuInfoTimer.start();
 
-  // clear emulator info DB
-  QHashIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
-  QList<QByteArray *> deletedRecords;
-  while ( it.hasNext() ) {
-    it.next();
-    if ( !deletedRecords.contains(it.value()) ) {
-      if ( it.value() )
-        delete it.value();
-      deletedRecords.append(it.value());
-    }
-  }
-  deletedRecords.clear();
-  qmc2EmuInfoDB.clear();
+	// clear emulator info DB
+	QHashIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
+	QList<QByteArray *> deletedRecords;
+	while ( it.hasNext() ) {
+		it.next();
+		if ( !deletedRecords.contains(it.value()) ) {
+			if ( it.value() )
+				delete it.value();
+			deletedRecords.append(it.value());
+		}
+	}
+	deletedRecords.clear();
+	qmc2EmuInfoDB.clear();
 
 #if defined(QMC2_EMUTYPE_MAME)
-  bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameInfoDat").toBool();
-  QString pathToEmuInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
+	bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameInfoDat").toBool();
+	QString pathToEmuInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
 #elif defined(QMC2_EMUTYPE_MESS)
-  bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessInfoDat").toBool();
-  QString pathToEmuInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString();
+	bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessInfoDat").toBool();
+	QString pathToEmuInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString();
 #elif defined(QMC2_EMUTYPE_UME)
-  QList<bool> compressDataList;
-  QStringList pathToEmuInfoDBList;
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() ) {
-	  compressDataList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameInfoDat").toBool();
-	  pathToEmuInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
-  }
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() ) {
-	  compressDataList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessInfoDat").toBool();
-	  pathToEmuInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString();
-  }
-  for (int index = 0; index < compressDataList.count(); index++) {
-	  QString pathToEmuInfoDB = pathToEmuInfoDBList[index];
-	  bool compressData = compressDataList[index];
+	QList<bool> compressDataList;
+	QStringList pathToEmuInfoDBList;
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() ) {
+		compressDataList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameInfoDat").toBool();
+		pathToEmuInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
+	}
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() ) {
+		compressDataList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessInfoDat").toBool();
+		pathToEmuInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString();
+	}
+	for (int index = 0; index < compressDataList.count(); index++) {
+		QString pathToEmuInfoDB = pathToEmuInfoDBList[index];
+		bool compressData = compressDataList[index];
 #endif
-  QFile emuInfoDB(pathToEmuInfoDB);
-  emuInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
+		QFile emuInfoDB(pathToEmuInfoDB);
+		emuInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
 
-  if ( emuInfoDB.isOpen() ) {
-    qmc2MainWindow->progressBarGamelist->reset();
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-      progressBarGamelist->setFormat(tr("Emu info - %p%"));
-    else
-      progressBarGamelist->setFormat("%p%");
-    progressBarGamelist->setRange(0, emuInfoDB.size());
-    qApp->processEvents();
-    QTextStream ts(&emuInfoDB);
-    ts.setCodec(QTextCodec::codecForName("UTF-8"));
-    int recordsProcessed = 0;
-    while ( !ts.atEnd() && !qmc2StopParser ) {
-      QString singleLine = ts.readLine();
-      QString singleLineSimplified = singleLine.simplified();
-      bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
-      while ( !startsWithDollarInfo && !ts.atEnd() ) {
-        singleLine = ts.readLine();
-        if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-          progressBarGamelist->setValue(emuInfoDB.pos());
-          qApp->processEvents();
-        }
-        singleLineSimplified = singleLine.simplified();
-	startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
-      }
-      if ( startsWithDollarInfo ) {
-        QStringList gameWords = singleLineSimplified.mid(6).split(",");
-	bool startsWithDollarMame = false;
-        while ( !startsWithDollarMame && !ts.atEnd() ) {
-          singleLine = ts.readLine();
-          if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-            progressBarGamelist->setValue(emuInfoDB.pos());
-            qApp->processEvents();
-          }
-          singleLineSimplified = singleLine.simplified();
-	  startsWithDollarMame = singleLineSimplified.startsWith("$mame");
-        }
-        if ( startsWithDollarMame ) {
-          QString emuInfoString;
-	  bool startsWithDollarEnd = false;
-          while ( !startsWithDollarEnd && !ts.atEnd() ) {
-            singleLine = ts.readLine();
-            singleLineSimplified = singleLine.simplified();
-	    startsWithDollarEnd = singleLineSimplified.startsWith("$end");
-            if ( !startsWithDollarEnd )
-              emuInfoString.append(singleLine + "<br>");
-            if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-              progressBarGamelist->setValue(emuInfoDB.pos());
-              qApp->processEvents();
-            }
-          }
-          if ( startsWithDollarEnd ) {
-            // reduce the number of line breaks
-            emuInfoString.replace(QRegExp("(<br>){2,}"), "<p>");
-            if ( emuInfoString.startsWith("<br>") )
-              emuInfoString.remove(0, 4);
-            if ( emuInfoString.endsWith("<p>") )
-              emuInfoString.remove(emuInfoString.length() - 3, emuInfoString.length() - 1);
-            QByteArray *emuInfo;
+		if ( emuInfoDB.isOpen() ) {
+			qmc2MainWindow->progressBarGamelist->reset();
+			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+				progressBarGamelist->setFormat(tr("Emu info - %p%"));
+			else
+				progressBarGamelist->setFormat("%p%");
+			progressBarGamelist->setRange(0, emuInfoDB.size());
+			qApp->processEvents();
+			QTextStream ts(&emuInfoDB);
+			ts.setCodec(QTextCodec::codecForName("UTF-8"));
+			int recordsProcessed = 0;
+			QRegExp lineBreakRx("(<br>){2,}");
+			while ( !ts.atEnd() && !qmc2StopParser ) {
+				QString singleLine = ts.readLine();
+				QString singleLineSimplified = singleLine.simplified();
+				bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
+				while ( !startsWithDollarInfo && !ts.atEnd() ) {
+					singleLine = ts.readLine();
+					if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+						progressBarGamelist->setValue(emuInfoDB.pos());
+						qApp->processEvents();
+					}
+					singleLineSimplified = singleLine.simplified();
+					startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
+				}
+				if ( startsWithDollarInfo ) {
+					QStringList gameWords = singleLineSimplified.mid(6).split(",");
+					bool startsWithDollarMame = false;
+					while ( !startsWithDollarMame && !ts.atEnd() ) {
+						singleLine = ts.readLine();
+						if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+							progressBarGamelist->setValue(emuInfoDB.pos());
+							qApp->processEvents();
+						}
+						singleLineSimplified = singleLine.simplified();
+						startsWithDollarMame = singleLineSimplified.startsWith("$mame");
+					}
+					if ( startsWithDollarMame ) {
+						QString emuInfoString;
+						bool startsWithDollarEnd = false;
+						while ( !startsWithDollarEnd && !ts.atEnd() ) {
+							singleLine = ts.readLine();
+							singleLineSimplified = singleLine.simplified();
+							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
+							if ( !startsWithDollarEnd )
+								emuInfoString.append(singleLine + "<br>");
+							if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+								progressBarGamelist->setValue(emuInfoDB.pos());
+								qApp->processEvents();
+							}
+						}
+						if ( startsWithDollarEnd ) {
+							// reduce the number of line breaks
+							emuInfoString.replace(lineBreakRx, "<p>");
+							if ( emuInfoString.startsWith("<br>") )
+								emuInfoString.remove(0, 4);
+							if ( emuInfoString.endsWith("<p>") )
+								emuInfoString.remove(emuInfoString.length() - 3, emuInfoString.length() - 1);
+							QByteArray *emuInfo;
 #if QT_VERSION >= 0x050000
-            if ( compressData )
-              emuInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForLocale()->fromUnicode(emuInfoString))); 
-            else
-              emuInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(emuInfoString));
+							if ( compressData )
+								emuInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForLocale()->fromUnicode(emuInfoString))); 
+							else
+								emuInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(emuInfoString));
 #else
-            if ( compressData )
-              emuInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString))); 
-            else
-              emuInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString));
+							if ( compressData )
+								emuInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString))); 
+							else
+								emuInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString));
 #endif
-            for (int i = 0; i < gameWords.count(); i++) {
-		    QString setName = gameWords[i];
-		    if ( !setName.isEmpty() )
-			    qmc2EmuInfoDB[setName] = emuInfo;
-            }
-          } else {
-            log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in emulator info DB %1").arg(pathToEmuInfoDB));
-          }
-        } else if ( !ts.atEnd() ) {
-          log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$mame' in emulator info DB %1").arg(pathToEmuInfoDB));
-        }
-      } else if ( !ts.atEnd() ) {
-        log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in emulator info DB %1").arg(pathToEmuInfoDB));
-      }
-      if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-        progressBarGamelist->setValue(emuInfoDB.pos());
-        qApp->processEvents();
-      }
-    }
-    progressBarGamelist->setValue(emuInfoDB.pos());
-    emuInfoDB.close();
-  } else
-    log(QMC2_LOG_FRONTEND, tr("WARNING: can't open emulator info DB %1").arg(pathToEmuInfoDB));
+							for (int i = 0; i < gameWords.count(); i++) {
+								QString setName = gameWords[i];
+								if ( !setName.isEmpty() )
+									qmc2EmuInfoDB[setName] = emuInfo;
+							}
+						} else
+							log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in emulator info DB %1").arg(pathToEmuInfoDB));
+					} else if ( !ts.atEnd() )
+						log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$mame' in emulator info DB %1").arg(pathToEmuInfoDB));
+				} else if ( !ts.atEnd() )
+					log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in emulator info DB %1").arg(pathToEmuInfoDB));
+				if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+					progressBarGamelist->setValue(emuInfoDB.pos());
+					qApp->processEvents();
+				}
+			}
+			progressBarGamelist->setValue(emuInfoDB.pos());
+			emuInfoDB.close();
+		} else
+			log(QMC2_LOG_FRONTEND, tr("WARNING: can't open emulator info DB %1").arg(pathToEmuInfoDB));
 #if defined(QMC2_EMUTYPE_UME)
-  }
+	}
 #endif
 
-  emuInfoElapsedTime = emuInfoElapsedTime.addMSecs(emuInfoTimer.elapsed());
-  log(QMC2_LOG_FRONTEND, tr("done (loading emulator info DB, elapsed time = %1)").arg(emuInfoElapsedTime.toString("mm:ss.zzz")));
-  log(QMC2_LOG_FRONTEND, tr("%n emulator info record(s) loaded", "", qmc2EmuInfoDB.count()));
-  if ( qmc2StopParser ) {
-    log(QMC2_LOG_FRONTEND, tr("invalidating emulator info DB"));
-    QHashIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
-    QList<QByteArray *> deletedRecords;
-    while ( it.hasNext() ) {
-      it.next();
-      if ( !deletedRecords.contains(it.value()) ) {
-        if ( it.value() )
-          delete it.value();
-        deletedRecords.append(it.value());
-      }
-    }
-    deletedRecords.clear();
-    qmc2EmuInfoDB.clear();
-  }
-  qmc2LoadingEmuInfoDB = false;
-  qmc2MainWindow->progressBarGamelist->reset();
+	emuInfoElapsedTime = emuInfoElapsedTime.addMSecs(emuInfoTimer.elapsed());
+	log(QMC2_LOG_FRONTEND, tr("done (loading emulator info DB, elapsed time = %1)").arg(emuInfoElapsedTime.toString("mm:ss.zzz")));
+	log(QMC2_LOG_FRONTEND, tr("%n emulator info record(s) loaded", "", qmc2EmuInfoDB.count()));
+	if ( qmc2StopParser ) {
+		log(QMC2_LOG_FRONTEND, tr("invalidating emulator info DB"));
+		QHashIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
+		QList<QByteArray *> deletedRecords;
+		while ( it.hasNext() ) {
+			it.next();
+			if ( !deletedRecords.contains(it.value()) ) {
+				if ( it.value() )
+					delete it.value();
+				deletedRecords.append(it.value());
+			}
+		}
+		deletedRecords.clear();
+		qmc2EmuInfoDB.clear();
+	}
+	qmc2LoadingEmuInfoDB = false;
+	qmc2MainWindow->progressBarGamelist->reset();
 }
 
 void MainWindow::loadSoftwareInfoDB()
