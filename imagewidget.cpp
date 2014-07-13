@@ -289,10 +289,8 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 				foreach (unzFile imageFile, imageFileMap) {
 					if ( unzLocateFile(imageFile, gameFile.toLocal8Bit().constData(), 0) == UNZ_OK ) {
 						if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
-							while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
-								for (i = 0; i < len; i++)
-									imageData += imageBuffer[i];
-							}
+							while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
+								imageData.append(imageBuffer, len);
 							fileOk = true;
 							unzCloseCurrentFile(imageFile);
 						} else
@@ -572,10 +570,8 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 					foreach (unzFile imageFile, imageFileMap) {
 						if ( unzLocateFile(imageFile, gameFile.toLocal8Bit().constData(), 0) == UNZ_OK ) {
 							if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
-								while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
-									for (i = 0; i < len; i++)
-										imageData += imageBuffer[i];
-								}
+								while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
+									imageData.append(imageBuffer, len);
 								fileOk = true;
 								unzCloseCurrentFile(imageFile);
 							} else
@@ -591,10 +587,8 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 				} else {
 					if ( unzLocateFile(zip, gameFile.toLocal8Bit().constData(), 0) == UNZ_OK ) {
 						if ( unzOpenCurrentFile(zip) == UNZ_OK ) {
-							while ( (len = unzReadCurrentFile(zip, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
-								for (i = 0; i < len; i++)
-									imageData += imageBuffer[i];
-							}
+							while ( (len = unzReadCurrentFile(zip, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
+								imageData.append(imageBuffer, len);
 							fileOk = true;
 							unzCloseCurrentFile(zip);
 						} else

@@ -3991,10 +3991,8 @@ void SoftwareSnap::loadSnapshot()
 									if ( unzOpenCurrentFile(snapFile) == UNZ_OK ) {
 										char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
 										int len;
-										while ( (len = unzReadCurrentFile(snapFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
-											for (int i = 0; i < len; i++)
-												imageData += imageBuffer[i];
-										}
+										while ( (len = unzReadCurrentFile(snapFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
+											imageData.append(imageBuffer, len);
 										unzCloseCurrentFile(snapFile);
 										fileOk = true;
 									} else
@@ -4758,10 +4756,8 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 								if ( unzOpenCurrentFile(snapFile) == UNZ_OK ) {
 									char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
 									int len;
-									while ( (len = unzReadCurrentFile(snapFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
-										for (int i = 0; i < len; i++)
-											imageData += imageBuffer[i];
-									}
+									while ( (len = unzReadCurrentFile(snapFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
+										imageData.append(imageBuffer, len);
 									unzCloseCurrentFile(snapFile);
 									fileOk = true;
 								} else
