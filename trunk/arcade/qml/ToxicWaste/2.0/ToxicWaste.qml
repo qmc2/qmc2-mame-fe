@@ -545,7 +545,7 @@ Rectangle {
         id: gamelistView
         opacity: toxicWasteMain.gameListOpacity
         scale: ToxicWaste.scaleFactorX()
-        flickDeceleration: 2000
+        flickDeceleration: 3500
         maximumFlickVelocity: 4000
         snapMode: ListView.NoSnap
         interactive: true
@@ -577,6 +577,8 @@ Rectangle {
         }
         highlightRangeMode: ListView.StrictlyEnforceRange
         highlightFollowsCurrentItem: true
+        highlightMoveDuration: 500
+        cacheBuffer: gamelistItemDelegate.height * itemsPerPage()
         delegate: Item {
             property string gameId: id
             id: gamelistItemDelegate
