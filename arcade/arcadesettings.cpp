@@ -772,6 +772,11 @@ QStringList ArcadeSettings::activeImageFormats(QString imageType)
     return value(QString("%1/ActiveImageFormats/%2").arg(frontEndPrefix).arg(imageType)).toStringList();
 }
 
+bool ArcadeSettings::parentImageFallback()
+{
+    return value(QString("%1/GUI/ParentImageFallback").arg(frontEndPrefix)).toBool();
+}
+
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
 int ArcadeSettings::joystickAxisMinimum(int joystickIndex, int axis)
 {

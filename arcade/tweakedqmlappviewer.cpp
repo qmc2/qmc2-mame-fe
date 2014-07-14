@@ -438,7 +438,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
                 QStringList words = tsGameListCache.readLine().split("\t");
                 if ( words[QMC2_ARCADE_GLC_DEVICE] != "1" ) {
                     QString gameId = words[QMC2_ARCADE_GLC_ID];
-                    gameList.append(new GameObject(gameId, words[QMC2_ARCADE_GLC_DESCRIPTION], romStateCharToInt(rscHash[gameId])));
+                    gameList.append(new GameObject(gameId, words[QMC2_ARCADE_GLC_PARENT], words[QMC2_ARCADE_GLC_DESCRIPTION], romStateCharToInt(rscHash[gameId])));
                 }
                 if ( lineCounter++ % QMC2_ARCADE_LOAD_RESPONSE == 0 )
                     qApp->processEvents();

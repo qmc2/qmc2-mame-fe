@@ -23,7 +23,7 @@
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
-extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
+extern QMap<QString, QString> qmc2ParentMap;
 extern Gamelist *qmc2Gamelist;
 extern Options *qmc2Options;
 extern KeyPressFilter *qmc2KeyPressFilter;
@@ -747,10 +747,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		progressBarFilter->setValue(i + 1);
 		GamelistItem *gameItem = selectedGames[i];
 		QString gameName = gameItem->text(QMC2_GAMELIST_COLUMN_NAME);
-		QString cloneOf;
-		GamelistItem *parentItem = (GamelistItem *)qmc2HierarchyItemMap[gameName];
-		if ( parentItem )
-			cloneOf = parentItem->text(QMC2_GAMELIST_COLUMN_GAME);
+		QString cloneOf = qmc2ParentMap[gameName];
 		ts << gameName << "\t"
 		   << gameItem->text(QMC2_GAMELIST_COLUMN_GAME) << "\t"
 		   << gameItem->text(QMC2_GAMELIST_COLUMN_MANU) << "\t"
