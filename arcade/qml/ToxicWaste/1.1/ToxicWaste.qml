@@ -564,7 +564,6 @@ Rectangle {
         smooth: true
         preferredHighlightBegin: 0
         preferredHighlightEnd: 0
-        currentIndex: toxicWasteMain.lastIndex
         highlight: Rectangle {
             id: itemHighlighter
             smooth: true
@@ -580,7 +579,7 @@ Rectangle {
         highlightRangeMode: ListView.StrictlyEnforceRange
         highlightFollowsCurrentItem: true
         highlightMoveDuration: 500
-        cacheBuffer: gamelistItemDelegate.height * itemsPerPage()
+        cacheBuffer: 72 * itemsPerPage() // 72 = gamelistItemDelegate.height
         delegate: Item {
             property string gameId: id
             id: gamelistItemDelegate
