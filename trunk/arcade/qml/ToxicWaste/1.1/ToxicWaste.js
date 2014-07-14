@@ -194,7 +194,7 @@ function cachePrefix(imageType) {
 }
 
 function imageUrl(imageType) {
-    var imgUrl = "image://qmc2/" + cachePrefix(imageType) + "/" + gameListModel[gamelistView.currentIndex].id;
+    var imgUrl = "image://qmc2/" + cachePrefix(imageType) + "/" + gameListModel[gamelistView.currentIndex].id + "/" + gameListModel[gamelistView.currentIndex].parentId;
     return imgUrl;
 }
 

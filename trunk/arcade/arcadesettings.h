@@ -184,6 +184,7 @@ public slots:
     QString messInfoDat();
     bool compressMessInfoDat();
     QStringList activeImageFormats(QString);
+    bool parentImageFallback();
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
     int joystickAxisMinimum(int, int);
     int joystickAxisMaximum(int, int);

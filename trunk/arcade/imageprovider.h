@@ -54,8 +54,10 @@ private:
     bool isZippedImageType(QString);
     bool isSevenZippedImageType(QString);
     QString imageFolder(QString);
+    bool isAsync(QString);
 
     QStringList mImageTypes;
+    QMap<QString, QString> mFileTypeMap;
     QMap<QString, unzFile> mFileMapZip;
     QMap<QString, SevenZipFile *> mFileMap7z;
     QCache<QString, QImage> mImageCache;
@@ -95,8 +97,10 @@ private:
     bool isZippedImageType(QString);
     bool isSevenZippedImageType(QString);
     QString imageFolder(QString);
+    bool isAsync(QString);
 
     QStringList mImageTypes;
+    QMap<QString, QString> mFileTypeMap;
     QMap<QString, unzFile> mFileMapZip;
     QMap<QString, SevenZipFile *> mFileMap7z;
     QCache<QString, QImage> mImageCache;

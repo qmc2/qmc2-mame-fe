@@ -601,7 +601,7 @@ Rectangle {
                 Image {
                     id: gamelistItemIcon
                     cache: toxicWasteMain.iconsReady
-                    source: "image://qmc2/ico/" + model.modelData.id
+                    source: "image://qmc2/ico/" + model.modelData.id + "/" + model.modelData.parentId
                     anchors.left: gamelistItemBackground.left
                     anchors.verticalCenter: gamelistItemBackground.verticalCenter
                     anchors.margins: 10
