@@ -747,12 +747,11 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		progressBarFilter->setValue(i + 1);
 		GamelistItem *gameItem = selectedGames[i];
 		QString gameName = gameItem->text(QMC2_GAMELIST_COLUMN_NAME);
-		QString cloneOf = qmc2ParentMap[gameName];
 		ts << gameName << "\t"
 		   << gameItem->text(QMC2_GAMELIST_COLUMN_GAME) << "\t"
 		   << gameItem->text(QMC2_GAMELIST_COLUMN_MANU) << "\t"
 		   << gameItem->text(QMC2_GAMELIST_COLUMN_YEAR) << "\t"
-		   << cloneOf << "\t"
+		   << qmc2ParentMap[gameName] << "\t"
 	   	   << (qmc2Gamelist->isBios(gameName) ? "1": "0") << "\t"
 		   << (gameItem->text(QMC2_GAMELIST_COLUMN_RTYPES).contains(tr("ROM")) ? "1" : "0") << "\t"
 		   << (gameItem->text(QMC2_GAMELIST_COLUMN_RTYPES).contains(tr("CHD")) ? "1": "0") << "\t"
