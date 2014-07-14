@@ -435,14 +435,16 @@ function data(type) {
             var image = ""
             if (darkone.dataHidden) {
                 if (dataTypes[darkone.dataTypePrimary].type == "image") {
-                     if ( viewer.loadImage(dataTypes[darkone.dataTypePrimary].path + "/" + gameListModel[gameListView.currentIndex].id) != "" ) {
-                         image = "image://qmc2/" + dataTypes[darkone.dataTypePrimary].path + "/" + gameListModel[gameListView.currentIndex].id;
+                    var glItem = gameListModel[gameListView.currentIndex];
+                    if ( viewer.loadImage(dataTypes[darkone.dataTypePrimary].path + "/" + glItem.id + "/" + glItem.parentId) != "" ) {
+                         image = "image://qmc2/" + dataTypes[darkone.dataTypePrimary].path + "/" + glItem.id + "/" + glItem.parentId;
                          debug && console.log("[data] success using image path: '" + image + "'");
                     }
                 }
                 if (image == "" && dataTypes[darkone.dataTypeSecondary].type == "image") {
-                    if ( viewer.loadImage(dataTypes[darkone.dataTypeSecondary].path + "/" + gameListModel[gameListView.currentIndex].id) != "") {
-                         image = "image://qmc2/" + dataTypes[darkone.dataTypeSecondary].path + "/" + gameListModel[gameListView.currentIndex].id;
+                    var glItem = gameListModel[gameListView.currentIndex];
+                    if ( viewer.loadImage(dataTypes[darkone.dataTypeSecondary].path + "/" + glItem.id + "/" + glItem.parentId) != "") {
+                         image = "image://qmc2/" + dataTypes[darkone.dataTypeSecondary].path + "/" + glItem.id + "/" + glItem.parentId;
                          debug && console.log("[data] success using image path: '" + image + "'");
                     }
                 }
@@ -450,8 +452,9 @@ function data(type) {
                    image = "image://qmc2/ttl/default" // default
             } else {
                 if (dataTypes[darkone.dataTypeCurrent].type == "image") {
-                    if ( viewer.loadImage(dataTypes[darkone.dataTypeCurrent].path + "/" + gameListModel[gameListView.currentIndex].id) != "") {
-                         image = "image://qmc2/" + dataTypes[darkone.dataTypeCurrent].path + "/" + gameListModel[gameListView.currentIndex].id;
+                    var glItem = gameListModel[gameListView.currentIndex];
+                    if ( viewer.loadImage(dataTypes[darkone.dataTypeCurrent].path + "/" + glItem.id + "/" + glItem.parentId) != "") {
+                         image = "image://qmc2/" + dataTypes[darkone.dataTypeCurrent].path + "/" + glItem.id + "/" + glItem.parentId;
                          debug && console.log("[data] success using image path: '" + image + "'");
                     }
                 }
