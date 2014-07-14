@@ -11,8 +11,10 @@ function init() {
 }
 
 function restoreLastIndex() {
-    if ( lastIndex < gameListModelCount )
+    if ( lastIndex < gameListModelCount ) {
+        gamelistView.currentIndex = lastIndex;
         gamelistView.positionViewAtIndex(lastIndex, ListView.Beginning);
+    }
 }
 
 function scaleFactorX() {
