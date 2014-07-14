@@ -606,7 +606,7 @@ Rectangle {
                     smooth: true
                     fillMode: Image.PreserveAspectFit
                     height: gamelistItemBackground.height / 3
-                    asynchronous: true
+                    asynchronous: !viewer.isSevenZippedImageType("ico")
                     Connections {
                         target: viewer
                         onImageDataUpdated: {

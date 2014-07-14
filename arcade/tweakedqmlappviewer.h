@@ -122,7 +122,9 @@ public slots:
     void handleQuit();
 #endif
     int runningEmulators() { return processManager->runningProcesses(); }
-    void imageDataUpdate(QString cachePrefix) { emit imageDataUpdated(cachePrefix); };
+    void imageDataUpdate(QString cachePrefix) { emit imageDataUpdated(cachePrefix); }
+    bool isSevenZippedImageType(QString type) { return imageProvider->isSevenZippedImageType(type); }
+    bool isZippedImageType(QString type) { return imageProvider->isZippedImageType(type); }
 
 private:
     bool initialised;
