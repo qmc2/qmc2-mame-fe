@@ -870,7 +870,6 @@ void Gamelist::load()
 	  QTimer::singleShot(0, qmc2DemoModeDialog, SLOT(updateCategoryFilter()));
 #endif
 
-  bool xmlCacheOkay = (emulatorVersion == xmlDb()->emulatorVersion() && xmlDb()->xmlRowCount() > 0);
   qmc2EarlyReloadActive = false;
 
   if ( qmc2StopParser ) {
@@ -890,7 +889,7 @@ void Gamelist::load()
   qmc2MainWindow->loadAnimMovie->start();
   qApp->processEvents();
 
-  if ( xmlCacheOkay ) {
+  if ( (emulatorVersion == xmlDb()->emulatorVersion() && xmlDb()->xmlRowCount() > 0) ) {
     parse();
     loadFavorites();
     loadPlayHistory();
@@ -3948,8 +3947,10 @@ void Gamelist::createCategoryView()
 
 	qmc2MainWindow->stackedWidgetView->setCurrentIndex(QMC2_VIEW_CATEGORY_INDEX);
 	qmc2MainWindow->stackedWidgetView->update();
-
 	qmc2MainWindow->treeWidgetCategoryView->setColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY, true);
+
+	if ( numGames == -1 )
+		return;
 
 	if ( !qmc2StopParser ) {
 		qmc2MainWindow->loadAnimMovie->start();
@@ -4086,74 +4087,74 @@ void Gamelist::createCategoryView()
 void Gamelist::loadCatverIni()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadCatverIni()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadCatverIni()");
 #endif
 
-  clearCategoryNames();
-  categoryMap.clear();
-  clearVersionNames();
-  versionMap.clear();
+	clearCategoryNames();
+	categoryMap.clear();
+	clearVersionNames();
+	versionMap.clear();
 
-  QTime loadTimer, elapsedTime(0, 0, 0, 0);
-  loadTimer.start();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading catver.ini"));
-  qApp->processEvents();
+	QTime loadTimer, elapsedTime(0, 0, 0, 0);
+	loadTimer.start();
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading catver.ini"));
+	qApp->processEvents();
 
-  int currentMax = qmc2MainWindow->progressBarGamelist->maximum();
-  QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-    qmc2MainWindow->progressBarGamelist->setFormat(tr("Catver.ini - %p%"));
-  else
-    qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-  qmc2MainWindow->progressBarGamelist->reset();
-  qApp->processEvents();
+	int currentMax = qmc2MainWindow->progressBarGamelist->maximum();
+	QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+		qmc2MainWindow->progressBarGamelist->setFormat(tr("Catver.ini - %p%"));
+	else
+		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+	qmc2MainWindow->progressBarGamelist->reset();
+	qApp->processEvents();
 
-  QFile catverIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString());
-  if ( catverIniFile.open(QFile::ReadOnly) ) {
-    qmc2MainWindow->progressBarGamelist->setRange(0, catverIniFile.size());
-    QTextStream tsCatverIni(&catverIniFile);
-    bool isVersion = false, isCategory = false;
-    while ( !tsCatverIni.atEnd() ) {
-      QString catverLine = tsCatverIni.readLine().simplified().trimmed();
-      qmc2MainWindow->progressBarGamelist->setValue(catverIniFile.pos());
-      if ( catverLine.isEmpty() )
-        continue;
-      if ( catverLine.contains("[Category]") ) {
-        isCategory = true;
-        isVersion = false;
-      } else if ( catverLine.contains("[VerAdded]") ) {
-        isCategory = false;
-        isVersion = true;
-      } else {
-        QStringList tokens = catverLine.split("=");
-        if ( tokens.count() >= 2 ) {
-          if ( isCategory ) {
-		  if ( !categoryNames.contains(tokens[1]) )
-			  categoryNames[tokens[1]] = new QString(tokens[1]);
-		  categoryMap.insert(tokens[0], categoryNames[tokens[1]]);
-          } else if ( isVersion ) {
-            QString verStr = tokens[1];
-            if ( verStr.startsWith(".") ) verStr.prepend("0");
-	    if ( !versionNames.contains(verStr) )
-		    versionNames[verStr] = new QString(verStr);
-            versionMap.insert(tokens[0], versionNames[verStr]);
-          }
-        }
-      }
-    }
-    catverIniFile.close();
-  } else
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open '%1' for reading -- no catver.ini data available").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString()));
+	QFile catverIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString());
+	if ( catverIniFile.open(QFile::ReadOnly) ) {
+		qmc2MainWindow->progressBarGamelist->setRange(0, catverIniFile.size());
+		QTextStream tsCatverIni(&catverIniFile);
+		bool isVersion = false, isCategory = false;
+		while ( !tsCatverIni.atEnd() ) {
+			QString catverLine = tsCatverIni.readLine().simplified().trimmed();
+			qmc2MainWindow->progressBarGamelist->setValue(catverIniFile.pos());
+			if ( catverLine.isEmpty() )
+				continue;
+			if ( catverLine.contains("[Category]") ) {
+				isCategory = true;
+				isVersion = false;
+			} else if ( catverLine.contains("[VerAdded]") ) {
+				isCategory = false;
+				isVersion = true;
+			} else {
+				QStringList tokens = catverLine.split("=");
+				if ( tokens.count() >= 2 ) {
+					if ( isCategory ) {
+						if ( !categoryNames.contains(tokens[1]) )
+							categoryNames[tokens[1]] = new QString(tokens[1]);
+						categoryMap.insert(tokens[0], categoryNames[tokens[1]]);
+					} else if ( isVersion ) {
+						QString verStr = tokens[1];
+						if ( verStr.startsWith(".") ) verStr.prepend("0");
+						if ( !versionNames.contains(verStr) )
+							versionNames[verStr] = new QString(verStr);
+						versionMap.insert(tokens[0], versionNames[verStr]);
+					}
+				}
+			}
+		}
+		catverIniFile.close();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open '%1' for reading -- no catver.ini data available").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString()));
 
-  qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-    qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
-  else
-    qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+	qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+		qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+	else
+		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 
-  elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading catver.ini, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%1 category / %2 version records loaded").arg(categoryMap.count()).arg(versionMap.count()));
+	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading catver.ini, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%1 category / %2 version records loaded").arg(categoryMap.count()).arg(versionMap.count()));
 }
 
 void Gamelist::createVersionView()
@@ -4183,8 +4184,10 @@ void Gamelist::createVersionView()
 
 	qmc2MainWindow->stackedWidgetView->setCurrentIndex(QMC2_VIEW_VERSION_INDEX);
 	qmc2MainWindow->stackedWidgetView->update();
-
 	qmc2MainWindow->treeWidgetVersionView->setColumnHidden(QMC2_GAMELIST_COLUMN_VERSION, true);
+
+	if ( numGames == -1 )
+		return;
 
 	if ( !qmc2StopParser ) {
 		qmc2MainWindow->loadAnimMovie->start();
