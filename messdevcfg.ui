@@ -89,9 +89,6 @@
            </property>
            <item row="0" column="0">
             <widget class="QTreeWidget" name="treeWidgetDeviceSetup">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
              <property name="contextMenuPolicy">
               <enum>Qt::CustomContextMenu</enum>
              </property>
@@ -672,6 +669,11 @@
          <property name="sortingEnabled">
           <bool>true</bool>
          </property>
+         <item>
+          <property name="text">
+           <string>Default configuration</string>
+          </property>
+         </item>
         </widget>
        </item>
       </layout>

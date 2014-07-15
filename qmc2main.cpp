@@ -4682,12 +4682,12 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
       if ( qmc2CurrentItem != qmc2LastDeviceConfigItem ) {
         if ( qmc2MESSDeviceConfigurator ) {
+          tabDevices->setUpdatesEnabled(false);
           qmc2MESSDeviceConfigurator->forceQuit = true;
           if ( qmc2MESSDeviceConfigurator->refreshRunning ) {
 		  QTimer::singleShot(1, this, SLOT(treeWidgetGamelist_itemSelectionChanged_delayed()));
 		  return;
           }
-          tabDevices->setUpdatesEnabled(false);
           qmc2MESSDeviceConfigurator->disconnect();
           qmc2MESSDeviceConfigurator->save();
           qmc2MESSDeviceConfigurator->saveSetup();
@@ -4706,8 +4706,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           tabDevices->setLayout(layout);
         qmc2MESSDeviceConfigurator->show();
         qmc2LastDeviceConfigItem = qmc2CurrentItem;
-        tabDevices->setUpdatesEnabled(true);
         messDevCfgTimer.start(QMC2_DEVCONFIG_LOAD_DELAY);
+        tabDevices->setUpdatesEnabled(true);
       }
       break;
 
