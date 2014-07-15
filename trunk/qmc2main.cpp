@@ -7813,11 +7813,12 @@ void MainWindow::loadGameInfoDB()
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				progressBarGamelist->setFormat(tr("Game info - %p%"));
 #elif defined(QMC2_EMUTYPE_MESS)
-			progressBarGamelist->setFormat(tr("Machine info - %p%"));
+				progressBarGamelist->setFormat(tr("Machine info - %p%"));
 #endif
 			else
 				progressBarGamelist->setFormat("%p%");
 			progressBarGamelist->setRange(0, gameInfoDB.size());
+			progressBarGamelist->setValue(0);
 			qApp->processEvents();
 			QTextStream ts(&gameInfoDB);
 			ts.setCodec(QTextCodec::codecForName("UTF-8"));
@@ -8028,6 +8029,7 @@ void MainWindow::loadEmuInfoDB()
 			else
 				progressBarGamelist->setFormat("%p%");
 			progressBarGamelist->setRange(0, emuInfoDB.size());
+			progressBarGamelist->setValue(0);
 			qApp->processEvents();
 			QTextStream ts(&emuInfoDB);
 			ts.setCodec(QTextCodec::codecForName("UTF-8"));
@@ -8173,6 +8175,7 @@ void MainWindow::loadSoftwareInfoDB()
 		else
 			progressBarGamelist->setFormat("%p%");
 		progressBarGamelist->setRange(0, swInfoDB.size());
+		progressBarGamelist->setValue(0);
 		qApp->processEvents();
 		QTextStream ts(&swInfoDB);
 		ts.setCodec(QTextCodec::codecForName("UTF-8"));
