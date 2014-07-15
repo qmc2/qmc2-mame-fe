@@ -1,5 +1,7 @@
 #include <QFileDialog>
 #include <QTest>
+#include <QHash>
+#include <QMap>
 
 #include "settings.h"
 #include "imagechecker.h"
@@ -26,7 +28,7 @@ extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 #endif
-extern QMap<QString, QIcon> qmc2IconMap;
+extern QHash<QString, QIcon> qmc2IconHash;
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
 extern Gamelist *qmc2Gamelist;
@@ -791,7 +793,7 @@ void ImageChecker::feedWorkerThreads()
 			}
 		} else {
 			// icons
-			qmc2IconMap.clear();
+			qmc2IconHash.clear();
 			qmc2IconsPreloaded = false;
 			int itemCount = 0;
 			bool firstCheck = true;
