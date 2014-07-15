@@ -1096,7 +1096,7 @@ QString HtmlEditor::getIconData()
 {
 	QByteArray iconData;
 	if ( qmc2CurrentItem ) {
-		QPixmap pm = qmc2IconHash[qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)].pixmap(64, 64);
+		QPixmap pm = qmc2CurrentItem->icon(QMC2_GAMELIST_COLUMN_ICON).pixmap(64, 64);
 		QBuffer buffer(&iconData);
 		pm.save(&buffer, "PNG");
 	}
