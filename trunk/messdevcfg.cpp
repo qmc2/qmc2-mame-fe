@@ -143,12 +143,12 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
 	setupUi(this);
 
-	tabFileChooser->setUpdatesEnabled(false);
-	listWidgetDeviceConfigurations->setUpdatesEnabled(false);
 	listWidgetDeviceConfigurations->setSortingEnabled(false);
+	listWidgetDeviceConfigurations->blockSignals(true);
+	listWidgetDeviceConfigurations->setCurrentItem(listWidgetDeviceConfigurations->item(0));
+	listWidgetDeviceConfigurations->blockSignals(false);
 
 	tabWidgetDeviceSetup->setCornerWidget(toolButtonConfiguration, Qt::TopRightCorner);
-	setEnabled(false);
 
 #if (!defined(QMC2_OS_UNIX) && !defined(QMC2_OS_WIN)) || QT_VERSION >= 0x050000
 	toolButtonChooserPlayEmbedded->setVisible(false);
@@ -1114,7 +1114,6 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 	comboBoxDeviceInstanceChooser->clear();
 
 	if ( instances.count() > 0 ) {
-		treeWidgetDeviceSetup->setEnabled(true);
 		qSort(instances);
 		foreach (QString instance, instances) {
 			QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems(instance, Qt::MatchExactly);
@@ -1142,8 +1141,8 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 			QTimer::singleShot(0, this, SLOT(setupFileChooser()));
 	} else {
 		comboBoxDeviceInstanceChooser->insertItem(0, tr("No devices available"));
-		tabFileChooser->setUpdatesEnabled(true);
 		tabFileChooser->setEnabled(false);
+		treeWidgetDeviceSetup->setEnabled(false);
 	}
 
 	comboBoxDeviceInstanceChooser->setUpdatesEnabled(true);
@@ -1341,7 +1340,6 @@ bool MESSDeviceConfigurator::load()
 
 	if ( messSystemSlotMap.isEmpty() && messSystemSlotsSupported )
 		if ( !readSystemSlots() ) {
-			tabFileChooser->setUpdatesEnabled(true);
 			listWidgetDeviceConfigurations->setUpdatesEnabled(true);
 			refreshRunning = false;
 			return false;
@@ -1353,6 +1351,7 @@ bool MESSDeviceConfigurator::load()
 	tabSlotOptions->setUpdatesEnabled(false);
 	listWidgetDeviceConfigurations->setUpdatesEnabled(false);
 	listWidgetDeviceConfigurations->setSortingEnabled(false);
+	listWidgetDeviceConfigurations->clear();
 
 	QString xmlBuffer = getXmlData(messMachineName);
   
@@ -1376,7 +1375,6 @@ bool MESSDeviceConfigurator::load()
 	}
 
 	if ( instances.count() > 0 ) {
-		treeWidgetDeviceSetup->setEnabled(true);
 		qSort(instances);
 		foreach (QString instance, instances) {
 			QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems(instance, Qt::MatchExactly);
@@ -1404,8 +1402,8 @@ bool MESSDeviceConfigurator::load()
 			QTimer::singleShot(0, this, SLOT(setupFileChooser()));
 	} else {
 		comboBoxDeviceInstanceChooser->insertItem(0, tr("No devices available"));
-		tabFileChooser->setUpdatesEnabled(true);
 		tabFileChooser->setEnabled(false);
+		treeWidgetDeviceSetup->setEnabled(false);
 	}
 
 	comboBoxDeviceInstanceChooser->setUpdatesEnabled(true);
@@ -2196,7 +2194,6 @@ void MESSDeviceConfigurator::setupFileChooser()
 #endif
 
 	if ( fileChooserSetup ) {
-		tabFileChooser->setUpdatesEnabled(true);
 		tabFileChooser->setEnabled(true);
 		return;
 	}
@@ -2220,6 +2217,7 @@ void MESSDeviceConfigurator::setupFileChooser()
 	if ( path.isEmpty() )
 		path = QDir::rootPath();
 
+	treeViewDirChooser->setUpdatesEnabled(false);
 	dirModel = new DirectoryModel(this);
 	dirModel->setFilter(QDir::Dirs | QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Drives | QDir::CaseSensitive);
 #if defined(QMC2_OS_WIN)
@@ -2254,6 +2252,7 @@ void MESSDeviceConfigurator::setupFileChooser()
 	fileModel->setCurrentPath(path, false);
 	connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
 	connect(fileModel, SIGNAL(finished()), this, SLOT(fileModel_finished()));
+	treeViewFileChooser->setUpdatesEnabled(false);
 	treeViewFileChooser->setModel(fileModel);
   	treeViewFileChooser->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState").toByteArray());
 	connect(treeViewDirChooser->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeViewDirChooser_headerClicked(int)));
@@ -2268,14 +2267,13 @@ void MESSDeviceConfigurator::setupFileChooser()
 	connect(toolButtonChooserPlayEmbedded, SIGNAL(clicked()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 
 	QTimer::singleShot(QMC2_DIRCHOOSER_INIT_WAIT, this, SLOT(dirChooserDelayedInit()));
-
-	tabFileChooser->setUpdatesEnabled(true);
-	tabFileChooser->setEnabled(true);
 }
 
 void MESSDeviceConfigurator::dirChooserDelayedInit()
 {
 	treeViewDirChooser->scrollTo(treeViewDirChooser->currentIndex(), qmc2CursorPositioningMode);
+	treeViewFileChooser->setUpdatesEnabled(true);
+	treeViewDirChooser->setUpdatesEnabled(true);
 }
 
 void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)

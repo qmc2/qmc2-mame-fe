@@ -204,7 +204,7 @@
 #define QMC2_FILECHOOSER_INSERTED_ROWS		2500
 
 // init delay for the file-chooser's dir-view
-#define QMC2_DIRCHOOSER_INIT_WAIT		250
+#define QMC2_DIRCHOOSER_INIT_WAIT		100
 
 // page indexes for the software list tool box
 #define QMC2_SWLIST_KNOWN_SW_PAGE		0
