@@ -128,8 +128,6 @@ class Gamelist : public QObject
 		void verifyStarted();
 		void verifyFinished(int, QProcess::ExitStatus);
 		void verifyReadyReadStandardOutput();
-		void verifyError(QProcess::ProcessError);
-		void verifyStateChanged(QProcess::ProcessState);
 
 		// internal methods
 		QString value(QString, QString, bool translate = false);

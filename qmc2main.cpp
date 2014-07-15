@@ -249,7 +249,7 @@ QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
 QMap<QString, QStringList> qmc2HierarchyMap;
 QMap<QString, QString> qmc2ParentMap;
-QMap<QString, QIcon> qmc2IconMap;
+QHash<QString, QIcon> qmc2IconHash;
 QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
 QMap<QString, QString> qmc2CustomShortcutMap;
 QHash<QString, QByteArray *> qmc2GameInfoDB;
@@ -2775,7 +2775,7 @@ void MainWindow::on_actionClearIconCache_triggered(bool)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearIconCache_triggered(bool)");
 #endif
 
-  qmc2IconMap.clear();
+  qmc2IconHash.clear();
   qmc2IconsPreloaded = false;
   log(QMC2_LOG_FRONTEND, tr("icon cache cleared"));
 }
@@ -5881,10 +5881,10 @@ void MainWindow::action_embedEmulator_triggered()
 #if defined(QMC2_OS_UNIX)
       qApp->syncX();
       log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg("0x" + QString::number(winIdList[0], 16)));
-      Embedder *embedder = new Embedder(gameName, gameID, winIdList[0], (gameStatus == tr("paused")), this, qmc2IconMap[gameName]);
+      Embedder *embedder = new Embedder(gameName, gameID, winIdList[0], (gameStatus == tr("paused")), this, qmc2IconHash[gameName]);
 #elif defined(QMC2_OS_WIN)
       log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg("0x" + QString::number((qulonglong)winIdList[0], 16)));
-      Embedder *embedder = new Embedder(gameName, gameID, winIdList[0], false, this, qmc2IconMap[gameName]);
+      Embedder *embedder = new Embedder(gameName, gameID, winIdList[0], false, this, qmc2IconHash[gameName]);
 #endif
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
       if ( gameItem )
