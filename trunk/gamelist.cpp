@@ -3937,7 +3937,7 @@ void Gamelist::createCategoryView()
 		return;
 	} else if ( numGames == -1 ) {
 		return;
-	} else if ( (qmc2ReloadActive || qmc2FilterActive) && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_CATEGORY_INDEX ) {
+	} else if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_CATEGORY_INDEX ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
 		return;
 	}
@@ -4167,7 +4167,7 @@ void Gamelist::createVersionView()
 		return;
 	} else if ( numGames == -1 ) {
 		return;
-	} else if ( (qmc2ReloadActive || qmc2FilterActive) && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_VERSION_INDEX ) {
+	} else if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_VERSION_INDEX ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
 		return;
 	}
