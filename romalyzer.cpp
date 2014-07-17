@@ -2753,7 +2753,7 @@ void ROMAlyzer::exportToDataFile()
 					for (int j = 0; j < item->childCount(); j++) {
 						QTreeWidgetItem *childItem = item->child(j);
 						QString filestatus = childItem->text(QMC2_ROMALYZER_COLUMN_FILESTATUS);
-						if ( filestatus == tr("not found") || filestatus.toUpper() != filestatus ) {
+						if ( filestatus == tr("not found") || (filestatus.toUpper() != filestatus && filestatus != tr("no dump")) ) {
 							QString type = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE);
 							QString filename = childItem->text(QMC2_ROMALYZER_COLUMN_GAME);
 							QString size = childItem->text(QMC2_ROMALYZER_COLUMN_SIZE);
