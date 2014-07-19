@@ -33,6 +33,7 @@ class CustomIDSetup : public QDialog, public Ui::CustomIDSetup
 		void setupCopyIDsMenu();
 		void chooseIdIconClicked();
 		void actionDefaultIdIconTriggered();
+		void actionNoIdIconTriggered();
 };
 
 #endif
