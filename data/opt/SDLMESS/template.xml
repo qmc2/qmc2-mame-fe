@@ -921,7 +921,7 @@
     <description lang="pl" text="Obraz"/>
     <description lang="fr" text="Vidéo"/>
     <description lang="pt" text="Vídeo"/>
-    <option default="auto" default.Darwin="opengl" name="video" type="combo">
+    <option default="auto" name="video" type="combo">
       <description lang="es" text="Método de salida de vídeo: ninguno, gdi, ddraw o d3d"/>
       <description lang="us" text="Video output method: none, soft or opengl"/>
       <description lang="de" text="Methode zur Video-Ausgabe: none, soft oder opengl"/>
