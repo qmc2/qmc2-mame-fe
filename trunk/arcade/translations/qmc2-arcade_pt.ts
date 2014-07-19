@@ -885,7 +885,7 @@
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="10"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="10"/>
         <source>Initialization done</source>
-        <translation type="unfinished"></translation>
+        <translation>Inicialização terminada</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="72"/>
@@ -945,7 +945,7 @@
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="49"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="47"/>
         <source>Starting initialization</source>
-        <translation type="unfinished"></translation>
+        <translation>Começando inicialização</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="258"/>
