@@ -31,12 +31,12 @@
     <message>
         <location filename="../../about.cpp" line="66"/>
         <source>Mac OS X 10.9</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="68"/>
         <source>Mac OS X</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="72"/>
@@ -215,12 +215,12 @@
     <message>
         <location filename="../../about.cpp" line="82"/>
         <source>Windows 8.1 (Windows 6.3)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="84"/>
         <source>Windows</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="164"/>
@@ -1586,7 +1586,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../customidsetup.cpp" line="174"/>
         <location filename="../../customidsetup.cpp" line="289"/>
         <source>No icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem ícone</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="364"/>
@@ -3388,7 +3388,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../gamelist.cpp" line="3931"/>
         <location filename="../../gamelist.cpp" line="4161"/>
         <source>Loading, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregando, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="949"/>
@@ -3474,7 +3474,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../gamelist.cpp" line="846"/>
         <source>WARNING: the output from -listfull changed, forcing a refresh of all emulator caches</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: a saída do -listfull mudou, forçando uma atualização do cache de todos os emuladores</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1199"/>
@@ -3709,7 +3709,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../gamelist.cpp" line="2493"/>
         <source>Filtering, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrando, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2917"/>
@@ -6229,7 +6229,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../downloaditem.cpp" line="87"/>
         <source>FATAL: can&apos;t open network reply for reading</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível abrir resposta da rede para leitura</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="101"/>
@@ -7841,27 +7841,27 @@ Você realmente quer verificar o estado de todas as ROMs agora?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2874"/>
         <source>ROM state cache file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo de cache de estado de ROM &apos;%1&apos; removido</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2914"/>
         <source>game list cache file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo de cache da lista de jogos &apos;%1&apos; removido</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2919"/>
         <source>machine list cache file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo de cache da lista de máquinas &apos;%1&apos; removido</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2975"/>
         <source>slot info cache file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo de cache de informações de slot &apos;%1&apos; removido</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3010"/>
         <source>software list cache file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo de cache da lista de software &apos;%1&apos; removido</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3247"/>
@@ -8435,7 +8435,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="12546"/>
         <location filename="../../qmc2main.cpp" line="12547"/>
         <source>Unlock ranks</source>
-        <translation type="unfinished"></translation>
+        <translation>Destravar classificações</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2600"/>
@@ -8860,7 +8860,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="11465"/>
         <location filename="../../qmc2main.cpp" line="11629"/>
         <source>Tagging, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiquetando, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11515"/>
@@ -8872,7 +8872,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="11519"/>
         <location filename="../../qmc2main.cpp" line="11684"/>
         <source>Untagging, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Removendo etiquetas, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11569"/>
@@ -8884,7 +8884,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="11573"/>
         <location filename="../../qmc2main.cpp" line="11739"/>
         <source>Inverting tags, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Invertendo etiquetas, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11849"/>
@@ -10904,7 +10904,7 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.cpp" line="12551"/>
         <location filename="../../qmc2main.cpp" line="12552"/>
         <source>Lock ranks</source>
-        <translation type="unfinished"></translation>
+        <translation>Travar classificações</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4156"/>
@@ -12215,7 +12215,7 @@ Tentar novamente?</translation>
         <location filename="../../options.cpp" line="3010"/>
         <location filename="../../options.cpp" line="4649"/>
         <source>No icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem ícone</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3135"/>
@@ -15360,7 +15360,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../options.ui" line="5466"/>
         <location filename="../../options.ui" line="5469"/>
         <source>Automatically recreate all emulator caches when the output from &apos;-listfull&apos; changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Recriar automaticamente todos os caches de emuladores quando a saída do &apos;-listfull&apos; mudar</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5513"/>
@@ -15390,7 +15390,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="5594"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5617"/>
@@ -16644,12 +16644,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="2637"/>
         <source>Choose data file to import from</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolhar arquivo de dados para importar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2669"/>
         <source>Choose data file to export to</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolhar arquivo de dados para exportar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3131"/>
@@ -17297,7 +17297,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="193"/>
         <source>Export to data file</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar para arquivo de dados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="910"/>
@@ -17788,22 +17788,22 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="2655"/>
         <source>FATAL: can&apos;t open data file &apos;%1&apos; for reading</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível abrir arquivo de dados &apos;%1&apos; para leitura</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2676"/>
         <source>Exporting</source>
-        <translation type="unfinished">Exportando</translation>
+        <translation>Exportando</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2691"/>
         <source>Created by QMC2 v%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Criado por QMC2 v%1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2793"/>
         <source>FATAL: can&apos;t open data file &apos;%1&apos; for writing</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível abrir arquivo de dados &apos;%1&apos; para escrita</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3058"/>
@@ -18252,7 +18252,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1361"/>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do arquivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1464"/>
@@ -18277,12 +18277,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1548"/>
         <source>ID / File name</source>
-        <translation type="unfinished"></translation>
+        <translation>ID / Nome do arquivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1553"/>
         <source>Old ID / File name</source>
-        <translation type="unfinished"></translation>
+        <translation>ID antigo / Nome do arquivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1558"/>
