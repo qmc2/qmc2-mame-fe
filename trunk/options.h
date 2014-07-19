@@ -240,6 +240,7 @@ class Options : public QDialog, public Ui::Options
     void setupCustomIDsClicked();
     void chooseEmuIconClicked();
     void actionDefaultEmuIconTriggered();
+    void actionNoEmuIconTriggered();
     void checkPlaceholderStatus();
     void loadCustomPalette(QString);
     void saveCustomPalette();

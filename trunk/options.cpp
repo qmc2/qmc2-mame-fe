@@ -2994,13 +2994,21 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 		  tb->setIcon(QIcon(QString::fromUtf8(":/data/img/alien.png")));
 		  tb->setWhatsThis(":/data/img/alien.png");
 	  } else {
-		  tb->setIcon(QIcon(emuIcon));
-		  tb->setWhatsThis(emuIcon);
+		  if ( emuIcon == "[none]" ) {
+			  tb->setIcon(QIcon());
+			  tb->setWhatsThis("[none]");
+		  } else {
+			  tb->setIcon(QIcon(emuIcon));
+			  tb->setWhatsThis(emuIcon);
+		  }
 	  }
 	  tb->setToolTip(tr("Choose icon for this foreign emulator (hold down for menu)"));
 	  QMenu *menu = new QMenu(tb);
 	  QAction *action = menu->addAction(QIcon(QString::fromUtf8(":/data/img/alien.png")), tr("Default icon"));
 	  connect(action, SIGNAL(triggered(bool)), this, SLOT(actionDefaultEmuIconTriggered()));
+	  menu->addSeparator();
+	  action = menu->addAction(QIcon(QString::fromUtf8(":/data/img/no.png")), tr("No icon"));
+	  connect(action, SIGNAL(triggered(bool)), this, SLOT(actionNoEmuIconTriggered()));
 	  tb->setMenu(menu);
 	  tableWidgetRegisteredEmulators->setCellWidget(row, QMC2_ADDTLEMUS_COLUMN_ICON, tb);
 	  connect(tb, SIGNAL(clicked()), this, SLOT(chooseEmuIconClicked()));
@@ -4637,12 +4645,13 @@ void Options::on_toolButtonAddEmulator_clicked()
 	QMenu *menu = new QMenu(tb);
 	QAction *action = menu->addAction(QIcon(QString::fromUtf8(":/data/img/alien.png")), tr("Default icon"));
 	connect(action, SIGNAL(triggered(bool)), this, SLOT(actionDefaultEmuIconTriggered()));
+	menu->addSeparator();
+	action = menu->addAction(QIcon(QString::fromUtf8(":/data/img/no.png")), tr("No icon"));
+	connect(action, SIGNAL(triggered(bool)), this, SLOT(actionNoEmuIconTriggered()));
 	tb->setMenu(menu);
 	tableWidgetRegisteredEmulators->setCellWidget(row, QMC2_ADDTLEMUS_COLUMN_ICON, tb);
 	connect(tb, SIGNAL(clicked()), this, SLOT(chooseEmuIconClicked()));
-
 	tableWidgetRegisteredEmulators->resizeRowsToContents();
-
 	on_lineEditAdditionalEmulatorName_textChanged(lineEditAdditionalEmulatorName->text());
 	tableWidgetRegisteredEmulators->setSortingEnabled(true);
 }
@@ -4859,6 +4868,21 @@ void Options::actionDefaultEmuIconTriggered()
 		if ( tb ) {
 			tb->setIcon(QIcon(QString::fromUtf8(":/data/img/alien.png")));
 			tb->setWhatsThis(":/data/img/alien.png");
+		}
+	}
+}
+
+void Options::actionNoEmuIconTriggered()
+{
+	QAction *action = (QAction *)sender();
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::actionNoEmuIconTriggered() : action = %1)").arg((qulonglong)action));
+#endif
+	if ( action ) {
+		QToolButton *tb = (QToolButton *)action->parentWidget()->parentWidget();
+		if ( tb ) {
+			tb->setIcon(QIcon());
+			tb->setWhatsThis("[none]");
 		}
 	}
 }

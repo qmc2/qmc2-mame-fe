@@ -170,6 +170,9 @@ void CustomIDSetup::on_toolButtonAddID_clicked()
 	QMenu *menu = new QMenu(tb);
 	QAction *action = menu->addAction(QIcon(QString::fromUtf8(":/data/img/pacman.png")), tr("Default icon"));
 	connect(action, SIGNAL(triggered(bool)), this, SLOT(actionDefaultIdIconTriggered()));
+	menu->addSeparator();
+	action = menu->addAction(QIcon(QString::fromUtf8(":/data/img/no.png")), tr("No icon"));
+	connect(action, SIGNAL(triggered(bool)), this, SLOT(actionNoIdIconTriggered()));
 	tb->setMenu(menu);
 	tableWidgetCustomIDs->setCellWidget(row, QMC2_CUSTOMIDS_COLUMN_ICON, tb);
 	connect(tb, SIGNAL(clicked()), this, SLOT(chooseIdIconClicked()));
@@ -264,19 +267,27 @@ void CustomIDSetup::load()
 				tb->setIcon(QIcon(QString::fromUtf8(":/data/img/pacman.png")));
 				tb->setWhatsThis(":/data/img/pacman.png");
 			} else {
-				QIcon icon = QIcon(idIcon);
-				if ( !icon.isNull() ) {
-					tb->setIcon(icon);
-					tb->setWhatsThis(idIcon);
+				if ( idIcon == "[none]" ) {
+					tb->setIcon(QIcon());
+					tb->setWhatsThis("[none]");
 				} else {
-					tb->setIcon(QIcon(QString::fromUtf8(":/data/img/pacman.png")));
-					tb->setWhatsThis(":/data/img/pacman.png");
+					QIcon icon = QIcon(idIcon);
+					if ( !icon.isNull() ) {
+						tb->setIcon(icon);
+						tb->setWhatsThis(idIcon);
+					} else {
+						tb->setIcon(QIcon(QString::fromUtf8(":/data/img/pacman.png")));
+						tb->setWhatsThis(":/data/img/pacman.png");
+					}
 				}
 			}
 			tb->setToolTip(tr("Choose icon for this foreign ID (hold down for menu)"));
 			QMenu *menu = new QMenu(tb);
 			QAction *action = menu->addAction(QIcon(QString::fromUtf8(":/data/img/pacman.png")), tr("Default icon"));
 			connect(action, SIGNAL(triggered(bool)), this, SLOT(actionDefaultIdIconTriggered()));
+			menu->addSeparator();
+			action = menu->addAction(QIcon(QString::fromUtf8(":/data/img/no.png")), tr("No icon"));
+			connect(action, SIGNAL(triggered(bool)), this, SLOT(actionNoIdIconTriggered()));
 			tb->setMenu(menu);
 			tableWidgetCustomIDs->setCellWidget(row, QMC2_CUSTOMIDS_COLUMN_ICON, tb);
 			connect(tb, SIGNAL(clicked()), this, SLOT(chooseIdIconClicked()));
@@ -372,6 +383,21 @@ void CustomIDSetup::actionDefaultIdIconTriggered()
 		if ( tb ) {
 			tb->setIcon(QIcon(QString::fromUtf8(":/data/img/pacman.png")));
 			tb->setWhatsThis(":/data/img/pacman.png");
+		}
+	}
+}
+
+void CustomIDSetup::actionNoIdIconTriggered()
+{
+	QAction *action = (QAction *)sender();
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: CustomIDSetup::actionNoIdIconTriggered() : action = %1)").arg((qulonglong)action));
+#endif
+	if ( action ) {
+		QToolButton *tb = (QToolButton *)action->parentWidget()->parentWidget();
+		if ( tb ) {
+			tb->setIcon(QIcon());
+			tb->setWhatsThis("[none]");
 		}
 	}
 }
