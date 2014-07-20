@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '1.0.441';
-PDFJS.build = '0ac8380';
+PDFJS.version = '1.0.463';
+PDFJS.build = 'c0d1701';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -586,8 +586,15 @@ var IDENTITY_MATRIX = [1, 0, 0, 1, 0, 0];
 var Util = PDFJS.Util = (function UtilClosure() {
   function Util() {}
 
+  var rgbBuf = ['rgb(', 0, ',', 0, ',', 0, ')'];
+
+  // makeCssRgb() can be called thousands of times. Using |rgbBuf| avoids
+  // creating many intermediate strings.
   Util.makeCssRgb = function Util_makeCssRgb(rgb) {
-    return 'rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ')';
+    rgbBuf[1] = rgb[0];
+    rgbBuf[3] = rgb[1];
+    rgbBuf[5] = rgb[2];
+    return rgbBuf.join('');
   };
 
   // Concatenates two transformation matrices together and returns the result.
@@ -1930,8 +1937,15 @@ var ChunkedStream = (function ChunkedStreamClosure() {
       if (pos >= this.end) {
         return -1;
       }
-      this.ensureByte(pos);
-      return this.bytes[this.pos++];
+      var byte = this.bytes[pos];
+      if (byte === 0) {
+        // |byte| might be zero, because the corresponding chunk has not been
+        // loaded yet. In this case, this.ensureByte(pos) will throw an
+        // exception and nothing is returned.
+        this.ensureByte(pos);
+      }
+      this.pos++;
+      return byte;
     },
 
     getUint16: function ChunkedStream_getUint16() {
@@ -2796,14 +2810,10 @@ var PDFDocument = (function PDFDocumentClosure() {
   function find(stream, needle, limit, backwards) {
     var pos = stream.pos;
     var end = stream.end;
-    var strBuf = [];
     if (pos + limit > end) {
       limit = end - pos;
     }
-    for (var n = 0; n < limit; ++n) {
-      strBuf.push(String.fromCharCode(stream.getByte()));
-    }
-    var str = strBuf.join('');
+    var str = bytesToString(stream.getBytes(limit));
     stream.pos = pos;
     var index = backwards ? str.lastIndexOf(needle) : str.indexOf(needle);
     if (index == -1) {
@@ -22364,6 +22374,7 @@ var Font = (function FontClosure() {
     var toUnicode = properties.toUnicode;
     var isSymbolic = !!(properties.flags & FontFlags.Symbolic);
     var isIdentityUnicode = properties.isIdentityUnicode;
+    var isCidFontType2 = (properties.type === 'CIDFontType2');
     var newMap = Object.create(null);
     var toFontChar = [];
     var usedFontCharCodes = [];
@@ -22374,11 +22385,17 @@ var Font = (function FontClosure() {
       var fontCharCode = originalCharCode;
       // First try to map the value to a unicode position if a non identity map
       // was created.
-      if (!isIdentityUnicode && originalCharCode in toUnicode) {
-        var unicode = toUnicode[fontCharCode];
-        // TODO: Try to map ligatures to the correct spot.
-        if (unicode.length === 1) {
-          fontCharCode = unicode.charCodeAt(0);
+      if (!isIdentityUnicode) {
+        if (toUnicode[originalCharCode] !== undefined) {
+          var unicode = toUnicode[fontCharCode];
+          // TODO: Try to map ligatures to the correct spot.
+          if (unicode.length === 1) {
+            fontCharCode = unicode.charCodeAt(0);
+          }
+        } else if (isCidFontType2) {
+          // For CIDFontType2, move characters not present in toUnicode
+          // to the private use area (fixes bug 1028735 and issue 4881).
+          fontCharCode = nextAvailableFontCharCode;
         }
       }
       // Try to move control characters, special characters and already mapped
@@ -22387,7 +22404,7 @@ var Font = (function FontClosure() {
       // font was symbolic and there is only an identity unicode map since the
       // characters probably aren't in the correct position (fixes an issue
       // with firefox and thuluthfont).
-      if ((fontCharCode in usedFontCharCodes ||
+      if ((usedFontCharCodes[fontCharCode] !== undefined ||
            fontCharCode <= 0x1f || // Control chars
            fontCharCode === 0x7F || // Control char
            fontCharCode === 0xAD || // Soft hyphen
@@ -22405,7 +22422,7 @@ var Font = (function FontClosure() {
             nextAvailableFontCharCode = fontCharCode + 1;
           }
 
-        } while (fontCharCode in usedFontCharCodes &&
+        } while (usedFontCharCodes[fontCharCode] !== undefined &&
                  nextAvailableFontCharCode <= PRIVATE_USE_OFFSET_END);
       }
 
@@ -23779,8 +23796,9 @@ var Font = (function FontClosure() {
       }
 
       var charCodeToGlyphId = [], charCode;
-      if (properties.type == 'CIDFontType2') {
+      if (properties.type === 'CIDFontType2') {
         var cidToGidMap = properties.cidToGidMap || [];
+        var cidToGidMapLength = cidToGidMap.length;
         var cMap = properties.cMap.map;
         for (charCode in cMap) {
           charCode |= 0;
@@ -23788,9 +23806,9 @@ var Font = (function FontClosure() {
           assert(cid.length === 1, 'Max size of CID is 65,535');
           cid = cid.charCodeAt(0);
           var glyphId = -1;
-          if (cidToGidMap.length === 0) {
+          if (cidToGidMapLength === 0) {
             glyphId = charCode;
-          } else if (cid in cidToGidMap) {
+          } else if (cidToGidMap[cid] !== undefined) {
             glyphId = cidToGidMap[cid];
           }
           if (glyphId >= 0 && glyphId < numGlyphs) {
@@ -36587,11 +36605,17 @@ var StringStream = (function StringStreamClosure() {
 
 // super class for the decoding streams
 var DecodeStream = (function DecodeStreamClosure() {
+  // Lots of DecodeStreams are created whose buffers are never used.  For these
+  // we share a single empty buffer. This is (a) space-efficient and (b) avoids
+  // having special cases that would be required if we used |null| for an empty
+  // buffer.
+  var emptyBuffer = new Uint8Array(0);
+
   function DecodeStream(maybeMinBufferLength) {
     this.pos = 0;
     this.bufferLength = 0;
     this.eof = false;
-    this.buffer = null;
+    this.buffer = emptyBuffer;
     this.minBufferLength = 512;
     if (maybeMinBufferLength) {
       // Compute the first power of two that is as big as maybeMinBufferLength.
@@ -36610,23 +36634,15 @@ var DecodeStream = (function DecodeStreamClosure() {
     },
     ensureBuffer: function DecodeStream_ensureBuffer(requested) {
       var buffer = this.buffer;
-      var current;
-      if (buffer) {
-        current = buffer.byteLength;
-        if (requested <= current) {
-          return buffer;
-        }
-      } else {
-        current = 0;
+      if (requested <= buffer.byteLength) {
+        return buffer;
       }
       var size = this.minBufferLength;
       while (size < requested) {
         size *= 2;
       }
       var buffer2 = new Uint8Array(size);
-      if (buffer) {
-        buffer2.set(buffer);
-      }
+      buffer2.set(buffer);
       return (this.buffer = buffer2);
     },
     getByte: function DecodeStream_getByte() {
@@ -36670,12 +36686,6 @@ var DecodeStream = (function DecodeStreamClosure() {
           this.readBlock();
         }
         end = this.bufferLength;
-
-        // checking if bufferLength is still 0 then
-        // the buffer has to be initialized
-        if (!end) {
-          this.buffer = new Uint8Array(0);
-        }
       }
 
       this.pos = end;
@@ -37010,12 +37020,10 @@ var FlateStream = (function FlateStreamClosure() {
           this.eof = true;
         }
       } else {
-        for (var n = bufferLength; n < end; ++n) {
-          if ((b = str.getByte()) === -1) {
-            this.eof = true;
-            break;
-          }
-          buffer[n] = b;
+        var block = str.getBytes(blockLen);
+        buffer.set(block, bufferLength);
+        if (block.length < blockLen) {
+          this.eof = true;
         }
       }
       return;
