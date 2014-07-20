@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.44, 19-JUL-2014</h3>
+<h3>CHANGES - v0.44, 20-JUL-2014</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.44, 19-JUL-2014:</b></p>
+<p><b>v0.44, 20-JUL-2014:</b></p>
 <ul>
   <li>fix: Mac OS X build: resolved type conflicts between LZMA SDK and older XCode headers (&lt; 4.x)</li>
   <li>fix: corrected device and BIOS set hiding in the master list when ROM state filtering is disabled</li>
@@ -23,9 +23,9 @@ inf: informational only
   <li>fix: MiniWebBrowser: corrected the network item downloader</li>
   <li>fix: fixed a bug with individual ROM checks that corrupted the ROM state cache with an invalid entry, causing it to be invalidated during the next reload</li>
   <li>fix: welcome dialog: 'NativeFileDialogs' setting didn't work as expected with folder browsers</li>
-  <li>imp: MAME/MESS/UME emulator templates updated to SVN r31310 (removed 'hlsl_write' from Windows OSD templates, removed 'memcard_directory' from all templates, added option 'console' to all templates)</li>
+  <li>imp: MAME/MESS/UME emulator templates updated to SVN r31332 (removed 'hlsl_write' from Windows OSD templates, removed 'memcard_directory' from all templates, added option 'console' to all templates)</li>
   <li>imp: speeded up ROM- and software-state filtering as well as game-/machine-/emu-info lookups by using QHash [<i>amortized O(1)</i>] instead of QMap [<i>O(log n)</i>] to store/retrieve states &amp; infos internally</li>
-  <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to SVN r31310</li>
+  <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to SVN r31332</li>
   <li>imp: upon merging game/machine info-sources UME variants now keep track if a game's/machine's info came from MAME (history.dat) or MESS (sysinfo.dat) and formats/displays the data accordingly when requested</li>
   <li>imp: updated the alternative system- and software-notes templates contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
   <li>imp: hide game/machine list while filtering it by ROM state (faster)</li>
