@@ -134,22 +134,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="66"/>
         <source>Mac OS X 10.9</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="68"/>
         <source>Mac OS X</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="82"/>
         <source>Windows 8.1 (Windows 6.3)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="84"/>
         <source>Windows</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="120"/>
@@ -870,7 +870,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="712"/>
         <source>Rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Rango</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="870"/>
@@ -1533,7 +1533,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../customidsetup.ui" line="199"/>
         <source>Icon</source>
-        <translation type="unfinished">Icono</translation>
+        <translation>Icono</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="204"/>
@@ -1574,34 +1574,34 @@ p, li { white-space: pre-wrap; }
         <location filename="../../customidsetup.cpp" line="169"/>
         <location filename="../../customidsetup.cpp" line="284"/>
         <source>Choose icon for this foreign ID (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Elegir icono para ID externa (mantener para menú)</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="171"/>
         <location filename="../../customidsetup.cpp" line="286"/>
         <source>Default icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Icono por defecto</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="174"/>
         <location filename="../../customidsetup.cpp" line="289"/>
         <source>No icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin icono</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="364"/>
         <source>Choose image file</source>
-        <translation type="unfinished">Seleccionar archivo de imagen</translation>
+        <translation>Seleccionar archivo de imagen</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="364"/>
         <source>Supported image files (%1)</source>
-        <translation type="unfinished">Archivos de imagen soportados (%1)</translation>
+        <translation>Archivos de imagen soportados (%1)</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="364"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos los archivos (*)</translation>
+        <translation>Todos los archivos (*)</translation>
     </message>
 </context>
 <context>
@@ -3407,7 +3407,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../gamelist.cpp" line="3931"/>
         <location filename="../../gamelist.cpp" line="4161"/>
         <source>Loading, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargando, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="949"/>
@@ -3737,17 +3737,17 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../gamelist.cpp" line="1770"/>
         <source>parsing game data and recreating game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>procesando datos de juego y recreando cache de lista de juegos</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1774"/>
         <source>parsing machine data and recreating machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>procesando datos de máquina y recreando cache de lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2493"/>
         <source>Filtering, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrando, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2917"/>
@@ -4113,7 +4113,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../gamelist.cpp" line="846"/>
         <source>WARNING: the output from -listfull changed, forcing a refresh of all emulator caches</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: el resultado de -listfull ha cambiado, forzando una recarga de todos los caches de emuladores</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1758"/>
@@ -6230,7 +6230,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../downloaditem.cpp" line="87"/>
         <source>FATAL: can&apos;t open network reply for reading</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede abrir la respuesta de red para su lectura</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="101"/>
@@ -6963,7 +6963,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.cpp" line="847"/>
         <source>done (loading available system slots and recreating cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>hecho (cargando slots de sistema disponibles y recreando cache, tiempo transcurrido = %1)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1053"/>
@@ -7001,7 +7001,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.cpp" line="708"/>
         <source>loading available system slots and recreating cache</source>
-        <translation type="unfinished"></translation>
+        <translation>cargando slots de sistema disponibles y recreando cache</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="729"/>
@@ -8155,7 +8155,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1455"/>
         <location filename="../../qmc2main.cpp" line="1489"/>
         <source>Rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Rango</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="788"/>
@@ -8192,28 +8192,28 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2767"/>
         <source>Set rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcar rango</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2745"/>
         <source>Rank image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen de rango</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="866"/>
         <source>&amp;Foreign emulators</source>
-        <translation type="unfinished"></translation>
+        <translation>Emuladores e&amp;xternos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="881"/>
         <location filename="../../qmc2main.ui" line="884"/>
         <source>Foreign emulators with custom IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>Emuladores externos con IDs personalizadas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2755"/>
         <source>Set rank (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcar rango (etiquetado)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2914"/>
@@ -9019,63 +9019,63 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="4366"/>
         <location filename="../../qmc2main.ui" line="4369"/>
         <source>Increase rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Incrementar rango</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4384"/>
         <location filename="../../qmc2main.ui" line="4387"/>
         <source>Decrease rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Reducir rango</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4405"/>
         <source>Flat</source>
-        <translation type="unfinished"></translation>
+        <translation>Plano</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4408"/>
         <location filename="../../qmc2main.ui" line="4411"/>
         <source>Use flat rank image</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar imagen de rango plana</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4429"/>
         <source>Gradient</source>
-        <translation type="unfinished">Gradiente</translation>
+        <translation>Gradiente</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4432"/>
         <location filename="../../qmc2main.ui" line="4435"/>
         <source>Use gradient rank image</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar imagen de rango gradiente</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4447"/>
         <source>Overlay color...</source>
-        <translation type="unfinished"></translation>
+        <translation>Color de superposición...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4450"/>
         <location filename="../../qmc2main.ui" line="4453"/>
         <source>Choose overlay color for rank image</source>
-        <translation type="unfinished"></translation>
+        <translation>Elegir color de superposición para imagen de rango</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4468"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4471"/>
         <location filename="../../qmc2main.ui" line="4474"/>
         <source>Use plain color rank image</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar color sencillo de imagen de plano</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4482"/>
         <location filename="../../qmc2main.ui" line="4566"/>
         <source>Rank 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Rango 0</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4485"/>
@@ -9083,13 +9083,13 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="4569"/>
         <location filename="../../qmc2main.ui" line="4572"/>
         <source>Set rank to 0 (no rank)</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcar rango a 0 (sin rango)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4496"/>
         <location filename="../../qmc2main.ui" line="4580"/>
         <source>Rank 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rango 1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4499"/>
@@ -9097,13 +9097,13 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="4583"/>
         <location filename="../../qmc2main.ui" line="4586"/>
         <source>Set rank to 1 (lowest rank)</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcar rango a 1 (el más bajo)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4510"/>
         <location filename="../../qmc2main.ui" line="4594"/>
         <source>Rank 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Rango 2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4513"/>
@@ -9111,13 +9111,13 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="4597"/>
         <location filename="../../qmc2main.ui" line="4600"/>
         <source>Set rank to 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcar rango a 2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4524"/>
         <location filename="../../qmc2main.ui" line="4608"/>
         <source>Rank 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Rango 3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4527"/>
@@ -9125,13 +9125,13 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="4611"/>
         <location filename="../../qmc2main.ui" line="4614"/>
         <source>Set rank to 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcar rango a 3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4538"/>
         <location filename="../../qmc2main.ui" line="4622"/>
         <source>Rank 4</source>
-        <translation type="unfinished"></translation>
+        <translation>Rango 4</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4541"/>
@@ -9139,13 +9139,13 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="4625"/>
         <location filename="../../qmc2main.ui" line="4628"/>
         <source>Set rank to 4</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcar rango a 4</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4552"/>
         <location filename="../../qmc2main.ui" line="4636"/>
         <source>Rank 5</source>
-        <translation type="unfinished"></translation>
+        <translation>Rango 5</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4555"/>
@@ -9153,19 +9153,19 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="4639"/>
         <location filename="../../qmc2main.ui" line="4642"/>
         <source>Set rank to 5 (highest rank)</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcar rango a 5 (el más alto)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4654"/>
         <location filename="../../qmc2main.ui" line="4657"/>
         <source>Increase rank (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Incrementar rango (etiquetado)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4669"/>
         <location filename="../../qmc2main.ui" line="4672"/>
         <source>Decrease rank (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Reducir rango (etiquetado)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4684"/>
@@ -9177,7 +9177,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="12551"/>
         <location filename="../../qmc2main.cpp" line="12552"/>
         <source>Lock ranks</source>
-        <translation type="unfinished"></translation>
+        <translation>Bloquear rangos</translation>
     </message>
     <message>
         <location filename="../../macros.h" line="567"/>
@@ -9969,22 +9969,22 @@ Se sobrescribirá los datos existentes en caché.
     <message>
         <location filename="../../qmc2main.cpp" line="2874"/>
         <source>ROM state cache file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de estado de cache de ROM &apos;%1&apos; eliminado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2914"/>
         <source>game list cache file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de cache de lista de juegos &apos;%1&apos; eliminado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2919"/>
         <source>machine list cache file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de cache de lista de máquinas &apos;%1&apos; eliminado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2975"/>
         <source>slot info cache file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de cache de info de slot &apos;%1&apos; eliminado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4738"/>
@@ -10219,7 +10219,7 @@ Se sobrescribirá los datos existentes en caché.
         <location filename="../../qmc2main.cpp" line="12546"/>
         <location filename="../../qmc2main.cpp" line="12547"/>
         <source>Unlock ranks</source>
-        <translation type="unfinished"></translation>
+        <translation>Desbloquear rangos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2600"/>
@@ -10239,7 +10239,7 @@ Se sobrescribirá los datos existentes en caché.
     <message>
         <location filename="../../qmc2main.cpp" line="3010"/>
         <source>software list cache file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de lista de cache de software &apos;%1&apos; eliminado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3529"/>
@@ -11089,7 +11089,7 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="11465"/>
         <location filename="../../qmc2main.cpp" line="11629"/>
         <source>Tagging, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiquetando, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11515"/>
@@ -11101,7 +11101,7 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="11519"/>
         <location filename="../../qmc2main.cpp" line="11684"/>
         <source>Untagging, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Desetiquetando, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11569"/>
@@ -11113,7 +11113,7 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="11573"/>
         <location filename="../../qmc2main.cpp" line="11739"/>
         <source>Inverting tags, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Invirtiendo etiquetas, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11849"/>
@@ -11128,7 +11128,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="12430"/>
         <source>Choose overlay color</source>
-        <translation type="unfinished"></translation>
+        <translation>Elegir color de superposición</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="12662"/>
@@ -12735,7 +12735,7 @@ Por favor, revisa la opción &apos;rompath&apos; en la configuración global del
     <message>
         <location filename="../../options.ui" line="3126"/>
         <source>Rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Rango</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3134"/>
@@ -13447,7 +13447,7 @@ Por favor, revisa la opción &apos;rompath&apos; en la configuración global del
     <message>
         <location filename="../../options.ui" line="5486"/>
         <source>Foreign &amp;emulators</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Emuladores externos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4883"/>
@@ -13962,7 +13962,7 @@ Por favor, revisa la opción &apos;rompath&apos; en la configuración global del
         <location filename="../../options.ui" line="5466"/>
         <location filename="../../options.ui" line="5469"/>
         <source>Automatically recreate all emulator caches when the output from &apos;-listfull&apos; changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Recrear automáticamente todos los caches de emulador cuando el resultado de &apos;-listfull&apos; cambie</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5800"/>
@@ -13997,7 +13997,7 @@ Por favor, revisa la opción &apos;rompath&apos; en la configuración global del
     <message>
         <location filename="../../options.ui" line="5547"/>
         <source>Icon</source>
-        <translation type="unfinished">Icono</translation>
+        <translation>Icono</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5552"/>
@@ -14032,7 +14032,7 @@ Por favor, revisa la opción &apos;rompath&apos; en la configuración global del
     <message>
         <location filename="../../options.ui" line="5594"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Añadir</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5620"/>
@@ -14668,12 +14668,12 @@ Por favor, revisa la opción &apos;rompath&apos; en la configuración global del
     <message>
         <location filename="../../options.cpp" line="509"/>
         <source>Increase rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Incrementar rango</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="510"/>
         <source>Decrease rank</source>
-        <translation type="unfinished"></translation>
+        <translation>Reducir rango</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="523"/>
@@ -14985,7 +14985,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="3171"/>
         <source>Foreign IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>IDs externos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3291"/>
@@ -15332,7 +15332,7 @@ Are you sure you want to do this?</source>
         <location filename="../../options.cpp" line="4252"/>
         <location filename="../../options.cpp" line="4283"/>
         <source>Supported archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos soportados</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4146"/>
@@ -15389,30 +15389,30 @@ Are you sure you want to do this?</source>
         <location filename="../../options.cpp" line="2987"/>
         <location filename="../../options.cpp" line="4636"/>
         <source>Specify pre-defined foreign IDs for this emulator, launchable from the &apos;foreign emulators&apos; view</source>
-        <translation type="unfinished"></translation>
+        <translation>Especificar IDs externos predefinidos para este emulador, ejecutable desde la vista &apos;emuladores externos&apos;</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3005"/>
         <location filename="../../options.cpp" line="4644"/>
         <source>Choose icon for this foreign emulator (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Elegir icono para este emulador externos (mantener para menu)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3007"/>
         <location filename="../../options.cpp" line="4646"/>
         <source>Default icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Icono por defecto</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3010"/>
         <location filename="../../options.cpp" line="4649"/>
         <source>No icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin icono</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3135"/>
         <source>N/A</source>
-        <translation type="unfinished">N/D</translation>
+        <translation>N/D</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3838"/>
@@ -15473,12 +15473,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="4849"/>
         <source>Choose image file</source>
-        <translation type="unfinished">Seleccionar archivo de imagen</translation>
+        <translation>Seleccionar archivo de imagen</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4849"/>
         <source>Supported image files (%1)</source>
-        <translation type="unfinished">Archivos de imagen soportados (%1)</translation>
+        <translation>Archivos de imagen soportados (%1)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4959"/>
@@ -16034,7 +16034,7 @@ Are you sure you want to do this?</source>
         <location filename="../../gamelist.cpp" line="2281"/>
         <location filename="../../options.cpp" line="2001"/>
         <source>rank</source>
-        <translation type="unfinished"></translation>
+        <translation>rango</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2284"/>
@@ -17255,7 +17255,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="1361"/>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de archivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1366"/>
@@ -17337,12 +17337,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="1548"/>
         <source>ID / File name</source>
-        <translation type="unfinished"></translation>
+        <translation>ID / Nombre de archivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1553"/>
         <source>Old ID / File name</source>
-        <translation type="unfinished"></translation>
+        <translation>ID antiguo / Nombre de archivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1600"/>
@@ -17573,7 +17573,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="193"/>
         <source>Export to data file</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar a archivo de datos</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="266"/>
@@ -18510,22 +18510,22 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="2655"/>
         <source>FATAL: can&apos;t open data file &apos;%1&apos; for reading</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede abrir archivo de datos &apos;%1&apos; para su lectura</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2676"/>
         <source>Exporting</source>
-        <translation type="unfinished">Exportando</translation>
+        <translation>Exportando</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2691"/>
         <source>Created by QMC2 v%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Creado por QMC2 v%1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2793"/>
         <source>FATAL: can&apos;t open data file &apos;%1&apos; for writing</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede abrir archivo de datos &apos;%1&apos; para su escritura</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3058"/>
@@ -18605,12 +18605,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="2637"/>
         <source>Choose data file to import from</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo de datos del que importar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2669"/>
         <source>Choose data file to export to</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo de datos al que exportar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3266"/>
@@ -20513,12 +20513,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwarelist.cpp" line="998"/>
         <source>loading XML software list data and recreating cache</source>
-        <translation type="unfinished"></translation>
+        <translation>cargando datos XML de lista de software y recreando cache</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1379"/>
         <source>done (loading XML software list data and recreating cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>hecho (cargando datos XML de lista de software y recreando cache, tiempo transcurrido = %1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1675"/>
@@ -21449,7 +21449,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="390"/>
         <source>removed ID &apos;%1&apos; due to no data</source>
-        <translation type="unfinished"></translation>
+        <translation>eliminado ID &apos;%1&apos; por no contener datos</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="403"/>
@@ -21478,12 +21478,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="458"/>
         <source>filling up rank cache from user data database &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>creando cache de rango desde la base de datos de usuario &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="485"/>
         <source>done (filling up rank cache from user data database &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>hecho (creando cache de rango desde la base de datos de usuario &apos;%1&apos;)</translation>
     </message>
 </context>
 <context>
@@ -21749,17 +21749,17 @@ Aunque puede que sean los restos de una caida previa.
         <location filename="../../welcome.cpp" line="493"/>
         <location filename="../../welcome.cpp" line="499"/>
         <source>Important upgrade information</source>
-        <translation type="unfinished"></translation>
+        <translation>Información de actualización importante</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="494"/>
         <source>&lt;p&gt;A new data column (&apos;%1&apos;) has been added to all machine lists!&lt;/p&gt;&lt;p&gt;Please check/adapt column visibility &lt;a href=&quot;%2&quot;&gt;as shown in our wiki&lt;/a&gt;!&lt;/p&gt;&lt;p&gt;Note that you&apos;ll have to do this for the other QMC2 variants as well (this message will not be shown again).&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;¡Una nueva columna de datos(&apos;%1&apos;) ha sido añadida a todas las listas de máquinas!&lt;/p&gt;&lt;p&gt;Por favor comprueba/adapta la visibilidad de las columnas &lt;a href=&quot;%2&quot;&gt;como se muestra en nuestra wiki&lt;/a&gt;!&lt;/p&gt;&lt;p&gt;Ten en cuenta que también tendrás que hacerlo para el resto de variantes de QMC2 (este mensaje no se mostrará de nuevo).&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="500"/>
         <source>&lt;p&gt;A new data column (&apos;%1&apos;) has been added to all game lists!&lt;/p&gt;&lt;p&gt;Please check/adapt column visibility &lt;a href=&quot;%2&quot;&gt;as shown in our wiki&lt;/a&gt;!&lt;/p&gt;&lt;p&gt;Note that you&apos;ll have to do this for the other QMC2 variants as well (this message will not be shown again).&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;¡Una nueva columna de datos (&apos;%1&apos;) ha sido añadida a todas las listas de juegos!&lt;/p&gt;&lt;p&gt;Por favor comprueba/adapta la visibilidad de las columnas &lt;a href=&quot;%2&quot;&gt;como se muestra en nuestra wiki&lt;/a&gt;!&lt;/p&gt;&lt;p&gt;Ten en cuenta que también tendrás que hacerlo para el resto de variantes de QMC2 (este mensaje no se mostrará de nuevo).&lt;/p&gt;</translation>
     </message>
 </context>
 <context>

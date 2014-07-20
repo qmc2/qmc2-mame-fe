@@ -30,7 +30,7 @@
         <location filename="../imageprovider.cpp" line="90"/>
         <location filename="../imageprovider.cpp" line="156"/>
         <source>Decompressing archive, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Descomprimiendo archivo, por favor espere...</translation>
     </message>
 </context>
 <context>
@@ -43,7 +43,7 @@
     <message>
         <location filename="../joystick.cpp" line="54"/>
         <source>SDL joystick #%1 opened: name = %2, axes = %3, buttons = %4, hats = %5, trackballs = %6</source>
-        <translation type="unfinished"></translation>
+        <translation>joystick SDL #%1 abierto: nombre = %2, ejes = %3, botones = %4, hats = %5, trackballs = %6</translation>
     </message>
     <message>
         <location filename="../joystick.cpp" line="65"/>
@@ -53,7 +53,7 @@
     <message>
         <location filename="../joystick.cpp" line="76"/>
         <source>SDL joystick #%1 closed</source>
-        <translation type="unfinished"></translation>
+        <translation>joystick SDL #%1 cerrado</translation>
     </message>
 </context>
 <context>
@@ -325,7 +325,7 @@
     <message>
         <location filename="../imageprovider.cpp" line="472"/>
         <source>logo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="474"/>
@@ -345,12 +345,12 @@
     <message>
         <location filename="../imageprovider.cpp" line="480"/>
         <source>software snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>instantánea de software</translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="482"/>
         <source>icon</source>
-        <translation type="unfinished"></translation>
+        <translation>icono</translation>
     </message>
     <message>
         <location filename="../macros.h" line="44"/>
@@ -481,7 +481,6 @@
         <source>%n machine info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -534,7 +533,6 @@
         <source>%n game info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -551,7 +549,6 @@
         <location filename="../infoprovider.cpp" line="333"/>
         <source>%n emulator info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -1247,7 +1244,6 @@ take effect, please restart QMC2 Arcade!</source>
         <location filename="../tweakedqmlappviewer.cpp" line="463"/>
         <source>%n non-device set(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
