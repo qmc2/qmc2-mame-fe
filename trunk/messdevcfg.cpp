@@ -4,6 +4,8 @@
 #include <QFileDialog>
 #include <QInputDialog>
 #endif
+#include <QMap>
+#include <QHash>
 
 #include "messdevcfg.h"
 #include "gamelist.h"
@@ -33,9 +35,9 @@ extern Options *qmc2Options;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 
 QList<FileEditWidget *> messFileEditWidgetList;
-QMap<QString, QMap<QString, QStringList> > messSystemSlotMap;
-QMap<QString, QString> messSlotNameMap;
-QMap<QString, QIcon> messDevIconMap;
+QHash<QString, QHash<QString, QStringList> > messSystemSlotHash;
+QHash<QString, QString> messSlotNameHash;
+QHash<QString, QIcon> messDevIconHash;
 bool messSystemSlotsSupported = true;
 
 MESSDeviceFileDelegate::MESSDeviceFileDelegate(QObject *parent)
@@ -165,7 +167,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	updateSlots = true;
 
 	lineEditConfigurationName->blockSignals(true);
-	if ( messSystemSlotMap.isEmpty() )
+	if ( messSystemSlotHash.isEmpty() )
 		lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
 	else
 		lineEditConfigurationName->setText(tr("Default configuration"));
@@ -389,22 +391,22 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	connect(action, SIGNAL(triggered()), this, SLOT(folderModeMenu_foldersFirst()));
 	toolButtonFolderMode->setMenu(folderModeMenu);
 
-	if ( messDevIconMap.isEmpty() ) {
-		messDevIconMap["cartridge"] = QIcon(QString::fromUtf8(":/data/img/dev_cartridge.png"));
-		messDevIconMap["cassette"] = QIcon(QString::fromUtf8(":/data/img/dev_cassette.png"));
-		messDevIconMap["cdrom"] = QIcon(QString::fromUtf8(":/data/img/dev_cdrom.png"));
-		messDevIconMap["cylinder"] = QIcon(QString::fromUtf8(":/data/img/dev_cylinder.png"));
-		messDevIconMap["floppydisk"] = QIcon(QString::fromUtf8(":/data/img/dev_floppydisk.png"));
-		messDevIconMap["harddisk"] = QIcon(QString::fromUtf8(":/data/img/dev_harddisk.png"));
-		messDevIconMap["magtape"] = QIcon(QString::fromUtf8(":/data/img/dev_magtape.png"));
-		messDevIconMap["memcard"] = QIcon(QString::fromUtf8(":/data/img/dev_memcard.png"));
-		messDevIconMap["parallel"] = QIcon(QString::fromUtf8(":/data/img/dev_parallel.png"));
-		messDevIconMap["printer"] = QIcon(QString::fromUtf8(":/data/img/dev_printer.png"));
-		messDevIconMap["punchtape"] = QIcon(QString::fromUtf8(":/data/img/dev_punchtape.png"));
-		messDevIconMap["quickload"] = QIcon(QString::fromUtf8(":/data/img/dev_quickload.png"));
-		messDevIconMap["serial"] = QIcon(QString::fromUtf8(":/data/img/dev_serial.png"));
-		messDevIconMap["snapshot"] = QIcon(QString::fromUtf8(":/data/img/dev_snapshot.png"));
-		messDevIconMap["romimage"] = QIcon(QString::fromUtf8(":/data/img/rom.png"));
+	if ( messDevIconHash.isEmpty() ) {
+		messDevIconHash["cartridge"] = QIcon(QString::fromUtf8(":/data/img/dev_cartridge.png"));
+		messDevIconHash["cassette"] = QIcon(QString::fromUtf8(":/data/img/dev_cassette.png"));
+		messDevIconHash["cdrom"] = QIcon(QString::fromUtf8(":/data/img/dev_cdrom.png"));
+		messDevIconHash["cylinder"] = QIcon(QString::fromUtf8(":/data/img/dev_cylinder.png"));
+		messDevIconHash["floppydisk"] = QIcon(QString::fromUtf8(":/data/img/dev_floppydisk.png"));
+		messDevIconHash["harddisk"] = QIcon(QString::fromUtf8(":/data/img/dev_harddisk.png"));
+		messDevIconHash["magtape"] = QIcon(QString::fromUtf8(":/data/img/dev_magtape.png"));
+		messDevIconHash["memcard"] = QIcon(QString::fromUtf8(":/data/img/dev_memcard.png"));
+		messDevIconHash["parallel"] = QIcon(QString::fromUtf8(":/data/img/dev_parallel.png"));
+		messDevIconHash["printer"] = QIcon(QString::fromUtf8(":/data/img/dev_printer.png"));
+		messDevIconHash["punchtape"] = QIcon(QString::fromUtf8(":/data/img/dev_punchtape.png"));
+		messDevIconHash["quickload"] = QIcon(QString::fromUtf8(":/data/img/dev_quickload.png"));
+		messDevIconHash["serial"] = QIcon(QString::fromUtf8(":/data/img/dev_serial.png"));
+		messDevIconHash["snapshot"] = QIcon(QString::fromUtf8(":/data/img/dev_snapshot.png"));
+		messDevIconHash["romimage"] = QIcon(QString::fromUtf8(":/data/img/rom.png"));
 	}
 
 	FileChooserKeyEventFilter *eventFilter = new FileChooserKeyEventFilter(this);
@@ -511,7 +513,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 			break;
 		QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
 		if ( !slotName.isEmpty() ) {
-			bool isNestedSlot = !messSystemSlotMap[messMachineName].contains(slotName);
+			bool isNestedSlot = !messSystemSlotHash[messMachineName].contains(slotName);
 			QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 			if ( cb ) {
 				int defaultIndex = -1;
@@ -793,15 +795,15 @@ bool MESSDeviceConfigurator::readSystemSlots()
 							if ( slotOption != strNone ) {
 								slotDeviceName = slotLineTrimmed;
 								slotDeviceName.remove(rxSlotDev1);
-								messSlotNameMap[slotOption] = slotDeviceName;
-								messSystemSlotMap[systemName][slotName] << slotOption;
+								messSlotNameHash[slotOption] = slotDeviceName;
+								messSystemSlotHash[systemName][slotName] << slotOption;
 							} else
-								messSystemSlotMap[systemName][strUnused] << slotName;
+								messSystemSlotHash[systemName][strUnused] << slotName;
 						} else
-							messSystemSlotMap[systemName].remove(slotName);
+							messSystemSlotHash[systemName].remove(slotName);
 					} else {
 						systemName = slotWords[0];
-						messSystemSlotMap[systemName].clear();
+						messSystemSlotHash[systemName].clear();
 					}
 				} else {
 					QStringList slotWords = slotLineTrimmed.split(" ", QString::SkipEmptyParts);
@@ -811,10 +813,10 @@ bool MESSDeviceConfigurator::readSystemSlots()
 							if ( slotOption != strNone ) {
 								slotDeviceName = slotLineTrimmed;
 								slotDeviceName.remove(rxSlotDev2);
-								messSlotNameMap[slotOption] = slotDeviceName;
-								messSystemSlotMap[systemName][slotName] << slotOption;
+								messSlotNameHash[slotOption] = slotDeviceName;
+								messSystemSlotHash[systemName][slotName] << slotOption;
 							} else
-								messSystemSlotMap[systemName][strUnused] << slotName;
+								messSystemSlotHash[systemName][strUnused] << slotName;
 						}
 					} else {
 						slotName = slotWords[0];
@@ -823,12 +825,12 @@ bool MESSDeviceConfigurator::readSystemSlots()
 							if ( slotOption != strNone ) {
 								slotDeviceName = slotLineTrimmed;
 								slotDeviceName.remove(rxSlotDev3);
-								messSlotNameMap[slotOption] = slotDeviceName;
-								messSystemSlotMap[systemName][slotName] << slotOption;
+								messSlotNameHash[slotOption] = slotDeviceName;
+								messSystemSlotHash[systemName][slotName] << slotOption;
 							} else
-								messSystemSlotMap[systemName][strUnused] << slotName;
+								messSystemSlotHash[systemName][strUnused] << slotName;
 						} else
-							messSystemSlotMap[systemName].remove(slotName);
+							messSystemSlotHash[systemName].remove(slotName);
 					}
 				}
 			}
@@ -1125,7 +1127,7 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 						extensionInstanceMap[extension] = instance;
 				}
 				QString devType = items[0]->text(QMC2_DEVCONFIG_COLUMN_TYPE);
-				comboBoxDeviceInstanceChooser->addItem(messDevIconMap[devType], instance);
+				comboBoxDeviceInstanceChooser->addItem(messDevIconHash[devType], instance);
 			}
 		}
 		QString oldFileChooserDeviceInstance = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserDeviceInstance", QString()).toString();
@@ -1338,7 +1340,7 @@ bool MESSDeviceConfigurator::load()
 	refreshRunning = true;
 	fullyLoaded = false;
 
-	if ( messSystemSlotMap.isEmpty() && messSystemSlotsSupported )
+	if ( messSystemSlotHash.isEmpty() && messSystemSlotsSupported )
 		if ( !readSystemSlots() ) {
 			listWidgetDeviceConfigurations->setUpdatesEnabled(true);
 			refreshRunning = false;
@@ -1386,7 +1388,7 @@ bool MESSDeviceConfigurator::load()
 						extensionInstanceMap[extension] = instance;
 				}
 				QString devType = items[0]->text(QMC2_DEVCONFIG_COLUMN_TYPE);
-				comboBoxDeviceInstanceChooser->addItem(messDevIconMap[devType], instance);
+				comboBoxDeviceInstanceChooser->addItem(messDevIconHash[devType], instance);
 			}
 		}
 		QString oldFileChooserDeviceInstance = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserDeviceInstance", QString()).toString();
@@ -1418,7 +1420,7 @@ bool MESSDeviceConfigurator::load()
 		qApp->processEvents();
 	}
 
-	QMapIterator<QString, QStringList> it(messSystemSlotMap[messMachineName]);
+	QHashIterator<QString, QStringList> it(messSystemSlotHash[messMachineName]);
 	slotPreselectionMap.clear();
 	nestedSlotPreselectionMap.clear();
 	while ( it.hasNext() ) {
@@ -1426,11 +1428,11 @@ bool MESSDeviceConfigurator::load()
 		QString slotName = it.key();
 		if ( slotName == "QMC2_UNUSED_SLOTS" )
 			continue;
-		bool isNestedSlot = !messSystemSlotMap[messMachineName].contains(slotName);
+		bool isNestedSlot = !messSystemSlotHash[messMachineName].contains(slotName);
 		QStringList slotOptions;
 		QStringList slotOptionsShort;
 		foreach (QString s, it.value()) {
-			slotOptions << QString("%1 - %2").arg(s).arg(messSlotNameMap[s]);
+			slotOptions << QString("%1 - %2").arg(s).arg(messSlotNameHash[s]);
 			slotOptionsShort << s;
 		}
 		slotOptions.sort();
@@ -1930,12 +1932,12 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 							QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(itemMap[valuePair.first[i]], QMC2_SLOTCONFIG_COLUMN_OPTION);
 							if ( cb ) {
 								int index = -1;
-								bool isNestedSlot = !messSystemSlotMap[messMachineName].contains(valuePair.first[i]);
+								bool isNestedSlot = !messSystemSlotHash[messMachineName].contains(valuePair.first[i]);
 								if ( valuePair.second[i] != "\"\"" ) {
 									if ( isNestedSlot )
 										index = cb->findText(QString("%1 - %2").arg(valuePair.second[i]).arg(nestedSlotOptionMap[valuePair.first[i]][valuePair.second[i]]));
 									else
-										index = cb->findText(QString("%1 - %2").arg(valuePair.second[i]).arg(messSlotNameMap[valuePair.second[i]]));
+										index = cb->findText(QString("%1 - %2").arg(valuePair.second[i]).arg(messSlotNameHash[valuePair.second[i]]));
 								} else
 									index = 0;
 
@@ -2837,17 +2839,17 @@ bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &namespaceURI,
 	} else if ( qName == "slot" ) {
 		slotName = attributes.value("name");
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
-		if ( messSystemSlotMap[qmc2MESSDeviceConfigurator->messMachineName]["QMC2_UNUSED_SLOTS"].contains(slotName) )
+		if ( messSystemSlotHash[qmc2MESSDeviceConfigurator->messMachineName]["QMC2_UNUSED_SLOTS"].contains(slotName) )
 			return true;
 #endif
 		allSlots << slotName;
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
-		if ( !messSystemSlotMap[qmc2MESSDeviceConfigurator->messMachineName].contains(slotName) )
+		if ( !messSystemSlotHash[qmc2MESSDeviceConfigurator->messMachineName].contains(slotName) )
 			newSlots << slotName;
 #endif
 	} else if ( qName == "slotoption" ) {
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
-		if ( !messSystemSlotMap[qmc2MESSDeviceConfigurator->messMachineName].contains(slotName) ) {
+		if ( !messSystemSlotHash[qmc2MESSDeviceConfigurator->messMachineName].contains(slotName) ) {
 			newSlotOptions[slotName] << attributes.value("name");
 			newSlotDevices[attributes.value("name")] = attributes.value("devname");
 		}
@@ -2868,7 +2870,7 @@ bool MESSDeviceConfiguratorXmlHandler::endElement(const QString &namespaceURI, c
 				QTreeWidgetItem *deviceItem = new QTreeWidgetItem(parentTreeWidget);
 				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_NAME, instance);
 				if ( !deviceType.isEmpty() )
-					deviceItem->setIcon(QMC2_DEVCONFIG_COLUMN_NAME, messDevIconMap[deviceType]);
+					deviceItem->setIcon(QMC2_DEVCONFIG_COLUMN_NAME, messDevIconHash[deviceType]);
 				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_BRIEF, deviceBriefName);
 				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TYPE, deviceType);
 				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TAG, deviceTag);

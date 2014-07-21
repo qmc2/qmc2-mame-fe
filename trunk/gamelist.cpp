@@ -86,8 +86,8 @@ extern QTreeWidgetItem *qmc2LastSoftwareListItem;
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
-extern QMap<QString, QMap<QString, QStringList> > messSystemSlotMap;
-extern QMap<QString, QString> messSlotNameMap;
+extern QHash<QString, QHash<QString, QStringList> > messSystemSlotHash;
+extern QHash<QString, QString> messSlotNameHash;
 extern bool messSystemSlotsSupported;
 #endif
 extern SoftwareList *qmc2SoftwareList;
@@ -481,8 +481,8 @@ void Gamelist::load()
   }
   qmc2LastDeviceConfigItem = NULL;
   messSystemSlotsSupported = true;
-  messSystemSlotMap.clear();
-  messSlotNameMap.clear();
+  messSystemSlotHash.clear();
+  messSlotNameHash.clear();
 #endif
   if ( qmc2SystemNotesEditor ) {
 	  qmc2SystemNotesEditor->save();
