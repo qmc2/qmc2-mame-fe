@@ -10,7 +10,8 @@ dos2unix -q /tmp/category.ini
 sed 's/\s*$//g' /tmp/category.ini > /tmp/category.ini.new
 rm /tmp/category.ini
 mv /tmp/category.ini.new /tmp/category.ini
-dateString="'Updated $(date "+%B %Y")'"
+emuVersion=$(sqlite3 ~/.qmc2/mess-xml-cache.db "select emu_version from mess_xml_cache_metadata")
+dateString="'Updated $(date "+%d-%b-%Y" | tr "[a-z]" "[A-Z]") (MESS $emuVersion)'"
 sed "1s/^.*$/$dateString/g" /tmp/category.ini > /tmp/category.ini.new
 rm /tmp/category.ini
 mv /tmp/category.ini.new /tmp/category.ini
