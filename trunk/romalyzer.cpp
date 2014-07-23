@@ -191,6 +191,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   toolsMenu = new QMenu(this);
   actionImportFromDataFile = toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Import from data file"), this, SLOT(importFromDataFile()));
   actionExportToDataFile = toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")), tr("Export to data file"), this, SLOT(exportToDataFile()));
+  actionExportToDataFile->setEnabled(false);
   toolButtonToolsMenu->setMenu(toolsMenu);
 
 #if defined(QMC2_OS_MAC)
