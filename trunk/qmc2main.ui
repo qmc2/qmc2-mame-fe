@@ -2664,23 +2664,6 @@
     <property name="title">
      <string>&amp;Game</string>
     </property>
-    <widget class="QMenu" name="menuCheck">
-     <property name="title">
-      <string>&amp;Check</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/warning.png</normaloff>:/data/img/warning.png</iconset>
-     </property>
-     <addaction name="actionCheckCurrentROM"/>
-     <addaction name="actionCheckROMStateTagged"/>
-     <addaction name="separator"/>
-     <addaction name="actionAnalyseCurrentROM"/>
-     <addaction name="actionAnalyseROMTagged"/>
-     <addaction name="separator"/>
-     <addaction name="actionRunRomTool"/>
-     <addaction name="actionRunRomToolTagged"/>
-    </widget>
     <widget class="QMenu" name="menuView">
      <property name="title">
       <string>&amp;View</string>
@@ -2785,6 +2768,23 @@
      <addaction name="actionTaggedDecreaseRank"/>
      <addaction name="separator"/>
      <addaction name="menuRankImage"/>
+    </widget>
+    <widget class="QMenu" name="menuCheck">
+     <property name="title">
+      <string>&amp;Check</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/warning.png</normaloff>:/data/img/warning.png</iconset>
+     </property>
+     <addaction name="actionCheckCurrentROM"/>
+     <addaction name="actionCheckROMStateTagged"/>
+     <addaction name="separator"/>
+     <addaction name="actionAnalyseCurrentROM"/>
+     <addaction name="actionAnalyseROMTagged"/>
+     <addaction name="separator"/>
+     <addaction name="actionRunRomTool"/>
+     <addaction name="actionRunRomToolTagged"/>
     </widget>
     <addaction name="actionPlay"/>
     <addaction name="actionPlayTagged"/>
@@ -3208,7 +3208,7 @@
   <action name="actionAnalyseCurrentROM">
    <property name="icon">
     <iconset resource="qmc2.qrc">
-     <normaloff>:/data/img/search.png</normaloff>:/data/img/search.png</iconset>
+     <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
    </property>
    <property name="text">
     <string>Analyse ROM...</string>
@@ -3232,7 +3232,7 @@
   <action name="actionAnalyseROMTagged">
    <property name="icon">
     <iconset resource="qmc2.qrc">
-     <normaloff>:/data/img/search_multiple.png</normaloff>:/data/img/search_multiple.png</iconset>
+     <normaloff>:/data/img/romalyzer_multiple.png</normaloff>:/data/img/romalyzer_multiple.png</iconset>
    </property>
    <property name="text">
     <string>Analyse ROM (tagged)...</string>
@@ -3256,7 +3256,7 @@
   <action name="actionROMAlyzer">
    <property name="icon">
     <iconset resource="qmc2.qrc">
-     <normaloff>:/data/img/search.png</normaloff>:/data/img/search.png</iconset>
+     <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
    </property>
    <property name="text">
     <string>ROMAly&amp;zer...</string>

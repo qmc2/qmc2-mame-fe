@@ -75,246 +75,248 @@ extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 ROMAlyzer::ROMAlyzer(QWidget *parent)
 #if defined(QMC2_OS_WIN)
-  : QDialog(parent, Qt::Dialog)
+	: QDialog(parent, Qt::Dialog)
 #else
-  : QDialog(parent, Qt::Dialog | Qt::SubWindow)
+	: QDialog(parent, Qt::Dialog | Qt::SubWindow)
 #endif
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::ROMAlyzer(QWidget *parent = %1)").arg((qulonglong)parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::ROMAlyzer(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
   
-  setupUi(this);
+	setupUi(this);
 
 #if !defined(QMC2_WIP_ENABLED)
-  tabWidgetAnalysis->removeTab(QMC2_ROMALYZER_PAGE_RENAMETOOL);
+	tabWidgetAnalysis->removeTab(QMC2_ROMALYZER_PAGE_RENAMETOOL);
 #endif
 
-  checkBoxFixCHDs->setVisible(QMC2_CHD_CURRENT_VERSION < 5);
+	checkBoxFixCHDs->setVisible(QMC2_CHD_CURRENT_VERSION < 5);
 
 #if defined(QMC2_SDLMESS)
-  treeWidgetChecksums->headerItem()->setText(0, tr("Machine / File"));
-  checkBoxSelectGame->setText(tr("Select machine"));
-  checkBoxSelectGame->setToolTip(tr("Select machine in machine list if selected in analysis report?"));
-  checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed machine"));
-  lineEditGames->setToolTip(tr("Shortname of machine to be analyzed - wildcards allowed, use space as delimiter for multiple machines"));
+	treeWidgetChecksums->headerItem()->setText(0, tr("Machine / File"));
+	checkBoxSelectGame->setText(tr("Select machine"));
+	checkBoxSelectGame->setToolTip(tr("Select machine in machine list if selected in analysis report?"));
+	checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed machine"));
 #endif
 
-  treeWidgetChecksums->header()->setSortIndicatorShown(false);
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
-    treeWidgetChecksums->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/ReportHeaderState", QByteArray()).toByteArray());
-    tabWidgetAnalysis->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/AnalysisTab", 0).toInt());
-    treeWidgetChecksumWizardSearchResult->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/ChecksumWizardHeaderState", QByteArray()).toByteArray());
-    treeWidgetSetRenamerSearchResult->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/SetRenamerHeaderState", QByteArray()).toByteArray());
-    move(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Position", QPoint()).toPoint());
-    resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Size", QSize()).toSize());
-  }
+	treeWidgetChecksums->header()->setSortIndicatorShown(false);
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
+		treeWidgetChecksums->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/ReportHeaderState", QByteArray()).toByteArray());
+		tabWidgetAnalysis->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/AnalysisTab", 0).toInt());
+		treeWidgetChecksumWizardSearchResult->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/ChecksumWizardHeaderState", QByteArray()).toByteArray());
+		treeWidgetSetRenamerSearchResult->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/SetRenamerHeaderState", QByteArray()).toByteArray());
+		move(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Position", QPoint()).toPoint());
+		resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Size", QSize()).toSize());
+	}
 
-  // compression types for CHD v3 and v4
-  chdCompressionTypes << tr("none") << tr("zlib") << tr("zlib+") << tr("A/V codec");
+	// compression types for CHD v3 and v4
+	chdCompressionTypes << tr("none") << tr("zlib") << tr("zlib+") << tr("A/V codec");
 
-  // compression types for CHD v5
-  chdCompressionTypesV5["avhu"] = tr("avhu (A/V Huffman)");
-  chdCompressionTypesV5["cdfl"] = tr("cdfl (CD FLAC)");
-  chdCompressionTypesV5["cdlz"] = tr("cdlz (CD LZMA)");
-  chdCompressionTypesV5["cdzl"] = tr("cdzl (CD Deflate)");
-  chdCompressionTypesV5["flac"] = tr("flac (FLAC)");
-  chdCompressionTypesV5["huff"] = tr("huff (Huffman)");
-  chdCompressionTypesV5["lzma"] = tr("lzma (LZMA)");
-  chdCompressionTypesV5["zlib"] = tr("zlib (Deflate)");
+	// compression types for CHD v5
+	chdCompressionTypesV5["avhu"] = tr("avhu (A/V Huffman)");
+	chdCompressionTypesV5["cdfl"] = tr("cdfl (CD FLAC)");
+	chdCompressionTypesV5["cdlz"] = tr("cdlz (CD LZMA)");
+	chdCompressionTypesV5["cdzl"] = tr("cdzl (CD Deflate)");
+	chdCompressionTypesV5["flac"] = tr("flac (FLAC)");
+	chdCompressionTypesV5["huff"] = tr("huff (Huffman)");
+	chdCompressionTypesV5["lzma"] = tr("lzma (LZMA)");
+	chdCompressionTypesV5["zlib"] = tr("zlib (Deflate)");
 
-  chdManagerRunning = chdManagerMD5Success = chdManagerSHA1Success = false;
+	chdManagerRunning = chdManagerMD5Success = chdManagerSHA1Success = false;
 #if QMC2_CHD_CURRENT_VERSION < 5
-  chdManagerCurrentHunk = chdManagerTotalHunks = 0;
+	chdManagerCurrentHunk = chdManagerTotalHunks = 0;
 #else
-  chdManagerCurrentHunk = 0;
-  chdManagerTotalHunks = 100;
-  checkBoxVerifyCHDs->setToolTip(tr("Verify CHDs through 'chdman verify'"));
-  checkBoxUpdateCHDs->setToolTip(tr("Try to update CHDs if their header indicates an older version ('chdman copy')"));
+	chdManagerCurrentHunk = 0;
+	chdManagerTotalHunks = 100;
+	checkBoxVerifyCHDs->setToolTip(tr("Verify CHDs through 'chdman verify'"));
+	checkBoxUpdateCHDs->setToolTip(tr("Try to update CHDs if their header indicates an older version ('chdman copy')"));
 #endif
 
-  adjustIconSizes();
-  pushButtonPause->setVisible(false);
+	adjustIconSizes();
+	pushButtonPause->setVisible(false);
 
-  wizardSearch = quickSearch = false;
+	wizardSearch = quickSearch = false;
 
-  QFont logFont;
-  logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
-  textBrowserLog->setFont(logFont);
+	QFont logFont;
+	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
+	textBrowserLog->setFont(logFont);
 
-  connect(&animTimer, SIGNAL(timeout()), this, SLOT(animationTimeout()));
+	connect(&animTimer, SIGNAL(timeout()), this, SLOT(animationTimeout()));
 
 #if !defined(QMC2_DATABASE_ENABLED)
-  groupBoxDatabase->setChecked(false);
-  groupBoxDatabase->setVisible(false);
+	groupBoxDatabase->setChecked(false);
+	groupBoxDatabase->setVisible(false);
 #else
-  connectionCheckRunning = false;
-  dbManager = new ROMDatabaseManager(this);
+	connectionCheckRunning = false;
+	dbManager = new ROMDatabaseManager(this);
 #endif
 
-  QString s;
-  QAction *action;
+	QString s;
+	QAction *action;
 
-  romFileContextMenu = new QMenu(this);
-  romFileContextMenu->hide();
+	romFileContextMenu = new QMenu(this);
+	romFileContextMenu->hide();
   
-  s = tr("Search checksum");
-  action = romFileContextMenu->addAction(s);
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/filefind.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(runChecksumWizard()));
+	s = tr("Search checksum");
+	action = romFileContextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/filefind.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(runChecksumWizard()));
 
-  romSetContextMenu = new QMenu(this);
-  romSetContextMenu->hide();
+	romSetContextMenu = new QMenu(this);
+	romSetContextMenu->hide();
   
-  s = tr("Rewrite set");
-  action = romSetContextMenu->addAction(s);
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/filesave.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(runSetRewriter()));
-  actionRewriteSet = action;
+	s = tr("Rewrite set");
+	action = romSetContextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/filesave.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(runSetRewriter()));
+	actionRewriteSet = action;
 
-  s = tr("Analyse referenced devices");
-  action = romSetContextMenu->addAction(s);
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(analyzeDeviceRefs()));
-  actionAnalyzeDeviceRefs = action;
+	s = tr("Analyse referenced devices");
+	action = romSetContextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(analyzeDeviceRefs()));
+	actionAnalyzeDeviceRefs = action;
 
-  s = tr("Copy to clipboard");
-  action = romSetContextMenu->addAction(s);
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
+	s = tr("Copy to clipboard");
+	action = romSetContextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
 
-  // setup tools-menu
-  toolsMenu = new QMenu(this);
-  actionImportFromDataFile = toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Import from data file"), this, SLOT(importFromDataFile()));
-  actionExportToDataFile = toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")), tr("Export to data file"), this, SLOT(exportToDataFile()));
-  actionExportToDataFile->setEnabled(false);
-  toolButtonToolsMenu->setMenu(toolsMenu);
+	// setup tools-menu
+	toolsMenu = new QMenu(this);
+	actionImportFromDataFile = toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Import from data file"), this, SLOT(importFromDataFile()));
+	actionExportToDataFile = toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")), tr("Export to data file"), this, SLOT(exportToDataFile()));
+	actionExportToDataFile->setEnabled(false);
+	toolButtonToolsMenu->setMenu(toolsMenu);
 
 #if defined(QMC2_OS_MAC)
-  setParent(qmc2MainWindow, Qt::Dialog);
+	setParent(qmc2MainWindow, Qt::Dialog);
 #endif
 }
 
 ROMAlyzer::~ROMAlyzer()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::~ROMAlyzer()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::~ROMAlyzer()");
 #endif
 
 #if defined(QMC2_DATABASE_ENABLED)
-  if ( dbManager )
-    delete dbManager;
+	if ( dbManager )
+		delete dbManager;
 #endif
 }
 
 void ROMAlyzer::adjustIconSizes()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::adjustIconSizes()"));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::adjustIconSizes()"));
 #endif
 
-  QFont f;
-  f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
-  QFontMetrics fm(f);
-  QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
-  QSize iconSizeMiddle = iconSize + QSize(2, 2);
-  pushButtonAnalyze->setIconSize(iconSize);
-  pushButtonPause->setIconSize(iconSize);
-  pushButtonClose->setIconSize(iconSize);
-  pushButtonSearchForward->setIconSize(iconSize);
-  pushButtonSearchBackward->setIconSize(iconSize);
-  toolButtonSaveLog->setIconSize(iconSize);
-  toolButtonBrowseCHDManagerExecutableFile->setIconSize(iconSize);
-  toolButtonBrowseTemporaryWorkingDirectory->setIconSize(iconSize);
-  toolButtonBrowseSetRewriterOutputPath->setIconSize(iconSize);
-  toolButtonBrowseSetRewriterAdditionalRomPath->setIconSize(iconSize);
-  toolButtonToolsMenu->setIconSize(iconSize);
-  pushButtonChecksumWizardAnalyzeSelectedSets->setIconSize(iconSize);
-  pushButtonChecksumWizardRepairBadSets->setIconSize(iconSize);
-  pushButtonSetRenamerSearch->setIconSize(iconSize);
-  pushButtonSetRenamerPerformActions->setIconSize(iconSize);
-  toolButtonBrowseSetRenamerOldXmlFile->setIconSize(iconSize);
-  pushButtonSetRenamerExportResults->setIconSize(iconSize);
-  pushButtonSetRenamerImportResults->setIconSize(iconSize);
+	QFont f;
+	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+	QFontMetrics fm(f);
+	QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
+	QSize iconSizeMiddle = iconSize + QSize(2, 2);
+	pushButtonAnalyze->setIconSize(iconSize);
+	pushButtonPause->setIconSize(iconSize);
+	pushButtonClose->setIconSize(iconSize);
+	pushButtonSearchForward->setIconSize(iconSize);
+	pushButtonSearchBackward->setIconSize(iconSize);
+	toolButtonSaveLog->setIconSize(iconSize);
+	toolButtonBrowseCHDManagerExecutableFile->setIconSize(iconSize);
+	toolButtonBrowseTemporaryWorkingDirectory->setIconSize(iconSize);
+	toolButtonBrowseSetRewriterOutputPath->setIconSize(iconSize);
+	toolButtonBrowseSetRewriterAdditionalRomPath->setIconSize(iconSize);
+	toolButtonToolsMenu->setIconSize(iconSize);
+	pushButtonChecksumWizardAnalyzeSelectedSets->setIconSize(iconSize);
+	pushButtonChecksumWizardRepairBadSets->setIconSize(iconSize);
+	pushButtonSetRenamerSearch->setIconSize(iconSize);
+	pushButtonSetRenamerPerformActions->setIconSize(iconSize);
+	toolButtonBrowseSetRenamerOldXmlFile->setIconSize(iconSize);
+	pushButtonSetRenamerExportResults->setIconSize(iconSize);
+	pushButtonSetRenamerImportResults->setIconSize(iconSize);
 #if defined(QMC2_DATABASE_ENABLED)
-  toolButtonBrowseDatabaseOutputPath->setIconSize(iconSize);
+	toolButtonBrowseDatabaseOutputPath->setIconSize(iconSize);
 #endif
-  treeWidgetChecksums->setIconSize(iconSizeMiddle);
-  pushButtonChecksumWizardSearch->setIconSize(iconSize);
+	treeWidgetChecksums->setIconSize(iconSizeMiddle);
+	pushButtonChecksumWizardSearch->setIconSize(iconSize);
 }
 
 void ROMAlyzer::on_pushButtonClose_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonClose_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonClose_clicked()");
 #endif
 
-  if ( qmc2ROMAlyzerActive )
-    on_pushButtonAnalyze_clicked();
+	if ( qmc2ROMAlyzerActive )
+		on_pushButtonAnalyze_clicked();
 }
 
 void ROMAlyzer::on_pushButtonAnalyze_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonAnalyze_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonAnalyze_clicked()");
 #endif
 
-  if ( qmc2ReloadActive ) {
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
-  } else if ( qmc2ROMAlyzerActive ) {
-    // stop ROMAlyzer
-    log(tr("stopping analysis"));
-    qmc2StopParser = true;
-  } else if ( qmc2Gamelist->numGames > 0 ) {
-    // start ROMAlyzer
-    log(tr("starting analysis"));
-    qmc2StopParser = false;
-    QTimer::singleShot(0, this, SLOT(analyze()));
-  }
+	if ( qmc2ReloadActive ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
+		return;
+	}
+
+	if ( qmc2ROMAlyzerActive ) {
+		// stop ROMAlyzer
+		log(tr("stopping analysis"));
+		qmc2StopParser = true;
+	} else if ( qmc2Gamelist->numGames > 0 ) {
+		// start ROMAlyzer
+		log(tr("starting analysis"));
+		qmc2StopParser = false;
+		QTimer::singleShot(0, this, SLOT(analyze()));
+	}
 }
 
 void ROMAlyzer::on_pushButtonPause_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonPause_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonPause_clicked()");
 #endif
 
-  qmc2ROMAlyzerPaused = !qmc2ROMAlyzerPaused;
-  if ( qmc2ROMAlyzerPaused ) {
-    log(tr("pausing analysis"));
-    pushButtonPause->setEnabled(false);
-  } else {
-    log(tr("resuming analysis"));
-    pushButtonPause->setText(tr("&Pause"));
-  }
+	qmc2ROMAlyzerPaused = !qmc2ROMAlyzerPaused;
+	if ( qmc2ROMAlyzerPaused ) {
+		log(tr("pausing analysis"));
+		pushButtonPause->setEnabled(false);
+	} else {
+		log(tr("resuming analysis"));
+		pushButtonPause->setText(tr("&Pause"));
+	}
 }
 
 void ROMAlyzer::on_pushButtonSearchForward_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonSearchForward_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonSearchForward_clicked()");
 #endif
 
-  if ( !textBrowserLog->find(lineEditSearchString->text()) ) {
-    lineEditSearchString->setEnabled(false);
-    QTimer::singleShot(QMC2_ROMALYZER_FLASH_TIME, this, SLOT(enableSearchEdit()));
-  }
+	if ( !textBrowserLog->find(lineEditSearchString->text()) ) {
+		lineEditSearchString->setEnabled(false);
+		QTimer::singleShot(QMC2_ROMALYZER_FLASH_TIME, this, SLOT(enableSearchEdit()));
+	}
 }
 
 void ROMAlyzer::on_pushButtonSearchBackward_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonSearchBackward_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonSearchBackward_clicked()");
 #endif
 
-  if ( !textBrowserLog->find(lineEditSearchString->text(), QTextDocument::FindBackward) ) {
-    lineEditSearchString->setEnabled(false);
-    QTimer::singleShot(QMC2_ROMALYZER_FLASH_TIME, this, SLOT(enableSearchEdit()));
-  }
+	if ( !textBrowserLog->find(lineEditSearchString->text(), QTextDocument::FindBackward) ) {
+		lineEditSearchString->setEnabled(false);
+		QTimer::singleShot(QMC2_ROMALYZER_FLASH_TIME, this, SLOT(enableSearchEdit()));
+	}
 }
 
 void ROMAlyzer::on_lineEditGames_textChanged(QString text)
@@ -360,825 +362,824 @@ void ROMAlyzer::on_checkBoxCalculateSHA1_toggled(bool enable)
 void ROMAlyzer::animationTimeout()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::animationTimeout()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::animationTimeout()");
 #endif
 
-  switch ( ++animSeq ) {
-    case 0:
-    case 1:
-      pushButtonAnalyze->setIcon(QIcon(QString::fromUtf8(":/data/img/viewmag+.png")));
-      break;
+	switch ( ++animSeq ) {
+		case 0:
+			pushButtonAnalyze->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer.png")));
+			break;
 
-    case 2:
-    case 3:
-      pushButtonAnalyze->setIcon(QIcon(QString::fromUtf8(":/data/img/viewmag-.png")));
-      break;
+		case 2:
+			pushButtonAnalyze->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer_flipped.png")));
+			break;
 
-    default:
-      break;
-  }
-  if ( animSeq > 2 )
-    animSeq = -1;
+		default:
+			break;
+	}
+	if ( animSeq > 2 )
+		animSeq = -1;
 }
 
 void ROMAlyzer::closeEvent(QCloseEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  if ( e && qmc2ROMAlyzerActive )
-    on_pushButtonAnalyze_clicked();
+	if ( e && qmc2ROMAlyzerActive )
+		on_pushButtonAnalyze_clicked();
 
-  // save settings
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/AppendReport", checkBoxAppendReport->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ExpandFiles", checkBoxExpandFiles->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ExpandChecksums", checkBoxExpandChecksums->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/AutoScroll", checkBoxAutoScroll->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateCRC", checkBoxCalculateCRC->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateSHA1", checkBoxCalculateSHA1->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateMD5", checkBoxCalculateMD5->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectGame", checkBoxSelectGame->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxFileSize", spinBoxMaxFileSize->value());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxLogSize", spinBoxMaxLogSize->value());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxReports", spinBoxMaxReports->value());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCHDManager", groupBoxCHDManager->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", lineEditCHDManagerExecutableFile->text());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", lineEditTemporaryWorkingDirectory->text());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableSetRewriter", groupBoxSetRewriter->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterWhileAnalyzing", checkBoxSetRewriterWhileAnalyzing->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterSelfContainedSets", checkBoxSetRewriterSelfContainedSets->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterGoodSetsOnly", checkBoxSetRewriterGoodSetsOnly->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipArchives", radioButtonSetRewriterZipArchives->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipLevel", spinBoxSetRewriterZipLevel->value());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUniqueCRCs", checkBoxSetRewriterUniqueCRCs->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", radioButtonSetRewriterIndividualDirectories->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterOutputPath", lineEditSetRewriterOutputPath->text());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterAdditionalRomPath", lineEditSetRewriterAdditionalRomPath->text());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardHashType", comboBoxChecksumWizardHashType->currentIndex());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", comboBoxChecksumWizardAutomationLevel->currentIndex());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", checkBoxVerifyCHDs->isChecked());
+	// save settings
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/AppendReport", checkBoxAppendReport->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ExpandFiles", checkBoxExpandFiles->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ExpandChecksums", checkBoxExpandChecksums->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/AutoScroll", checkBoxAutoScroll->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateCRC", checkBoxCalculateCRC->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateSHA1", checkBoxCalculateSHA1->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateMD5", checkBoxCalculateMD5->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectGame", checkBoxSelectGame->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxFileSize", spinBoxMaxFileSize->value());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxLogSize", spinBoxMaxLogSize->value());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxReports", spinBoxMaxReports->value());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCHDManager", groupBoxCHDManager->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", lineEditCHDManagerExecutableFile->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", lineEditTemporaryWorkingDirectory->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableSetRewriter", groupBoxSetRewriter->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterWhileAnalyzing", checkBoxSetRewriterWhileAnalyzing->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterSelfContainedSets", checkBoxSetRewriterSelfContainedSets->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterGoodSetsOnly", checkBoxSetRewriterGoodSetsOnly->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipArchives", radioButtonSetRewriterZipArchives->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipLevel", spinBoxSetRewriterZipLevel->value());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUniqueCRCs", checkBoxSetRewriterUniqueCRCs->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", radioButtonSetRewriterIndividualDirectories->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterOutputPath", lineEditSetRewriterOutputPath->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterAdditionalRomPath", lineEditSetRewriterAdditionalRomPath->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardHashType", comboBoxChecksumWizardHashType->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", comboBoxChecksumWizardAutomationLevel->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", checkBoxVerifyCHDs->isChecked());
 #if QMC2_CHD_CURRENT_VERSION < 5
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", checkBoxFixCHDs->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", checkBoxFixCHDs->isChecked());
 #endif
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/UpdateCHDs", checkBoxUpdateCHDs->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/UpdateCHDs", checkBoxUpdateCHDs->isChecked());
 
 #if defined(QMC2_DATABASE_ENABLED)
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableDatabase", groupBoxDatabase->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseServer", lineEditDatabaseServer->text());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", lineEditDatabaseName->text());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePort", spinBoxDatabasePort->value());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUser", lineEditDatabaseUser->text());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePassword", QMC2_COMPRESS(lineEditDatabasePassword->text().toLatin1()));
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDownload", checkBoxDatabaseDownload->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUpload", checkBoxDatabaseUpload->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOverwrite", checkBoxDatabaseOverwrite->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDriver", comboBoxDatabaseDriver->currentIndex());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOutputPath", lineEditDatabaseOutputPath->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableDatabase", groupBoxDatabase->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseServer", lineEditDatabaseServer->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", lineEditDatabaseName->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePort", spinBoxDatabasePort->value());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUser", lineEditDatabaseUser->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePassword", QMC2_COMPRESS(lineEditDatabasePassword->text().toLatin1()));
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDownload", checkBoxDatabaseDownload->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUpload", checkBoxDatabaseUpload->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOverwrite", checkBoxDatabaseOverwrite->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDriver", comboBoxDatabaseDriver->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOutputPath", lineEditDatabaseOutputPath->text());
 #endif
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerOldXmlFile", lineEditSetRenamerOldXmlFile->text());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerAutomationLevel", comboBoxSetRenamerAutomationLevel->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerOldXmlFile", lineEditSetRenamerOldXmlFile->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerAutomationLevel", comboBoxSetRenamerAutomationLevel->currentIndex());
 
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/ReportHeaderState", treeWidgetChecksums->header()->saveState());
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/AnalysisTab", tabWidgetAnalysis->currentIndex());
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/ChecksumWizardHeaderState", treeWidgetChecksumWizardSearchResult->header()->saveState());
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/SetRenamerHeaderState", treeWidgetSetRenamerSearchResult->header()->saveState());
-    if ( !qmc2CleaningUp ) {
-      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Visible", false);
-      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Position", pos());
-      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Size", size());
-    }
-  }
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/ReportHeaderState", treeWidgetChecksums->header()->saveState());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/AnalysisTab", tabWidgetAnalysis->currentIndex());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/ChecksumWizardHeaderState", treeWidgetChecksumWizardSearchResult->header()->saveState());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/SetRenamerHeaderState", treeWidgetSetRenamerSearchResult->header()->saveState());
+		if ( !qmc2CleaningUp ) {
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Visible", false);
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Position", pos());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Size", size());
+		}
+	}
 
-  if ( e )
-    e->accept();
+	if ( e )
+		e->accept();
 }
 
 void ROMAlyzer::hideEvent(QHideEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  closeEvent(NULL);
+	closeEvent(NULL);
 
-  if ( e )
-    e->accept();
+	if ( e )
+		e->accept();
 }
 
 void ROMAlyzer::showEvent(QShowEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  // restore settings
-  checkBoxAppendReport->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/AppendReport", false).toBool());
-  checkBoxExpandFiles->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ExpandFiles", false).toBool());
-  checkBoxExpandChecksums->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ExpandChecksums", false).toBool());
-  checkBoxAutoScroll->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/AutoScroll", true).toBool());
-  checkBoxCalculateCRC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateCRC", true).toBool());
-  checkBoxCalculateSHA1->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateSHA1", true).toBool());
-  checkBoxCalculateMD5->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateMD5", false).toBool());
-  checkBoxSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectGame", true).toBool());
-  spinBoxMaxFileSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxFileSize", 0).toInt());
-  spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxLogSize", 10000).toInt());
-  spinBoxMaxReports->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxReports", 1000).toInt());
-  lineEditCHDManagerExecutableFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", QString()).toString());
-  lineEditTemporaryWorkingDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", QString()).toString());
-  lineEditSetRewriterOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterOutputPath", QString()).toString());
-  lineEditSetRewriterAdditionalRomPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterAdditionalRomPath", QString()).toString());
-  groupBoxSetRewriter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableSetRewriter", false).toBool());
-  checkBoxSetRewriterWhileAnalyzing->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterWhileAnalyzing", false).toBool());
-  checkBoxSetRewriterSelfContainedSets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterSelfContainedSets", false).toBool());
-  checkBoxSetRewriterGoodSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterGoodSetsOnly", true).toBool());
-  radioButtonSetRewriterZipArchives->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipArchives", true).toBool());
-  spinBoxSetRewriterZipLevel->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipLevel", Z_DEFAULT_COMPRESSION).toInt());
-  checkBoxSetRewriterUniqueCRCs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUniqueCRCs", false).toBool());
-  comboBoxChecksumWizardHashType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardHashType", QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1).toInt());
-  comboBoxChecksumWizardAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", QMC2_ROMALYZER_CSWIZ_AMLVL_NONE).toInt());
-  radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", false).toBool());
-  checkBoxVerifyCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", true).toBool());
+	// restore settings
+	checkBoxAppendReport->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/AppendReport", false).toBool());
+	checkBoxExpandFiles->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ExpandFiles", false).toBool());
+	checkBoxExpandChecksums->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ExpandChecksums", false).toBool());
+	checkBoxAutoScroll->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/AutoScroll", true).toBool());
+	checkBoxCalculateCRC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateCRC", true).toBool());
+	checkBoxCalculateSHA1->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateSHA1", true).toBool());
+	checkBoxCalculateMD5->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateMD5", false).toBool());
+	checkBoxSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectGame", true).toBool());
+	spinBoxMaxFileSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxFileSize", 0).toInt());
+	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxLogSize", 10000).toInt());
+	spinBoxMaxReports->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxReports", 1000).toInt());
+	lineEditCHDManagerExecutableFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", QString()).toString());
+	lineEditTemporaryWorkingDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", QString()).toString());
+	lineEditSetRewriterOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterOutputPath", QString()).toString());
+	lineEditSetRewriterAdditionalRomPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterAdditionalRomPath", QString()).toString());
+	groupBoxSetRewriter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableSetRewriter", false).toBool());
+	checkBoxSetRewriterWhileAnalyzing->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterWhileAnalyzing", false).toBool());
+	checkBoxSetRewriterSelfContainedSets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterSelfContainedSets", false).toBool());
+	checkBoxSetRewriterGoodSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterGoodSetsOnly", true).toBool());
+	radioButtonSetRewriterZipArchives->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipArchives", true).toBool());
+	spinBoxSetRewriterZipLevel->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipLevel", Z_DEFAULT_COMPRESSION).toInt());
+	checkBoxSetRewriterUniqueCRCs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUniqueCRCs", false).toBool());
+	comboBoxChecksumWizardHashType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardHashType", QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1).toInt());
+	comboBoxChecksumWizardAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", QMC2_ROMALYZER_CSWIZ_AMLVL_NONE).toInt());
+	radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", false).toBool());
+	checkBoxVerifyCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", true).toBool());
 #if QMC2_CHD_CURRENT_VERSION < 5
-  checkBoxFixCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", false).toBool());
+	checkBoxFixCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", false).toBool());
 #endif
-  checkBoxUpdateCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/UpdateCHDs", false).toBool());
-  groupBoxCHDManager->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCHDManager", false).toBool());
+	checkBoxUpdateCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/UpdateCHDs", false).toBool());
+	groupBoxCHDManager->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCHDManager", false).toBool());
 
 #if defined(QMC2_DATABASE_ENABLED)
-  lineEditDatabaseServer->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseServer", QString()).toString());
+	lineEditDatabaseServer->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseServer", QString()).toString());
 #if defined(QMC2_EMUTYPE_MAME)
-  lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "mame_romdb").toString());
+	lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "mame_romdb").toString());
 #elif defined(QMC2_EMUTYPE_MESS)
-  lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "mess_romdb").toString());
+	lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "mess_romdb").toString());
 #elif defined(QMC2_EMUTYPE_UME)
-  lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "ume_romdb").toString());
+	lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "ume_romdb").toString());
 #endif
-  spinBoxDatabasePort->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePort", 0).toInt());
-  lineEditDatabaseUser->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUser", QString()).toString());
-  lineEditDatabasePassword->setText(QString(QMC2_UNCOMPRESS(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePassword", QString()).toByteArray())));
-  checkBoxDatabaseDownload->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDownload", true).toBool());
-  checkBoxDatabaseUpload->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUpload", false).toBool());
-  checkBoxDatabaseOverwrite->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOverwrite", false).toBool());
-  comboBoxDatabaseDriver->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDriver", QMC2_DB_DRIVER_MYSQL).toInt());
-  lineEditDatabaseOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOutputPath", QString()).toString());
-  groupBoxDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableDatabase", false).toBool());
+	spinBoxDatabasePort->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePort", 0).toInt());
+	lineEditDatabaseUser->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUser", QString()).toString());
+	lineEditDatabasePassword->setText(QString(QMC2_UNCOMPRESS(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePassword", QString()).toByteArray())));
+	checkBoxDatabaseDownload->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDownload", true).toBool());
+	checkBoxDatabaseUpload->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUpload", false).toBool());
+	checkBoxDatabaseOverwrite->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOverwrite", false).toBool());
+	comboBoxDatabaseDriver->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDriver", QMC2_DB_DRIVER_MYSQL).toInt());
+	lineEditDatabaseOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOutputPath", QString()).toString());
+	groupBoxDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableDatabase", false).toBool());
 #endif
-  lineEditSetRenamerOldXmlFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerOldXmlFile", QString()).toString());
-  comboBoxSetRenamerAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerAutomationLevel", QMC2_ROMALYZER_SRTOOL_AMLVL_NONE).toInt());
+	lineEditSetRenamerOldXmlFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerOldXmlFile", QString()).toString());
+	comboBoxSetRenamerAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerAutomationLevel", QMC2_ROMALYZER_SRTOOL_AMLVL_NONE).toInt());
 
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Visible", true);
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Visible", true);
 
-  if ( e )
-    e->accept();
+	if ( e )
+		e->accept();
 }
 
 void ROMAlyzer::on_spinBoxMaxLogSize_valueChanged(int value)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_spinBoxMaxLogSize_valueChanged(int value = %1)").arg(value));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_spinBoxMaxLogSize_valueChanged(int value = %1)").arg(value));
 #endif
 
-  textBrowserLog->setMaximumBlockCount(spinBoxMaxLogSize->value());
+	textBrowserLog->setMaximumBlockCount(spinBoxMaxLogSize->value());
 }
 
 void ROMAlyzer::moveEvent(QMoveEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::moveEvent(QMoveEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::moveEvent(QMoveEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Position", pos());
+	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Position", pos());
 
-  if ( e )
-    e->accept();
+	if ( e )
+		e->accept();
 }
 
 void ROMAlyzer::resizeEvent(QResizeEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Size", size());
+	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Size", size());
 
-  if ( e )
-    e->accept();
+	if ( e )
+		e->accept();
 }
 
 void ROMAlyzer::analyze()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::analyze()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::analyze()");
 #endif
 
-  qmc2ROMAlyzerActive = true;
+	qmc2ROMAlyzerActive = true;
 
-  QString myRomPath;
-  if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath") )
-    myRomPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString();
-  else
-    myRomPath = "roms";
+	QString myRomPath;
+	if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath") )
+		myRomPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString();
+	else
+		myRomPath = "roms";
 
-  if ( groupBoxSetRewriter->isChecked() )
-    if ( !lineEditSetRewriterAdditionalRomPath->text().isEmpty() )
-      myRomPath = lineEditSetRewriterAdditionalRomPath->text() + ";" + myRomPath;
+	if ( groupBoxSetRewriter->isChecked() )
+		if ( !lineEditSetRewriterAdditionalRomPath->text().isEmpty() )
+			myRomPath = lineEditSetRewriterAdditionalRomPath->text() + ";" + myRomPath;
 
-  myRomPath.replace("~", QDir::homePath());
-  myRomPath.replace("$HOME", QDir::homePath());
-  romPaths = myRomPath.split(";", QString::SkipEmptyParts);
+	myRomPath.replace("~", QDir::homePath());
+	myRomPath.replace("$HOME", QDir::homePath());
+	romPaths = myRomPath.split(";", QString::SkipEmptyParts);
 
-  QStringList analyzerList;
-  QStringList patternList = lineEditGames->text().simplified().split(" ", QString::SkipEmptyParts);
+	QStringList analyzerList;
+	QStringList patternList = lineEditGames->text().simplified().split(" ", QString::SkipEmptyParts);
 
-  if ( !checkBoxAppendReport->isChecked() ) {
-	  treeWidgetChecksums->clear();
-	  textBrowserLog->clear();
-	  analyzerBadSets.clear();
-  }
-  qmc2ROMAlyzerPaused = false;
-  animSeq = -1;
-  animationTimeout();
-  animTimer.start(QMC2_ANIMATION_TIMEOUT);
-  pushButtonAnalyze->setText(tr("&Stop"));
-  pushButtonPause->setVisible(true);
-  pushButtonPause->setEnabled(true);
-  pushButtonPause->setText(tr("&Pause"));
-  lineEditGames->setEnabled(false);
-  toolButtonToolsMenu->setEnabled(false);
-  if ( checkBoxCalculateSHA1->isChecked() ) tabChecksumWizard->setEnabled(false);
-  tabSetRenamer->setEnabled(false);
-  QTime analysisTimer, elapsedTime(0, 0, 0, 0);
-  analysisTimer.start();
-  log(tr("analysis started"));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  log(tr("determining list of games to analyze"));
-#elif defined(QMC2_EMUTYPE_MESS)
-  log(tr("determining list of machines to analyze"));
-#endif
-
-  int i = 0;
-  QRegExp wildcardRx("(\\*|\\?)");
-  if ( wizardSearch || quickSearch || wildcardRx.indexIn(lineEditGames->text().simplified()) == -1 ) {
-    // no wild-cards => no need to search!
-    foreach (QString id, patternList)
-	    if ( qmc2Gamelist->xmlDb()->exists(id) )
-		    analyzerList << id;
-    analyzerList.sort();
-  } else {
-    if ( patternList.count() == 1 ) {
-      if ( qmc2GamelistItemMap.contains(patternList[0]) ) {
-        // special case for exactly ONE matching game/machine -- no need to search
-        analyzerList << patternList[0];
-      }
-    }
-
-    if ( analyzerList.empty() ) {
-      // determine list of games to analyze
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-      labelStatus->setText(tr("Searching games"));
-#elif defined(QMC2_EMUTYPE_MESS)
-      labelStatus->setText(tr("Searching machines"));
-#endif
-      progressBar->setRange(0, qmc2Gamelist->numGames);
-      progressBar->reset();
-      QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
-      i = 0;
-      bool matchAll = (lineEditGames->text().simplified() == "*");
-      while ( it.hasNext() && !qmc2StopParser ) {
-        it.next();
-        progressBar->setValue(++i);
-	QString gameID = it.key();
-	if ( matchAll )
-		analyzerList << gameID;
-	else foreach (QString pattern, patternList) {
-		QRegExp regexp(pattern, Qt::CaseSensitive, QRegExp::Wildcard);
-		if ( regexp.exactMatch(gameID) )
-			if ( !analyzerList.contains(gameID) )
-				analyzerList << gameID;
+	if ( !checkBoxAppendReport->isChecked() ) {
+		treeWidgetChecksums->clear();
+		textBrowserLog->clear();
+		analyzerBadSets.clear();
 	}
-	if ( i % QMC2_ROMALYZER_SEARCH_RESPONSE == 0 )
-		qApp->processEvents();
-      }
-      progressBar->reset();
-      labelStatus->setText(tr("Idle"));
-    }
-  }
 
-  quickSearch = false;
-
-  if ( !qmc2StopParser ) {
+	qmc2ROMAlyzerPaused = false;
+	animSeq = -1;
+	animationTimeout();
+	animTimer.start(QMC2_ANIMATION_TIMEOUT);
+	pushButtonAnalyze->setText(tr("&Stop"));
+	pushButtonPause->setVisible(true);
+	pushButtonPause->setEnabled(true);
+	pushButtonPause->setText(tr("&Pause"));
+	lineEditGames->setEnabled(false);
+	toolButtonToolsMenu->setEnabled(false);
+	if ( checkBoxCalculateSHA1->isChecked() )
+		tabChecksumWizard->setEnabled(false);
+	tabSetRenamer->setEnabled(false);
+	QTime analysisTimer, elapsedTime(0, 0, 0, 0);
+	analysisTimer.start();
+	log(tr("analysis started"));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    log(tr("done (determining list of games to analyze)"));
-    log(tr("%n game(s) to analyze", "", analyzerList.count()));
+	log(tr("determining list of games to analyze"));
 #elif defined(QMC2_EMUTYPE_MESS)
-    log(tr("done (determining list of machines to analyze)"));
-    log(tr("%n machine(s) to analyze", "", analyzerList.count()));
+	log(tr("determining list of machines to analyze"));
 #endif
 
-    i = 0;
-    int setsInMemory = 0;
-    foreach (QString gameName, analyzerList) {
-      // wait if paused...
-      for (quint64 waitCounter = 0; qmc2ROMAlyzerPaused && !qmc2StopParser; waitCounter++) {
-        if ( waitCounter == 0 ) {
-          log(tr("analysis paused"));
-          pushButtonPause->setText(tr("&Resume"));
-          pushButtonPause->setEnabled(true);
-          progressBar->reset();
-          labelStatus->setText(tr("Paused"));
-        }
-        QTest::qWait(QMC2_ROMALYZER_PAUSE_TIMEOUT);
-      }
-
-      bool filesSkipped = false;
-      bool filesUnknown = false;
-      bool filesError = false;
-
-      if ( qmc2StopParser )
-        break;
-
-      // remove the 'oldest' sets from the report if the report limit has been reached
-      int reportLimit = spinBoxMaxReports->value();
-      if ( reportLimit > 0 ) {
-	      if ( setsInMemory >= reportLimit ) {
-		      int setsToBeRemoved = setsInMemory - reportLimit + 1;
-		      log(tr("report limit reached, removing %n set(s) from the report", "", setsToBeRemoved));
-		      for (int j = 0; j < setsToBeRemoved; j++) {
-			      QTreeWidgetItem *ti = treeWidgetChecksums->topLevelItem(0);
-			      if ( ti ) {
-				      analyzerBadSets.removeAll(ti->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ")[0]);
-				      if ( ti->isSelected() )
-					      treeWidgetChecksums->selectionModel()->clear();
-				      delete treeWidgetChecksums->takeTopLevelItem(0);
-				      setsInMemory--;
-			      }
-		      }
-	      }
-      }
-      setsInMemory++;
-
-      QLocale locale;
-
-      // analyze game
-      log(tr("analyzing '%1'").arg(gameName));
-      setRewriterSetCount = analyzerList.count() - i;
-      labelStatus->setText(tr("Analyzing '%1'").arg(gameName) + QString(" - %1").arg(locale.toString(setRewriterSetCount)));
-
-      // step 1: retrieve XML data, insert item with game name
-      QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksums);
-      item->setText(QMC2_ROMALYZER_COLUMN_GAME, gameName);
-      QString xmlBuffer = getXmlData(gameName);
-
-      if ( qmc2StopParser )
-	break;
-
-      // step 2: parse XML data, insert ROMs / CHDs and checksums as they _should_ be
-      log(tr("parsing XML data for '%1'").arg(gameName));
-      QXmlInputSource xmlInputSource;
-      xmlInputSource.setData(xmlBuffer);
-      ROMAlyzerXmlHandler xmlHandler(item, checkBoxExpandFiles->isChecked(), checkBoxAutoScroll->isChecked());
-      QXmlSimpleReader xmlReader;
-      xmlReader.setContentHandler(&xmlHandler);
-      if ( xmlReader.parse(xmlInputSource) )
-	log(tr("done (parsing XML data for '%1')").arg(gameName));
-      else
-	log(tr("error (parsing XML data for '%1')").arg(gameName));
-
-      if ( qmc2StopParser )
-	break;
-
-      if ( !xmlHandler.deviceReferences.isEmpty() )
-	      item->setWhatsThis(QMC2_ROMALYZER_COLUMN_GAME, xmlHandler.deviceReferences.join(","));
-
-      int numWizardFiles = 1;
-      if ( wizardSearch )
-	numWizardFiles = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID).count();
-
-      // step 3: check file status of ROMs and CHDs, recalculate checksums
-      log(tr("checking %n file(s) for '%1'", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(gameName));
-      progressBar->reset();
-      progressBar->setRange(0, xmlHandler.fileCounter);
-      int fileCounter;
-      int notFoundCounter = 0;
-      int noDumpCounter = 0;
-      bool gameOkay = true;
-      int mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_OK;
-
-      setRewriterFileMap.clear();
-      setRewriterSetName = gameName;
-      setRewriterItem = item;
-
-      for (fileCounter = 0; fileCounter < xmlHandler.fileCounter && !qmc2StopParser; fileCounter++) {
-	progressBar->setValue(fileCounter + 1);
-	progressBar->setFormat(QString("%1 / %2").arg(fileCounter + 1).arg(xmlHandler.fileCounter));
-	qApp->processEvents();
-	QByteArray data;
-	bool sevenZipped = false;
-	bool zipped = false;
-	bool merged = false;
-	QTreeWidgetItem *childItem = xmlHandler.childItems.at(fileCounter);
-	QTreeWidgetItem *parentItem = xmlHandler.parentItem;
-	QString sha1Calculated, md5Calculated, fallbackPath;
-	bool optionalRom = xmlHandler.optionalROMs.contains(childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
-
-	if ( wizardSearch ) {
-		QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
-		bool itemFound = false;
-		foreach (QTreeWidgetItem *it, il)
-			if ( it->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ) {
-				itemFound = true;
-				break;
+	int i = 0;
+	QRegExp wildcardRx("(\\*|\\?)");
+	if ( wizardSearch || quickSearch || wildcardRx.indexIn(lineEditGames->text().simplified()) == -1 ) {
+		// no wild-cards => no need to search!
+		foreach (QString id, patternList)
+			if ( qmc2Gamelist->xmlDb()->exists(id) )
+				analyzerList << id;
+		analyzerList.sort();
+	} else {
+		if ( patternList.count() == 1 ) {
+			if ( qmc2GamelistItemMap.contains(patternList[0]) ) {
+				// special case for exactly ONE matching game/machine -- no need to search
+				analyzerList << patternList[0];
 			}
-		if ( !itemFound ) {
-			childItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("skipped"));
-			childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.blueBrush);
-			continue;
+		}
+
+		if ( analyzerList.empty() ) {
+			// determine list of games to analyze
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+			labelStatus->setText(tr("Searching games"));
+#elif defined(QMC2_EMUTYPE_MESS)
+			labelStatus->setText(tr("Searching machines"));
+#endif
+			progressBar->setRange(0, qmc2Gamelist->numGames);
+			progressBar->reset();
+			QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
+			i = 0;
+			bool matchAll = (lineEditGames->text().simplified() == "*");
+			while ( it.hasNext() && !qmc2StopParser ) {
+				it.next();
+				progressBar->setValue(++i);
+				QString gameID = it.key();
+				if ( matchAll )
+					analyzerList << gameID;
+				else foreach (QString pattern, patternList) {
+					QRegExp regexp(pattern, Qt::CaseSensitive, QRegExp::Wildcard);
+					if ( regexp.exactMatch(gameID) )
+						if ( !analyzerList.contains(gameID) )
+							analyzerList << gameID;
+				}
+				if ( i % QMC2_ROMALYZER_SEARCH_RESPONSE == 0 )
+					qApp->processEvents();
+			}
+			progressBar->reset();
+			labelStatus->setText(tr("Idle"));
 		}
 	}
 
-	QString effectiveFile = getEffectiveFile(childItem, gameName, 
-						 childItem->text(QMC2_ROMALYZER_COLUMN_GAME),
-						 childItem->text(QMC2_ROMALYZER_COLUMN_CRC),
-						 parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE),
-						 childItem->text(QMC2_ROMALYZER_COLUMN_MERGE),
-						 childItem->text(QMC2_ROMALYZER_COLUMN_TYPE),
-						 &data, &sha1Calculated, &md5Calculated,
-						 &zipped, &sevenZipped, &merged, fileCounter, &fallbackPath,
-						 optionalRom); 
+	quickSearch = false;
+
+	if ( !qmc2StopParser ) {
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		log(tr("done (determining list of games to analyze)"));
+		log(tr("%n game(s) to analyze", "", analyzerList.count()));
+#elif defined(QMC2_EMUTYPE_MESS)
+		log(tr("done (determining list of machines to analyze)"));
+		log(tr("%n machine(s) to analyze", "", analyzerList.count()));
+#endif
+
+		i = 0;
+		int setsInMemory = 0;
+		foreach (QString gameName, analyzerList) {
+			// wait if paused...
+			for (quint64 waitCounter = 0; qmc2ROMAlyzerPaused && !qmc2StopParser; waitCounter++) {
+				if ( waitCounter == 0 ) {
+					log(tr("analysis paused"));
+					pushButtonPause->setText(tr("&Resume"));
+					pushButtonPause->setEnabled(true);
+					progressBar->reset();
+					labelStatus->setText(tr("Paused"));
+				}
+				QTest::qWait(QMC2_ROMALYZER_PAUSE_TIMEOUT);
+			}
+
+			bool filesSkipped = false;
+			bool filesUnknown = false;
+			bool filesError = false;
+
+			if ( qmc2StopParser )
+				break;
+
+			// remove the 'oldest' sets from the report if the report limit has been reached
+			int reportLimit = spinBoxMaxReports->value();
+			if ( reportLimit > 0 ) {
+				if ( setsInMemory >= reportLimit ) {
+					int setsToBeRemoved = setsInMemory - reportLimit + 1;
+					log(tr("report limit reached, removing %n set(s) from the report", "", setsToBeRemoved));
+					for (int j = 0; j < setsToBeRemoved; j++) {
+						QTreeWidgetItem *ti = treeWidgetChecksums->topLevelItem(0);
+						if ( ti ) {
+							analyzerBadSets.removeAll(ti->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ")[0]);
+							if ( ti->isSelected() )
+								treeWidgetChecksums->selectionModel()->clear();
+							delete treeWidgetChecksums->takeTopLevelItem(0);
+							setsInMemory--;
+						}
+					}
+				}
+			}
+			setsInMemory++;
+
+			QLocale locale;
+
+			// analyze game
+			log(tr("analyzing '%1'").arg(gameName));
+			setRewriterSetCount = analyzerList.count() - i;
+			labelStatus->setText(tr("Analyzing '%1'").arg(gameName) + QString(" - %1").arg(locale.toString(setRewriterSetCount)));
+
+			// step 1: retrieve XML data, insert item with game name
+			QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksums);
+			item->setText(QMC2_ROMALYZER_COLUMN_GAME, gameName);
+			QString xmlBuffer = getXmlData(gameName);
+
+			if ( qmc2StopParser )
+				break;
+
+			// step 2: parse XML data, insert ROMs / CHDs and checksums as they _should_ be
+			log(tr("parsing XML data for '%1'").arg(gameName));
+			QXmlInputSource xmlInputSource;
+			xmlInputSource.setData(xmlBuffer);
+			ROMAlyzerXmlHandler xmlHandler(item, checkBoxExpandFiles->isChecked(), checkBoxAutoScroll->isChecked());
+			QXmlSimpleReader xmlReader;
+			xmlReader.setContentHandler(&xmlHandler);
+			if ( xmlReader.parse(xmlInputSource) )
+				log(tr("done (parsing XML data for '%1')").arg(gameName));
+			else
+				log(tr("error (parsing XML data for '%1')").arg(gameName));
+
+			if ( qmc2StopParser )
+				break;
+
+			if ( !xmlHandler.deviceReferences.isEmpty() )
+				item->setWhatsThis(QMC2_ROMALYZER_COLUMN_GAME, xmlHandler.deviceReferences.join(","));
+
+			int numWizardFiles = 1;
+			if ( wizardSearch )
+				numWizardFiles = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID).count();
+
+			// step 3: check file status of ROMs and CHDs, recalculate checksums
+			log(tr("checking %n file(s) for '%1'", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(gameName));
+			progressBar->reset();
+			progressBar->setRange(0, xmlHandler.fileCounter);
+			int fileCounter;
+			int notFoundCounter = 0;
+			int noDumpCounter = 0;
+			bool gameOkay = true;
+			int mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_OK;
+
+			setRewriterFileMap.clear();
+			setRewriterSetName = gameName;
+			setRewriterItem = item;
+
+			for (fileCounter = 0; fileCounter < xmlHandler.fileCounter && !qmc2StopParser; fileCounter++) {
+				progressBar->setValue(fileCounter + 1);
+				progressBar->setFormat(QString("%1 / %2").arg(fileCounter + 1).arg(xmlHandler.fileCounter));
+				qApp->processEvents();
+				QByteArray data;
+				bool sevenZipped = false;
+				bool zipped = false;
+				bool merged = false;
+				QTreeWidgetItem *childItem = xmlHandler.childItems.at(fileCounter);
+				QTreeWidgetItem *parentItem = xmlHandler.parentItem;
+				QString sha1Calculated, md5Calculated, fallbackPath;
+				bool optionalRom = xmlHandler.optionalROMs.contains(childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
+
+				if ( wizardSearch ) {
+					QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+					bool itemFound = false;
+					foreach (QTreeWidgetItem *it, il)
+						if ( it->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ) {
+							itemFound = true;
+							break;
+						}
+					if ( !itemFound ) {
+						childItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("skipped"));
+						childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.blueBrush);
+						continue;
+					}
+				}
+
+				QString effectiveFile = getEffectiveFile(childItem, gameName, childItem->text(QMC2_ROMALYZER_COLUMN_GAME), childItem->text(QMC2_ROMALYZER_COLUMN_CRC),
+									 parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE), childItem->text(QMC2_ROMALYZER_COLUMN_MERGE), childItem->text(QMC2_ROMALYZER_COLUMN_TYPE),
+									 &data, &sha1Calculated, &md5Calculated, &zipped, &sevenZipped, &merged, fileCounter, &fallbackPath, optionalRom); 
 
 #ifdef QMC2_DEBUG
-	log(QString("DEBUG: fileName = %1 [%2], isZipped = %3, isSevenZipped = %4, fileType = %5, crcExpected = %6, sha1Calculated = %7")
-		    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME))
-		    .arg(effectiveFile)
-		    .arg(zipped ? "true" : "false")
-		    .arg(sevenZipped ? "true" : "false")
-		    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).startsWith(tr("ROM")) ? "ROM" : "CHD")
-		    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC).isEmpty() ? QString("--") : childItem->text(QMC2_ROMALYZER_COLUMN_CRC))
-		    .arg(sha1Calculated.isEmpty() ? QString("--") : sha1Calculated));
+				log(QString("DEBUG: fileName = %1 [%2], isZipped = %3, isSevenZipped = %4, fileType = %5, crcExpected = %6, sha1Calculated = %7")
+					    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME))
+					    .arg(effectiveFile)
+					    .arg(zipped ? "true" : "false")
+					    .arg(sevenZipped ? "true" : "false")
+					    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).startsWith(tr("ROM")) ? "ROM" : "CHD")
+					    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC).isEmpty() ? QString("--") : childItem->text(QMC2_ROMALYZER_COLUMN_CRC))
+					    .arg(sha1Calculated.isEmpty() ? QString("--") : sha1Calculated));
 #endif
 
-	if ( qmc2StopParser )
-	  continue;
+				if ( qmc2StopParser )
+					continue;
 
-	if ( effectiveFile.isEmpty() ) {
-	  childItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("not found"));
-	  childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
-	  if ( xmlHandler.optionalROMs.contains(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)) )
-		  childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QIcon(QString::fromUtf8(":/data/img/remove.png")).pixmap(QSize(64, 64), QIcon::Disabled)));
-	  else
-		  childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/remove.png")));
-	  notFoundCounter++;
-	} else {
-	  QString fileStatus;
-	  bool somethingsWrong = false;
-	  bool eligibleForDatabaseUpload = false;
-	  bool isCHD = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).split(" ")[0] == QObject::tr("CHD");
-	  bool isROM = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).startsWith(tr("ROM"));
-	  bool hasDump = childItem->text(QMC2_ROMALYZER_COLUMN_EMUSTATUS) != QObject::tr("no dump");
-
-	  if ( effectiveFile != QMC2_ROMALYZER_FILE_NOT_FOUND ) {
-	    if ( isROM )
-	      childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/rom.png")));
-	    else if ( isCHD )
-	      childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/disk2.png")));
-	    else if ( hasDump )
-	      childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
-	    else
-	      childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/wip.png")));
-	  }
-
-	  if ( effectiveFile == QMC2_ROMALYZER_FILE_TOO_BIG ) {
-	    fileStatus = tr("skipped");
-	    filesSkipped = true;
-	  } else if ( effectiveFile == QMC2_ROMALYZER_FILE_NOT_SUPPORTED ) {
-	    fileStatus = tr("skipped");
-	    filesUnknown = true;
-	  } else if ( effectiveFile == QMC2_ROMALYZER_FILE_ERROR ) {
-	    fileStatus = tr("error");
-	    childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/warning.png")));
-
-	    QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
-	    if ( !mergeName.isEmpty() ) {
-	      if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_CRIT ) mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_CRIT;
-	      childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
-	    }
-
-	    filesError = true;
-	    if ( wizardSelectedSets.contains(gameName) ) {
-	      QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
-	      foreach (QTreeWidgetItem *item, il)
-		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ||
-		     item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
-		  item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
-		  item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, xmlHandler.redBrush);
-		  item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, fallbackPath);
-		}
-	      on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
-	    }
-	  } else if ( effectiveFile == QMC2_ROMALYZER_FILE_NOT_FOUND || effectiveFile == QMC2_ROMALYZER_NO_DUMP ) {
-	    if ( hasDump ) {
-		    fileStatus = tr("not found");
-		    if ( xmlHandler.optionalROMs.contains(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)) )
-			    childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QIcon(QString::fromUtf8(":/data/img/remove.png")).pixmap(QSize(64, 64), QIcon::Disabled)));
-		    else
-			    childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/remove.png")));
-		    notFoundCounter++;
-		    QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
-		    if ( !mergeName.isEmpty() ) {
-			    if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_CRIT ) mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_CRIT;
-			    childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
-		    }
-
-		    if ( wizardSelectedSets.contains(gameName) ) {
-			    QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
-			    foreach (QTreeWidgetItem *item, il) {
-				    if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) || item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
-					    item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
-					    item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, xmlHandler.redBrush);
-					    item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, fallbackPath);
-				    }
-			    }
-			    on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
-		    }
-	    } else {
-		    fileStatus = tr("no dump");
-		    childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/wip.png")));
-		    noDumpCounter++;
-	    }
-	  } else {
-	    QTreeWidgetItem *fileItem = new QTreeWidgetItem(childItem);
-	    fileItem->setText(QMC2_ROMALYZER_COLUMN_GAME, tr("Checksums"));
-	    childItem->setExpanded(false);
-
-	    QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
-	    if ( !mergeName.isEmpty() ) {
-              if ( !parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
-		      if ( !merged ) {
-			      log(tr("WARNING: %1 file '%2' loaded from '%3' may be obsolete, should be merged from parent set '%4'").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile).arg(parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE)));
-			      childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
-			      if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_WARN ) mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_WARN;
-		      } else
-			      childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
-	      } else {
-		      // this is actually an XML bug in the driver, inform via log and ignore...
-#if defined(QMC2_EMUTYPE_MAME)
-		      log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
-#elif defined(QMC2_EMUTYPE_MESS)
-		      log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
-#elif defined(QMC2_EMUTYPE_UME)
-		      log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the UME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
-#endif
-		      childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
-	      }
-	    }
-
-	    // Size
-	    QString sizeStr = childItem->text(QMC2_ROMALYZER_COLUMN_SIZE);
-	    if ( !sizeStr.isEmpty() ){
-	      fileItem->setText(QMC2_ROMALYZER_COLUMN_SIZE, QString::number(data.size()));
-	      if ( !fileStatus.isEmpty() )
-		      fileStatus += " ";
-	      if ( data.size() == sizeStr.toLongLong() )
-		      fileStatus += tr("SIZE");
-	      else
-		      fileStatus += tr("size");
-	      if ( data.size() != sizeStr.toLongLong() && hasDump ) {
-		somethingsWrong = true;
-		fileItem->setForeground(QMC2_ROMALYZER_COLUMN_SIZE, xmlHandler.redBrush);
-	      }
-	      pushButtonPause->setIcon(QIcon(QString::fromUtf8(":/data/img/time.png")));
-	      qApp->processEvents();
-	    }
-
-	    // CRC
-	    QString crcStr = childItem->text(QMC2_ROMALYZER_COLUMN_CRC);
-	    if ( !crcStr.isEmpty() && checkBoxCalculateCRC->isChecked() ) {
-	      ulong crc = crc32(0, NULL, 0);
-	      crc = crc32(crc, (const Bytef *)data.data(), data.size());
-	      fileItem->setText(QMC2_ROMALYZER_COLUMN_CRC, QString::number(crc, 16).rightJustified(8, '0'));
-	      if ( !fileStatus.isEmpty() )
-		      fileStatus += " ";
-	      if ( crc == crcStr.toULongLong(0, 16) )
-		      fileStatus += tr("CRC");
-	      else
-		      fileStatus += tr("crc");
-	      if ( crc != crcStr.toULongLong(0, 16) && hasDump ) {
-		somethingsWrong = true;
-		fileItem->setForeground(QMC2_ROMALYZER_COLUMN_CRC, xmlHandler.redBrush);
-	      }
-	      qApp->processEvents();
-	    }
-
-	    // SHA1
-	    QString sha1Str = childItem->text(QMC2_ROMALYZER_COLUMN_SHA1);
-	    if ( !sha1Str.isEmpty() && checkBoxCalculateSHA1->isChecked() ) {
-	      fileItem->setText(QMC2_ROMALYZER_COLUMN_SHA1, sha1Calculated);
-	      if ( !fileStatus.isEmpty() )
-		      fileStatus += " ";
-	      if ( sha1Str == sha1Calculated )
-		      fileStatus += tr("SHA1");
-	      else
-		      fileStatus += tr("sha1");
-	      if ( sha1Str != sha1Calculated && hasDump ) {
-		somethingsWrong = true;
-		fileItem->setForeground(QMC2_ROMALYZER_COLUMN_SHA1, xmlHandler.redBrush);
-	      } else if ( hasDump )
-		eligibleForDatabaseUpload = true;
-	      if ( wizardSelectedSets.contains(gameName) ) {
-		QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
-		foreach (QTreeWidgetItem *item, il)
-		  if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ||
-		       item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
-		    item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, eligibleForDatabaseUpload ? tr("good") : tr("bad"));
-		    item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, eligibleForDatabaseUpload ? xmlHandler.greenBrush : xmlHandler.redBrush);
-		    item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, effectiveFile);
-		    if ( eligibleForDatabaseUpload ) item->setWhatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
-		  }
-	        on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
-	      }
-	      qApp->processEvents();
-	    }
-
-	    // MD5
-	    QString md5Str = childItem->text(QMC2_ROMALYZER_COLUMN_MD5);
-	    if ( !md5Str.isEmpty() && checkBoxCalculateMD5->isChecked() ) {
-	      fileItem->setText(QMC2_ROMALYZER_COLUMN_MD5, md5Calculated);
-	      if ( !fileStatus.isEmpty() )
-		      fileStatus += " ";
-	      if ( md5Str == md5Calculated )
-		      fileStatus += tr("MD5");
-	      else
-		      fileStatus += tr("md5");
-	      if ( md5Str != md5Calculated && hasDump ) {
-		somethingsWrong = true;
-		fileItem->setForeground(QMC2_ROMALYZER_COLUMN_MD5, xmlHandler.redBrush);
-	      }
-	      qApp->processEvents();
-	    }
-	  }
-
-	  childItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, fileStatus);
-	  if ( somethingsWrong ) {
-	    gameOkay = false;
-	    childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
-	    childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/warning.png")));
-	    log(tr("WARNING: %1 file '%2' loaded from '%3' has incorrect / unexpected checksums").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile));
-	  } else {
-	    if ( fileStatus == tr("skipped") ) {
-	      childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.blueBrush);
-	    } else if ( fileStatus == tr("not found") ) {
-	      childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
-	    } else if ( fileStatus == tr("no dump") ) {
-	      childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.brownBrush);
-	    } else {
-	      childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
-
-	      if ( eligibleForDatabaseUpload ) {
-		// FIXME: add optional DB upload through ROM database manager here...
-	      }
-	    }
-	  }
-
-	  if ( checkBoxExpandChecksums->isChecked() && checkBoxExpandFiles->isChecked() )
-	    childItem->setExpanded(true);
-
-	  qApp->processEvents();
-	}
-      }
-
-      if ( xmlHandler.fileCounter == 0 )
-	progressBar->setRange(0, 1);
-      progressBar->setFormat(QString());
-      progressBar->reset();
-      qApp->processEvents();
-
-      if ( qmc2StopParser ) 
-	log(tr("interrupted (checking %n file(s) for '%1')", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(gameName));
-      else {
-	gameOkay |= filesError;
-	filesSkipped |= filesUnknown;
-	if ( !wizardSearch ) {
-		if ( gameOkay ) {
-			if ( notFoundCounter == xmlHandler.fileCounter ) {
-				if ( xmlHandler.fileCounter == 0 ) {
-					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good"));
-					xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
+				if ( effectiveFile.isEmpty() ) {
+					childItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("not found"));
+					childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
+					if ( xmlHandler.optionalROMs.contains(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)) )
+						childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QIcon(QString::fromUtf8(":/data/img/remove.png")).pixmap(QSize(64, 64), QIcon::Disabled)));
+					else
+						childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/remove.png")));
+					notFoundCounter++;
 				} else {
-					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("not found"));
-					xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
-					gameOkay = false;
+					QString fileStatus;
+					bool somethingsWrong = false;
+					bool eligibleForDatabaseUpload = false;
+					bool isCHD = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).split(" ")[0] == QObject::tr("CHD");
+					bool isROM = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).startsWith(tr("ROM"));
+					bool hasDump = childItem->text(QMC2_ROMALYZER_COLUMN_EMUSTATUS) != QObject::tr("no dump");
+
+					if ( effectiveFile != QMC2_ROMALYZER_FILE_NOT_FOUND ) {
+						if ( isROM )
+							childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/rom.png")));
+						else if ( isCHD )
+							childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/disk2.png")));
+						else if ( hasDump )
+							childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
+						else
+							childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/wip.png")));
+					}
+
+					if ( effectiveFile == QMC2_ROMALYZER_FILE_TOO_BIG ) {
+						fileStatus = tr("skipped");
+						filesSkipped = true;
+					} else if ( effectiveFile == QMC2_ROMALYZER_FILE_NOT_SUPPORTED ) {
+						fileStatus = tr("skipped");
+						filesUnknown = true;
+					} else if ( effectiveFile == QMC2_ROMALYZER_FILE_ERROR ) {
+						fileStatus = tr("error");
+						childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/warning.png")));
+
+						QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
+						if ( !mergeName.isEmpty() ) {
+							if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_CRIT ) mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_CRIT;
+							childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
+						}
+
+						filesError = true;
+						if ( wizardSelectedSets.contains(gameName) ) {
+							QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+							foreach (QTreeWidgetItem *item, il)
+								if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ||
+										item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
+									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
+									item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, xmlHandler.redBrush);
+									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, fallbackPath);
+								}
+							on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
+						}
+					} else if ( effectiveFile == QMC2_ROMALYZER_FILE_NOT_FOUND || effectiveFile == QMC2_ROMALYZER_NO_DUMP ) {
+						if ( hasDump ) {
+							fileStatus = tr("not found");
+							if ( xmlHandler.optionalROMs.contains(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)) )
+								childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QIcon(QString::fromUtf8(":/data/img/remove.png")).pixmap(QSize(64, 64), QIcon::Disabled)));
+							else
+								childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/remove.png")));
+							notFoundCounter++;
+							QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
+							if ( !mergeName.isEmpty() ) {
+								if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_CRIT )
+									mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_CRIT;
+								childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
+							}
+
+							if ( wizardSelectedSets.contains(gameName) ) {
+								QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+								foreach (QTreeWidgetItem *item, il) {
+									if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) || item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
+										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
+										item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, xmlHandler.redBrush);
+										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, fallbackPath);
+									}
+								}
+								on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
+							}
+						} else {
+							fileStatus = tr("no dump");
+							childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/wip.png")));
+							noDumpCounter++;
+						}
+					} else {
+						QTreeWidgetItem *fileItem = new QTreeWidgetItem(childItem);
+						fileItem->setText(QMC2_ROMALYZER_COLUMN_GAME, tr("Checksums"));
+						childItem->setExpanded(false);
+
+						QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
+						if ( !mergeName.isEmpty() ) {
+							if ( !parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
+								if ( !merged ) {
+									log(tr("WARNING: %1 file '%2' loaded from '%3' may be obsolete, should be merged from parent set '%4'").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile).arg(parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE)));
+									childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
+									if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_WARN )
+										mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_WARN;
+								} else
+									childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
+							} else {
+								// this is actually an XML bug in the driver, inform via log and ignore...
+#if defined(QMC2_EMUTYPE_MAME)
+								log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
+#elif defined(QMC2_EMUTYPE_MESS)
+								log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
+#elif defined(QMC2_EMUTYPE_UME)
+								log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the UME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
+#endif
+								childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
+							}
+						}
+
+						// Size
+						QString sizeStr = childItem->text(QMC2_ROMALYZER_COLUMN_SIZE);
+						if ( !sizeStr.isEmpty() ){
+							fileItem->setText(QMC2_ROMALYZER_COLUMN_SIZE, QString::number(data.size()));
+							if ( !fileStatus.isEmpty() )
+								fileStatus += " ";
+							if ( data.size() == sizeStr.toLongLong() )
+								fileStatus += tr("SIZE");
+							else
+								fileStatus += tr("size");
+							if ( data.size() != sizeStr.toLongLong() && hasDump ) {
+								somethingsWrong = true;
+								fileItem->setForeground(QMC2_ROMALYZER_COLUMN_SIZE, xmlHandler.redBrush);
+							}
+							pushButtonPause->setIcon(QIcon(QString::fromUtf8(":/data/img/time.png")));
+							qApp->processEvents();
+						}
+
+						// CRC
+						QString crcStr = childItem->text(QMC2_ROMALYZER_COLUMN_CRC);
+						if ( !crcStr.isEmpty() && checkBoxCalculateCRC->isChecked() ) {
+							ulong crc = crc32(0, NULL, 0);
+							crc = crc32(crc, (const Bytef *)data.data(), data.size());
+							fileItem->setText(QMC2_ROMALYZER_COLUMN_CRC, QString::number(crc, 16).rightJustified(8, '0'));
+							if ( !fileStatus.isEmpty() )
+								fileStatus += " ";
+							if ( crc == crcStr.toULongLong(0, 16) )
+								fileStatus += tr("CRC");
+							else
+								fileStatus += tr("crc");
+							if ( crc != crcStr.toULongLong(0, 16) && hasDump ) {
+								somethingsWrong = true;
+								fileItem->setForeground(QMC2_ROMALYZER_COLUMN_CRC, xmlHandler.redBrush);
+							}
+							qApp->processEvents();
+						}
+
+						// SHA1
+						QString sha1Str = childItem->text(QMC2_ROMALYZER_COLUMN_SHA1);
+						if ( !sha1Str.isEmpty() && checkBoxCalculateSHA1->isChecked() ) {
+							fileItem->setText(QMC2_ROMALYZER_COLUMN_SHA1, sha1Calculated);
+							if ( !fileStatus.isEmpty() )
+								fileStatus += " ";
+							if ( sha1Str == sha1Calculated )
+								fileStatus += tr("SHA1");
+							else
+								fileStatus += tr("sha1");
+							if ( sha1Str != sha1Calculated && hasDump ) {
+								somethingsWrong = true;
+								fileItem->setForeground(QMC2_ROMALYZER_COLUMN_SHA1, xmlHandler.redBrush);
+							} else if ( hasDump )
+								eligibleForDatabaseUpload = true;
+							if ( wizardSelectedSets.contains(gameName) ) {
+								QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+								foreach (QTreeWidgetItem *item, il) {
+									if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ||
+									     item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
+										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, eligibleForDatabaseUpload ? tr("good") : tr("bad"));
+										item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, eligibleForDatabaseUpload ? xmlHandler.greenBrush : xmlHandler.redBrush);
+										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, effectiveFile);
+										if ( eligibleForDatabaseUpload )
+											item->setWhatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
+									}
+								}
+								on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
+							}
+							qApp->processEvents();
+						}
+
+						// MD5
+						QString md5Str = childItem->text(QMC2_ROMALYZER_COLUMN_MD5);
+						if ( !md5Str.isEmpty() && checkBoxCalculateMD5->isChecked() ) {
+							fileItem->setText(QMC2_ROMALYZER_COLUMN_MD5, md5Calculated);
+							if ( !fileStatus.isEmpty() )
+								fileStatus += " ";
+							if ( md5Str == md5Calculated )
+								fileStatus += tr("MD5");
+							else
+								fileStatus += tr("md5");
+							if ( md5Str != md5Calculated && hasDump ) {
+								somethingsWrong = true;
+								fileItem->setForeground(QMC2_ROMALYZER_COLUMN_MD5, xmlHandler.redBrush);
+							}
+							qApp->processEvents();
+						}
+					}
+
+					childItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, fileStatus);
+					if ( somethingsWrong ) {
+						gameOkay = false;
+						childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
+						childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/warning.png")));
+						log(tr("WARNING: %1 file '%2' loaded from '%3' has incorrect / unexpected checksums").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile));
+					} else {
+						if ( fileStatus == tr("skipped") ) {
+							childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.blueBrush);
+						} else if ( fileStatus == tr("not found") ) {
+							childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
+						} else if ( fileStatus == tr("no dump") ) {
+							childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.brownBrush);
+						} else {
+							childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
+
+							if ( eligibleForDatabaseUpload ) {
+								// FIXME: add optional DB upload through ROM database manager here...
+							}
+						}
+					}
+
+					if ( checkBoxExpandChecksums->isChecked() && checkBoxExpandFiles->isChecked() )
+						childItem->setExpanded(true);
+
+					qApp->processEvents();
 				}
-			} else if ( notFoundCounter > 0 ) {
-				if ( filesSkipped )
-					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / not found / skipped"));
-				else
-					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / not found"));
-				xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.brownBrush);
-				gameOkay = false;
-			} else if ( noDumpCounter > 0 ) {
-				if ( filesSkipped )
-					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / no dump / skipped"));
-				else
-					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / no dump"));
-				xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.brownBrush);
-			} else {
-				if ( filesSkipped )
-					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / skipped"));
-				else
-					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good"));
-				xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
 			}
-		} else {
-			if ( notFoundCounter > 0 ) {
-				if ( filesSkipped )
-					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / not found / skipped"));
-				else
-					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / not found"));
-				xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
-			} else if ( noDumpCounter > 0 ) {
-				if ( filesSkipped )
-					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / no dump / skipped"));
-				else
-					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / no dump"));
-				xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
-			} else {
-				if ( filesSkipped )
-					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / skipped"));
-				else
-					xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad"));
-				xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
+
+			if ( xmlHandler.fileCounter == 0 )
+				progressBar->setRange(0, 1);
+			progressBar->setFormat(QString());
+			progressBar->reset();
+			qApp->processEvents();
+
+			if ( qmc2StopParser ) 
+				log(tr("interrupted (checking %n file(s) for '%1')", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(gameName));
+			else {
+				gameOkay |= filesError;
+				filesSkipped |= filesUnknown;
+				if ( !wizardSearch ) {
+					if ( gameOkay ) {
+						if ( notFoundCounter == xmlHandler.fileCounter ) {
+							if ( xmlHandler.fileCounter == 0 ) {
+								xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good"));
+								xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
+							} else {
+								xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("not found"));
+								xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
+								gameOkay = false;
+							}
+						} else if ( notFoundCounter > 0 ) {
+							if ( filesSkipped )
+								xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / not found / skipped"));
+							else
+								xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / not found"));
+							xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.brownBrush);
+							gameOkay = false;
+						} else if ( noDumpCounter > 0 ) {
+							if ( filesSkipped )
+								xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / no dump / skipped"));
+							else
+								xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / no dump"));
+							xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.brownBrush);
+						} else {
+							if ( filesSkipped )
+								xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / skipped"));
+							else
+								xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good"));
+							xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
+						}
+					} else {
+						if ( notFoundCounter > 0 ) {
+							if ( filesSkipped )
+								xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / not found / skipped"));
+							else
+								xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / not found"));
+							xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
+						} else if ( noDumpCounter > 0 ) {
+							if ( filesSkipped )
+								xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / no dump / skipped"));
+							else
+								xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / no dump"));
+							xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
+						} else {
+							if ( filesSkipped )
+								xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / skipped"));
+							else
+								xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad"));
+							xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
+						}
+					}
+					if ( !xmlHandler.parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
+						switch ( mergeStatus ) {
+							case QMC2_ROMALYZER_MERGE_STATUS_OK:
+								xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
+								break;
+							case QMC2_ROMALYZER_MERGE_STATUS_WARN:
+								xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
+								break;
+							case QMC2_ROMALYZER_MERGE_STATUS_CRIT:
+								xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
+								break;
+							default:
+								break;
+						}
+					}
+				}
+
+				log(tr("done (checking %n file(s) for '%1')", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(gameName));
+
+				if ( !gameOkay )
+					analyzerBadSets << gameName;
+
+				if ( gameOkay || !checkBoxSetRewriterGoodSetsOnly->isChecked() )
+					if ( groupBoxSetRewriter->isChecked() )
+						if ( checkBoxSetRewriterWhileAnalyzing->isChecked() && !qmc2StopParser && !wizardSearch )
+							runSetRewriter();
 			}
-		}
-		if ( !xmlHandler.parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
-			switch ( mergeStatus ) {
-				case QMC2_ROMALYZER_MERGE_STATUS_OK:
-					xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
-					break;
-				case QMC2_ROMALYZER_MERGE_STATUS_WARN:
-					xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
-					break;
-				case QMC2_ROMALYZER_MERGE_STATUS_CRIT:
-					xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
-					break;
-				default:
-					break;
-			}
+			if ( qmc2StopParser )
+				break;
+
+			treeWidgetChecksums->update();
+
+			i++;
+			log(tr("done (analyzing '%1')").arg(gameName));
+			log(tr("%n set(s) remaining", "", analyzerList.count() - i));
 		}
 	}
 
-	log(tr("done (checking %n file(s) for '%1')", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(gameName));
+	animTimer.stop();
+	pushButtonAnalyze->setText(tr("&Analyze"));
+	pushButtonPause->setVisible(false);
+	pushButtonAnalyze->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer.png")));
+	lineEditGames->setEnabled(true);
+	toolButtonToolsMenu->setEnabled(true);
+	if ( checkBoxCalculateSHA1->isChecked() )
+		tabChecksumWizard->setEnabled(true);
+	tabSetRenamer->setEnabled(true);
 
-	if ( !gameOkay )
-		analyzerBadSets << gameName;
+	progressBar->reset();
+	progressBar->setFormat(QString());
+	labelStatus->setText(tr("Idle"));
+	qApp->processEvents();
+	elapsedTime = elapsedTime.addMSecs(analysisTimer.elapsed());
+	log(tr("analysis ended") + " - " + tr("elapsed time = %1").arg(elapsedTime.toString("hh:mm:ss.zzz")));
 
-	if ( gameOkay || !checkBoxSetRewriterGoodSetsOnly->isChecked() )
-		if ( groupBoxSetRewriter->isChecked() )
-			if ( checkBoxSetRewriterWhileAnalyzing->isChecked() && !qmc2StopParser && !wizardSearch )
-				runSetRewriter();
-      }
-      if ( qmc2StopParser )
-	break;
+	actionExportToDataFile->setEnabled(!analyzerBadSets.isEmpty());
 
-      treeWidgetChecksums->update();
+	if ( wizardSearch && wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_REPAIR && !qmc2StopParser ) {
+		if ( pushButtonChecksumWizardRepairBadSets->isEnabled() )
+			on_pushButtonChecksumWizardRepairBadSets_clicked();
+	}
 
-      i++;
-      log(tr("done (analyzing '%1')").arg(gameName));
-      log(tr("%n set(s) remaining", "", analyzerList.count() - i));
-    }
-  }
-
-  animTimer.stop();
-  pushButtonAnalyze->setText(tr("&Analyze"));
-  pushButtonPause->setVisible(false);
-  pushButtonAnalyze->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
-  lineEditGames->setEnabled(true);
-  toolButtonToolsMenu->setEnabled(true);
-  if ( checkBoxCalculateSHA1->isChecked() ) tabChecksumWizard->setEnabled(true);
-  tabSetRenamer->setEnabled(true);
-
-  progressBar->reset();
-  progressBar->setFormat(QString());
-  labelStatus->setText(tr("Idle"));
-  qApp->processEvents();
-  elapsedTime = elapsedTime.addMSecs(analysisTimer.elapsed());
-  log(tr("analysis ended") + " - " + tr("elapsed time = %1").arg(elapsedTime.toString("hh:mm:ss.zzz")));
-
-  actionExportToDataFile->setEnabled(!analyzerBadSets.isEmpty());
-
-  if ( wizardSearch && wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_REPAIR && !qmc2StopParser ) {
-    if ( pushButtonChecksumWizardRepairBadSets->isEnabled() )
-      on_pushButtonChecksumWizardRepairBadSets_clicked();
-  }
-
-  qmc2ROMAlyzerActive = false;
-  wizardSearch = false;
+	qmc2ROMAlyzerActive = false;
+	wizardSearch = false;
 }
 
 QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
@@ -1202,741 +1203,754 @@ QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 
 QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, QString fileName, QString wantedCRC, QString merge, QString mergeFile, QString type, QByteArray *fileData, QString *sha1Str, QString *md5Str, bool *isZipped, bool *isSevenZipped, bool *mergeUsed, int fileCounter, QString *fallbackPath, bool isOptionalROM)
 {
-  static QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
-  static QCryptographicHash md5Hash(QCryptographicHash::Md5);
-  static QString effectiveFile;
-  static char buffer[QMC2_MAX(QMC2_ROMALYZER_ZIP_BUFFER_SIZE, QMC2_ROMALYZER_FILE_BUFFER_SIZE)];
+	static QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
+	static QCryptographicHash md5Hash(QCryptographicHash::Md5);
+	static QString effectiveFile;
+	static char buffer[QMC2_MAX(QMC2_ROMALYZER_ZIP_BUFFER_SIZE, QMC2_ROMALYZER_FILE_BUFFER_SIZE)];
 
-  effectiveFile.clear();
-  fileData->clear();
+	effectiveFile.clear();
+	fileData->clear();
 
-  bool calcMD5 = checkBoxCalculateMD5->isChecked();
-  bool calcSHA1 = checkBoxCalculateSHA1->isChecked();
-  bool isCHD = type.split(" ")[0] == tr("CHD");
-  bool sizeLimited = spinBoxMaxFileSize->value() > 0;
-  bool chdManagerVerifyCHDs = checkBoxVerifyCHDs->isChecked();
+	bool calcMD5 = checkBoxCalculateMD5->isChecked();
+	bool calcSHA1 = checkBoxCalculateSHA1->isChecked();
+	bool isCHD = type.split(" ")[0] == tr("CHD");
+	bool sizeLimited = spinBoxMaxFileSize->value() > 0;
+	bool chdManagerVerifyCHDs = checkBoxVerifyCHDs->isChecked();
 #if QMC2_CHD_CURRENT_VERSION < 5
-  bool chdManagerFixCHDs = checkBoxFixCHDs->isChecked();
+	bool chdManagerFixCHDs = checkBoxFixCHDs->isChecked();
 #endif
-  bool chdManagerUpdateCHDs = checkBoxUpdateCHDs->isChecked();
-  bool chdManagerEnabled = groupBoxCHDManager->isChecked() && (chdManagerVerifyCHDs || chdManagerUpdateCHDs);
-  bool needProgressWidget;
-  QProgressBar *progressWidget;
-  qint64 totalSize, myProgress, sizeLeft, len;
+	bool chdManagerUpdateCHDs = checkBoxUpdateCHDs->isChecked();
+	bool chdManagerEnabled = groupBoxCHDManager->isChecked() && (chdManagerVerifyCHDs || chdManagerUpdateCHDs);
+	bool needProgressWidget;
+	QProgressBar *progressWidget;
+	qint64 totalSize, myProgress, sizeLeft, len;
 
-  // search for file in ROM paths (first search for "game/file", then search for "file" in "game.7z", then in "game.zip"), load file data when found
-  int romPathCount = 0;
-  foreach (QString romPath, romPaths) {
-    romPathCount++;
-    progressWidget = NULL;
-    needProgressWidget = false;
-    QString filePath(romPath + "/" + gameName + "/" + fileName);
-    if ( isCHD ) {
-      filePath += ".chd";
-      if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
-    }
-    if ( QFile::exists(filePath) ) {
-      QFileInfo fi(filePath);
-      if ( fi.isReadable() ) {
-        totalSize = fi.size();
-        // load data from a regular file
-        if ( sizeLimited ) {
-          if ( totalSize > (qint64) spinBoxMaxFileSize->value() * QMC2_ONE_MEGABYTE ) {
-            log(tr("size of '%1' is greater than allowed maximum -- skipped").arg(filePath));
-            *isZipped = false;
-            progressBarFileIO->reset();
-            effectiveFile = QMC2_ROMALYZER_FILE_TOO_BIG;
-            continue;
-          }
-        }
-        QFile romFile(filePath);
-        if ( romFile.open(QIODevice::ReadOnly) ) {
-          log(tr("loading '%1'%2").arg(filePath).arg(*mergeUsed ? tr(" (merged)") : ""));
-          progressBarFileIO->setRange(0, totalSize);
-	  progressBarFileIO->reset();
-          if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD ) {
-            if ( isCHD && !chdManagerEnabled )
-              needProgressWidget = false;
-            else
-              needProgressWidget = true;
-            if ( needProgressWidget ) {
-              progressWidget = new QProgressBar(0);
-#if QMC2_CHD_CURRENT_VERSION >= 5
-              if ( isCHD ) {
-		      progressWidget->setRange(0, 100);
-		      progressWidget->setValue(0);
-              } else {
-		      progressWidget->setRange(0, totalSize);
-		      progressWidget->setValue(0);
-	      }
-#else
-              progressWidget->setRange(0, totalSize);
-              progressWidget->setValue(0);
-#endif
-              treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, progressWidget);
-            }
-          } else
-            needProgressWidget = false;
-          sizeLeft = totalSize;
-          if ( calcSHA1 )
-            sha1Hash.reset();
-          if ( calcMD5 )
-            md5Hash.reset();
-          if ( isCHD ) {
-            QString chdFilePath;
-            quint32 chdTotalHunks = 0;
-            if ( (len = romFile.read(buffer, QMC2_CHD_HEADER_V3_LENGTH)) > 0 ) {
-              log(tr("CHD header information:"));
-              QByteArray chdTag(buffer + QMC2_CHD_HEADER_TAG_OFFSET, QMC2_CHD_HEADER_TAG_LENGTH);
-              log(tr("  tag: %1").arg(chdTag.constData()));
-              quint32 chdVersion = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_VERSION_OFFSET);
-              log(tr("  version: %1").arg(chdVersion));
-              myItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, tr("CHD v%1").arg(chdVersion));
-	      QLocale locale;
-              switch ( chdVersion ) {
-                case 3: {
-                  quint32 chdCompression = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_COMPRESSION_OFFSET);
-                  log(tr("  compression: %1").arg(chdCompressionTypes[chdCompression]));
-                  quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
-                  log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
-                  chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_TOTALHUNKS_OFFSET);
-                  log(tr("  number of total hunks: %1").arg(locale.toString(chdTotalHunks)));
-                  quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_HUNKBYTES_OFFSET);
-                  log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
-                  quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V3_LOGICALBYTES_OFFSET);
-                  log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
-                  QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
-                  log(tr("  MD5 checksum: %1").arg(QString(md5Data.toHex())));
-                  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
-                  log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
-                  if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
-                    QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTMD5_OFFSET), QMC2_CHD_HEADER_V3_PARENTMD5_LENGTH);
-                    log(tr("  parent CHD's MD5 checksum: %1").arg(QString(md5Data.toHex())));
-                    QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V3_PARENTSHA1_LENGTH);
-                    log(tr("  parent CHD's SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
-                  }
-                }
-                break;
-
-              case 4: {
-                  quint32 chdCompression = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_COMPRESSION_OFFSET);
-                  log(tr("  compression: %1").arg(chdCompressionTypes[chdCompression]));
-                  quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
-                  log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
-                  chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_TOTALHUNKS_OFFSET);
-                  log(tr("  number of total hunks: %1").arg(locale.toString(chdTotalHunks)));
-                  quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_HUNKBYTES_OFFSET);
-                  log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
-                  quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V4_LOGICALBYTES_OFFSET);
-                  log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
-                  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-                  log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
-                  if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
-                    QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V4_PARENTSHA1_LENGTH);
-                    log(tr("  parent CHD's SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
-                  }
-                  QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-                  log(tr("  raw SHA1 checksum: %1").arg(QString(rawsha1Data.toHex())));
-                }
-                break;
-
-              case 5: {
-		  QString chdCompressors;
-		  for (int i = 0; i < QMC2_CHD_HEADER_V5_COMPRESSORS_COUNT; i++) {
-			  QString compressor = QString::fromLocal8Bit(buffer + i * 4 + QMC2_CHD_HEADER_V5_COMPRESSORS_OFFSET, 4);
-			  if ( chdCompressionTypesV5.contains(compressor) ) {
-				  if ( i > 0 ) chdCompressors += ", ";
-				  chdCompressors += chdCompressionTypesV5[compressor];
-			  } else if ( i == 0 ) {
-				  chdCompressors = tr("none (uncompressed)");
-				  break;
-			  } else
-				  break;
-		  }
-		  log(tr("  compressors: %1").arg(chdCompressors));
-		  quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V5_HUNKBYTES_OFFSET);
-		  log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
-		  quint32 chdUnitBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V5_UNITBYTES_OFFSET);
-		  log(tr("  number of bytes per unit: %1").arg(locale.toString(chdUnitBytes)));
-		  quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V5_LOGICALBYTES_OFFSET);
-		  log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
-		  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-		  log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
-		  QByteArray parentSha1DataHex = QByteArray((const char *)(buffer + QMC2_CHD_HEADER_V5_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V5_PARENTSHA1_LENGTH).toHex();
-		  if ( parentSha1DataHex.toInt(0, 16) != 0 )
-			  log(tr("  parent CHD's SHA1 checksum: %1").arg(QString(parentSha1DataHex)));
-		  QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-		  log(tr("  raw SHA1 checksum: %1").arg(QString(rawsha1Data.toHex())));
+	// search for file in ROM paths (first search for "game/file", then search for "file" in "game.7z", then in "game.zip"), load file data when found
+	int romPathCount = 0;
+	foreach (QString romPath, romPaths) {
+		romPathCount++;
+		progressWidget = NULL;
+		needProgressWidget = false;
+		QString filePath(romPath + "/" + gameName + "/" + fileName);
+		if ( isCHD ) {
+			filePath += ".chd";
+			if ( fallbackPath->isEmpty() )
+				*fallbackPath = filePath;
 		}
-		break;
-
-               default:
-                 log(tr("CHD v%1 not supported -- rest of header information skipped").arg(chdVersion));
-                 break;
-              }
-
-              if ( calcSHA1 || calcMD5 || chdManagerEnabled ) {
-                chdFilePath = fi.absoluteFilePath();
-                QString chdTempFilePath = lineEditTemporaryWorkingDirectory->text() + fi.baseName() + "-chdman-update.chd";
-                if ( chdManagerEnabled ) {
-                  romFile.close();
-                  chdManagerCurrentHunk = 0;
+		if ( QFile::exists(filePath) ) {
+			QFileInfo fi(filePath);
+			if ( fi.isReadable() ) {
+				totalSize = fi.size();
+				// load data from a regular file
+				if ( sizeLimited ) {
+					if ( totalSize > (qint64) spinBoxMaxFileSize->value() * QMC2_ONE_MEGABYTE ) {
+						log(tr("size of '%1' is greater than allowed maximum -- skipped").arg(filePath));
+						*isZipped = false;
+						progressBarFileIO->reset();
+						effectiveFile = QMC2_ROMALYZER_FILE_TOO_BIG;
+						continue;
+					}
+				}
+				QFile romFile(filePath);
+				if ( romFile.open(QIODevice::ReadOnly) ) {
+					log(tr("loading '%1'%2").arg(filePath).arg(*mergeUsed ? tr(" (merged)") : ""));
+					progressBarFileIO->setRange(0, totalSize);
+					progressBarFileIO->reset();
+					if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD ) {
+						if ( isCHD && !chdManagerEnabled )
+							needProgressWidget = false;
+						else
+							needProgressWidget = true;
+						if ( needProgressWidget ) {
+							progressWidget = new QProgressBar(0);
 #if QMC2_CHD_CURRENT_VERSION >= 5
-                  chdTotalHunks = 100;
-#endif
-                  chdManagerTotalHunks = chdTotalHunks;
-                  if ( progressWidget ) {
-                    progressWidget->setRange(0, chdTotalHunks);
-                    progressWidget->setValue(0);
-                  }
-                  progressBarFileIO->setRange(0, chdTotalHunks);
-                  progressBarFileIO->reset();
-                  int step;
-                  for (step = 0; step < 2 && !qmc2StopParser; step++) {
-                    QStringList args;
-                    QString oldFormat;
-                    if ( progressWidget ) oldFormat = progressWidget->format();
-                    switch ( step ) {
-                      case 0:
-                        if ( chdManagerVerifyCHDs ) {
-                          if ( progressWidget ) progressWidget->setFormat(tr("Verify - %p%"));
-#if QMC2_CHD_CURRENT_VERSION >= 5
-			  log(tr("CHD manager: verifying CHD"));
-			  args << "verify" << "--input" << chdFilePath;
+							if ( isCHD ) {
+								progressWidget->setRange(0, 100);
+								progressWidget->setValue(0);
+							} else {
+								progressWidget->setRange(0, totalSize);
+								progressWidget->setValue(0);
+							}
 #else
-			  if ( chdManagerFixCHDs ) {
-				  log(tr("CHD manager: verifying and fixing CHD"));
-				  args << "-verifyfix" << chdFilePath;
-			  } else {
-				  log(tr("CHD manager: verifying CHD"));
-				  args << "-verify" << chdFilePath;
-			  }
+							progressWidget->setRange(0, totalSize);
+							progressWidget->setValue(0);
 #endif
-                        } else
-                          continue;
-                        break;
+							treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, progressWidget);
+						}
+					} else
+						needProgressWidget = false;
+					sizeLeft = totalSize;
+					if ( calcSHA1 )
+						sha1Hash.reset();
+					if ( calcMD5 )
+						md5Hash.reset();
+					if ( isCHD ) {
+						QString chdFilePath;
+						quint32 chdTotalHunks = 0;
+						if ( (len = romFile.read(buffer, QMC2_CHD_HEADER_V3_LENGTH)) > 0 ) {
+							log(tr("CHD header information:"));
+							QByteArray chdTag(buffer + QMC2_CHD_HEADER_TAG_OFFSET, QMC2_CHD_HEADER_TAG_LENGTH);
+							log(tr("  tag: %1").arg(chdTag.constData()));
+							quint32 chdVersion = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_VERSION_OFFSET);
+							log(tr("  version: %1").arg(chdVersion));
+							myItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, tr("CHD v%1").arg(chdVersion));
+							QLocale locale;
+							switch ( chdVersion ) {
+								case 3: {
+										quint32 chdCompression = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_COMPRESSION_OFFSET);
+										log(tr("  compression: %1").arg(chdCompressionTypes[chdCompression]));
+										quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
+										log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
+										chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_TOTALHUNKS_OFFSET);
+										log(tr("  number of total hunks: %1").arg(locale.toString(chdTotalHunks)));
+										quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_HUNKBYTES_OFFSET);
+										log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
+										quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V3_LOGICALBYTES_OFFSET);
+										log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
+										QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
+										log(tr("  MD5 checksum: %1").arg(QString(md5Data.toHex())));
+										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
+										log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+										if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
+											QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTMD5_OFFSET), QMC2_CHD_HEADER_V3_PARENTMD5_LENGTH);
+											log(tr("  parent CHD's MD5 checksum: %1").arg(QString(md5Data.toHex())));
+											QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V3_PARENTSHA1_LENGTH);
+											log(tr("  parent CHD's SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+										}
+									}
+									break;
 
-                      case 1:
-                        if ( chdManagerUpdateCHDs ) {
-                          if ( chdVersion < QMC2_CHD_CURRENT_VERSION ) {
-                            if ( progressWidget ) progressWidget->setFormat(tr("Update - %p%"));
-                            log(tr("CHD manager: updating CHD (v%1 -> v%2)").arg(chdVersion).arg(QMC2_CHD_CURRENT_VERSION));
+								case 4: {
+										quint32 chdCompression = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_COMPRESSION_OFFSET);
+										log(tr("  compression: %1").arg(chdCompressionTypes[chdCompression]));
+										quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
+										log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
+										chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_TOTALHUNKS_OFFSET);
+										log(tr("  number of total hunks: %1").arg(locale.toString(chdTotalHunks)));
+										quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_HUNKBYTES_OFFSET);
+										log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
+										quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V4_LOGICALBYTES_OFFSET);
+										log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
+										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+										log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+										if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
+											QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V4_PARENTSHA1_LENGTH);
+											log(tr("  parent CHD's SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+										}
+										QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+										log(tr("  raw SHA1 checksum: %1").arg(QString(rawsha1Data.toHex())));
+									}
+									break;
+
+								case 5: {
+										QString chdCompressors;
+										for (int i = 0; i < QMC2_CHD_HEADER_V5_COMPRESSORS_COUNT; i++) {
+											QString compressor = QString::fromLocal8Bit(buffer + i * 4 + QMC2_CHD_HEADER_V5_COMPRESSORS_OFFSET, 4);
+											if ( chdCompressionTypesV5.contains(compressor) ) {
+												if ( i > 0 ) chdCompressors += ", ";
+												chdCompressors += chdCompressionTypesV5[compressor];
+											} else if ( i == 0 ) {
+												chdCompressors = tr("none (uncompressed)");
+												break;
+											} else
+												break;
+										}
+										log(tr("  compressors: %1").arg(chdCompressors));
+										quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V5_HUNKBYTES_OFFSET);
+										log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
+										quint32 chdUnitBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V5_UNITBYTES_OFFSET);
+										log(tr("  number of bytes per unit: %1").arg(locale.toString(chdUnitBytes)));
+										quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V5_LOGICALBYTES_OFFSET);
+										log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
+										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+										log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+										QByteArray parentSha1DataHex = QByteArray((const char *)(buffer + QMC2_CHD_HEADER_V5_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V5_PARENTSHA1_LENGTH).toHex();
+										if ( parentSha1DataHex.toInt(0, 16) != 0 )
+											log(tr("  parent CHD's SHA1 checksum: %1").arg(QString(parentSha1DataHex)));
+										QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+										log(tr("  raw SHA1 checksum: %1").arg(QString(rawsha1Data.toHex())));
+									}
+									break;
+
+								default:
+									log(tr("CHD v%1 not supported -- rest of header information skipped").arg(chdVersion));
+									break;
+							}
+
+							if ( calcSHA1 || calcMD5 || chdManagerEnabled ) {
+								chdFilePath = fi.absoluteFilePath();
+								QString chdTempFilePath = lineEditTemporaryWorkingDirectory->text() + fi.baseName() + "-chdman-update.chd";
+								if ( chdManagerEnabled ) {
+									romFile.close();
+									chdManagerCurrentHunk = 0;
 #if QMC2_CHD_CURRENT_VERSION >= 5
-                            args << "copy" << "--input" << chdFilePath << "--output" << chdTempFilePath;
-#else
-                            args << "-update" << chdFilePath << chdTempFilePath;
+									chdTotalHunks = 100;
 #endif
-                          } else if ( !chdManagerVerifyCHDs ) {
-                            switch ( chdVersion ) {
-                              case 3:
-                                log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
-                                if ( calcSHA1 ) {
-                                  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
-                                  *sha1Str = QString(sha1Data.toHex());
-                                }
-                                if ( calcMD5 ) {
-                                  QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
-                                  *md5Str = QString(md5Data.toHex());
-                                }
-                                break;
+									chdManagerTotalHunks = chdTotalHunks;
+									if ( progressWidget ) {
+										progressWidget->setRange(0, chdTotalHunks);
+										progressWidget->setValue(0);
+									}
+									progressBarFileIO->setRange(0, chdTotalHunks);
+									progressBarFileIO->reset();
+									int step;
+									for (step = 0; step < 2 && !qmc2StopParser; step++) {
+										QStringList args;
+										QString oldFormat;
+										if ( progressWidget ) oldFormat = progressWidget->format();
+										switch ( step ) {
+											case 0:
+												if ( chdManagerVerifyCHDs ) {
+													if ( progressWidget ) progressWidget->setFormat(tr("Verify - %p%"));
+#if QMC2_CHD_CURRENT_VERSION >= 5
+													log(tr("CHD manager: verifying CHD"));
+													args << "verify" << "--input" << chdFilePath;
+#else
+													if ( chdManagerFixCHDs ) {
+														log(tr("CHD manager: verifying and fixing CHD"));
+														args << "-verifyfix" << chdFilePath;
+													} else {
+														log(tr("CHD manager: verifying CHD"));
+														args << "-verify" << chdFilePath;
+													}
+#endif
+												} else
+													continue;
+												break;
 
-                              case 4:
-                                log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
-                                if ( calcSHA1 ) {
-                                  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-                                  *sha1Str = QString(sha1Data.toHex());
-                                }
-                                break;
+											case 1:
+												if ( chdManagerUpdateCHDs ) {
+													if ( chdVersion < QMC2_CHD_CURRENT_VERSION ) {
+														if ( progressWidget ) progressWidget->setFormat(tr("Update - %p%"));
+														log(tr("CHD manager: updating CHD (v%1 -> v%2)").arg(chdVersion).arg(QMC2_CHD_CURRENT_VERSION));
+#if QMC2_CHD_CURRENT_VERSION >= 5
+														args << "copy" << "--input" << chdFilePath << "--output" << chdTempFilePath;
+#else
+														args << "-update" << chdFilePath << chdTempFilePath;
+#endif
+													} else if ( !chdManagerVerifyCHDs ) {
+														switch ( chdVersion ) {
+															case 3:
+																log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+																if ( calcSHA1 ) {
+																	QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
+																	*sha1Str = QString(sha1Data.toHex());
+																}
+																if ( calcMD5 ) {
+																	QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
+																	*md5Str = QString(md5Data.toHex());
+																}
+																break;
 
-                              case 5:
-                                log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
-                                if ( calcSHA1 ) {
-                                  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-                                  *sha1Str = QString(sha1Data.toHex());
-                                }
-                                break;
+															case 4:
+																log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+																if ( calcSHA1 ) {
+																	QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+																	*sha1Str = QString(sha1Data.toHex());
+																}
+																break;
 
-                              default:
-                                log(tr("CHD manager: no header checksums available for CHD verification"));
-                                effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
-                                if ( fallbackPath->isEmpty() ) *fallbackPath = chdFilePath;
-                                break;
-                            }
-                            continue;
-                          } else
-                            continue;
-                        } else
-                          continue;
-                        break;
-                    }
-                    QString command = lineEditCHDManagerExecutableFile->text();
-                    QProcess *chdManagerProc = new QProcess(this);
-                    connect(chdManagerProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(chdManagerError(QProcess::ProcessError)));
-                    connect(chdManagerProc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(chdManagerFinished(int, QProcess::ExitStatus)));
-                    connect(chdManagerProc, SIGNAL(readyReadStandardOutput()), this, SLOT(chdManagerReadyReadStandardOutput()));
-                    connect(chdManagerProc, SIGNAL(readyReadStandardError()), this, SLOT(chdManagerReadyReadStandardError()));
-                    connect(chdManagerProc, SIGNAL(started()), this, SLOT(chdManagerStarted()));
-                    connect(chdManagerProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(chdManagerStateChanged(QProcess::ProcessState)));
-                    chdManagerProc->start(command, args);
-                    chdManagerRunning = true;
-                    chdManagerMD5Success = chdManagerSHA1Success = false;
+															case 5:
+																log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+																if ( calcSHA1 ) {
+																	QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+																	*sha1Str = QString(sha1Data.toHex());
+																}
+																break;
 
-                    // wait for CHD manager to finish...
-                    while ( chdManagerRunning && !qmc2StopParser ) {
-                      QTest::qWait(QMC2_ROMALYZER_PAUSE_TIMEOUT);
-                      if ( qmc2StopParser ) {
-                        log(tr("CHD manager: terminating external process"));
-                        chdManagerProc->kill();
-                        chdManagerProc->waitForFinished();
-			disconnect(chdManagerProc);
-			chdManagerProc->deleteLater();
-                      } else {
-                        if ( progressWidget ) {
-                          if ( chdManagerTotalHunks != (quint64)progressWidget->maximum() )
-                            progressWidget->setRange(0, chdManagerTotalHunks);
-                          if ( chdManagerCurrentHunk != (quint64)progressWidget->value() )
-                            progressWidget->setValue(chdManagerCurrentHunk);
-                        }
-                        if ( chdManagerTotalHunks != (quint64)progressBarFileIO->maximum() )
-                          progressBarFileIO->setRange(0, chdManagerTotalHunks);
-                        if ( chdManagerCurrentHunk != (quint64)progressBarFileIO->value() )
-                          progressBarFileIO->setValue(chdManagerCurrentHunk);
-                        progressBarFileIO->update();
-			qApp->processEvents();
-                      }
-                    }
-                    chdManagerRunning = false;
-                    if ( !qmc2StopParser ) {
-                      if ( chdManagerMD5Success && calcMD5 ) {
-                        log(tr("CHD manager: CHD file integrity is good"));
-		      } else if ( chdManagerSHA1Success && calcSHA1 ) {
-                        log(tr("CHD manager: CHD file integrity is good"));
-		      } else {
-                        log(tr("CHD manager: WARNING: CHD file integrity is bad"));
-                      }
+															default:
+																log(tr("CHD manager: no header checksums available for CHD verification"));
+																effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
+																if ( fallbackPath->isEmpty() )
+																	*fallbackPath = chdFilePath;
+																break;
+														}
+														continue;
+													} else
+														continue;
+												} else
+													continue;
+												break;
+										}
+										QString command = lineEditCHDManagerExecutableFile->text();
+										QProcess *chdManagerProc = new QProcess(this);
+										connect(chdManagerProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(chdManagerError(QProcess::ProcessError)));
+										connect(chdManagerProc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(chdManagerFinished(int, QProcess::ExitStatus)));
+										connect(chdManagerProc, SIGNAL(readyReadStandardOutput()), this, SLOT(chdManagerReadyReadStandardOutput()));
+										connect(chdManagerProc, SIGNAL(readyReadStandardError()), this, SLOT(chdManagerReadyReadStandardError()));
+										connect(chdManagerProc, SIGNAL(started()), this, SLOT(chdManagerStarted()));
+										connect(chdManagerProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(chdManagerStateChanged(QProcess::ProcessState)));
+										chdManagerProc->start(command, args);
+										chdManagerRunning = true;
+										chdManagerMD5Success = chdManagerSHA1Success = false;
 
-                      if ( step == 1 && (chdManagerMD5Success || chdManagerSHA1Success) ) {
-                        log(tr("CHD manager: replacing CHD"));
-                        if ( progressWidget ) {
-                          progressWidget->setFormat(tr("Copy"));
-                          progressWidget->setRange(-1, -1);
-                          progressWidget->setValue(-1);
-                        }
-                        QFile::remove(chdFilePath);
-                        if ( QFile::rename(chdTempFilePath, chdFilePath) ) {
-                          log(tr("CHD manager: CHD replaced"));
-                          myItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, tr("CHD v%1").arg(QMC2_CHD_CURRENT_VERSION));
-			  QFile romFileTmp(chdFilePath);
-                          if ( romFileTmp.open(QIODevice::ReadOnly) ) {
-				  char bufferCopy[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
-				  strncpy(bufferCopy, buffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE);
-				  if ( romFileTmp.read(buffer, QMC2_CHD_HEADER_V3_LENGTH) <= 0 ) {
-					  log(tr("CHD manager: WARNING: failed updating CHD header information"));
-					  strncpy(buffer, bufferCopy, QMC2_ROMALYZER_FILE_BUFFER_SIZE);
-				  } else
-					  chdVersion = QMC2_CHD_CURRENT_VERSION;
-				  romFileTmp.close();
-                          }
-                        } else
-                          log(tr("CHD manager: FATAL: failed to replace CHD -- updated CHD preserved as '%1', please copy it to '%2' manually!").arg(chdTempFilePath).arg(chdFilePath));
-                      }
+										// wait for CHD manager to finish...
+										while ( chdManagerRunning && !qmc2StopParser ) {
+											QTest::qWait(QMC2_ROMALYZER_PAUSE_TIMEOUT);
+											if ( qmc2StopParser ) {
+												log(tr("CHD manager: terminating external process"));
+												chdManagerProc->kill();
+												chdManagerProc->waitForFinished();
+												disconnect(chdManagerProc);
+												chdManagerProc->deleteLater();
+											} else {
+												if ( progressWidget ) {
+													if ( chdManagerTotalHunks != (quint64)progressWidget->maximum() )
+														progressWidget->setRange(0, chdManagerTotalHunks);
+													if ( chdManagerCurrentHunk != (quint64)progressWidget->value() )
+														progressWidget->setValue(chdManagerCurrentHunk);
+												}
+												if ( chdManagerTotalHunks != (quint64)progressBarFileIO->maximum() )
+													progressBarFileIO->setRange(0, chdManagerTotalHunks);
+												if ( chdManagerCurrentHunk != (quint64)progressBarFileIO->value() )
+													progressBarFileIO->setValue(chdManagerCurrentHunk);
+												progressBarFileIO->update();
+												qApp->processEvents();
+											}
+										}
+										chdManagerRunning = false;
+										if ( !qmc2StopParser ) {
+											if ( chdManagerMD5Success && calcMD5 ) {
+												log(tr("CHD manager: CHD file integrity is good"));
+											} else if ( chdManagerSHA1Success && calcSHA1 ) {
+												log(tr("CHD manager: CHD file integrity is good"));
+											} else {
+												log(tr("CHD manager: WARNING: CHD file integrity is bad"));
+											}
 
-                      switch ( chdVersion ) {
-                        case 3:
-                          log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
-                          if ( chdManagerSHA1Success && calcSHA1 ) {
-                            QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
-                            *sha1Str = QString(sha1Data.toHex());
-                          }
-                          if ( chdManagerMD5Success && calcMD5 ) {
-                            QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
-                            *md5Str = QString(md5Data.toHex());
-                          }
-                          break;
+											if ( step == 1 && (chdManagerMD5Success || chdManagerSHA1Success) ) {
+												log(tr("CHD manager: replacing CHD"));
+												if ( progressWidget ) {
+													progressWidget->setFormat(tr("Copy"));
+													progressWidget->setRange(-1, -1);
+													progressWidget->setValue(-1);
+												}
+												QFile::remove(chdFilePath);
+												if ( QFile::rename(chdTempFilePath, chdFilePath) ) {
+													log(tr("CHD manager: CHD replaced"));
+													myItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, tr("CHD v%1").arg(QMC2_CHD_CURRENT_VERSION));
+													QFile romFileTmp(chdFilePath);
+													if ( romFileTmp.open(QIODevice::ReadOnly) ) {
+														char bufferCopy[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
+														strncpy(bufferCopy, buffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE);
+														if ( romFileTmp.read(buffer, QMC2_CHD_HEADER_V3_LENGTH) <= 0 ) {
+															log(tr("CHD manager: WARNING: failed updating CHD header information"));
+															strncpy(buffer, bufferCopy, QMC2_ROMALYZER_FILE_BUFFER_SIZE);
+														} else
+															chdVersion = QMC2_CHD_CURRENT_VERSION;
+														romFileTmp.close();
+													}
+												} else
+													log(tr("CHD manager: FATAL: failed to replace CHD -- updated CHD preserved as '%1', please copy it to '%2' manually!").arg(chdTempFilePath).arg(chdFilePath));
+											}
 
-                        case 4:
-                          log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
-                          if ( chdManagerSHA1Success && calcSHA1 ) {
-                            QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-                            *sha1Str = QString(sha1Data.toHex());
-                          }
-                          break;
+											switch ( chdVersion ) {
+												case 3:
+													log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+													if ( chdManagerSHA1Success && calcSHA1 ) {
+														QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
+														*sha1Str = QString(sha1Data.toHex());
+													}
+													if ( chdManagerMD5Success && calcMD5 ) {
+														QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
+														*md5Str = QString(md5Data.toHex());
+													}
+													break;
 
-			case 5:
-			  log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
-			  if ( chdManagerSHA1Success && calcSHA1 ) {
-				  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-				  *sha1Str = QString(sha1Data.toHex());
-			  }
-			  break;
+												case 4:
+													log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+													if ( chdManagerSHA1Success && calcSHA1 ) {
+														QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+														*sha1Str = QString(sha1Data.toHex());
+													}
+													break;
 
-                        default:
-                          log(tr("CHD manager: WARNING: no header checksums available for CHD verification"));
-                          effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
-                          if ( fallbackPath->isEmpty() ) *fallbackPath = chdFilePath;
-                          break;
-                      }
-                    }
-                    if ( QFile::exists(chdTempFilePath) ) {
-                      log(tr("CHD manager: cleaning up"));
-                      QFile::remove(chdTempFilePath);
-                    }
-                    if ( progressWidget ) {
-                      progressWidget->setFormat(oldFormat);
-                      progressWidget->reset();
-                    }
-                    progressBarFileIO->reset();
-                  }
-                } else {
-                  switch ( chdVersion ) {
-                    case 3:
-                      log(tr("using CHD v%1 header checksums for CHD verification").arg(chdVersion));
-                      if ( calcSHA1 ) {
-                        QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
-                        *sha1Str = QString(sha1Data.toHex());
-                      }
-                      if ( calcMD5 ) {
-                        QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
-                        *md5Str = QString(md5Data.toHex());
-                      }
-                      break;
+												case 5:
+													log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+													if ( chdManagerSHA1Success && calcSHA1 ) {
+														QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+														*sha1Str = QString(sha1Data.toHex());
+													}
+													break;
 
-                    case 4:
-                      log(tr("using CHD v%1 header checksums for CHD verification").arg(chdVersion));
-                      if ( calcSHA1 ) {
-                        QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-                        *sha1Str = QString(sha1Data.toHex());
-                      }
-                      break;
+												default:
+													log(tr("CHD manager: WARNING: no header checksums available for CHD verification"));
+													effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
+													if ( fallbackPath->isEmpty() )
+														*fallbackPath = chdFilePath;
+													break;
+											}
+										}
+										if ( QFile::exists(chdTempFilePath) ) {
+											log(tr("CHD manager: cleaning up"));
+											QFile::remove(chdTempFilePath);
+										}
+										if ( progressWidget ) {
+											progressWidget->setFormat(oldFormat);
+											progressWidget->reset();
+										}
+										progressBarFileIO->reset();
+									}
+								} else {
+									switch ( chdVersion ) {
+										case 3:
+											log(tr("using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+											if ( calcSHA1 ) {
+												QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
+												*sha1Str = QString(sha1Data.toHex());
+											}
+											if ( calcMD5 ) {
+												QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
+												*md5Str = QString(md5Data.toHex());
+											}
+											break;
 
-		    case 5:
-		      log(tr("using CHD v%1 header checksums for CHD verification").arg(chdVersion));
-		      if ( calcSHA1 ) {
-			      QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-			      *sha1Str = QString(sha1Data.toHex());
-		      }
-		      break;
+										case 4:
+											log(tr("using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+											if ( calcSHA1 ) {
+												QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+												*sha1Str = QString(sha1Data.toHex());
+											}
+											break;
 
-                    default:
-                      log(tr("WARNING: no header checksums available for CHD verification"));
-                      effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
-                      if ( fallbackPath->isEmpty() ) *fallbackPath = chdFilePath;
-                      break;
-                  }
-                }
-              }
-            } else {
-              log(tr("WARNING: can't read CHD header information"));
-              effectiveFile = QMC2_ROMALYZER_FILE_ERROR;
-              if ( fallbackPath->isEmpty() ) *fallbackPath = chdFilePath;
-            }
-          } else {
-            while ( (len = romFile.read(buffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 && !qmc2StopParser ) {
-              QByteArray readData((const char *)buffer, len);
-              fileData->append(readData);
-              if ( calcSHA1 )
-                sha1Hash.addData(readData);
-              if ( calcMD5 )
-                md5Hash.addData(readData);
-              sizeLeft -= len;
-              myProgress = totalSize - sizeLeft;
-              progressBarFileIO->setValue(myProgress);
-              if ( needProgressWidget )
-                if ( progressWidget ) progressWidget->setValue(myProgress);
-              progressBarFileIO->update();
-              qApp->processEvents();
-            }
+										case 5:
+											log(tr("using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+											if ( calcSHA1 ) {
+												QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+												*sha1Str = QString(sha1Data.toHex());
+											}
+											break;
 
-	    ulong crc = crc32(0, NULL, 0);
-	    crc = crc32(crc, (const Bytef *)fileData->data(), fileData->size());
-	    QFileInfo fi(filePath);
-            QStringList sl;
-            //    fromName         fromPath    toName           fromZip
-            sl << fi.fileName() << filePath << fi.fileName() << "file";
-            setRewriterFileMap.insert(QString::number(crc, 16), sl); 
+										default:
+											log(tr("WARNING: no header checksums available for CHD verification"));
+											effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
+											if ( fallbackPath->isEmpty() )
+												*fallbackPath = chdFilePath;
+											break;
+									}
+								}
+							}
+						} else {
+							log(tr("WARNING: can't read CHD header information"));
+							effectiveFile = QMC2_ROMALYZER_FILE_ERROR;
+							if ( fallbackPath->isEmpty() )
+								*fallbackPath = chdFilePath;
+						}
+					} else {
+						while ( (len = romFile.read(buffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 && !qmc2StopParser ) {
+							QByteArray readData((const char *)buffer, len);
+							fileData->append(readData);
+							if ( calcSHA1 )
+								sha1Hash.addData(readData);
+							if ( calcMD5 )
+								md5Hash.addData(readData);
+							sizeLeft -= len;
+							myProgress = totalSize - sizeLeft;
+							progressBarFileIO->setValue(myProgress);
+							if ( needProgressWidget )
+								if ( progressWidget ) progressWidget->setValue(myProgress);
+							progressBarFileIO->update();
+							qApp->processEvents();
+						}
 
-            if ( calcSHA1 )
-              *sha1Str = sha1Hash.result().toHex();
-            if ( calcMD5 )
-              *md5Str = md5Hash.result().toHex();
-          }
-          romFile.close();
-          effectiveFile = filePath;
-          *isZipped = false;
-          if ( needProgressWidget ) {
-            if ( progressWidget ) {
-              progressWidget->reset();
-              treeWidgetChecksums->removeItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
-            }
-            if ( progressWidget ) delete progressWidget;
-          }
-          progressBarFileIO->reset();
-        } else {
-          log(tr("WARNING: found '%1' but can't read from it although permissions seem okay - check file integrity").arg(filePath));
-        }
-      } else
-        log(tr("WARNING: found '%1' but can't read from it - check permission").arg(filePath));
-    } else {
-      if ( isCHD ) {
-        if ( romPathCount == romPaths.count() ) {
-          QString baseName = QFileInfo(filePath).baseName();
-          QStringList chdPaths = romPaths;
-          for (int i = 0; i < chdPaths.count(); i++)
-            chdPaths[i] = chdPaths[i] + QDir::separator() + gameName + QDir::separator() + baseName + ".chd";
-          QString sP;
-	  if ( romPaths.count() > 1 )
-		  sP = tr("searched paths: %1").arg(chdPaths.join(", "));
-	  else
-		  sP = tr("searched path: %1").arg(chdPaths[0]);
-          log(tr("WARNING: CHD file '%1' not found").arg(baseName) + " -- " + sP);
-        }
-        if ( mergeFile.isEmpty() && merge.isEmpty() )
-          if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
-      }
-    }
+						ulong crc = crc32(0, NULL, 0);
+						crc = crc32(crc, (const Bytef *)fileData->data(), fileData->size());
+						QFileInfo fi(filePath);
+						QStringList sl;
+						//    fromName         fromPath    toName           fromZip
+						sl << fi.fileName() << filePath << fi.fileName() << "file";
+						setRewriterFileMap.insert(QString::number(crc, 16), sl); 
 
-    if ( effectiveFile.isEmpty() && !qmc2StopParser ) {
-      filePath = romPath + "/" + gameName + ".7z";
-      if ( QFile::exists(filePath) ) {
-	      QFileInfo fi(filePath);
-	      if ( fi.isReadable() ) {
-		      // try loading data from a 7z archive
-		      SevenZipFile sevenZipFile(filePath);
-		      if ( sevenZipFile.open() ) {
-			      // identify file by CRC
-			      int index = sevenZipFile.indexOfCrc(wantedCRC);
-			      if ( index >= 0 ) {
-				      SevenZipMetaData metaData = sevenZipFile.itemList()[index];
-				      if ( sizeLimited ) {
-					      if ( metaData.size() > (quint64) spinBoxMaxFileSize->value() * QMC2_ONE_MEGABYTE ) {
-						      log(tr("size of '%1' from '%2' is greater than allowed maximum -- skipped").arg(metaData.name()).arg(filePath));
-						      *isSevenZipped = true;
-						      effectiveFile = QMC2_ROMALYZER_FILE_TOO_BIG;
-						      if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
-						      continue;
-					      }
-				      }
-				      log(tr("loading '%1' with CRC '%2' from '%3' as '%4'%5").arg(metaData.name()).arg(wantedCRC).arg(filePath).arg(myItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(*mergeUsed ? tr(" (merged)") : ""));
-				      QByteArray data;
-				      qApp->processEvents();
-				      quint64 readLength = sevenZipFile.read(index, &data);
-				      qApp->processEvents();
-				      if ( sevenZipFile.hasError() )
-					      log(tr("ERROR") + ": " + sevenZipFile.lastError());
-				      if ( readLength != metaData.size() )
-					      log(tr("WARNING") + ": " + tr("actual bytes read != file size in header") + " - " + tr("check archive integrity"));
-				      ulong crc = crc32(0, NULL, 0);
-				      crc = crc32(crc, (const Bytef *)data.data(), data.size());
-				      QString crcString = QString::number(crc, 16).rightJustified(8, '0');
-				      if ( crcString != wantedCRC )
-					      log(tr("WARNING") + ": " + tr("actual CRC != CRC in header") + " - " + tr("check archive integrity"));
-				      else {
-					      if ( !wantedCRC.isEmpty() ) {
-						      QStringList sl;
-						      //    fromName           fromPath    toName                                      fromZip
-						      sl << metaData.name() << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "7z";
-						      setRewriterFileMap.insert(wantedCRC, sl); 
-					      } else {
-						      if ( !crcString.isEmpty() ) {
-							      QStringList sl;
-							      //    fromName           fromPath    toName                                      fromZip
-							      sl << metaData.name() << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "7z";
-							      setRewriterFileMap.insert(crcString, sl);
-							      if ( groupBoxSetRewriter->isChecked() )
-								      log(tr("WARNING: the CRC for '%1' from '%2' is unknown to the emulator, the set rewriter will use the recalculated CRC '%3' to qualify the file").arg(metaData.name()).arg(filePath).arg(crcString));
-						      } else if ( groupBoxSetRewriter->isChecked() )
-							      log(tr("WARNING: unable to determine the CRC for '%1' from '%2', the set rewriter will NOT store this file in the new set").arg(metaData.name()).arg(filePath));
-					      }
-
-					      if ( calcSHA1 ) {
-						      sha1Hash.reset();
-						      sha1Hash.addData(data);
-						      *sha1Str = sha1Hash.result().toHex();
-					      }
-
-					      if ( calcMD5 ) {
-						      md5Hash.reset();
-						      md5Hash.addData(data);
-						      *md5Str = md5Hash.result().toHex();
-					      }
-
-					      if ( !isCHD )
-						      *fileData = data;
-
-					      effectiveFile = filePath;
-					      *isSevenZipped = true;
-				      }
-			      } else if ( mergeFile.isEmpty() ) {
-				      if ( !isCHD ) {
-					      if ( wantedCRC.isEmpty() ) {
-						      log(tr("WARNING: unable to identify '%1' from '%2' by CRC (no dump exists / CRC unknown)").arg(fileName).arg(filePath));
-						      effectiveFile = QMC2_ROMALYZER_NO_DUMP;
-					      } else
-						      log(tr("WARNING: unable to identify '%1' from '%2' by CRC '%3'").arg(fileName).arg(filePath).arg(wantedCRC) + QString(isOptionalROM ? " (" + tr("optional") + ")" : ""));
-				      }
-			      }
-		      } else
-			      log(tr("WARNING: found '%1' but can't open it for decompression - check file integrity").arg(filePath));
-	      } else
-		      log(tr("WARNING: found '%1' but can't read from it - check permission").arg(filePath));
-      }
-
-      if ( !effectiveFile.isEmpty() || qmc2StopParser )
-	      break;
-
-      filePath = romPath + "/" + gameName + ".zip";
-      if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
-      if ( QFile::exists(filePath) ) {
-        QFileInfo fi(filePath);
-        if ( fi.isReadable() ) {
-          // try loading data from a ZIP archive
-          unzFile zipFile = unzOpen((const char *)filePath.toLocal8Bit());
-          if ( zipFile ) {
-            // identify file by CRC
-            unz_file_info zipInfo;
-            QMap<uLong, QString> crcIdentMap;
-            uLong ulCRC = wantedCRC.toULong(0, 16);
-            do {
-              if ( unzGetCurrentFileInfo(zipFile, &zipInfo, buffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK )
-                crcIdentMap[zipInfo.crc] = QString((const char *)buffer);
-            } while ( unzGoToNextFile(zipFile) == UNZ_OK && !crcIdentMap.contains(ulCRC) );
-            unzGoToFirstFile(zipFile);
-            QString fn = "QMC2_DUMMY_FILENAME";
-            if ( crcIdentMap.contains(ulCRC) )
-              fn = crcIdentMap[ulCRC];
-            else if ( mergeFile.isEmpty() ) {
-              if ( !isCHD ) {
-		      if ( wantedCRC.isEmpty() ) {
-			      log(tr("WARNING: unable to identify '%1' from '%2' by CRC (no dump exists / CRC unknown)").arg(fileName).arg(filePath));
-			      effectiveFile = QMC2_ROMALYZER_NO_DUMP;
-		      } else
-			      log(tr("WARNING: unable to identify '%1' from '%2' by CRC '%3'").arg(fileName).arg(filePath).arg(wantedCRC) + QString(isOptionalROM ? " (" + tr("optional") + ")" : ""));
-              }
-              fn = fileName;
-            }
-
-            if ( unzLocateFile(zipFile, (const char *)fn.toLocal8Bit(), 2) == UNZ_OK ) { // NOT case-sensitive filename compare!
-              totalSize = 0;
-              if ( unzGetCurrentFileInfo(zipFile, &zipInfo, 0, 0, 0, 0, 0, 0) == UNZ_OK ) 
-                totalSize = zipInfo.uncompressed_size;
-              if ( sizeLimited ) {
-                if ( totalSize > (qint64) spinBoxMaxFileSize->value() * QMC2_ONE_MEGABYTE ) {
-                  log(tr("size of '%1' from '%2' is greater than allowed maximum -- skipped").arg(fn).arg(filePath));
-                  *isZipped = true;
-                  progressBarFileIO->reset();
-                  effectiveFile = QMC2_ROMALYZER_FILE_TOO_BIG;
-                  if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
-                  continue;
-                }
-              }
-              if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
-                log(tr("loading '%1' with CRC '%2' from '%3' as '%4'%5").arg(fn).arg(wantedCRC).arg(filePath).arg(myItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(*mergeUsed ? tr(" (merged)") : ""));
-                progressBarFileIO->setRange(0, totalSize);
-                progressBarFileIO->reset();
-		needProgressWidget = totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD;
-                if ( needProgressWidget ) {
-                  progressWidget = new QProgressBar(0);
-                  progressWidget->setRange(0, totalSize);
-                  progressWidget->setValue(0);
-                  treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, progressWidget);
-                }
-                sizeLeft = totalSize;
-                if ( calcSHA1 )
-                  sha1Hash.reset();
-                if ( calcMD5 )
-                  md5Hash.reset();
-                while ( (len = unzReadCurrentFile(zipFile, buffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 && !qmc2StopParser ) {
-                  QByteArray readData((const char *)buffer, len);
-                  if ( !isCHD )
-                    fileData->append(readData);
-                  if ( calcSHA1 )
-                    sha1Hash.addData(readData);
-                  if ( calcMD5 )
-                    md5Hash.addData(readData);
-                  sizeLeft -= len;
-                  myProgress = totalSize - sizeLeft;
-                  progressBarFileIO->setValue(myProgress);
-                  if ( needProgressWidget )
-                    progressWidget->setValue(myProgress);
-                  progressBarFileIO->update();
-                  qApp->processEvents();
-                }
-                unzCloseCurrentFile(zipFile);
-                effectiveFile = filePath;
-                if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
-		QString fromName = fileName;
-                if ( fn != "QMC2_DUMMY_FILENAME" ) fromName = fn;
-                if ( !wantedCRC.isEmpty() ) {
-                  QStringList sl;
-                  //    fromName    fromPath    toName                                      fromZip
-                  sl << fromName << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "zip";
-                  setRewriterFileMap.insert(wantedCRC, sl); 
-                } else {
-                  ulong crc = crc32(0, NULL, 0);
-	          crc = crc32(crc, (const Bytef *)fileData->data(), fileData->size());
-                  QString fallbackCRC = QString::number(crc, 16).rightJustified(8, '0');
-                  if ( !fallbackCRC.isEmpty() ) {
-                    QStringList sl;
-                    //    fromName    fromPath    toName                                      fromZip
-                    sl << fromName << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "zip";
-                    setRewriterFileMap.insert(fallbackCRC, sl); 
-                    if ( groupBoxSetRewriter->isChecked() )
-                      log(tr("WARNING: the CRC for '%1' from '%2' is unknown to the emulator, the set rewriter will use the recalculated CRC '%3' to qualify the file").arg(fileName).arg(filePath).arg(fallbackCRC));
-                  } else if ( groupBoxSetRewriter->isChecked() )
-                    log(tr("WARNING: unable to determine the CRC for '%1' from '%2', the set rewriter will NOT store this file in the new set").arg(fileName).arg(filePath));
+						if ( calcSHA1 )
+							*sha1Str = sha1Hash.result().toHex();
+						if ( calcMD5 )
+							*md5Str = md5Hash.result().toHex();
+					}
+					romFile.close();
+					effectiveFile = filePath;
+					*isZipped = false;
+					if ( needProgressWidget ) {
+						if ( progressWidget ) {
+							progressWidget->reset();
+							treeWidgetChecksums->removeItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
+						}
+						if ( progressWidget )
+							delete progressWidget;
+					}
+					progressBarFileIO->reset();
+				} else {
+					log(tr("WARNING: found '%1' but can't read from it although permissions seem okay - check file integrity").arg(filePath));
+				}
+			} else
+				log(tr("WARNING: found '%1' but can't read from it - check permission").arg(filePath));
+		} else {
+			if ( isCHD ) {
+				if ( romPathCount == romPaths.count() ) {
+					QString baseName = QFileInfo(filePath).baseName();
+					QStringList chdPaths = romPaths;
+					for (int i = 0; i < chdPaths.count(); i++)
+						chdPaths[i] = chdPaths[i] + QDir::separator() + gameName + QDir::separator() + baseName + ".chd";
+					QString sP;
+					if ( romPaths.count() > 1 )
+						sP = tr("searched paths: %1").arg(chdPaths.join(", "));
+					else
+						sP = tr("searched path: %1").arg(chdPaths[0]);
+					log(tr("WARNING: CHD file '%1' not found").arg(baseName) + " -- " + sP);
+				}
+				if ( mergeFile.isEmpty() && merge.isEmpty() )
+					if ( fallbackPath->isEmpty() )
+						*fallbackPath = filePath;
+			}
 		}
-                *isZipped = true;
-                if ( calcSHA1 )
-                  *sha1Str = sha1Hash.result().toHex();
-                if ( calcMD5 )
-                  *md5Str = md5Hash.result().toHex();
-                if ( needProgressWidget ) {
-                  if ( progressWidget ) {
-                    progressWidget->reset();
-                    treeWidgetChecksums->removeItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
-                  }
-                  if ( progressWidget ) delete progressWidget;
-                }
-                progressBarFileIO->reset();
-              } else
-                log(tr("WARNING: unable to decompress '%1' from '%2' - check file integrity").arg(fn).arg(filePath));
-            }
-            unzClose(zipFile);
-          } else
-            log(tr("WARNING: found '%1' but can't open it for decompression - check file integrity").arg(filePath));
-        } else
-          log(tr("WARNING: found '%1' but can't read from it - check permission").arg(filePath));
-      }
-    }
 
-    if ( !effectiveFile.isEmpty() || qmc2StopParser )
-	    break;
-  }
+		if ( effectiveFile.isEmpty() && !qmc2StopParser ) {
+			filePath = romPath + "/" + gameName + ".7z";
+			if ( QFile::exists(filePath) ) {
+				QFileInfo fi(filePath);
+				if ( fi.isReadable() ) {
+					// try loading data from a 7z archive
+					SevenZipFile sevenZipFile(filePath);
+					if ( sevenZipFile.open() ) {
+						// identify file by CRC
+						int index = sevenZipFile.indexOfCrc(wantedCRC);
+						if ( index >= 0 ) {
+							SevenZipMetaData metaData = sevenZipFile.itemList()[index];
+							if ( sizeLimited ) {
+								if ( metaData.size() > (quint64) spinBoxMaxFileSize->value() * QMC2_ONE_MEGABYTE ) {
+									log(tr("size of '%1' from '%2' is greater than allowed maximum -- skipped").arg(metaData.name()).arg(filePath));
+									*isSevenZipped = true;
+									effectiveFile = QMC2_ROMALYZER_FILE_TOO_BIG;
+									if ( fallbackPath->isEmpty() )
+										*fallbackPath = filePath;
+									continue;
+								}
+							}
+							log(tr("loading '%1' with CRC '%2' from '%3' as '%4'%5").arg(metaData.name()).arg(wantedCRC).arg(filePath).arg(myItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(*mergeUsed ? tr(" (merged)") : ""));
+							QByteArray data;
+							qApp->processEvents();
+							quint64 readLength = sevenZipFile.read(index, &data);
+							qApp->processEvents();
+							if ( sevenZipFile.hasError() )
+								log(tr("ERROR") + ": " + sevenZipFile.lastError());
+							if ( readLength != metaData.size() )
+								log(tr("WARNING") + ": " + tr("actual bytes read != file size in header") + " - " + tr("check archive integrity"));
+							ulong crc = crc32(0, NULL, 0);
+							crc = crc32(crc, (const Bytef *)data.data(), data.size());
+							QString crcString = QString::number(crc, 16).rightJustified(8, '0');
+							if ( crcString != wantedCRC )
+								log(tr("WARNING") + ": " + tr("actual CRC != CRC in header") + " - " + tr("check archive integrity"));
+							else {
+								if ( !wantedCRC.isEmpty() ) {
+									QStringList sl;
+									//    fromName           fromPath    toName                                      fromZip
+									sl << metaData.name() << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "7z";
+									setRewriterFileMap.insert(wantedCRC, sl); 
+								} else {
+									if ( !crcString.isEmpty() ) {
+										QStringList sl;
+										//    fromName           fromPath    toName                                      fromZip
+										sl << metaData.name() << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "7z";
+										setRewriterFileMap.insert(crcString, sl);
+										if ( groupBoxSetRewriter->isChecked() )
+											log(tr("WARNING: the CRC for '%1' from '%2' is unknown to the emulator, the set rewriter will use the recalculated CRC '%3' to qualify the file").arg(metaData.name()).arg(filePath).arg(crcString));
+									} else if ( groupBoxSetRewriter->isChecked() )
+										log(tr("WARNING: unable to determine the CRC for '%1' from '%2', the set rewriter will NOT store this file in the new set").arg(metaData.name()).arg(filePath));
+								}
 
-  // try merges, if applicable...
-  if ( effectiveFile.isEmpty() && !qmc2StopParser ) {
-    if ( mergeFile.isEmpty() && !merge.isEmpty() ) {
-      // romof is set, but the merge's file name is missing... use the same file name for the merge
-      mergeFile = fileName;
-    }
-    if ( !mergeFile.isEmpty() && !qmc2StopParser ) {
-      // romof is set, and the merge's file name is given
-      QString nextMerge = getXmlData(merge).split("\n")[0];
-      int romofPosition = nextMerge.indexOf("romof=");
-      *mergeUsed = true;
-      if ( romofPosition > -1 ) {
-        nextMerge = nextMerge.mid(romofPosition + 7);
-        nextMerge = nextMerge.left(nextMerge.indexOf("\""));
-        effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, nextMerge, mergeFile, type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM);
-      } else
-        effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM);
-    }
-  }
+								if ( calcSHA1 ) {
+									sha1Hash.reset();
+									sha1Hash.addData(data);
+									*sha1Str = sha1Hash.result().toHex();
+								}
 
-  if ( effectiveFile.isEmpty() )
-    effectiveFile = QMC2_ROMALYZER_FILE_NOT_FOUND;
+								if ( calcMD5 ) {
+									md5Hash.reset();
+									md5Hash.addData(data);
+									*md5Str = md5Hash.result().toHex();
+								}
 
-  return effectiveFile;
+								if ( !isCHD )
+									*fileData = data;
+
+								effectiveFile = filePath;
+								*isSevenZipped = true;
+							}
+						} else if ( mergeFile.isEmpty() ) {
+							if ( !isCHD ) {
+								if ( wantedCRC.isEmpty() ) {
+									log(tr("WARNING: unable to identify '%1' from '%2' by CRC (no dump exists / CRC unknown)").arg(fileName).arg(filePath));
+									effectiveFile = QMC2_ROMALYZER_NO_DUMP;
+								} else
+									log(tr("WARNING: unable to identify '%1' from '%2' by CRC '%3'").arg(fileName).arg(filePath).arg(wantedCRC) + QString(isOptionalROM ? " (" + tr("optional") + ")" : ""));
+							}
+						}
+					} else
+						log(tr("WARNING: found '%1' but can't open it for decompression - check file integrity").arg(filePath));
+				} else
+					log(tr("WARNING: found '%1' but can't read from it - check permission").arg(filePath));
+			}
+
+			if ( !effectiveFile.isEmpty() || qmc2StopParser )
+				break;
+
+			filePath = romPath + "/" + gameName + ".zip";
+			if ( fallbackPath->isEmpty() )
+				*fallbackPath = filePath;
+			if ( QFile::exists(filePath) ) {
+				QFileInfo fi(filePath);
+				if ( fi.isReadable() ) {
+					// try loading data from a ZIP archive
+					unzFile zipFile = unzOpen((const char *)filePath.toLocal8Bit());
+					if ( zipFile ) {
+						// identify file by CRC
+						unz_file_info zipInfo;
+						QMap<uLong, QString> crcIdentMap;
+						uLong ulCRC = wantedCRC.toULong(0, 16);
+						do {
+							if ( unzGetCurrentFileInfo(zipFile, &zipInfo, buffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK )
+								crcIdentMap[zipInfo.crc] = QString((const char *)buffer);
+						} while ( unzGoToNextFile(zipFile) == UNZ_OK && !crcIdentMap.contains(ulCRC) );
+						unzGoToFirstFile(zipFile);
+						QString fn = "QMC2_DUMMY_FILENAME";
+						if ( crcIdentMap.contains(ulCRC) )
+							fn = crcIdentMap[ulCRC];
+						else if ( mergeFile.isEmpty() ) {
+							if ( !isCHD ) {
+								if ( wantedCRC.isEmpty() ) {
+									log(tr("WARNING: unable to identify '%1' from '%2' by CRC (no dump exists / CRC unknown)").arg(fileName).arg(filePath));
+									effectiveFile = QMC2_ROMALYZER_NO_DUMP;
+								} else
+									log(tr("WARNING: unable to identify '%1' from '%2' by CRC '%3'").arg(fileName).arg(filePath).arg(wantedCRC) + QString(isOptionalROM ? " (" + tr("optional") + ")" : ""));
+							}
+							fn = fileName;
+						}
+
+						if ( unzLocateFile(zipFile, (const char *)fn.toLocal8Bit(), 2) == UNZ_OK ) { // NOT case-sensitive filename compare!
+							totalSize = 0;
+							if ( unzGetCurrentFileInfo(zipFile, &zipInfo, 0, 0, 0, 0, 0, 0) == UNZ_OK ) 
+								totalSize = zipInfo.uncompressed_size;
+							if ( sizeLimited ) {
+								if ( totalSize > (qint64) spinBoxMaxFileSize->value() * QMC2_ONE_MEGABYTE ) {
+									log(tr("size of '%1' from '%2' is greater than allowed maximum -- skipped").arg(fn).arg(filePath));
+									*isZipped = true;
+									progressBarFileIO->reset();
+									effectiveFile = QMC2_ROMALYZER_FILE_TOO_BIG;
+									if ( fallbackPath->isEmpty() )
+										*fallbackPath = filePath;
+									continue;
+								}
+							}
+							if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
+								log(tr("loading '%1' with CRC '%2' from '%3' as '%4'%5").arg(fn).arg(wantedCRC).arg(filePath).arg(myItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(*mergeUsed ? tr(" (merged)") : ""));
+								progressBarFileIO->setRange(0, totalSize);
+								progressBarFileIO->reset();
+								needProgressWidget = totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD;
+								if ( needProgressWidget ) {
+									progressWidget = new QProgressBar(0);
+									progressWidget->setRange(0, totalSize);
+									progressWidget->setValue(0);
+									treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, progressWidget);
+								}
+								sizeLeft = totalSize;
+								if ( calcSHA1 )
+									sha1Hash.reset();
+								if ( calcMD5 )
+									md5Hash.reset();
+								while ( (len = unzReadCurrentFile(zipFile, buffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 && !qmc2StopParser ) {
+									QByteArray readData((const char *)buffer, len);
+									if ( !isCHD )
+										fileData->append(readData);
+									if ( calcSHA1 )
+										sha1Hash.addData(readData);
+									if ( calcMD5 )
+										md5Hash.addData(readData);
+									sizeLeft -= len;
+									myProgress = totalSize - sizeLeft;
+									progressBarFileIO->setValue(myProgress);
+									if ( needProgressWidget )
+										progressWidget->setValue(myProgress);
+									progressBarFileIO->update();
+									qApp->processEvents();
+								}
+								unzCloseCurrentFile(zipFile);
+								effectiveFile = filePath;
+								if ( fallbackPath->isEmpty() )
+									*fallbackPath = filePath;
+								QString fromName = fileName;
+								if ( fn != "QMC2_DUMMY_FILENAME" )
+									fromName = fn;
+								if ( !wantedCRC.isEmpty() ) {
+									QStringList sl;
+									//    fromName    fromPath    toName                                      fromZip
+									sl << fromName << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "zip";
+									setRewriterFileMap.insert(wantedCRC, sl); 
+								} else {
+									ulong crc = crc32(0, NULL, 0);
+									crc = crc32(crc, (const Bytef *)fileData->data(), fileData->size());
+									QString fallbackCRC = QString::number(crc, 16).rightJustified(8, '0');
+									if ( !fallbackCRC.isEmpty() ) {
+										QStringList sl;
+										//    fromName    fromPath    toName                                      fromZip
+										sl << fromName << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "zip";
+										setRewriterFileMap.insert(fallbackCRC, sl); 
+										if ( groupBoxSetRewriter->isChecked() )
+											log(tr("WARNING: the CRC for '%1' from '%2' is unknown to the emulator, the set rewriter will use the recalculated CRC '%3' to qualify the file").arg(fileName).arg(filePath).arg(fallbackCRC));
+									} else if ( groupBoxSetRewriter->isChecked() )
+										log(tr("WARNING: unable to determine the CRC for '%1' from '%2', the set rewriter will NOT store this file in the new set").arg(fileName).arg(filePath));
+								}
+								*isZipped = true;
+								if ( calcSHA1 )
+									*sha1Str = sha1Hash.result().toHex();
+								if ( calcMD5 )
+									*md5Str = md5Hash.result().toHex();
+								if ( needProgressWidget ) {
+									if ( progressWidget ) {
+										progressWidget->reset();
+										treeWidgetChecksums->removeItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
+									}
+									if ( progressWidget )
+										delete progressWidget;
+								}
+								progressBarFileIO->reset();
+							} else
+								log(tr("WARNING: unable to decompress '%1' from '%2' - check file integrity").arg(fn).arg(filePath));
+						}
+						unzClose(zipFile);
+					} else
+						log(tr("WARNING: found '%1' but can't open it for decompression - check file integrity").arg(filePath));
+				} else
+					log(tr("WARNING: found '%1' but can't read from it - check permission").arg(filePath));
+			}
+		}
+
+		if ( !effectiveFile.isEmpty() || qmc2StopParser )
+			break;
+	}
+
+	// try merges, if applicable...
+	if ( effectiveFile.isEmpty() && !qmc2StopParser ) {
+		if ( mergeFile.isEmpty() && !merge.isEmpty() ) {
+			// romof is set, but the merge's file name is missing... use the same file name for the merge
+			mergeFile = fileName;
+		}
+		if ( !mergeFile.isEmpty() && !qmc2StopParser ) {
+			// romof is set, and the merge's file name is given
+			QString nextMerge = getXmlData(merge).split("\n")[0];
+			int romofPosition = nextMerge.indexOf("romof=");
+			*mergeUsed = true;
+			if ( romofPosition > -1 ) {
+				nextMerge = nextMerge.mid(romofPosition + 7);
+				nextMerge = nextMerge.left(nextMerge.indexOf("\""));
+				effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, nextMerge, mergeFile, type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM);
+			} else
+				effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM);
+		}
+	}
+
+	if ( effectiveFile.isEmpty() )
+		effectiveFile = QMC2_ROMALYZER_FILE_NOT_FOUND;
+
+	return effectiveFile;
 }
 
 void ROMAlyzer::on_tabWidgetAnalysis_currentChanged(int index)
@@ -1957,149 +1971,151 @@ void ROMAlyzer::on_tabWidgetAnalysis_currentChanged(int index)
 void ROMAlyzer::on_treeWidgetChecksums_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_treeWidgetChecksums_itemSelectionChanged()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_treeWidgetChecksums_itemSelectionChanged()");
 #endif
 
-  if ( checkBoxSelectGame->isChecked() ) {
-    QList<QTreeWidgetItem *> items = treeWidgetChecksums->selectedItems();
-    if ( items.count() > 0 ) {
-      QTreeWidgetItem *item = items[0];
-      while ( (void*)item->parent() != (void *)treeWidgetChecksums && item->parent() != 0 ) item = item->parent();
-      QStringList words = item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ");
-      selectItem(words[0]);
-    }
-  }
+	if ( checkBoxSelectGame->isChecked() ) {
+		QList<QTreeWidgetItem *> items = treeWidgetChecksums->selectedItems();
+		if ( items.count() > 0 ) {
+			QTreeWidgetItem *item = items[0];
+			while ( (void*)item->parent() != (void *)treeWidgetChecksums && item->parent() != 0 )
+				item = item->parent();
+			QStringList words = item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ");
+			selectItem(words[0]);
+		}
+	}
 }
 
 void ROMAlyzer::selectItem(QString gameName)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::selectItem(QString gameName = %1)").arg(gameName));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::selectItem(QString gameName = %1)").arg(gameName));
 #endif
 
-  switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
-    case QMC2_VIEWGAMELIST_INDEX: {
-      QTreeWidgetItem *gameItem = qmc2GamelistItemMap[gameName];
-      if ( gameItem ) {
-        qmc2MainWindow->treeWidgetGamelist->clearSelection();
-        qmc2MainWindow->treeWidgetGamelist->setCurrentItem(gameItem);
-        qmc2MainWindow->treeWidgetGamelist->scrollToItem(gameItem, qmc2CursorPositioningMode);
-        gameItem->setSelected(true);
-      }
-      break;
-    }
-    case QMC2_VIEWHIERARCHY_INDEX: {
-      QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemMap[gameName];
-      if ( hierarchyItem ) {
-        qmc2MainWindow->treeWidgetHierarchy->clearSelection();
-        qmc2MainWindow->treeWidgetHierarchy->setCurrentItem(hierarchyItem);
-        qmc2MainWindow->treeWidgetHierarchy->scrollToItem(hierarchyItem, qmc2CursorPositioningMode);
-        hierarchyItem->setSelected(true);
-      }
-      break;
-    }
-    case QMC2_VIEWCATEGORY_INDEX: {
-      QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
-      if ( categoryItem ) {
-        qmc2MainWindow->treeWidgetCategoryView->clearSelection();
-        qmc2MainWindow->treeWidgetCategoryView->setCurrentItem(categoryItem);
-        qmc2MainWindow->treeWidgetCategoryView->scrollToItem(categoryItem, qmc2CursorPositioningMode);
-        categoryItem->setSelected(true);
-      }
-      break;
-    }
+	switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
+		case QMC2_VIEWGAMELIST_INDEX: {
+			      QTreeWidgetItem *gameItem = qmc2GamelistItemMap[gameName];
+			      if ( gameItem ) {
+				      qmc2MainWindow->treeWidgetGamelist->clearSelection();
+				      qmc2MainWindow->treeWidgetGamelist->setCurrentItem(gameItem);
+				      qmc2MainWindow->treeWidgetGamelist->scrollToItem(gameItem, qmc2CursorPositioningMode);
+				      gameItem->setSelected(true);
+			      }
+			      break;
+		      }
+		case QMC2_VIEWHIERARCHY_INDEX: {
+			       QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemMap[gameName];
+			       if ( hierarchyItem ) {
+				       qmc2MainWindow->treeWidgetHierarchy->clearSelection();
+				       qmc2MainWindow->treeWidgetHierarchy->setCurrentItem(hierarchyItem);
+				       qmc2MainWindow->treeWidgetHierarchy->scrollToItem(hierarchyItem, qmc2CursorPositioningMode);
+				       hierarchyItem->setSelected(true);
+			       }
+			       break;
+		       }
+		case QMC2_VIEWCATEGORY_INDEX: {
+			      QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
+			      if ( categoryItem ) {
+				      qmc2MainWindow->treeWidgetCategoryView->clearSelection();
+				      qmc2MainWindow->treeWidgetCategoryView->setCurrentItem(categoryItem);
+				      qmc2MainWindow->treeWidgetCategoryView->scrollToItem(categoryItem, qmc2CursorPositioningMode);
+				      categoryItem->setSelected(true);
+			      }
+			      break;
+		      }
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    case QMC2_VIEWVERSION_INDEX: {
-      QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
-      if ( versionItem ) {
-        qmc2MainWindow->treeWidgetVersionView->clearSelection();
-        qmc2MainWindow->treeWidgetVersionView->setCurrentItem(versionItem);
-        qmc2MainWindow->treeWidgetVersionView->scrollToItem(versionItem, qmc2CursorPositioningMode);
-        versionItem->setSelected(true);
-      }
-      break;
-    }
+		case QMC2_VIEWVERSION_INDEX: {
+			     QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
+			     if ( versionItem ) {
+				     qmc2MainWindow->treeWidgetVersionView->clearSelection();
+				     qmc2MainWindow->treeWidgetVersionView->setCurrentItem(versionItem);
+				     qmc2MainWindow->treeWidgetVersionView->scrollToItem(versionItem, qmc2CursorPositioningMode);
+				     versionItem->setSelected(true);
+			     }
+			     break;
+		     }
 #endif
-  }
+	}
 }
 
 QString ROMAlyzer::humanReadable(quint64 value, int digits)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::humanReadable(quint64 value = %1, int digits = %2)").arg(value).arg(digits));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::humanReadable(quint64 value = %1, int digits = %2)").arg(value).arg(digits));
 #endif
 
-  static QString humanReadableString;
-  static qreal humanReadableValue;
-  QLocale locale;
+	static QString humanReadableString;
+	static qreal humanReadableValue;
+	QLocale locale;
 
 #if __WORDSIZE == 64
-  if ( (qreal)value / (qreal)QMC2_ONE_KILOBYTE < (qreal)QMC2_ONE_KILOBYTE ) {
-    humanReadableValue = (qreal)value / (qreal)QMC2_ONE_KILOBYTE;
-    humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" KB"));
-  } else if ( (qreal)value / (qreal)QMC2_ONE_MEGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
-    humanReadableValue = (qreal)value / (qreal)QMC2_ONE_MEGABYTE;
-    humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" MB"));
-  } else if ( (qreal)value / (qreal)QMC2_ONE_GIGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
-    humanReadableValue = (qreal)value / (qreal)QMC2_ONE_GIGABYTE;
-    humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" GB"));
-  } else {
-    humanReadableValue = (qreal)value / (qreal)QMC2_ONE_TERABYTE;
-    humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" TB"));
-  }
+	if ( (qreal)value / (qreal)QMC2_ONE_KILOBYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+		humanReadableValue = (qreal)value / (qreal)QMC2_ONE_KILOBYTE;
+		humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" KB"));
+	} else if ( (qreal)value / (qreal)QMC2_ONE_MEGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+		humanReadableValue = (qreal)value / (qreal)QMC2_ONE_MEGABYTE;
+		humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" MB"));
+	} else if ( (qreal)value / (qreal)QMC2_ONE_GIGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+		humanReadableValue = (qreal)value / (qreal)QMC2_ONE_GIGABYTE;
+		humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" GB"));
+	} else {
+		humanReadableValue = (qreal)value / (qreal)QMC2_ONE_TERABYTE;
+		humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" TB"));
+	}
 #else
-  if ( (qreal)value / (qreal)QMC2_ONE_KILOBYTE < (qreal)QMC2_ONE_KILOBYTE ) {
-    humanReadableValue = (qreal)value / (qreal)QMC2_ONE_KILOBYTE;
-    humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" KB"));
-  } else if ( (qreal)value / (qreal)QMC2_ONE_MEGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
-    humanReadableValue = (qreal)value / (qreal)QMC2_ONE_MEGABYTE;
-    humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" MB"));
-  } else {
-    humanReadableValue = (qreal)value / (qreal)QMC2_ONE_GIGABYTE;
-    humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" GB"));
-  }
+	if ( (qreal)value / (qreal)QMC2_ONE_KILOBYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+		humanReadableValue = (qreal)value / (qreal)QMC2_ONE_KILOBYTE;
+		humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" KB"));
+	} else if ( (qreal)value / (qreal)QMC2_ONE_MEGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+		humanReadableValue = (qreal)value / (qreal)QMC2_ONE_MEGABYTE;
+		humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" MB"));
+	} else {
+		humanReadableValue = (qreal)value / (qreal)QMC2_ONE_GIGABYTE;
+		humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" GB"));
+	}
 #endif
 
-  return humanReadableString;
+	return humanReadableString;
 }
 
 void ROMAlyzer::log(QString message)
 {
-  QString msg = QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + message;
+	QString msg = QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + message;
 
-  bool scrollBarMaximum = (textBrowserLog->verticalScrollBar()->value() == textBrowserLog->verticalScrollBar()->maximum());
-  textBrowserLog->appendPlainText(msg);
-  if ( scrollBarMaximum ) {
-    textBrowserLog->update();
-    qApp->processEvents();
-    textBrowserLog->verticalScrollBar()->setValue(textBrowserLog->verticalScrollBar()->maximum());
-  }
+	bool scrollBarMaximum = (textBrowserLog->verticalScrollBar()->value() == textBrowserLog->verticalScrollBar()->maximum());
+	textBrowserLog->appendPlainText(msg);
+	if ( scrollBarMaximum ) {
+		textBrowserLog->update();
+		qApp->processEvents();
+		textBrowserLog->verticalScrollBar()->setValue(textBrowserLog->verticalScrollBar()->maximum());
+	}
 }
 
 void ROMAlyzer::on_toolButtonBrowseCHDManagerExecutableFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseCHDManagerExecutableFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseCHDManagerExecutableFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD manager executable file"), lineEditCHDManagerExecutableFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditCHDManagerExecutableFile->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD manager executable file"), lineEditCHDManagerExecutableFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditCHDManagerExecutableFile->setText(s);
+	raise();
 }
 
 void ROMAlyzer::on_toolButtonBrowseTemporaryWorkingDirectory_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseTemporaryWorkingDirectory_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseTemporaryWorkingDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose temporary working directory"), lineEditTemporaryWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() ) {
-    if ( !s.endsWith("/") ) s += "/";
-    lineEditTemporaryWorkingDirectory->setText(s);
-  }
-  raise();
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose temporary working directory"), lineEditTemporaryWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		if ( !s.endsWith("/") )
+			s += "/";
+		lineEditTemporaryWorkingDirectory->setText(s);
+	}
+	raise();
 }
 
 void ROMAlyzer::on_toolButtonBrowseSetRewriterOutputPath_clicked()
@@ -2110,7 +2126,8 @@ void ROMAlyzer::on_toolButtonBrowseSetRewriterOutputPath_clicked()
 
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose output directory"), lineEditSetRewriterOutputPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
-		if ( !s.endsWith("/") ) s += "/";
+		if ( !s.endsWith("/") )
+			s += "/";
 		lineEditSetRewriterOutputPath->setText(s);
 	}
 	raise();
@@ -2131,138 +2148,133 @@ void ROMAlyzer::on_toolButtonBrowseSetRewriterAdditionalRomPath_clicked()
 void ROMAlyzer::chdManagerStarted()
 {
 #ifdef QMC2_DEBUG
-  QProcess *proc = (QProcess *)sender();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerStarted(), proc = %1").arg((qulonglong)proc));
+	QProcess *proc = (QProcess *)sender();
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerStarted(), proc = %1").arg((qulonglong)proc));
 #endif
 
-  chdManagerRunning = true;
-  chdManagerCurrentHunk = 0;
-  log(tr("CHD manager: external process started"));
+	chdManagerRunning = true;
+	chdManagerCurrentHunk = 0;
+	log(tr("CHD manager: external process started"));
 }
 
 void ROMAlyzer::chdManagerFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
 #ifdef QMC2_DEBUG
-  QProcess *proc = (QProcess *)sender();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2), proc = %3").arg(exitCode).arg((int)exitStatus).arg((qulonglong)proc));
+	QProcess *proc = (QProcess *)sender();
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2), proc = %3").arg(exitCode).arg((int)exitStatus).arg((qulonglong)proc));
 #endif
 
-  chdManagerRunning = false;
-  QString statusString = tr("unknown");
-  switch ( exitStatus ) {
-    case QProcess::NormalExit: statusString = tr("normal"); break;
-    case QProcess::CrashExit: statusString = tr("crashed"); break;
-  }
-  log(tr("CHD manager: external process finished (exit code = %1, exit status = %2)").arg(exitCode).arg(statusString));
+	chdManagerRunning = false;
+	QString statusString = tr("unknown");
+	switch ( exitStatus ) {
+		case QProcess::NormalExit:
+			statusString = tr("normal");
+			break;
+		case QProcess::CrashExit:
+			statusString = tr("crashed");
+			break;
+	}
+	log(tr("CHD manager: external process finished (exit code = %1, exit status = %2)").arg(exitCode).arg(statusString));
 }
 
 void ROMAlyzer::chdManagerReadyReadStandardOutput()
 {
-  QProcess *proc = (QProcess *)sender();
+	QProcess *proc = (QProcess *)sender();
 
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerReadyReadStandardOutput(), proc = %1").arg((qulonglong)proc));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerReadyReadStandardOutput(), proc = %1").arg((qulonglong)proc));
 #endif
 
-  QString output = proc->readAllStandardOutput();
-  QStringList sl = output.split("\n");
-  foreach (QString s, sl) {
-    s = s.trimmed();
-    if ( !s.isEmpty() ) {
-      log(tr("CHD manager: stdout: %1").arg(s));
-      if ( s.contains("MD5 verification successful") )
-        chdManagerMD5Success = true;
-      if ( s.contains("SHA1 verification successful") )
-        chdManagerSHA1Success = true;
-    }
-  }
+	QString output = proc->readAllStandardOutput();
+	QStringList sl = output.split("\n");
+	foreach (QString s, sl) {
+		s = s.trimmed();
+		if ( !s.isEmpty() ) {
+			log(tr("CHD manager: stdout: %1").arg(s));
+			if ( s.contains("MD5 verification successful") )
+				chdManagerMD5Success = true;
+			if ( s.contains("SHA1 verification successful") )
+				chdManagerSHA1Success = true;
+		}
+	}
 }
 
 void ROMAlyzer::chdManagerReadyReadStandardError()
 {
-  QProcess *proc = (QProcess *)sender();
+	QProcess *proc = (QProcess *)sender();
 
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerReadyReadStandardError(), proc = %1").arg((qulonglong)proc));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerReadyReadStandardError(), proc = %1").arg((qulonglong)proc));
 #endif
 
-  QString output = proc->readAllStandardError();
-  QStringList sl = output.split("\n");
-  foreach (QString s, sl) {
-    s = s.trimmed();
-    if ( !s.isEmpty() ) {
-      log(tr("CHD manager: stderr: %1").arg(s));
+	QString output = proc->readAllStandardError();
+	QStringList sl = output.split("\n");
+	foreach (QString s, sl) {
+		s = s.trimmed();
+		if ( !s.isEmpty() ) {
+			log(tr("CHD manager: stderr: %1").arg(s));
 #if QMC2_CHD_CURRENT_VERSION >= 5
-      if ( s.contains(QRegExp(", \\d+\\.\\d+\\%\\ complete\\.\\.\\.")) ) {
-        QRegExp rx(", (\\d+)\\.(\\d+)\\%\\ complete\\.\\.\\.");
-        int pos = rx.indexIn(s);
-        if ( pos > -1 ) {
-          chdManagerCurrentHunk = rx.cap(1).toInt(); // 'current hunk' is misused as a percentage value, and 'total hunks' is thus set to 100 constantly
-          int decimal = rx.cap(2).toInt();
-	  if ( decimal >= 5 ) chdManagerCurrentHunk += 1;
-	}
-      } else {
-        if ( s.contains("Compression complete ... final ratio =") )
-          chdManagerSHA1Success = true;
-      }
+			if ( s.contains(QRegExp(", \\d+\\.\\d+\\%\\ complete\\.\\.\\.")) ) {
+				QRegExp rx(", (\\d+)\\.(\\d+)\\%\\ complete\\.\\.\\.");
+				int pos = rx.indexIn(s);
+				if ( pos > -1 ) {
+					chdManagerCurrentHunk = rx.cap(1).toInt(); // 'current hunk' is misused as a percentage value, and 'total hunks' is thus set to 100 constantly
+					int decimal = rx.cap(2).toInt();
+					if ( decimal >= 5 ) chdManagerCurrentHunk += 1;
+				}
+			} else {
+				if ( s.contains("Compression complete ... final ratio =") )
+					chdManagerSHA1Success = true;
+			}
 #else
-      if ( s.contains(QRegExp("hunk \\d+/\\d+\\.\\.\\.")) ) {
-        QRegExp rx("(\\d+)/(\\d+)");
-        int pos = rx.indexIn(s);
-        if ( pos > -1 ) {
-          chdManagerCurrentHunk = rx.cap(1).toInt();
-          chdManagerTotalHunks = rx.cap(2).toInt();
-        }
-      } else {
-        if ( s.contains("Input MD5 verified") )
-          chdManagerMD5Success = true;
-        if ( s.contains("Input SHA1 verified") )
-          chdManagerSHA1Success = true;
-      }
+			if ( s.contains(QRegExp("hunk \\d+/\\d+\\.\\.\\.")) ) {
+				QRegExp rx("(\\d+)/(\\d+)");
+				int pos = rx.indexIn(s);
+				if ( pos > -1 ) {
+					chdManagerCurrentHunk = rx.cap(1).toInt();
+					chdManagerTotalHunks = rx.cap(2).toInt();
+				}
+			} else {
+				if ( s.contains("Input MD5 verified") )
+					chdManagerMD5Success = true;
+				if ( s.contains("Input SHA1 verified") )
+					chdManagerSHA1Success = true;
+			}
 #endif
-    }
-  }
+		}
+	}
 }
 
 void ROMAlyzer::chdManagerError(QProcess::ProcessError processError)
 {
 #ifdef QMC2_DEBUG
-  QProcess *proc = (QProcess *)sender();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerError(QProcess::ProcessError processError = %1), proc = %2").arg((int)processError).arg((qulonglong)proc));
+	QProcess *proc = (QProcess *)sender();
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerError(QProcess::ProcessError processError = %1), proc = %2").arg((int)processError).arg((qulonglong)proc));
 #endif
 
-  switch ( processError ) {
-    case QProcess::FailedToStart:
-      log(tr("CHD manager: failed to start"));
-      break;
+	switch ( processError ) {
+		case QProcess::FailedToStart:
+			log(tr("CHD manager: failed to start"));
+			break;
 
-    case QProcess::Crashed:
-      log(tr("CHD manager: crashed"));
-      break;
+		case QProcess::Crashed:
+			log(tr("CHD manager: crashed"));
+			break;
 
-    case QProcess::WriteError:
-      log(tr("CHD manager: write error"));
-      break;
+		case QProcess::WriteError:
+			log(tr("CHD manager: write error"));
+			break;
 
-    case QProcess::ReadError:
-      log(tr("CHD manager: read error"));
-      break;
+		case QProcess::ReadError:
+			log(tr("CHD manager: read error"));
+			break;
 
-    default:
-      log(tr("CHD manager: unknown error %1").arg(processError));
-      break;
-  }
+		default:
+			log(tr("CHD manager: unknown error %1").arg(processError));
+			break;
+	}
 
-  chdManagerRunning = false;
-}
-
-void ROMAlyzer::chdManagerStateChanged(QProcess::ProcessState processState)
-{
-#ifdef QMC2_DEBUG
-  QProcess *proc = (QProcess *)sender();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerStateChanged(QProcess::ProcessState processState = %1), proc = %2").arg((int)processState).arg((qulonglong)proc));
-#endif
-
+	chdManagerRunning = false;
 }
 
 void ROMAlyzer::on_lineEditChecksumWizardHash_textEdited(const QString &text)
@@ -3572,143 +3584,135 @@ void ROMAlyzer::on_toolButtonBrowseDatabaseOutputPath_clicked()
 ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, bool scroll)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent = %1, bool expand = %2, bool scroll = %3)").arg((qulonglong)parent).arg(expand).arg(scroll));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent = %1, bool expand = %2, bool scroll = %3)").arg((qulonglong)parent).arg(expand).arg(scroll));
 #endif
 
-  parentItem = parent;
-  autoExpand = expand;
-  autoScroll = scroll;
+	parentItem = parent;
+	autoExpand = expand;
+	autoScroll = scroll;
 
-  redBrush = QBrush(QColor(255, 0, 0));
-  greenBrush = QBrush(QColor(0, 255, 0));
-  blueBrush = QBrush(QColor(0, 0, 255));
-  yellowBrush = QBrush(QColor(255, 255, 0));
-  brownBrush = QBrush(QColor(128, 128, 0));
-  greyBrush = QBrush(QColor(128, 128, 128));
-}
-
-ROMAlyzerXmlHandler::~ROMAlyzerXmlHandler()
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::~ROMAlyzerXmlHandler()");
-#endif
-
+	redBrush = QBrush(QColor(255, 0, 0));
+	greenBrush = QBrush(QColor(0, 255, 0));
+	blueBrush = QBrush(QColor(0, 0, 255));
+	yellowBrush = QBrush(QColor(255, 255, 0));
+	brownBrush = QBrush(QColor(128, 128, 0));
+	greyBrush = QBrush(QColor(128, 128, 128));
 }
 
 bool ROMAlyzerXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::startElement(...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::startElement(...)");
 #endif
 
-  QString s;
+	QString s;
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  if ( qName == "game" ) {
+	if ( qName == "game" ) {
 #elif defined(QMC2_EMUTYPE_MESS)
-  if ( qName == "machine" ) {
+	if ( qName == "machine" ) {
 #endif
-    parentItem->setText(QMC2_ROMALYZER_COLUMN_MERGE, attributes.value("romof"));
-    parentItem->setExpanded(false);
-    emuStatus = 0;
-    fileCounter = 0;
-    currentText.clear();
-    childItems.clear();
-    deviceReferences.clear();
-    optionalROMs.clear();
-  } else if ( qName == "rom" || qName == "disk" ) {
-    fileCounter++;
-    childItem = new QTreeWidgetItem(parentItem);
-    childItems << childItem;
-    childItem->setText(QMC2_ROMALYZER_COLUMN_GAME, attributes.value("name"));
-    childItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, qName == "rom" ? QObject::tr("ROM") : QObject::tr("CHD"));
-    childItem->setText(QMC2_ROMALYZER_COLUMN_MERGE, attributes.value("merge"));
-    s = attributes.value("status");
-    if ( s.isEmpty() || s == "good" ) {
-      childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("good"));
-      childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, greenBrush);
-      emuStatus |= QMC2_ROMALYZER_EMUSTATUS_GOOD;
-    } else if ( s == "nodump" ) {
-      childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("no dump"));
-      childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, brownBrush);
-      emuStatus |= QMC2_ROMALYZER_EMUSTATUS_NODUMP;
-    } else if ( s == "baddump" ) {
-      childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("bad dump"));
-      childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, brownBrush);
-      emuStatus |= QMC2_ROMALYZER_EMUSTATUS_BADDUMP;
-    } else {
-      childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("unknown"));
-      childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, blueBrush);
-      emuStatus |= QMC2_ROMALYZER_EMUSTATUS_UNKNOWN;
-    }
-    childItem->setText(QMC2_ROMALYZER_COLUMN_SIZE, attributes.value("size"));
-    childItem->setText(QMC2_ROMALYZER_COLUMN_CRC, attributes.value("crc"));
-    childItem->setText(QMC2_ROMALYZER_COLUMN_SHA1, attributes.value("sha1"));
-    childItem->setText(QMC2_ROMALYZER_COLUMN_MD5, attributes.value("md5"));
-    if ( attributes.value("optional") == "yes" )
-	    optionalROMs << attributes.value("crc");
-  } else if ( qName == "device_ref" )
-    deviceReferences << attributes.value("name");
+		parentItem->setText(QMC2_ROMALYZER_COLUMN_MERGE, attributes.value("romof"));
+		parentItem->setExpanded(false);
+		emuStatus = 0;
+		fileCounter = 0;
+		currentText.clear();
+		childItems.clear();
+		deviceReferences.clear();
+		optionalROMs.clear();
+	} else if ( qName == "rom" || qName == "disk" ) {
+		fileCounter++;
+		childItem = new QTreeWidgetItem(parentItem);
+		childItems << childItem;
+		childItem->setText(QMC2_ROMALYZER_COLUMN_GAME, attributes.value("name"));
+		childItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, qName == "rom" ? QObject::tr("ROM") : QObject::tr("CHD"));
+		childItem->setText(QMC2_ROMALYZER_COLUMN_MERGE, attributes.value("merge"));
+		s = attributes.value("status");
+		if ( s.isEmpty() || s == "good" ) {
+			childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("good"));
+			childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, greenBrush);
+			emuStatus |= QMC2_ROMALYZER_EMUSTATUS_GOOD;
+		} else if ( s == "nodump" ) {
+			childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("no dump"));
+			childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, brownBrush);
+			emuStatus |= QMC2_ROMALYZER_EMUSTATUS_NODUMP;
+		} else if ( s == "baddump" ) {
+			childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("bad dump"));
+			childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, brownBrush);
+			emuStatus |= QMC2_ROMALYZER_EMUSTATUS_BADDUMP;
+		} else {
+			childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("unknown"));
+			childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, blueBrush);
+			emuStatus |= QMC2_ROMALYZER_EMUSTATUS_UNKNOWN;
+		}
+		childItem->setText(QMC2_ROMALYZER_COLUMN_SIZE, attributes.value("size"));
+		childItem->setText(QMC2_ROMALYZER_COLUMN_CRC, attributes.value("crc"));
+		childItem->setText(QMC2_ROMALYZER_COLUMN_SHA1, attributes.value("sha1"));
+		childItem->setText(QMC2_ROMALYZER_COLUMN_MD5, attributes.value("md5"));
+		if ( attributes.value("optional") == "yes" )
+			optionalROMs << attributes.value("crc");
+	} else if ( qName == "device_ref" )
+		deviceReferences << attributes.value("name");
 
-  return true;
+	return true;
 }
 
 bool ROMAlyzerXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::endElement(...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::endElement(...)");
 #endif
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  if ( qName == "game" ) {
+	if ( qName == "game" ) {
 #elif defined(QMC2_EMUTYPE_MESS)
-  if ( qName == "machine" ) {
+	if ( qName == "machine" ) {
 #endif
-    QString s(parentItem->text(QMC2_ROMALYZER_COLUMN_GAME));
-    s += " [" + QString::number(fileCounter) + "]";
-    parentItem->setText(QMC2_ROMALYZER_COLUMN_GAME, s);
-    QString emuStatusStr;
-    QBrush myBrush;
-    if ( emuStatus == QMC2_ROMALYZER_EMUSTATUS_GOOD ) {
-      emuStatusStr = QObject::tr("good");
-      myBrush = greenBrush;
-    } else if ( emuStatus & QMC2_ROMALYZER_EMUSTATUS_UNKNOWN ) {
-      emuStatusStr = QObject::tr("unknown");
-      myBrush = blueBrush;
-    } else if ( emuStatus & QMC2_ROMALYZER_EMUSTATUS_NODUMP && emuStatus & QMC2_ROMALYZER_EMUSTATUS_BADDUMP ) {
-      emuStatusStr = QObject::tr("no / bad dump");
-      myBrush = brownBrush;
-    } else if ( emuStatus & QMC2_ROMALYZER_EMUSTATUS_NODUMP ) {
-      emuStatusStr = QObject::tr("no dump");
-      myBrush = brownBrush;
-    } else if ( emuStatus & QMC2_ROMALYZER_EMUSTATUS_BADDUMP ) {
-      emuStatusStr = QObject::tr("bad dump");
-      myBrush = brownBrush;
-    } else {
-      emuStatusStr = QObject::tr("unknown");
-      myBrush = blueBrush;
-    }
-    if ( fileCounter == 0 ) {
-       emuStatusStr = QObject::tr("good");
-      myBrush = greenBrush;
-    }
-    parentItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, emuStatusStr);
-    parentItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, myBrush);
-    if ( autoExpand )
-      parentItem->setExpanded(true);
-    if ( autoScroll )
-      qmc2ROMAlyzer->treeWidgetChecksums->scrollToItem(parentItem, QAbstractItemView::PositionAtTop);
-  }
+		QString s(parentItem->text(QMC2_ROMALYZER_COLUMN_GAME));
+		s += " [" + QString::number(fileCounter) + "]";
+		parentItem->setText(QMC2_ROMALYZER_COLUMN_GAME, s);
+		QString emuStatusStr;
+		QBrush myBrush;
+		if ( emuStatus == QMC2_ROMALYZER_EMUSTATUS_GOOD ) {
+			emuStatusStr = QObject::tr("good");
+			myBrush = greenBrush;
+		} else if ( emuStatus & QMC2_ROMALYZER_EMUSTATUS_UNKNOWN ) {
+			emuStatusStr = QObject::tr("unknown");
+			myBrush = blueBrush;
+		} else if ( emuStatus & QMC2_ROMALYZER_EMUSTATUS_NODUMP && emuStatus & QMC2_ROMALYZER_EMUSTATUS_BADDUMP ) {
+			emuStatusStr = QObject::tr("no / bad dump");
+			myBrush = brownBrush;
+		} else if ( emuStatus & QMC2_ROMALYZER_EMUSTATUS_NODUMP ) {
+			emuStatusStr = QObject::tr("no dump");
+			myBrush = brownBrush;
+		} else if ( emuStatus & QMC2_ROMALYZER_EMUSTATUS_BADDUMP ) {
+			emuStatusStr = QObject::tr("bad dump");
+			myBrush = brownBrush;
+		} else {
+			emuStatusStr = QObject::tr("unknown");
+			myBrush = blueBrush;
+		}
+		if ( fileCounter == 0 ) {
+			emuStatusStr = QObject::tr("good");
+			myBrush = greenBrush;
+		}
+		parentItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, emuStatusStr);
+		parentItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, myBrush);
+		if ( autoExpand )
+			parentItem->setExpanded(true);
+		if ( autoScroll )
+			qmc2ROMAlyzer->treeWidgetChecksums->scrollToItem(parentItem, QAbstractItemView::PositionAtTop);
+	}
 
-  return true;
+	return true;
 }
 
 bool ROMAlyzerXmlHandler::characters(const QString &str)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::characters(...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::characters(...)");
 #endif
 
-  currentText += QString::fromUtf8(str.toLocal8Bit());
-  return true;
+	currentText += QString::fromUtf8(str.toLocal8Bit());
+	return true;
 }

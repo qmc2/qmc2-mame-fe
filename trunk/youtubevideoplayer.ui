@@ -35,7 +35,7 @@
         <x>0</x>
         <y>0</y>
         <width>505</width>
-        <height>218</height>
+        <height>354</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -423,7 +423,7 @@
          </property>
          <property name="icon">
           <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/search.png</normaloff>:/data/img/search.png</iconset>
+           <normaloff>:/data/img/find.png</normaloff>:/data/img/find.png</iconset>
          </property>
         </widget>
        </item>

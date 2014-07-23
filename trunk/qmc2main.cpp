@@ -1015,7 +1015,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2GameMenu->addAction(tr("&Analyse ROM..."));
   criticalActions << action;
   action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
   qmc2GameMenu->addSeparator();
   qmc2GameMenu->addMenu(menuRank);
@@ -1071,7 +1071,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2SearchMenu->addAction(tr("&Analyse ROM..."));
   criticalActions << action;
   action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
   qmc2SearchMenu->addSeparator();
   qmc2SearchMenu->addMenu(menuRank);
@@ -1118,7 +1118,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2FavoritesMenu->addAction(tr("&Analyse ROM..."));
   criticalActions << action;
   action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
   qmc2FavoritesMenu->addSeparator();
   qmc2FavoritesMenu->addMenu(menuRank);
@@ -1190,7 +1190,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2PlayedMenu->addAction(tr("&Analyse ROM..."));
   criticalActions << action;
   action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
   qmc2PlayedMenu->addSeparator();
   qmc2PlayedMenu->addMenu(menuRank);
@@ -11151,6 +11151,9 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAnalyseROMTagged_triggered(bool)");
 #endif
 
+	if ( qmc2Gamelist->numTaggedSets <= 0 )
+		return;
+
 	if ( isActiveState ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)"));
 		return;
@@ -11182,7 +11185,7 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 		qmc2ROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2ROMAlyzer->tabReport);
 
 	QTimer::singleShot(0, qmc2ROMAlyzer, SLOT(raise()));
-	QTimer::singleShot(0, qmc2ROMAlyzer->pushButtonAnalyze, SLOT(click()));
+	QTimer::singleShot(0, qmc2ROMAlyzer->pushButtonAnalyze, SLOT(animateClick()));
 }
 
 void MainWindow::on_actionRunRomToolTagged_triggered(bool)

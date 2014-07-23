@@ -188,6 +188,9 @@
         <file>data/img/right_action.png</file>
         <file>data/img/rom.png</file>
         <file>data/img/rom_multiple.png</file>
+        <file>data/img/romalyzer.png</file>
+        <file>data/img/romalyzer_flipped.png</file>
+        <file>data/img/romalyzer_multiple.png</file>
         <file>data/img/search.png</file>
         <file>data/img/search_multiple.png</file>
         <file>data/img/sleep.png</file>
