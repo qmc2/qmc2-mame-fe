@@ -168,7 +168,6 @@ class ROMAlyzerXmlHandler : public QXmlDefaultHandler
 		QBrush greyBrush;
 
 		ROMAlyzerXmlHandler(QTreeWidgetItem *, bool expand = false, bool scroll = false);
-		~ROMAlyzerXmlHandler();
 
 		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
 		bool endElement(const QString &, const QString &, const QString &);
@@ -282,7 +281,6 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void chdManagerReadyReadStandardOutput();
 		void chdManagerReadyReadStandardError();
 		void chdManagerError(QProcess::ProcessError);
-		void chdManagerStateChanged(QProcess::ProcessState);
 
 	protected:
 		void closeEvent(QCloseEvent *);

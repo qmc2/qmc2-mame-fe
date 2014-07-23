@@ -26,7 +26,7 @@
         </sizepolicy>
        </property>
        <property name="toolTip">
-        <string>Shortname of game to be analyzed - wildcards allowed, use space as delimiter for multiple games</string>
+        <string>Enter short names / IDs of sets to be analyzed - wildcards allowed, use space as delimiter for multiple sets or search patterns</string>
        </property>
        <property name="placeholderText">
         <string>Specify sets to analyze</string>
@@ -66,7 +66,7 @@
        </property>
        <property name="icon">
         <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/find.png</normaloff>:/data/img/find.png</iconset>
+         <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
        </property>
        <property name="autoDefault">
         <bool>false</bool>
@@ -1298,7 +1298,7 @@
          </property>
          <property name="icon">
           <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/search.png</normaloff>:/data/img/search.png</iconset>
+           <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
          </property>
          <property name="autoDefault">
           <bool>false</bool>
