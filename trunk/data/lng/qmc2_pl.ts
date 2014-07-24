@@ -16892,7 +16892,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="156"/>
-        <location filename="../../romalyzer.ui" line="1492"/>
+        <location filename="../../romalyzer.ui" line="1501"/>
         <location filename="../../romalyzer.cpp" line="986"/>
         <source>SHA1</source>
         <translation>SHA1</translation>
@@ -16985,7 +16985,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Ogólne ustawienia i limity analizy</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1118"/>
+        <location filename="../../romalyzer.ui" line="1124"/>
         <source>File size</source>
         <translation>Rozmiar pliku</translation>
     </message>
@@ -17000,12 +17000,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Rozmiar dziennika</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1280"/>
+        <location filename="../../romalyzer.ui" line="1289"/>
         <source>Reports</source>
         <translation>Raporty</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1093"/>
+        <location filename="../../romalyzer.ui" line="1096"/>
         <source>Maximum number of reported sets held in memory (0 = no limit)</source>
         <translation>Maksymalna liczba raportów trzymanych w pamięci (0 = bez ograniczeń)</translation>
     </message>
@@ -17085,14 +17085,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Tworzenie setów niepotrzebujących setów macierzystych (w przeciwnym razie tworzenie setów scalonych, co jest zalecane)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="848"/>
         <source>Rewrite sets only when they are &apos;good&apos; (otherwise, &apos;bad&apos; sets will be included)</source>
-        <translation>Przepisywanie setów tylko kiedy są &apos;dobre&apos; (w przeciwnym razie będą przepisane tównież &apos;złe&apos;)</translation>
+        <translation type="obsolete">Przepisywanie setów tylko kiedy są &apos;dobre&apos; (w przeciwnym razie będą przepisane tównież &apos;złe&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="851"/>
         <source>Good sets only</source>
-        <translation>Jedynie dobre sety</translation>
+        <translation type="obsolete">Jedynie dobre sety</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="864"/>
@@ -17125,38 +17123,38 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Wskaż dodatkową ścieżkę ROM-ów</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1331"/>
-        <location filename="../../romalyzer.ui" line="1537"/>
+        <location filename="../../romalyzer.ui" line="1340"/>
+        <location filename="../../romalyzer.ui" line="1546"/>
         <source>Search</source>
         <translation>Szukaj</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1410"/>
+        <location filename="../../romalyzer.ui" line="1419"/>
         <source>ID</source>
         <translation>ID</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1420"/>
+        <location filename="../../romalyzer.ui" line="1429"/>
         <source>Status</source>
         <translation>Stan</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1430"/>
+        <location filename="../../romalyzer.ui" line="1439"/>
         <source>Path</source>
         <translation>Ścieżka</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1368"/>
+        <location filename="../../romalyzer.ui" line="1377"/>
         <source>Repair selected &apos;bad&apos; sets using the file from the first selected &apos;good&apos; set (at least 1 good and 1 bad set must be selected)</source>
         <translation>Naprawianie wybranych &apos;złych&apos; setów przy pomocy plików z pierwszego wybranego &apos;dobrego&apos; seta (muszą być wybrane co najmniej 1 dobry i 1 zły set)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1371"/>
+        <location filename="../../romalyzer.ui" line="1380"/>
         <source>Repair bad sets</source>
         <translation>Naprawianie złych setów</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1348"/>
+        <location filename="../../romalyzer.ui" line="1357"/>
         <source>Analyze all selected sets in order to qualify them</source>
         <translation>Sprawdzenie wszystkich wybranych setów w celu kwalifikacji</translation>
     </message>
@@ -17191,12 +17189,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1180"/>
+        <location filename="../../romalyzer.ui" line="1189"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Expansion&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1200"/>
+        <location filename="../../romalyzer.ui" line="1209"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Hashes&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17206,57 +17204,57 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1210"/>
+        <location filename="../../romalyzer.ui" line="1219"/>
         <source>Append</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1220"/>
+        <location filename="../../romalyzer.ui" line="1229"/>
         <source>File info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1167"/>
+        <location filename="../../romalyzer.ui" line="1176"/>
         <source>Calculate SHA-1 hash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1170"/>
+        <location filename="../../romalyzer.ui" line="1179"/>
         <source>SHA-1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1250"/>
+        <location filename="../../romalyzer.ui" line="1259"/>
         <source>Scroll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1190"/>
+        <location filename="../../romalyzer.ui" line="1199"/>
         <source>Automatically expand check-sums</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1193"/>
+        <location filename="../../romalyzer.ui" line="1202"/>
         <source>Check-sums</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1230"/>
+        <location filename="../../romalyzer.ui" line="1239"/>
         <source>CRC-32</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1135"/>
+        <location filename="../../romalyzer.ui" line="1141"/>
         <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1300"/>
+        <location filename="../../romalyzer.ui" line="1309"/>
         <source>Check-sum wizard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1312"/>
+        <location filename="../../romalyzer.ui" line="1321"/>
         <source>Checksum to be searched</source>
         <translation>Szukana suma kontrolna</translation>
     </message>
@@ -17269,7 +17267,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation type="obsolete">Rozpoczęcie poszukiwania sumy kontrolnej</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1351"/>
+        <location filename="../../romalyzer.ui" line="1360"/>
         <source>Analyze selected sets</source>
         <translation>Analiza wybranych setów</translation>
     </message>
@@ -17278,39 +17276,39 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation type="obsolete">Przeszukiwanie wyników pod kątem obecjen sumy kontrolnej</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1415"/>
+        <location filename="../../romalyzer.ui" line="1424"/>
         <source>File name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1440"/>
-        <location filename="../../romalyzer.ui" line="1627"/>
+        <location filename="../../romalyzer.ui" line="1449"/>
+        <location filename="../../romalyzer.ui" line="1636"/>
         <source>Level of automation</source>
         <translation>Poziom automatyzacji</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1453"/>
+        <location filename="../../romalyzer.ui" line="1462"/>
         <source>Choose the level of automated wizard operations</source>
         <translation>Wybierz poziom automatyzacji operacji asystenta</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1457"/>
-        <location filename="../../romalyzer.ui" line="1644"/>
+        <location filename="../../romalyzer.ui" line="1466"/>
+        <location filename="../../romalyzer.ui" line="1653"/>
         <source>Do nothing automatically</source>
         <translation>Brak automatyzacji</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1462"/>
+        <location filename="../../romalyzer.ui" line="1471"/>
         <source>Automatically select matches</source>
         <translation>Automatyczny wybór dopasowań</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1467"/>
+        <location filename="../../romalyzer.ui" line="1476"/>
         <source>Automatically select matches and analyze sets</source>
         <translation>Automatyczny wybór dopasowań i analiza setów</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1472"/>
+        <location filename="../../romalyzer.ui" line="1481"/>
         <source>Automatically select matches, analyze sets and repair bad ones</source>
         <translation>Automatyczny wybór dopasowań, analiza setów i naprawa złych</translation>
     </message>
@@ -17319,17 +17317,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation type="obsolete">Wybór typu sumy kontrolnej</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1506"/>
+        <location filename="../../romalyzer.ui" line="1515"/>
         <source>Set rename tool</source>
         <translation>Narzędzie zmiany nazwy zestawów</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1521"/>
+        <location filename="../../romalyzer.ui" line="1530"/>
         <source>Specify sets</source>
         <translation>Wskaż zestawy</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1534"/>
+        <location filename="../../romalyzer.ui" line="1543"/>
         <source>Search for matches now!</source>
         <translation>Szukaj pasujących teraz!</translation>
     </message>
@@ -17338,62 +17336,62 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation type="obsolete">Wyniki wyszukiwania (dopasowania sum kontrolnych)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1640"/>
+        <location filename="../../romalyzer.ui" line="1649"/>
         <source>Choose the level of automated set renamer operations</source>
         <translation>Wybierz poziom automatyzacji narzędzia zmieniającego nazwy</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1649"/>
+        <location filename="../../romalyzer.ui" line="1658"/>
         <source>Automatically select sure matches</source>
         <translation>Automatyczny wybór pewnych dopasowań</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1666"/>
+        <location filename="../../romalyzer.ui" line="1675"/>
         <source>Old XML</source>
         <translation>Stary XML</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1679"/>
+        <location filename="../../romalyzer.ui" line="1688"/>
         <source>Old XML data input file (produced with &apos;-listxml&apos;)</source>
         <translation>Stary plik wejściowy danych XML (utworzony za pomocą (&apos;-listxml&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1692"/>
+        <location filename="../../romalyzer.ui" line="1701"/>
         <source>Browse old XML data input file (produced with &apos;-listxml&apos;)</source>
         <translation>Wskaż stary plik wejściowy danych XML (utworzony za pomocą (&apos;-listxml&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1716"/>
+        <location filename="../../romalyzer.ui" line="1725"/>
         <source>Export selected results to a file</source>
         <translation>Eksport wybranych wyników do pliku</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1719"/>
+        <location filename="../../romalyzer.ui" line="1728"/>
         <source>Export results...</source>
         <translation>Eksport wyników...</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1739"/>
+        <location filename="../../romalyzer.ui" line="1748"/>
         <source>Import results from a file</source>
         <translation>Import wyników z pliku</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1742"/>
+        <location filename="../../romalyzer.ui" line="1751"/>
         <source>Import results...</source>
         <translation>Import wyników...</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1767"/>
+        <location filename="../../romalyzer.ui" line="1776"/>
         <source>Close ROMAlyzer</source>
         <translation>Zamknij ROMAlyzer</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1770"/>
+        <location filename="../../romalyzer.ui" line="1779"/>
         <source>&amp;Close</source>
         <translation>&amp;Zamknij</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1207"/>
+        <location filename="../../romalyzer.ui" line="1216"/>
         <source>If set, analysis output is appended (otherwise the report is cleared before the analysis)</source>
         <translation>Jeśli włączone, wyjście analizy jest dopisywane (w przeciwnym wypadku raport jest czyszczony przed analizą)</translation>
     </message>
@@ -17414,6 +17412,16 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Test połączenia</translation>
     </message>
     <message>
+        <location filename="../../romalyzer.ui" line="848"/>
+        <source>Rewrite dumps only when they are &apos;good&apos; (otherwise, &apos;bad&apos; dumps will be included)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="851"/>
+        <source>Good dumps only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../romalyzer.ui" line="972"/>
         <source>Specify an additional (source) ROM path used when the set rewriter is active</source>
         <translation type="unfinished"></translation>
@@ -17424,82 +17432,82 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1227"/>
+        <location filename="../../romalyzer.ui" line="1236"/>
         <source>Calculate CRC-32 check-sum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1315"/>
+        <location filename="../../romalyzer.ui" line="1324"/>
         <source>Enter check-sum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1328"/>
+        <location filename="../../romalyzer.ui" line="1337"/>
         <source>Search for the check-sum now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1385"/>
+        <location filename="../../romalyzer.ui" line="1394"/>
         <source>Search results for the current check-sum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1488"/>
+        <location filename="../../romalyzer.ui" line="1497"/>
         <source>Select the check-sum type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1518"/>
+        <location filename="../../romalyzer.ui" line="1527"/>
         <source>Specify sets to be included in the search - wildcards allowed, use space as delimiter for multiple sets</source>
         <translation>Nazwy zestawów do przeszukania - dzikie karty są dozwolone, spacja rozdziela kolejne zestawy</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1560"/>
+        <location filename="../../romalyzer.ui" line="1569"/>
         <source>Perform proposed actions on all selected sets</source>
         <translation>Wykonaj sugerowane akcje na wszystkich wybranych zestawach</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1563"/>
+        <location filename="../../romalyzer.ui" line="1572"/>
         <source>Perform actions</source>
         <translation>Wykonaj akcje</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1577"/>
+        <location filename="../../romalyzer.ui" line="1586"/>
         <source>Search results (check-sum matches)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1602"/>
+        <location filename="../../romalyzer.ui" line="1611"/>
         <source>ID / File name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1607"/>
+        <location filename="../../romalyzer.ui" line="1616"/>
         <source>Old ID / File name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1612"/>
+        <location filename="../../romalyzer.ui" line="1621"/>
         <source>Match probability</source>
         <translation>Prawdopodobieństwo dopasowania</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1617"/>
+        <location filename="../../romalyzer.ui" line="1626"/>
         <source>Action</source>
         <translation>Akcja</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1654"/>
+        <location filename="../../romalyzer.ui" line="1663"/>
         <source>Automatically select sure matches and perform proposed actions</source>
         <translation>Wybierz pewne dopasowania automatycznie i wykonaj sugerowane akcje</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1790"/>
+        <location filename="../../romalyzer.ui" line="1799"/>
         <source>Current ROMAlyzer status</source>
         <translation>Bieżący stan ROMAlyzera</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1793"/>
+        <location filename="../../romalyzer.ui" line="1802"/>
         <location filename="../../romalyzer.cpp" line="674"/>
         <location filename="../../romalyzer.cpp" line="1171"/>
         <location filename="../../romalyzer.cpp" line="2396"/>
@@ -17509,13 +17517,13 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Bezczynny</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1809"/>
+        <location filename="../../romalyzer.ui" line="1818"/>
         <source>Analysis progress indicator</source>
         <translation>Wskaźnik postępu analizy</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="131"/>
-        <location filename="../../romalyzer.ui" line="1425"/>
+        <location filename="../../romalyzer.ui" line="1434"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
@@ -17645,7 +17653,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="151"/>
-        <location filename="../../romalyzer.ui" line="1497"/>
+        <location filename="../../romalyzer.ui" line="1506"/>
         <location filename="../../romalyzer.cpp" line="969"/>
         <source>CRC</source>
         <translation>CRC</translation>
@@ -18454,12 +18462,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation type="obsolete">Oblicz sumę kontrolną CRC-32</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1247"/>
+        <location filename="../../romalyzer.ui" line="1256"/>
         <source>Automatically scroll to the currently analyzed game</source>
         <translation>Przewiń automatycznie do aktualnie analizowanej gry</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1217"/>
+        <location filename="../../romalyzer.ui" line="1226"/>
         <source>Automatically expand file info</source>
         <translation>Automatycznie rozwiń informacje o pliku</translation>
     </message>
@@ -18528,7 +18536,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation> (scalony)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1828"/>
+        <location filename="../../romalyzer.ui" line="1837"/>
         <source>File I/O progress indicator</source>
         <translation>Wskaźnik postępu we/wy pliku</translation>
     </message>
@@ -18788,12 +18796,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Aktualizuj CHD</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1145"/>
+        <location filename="../../romalyzer.ui" line="1151"/>
         <source>Maximum number of lines in log (0 = no limit)</source>
         <translation>Maksymalna liczba linii w dzienniku (0 = bez ograniczeń)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1151"/>
+        <location filename="../../romalyzer.ui" line="1157"/>
         <source> lines</source>
         <translation> linii</translation>
     </message>
@@ -18849,8 +18857,8 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1074"/>
-        <location filename="../../romalyzer.ui" line="1096"/>
-        <location filename="../../romalyzer.ui" line="1148"/>
+        <location filename="../../romalyzer.ui" line="1099"/>
+        <location filename="../../romalyzer.ui" line="1154"/>
         <source>unlimited</source>
         <translation>nieograniczony</translation>
     </message>
@@ -18924,7 +18932,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Wybrać maszynę na liście maszyn jeśli wybrana w raporcie z analizy?</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1132"/>
+        <location filename="../../romalyzer.ui" line="1138"/>
         <source>Select game in game list if selected in analysis report?</source>
         <translation>Wybrać grę na liście gier jeśli wybrana w raporcie z analizy?</translation>
     </message>
