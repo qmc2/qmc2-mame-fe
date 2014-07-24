@@ -157,7 +157,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 	romFileContextMenu = new QMenu(this);
 	romFileContextMenu->hide();
   
-	s = tr("Search checksum");
+	s = tr("Search check-sum");
 	action = romFileContextMenu->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/filefind.png")));
@@ -414,6 +414,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUniqueCRCs", checkBoxSetRewriterUniqueCRCs->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", radioButtonSetRewriterIndividualDirectories->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterOutputPath", lineEditSetRewriterOutputPath->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUseAdditionalRomPath", checkBoxSetRewriterUseAdditionalRomPath->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterAdditionalRomPath", lineEditSetRewriterAdditionalRomPath->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardHashType", comboBoxChecksumWizardHashType->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", comboBoxChecksumWizardAutomationLevel->currentIndex());
@@ -488,6 +489,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	lineEditCHDManagerExecutableFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", QString()).toString());
 	lineEditTemporaryWorkingDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", QString()).toString());
 	lineEditSetRewriterOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterOutputPath", QString()).toString());
+	checkBoxSetRewriterUseAdditionalRomPath->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUseAdditionalRomPath", true).toBool());
 	lineEditSetRewriterAdditionalRomPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterAdditionalRomPath", QString()).toString());
 	groupBoxSetRewriter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableSetRewriter", false).toBool());
 	checkBoxSetRewriterWhileAnalyzing->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterWhileAnalyzing", false).toBool());
@@ -587,7 +589,7 @@ void ROMAlyzer::analyze()
 		myRomPath = "roms";
 
 	if ( groupBoxSetRewriter->isChecked() )
-		if ( !lineEditSetRewriterAdditionalRomPath->text().isEmpty() )
+		if ( checkBoxSetRewriterUseAdditionalRomPath->isChecked() && !lineEditSetRewriterAdditionalRomPath->text().isEmpty() )
 			myRomPath = lineEditSetRewriterAdditionalRomPath->text() + ";" + myRomPath;
 
 	myRomPath.replace("~", QDir::homePath());
@@ -741,7 +743,7 @@ void ROMAlyzer::analyze()
 			if ( qmc2StopParser )
 				break;
 
-			// step 2: parse XML data, insert ROMs / CHDs and checksums as they _should_ be
+			// step 2: parse XML data, insert ROMs / CHDs and check-sums as they *should* be
 			log(tr("parsing XML data for '%1'").arg(gameName));
 			QXmlInputSource xmlInputSource;
 			xmlInputSource.setData(xmlBuffer);
@@ -763,7 +765,7 @@ void ROMAlyzer::analyze()
 			if ( wizardSearch )
 				numWizardFiles = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID).count();
 
-			// step 3: check file status of ROMs and CHDs, recalculate checksums
+			// step 3: check file status of ROMs and CHDs, recalculate check-sums
 			log(tr("checking %n file(s) for '%1'", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(gameName));
 			progressBar->reset();
 			progressBar->setRange(0, xmlHandler.fileCounter);
@@ -1029,7 +1031,7 @@ void ROMAlyzer::analyze()
 						gameOkay = false;
 						childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
 						childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/warning.png")));
-						log(tr("WARNING: %1 file '%2' loaded from '%3' has incorrect / unexpected checksums").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile));
+						log(tr("WARNING: %1 file '%2' loaded from '%3' has incorrect / unexpected check-sums").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile));
 					} else {
 						if ( fileStatus == tr("skipped") ) {
 							childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.blueBrush);
@@ -1308,14 +1310,14 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 										quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V3_LOGICALBYTES_OFFSET);
 										log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
 										QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
-										log(tr("  MD5 checksum: %1").arg(QString(md5Data.toHex())));
+										log(tr("  MD5 check-sum: %1").arg(QString(md5Data.toHex())));
 										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
-										log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+										log(tr("  SHA1 check-sum: %1").arg(QString(sha1Data.toHex())));
 										if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
 											QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTMD5_OFFSET), QMC2_CHD_HEADER_V3_PARENTMD5_LENGTH);
-											log(tr("  parent CHD's MD5 checksum: %1").arg(QString(md5Data.toHex())));
+											log(tr("  parent CHD's MD5 check-sum: %1").arg(QString(md5Data.toHex())));
 											QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V3_PARENTSHA1_LENGTH);
-											log(tr("  parent CHD's SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+											log(tr("  parent CHD's SHA1 check-sum: %1").arg(QString(sha1Data.toHex())));
 										}
 									}
 									break;
@@ -1332,13 +1334,13 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 										quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V4_LOGICALBYTES_OFFSET);
 										log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
 										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-										log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+										log(tr("  SHA1 check-sum: %1").arg(QString(sha1Data.toHex())));
 										if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
 											QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V4_PARENTSHA1_LENGTH);
-											log(tr("  parent CHD's SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+											log(tr("  parent CHD's SHA1 check-sum: %1").arg(QString(sha1Data.toHex())));
 										}
 										QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-										log(tr("  raw SHA1 checksum: %1").arg(QString(rawsha1Data.toHex())));
+										log(tr("  raw SHA1 check-sum: %1").arg(QString(rawsha1Data.toHex())));
 									}
 									break;
 
@@ -1363,12 +1365,12 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 										quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V5_LOGICALBYTES_OFFSET);
 										log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
 										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-										log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+										log(tr("  SHA1 check-sum: %1").arg(QString(sha1Data.toHex())));
 										QByteArray parentSha1DataHex = QByteArray((const char *)(buffer + QMC2_CHD_HEADER_V5_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V5_PARENTSHA1_LENGTH).toHex();
 										if ( parentSha1DataHex.toInt(0, 16) != 0 )
-											log(tr("  parent CHD's SHA1 checksum: %1").arg(QString(parentSha1DataHex)));
+											log(tr("  parent CHD's SHA1 check-sum: %1").arg(QString(parentSha1DataHex)));
 										QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-										log(tr("  raw SHA1 checksum: %1").arg(QString(rawsha1Data.toHex())));
+										log(tr("  raw SHA1 check-sum: %1").arg(QString(rawsha1Data.toHex())));
 									}
 									break;
 
@@ -1431,7 +1433,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 													} else if ( !chdManagerVerifyCHDs ) {
 														switch ( chdVersion ) {
 															case 3:
-																log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+																log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
 																if ( calcSHA1 ) {
 																	QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
 																	*sha1Str = QString(sha1Data.toHex());
@@ -1443,7 +1445,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 																break;
 
 															case 4:
-																log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+																log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
 																if ( calcSHA1 ) {
 																	QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
 																	*sha1Str = QString(sha1Data.toHex());
@@ -1451,7 +1453,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 																break;
 
 															case 5:
-																log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+																log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
 																if ( calcSHA1 ) {
 																	QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
 																	*sha1Str = QString(sha1Data.toHex());
@@ -1459,7 +1461,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 																break;
 
 															default:
-																log(tr("CHD manager: no header checksums available for CHD verification"));
+																log(tr("CHD manager: no header check-sums available for CHD verification"));
 																effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
 																if ( fallbackPath->isEmpty() )
 																	*fallbackPath = chdFilePath;
@@ -1546,7 +1548,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 
 											switch ( chdVersion ) {
 												case 3:
-													log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+													log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
 													if ( chdManagerSHA1Success && calcSHA1 ) {
 														QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
 														*sha1Str = QString(sha1Data.toHex());
@@ -1558,7 +1560,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 													break;
 
 												case 4:
-													log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+													log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
 													if ( chdManagerSHA1Success && calcSHA1 ) {
 														QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
 														*sha1Str = QString(sha1Data.toHex());
@@ -1566,7 +1568,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 													break;
 
 												case 5:
-													log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+													log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
 													if ( chdManagerSHA1Success && calcSHA1 ) {
 														QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
 														*sha1Str = QString(sha1Data.toHex());
@@ -1574,7 +1576,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 													break;
 
 												default:
-													log(tr("CHD manager: WARNING: no header checksums available for CHD verification"));
+													log(tr("CHD manager: WARNING: no header check-sums available for CHD verification"));
 													effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
 													if ( fallbackPath->isEmpty() )
 														*fallbackPath = chdFilePath;
@@ -1594,7 +1596,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 								} else {
 									switch ( chdVersion ) {
 										case 3:
-											log(tr("using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+											log(tr("using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
 											if ( calcSHA1 ) {
 												QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
 												*sha1Str = QString(sha1Data.toHex());
@@ -1606,7 +1608,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 											break;
 
 										case 4:
-											log(tr("using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+											log(tr("using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
 											if ( calcSHA1 ) {
 												QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
 												*sha1Str = QString(sha1Data.toHex());
@@ -1614,7 +1616,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 											break;
 
 										case 5:
-											log(tr("using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+											log(tr("using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
 											if ( calcSHA1 ) {
 												QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
 												*sha1Str = QString(sha1Data.toHex());
@@ -1622,7 +1624,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 											break;
 
 										default:
-											log(tr("WARNING: no header checksums available for CHD verification"));
+											log(tr("WARNING: no header check-sums available for CHD verification"));
 											effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
 											if ( fallbackPath->isEmpty() )
 												*fallbackPath = chdFilePath;
@@ -3204,13 +3206,13 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 	if ( !pushButtonChecksumWizardRepairBadSets->isEnabled() ) return;
 	pushButtonChecksumWizardRepairBadSets->setEnabled(false);
 
-	log(tr("checksum wizard: repairing %n bad set(s)", "", numBadSets));
+	log(tr("check-sum wizard: repairing %n bad set(s)", "", numBadSets));
 	if ( goodItem != NULL ) {
 		QString sourceType = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE);
 		QString sourceFile = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME);
 		QString sourceCRC  = goodItem->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME); // we need the CRC for file identification in ZIPs
 		QString sourcePath = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH);
-		log(tr("checksum wizard: using %1 file '%2' from '%3' as repro template").arg(sourceType).arg(sourceFile).arg(sourcePath));
+		log(tr("check-sum wizard: using %1 file '%2' from '%3' as repro template").arg(sourceType).arg(sourceFile).arg(sourcePath));
 
 		bool loadOkay = true;
 		QByteArray templateData;
@@ -3233,7 +3235,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 					unzGoToFirstFile(zipFile);
 					if ( crcIdentMap.contains(ulCRC) ) {
 						fn = crcIdentMap[ulCRC];
-						log(tr("checksum wizard: successfully identified '%1' from '%2' by CRC, filename in ZIP archive is '%3'").arg(sourceFile).arg(sourcePath).arg(fn));
+						log(tr("check-sum wizard: successfully identified '%1' from '%2' by CRC, filename in ZIP archive is '%3'").arg(sourceFile).arg(sourcePath).arg(fn));
 						if ( unzLocateFile(zipFile, (const char *)fn.toLocal8Bit(), 2) == UNZ_OK ) { // NOT case-sensitive filename compare!
 							if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
 								qint64 len;
@@ -3242,27 +3244,27 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 									templateData += readData;
 								}
 								unzCloseCurrentFile(zipFile);
-								log(tr("checksum wizard: template data loaded, uncompressed size = %1").arg(humanReadable(templateData.length())));
+								log(tr("check-sum wizard: template data loaded, uncompressed size = %1").arg(humanReadable(templateData.length())));
 							}
 						}
 					} else {
-						log(tr("checksum wizard: FATAL: unable to identify '%1' from '%2' by CRC").arg(sourceFile).arg(sourcePath));
+						log(tr("check-sum wizard: FATAL: unable to identify '%1' from '%2' by CRC").arg(sourceFile).arg(sourcePath));
 						loadOkay = false;
 					}
 					unzClose(zipFile);
 				} else {
-					log(tr("checksum wizard: FATAL: can't open ZIP archive '%1' for reading").arg(sourcePath));
+					log(tr("check-sum wizard: FATAL: can't open ZIP archive '%1' for reading").arg(sourcePath));
 					loadOkay = false;
 				}
 			} else {
 				if ( !readFileData(sourcePath, sourceCRC, &templateData) ) {
-					log(tr("checksum wizard: FATAL: can't load repro template data from '%1' with expected CRC '%2'").arg(sourcePath).arg(sourceCRC));
+					log(tr("check-sum wizard: FATAL: can't load repro template data from '%1' with expected CRC '%2'").arg(sourcePath).arg(sourceCRC));
 					loadOkay = false;
 				}
 			}
 		} else {
 			// FIXME: no support for CHDs yet (probably not necessary)
-			log(tr("checksum wizard: sorry, no support for CHD files yet"));
+			log(tr("check-sum wizard: sorry, no support for CHD files yet"));
 			loadOkay = false;
 		}
 
@@ -3277,7 +3279,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 				QString targetPath = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH);
 				QString badSetName = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
 				labelStatus->setText(tr("Repairing set '%1' - %2").arg(badSetName).arg(badList.count() - counter));
-				log(tr("checksum wizard: repairing %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
+				log(tr("check-sum wizard: repairing %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
 				qApp->processEvents();
 
 				if ( targetType == tr("ROM") ) {
@@ -3289,20 +3291,20 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 						QFile f(targetPath);
 						int appendType = APPEND_STATUS_ADDINZIP;
 						if ( f.exists() ) {
-							log(tr("checksum wizard: target ZIP exists, loading complete data and structure"));
+							log(tr("check-sum wizard: target ZIP exists, loading complete data and structure"));
 							QStringList fileNameList;
 							if ( readAllZipData(targetPath, &targetDataMap, &targetFileMap, &fileNameList) ) {
-								log(tr("checksum wizard: target ZIP successfully loaded"));
+								log(tr("check-sum wizard: target ZIP successfully loaded"));
 								bool crcExists = targetDataMap.contains(sourceCRC);
 								bool fileExists = fileNameList.contains(targetFile);
 								if ( crcExists || fileExists ) {
 									if ( crcExists ) {
-										log(tr("checksum wizard: an entry with the CRC '%1' already exists, recreating the ZIP from scratch to replace the bad file").arg(sourceCRC));
+										log(tr("check-sum wizard: an entry with the CRC '%1' already exists, recreating the ZIP from scratch to replace the bad file").arg(sourceCRC));
 										targetDataMap.remove(sourceCRC);
 										targetFileMap.remove(sourceCRC);
 									}
 									if ( fileExists ) {
-										log(tr("checksum wizard: an entry with the name '%1' already exists, recreating the ZIP from scratch to replace the bad file").arg(targetFile));
+										log(tr("check-sum wizard: an entry with the name '%1' already exists, recreating the ZIP from scratch to replace the bad file").arg(targetFile));
 										targetDataMap.remove(targetDataMap.key(targetFile.toLocal8Bit()));
 										targetFileMap.remove(targetFileMap.key(targetFile.toLocal8Bit()));
 									}
@@ -3328,22 +3330,22 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 									}
 									QString newName = targetPath + QString(".qmc2-backup.%1").arg(QDateTime::currentDateTime().toString("yyyyMMddhhmmsszzz"));
 									if ( f.rename(newName) ) {
-										log(tr("checksum wizard: backup file '%1' successfully created").arg(newName));
+										log(tr("check-sum wizard: backup file '%1' successfully created").arg(newName));
 										copyTargetData = true;
 										appendType = APPEND_STATUS_CREATE;
 									} else {
-										log(tr("checksum wizard: FATAL: failed to create backup file '%1', aborting"));
+										log(tr("check-sum wizard: FATAL: failed to create backup file '%1', aborting"));
 										saveOkay = false;
 									}
 								} else
-									log(tr("checksum wizard: no entry with the CRC '%1' or name '%2' was found, adding the missing file to the existing ZIP").arg(sourceCRC).arg(targetFile));
+									log(tr("check-sum wizard: no entry with the CRC '%1' or name '%2' was found, adding the missing file to the existing ZIP").arg(sourceCRC).arg(targetFile));
 							} else {
-								log(tr("checksum wizard: FATAL: failed to load target ZIP, aborting"));
+								log(tr("check-sum wizard: FATAL: failed to load target ZIP, aborting"));
 								saveOkay = false;
 							}
 						} else {
 							appendType = APPEND_STATUS_CREATE;
-							log(tr("checksum wizard: the target ZIP does not exist, creating a new ZIP with just the missing file"));
+							log(tr("check-sum wizard: the target ZIP does not exist, creating a new ZIP with just the missing file"));
 						}
 
 						zipFile zip = NULL;
@@ -3393,7 +3395,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 									qApp->processEvents();
 									zipCloseFileInZip(zip);
 								} else {
-									log(tr("checksum wizard: FATAL: can't open file '%1' in ZIP archive '%2' for writing").arg(targetFile).arg(targetPath));
+									log(tr("check-sum wizard: FATAL: can't open file '%1' in ZIP archive '%2' for writing").arg(targetFile).arg(targetPath));
 									saveOkay = false;
 								}
 							}
@@ -3405,28 +3407,28 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 							else
 								zipClose(zip, 0);
 						} else {
-							log(tr("checksum wizard: FATAL: can't open ZIP archive '%1' for writing").arg(targetPath));
+							log(tr("check-sum wizard: FATAL: can't open ZIP archive '%1' for writing").arg(targetPath));
 							saveOkay = false;
 						}
 					} else {
 						// FIXME: no support for regular files yet
-						log(tr("checksum wizard: sorry, no support for regular files yet"));
+						log(tr("check-sum wizard: sorry, no support for regular files yet"));
 						saveOkay = false;
 					}
 				} else {
 					// FIXME: no support for CHDs yet (probably not necessary)
-					log(tr("checksum wizard: sorry, no support for CHD files yet"));
+					log(tr("check-sum wizard: sorry, no support for CHD files yet"));
 					saveOkay = false;
 				}
 
 				if ( saveOkay ) {
 					badItem->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("repaired"));
 					badItem->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, QBrush(QColor(0, 255, 0))); // green
-					log(tr("checksum wizard: successfully repaired %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
+					log(tr("check-sum wizard: successfully repaired %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
 				} else {
 					badItem->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("repair failed"));
 					badItem->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, QBrush(QColor(255, 0, 0))); // red
-					log(tr("checksum wizard: FATAL: failed to repair %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
+					log(tr("check-sum wizard: FATAL: failed to repair %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
 				}
 
 				progressBar->setValue(++counter);
@@ -3436,9 +3438,9 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 			progressBar->reset();
 		}
 	} else
-		log(tr("checksum wizard: FATAL: can't find any good set"));
+		log(tr("check-sum wizard: FATAL: can't find any good set"));
 
-	log(tr("checksum wizard: done (repairing %n bad set(s))", "", numBadSets));
+	log(tr("check-sum wizard: done (repairing %n bad set(s))", "", numBadSets));
 	on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
 }
 

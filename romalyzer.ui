@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>605</width>
-    <height>646</height>
+    <width>533</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -436,239 +436,6 @@
              </spacer>
             </item>
            </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBoxFlagsAndLimits">
-         <property name="title">
-          <string>General analysis flags and limits</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_1">
-          <item row="0" column="0">
-           <widget class="QCheckBox" name="checkBoxAppendReport">
-            <property name="toolTip">
-             <string>If set, analysis output is appended (otherwise the report is cleared before the analysis)</string>
-            </property>
-            <property name="text">
-             <string>Append to report</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QCheckBox" name="checkBoxAutoScroll">
-            <property name="toolTip">
-             <string>Automatically scroll to the currently analyzed game</string>
-            </property>
-            <property name="text">
-             <string>Auto scroll</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QCheckBox" name="checkBoxCalculateCRC">
-            <property name="toolTip">
-             <string>Calculate CRC-32 checksum</string>
-            </property>
-            <property name="text">
-             <string>Calculate CRC</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QCheckBox" name="checkBoxCalculateMD5">
-            <property name="toolTip">
-             <string>Calculate MD5 hash</string>
-            </property>
-            <property name="text">
-             <string>Calculate MD5</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QCheckBox" name="checkBoxExpandFiles">
-            <property name="toolTip">
-             <string>Automatically expand file info</string>
-            </property>
-            <property name="text">
-             <string>Expand file info</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QCheckBox" name="checkBoxExpandChecksums">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="toolTip">
-             <string>Automatically expand checksums</string>
-            </property>
-            <property name="text">
-             <string>Expand checksums</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QCheckBox" name="checkBoxCalculateSHA1">
-            <property name="toolTip">
-             <string>Calculate SHA1 hash</string>
-            </property>
-            <property name="text">
-             <string>Calculate SHA1</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3">
-           <widget class="QCheckBox" name="checkBoxSelectGame">
-            <property name="toolTip">
-             <string>Select game in game list if selected in analysis report?</string>
-            </property>
-            <property name="text">
-             <string>Select game</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0" colspan="5">
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
-             <widget class="QLabel" name="labelLimits">
-              <property name="text">
-               <string>&lt;b&gt;Limits:&lt;/b&gt;</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="labelMaxFileSize">
-              <property name="text">
-               <string>File size</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="spinBoxMaxFileSize">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="toolTip">
-               <string>Maximum size (in MB) of files to be loaded, files are skipped when they are bigger than that (0 = no limit)</string>
-              </property>
-              <property name="specialValueText">
-               <string>unlimited</string>
-              </property>
-              <property name="suffix">
-               <string> MB</string>
-              </property>
-              <property name="minimum">
-               <number>0</number>
-              </property>
-              <property name="maximum">
-               <number>999999</number>
-              </property>
-              <property name="value">
-               <number>0</number>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="labelMaxLogSize">
-              <property name="text">
-               <string>Log size</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="spinBoxMaxLogSize">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="toolTip">
-               <string>Maximum number of lines in log (0 = no limit)</string>
-              </property>
-              <property name="specialValueText">
-               <string>unlimited</string>
-              </property>
-              <property name="suffix">
-               <string> lines</string>
-              </property>
-              <property name="minimum">
-               <number>0</number>
-              </property>
-              <property name="maximum">
-               <number>999999</number>
-              </property>
-              <property name="value">
-               <number>0</number>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="labelMaxReports">
-              <property name="text">
-               <string>Reports</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="spinBoxMaxReports">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="toolTip">
-               <string>Maximum number of reported sets held in memory (0 = no limit)</string>
-              </property>
-              <property name="specialValueText">
-               <string>unlimited</string>
-              </property>
-              <property name="minimum">
-               <number>0</number>
-              </property>
-              <property name="maximum">
-               <number>999999</number>
-              </property>
-              <property name="value">
-               <number>0</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="0" column="4" rowspan="2">
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </widget>
@@ -1193,19 +960,6 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSetRewriterAdditionalRomPath">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Additional ROM path</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="1" colspan="5">
            <widget class="QLineEdit" name="lineEditSetRewriterAdditionalRomPath">
             <property name="sizePolicy">
@@ -1215,7 +969,7 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Specify an additional source ROM path used when the set rewriter is active</string>
+             <string>Specify an additional (source) ROM path used when the set rewriter is active</string>
             </property>
            </widget>
           </item>
@@ -1236,6 +990,306 @@
             </property>
            </widget>
           </item>
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="checkBoxSetRewriterUseAdditionalRomPath">
+            <property name="toolTip">
+             <string>Use the following additional ROM path</string>
+            </property>
+            <property name="text">
+             <string>Additional ROM path</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBoxFlagsAndLimits">
+         <property name="title">
+          <string>General analysis flags and limits</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_8">
+            <item row="3" column="6">
+             <widget class="QLabel" name="labelMaxLogSize">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Log size</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="Line" name="line_4">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="6" colspan="2">
+             <widget class="QLabel" name="labelLimits">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Limits&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="6" colspan="2">
+             <widget class="Line" name="line_7">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelOptions">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Flags&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="4">
+             <widget class="QCheckBox" name="checkBoxCalculateMD5">
+              <property name="toolTip">
+               <string>Calculate MD5 hash</string>
+              </property>
+              <property name="text">
+               <string>MD5</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="7">
+             <widget class="QSpinBox" name="spinBoxMaxFileSize">
+              <property name="toolTip">
+               <string>Maximum size (in MB) of files to be loaded, files are skipped when they are bigger than that (0 = no limit)</string>
+              </property>
+              <property name="specialValueText">
+               <string>unlimited</string>
+              </property>
+              <property name="suffix">
+               <string> MB</string>
+              </property>
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>999999</number>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="7">
+             <widget class="QSpinBox" name="spinBoxMaxReports">
+              <property name="toolTip">
+               <string>Maximum number of reported sets held in memory (0 = no limit)</string>
+              </property>
+              <property name="specialValueText">
+               <string>unlimited</string>
+              </property>
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>999999</number>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="6">
+             <widget class="QLabel" name="labelMaxFileSize">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>File size</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" rowspan="5">
+             <widget class="Line" name="line">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QCheckBox" name="checkBoxSelectGame">
+              <property name="toolTip">
+               <string>Select game in game list if selected in analysis report?</string>
+              </property>
+              <property name="text">
+               <string>Select</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="7">
+             <widget class="QSpinBox" name="spinBoxMaxLogSize">
+              <property name="toolTip">
+               <string>Maximum number of lines in log (0 = no limit)</string>
+              </property>
+              <property name="specialValueText">
+               <string>unlimited</string>
+              </property>
+              <property name="suffix">
+               <string> lines</string>
+              </property>
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>999999</number>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="4">
+             <widget class="QCheckBox" name="checkBoxCalculateSHA1">
+              <property name="toolTip">
+               <string>Calculate SHA-1 hash</string>
+              </property>
+              <property name="text">
+               <string>SHA-1</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Expansion&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QCheckBox" name="checkBoxExpandChecksums">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="toolTip">
+               <string>Automatically expand check-sums</string>
+              </property>
+              <property name="text">
+               <string>Check-sums</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4">
+             <widget class="QLabel" name="labelHashCalculation">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Hashes&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QCheckBox" name="checkBoxAppendReport">
+              <property name="toolTip">
+               <string>If set, analysis output is appended (otherwise the report is cleared before the analysis)</string>
+              </property>
+              <property name="text">
+               <string>Append</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QCheckBox" name="checkBoxExpandFiles">
+              <property name="toolTip">
+               <string>Automatically expand file info</string>
+              </property>
+              <property name="text">
+               <string>File info</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="4">
+             <widget class="QCheckBox" name="checkBoxCalculateCRC">
+              <property name="toolTip">
+               <string>Calculate CRC-32 check-sum</string>
+              </property>
+              <property name="text">
+               <string>CRC-32</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="4">
+             <widget class="Line" name="line_6">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QCheckBox" name="checkBoxAutoScroll">
+              <property name="toolTip">
+               <string>Automatically scroll to the currently analyzed game</string>
+              </property>
+              <property name="text">
+               <string>Scroll</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="Line" name="line_5">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3" rowspan="5">
+             <widget class="Line" name="line_2">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="6">
+             <widget class="QLabel" name="labelMaxReports">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Reports</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="5" rowspan="5">
+             <widget class="Line" name="line_3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
          </layout>
         </widget>
        </item>
@@ -1243,7 +1297,7 @@
      </widget>
      <widget class="QWidget" name="tabChecksumWizard">
       <attribute name="title">
-       <string>Checksum wizard</string>
+       <string>Check-sum wizard</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_6">
        <item row="0" column="1" colspan="2">
@@ -1258,20 +1312,20 @@
           <string>Checksum to be searched</string>
          </property>
          <property name="placeholderText">
-          <string>Enter checksum</string>
+          <string>Enter check-sum</string>
          </property>
         </widget>
        </item>
        <item row="0" column="3">
         <widget class="QPushButton" name="pushButtonChecksumWizardSearch">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Search for the checksum now</string>
+          <string>Search for the check-sum now</string>
          </property>
          <property name="text">
           <string>Search</string>
@@ -1328,7 +1382,7 @@
        <item row="2" column="0" colspan="4">
         <widget class="QTreeWidget" name="treeWidgetChecksumWizardSearchResult">
          <property name="toolTip">
-          <string>Search results for the current checksum</string>
+          <string>Search results for the current check-sum</string>
          </property>
          <property name="selectionMode">
           <enum>QAbstractItemView::ExtendedSelection</enum>
@@ -1425,13 +1479,13 @@
        <item row="0" column="0">
         <widget class="QComboBox" name="comboBoxChecksumWizardHashType">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Select the checksum type</string>
+          <string>Select the check-sum type</string>
          </property>
          <item>
           <property name="text">
@@ -1520,7 +1574,7 @@
        <item row="2" column="0" colspan="4">
         <widget class="QTreeWidget" name="treeWidgetSetRenamerSearchResult">
          <property name="toolTip">
-          <string>Search results (checksum matches)</string>
+          <string>Search results (check-sum matches)</string>
          </property>
          <property name="selectionMode">
           <enum>QAbstractItemView::ExtendedSelection</enum>
@@ -1812,12 +1866,12 @@
   <tabstop>toolButtonSaveLog</tabstop>
   <tabstop>checkBoxAppendReport</tabstop>
   <tabstop>checkBoxAutoScroll</tabstop>
-  <tabstop>checkBoxCalculateCRC</tabstop>
-  <tabstop>checkBoxCalculateMD5</tabstop>
+  <tabstop>checkBoxSelectGame</tabstop>
   <tabstop>checkBoxExpandFiles</tabstop>
   <tabstop>checkBoxExpandChecksums</tabstop>
   <tabstop>checkBoxCalculateSHA1</tabstop>
-  <tabstop>checkBoxSelectGame</tabstop>
+  <tabstop>checkBoxCalculateCRC</tabstop>
+  <tabstop>checkBoxCalculateMD5</tabstop>
   <tabstop>spinBoxMaxFileSize</tabstop>
   <tabstop>spinBoxMaxLogSize</tabstop>
   <tabstop>spinBoxMaxReports</tabstop>
@@ -1832,6 +1886,7 @@
   <tabstop>groupBoxSetRewriter</tabstop>
   <tabstop>lineEditSetRewriterOutputPath</tabstop>
   <tabstop>toolButtonBrowseSetRewriterOutputPath</tabstop>
+  <tabstop>checkBoxSetRewriterUseAdditionalRomPath</tabstop>
   <tabstop>lineEditSetRewriterAdditionalRomPath</tabstop>
   <tabstop>toolButtonBrowseSetRewriterAdditionalRomPath</tabstop>
   <tabstop>checkBoxSetRewriterWhileAnalyzing</tabstop>
@@ -1884,7 +1939,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>79</x>
-     <y>640</y>
+     <y>644</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
@@ -1900,11 +1955,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>105</x>
-     <y>282</y>
+     <y>303</y>
     </hint>
     <hint type="destinationlabel">
      <x>180</x>
-     <y>282</y>
+     <y>303</y>
     </hint>
    </hints>
   </connection>
@@ -1915,12 +1970,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>469</x>
-     <y>570</y>
+     <x>432</x>
+     <y>591</y>
     </hint>
     <hint type="destinationlabel">
-     <x>581</x>
-     <y>570</y>
+     <x>513</x>
+     <y>591</y>
     </hint>
    </hints>
   </connection>
@@ -1931,12 +1986,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>169</x>
-     <y>427</y>
+     <x>194</x>
+     <y>448</y>
     </hint>
     <hint type="destinationlabel">
-     <x>257</x>
-     <y>428</y>
+     <x>278</x>
+     <y>449</y>
     </hint>
    </hints>
   </connection>
@@ -1947,12 +2002,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>169</x>
-     <y>427</y>
+     <x>194</x>
+     <y>448</y>
     </hint>
     <hint type="destinationlabel">
-     <x>353</x>
-     <y>427</y>
+     <x>374</x>
+     <y>448</y>
     </hint>
    </hints>
   </connection>
@@ -1963,12 +2018,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>103</x>
-     <y>135</y>
+     <x>239</x>
+     <y>130</y>
     </hint>
     <hint type="destinationlabel">
-     <x>238</x>
-     <y>135</y>
+     <x>239</x>
+     <y>156</y>
     </hint>
    </hints>
   </connection>
@@ -1979,12 +2034,12 @@
    <slot>animateClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>30</x>
-     <y>83</y>
+     <x>46</x>
+     <y>605</y>
     </hint>
     <hint type="destinationlabel">
-     <x>52</x>
-     <y>83</y>
+     <x>384</x>
+     <y>605</y>
     </hint>
    </hints>
   </connection>
@@ -2015,8 +2070,8 @@
      <y>63</y>
     </hint>
     <hint type="destinationlabel">
-     <x>78</x>
-     <y>63</y>
+     <x>389</x>
+     <y>84</y>
     </hint>
    </hints>
   </connection>
