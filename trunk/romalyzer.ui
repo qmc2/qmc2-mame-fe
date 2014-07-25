@@ -1209,12 +1209,12 @@
          </property>
          <item>
           <property name="text">
-           <string>SHA1</string>
+           <string>SHA-1</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>CRC</string>
+           <string>CRC-32</string>
           </property>
          </item>
         </widget>

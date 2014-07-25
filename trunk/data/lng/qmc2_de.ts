@@ -16850,8 +16850,6 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="156"/>
-        <location filename="../../romalyzer.ui" line="1212"/>
-        <location filename="../../romalyzer.cpp" line="927"/>
         <source>SHA1</source>
         <translation>SHA1</translation>
     </message>
@@ -17156,6 +17154,8 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="877"/>
+        <location filename="../../romalyzer.ui" line="1212"/>
+        <location filename="../../romalyzer.cpp" line="927"/>
         <source>SHA-1</source>
         <translation>SHA-1</translation>
     </message>
@@ -17176,6 +17176,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="937"/>
+        <location filename="../../romalyzer.ui" line="1217"/>
         <source>CRC-32</source>
         <translation>CRC-32</translation>
     </message>
@@ -17600,7 +17601,6 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="151"/>
-        <location filename="../../romalyzer.ui" line="1217"/>
         <location filename="../../romalyzer.cpp" line="910"/>
         <source>CRC</source>
         <translation>CRC</translation>
@@ -17912,9 +17912,8 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>crc</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="929"/>
         <source>sha1</source>
-        <translation>sha1</translation>
+        <translation type="obsolete">sha1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="961"/>
@@ -17960,11 +17959,8 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>  MD5 Prüfsumme: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1248"/>
-        <location filename="../../romalyzer.cpp" line="1270"/>
-        <location filename="../../romalyzer.cpp" line="1301"/>
         <source>  SHA1 check-sum: %1</source>
-        <translation>  SHA1 Prüfsumme: %1</translation>
+        <translation type="obsolete">  SHA1 Prüfsumme: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1251"/>
@@ -17972,17 +17968,12 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>  MD5 Prüfsumme des Eltern CHDs: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1253"/>
-        <location filename="../../romalyzer.cpp" line="1273"/>
-        <location filename="../../romalyzer.cpp" line="1304"/>
         <source>  parent CHD&apos;s SHA1 check-sum: %1</source>
-        <translation>  SHA1 Prüfsumme des Eltern CHDs: %1</translation>
+        <translation type="obsolete">  SHA1 Prüfsumme des Eltern CHDs: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1276"/>
-        <location filename="../../romalyzer.cpp" line="1306"/>
         <source>  raw SHA1 check-sum: %1</source>
-        <translation>  SHA1 Prüfsumme der Rohdaten: %1</translation>
+        <translation type="obsolete">  SHA1 Prüfsumme der Rohdaten: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1288"/>
@@ -18100,6 +18091,31 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../romalyzer.cpp" line="1850"/>
         <source>WARNING: found &apos;%1&apos; but can&apos;t open it for decompression - check file integrity</source>
         <translation>WARNUNG: &apos;%1&apos; wurde gefunden, kann aber nicht zur Dekompression geöffnet werden - Datei Integrität prüfen</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="929"/>
+        <source>sha-1</source>
+        <translation>sha-1</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1248"/>
+        <location filename="../../romalyzer.cpp" line="1270"/>
+        <location filename="../../romalyzer.cpp" line="1301"/>
+        <source>  SHA-1 check-sum: %1</source>
+        <translation>  SHA-1 Prüfsumme: %1</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1253"/>
+        <location filename="../../romalyzer.cpp" line="1273"/>
+        <location filename="../../romalyzer.cpp" line="1304"/>
+        <source>  parent CHD&apos;s SHA-1 check-sum: %1</source>
+        <translation>  SHA-1 Prüfsumme des Eltern CHDs: %1</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1276"/>
+        <location filename="../../romalyzer.cpp" line="1306"/>
+        <source>  raw SHA-1 check-sum: %1</source>
+        <translation>  SHA-1 Prüfsumme der Rohdaten: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2057"/>

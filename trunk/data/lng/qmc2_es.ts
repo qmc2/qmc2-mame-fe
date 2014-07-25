@@ -16668,15 +16668,12 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="151"/>
-        <location filename="../../romalyzer.ui" line="1217"/>
         <location filename="../../romalyzer.cpp" line="910"/>
         <source>CRC</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="156"/>
-        <location filename="../../romalyzer.ui" line="1212"/>
-        <location filename="../../romalyzer.cpp" line="927"/>
         <source>SHA1</source>
         <translation></translation>
     </message>
@@ -17294,6 +17291,8 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="877"/>
+        <location filename="../../romalyzer.ui" line="1212"/>
+        <location filename="../../romalyzer.cpp" line="927"/>
         <source>SHA-1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17314,6 +17313,7 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="937"/>
+        <location filename="../../romalyzer.ui" line="1217"/>
         <source>CRC-32</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17812,6 +17812,11 @@ Are you sure you want to do this?</source>
         <translation>INFORMACIÓN: archivo %1 &apos;%2&apos; tiene una mezcla (&apos;%3&apos;) pero no un set padre -- ignorado, pero debería informarse a los desarrolladores de UME como un posible error de XML del driver respectivo</translation>
     </message>
     <message>
+        <location filename="../../romalyzer.cpp" line="929"/>
+        <source>sha-1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../romalyzer.cpp" line="940"/>
         <location filename="../../romalyzer.cpp" line="1009"/>
         <location filename="../../romalyzer.cpp" line="1033"/>
@@ -18186,11 +18191,6 @@ Are you sure you want to do this?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="929"/>
-        <source>sha1</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../romalyzer.cpp" line="961"/>
         <source>md5</source>
         <translation></translation>
@@ -18218,6 +18218,26 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="1764"/>
         <source>size of &apos;%1&apos; from &apos;%2&apos; is greater than allowed maximum -- skipped</source>
         <translation>el tamaño de &apos;%1&apos; de &apos;%2&apos; es mayor que el máximo permitido -- ignorado</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1248"/>
+        <location filename="../../romalyzer.cpp" line="1270"/>
+        <location filename="../../romalyzer.cpp" line="1301"/>
+        <source>  SHA-1 check-sum: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1253"/>
+        <location filename="../../romalyzer.cpp" line="1273"/>
+        <location filename="../../romalyzer.cpp" line="1304"/>
+        <source>  parent CHD&apos;s SHA-1 check-sum: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1276"/>
+        <location filename="../../romalyzer.cpp" line="1306"/>
+        <source>  raw SHA-1 check-sum: %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1658"/>
@@ -18264,28 +18284,8 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1248"/>
-        <location filename="../../romalyzer.cpp" line="1270"/>
-        <location filename="../../romalyzer.cpp" line="1301"/>
-        <source>  SHA1 check-sum: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../romalyzer.cpp" line="1251"/>
         <source>  parent CHD&apos;s MD5 check-sum: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../romalyzer.cpp" line="1253"/>
-        <location filename="../../romalyzer.cpp" line="1273"/>
-        <location filename="../../romalyzer.cpp" line="1304"/>
-        <source>  parent CHD&apos;s SHA1 check-sum: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../romalyzer.cpp" line="1276"/>
-        <location filename="../../romalyzer.cpp" line="1306"/>
-        <source>  raw SHA1 check-sum: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
