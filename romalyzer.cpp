@@ -924,9 +924,9 @@ void ROMAlyzer::analyze()
 							if ( !fileStatus.isEmpty() )
 								fileStatus += " ";
 							if ( sha1Str == sha1Calculated )
-								fileStatus += tr("SHA1");
+								fileStatus += tr("SHA-1");
 							else
-								fileStatus += tr("sha1");
+								fileStatus += tr("sha-1");
 							if ( sha1Str != sha1Calculated && hasDump ) {
 								somethingsWrong = true;
 								fileItem->setForeground(QMC2_ROMALYZER_COLUMN_SHA1, xmlHandler.redBrush);
@@ -1245,12 +1245,12 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 										QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
 										log(tr("  MD5 check-sum: %1").arg(QString(md5Data.toHex())));
 										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
-										log(tr("  SHA1 check-sum: %1").arg(QString(sha1Data.toHex())));
+										log(tr("  SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
 										if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
 											QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTMD5_OFFSET), QMC2_CHD_HEADER_V3_PARENTMD5_LENGTH);
 											log(tr("  parent CHD's MD5 check-sum: %1").arg(QString(md5Data.toHex())));
 											QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V3_PARENTSHA1_LENGTH);
-											log(tr("  parent CHD's SHA1 check-sum: %1").arg(QString(sha1Data.toHex())));
+											log(tr("  parent CHD's SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
 										}
 									}
 									break;
@@ -1267,13 +1267,13 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 										quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V4_LOGICALBYTES_OFFSET);
 										log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
 										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-										log(tr("  SHA1 check-sum: %1").arg(QString(sha1Data.toHex())));
+										log(tr("  SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
 										if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
 											QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V4_PARENTSHA1_LENGTH);
-											log(tr("  parent CHD's SHA1 check-sum: %1").arg(QString(sha1Data.toHex())));
+											log(tr("  parent CHD's SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
 										}
 										QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-										log(tr("  raw SHA1 check-sum: %1").arg(QString(rawsha1Data.toHex())));
+										log(tr("  raw SHA-1 check-sum: %1").arg(QString(rawsha1Data.toHex())));
 									}
 									break;
 
@@ -1298,12 +1298,12 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 										quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V5_LOGICALBYTES_OFFSET);
 										log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
 										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-										log(tr("  SHA1 check-sum: %1").arg(QString(sha1Data.toHex())));
+										log(tr("  SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
 										QByteArray parentSha1DataHex = QByteArray((const char *)(buffer + QMC2_CHD_HEADER_V5_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V5_PARENTSHA1_LENGTH).toHex();
 										if ( parentSha1DataHex.toInt(0, 16) != 0 )
-											log(tr("  parent CHD's SHA1 check-sum: %1").arg(QString(parentSha1DataHex)));
+											log(tr("  parent CHD's SHA-1 check-sum: %1").arg(QString(parentSha1DataHex)));
 										QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-										log(tr("  raw SHA1 check-sum: %1").arg(QString(rawsha1Data.toHex())));
+										log(tr("  raw SHA-1 check-sum: %1").arg(QString(rawsha1Data.toHex())));
 									}
 									break;
 
@@ -2123,7 +2123,7 @@ void ROMAlyzer::chdManagerReadyReadStandardOutput()
 			log(tr("CHD manager: stdout: %1").arg(s));
 			if ( s.contains("MD5 verification successful") )
 				chdManagerMD5Success = true;
-			if ( s.contains("SHA1 verification successful") )
+			if ( s.contains("SHA-1 verification successful") )
 				chdManagerSHA1Success = true;
 		}
 	}
@@ -2167,7 +2167,7 @@ void ROMAlyzer::chdManagerReadyReadStandardError()
 			} else {
 				if ( s.contains("Input MD5 verified") )
 					chdManagerMD5Success = true;
-				if ( s.contains("Input SHA1 verified") )
+				if ( s.contains("Input SHA-1 verified") )
 					chdManagerSHA1Success = true;
 			}
 #endif
