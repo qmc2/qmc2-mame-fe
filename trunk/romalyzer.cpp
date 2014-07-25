@@ -1440,13 +1440,12 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 										}
 										chdManagerRunning = false;
 										if ( !qmc2StopParser ) {
-											if ( chdManagerMD5Success && calcMD5 ) {
+											if ( chdManagerMD5Success && calcMD5 )
 												log(tr("CHD manager: CHD file integrity is good"));
-											} else if ( chdManagerSHA1Success && calcSHA1 ) {
+											else if ( chdManagerSHA1Success && calcSHA1 )
 												log(tr("CHD manager: CHD file integrity is good"));
-											} else {
+											else
 												log(tr("CHD manager: WARNING: CHD file integrity is bad"));
-											}
 
 											if ( step == 1 && (chdManagerMD5Success || chdManagerSHA1Success) ) {
 												log(tr("CHD manager: replacing CHD"));
@@ -2123,7 +2122,7 @@ void ROMAlyzer::chdManagerReadyReadStandardOutput()
 			log(tr("CHD manager: stdout: %1").arg(s));
 			if ( s.contains("MD5 verification successful") )
 				chdManagerMD5Success = true;
-			if ( s.contains("SHA-1 verification successful") )
+			if ( s.contains("SHA1 verification successful") )
 				chdManagerSHA1Success = true;
 		}
 	}
