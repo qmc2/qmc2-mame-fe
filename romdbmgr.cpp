@@ -1,5 +1,3 @@
-#if defined(QMC2_DATABASE_ENABLED)
-
 #include "macros.h"
 #include "qmc2main.h"
 #include "romdbmgr.h"
@@ -97,5 +95,3 @@ bool ROMDatabaseManager::checkConnection(int driver, QString user, QString passw
 	closeConnection();
 	return checkResult;
 }
-
-#endif

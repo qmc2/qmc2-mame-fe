@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>533</width>
-    <height>650</height>
+    <width>557</width>
+    <height>504</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -291,19 +291,6 @@
        <string>Settings</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="5" column="0">
-        <spacer name="verticalSpacer1">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>0</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item row="1" column="0">
         <widget class="QGroupBox" name="groupBoxCHDManager">
          <property name="title">
@@ -314,447 +301,137 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
-           <widget class="QLabel" name="labelCHDManagerExecutableFile">
-            <property name="text">
-             <string>CHD manager (chdman)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEditCHDManagerExecutableFile">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>CHD manager executable file (read and execute)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QToolButton" name="toolButtonBrowseCHDManagerExecutableFile">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Browse CHD manager executable file</string>
-            </property>
-            <property name="icon">
-             <iconset resource="qmc2.qrc">
-              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelTemporaryWorkingDirectory">
-            <property name="text">
-             <string>Temporary working directory</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEditTemporaryWorkingDirectory">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Temporary directory used by the CHD manager (make sure it has enough room to store the biggest CHDs)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QToolButton" name="toolButtonBrowseTemporaryWorkingDirectory">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Browse temporary directory used by the CHD manager</string>
-            </property>
-            <property name="icon">
-             <iconset resource="qmc2.qrc">
-              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0" colspan="3">
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="2" column="0">
              <widget class="QCheckBox" name="checkBoxVerifyCHDs">
               <property name="toolTip">
-               <string>Verify CHDs through 'chdman -verify'</string>
+               <string>Verify CHDs through 'chdman verify'</string>
               </property>
               <property name="text">
                <string>Verify CHDs</string>
               </property>
              </widget>
             </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxFixCHDs">
-              <property name="enabled">
-               <bool>false</bool>
+            <item row="2" column="3">
+             <widget class="QLineEdit" name="lineEditCHDManagerExecutableFile">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
               <property name="toolTip">
-               <string>Also try to fix CHDs using 'chdman -verifyfix'</string>
-              </property>
-              <property name="text">
-               <string>Fix CHDs</string>
+               <string>CHD manager executable file (read and execute)</string>
               </property>
              </widget>
             </item>
-            <item>
+            <item row="3" column="3">
+             <widget class="QLineEdit" name="lineEditTemporaryWorkingDirectory">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>Temporary directory used by the CHD manager (make sure it has enough room to store the biggest CHDs)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="4">
+             <widget class="QToolButton" name="toolButtonBrowseTemporaryWorkingDirectory">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>Browse temporary directory used by the CHD manager</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="4">
+             <widget class="QToolButton" name="toolButtonBrowseCHDManagerExecutableFile">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>Browse CHD manager executable file</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelOptions_2">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Flags&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QLabel" name="labelTemporaryWorkingDirectory">
+              <property name="text">
+               <string>Temporary working directory</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QLabel" name="labelCHDManagerExecutableFile">
+              <property name="text">
+               <string>CHD manager (chdman)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
              <widget class="QCheckBox" name="checkBoxUpdateCHDs">
               <property name="toolTip">
-               <string>Try to update CHDs if their header indicates an older version ('chdman -update')</string>
+               <string>Try to update CHDs if their header indicates an older version ('chdman copy')</string>
               </property>
               <property name="text">
                <string>Update CHDs</string>
               </property>
              </widget>
             </item>
-            <item>
-             <spacer name="horizontalSpacer_2">
+            <item row="0" column="1" rowspan="4">
+             <widget class="Line" name="line_8">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="Line" name="line_9">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
+             </widget>
+            </item>
+            <item row="1" column="2" colspan="3">
+             <widget class="Line" name="line_10">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
               </property>
-             </spacer>
+             </widget>
+            </item>
+            <item row="0" column="2" colspan="3">
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Paths&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
             </item>
            </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QGroupBox" name="groupBoxDatabase">
-         <property name="title">
-          <string>Enable ROM database support (repository access may be slow)</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_4">
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelDatabaseDriver">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Driver</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <widget class="QLabel" name="labelDatabasePort">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Port</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="QSpinBox" name="spinBoxDatabasePort">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Database server port (0 = default)</string>
-            </property>
-            <property name="specialValueText">
-             <string>default</string>
-            </property>
-            <property name="maximum">
-             <number>65535</number>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QComboBox" name="comboBoxDatabaseDriver">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>SQL driver to use</string>
-            </property>
-            <item>
-             <property name="text">
-              <string>MySQL</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>SQLite</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="1" column="1" colspan="3">
-           <widget class="QLineEdit" name="lineEditDatabaseServer">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Name or IP address of the database server</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelDatabaseServer">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Server / IP</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelDatabaseUser">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Username</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" colspan="3">
-           <widget class="QLineEdit" name="lineEditDatabaseUser">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Username used to access the database</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0" colspan="4">
-           <widget class="QPushButton" name="pushButtonDatabaseCheckConnection">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Ignored" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Check the connection to the database</string>
-            </property>
-            <property name="autoFillBackground">
-             <bool>true</bool>
-            </property>
-            <property name="text">
-             <string>Connection check</string>
-            </property>
-            <property name="autoDefault">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="6" colspan="4">
-           <widget class="QLineEdit" name="lineEditDatabasePassword">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Password used to access the database (WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!)</string>
-            </property>
-            <property name="echoMode">
-             <enum>QLineEdit::Password</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="6" colspan="4">
-           <widget class="QLineEdit" name="lineEditDatabaseName">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Name of the database on the server</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="5">
-           <widget class="QLabel" name="labelDatabaseName">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Database</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="5">
-           <widget class="QLabel" name="labelDatabasePassword">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Password</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="5">
-           <widget class="QLabel" name="labelDatabaseMode">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Mode</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="6">
-           <widget class="QCheckBox" name="checkBoxDatabaseDownload">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Automatically download missing / bad files from the database (if they are available in the repository)</string>
-            </property>
-            <property name="text">
-             <string>Download</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="7">
-           <widget class="QCheckBox" name="checkBoxDatabaseUpload">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Automatically upload good files to the database (if they are missing in the repository)</string>
-            </property>
-            <property name="text">
-             <string>Upload</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="8" colspan="2">
-           <widget class="QCheckBox" name="checkBoxDatabaseOverwrite">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Overwrite existing data in the database</string>
-            </property>
-            <property name="text">
-             <string>Overwrite</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="5">
-           <widget class="QLabel" name="labelDatabaseOutputPath">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Output path</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="6" colspan="3">
-           <widget class="QLineEdit" name="lineEditDatabaseOutputPath">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Local output directory where downloaded ROMs &amp; CHDs will be created (WARNING: existing files will be overwritten!)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="9">
-           <widget class="QToolButton" name="toolButtonBrowseDatabaseOutputPath">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Browse local output directory</string>
-            </property>
-            <property name="icon">
-             <iconset resource="qmc2.qrc">
-              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-            </property>
-           </widget>
           </item>
          </layout>
         </widget>
@@ -770,105 +447,108 @@
          <property name="checked">
           <bool>true</bool>
          </property>
-         <layout class="QGridLayout" name="gridLayout_5">
+         <layout class="QGridLayout" name="gridLayout_9">
           <item row="0" column="0">
-           <widget class="QLabel" name="labelSetRewriterOutputPath">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Output directory</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" colspan="5">
-           <widget class="QLineEdit" name="lineEditSetRewriterOutputPath">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Output path for the set rewriter (WARNING: existing files will be overwritten!) -- you should NEVER use one of your primary ROM paths here!!!</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelSetRewriterGeneralSettings">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>General settings</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QCheckBox" name="checkBoxSetRewriterWhileAnalyzing">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Rewrite sets while analyzing them (otherwise sets will only be rewritten on demand / through the context menu)</string>
-            </property>
-            <property name="text">
-             <string>Rewrite while analyzing</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <widget class="QCheckBox" name="checkBoxSetRewriterSelfContainedSets">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Create sets that do not need parent sets (otherwise create merged sets, which is recommended)</string>
-            </property>
-            <property name="text">
-             <string>Self-contained</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="QCheckBox" name="checkBoxSetRewriterGoodDumpsOnly">
-            <property name="toolTip">
-             <string>Rewrite dumps only when they are 'good' (otherwise, 'bad' dumps will be included)</string>
-            </property>
-            <property name="text">
-             <string>Good dumps only</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelSetRewriterReproductionType">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Reproduction type</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QRadioButton" name="radioButtonSetRewriterZipArchives">
+           <layout class="QGridLayout" name="gridLayout_5">
+            <item row="0" column="4" colspan="3">
+             <widget class="QLabel" name="labelSetRewriterReproductionType_2">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Paths&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="Line" name="line_12">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QRadioButton" name="radioButtonSetRewriterZipArchives">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>Produce ZIP archived sets (recommended)</string>
+                </property>
+                <property name="text">
+                 <string>ZIPs</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinBoxSetRewriterZipLevel">
+                <property name="toolTip">
+                 <string>Select the ZIP compression level (0 = lowest / fastest, 9 = highest / slowest)</string>
+                </property>
+                <property name="prefix">
+                 <string>Level </string>
+                </property>
+                <property name="maximum">
+                 <number>9</number>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelSetRewriterGeneralSettings">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Flags&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="5">
+             <widget class="QLineEdit" name="lineEditSetRewriterOutputPath">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>Output path for the set rewriter (WARNING: existing files will be overwritten!) -- you should NEVER use one of your primary ROM paths here!!!</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="Line" name="line_11">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="6">
+             <widget class="QToolButton" name="toolButtonBrowseSetRewriterOutputPath">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>Browse output path for the set rewriter</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QCheckBox" name="checkBoxSetRewriterSelfContainedSets">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -876,129 +556,147 @@
                </sizepolicy>
               </property>
               <property name="toolTip">
-               <string>Produce ZIP archived sets (recommended)</string>
+               <string>Create sets that do not need parent sets (otherwise create merged sets, which is recommended)</string>
               </property>
               <property name="text">
-               <string>ZIPs</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
+               <string>Self-contained</string>
               </property>
              </widget>
             </item>
-            <item>
-             <widget class="QSpinBox" name="spinBoxSetRewriterZipLevel">
+            <item row="2" column="0">
+             <widget class="QCheckBox" name="checkBoxSetRewriterWhileAnalyzing">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="toolTip">
-               <string>Select the ZIP compression level (0 = lowest / fastest, 9 = highest / slowest)</string>
+               <string>Rewrite sets while analyzing them (otherwise sets will only be rewritten on demand / through the context menu)</string>
               </property>
-              <property name="prefix">
-               <string>Level </string>
+              <property name="text">
+               <string>Rewrite while analyzing</string>
               </property>
-              <property name="maximum">
-               <number>9</number>
+             </widget>
+            </item>
+            <item row="3" column="6">
+             <widget class="QToolButton" name="toolButtonBrowseSetRewriterAdditionalRomPath">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
-              <property name="value">
-               <number>0</number>
+              <property name="toolTip">
+               <string>Browse additional ROM path</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="4">
+             <widget class="QLabel" name="labelSetRewriterOutputPath">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Output directory</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QCheckBox" name="checkBoxSetRewriterUniqueCRCs">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</string>
+              </property>
+              <property name="text">
+               <string>Unique CRCs</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="4">
+             <widget class="QCheckBox" name="checkBoxSetRewriterUseAdditionalRomPath">
+              <property name="toolTip">
+               <string>Use the following additional ROM path</string>
+              </property>
+              <property name="text">
+               <string>Addl. ROM path</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="5">
+             <widget class="QLineEdit" name="lineEditSetRewriterAdditionalRomPath">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>Specify an additional (source) ROM path used when the set rewriter is active</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="2">
+             <widget class="QRadioButton" name="radioButtonSetRewriterIndividualDirectories">
+              <property name="toolTip">
+               <string>Produce sets in individual sub-directories (not recommended)</string>
+              </property>
+              <property name="text">
+               <string>Directories</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="labelSetRewriterReproductionType">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Reproduction&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" rowspan="5">
+             <widget class="Line" name="line_14">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QCheckBox" name="checkBoxSetRewriterGoodDumpsOnly">
+              <property name="toolTip">
+               <string>Rewrite dumps only when they are 'good' (otherwise, 'bad' dumps will be included)</string>
+              </property>
+              <property name="text">
+               <string>Good dumps only</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="4" colspan="3">
+             <widget class="Line" name="line_13">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3" rowspan="5">
+             <widget class="Line" name="line_15">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
               </property>
              </widget>
             </item>
            </layout>
-          </item>
-          <item row="3" column="2">
-           <widget class="QCheckBox" name="checkBoxSetRewriterUniqueCRCs">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</string>
-            </property>
-            <property name="text">
-             <string>Unique CRCs</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="3" colspan="4">
-           <widget class="QRadioButton" name="radioButtonSetRewriterIndividualDirectories">
-            <property name="toolTip">
-             <string>Produce sets in individual sub-directories (not recommended)</string>
-            </property>
-            <property name="text">
-             <string>Directories</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="4" colspan="3">
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="6">
-           <widget class="QToolButton" name="toolButtonBrowseSetRewriterOutputPath">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Browse output path for the set rewriter</string>
-            </property>
-            <property name="icon">
-             <iconset resource="qmc2.qrc">
-              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1" colspan="5">
-           <widget class="QLineEdit" name="lineEditSetRewriterAdditionalRomPath">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Specify an additional (source) ROM path used when the set rewriter is active</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="6">
-           <widget class="QToolButton" name="toolButtonBrowseSetRewriterAdditionalRomPath">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Browse additional ROM path</string>
-            </property>
-            <property name="icon">
-             <iconset resource="qmc2.qrc">
-              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QCheckBox" name="checkBoxSetRewriterUseAdditionalRomPath">
-            <property name="toolTip">
-             <string>Use the following additional ROM path</string>
-            </property>
-            <property name="text">
-             <string>Additional ROM path</string>
-            </property>
-           </widget>
           </item>
          </layout>
         </widget>
@@ -1301,6 +999,19 @@
           </item>
          </layout>
         </widget>
+       </item>
+       <item row="3" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -1885,19 +1596,13 @@
   <tabstop>spinBoxMaxLogSize</tabstop>
   <tabstop>spinBoxMaxReports</tabstop>
   <tabstop>groupBoxCHDManager</tabstop>
+  <tabstop>checkBoxVerifyCHDs</tabstop>
+  <tabstop>checkBoxUpdateCHDs</tabstop>
   <tabstop>lineEditCHDManagerExecutableFile</tabstop>
   <tabstop>toolButtonBrowseCHDManagerExecutableFile</tabstop>
   <tabstop>lineEditTemporaryWorkingDirectory</tabstop>
   <tabstop>toolButtonBrowseTemporaryWorkingDirectory</tabstop>
-  <tabstop>checkBoxVerifyCHDs</tabstop>
-  <tabstop>checkBoxFixCHDs</tabstop>
-  <tabstop>checkBoxUpdateCHDs</tabstop>
   <tabstop>groupBoxSetRewriter</tabstop>
-  <tabstop>lineEditSetRewriterOutputPath</tabstop>
-  <tabstop>toolButtonBrowseSetRewriterOutputPath</tabstop>
-  <tabstop>checkBoxSetRewriterUseAdditionalRomPath</tabstop>
-  <tabstop>lineEditSetRewriterAdditionalRomPath</tabstop>
-  <tabstop>toolButtonBrowseSetRewriterAdditionalRomPath</tabstop>
   <tabstop>checkBoxSetRewriterWhileAnalyzing</tabstop>
   <tabstop>checkBoxSetRewriterSelfContainedSets</tabstop>
   <tabstop>checkBoxSetRewriterGoodDumpsOnly</tabstop>
@@ -1905,19 +1610,11 @@
   <tabstop>spinBoxSetRewriterZipLevel</tabstop>
   <tabstop>checkBoxSetRewriterUniqueCRCs</tabstop>
   <tabstop>radioButtonSetRewriterIndividualDirectories</tabstop>
-  <tabstop>groupBoxDatabase</tabstop>
-  <tabstop>lineEditDatabaseUser</tabstop>
-  <tabstop>lineEditDatabasePassword</tabstop>
-  <tabstop>lineEditDatabaseServer</tabstop>
-  <tabstop>lineEditDatabaseName</tabstop>
-  <tabstop>comboBoxDatabaseDriver</tabstop>
-  <tabstop>spinBoxDatabasePort</tabstop>
-  <tabstop>lineEditDatabaseOutputPath</tabstop>
-  <tabstop>toolButtonBrowseDatabaseOutputPath</tabstop>
-  <tabstop>pushButtonDatabaseCheckConnection</tabstop>
-  <tabstop>checkBoxDatabaseDownload</tabstop>
-  <tabstop>checkBoxDatabaseUpload</tabstop>
-  <tabstop>checkBoxDatabaseOverwrite</tabstop>
+  <tabstop>lineEditSetRewriterOutputPath</tabstop>
+  <tabstop>toolButtonBrowseSetRewriterOutputPath</tabstop>
+  <tabstop>checkBoxSetRewriterUseAdditionalRomPath</tabstop>
+  <tabstop>lineEditSetRewriterAdditionalRomPath</tabstop>
+  <tabstop>toolButtonBrowseSetRewriterAdditionalRomPath</tabstop>
   <tabstop>comboBoxChecksumWizardHashType</tabstop>
   <tabstop>lineEditChecksumWizardHash</tabstop>
   <tabstop>pushButtonChecksumWizardSearch</tabstop>
@@ -1948,43 +1645,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>79</x>
-     <y>644</y>
+     <y>933</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
      <y>3</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBoxVerifyCHDs</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>checkBoxFixCHDs</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>105</x>
-     <y>303</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>180</x>
-     <y>303</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBoxDatabaseUpload</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>checkBoxDatabaseOverwrite</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>432</x>
-     <y>591</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>513</x>
-     <y>591</y>
     </hint>
    </hints>
   </connection>
@@ -1996,11 +1661,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>194</x>
-     <y>448</y>
+     <y>675</y>
     </hint>
     <hint type="destinationlabel">
-     <x>278</x>
-     <y>449</y>
+     <x>282</x>
+     <y>676</y>
     </hint>
    </hints>
   </connection>
@@ -2012,11 +1677,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>194</x>
-     <y>448</y>
+     <y>675</y>
     </hint>
     <hint type="destinationlabel">
-     <x>374</x>
-     <y>448</y>
+     <x>378</x>
+     <y>675</y>
     </hint>
    </hints>
   </connection>
@@ -2027,12 +1692,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>239</x>
-     <y>130</y>
+     <x>474</x>
+     <y>204</y>
     </hint>
     <hint type="destinationlabel">
-     <x>239</x>
-     <y>156</y>
+     <x>474</x>
+     <y>230</y>
     </hint>
    </hints>
   </connection>
@@ -2043,12 +1708,12 @@
    <slot>animateClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>46</x>
-     <y>605</y>
+     <x>54</x>
+     <y>894</y>
     </hint>
     <hint type="destinationlabel">
-     <x>384</x>
-     <y>605</y>
+     <x>854</x>
+     <y>894</y>
     </hint>
    </hints>
   </connection>
@@ -2063,8 +1728,8 @@
      <y>18</y>
     </hint>
     <hint type="destinationlabel">
-     <x>436</x>
-     <y>17</y>
+     <x>915</x>
+     <y>22</y>
     </hint>
    </hints>
   </connection>
@@ -2079,7 +1744,7 @@
      <y>63</y>
     </hint>
     <hint type="destinationlabel">
-     <x>389</x>
+     <x>859</x>
      <y>84</y>
     </hint>
    </hints>
