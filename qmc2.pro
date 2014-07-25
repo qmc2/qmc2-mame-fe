@@ -102,7 +102,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			embedderopt.cpp \
 			demomode.cpp \
 			audioeffects.cpp \
-			romdbmgr.cpp \
+			checksumdbmgr.cpp \
 			xmldbmgr.cpp \
 			userdatadbmgr.cpp \
 			customidsetup.cpp \
@@ -217,7 +217,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			embedderopt.h \
 			demomode.h \
 			audioeffects.h \
-			romdbmgr.h \
+			checksumdbmgr.h \
 			xmldbmgr.h \
 			userdatadbmgr.h \
 			customidsetup.h \
