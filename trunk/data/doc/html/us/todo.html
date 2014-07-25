@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.45, 23-JUL-2014</h3>
+<h3>TODO - v0.45, 25-JUL-2014</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>The built-in joystick GUI control includes support for trackballs -- this is completely untested due to the lack of controllers with trackballs (it should basically work, but be prepared for bugs and unexpected behavior).</li>
@@ -19,16 +19,6 @@
   <li>X11: Embedded emulators that change their display sizes at runtime (usually during startup) may not always be centered correctly. Unfortunately, newer window-managers may cause additional problems with resizing. We hope that we can avoid all of this with our planned embedder port to Qt 5.</li>
   <li>Windows: There's a known issue for <u>embedded</u> emulators running in <i>Direct 3D</i> mode ('-video d3d'): full-screen switching will lead to a crash of the emulator. To work around this, you have to <i>release</i> the emulator first; you can re-embed it later from the emulator control panel.</li>
   <li>Windows: MinGW builds: The GIF animation used when loading / filtering the game/machine list (or when <i>mass tagging</i> sets) isn't displayed in case of MinGW builds. We have no idea why, nor do we think it's our fault since in the official binaries built with VC++ this work fine (seems to be a MinGW-specific Qt bug). However, it's just a 'cosmetic' issue.</li>
-</ul>
-<p><b>Work in progress</b></p>
-<ul>
-  <li>Adding support for freely definable <i>additional artwork classes</i> (system- or software-images) -- see also <a href="http://tracker.batcom-it.net/view.php?id=49" target="_blank">bug tracker ID #49</a></li>
-  <li>Adding a Swedish translation -- thanks to <a href="credits.html#DanielNylander">Daniel Nylander</a></li>
-  <li>Adding a Greek translation -- thanks to <a href="credits.html#Kostas">Kostas Albanidis</a></li>
-  <li>Adding an Italian translation -- thanks to <a href="credits.html#Stefano">Stefano Cereda</a></li>
-  <li>Adding a Romanian translation (mostly done) -- thanks to <a href="credits.html#Mihai">Mihai Boisteanu</a></li>
-  <li>Adding a set rename tool to the ROMAlyzer which uses the -listxml outputs from both the old and the current emulator to gather the changes automagically</li>
-  <li>Adding support for an optional ROM/CHD database which can be used to store unique copies of all (good) ROMs and CHDs and to retrieve complete sets from it to a local path -- among other things, this can be used to keep different versions of individual ROM/CHD files (due to changing sets) or to just keep your local ROM path clean</li>
 </ul>
 <p><b>Planned changes, new features and improvements</b></p>
 <ul>
