@@ -5,7 +5,7 @@
 #include <QtXml>
 
 #include "macros.h"
-#include "romdbmgr.h"
+#include "checksumdbmgr.h"
 #include "ui_romalyzer.h"
 
 #define QMC2_ROMALYZER_PAGE_REPORT		0
