@@ -44,6 +44,7 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 		void updateSize(QFontMetrics *fm = 0);
 		void updateRankFromDb();
 		void updateRankFromMousePos(int mouseX = 0);
+		void updateRankImage() { setRank(rank()); };
 
 	protected:
 		void mousePressEvent(QMouseEvent *e);

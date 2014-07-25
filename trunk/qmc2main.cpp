@@ -12146,6 +12146,8 @@ void MainWindow::treeWidgetGamelist_updateRanks()
 				riw->updateSize(&fm);
 				if ( minWidth == 0 )
 					minWidth = riw->width();
+				if ( riw->rank() > 0 )
+					QTimer::singleShot(0, riw, SLOT(updateRankImage()));
 			} else
 				treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item));
 		}
@@ -12195,6 +12197,8 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
 				riw->updateSize(&fm);
 				if ( minWidth == 0 )
 					minWidth = riw->width();
+				if ( riw->rank() > 0 )
+					QTimer::singleShot(0, riw, SLOT(updateRankImage()));
 			} else
 				treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item));
 			item = treeWidget->itemBelow(item);
@@ -12205,6 +12209,8 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
 				riw->updateSize(&fm);
 				if ( minWidth == 0 )
 					minWidth = riw->width();
+				if ( riw->rank() > 0 )
+					QTimer::singleShot(0, riw, SLOT(updateRankImage()));
 			} else
 				treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item));
 		}
@@ -12260,6 +12266,8 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
 					riw->updateSize(&fm);
 					if ( minWidth == 0 )
 						minWidth = riw->width();
+					if ( riw->rank() > 0 )
+						QTimer::singleShot(0, riw, SLOT(updateRankImage()));
 				} else
 					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item));
 			}
@@ -12272,6 +12280,8 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
 					riw->updateSize(&fm);
 					if ( minWidth == 0 )
 						minWidth = riw->width();
+					if ( riw->rank() > 0 )
+						QTimer::singleShot(0, riw, SLOT(updateRankImage()));
 				} else
 					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item));
 			}
@@ -12329,6 +12339,8 @@ void MainWindow::treeWidgetVersionView_updateRanks()
 					riw->updateSize(&fm);
 					if ( minWidth == 0 )
 						minWidth = riw->width();
+					if ( riw->rank() > 0 )
+						QTimer::singleShot(0, riw, SLOT(updateRankImage()));
 				} else
 					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item));
 			}
@@ -12341,6 +12353,8 @@ void MainWindow::treeWidgetVersionView_updateRanks()
 					riw->updateSize(&fm);
 					if ( minWidth == 0 )
 						minWidth = riw->width();
+					if ( riw->rank() > 0 )
+						QTimer::singleShot(0, riw, SLOT(updateRankImage()));
 				} else
 					treeWidget->setItemWidget(item, QMC2_GAMELIST_COLUMN_RANK, new RankItemWidget(item));
 			}
