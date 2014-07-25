@@ -90,8 +90,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 	tabWidgetAnalysis->removeTab(QMC2_ROMALYZER_PAGE_RENAMETOOL);
 #endif
 
-	checkBoxFixCHDs->setVisible(QMC2_CHD_CURRENT_VERSION < 5);
-
 #if defined(QMC2_SDLMESS)
 	treeWidgetChecksums->headerItem()->setText(0, tr("Machine / File"));
 	checkBoxSelectGame->setText(tr("Select machine"));
@@ -142,14 +140,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 	textBrowserLog->setFont(logFont);
 
 	connect(&animTimer, SIGNAL(timeout()), this, SLOT(animationTimeout()));
-
-#if !defined(QMC2_DATABASE_ENABLED)
-	groupBoxDatabase->setChecked(false);
-	groupBoxDatabase->setVisible(false);
-#else
-	connectionCheckRunning = false;
-	dbManager = new ROMDatabaseManager(this);
-#endif
 
 	QString s;
 	QAction *action;
@@ -204,10 +194,6 @@ ROMAlyzer::~ROMAlyzer()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::~ROMAlyzer()");
 #endif
 
-#if defined(QMC2_DATABASE_ENABLED)
-	if ( dbManager )
-		delete dbManager;
-#endif
 }
 
 void ROMAlyzer::adjustIconSizes()
@@ -239,9 +225,6 @@ void ROMAlyzer::adjustIconSizes()
 	toolButtonBrowseSetRenamerOldXmlFile->setIconSize(iconSize);
 	pushButtonSetRenamerExportResults->setIconSize(iconSize);
 	pushButtonSetRenamerImportResults->setIconSize(iconSize);
-#if defined(QMC2_DATABASE_ENABLED)
-	toolButtonBrowseDatabaseOutputPath->setIconSize(iconSize);
-#endif
 	treeWidgetChecksums->setIconSize(iconSizeMiddle);
 	pushButtonChecksumWizardSearch->setIconSize(iconSize);
 }
@@ -354,8 +337,6 @@ void ROMAlyzer::on_checkBoxCalculateSHA1_toggled(bool enable)
 #endif
 
 	treeWidgetChecksums->setColumnHidden(QMC2_ROMALYZER_COLUMN_SHA1, !enable);
-	if ( groupBoxDatabase->isChecked() )
-		groupBoxDatabase->setChecked(enable);
 	tabChecksumWizard->setEnabled(enable);
 }
 
@@ -419,24 +400,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardHashType", comboBoxChecksumWizardHashType->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", comboBoxChecksumWizardAutomationLevel->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", checkBoxVerifyCHDs->isChecked());
-#if QMC2_CHD_CURRENT_VERSION < 5
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", checkBoxFixCHDs->isChecked());
-#endif
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/UpdateCHDs", checkBoxUpdateCHDs->isChecked());
-
-#if defined(QMC2_DATABASE_ENABLED)
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableDatabase", groupBoxDatabase->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseServer", lineEditDatabaseServer->text());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", lineEditDatabaseName->text());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePort", spinBoxDatabasePort->value());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUser", lineEditDatabaseUser->text());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePassword", QMC2_COMPRESS(lineEditDatabasePassword->text().toLatin1()));
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDownload", checkBoxDatabaseDownload->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUpload", checkBoxDatabaseUpload->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOverwrite", checkBoxDatabaseOverwrite->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDriver", comboBoxDatabaseDriver->currentIndex());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOutputPath", lineEditDatabaseOutputPath->text());
-#endif
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerOldXmlFile", lineEditSetRenamerOldXmlFile->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerAutomationLevel", comboBoxSetRenamerAutomationLevel->currentIndex());
 
@@ -502,31 +466,8 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	comboBoxChecksumWizardAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", QMC2_ROMALYZER_CSWIZ_AMLVL_NONE).toInt());
 	radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", false).toBool());
 	checkBoxVerifyCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", true).toBool());
-#if QMC2_CHD_CURRENT_VERSION < 5
-	checkBoxFixCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", false).toBool());
-#endif
 	checkBoxUpdateCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/UpdateCHDs", false).toBool());
 	groupBoxCHDManager->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCHDManager", false).toBool());
-
-#if defined(QMC2_DATABASE_ENABLED)
-	lineEditDatabaseServer->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseServer", QString()).toString());
-#if defined(QMC2_EMUTYPE_MAME)
-	lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "mame_romdb").toString());
-#elif defined(QMC2_EMUTYPE_MESS)
-	lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "mess_romdb").toString());
-#elif defined(QMC2_EMUTYPE_UME)
-	lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "ume_romdb").toString());
-#endif
-	spinBoxDatabasePort->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePort", 0).toInt());
-	lineEditDatabaseUser->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUser", QString()).toString());
-	lineEditDatabasePassword->setText(QString(QMC2_UNCOMPRESS(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePassword", QString()).toByteArray())));
-	checkBoxDatabaseDownload->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDownload", true).toBool());
-	checkBoxDatabaseUpload->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUpload", false).toBool());
-	checkBoxDatabaseOverwrite->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOverwrite", false).toBool());
-	comboBoxDatabaseDriver->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDriver", QMC2_DB_DRIVER_MYSQL).toInt());
-	lineEditDatabaseOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOutputPath", QString()).toString());
-	groupBoxDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableDatabase", false).toBool());
-#endif
 	lineEditSetRenamerOldXmlFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerOldXmlFile", QString()).toString());
 	comboBoxSetRenamerAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerAutomationLevel", QMC2_ROMALYZER_SRTOOL_AMLVL_NONE).toInt());
 
@@ -836,7 +777,7 @@ void ROMAlyzer::analyze()
 				} else {
 					QString fileStatus;
 					bool somethingsWrong = false;
-					bool eligibleForDatabaseUpload = false;
+					bool goodDump = false;
 					bool isCHD = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).split(" ")[0] == QObject::tr("CHD");
 					bool isROM = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).startsWith(tr("ROM"));
 					bool hasDump = childItem->text(QMC2_ROMALYZER_COLUMN_EMUSTATUS) != QObject::tr("no dump");
@@ -990,16 +931,16 @@ void ROMAlyzer::analyze()
 								somethingsWrong = true;
 								fileItem->setForeground(QMC2_ROMALYZER_COLUMN_SHA1, xmlHandler.redBrush);
 							} else if ( hasDump )
-								eligibleForDatabaseUpload = true;
+								goodDump = true;
 							if ( wizardSelectedSets.contains(gameName) ) {
 								QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
 								foreach (QTreeWidgetItem *item, il) {
 									if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ||
 									     item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
-										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, eligibleForDatabaseUpload ? tr("good") : tr("bad"));
-										item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, eligibleForDatabaseUpload ? xmlHandler.greenBrush : xmlHandler.redBrush);
+										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, goodDump ? tr("good") : tr("bad"));
+										item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, goodDump ? xmlHandler.greenBrush : xmlHandler.redBrush);
 										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, effectiveFile);
-										if ( eligibleForDatabaseUpload )
+										if ( goodDump )
 											item->setWhatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
 									}
 								}
@@ -1033,19 +974,14 @@ void ROMAlyzer::analyze()
 						childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/warning.png")));
 						log(tr("WARNING: %1 file '%2' loaded from '%3' has incorrect / unexpected check-sums").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile));
 					} else {
-						if ( fileStatus == tr("skipped") ) {
+						if ( fileStatus == tr("skipped") )
 							childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.blueBrush);
-						} else if ( fileStatus == tr("not found") ) {
+						else if ( fileStatus == tr("not found") )
 							childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
-						} else if ( fileStatus == tr("no dump") ) {
+						else if ( fileStatus == tr("no dump") )
 							childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.brownBrush);
-						} else {
+						else
 							childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
-
-							if ( eligibleForDatabaseUpload ) {
-								// FIXME: add optional DB upload through ROM database manager here...
-							}
-						}
 					}
 
 					if ( checkBoxExpandChecksums->isChecked() && checkBoxExpandFiles->isChecked() )
@@ -1218,9 +1154,6 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 	bool isCHD = type.split(" ")[0] == tr("CHD");
 	bool sizeLimited = spinBoxMaxFileSize->value() > 0;
 	bool chdManagerVerifyCHDs = checkBoxVerifyCHDs->isChecked();
-#if QMC2_CHD_CURRENT_VERSION < 5
-	bool chdManagerFixCHDs = checkBoxFixCHDs->isChecked();
-#endif
 	bool chdManagerUpdateCHDs = checkBoxUpdateCHDs->isChecked();
 	bool chdManagerEnabled = groupBoxCHDManager->isChecked() && (chdManagerVerifyCHDs || chdManagerUpdateCHDs);
 	bool needProgressWidget;
@@ -1408,13 +1341,8 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 													log(tr("CHD manager: verifying CHD"));
 													args << "verify" << "--input" << chdFilePath;
 #else
-													if ( chdManagerFixCHDs ) {
-														log(tr("CHD manager: verifying and fixing CHD"));
-														args << "-verifyfix" << chdFilePath;
-													} else {
-														log(tr("CHD manager: verifying CHD"));
-														args << "-verify" << chdFilePath;
-													}
+													log(tr("CHD manager: verifying CHD"));
+													args << "-verify" << chdFilePath;
 #endif
 												} else
 													continue;
@@ -3502,86 +3430,6 @@ void ROMAlyzer::on_toolButtonSaveLog_clicked()
 		}
 	}
 }
-
-#if defined(QMC2_DATABASE_ENABLED)
-void ROMAlyzer::on_pushButtonDatabaseCheckConnection_clicked()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonDatabaseCheckConnection_clicked()");
-#endif
-
-	if ( !dbManager || connectionCheckRunning )
-		return;
-
-	if ( dbManager->isConnected() )
-		return;
-
-	connectionCheckRunning = true;
-	savedCheckButtonPalette = pushButtonDatabaseCheckConnection->palette();
-	bool hadFocus = pushButtonDatabaseCheckConnection->hasFocus();
-	pushButtonDatabaseCheckConnection->setEnabled(false);
-
-	if ( dbManager->checkConnection(comboBoxDatabaseDriver->currentIndex(),
-				lineEditDatabaseUser->text(),
-				lineEditDatabasePassword->text(),
-				lineEditDatabaseName->text(),
-				lineEditDatabaseServer->text(),
-				spinBoxDatabasePort->value()) ) {
-		if ( qApp->styleSheet().isEmpty() ) {
-			pushButtonDatabaseCheckConnection->setStyleSheet("");
-			QPalette pal = pushButtonDatabaseCheckConnection->palette();
-			pal.setColor(QPalette::Button, QColor(0, 255, 0));
-			pushButtonDatabaseCheckConnection->setPalette(pal);
-		} else
-			pushButtonDatabaseCheckConnection->setStyleSheet("background: #00ff00; color: black");
-		pushButtonDatabaseCheckConnection->setText(tr("Connection check -- succeeded!"));
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("database connection check successful"));
-	} else {
-		if ( qApp->styleSheet().isEmpty() ) {
-			pushButtonDatabaseCheckConnection->setStyleSheet("");
-			QPalette pal = pushButtonDatabaseCheckConnection->palette();
-			pal.setColor(QPalette::Button, QColor(255, 0, 0));
-			pushButtonDatabaseCheckConnection->setPalette(pal);
-		} else
-			pushButtonDatabaseCheckConnection->setStyleSheet("background: #ff0000; color: black");
-		pushButtonDatabaseCheckConnection->setText(tr("Connection check -- failed!"));
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("database connection check failed -- errorNumber = %1, errorText = '%2'").arg(dbManager->errorNumber()).arg(dbManager->errorText()));
-	}
-
-	pushButtonDatabaseCheckConnection->setEnabled(true);
-	if ( hadFocus ) pushButtonDatabaseCheckConnection->setFocus(Qt::OtherFocusReason);
-	QTimer::singleShot(QMC2_DB_RESET_CCB_DELAY, this, SLOT(resetDatabaseConnectionCheckButton()));
-}
-
-void ROMAlyzer::resetDatabaseConnectionCheckButton()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::resetDatabaseConnectionCheckButton()");
-#endif
-
-	pushButtonDatabaseCheckConnection->setStyleSheet("");
-	pushButtonDatabaseCheckConnection->setPalette(savedCheckButtonPalette);
-	pushButtonDatabaseCheckConnection->setText(tr("Connection check"));
-
-	connectionCheckRunning = false;
-}
-
-void ROMAlyzer::on_toolButtonBrowseDatabaseOutputPath_clicked()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseDatabaseOutputPath_clicked()");
-#endif
-
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose local DB output path"), lineEditDatabaseOutputPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-
-	if ( !s.isNull() ) {
-		if ( !s.endsWith("/") ) s += "/";
-		lineEditDatabaseOutputPath->setText(s);
-	}
-
-	raise();
-}
-#endif
 
 ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, bool scroll)
 {

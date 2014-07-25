@@ -1,5 +1,3 @@
-#if defined(QMC2_DATABASE_ENABLED)
-
 #ifndef _ROMDBMGR_H_
 #define _ROMDBMGR_H_
 
@@ -28,7 +26,5 @@ class ROMDatabaseManager : public QObject
 
 	public slots:
 };
-
-#endif
 
 #endif

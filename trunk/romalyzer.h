@@ -207,11 +207,6 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		int setRewriterSetCount;
 		bool wizardSearch;
 		bool quickSearch;
-#if defined(QMC2_DATABASE_ENABLED)
-		ROMDatabaseManager *dbManager;
-		QPalette savedCheckButtonPalette;
-		bool connectionCheckRunning;
-#endif
 
 		ROMAlyzer(QWidget *);
 		~ROMAlyzer();
@@ -243,10 +238,6 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void on_toolButtonBrowseSetRewriterOutputPath_clicked();
 		void on_toolButtonBrowseSetRewriterAdditionalRomPath_clicked();
 		void on_toolButtonSaveLog_clicked();
-#if defined(QMC2_DATABASE_ENABLED)
-		void on_pushButtonDatabaseCheckConnection_clicked();
-		void on_toolButtonBrowseDatabaseOutputPath_clicked();
-#endif
 		void on_checkBoxCalculateCRC_toggled(bool);
 		void on_checkBoxCalculateMD5_toggled(bool);
 		void on_checkBoxCalculateSHA1_toggled(bool);
@@ -265,9 +256,6 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void selectItem(QString);
 		void enableSearchEdit() { lineEditSearchString->setEnabled(true); }
 		void adjustIconSizes();
-#if defined(QMC2_DATABASE_ENABLED)
-		void resetDatabaseConnectionCheckButton();
-#endif
 		void runChecksumWizard();
 		void runSetRewriter();
 		void copyToClipboard();

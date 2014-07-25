@@ -501,6 +501,17 @@ bool Welcome::checkConfig()
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/SetRewriterGoodSetsOnly");
 			}
 		}
+		if ( QMC2_TEST_VERSION(omv, 45, osr, 6071) ) {
+			// remove all unused "ROMAlyzer/Database*" keys
+			foreach (QString dbKey, QStringList() << "DatabaseDownload" << "DatabaseDriver" << "DatabaseName" << "DatabaseOutputPath" << "DatabaseOverwrite" << "DatabasePassword" << "DatabasePort" << "DatabaseServer" << "DatabaseUpload" << "DatabaseUser" << "EnableDatabase") {
+				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/" + dbKey) )
+					startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/" + dbKey);
+				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/" + dbKey) )
+					startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/" + dbKey);
+				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/" + dbKey) )
+					startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/" + dbKey);
+			}
+		}
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

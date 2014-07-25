@@ -490,18 +490,6 @@ MKSPEC =
 endif
 endif
 
-# >>> DATABASE <<<
-#
-# Enable (1) or disable (0) the use of any optional features that make use of
-# relational databases.
-#
-# WARNING: this is a WIP feature under development right now -- use at your own
-# risk!
-#
-ifndef DATABASE
-DATABASE = 0
-endif
-
 # >>> MAC_UNIVERSAL <<<
 #
 # Enable (1) or disable (0) the creation of a Mac OS X universal binary
@@ -756,10 +744,6 @@ endif
 
 ifeq '$(WC_COMPRESSION)' '1'
 DEFINES += QMC2_WC_COMPRESSION_ENABLED
-endif
-
-ifeq '$(DATABASE)' '1'
-DEFINES += QMC2_DATABASE_ENABLED
 endif
 
 ifneq '$(QMAKEV)' '3'
@@ -1489,7 +1473,6 @@ config:
 	@$(ECHO) "COLRM                  UNIX command colrm                            $(COLRM)"
 	@$(ECHO) "CP                     UNIX command cp                               $(CP)"
 	@$(ECHO) "CTIME                  Measure compilation & linkage time (0, 1)     $(CTIME)"
-	@$(ECHO) "DATABASE               Enable database features (0, 1)               $(DATABASE)"
 	@$(ECHO) "DATADIR                Data directory for installation               $(DATADIR)"
 	@$(ECHO) "DATE                   UNIX command date                             $(DATE)"
 	@$(ECHO) "DEBUG                  Choose debugging level (0, 1, 2)              $(DEBUG)"
