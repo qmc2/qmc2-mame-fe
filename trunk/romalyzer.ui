@@ -843,7 +843,7 @@
            </widget>
           </item>
           <item row="2" column="3">
-           <widget class="QCheckBox" name="checkBoxSetRewriterGoodSetsOnly">
+           <widget class="QCheckBox" name="checkBoxSetRewriterGoodDumpsOnly">
             <property name="toolTip">
              <string>Rewrite dumps only when they are 'good' (otherwise, 'bad' dumps will be included)</string>
             </property>
@@ -1900,7 +1900,7 @@
   <tabstop>toolButtonBrowseSetRewriterAdditionalRomPath</tabstop>
   <tabstop>checkBoxSetRewriterWhileAnalyzing</tabstop>
   <tabstop>checkBoxSetRewriterSelfContainedSets</tabstop>
-  <tabstop>checkBoxSetRewriterGoodSetsOnly</tabstop>
+  <tabstop>checkBoxSetRewriterGoodDumpsOnly</tabstop>
   <tabstop>radioButtonSetRewriterZipArchives</tabstop>
   <tabstop>spinBoxSetRewriterZipLevel</tabstop>
   <tabstop>checkBoxSetRewriterUniqueCRCs</tabstop>

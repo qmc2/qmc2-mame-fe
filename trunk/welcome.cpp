@@ -298,38 +298,6 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList[1].toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 37, osr, 3983) ) {
-			// add F7 standard-shortcut for all MESS targets
-			if ( !startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Shortcuts/F7") )
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "Shortcuts/F7", "F7");
-		}
-		if ( QMC2_TEST_VERSION(omv, 37, osr, 4160) ) {
-			// rename "HtmlEditor/*" keys
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/Zoom") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/SoftwareNotes/Zoom", startupConfig->value(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/Zoom", 100).toInt());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/Zoom");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/WidgetState") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/SoftwareNotes/WidgetState", startupConfig->value(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/WidgetState", QByteArray()).toByteArray());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/WidgetState");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/Zoom") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/SoftwareNotes/Zoom", startupConfig->value(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/Zoom", 100).toInt());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/Zoom");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/WidgetState") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/SoftwareNotes/WidgetState", startupConfig->value(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/WidgetState", QByteArray()).toByteArray());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/WidgetState");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/Zoom") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/SoftwareNotes/Zoom", startupConfig->value(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/Zoom", 100).toInt());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/Zoom");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/WidgetState") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/SoftwareNotes/WidgetState", startupConfig->value(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/WidgetState", QByteArray()).toByteArray());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/WidgetState");
-			}
-		}
 		if ( QMC2_TEST_VERSION(omv, 38, osr, 4304) ) {
 			// remove deprecated keys: "SampleChecker/SelectGame"
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "SampleChecker/SelectGame") )
@@ -516,6 +484,21 @@ bool Welcome::checkConfig()
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWindow/NegateSearch") ) {
 				startupConfig->setValue(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/NegateSearch", startupConfig->value(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWindow/NegateSearch").toBool());
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWindow/NegateSearch");
+			}
+		}
+		if ( QMC2_TEST_VERSION(omv, 45, osr, 6070) ) {
+			// rename "ROMAlyzer/SetRewriterGoodSetsOnly" to "ROMAlyzer/SetRewriterGoodDumpsOnly"
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/SetRewriterGoodSetsOnly") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/SetRewriterGoodDumpsOnly", startupConfig->value(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/SetRewriterGoodSetsOnly").toBool());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/SetRewriterGoodSetsOnly");
+			}
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/SetRewriterGoodSetsOnly") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/SetRewriterGoodDumpsOnly", startupConfig->value(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/SetRewriterGoodSetsOnly").toBool());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/SetRewriterGoodSetsOnly");
+			}
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/SetRewriterGoodSetsOnly") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/SetRewriterGoodDumpsOnly", startupConfig->value(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/SetRewriterGoodSetsOnly").toBool());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/SetRewriterGoodSetsOnly");
 			}
 		}
 	}

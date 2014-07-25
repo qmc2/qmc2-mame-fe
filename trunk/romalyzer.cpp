@@ -408,7 +408,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableSetRewriter", groupBoxSetRewriter->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterWhileAnalyzing", checkBoxSetRewriterWhileAnalyzing->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterSelfContainedSets", checkBoxSetRewriterSelfContainedSets->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterGoodSetsOnly", checkBoxSetRewriterGoodSetsOnly->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterGoodDumpsOnly", checkBoxSetRewriterGoodDumpsOnly->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipArchives", radioButtonSetRewriterZipArchives->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipLevel", spinBoxSetRewriterZipLevel->value());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUniqueCRCs", checkBoxSetRewriterUniqueCRCs->isChecked());
@@ -494,7 +494,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	groupBoxSetRewriter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableSetRewriter", false).toBool());
 	checkBoxSetRewriterWhileAnalyzing->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterWhileAnalyzing", false).toBool());
 	checkBoxSetRewriterSelfContainedSets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterSelfContainedSets", false).toBool());
-	checkBoxSetRewriterGoodSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterGoodSetsOnly", true).toBool());
+	checkBoxSetRewriterGoodDumpsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterGoodDumpsOnly", true).toBool());
 	radioButtonSetRewriterZipArchives->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipArchives", true).toBool());
 	spinBoxSetRewriterZipLevel->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipLevel", Z_DEFAULT_COMPRESSION).toInt());
 	checkBoxSetRewriterUniqueCRCs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUniqueCRCs", false).toBool());
@@ -1140,7 +1140,7 @@ void ROMAlyzer::analyze()
 				if ( !gameOkay )
 					analyzerBadSets << gameName;
 
-				if ( gameOkay || !checkBoxSetRewriterGoodSetsOnly->isChecked() )
+				if ( gameOkay || !checkBoxSetRewriterGoodDumpsOnly->isChecked() )
 					if ( groupBoxSetRewriter->isChecked() )
 						if ( checkBoxSetRewriterWhileAnalyzing->isChecked() && !qmc2StopParser && !wizardSearch )
 							runSetRewriter();
@@ -2530,7 +2530,7 @@ void ROMAlyzer::runSetRewriter()
 				outputDataMap[outputFileName] = fileData;
 				uniqueCRCs << fileCRC;
 			} else {
-				if ( checkBoxSetRewriterGoodSetsOnly->isChecked() ) {
+				if ( checkBoxSetRewriterGoodDumpsOnly->isChecked() ) {
 					log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2' from '%3', aborting").arg(fileName).arg(fileCRC).arg(filePath));
 					loadOkay = false;
 				} else
@@ -2541,7 +2541,7 @@ void ROMAlyzer::runSetRewriter()
 				outputDataMap[outputFileName] = fileData;
 				uniqueCRCs << fileCRC;
 			} else {
-				if ( checkBoxSetRewriterGoodSetsOnly->isChecked() ) {
+				if ( checkBoxSetRewriterGoodDumpsOnly->isChecked() ) {
 					log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2' from '%3', aborting").arg(fileName).arg(fileCRC).arg(filePath));
 					loadOkay = false;
 				} else
@@ -2552,7 +2552,7 @@ void ROMAlyzer::runSetRewriter()
 				outputDataMap[outputFileName] = fileData;
 				uniqueCRCs << fileCRC;
 			} else {
-				if ( checkBoxSetRewriterGoodSetsOnly->isChecked() ) {
+				if ( checkBoxSetRewriterGoodDumpsOnly->isChecked() ) {
 					log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2' from '%3', aborting").arg(fileName).arg(fileCRC).arg(filePath));
 					loadOkay = false;
 				} else
