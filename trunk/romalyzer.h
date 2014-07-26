@@ -143,6 +143,7 @@
 #define QMC2_CHD_HEADER_V5_LENGTH		124
 
 #define QMC2_CHD_CURRENT_VERSION		5
+#define QMC2_CHD_CHECK_NULL_SHA1(ba)		((ba).startsWith(QByteArray("00000000000000000000")))
 
 #define wizardAutomationLevel			comboBoxChecksumWizardAutomationLevel->currentIndex()
 #define renamerAutomationLevel			comboBoxSetRenamerAutomationLevel->currentIndex()

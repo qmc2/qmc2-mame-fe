@@ -1299,7 +1299,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
 										log(tr("  SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
 										QByteArray parentSha1DataHex = QByteArray((const char *)(buffer + QMC2_CHD_HEADER_V5_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V5_PARENTSHA1_LENGTH).toHex();
-										if ( parentSha1DataHex.toInt(0, 16) != 0 )
+										if ( !QMC2_CHD_CHECK_NULL_SHA1(parentSha1DataHex) )
 											log(tr("  parent CHD's SHA-1 check-sum: %1").arg(QString(parentSha1DataHex)));
 										QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
 										log(tr("  raw SHA-1 check-sum: %1").arg(QString(rawsha1Data.toHex())));
@@ -1623,6 +1623,8 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 						sP = tr("searched paths: %1").arg(chdPaths.join(", "));
 					else
 						sP = tr("searched path: %1").arg(chdPaths[0]);
+					if ( myItem->text(QMC2_ROMALYZER_COLUMN_EMUSTATUS) == tr("no dump") )
+						sP += " (" + tr("no dump exists") + " / " + tr("SHA-1") + " " + tr("unknown") + ")";
 					log(tr("WARNING: CHD file '%1' not found").arg(baseName) + " -- " + sP);
 				}
 				if ( mergeFile.isEmpty() && merge.isEmpty() )
