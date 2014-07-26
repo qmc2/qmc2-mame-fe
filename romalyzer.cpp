@@ -1411,7 +1411,6 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 										connect(chdManagerProc, SIGNAL(readyReadStandardOutput()), this, SLOT(chdManagerReadyReadStandardOutput()));
 										connect(chdManagerProc, SIGNAL(readyReadStandardError()), this, SLOT(chdManagerReadyReadStandardError()));
 										connect(chdManagerProc, SIGNAL(started()), this, SLOT(chdManagerStarted()));
-										connect(chdManagerProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(chdManagerStateChanged(QProcess::ProcessState)));
 										chdManagerProc->start(command, args);
 										chdManagerRunning = true;
 										chdManagerMD5Success = chdManagerSHA1Success = false;
