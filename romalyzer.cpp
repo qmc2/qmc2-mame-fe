@@ -2264,13 +2264,17 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 
 	treeWidgetChecksumWizardSearchResult->clear();
 	QString searchedChecksum = lineEditChecksumWizardHash->text().toLower();
-	if ( searchedChecksum.isEmpty() ) return;
+	if ( searchedChecksum.isEmpty() )
+		return;
 
 	pushButtonChecksumWizardSearch->setEnabled(false);
 	lineEditChecksumWizardHash->setEnabled(false);
+	pushButtonAnalyze->setEnabled(false);
+	toolButtonToolsMenu->setEnabled(false);
+	lineEditGames->setEnabled(false);
 
 	progressBar->setRange(0, qmc2MainWindow->treeWidgetGamelist->topLevelItemCount());
-	labelStatus->setText(tr("Checksum search"));
+	labelStatus->setText(tr("Check-sum search"));
 
 	QString hashStartString;
 	int hashStartOffset;
@@ -2325,6 +2329,9 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 
 	progressBar->reset();
 	labelStatus->setText(tr("Idle"));
+	pushButtonAnalyze->setEnabled(true);
+	toolButtonToolsMenu->setEnabled(true);
+	lineEditGames->setEnabled(true);
 	pushButtonChecksumWizardSearch->setEnabled(true);
 	lineEditChecksumWizardHash->setEnabled(true);
 	qApp->processEvents();
