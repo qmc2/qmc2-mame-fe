@@ -1241,6 +1241,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 										log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
 										quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V3_LOGICALBYTES_OFFSET);
 										log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
+										log(tr("  real size: %1 (%2 B)").arg(humanReadable(fi.size())).arg(locale.toString(fi.size())));
 										QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
 										log(tr("  MD5 check-sum: %1").arg(QString(md5Data.toHex())));
 										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
@@ -1265,6 +1266,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 										log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
 										quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V4_LOGICALBYTES_OFFSET);
 										log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
+										log(tr("  real size: %1 (%2 B)").arg(humanReadable(fi.size())).arg(locale.toString(fi.size())));
 										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
 										log(tr("  SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
 										if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
@@ -1296,6 +1298,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 										log(tr("  number of bytes per unit: %1").arg(locale.toString(chdUnitBytes)));
 										quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V5_LOGICALBYTES_OFFSET);
 										log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
+										log(tr("  real size: %1 (%2 B)").arg(humanReadable(fi.size())).arg(locale.toString(fi.size())));
 										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
 										log(tr("  SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
 										QByteArray parentSha1DataHex = QByteArray((const char *)(buffer + QMC2_CHD_HEADER_V5_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V5_PARENTSHA1_LENGTH).toHex();
