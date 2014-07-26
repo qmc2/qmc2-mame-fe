@@ -122,7 +122,7 @@ void About::showEvent(QShowEvent *e)
 #if QMC2_SVN_REV > 0
 		" (" + tr("SVN r%1").arg(QMC2_SVN_REV) + ")" +
 #endif
-		", " + tr("built for") + QMC2_EMU_NAME_VARIANT + "<br>" + tr("Copyright") + " &copy; 2006 - 2014 R. Reucher, " + tr("Germany") + "</p>";
+		", " + tr("built for") + " " + QMC2_EMU_NAME_VARIANT + "<br>" + tr("Copyright") + " &copy; 2006 - 2014 R. Reucher, " + tr("Germany") + "</p>";
 
 	labelTitle->setText(titleString);
 
