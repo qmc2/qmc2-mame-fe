@@ -7,21 +7,12 @@ extern MainWindow *qmc2MainWindow;
 #endif
 
 ItemSelector::ItemSelector(QWidget *parent, QStringList &items)
-  : QDialog(parent)
+	: QDialog(parent)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemSelector::ItemSelector(QWidget *parent = %1, QStringList &items = ...)").arg((qulonglong)parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemSelector::ItemSelector(QWidget *parent = %1, QStringList &items = ...)").arg((qulonglong)parent));
 #endif
 
-  setupUi(this);
-
-  listWidgetItems->addItems(items);
-}
-
-ItemSelector::~ItemSelector()
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ItemSelector::~ItemSelector()");
-#endif
-
+	setupUi(this);
+	listWidgetItems->addItems(items);
 }

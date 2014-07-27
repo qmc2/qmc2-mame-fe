@@ -9,68 +9,41 @@ extern Settings *qmc2Config;
 
 DocBrowser::DocBrowser(QWidget *parent)
 #if defined(QMC2_OS_WIN)
-  : QDialog(parent, Qt::Dialog)
+	: QDialog(parent, Qt::Dialog)
 #else
-  : QDialog(parent, Qt::Dialog | Qt::SubWindow)
+	: QDialog(parent, Qt::Dialog | Qt::SubWindow)
 #endif
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DocBrowser::DocBrowser(QWidget *parent = %1)").arg((qulonglong)parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DocBrowser::DocBrowser(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
-  setupUi(this);
+	setupUi(this);
 
-  browser = new MiniWebBrowser(this);
-  verticalLayout->addWidget(browser);
+	browser = new MiniWebBrowser(this);
+	verticalLayout->addWidget(browser);
 
-  widgetSize = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Size", QSize(600, 600)).toSize();
-  resize(widgetSize);
+	widgetSize = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Size", QSize(600, 600)).toSize();
+	resize(widgetSize);
 
-  widgetPos = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Pos", QPoint((parent->width() - width()) / 2, (parent->height() - height()) / 2)).toPoint();
-  move(widgetPos);
+	widgetPos = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Pos", QPoint((parent->width() - width()) / 2, (parent->height() - height()) / 2)).toPoint();
+	move(widgetPos);
 
-  connect(browser, SIGNAL(titleChanged(QString &)), this, SLOT(titleChanged(QString &)));
+	connect(browser, SIGNAL(titleChanged(QString &)), this, SLOT(titleChanged(QString &)));
 
 #if defined(QMC2_OS_MAC)
-  setParent(qmc2MainWindow, Qt::Dialog);
+	setParent(qmc2MainWindow, Qt::Dialog);
 #endif
 }
 
 DocBrowser::~DocBrowser()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DocBrowser::~DocBrowser()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DocBrowser::~DocBrowser()");
 #endif
 
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Size", size());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Pos", pos());
-}
-
-void DocBrowser::showEvent(QShowEvent *e)
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DocBrowser::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
-#endif
-
-  e->accept();
-}
-
-void DocBrowser::resizeEvent(QResizeEvent *e)
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DocBrowser::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
-#endif
-
-  e->accept();
-}
-
-void DocBrowser::moveEvent(QMoveEvent *e)
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DocBrowser::moveEvent(QMoveEvent *e = %1)").arg((qulonglong)e));
-#endif
-
-  e->accept();
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Size", size());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Pos", pos());
 }
 
 void DocBrowser::titleChanged(QString &title)
@@ -82,8 +55,8 @@ void DocBrowser::titleChanged(QString &title)
 	static QString currentTitle = "QMC2_NO_TITLE";
 
 	if ( title == "QMC2_NO_TITLE" ) {
-			setWindowTitle(tr("MiniWebBrowser"));
-			currentTitle = "QMC2_NO_TITLE";
+		setWindowTitle(tr("MiniWebBrowser"));
+		currentTitle = "QMC2_NO_TITLE";
 	} else {
 		if ( title.isEmpty() ) {
 			if ( currentTitle == "QMC2_NO_TITLE" )

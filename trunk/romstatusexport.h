@@ -12,31 +12,31 @@
 
 class ROMStatusExporter : public QDialog, public Ui::ROMStatusExporter
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  public:
-    bool exportListAutoCorrected;
+	public:
+		bool exportListAutoCorrected;
 
-    ROMStatusExporter(QWidget *parent = 0);
-    ~ROMStatusExporter();
+		ROMStatusExporter(QWidget *parent = 0);
+		~ROMStatusExporter();
 
-    void exportToASCII();
-    void exportToCSV();
-    void exportToHTML();
+		void exportToASCII();
+		void exportToCSV();
+		void exportToHTML();
 
-  public slots:
-    void adjustIconSizes();
+	public slots:
+		void adjustIconSizes();
 
-    // automatically connected slots
-    void on_toolButtonBrowseASCIIFile_clicked();
-    void on_toolButtonBrowseCSVFile_clicked();
-    void on_toolButtonBrowseHTMLFile_clicked();
-    void on_pushButtonExport_clicked();
-    void on_comboBoxOutputFormat_currentIndexChanged(int);
-    void on_checkBoxExportToClipboard_toggled(bool);
+		// automatically connected slots
+		void on_toolButtonBrowseASCIIFile_clicked();
+		void on_toolButtonBrowseCSVFile_clicked();
+		void on_toolButtonBrowseHTMLFile_clicked();
+		void on_pushButtonExport_clicked();
+		void on_comboBoxOutputFormat_currentIndexChanged(int);
+		void on_checkBoxExportToClipboard_toggled(bool);
 
-  protected:
-    void closeEvent(QCloseEvent *);
+	protected:
+		void closeEvent(QCloseEvent *);
 };
 
 #endif

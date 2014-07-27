@@ -35,18 +35,17 @@
 
 class Settings : public QSettings
 {
-    Q_OBJECT
+	Q_OBJECT
 
-  public:
+	public:
 #ifndef QT_NO_QOBJECT
-    Settings(Format format, Scope scope, const QString &organization,
-        const QString &application = QString(), QObject *parent = 0) : QSettings(format, scope, organization, application, parent) {} ;
+		Settings(Format format, Scope scope, const QString &organization, const QString &application = QString(), QObject *parent = 0) : QSettings(format, scope, organization, application, parent) {} ;
 #else
-    Settings(Format format, Scope scope, const QString &organization,
-        const QString &application = QString()) : QSettings(format, scope, organization, &application) {} ;
+		Settings(Format format, Scope scope, const QString &organization, const QString &application = QString()) : QSettings(format, scope, organization, &application) {} ;
 #endif
-    virtual QVariant value(const QString & key, const QVariant & defaultValue = QVariant()) const;
-    static QStringList stResolve(const QStringList& qstr);
-    static QString stResolve(const QString& qstr);
+		virtual QVariant value(const QString & key, const QVariant & defaultValue = QVariant()) const;
+		static QStringList stResolve(const QStringList& qstr);
+		static QString stResolve(const QString& qstr);
 };
+
 #endif
