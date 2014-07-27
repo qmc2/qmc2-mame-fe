@@ -6,13 +6,10 @@
 
 class ItemSelector : public QDialog, public Ui::ItemSelector
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  public:
-    ItemSelector(QWidget *, QStringList &);
-    ~ItemSelector();
-
-  protected:
+	public:
+		ItemSelector(QWidget *, QStringList &);
 };
 
 #endif

@@ -6,24 +6,19 @@
 
 class DocBrowser : public QDialog, public Ui::DocBrowser
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  public:
-    QPoint widgetPos;
-    QSize widgetSize;
-    bool widgetPosValid;
-    MiniWebBrowser *browser;
+	public:
+		QPoint widgetPos;
+		QSize widgetSize;
+		bool widgetPosValid;
+		MiniWebBrowser *browser;
 
-    DocBrowser(QWidget *parent = 0);
-    ~DocBrowser();
+		DocBrowser(QWidget *parent = 0);
+		~DocBrowser();
 
-  public slots:
-    void titleChanged(QString &);
-
-  protected:
-    void showEvent(QShowEvent *);
-    void moveEvent(QMoveEvent *);
-    void resizeEvent(QResizeEvent *);
+	public slots:
+		void titleChanged(QString &);
 };
 
 #endif
