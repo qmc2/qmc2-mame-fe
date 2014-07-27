@@ -104,7 +104,6 @@ class Gamelist : public QObject
 	public slots:
 		void load();
 		void verify(bool currentOnly = false);
-		void save();
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		void loadCatverIni();
 		void createVersionView();
