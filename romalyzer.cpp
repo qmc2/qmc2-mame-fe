@@ -183,6 +183,14 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 	actionExportToDataFile->setEnabled(false);
 	toolButtonToolsMenu->setMenu(toolsMenu);
 
+#if defined(QMC2_WIP_ENABLED)
+	// FIXME
+	m_checkSumDb = new CheckSumDatabaseManager(this);
+#else
+	m_checkSumDb = NULL;
+	groupBoxCheckSumDatabase->setVisible(false);
+#endif
+
 #if defined(QMC2_OS_MAC)
 	setParent(qmc2MainWindow, Qt::Dialog);
 #endif
@@ -194,6 +202,8 @@ ROMAlyzer::~ROMAlyzer()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::~ROMAlyzer()");
 #endif
 
+	if ( checkSumDb() )
+		delete checkSumDb();
 }
 
 void ROMAlyzer::adjustIconSizes()
@@ -227,6 +237,10 @@ void ROMAlyzer::adjustIconSizes()
 	pushButtonSetRenamerImportResults->setIconSize(iconSize);
 	treeWidgetChecksums->setIconSize(iconSizeMiddle);
 	pushButtonChecksumWizardSearch->setIconSize(iconSize);
+	toolButtonCheckSumDbAddPath->setIconSize(iconSize);
+	toolButtonBrowseCheckSumDbDatabasePath->setIconSize(iconSize);
+	toolButtonCheckSumDbRemovePath->setIconSize(iconSize);
+	pushButtonCheckSumDbScan->setIconSize(iconSize);
 }
 
 void ROMAlyzer::on_pushButtonClose_clicked()
