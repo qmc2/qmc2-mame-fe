@@ -223,6 +223,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		static QString humanReadable(quint64, int digits = 2);
 		static QString &getXmlData(QString, bool includeDTD = false);
 		QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString, QByteArray *, QString *, QString *, bool *, bool *, bool *, int, QString *, bool);
+		CheckSumDatabaseManager *checkSumDb() { return m_checkSumDb; }
 
 	public slots:
 		// callback functions
@@ -277,6 +278,9 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void hideEvent(QHideEvent *);
 		void moveEvent(QMoveEvent *);
 		void resizeEvent(QResizeEvent *);
+
+	private:
+		CheckSumDatabaseManager *m_checkSumDb;
 };
 
 #endif

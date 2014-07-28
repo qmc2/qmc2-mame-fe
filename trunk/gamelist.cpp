@@ -405,6 +405,10 @@ void Gamelist::enableWidgets(bool enable)
 			qmc2ROMAlyzer->toolButtonBrowseSetRewriterOutputPath->setEnabled(enable);
 			qmc2ROMAlyzer->toolButtonBrowseSetRewriterAdditionalRomPath->setEnabled(enable);
 		}
+		if ( qmc2ROMAlyzer->groupBoxCheckSumDatabase->isChecked() ) {
+			qmc2ROMAlyzer->toolButtonBrowseCheckSumDbDatabasePath->setEnabled(enable);
+			qmc2ROMAlyzer->toolButtonCheckSumDbAddPath->setEnabled(enable);
+		}
 	} else {
 		qmc2MainWindow->actionROMAlyzer->setEnabled(enable);
 		qmc2MainWindow->actionAnalyseCurrentROM->setEnabled(enable);

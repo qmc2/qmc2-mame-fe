@@ -13,6 +13,18 @@ class CheckSumDatabaseManager : public QObject
 		explicit CheckSumDatabaseManager(QObject *parent);
 		~CheckSumDatabaseManager();
 
+		QString qmc2Version();
+		void setQmc2Version(QString qmc2_version);
+		int checkSumDbVersion();
+		void setCheckSumDbVersion(int checksum_db_version);
+		uint scanTime();
+		void setScanTime(uint scan_time);
+
+		bool logActive() { return m_logActive; }
+		void setLogActive(bool enable) { m_logActive = enable; }
+
+		int checkSumRowCount();
+
 		QString connectionName() { return m_connectionName; }
 
 	public slots:
@@ -22,7 +34,9 @@ class CheckSumDatabaseManager : public QObject
 
 	private:
 		mutable QSqlDatabase m_db;
+		QString m_tableBasename;
 		QString m_connectionName;
+		bool m_logActive;
 };
 
 #endif
