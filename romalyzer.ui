@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>599</width>
-    <height>737</height>
+    <width>651</width>
+    <height>733</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -322,8 +322,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>583</width>
-            <height>641</height>
+            <width>635</width>
+            <height>637</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayoutScrollAreeaSettings">
@@ -1071,7 +1071,7 @@
              <layout class="QGridLayout" name="gridLayout_4">
               <item row="0" column="0">
                <layout class="QGridLayout" name="gridLayoutCheckSumDatabase" columnstretch="2,0,0,1,1">
-                <item row="8" column="3" colspan="2">
+                <item row="7" column="3" colspan="2">
                  <spacer name="verticalSpacer_3">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
@@ -1084,7 +1084,7 @@
                   </property>
                  </spacer>
                 </item>
-                <item row="2" column="0" rowspan="10">
+                <item row="2" column="0" rowspan="9">
                  <widget class="QListWidget" name="listWidgetCheckSumDbScannedPaths">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
@@ -1106,7 +1106,7 @@
                   </property>
                  </widget>
                 </item>
-                <item row="2" column="1" rowspan="10">
+                <item row="2" column="1" rowspan="9">
                  <layout class="QVBoxLayout" name="verticalLayout_3">
                   <item>
                    <widget class="QToolButton" name="toolButtonCheckSumDbAddPath">
@@ -1155,7 +1155,7 @@
                   </property>
                  </widget>
                 </item>
-                <item row="0" column="2" rowspan="12">
+                <item row="0" column="2" rowspan="11">
                  <widget class="Line" name="line_18">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
@@ -1169,14 +1169,14 @@
                   </property>
                  </widget>
                 </item>
-                <item row="9" column="3">
+                <item row="8" column="3">
                  <widget class="QLabel" name="labelCheckSumDbScannerControl">
                   <property name="text">
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Scanner control&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
                 </item>
-                <item row="9" column="4">
+                <item row="8" column="4">
                  <widget class="QToolButton" name="toolButtonCheckSumDbViewLog">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
@@ -1198,7 +1198,7 @@
                   </property>
                  </widget>
                 </item>
-                <item row="11" column="3" colspan="2">
+                <item row="10" column="3" colspan="2">
                  <widget class="QPushButton" name="pushButtonCheckSumDbScan">
                   <property name="enabled">
                    <bool>false</bool>
@@ -1215,14 +1215,14 @@
                   </property>
                  </widget>
                 </item>
-                <item row="10" column="3" colspan="2">
+                <item row="9" column="3" colspan="2">
                  <widget class="Line" name="line_20">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
                   </property>
                  </widget>
                 </item>
-                <item row="7" column="3" colspan="2">
+                <item row="6" column="3" colspan="2">
                  <widget class="QLabel" name="labelCheckSumDbStatusDisplay">
                   <property name="toolTip">
                    <string>Database / scanner status</string>
@@ -1250,14 +1250,14 @@
                   </property>
                  </widget>
                 </item>
-                <item row="6" column="3" colspan="2">
+                <item row="5" column="3" colspan="2">
                  <widget class="Line" name="line_19">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
                   </property>
                  </widget>
                 </item>
-                <item row="4" column="3" rowspan="2" colspan="2">
+                <item row="3" column="3" rowspan="2" colspan="2">
                  <widget class="QLabel" name="labelCheckSumDbStatus">
                   <property name="text">
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1311,19 +1311,6 @@
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Database path&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
-                </item>
-                <item row="3" column="3" colspan="2">
-                 <spacer name="verticalSpacer">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                 </spacer>
                 </item>
                </layout>
               </item>
