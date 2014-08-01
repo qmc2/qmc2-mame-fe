@@ -187,11 +187,16 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 #if defined(QMC2_WIP_ENABLED)
 	m_checkSumDb = new CheckSumDatabaseManager(this);
 	m_checkSumScannerLog = new CheckSumScannerLog(0);
-	connect(m_checkSumScannerLog, SIGNAL(windowOpened()), this, SLOT(checkSumScannerLog_windowOpened()));
-	connect(m_checkSumScannerLog, SIGNAL(windowClosed()), this, SLOT(checkSumScannerLog_windowClosed()));
+	connect(checkSumScannerLog(), SIGNAL(windowOpened()), this, SLOT(checkSumScannerLog_windowOpened()));
+	connect(checkSumScannerLog(), SIGNAL(windowClosed()), this, SLOT(checkSumScannerLog_windowClosed()));
+	m_checkSumScannerThread = new CheckSumScannerThread(this);
+	connect(checkSumScannerThread(), SIGNAL(log(QString)), checkSumScannerLog(), SLOT(log(QString)));
+	connect(checkSumScannerThread(), SIGNAL(scanStarted()), this, SLOT(checkSumScannerThread_scanStarted()));
+	connect(checkSumScannerThread(), SIGNAL(scanFinished()), this, SLOT(checkSumScannerThread_scanFinished()));
 #else
 	m_checkSumDb = NULL;
 	m_checkSumScannerLog = NULL;
+	m_checkSumScannerThread = NULL;
 	groupBoxCheckSumDatabase->setVisible(false);
 #endif
 
@@ -210,6 +215,8 @@ ROMAlyzer::~ROMAlyzer()
 		delete checkSumDb();
 	if ( checkSumScannerLog() )
 		delete checkSumScannerLog();
+	if ( checkSumScannerThread() )
+		delete checkSumScannerThread();
 }
 
 void ROMAlyzer::adjustIconSizes()
@@ -3540,6 +3547,17 @@ void ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()");
 #endif
 
+	if ( checkSumScannerThread() ) {
+		if ( checkSumScannerThread()->isActive ) {
+			checkSumScannerThread()->stopScan = true;
+		} else if ( checkSumScannerThread()->isWaiting ) {
+			checkSumScannerThread()->scannedPaths.clear();
+			for (int i = 0; i < listWidgetCheckSumDbScannedPaths->count(); i++)
+				checkSumScannerThread()->scannedPaths << listWidgetCheckSumDbScannedPaths->item(i)->text();
+			checkSumScannerThread()->waitCondition.wakeAll();
+			pushButtonCheckSumDbScan->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
+		}
+	}
 }
 
 void ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_customContextMenuRequested(const QPoint &p)
@@ -3548,6 +3566,7 @@ void ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_customContextMenuRequested(c
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_customContextMenuRequested(const QPoint &p = ...)");
 #endif
 
+	// FIXME
 }
 
 void ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_itemSelectionChanged()
@@ -3575,6 +3594,24 @@ void ROMAlyzer::checkSumScannerLog_windowClosed()
 #endif
 
 	toolButtonCheckSumDbViewLog->setText(tr("Open log"));
+}
+
+void ROMAlyzer::checkSumScannerThread_scanStarted()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::checkSumScannerThread_scanStarted()");
+#endif
+
+	pushButtonCheckSumDbScan->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
+}
+
+void ROMAlyzer::checkSumScannerThread_scanFinished()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::checkSumScannerThread_scanFinished()");
+#endif
+
+	pushButtonCheckSumDbScan->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
 }
 
 ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, bool scroll)
@@ -3711,4 +3748,51 @@ bool ROMAlyzerXmlHandler::characters(const QString &str)
 
 	currentText += QString::fromUtf8(str.toLocal8Bit());
 	return true;
+}
+
+CheckSumScannerThread::CheckSumScannerThread(QObject *parent)
+	: QThread(parent)
+{
+	isActive = exitThread = isWaiting = stopScan = false;
+	start();
+}
+
+CheckSumScannerThread::~CheckSumScannerThread()
+{
+	exitThread = true;
+	waitCondition.wakeAll();
+	wait();
+}
+
+void CheckSumScannerThread::run()
+{
+	emit log(tr("Scanner thread started"));
+	while ( !exitThread && !qmc2StopParser ) {
+		emit log(tr("Waiting for work"));
+
+		mutex.lock();
+		isWaiting = true;
+		isActive = false;
+		stopScan = false;
+		waitCondition.wait(&mutex);
+		isActive = true;
+		isWaiting = false;
+		mutex.unlock();
+
+		if ( !exitThread && !qmc2StopParser && !stopScan ) {
+			emit scanStarted();
+			foreach (QString path, scannedPaths) {
+				emit log(tr("Scan started for path '%1'").arg(path));
+
+				// FIXME
+
+				emit log(tr("Scan finished for path '%1'").arg(path));
+
+				if ( exitThread || qmc2StopParser || stopScan )
+					break;
+			}
+			emit scanFinished();
+		}
+	}
+	emit log(tr("Scanner thread ended"));
 }

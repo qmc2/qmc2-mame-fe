@@ -3,6 +3,9 @@
 
 #include <QtGui>
 #include <QtXml>
+#include <QThread>
+#include <QMutex>
+#include <QWaitCondition>
 #include <QStringList>
 
 #include "macros.h"
@@ -150,6 +153,31 @@
 #define wizardAutomationLevel			comboBoxChecksumWizardAutomationLevel->currentIndex()
 #define renamerAutomationLevel			comboBoxSetRenamerAutomationLevel->currentIndex()
 
+class CheckSumScannerThread : public QThread
+{
+	Q_OBJECT
+
+	public:
+		bool exitThread;
+		bool stopScan;
+		bool isActive;
+		bool isWaiting;
+		QMutex mutex;
+		QWaitCondition waitCondition;
+		QStringList scannedPaths;
+
+		CheckSumScannerThread(QObject *parent = 0);
+		~CheckSumScannerThread();
+
+	signals:
+		void log(QString);
+		void scanStarted();
+		void scanFinished();
+
+	protected:
+		void run();
+};
+
 class ROMAlyzerXmlHandler : public QXmlDefaultHandler
 {
 	public:
@@ -227,6 +255,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString, QByteArray *, QString *, QString *, bool *, bool *, bool *, int, QString *, bool);
 		CheckSumDatabaseManager *checkSumDb() { return m_checkSumDb; }
 		CheckSumScannerLog *checkSumScannerLog() { return m_checkSumScannerLog; }
+		CheckSumScannerThread *checkSumScannerThread() { return m_checkSumScannerThread; }
 
 	public slots:
 		// callback functions
@@ -263,6 +292,8 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void on_listWidgetCheckSumDbScannedPaths_itemSelectionChanged();
 		void checkSumScannerLog_windowClosed();
 		void checkSumScannerLog_windowOpened();
+		void checkSumScannerThread_scanStarted();
+		void checkSumScannerThread_scanFinished();
 
 		// miscellaneous slots
 		void animationTimeout();
@@ -294,6 +325,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 	private:
 		CheckSumDatabaseManager *m_checkSumDb;
 		CheckSumScannerLog *m_checkSumScannerLog;
+		CheckSumScannerThread *m_checkSumScannerThread;
 };
 
 #endif

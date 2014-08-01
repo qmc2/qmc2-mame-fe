@@ -1,4 +1,8 @@
+#include <QApplication>
+#include <QScrollBar>
+#include <QString>
 #include <QFont>
+#include <QTime>
 
 #include "checksumscannerlog.h"
 #include "settings.h"
@@ -11,21 +15,33 @@ CheckSumScannerLog::CheckSumScannerLog(QWidget *parent)
 {
 	hide();
 	setupUi(this);
-
 	QFont logFont;
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
 	plainTextEditLog->setFont(logFont);
+	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CheckSumScannerLog/MaxLogSize", 10000).toInt());
 }
 
 void CheckSumScannerLog::on_spinBoxMaxLogSize_valueChanged(int value)
 {
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CheckSumScannerLog/MaxLogSize", value);
 	plainTextEditLog->setMaximumBlockCount(value);
+}
+
+void CheckSumScannerLog::log(QString message)
+{
+	message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": ");
+	bool scrollBarMaximum = (plainTextEditLog->verticalScrollBar()->value() == plainTextEditLog->verticalScrollBar()->maximum()) && isVisible();
+	plainTextEditLog->appendPlainText(message);
+	if ( scrollBarMaximum ) {
+		plainTextEditLog->update();
+		qApp->processEvents();
+		plainTextEditLog->verticalScrollBar()->setValue(plainTextEditLog->verticalScrollBar()->maximum());
+	}
 }
 
 void CheckSumScannerLog::showEvent(QShowEvent *e)
 {
 	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CheckSumScannerLog/Geometry", QByteArray()).toByteArray());
-	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CheckSumScannerLog/MaxLogSize", 10000).toInt());
 	emit windowOpened();
 	if ( e )
 		QWidget::showEvent(e);
@@ -35,7 +51,6 @@ void CheckSumScannerLog::hideEvent(QHideEvent *e)
 {
 	if ( isVisible() )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CheckSumScannerLog/Geometry", saveGeometry());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CheckSumScannerLog/MaxLogSize", spinBoxMaxLogSize->value());
 	emit windowClosed();
 	if ( e )
 		QWidget::hideEvent(e);
