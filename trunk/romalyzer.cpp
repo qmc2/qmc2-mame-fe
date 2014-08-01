@@ -441,6 +441,9 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 		}
 	}
 
+	if ( checkSumScannerLog() )
+		checkSumScannerLog()->close();
+
 	if ( e )
 		e->accept();
 }
