@@ -57,6 +57,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			additionalartworksetup.ui \
 			imageformatsetup.ui \
 			rankitemwidget.ui \
+			checksumscannerlog.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
 			htmleditor/tablepropertydialog.ui
@@ -126,6 +127,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			fileiconprovider.cpp \
 			rankitemwidget.cpp \
 			aspectratiolabel.cpp \
+			checksumscannerlog.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -242,6 +244,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			fileiconprovider.h \
 			rankitemwidget.h \
 			aspectratiolabel.h \
+			checksumscannerlog.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h
