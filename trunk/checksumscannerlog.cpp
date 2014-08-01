@@ -33,7 +33,8 @@ void CheckSumScannerLog::showEvent(QShowEvent *e)
 
 void CheckSumScannerLog::hideEvent(QHideEvent *e)
 {
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CheckSumScannerLog/Geometry", saveGeometry());
+	if ( isVisible() )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CheckSumScannerLog/Geometry", saveGeometry());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CheckSumScannerLog/MaxLogSize", spinBoxMaxLogSize->value());
 	emit windowClosed();
 	if ( e )
