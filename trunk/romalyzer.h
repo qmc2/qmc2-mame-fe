@@ -3,6 +3,7 @@
 
 #include <QtGui>
 #include <QtXml>
+#include <QStringList>
 
 #include "macros.h"
 #include "checksumdbmgr.h"
