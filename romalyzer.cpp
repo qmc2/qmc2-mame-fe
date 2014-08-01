@@ -3520,9 +3520,12 @@ void ROMAlyzer::on_toolButtonCheckSumDbViewLog_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonCheckSumDbViewLog_clicked()");
 #endif
 
-	if ( checkSumScannerLog()->isVisible() )
+	if ( checkSumScannerLog()->isMinimized() ) {
+		checkSumScannerLog()->showNormal();
+		checkSumScannerLog()->raise();
+	} else if ( checkSumScannerLog()->isVisible() ) {
 		checkSumScannerLog()->close();
-	else {
+	} else {
 		checkSumScannerLog()->show();
 		checkSumScannerLog()->raise();
 	}

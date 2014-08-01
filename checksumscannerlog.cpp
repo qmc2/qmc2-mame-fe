@@ -25,7 +25,7 @@ void CheckSumScannerLog::on_spinBoxMaxLogSize_valueChanged(int value)
 void CheckSumScannerLog::showEvent(QShowEvent *e)
 {
 	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CheckSumScannerLog/Geometry", QByteArray()).toByteArray());
-	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CheckSumScannerLog/MaxLogSize", 0).toInt());
+	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CheckSumScannerLog/MaxLogSize", 10000).toInt());
 	emit windowOpened();
 	if ( e )
 		QWidget::showEvent(e);
