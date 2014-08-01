@@ -12,6 +12,8 @@ class CheckSumScannerLog : public QWidget, public Ui::CheckSumScannerLog
 
 	public slots:
 		void on_spinBoxMaxLogSize_valueChanged(int);
+		void log(QString);
+		void clear() { plainTextEditLog->clear(); }
 
 	signals:
 		void windowOpened();
