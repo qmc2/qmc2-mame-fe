@@ -21,9 +21,8 @@ CheckSumDatabaseManager::CheckSumDatabaseManager(QObject *parent)
 	m_connectionName = QString("checksum-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
 	QString variantName = QMC2_VARIANT_NAME.toLower();
-	variantName.replace("-", "_");
-	m_db.setDatabaseName(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDatabase", QString(userScopePath + "/%1-checksum.db").arg(variantName)).toString());
-	m_tableBasename = QString("%1_checksum").arg(variantName);
+	m_db.setDatabaseName(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbDatabasePath", QString(userScopePath + "/%1-checksum.db").arg(variantName)).toString());
+	m_tableBasename = QString("%1_checksum").arg(variantName.replace("-", "_"));
 	if ( m_db.open() ) {
 		QStringList tables = m_db.driver()->tables(QSql::Tables);
 		if ( tables.count() != 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) )
