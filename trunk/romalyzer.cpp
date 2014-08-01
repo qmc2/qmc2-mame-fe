@@ -183,11 +183,15 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 	actionExportToDataFile->setEnabled(false);
 	toolButtonToolsMenu->setMenu(toolsMenu);
 
-#if defined(QMC2_WIP_ENABLED)
 	// FIXME
+#if defined(QMC2_WIP_ENABLED)
 	m_checkSumDb = new CheckSumDatabaseManager(this);
+	m_checkSumScannerLog = new CheckSumScannerLog(0);
+	connect(m_checkSumScannerLog, SIGNAL(windowOpened()), this, SLOT(checkSumScannerLog_windowOpened()));
+	connect(m_checkSumScannerLog, SIGNAL(windowClosed()), this, SLOT(checkSumScannerLog_windowClosed()));
 #else
 	m_checkSumDb = NULL;
+	m_checkSumScannerLog = NULL;
 	groupBoxCheckSumDatabase->setVisible(false);
 #endif
 
@@ -204,6 +208,8 @@ ROMAlyzer::~ROMAlyzer()
 
 	if ( checkSumDb() )
 		delete checkSumDb();
+	if ( checkSumScannerLog() )
+		delete checkSumScannerLog();
 }
 
 void ROMAlyzer::adjustIconSizes()
@@ -492,6 +498,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", false).toBool());
 	listWidgetCheckSumDbScannedPaths->clear();
 	listWidgetCheckSumDbScannedPaths->addItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", QStringList()).toStringList());
+	pushButtonCheckSumDbScan->setEnabled(listWidgetCheckSumDbScannedPaths->count() > 0);
 	lineEditCheckSumDbDatabasePath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbDatabasePath", QString(userScopePath + "/%1-checksum.db").arg(variantName)).toString());
 	lineEditSetRenamerOldXmlFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerOldXmlFile", QString()).toString());
 	comboBoxSetRenamerAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerAutomationLevel", QMC2_ROMALYZER_SRTOOL_AMLVL_NONE).toInt());
@@ -3464,6 +3471,104 @@ void ROMAlyzer::on_toolButtonSaveLog_clicked()
 			log(tr("WARNING: can't open file '%1' for writing, please check permissions").arg(fileName));
 		}
 	}
+}
+
+void ROMAlyzer::on_toolButtonCheckSumDbAddPath_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonCheckSumDbAddPath_clicked()");
+#endif
+
+	QString newPath = QFileDialog::getExistingDirectory(this, tr("Choose path to be added to scan-list"), QString(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
+	if ( !newPath.isNull() ) {
+		QStringList checkSumDbScannedPaths;
+		for (int i = 0; i < listWidgetCheckSumDbScannedPaths->count(); i++)
+			checkSumDbScannedPaths << listWidgetCheckSumDbScannedPaths->item(i)->text();
+		if ( !checkSumDbScannedPaths.contains(newPath) )
+			listWidgetCheckSumDbScannedPaths->addItem(newPath);
+	}
+	raise();
+
+	pushButtonCheckSumDbScan->setEnabled(listWidgetCheckSumDbScannedPaths->count() > 0);
+}
+
+void ROMAlyzer::on_toolButtonCheckSumDbRemovePath_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonCheckSumDbRemovePath_clicked()");
+#endif
+
+	foreach (QListWidgetItem *item, listWidgetCheckSumDbScannedPaths->selectedItems()) {
+		listWidgetCheckSumDbScannedPaths->takeItem(listWidgetCheckSumDbScannedPaths->row(item));
+		delete item;
+	}
+
+	pushButtonCheckSumDbScan->setEnabled(listWidgetCheckSumDbScannedPaths->count() > 0);
+}
+
+void ROMAlyzer::on_toolButtonBrowseCheckSumDbDatabasePath_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseCheckSumDbDatabasePath_clicked()");
+#endif
+
+}
+
+void ROMAlyzer::on_toolButtonCheckSumDbViewLog_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonCheckSumDbViewLog_clicked()");
+#endif
+
+	if ( checkSumScannerLog()->isVisible() )
+		checkSumScannerLog()->close();
+	else {
+		checkSumScannerLog()->show();
+		checkSumScannerLog()->raise();
+	}
+}
+
+void ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()");
+#endif
+
+}
+
+void ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_customContextMenuRequested(const QPoint &p = ...)");
+#endif
+
+}
+
+void ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_itemSelectionChanged()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_itemSelectionChanged()");
+#endif
+
+	toolButtonCheckSumDbRemovePath->setEnabled(!listWidgetCheckSumDbScannedPaths->selectedItems().isEmpty());
+}
+
+void ROMAlyzer::checkSumScannerLog_windowOpened()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::checkSumScannerLog_windowClosed()");
+#endif
+
+	toolButtonCheckSumDbViewLog->setText(tr("Close log"));
+}
+
+void ROMAlyzer::checkSumScannerLog_windowClosed()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::checkSumScannerLog_windowClosed()");
+#endif
+
+	toolButtonCheckSumDbViewLog->setText(tr("Open log"));
 }
 
 ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, bool scroll)

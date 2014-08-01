@@ -797,6 +797,8 @@ void Options::apply()
 	if ( qmc2ROMAlyzer ) {
 		qmc2ROMAlyzer->textBrowserLog->setFont(logFont);
 		QTimer::singleShot(0, qmc2ROMAlyzer, SLOT(adjustIconSizes()));
+		if ( qmc2ROMAlyzer->checkSumScannerLog() )
+			qmc2ROMAlyzer->checkSumScannerLog()->plainTextEditLog->setFont(logFont);
 	}
 	if ( qmc2ImageChecker )
 		qmc2ImageChecker->adjustIconSizes();

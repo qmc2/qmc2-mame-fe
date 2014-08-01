@@ -7,6 +7,7 @@
 
 #include "macros.h"
 #include "checksumdbmgr.h"
+#include "checksumscannerlog.h"
 #include "ui_romalyzer.h"
 
 #define QMC2_ROMALYZER_PAGE_REPORT		0
@@ -225,6 +226,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		static QString &getXmlData(QString, bool includeDTD = false);
 		QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString, QByteArray *, QString *, QString *, bool *, bool *, bool *, int, QString *, bool);
 		CheckSumDatabaseManager *checkSumDb() { return m_checkSumDb; }
+		CheckSumScannerLog *checkSumScannerLog() { return m_checkSumScannerLog; }
 
 	public slots:
 		// callback functions
@@ -252,6 +254,15 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked();
 		void on_pushButtonChecksumWizardRepairBadSets_clicked();
 		void on_tabWidgetAnalysis_currentChanged(int);
+		void on_toolButtonCheckSumDbAddPath_clicked();
+		void on_toolButtonCheckSumDbRemovePath_clicked();
+		void on_toolButtonBrowseCheckSumDbDatabasePath_clicked();
+		void on_toolButtonCheckSumDbViewLog_clicked();
+		void on_pushButtonCheckSumDbScan_clicked();
+		void on_listWidgetCheckSumDbScannedPaths_customContextMenuRequested(const QPoint &);
+		void on_listWidgetCheckSumDbScannedPaths_itemSelectionChanged();
+		void checkSumScannerLog_windowClosed();
+		void checkSumScannerLog_windowOpened();
 
 		// miscellaneous slots
 		void animationTimeout();
@@ -282,6 +293,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 
 	private:
 		CheckSumDatabaseManager *m_checkSumDb;
+		CheckSumScannerLog *m_checkSumScannerLog;
 };
 
 #endif
