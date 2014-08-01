@@ -7,7 +7,7 @@
 extern Settings *qmc2Config;
 
 CheckSumScannerLog::CheckSumScannerLog(QWidget *parent)
-	: QWidget(parent, Qt::Tool)
+	: QWidget(parent)
 {
 	hide();
 	setupUi(this);
