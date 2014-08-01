@@ -797,7 +797,7 @@
                    <bool>false</bool>
                   </property>
                   <property name="toolTip">
-                   <string>Automatically expand check-sums</string>
+                   <string>Automatically expand calculated check-sums</string>
                   </property>
                   <property name="text">
                    <string>Check-sums</string>

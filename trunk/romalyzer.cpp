@@ -867,7 +867,8 @@ void ROMAlyzer::analyze()
 						}
 					} else {
 						QTreeWidgetItem *fileItem = new QTreeWidgetItem(childItem);
-						fileItem->setText(QMC2_ROMALYZER_COLUMN_GAME, tr("Checksums"));
+						fileItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/hash.png")));
+						fileItem->setText(QMC2_ROMALYZER_COLUMN_GAME, tr("Calculated check-sums"));
 						childItem->setExpanded(false);
 
 						QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
