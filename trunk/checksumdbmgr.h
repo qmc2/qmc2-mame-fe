@@ -20,12 +20,13 @@ class CheckSumDatabaseManager : public QObject
 		uint scanTime();
 		void setScanTime(uint scan_time);
 
-		bool logActive() { return m_logActive; }
-		void setLogActive(bool enable) { m_logActive = enable; }
-
 		int checkSumRowCount();
 
 		QString connectionName() { return m_connectionName; }
+		QString databasePath() { return m_db.databaseName(); }
+
+	signals:
+		void log(const QString &);
 
 	public slots:
 		void recreateDatabase();
@@ -36,7 +37,6 @@ class CheckSumDatabaseManager : public QObject
 		mutable QSqlDatabase m_db;
 		QString m_tableBasename;
 		QString m_connectionName;
-		bool m_logActive;
 };
 
 #endif

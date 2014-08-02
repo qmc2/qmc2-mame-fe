@@ -118,6 +118,13 @@
 // current format version of the check-sum database schema
 #define QMC2_CHECKSUM_DB_VERSION		1
 
+// check-sum DB status updates
+#define QMC2_CHECKSUM_DB_STATUS_UPDATE_SHORT	1000
+#define QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG	60000
+
+// number of transactions between commits
+#define QMC2_CHECKSUM_DB_TRANSACTIONS		1000
+
 // column used for the game/machine icon
 #define QMC2_ICON_INDEX				2
 

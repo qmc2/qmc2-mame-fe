@@ -1,6 +1,8 @@
 #ifndef _CHECKSUMSCANNERLOG_H_
 #define _CHECKSUMSCANNERLOG_H_
 
+#include <QStringList>
+
 #include "ui_checksumscannerlog.h"
 
 class CheckSumScannerLog : public QWidget, public Ui::CheckSumScannerLog
@@ -12,8 +14,9 @@ class CheckSumScannerLog : public QWidget, public Ui::CheckSumScannerLog
 
 	public slots:
 		void on_spinBoxMaxLogSize_valueChanged(int);
-		void log(QString);
+		void log(const QString &);
 		void clear() { plainTextEditLog->clear(); }
+		void scrollToEnd();
 
 	signals:
 		void windowOpened();
