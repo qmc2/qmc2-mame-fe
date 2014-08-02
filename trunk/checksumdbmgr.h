@@ -24,6 +24,7 @@ class CheckSumDatabaseManager : public QObject
 
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
+		quint64 databaseSize();
 
 	signals:
 		void log(const QString &);

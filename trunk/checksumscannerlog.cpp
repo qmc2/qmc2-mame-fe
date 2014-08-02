@@ -34,6 +34,7 @@ void CheckSumScannerLog::log(const QString &message)
 
 void CheckSumScannerLog::scrollToEnd()
 {
+	plainTextEditLog->horizontalScrollBar()->setValue(plainTextEditLog->horizontalScrollBar()->minimum());
 	plainTextEditLog->verticalScrollBar()->setValue(plainTextEditLog->verticalScrollBar()->maximum());
 }
 

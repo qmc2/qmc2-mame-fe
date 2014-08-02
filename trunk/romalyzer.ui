@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>670</width>
-    <height>737</height>
+    <width>719</width>
+    <height>773</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -322,8 +322,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>654</width>
-            <height>641</height>
+            <width>703</width>
+            <height>677</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayoutScrollAreeaSettings" rowstretch="0,0,0,1,0">
@@ -1070,20 +1070,7 @@
              </property>
              <layout class="QGridLayout" name="gridLayout_4">
               <item row="0" column="0">
-               <layout class="QGridLayout" name="gridLayoutCheckSumDatabase" columnstretch="2,0,0,1,1">
-                <item row="7" column="3" colspan="2">
-                 <spacer name="verticalSpacer_3">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
+               <layout class="QGridLayout" name="gridLayoutCheckSumDatabase" columnstretch="2,0,0,1,0">
                 <item row="2" column="0" rowspan="9">
                  <widget class="QListWidget" name="listWidgetCheckSumDbScannedPaths">
                   <property name="sizePolicy">
@@ -1240,16 +1227,12 @@
                    <string notr="true">&lt;center&gt;
 &lt;table border=&quot;0&quot; cellpadding=&quot;2&quot; cellspacing=&quot;2&quot;&gt;
 &lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Objects in database&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;100000&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Database size&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;10.00 MB&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Age of stored data&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;10 days&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Pending updates&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;100&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Scanner status&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;idle&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;/center&gt;</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                  <property name="wordWrap">
-                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -1314,6 +1297,19 @@
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Database path&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
+                </item>
+                <item row="7" column="3" colspan="2">
+                 <spacer name="verticalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </spacer>
                 </item>
                </layout>
               </item>
