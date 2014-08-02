@@ -3647,21 +3647,11 @@ void ROMAlyzer::updateCheckSumDbStatus()
 		ageString = tr("%n day(s)", "", days);
 	else {
 		int seconds = scanTime.secsTo(now);
-		int hours = 0;
-		int minutes = 0;
-		while ( seconds > 3600 ) {
-			seconds /= 3600;
-			hours++;
-		}
-		while ( seconds > 60 ) {
-			seconds /= 60;
-			minutes++;
-		}
+		int hours = seconds / 3600;
 		if ( hours > 0 )
 			ageString = tr("%n hour(s)", "", hours);
 		else
-			ageString = tr("%n minute(s)", "", minutes);
-
+			ageString = tr("%n minute(s)", "", seconds / 60);
 	}
 	statusString += "<tr><td valign=\"top\" align=\"right\"><b>" + tr("Age of stored data") + "</b></td><td valign=\"top\">" + ageString + "</td></tr>";
 	statusString += "<tr><td valign=\"top\" align=\"right\"><b>" + tr("Scanner status") + "</b></td><td valign=\"top\">" + checkSumScannerThread()->status() + "</td></tr>";
@@ -3859,7 +3849,6 @@ void CheckSumScannerThread::run()
 				emit log(tr("found %n file(s) for path '%1'", "", fileList.count()).arg(path));
 				checkSumDb()->beginTransaction();
 				foreach (QString filePath, fileList) {
-					QTest::qWait(0);
 					emit log(tr("scan started for file '%1'").arg(filePath));
 					// FIXME
 					if ( ++numDbUpdates >= QMC2_CHECKSUM_DB_TRANSACTIONS ) {
@@ -3869,11 +3858,13 @@ void CheckSumScannerThread::run()
 						checkSumDb()->beginTransaction();
 					}
 					emit log(tr("scan finished for file '%1'").arg(filePath));
+					QTest::qWait(0);
 					if ( exitThread || stopScan )
 						break;
 				}
 				checkSumDb()->commitTransaction();
 				emit log(tr("scan finished for path '%1'").arg(path));
+				QTest::qWait(0);
 				if ( exitThread || stopScan )
 					break;
 			}
