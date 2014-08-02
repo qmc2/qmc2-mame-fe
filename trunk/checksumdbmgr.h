@@ -26,6 +26,9 @@ class CheckSumDatabaseManager : public QObject
 		QString databasePath() { return m_db.databaseName(); }
 		quint64 databaseSize();
 
+		bool exists(QString sha1, QString crc);
+		void setData(QString sha1, QString crc, QString path, QString member, int type);
+		bool getData(QString sha1, QString crc, QString *path, QString *member, int *type);
 	signals:
 		void log(const QString &);
 
