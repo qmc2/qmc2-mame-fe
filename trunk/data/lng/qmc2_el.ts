@@ -1472,35 +1472,76 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3905"/>
+        <location filename="../../romalyzer.cpp" line="3929"/>
         <source>scan finished for file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../romalyzer.cpp" line="4018"/>
+        <location filename="../../romalyzer.cpp" line="4020"/>
+        <source>ZIP scan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="4018"/>
+        <location filename="../../romalyzer.cpp" line="4046"/>
+        <source>member &apos;%1&apos; from archive &apos;%2&apos; has SHA-1 &apos;%3&apos; and CRC &apos;%4&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="4020"/>
+        <source>WARNING: can&apos;t open member &apos;%1&apos; from archive &apos;%2&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="4046"/>
+        <location filename="../../romalyzer.cpp" line="4048"/>
+        <source>7Z scan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="4048"/>
+        <source>WARNING: can&apos;t read member &apos;%1&apos; from archive &apos;%2&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../romalyzer.cpp" line="3888"/>
-        <location filename="../../romalyzer.cpp" line="3916"/>
+        <location filename="../../romalyzer.cpp" line="3940"/>
         <source>scanner interrupted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3892"/>
-        <location filename="../../romalyzer.cpp" line="3902"/>
+        <location filename="../../romalyzer.cpp" line="3926"/>
         <source>starting database transaction</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3898"/>
-        <location filename="../../romalyzer.cpp" line="3910"/>
+        <location filename="../../romalyzer.cpp" line="3901"/>
+        <location filename="../../romalyzer.cpp" line="3905"/>
+        <location filename="../../romalyzer.cpp" line="3909"/>
+        <location filename="../../romalyzer.cpp" line="3913"/>
+        <source>WARNING: scan failed for file &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="3917"/>
+        <source>WARNING: can&apos;t access file &apos;%1&apos;, please check permissions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="3922"/>
+        <location filename="../../romalyzer.cpp" line="3934"/>
         <source>committing database transaction</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3919"/>
+        <location filename="../../romalyzer.cpp" line="3943"/>
         <source>scan finished for path &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3924"/>
+        <location filename="../../romalyzer.cpp" line="3948"/>
         <source>scanner thread ended</source>
         <translation type="unfinished"></translation>
     </message>

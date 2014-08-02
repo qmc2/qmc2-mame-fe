@@ -1778,7 +1778,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 				QFileInfo fi(filePath);
 				if ( fi.isReadable() ) {
 					// try loading data from a ZIP archive
-					unzFile zipFile = unzOpen((const char *)filePath.toLocal8Bit());
+					unzFile zipFile = unzOpen(filePath.toLocal8Bit().constData());
 					if ( zipFile ) {
 						// identify file by CRC
 						unz_file_info zipInfo;
@@ -2886,7 +2886,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
 bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *dataMap, QMap<QString, QString> *fileMap, QStringList *fileList)
 {
 	bool success = true;
-	unzFile zipFile = unzOpen((const char *)fileName.toLocal8Bit());
+	unzFile zipFile = unzOpen(fileName.toLocal8Bit().constData());
 
 	if ( zipFile ) {
   		char ioBuffer[QMC2_ROMALYZER_ZIP_BUFFER_SIZE];
@@ -2982,7 +2982,7 @@ bool ROMAlyzer::readSevenZipFileData(QString fileName, QString crc, QByteArray *
 bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 {
 	bool success = true;
-	unzFile zipFile = unzOpen((const char *)fileName.toLocal8Bit());
+	unzFile zipFile = unzOpen(fileName.toLocal8Bit().constData());
 
 	if ( zipFile ) {
   		char ioBuffer[QMC2_ROMALYZER_ZIP_BUFFER_SIZE];
@@ -3204,7 +3204,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 			// load ROM image
 			if ( sourcePath.indexOf(QRegExp("^.*\\.[zZ][iI][pP]$")) == 0 ) {
 				// file from a ZIP archive
-				unzFile zipFile = unzOpen((const char *)sourcePath.toLocal8Bit());
+				unzFile zipFile = unzOpen(sourcePath.toLocal8Bit().constData());
 				if ( zipFile ) {
 					// identify file by CRC
 					unz_file_info zipInfo;
@@ -3893,6 +3893,30 @@ void CheckSumScannerThread::run()
 				checkSumDb()->beginTransaction();
 				foreach (QString filePath, fileList) {
 					emit log(tr("scan started for file '%1'").arg(filePath));
+					QStringList memberList, sha1List, crcList;
+					QString sha1, crc;
+					switch ( fileType(filePath) ) {
+						case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
+							if ( !scanZip(filePath, &memberList, &sha1List, &crcList) )
+								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+							break;
+						case QMC2_CHECKSUM_SCANNER_FILE_7Z:
+							if ( !scanSevenZip(filePath, &memberList, &sha1List, &crcList) )
+								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+							break;
+						case QMC2_CHECKSUM_SCANNER_FILE_CHD:
+							if ( !scanChd(filePath, &sha1) )
+								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+							break;
+						case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
+							if ( !scanRegularFile(filePath, &sha1, &crc) )
+								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+							break;
+						default:
+						case QMC2_CHECKSUM_SCANNER_FILE_NO_ACCESS:
+							emit log(tr("WARNING: can't access file '%1', please check permissions").arg(filePath));
+							break;
+					}
 					// FIXME
 					if ( ++m_pendingUpdates >= QMC2_CHECKSUM_DB_MAX_TRANSACTIONS ) {
 						emit log(tr("committing database transaction"));
@@ -3942,4 +3966,101 @@ void CheckSumScannerThread::recursiveFileList(const QString &sDir, QStringList *
 		} else
 			fileNames->append(path);
 	}
+}
+
+int CheckSumScannerThread::fileType(QString fileName)
+{
+	static QRegExp zipRx("[Zz][Ii][Pp]");
+	static QRegExp sevenZipRx("7[Zz]");
+	static QRegExp chdRx("[Cc][Hh][Dd]");
+
+	QFileInfo fileInfo(fileName);
+	if ( fileInfo.isReadable() ) {
+		if ( fileInfo.suffix().indexOf(zipRx) == 0 )
+			return QMC2_CHECKSUM_SCANNER_FILE_ZIP;
+		else if ( fileInfo.suffix().indexOf(sevenZipRx) == 0 )
+			return QMC2_CHECKSUM_SCANNER_FILE_7Z;
+		else if ( fileInfo.suffix().indexOf(chdRx) == 0 )
+			return QMC2_CHECKSUM_SCANNER_FILE_CHD;
+		else
+			return QMC2_CHECKSUM_SCANNER_FILE_REGULAR;
+	} else
+		return QMC2_CHECKSUM_SCANNER_FILE_NO_ACCESS;
+}
+
+bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, QStringList *sha1List, QStringList *crcList)
+{
+	unzFile zipFile = unzOpen(fileName.toLocal8Bit().constData());
+	if ( zipFile ) {
+  		char ioBuffer[QMC2_ROMALYZER_ZIP_BUFFER_SIZE];
+		unz_file_info zipInfo;
+		do {
+			QTest::qWait(0);
+			if ( exitThread || stopScan )
+				break;
+			if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
+				QString fn((const char *)ioBuffer);
+				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
+					qint64 len;
+					QByteArray fileData;
+					while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
+						QByteArray readData((const char *)ioBuffer, len);
+						fileData += readData;
+					}
+					unzCloseCurrentFile(zipFile);
+					memberList->append(fn);
+					QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
+					sha1Hash.addData(fileData);
+					sha1List->append(sha1Hash.result().toHex());
+					ulong crc = crc32(0, NULL, 0);
+					crc = crc32(crc, (const Bytef *)fileData.data(), fileData.size());
+					crcList->append(QString::number(crc, 16).rightJustified(8, '0'));
+					emit log(tr("ZIP scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(fn).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
+				} else
+					emit log(tr("ZIP scan") + ": " + tr("WARNING: can't open member '%1' from archive '%2'").arg(fn).arg(fileName));
+			}
+		} while ( unzGoToNextFile(zipFile) == UNZ_OK );
+		unzClose(zipFile);
+		return true;
+	} else
+		return false;
+}
+
+bool CheckSumScannerThread::scanSevenZip(QString fileName, QStringList *memberList, QStringList *sha1List, QStringList *crcList)
+{
+	SevenZipFile sevenZipFile(fileName);
+	if ( sevenZipFile.open() ) {
+		foreach (SevenZipMetaData metaData, sevenZipFile.itemList()) {
+			QTest::qWait(0);
+			if ( exitThread || stopScan )
+				break;
+			QByteArray fileData;
+			quint64 readLength = sevenZipFile.read(metaData.name(), &fileData);
+			if ( readLength > 0 ) {
+				QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
+				sha1Hash.addData(fileData);
+				sha1List->append(sha1Hash.result().toHex());
+				ulong crc = crc32(0, NULL, 0);
+				crc = crc32(crc, (const Bytef *)fileData.data(), fileData.size());
+				crcList->append(QString::number(crc, 16).rightJustified(8, '0'));
+				emit log(tr("7Z scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
+			} else
+				emit log(tr("7Z scan") + ": " + tr("WARNING: can't read member '%1' from archive '%2'").arg(metaData.name()).arg(fileName));
+		}
+		sevenZipFile.close();
+		return true;
+	} else
+		return false;
+}
+
+bool CheckSumScannerThread::scanChd(QString fileName, QString *sha1)
+{
+	// FIXME
+	return true;
+}
+
+bool CheckSumScannerThread::scanRegularFile(QString fileName, QString *sha1, QString *crc)
+{
+	// FIXME
+	return true;
 }
