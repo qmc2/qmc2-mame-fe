@@ -154,6 +154,7 @@
 #define wizardAutomationLevel			comboBoxChecksumWizardAutomationLevel->currentIndex()
 #define renamerAutomationLevel			comboBoxSetRenamerAutomationLevel->currentIndex()
 
+#define QMC2_CHECKSUM_SCANNER_FILE_UNKNOWN	-2
 #define QMC2_CHECKSUM_SCANNER_FILE_NO_ACCESS	-1
 #define QMC2_CHECKSUM_SCANNER_FILE_ZIP		0
 #define QMC2_CHECKSUM_SCANNER_FILE_7Z		1
@@ -183,6 +184,7 @@ class CheckSumScannerThread : public QThread
 		void reopenDatabase();
 
 		int fileType(QString);
+		QString typeName(int);
 
 	signals:
 		void log(const QString &);

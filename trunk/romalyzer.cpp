@@ -3895,7 +3895,8 @@ void CheckSumScannerThread::run()
 					emit log(tr("scan started for file '%1'").arg(filePath));
 					QStringList memberList, sha1List, crcList;
 					QString sha1, crc;
-					switch ( fileType(filePath) ) {
+					int type = fileType(filePath);
+					switch ( type ) {
 						case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
 							if ( !scanZip(filePath, &memberList, &sha1List, &crcList) )
 								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
@@ -3917,8 +3918,33 @@ void CheckSumScannerThread::run()
 							emit log(tr("WARNING: can't access file '%1', please check permissions").arg(filePath));
 							break;
 					}
-					// FIXME
-					if ( ++m_pendingUpdates >= QMC2_CHECKSUM_DB_MAX_TRANSACTIONS ) {
+					if ( exitThread || stopScan )
+						break;
+					switch ( type ) {
+						case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
+						case QMC2_CHECKSUM_SCANNER_FILE_7Z:
+							for (int i = 0; i < memberList.count(); i++) {
+								if ( !checkSumDb()->exists(sha1List[i], crcList[i]) ) {
+									emit log(tr("database update") + ": " + tr("adding member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' to database").arg(memberList[i]).arg(filePath).arg(sha1List[i]).arg(crcList[i]));
+									checkSumDb()->setData(sha1List[i], crcList[i], filePath, memberList[i], typeName(type));
+									m_pendingUpdates++;
+								} else
+									emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1List[i]).arg(crcList[i]) + ", " + tr("member '%1' from archive '%2' ignored").arg(memberList[i]).arg(filePath));
+							}
+							break;
+						case QMC2_CHECKSUM_SCANNER_FILE_CHD:
+							// FIXME
+							break;
+						case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
+							if ( !checkSumDb()->exists(sha1, crc) ) {
+								emit log(tr("database update") + ": " + tr("adding file '%1' with SHA-1 '%2' and CRC '%3' to database").arg(filePath).arg(sha1).arg(crc));
+								checkSumDb()->setData(sha1, crc, filePath, QString(), typeName(type));
+								m_pendingUpdates++;
+							} else
+								emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("file '%1' ignored").arg(filePath));
+							break;
+					}
+					if ( m_pendingUpdates >= QMC2_CHECKSUM_DB_MAX_TRANSACTIONS ) {
 						emit log(tr("committing database transaction"));
 						checkSumDb()->setScanTime(QDateTime::currentDateTime().toTime_t());
 						checkSumDb()->commitTransaction();
@@ -3926,10 +3952,11 @@ void CheckSumScannerThread::run()
 						emit log(tr("starting database transaction"));
 						checkSumDb()->beginTransaction();
 					}
-					emit log(tr("scan finished for file '%1'").arg(filePath));
-					QTest::qWait(0);
 					if ( exitThread || stopScan )
 						break;
+					else
+						emit log(tr("scan finished for file '%1'").arg(filePath));
+					QTest::qWait(0);
 				}
 				emit log(tr("committing database transaction"));
 				checkSumDb()->setScanTime(QDateTime::currentDateTime().toTime_t());
@@ -3959,10 +3986,8 @@ void CheckSumScannerThread::recursiveFileList(const QString &sDir, QStringList *
 		QString path = QDir::toNativeSeparators(info.filePath());
 		if ( info.isDir() ) {
 			// directory recursion
-			if ( info.fileName() != ".." && info.fileName() != "." ) {
+			if ( info.fileName() != ".." && info.fileName() != "." )
 				recursiveFileList(path, fileNames);
-				fileNames->append(path + QDir::separator());
-			}
 		} else
 			fileNames->append(path);
 	}
@@ -3988,6 +4013,22 @@ int CheckSumScannerThread::fileType(QString fileName)
 		return QMC2_CHECKSUM_SCANNER_FILE_NO_ACCESS;
 }
 
+QString CheckSumScannerThread::typeName(int type)
+{
+	switch ( type ) {
+		case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
+			return QString("ZIP");
+		case QMC2_CHECKSUM_SCANNER_FILE_7Z:
+			return QString("7Z");
+		case QMC2_CHECKSUM_SCANNER_FILE_CHD:
+			return QString("CHD");
+		case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
+			return QString("FILE");
+		default:
+			return QString("UNKOWN");
+	}
+}
+
 bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, QStringList *sha1List, QStringList *crcList)
 {
 	unzFile zipFile = unzOpen(fileName.toLocal8Bit().constData());
@@ -3995,7 +4036,6 @@ bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, Q
   		char ioBuffer[QMC2_ROMALYZER_ZIP_BUFFER_SIZE];
 		unz_file_info zipInfo;
 		do {
-			QTest::qWait(0);
 			if ( exitThread || stopScan )
 				break;
 			if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
@@ -4013,8 +4053,12 @@ bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, Q
 							crc1 = crc32_combine(crc1, crc2, fileData.size());
 						} else
 							crc1 = crc32(crc1, (const Bytef *)fileData.data(), fileData.size());
+						if ( exitThread || stopScan )
+							break;
 					}
 					unzCloseCurrentFile(zipFile);
+					if ( exitThread || stopScan )
+						break;
 					memberList->append(fn);
 					sha1List->append(sha1Hash.result().toHex());
 					crcList->append(QString::number(crc1, 16).rightJustified(8, '0'));
@@ -4034,12 +4078,14 @@ bool CheckSumScannerThread::scanSevenZip(QString fileName, QStringList *memberLi
 	SevenZipFile sevenZipFile(fileName);
 	if ( sevenZipFile.open() ) {
 		foreach (SevenZipMetaData metaData, sevenZipFile.itemList()) {
-			QTest::qWait(0);
 			if ( exitThread || stopScan )
 				break;
 			QByteArray fileData;
 			quint64 readLength = sevenZipFile.read(metaData.name(), &fileData);
 			if ( readLength > 0 ) {
+				if ( exitThread || stopScan )
+					break;
+				memberList->append(metaData.name());
 				QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
 				sha1Hash.addData(fileData);
 				sha1List->append(sha1Hash.result().toHex());
@@ -4064,6 +4110,31 @@ bool CheckSumScannerThread::scanChd(QString fileName, QString *sha1)
 
 bool CheckSumScannerThread::scanRegularFile(QString fileName, QString *sha1, QString *crc)
 {
-	// FIXME
-	return true;
+	QFile file(fileName);
+	if ( file.open(QIODevice::ReadOnly) ) {
+  		char ioBuffer[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
+		QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
+		ulong crc1 = crc32(0, NULL, 0);
+		int len = 0;
+		while ( (len = file.read(ioBuffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 ) {
+			QByteArray fileData((const char *)ioBuffer, len);
+			sha1Hash.addData(fileData);
+			if ( crc1 > 0 ) {
+				ulong crc2 = crc32(0, NULL, 0);
+				crc2 = crc32(crc2, (const Bytef *)fileData.data(), fileData.size());
+				crc1 = crc32_combine(crc1, crc2, fileData.size());
+			} else
+				crc1 = crc32(crc1, (const Bytef *)fileData.data(), fileData.size());
+			if ( exitThread || stopScan )
+				break;
+		}
+		file.close();
+		if ( exitThread || stopScan )
+			return true;
+		*sha1 = sha1Hash.result().toHex();
+		*crc = QString::number(crc1, 16).rightJustified(8, '0');
+		emit log(tr("file scan") + ": " + tr("file '%1' has SHA-1 '%2' and CRC '%3'").arg(fileName).arg(*sha1).arg(*crc));
+		return true;
+	} else
+		return false;
 }
