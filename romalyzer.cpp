@@ -3933,7 +3933,12 @@ void CheckSumScannerThread::run()
 							}
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_CHD:
-							// FIXME
+							if ( !checkSumDb()->exists(sha1, crc) ) {
+								emit log(tr("database update") + ": " + tr("adding CHD '%1' with SHA-1 '%2' to database").arg(filePath).arg(sha1));
+								checkSumDb()->setData(sha1, QString(), filePath, QString(), typeName(type));
+								m_pendingUpdates++;
+							} else
+								emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("CHD '%1' ignored").arg(filePath));
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
 							if ( !checkSumDb()->exists(sha1, crc) ) {
@@ -3942,6 +3947,8 @@ void CheckSumScannerThread::run()
 								m_pendingUpdates++;
 							} else
 								emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("file '%1' ignored").arg(filePath));
+							break;
+						default:
 							break;
 					}
 					if ( m_pendingUpdates >= QMC2_CHECKSUM_DB_MAX_TRANSACTIONS ) {
@@ -4104,8 +4111,49 @@ bool CheckSumScannerThread::scanSevenZip(QString fileName, QStringList *memberLi
 
 bool CheckSumScannerThread::scanChd(QString fileName, QString *sha1)
 {
-	// FIXME
-	return true;
+	QFile file(fileName);
+	if ( file.open(QIODevice::ReadOnly) ) {
+  		char ioBuffer[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
+		bool success = true;
+		int len = 0;
+		quint32 chdVersion = 0;
+		if ( (len = file.read(ioBuffer, QMC2_CHD_HEADER_V3_LENGTH)) > 0 ) {
+			chdVersion = QMC2_TO_UINT32(ioBuffer + QMC2_CHD_HEADER_VERSION_OFFSET);
+			switch ( chdVersion ) {
+				case 3: {
+					QByteArray sha1Data((const char *)(ioBuffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
+					*sha1 = QString(sha1Data.toHex());
+					break;
+				}
+				case 4: {
+					QByteArray sha1Data((const char *)(ioBuffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+					*sha1 = QString(sha1Data.toHex());
+					break;
+				}
+				case 5: {
+					QByteArray sha1Data((const char *)(ioBuffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+					*sha1 = QString(sha1Data.toHex());
+					break;
+				}
+				default: {
+					emit log(tr("CHD scan") + ": " + tr("WARNING: version '%1' of CHD '%2' unknown").arg(fileName));
+					success = false;
+					break;
+				}
+			}
+		} else {
+			emit log(tr("CHD scan") + ": " + tr("WARNING: can't read CHD '%1'").arg(fileName));
+			success = false;
+		}
+		file.close();
+		if ( !success )
+			return false;
+		if ( exitThread || stopScan )
+			return true;
+		emit log(tr("CHD scan") + ": " + tr("CHD '%1' has SHA-1 '%2' (CHD v%3)").arg(fileName).arg(*sha1).arg(chdVersion));
+		return true;
+	} else
+		return false;
 }
 
 bool CheckSumScannerThread::scanRegularFile(QString fileName, QString *sha1, QString *crc)
