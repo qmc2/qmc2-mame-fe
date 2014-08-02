@@ -27,16 +27,14 @@ void CheckSumScannerLog::on_spinBoxMaxLogSize_valueChanged(int value)
 	plainTextEditLog->setMaximumBlockCount(value);
 }
 
-void CheckSumScannerLog::log(QString message)
+void CheckSumScannerLog::log(const QString &message)
 {
-	message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": ");
-	bool scrollBarMaximum = (plainTextEditLog->verticalScrollBar()->value() == plainTextEditLog->verticalScrollBar()->maximum()) && isVisible();
-	plainTextEditLog->appendPlainText(message);
-	if ( scrollBarMaximum ) {
-		plainTextEditLog->update();
-		qApp->processEvents();
-		plainTextEditLog->verticalScrollBar()->setValue(plainTextEditLog->verticalScrollBar()->maximum());
-	}
+	plainTextEditLog->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + message);
+}
+
+void CheckSumScannerLog::scrollToEnd()
+{
+	plainTextEditLog->verticalScrollBar()->setValue(plainTextEditLog->verticalScrollBar()->maximum());
 }
 
 void CheckSumScannerLog::showEvent(QShowEvent *e)

@@ -7,6 +7,7 @@
 #include <QMutex>
 #include <QWaitCondition>
 #include <QStringList>
+#include <QTimer>
 
 #include "macros.h"
 #include "checksumdbmgr.h"
@@ -166,16 +167,24 @@ class CheckSumScannerThread : public QThread
 		QWaitCondition waitCondition;
 		QStringList scannedPaths;
 
-		CheckSumScannerThread(QObject *parent = 0);
+		CheckSumScannerThread(CheckSumScannerLog *scannerLog, QObject *parent = 0);
 		~CheckSumScannerThread();
 
+		CheckSumDatabaseManager *checkSumDb() { return m_checkSumDb; }
+
+		QString status();
+
 	signals:
-		void log(QString);
+		void log(const QString &);
 		void scanStarted();
 		void scanFinished();
 
 	protected:
 		void run();
+
+	private:
+		CheckSumDatabaseManager *m_checkSumDb;
+		void recursiveFileList(const QString &, QStringList *);
 };
 
 class ROMAlyzerXmlHandler : public QXmlDefaultHandler
@@ -211,6 +220,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 
 	public:
 		QTimer animTimer;
+		QTimer checkSumDbStatusTimer;
 		QTime miscTimer;
 		int animSeq;
 		QStringList romPaths;
@@ -307,6 +317,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void analyzeDeviceRefs();
 		void importFromDataFile();
 		void exportToDataFile();
+		void updateCheckSumDbStatus();
 
 		// CHD manager process control
 		void chdManagerStarted();

@@ -16,6 +16,15 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QPlainTextEdit" name="plainTextEditLog">
+     <property name="toolTip">
+      <string>Check-sum scanner log</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
      <property name="lineWrapMode">
       <enum>QPlainTextEdit::NoWrap</enum>
      </property>
@@ -72,12 +81,31 @@
       </spacer>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButton">
+      <widget class="QToolButton" name="toolButtonClear">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Clear check-sum scanner log</string>
+       </property>
+       <property name="text">
+        <string>Clear</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonClose">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Close check-sum scanner log window</string>
        </property>
        <property name="text">
         <string>Close</string>
@@ -91,14 +119,15 @@
  <tabstops>
   <tabstop>plainTextEditLog</tabstop>
   <tabstop>spinBoxMaxLogSize</tabstop>
-  <tabstop>toolButton</tabstop>
+  <tabstop>toolButtonClear</tabstop>
+  <tabstop>toolButtonClose</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
  </resources>
  <connections>
   <connection>
-   <sender>toolButton</sender>
+   <sender>toolButtonClose</sender>
    <signal>clicked()</signal>
    <receiver>CheckSumScannerLog</receiver>
    <slot>close()</slot>
@@ -110,6 +139,22 @@
     <hint type="destinationlabel">
      <x>313</x>
      <y>331</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButtonClear</sender>
+   <signal>clicked()</signal>
+   <receiver>plainTextEditLog</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>408</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>326</x>
+     <y>219</y>
     </hint>
    </hints>
   </connection>

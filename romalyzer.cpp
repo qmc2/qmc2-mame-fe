@@ -185,19 +185,22 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 
 	// FIXME
 #if defined(QMC2_WIP_ENABLED)
-	m_checkSumDb = new CheckSumDatabaseManager(this);
 	m_checkSumScannerLog = new CheckSumScannerLog(0);
 	connect(checkSumScannerLog(), SIGNAL(windowOpened()), this, SLOT(checkSumScannerLog_windowOpened()));
 	connect(checkSumScannerLog(), SIGNAL(windowClosed()), this, SLOT(checkSumScannerLog_windowClosed()));
-	m_checkSumScannerThread = new CheckSumScannerThread(this);
-	connect(checkSumScannerThread(), SIGNAL(log(QString)), checkSumScannerLog(), SLOT(log(QString)));
+	m_checkSumDb = new CheckSumDatabaseManager(this);
+	m_checkSumScannerThread = new CheckSumScannerThread(checkSumScannerLog(), this);
+	connect(checkSumScannerThread(), SIGNAL(log(const QString &)), checkSumScannerLog(), SLOT(log(const QString &)));
 	connect(checkSumScannerThread(), SIGNAL(scanStarted()), this, SLOT(checkSumScannerThread_scanStarted()));
 	connect(checkSumScannerThread(), SIGNAL(scanFinished()), this, SLOT(checkSumScannerThread_scanFinished()));
+	connect(&checkSumDbStatusTimer, SIGNAL(timeout()), this, SLOT(updateCheckSumDbStatus()));
+	updateCheckSumDbStatus();
+	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG);
 #else
-	m_checkSumDb = NULL;
-	m_checkSumScannerLog = NULL;
-	m_checkSumScannerThread = NULL;
 	groupBoxCheckSumDatabase->setVisible(false);
+	m_checkSumScannerLog = NULL;
+	m_checkSumDb = NULL;
+	m_checkSumScannerThread = NULL;
 #endif
 
 #if defined(QMC2_OS_MAC)
@@ -2055,10 +2058,9 @@ QString ROMAlyzer::humanReadable(quint64 value, int digits)
 
 void ROMAlyzer::log(QString message)
 {
-	QString msg = QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + message;
-
+	message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": ");
 	bool scrollBarMaximum = (textBrowserLog->verticalScrollBar()->value() == textBrowserLog->verticalScrollBar()->maximum());
-	textBrowserLog->appendPlainText(msg);
+	textBrowserLog->appendPlainText(message);
 	if ( scrollBarMaximum ) {
 		textBrowserLog->update();
 		qApp->processEvents();
@@ -3532,11 +3534,13 @@ void ROMAlyzer::on_toolButtonCheckSumDbViewLog_clicked()
 
 	if ( checkSumScannerLog()->isMinimized() ) {
 		checkSumScannerLog()->showNormal();
+		checkSumScannerLog()->scrollToEnd();
 		checkSumScannerLog()->raise();
 	} else if ( checkSumScannerLog()->isVisible() ) {
 		checkSumScannerLog()->close();
 	} else {
 		checkSumScannerLog()->show();
+		checkSumScannerLog()->scrollToEnd();
 		checkSumScannerLog()->raise();
 	}
 }
@@ -3547,17 +3551,18 @@ void ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()");
 #endif
 
-	if ( checkSumScannerThread() ) {
-		if ( checkSumScannerThread()->isActive ) {
-			checkSumScannerThread()->stopScan = true;
-		} else if ( checkSumScannerThread()->isWaiting ) {
-			checkSumScannerThread()->scannedPaths.clear();
-			for (int i = 0; i < listWidgetCheckSumDbScannedPaths->count(); i++)
-				checkSumScannerThread()->scannedPaths << listWidgetCheckSumDbScannedPaths->item(i)->text();
-			checkSumScannerThread()->waitCondition.wakeAll();
-			pushButtonCheckSumDbScan->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
-		}
+	pushButtonCheckSumDbScan->setEnabled(false);
+	pushButtonCheckSumDbScan->repaint();
+	qApp->processEvents();
+	if ( checkSumScannerThread()->isActive )
+		checkSumScannerThread()->stopScan = true;
+	else if ( checkSumScannerThread()->isWaiting ) {
+		checkSumScannerThread()->scannedPaths.clear();
+		for (int i = 0; i < listWidgetCheckSumDbScannedPaths->count(); i++)
+			checkSumScannerThread()->scannedPaths << listWidgetCheckSumDbScannedPaths->item(i)->text();
+		checkSumScannerThread()->waitCondition.wakeAll();
 	}
+	qApp->processEvents();
 }
 
 void ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_customContextMenuRequested(const QPoint &p)
@@ -3603,6 +3608,12 @@ void ROMAlyzer::checkSumScannerThread_scanStarted()
 #endif
 
 	pushButtonCheckSumDbScan->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
+	pushButtonCheckSumDbScan->setText(tr("Stop scanner"));
+	checkSumDbStatusTimer.stop();
+	updateCheckSumDbStatus();
+	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_SHORT);
+	pushButtonCheckSumDbScan->setEnabled(true);
+	qApp->processEvents();
 }
 
 void ROMAlyzer::checkSumScannerThread_scanFinished()
@@ -3612,6 +3623,51 @@ void ROMAlyzer::checkSumScannerThread_scanFinished()
 #endif
 
 	pushButtonCheckSumDbScan->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
+	pushButtonCheckSumDbScan->setText(tr("Start scanner"));
+	checkSumDbStatusTimer.stop();
+	updateCheckSumDbStatus();
+	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG);
+	pushButtonCheckSumDbScan->setEnabled(true);
+	qApp->processEvents();
+}
+
+void ROMAlyzer::updateCheckSumDbStatus()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::updateCheckSumDbStatus()");
+#endif
+
+	QString statusString = "<center><table border=\"0\" cellpadding=\"2\" cellspacing=\"2\">";
+	statusString += "<tr><td valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td valign=\"top\">" + QString::number(checkSumDb()->checkSumRowCount()) + "</td></tr>";
+	QDateTime now = QDateTime::currentDateTime();
+	QDateTime scanTime = QDateTime::fromTime_t(checkSumDb()->scanTime());
+	QString ageString;
+	int days = scanTime.daysTo(now);
+	if ( days > 0 )
+		ageString = tr("%n day(s)", "", days);
+	else {
+		int seconds = scanTime.secsTo(now);
+		int hours = 0;
+		int minutes = 0;
+		while ( seconds > 3600 ) {
+			seconds /= 3600;
+			hours++;
+		}
+		while ( seconds > 60 ) {
+			seconds /= 60;
+			minutes++;
+		}
+		if ( hours > 0 )
+			ageString = tr("%n hour(s)", "", hours);
+		else
+			ageString = tr("%n minute(s)", "", minutes);
+
+	}
+	statusString += "<tr><td valign=\"top\" align=\"right\"><b>" + tr("Age of stored data") + "</b></td><td valign=\"top\">" + ageString + "</td></tr>";
+	statusString += "<tr><td valign=\"top\" align=\"right\"><b>" + tr("Scanner status") + "</b></td><td valign=\"top\">" + checkSumScannerThread()->status() + "</td></tr>";
+	statusString += "</table></center>";
+	labelCheckSumDbStatusDisplay->setText(statusString);
+	qApp->processEvents();
 }
 
 ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, bool scroll)
@@ -3750,10 +3806,12 @@ bool ROMAlyzerXmlHandler::characters(const QString &str)
 	return true;
 }
 
-CheckSumScannerThread::CheckSumScannerThread(QObject *parent)
+CheckSumScannerThread::CheckSumScannerThread(CheckSumScannerLog *scannerLog, QObject *parent)
 	: QThread(parent)
 {
 	isActive = exitThread = isWaiting = stopScan = false;
+	m_checkSumDb = new CheckSumDatabaseManager(this);
+	connect(checkSumDb(), SIGNAL(log(const QString &)), scannerLog, SLOT(log(const QString &)));
 	start();
 }
 
@@ -3762,14 +3820,26 @@ CheckSumScannerThread::~CheckSumScannerThread()
 	exitThread = true;
 	waitCondition.wakeAll();
 	wait();
+	if ( checkSumDb() )
+		delete checkSumDb();
+}
+
+QString CheckSumScannerThread::status()
+{
+	if ( exitThread )
+		return tr("exiting");
+	if ( stopScan )
+		return tr("stopping");
+	if ( isActive )
+		return tr("scanning");
+	return tr("idle");
 }
 
 void CheckSumScannerThread::run()
 {
-	emit log(tr("Scanner thread started"));
-	while ( !exitThread && !qmc2StopParser ) {
-		emit log(tr("Waiting for work"));
-
+	emit log(tr("scanner thread started"));
+	while ( !exitThread ) {
+		emit log(tr("waiting for work"));
 		mutex.lock();
 		isWaiting = true;
 		isActive = false;
@@ -3778,21 +3848,57 @@ void CheckSumScannerThread::run()
 		isActive = true;
 		isWaiting = false;
 		mutex.unlock();
-
-		if ( !exitThread && !qmc2StopParser && !stopScan ) {
+		if ( !exitThread && !stopScan ) {
 			emit scanStarted();
+			checkSumDb()->recreateDatabase();
 			foreach (QString path, scannedPaths) {
-				emit log(tr("Scan started for path '%1'").arg(path));
-
-				// FIXME
-
-				emit log(tr("Scan finished for path '%1'").arg(path));
-
-				if ( exitThread || qmc2StopParser || stopScan )
+				emit log(tr("scan started for path '%1'").arg(path));
+				int numDbUpdates = 0;
+				QStringList fileList;
+				recursiveFileList(path, &fileList);
+				emit log(tr("found %n file(s) for path '%1'", "", fileList.count()).arg(path));
+				checkSumDb()->beginTransaction();
+				foreach (QString filePath, fileList) {
+					QTest::qWait(0);
+					emit log(tr("scan started for file '%1'").arg(filePath));
+					// FIXME
+					if ( ++numDbUpdates >= QMC2_CHECKSUM_DB_TRANSACTIONS ) {
+						checkSumDb()->setScanTime(QDateTime::currentDateTime().toTime_t());
+						checkSumDb()->commitTransaction();
+						numDbUpdates = 0;
+						checkSumDb()->beginTransaction();
+					}
+					emit log(tr("scan finished for file '%1'").arg(filePath));
+					if ( exitThread || stopScan )
+						break;
+				}
+				checkSumDb()->commitTransaction();
+				emit log(tr("scan finished for path '%1'").arg(path));
+				if ( exitThread || stopScan )
 					break;
 			}
 			emit scanFinished();
 		}
 	}
-	emit log(tr("Scanner thread ended"));
+	emit log(tr("scanner thread ended"));
+}
+
+void CheckSumScannerThread::recursiveFileList(const QString &sDir, QStringList *fileNames)
+{
+	if ( exitThread || stopScan )
+		return;
+	QDir dir(sDir);
+	foreach (QFileInfo info, dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden | QDir::System)) {
+		if ( exitThread || stopScan )
+			break;
+		QString path = QDir::toNativeSeparators(info.filePath());
+		if ( info.isDir() ) {
+			// directory recursion
+			if ( info.fileName() != ".." && info.fileName() != "." ) {
+				recursiveFileList(path, fileNames);
+				fileNames->append(path + QDir::separator());
+			}
+		} else
+			fileNames->append(path);
+	}
 }
