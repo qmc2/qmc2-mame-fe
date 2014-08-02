@@ -3666,7 +3666,7 @@ void ROMAlyzer::updateCheckSumDbStatus()
 		int seconds = scanTime.secsTo(now);
 		if ( seconds < 60 ) {
 			ageString = tr("%n second(s)", "", seconds);
-			if ( checkSumScannerThread()->isWaiting )
+			if ( !checkSumScannerThread()->isActive )
 				QTimer::singleShot(QMC2_CHECKSUM_DB_STATUS_UPDATE_SHORT, this, SLOT(updateCheckSumDbStatus()));
 		} else {
 			int hours = seconds / 3600;
