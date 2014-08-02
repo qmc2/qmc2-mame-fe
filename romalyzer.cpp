@@ -4002,19 +4002,22 @@ bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, Q
 				QString fn((const char *)ioBuffer);
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
 					qint64 len;
-					QByteArray fileData;
+					QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
+					ulong crc1 = crc32(0, NULL, 0);
 					while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
-						QByteArray readData((const char *)ioBuffer, len);
-						fileData += readData;
+						QByteArray fileData((const char *)ioBuffer, len);
+						sha1Hash.addData(fileData);
+						if ( crc1 > 0 ) {
+							ulong crc2 = crc32(0, NULL, 0);
+							crc2 = crc32(crc2, (const Bytef *)fileData.data(), fileData.size());
+							crc1 = crc32_combine(crc1, crc2, fileData.size());
+						} else
+							crc1 = crc32(crc1, (const Bytef *)fileData.data(), fileData.size());
 					}
 					unzCloseCurrentFile(zipFile);
 					memberList->append(fn);
-					QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
-					sha1Hash.addData(fileData);
 					sha1List->append(sha1Hash.result().toHex());
-					ulong crc = crc32(0, NULL, 0);
-					crc = crc32(crc, (const Bytef *)fileData.data(), fileData.size());
-					crcList->append(QString::number(crc, 16).rightJustified(8, '0'));
+					crcList->append(QString::number(crc1, 16).rightJustified(8, '0'));
 					emit log(tr("ZIP scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(fn).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
 				} else
 					emit log(tr("ZIP scan") + ": " + tr("WARNING: can't open member '%1' from archive '%2'").arg(fn).arg(fileName));

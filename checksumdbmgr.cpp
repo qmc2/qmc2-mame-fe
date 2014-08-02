@@ -181,6 +181,23 @@ quint64 CheckSumDatabaseManager::databaseSize()
 		return 0;
 }
 
+bool CheckSumDatabaseManager::exists(QString sha1, QString crc)
+{
+	// FIXME
+	return true;
+}
+
+void CheckSumDatabaseManager::setData(QString sha1, QString crc, QString path, QString member, int type)
+{
+	// FIXME
+}
+
+bool CheckSumDatabaseManager::getData(QString sha1, QString crc, QString *path, QString *member, int *type)
+{
+	// FIXME
+	return true;
+}
+
 void CheckSumDatabaseManager::recreateDatabase()
 {
 	QSqlQuery query(m_db);
@@ -202,7 +219,7 @@ void CheckSumDatabaseManager::recreateDatabase()
 	// vaccum'ing the database frees all disk-space previously used
 	query.exec("VACUUM");
 	query.finish();
-	if ( !query.exec(QString("CREATE TABLE %1 (sha1 TEXT, crc TEXT, path TEXT, PRIMARY KEY (sha1, crc), CONSTRAINT %1_unique_checksums UNIQUE (sha1, crc))").arg(m_tableBasename)) ) {
+	if ( !query.exec(QString("CREATE TABLE %1 (sha1 TEXT, crc TEXT, path TEXT, member TEXT, type INT, PRIMARY KEY (sha1, crc), CONSTRAINT %1_unique_checksums UNIQUE (sha1, crc))").arg(m_tableBasename)) ) {
 		emit log(tr("WARNING: failed to create check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
