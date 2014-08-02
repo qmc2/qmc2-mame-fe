@@ -154,6 +154,12 @@
 #define wizardAutomationLevel			comboBoxChecksumWizardAutomationLevel->currentIndex()
 #define renamerAutomationLevel			comboBoxSetRenamerAutomationLevel->currentIndex()
 
+#define QMC2_CHECKSUM_SCANNER_FILE_NO_ACCESS	-1
+#define QMC2_CHECKSUM_SCANNER_FILE_ZIP		0
+#define QMC2_CHECKSUM_SCANNER_FILE_7Z		1
+#define QMC2_CHECKSUM_SCANNER_FILE_CHD		2
+#define QMC2_CHECKSUM_SCANNER_FILE_REGULAR	3
+
 class CheckSumScannerThread : public QThread
 {
 	Q_OBJECT
@@ -176,6 +182,8 @@ class CheckSumScannerThread : public QThread
 		QString status();
 		void reopenDatabase();
 
+		int fileType(QString);
+
 	signals:
 		void log(const QString &);
 		void scanStarted();
@@ -189,6 +197,10 @@ class CheckSumScannerThread : public QThread
 		CheckSumScannerLog *m_scannerLog;
 		quint64 m_pendingUpdates;
 		void recursiveFileList(const QString &, QStringList *);
+		bool scanZip(QString, QStringList *, QStringList *, QStringList *);
+		bool scanSevenZip(QString, QStringList *, QStringList *, QStringList *);
+		bool scanChd(QString, QString *);
+		bool scanRegularFile(QString, QString *, QString *);
 };
 
 class ROMAlyzerXmlHandler : public QXmlDefaultHandler
