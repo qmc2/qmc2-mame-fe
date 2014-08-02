@@ -1374,21 +1374,21 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="167"/>
-        <location filename="../../checksumdbmgr.cpp" line="172"/>
-        <location filename="../../checksumdbmgr.cpp" line="177"/>
+        <location filename="../../checksumdbmgr.cpp" line="188"/>
+        <location filename="../../checksumdbmgr.cpp" line="193"/>
+        <location filename="../../checksumdbmgr.cpp" line="198"/>
         <source>WARNING: failed to remove check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="185"/>
-        <location filename="../../checksumdbmgr.cpp" line="190"/>
-        <location filename="../../checksumdbmgr.cpp" line="195"/>
+        <location filename="../../checksumdbmgr.cpp" line="206"/>
+        <location filename="../../checksumdbmgr.cpp" line="211"/>
+        <location filename="../../checksumdbmgr.cpp" line="216"/>
         <source>WARNING: failed to create check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="199"/>
+        <location filename="../../checksumdbmgr.cpp" line="220"/>
         <source>check-sum database &apos;%1&apos; initialized</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1453,22 +1453,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CheckSumScannerThread</name>
     <message>
-        <location filename="../../romalyzer.cpp" line="3830"/>
+        <location filename="../../romalyzer.cpp" line="3848"/>
         <source>exiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3832"/>
+        <location filename="../../romalyzer.cpp" line="3850"/>
         <source>stopping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3834"/>
+        <location filename="../../romalyzer.cpp" line="3852"/>
         <source>scanning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3835"/>
+        <location filename="../../romalyzer.cpp" line="3853"/>
         <source>idle</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1477,22 +1477,22 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">desconocido</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3840"/>
+        <location filename="../../romalyzer.cpp" line="3868"/>
         <source>scanner thread started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3842"/>
+        <location filename="../../romalyzer.cpp" line="3870"/>
         <source>waiting for work</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3855"/>
+        <location filename="../../romalyzer.cpp" line="3883"/>
         <source>scan started for path &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="3859"/>
+        <location filename="../../romalyzer.cpp" line="3891"/>
         <source>found %n file(s) for path &apos;%1&apos;</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1500,22 +1500,40 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3863"/>
+        <location filename="../../romalyzer.cpp" line="3895"/>
         <source>scan started for file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3871"/>
+        <location filename="../../romalyzer.cpp" line="3905"/>
         <source>scan finished for file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3876"/>
+        <location filename="../../romalyzer.cpp" line="3888"/>
+        <location filename="../../romalyzer.cpp" line="3916"/>
+        <source>scanner interrupted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="3892"/>
+        <location filename="../../romalyzer.cpp" line="3902"/>
+        <source>starting database transaction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="3898"/>
+        <location filename="../../romalyzer.cpp" line="3910"/>
+        <source>committing database transaction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="3919"/>
         <source>scan finished for path &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3883"/>
+        <location filename="../../romalyzer.cpp" line="3924"/>
         <source>scanner thread ended</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16251,9 +16269,9 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../gamelist.cpp" line="3540"/>
         <location filename="../../gamelist.cpp" line="3578"/>
-        <location filename="../../romalyzer.cpp" line="3733"/>
-        <location filename="../../romalyzer.cpp" line="3769"/>
-        <location filename="../../romalyzer.cpp" line="3781"/>
+        <location filename="../../romalyzer.cpp" line="3747"/>
+        <location filename="../../romalyzer.cpp" line="3783"/>
+        <location filename="../../romalyzer.cpp" line="3795"/>
         <source>unknown</source>
         <translation>desconocido</translation>
     </message>
@@ -16406,37 +16424,37 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="825"/>
-        <location filename="../../romalyzer.cpp" line="3717"/>
+        <location filename="../../romalyzer.cpp" line="3731"/>
         <source>CHD</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="827"/>
-        <location filename="../../romalyzer.cpp" line="3725"/>
-        <location filename="../../romalyzer.cpp" line="3775"/>
+        <location filename="../../romalyzer.cpp" line="3739"/>
+        <location filename="../../romalyzer.cpp" line="3789"/>
         <source>no dump</source>
         <translation>sin dump</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3717"/>
+        <location filename="../../romalyzer.cpp" line="3731"/>
         <source>ROM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3721"/>
-        <location filename="../../romalyzer.cpp" line="3766"/>
-        <location filename="../../romalyzer.cpp" line="3785"/>
+        <location filename="../../romalyzer.cpp" line="3735"/>
+        <location filename="../../romalyzer.cpp" line="3780"/>
+        <location filename="../../romalyzer.cpp" line="3799"/>
         <source>good</source>
         <translation>bueno</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3729"/>
-        <location filename="../../romalyzer.cpp" line="3778"/>
+        <location filename="../../romalyzer.cpp" line="3743"/>
+        <location filename="../../romalyzer.cpp" line="3792"/>
         <source>bad dump</source>
         <translation>mal dump</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3772"/>
+        <location filename="../../romalyzer.cpp" line="3786"/>
         <source>no / bad dump</source>
         <translation>sin / mal dump</translation>
     </message>
@@ -16826,7 +16844,7 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="143"/>
-        <location filename="../../romalyzer.ui" line="1475"/>
+        <location filename="../../romalyzer.ui" line="1471"/>
         <source>Type</source>
         <translation>Tipo</translation>
     </message>
@@ -16924,13 +16942,13 @@ Are you sure you want to do this?</source>
         <translation>Gestor de CHD (chdman)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1191"/>
+        <location filename="../../romalyzer.ui" line="1178"/>
         <source>Open / close the scanner log window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1194"/>
-        <location filename="../../romalyzer.cpp" line="3601"/>
+        <location filename="../../romalyzer.ui" line="1181"/>
+        <location filename="../../romalyzer.cpp" line="3617"/>
         <source>Open log</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17307,7 +17325,7 @@ Are you sure you want to do this?</source>
         <translation>Navegar a ruta ROM adicional</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1356"/>
+        <location filename="../../romalyzer.ui" line="1352"/>
         <source>Checksum to be searched</source>
         <translation>Suma de verificación a buscar</translation>
     </message>
@@ -17320,28 +17338,28 @@ Are you sure you want to do this?</source>
         <translation type="obsolete">Buscar la suma de verificación ahora</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1375"/>
-        <location filename="../../romalyzer.ui" line="1587"/>
+        <location filename="../../romalyzer.ui" line="1371"/>
+        <location filename="../../romalyzer.ui" line="1583"/>
         <source>Search</source>
         <translation>Buscar</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1392"/>
+        <location filename="../../romalyzer.ui" line="1388"/>
         <source>Analyze all selected sets in order to qualify them</source>
         <translation>Analizar todos los sets seleccionados para calificarlos</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1395"/>
+        <location filename="../../romalyzer.ui" line="1391"/>
         <source>Analyze selected sets</source>
         <translation>Analizar sets seleccionados</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1412"/>
+        <location filename="../../romalyzer.ui" line="1408"/>
         <source>Repair selected &apos;bad&apos; sets using the file from the first selected &apos;good&apos; set (at least 1 good and 1 bad set must be selected)</source>
         <translation>Reparar sets &apos;malo&apos; seleccionados usando el archivo del primer set &apos;bueno&apos; seleccionado (al menos un set bueno y uno malo deben ser seleccionados)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1415"/>
+        <location filename="../../romalyzer.ui" line="1411"/>
         <source>Repair bad sets</source>
         <translation>Reparar sets &apos;mal&apos;</translation>
     </message>
@@ -17350,54 +17368,54 @@ Are you sure you want to do this?</source>
         <translation type="obsolete">Buscar resultados para la suma de verificación actual</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1460"/>
+        <location filename="../../romalyzer.ui" line="1456"/>
         <source>ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1465"/>
+        <location filename="../../romalyzer.ui" line="1461"/>
         <source>File name</source>
         <translation>Nombre de archivo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1470"/>
+        <location filename="../../romalyzer.ui" line="1466"/>
         <source>Status</source>
         <translation>Estado</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1480"/>
+        <location filename="../../romalyzer.ui" line="1476"/>
         <source>Path</source>
         <translation>Ruta</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1490"/>
-        <location filename="../../romalyzer.ui" line="1683"/>
+        <location filename="../../romalyzer.ui" line="1486"/>
+        <location filename="../../romalyzer.ui" line="1679"/>
         <source>Level of automation</source>
         <translation>Nivel de automatismo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1503"/>
+        <location filename="../../romalyzer.ui" line="1499"/>
         <source>Choose the level of automated wizard operations</source>
         <translation>Selecciona el nivel de automatización de las operaciones del asistente</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1507"/>
-        <location filename="../../romalyzer.ui" line="1700"/>
+        <location filename="../../romalyzer.ui" line="1503"/>
+        <location filename="../../romalyzer.ui" line="1696"/>
         <source>Do nothing automatically</source>
         <translation>No hacer nada automáticamente</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1512"/>
+        <location filename="../../romalyzer.ui" line="1508"/>
         <source>Automatically select matches</source>
         <translation>Automáticamente seleccionar coincidencias</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1517"/>
+        <location filename="../../romalyzer.ui" line="1513"/>
         <source>Automatically select matches and analyze sets</source>
         <translation>Automáticamente seleccionar coincidencias y analizar sets</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1522"/>
+        <location filename="../../romalyzer.ui" line="1518"/>
         <source>Automatically select matches, analyze sets and repair bad ones</source>
         <translation>Automáticamente seleccionar coincidencias, analizar sets y reparar los incorrectos</translation>
     </message>
@@ -17406,47 +17424,47 @@ Are you sure you want to do this?</source>
         <translation type="obsolete">Seleccionar el tipo de suma de verificación</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1556"/>
+        <location filename="../../romalyzer.ui" line="1552"/>
         <source>Set rename tool</source>
         <translation>Herramienta de renombrado</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1568"/>
+        <location filename="../../romalyzer.ui" line="1564"/>
         <source>Specify sets to be included in the search - wildcards allowed, use space as delimiter for multiple sets</source>
         <translation>Especificar sets a incluir en la búsqueda - comodines permitidos, usa espacio como delimitador para múltiples sets</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1571"/>
+        <location filename="../../romalyzer.ui" line="1567"/>
         <source>Specify sets</source>
         <translation>Especificar sets</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1584"/>
+        <location filename="../../romalyzer.ui" line="1580"/>
         <source>Search for matches now!</source>
         <translation>¡Buscar coincidencias ahora!</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1610"/>
+        <location filename="../../romalyzer.ui" line="1606"/>
         <source>Perform proposed actions on all selected sets</source>
         <translation>Ejecutar las acciones propuestas en los sets seleccionados</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1613"/>
+        <location filename="../../romalyzer.ui" line="1609"/>
         <source>Perform actions</source>
         <translation>Ejecutar acciones</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1658"/>
+        <location filename="../../romalyzer.ui" line="1654"/>
         <source>ID / File name</source>
         <translation>ID / Nombre de archivo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1663"/>
+        <location filename="../../romalyzer.ui" line="1659"/>
         <source>Old ID / File name</source>
         <translation>ID antiguo / Nombre de archivo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1710"/>
+        <location filename="../../romalyzer.ui" line="1706"/>
         <source>Automatically select sure matches and perform proposed actions</source>
         <translation>Automáticamente seleccionar coincidencias exactas y ejecutar acciones propuestas</translation>
     </message>
@@ -17481,7 +17499,7 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="780"/>
-        <location filename="../../romalyzer.ui" line="1542"/>
+        <location filename="../../romalyzer.ui" line="1538"/>
         <location filename="../../romalyzer.cpp" line="972"/>
         <location filename="../../romalyzer.cpp" line="1675"/>
         <source>SHA-1</source>
@@ -17499,7 +17517,7 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="840"/>
-        <location filename="../../romalyzer.ui" line="1547"/>
+        <location filename="../../romalyzer.ui" line="1543"/>
         <source>CRC-32</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17540,168 +17558,168 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1099"/>
+        <location filename="../../romalyzer.ui" line="1086"/>
         <source>List of scanned paths</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1117"/>
+        <location filename="../../romalyzer.ui" line="1104"/>
         <source>Add a path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1144"/>
+        <location filename="../../romalyzer.ui" line="1131"/>
         <source>Remove selected paths</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1171"/>
+        <location filename="../../romalyzer.ui" line="1158"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Scanned paths&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1178"/>
+        <location filename="../../romalyzer.ui" line="1165"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Scanner control&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1210"/>
+        <location filename="../../romalyzer.ui" line="1197"/>
         <source>Start / stop scanner</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1213"/>
-        <location filename="../../romalyzer.cpp" line="3626"/>
+        <location filename="../../romalyzer.ui" line="1200"/>
+        <location filename="../../romalyzer.cpp" line="3642"/>
         <source>Start scanner</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1231"/>
+        <location filename="../../romalyzer.ui" line="1218"/>
         <source>Database / scanner status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1266"/>
+        <location filename="../../romalyzer.ui" line="1249"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1281"/>
+        <location filename="../../romalyzer.ui" line="1264"/>
         <source>Path to the check-sum database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1294"/>
+        <location filename="../../romalyzer.ui" line="1277"/>
         <source>Browse path to the check-sum database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1314"/>
+        <location filename="../../romalyzer.ui" line="1297"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Database path&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1344"/>
+        <location filename="../../romalyzer.ui" line="1340"/>
         <source>Check-sum wizard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1359"/>
+        <location filename="../../romalyzer.ui" line="1355"/>
         <source>Enter check-sum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1372"/>
+        <location filename="../../romalyzer.ui" line="1368"/>
         <source>Search for the check-sum now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1435"/>
+        <location filename="../../romalyzer.ui" line="1431"/>
         <source>Search results for the current check-sum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1538"/>
+        <location filename="../../romalyzer.ui" line="1534"/>
         <source>Select the check-sum type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1633"/>
+        <location filename="../../romalyzer.ui" line="1629"/>
         <source>Search results (check-sum matches)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1668"/>
+        <location filename="../../romalyzer.ui" line="1664"/>
         <source>Match probability</source>
         <translation>Probabilidad de coincidencia</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1673"/>
+        <location filename="../../romalyzer.ui" line="1669"/>
         <source>Action</source>
         <translation>Acción</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1696"/>
+        <location filename="../../romalyzer.ui" line="1692"/>
         <source>Choose the level of automated set renamer operations</source>
         <translation>Selecciona el nivel de automatización de las operaciones de renombrado</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1705"/>
+        <location filename="../../romalyzer.ui" line="1701"/>
         <source>Automatically select sure matches</source>
         <translation>Automáticamente seleccionar coincidencias exactas</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1722"/>
+        <location filename="../../romalyzer.ui" line="1718"/>
         <source>Old XML</source>
         <translation>XML antiguo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1735"/>
+        <location filename="../../romalyzer.ui" line="1731"/>
         <source>Old XML data input file (produced with &apos;-listxml&apos;)</source>
         <translation>Archivo de entrada de datos XML antiguo (creado con &apos;-listxml&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1748"/>
+        <location filename="../../romalyzer.ui" line="1744"/>
         <source>Browse old XML data input file (produced with &apos;-listxml&apos;)</source>
         <translation>Navegar al archivo de entrada de datos XML antiguo (creado con &apos;-listxml&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1772"/>
+        <location filename="../../romalyzer.ui" line="1768"/>
         <source>Export selected results to a file</source>
         <translation>Exportar los resultados seleccionados a un archivo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1775"/>
+        <location filename="../../romalyzer.ui" line="1771"/>
         <source>Export results...</source>
         <translation>Exportar resultados...</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1795"/>
+        <location filename="../../romalyzer.ui" line="1791"/>
         <source>Import results from a file</source>
         <translation>Importar resultados desde un archivo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1798"/>
+        <location filename="../../romalyzer.ui" line="1794"/>
         <source>Import results...</source>
         <translation>Importar resultados...</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1823"/>
+        <location filename="../../romalyzer.ui" line="1819"/>
         <source>Close ROMAlyzer</source>
         <translation>Cerrar ROMAlyzer</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1826"/>
+        <location filename="../../romalyzer.ui" line="1822"/>
         <source>&amp;Close</source>
         <translation>&amp;Cerrar</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1846"/>
+        <location filename="../../romalyzer.ui" line="1842"/>
         <source>Current ROMAlyzer status</source>
         <translation>Estado de ROMAlyzer actual</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1849"/>
+        <location filename="../../romalyzer.ui" line="1845"/>
         <location filename="../../romalyzer.cpp" line="659"/>
         <location filename="../../romalyzer.cpp" line="1152"/>
         <location filename="../../romalyzer.cpp" line="2375"/>
@@ -17711,12 +17729,12 @@ Are you sure you want to do this?</source>
         <translation>Parado</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1865"/>
+        <location filename="../../romalyzer.ui" line="1861"/>
         <source>Analysis progress indicator</source>
         <translation>Indicador de progreso del análisis</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1884"/>
+        <location filename="../../romalyzer.ui" line="1880"/>
         <source>File I/O progress indicator</source>
         <translation>Indicador de progreso de I/O del archivo</translation>
     </message>
@@ -18632,6 +18650,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="2634"/>
         <location filename="../../romalyzer.cpp" line="2666"/>
         <location filename="../../romalyzer.cpp" line="3470"/>
+        <location filename="../../romalyzer.cpp" line="3535"/>
         <source>All files (*)</source>
         <translation>Todos los archivos (*)</translation>
     </message>
@@ -18980,22 +18999,32 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3592"/>
+        <location filename="../../romalyzer.cpp" line="3535"/>
+        <source>Choose check-sum database file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="3608"/>
         <source>Close log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3611"/>
+        <location filename="../../romalyzer.cpp" line="3627"/>
         <source>Stop scanner</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3641"/>
+        <location filename="../../romalyzer.cpp" line="3657"/>
         <source>Objects in database</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="3658"/>
+        <source>Database size</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="3647"/>
+        <location filename="../../romalyzer.cpp" line="3664"/>
         <source>%n day(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -19003,7 +19032,15 @@ Are you sure you want to do this?</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="3661"/>
+        <location filename="../../romalyzer.cpp" line="3668"/>
+        <source>%n second(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../romalyzer.cpp" line="3674"/>
         <source>%n hour(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -19011,7 +19048,7 @@ Are you sure you want to do this?</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="3663"/>
+        <location filename="../../romalyzer.cpp" line="3676"/>
         <source>%n minute(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -19019,12 +19056,17 @@ Are you sure you want to do this?</source>
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3666"/>
+        <location filename="../../romalyzer.cpp" line="3679"/>
         <source>Age of stored data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3667"/>
+        <location filename="../../romalyzer.cpp" line="3680"/>
+        <source>Pending updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="3681"/>
         <source>Scanner status</source>
         <translation type="unfinished"></translation>
     </message>

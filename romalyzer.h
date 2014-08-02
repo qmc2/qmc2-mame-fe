@@ -171,8 +171,10 @@ class CheckSumScannerThread : public QThread
 		~CheckSumScannerThread();
 
 		CheckSumDatabaseManager *checkSumDb() { return m_checkSumDb; }
+		quint64 pendingUpdates() { return m_pendingUpdates; }
 
 		QString status();
+		void reopenDatabase();
 
 	signals:
 		void log(const QString &);
@@ -184,6 +186,8 @@ class CheckSumScannerThread : public QThread
 
 	private:
 		CheckSumDatabaseManager *m_checkSumDb;
+		CheckSumScannerLog *m_scannerLog;
+		quint64 m_pendingUpdates;
 		void recursiveFileList(const QString &, QStringList *);
 };
 
@@ -295,6 +299,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void on_tabWidgetAnalysis_currentChanged(int);
 		void on_toolButtonCheckSumDbAddPath_clicked();
 		void on_toolButtonCheckSumDbRemovePath_clicked();
+		void on_lineEditCheckSumDbDatabasePath_textChanged(const QString &);
 		void on_toolButtonBrowseCheckSumDbDatabasePath_clicked();
 		void on_toolButtonCheckSumDbViewLog_clicked();
 		void on_pushButtonCheckSumDbScan_clicked();
