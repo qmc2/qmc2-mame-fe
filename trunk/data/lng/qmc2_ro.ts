@@ -17486,9 +17486,8 @@ Are you sure you want to do this?</source>
         <translation>Rasfoti cale ROM aditionala</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1382"/>
         <source>Checksum to be searched</source>
-        <translation>Suma de control de cautat</translation>
+        <translation type="obsolete">Suma de control de cautat</translation>
     </message>
     <message>
         <source>Search for the checksum now</source>
@@ -17790,6 +17789,11 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="1370"/>
         <source>Check-sum wizard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="1382"/>
+        <source>Check-sum to be searched</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

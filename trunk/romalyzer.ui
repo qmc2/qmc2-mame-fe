@@ -1379,7 +1379,7 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Checksum to be searched</string>
+          <string>Check-sum to be searched</string>
          </property>
          <property name="placeholderText">
           <string>Enter check-sum</string>

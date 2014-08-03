@@ -17574,9 +17574,8 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1382"/>
         <source>Checksum to be searched</source>
-        <translation>Szukana suma kontrolna</translation>
+        <translation type="obsolete">Szukana suma kontrolna</translation>
     </message>
     <message>
         <source>Enter checksum</source>
@@ -17850,6 +17849,11 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romalyzer.cpp" line="3690"/>
         <source>Pause</source>
         <translation type="unfinished">Wstrzymaj</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="1382"/>
+        <source>Check-sum to be searched</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1385"/>
