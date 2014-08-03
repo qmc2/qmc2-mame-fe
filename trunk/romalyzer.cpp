@@ -193,9 +193,12 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 	connect(checkSumScannerThread(), SIGNAL(log(const QString &)), checkSumScannerLog(), SLOT(log(const QString &)));
 	connect(checkSumScannerThread(), SIGNAL(scanStarted()), this, SLOT(checkSumScannerThread_scanStarted()));
 	connect(checkSumScannerThread(), SIGNAL(scanFinished()), this, SLOT(checkSumScannerThread_scanFinished()));
+	connect(checkSumScannerThread(), SIGNAL(scanPaused()), this, SLOT(checkSumScannerThread_scanPaused()));
+	connect(checkSumScannerThread(), SIGNAL(scanResumed()), this, SLOT(checkSumScannerThread_scanResumed()));
 	connect(&checkSumDbStatusTimer, SIGNAL(timeout()), this, SLOT(updateCheckSumDbStatus()));
 	updateCheckSumDbStatus();
 	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG);
+	pushButtonCheckSumDbPauseResumeScan->hide();
 #else
 	groupBoxCheckSumDatabase->setVisible(false);
 	m_checkSumScannerLog = NULL;
@@ -257,6 +260,7 @@ void ROMAlyzer::adjustIconSizes()
 	toolButtonBrowseCheckSumDbDatabasePath->setIconSize(iconSize);
 	toolButtonCheckSumDbRemovePath->setIconSize(iconSize);
 	pushButtonCheckSumDbScan->setIconSize(iconSize);
+	pushButtonCheckSumDbPauseResumeScan->setIconSize(iconSize);
 }
 
 void ROMAlyzer::on_pushButtonClose_clicked()
@@ -3566,6 +3570,8 @@ void ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()
 
 	pushButtonCheckSumDbScan->setEnabled(false);
 	pushButtonCheckSumDbScan->update();
+	pushButtonCheckSumDbPauseResumeScan->setEnabled(false);
+	pushButtonCheckSumDbPauseResumeScan->update();
 	qApp->processEvents();
 	if ( checkSumScannerThread()->isActive )
 		checkSumScannerThread()->stopScan = true;
@@ -3579,6 +3585,19 @@ void ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()
 		checkSumScannerThread()->waitCondition.wakeAll();
 	}
 	qApp->processEvents();
+}
+
+void ROMAlyzer::on_pushButtonCheckSumDbPauseResumeScan_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonCheckSumDbPauseResumeScan_clicked()");
+#endif
+
+	pushButtonCheckSumDbPauseResumeScan->setEnabled(false);
+	if ( checkSumScannerThread()->isPaused )
+		QTimer::singleShot(0, checkSumScannerThread(), SLOT(resume()));
+	else
+		QTimer::singleShot(0, checkSumScannerThread(), SLOT(pause()));
 }
 
 void ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_customContextMenuRequested(const QPoint &p)
@@ -3625,9 +3644,12 @@ void ROMAlyzer::checkSumScannerThread_scanStarted()
 
 	pushButtonCheckSumDbScan->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
 	pushButtonCheckSumDbScan->setText(tr("Stop scanner"));
+	pushButtonCheckSumDbPauseResumeScan->setText(tr("Pause"));
+	pushButtonCheckSumDbPauseResumeScan->show();
 	checkSumDbStatusTimer.stop();
 	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_SHORT);
 	pushButtonCheckSumDbScan->setEnabled(true);
+	pushButtonCheckSumDbPauseResumeScan->setEnabled(true);
 	qApp->processEvents();
 	QTimer::singleShot(0, this, SLOT(updateCheckSumDbStatus()));
 }
@@ -3640,11 +3662,33 @@ void ROMAlyzer::checkSumScannerThread_scanFinished()
 
 	pushButtonCheckSumDbScan->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
 	pushButtonCheckSumDbScan->setText(tr("Start scanner"));
+	pushButtonCheckSumDbPauseResumeScan->hide();
 	checkSumDbStatusTimer.stop();
 	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG);
 	pushButtonCheckSumDbScan->setEnabled(true);
+	pushButtonCheckSumDbPauseResumeScan->setEnabled(true);
 	qApp->processEvents();
 	QTimer::singleShot(0, this, SLOT(updateCheckSumDbStatus()));
+}
+
+void ROMAlyzer::checkSumScannerThread_scanPaused()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::checkSumScannerThread_scanPaused()");
+#endif
+
+	pushButtonCheckSumDbPauseResumeScan->setText(tr("Resume"));
+	pushButtonCheckSumDbPauseResumeScan->setEnabled(true);
+}
+
+void ROMAlyzer::checkSumScannerThread_scanResumed()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::checkSumScannerThread_scanResumed()");
+#endif
+
+	pushButtonCheckSumDbPauseResumeScan->setText(tr("Pause"));
+	pushButtonCheckSumDbPauseResumeScan->setEnabled(true);
 }
 
 void ROMAlyzer::updateCheckSumDbStatus()
@@ -3823,7 +3867,7 @@ bool ROMAlyzerXmlHandler::characters(const QString &str)
 CheckSumScannerThread::CheckSumScannerThread(CheckSumScannerLog *scannerLog, QObject *parent)
 	: QThread(parent)
 {
-	isActive = exitThread = isWaiting = stopScan = false;
+	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopScan = false;
 	m_checkSumDb = NULL;
 	m_scannerLog = scannerLog;
 	m_pendingUpdates = 0;
@@ -3848,6 +3892,8 @@ QString CheckSumScannerThread::status()
 		return tr("exiting");
 	if ( stopScan )
 		return tr("stopping");
+	if ( isPaused )
+		return tr("paused");
 	if ( isActive )
 		return tr("scanning");
 	return tr("idle");
@@ -3863,6 +3909,16 @@ void CheckSumScannerThread::reopenDatabase()
 	connect(checkSumDb(), SIGNAL(log(const QString &)), m_scannerLog, SLOT(log(const QString &)));
 }
 
+void CheckSumScannerThread::pause()
+{
+	pauseRequested = true;
+}
+
+void CheckSumScannerThread::resume()
+{
+	isPaused = false;
+}
+
 void CheckSumScannerThread::run()
 {
 	emit log(tr("scanner thread started"));
@@ -3870,8 +3926,7 @@ void CheckSumScannerThread::run()
 		emit log(tr("waiting for work"));
 		mutex.lock();
 		isWaiting = true;
-		isActive = false;
-		stopScan = false;
+		isActive = stopScan = isPaused = false;
 		waitCondition.wait(&mutex);
 		isActive = true;
 		isWaiting = false;
@@ -3958,6 +4013,22 @@ void CheckSumScannerThread::run()
 						m_pendingUpdates = 0;
 						emit log(tr("starting database transaction"));
 						checkSumDb()->beginTransaction();
+					}
+					bool pauseMessageLogged = false;
+					while ( (pauseRequested || isPaused) && !exitThread && !stopScan ) {
+						if ( !pauseMessageLogged ) {
+							pauseMessageLogged = true;
+							isPaused = true;
+							pauseRequested = false;
+							emit scanPaused();
+							emit log(tr("scanner paused"));
+						}
+						QTest::qWait(100);
+					}
+					if ( pauseMessageLogged && !exitThread && !stopScan ) {
+						isPaused = false;
+						emit scanResumed();
+						emit log(tr("scanner resumed"));
 					}
 					if ( exitThread || stopScan )
 						break;

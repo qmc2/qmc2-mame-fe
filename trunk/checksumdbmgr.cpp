@@ -213,8 +213,22 @@ void CheckSumDatabaseManager::setData(QString sha1, QString crc, QString path, Q
 
 bool CheckSumDatabaseManager::getData(QString sha1, QString crc, QString *path, QString *member, QString *type)
 {
-	// FIXME
-	return true;
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT path, member, type FROM %1 WHERE sha1=:sha1 OR crc=:crc").arg(m_tableBasename));
+	query.bindValue(":sha1", sha1);
+	query.bindValue(":crc", crc);
+	if ( query.exec() ) {
+		if ( query.first() ) {
+			*path = query.value(0).toString();
+			*member = query.value(1).toString();
+			*type = query.value(2).toString();
+			return true;
+		} else
+			return false;
+	} else {
+		emit log(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("path, member, type").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return false;
+	}
 }
 
 void CheckSumDatabaseManager::recreateDatabase()

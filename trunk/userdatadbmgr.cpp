@@ -414,6 +414,27 @@ void UserDataDatabaseManager::remove(QString id)
 	m_commentCache.remove(id);
 }
 
+quint64 UserDataDatabaseManager::databaseSize()
+{
+	QSqlQuery query(m_db);
+	if ( query.exec("PRAGMA page_count") ) {
+		if ( query.first() ) {
+			quint64 page_count = query.value(0).toULongLong();
+			query.finish();
+			if ( query.exec("PRAGMA page_size") ) {
+				if ( query.first() ) {
+					quint64 page_size = query.value(0).toULongLong();
+					return page_count * page_size;
+				} else
+					return 0;
+			} else
+				return 0;
+		} else
+			return 0;
+	} else
+		return 0;
+}
+
 void UserDataDatabaseManager::recreateDatabase()
 {
 	QSqlQuery query(m_db);

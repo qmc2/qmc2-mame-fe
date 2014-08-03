@@ -170,6 +170,8 @@ class CheckSumScannerThread : public QThread
 		bool stopScan;
 		bool isActive;
 		bool isWaiting;
+		bool isPaused;
+		bool pauseRequested;
 		QMutex mutex;
 		QWaitCondition waitCondition;
 		QStringList scannedPaths;
@@ -186,10 +188,16 @@ class CheckSumScannerThread : public QThread
 		int fileType(QString);
 		QString typeName(int);
 
+	public slots:
+		void pause();
+		void resume();
+
 	signals:
 		void log(const QString &);
 		void scanStarted();
 		void scanFinished();
+		void scanPaused();
+		void scanResumed();
 
 	protected:
 		void run();
@@ -317,12 +325,15 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void on_toolButtonBrowseCheckSumDbDatabasePath_clicked();
 		void on_toolButtonCheckSumDbViewLog_clicked();
 		void on_pushButtonCheckSumDbScan_clicked();
+		void on_pushButtonCheckSumDbPauseResumeScan_clicked();
 		void on_listWidgetCheckSumDbScannedPaths_customContextMenuRequested(const QPoint &);
 		void on_listWidgetCheckSumDbScannedPaths_itemSelectionChanged();
 		void checkSumScannerLog_windowClosed();
 		void checkSumScannerLog_windowOpened();
 		void checkSumScannerThread_scanStarted();
 		void checkSumScannerThread_scanFinished();
+		void checkSumScannerThread_scanPaused();
+		void checkSumScannerThread_scanResumed();
 
 		// miscellaneous slots
 		void animationTimeout();

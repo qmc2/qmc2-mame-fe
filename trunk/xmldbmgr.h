@@ -32,6 +32,8 @@ class XmlDatabaseManager : public QObject
 		int xmlRowCount();
 
 		QString connectionName() { return m_connectionName; }
+		QString databasePath() { return m_db.databaseName(); }
+		quint64 databaseSize();
 
 	public slots:
 		void recreateDatabase();
