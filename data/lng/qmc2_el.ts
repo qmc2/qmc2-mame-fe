@@ -17310,11 +17310,6 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1382"/>
-        <source>Checksum to be searched</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../romalyzer.ui" line="1401"/>
         <location filename="../../romalyzer.ui" line="1613"/>
         <source>Search</source>
@@ -17499,6 +17494,11 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="1370"/>
         <source>Check-sum wizard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="1382"/>
+        <source>Check-sum to be searched</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -17456,11 +17456,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1382"/>
-        <source>Checksum to be searched</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../romalyzer.ui" line="1421"/>
         <source>Analyze selected sets</source>
         <translation></translation>
@@ -17590,6 +17585,11 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="837"/>
         <source>Calculate CRC-32 check-sum</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="1382"/>
+        <source>Check-sum to be searched</source>
         <translation></translation>
     </message>
     <message>

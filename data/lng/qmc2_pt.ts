@@ -18809,9 +18809,8 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1382"/>
         <source>Checksum to be searched</source>
-        <translation>Checksum a ser procurado</translation>
+        <translation type="obsolete">Checksum a ser procurado</translation>
     </message>
     <message>
         <source>Enter checksum</source>
@@ -19189,6 +19188,11 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romalyzer.cpp" line="3690"/>
         <source>Pause</source>
         <translation type="unfinished">Pausar</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="1382"/>
+        <source>Check-sum to be searched</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1385"/>

@@ -17666,9 +17666,8 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Prüfsummen-Assistent</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1382"/>
         <source>Checksum to be searched</source>
-        <translation>Zu suchende Prüfsumme</translation>
+        <translation type="obsolete">Zu suchende Prüfsumme</translation>
     </message>
     <message>
         <source>Enter checksum</source>
@@ -17950,6 +17949,11 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../romalyzer.cpp" line="3690"/>
         <source>Pause</source>
         <translation>Pausieren</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="1382"/>
+        <source>Check-sum to be searched</source>
+        <translation>Zu suchende Prüfsumme</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1385"/>
