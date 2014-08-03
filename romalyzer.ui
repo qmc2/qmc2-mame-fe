@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>719</width>
-    <height>773</height>
+    <width>691</width>
+    <height>775</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -322,8 +322,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>703</width>
-            <height>677</height>
+            <width>675</width>
+            <height>679</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayoutScrollAreeaSettings" rowstretch="0,0,0,1,0">
@@ -1188,23 +1188,6 @@
                   </property>
                  </widget>
                 </item>
-                <item row="10" column="3" colspan="2">
-                 <widget class="QPushButton" name="pushButtonCheckSumDbScan">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="toolTip">
-                   <string>Start / stop scanner</string>
-                  </property>
-                  <property name="text">
-                   <string>Start scanner</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="qmc2.qrc">
-                    <normaloff>:/data/img/refresh.png</normaloff>:/data/img/refresh.png</iconset>
-                  </property>
-                 </widget>
-                </item>
                 <item row="9" column="3" colspan="2">
                  <widget class="Line" name="line_20">
                   <property name="orientation">
@@ -1310,6 +1293,53 @@
                    </size>
                   </property>
                  </spacer>
+                </item>
+                <item row="10" column="3" colspan="2">
+                 <layout class="QHBoxLayout" name="horizontalLayout_8">
+                  <item>
+                   <widget class="QPushButton" name="pushButtonCheckSumDbScan">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="toolTip">
+                     <string>Start / stop scanner</string>
+                    </property>
+                    <property name="text">
+                     <string>Start scanner</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="qmc2.qrc">
+                      <normaloff>:/data/img/refresh.png</normaloff>:/data/img/refresh.png</iconset>
+                    </property>
+                    <property name="autoDefault">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButtonCheckSumDbPauseResumeScan">
+                    <property name="toolTip">
+                     <string>Pause / resume scanner</string>
+                    </property>
+                    <property name="text">
+                     <string>Pause</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="qmc2.qrc">
+                      <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
+                    </property>
+                    <property name="autoDefault">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </item>
@@ -1956,6 +1986,7 @@
   <tabstop>toolButtonBrowseCheckSumDbDatabasePath</tabstop>
   <tabstop>toolButtonCheckSumDbViewLog</tabstop>
   <tabstop>pushButtonCheckSumDbScan</tabstop>
+  <tabstop>pushButtonCheckSumDbPauseResumeScan</tabstop>
   <tabstop>comboBoxChecksumWizardHashType</tabstop>
   <tabstop>lineEditChecksumWizardHash</tabstop>
   <tabstop>pushButtonChecksumWizardSearch</tabstop>
