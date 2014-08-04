@@ -31,6 +31,8 @@ class CheckSumDatabaseManager : public QObject
 		bool exists(QString sha1, QString crc);
 		void setData(QString sha1, QString crc, quint64 size, QString path, QString member, QString type);
 		bool getData(QString sha1, QString crc, quint64 *size, QString *path, QString *member, QString *type);
+		QString getCrc(QString sha1);
+		QString getSha1(QString crc);
 
 		int nameToType(QString name);
 		QString typeToName(int type);

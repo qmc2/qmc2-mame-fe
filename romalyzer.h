@@ -8,6 +8,7 @@
 #include <QWaitCondition>
 #include <QStringList>
 #include <QTimer>
+#include <QPixmap>
 
 #include "macros.h"
 #include "checksumdbmgr.h"
@@ -310,7 +311,8 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void on_checkBoxCalculateMD5_toggled(bool);
 		void on_checkBoxCalculateSHA1_toggled(bool);
 		void on_comboBoxChecksumWizardHashType_currentIndexChanged(int);
-		void on_lineEditChecksumWizardHash_textEdited(const QString &);
+		void on_lineEditChecksumWizardHash_textChanged(const QString &);
+		void lineEditChecksumWizardHash_textChanged_delayed();
 		void on_pushButtonChecksumWizardSearch_clicked();
 		void on_treeWidgetChecksums_customContextMenuRequested(const QPoint &);
 		void on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
@@ -347,6 +349,10 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void exportToDataFile();
 		void updateCheckSumDbStatus();
 		void log(const QString &);
+		void indicateCheckSumDbQueryStatusGood();
+		void indicateCheckSumDbQueryStatusBad();
+		void indicateCheckSumDbQueryStatusUnknown();
+		void on_groupBoxCheckSumDatabase_toggled(bool);
 
 		// CHD manager process control
 		void chdManagerStarted();
@@ -366,6 +372,8 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		CheckSumDatabaseManager *m_checkSumDb;
 		CheckSumScannerLog *m_checkSumScannerLog;
 		CheckSumScannerThread *m_checkSumScannerThread;
+		QPixmap m_checkSumDbQueryStatusPixmap;
+		QTimer m_checkSumTextChangedTimer;
 };
 
 #endif

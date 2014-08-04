@@ -24,6 +24,8 @@
         <file>data/img/configure.png</file>
         <file>data/img/controller.png</file>
         <file>data/img/database.png</file>
+        <file>data/img/database_bad.png</file>
+        <file>data/img/database_good.png</file>
         <file>data/img/dev_cartridge.png</file>
         <file>data/img/dev_cassette.png</file>
         <file>data/img/dev_cdrom.png</file>
