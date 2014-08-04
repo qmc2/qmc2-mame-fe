@@ -183,12 +183,11 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 	actionExportToDataFile->setEnabled(false);
 	toolButtonToolsMenu->setMenu(toolsMenu);
 
-	// FIXME
-#if defined(QMC2_WIP_ENABLED)
 	m_checkSumScannerLog = new CheckSumScannerLog(0);
 	connect(checkSumScannerLog(), SIGNAL(windowOpened()), this, SLOT(checkSumScannerLog_windowOpened()));
 	connect(checkSumScannerLog(), SIGNAL(windowClosed()), this, SLOT(checkSumScannerLog_windowClosed()));
 	m_checkSumDb = new CheckSumDatabaseManager(this);
+	connect(checkSumDb(), SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
 	m_checkSumScannerThread = new CheckSumScannerThread(checkSumScannerLog(), this);
 	connect(checkSumScannerThread(), SIGNAL(log(const QString &)), checkSumScannerLog(), SLOT(log(const QString &)));
 	connect(checkSumScannerThread(), SIGNAL(scanStarted()), this, SLOT(checkSumScannerThread_scanStarted()));
@@ -199,12 +198,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 	updateCheckSumDbStatus();
 	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG);
 	pushButtonCheckSumDbPauseResumeScan->hide();
-#else
-	groupBoxCheckSumDatabase->setVisible(false);
-	m_checkSumScannerLog = NULL;
-	m_checkSumDb = NULL;
-	m_checkSumScannerThread = NULL;
-#endif
 
 #if defined(QMC2_OS_MAC)
 	setParent(qmc2MainWindow, Qt::Dialog);
@@ -235,7 +228,8 @@ void ROMAlyzer::adjustIconSizes()
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
 	QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
-	QSize iconSizeMiddle = iconSize + QSize(2, 2);
+	QSize iconSizeTreeWidgetChecksums = iconSize + QSize(2, 2);
+	iconSizeTreeWidgetChecksums.setWidth(iconSizeTreeWidgetChecksums.width() * 2);
 	pushButtonAnalyze->setIconSize(iconSize);
 	pushButtonPause->setIconSize(iconSize);
 	pushButtonClose->setIconSize(iconSize);
@@ -254,7 +248,7 @@ void ROMAlyzer::adjustIconSizes()
 	toolButtonBrowseSetRenamerOldXmlFile->setIconSize(iconSize);
 	pushButtonSetRenamerExportResults->setIconSize(iconSize);
 	pushButtonSetRenamerImportResults->setIconSize(iconSize);
-	treeWidgetChecksums->setIconSize(iconSizeMiddle);
+	treeWidgetChecksums->setIconSize(iconSizeTreeWidgetChecksums);
 	pushButtonChecksumWizardSearch->setIconSize(iconSize);
 	toolButtonCheckSumDbAddPath->setIconSize(iconSize);
 	toolButtonBrowseCheckSumDbDatabasePath->setIconSize(iconSize);
@@ -776,6 +770,7 @@ void ROMAlyzer::analyze()
 				bool sevenZipped = false;
 				bool zipped = false;
 				bool merged = false;
+				bool fromCheckSumDb = false;
 				QTreeWidgetItem *childItem = xmlHandler.childItems.at(fileCounter);
 				QTreeWidgetItem *parentItem = xmlHandler.parentItem;
 				QString sha1Calculated, md5Calculated, fallbackPath;
@@ -798,18 +793,7 @@ void ROMAlyzer::analyze()
 
 				QString effectiveFile = getEffectiveFile(childItem, gameName, childItem->text(QMC2_ROMALYZER_COLUMN_GAME), childItem->text(QMC2_ROMALYZER_COLUMN_CRC),
 									 parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE), childItem->text(QMC2_ROMALYZER_COLUMN_MERGE), childItem->text(QMC2_ROMALYZER_COLUMN_TYPE),
-									 &data, &sha1Calculated, &md5Calculated, &zipped, &sevenZipped, &merged, fileCounter, &fallbackPath, optionalRom); 
-
-#ifdef QMC2_DEBUG
-				log(QString("DEBUG: fileName = %1 [%2], isZipped = %3, isSevenZipped = %4, fileType = %5, crcExpected = %6, sha1Calculated = %7")
-					    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME))
-					    .arg(effectiveFile)
-					    .arg(zipped ? "true" : "false")
-					    .arg(sevenZipped ? "true" : "false")
-					    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).startsWith(tr("ROM")) ? "ROM" : "CHD")
-					    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC).isEmpty() ? QString("--") : childItem->text(QMC2_ROMALYZER_COLUMN_CRC))
-					    .arg(sha1Calculated.isEmpty() ? QString("--") : sha1Calculated));
-#endif
+									 &data, &sha1Calculated, &md5Calculated, &zipped, &sevenZipped, &merged, fileCounter, &fallbackPath, optionalRom, &fromCheckSumDb); 
 
 				if ( qmc2StopParser )
 					continue;
@@ -831,14 +815,29 @@ void ROMAlyzer::analyze()
 					bool hasDump = childItem->text(QMC2_ROMALYZER_COLUMN_EMUSTATUS) != QObject::tr("no dump");
 
 					if ( effectiveFile != QMC2_ROMALYZER_FILE_NOT_FOUND ) {
+						QIcon icon;
 						if ( isROM )
-							childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/rom.png")));
+							icon = QIcon(QString::fromUtf8(":/data/img/rom.png"));
 						else if ( isCHD )
-							childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/disk2.png")));
+							icon = QIcon(QString::fromUtf8(":/data/img/disk2.png"));
 						else if ( hasDump )
-							childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
+							icon = QIcon(QString::fromUtf8(":/data/img/fileopen.png"));
 						else
-							childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/wip.png")));
+							icon = QIcon(QString::fromUtf8(":/data/img/wip.png"));
+						if ( fromCheckSumDb ) {
+							QPainter p;
+							QPixmap pm(128, 64);
+							QPixmap pmIcon = icon.pixmap(64, 64);
+							QPixmap pmDb = QIcon(QString::fromUtf8(":/data/img/database.png")).pixmap(64, 64);
+							pm.fill(Qt::transparent);
+							p.begin(&pm);
+							p.setBackgroundMode(Qt::TransparentMode);
+							p.drawPixmap(0, 0, pmIcon);
+							p.drawPixmap(64, 0, pmDb);
+							p.end();
+							icon = QIcon(pm);
+						}
+						childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, icon);
 					}
 
 					if ( effectiveFile == QMC2_ROMALYZER_FILE_TOO_BIG ) {
@@ -853,7 +852,8 @@ void ROMAlyzer::analyze()
 
 						QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
 						if ( !mergeName.isEmpty() ) {
-							if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_CRIT ) mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_CRIT;
+							if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_CRIT )
+								mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_CRIT;
 							childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
 						}
 
@@ -932,36 +932,49 @@ void ROMAlyzer::analyze()
 						// Size
 						QString sizeStr = childItem->text(QMC2_ROMALYZER_COLUMN_SIZE);
 						if ( !sizeStr.isEmpty() ){
+							QString sizeItemStr;
+							if ( fromCheckSumDb )
+								sizeItemStr = sizeStr;
+							else {
+								sizeItemStr = QString::number(data.size());
+							}
 							fileItem->setText(QMC2_ROMALYZER_COLUMN_SIZE, QString::number(data.size()));
 							if ( !fileStatus.isEmpty() )
 								fileStatus += " ";
-							if ( data.size() == sizeStr.toLongLong() )
+							if ( sizeItemStr == sizeStr )
 								fileStatus += tr("SIZE");
-							else
+							else {
 								fileStatus += tr("size");
-							if ( data.size() != sizeStr.toLongLong() && hasDump ) {
-								somethingsWrong = true;
-								fileItem->setForeground(QMC2_ROMALYZER_COLUMN_SIZE, xmlHandler.redBrush);
+								if ( hasDump ) {
+									somethingsWrong = true;
+									fileItem->setForeground(QMC2_ROMALYZER_COLUMN_SIZE, xmlHandler.redBrush);
+								}
 							}
-							pushButtonPause->setIcon(QIcon(QString::fromUtf8(":/data/img/time.png")));
 							qApp->processEvents();
 						}
 
 						// CRC
 						QString crcStr = childItem->text(QMC2_ROMALYZER_COLUMN_CRC);
 						if ( !crcStr.isEmpty() && checkBoxCalculateCRC->isChecked() ) {
-							ulong crc = crc32(0, NULL, 0);
-							crc = crc32(crc, (const Bytef *)data.data(), data.size());
-							fileItem->setText(QMC2_ROMALYZER_COLUMN_CRC, QString::number(crc, 16).rightJustified(8, '0'));
+							QString crcItemStr;
+							if ( fromCheckSumDb )
+								crcItemStr = crcStr;
+							else {
+								ulong crc = crc32(0, NULL, 0);
+								crc = crc32(crc, (const Bytef *)data.data(), data.size());
+								crcItemStr = QString::number(crc, 16).rightJustified(8, '0');
+							}
+							fileItem->setText(QMC2_ROMALYZER_COLUMN_CRC, crcItemStr);
 							if ( !fileStatus.isEmpty() )
 								fileStatus += " ";
-							if ( crc == crcStr.toULongLong(0, 16) )
+							if ( crcItemStr == crcStr )
 								fileStatus += tr("CRC");
-							else
+							else {
 								fileStatus += tr("crc");
-							if ( crc != crcStr.toULongLong(0, 16) && hasDump ) {
-								somethingsWrong = true;
-								fileItem->setForeground(QMC2_ROMALYZER_COLUMN_CRC, xmlHandler.redBrush);
+							        if ( hasDump ) {
+									somethingsWrong = true;
+									fileItem->setForeground(QMC2_ROMALYZER_COLUMN_CRC, xmlHandler.redBrush);
+								}
 							}
 							qApp->processEvents();
 						}
@@ -1188,7 +1201,7 @@ QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 	return xmlBuffer;
 }
 
-QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, QString fileName, QString wantedCRC, QString merge, QString mergeFile, QString type, QByteArray *fileData, QString *sha1Str, QString *md5Str, bool *isZipped, bool *isSevenZipped, bool *mergeUsed, int fileCounter, QString *fallbackPath, bool isOptionalROM)
+QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, QString fileName, QString wantedCRC, QString merge, QString mergeFile, QString type, QByteArray *fileData, QString *sha1Str, QString *md5Str, bool *isZipped, bool *isSevenZipped, bool *mergeUsed, int fileCounter, QString *fallbackPath, bool isOptionalROM, bool *fromCheckSumDb)
 {
 	static QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
 	static QCryptographicHash md5Hash(QCryptographicHash::Md5);
@@ -1909,7 +1922,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 			break;
 	}
 
-	// try merges, if applicable...
+	// try merges if applicable...
 	if ( effectiveFile.isEmpty() && !qmc2StopParser ) {
 		if ( mergeFile.isEmpty() && !merge.isEmpty() ) {
 			// romof is set, but the merge's file name is missing... use the same file name for the merge
@@ -1923,9 +1936,53 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 			if ( romofPosition > -1 ) {
 				nextMerge = nextMerge.mid(romofPosition + 7);
 				nextMerge = nextMerge.left(nextMerge.indexOf("\""));
-				effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, nextMerge, mergeFile, type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM);
+				effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, nextMerge, mergeFile, type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM, fromCheckSumDb);
 			} else
-				effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM);
+				effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM, fromCheckSumDb);
+		}
+	}
+
+	// try check-sum database if available/applicable...
+	if ( effectiveFile.isEmpty() && !qmc2StopParser && groupBoxCheckSumDatabase->isChecked() ) {
+		QString wantedSHA1 = myItem->text(QMC2_ROMALYZER_COLUMN_SHA1);
+		if ( checkSumDb()->exists(wantedSHA1, wantedCRC) ) {
+			QString pathFromDb, memberFromDb, typeFromDb;
+			quint64 sizeFromDb;
+			if ( checkSumDb()->getData(wantedSHA1, wantedCRC, &sizeFromDb, &pathFromDb, &memberFromDb, &typeFromDb) ) {
+				QStringList sl;
+				switch ( checkSumDb()->nameToType(typeFromDb) ) {
+					case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
+						//    fromName        fromPath      toName                                      fromZip
+						sl << memberFromDb << pathFromDb << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "zip";
+						log(tr("check-sum database") + ": " + tr("using member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' as '%5'").arg(memberFromDb).arg(pathFromDb).arg(wantedSHA1).arg(wantedCRC).arg(myItem->text(QMC2_ROMALYZER_COLUMN_GAME)));
+						*isZipped = true;
+						break;
+					case QMC2_CHECKSUM_SCANNER_FILE_7Z:
+						//    fromName        fromPath      toName                                      fromZip
+						sl << memberFromDb << pathFromDb << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "7z";
+						log(tr("check-sum database") + ": " + tr("using member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' as '%5'").arg(memberFromDb).arg(pathFromDb).arg(wantedSHA1).arg(wantedCRC).arg(myItem->text(QMC2_ROMALYZER_COLUMN_GAME)));
+						*isSevenZipped = true;
+						break;
+					case QMC2_CHECKSUM_SCANNER_FILE_CHD:
+						//    fromName        fromPath      toName                                      fromZip
+						sl << memberFromDb << pathFromDb << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "chd";
+						log(tr("check-sum database") + ": " + tr("using CHD '%1' with SHA-1 '%2' as '%3'").arg(pathFromDb).arg(wantedSHA1).arg(myItem->text(QMC2_ROMALYZER_COLUMN_GAME)));
+						break;
+					case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
+						//    fromName        fromPath      toName                                      fromZip
+						sl << memberFromDb << pathFromDb << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "file";
+						log(tr("check-sum database") + ": " + tr("using file '%1' with SHA-1 '%2' and CRC '%3' as '%4'").arg(pathFromDb).arg(wantedSHA1).arg(wantedCRC).arg(myItem->text(QMC2_ROMALYZER_COLUMN_GAME)));
+						break;
+					default:
+						break;
+				}
+				if ( !sl.isEmpty() ) {
+					*sha1Str = wantedSHA1;
+					*fromCheckSumDb = true;
+					effectiveFile = pathFromDb;
+					setRewriterFileMap.insert(wantedCRC, sl); 
+				}
+			}
 		}
 	}
 
@@ -2060,8 +2117,9 @@ QString ROMAlyzer::humanReadable(quint64 value, int digits)
 	return humanReadableString;
 }
 
-void ROMAlyzer::log(QString message)
+void ROMAlyzer::log(const QString &msg)
 {
+	QString message = msg;
 	message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": ");
 	bool scrollBarMaximum = (textBrowserLog->verticalScrollBar()->value() == textBrowserLog->verticalScrollBar()->maximum());
 	textBrowserLog->appendPlainText(message);
@@ -3576,8 +3634,10 @@ void ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()
 	if ( checkSumScannerThread()->isActive )
 		checkSumScannerThread()->stopScan = true;
 	else if ( checkSumScannerThread()->isWaiting ) {
+		checkSumDb()->disconnect(this);
 		delete checkSumDb();
 		m_checkSumDb = new CheckSumDatabaseManager(this);
+		connect(checkSumDb(), SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
 		checkSumScannerThread()->reopenDatabase();
 		checkSumScannerThread()->scannedPaths.clear();
 		for (int i = 0; i < listWidgetCheckSumDbScannedPaths->count(); i++)
@@ -3950,29 +4010,31 @@ void CheckSumScannerThread::run()
 					emit log(tr("scan started for file '%1'").arg(filePath));
 					QStringList memberList, sha1List, crcList;
 					QString sha1, crc;
+					QList<quint64> sizeList;
+					quint64 size;
 					int type = fileType(filePath);
 					bool doDbUpdate = true;
 					switch ( type ) {
 						case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
-							if ( !scanZip(filePath, &memberList, &sha1List, &crcList) ) {
+							if ( !scanZip(filePath, &memberList, &sizeList, &sha1List, &crcList) ) {
 								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
 								doDbUpdate = false;
 							}
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_7Z:
-							if ( !scanSevenZip(filePath, &memberList, &sha1List, &crcList) ) {
+							if ( !scanSevenZip(filePath, &memberList, &sizeList, &sha1List, &crcList) ) {
 								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
 								doDbUpdate = false;
 							}
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_CHD:
-							if ( !scanChd(filePath, &sha1) ) {
+							if ( !scanChd(filePath, &size, &sha1) ) {
 								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
 								doDbUpdate = false;
 							}
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
-							if ( !scanRegularFile(filePath, &sha1, &crc) ) {
+							if ( !scanRegularFile(filePath, &size, &sha1, &crc) ) {
 								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
 								doDbUpdate = false;
 							}
@@ -3992,7 +4054,7 @@ void CheckSumScannerThread::run()
 								for (int i = 0; i < memberList.count(); i++) {
 									if ( !checkSumDb()->exists(sha1List[i], crcList[i]) ) {
 										emit log(tr("database update") + ": " + tr("adding member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' to database").arg(memberList[i]).arg(filePath).arg(sha1List[i]).arg(crcList[i]));
-										checkSumDb()->setData(sha1List[i], crcList[i], filePath, memberList[i], typeName(type));
+										checkSumDb()->setData(sha1List[i], crcList[i], sizeList[i], filePath, memberList[i], checkSumDb()->typeToName(type));
 										m_pendingUpdates++;
 									} else
 										emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1List[i]).arg(crcList[i]) + ", " + tr("member '%1' from archive '%2' ignored").arg(memberList[i]).arg(filePath));
@@ -4001,7 +4063,7 @@ void CheckSumScannerThread::run()
 							case QMC2_CHECKSUM_SCANNER_FILE_CHD:
 								if ( !checkSumDb()->exists(sha1, crc) ) {
 									emit log(tr("database update") + ": " + tr("adding CHD '%1' with SHA-1 '%2' to database").arg(filePath).arg(sha1));
-									checkSumDb()->setData(sha1, QString(), filePath, QString(), typeName(type));
+									checkSumDb()->setData(sha1, QString(), size, filePath, QString(), checkSumDb()->typeToName(type));
 									m_pendingUpdates++;
 								} else
 									emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("CHD '%1' ignored").arg(filePath));
@@ -4009,7 +4071,7 @@ void CheckSumScannerThread::run()
 							case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
 								if ( !checkSumDb()->exists(sha1, crc) ) {
 									emit log(tr("database update") + ": " + tr("adding file '%1' with SHA-1 '%2' and CRC '%3' to database").arg(filePath).arg(sha1).arg(crc));
-									checkSumDb()->setData(sha1, crc, filePath, QString(), typeName(type));
+									checkSumDb()->setData(sha1, crc, size, filePath, QString(), checkSumDb()->typeToName(type));
 									m_pendingUpdates++;
 								} else
 									emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("file '%1' ignored").arg(filePath));
@@ -4103,23 +4165,7 @@ int CheckSumScannerThread::fileType(QString fileName)
 		return QMC2_CHECKSUM_SCANNER_FILE_NO_ACCESS;
 }
 
-QString CheckSumScannerThread::typeName(int type)
-{
-	switch ( type ) {
-		case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
-			return QString("ZIP");
-		case QMC2_CHECKSUM_SCANNER_FILE_7Z:
-			return QString("7Z");
-		case QMC2_CHECKSUM_SCANNER_FILE_CHD:
-			return QString("CHD");
-		case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
-			return QString("FILE");
-		default:
-			return QString("UNKOWN");
-	}
-}
-
-bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, QStringList *sha1List, QStringList *crcList)
+bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, QList<quint64> *sizeList, QStringList *sha1List, QStringList *crcList)
 {
 	unzFile zipFile = unzOpen(fileName.toLocal8Bit().constData());
 	if ( zipFile ) {
@@ -4131,6 +4177,7 @@ bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, Q
 			if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
 				QString fn((const char *)ioBuffer);
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
+					quint64 memberSize = 0;
 					qint64 len;
 					QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
 					ulong crc1 = crc32(0, NULL, 0);
@@ -4143,6 +4190,7 @@ bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, Q
 							crc1 = crc32_combine(crc1, crc2, fileData.size());
 						} else
 							crc1 = crc32(crc1, (const Bytef *)fileData.data(), fileData.size());
+						memberSize += len;
 						if ( exitThread || stopScan )
 							break;
 					}
@@ -4150,6 +4198,7 @@ bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, Q
 					if ( exitThread || stopScan )
 						break;
 					memberList->append(fn);
+					sizeList->append(memberSize);
 					sha1List->append(sha1Hash.result().toHex());
 					crcList->append(QString::number(crc1, 16).rightJustified(8, '0'));
 					emit log(tr("ZIP scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(fn).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
@@ -4163,7 +4212,7 @@ bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, Q
 		return false;
 }
 
-bool CheckSumScannerThread::scanSevenZip(QString fileName, QStringList *memberList, QStringList *sha1List, QStringList *crcList)
+bool CheckSumScannerThread::scanSevenZip(QString fileName, QStringList *memberList, QList<quint64> *sizeList, QStringList *sha1List, QStringList *crcList)
 {
 	SevenZipFile sevenZipFile(fileName);
 	if ( sevenZipFile.open() ) {
@@ -4176,6 +4225,7 @@ bool CheckSumScannerThread::scanSevenZip(QString fileName, QStringList *memberLi
 				if ( exitThread || stopScan )
 					break;
 				memberList->append(metaData.name());
+				sizeList->append(metaData.size());
 				QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
 				sha1Hash.addData(fileData);
 				sha1List->append(sha1Hash.result().toHex());
@@ -4192,7 +4242,7 @@ bool CheckSumScannerThread::scanSevenZip(QString fileName, QStringList *memberLi
 		return false;
 }
 
-bool CheckSumScannerThread::scanChd(QString fileName, QString *sha1)
+bool CheckSumScannerThread::scanChd(QString fileName, quint64 *size, QString *sha1)
 {
 	QFile file(fileName);
 	if ( file.open(QIODevice::ReadOnly) ) {
@@ -4224,6 +4274,7 @@ bool CheckSumScannerThread::scanChd(QString fileName, QString *sha1)
 					break;
 				}
 			}
+			*size = file.size();
 		} else {
 			emit log(tr("CHD scan") + ": " + tr("WARNING: can't read CHD '%1'").arg(fileName));
 			success = false;
@@ -4239,7 +4290,7 @@ bool CheckSumScannerThread::scanChd(QString fileName, QString *sha1)
 		return false;
 }
 
-bool CheckSumScannerThread::scanRegularFile(QString fileName, QString *sha1, QString *crc)
+bool CheckSumScannerThread::scanRegularFile(QString fileName, quint64 *size, QString *sha1, QString *crc)
 {
 	QFile file(fileName);
 	if ( file.open(QIODevice::ReadOnly) ) {
@@ -4259,6 +4310,7 @@ bool CheckSumScannerThread::scanRegularFile(QString fileName, QString *sha1, QSt
 			if ( exitThread || stopScan )
 				break;
 		}
+		*size = file.size();
 		file.close();
 		if ( exitThread || stopScan )
 			return true;

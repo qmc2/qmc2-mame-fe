@@ -16,6 +16,7 @@ extern Settings *qmc2Config;
 CheckSumDatabaseManager::CheckSumDatabaseManager(QObject *parent)
 	: QObject(parent)
 {
+	m_fileTypes << "ZIP" << "7Z" << "CHD" << "FILE";
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 	m_connectionName = QString("checksum-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
@@ -198,30 +199,32 @@ bool CheckSumDatabaseManager::exists(QString sha1, QString crc)
 	}
 }
 
-void CheckSumDatabaseManager::setData(QString sha1, QString crc, QString path, QString member, QString type)
+void CheckSumDatabaseManager::setData(QString sha1, QString crc, quint64 size, QString path, QString member, QString type)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("INSERT INTO %1 (sha1, crc, path, member, type) VALUES (:sha1, :crc, :path, :member, :type)").arg(m_tableBasename));
+	query.prepare(QString("INSERT INTO %1 (sha1, crc, size, path, member, type) VALUES (:sha1, :crc, :size, :path, :member, :type)").arg(m_tableBasename));
 	query.bindValue(":sha1", sha1);
 	query.bindValue(":crc", crc);
+	query.bindValue(":size", size);
 	query.bindValue(":path", path);
 	query.bindValue(":member", member);
 	query.bindValue(":type", type);
 	if ( !query.exec() )
-		emit log(tr("WARNING: failed to add '%1' to check-sum database: query = '%2', error = '%3'").arg("sha1, crc, path, member, type").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emit log(tr("WARNING: failed to add '%1' to check-sum database: query = '%2', error = '%3'").arg("sha1, crc, size, path, member, type").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
-bool CheckSumDatabaseManager::getData(QString sha1, QString crc, QString *path, QString *member, QString *type)
+bool CheckSumDatabaseManager::getData(QString sha1, QString crc, quint64 *size, QString *path, QString *member, QString *type)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT path, member, type FROM %1 WHERE sha1=:sha1 OR crc=:crc").arg(m_tableBasename));
+	query.prepare(QString("SELECT size, path, member, type FROM %1 WHERE sha1=:sha1 OR crc=:crc").arg(m_tableBasename));
 	query.bindValue(":sha1", sha1);
 	query.bindValue(":crc", crc);
 	if ( query.exec() ) {
 		if ( query.first() ) {
-			*path = query.value(0).toString();
-			*member = query.value(1).toString();
-			*type = query.value(2).toString();
+			*size = query.value(0).toULongLong();
+			*path = query.value(1).toString();
+			*member = query.value(2).toString();
+			*type = query.value(3).toString();
 			return true;
 		} else
 			return false;
@@ -229,6 +232,19 @@ bool CheckSumDatabaseManager::getData(QString sha1, QString crc, QString *path, 
 		emit log(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("path, member, type").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return false;
 	}
+}
+
+int CheckSumDatabaseManager::nameToType(QString name)
+{
+	return m_fileTypes.indexOf(name);
+}
+
+QString CheckSumDatabaseManager::typeToName(int type)
+{
+	if ( type < m_fileTypes.count() )
+		return m_fileTypes[type];
+	else
+		return QString("UNKNOWN");
 }
 
 void CheckSumDatabaseManager::recreateDatabase()
@@ -252,7 +268,7 @@ void CheckSumDatabaseManager::recreateDatabase()
 	// vaccum'ing the database frees all disk-space previously used
 	query.exec("VACUUM");
 	query.finish();
-	if ( !query.exec(QString("CREATE TABLE %1 (sha1 TEXT, crc TEXT, path TEXT, member TEXT, type TEXT, PRIMARY KEY (sha1, crc), CONSTRAINT %1_unique_checksums UNIQUE (sha1, crc))").arg(m_tableBasename)) ) {
+	if ( !query.exec(QString("CREATE TABLE %1 (sha1 TEXT, crc TEXT, size UNSIGNED BIG INT, path TEXT, member TEXT, type TEXT, PRIMARY KEY (sha1, crc), CONSTRAINT %1_unique_checksums UNIQUE (sha1, crc))").arg(m_tableBasename)) ) {
 		emit log(tr("WARNING: failed to create check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}

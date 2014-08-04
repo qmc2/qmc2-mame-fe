@@ -186,7 +186,6 @@ class CheckSumScannerThread : public QThread
 		void reopenDatabase();
 
 		int fileType(QString);
-		QString typeName(int);
 
 	public slots:
 		void pause();
@@ -207,10 +206,10 @@ class CheckSumScannerThread : public QThread
 		CheckSumScannerLog *m_scannerLog;
 		quint64 m_pendingUpdates;
 		void recursiveFileList(const QString &, QStringList *);
-		bool scanZip(QString, QStringList *, QStringList *, QStringList *);
-		bool scanSevenZip(QString, QStringList *, QStringList *, QStringList *);
-		bool scanChd(QString, QString *);
-		bool scanRegularFile(QString, QString *, QString *);
+		bool scanZip(QString, QStringList *, QList<quint64> *, QStringList *, QStringList *);
+		bool scanSevenZip(QString, QStringList *, QList<quint64> *, QStringList *, QStringList *);
+		bool scanChd(QString, quint64 *, QString *);
+		bool scanRegularFile(QString, quint64 *, QString *, QString *);
 };
 
 class ROMAlyzerXmlHandler : public QXmlDefaultHandler
@@ -279,7 +278,6 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		~ROMAlyzer();
 
 		void saveState() { closeEvent(NULL); }
-		void log(QString);
 		bool readAllZipData(QString, QMap<QString, QByteArray> *, QMap<QString, QString> *, QStringList *fileList = NULL);
 		bool readSevenZipFileData(QString, QString, QByteArray *);
 		bool readZipFileData(QString, QString, QByteArray *);
@@ -288,7 +286,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		bool writeAllFileData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
 		static QString humanReadable(quint64, int digits = 2);
 		static QString &getXmlData(QString, bool includeDTD = false);
-		QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString, QByteArray *, QString *, QString *, bool *, bool *, bool *, int, QString *, bool);
+		QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString, QByteArray *, QString *, QString *, bool *, bool *, bool *, int, QString *, bool, bool *);
 		CheckSumDatabaseManager *checkSumDb() { return m_checkSumDb; }
 		CheckSumScannerLog *checkSumScannerLog() { return m_checkSumScannerLog; }
 		CheckSumScannerThread *checkSumScannerThread() { return m_checkSumScannerThread; }
@@ -348,6 +346,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void importFromDataFile();
 		void exportToDataFile();
 		void updateCheckSumDbStatus();
+		void log(const QString &);
 
 		// CHD manager process control
 		void chdManagerStarted();
