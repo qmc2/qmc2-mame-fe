@@ -3951,60 +3951,72 @@ void CheckSumScannerThread::run()
 					QStringList memberList, sha1List, crcList;
 					QString sha1, crc;
 					int type = fileType(filePath);
+					bool doDbUpdate = true;
 					switch ( type ) {
 						case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
-							if ( !scanZip(filePath, &memberList, &sha1List, &crcList) )
+							if ( !scanZip(filePath, &memberList, &sha1List, &crcList) ) {
 								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+								doDbUpdate = false;
+							}
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_7Z:
-							if ( !scanSevenZip(filePath, &memberList, &sha1List, &crcList) )
+							if ( !scanSevenZip(filePath, &memberList, &sha1List, &crcList) ) {
 								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+								doDbUpdate = false;
+							}
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_CHD:
-							if ( !scanChd(filePath, &sha1) )
+							if ( !scanChd(filePath, &sha1) ) {
 								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+								doDbUpdate = false;
+							}
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
-							if ( !scanRegularFile(filePath, &sha1, &crc) )
+							if ( !scanRegularFile(filePath, &sha1, &crc) ) {
 								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+								doDbUpdate = false;
+							}
 							break;
 						default:
 						case QMC2_CHECKSUM_SCANNER_FILE_NO_ACCESS:
 							emit log(tr("WARNING: can't access file '%1', please check permissions").arg(filePath));
+							doDbUpdate = false;
 							break;
 					}
 					if ( exitThread || stopScan )
 						break;
-					switch ( type ) {
-						case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
-						case QMC2_CHECKSUM_SCANNER_FILE_7Z:
-							for (int i = 0; i < memberList.count(); i++) {
-								if ( !checkSumDb()->exists(sha1List[i], crcList[i]) ) {
-									emit log(tr("database update") + ": " + tr("adding member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' to database").arg(memberList[i]).arg(filePath).arg(sha1List[i]).arg(crcList[i]));
-									checkSumDb()->setData(sha1List[i], crcList[i], filePath, memberList[i], typeName(type));
+					if ( doDbUpdate ) {
+						switch ( type ) {
+							case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
+							case QMC2_CHECKSUM_SCANNER_FILE_7Z:
+								for (int i = 0; i < memberList.count(); i++) {
+									if ( !checkSumDb()->exists(sha1List[i], crcList[i]) ) {
+										emit log(tr("database update") + ": " + tr("adding member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' to database").arg(memberList[i]).arg(filePath).arg(sha1List[i]).arg(crcList[i]));
+										checkSumDb()->setData(sha1List[i], crcList[i], filePath, memberList[i], typeName(type));
+										m_pendingUpdates++;
+									} else
+										emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1List[i]).arg(crcList[i]) + ", " + tr("member '%1' from archive '%2' ignored").arg(memberList[i]).arg(filePath));
+								}
+								break;
+							case QMC2_CHECKSUM_SCANNER_FILE_CHD:
+								if ( !checkSumDb()->exists(sha1, crc) ) {
+									emit log(tr("database update") + ": " + tr("adding CHD '%1' with SHA-1 '%2' to database").arg(filePath).arg(sha1));
+									checkSumDb()->setData(sha1, QString(), filePath, QString(), typeName(type));
 									m_pendingUpdates++;
 								} else
-									emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1List[i]).arg(crcList[i]) + ", " + tr("member '%1' from archive '%2' ignored").arg(memberList[i]).arg(filePath));
-							}
-							break;
-						case QMC2_CHECKSUM_SCANNER_FILE_CHD:
-							if ( !checkSumDb()->exists(sha1, crc) ) {
-								emit log(tr("database update") + ": " + tr("adding CHD '%1' with SHA-1 '%2' to database").arg(filePath).arg(sha1));
-								checkSumDb()->setData(sha1, QString(), filePath, QString(), typeName(type));
-								m_pendingUpdates++;
-							} else
-								emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("CHD '%1' ignored").arg(filePath));
-							break;
-						case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
-							if ( !checkSumDb()->exists(sha1, crc) ) {
-								emit log(tr("database update") + ": " + tr("adding file '%1' with SHA-1 '%2' and CRC '%3' to database").arg(filePath).arg(sha1).arg(crc));
-								checkSumDb()->setData(sha1, crc, filePath, QString(), typeName(type));
-								m_pendingUpdates++;
-							} else
-								emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("file '%1' ignored").arg(filePath));
-							break;
-						default:
-							break;
+									emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("CHD '%1' ignored").arg(filePath));
+								break;
+							case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
+								if ( !checkSumDb()->exists(sha1, crc) ) {
+									emit log(tr("database update") + ": " + tr("adding file '%1' with SHA-1 '%2' and CRC '%3' to database").arg(filePath).arg(sha1).arg(crc));
+									checkSumDb()->setData(sha1, crc, filePath, QString(), typeName(type));
+									m_pendingUpdates++;
+								} else
+									emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("file '%1' ignored").arg(filePath));
+								break;
+							default:
+								break;
+						}
 					}
 					if ( m_pendingUpdates >= QMC2_CHECKSUM_DB_MAX_TRANSACTIONS ) {
 						emit log(tr("committing database transaction"));
