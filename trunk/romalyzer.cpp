@@ -13,6 +13,7 @@
 #include <QDate>
 #include <QTime>
 #include <QXmlQuery>
+#include <QPalette>
 
 #include "romalyzer.h"
 #include "qmc2main.h"
@@ -86,6 +87,8 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   
 	setupUi(this);
 
+	m_checkSumDbQueryStatusPixmap = QPixmap(QString::fromUtf8(":/data/img/database.png"));
+
 #if !defined(QMC2_WIP_ENABLED)
 	tabWidgetAnalysis->removeTab(QMC2_ROMALYZER_PAGE_RENAMETOOL);
 #endif
@@ -131,6 +134,8 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 #endif
 
 	adjustIconSizes();
+
+	widgetCheckSumDbQueryStatus->setVisible(false);
 	pushButtonPause->setVisible(false);
 
 	wizardSearch = quickSearch = false;
@@ -183,6 +188,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 	actionExportToDataFile->setEnabled(false);
 	toolButtonToolsMenu->setMenu(toolsMenu);
 
+	// check-sum DB related
 	m_checkSumScannerLog = new CheckSumScannerLog(0);
 	connect(checkSumScannerLog(), SIGNAL(windowOpened()), this, SLOT(checkSumScannerLog_windowOpened()));
 	connect(checkSumScannerLog(), SIGNAL(windowClosed()), this, SLOT(checkSumScannerLog_windowClosed()));
@@ -198,6 +204,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 	updateCheckSumDbStatus();
 	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG);
 	pushButtonCheckSumDbPauseResumeScan->hide();
+	connect(&m_checkSumTextChangedTimer, SIGNAL(timeout()), this, SLOT(lineEditChecksumWizardHash_textChanged_delayed()));
 
 #if defined(QMC2_OS_MAC)
 	setParent(qmc2MainWindow, Qt::Dialog);
@@ -255,6 +262,10 @@ void ROMAlyzer::adjustIconSizes()
 	toolButtonCheckSumDbRemovePath->setIconSize(iconSize);
 	pushButtonCheckSumDbScan->setIconSize(iconSize);
 	pushButtonCheckSumDbPauseResumeScan->setIconSize(iconSize);
+	widgetCheckSumDbQueryStatus->setFixedWidth(widgetCheckSumDbQueryStatus->height());
+	QPalette pal = widgetCheckSumDbQueryStatus->palette();
+	pal.setBrush(QPalette::Window, m_checkSumDbQueryStatusPixmap.scaled(widgetCheckSumDbQueryStatus->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+	widgetCheckSumDbQueryStatus->setPalette(pal);
 }
 
 void ROMAlyzer::on_pushButtonClose_clicked()
@@ -429,6 +440,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterAdditionalRomPath", lineEditSetRewriterAdditionalRomPath->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardHashType", comboBoxChecksumWizardHashType->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", comboBoxChecksumWizardAutomationLevel->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCheckSumDb", groupBoxCheckSumDatabase->isChecked());
 	QStringList checkSumDbScannedPaths;
 	for (int i = 0; i < listWidgetCheckSumDbScannedPaths->count(); i++)
 		checkSumDbScannedPaths << listWidgetCheckSumDbScannedPaths->item(i)->text();
@@ -507,6 +519,8 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	comboBoxChecksumWizardHashType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardHashType", QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1).toInt());
 	comboBoxChecksumWizardAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", QMC2_ROMALYZER_CSWIZ_AMLVL_NONE).toInt());
 	radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", false).toBool());
+	groupBoxCheckSumDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCheckSumDb", false).toBool());
+	widgetCheckSumDbQueryStatus->setVisible(groupBoxCheckSumDatabase->isChecked());
 	listWidgetCheckSumDbScannedPaths->clear();
 	listWidgetCheckSumDbScannedPaths->addItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", QStringList()).toStringList());
 	pushButtonCheckSumDbScan->setEnabled(listWidgetCheckSumDbScannedPaths->count() > 0);
@@ -2316,24 +2330,53 @@ void ROMAlyzer::chdManagerError(QProcess::ProcessError processError)
 	chdManagerRunning = false;
 }
 
-void ROMAlyzer::on_lineEditChecksumWizardHash_textEdited(const QString &text)
+void ROMAlyzer::on_lineEditChecksumWizardHash_textChanged(const QString &text)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_lineEditChecksumWizardHash_textEdited(const QString &text = %1)").arg(text));
-#endif
+	if ( groupBoxCheckSumDatabase->isChecked() )
+		QTimer::singleShot(0, this, SLOT(indicateCheckSumDbQueryStatusUnknown()));
+	m_checkSumTextChangedTimer.start(QMC2_SEARCH_DELAY);
+}
 
+void ROMAlyzer::lineEditChecksumWizardHash_textChanged_delayed()
+{
+	m_checkSumTextChangedTimer.stop();
+	QString sha1, crc;
 	switch ( comboBoxChecksumWizardHashType->currentIndex() ) {
 		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC:
-			currentFilesSHA1Checksum.clear();
-			currentFilesCrcChecksum = text;
+			crc = lineEditChecksumWizardHash->text();
+			if ( !groupBoxCheckSumDatabase->isChecked() )
+				currentFilesCrcChecksum = crc;
 			break;
 
 		default:
 		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1:
-			currentFilesCrcChecksum.clear();
-			currentFilesSHA1Checksum = text;
+			sha1 = lineEditChecksumWizardHash->text();
+			if ( !groupBoxCheckSumDatabase->isChecked() )
+				currentFilesSHA1Checksum = sha1;
 			break;
 	}
+	if ( groupBoxCheckSumDatabase->isChecked() ) {
+		if ( sha1.length() != 40 && crc.length() != 8 )
+			QTimer::singleShot(0, this, SLOT(indicateCheckSumDbQueryStatusUnknown()));
+		else {
+			if ( checkSumDb()->exists(sha1, crc) ) {
+				if ( crc.isEmpty() ) {
+					currentFilesCrcChecksum = checkSumDb()->getCrc(sha1);
+				} else if ( sha1.isEmpty() )
+					currentFilesSHA1Checksum = checkSumDb()->getSha1(crc);
+				QTimer::singleShot(0, this, SLOT(indicateCheckSumDbQueryStatusGood()));
+			} else
+				QTimer::singleShot(0, this, SLOT(indicateCheckSumDbQueryStatusBad()));
+		}
+	}
+}
+
+void ROMAlyzer::on_groupBoxCheckSumDatabase_toggled(bool enable)
+{
+	widgetCheckSumDbQueryStatus->setVisible(enable);
+	qApp->processEvents();
+	if ( enable )
+		QTimer::singleShot(0, this, SLOT(lineEditChecksumWizardHash_textChanged_delayed()));
 }
 
 void ROMAlyzer::on_comboBoxChecksumWizardHashType_currentIndexChanged(int index)
@@ -2344,7 +2387,7 @@ void ROMAlyzer::on_comboBoxChecksumWizardHashType_currentIndexChanged(int index)
 
 	switch ( index ) {
 		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC:
-			if ( !currentFilesCrcChecksum.isEmpty() && !lineEditChecksumWizardHash->text().isEmpty() )
+			if ( !currentFilesCrcChecksum.isEmpty() && lineEditChecksumWizardHash->text().length() == 40 )
 				lineEditChecksumWizardHash->setText(currentFilesCrcChecksum);
 			else
 				lineEditChecksumWizardHash->clear();
@@ -2352,7 +2395,7 @@ void ROMAlyzer::on_comboBoxChecksumWizardHashType_currentIndexChanged(int index)
 
 		default:
 		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1:
-			if ( !currentFilesSHA1Checksum.isEmpty() && !lineEditChecksumWizardHash->text().isEmpty() )
+			if ( !currentFilesSHA1Checksum.isEmpty() && lineEditChecksumWizardHash->text().length() == 8 )
 				lineEditChecksumWizardHash->setText(currentFilesSHA1Checksum);
 			else
 				lineEditChecksumWizardHash->clear();
@@ -3786,6 +3829,33 @@ void ROMAlyzer::updateCheckSumDbStatus()
 	statusString += "</table></center>";
 	labelCheckSumDbStatusDisplay->setText(statusString);
 	qApp->processEvents();
+}
+
+void ROMAlyzer::indicateCheckSumDbQueryStatusGood()
+{
+	m_checkSumDbQueryStatusPixmap = QPixmap(QString::fromUtf8(":/data/img/database_good.png"));
+	widgetCheckSumDbQueryStatus->setFixedWidth(widgetCheckSumDbQueryStatus->height());
+	QPalette pal = widgetCheckSumDbQueryStatus->palette();
+	pal.setBrush(QPalette::Window, m_checkSumDbQueryStatusPixmap.scaled(widgetCheckSumDbQueryStatus->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+	widgetCheckSumDbQueryStatus->setPalette(pal);
+}
+
+void ROMAlyzer::indicateCheckSumDbQueryStatusBad()
+{
+	m_checkSumDbQueryStatusPixmap = QPixmap(QString::fromUtf8(":/data/img/database_bad.png"));
+	widgetCheckSumDbQueryStatus->setFixedWidth(widgetCheckSumDbQueryStatus->height());
+	QPalette pal = widgetCheckSumDbQueryStatus->palette();
+	pal.setBrush(QPalette::Window, m_checkSumDbQueryStatusPixmap.scaled(widgetCheckSumDbQueryStatus->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+	widgetCheckSumDbQueryStatus->setPalette(pal);
+}
+
+void ROMAlyzer::indicateCheckSumDbQueryStatusUnknown()
+{
+	m_checkSumDbQueryStatusPixmap = QPixmap(QString::fromUtf8(":/data/img/database.png"));
+	widgetCheckSumDbQueryStatus->setFixedWidth(widgetCheckSumDbQueryStatus->height());
+	QPalette pal = widgetCheckSumDbQueryStatus->palette();
+	pal.setBrush(QPalette::Window, m_checkSumDbQueryStatusPixmap.scaled(widgetCheckSumDbQueryStatus->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+	widgetCheckSumDbQueryStatus->setPalette(pal);
 }
 
 ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, bool scroll)

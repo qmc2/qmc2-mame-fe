@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>691</width>
+    <width>667</width>
     <height>775</height>
    </rect>
   </property>
@@ -45,7 +45,7 @@
         <string>Tools menu</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset>
          <normaloff>:/data/img/toolbox.png</normaloff>:/data/img/toolbox.png</iconset>
        </property>
        <property name="popupMode">
@@ -65,7 +65,7 @@
         <string>&amp;Analyze</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset>
          <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
        </property>
        <property name="autoDefault">
@@ -82,7 +82,7 @@
         <string>&amp;Pause</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset>
          <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
        </property>
        <property name="autoDefault">
@@ -237,7 +237,7 @@
           <string>&amp;Forward</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset>
            <normaloff>:/data/img/right_action.png</normaloff>:/data/img/right_action.png</iconset>
          </property>
          <property name="autoRepeat">
@@ -322,7 +322,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>675</width>
+            <width>545</width>
             <height>679</height>
            </rect>
           </property>
@@ -339,9 +339,6 @@
               <string>Enable set rewriter</string>
              </property>
              <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
               <bool>true</bool>
              </property>
              <layout class="QGridLayout" name="gridLayout_9">
@@ -1104,7 +1101,7 @@
                      <string>Add a path</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="qmc2.qrc">
+                     <iconset>
                       <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
                     </property>
                    </widget>
@@ -1314,7 +1311,7 @@
                      <string>Start scanner</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="qmc2.qrc">
+                     <iconset>
                       <normaloff>:/data/img/refresh.png</normaloff>:/data/img/refresh.png</iconset>
                     </property>
                     <property name="autoDefault">
@@ -1331,7 +1328,7 @@
                      <string>Pause</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="qmc2.qrc">
+                     <iconset>
                       <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
                     </property>
                     <property name="autoDefault">
@@ -1370,46 +1367,89 @@
        <string>Check-sum wizard</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayoutCheckSumWizard" rowstretch="0,0,1,0">
-       <item row="0" column="1" colspan="2">
-        <widget class="QLineEdit" name="lineEditChecksumWizardHash">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Check-sum to be searched</string>
-         </property>
-         <property name="placeholderText">
-          <string>Enter check-sum</string>
-         </property>
-        </widget>
+       <item row="0" column="0" colspan="2">
+        <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="0,1,0,0">
+         <item>
+          <widget class="QComboBox" name="comboBoxChecksumWizardHashType">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Select the check-sum type</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>SHA-1</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CRC-32</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEditChecksumWizardHash">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Check-sum to be searched</string>
+           </property>
+           <property name="placeholderText">
+            <string>Enter check-sum</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="widgetCheckSumDbQueryStatus" native="true">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Indicates if the check-sum is available in the database (green) or not (red)</string>
+           </property>
+           <property name="autoFillBackground">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonChecksumWizardSearch">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Search for the check-sum now</string>
+           </property>
+           <property name="text">
+            <string>Search</string>
+           </property>
+           <property name="icon">
+            <iconset resource="qmc2.qrc">
+             <normaloff>:/data/img/filefind.png</normaloff>:/data/img/filefind.png</iconset>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="pushButtonChecksumWizardSearch">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Search for the check-sum now</string>
-         </property>
-         <property name="text">
-          <string>Search</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/filefind.png</normaloff>:/data/img/filefind.png</iconset>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="2">
+       <item row="1" column="0">
         <widget class="QPushButton" name="pushButtonChecksumWizardAnalyzeSelectedSets">
          <property name="enabled">
           <bool>false</bool>
@@ -1421,7 +1461,7 @@
           <string>Analyze selected sets</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset>
            <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
          </property>
          <property name="autoDefault">
@@ -1429,7 +1469,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="2" colspan="2">
+       <item row="1" column="1">
         <widget class="QPushButton" name="pushButtonChecksumWizardRepairBadSets">
          <property name="enabled">
           <bool>false</bool>
@@ -1449,7 +1489,7 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="0" colspan="4">
+       <item row="2" column="0" colspan="2">
         <widget class="QTreeWidget" name="treeWidgetChecksumWizardSearchResult">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
@@ -1508,7 +1548,7 @@
          </column>
         </widget>
        </item>
-       <item row="3" column="0" colspan="4">
+       <item row="3" column="0" colspan="2">
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
           <widget class="QLabel" name="labelChecksumWizardAutomationLevel">
@@ -1551,29 +1591,6 @@
           </widget>
          </item>
         </layout>
-       </item>
-       <item row="0" column="0">
-        <widget class="QComboBox" name="comboBoxChecksumWizardHashType">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Select the check-sum type</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>SHA-1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>CRC-32</string>
-          </property>
-         </item>
-        </widget>
        </item>
       </layout>
      </widget>
@@ -1639,7 +1656,7 @@
           <string>Perform actions</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset>
            <normaloff>:/data/img/rename.png</normaloff>:/data/img/rename.png</iconset>
          </property>
          <property name="autoDefault">
@@ -1852,7 +1869,7 @@
         <string>&amp;Close</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset>
          <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
        </property>
        <property name="autoDefault">
@@ -2017,7 +2034,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>79</x>
-     <y>731</y>
+     <y>769</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
@@ -2052,8 +2069,8 @@
      <y>18</y>
     </hint>
     <hint type="destinationlabel">
-     <x>488</x>
-     <y>27</y>
+     <x>579</x>
+     <y>29</y>
     </hint>
    </hints>
   </connection>
@@ -2068,8 +2085,8 @@
      <y>61</y>
     </hint>
     <hint type="destinationlabel">
-     <x>78</x>
-     <y>61</y>
+     <x>470</x>
+     <y>84</y>
     </hint>
    </hints>
   </connection>
