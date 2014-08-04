@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QSqlDatabase>
 #include <QSqlDriver>
+#include <QString>
+#include <QStringList>
 
 class CheckSumDatabaseManager : public QObject
 {
@@ -27,8 +29,11 @@ class CheckSumDatabaseManager : public QObject
 		quint64 databaseSize();
 
 		bool exists(QString sha1, QString crc);
-		void setData(QString sha1, QString crc, QString path, QString member, QString type);
-		bool getData(QString sha1, QString crc, QString *path, QString *member, QString *type);
+		void setData(QString sha1, QString crc, quint64 size, QString path, QString member, QString type);
+		bool getData(QString sha1, QString crc, quint64 *size, QString *path, QString *member, QString *type);
+
+		int nameToType(QString name);
+		QString typeToName(int type);
 
 	signals:
 		void log(const QString &);
@@ -42,6 +47,7 @@ class CheckSumDatabaseManager : public QObject
 		mutable QSqlDatabase m_db;
 		QString m_tableBasename;
 		QString m_connectionName;
+		QStringList m_fileTypes;
 };
 
 #endif
