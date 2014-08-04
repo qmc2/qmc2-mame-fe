@@ -235,8 +235,8 @@ void ROMAlyzer::adjustIconSizes()
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
 	QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
-	QSize iconSizeTreeWidgetChecksums = iconSize + QSize(2, 2);
-	iconSizeTreeWidgetChecksums.setWidth(iconSizeTreeWidgetChecksums.width() * 2);
+	QSize iconSizeTreeWidgets = iconSize + QSize(2, 2);
+	iconSizeTreeWidgets.setWidth(iconSizeTreeWidgets.width() * 2);
 	pushButtonAnalyze->setIconSize(iconSize);
 	pushButtonPause->setIconSize(iconSize);
 	pushButtonClose->setIconSize(iconSize);
@@ -255,7 +255,8 @@ void ROMAlyzer::adjustIconSizes()
 	toolButtonBrowseSetRenamerOldXmlFile->setIconSize(iconSize);
 	pushButtonSetRenamerExportResults->setIconSize(iconSize);
 	pushButtonSetRenamerImportResults->setIconSize(iconSize);
-	treeWidgetChecksums->setIconSize(iconSizeTreeWidgetChecksums);
+	treeWidgetChecksums->setIconSize(iconSizeTreeWidgets);
+	treeWidgetChecksumWizardSearchResult->setIconSize(iconSizeTreeWidgets);
 	pushButtonChecksumWizardSearch->setIconSize(iconSize);
 	toolButtonCheckSumDbAddPath->setIconSize(iconSize);
 	toolButtonBrowseCheckSumDbDatabasePath->setIconSize(iconSize);
@@ -520,7 +521,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	comboBoxChecksumWizardAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", QMC2_ROMALYZER_CSWIZ_AMLVL_NONE).toInt());
 	radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", false).toBool());
 	groupBoxCheckSumDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCheckSumDb", false).toBool());
-	widgetCheckSumDbQueryStatus->setVisible(groupBoxCheckSumDatabase->isChecked());
+	on_groupBoxCheckSumDatabase_toggled(groupBoxCheckSumDatabase->isChecked());
 	listWidgetCheckSumDbScannedPaths->clear();
 	listWidgetCheckSumDbScannedPaths->addItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", QStringList()).toStringList());
 	pushButtonCheckSumDbScan->setEnabled(listWidgetCheckSumDbScannedPaths->count() > 0);
@@ -1014,6 +1015,8 @@ void ROMAlyzer::analyze()
 									if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ||
 									     item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
 										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, goodDump ? tr("good") : tr("bad"));
+										if ( fromCheckSumDb )
+											item->setIcon(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/database.png")));
 										item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, goodDump ? xmlHandler.greenBrush : xmlHandler.redBrush);
 										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, effectiveFile);
 										if ( goodDump )
@@ -2016,6 +2019,9 @@ void ROMAlyzer::on_tabWidgetAnalysis_currentChanged(int index)
 		case QMC2_ROMALYZER_PAGE_LOG:
 			textBrowserLog->horizontalScrollBar()->setValue(0);
 			break;
+		case QMC2_ROMALYZER_PAGE_CSWIZ:
+			on_groupBoxCheckSumDatabase_toggled(groupBoxCheckSumDatabase->isChecked());
+			break;
 		default:
 			break;
 	}
@@ -2965,8 +2971,10 @@ void ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()
 	int selectedBadSets = 0;
 	foreach (QTreeWidgetItem *item, il) {
 		wizardSelectedSets << item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
-		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") ) selectedGoodSets++;
-		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("bad") ) selectedBadSets++;
+		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") )
+			selectedGoodSets++;
+		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("bad") )
+			selectedBadSets++;
 	}
 	wizardSelectedSets.removeDuplicates();
 	pushButtonChecksumWizardRepairBadSets->setEnabled(selectedBadSets > 0 && selectedGoodSets > 0);
@@ -3287,10 +3295,12 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 	int numBadSets = badList.count();
 
 	// this shouldn't happen, but you never know :)
-	if ( numBadSets <= 0  || goodItem == NULL) return;
+	if ( numBadSets <= 0  || goodItem == NULL)
+		return;
 
 	// only one repair at a time
-	if ( !pushButtonChecksumWizardRepairBadSets->isEnabled() ) return;
+	if ( !pushButtonChecksumWizardRepairBadSets->isEnabled() )
+		return;
 	pushButtonChecksumWizardRepairBadSets->setEnabled(false);
 
 	log(tr("check-sum wizard: repairing %n bad set(s)", "", numBadSets));
