@@ -1015,7 +1015,7 @@ void ROMAlyzer::analyze()
 									if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ||
 									     item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
 										if ( fromCheckSumDb ) {
-											item->setIcon(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/database.png")));
+											item->setIcon(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/database_good.png")));
 											item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
 											item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, xmlHandler.redBrush);
 										} else {
