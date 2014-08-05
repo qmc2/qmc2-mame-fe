@@ -512,6 +512,17 @@ bool Welcome::checkConfig()
 					startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/" + dbKey);
 			}
 		}
+		if ( QMC2_TEST_VERSION(omv, 45, osr, 6123) ) {
+			// remove deprecated "*ROMAlyzer/SetRenamer*" keys
+			foreach (QString dbKey, QStringList() << "Layout/ROMAlyzer/SetRenamerHeaderState" << "ROMAlyzer/SetRenamerAutomationLevel" << "ROMAlyzer/SetRenamerOldXmlFile") {
+				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + dbKey) )
+					startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + dbKey);
+				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + dbKey) )
+					startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + dbKey);
+				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + dbKey) )
+					startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + dbKey);
+			}
+		}
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

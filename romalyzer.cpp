@@ -89,10 +89,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 
 	m_checkSumDbQueryStatusPixmap = QPixmap(QString::fromUtf8(":/data/img/database.png"));
 
-#if !defined(QMC2_WIP_ENABLED)
-	tabWidgetAnalysis->removeTab(QMC2_ROMALYZER_PAGE_RENAMETOOL);
-#endif
-
 #if defined(QMC2_SDLMESS)
 	treeWidgetChecksums->headerItem()->setText(0, tr("Machine / File"));
 	checkBoxSelectGame->setText(tr("Select machine"));
@@ -105,7 +101,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 		treeWidgetChecksums->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/ReportHeaderState", QByteArray()).toByteArray());
 		tabWidgetAnalysis->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/AnalysisTab", 0).toInt());
 		treeWidgetChecksumWizardSearchResult->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/ChecksumWizardHeaderState", QByteArray()).toByteArray());
-		treeWidgetSetRenamerSearchResult->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/SetRenamerHeaderState", QByteArray()).toByteArray());
 		move(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Position", QPoint()).toPoint());
 		resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Size", QSize()).toSize());
 	}
@@ -250,11 +245,6 @@ void ROMAlyzer::adjustIconSizes()
 	toolButtonToolsMenu->setIconSize(iconSize);
 	pushButtonChecksumWizardAnalyzeSelectedSets->setIconSize(iconSize);
 	pushButtonChecksumWizardRepairBadSets->setIconSize(iconSize);
-	pushButtonSetRenamerSearch->setIconSize(iconSize);
-	pushButtonSetRenamerPerformActions->setIconSize(iconSize);
-	toolButtonBrowseSetRenamerOldXmlFile->setIconSize(iconSize);
-	pushButtonSetRenamerExportResults->setIconSize(iconSize);
-	pushButtonSetRenamerImportResults->setIconSize(iconSize);
 	treeWidgetChecksums->setIconSize(iconSizeTreeWidgets);
 	treeWidgetChecksumWizardSearchResult->setIconSize(iconSizeTreeWidgets);
 	pushButtonChecksumWizardSearch->setIconSize(iconSize);
@@ -447,14 +437,11 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 		checkSumDbScannedPaths << listWidgetCheckSumDbScannedPaths->item(i)->text();
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", checkSumDbScannedPaths);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbDatabasePath", lineEditCheckSumDbDatabasePath->text());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerOldXmlFile", lineEditSetRenamerOldXmlFile->text());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerAutomationLevel", comboBoxSetRenamerAutomationLevel->currentIndex());
 
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/ReportHeaderState", treeWidgetChecksums->header()->saveState());
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/AnalysisTab", tabWidgetAnalysis->currentIndex());
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/ChecksumWizardHeaderState", treeWidgetChecksumWizardSearchResult->header()->saveState());
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/SetRenamerHeaderState", treeWidgetSetRenamerSearchResult->header()->saveState());
 		if ( !qmc2CleaningUp ) {
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Visible", false);
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Position", pos());
@@ -526,8 +513,6 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	listWidgetCheckSumDbScannedPaths->addItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", QStringList()).toStringList());
 	pushButtonCheckSumDbScan->setEnabled(listWidgetCheckSumDbScannedPaths->count() > 0);
 	lineEditCheckSumDbDatabasePath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbDatabasePath", QString(userScopePath + "/%1-checksum.db").arg(variantName)).toString());
-	lineEditSetRenamerOldXmlFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerOldXmlFile", QString()).toString());
-	comboBoxSetRenamerAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerAutomationLevel", QMC2_ROMALYZER_SRTOOL_AMLVL_NONE).toInt());
 
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Visible", true);
@@ -615,7 +600,6 @@ void ROMAlyzer::analyze()
 	toolButtonToolsMenu->setEnabled(false);
 	if ( checkBoxCalculateSHA1->isChecked() )
 		tabChecksumWizard->setEnabled(false);
-	tabSetRenamer->setEnabled(false);
 	QTime analysisTimer, elapsedTime(0, 0, 0, 0);
 	analysisTimer.start();
 	log(tr("analysis started"));
@@ -1183,7 +1167,6 @@ void ROMAlyzer::analyze()
 	toolButtonToolsMenu->setEnabled(true);
 	if ( checkBoxCalculateSHA1->isChecked() )
 		tabChecksumWizard->setEnabled(true);
-	tabSetRenamer->setEnabled(true);
 
 	progressBar->reset();
 	progressBar->setFormat(QString());
