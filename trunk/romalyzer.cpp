@@ -1014,12 +1014,16 @@ void ROMAlyzer::analyze()
 								foreach (QTreeWidgetItem *item, il) {
 									if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ||
 									     item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
-										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, goodDump ? tr("good") : tr("bad"));
-										if ( fromCheckSumDb )
+										if ( fromCheckSumDb ) {
 											item->setIcon(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/database.png")));
-										item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, goodDump ? xmlHandler.greenBrush : xmlHandler.redBrush);
+											item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
+											item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, xmlHandler.redBrush);
+										} else {
+											item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, goodDump ? tr("good") : tr("bad"));
+											item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, goodDump ? xmlHandler.greenBrush : xmlHandler.redBrush);
+										}
 										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, effectiveFile);
-										if ( goodDump )
+										if ( goodDump || fromCheckSumDb )
 											item->setWhatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
 									}
 								}
@@ -2973,8 +2977,11 @@ void ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()
 		wizardSelectedSets << item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
 		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") )
 			selectedGoodSets++;
-		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("bad") )
+		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("bad") ) {
+			if ( !item->icon(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS).isNull() )
+				selectedGoodSets++;
 			selectedBadSets++;
+		}
 	}
 	wizardSelectedSets.removeDuplicates();
 	pushButtonChecksumWizardRepairBadSets->setEnabled(selectedBadSets > 0 && selectedGoodSets > 0);
@@ -3287,9 +3294,11 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 	QList<QTreeWidgetItem *> badList;
 	QTreeWidgetItem *goodItem = NULL;
 	foreach (QTreeWidgetItem *item, treeWidgetChecksumWizardSearchResult->selectedItems()) {
-		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("bad") )
+		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("bad") ) {
 			badList << item;
-		else if ( goodItem == NULL && item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") )
+			if ( !item->icon(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS).isNull() )
+				goodItem = item;
+		} else if ( goodItem == NULL && item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") )
 			goodItem = item;
 	}
 	int numBadSets = badList.count();
@@ -3298,7 +3307,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 	if ( numBadSets <= 0  || goodItem == NULL)
 		return;
 
-	// only one repair at a time
+	// only one repair at a time!
 	if ( !pushButtonChecksumWizardRepairBadSets->isEnabled() )
 		return;
 	pushButtonChecksumWizardRepairBadSets->setEnabled(false);
@@ -3375,6 +3384,16 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 				QString targetFile = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME);
 				QString targetPath = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH);
 				QString badSetName = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+				if ( !badItem->icon(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS).isNull() ) {
+					QString myRomPath;
+					if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath") )
+						myRomPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString();
+					else
+						myRomPath = "roms";
+					if ( groupBoxSetRewriter->isChecked() && checkBoxSetRewriterUseAdditionalRomPath->isChecked() && !lineEditSetRewriterAdditionalRomPath->text().isEmpty() )
+						myRomPath.prepend(lineEditSetRewriterAdditionalRomPath->text() + ";");
+					targetPath = QDir::cleanPath(myRomPath.split(";", QString::SkipEmptyParts).first()) + "/" + badSetName + ".zip";
+				}
 				labelStatus->setText(tr("Repairing set '%1' - %2").arg(badSetName).arg(badList.count() - counter));
 				log(tr("check-sum wizard: repairing %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
 				qApp->processEvents();
