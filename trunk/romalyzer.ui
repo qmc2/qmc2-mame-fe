@@ -45,7 +45,7 @@
         <string>Tools menu</string>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/toolbox.png</normaloff>:/data/img/toolbox.png</iconset>
        </property>
        <property name="popupMode">
@@ -65,7 +65,7 @@
         <string>&amp;Analyze</string>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
        </property>
        <property name="autoDefault">
@@ -82,7 +82,7 @@
         <string>&amp;Pause</string>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
        </property>
        <property name="autoDefault">
@@ -181,7 +181,7 @@
       <attribute name="title">
        <string>Log</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayoutLog">
+      <layout class="QGridLayout" name="gridLayoutLog" rowstretch="1,0">
        <item row="1" column="2">
         <widget class="QPushButton" name="pushButtonSearchBackward">
          <property name="sizePolicy">
@@ -210,6 +210,12 @@
        </item>
        <item row="1" column="4">
         <widget class="QToolButton" name="toolButtonSaveLog">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Save the current log contents to a file</string>
          </property>
@@ -237,7 +243,7 @@
           <string>&amp;Forward</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="qmc2.qrc">
            <normaloff>:/data/img/right_action.png</normaloff>:/data/img/right_action.png</iconset>
          </property>
          <property name="autoRepeat">
@@ -322,7 +328,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>545</width>
+            <width>651</width>
             <height>679</height>
            </rect>
           </property>
@@ -1101,7 +1107,7 @@
                      <string>Add a path</string>
                     </property>
                     <property name="icon">
-                     <iconset>
+                     <iconset resource="qmc2.qrc">
                       <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
                     </property>
                    </widget>
@@ -1311,7 +1317,7 @@
                      <string>Start scanner</string>
                     </property>
                     <property name="icon">
-                     <iconset>
+                     <iconset resource="qmc2.qrc">
                       <normaloff>:/data/img/refresh.png</normaloff>:/data/img/refresh.png</iconset>
                     </property>
                     <property name="autoDefault">
@@ -1328,7 +1334,7 @@
                      <string>Pause</string>
                     </property>
                     <property name="icon">
-                     <iconset>
+                     <iconset resource="qmc2.qrc">
                       <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
                     </property>
                     <property name="autoDefault">
@@ -1461,7 +1467,7 @@
           <string>Analyze selected sets</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="qmc2.qrc">
            <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
          </property>
          <property name="autoDefault">
@@ -1594,265 +1600,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tabSetRenamer">
-      <attribute name="title">
-       <string>Set rename tool</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayoutSetRenamer" rowstretch="0,0,1,0,0">
-       <item row="0" column="0" colspan="2">
-        <widget class="QLineEdit" name="lineEditSetRenamerPattern">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Specify sets to be included in the search - wildcards allowed, use space as delimiter for multiple sets</string>
-         </property>
-         <property name="placeholderText">
-          <string>Specify sets</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="pushButtonSetRenamerSearch">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Search for matches now!</string>
-         </property>
-         <property name="text">
-          <string>Search</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/filefind.png</normaloff>:/data/img/filefind.png</iconset>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="pushButtonSetRenamerPerformActions">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Perform proposed actions on all selected sets</string>
-         </property>
-         <property name="text">
-          <string>Perform actions</string>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>:/data/img/rename.png</normaloff>:/data/img/rename.png</iconset>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0" colspan="4">
-        <widget class="QTreeWidget" name="treeWidgetSetRenamerSearchResult">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Search results (check-sum matches)</string>
-         </property>
-         <property name="selectionMode">
-          <enum>QAbstractItemView::ExtendedSelection</enum>
-         </property>
-         <property name="selectionBehavior">
-          <enum>QAbstractItemView::SelectRows</enum>
-         </property>
-         <property name="rootIsDecorated">
-          <bool>false</bool>
-         </property>
-         <property name="uniformRowHeights">
-          <bool>true</bool>
-         </property>
-         <property name="itemsExpandable">
-          <bool>false</bool>
-         </property>
-         <property name="sortingEnabled">
-          <bool>true</bool>
-         </property>
-         <property name="allColumnsShowFocus">
-          <bool>true</bool>
-         </property>
-         <column>
-          <property name="text">
-           <string>ID / File name</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Old ID / File name</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Match probability</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Action</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-       <item row="4" column="0" colspan="4">
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <item>
-          <widget class="QLabel" name="labelSetRenamerAutomationLevel">
-           <property name="text">
-            <string>Level of automation</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBoxSetRenamerAutomationLevel">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Choose the level of automated set renamer operations</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>Do nothing automatically</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Automatically select sure matches</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Automatically select sure matches and perform proposed actions</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="1" column="0" colspan="4">
-        <layout class="QHBoxLayout" name="horizontalLayout_6">
-         <item>
-          <widget class="QLabel" name="labelSetRenamerOldXmlFile">
-           <property name="text">
-            <string>Old XML</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEditSetRenamerOldXmlFile">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Old XML data input file (produced with '-listxml')</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="toolButtonBrowseSetRenamerOldXmlFile">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Browse old XML data input file (produced with '-listxml')</string>
-           </property>
-           <property name="icon">
-            <iconset resource="qmc2.qrc">
-             <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="3" column="0" colspan="4">
-        <layout class="QHBoxLayout" name="horizontalLayout_7">
-         <item>
-          <widget class="QPushButton" name="pushButtonSetRenamerExportResults">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Export selected results to a file</string>
-           </property>
-           <property name="text">
-            <string>Export results...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="qmc2.qrc">
-             <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
-           </property>
-           <property name="autoDefault">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButtonSetRenamerImportResults">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Import results from a file</string>
-           </property>
-           <property name="text">
-            <string>Import results...</string>
-           </property>
-           <property name="icon">
-            <iconset resource="qmc2.qrc">
-             <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-           </property>
-           <property name="autoDefault">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
     </widget>
    </item>
    <item row="2" column="0">
@@ -1869,7 +1616,7 @@
         <string>&amp;Close</string>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
        </property>
        <property name="autoDefault">
@@ -2011,15 +1758,6 @@
   <tabstop>pushButtonChecksumWizardRepairBadSets</tabstop>
   <tabstop>treeWidgetChecksumWizardSearchResult</tabstop>
   <tabstop>comboBoxChecksumWizardAutomationLevel</tabstop>
-  <tabstop>lineEditSetRenamerPattern</tabstop>
-  <tabstop>pushButtonSetRenamerSearch</tabstop>
-  <tabstop>pushButtonSetRenamerPerformActions</tabstop>
-  <tabstop>lineEditSetRenamerOldXmlFile</tabstop>
-  <tabstop>toolButtonBrowseSetRenamerOldXmlFile</tabstop>
-  <tabstop>treeWidgetSetRenamerSearchResult</tabstop>
-  <tabstop>pushButtonSetRenamerExportResults</tabstop>
-  <tabstop>pushButtonSetRenamerImportResults</tabstop>
-  <tabstop>comboBoxSetRenamerAutomationLevel</tabstop>
   <tabstop>pushButtonClose</tabstop>
  </tabstops>
  <resources>
@@ -2071,22 +1809,6 @@
     <hint type="destinationlabel">
      <x>579</x>
      <y>29</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>lineEditSetRenamerPattern</sender>
-   <signal>returnPressed()</signal>
-   <receiver>pushButtonSetRenamerSearch</receiver>
-   <slot>animateClick()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>53</x>
-     <y>61</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>470</x>
-     <y>84</y>
     </hint>
    </hints>
   </connection>
