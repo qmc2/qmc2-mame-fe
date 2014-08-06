@@ -18964,16 +18964,24 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="2614"/>
         <location filename="../../romalyzer.cpp" line="2625"/>
-        <location filename="../../romalyzer.cpp" line="2636"/>
         <source>set rewriter: FATAL: can&apos;t load &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos;, aborting</source>
         <translation>setez rescriitor: FATAL: nu pot incarca &apos;%1&apos;cu CRC &apos;%2&apos; de la &apos;%3&apos;, abandonez</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2617"/>
         <location filename="../../romalyzer.cpp" line="2628"/>
-        <location filename="../../romalyzer.cpp" line="2639"/>
         <source>set rewriter: WARNING: can&apos;t load &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos;, ignoring this file</source>
         <translation>setez rescriitor: AVERTIZARE: nu pot incarca &apos;%1&apos; cu CRC &apos;%2&apos; de la &apos;%3&apos;, ignor fisierul</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="2636"/>
+        <source>set rewriter: FATAL: can&apos;t load &apos;%1&apos; with CRC &apos;%2&apos;, aborting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="2639"/>
+        <source>set rewriter: WARNING: can&apos;t load &apos;%1&apos; with CRC &apos;%2&apos;, ignoring this file</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2659"/>

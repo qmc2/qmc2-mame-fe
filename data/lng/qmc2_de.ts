@@ -18763,16 +18763,24 @@ Bist Du sicher, dass Du das tun willst?</translation>
     <message>
         <location filename="../../romalyzer.cpp" line="2614"/>
         <location filename="../../romalyzer.cpp" line="2625"/>
-        <location filename="../../romalyzer.cpp" line="2636"/>
         <source>set rewriter: FATAL: can&apos;t load &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos;, aborting</source>
         <translation>Set Neuerzeugung: FATAL: kann &apos;%1&apos; mit CRC &apos;%2&apos; nicht von &apos;%3&apos; laden, breche ab</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2617"/>
         <location filename="../../romalyzer.cpp" line="2628"/>
-        <location filename="../../romalyzer.cpp" line="2639"/>
         <source>set rewriter: WARNING: can&apos;t load &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos;, ignoring this file</source>
         <translation>Set Neuerzeugung: WARNUNG: kann &apos;%1&apos; mit CRC &apos;%2&apos; nicht von &apos;%3&apos; laden, ignoriere diese Datei</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="2636"/>
+        <source>set rewriter: FATAL: can&apos;t load &apos;%1&apos; with CRC &apos;%2&apos;, aborting</source>
+        <translation>Set Neuerzeugung: FATAL: kann &apos;%1&apos; mit CRC &apos;%2&apos; nicht laden, breche ab</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="2639"/>
+        <source>set rewriter: WARNING: can&apos;t load &apos;%1&apos; with CRC &apos;%2&apos;, ignoring this file</source>
+        <translation>Set Neuerzeugung: WARNUNG: kann &apos;%1&apos; mit CRC &apos;%2&apos; nicht laden, ignoriere diese Datei</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2669"/>
