@@ -961,7 +961,7 @@ void ROMAlyzer::analyze()
 							else {
 								ulong crc = crc32(0, NULL, 0);
 								crc = crc32(crc, (const Bytef *)data.data(), data.size());
-								crcItemStr = QString::number(crc, 16).rightJustified(8, '0');
+								crcItemStr = crcToString(crc);
 							}
 							fileItem->setText(QMC2_ROMALYZER_COLUMN_CRC, crcItemStr);
 							if ( !fileStatus.isEmpty() )
@@ -1656,7 +1656,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 						QStringList sl;
 						//    fromName         fromPath    toName           fromZip
 						sl << fi.fileName() << filePath << fi.fileName() << "file";
-						setRewriterFileMap.insert(QString::number(crc, 16), sl); 
+						setRewriterFileMap.insert(crcToString(crc), sl); 
 
 						if ( calcSHA1 )
 							*sha1Str = sha1Hash.result().toHex();
@@ -1735,7 +1735,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 								log(tr("WARNING") + ": " + tr("actual bytes read != file size in header") + " - " + tr("check archive integrity"));
 							ulong crc = crc32(0, NULL, 0);
 							crc = crc32(crc, (const Bytef *)data.data(), data.size());
-							QString crcString = QString::number(crc, 16).rightJustified(8, '0');
+							QString crcString = crcToString(crc);
 							if ( crcString != wantedCRC )
 								log(tr("WARNING") + ": " + tr("actual CRC != CRC in header") + " - " + tr("check archive integrity"));
 							else {
@@ -1886,7 +1886,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 								} else {
 									ulong crc = crc32(0, NULL, 0);
 									crc = crc32(crc, (const Bytef *)fileData->data(), fileData->size());
-									QString fallbackCRC = QString::number(crc, 16).rightJustified(8, '0');
+									QString fallbackCRC = crcToString(crc);
 									if ( !fallbackCRC.isEmpty() ) {
 										QStringList sl;
 										//    fromName    fromPath    toName                                      fromZip
@@ -2633,10 +2633,10 @@ void ROMAlyzer::runSetRewriter()
 				uniqueCRCs << fileCRC;
 			} else {
 				if ( checkBoxSetRewriterGoodDumpsOnly->isChecked() ) {
-					log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2' from '%3', aborting").arg(fileName).arg(fileCRC).arg(filePath));
+					log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2', aborting").arg(filePath).arg(fileCRC));
 					loadOkay = false;
 				} else
-					log(tr("set rewriter: WARNING: can't load '%1' with CRC '%2' from '%3', ignoring this file").arg(fileName).arg(fileCRC).arg(filePath));
+					log(tr("set rewriter: WARNING: can't load '%1' with CRC '%2', ignoring this file").arg(filePath).arg(fileCRC));
 			}
 		}
 	}
@@ -2997,7 +2997,7 @@ bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *data
 		do {
 			if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
 				QString fn = QString((const char *)ioBuffer);
-				fileMap->insert(QString::number(zipInfo.crc), fn);
+				fileMap->insert(crcToString(zipInfo.crc), fn);
 				if ( fileList )
 					fileList->append(fn);
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
@@ -3013,7 +3013,7 @@ bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *data
 						progressBar->update();
 						if ( fileData.length() % QMC2_128K == 0 || (uLong)fileData.length() == zipInfo.uncompressed_size ) qApp->processEvents();
 					}
-					dataMap->insert(QString::number(zipInfo.crc), fileData);
+					dataMap->insert(crcToString(zipInfo.crc), fileData);
 					unzCloseCurrentFile(zipFile);
 				}
 			}
@@ -3049,7 +3049,7 @@ bool ROMAlyzer::readFileData(QString fileName, QString crc, QByteArray *data)
 		progressBarFileIO->reset();
 		ulong calculatedCrc = crc32(0, NULL, 0);
 		calculatedCrc = crc32(calculatedCrc, (const Bytef *)data->data(), data->size());
-		return ( QString::number(calculatedCrc, 16) == crc );
+		return ( crcToString(calculatedCrc) == crc );
 	} else
 		return false;
 }
@@ -3071,8 +3071,7 @@ bool ROMAlyzer::readSevenZipFileData(QString fileName, QString crc, QByteArray *
 				return false;
 			ulong ulCrc = crc32(0, NULL, 0);
 			ulCrc = crc32(ulCrc, (const Bytef *)data->data(), data->size());
-			QString crcString = QString::number(ulCrc, 16).rightJustified(8, '0');
-			if ( crcString != crc )
+			if ( crcToString(ulCrc) != crc )
 				return false;
 			return true;
 		} else
@@ -3415,7 +3414,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 										for (int i = 0; i < item->childCount(); i++) {
 											QString crc = item->child(i)->text(QMC2_ROMALYZER_COLUMN_CRC);
 											if ( !crc.isEmpty() )
-												acceptedCRCs << QString::number(crc.toULong(0, 16));
+												acceptedCRCs << crc;
 										}
 									}
 									QMapIterator<QString, QByteArray> it(targetDataMap);
@@ -4282,7 +4281,7 @@ bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, Q
 					memberList->append(fn);
 					sizeList->append(memberSize);
 					sha1List->append(sha1Hash.result().toHex());
-					crcList->append(QString::number(crc1, 16).rightJustified(8, '0'));
+					crcList->append(crcToString(crc1));
 					emit log(tr("ZIP scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(fn).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
 				} else
 					emit log(tr("ZIP scan") + ": " + tr("WARNING: can't open member '%1' from archive '%2'").arg(fn).arg(fileName));
@@ -4313,7 +4312,7 @@ bool CheckSumScannerThread::scanSevenZip(QString fileName, QStringList *memberLi
 				sha1List->append(sha1Hash.result().toHex());
 				ulong crc = crc32(0, NULL, 0);
 				crc = crc32(crc, (const Bytef *)fileData.data(), fileData.size());
-				crcList->append(QString::number(crc, 16).rightJustified(8, '0'));
+				crcList->append(crcToString(crc));
 				emit log(tr("7Z scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
 			} else
 				emit log(tr("7Z scan") + ": " + tr("WARNING: can't read member '%1' from archive '%2'").arg(metaData.name()).arg(fileName));
@@ -4397,7 +4396,7 @@ bool CheckSumScannerThread::scanRegularFile(QString fileName, quint64 *size, QSt
 		if ( exitThread || stopScan )
 			return true;
 		*sha1 = sha1Hash.result().toHex();
-		*crc = QString::number(crc1, 16).rightJustified(8, '0');
+		*crc = crcToString(crc1);
 		emit log(tr("file scan") + ": " + tr("file '%1' has SHA-1 '%2' and CRC '%3'").arg(fileName).arg(*sha1).arg(*crc));
 		return true;
 	} else

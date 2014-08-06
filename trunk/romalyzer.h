@@ -152,6 +152,7 @@
 #define QMC2_CHD_CHECK_NULL_SHA1(ba)		((ba).startsWith(QByteArray("00000000000000000000")))
 
 #define wizardAutomationLevel			comboBoxChecksumWizardAutomationLevel->currentIndex()
+#define crcToString(crc)			QString::number((crc), 16).rightJustified(8, '0')
 
 #define QMC2_CHECKSUM_SCANNER_FILE_UNKNOWN	-2
 #define QMC2_CHECKSUM_SCANNER_FILE_NO_ACCESS	-1
