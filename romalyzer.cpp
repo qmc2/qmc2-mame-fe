@@ -3311,41 +3311,18 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 			// load ROM image
 			if ( sourcePath.indexOf(QRegExp("^.*\\.[zZ][iI][pP]$")) == 0 ) {
 				// file from a ZIP archive
-				unzFile zipFile = unzOpen(sourcePath.toLocal8Bit().constData());
-				if ( zipFile ) {
-					// identify file by CRC
-					unz_file_info zipInfo;
-					QMap<uLong, QString> crcIdentMap;
-					uLong ulCRC = sourceCRC.toULong(0, 16);
-					do {
-						if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK )
-							crcIdentMap[zipInfo.crc] = QString((const char *)ioBuffer);
-					} while ( unzGoToNextFile(zipFile) == UNZ_OK && !crcIdentMap.contains(ulCRC) );
-					unzGoToFirstFile(zipFile);
-					if ( crcIdentMap.contains(ulCRC) ) {
-						fn = crcIdentMap[ulCRC];
-						log(tr("check-sum wizard: successfully identified '%1' from '%2' by CRC, filename in ZIP archive is '%3'").arg(sourceFile).arg(sourcePath).arg(fn));
-						if ( unzLocateFile(zipFile, (const char *)fn.toLocal8Bit(), 2) == UNZ_OK ) { // NOT case-sensitive filename compare!
-							if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
-								qint64 len;
-								while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
-									QByteArray readData((const char *)ioBuffer, len);
-									templateData += readData;
-								}
-								unzCloseCurrentFile(zipFile);
-								log(tr("check-sum wizard: template data loaded, uncompressed size = %1").arg(humanReadable(templateData.length())));
-							}
-						}
-					} else {
-						log(tr("check-sum wizard: FATAL: unable to identify '%1' from '%2' by CRC").arg(sourceFile).arg(sourcePath));
-						loadOkay = false;
-					}
-					unzClose(zipFile);
-				} else {
+				if ( !readZipFileData(sourcePath, sourceCRC, &templateData) ) {
 					log(tr("check-sum wizard: FATAL: can't open ZIP archive '%1' for reading").arg(sourcePath));
 					loadOkay = false;
 				}
+			} else if ( sourcePath.indexOf(QRegExp("^.*\\.7[zZ]$")) == 0 ) {
+				// file from a 7Z archive
+				if ( !readSevenZipFileData(sourcePath, sourceCRC, &templateData) ) {
+					log(tr("check-sum wizard: FATAL: can't load repro template data from '%1' with expected CRC '%2'").arg(sourcePath).arg(sourceCRC));
+					loadOkay = false;
+				}
 			} else {
+				// read a regular file
 				if ( !readFileData(sourcePath, sourceCRC, &templateData) ) {
 					log(tr("check-sum wizard: FATAL: can't load repro template data from '%1' with expected CRC '%2'").arg(sourcePath).arg(sourceCRC));
 					loadOkay = false;
@@ -4076,6 +4053,8 @@ void CheckSumScannerThread::run()
 		if ( !exitThread && !stopScan ) {
 			emit scanStarted();
 			checkSumDb()->recreateDatabase();
+			QTime scanTimer, elapsedTime(0, 0, 0, 0);
+			scanTimer.start();
 			foreach (QString path, scannedPaths) {
 				emit log(tr("scan started for path '%1'").arg(path));
 				QStringList fileList;
@@ -4204,6 +4183,8 @@ void CheckSumScannerThread::run()
 					emit log(tr("scan finished for path '%1'").arg(path));
 			}
 			emit scanFinished();
+			elapsedTime = elapsedTime.addMSecs(scanTimer.elapsed());
+			emit log(tr("scan finished, total scanning time = %1").arg(elapsedTime.toString("hh:mm:ss.zzz")));
 		}
 	}
 	emit log(tr("scanner thread ended"));
