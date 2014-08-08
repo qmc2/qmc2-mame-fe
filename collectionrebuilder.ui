@@ -36,10 +36,7 @@
       </sizepolicy>
      </property>
      <property name="toolTip">
-      <string>Select the XMLsource</string>
-     </property>
-     <property name="maxVisibleItems">
-      <number>12</number>
+      <string>Select XML source</string>
      </property>
      <item>
       <property name="text">
