@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CollectionRebuilder</class>
+ <widget class="QDialog" name="CollectionRebuilder">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>430</width>
+    <height>475</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ROM Collection Rebuilder</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelXmlSource">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>XML source</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QComboBox" name="comboBoxXmlSource">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Select the XMLsource</string>
+     </property>
+     <property name="maxVisibleItems">
+      <number>12</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>Current default emulator</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Select XML file...</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QPushButton" name="pushButtonStartStop">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Start / stop rebuilding</string>
+     </property>
+     <property name="text">
+      <string>Start rebuilding</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/refresh.png</normaloff>:/data/img/refresh.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QPushButton" name="pushButtonPauseResume">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Pause / resume rebuilding</string>
+     </property>
+     <property name="text">
+      <string>Pause</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="4">
+    <widget class="QFrame" name="frameEntities">
+     <layout class="QGridLayout" name="gridLayoutFrameEnitities">
+      <property name="margin">
+       <number>0</number>
+      </property>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEditSetEntity">
+        <property name="toolTip">
+         <string>Entity name that defines a 'set'</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLineEdit" name="lineEditRomEntity">
+        <property name="toolTip">
+         <string>Entity name that defines a 'rom'</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelSetEntity">
+        <property name="text">
+         <string>Set entity</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QLabel" name="labelDiskEntity">
+        <property name="toolTip">
+         <string>Entity name that defines a 'disk'</string>
+        </property>
+        <property name="text">
+         <string>Disk entity</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="5">
+       <widget class="QLineEdit" name="lineEditDiskEntity">
+        <property name="toolTip">
+         <string>Entity name that defines a 'disk'</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="labelRomEntity">
+        <property name="text">
+         <string>ROM entity</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="6">
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="4">
+    <widget class="QPlainTextEdit" name="plainTextEditLog">
+     <property name="toolTip">
+      <string>ROM Collection Rebuilder log</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="lineWrapMode">
+      <enum>QPlainTextEdit::NoWrap</enum>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="4">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="labelMaxLogSize">
+       <property name="text">
+        <string>Log size</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinBoxMaxLogSize">
+       <property name="toolTip">
+        <string>Maximum number of lines in log (0 = no limit)</string>
+       </property>
+       <property name="specialValueText">
+        <string>unlimited</string>
+       </property>
+       <property name="suffix">
+        <string> lines</string>
+       </property>
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>999999</number>
+       </property>
+       <property name="singleStep">
+        <number>100</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QProgressBar" name="progressBar">
+       <property name="toolTip">
+        <string>Rebuild progress indicator</string>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+       <property name="format">
+        <string>Idle</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonClear">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Clear log</string>
+       </property>
+       <property name="text">
+        <string>Clear</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonClose">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Close this window</string>
+       </property>
+       <property name="text">
+        <string>Close</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>comboBoxXmlSource</tabstop>
+  <tabstop>pushButtonStartStop</tabstop>
+  <tabstop>pushButtonPauseResume</tabstop>
+  <tabstop>lineEditSetEntity</tabstop>
+  <tabstop>lineEditRomEntity</tabstop>
+  <tabstop>lineEditDiskEntity</tabstop>
+  <tabstop>plainTextEditLog</tabstop>
+  <tabstop>spinBoxMaxLogSize</tabstop>
+  <tabstop>toolButtonClear</tabstop>
+  <tabstop>toolButtonClose</tabstop>
+  <tabstop>comboBoxXmlSource</tabstop>
+  <tabstop>pushButtonStartStop</tabstop>
+ </tabstops>
+ <resources>
+  <include location="qmc2.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>toolButtonClose</sender>
+   <signal>clicked()</signal>
+   <receiver>CollectionRebuilder</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>480</x>
+     <y>499</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>506</x>
+     <y>472</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButtonClear</sender>
+   <signal>clicked()</signal>
+   <receiver>plainTextEditLog</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>437</x>
+     <y>501</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>329</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

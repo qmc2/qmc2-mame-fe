@@ -89,7 +89,7 @@
         </sizepolicy>
        </property>
        <property name="toolTip">
-        <string>Clear check-sum scanner log</string>
+        <string>Clear log</string>
        </property>
        <property name="text">
         <string>Clear</string>
@@ -105,7 +105,7 @@
         </sizepolicy>
        </property>
        <property name="toolTip">
-        <string>Close check-sum scanner log window</string>
+        <string>Close this window</string>
        </property>
        <property name="text">
         <string>Close</string>
