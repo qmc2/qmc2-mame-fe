@@ -2,7 +2,7 @@
 #include <QScrollBar>
 #include <QString>
 #include <QFont>
-#include <QTime>
+#include <QDateTime>
 
 #include "checksumscannerlog.h"
 #include "settings.h"
@@ -29,7 +29,7 @@ void CheckSumScannerLog::on_spinBoxMaxLogSize_valueChanged(int value)
 
 void CheckSumScannerLog::log(const QString &message)
 {
-	plainTextEditLog->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + message);
+	plainTextEditLog->appendPlainText(QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + message);
 }
 
 void CheckSumScannerLog::scrollToEnd()

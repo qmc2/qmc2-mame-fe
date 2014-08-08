@@ -88,6 +88,12 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   
 	setupUi(this);
 
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: WIP
+	lineAboveRomCollectionRebuilder->setVisible(false);
+	pushButtonRomCollectionRebuilder->setVisible(false);
+#endif
+
 	m_checkSumDbQueryStatusPixmap = QPixmap(QString::fromUtf8(":/data/img/database.png"));
 
 #if defined(QMC2_SDLMESS)
@@ -202,6 +208,9 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 	pushButtonCheckSumDbPauseResumeScan->hide();
 	connect(&m_checkSumTextChangedTimer, SIGNAL(timeout()), this, SLOT(lineEditChecksumWizardHash_textChanged_delayed()));
 
+	// we create the collection rebuilder on demand
+	m_collectionRebuilder = NULL;
+
 #if defined(QMC2_OS_MAC)
 	setParent(qmc2MainWindow, Qt::Dialog);
 #endif
@@ -219,6 +228,8 @@ ROMAlyzer::~ROMAlyzer()
 		delete checkSumScannerLog();
 	if ( checkSumScannerThread() )
 		delete checkSumScannerThread();
+	if ( collectionRebuilder() )
+		delete collectionRebuilder();
 }
 
 void ROMAlyzer::adjustIconSizes()
@@ -243,6 +254,7 @@ void ROMAlyzer::adjustIconSizes()
 	toolButtonBrowseTemporaryWorkingDirectory->setIconSize(iconSize);
 	toolButtonBrowseSetRewriterOutputPath->setIconSize(iconSize);
 	toolButtonBrowseSetRewriterAdditionalRomPath->setIconSize(iconSize);
+	pushButtonRomCollectionRebuilder->setIconSize(iconSize);
 	toolButtonToolsMenu->setIconSize(iconSize);
 	pushButtonChecksumWizardAnalyzeSelectedSets->setIconSize(iconSize);
 	pushButtonChecksumWizardRepairBadSets->setIconSize(iconSize);
@@ -453,6 +465,9 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	if ( checkSumScannerLog() )
 		checkSumScannerLog()->close();
 
+	if ( collectionRebuilder() )
+		collectionRebuilder()->close();
+
 	if ( e )
 		e->accept();
 }
@@ -510,6 +525,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", false).toBool());
 	groupBoxCheckSumDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCheckSumDb", false).toBool());
 	on_groupBoxCheckSumDatabase_toggled(groupBoxCheckSumDatabase->isChecked());
+	pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked());
 	listWidgetCheckSumDbScannedPaths->clear();
 	listWidgetCheckSumDbScannedPaths->addItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", QStringList()).toStringList());
 	pushButtonCheckSumDbScan->setEnabled(listWidgetCheckSumDbScannedPaths->count() > 0);
@@ -2365,12 +2381,30 @@ void ROMAlyzer::lineEditChecksumWizardHash_textChanged_delayed()
 	}
 }
 
+void ROMAlyzer::on_groupBoxSetRewriter_toggled(bool enable)
+{
+	pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && enable);
+	if ( !enable ) {
+		if ( collectionRebuilder() ) {
+			delete collectionRebuilder();
+			m_collectionRebuilder = NULL;
+		}
+	}
+}
+
 void ROMAlyzer::on_groupBoxCheckSumDatabase_toggled(bool enable)
 {
 	widgetCheckSumDbQueryStatus->setVisible(enable);
 	qApp->processEvents();
+	pushButtonRomCollectionRebuilder->setEnabled(groupBoxSetRewriter->isChecked() && enable);
 	if ( enable )
 		QTimer::singleShot(0, this, SLOT(lineEditChecksumWizardHash_textChanged_delayed()));
+	else {
+		if ( collectionRebuilder() ) {
+			delete collectionRebuilder();
+			m_collectionRebuilder = NULL;
+		}
+	}
 }
 
 void ROMAlyzer::on_comboBoxChecksumWizardHashType_currentIndexChanged(int index)
@@ -3845,6 +3879,17 @@ void ROMAlyzer::indicateCheckSumDbQueryStatusUnknown()
 	QPalette pal = widgetCheckSumDbQueryStatus->palette();
 	pal.setBrush(QPalette::Window, m_checkSumDbQueryStatusPixmap.scaled(widgetCheckSumDbQueryStatus->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	widgetCheckSumDbQueryStatus->setPalette(pal);
+}
+
+void ROMAlyzer::on_pushButtonRomCollectionRebuilder_clicked()
+{
+	if ( !collectionRebuilder() )
+		m_collectionRebuilder = new CollectionRebuilder(0);
+	if ( collectionRebuilder()->isMinimized() )
+		collectionRebuilder()->showNormal();
+	else
+		collectionRebuilder()->showNormal();
+	collectionRebuilder()->raise();
 }
 
 ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, bool scroll)

@@ -799,6 +799,10 @@ void Options::apply()
 		QTimer::singleShot(0, qmc2ROMAlyzer, SLOT(adjustIconSizes()));
 		if ( qmc2ROMAlyzer->checkSumScannerLog() )
 			qmc2ROMAlyzer->checkSumScannerLog()->plainTextEditLog->setFont(logFont);
+		if ( qmc2ROMAlyzer->collectionRebuilder() ) {
+			qmc2ROMAlyzer->collectionRebuilder()->plainTextEditLog->setFont(logFont);
+			QTimer::singleShot(0, qmc2ROMAlyzer->collectionRebuilder(), SLOT(adjustIconSizes()));
+		}
 	}
 	if ( qmc2ImageChecker )
 		qmc2ImageChecker->adjustIconSizes();

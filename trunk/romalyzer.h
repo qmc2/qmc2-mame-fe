@@ -13,6 +13,7 @@
 #include "macros.h"
 #include "checksumdbmgr.h"
 #include "checksumscannerlog.h"
+#include "collectionrebuilder.h"
 #include "ui_romalyzer.h"
 
 #define QMC2_ROMALYZER_PAGE_REPORT		0
@@ -185,10 +186,8 @@ class CheckSumScannerThread : public QThread
 
 		CheckSumDatabaseManager *checkSumDb() { return m_checkSumDb; }
 		quint64 pendingUpdates() { return m_pendingUpdates; }
-
 		QString status();
 		void reopenDatabase();
-
 		int fileType(QString);
 
 	public slots:
@@ -294,6 +293,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		CheckSumDatabaseManager *checkSumDb() { return m_checkSumDb; }
 		CheckSumScannerLog *checkSumScannerLog() { return m_checkSumScannerLog; }
 		CheckSumScannerThread *checkSumScannerThread() { return m_checkSumScannerThread; }
+		CollectionRebuilder *collectionRebuilder() { return m_collectionRebuilder; }
 
 	public slots:
 		// callback functions
@@ -337,6 +337,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void checkSumScannerThread_scanFinished();
 		void checkSumScannerThread_scanPaused();
 		void checkSumScannerThread_scanResumed();
+		void on_pushButtonRomCollectionRebuilder_clicked();
 
 		// miscellaneous slots
 		void animationTimeout();
@@ -355,6 +356,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void indicateCheckSumDbQueryStatusGood();
 		void indicateCheckSumDbQueryStatusBad();
 		void indicateCheckSumDbQueryStatusUnknown();
+		void on_groupBoxSetRewriter_toggled(bool);
 		void on_groupBoxCheckSumDatabase_toggled(bool);
 
 		// CHD manager process control
@@ -377,6 +379,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		CheckSumScannerThread *m_checkSumScannerThread;
 		QPixmap m_checkSumDbQueryStatusPixmap;
 		QTimer m_checkSumTextChangedTimer;
+		CollectionRebuilder *m_collectionRebuilder;
 };
 
 #endif
