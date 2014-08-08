@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>430</width>
+    <width>432</width>
     <height>475</height>
    </rect>
   </property>
@@ -53,47 +53,7 @@
      </item>
     </widget>
    </item>
-   <item row="0" column="2">
-    <widget class="QPushButton" name="pushButtonStartStop">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Start / stop rebuilding</string>
-     </property>
-     <property name="text">
-      <string>Start rebuilding</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/refresh.png</normaloff>:/data/img/refresh.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="3">
-    <widget class="QPushButton" name="pushButtonPauseResume">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Pause / resume rebuilding</string>
-     </property>
-     <property name="text">
-      <string>Pause</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="4">
+   <item row="1" column="0" colspan="3">
     <widget class="QFrame" name="frameEntities">
      <layout class="QGridLayout" name="gridLayoutFrameEnitities">
       <property name="margin">
@@ -154,7 +114,7 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="0" colspan="4">
+   <item row="2" column="0" colspan="3">
     <widget class="QPlainTextEdit" name="plainTextEditLog">
      <property name="toolTip">
       <string>ROM Collection Rebuilder log</string>
@@ -173,7 +133,7 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="0" colspan="4">
+   <item row="3" column="0" colspan="3">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="labelMaxLogSize">
@@ -254,6 +214,50 @@
      </item>
     </layout>
    </item>
+   <item row="0" column="2">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="pushButtonStartStop">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Start / stop rebuilding</string>
+       </property>
+       <property name="text">
+        <string>Start rebuilding</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/refresh.png</normaloff>:/data/img/refresh.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonPauseResume">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Pause / resume rebuilding</string>
+       </property>
+       <property name="text">
+        <string>Pause</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
   </layout>
  </widget>
  <tabstops>
@@ -267,8 +271,6 @@
   <tabstop>spinBoxMaxLogSize</tabstop>
   <tabstop>toolButtonClear</tabstop>
   <tabstop>toolButtonClose</tabstop>
-  <tabstop>comboBoxXmlSource</tabstop>
-  <tabstop>pushButtonStartStop</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
@@ -281,11 +283,11 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>480</x>
-     <y>499</y>
+     <x>426</x>
+     <y>469</y>
     </hint>
     <hint type="destinationlabel">
-     <x>506</x>
+     <x>431</x>
      <y>472</y>
     </hint>
    </hints>
@@ -297,8 +299,8 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>437</x>
-     <y>501</y>
+     <x>379</x>
+     <y>469</y>
     </hint>
     <hint type="destinationlabel">
      <x>350</x>

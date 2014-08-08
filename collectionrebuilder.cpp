@@ -78,6 +78,7 @@ CollectionRebuilder::CollectionRebuilder(QWidget *parent)
 		index++;
 	}
 	comboBoxXmlSource->insertItem(index, tr("Select XML file..."));
+	comboBoxXmlSource->setItemIcon(index, QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
 	comboBoxXmlSource->blockSignals(false);
 	comboBoxXmlSource->setCurrentIndex(0);
 	comboBoxXmlSource->setFocus();
@@ -115,6 +116,7 @@ void CollectionRebuilder::adjustIconSizes()
 
 	pushButtonStartStop->setIconSize(iconSize);
 	pushButtonPauseResume->setIconSize(iconSize);
+	comboBoxXmlSource->setIconSize(iconSize);
 }
 
 void CollectionRebuilder::on_pushButtonStartStop_clicked()
