@@ -1,14 +1,20 @@
+#include <QApplication>
 #include <QTest>
 #include <QFont>
 #include <QFontInfo>
 #include <QDateTime>
 #include <QDir>
 #include <QFileDialog>
+#include <QMap>
+#include <QDateTime>
 
 #include "collectionrebuilder.h"
 #include "settings.h"
 #include "options.h"
 #include "romalyzer.h"
+#include "unzip.h"
+#include "zip.h"
+#include "sevenzipfile.h"
 #include "macros.h"
 
 extern Settings *qmc2Config;
@@ -85,8 +91,11 @@ CollectionRebuilder::CollectionRebuilder(QWidget *parent)
 	}
 	comboBoxXmlSource->insertItem(index, tr("Select XML file..."));
 	comboBoxXmlSource->setItemIcon(index, QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
-	comboBoxXmlSource->blockSignals(false);
 	comboBoxXmlSource->setCurrentIndex(0);
+	comboBoxXmlSource->blockSignals(false);
+	lineEditSetEntity->setText(m_defaultSetEntity);
+	lineEditRomEntity->setText(m_defaultRomEntity);
+	lineEditDiskEntity->setText(m_defaultDiskEntity);
 	comboBoxXmlSource->setFocus();
 }
 
@@ -352,8 +361,103 @@ void CollectionRebuilderThread::reopenDatabase()
 
 bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
 {
-	// FIXME
-	return true;
+	if ( xml.isEmpty() )
+		return false;
+
+	QString setEntityPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
+	QString romEntityPattern("<" + rebuilderDialog()->lineEditRomEntity->text() + " name=\"");
+	QString diskEntityPattern("<" + rebuilderDialog()->lineEditDiskEntity->text() + " name=\"");
+	bool merge = !qmc2ROMAlyzer->checkBoxSetRewriterSelfContainedSets->isChecked();
+	int startIndex = -1;
+	int endIndex = -1;
+	QStringList xmlLines = xml.split("\n");
+	QString xmlLine = xmlLines[0];
+	startIndex = xmlLine.indexOf(setEntityPattern);
+	if ( startIndex >= 0 ) {
+		startIndex += setEntityPattern.length();
+		endIndex = xmlLine.indexOf("\"", startIndex);
+		if ( endIndex >= 0 ) {
+			*id = xmlLine.mid(startIndex, endIndex - startIndex);
+			for (int i = 1; i < xmlLines.count(); i++) {
+				xmlLine = xmlLines[i];
+				bool romFound = false;
+				startIndex = xmlLine.indexOf(romEntityPattern);
+				if ( startIndex >= 0 ) {
+					startIndex += romEntityPattern.length();
+					endIndex = xmlLine.indexOf("\"", startIndex);
+					if ( endIndex >= 0 ) {
+						QString romName = xmlLine.mid(startIndex, endIndex - startIndex);
+						QString mergeName;
+						startIndex = xmlLine.indexOf("merge=\"");
+						romFound = true;
+						if ( startIndex >= 0 ) {
+							startIndex += 7;
+							endIndex = xmlLine.indexOf("\"", startIndex);
+							if ( endIndex >= 0 )
+								mergeName = xmlLine.mid(startIndex, endIndex - startIndex);
+						}
+						if ( !merge || mergeName.isEmpty() ) {
+							QString romSha1, romCrc;
+							startIndex = xmlLine.indexOf("sha1=\"");
+							if ( startIndex >= 0 ) {
+								startIndex += 6;
+								endIndex = xmlLine.indexOf("\"", startIndex);
+								if ( endIndex >= 0 )
+									romSha1 = xmlLine.mid(startIndex, endIndex - startIndex);
+							}
+							startIndex = xmlLine.indexOf("crc=\"");
+							if ( startIndex >= 0 ) {
+								startIndex += 5;
+								endIndex = xmlLine.indexOf("\"", startIndex);
+								if ( endIndex >= 0 )
+									romCrc = xmlLine.mid(startIndex, endIndex - startIndex);
+							}
+							if ( !romSha1.isEmpty() && !romCrc.isEmpty() ) {
+								*romNameList << romName;
+								*romSha1List << romSha1;
+								*romCrcList << romCrc;
+							}
+						}
+					}
+				}
+				if ( romFound )
+					continue;
+				startIndex = xmlLine.indexOf(diskEntityPattern);
+				if ( startIndex >= 0 ) {
+					startIndex += diskEntityPattern.length();
+					endIndex = xmlLine.indexOf("\"", startIndex);
+					if ( endIndex >= 0 ) {
+						QString diskName = xmlLine.mid(startIndex, endIndex - startIndex);
+						QString mergeName;
+						startIndex = xmlLine.indexOf("merge=\"");
+						if ( startIndex >= 0 ) {
+							startIndex += 7;
+							endIndex = xmlLine.indexOf("\"", startIndex);
+							if ( endIndex >= 0 )
+								mergeName = xmlLine.mid(startIndex, endIndex - startIndex);
+						}
+						if ( !merge || mergeName.isEmpty() ) {
+							QString diskSha1;
+							startIndex = xmlLine.indexOf("sha1=\"");
+							if ( startIndex >= 0 ) {
+								startIndex += 6;
+								endIndex = xmlLine.indexOf("\"", startIndex);
+								if ( endIndex >= 0 )
+									diskSha1 = xmlLine.mid(startIndex, endIndex - startIndex);
+							}
+							if ( !diskSha1.isEmpty() ) {
+								*diskNameList << diskName;
+								*diskSha1List << diskSha1;
+							}
+						}
+					}
+				}
+			}
+			return true;
+		} else
+			return false;
+	} else
+		return false;
 }
 
 bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
@@ -366,7 +470,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 	diskSha1List->clear();
 	if ( m_xmlIndex < 0 || m_xmlIndexCount < 0 ) {
 		if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
-			m_xmlIndex = 0;
+			m_xmlIndex = 1;
 			m_xmlIndexCount = xmlDb()->xmlRowCount();
 			emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
 			emit progressChanged(m_xmlIndex);
@@ -375,7 +479,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 			m_xmlFile.setFileName(rebuilderDialog()->comboBoxXmlSource->currentText());
 			if ( m_xmlFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 				m_xmlIndex = 0;
-				m_xmlIndexCount = m_xmlFile.size();
+				m_xmlIndexCount = m_xmlFile.size() - 1;
 				emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
 				emit progressChanged(m_xmlIndex);
 				return true;
@@ -385,7 +489,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 			}
 		}
 	} else {
-		if ( m_xmlIndex > m_xmlIndexCount - 1 ) {
+		if ( m_xmlIndex > m_xmlIndexCount ) {
 			emit progressChanged(m_xmlIndexCount);
 			return false;
 		}
@@ -399,22 +503,251 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 				return false;
 			}
 		} else {
-			QString setEntityPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
+			QString setEntityStartPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
 			QByteArray line = m_xmlFile.readLine();
-			while ( !m_xmlFile.atEnd() && line.indexOf(setEntityPattern) < 0 && !exitThread && !stopRebuilding )
+			while ( !m_xmlFile.atEnd() && line.indexOf(setEntityStartPattern) < 0 && !exitThread && !stopRebuilding )
 				line = m_xmlFile.readLine();
 			if ( m_xmlFile.atEnd() ) {
 				emit progressChanged(m_xmlIndexCount);
 				return false;
-			} else {
+			} else if ( !exitThread && !stopRebuilding ) {
 				QString xmlString;
-				// FIXME
-				m_xmlIndex = m_xmlFile.pos();
-				emit progressChanged(m_xmlIndex);
-				return true;
-			}
+				QString setEntityEndPattern("</" + rebuilderDialog()->lineEditSetEntity->text() + ">");
+				while ( !m_xmlFile.atEnd() && line.indexOf(setEntityEndPattern) < 0 && !exitThread && !stopRebuilding ) {
+					xmlString += line;
+					line = m_xmlFile.readLine();
+				}
+				if ( !m_xmlFile.atEnd() && !exitThread && !stopRebuilding ) {
+					xmlString += line;
+					if ( parseXml(xmlString, id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List) ) {
+						m_xmlIndex = m_xmlFile.pos();
+						emit progressChanged(m_xmlIndex);
+						return true;
+					} else {
+						emit log(tr("FATAL: XML parsing failed"));
+						return false;
+					}
+				} else {
+					emit log(tr("FATAL: XML parsing failed"));
+					return false;
+				}
+			} else
+				return false;
 		}
 	}
+}
+
+bool CollectionRebuilderThread::rewriteSet(QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
+{
+	QString baseDir = qmc2ROMAlyzer->lineEditSetRewriterOutputPath->text();
+	if ( qmc2ROMAlyzer->radioButtonSetRewriterZipArchives->isChecked() )
+		return writeAllZipData(baseDir, *id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List);
+	else
+		return writeAllFileData(baseDir, *id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List);
+}
+
+bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
+{
+	// FIXME: no support for disks
+	bool success = true;
+	QDir d(QDir::cleanPath(baseDir + "/" + id));
+	if ( !d.exists() )
+		success = d.mkdir(QDir::cleanPath(baseDir + "/" + id));
+	for (int i = 0; i < romNameList->count() && !exitThread && !stopRebuilding && success; i++) {
+		QString fileName = d.absoluteFilePath(romNameList->at(i));
+		QFile f(fileName);
+		if ( f.open(QIODevice::WriteOnly) ) {
+			QByteArray data;
+			quint64 size;
+			QString path, member, type;
+			if ( checkSumDb()->getData(romSha1List->at(i), romCrcList->at(i), &size, &path, &member, &type) ) {
+				if ( type == "ZIP" )
+					success = readZipFileData(path, romCrcList->at(i), &data);
+				else if ( type == "7Z" )
+					success = readSevenZipFileData(path, romCrcList->at(i), &data);
+				else if ( type == "FILE" )
+					success = readFileData(path, &data);
+				else
+					success = false;
+				if ( success ) {
+					emit log(tr("writing '%1' (size: %2)").arg(fileName).arg(ROMAlyzer::humanReadable(data.length())));
+					quint64 bytesWritten = 0;
+					while ( bytesWritten < (quint64)data.length() && !exitThread && !stopRebuilding && success ) {
+						quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
+						if ( bytesWritten + bufferLength > (quint64)data.length() )
+							bufferLength = data.length() - bytesWritten;
+						qint64 len = f.write(data.mid(bytesWritten, bufferLength));
+						success = (len >= 0);
+						if ( success ) {
+							bytesWritten += len;
+						} else
+							log(tr("FATAL: failed writing '%1'").arg(fileName));
+					}
+				}
+			}
+			f.close();
+		} else {
+			emit log(tr("FATAL: failed opening '%1' for writing"));
+			success = false;
+		}
+	}
+	return success;
+}
+
+bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
+{
+	// FIXME: no support for disks
+	QDir d(QDir::cleanPath(baseDir));
+	if ( !d.exists() )
+		if ( !d.mkdir(QDir::cleanPath(baseDir)) )
+			return false;
+	QString fileName = QDir::cleanPath(baseDir) + "/" + id + ".zip";
+	QFile f(fileName);
+	if ( f.exists() )
+		if ( !f.remove() )
+			return false;
+	bool success = true;
+	int zipLevel = qmc2ROMAlyzer->spinBoxSetRewriterZipLevel->value();
+	zipFile zip = zipOpen(fileName.toLocal8Bit().constData(), APPEND_STATUS_CREATE);
+	if ( zip ) {
+		zip_fileinfo zipInfo;
+		QDateTime cDT = QDateTime::currentDateTime();
+		zipInfo.tmz_date.tm_sec = cDT.time().second();
+		zipInfo.tmz_date.tm_min = cDT.time().minute();
+		zipInfo.tmz_date.tm_hour = cDT.time().hour();
+		zipInfo.tmz_date.tm_mday = cDT.date().day();
+		zipInfo.tmz_date.tm_mon = cDT.date().month() - 1;
+		zipInfo.tmz_date.tm_year = cDT.date().year();
+		zipInfo.dosDate = zipInfo.internal_fa = zipInfo.external_fa = 0;
+		for (int i = 0; i < romNameList->count() && !exitThread && !stopRebuilding && success; i++) {
+			QString file = romNameList->at(i);
+			QByteArray data;
+			quint64 size;
+			QString path, member, type;
+			if ( checkSumDb()->getData(romSha1List->at(i), romCrcList->at(i), &size, &path, &member, &type) ) {
+				if ( type == "ZIP" )
+					success = readZipFileData(path, romCrcList->at(i), &data);
+				else if ( type == "7Z" )
+					success = readSevenZipFileData(path, romCrcList->at(i), &data);
+				else if ( type == "FILE" )
+					success = readFileData(path, &data);
+				else
+					success = false;
+				if ( success && zipOpenNewFileInZip(zip, file.toLocal8Bit().constData(), &zipInfo, (const void *)file.toLocal8Bit(), file.length(), 0, 0, 0, Z_DEFLATED, zipLevel) == ZIP_OK ) {
+					emit log(tr("deflating '%1' (uncompressed size: %2)").arg(file).arg(ROMAlyzer::humanReadable(data.length())));
+					quint64 bytesWritten = 0;
+					while ( bytesWritten < (quint64)data.length() && !exitThread && !stopRebuilding && success ) {
+						quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
+						if ( bytesWritten + bufferLength > (quint64)data.length() )
+							bufferLength = data.length() - bytesWritten;
+						QByteArray writeBuffer = data.mid(bytesWritten, bufferLength);
+						success = (zipWriteInFileInZip(zip, (const void *)writeBuffer.data(), bufferLength) == ZIP_OK);
+						if ( success )
+							bytesWritten += bufferLength;
+						else {
+							emit log(tr("FATAL: failed writing '%1' to ZIP archive '%2'").arg(file).arg(fileName));
+							success = false;
+						}
+					}
+					zipCloseFileInZip(zip);
+				}
+			}
+		}
+		zipClose(zip, tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit().constData());
+	} else {
+		emit log(tr("FATAL: failed creating ZIP archive '%1'").arg(fileName));
+		success = false;
+	}
+	return success;
+}
+
+bool CollectionRebuilderThread::readFileData(QString fileName, QByteArray *data)
+{
+	QFile file(fileName);
+	data->clear();
+	if ( file.open(QIODevice::ReadOnly) ) {
+  		char ioBuffer[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
+		int len = 0;
+		emit log(tr("reading '%1' (size: %2)").arg(fileName).arg(ROMAlyzer::humanReadable(file.size())));
+		while ( (len = file.read(ioBuffer, QMC2_FILE_BUFFER_SIZE)) > 0 && !exitThread && !stopRebuilding )
+			data->append(QByteArray((const char *)ioBuffer, len));
+		file.close();
+		return true;
+	} else {
+		emit log(tr("FATAL: failed reading '%1'").arg(fileName));
+		return false;
+	}
+}
+
+bool CollectionRebuilderThread::readSevenZipFileData(QString fileName, QString crc, QByteArray *data)
+{
+	SevenZipFile sevenZipFile(fileName);
+	if ( sevenZipFile.open() ) {
+		int index = sevenZipFile.indexOfCrc(crc);
+		if ( index >= 0 ) {
+			SevenZipMetaData metaData = sevenZipFile.itemList()[index];
+			emit log(tr("reading '%1' from 7Z archive '%2' (uncompressed size: %3)").arg(metaData.name()).arg(fileName).arg(ROMAlyzer::humanReadable(metaData.size())));
+			quint64 readLength = sevenZipFile.read(index, data); // can't be interrupted!
+			if ( sevenZipFile.hasError() ) {
+				emit log(tr("FATAL: failed reading '%1' from 7Z archive '%2'").arg(metaData.name()).arg(fileName));
+				return false;
+			}
+			if ( readLength != metaData.size() ) {
+				emit log(tr("FATAL: failed reading '%1' from 7Z archive '%2'").arg(metaData.name()).arg(fileName));
+				return false;
+			}
+			return true;
+		} else {
+			emit log(tr("FATAL: failed reading from 7Z archive '%1'").arg(fileName));
+			return false;
+		}
+	} else {
+		emit log(tr("FATAL: failed reading from 7Z archive '%1'").arg(fileName));
+		return false;
+	}
+}
+
+bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, QByteArray *data)
+{
+	bool success = true;
+	unzFile zipFile = unzOpen(fileName.toLocal8Bit().constData());
+	if ( zipFile ) {
+  		char ioBuffer[QMC2_ZIP_BUFFER_SIZE];
+		unz_file_info zipInfo;
+		QMap<uLong, QString> crcIdentMap;
+		uLong ulCRC = crc.toULong(0, 16);
+		do {
+			if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK )
+				crcIdentMap[zipInfo.crc] = QString((const char *)ioBuffer);
+		} while ( unzGoToNextFile(zipFile) == UNZ_OK && !crcIdentMap.contains(ulCRC) );
+		unzGoToFirstFile(zipFile);
+		if ( crcIdentMap.contains(ulCRC) ) {
+			QString fn = crcIdentMap[ulCRC];
+			if ( unzLocateFile(zipFile, fn.toLocal8Bit().constData(), 2) == UNZ_OK ) {
+				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
+					emit log(tr("reading '%1' from ZIP archive '%2' (uncompressed size: %3)").arg(fn).arg(fileName).arg(ROMAlyzer::humanReadable(zipInfo.uncompressed_size)));
+					qint64 len;
+					while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 && !exitThread && !stopRebuilding )
+						data->append(QByteArray((const char *)ioBuffer, len));
+					unzCloseCurrentFile(zipFile);
+				} else {
+					emit log(tr("FATAL: failed reading '%1' from ZIP archive '%2'").arg(fn).arg(fileName));
+					success = false;
+				}
+			} else {
+				emit log(tr("FATAL: failed reading '%1' from ZIP archive '%2'").arg(fn).arg(fileName));
+				success = false;
+			}
+		} else {
+			emit log(tr("FATAL: CRC '%1' not found in ZIP archive '%2'").arg(crc).arg(fileName));
+			success = false;
+		}
+		unzClose(zipFile);
+	} else {
+		emit log(tr("FATAL: failed reading from ZIP archive '%1'").arg(fileName));
+		success = false;
+	}
+	return success;
 }
 
 void CollectionRebuilderThread::pause()
@@ -449,17 +782,47 @@ void CollectionRebuilderThread::run()
 			QString id;
 			QStringList romNameList, romSha1List, romCrcList, diskNameList, diskSha1List;
 			while ( !exitThread && !stopRebuilding && nextId(&id, &romNameList, &romSha1List, &romCrcList, &diskNameList, &diskSha1List) ) {
+				bool pauseMessageLogged = false;
+				while ( (pauseRequested || isPaused) && !exitThread && !stopRebuilding ) {
+					if ( !pauseMessageLogged ) {
+						pauseMessageLogged = true;
+						isPaused = true;
+						pauseRequested = false;
+						emit progressTextChanged(tr("Paused"));
+						emit rebuildPaused();
+						emit log(tr("rebuilding paused"));
+					}
+					QTest::qWait(100);
+				}
+				if ( pauseMessageLogged && !exitThread && !stopRebuilding ) {
+					isPaused = false;
+					emit progressTextChanged(tr("Rebuilding"));
+					emit rebuildResumed();
+					emit log(tr("rebuilding resumed"));
+				}
+				QTest::qWait(0);
 				if ( id.isEmpty() )
 					continue;
-				// FIXME
+				if ( !romNameList.isEmpty() || !diskNameList.isEmpty() ) {
+					emit log(tr("set rebuilding started for '%1'").arg(id));
+					for (int i = 0; i < romNameList.count(); i++)
+						emit log(tr("required ROM") + ": " + tr("name = '%1', crc = '%2', sha1 = '%3', database status = '%4'").arg(romNameList[i]).arg(romCrcList[i]).arg(romSha1List[i]).arg(checkSumDb()->exists(romSha1List[i], romCrcList[i]) ? tr("available") : tr("not available")));
+					for (int i = 0; i < diskNameList.count(); i++)
+						emit log(tr("required disk") + ": " + tr("name = '%1', sha1 = '%2', database status = '%3'").arg(diskNameList[i]).arg(diskSha1List[i]).arg(checkSumDb()->exists(diskSha1List[i], QString()) ? tr("available") : tr("not available")));
+					if ( rewriteSet(&id, &romNameList, &romSha1List, &romCrcList, &diskNameList, &diskSha1List) )
+						emit log(tr("set rebuilding finished for '%1'").arg(id));
+					else
+						emit log(tr("set rebuilding failed for '%1'").arg(id));
+				}
 			}
 			elapsedTime = elapsedTime.addMSecs(rebuildTimer.elapsed());
 			emit log(tr("rebuilding finished, total rebuild time = %1").arg(elapsedTime.toString("hh:mm:ss.zzz")));
-			emit rebuildFinished();
-			emit progressTextChanged(tr("Idle"));
+			emit progressRangeChanged(0, 100);
 			emit progressChanged(0);
+			emit progressTextChanged(tr("Idle"));
 			if ( m_xmlFile.isOpen() )
 				m_xmlFile.close();
+			emit rebuildFinished();
 		}
 	}
 	emit log(tr("rebuilder thread ended"));
