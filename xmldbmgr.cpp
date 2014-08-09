@@ -269,6 +269,24 @@ bool XmlDatabaseManager::exists(QString id)
 	}
 }
 
+QString XmlDatabaseManager::parentOf(QString id)
+{
+	QString xmlString = xml(id);
+	if ( !xmlString.isEmpty() ) {
+		int startIndex = xmlString.indexOf("cloneof=\"");
+		if ( startIndex > 0 ) {
+			startIndex += 9;
+			int endIndex = xmlString.indexOf("\"", startIndex);
+			if ( endIndex >= 0 )
+				return xmlString.mid(startIndex, endIndex - startIndex);
+			else
+				return QString();
+		} else
+			return QString();
+	} else
+		return QString();
+}
+
 quint64 XmlDatabaseManager::databaseSize()
 {
 	QSqlQuery query(m_db);

@@ -525,7 +525,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", false).toBool());
 	groupBoxCheckSumDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCheckSumDb", false).toBool());
 	on_groupBoxCheckSumDatabase_toggled(groupBoxCheckSumDatabase->isChecked());
-	pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked());
+	pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked() && !checkSumScannerThread()->isActive);
 	listWidgetCheckSumDbScannedPaths->clear();
 	listWidgetCheckSumDbScannedPaths->addItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", QStringList()).toStringList());
 	pushButtonCheckSumDbScan->setEnabled(listWidgetCheckSumDbScannedPaths->count() > 0);
@@ -2383,7 +2383,7 @@ void ROMAlyzer::lineEditChecksumWizardHash_textChanged_delayed()
 
 void ROMAlyzer::on_groupBoxSetRewriter_toggled(bool enable)
 {
-	pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && enable);
+	pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && enable && !checkSumScannerThread()->isActive);
 	if ( !enable ) {
 		if ( collectionRebuilder() ) {
 			delete collectionRebuilder();
@@ -2396,7 +2396,7 @@ void ROMAlyzer::on_groupBoxCheckSumDatabase_toggled(bool enable)
 {
 	widgetCheckSumDbQueryStatus->setVisible(enable);
 	qApp->processEvents();
-	pushButtonRomCollectionRebuilder->setEnabled(groupBoxSetRewriter->isChecked() && enable);
+	pushButtonRomCollectionRebuilder->setEnabled(groupBoxSetRewriter->isChecked() && enable && !checkSumScannerThread()->isActive);
 	if ( enable )
 		QTimer::singleShot(0, this, SLOT(lineEditChecksumWizardHash_textChanged_delayed()));
 	else {
@@ -3768,6 +3768,10 @@ void ROMAlyzer::checkSumScannerThread_scanStarted()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::checkSumScannerThread_scanStarted()");
 #endif
 
+	if ( collectionRebuilder() ) {
+		delete collectionRebuilder();
+		m_collectionRebuilder = NULL;
+	}
 	pushButtonCheckSumDbScan->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
 	pushButtonCheckSumDbScan->setText(tr("Stop scanner"));
 	pushButtonCheckSumDbPauseResumeScan->setText(tr("Pause"));
@@ -3776,6 +3780,7 @@ void ROMAlyzer::checkSumScannerThread_scanStarted()
 	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_SHORT);
 	pushButtonCheckSumDbScan->setEnabled(true);
 	pushButtonCheckSumDbPauseResumeScan->setEnabled(true);
+	pushButtonRomCollectionRebuilder->setEnabled(false);
 	qApp->processEvents();
 	QTimer::singleShot(0, this, SLOT(updateCheckSumDbStatus()));
 }
@@ -3793,6 +3798,7 @@ void ROMAlyzer::checkSumScannerThread_scanFinished()
 	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG);
 	pushButtonCheckSumDbScan->setEnabled(true);
 	pushButtonCheckSumDbPauseResumeScan->setEnabled(true);
+	pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked());
 	qApp->processEvents();
 	QTimer::singleShot(0, this, SLOT(updateCheckSumDbStatus()));
 }
