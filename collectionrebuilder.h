@@ -35,6 +35,12 @@ class CollectionRebuilderThread : public QThread
 		void reopenDatabase();
 		bool parseXml(QString, QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
 		bool nextId(QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
+		bool rewriteSet(QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
+		bool writeAllFileData(QString, QString, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
+		bool writeAllZipData(QString, QString, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
+		bool readFileData(QString, QByteArray *);
+		bool readSevenZipFileData(QString, QString, QByteArray *);
+		bool readZipFileData(QString, QString, QByteArray *);
 
 	public slots:
 		void pause();
