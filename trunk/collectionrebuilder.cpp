@@ -1,6 +1,8 @@
+#include <QTest>
 #include <QFont>
 #include <QFontInfo>
 #include <QDateTime>
+#include <QDir>
 #include <QFileDialog>
 
 #include "collectionrebuilder.h"
@@ -22,13 +24,17 @@ CollectionRebuilder::CollectionRebuilder(QWidget *parent)
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
 	plainTextEditLog->setFont(logFont);
 	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/MaxLogSize", 10000).toInt());
+	adjustIconSizes();
+
 	m_rebuilderThread = new CollectionRebuilderThread(this);
 	connect(rebuilderThread(), SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
 	connect(rebuilderThread(), SIGNAL(rebuildStarted()), this, SLOT(rebuilderThread_rebuildStarted()));
 	connect(rebuilderThread(), SIGNAL(rebuildFinished()), this, SLOT(rebuilderThread_rebuildFinished()));
 	connect(rebuilderThread(), SIGNAL(rebuildPaused()), this, SLOT(rebuilderThread_rebuildPaused()));
 	connect(rebuilderThread(), SIGNAL(rebuildResumed()), this, SLOT(rebuilderThread_rebuildResumed()));
-	adjustIconSizes();
+	connect(rebuilderThread(), SIGNAL(progressTextChanged(const QString &)), this, SLOT(rebuilderThread_progressTextChanged(const QString &)));
+	connect(rebuilderThread(), SIGNAL(progressRangeChanged(int, int)), this, SLOT(rebuilderThread_progressRangeChanged(int, int)));
+	connect(rebuilderThread(), SIGNAL(progressChanged(int)), this, SLOT(rebuilderThread_progressChanged(int)));
 
 #if defined(QMC2_EMUTYPE_MESS)
 	m_defaultSetEntity = "machine";
@@ -121,7 +127,15 @@ void CollectionRebuilder::adjustIconSizes()
 
 void CollectionRebuilder::on_pushButtonStartStop_clicked()
 {
-	// FIXME
+	pushButtonStartStop->setEnabled(false);
+	pushButtonStartStop->update();
+	pushButtonPauseResume->setEnabled(false);
+	pushButtonPauseResume->update();
+	qApp->processEvents();
+	if ( rebuilderThread()->isActive )
+		rebuilderThread()->stopRebuilding = true;
+	else if ( rebuilderThread()->isWaiting )
+		rebuilderThread()->waitCondition.wakeAll();
 }
 
 void CollectionRebuilder::on_pushButtonPauseResume_clicked()
@@ -222,22 +236,54 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 
 void CollectionRebuilder::rebuilderThread_rebuildStarted()
 {
-	// FIXME
+	pushButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
+	pushButtonStartStop->setText(tr("Stop rebuilding"));
+	pushButtonPauseResume->setText(tr("Pause"));
+	pushButtonPauseResume->show();
+	pushButtonStartStop->setEnabled(true);
+	pushButtonPauseResume->setEnabled(true);
+	comboBoxXmlSource->setEnabled(false);
+	qmc2ROMAlyzer->groupBoxCheckSumDatabase->setEnabled(false);
+	qApp->processEvents();
 }
 
 void CollectionRebuilder::rebuilderThread_rebuildFinished()
 {
-	// FIXME
+	pushButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
+	pushButtonStartStop->setText(tr("Start rebuilding"));
+	pushButtonPauseResume->hide();
+	pushButtonStartStop->setEnabled(true);
+	pushButtonPauseResume->setEnabled(true);
+	comboBoxXmlSource->setEnabled(true);
+	qmc2ROMAlyzer->groupBoxCheckSumDatabase->setEnabled(true);
+	qApp->processEvents();
 }
 
 void CollectionRebuilder::rebuilderThread_rebuildPaused()
 {
-	// FIXME
+	pushButtonPauseResume->setText(tr("Resume"));
+	pushButtonPauseResume->setEnabled(true);
 }
 
 void CollectionRebuilder::rebuilderThread_rebuildResumed()
 {
-	// FIXME
+	pushButtonPauseResume->setText(tr("Pause"));
+	pushButtonPauseResume->setEnabled(true);
+}
+
+void CollectionRebuilder::rebuilderThread_progressTextChanged(const QString &text)
+{
+	progressBar->setFormat(text);
+}
+
+void CollectionRebuilder::rebuilderThread_progressRangeChanged(int min, int max)
+{
+	progressBar->setRange(min, max);
+}
+
+void CollectionRebuilder::rebuilderThread_progressChanged(int progress)
+{
+	progressBar->setValue(progress);
 }
 
 void CollectionRebuilder::showEvent(QShowEvent *e)
@@ -272,10 +318,12 @@ void CollectionRebuilder::keyPressEvent(QKeyEvent *e)
 CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
 	: QThread(parent)
 {
-	isActive = exitThread = isWaiting = isPaused = pauseRequested = false;
+	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopRebuilding = false;
 	m_rebuilderDialog = (CollectionRebuilder *)parent;
 	m_checkSumDb = NULL;
+	m_xmlIndex = m_xmlIndexCount = -1;
 	reopenDatabase();
+	m_xmlDb = new XmlDatabaseManager(this);
 	start();
 }
 
@@ -288,6 +336,8 @@ CollectionRebuilderThread::~CollectionRebuilderThread()
 		checkSumDb()->disconnect(m_rebuilderDialog);
 		delete checkSumDb();
 	}
+	if ( xmlDb() )
+		delete xmlDb();
 }
 
 void CollectionRebuilderThread::reopenDatabase()
@@ -298,6 +348,73 @@ void CollectionRebuilderThread::reopenDatabase()
 	}
 	m_checkSumDb = new CheckSumDatabaseManager(this);
 	connect(checkSumDb(), SIGNAL(log(const QString &)), m_rebuilderDialog, SLOT(log(const QString &)));
+}
+
+bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
+{
+	// FIXME
+	return true;
+}
+
+bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
+{
+	id->clear();
+	romNameList->clear();
+	romSha1List->clear();
+	romCrcList->clear();
+	diskNameList->clear();
+	diskSha1List->clear();
+	if ( m_xmlIndex < 0 || m_xmlIndexCount < 0 ) {
+		if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
+			m_xmlIndex = 0;
+			m_xmlIndexCount = xmlDb()->xmlRowCount();
+			emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
+			emit progressChanged(m_xmlIndex);
+			return true;
+		} else {
+			m_xmlFile.setFileName(rebuilderDialog()->comboBoxXmlSource->currentText());
+			if ( m_xmlFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+				m_xmlIndex = 0;
+				m_xmlIndexCount = m_xmlFile.size();
+				emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
+				emit progressChanged(m_xmlIndex);
+				return true;
+			} else {
+				emit log(tr("FATAL: can't open XML file '%1' for reading, please check permissions").arg(rebuilderDialog()->comboBoxXmlSource->currentText()));
+				return false;
+			}
+		}
+	} else {
+		if ( m_xmlIndex > m_xmlIndexCount - 1 ) {
+			emit progressChanged(m_xmlIndexCount);
+			return false;
+		}
+		if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
+			if ( parseXml(xmlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List) ) {
+				m_xmlIndex++;
+				emit progressChanged(m_xmlIndex);
+				return true;
+			} else {
+				emit log(tr("FATAL: XML parsing failed"));
+				return false;
+			}
+		} else {
+			QString setEntityPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
+			QByteArray line = m_xmlFile.readLine();
+			while ( !m_xmlFile.atEnd() && line.indexOf(setEntityPattern) < 0 && !exitThread && !stopRebuilding )
+				line = m_xmlFile.readLine();
+			if ( m_xmlFile.atEnd() ) {
+				emit progressChanged(m_xmlIndexCount);
+				return false;
+			} else {
+				QString xmlString;
+				// FIXME
+				m_xmlIndex = m_xmlFile.pos();
+				emit progressChanged(m_xmlIndex);
+				return true;
+			}
+		}
+	}
 }
 
 void CollectionRebuilderThread::pause()
@@ -317,13 +434,32 @@ void CollectionRebuilderThread::run()
 		emit log(tr("waiting for work"));
 		mutex.lock();
 		isWaiting = true;
-		isActive = isPaused = false;
+		isActive = isPaused = stopRebuilding = false;
 		waitCondition.wait(&mutex);
 		isActive = true;
 		isWaiting = false;
 		mutex.unlock();
-		if ( !exitThread ) {
-			// FIXME
+		if ( !exitThread && !stopRebuilding ) {
+			emit log(tr("rebuilding started"));
+			emit rebuildStarted();
+			emit progressTextChanged(tr("Rebuilding"));
+			QTime rebuildTimer, elapsedTime(0, 0, 0, 0);
+			rebuildTimer.start();
+			m_xmlIndex = m_xmlIndexCount = -1;
+			QString id;
+			QStringList romNameList, romSha1List, romCrcList, diskNameList, diskSha1List;
+			while ( !exitThread && !stopRebuilding && nextId(&id, &romNameList, &romSha1List, &romCrcList, &diskNameList, &diskSha1List) ) {
+				if ( id.isEmpty() )
+					continue;
+				// FIXME
+			}
+			elapsedTime = elapsedTime.addMSecs(rebuildTimer.elapsed());
+			emit log(tr("rebuilding finished, total rebuild time = %1").arg(elapsedTime.toString("hh:mm:ss.zzz")));
+			emit rebuildFinished();
+			emit progressTextChanged(tr("Idle"));
+			emit progressChanged(0);
+			if ( m_xmlFile.isOpen() )
+				m_xmlFile.close();
 		}
 	}
 	emit log(tr("rebuilder thread ended"));

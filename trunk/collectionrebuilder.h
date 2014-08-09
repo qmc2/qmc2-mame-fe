@@ -4,8 +4,10 @@
 #include <QThread>
 #include <QMutex>
 #include <QWaitCondition>
+#include <QFile>
 
 #include "checksumdbmgr.h"
+#include "xmldbmgr.h"
 #include "ui_collectionrebuilder.h"
 
 class CollectionRebuilder;
@@ -20,6 +22,7 @@ class CollectionRebuilderThread : public QThread
 		bool isWaiting;
 		bool isPaused;
 		bool pauseRequested;
+		bool stopRebuilding;
 		QMutex mutex;
 		QWaitCondition waitCondition;
 
@@ -27,7 +30,11 @@ class CollectionRebuilderThread : public QThread
 		~CollectionRebuilderThread();
 
 		CheckSumDatabaseManager *checkSumDb() { return m_checkSumDb; }
+		CollectionRebuilder *rebuilderDialog() { return m_rebuilderDialog; }
+		XmlDatabaseManager *xmlDb() { return m_xmlDb; }
 		void reopenDatabase();
+		bool parseXml(QString, QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
+		bool nextId(QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
 
 	public slots:
 		void pause();
@@ -39,13 +46,19 @@ class CollectionRebuilderThread : public QThread
 		void rebuildFinished();
 		void rebuildPaused();
 		void rebuildResumed();
+		void progressTextChanged(const QString &);
+		void progressRangeChanged(int, int);
+		void progressChanged(int);
 
 	protected:
 		void run();
 
 	private:
 		CheckSumDatabaseManager *m_checkSumDb;
+		XmlDatabaseManager *m_xmlDb;
 		CollectionRebuilder *m_rebuilderDialog;
+		qint64 m_xmlIndex, m_xmlIndexCount;
+		QFile m_xmlFile;
 };
 
 class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
@@ -71,6 +84,9 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		void rebuilderThread_rebuildFinished();
 		void rebuilderThread_rebuildPaused();
 		void rebuilderThread_rebuildResumed();
+		void rebuilderThread_progressTextChanged(const QString &);
+		void rebuilderThread_progressRangeChanged(int, int);
+		void rebuilderThread_progressChanged(int);
 
 	protected:
 		void showEvent(QShowEvent *);

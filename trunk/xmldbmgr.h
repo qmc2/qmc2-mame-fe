@@ -25,6 +25,7 @@ class XmlDatabaseManager : public QObject
 		QString xml(int rowid);
 		void setXml(QString id, QString xml);
 		bool exists(QString id);
+		QString parentOf(QString id);
 
 		bool logActive() { return m_logActive; }
 		void setLogActive(bool enable) { m_logActive = enable; }
