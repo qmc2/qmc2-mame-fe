@@ -88,12 +88,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   
 	setupUi(this);
 
-#if !defined(QMC2_WIP_ENABLED)
-	// FIXME: WIP
-	lineAboveRomCollectionRebuilder->setVisible(false);
-	pushButtonRomCollectionRebuilder->setVisible(false);
-#endif
-
 	m_checkSumDbQueryStatusPixmap = QPixmap(QString::fromUtf8(":/data/img/database.png"));
 
 #if defined(QMC2_SDLMESS)

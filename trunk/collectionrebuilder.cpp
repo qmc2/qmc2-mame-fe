@@ -41,6 +41,7 @@ CollectionRebuilder::CollectionRebuilder(QWidget *parent)
 	connect(rebuilderThread(), SIGNAL(progressTextChanged(const QString &)), this, SLOT(rebuilderThread_progressTextChanged(const QString &)));
 	connect(rebuilderThread(), SIGNAL(progressRangeChanged(int, int)), this, SLOT(rebuilderThread_progressRangeChanged(int, int)));
 	connect(rebuilderThread(), SIGNAL(progressChanged(int)), this, SLOT(rebuilderThread_progressChanged(int)));
+	connect(rebuilderThread(), SIGNAL(statusUpdated(int, int, int)), this, SLOT(rebuilderThread_statusUpdated(int, int, int)));
 
 #if defined(QMC2_EMUTYPE_MESS)
 	m_defaultSetEntity = "machine";
@@ -51,6 +52,7 @@ CollectionRebuilder::CollectionRebuilder(QWidget *parent)
 	m_defaultDiskEntity = "disk";
 
 	frameEntities->setVisible(false);
+	toolButtonRemoveXmlSource->setVisible(false);
 	comboBoxXmlSource->blockSignals(true);
 	comboBoxXmlSource->clear();
 	comboBoxXmlSource->insertItem(0, tr("Current default emulator"));
@@ -96,6 +98,7 @@ CollectionRebuilder::CollectionRebuilder(QWidget *parent)
 	lineEditSetEntity->setText(m_defaultSetEntity);
 	lineEditRomEntity->setText(m_defaultRomEntity);
 	lineEditDiskEntity->setText(m_defaultDiskEntity);
+	rebuilderThread_statusUpdated(0, 0, 0);
 	comboBoxXmlSource->setFocus();
 }
 
@@ -132,6 +135,7 @@ void CollectionRebuilder::adjustIconSizes()
 	pushButtonStartStop->setIconSize(iconSize);
 	pushButtonPauseResume->setIconSize(iconSize);
 	comboBoxXmlSource->setIconSize(iconSize);
+	toolButtonRemoveXmlSource->setIconSize(iconSize);
 }
 
 void CollectionRebuilder::on_pushButtonStartStop_clicked()
@@ -182,6 +186,8 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 		lineEditRomEntity->setText(m_defaultRomEntity);
 		lineEditDiskEntity->setText(m_defaultDiskEntity);
 		frameEntities->setVisible(false);
+		QTimer::singleShot(0, this, SLOT(scrollToEnd()));
+		toolButtonRemoveXmlSource->setVisible(false);
 		lastIndex = -1;
 	} else if ( index == comboBoxXmlSource->count() - 1 ) {
 		QString xmlSource = QFileDialog::getOpenFileName(this, tr("Choose source XML file"), QString(), tr("XML files (*.xml)") + ";;" + tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
@@ -204,12 +210,14 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 				diskEntities << m_defaultDiskEntity;
 				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", diskEntities);
 				lineEditDiskEntity->setText(m_defaultDiskEntity);
-				lastIndex = -1;
 				int insertIndex = comboBoxXmlSource->count() - 2;
+				lastIndex = insertIndex;
 				comboBoxXmlSource->insertItem(insertIndex, xmlSource);
 				comboBoxXmlSource->setCurrentIndex(insertIndex);
 				comboBoxXmlSource->blockSignals(false);
 				frameEntities->setVisible(true);
+				toolButtonRemoveXmlSource->setVisible(true);
+				QTimer::singleShot(0, this, SLOT(scrollToEnd()));
 			} else
 				comboBoxXmlSource->setCurrentIndex(foundAtIndex);
 		} else
@@ -239,8 +247,31 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 		lineEditRomEntity->setText(romEntities[index]);
 		lineEditDiskEntity->setText(diskEntities[index]);
 		frameEntities->setVisible(true);
+		toolButtonRemoveXmlSource->setVisible(true);
+		QTimer::singleShot(0, this, SLOT(scrollToEnd()));
 	}
 
+}
+
+void CollectionRebuilder::on_toolButtonRemoveXmlSource_clicked()
+{
+	int index = comboBoxXmlSource->currentIndex() - 2;
+	comboBoxXmlSource->blockSignals(true);
+	comboBoxXmlSource->removeItem(comboBoxXmlSource->currentIndex());
+	comboBoxXmlSource->blockSignals(false);
+	comboBoxXmlSource->setCurrentIndex(0);
+	QStringList xmlSources = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSources", QStringList()).toStringList();
+	xmlSources.removeAt(index);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSources", xmlSources);
+	QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", QStringList()).toStringList();
+	setEntities.removeAt(index);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", setEntities);
+	QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", QStringList()).toStringList();
+	romEntities.removeAt(index);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", romEntities);
+	QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", QStringList()).toStringList();
+	diskEntities.removeAt(index);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", diskEntities);
 }
 
 void CollectionRebuilder::rebuilderThread_rebuildStarted()
@@ -252,6 +283,7 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	pushButtonStartStop->setEnabled(true);
 	pushButtonPauseResume->setEnabled(true);
 	comboBoxXmlSource->setEnabled(false);
+	toolButtonRemoveXmlSource->setEnabled(false);
 	qmc2ROMAlyzer->groupBoxCheckSumDatabase->setEnabled(false);
 	qApp->processEvents();
 }
@@ -264,6 +296,7 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	pushButtonStartStop->setEnabled(true);
 	pushButtonPauseResume->setEnabled(true);
 	comboBoxXmlSource->setEnabled(true);
+	toolButtonRemoveXmlSource->setEnabled(true);
 	qmc2ROMAlyzer->groupBoxCheckSumDatabase->setEnabled(true);
 	qApp->processEvents();
 }
@@ -293,6 +326,18 @@ void CollectionRebuilder::rebuilderThread_progressRangeChanged(int min, int max)
 void CollectionRebuilder::rebuilderThread_progressChanged(int progress)
 {
 	progressBar->setValue(progress);
+}
+
+void CollectionRebuilder::rebuilderThread_statusUpdated(int setsProcessed, int missingDumps, int missingDisks)
+{
+	QString statusString = "<center><table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>";
+	statusString += "<td nowrap width=\"16.5%\" align=\"left\"><b>" + tr("Sets processed") + ":</b></td><td nowrap width=\"16.5%\" align=\"right\">" + QString::number(setsProcessed) + "</td>";
+	statusString += "<td nowrap align=\"center\">|</td>";
+	statusString += "<td nowrap width=\"16.5%\" align=\"left\"><b>" + tr("Missing ROMs") + ":</b></td><td nowrap width=\"16.5%\" align=\"right\">" + QString::number(missingDumps) + "</td>";
+	statusString += "<td nowrap align=\"center\">|</td>";
+	statusString += "<td nowrap width=\"16.5%\" align=\"left\"><b>" + tr("Missing disks") + ":</b></td><td nowrap width=\"16.5%\" align=\"right\">" + QString::number(missingDisks) + "</td>";
+	statusString += "</tr></table></center>";
+	labelRebuildStatus->setText(statusString);
 }
 
 void CollectionRebuilder::showEvent(QShowEvent *e)
@@ -607,6 +652,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 		if ( !f.remove() )
 			return false;
 	bool success = true;
+	bool uniqueCRCs = qmc2ROMAlyzer->checkBoxSetRewriterUniqueCRCs->isChecked();
 	int zipLevel = qmc2ROMAlyzer->spinBoxSetRewriterZipLevel->value();
 	zipFile zip = zipOpen(fileName.toLocal8Bit().constData(), APPEND_STATUS_CREATE);
 	if ( zip ) {
@@ -619,7 +665,12 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 		zipInfo.tmz_date.tm_mon = cDT.date().month() - 1;
 		zipInfo.tmz_date.tm_year = cDT.date().year();
 		zipInfo.dosDate = zipInfo.internal_fa = zipInfo.external_fa = 0;
+		QStringList storedCRCs;
 		for (int i = 0; i < romNameList->count() && !exitThread && !stopRebuilding && success; i++) {
+			if ( uniqueCRCs && storedCRCs.contains(romCrcList->at(i)) ) {
+				emit log(tr("skipping '%1'").arg(romNameList->at(i)) + " ("+ tr("a dump with CRC '%1' already exists").arg(romCrcList->at(i)) + ")");
+				continue;
+			}
 			QString file = romNameList->at(i);
 			QByteArray data;
 			quint64 size;
@@ -649,6 +700,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 							success = false;
 						}
 					}
+					storedCRCs << romCrcList->at(i);
 					zipCloseFileInZip(zip);
 				}
 			}
@@ -773,7 +825,9 @@ void CollectionRebuilderThread::run()
 		isWaiting = false;
 		mutex.unlock();
 		if ( !exitThread && !stopRebuilding ) {
+			quint64 setsProcessed = 0, missingDumps = 0, missingDisks = 0;
 			emit log(tr("rebuilding started"));
+			emit statusUpdated(setsProcessed, missingDumps, missingDisks);
 			emit rebuildStarted();
 			emit progressTextChanged(tr("Rebuilding"));
 			QTime rebuildTimer, elapsedTime(0, 0, 0, 0);
@@ -805,18 +859,27 @@ void CollectionRebuilderThread::run()
 					continue;
 				if ( !romNameList.isEmpty() || !diskNameList.isEmpty() ) {
 					emit log(tr("set rebuilding started for '%1'").arg(id));
-					for (int i = 0; i < romNameList.count(); i++)
-						emit log(tr("required ROM") + ": " + tr("name = '%1', crc = '%2', sha1 = '%3', database status = '%4'").arg(romNameList[i]).arg(romCrcList[i]).arg(romSha1List[i]).arg(checkSumDb()->exists(romSha1List[i], romCrcList[i]) ? tr("available") : tr("not available")));
-					for (int i = 0; i < diskNameList.count(); i++)
-						emit log(tr("required disk") + ": " + tr("name = '%1', sha1 = '%2', database status = '%3'").arg(diskNameList[i]).arg(diskSha1List[i]).arg(checkSumDb()->exists(diskSha1List[i], QString()) ? tr("available") : tr("not available")));
+					for (int i = 0; i < romNameList.count(); i++) {
+						bool dbStatusGood = checkSumDb()->exists(romSha1List[i], romCrcList[i]);
+						emit log(tr("required ROM") + ": " + tr("name = '%1', crc = '%2', sha1 = '%3', database status = '%4'").arg(romNameList[i]).arg(romCrcList[i]).arg(romSha1List[i]).arg(dbStatusGood ? tr("available") : tr("not available")));
+						if ( !dbStatusGood )
+							missingDumps++;
+					}
+					for (int i = 0; i < diskNameList.count(); i++) {
+						bool dbStatusGood = checkSumDb()->exists(diskSha1List[i], QString());
+						emit log(tr("required disk") + ": " + tr("name = '%1', sha1 = '%2', database status = '%3'").arg(diskNameList[i]).arg(diskSha1List[i]).arg(dbStatusGood ? tr("available") : tr("not available")));
+						if ( !dbStatusGood )
+							missingDisks++;
+					}
 					if ( rewriteSet(&id, &romNameList, &romSha1List, &romCrcList, &diskNameList, &diskSha1List) )
 						emit log(tr("set rebuilding finished for '%1'").arg(id));
 					else
 						emit log(tr("set rebuilding failed for '%1'").arg(id));
+					emit statusUpdated(++setsProcessed, missingDumps, missingDisks);
 				}
 			}
 			elapsedTime = elapsedTime.addMSecs(rebuildTimer.elapsed());
-			emit log(tr("rebuilding finished, total rebuild time = %1").arg(elapsedTime.toString("hh:mm:ss.zzz")));
+			emit log(tr("rebuilding finished - total rebuild time = %1, sets processed = %2, missing ROMs = %3, missing disks = %4").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(setsProcessed).arg(missingDumps).arg(missingDisks));
 			emit progressRangeChanged(0, 100);
 			emit progressChanged(0);
 			emit progressTextChanged(tr("Idle"));
