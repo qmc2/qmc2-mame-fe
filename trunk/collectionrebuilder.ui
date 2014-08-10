@@ -113,9 +113,6 @@
    </item>
    <item row="2" column="0" colspan="3">
     <widget class="QPlainTextEdit" name="plainTextEditLog">
-     <property name="toolTip">
-      <string>ROM Collection Rebuilder log</string>
-     </property>
      <property name="verticalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOn</enum>
      </property>
