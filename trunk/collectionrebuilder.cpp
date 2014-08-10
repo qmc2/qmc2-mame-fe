@@ -4,6 +4,7 @@
 #include <QFontInfo>
 #include <QDateTime>
 #include <QDir>
+#include <QFile>
 #include <QFileDialog>
 #include <QMap>
 #include <QDateTime>
@@ -435,10 +436,10 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 					startIndex += romEntityPattern.length();
 					endIndex = xmlLine.indexOf("\"", startIndex);
 					if ( endIndex >= 0 ) {
+						romFound = true;
 						QString romName = xmlLine.mid(startIndex, endIndex - startIndex);
 						QString mergeName;
 						startIndex = xmlLine.indexOf("merge=\"");
-						romFound = true;
 						if ( startIndex >= 0 ) {
 							startIndex += 7;
 							endIndex = xmlLine.indexOf("\"", startIndex);
@@ -462,7 +463,7 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 									romCrc = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
 							if ( !romSha1.isEmpty() && !romCrc.isEmpty() ) {
-								*romNameList << romName;
+								*romNameList << romName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
 								*romSha1List << romSha1;
 								*romCrcList << romCrc;
 							}
@@ -689,7 +690,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 					success = readFileData(path, &data);
 				else
 					success = false;
-				if ( success && zipOpenNewFileInZip(zip, file.toLocal8Bit().constData(), &zipInfo, (const void *)file.toLocal8Bit(), file.length(), 0, 0, 0, Z_DEFLATED, zipLevel) == ZIP_OK ) {
+				if ( success && zipOpenNewFileInZip(zip, file.toLocal8Bit().constData(), &zipInfo, (const void *)file.toLocal8Bit().constData(), file.length(), 0, 0, 0, Z_DEFLATED, zipLevel) == ZIP_OK ) {
 					emit log(tr("writing '%1' to ZIP archive '%2' (uncompressed size: %3)").arg(file).arg(fileName).arg(ROMAlyzer::humanReadable(data.length())));
 					quint64 bytesWritten = 0;
 					while ( bytesWritten < (quint64)data.length() && !exitThread && !stopRebuilding && success ) {
