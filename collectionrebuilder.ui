@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>432</width>
-    <height>475</height>
+    <width>498</width>
+    <height>470</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -130,7 +130,7 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="0" colspan="3">
+   <item row="4" column="0" colspan="3">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="labelMaxLogSize">
@@ -214,6 +214,23 @@
    <item row="0" column="2">
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
+      <widget class="QToolButton" name="toolButtonRemoveXmlSource">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Remove the current XML source from the list</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButtonStartStop">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
@@ -255,10 +272,42 @@
      </item>
     </layout>
    </item>
+   <item row="3" column="0" colspan="3">
+    <widget class="QFrame" name="frameRebuildStatus">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayoutFrameRebuildStatus">
+      <property name="margin">
+       <number>0</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelRebuildStatus">
+        <property name="toolTip">
+         <string>Rebuild statistics</string>
+        </property>
+        <property name="text">
+         <string notr="true">&lt;center&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;4&quot;&gt;&lt;tr&gt;
+&lt;td nowrap width=&quot;16.5%&quot; align=&quot;left&quot;&gt;&lt;b&gt;Sets processed:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap width=&quot;16.5%&quot; align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td nowrap align=&quot;center&quot;&gt;|&lt;/td&gt;
+&lt;td nowrap width=&quot;16.5%&quot; align=&quot;left&quot;&gt;&lt;b&gt;Missing ROMs:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap width=&quot;16.5%&quot; align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td nowrap align=&quot;center&quot;&gt;|&lt;/td&gt;
+&lt;td nowrap width=&quot;16.5%&quot; align=&quot;left&quot;&gt;&lt;b&gt;Missing disks:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap width=&quot;16.5%&quot; align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;&lt;/center&gt;</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
   </layout>
  </widget>
  <tabstops>
   <tabstop>comboBoxXmlSource</tabstop>
+  <tabstop>toolButtonRemoveXmlSource</tabstop>
   <tabstop>pushButtonStartStop</tabstop>
   <tabstop>pushButtonPauseResume</tabstop>
   <tabstop>lineEditSetEntity</tabstop>

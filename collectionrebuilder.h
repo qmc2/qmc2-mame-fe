@@ -55,6 +55,7 @@ class CollectionRebuilderThread : public QThread
 		void progressTextChanged(const QString &);
 		void progressRangeChanged(int, int);
 		void progressChanged(int);
+		void statusUpdated(int, int, int);
 
 	protected:
 		void run();
@@ -86,6 +87,7 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		void on_pushButtonStartStop_clicked();
 		void on_pushButtonPauseResume_clicked();
 		void on_comboBoxXmlSource_currentIndexChanged(int);
+		void on_toolButtonRemoveXmlSource_clicked();
 		void rebuilderThread_rebuildStarted();
 		void rebuilderThread_rebuildFinished();
 		void rebuilderThread_rebuildPaused();
@@ -93,6 +95,7 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		void rebuilderThread_progressTextChanged(const QString &);
 		void rebuilderThread_progressRangeChanged(int, int);
 		void rebuilderThread_progressChanged(int);
+		void rebuilderThread_statusUpdated(int, int, int);
 
 	protected:
 		void showEvent(QShowEvent *);
