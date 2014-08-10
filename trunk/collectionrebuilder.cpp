@@ -660,6 +660,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 	int zipLevel = qmc2ROMAlyzer->spinBoxSetRewriterZipLevel->value();
 	zipFile zip = zipOpen(fileName.toLocal8Bit().constData(), APPEND_STATUS_CREATE);
 	if ( zip ) {
+		emit log(tr("creating new ZIP archive '%1'").arg(fileName));
 		zip_fileinfo zipInfo;
 		QDateTime cDT = QDateTime::currentDateTime();
 		zipInfo.tmz_date.tm_sec = cDT.time().second();
@@ -689,7 +690,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 				else
 					success = false;
 				if ( success && zipOpenNewFileInZip(zip, file.toLocal8Bit().constData(), &zipInfo, (const void *)file.toLocal8Bit(), file.length(), 0, 0, 0, Z_DEFLATED, zipLevel) == ZIP_OK ) {
-					emit log(tr("deflating '%1' (uncompressed size: %2)").arg(file).arg(ROMAlyzer::humanReadable(data.length())));
+					emit log(tr("writing '%1' to ZIP archive '%2' (uncompressed size: %3)").arg(file).arg(fileName).arg(ROMAlyzer::humanReadable(data.length())));
 					quint64 bytesWritten = 0;
 					while ( bytesWritten < (quint64)data.length() && !exitThread && !stopRebuilding && success ) {
 						quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
@@ -710,6 +711,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 			}
 		}
 		zipClose(zip, tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit().constData());
+		emit log(tr("done (creating new ZIP archive '%1')").arg(fileName));
 	} else {
 		emit log(tr("FATAL: failed creating ZIP archive '%1'").arg(fileName));
 		success = false;
