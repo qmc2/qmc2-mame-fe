@@ -2607,7 +2607,8 @@ void ROMAlyzer::runSetRewriter()
 	progressBar->setFormat(QString("%1 / %2").arg(0).arg(setRewriterFileMap.count()));
 	qApp->processEvents();
 	QString modeString = tr("space-efficient");
-	if ( checkBoxSetRewriterSelfContainedSets->isChecked() ) modeString = tr("self-contained");
+	if ( checkBoxSetRewriterSelfContainedSets->isChecked() )
+		modeString = tr("self-contained");
 
 	log(tr("set rewriter: rewriting %1 set '%2' to '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
 
