@@ -38,6 +38,21 @@ void CheckSumScannerLog::scrollToEnd()
 	plainTextEditLog->verticalScrollBar()->setValue(plainTextEditLog->verticalScrollBar()->maximum());
 }
 
+void CheckSumScannerLog::progressTextChanged(const QString &text)
+{
+	progressBar->setFormat(text);
+}
+
+void CheckSumScannerLog::progressRangeChanged(int min, int max)
+{
+	progressBar->setRange(min, max);
+}
+
+void CheckSumScannerLog::progressChanged(int progress)
+{
+	progressBar->setValue(progress);
+}
+
 void CheckSumScannerLog::showEvent(QShowEvent *e)
 {
 	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CheckSumScannerLog/Geometry", QByteArray()).toByteArray());

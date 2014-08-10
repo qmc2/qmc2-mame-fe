@@ -1809,8 +1809,8 @@ void Gamelist::parse()
 
 		QList <QTreeWidgetItem *> itemList;
 		QList <QTreeWidgetItem *> hideList;
-		int xmlRowCount = xmlDb()->xmlRowCount();
-		for (int rowCounter = 1; rowCounter <= xmlRowCount && !qmc2StopParser; rowCounter++) {
+		qint64 xmlRowCount = xmlDb()->xmlRowCount();
+		for (qint64 rowCounter = 1; rowCounter <= xmlRowCount && !qmc2StopParser; rowCounter++) {
 			QStringList xmlLines = xmlDb()->xml(rowCounter).split("\n", QString::SkipEmptyParts);
 			for (int lineCounter = 0; lineCounter < xmlLines.count() && !qmc2StopParser; lineCounter++) {
 				while ( lineCounter < xmlLines.count() && !xmlLines[lineCounter].contains("<description>") )

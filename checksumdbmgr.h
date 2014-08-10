@@ -22,7 +22,7 @@ class CheckSumDatabaseManager : public QObject
 		uint scanTime();
 		void setScanTime(uint scan_time);
 
-		int checkSumRowCount();
+		qint64 checkSumRowCount();
 
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }

@@ -289,7 +289,7 @@ void UserDataDatabaseManager::setComment(QString id, QString comment)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("comment").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
-int UserDataDatabaseManager::userDataRowCount()
+qint64 UserDataDatabaseManager::userDataRowCount()
 {
 	QSqlQuery query(m_db);
 	if ( query.exec(QString("SELECT COUNT(*) FROM %1").arg(m_tableBasename)) ) {
@@ -302,7 +302,7 @@ int UserDataDatabaseManager::userDataRowCount()
 	}	return -1;
 }
 
-int UserDataDatabaseManager::nextRowId(bool refreshRowIds)
+qint64 UserDataDatabaseManager::nextRowId(bool refreshRowIds)
 {
 	if ( refreshRowIds ) {
 		m_rowIdList.clear();
@@ -367,7 +367,7 @@ void UserDataDatabaseManager::cleanUp()
 {
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("cleaning up user data database '%1'").arg(m_db.databaseName()));
 
-	int row = nextRowId(true);
+	qint64 row = nextRowId(true);
 	beginTransaction();
 	while ( row > 0 ) {
 		QString idOfCurrentRow = id(row);
@@ -477,7 +477,7 @@ void UserDataDatabaseManager::recreateDatabase()
 void UserDataDatabaseManager::fillUpRankCache()
 {
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("filling up rank cache from user data database '%1'").arg(m_db.databaseName()));
-	int row = nextRowId(true);
+	qint64 row = nextRowId(true);
 	while ( row > 0 ) {
 		QString idString = id(row);
 		if ( !m_rankCache.contains(idString) ) {
