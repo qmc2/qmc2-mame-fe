@@ -3888,7 +3888,8 @@ void ROMAlyzer::on_pushButtonRomCollectionRebuilder_clicked()
 	if ( collectionRebuilder()->isMinimized() )
 		collectionRebuilder()->showNormal();
 	else
-		collectionRebuilder()->showNormal();
+		collectionRebuilder()->show();
+	collectionRebuilder()->scrollToEnd();
 	collectionRebuilder()->raise();
 }
 

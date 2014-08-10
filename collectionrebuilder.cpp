@@ -283,7 +283,9 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	pushButtonStartStop->setEnabled(true);
 	pushButtonPauseResume->setEnabled(true);
 	comboBoxXmlSource->setEnabled(false);
+	labelXmlSource->setEnabled(false);
 	toolButtonRemoveXmlSource->setEnabled(false);
+	frameEntities->setEnabled(false);
 	qmc2ROMAlyzer->groupBoxCheckSumDatabase->setEnabled(false);
 	qApp->processEvents();
 }
@@ -296,7 +298,9 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	pushButtonStartStop->setEnabled(true);
 	pushButtonPauseResume->setEnabled(true);
 	comboBoxXmlSource->setEnabled(true);
+	labelXmlSource->setEnabled(true);
 	toolButtonRemoveXmlSource->setEnabled(true);
+	frameEntities->setEnabled(true);
 	qmc2ROMAlyzer->groupBoxCheckSumDatabase->setEnabled(true);
 	qApp->processEvents();
 }
