@@ -1383,7 +1383,6 @@ p, li { white-space: pre-wrap; }
     <name>CheckSumScannerLog</name>
     <message>
         <location filename="../../checksumscannerlog.ui" line="14"/>
-        <location filename="../../checksumscannerlog.ui" line="20"/>
         <source>Check-sum scanner log</source>
         <translation>Prüfsummen Scanner Log</translation>
     </message>
@@ -1400,32 +1399,32 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">S&amp;chließen</translation>
     </message>
     <message>
-        <location filename="../../checksumscannerlog.ui" line="41"/>
+        <location filename="../../checksumscannerlog.ui" line="38"/>
         <source>Log size</source>
         <translation>Log Größe</translation>
     </message>
     <message>
-        <location filename="../../checksumscannerlog.ui" line="48"/>
+        <location filename="../../checksumscannerlog.ui" line="45"/>
         <source>Maximum number of lines in log (0 = no limit)</source>
         <translation>Maximale Anzahl von Zeilen im Log (0 = keine Beschränkung)</translation>
     </message>
     <message>
-        <location filename="../../checksumscannerlog.ui" line="51"/>
+        <location filename="../../checksumscannerlog.ui" line="48"/>
         <source>unlimited</source>
         <translation>unbegrenzt</translation>
     </message>
     <message>
-        <location filename="../../checksumscannerlog.ui" line="54"/>
+        <location filename="../../checksumscannerlog.ui" line="51"/>
         <source> lines</source>
         <translation> Zeilen</translation>
     </message>
     <message>
-        <location filename="../../checksumscannerlog.ui" line="92"/>
+        <location filename="../../checksumscannerlog.ui" line="89"/>
         <source>Clear log</source>
         <translation>Log leeren</translation>
     </message>
     <message>
-        <location filename="../../checksumscannerlog.ui" line="108"/>
+        <location filename="../../checksumscannerlog.ui" line="105"/>
         <source>Close this window</source>
         <translation>Dieses Fenster schließen</translation>
     </message>
@@ -1434,7 +1433,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Prüfsummen Scanner Log leeren</translation>
     </message>
     <message>
-        <location filename="../../checksumscannerlog.ui" line="95"/>
+        <location filename="../../checksumscannerlog.ui" line="92"/>
         <source>Clear</source>
         <translation>Leeren</translation>
     </message>
@@ -1443,7 +1442,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Scanner Log Fenster schließen</translation>
     </message>
     <message>
-        <location filename="../../checksumscannerlog.ui" line="111"/>
+        <location filename="../../checksumscannerlog.ui" line="108"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
@@ -1757,90 +1756,89 @@ p, li { white-space: pre-wrap; }
         <translation>ROM Entität</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="117"/>
         <source>ROM Collection Rebuilder log</source>
-        <translation>Log für Neu-Erzeugung der ROM Sammlung</translation>
+        <translation type="obsolete">Log für Neu-Erzeugung der ROM Sammlung</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="138"/>
+        <location filename="../../collectionrebuilder.ui" line="135"/>
         <source>Log size</source>
         <translation>Log Größe</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="145"/>
+        <location filename="../../collectionrebuilder.ui" line="142"/>
         <source>Maximum number of lines in log (0 = no limit)</source>
         <translation>Maximale Anzahl von Zeilen im Log (0 = keine Beschränkung)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="148"/>
+        <location filename="../../collectionrebuilder.ui" line="145"/>
         <source>unlimited</source>
         <translation>unbegrenzt</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="151"/>
+        <location filename="../../collectionrebuilder.ui" line="148"/>
         <source> lines</source>
         <translation> Zeilen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="170"/>
+        <location filename="../../collectionrebuilder.ui" line="167"/>
         <source>Rebuild progress indicator</source>
         <translation>Fortschritssanzeige für Neu-Erzeugung</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="176"/>
+        <location filename="../../collectionrebuilder.ui" line="173"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="189"/>
+        <location filename="../../collectionrebuilder.ui" line="186"/>
         <source>Clear log</source>
         <translation>Log leeren</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="192"/>
+        <location filename="../../collectionrebuilder.ui" line="189"/>
         <source>Clear</source>
         <translation>Leeren</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="205"/>
+        <location filename="../../collectionrebuilder.ui" line="202"/>
         <source>Close this window</source>
         <translation>Dieses Fenster schließen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="208"/>
+        <location filename="../../collectionrebuilder.ui" line="205"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="225"/>
+        <location filename="../../collectionrebuilder.ui" line="222"/>
         <source>Remove the current XML source from the list</source>
         <translation>Aktuelle XML Quelle aus der Liste entfernen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="242"/>
+        <location filename="../../collectionrebuilder.ui" line="239"/>
         <source>Start / stop rebuilding</source>
         <translation>Neu-Erzeugung starten / beenden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="245"/>
+        <location filename="../../collectionrebuilder.ui" line="242"/>
         <location filename="../../collectionrebuilder.cpp" line="296"/>
         <source>Start rebuilding</source>
         <translation>Neu-Erzeugung starten</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="262"/>
+        <location filename="../../collectionrebuilder.ui" line="259"/>
         <source>Pause / resume rebuilding</source>
         <translation>Neu-Erzeugung pausieren / fortsetzen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="265"/>
+        <location filename="../../collectionrebuilder.ui" line="262"/>
         <location filename="../../collectionrebuilder.cpp" line="281"/>
         <location filename="../../collectionrebuilder.cpp" line="316"/>
         <source>Pause</source>
         <translation>Pausieren</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="290"/>
+        <location filename="../../collectionrebuilder.ui" line="287"/>
         <source>Rebuild statistics</source>
         <translation>Statistik der Neu-Erzeugung</translation>
     </message>

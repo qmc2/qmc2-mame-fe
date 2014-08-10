@@ -16,9 +16,6 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QPlainTextEdit" name="plainTextEditLog">
-     <property name="toolTip">
-      <string>Check-sum scanner log</string>
-     </property>
      <property name="verticalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOn</enum>
      </property>
