@@ -149,7 +149,7 @@ void CheckSumDatabaseManager::setScanTime(uint scan_time)
 		emit log(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("scan_time").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
-int CheckSumDatabaseManager::checkSumRowCount()
+qint64 CheckSumDatabaseManager::checkSumRowCount()
 {
 	QSqlQuery query(m_db);
 	if ( query.exec(QString("SELECT COUNT(*) FROM %1").arg(m_tableBasename)) ) {

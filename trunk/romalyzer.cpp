@@ -196,6 +196,10 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 	connect(checkSumScannerThread(), SIGNAL(scanFinished()), this, SLOT(checkSumScannerThread_scanFinished()));
 	connect(checkSumScannerThread(), SIGNAL(scanPaused()), this, SLOT(checkSumScannerThread_scanPaused()));
 	connect(checkSumScannerThread(), SIGNAL(scanResumed()), this, SLOT(checkSumScannerThread_scanResumed()));
+	connect(checkSumScannerThread(), SIGNAL(scanResumed()), this, SLOT(checkSumScannerThread_scanResumed()));
+	connect(checkSumScannerThread(), SIGNAL(progressTextChanged(const QString &)), checkSumScannerLog(), SLOT(progressTextChanged(const QString &)));
+	connect(checkSumScannerThread(), SIGNAL(progressRangeChanged(int, int)), checkSumScannerLog(), SLOT(progressRangeChanged(int, int)));
+	connect(checkSumScannerThread(), SIGNAL(progressChanged(int)), checkSumScannerLog(), SLOT(progressChanged(int)));
 	connect(&checkSumDbStatusTimer, SIGNAL(timeout()), this, SLOT(updateCheckSumDbStatus()));
 	updateCheckSumDbStatus();
 	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG);
@@ -4098,139 +4102,152 @@ void CheckSumScannerThread::run()
 		mutex.unlock();
 		if ( !exitThread && !stopScan ) {
 			emit scanStarted();
-			checkSumDb()->recreateDatabase();
+			checkSumDb()->recreateDatabase(); // FIXME: add 'incremental scans'
 			QTime scanTimer, elapsedTime(0, 0, 0, 0);
 			scanTimer.start();
+			QStringList fileList;
+			emit progressTextChanged(tr("Scanning"));
+			emit progressRangeChanged(0, 0);
+			emit progressChanged(-1);
 			foreach (QString path, scannedPaths) {
-				emit log(tr("scan started for path '%1'").arg(path));
-				QStringList fileList;
-				recursiveFileList(path, &fileList);
+				emit log(tr("searching available files for path '%1'").arg(path));
+				QStringList pathFileList;
+				recursiveFileList(path, &pathFileList);
+				fileList.append(pathFileList);
+				emit log(tr("found %n file(s) for path '%1'", "", pathFileList.count()).arg(path));
 				QTest::qWait(0);
-				if ( exitThread || stopScan ) {
-					emit log(tr("scanner interrupted"));
+				if ( exitThread || stopScan )
 					break;
+			}
+			emit progressRangeChanged(0, fileList.count());
+			emit progressChanged(0);
+			emit log(tr("starting database transaction"));
+			checkSumDb()->beginTransaction();
+			int counter = 0;
+			foreach (QString filePath, fileList) {
+				QTest::qWait(0);
+				if ( exitThread || stopScan )
+					break;
+				emit log(tr("scan started for file '%1'").arg(filePath));
+				emit progressChanged(counter++);
+				QStringList memberList, sha1List, crcList;
+				QString sha1, crc;
+				QList<quint64> sizeList;
+				quint64 size;
+				int type = fileType(filePath);
+				bool doDbUpdate = true;
+				switch ( type ) {
+					case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
+						if ( !scanZip(filePath, &memberList, &sizeList, &sha1List, &crcList) ) {
+							emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+							doDbUpdate = false;
+						}
+						break;
+					case QMC2_CHECKSUM_SCANNER_FILE_7Z:
+						if ( !scanSevenZip(filePath, &memberList, &sizeList, &sha1List, &crcList) ) {
+							emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+							doDbUpdate = false;
+						}
+						break;
+					case QMC2_CHECKSUM_SCANNER_FILE_CHD:
+						if ( !scanChd(filePath, &size, &sha1) ) {
+							emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+							doDbUpdate = false;
+						}
+						break;
+					case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
+						if ( !scanRegularFile(filePath, &size, &sha1, &crc) ) {
+							emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+							doDbUpdate = false;
+						}
+						break;
+					default:
+					case QMC2_CHECKSUM_SCANNER_FILE_NO_ACCESS:
+						emit log(tr("WARNING: can't access file '%1', please check permissions").arg(filePath));
+						doDbUpdate = false;
+						break;
 				}
-				emit log(tr("found %n file(s) for path '%1'", "", fileList.count()).arg(path));
-				emit log(tr("starting database transaction"));
-				checkSumDb()->beginTransaction();
-				foreach (QString filePath, fileList) {
-					emit log(tr("scan started for file '%1'").arg(filePath));
-					QStringList memberList, sha1List, crcList;
-					QString sha1, crc;
-					QList<quint64> sizeList;
-					quint64 size;
-					int type = fileType(filePath);
-					bool doDbUpdate = true;
+				QTest::qWait(0);
+				if ( exitThread || stopScan )
+					break;
+				if ( doDbUpdate ) {
 					switch ( type ) {
 						case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
-							if ( !scanZip(filePath, &memberList, &sizeList, &sha1List, &crcList) ) {
-								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
-								doDbUpdate = false;
-							}
-							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_7Z:
-							if ( !scanSevenZip(filePath, &memberList, &sizeList, &sha1List, &crcList) ) {
-								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
-								doDbUpdate = false;
+							for (int i = 0; i < memberList.count(); i++) {
+								if ( !checkSumDb()->exists(sha1List[i], crcList[i]) ) {
+									emit log(tr("database update") + ": " + tr("adding member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' to database").arg(memberList[i]).arg(filePath).arg(sha1List[i]).arg(crcList[i]));
+									checkSumDb()->setData(sha1List[i], crcList[i], sizeList[i], filePath, memberList[i], checkSumDb()->typeToName(type));
+									m_pendingUpdates++;
+								} else
+									emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1List[i]).arg(crcList[i]) + ", " + tr("member '%1' from archive '%2' ignored").arg(memberList[i]).arg(filePath));
 							}
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_CHD:
-							if ( !scanChd(filePath, &size, &sha1) ) {
-								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
-								doDbUpdate = false;
-							}
+							if ( !checkSumDb()->exists(sha1, crc) ) {
+								emit log(tr("database update") + ": " + tr("adding CHD '%1' with SHA-1 '%2' to database").arg(filePath).arg(sha1));
+								checkSumDb()->setData(sha1, QString(), size, filePath, QString(), checkSumDb()->typeToName(type));
+								m_pendingUpdates++;
+							} else
+								emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("CHD '%1' ignored").arg(filePath));
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
-							if ( !scanRegularFile(filePath, &size, &sha1, &crc) ) {
-								emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
-								doDbUpdate = false;
-							}
+							if ( !checkSumDb()->exists(sha1, crc) ) {
+								emit log(tr("database update") + ": " + tr("adding file '%1' with SHA-1 '%2' and CRC '%3' to database").arg(filePath).arg(sha1).arg(crc));
+								checkSumDb()->setData(sha1, crc, size, filePath, QString(), checkSumDb()->typeToName(type));
+								m_pendingUpdates++;
+							} else
+								emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("file '%1' ignored").arg(filePath));
 							break;
 						default:
-						case QMC2_CHECKSUM_SCANNER_FILE_NO_ACCESS:
-							emit log(tr("WARNING: can't access file '%1', please check permissions").arg(filePath));
-							doDbUpdate = false;
 							break;
 					}
-					if ( exitThread || stopScan )
-						break;
-					if ( doDbUpdate ) {
-						switch ( type ) {
-							case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
-							case QMC2_CHECKSUM_SCANNER_FILE_7Z:
-								for (int i = 0; i < memberList.count(); i++) {
-									if ( !checkSumDb()->exists(sha1List[i], crcList[i]) ) {
-										emit log(tr("database update") + ": " + tr("adding member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' to database").arg(memberList[i]).arg(filePath).arg(sha1List[i]).arg(crcList[i]));
-										checkSumDb()->setData(sha1List[i], crcList[i], sizeList[i], filePath, memberList[i], checkSumDb()->typeToName(type));
-										m_pendingUpdates++;
-									} else
-										emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1List[i]).arg(crcList[i]) + ", " + tr("member '%1' from archive '%2' ignored").arg(memberList[i]).arg(filePath));
-								}
-								break;
-							case QMC2_CHECKSUM_SCANNER_FILE_CHD:
-								if ( !checkSumDb()->exists(sha1, crc) ) {
-									emit log(tr("database update") + ": " + tr("adding CHD '%1' with SHA-1 '%2' to database").arg(filePath).arg(sha1));
-									checkSumDb()->setData(sha1, QString(), size, filePath, QString(), checkSumDb()->typeToName(type));
-									m_pendingUpdates++;
-								} else
-									emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("CHD '%1' ignored").arg(filePath));
-								break;
-							case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
-								if ( !checkSumDb()->exists(sha1, crc) ) {
-									emit log(tr("database update") + ": " + tr("adding file '%1' with SHA-1 '%2' and CRC '%3' to database").arg(filePath).arg(sha1).arg(crc));
-									checkSumDb()->setData(sha1, crc, size, filePath, QString(), checkSumDb()->typeToName(type));
-									m_pendingUpdates++;
-								} else
-									emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("file '%1' ignored").arg(filePath));
-								break;
-							default:
-								break;
-						}
-					}
-					if ( m_pendingUpdates >= QMC2_CHECKSUM_DB_MAX_TRANSACTIONS ) {
-						emit log(tr("committing database transaction"));
-						checkSumDb()->setScanTime(QDateTime::currentDateTime().toTime_t());
-						checkSumDb()->commitTransaction();
-						m_pendingUpdates = 0;
-						emit log(tr("starting database transaction"));
-						checkSumDb()->beginTransaction();
-					}
-					bool pauseMessageLogged = false;
-					while ( (pauseRequested || isPaused) && !exitThread && !stopScan ) {
-						if ( !pauseMessageLogged ) {
-							pauseMessageLogged = true;
-							isPaused = true;
-							pauseRequested = false;
-							emit scanPaused();
-							emit log(tr("scanner paused"));
-						}
-						QTest::qWait(100);
-					}
-					if ( pauseMessageLogged && !exitThread && !stopScan ) {
-						isPaused = false;
-						emit scanResumed();
-						emit log(tr("scanner resumed"));
-					}
-					if ( exitThread || stopScan )
-						break;
-					else
-						emit log(tr("scan finished for file '%1'").arg(filePath));
-					QTest::qWait(0);
 				}
-				emit log(tr("committing database transaction"));
-				checkSumDb()->setScanTime(QDateTime::currentDateTime().toTime_t());
-				checkSumDb()->commitTransaction();
-				m_pendingUpdates = 0;
+				if ( m_pendingUpdates >= QMC2_CHECKSUM_DB_MAX_TRANSACTIONS ) {
+					emit log(tr("committing database transaction"));
+					checkSumDb()->setScanTime(QDateTime::currentDateTime().toTime_t());
+					checkSumDb()->commitTransaction();
+					m_pendingUpdates = 0;
+					emit log(tr("starting database transaction"));
+					checkSumDb()->beginTransaction();
+				}
+				bool pauseMessageLogged = false;
+				while ( (pauseRequested || isPaused) && !exitThread && !stopScan ) {
+					if ( !pauseMessageLogged ) {
+						pauseMessageLogged = true;
+						isPaused = true;
+						pauseRequested = false;
+						emit scanPaused();
+						emit log(tr("scanner paused"));
+						emit progressTextChanged(tr("Paused"));
+					}
+					QTest::qWait(100);
+				}
+				if ( pauseMessageLogged && !exitThread && !stopScan ) {
+					isPaused = false;
+					emit scanResumed();
+					emit log(tr("scanner resumed"));
+					emit progressTextChanged(tr("Scanning"));
+				}
 				QTest::qWait(0);
-				if ( exitThread || stopScan ) {
-					emit log(tr("scanner interrupted"));
+				if ( exitThread || stopScan )
 					break;
-				} else
-					emit log(tr("scan finished for path '%1'").arg(path));
+				else
+					emit log(tr("scan finished for file '%1'").arg(filePath));
+
 			}
-			emit scanFinished();
+			if ( exitThread || stopScan )
+				emit log(tr("scanner interrupted"));
+			emit log(tr("committing database transaction"));
+			checkSumDb()->setScanTime(QDateTime::currentDateTime().toTime_t());
+			checkSumDb()->commitTransaction();
+			m_pendingUpdates = 0;
+			emit progressTextChanged(tr("Idle"));
+			emit progressRangeChanged(0, 100);
+			emit progressChanged(0);
 			elapsedTime = elapsedTime.addMSecs(scanTimer.elapsed());
-			emit log(tr("scan finished, total scanning time = %1").arg(elapsedTime.toString("hh:mm:ss.zzz")));
+			emit log(tr("scan finished - total scanning time = %1, objects in database = %2, database size = %3").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(checkSumDb()->checkSumRowCount()).arg(ROMAlyzer::humanReadable(checkSumDb()->databaseSize())));
+			emit scanFinished();
 		}
 	}
 	emit log(tr("scanner thread ended"));

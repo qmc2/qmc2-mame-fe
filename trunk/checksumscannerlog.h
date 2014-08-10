@@ -17,6 +17,9 @@ class CheckSumScannerLog : public QWidget, public Ui::CheckSumScannerLog
 		void log(const QString &);
 		void clear() { plainTextEditLog->clear(); }
 		void scrollToEnd();
+		void progressTextChanged(const QString &);
+		void progressRangeChanged(int, int);
+		void progressChanged(int);
 
 	signals:
 		void windowOpened();

@@ -200,6 +200,9 @@ class CheckSumScannerThread : public QThread
 		void scanFinished();
 		void scanPaused();
 		void scanResumed();
+		void progressTextChanged(const QString &);
+		void progressRangeChanged(int, int);
+		void progressChanged(int);
 
 	protected:
 		void run();

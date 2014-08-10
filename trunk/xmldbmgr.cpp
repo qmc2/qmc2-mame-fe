@@ -240,7 +240,7 @@ void XmlDatabaseManager::setXml(QString id, QString xml)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("xml").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
-int XmlDatabaseManager::xmlRowCount()
+qint64 XmlDatabaseManager::xmlRowCount()
 {
 	QSqlQuery query(m_db);
 	if ( query.exec(QString("SELECT COUNT(*) FROM %1").arg(m_tableBasename)) ) {

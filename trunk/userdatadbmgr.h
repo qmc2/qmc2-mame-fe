@@ -35,8 +35,8 @@ class UserDataDatabaseManager : public QObject
 		bool logActive() { return m_logActive; }
 		void setLogActive(bool enable) { m_logActive = enable; }
 
-		int userDataRowCount();
-		int nextRowId(bool refreshRowIds = false);
+		qint64 userDataRowCount();
+		qint64 nextRowId(bool refreshRowIds = false);
 
 		bool rankCacheComplete() { return userDataRowCount() == m_rankCache.count(); }
 		void fillUpRankCache();

@@ -146,10 +146,10 @@ void SampleChecker::verify()
 	int sampleCount = 0;
 	QMap<QString, int> sampleCountMap;
 	progressBar->setFormat(tr("Parsing XML data"));
-	int xmlRowCount = qmc2Gamelist->xmlDb()->xmlRowCount();
+	qint64 xmlRowCount = qmc2Gamelist->xmlDb()->xmlRowCount();
 	progressBar->setRange(0, xmlRowCount);
 	progressBar->setValue(0);
-	for (int rowCounter = 1; rowCounter < xmlRowCount; rowCounter++) {
+	for (qint64 rowCounter = 1; rowCounter < xmlRowCount; rowCounter++) {
 		QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(rowCounter).split("\n", QString::SkipEmptyParts);
 		int xmlLinesCount = xmlLines.count();
 		progressBar->setValue(rowCounter);

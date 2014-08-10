@@ -30,7 +30,7 @@ class XmlDatabaseManager : public QObject
 		bool logActive() { return m_logActive; }
 		void setLogActive(bool enable) { m_logActive = enable; }
 
-		int xmlRowCount();
+		qint64 xmlRowCount();
 
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
