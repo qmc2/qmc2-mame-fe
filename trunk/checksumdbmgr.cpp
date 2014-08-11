@@ -393,6 +393,7 @@ void CheckSumDatabaseManager::recreateDatabase()
 		return;
 	}
 	setScanTime(QDateTime::currentDateTime().toTime_t());
+	setQmc2Version(XSTR(QMC2_VERSION));
 	setCheckSumDbVersion(QMC2_CHECKSUM_DB_VERSION);
 	emit log(tr("check-sum database '%1' initialized").arg(databasePath()));
 }
