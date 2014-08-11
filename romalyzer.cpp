@@ -4076,6 +4076,8 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 {
 	emit log(tr("preparing incremental scan"));
 
+	QStringList pathsInDatabase;
+
 	// step 1: remove entries from the database that "point to nowhere" (a.k.a. aren't contained in 'fileList')
 	emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(1).arg(3));
 	emit progressRangeChanged(0, checkSumDb()->checkSumRowCount() - 1);
@@ -4087,12 +4089,16 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 	while ( row > 0 ) {
 		emit progressChanged(count++);
 		QString path = checkSumDb()->pathOfRow(row);
-		if ( !path.isEmpty() && !fileList->contains(path) ) {
-			checkSumDb()->pathRemove(path);
-			pathsRemoved++;
+		if ( !path.isEmpty() ) {
+			if ( !fileList->contains(path) ) {
+				checkSumDb()->pathRemove(path);
+				pathsRemoved++;
+			} else
+				pathsInDatabase << path;
 		}
 		row = checkSumDb()->nextRowId();
 	}
+	pathsInDatabase.removeDuplicates();
 	checkSumDb()->commitTransaction();
 	emit log(tr("%n obsolete path(s) removed from database", "", pathsRemoved));
 
@@ -4110,7 +4116,7 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 		}
 		emit progressChanged(i);
 		QFileInfo fi(fileList->at(i));
-		if ( fi.lastModified().toTime_t() < scanTime && checkSumDb()->pathExists(fileList->at(i)) ) {
+		if ( fi.lastModified().toTime_t() < scanTime && pathsInDatabase.contains(fileList->at(i)) ) {
 			fileList->removeAt(i);
 			filesRemoved++;
 			i--;
@@ -4120,20 +4126,17 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 
 	// step 3: remove entries from the database that "point to new stuff" (a.k.a. are still contained in the modified 'fileList')
 	emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(3).arg(3));
-	emit progressRangeChanged(0, checkSumDb()->checkSumRowCount() - 1);
+	emit progressRangeChanged(0, pathsInDatabase.count());
 	emit progressChanged(0);
 	pathsRemoved = 0;
 	checkSumDb()->beginTransaction();
-	row = checkSumDb()->nextRowId(true);
-	count = 0;
-	while ( row > 0 ) {
-		emit progressChanged(count++);
-		QString path = checkSumDb()->pathOfRow(row);
+	for (int i = 0; i < pathsInDatabase.count(); i++) {
+		emit progressChanged(i);
+		QString path = pathsInDatabase[i];
 		if ( !path.isEmpty() && fileList->contains(path) ) {
 			checkSumDb()->pathRemove(path);
 			pathsRemoved++;
 		}
-		row = checkSumDb()->nextRowId();
 	}
 	checkSumDb()->commitTransaction();
 	emit log(tr("%n outdated path(s) removed from database", "", pathsRemoved));

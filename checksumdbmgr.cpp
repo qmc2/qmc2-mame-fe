@@ -296,22 +296,6 @@ QString CheckSumDatabaseManager::getSha1(QString crc)
 	}
 }
 
-bool CheckSumDatabaseManager::pathExists(QString path)
-{
-	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT path FROM %1 WHERE path=:path").arg(m_tableBasename));
-	query.bindValue(":path", path);
-	if ( query.exec() ) {
-		if ( query.first() )
-			return (query.value(0).toString() == path);
-		else
-			return false;
-	} else {
-		emit log(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("path").arg(query.lastQuery()).arg(m_db.lastError().text()));
-		return false;
-	}
-}
-
 void CheckSumDatabaseManager::pathRemove(QString path)
 {
 	QSqlQuery query(m_db);
