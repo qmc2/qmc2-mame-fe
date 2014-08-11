@@ -30,6 +30,7 @@ CheckSumDatabaseManager::CheckSumDatabaseManager(QObject *parent)
 			recreateDatabase();
 	} else
 		emit log(tr("WARNING: failed to open check-sum database '%1': error = '%2'").arg(m_db.databaseName()).arg(m_db.lastError().text()));
+	m_lastRowId = -1;
 }
 
 CheckSumDatabaseManager::~CheckSumDatabaseManager()
@@ -162,6 +163,34 @@ qint64 CheckSumDatabaseManager::checkSumRowCount()
 	}	return -1;
 }
 
+qint64 CheckSumDatabaseManager::nextRowId(bool refreshRowIds)
+{
+	if ( refreshRowIds ) {
+		m_rowIdList.clear();
+		m_lastRowId = -1;
+		QSqlQuery query(m_db);
+		if ( query.exec(QString("SELECT rowid FROM %1").arg(m_tableBasename)) ) {
+			if ( query.first() ) {
+				do {
+					m_rowIdList << query.value(0).toInt();
+				} while ( query.next() );
+				m_lastRowId = 0;
+				return m_rowIdList[0];
+			}
+		} else {
+			emit log(tr("WARNING: failed to fetch row IDs from check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+			return -1;
+		}
+	} else if ( m_lastRowId > -1 ) {
+		m_lastRowId++;
+		if ( m_lastRowId < m_rowIdList.count() )
+			return m_rowIdList[m_lastRowId];
+		else
+			return -1;
+	} else
+		return -1;
+}
+
 quint64 CheckSumDatabaseManager::databaseSize()
 {
 	QSqlQuery query(m_db);
@@ -267,6 +296,47 @@ QString CheckSumDatabaseManager::getSha1(QString crc)
 	}
 }
 
+bool CheckSumDatabaseManager::pathExists(QString path)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT path FROM %1 WHERE path=:path").arg(m_tableBasename));
+	query.bindValue(":path", path);
+	if ( query.exec() ) {
+		if ( query.first() )
+			return (query.value(0).toString() == path);
+		else
+			return false;
+	} else {
+		emit log(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("path").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return false;
+	}
+}
+
+void CheckSumDatabaseManager::pathRemove(QString path)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("DELETE FROM %1 WHERE path=:path").arg(m_tableBasename));
+	query.bindValue(":path", path);
+	if ( !query.exec() )
+		emit log(tr("WARNING: failed to remove path '%1' from check-sum database: query = '%2', error = '%3'").arg(path).arg(query.lastQuery()).arg(m_db.lastError().text()));
+}
+
+QString CheckSumDatabaseManager::pathOfRow(int row)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT path FROM %1 WHERE rowid=:row").arg(m_tableBasename));
+	query.bindValue(":row", row);
+	if ( query.exec() ) {
+		if ( query.first() )
+			return query.value(0).toString();
+		else
+			return QString();
+	} else {
+		emit log(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("path").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return QString();
+	}
+}
+
 int CheckSumDatabaseManager::nameToType(QString name)
 {
 	return m_fileTypes.indexOf(name);
@@ -278,6 +348,13 @@ QString CheckSumDatabaseManager::typeToName(int type)
 		return m_fileTypes[type];
 	else
 		return QString("UNKNOWN");
+}
+
+void CheckSumDatabaseManager::vacuum()
+{
+	QSqlQuery query(m_db);
+	query.exec("VACUUM");
+	query.finish();
 }
 
 void CheckSumDatabaseManager::recreateDatabase()

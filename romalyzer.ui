@@ -101,7 +101,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tabReport">
       <attribute name="title">
@@ -1406,7 +1406,7 @@
                      </sizepolicy>
                     </property>
                     <property name="toolTip">
-                     <string>If enabled, only files that were changed since the last scan will be scanned again, updating the database - otherwise the database will be initialized on each scan</string>
+                     <string>If enabled, only files that were changed since / ignored in the last scan will be scanned again, updating the database - otherwise the database will be reinitialized</string>
                     </property>
                     <property name="text">
                      <string>Scan incrementally</string>

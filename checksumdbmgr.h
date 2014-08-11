@@ -23,6 +23,7 @@ class CheckSumDatabaseManager : public QObject
 		void setScanTime(uint scan_time);
 
 		qint64 checkSumRowCount();
+		qint64 nextRowId(bool refreshRowIds = false);
 
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
@@ -34,6 +35,10 @@ class CheckSumDatabaseManager : public QObject
 		QString getCrc(QString sha1);
 		QString getSha1(QString crc);
 
+		bool pathExists(QString path);
+		void pathRemove(QString path);
+		QString pathOfRow(int row);
+
 		int nameToType(QString name);
 		QString typeToName(int type);
 
@@ -42,6 +47,7 @@ class CheckSumDatabaseManager : public QObject
 
 	public slots:
 		void recreateDatabase();
+		void vacuum();
 		void beginTransaction() { m_db.driver()->beginTransaction(); }
 		void commitTransaction() { m_db.driver()->commitTransaction(); }
 
@@ -50,6 +56,8 @@ class CheckSumDatabaseManager : public QObject
 		QString m_tableBasename;
 		QString m_connectionName;
 		QStringList m_fileTypes;
+		QList<qint64> m_rowIdList;
+		qint64 m_lastRowId;
 };
 
 #endif

@@ -88,13 +88,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   
 	setupUi(this);
 
-#if !defined(QMC2_WIP_ENABLED)
-	// FIXME: WIP
-	toolButtonCheckSumDbScanIncrementally->setChecked(false);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScanIncrementally", false);
-	toolButtonCheckSumDbScanIncrementally->hide();
-#endif
-
 	m_checkSumDbQueryStatusPixmap = QPixmap(QString::fromUtf8(":/data/img/database.png"));
 
 #if defined(QMC2_SDLMESS)
@@ -3716,6 +3709,7 @@ void ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()
 		checkSumScannerThread()->scannedPaths.clear();
 		for (int i = 0; i < listWidgetCheckSumDbScannedPaths->count(); i++)
 			checkSumScannerThread()->scannedPaths << listWidgetCheckSumDbScannedPaths->item(i)->text();
+		checkSumScannerThread()->scanIncrementally = toolButtonCheckSumDbScanIncrementally->isChecked();
 		checkSumScannerThread()->waitCondition.wakeAll();
 	}
 	qApp->processEvents();
@@ -4046,7 +4040,7 @@ bool ROMAlyzerXmlHandler::characters(const QString &str)
 CheckSumScannerThread::CheckSumScannerThread(CheckSumScannerLog *scannerLog, QObject *parent)
 	: QThread(parent)
 {
-	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopScan = false;
+	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopScan = scanIncrementally = false;
 	m_checkSumDb = NULL;
 	m_scannerLog = scannerLog;
 	m_pendingUpdates = 0;
@@ -4076,6 +4070,73 @@ QString CheckSumScannerThread::status()
 	if ( isActive )
 		return tr("scanning");
 	return tr("idle");
+}
+
+void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
+{
+	emit log(tr("preparing incremental scan"));
+
+	// step 1: remove entries from the database that "point to nowhere" (a.k.a. aren't contained in 'fileList')
+	emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(1).arg(3));
+	emit progressRangeChanged(0, checkSumDb()->checkSumRowCount() - 1);
+	emit progressChanged(0);
+	int pathsRemoved = 0;
+	qint64 row = checkSumDb()->nextRowId(true);
+	checkSumDb()->beginTransaction();
+	int count = 0;
+	while ( row > 0 ) {
+		emit progressChanged(count++);
+		QString path = checkSumDb()->pathOfRow(row);
+		if ( !path.isEmpty() && !fileList->contains(path) ) {
+			checkSumDb()->pathRemove(path);
+			pathsRemoved++;
+		}
+		row = checkSumDb()->nextRowId();
+	}
+	checkSumDb()->commitTransaction();
+	emit log(tr("%n obsolete path(s) removed from database", "", pathsRemoved));
+
+	// step 2: remove entries from 'fileList' where 'scanTime' is newer than the file's modification time *and* the database has entries for it
+	emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(2).arg(3));
+	int oldFileListCount = fileList->count();
+	emit progressRangeChanged(0, oldFileListCount - 1);
+	emit progressChanged(0);
+	int filesRemoved = 0;
+	uint scanTime = checkSumDb()->scanTime();
+	for (int i = 0; i < fileList->count(); i++) {
+		if ( oldFileListCount != fileList->count() ) {
+			oldFileListCount = fileList->count();
+			emit progressRangeChanged(0, oldFileListCount - 1);
+		}
+		emit progressChanged(i);
+		QFileInfo fi(fileList->at(i));
+		if ( fi.lastModified().toTime_t() < scanTime && checkSumDb()->pathExists(fileList->at(i)) ) {
+			fileList->removeAt(i);
+			filesRemoved++;
+			i--;
+		}
+	}
+	emit log(tr("%n unchanged file(s) removed from scan", "", filesRemoved));
+
+	// step 3: remove entries from the database that "point to new stuff" (a.k.a. are still contained in the modified 'fileList')
+	emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(3).arg(3));
+	emit progressRangeChanged(0, checkSumDb()->checkSumRowCount() - 1);
+	emit progressChanged(0);
+	pathsRemoved = 0;
+	checkSumDb()->beginTransaction();
+	row = checkSumDb()->nextRowId(true);
+	count = 0;
+	while ( row > 0 ) {
+		emit progressChanged(count++);
+		QString path = checkSumDb()->pathOfRow(row);
+		if ( !path.isEmpty() && fileList->contains(path) ) {
+			checkSumDb()->pathRemove(path);
+			pathsRemoved++;
+		}
+		row = checkSumDb()->nextRowId();
+	}
+	checkSumDb()->commitTransaction();
+	emit log(tr("%n outdated path(s) removed from database", "", pathsRemoved));
 }
 
 void CheckSumScannerThread::reopenDatabase()
@@ -4112,7 +4173,6 @@ void CheckSumScannerThread::run()
 		mutex.unlock();
 		if ( !exitThread && !stopScan ) {
 			emit scanStarted();
-			checkSumDb()->recreateDatabase(); // FIXME: add 'incremental scans'
 			QTime scanTimer, elapsedTime(0, 0, 0, 0);
 			scanTimer.start();
 			QStringList fileList;
@@ -4129,6 +4189,11 @@ void CheckSumScannerThread::run()
 				if ( exitThread || stopScan )
 					break;
 			}
+			if ( scanIncrementally )
+				prepareIncrementalScan(&fileList);
+			else
+				checkSumDb()->recreateDatabase();
+			emit progressTextChanged(tr("Scanning"));
 			emit progressRangeChanged(0, fileList.count());
 			emit progressChanged(0);
 			emit log(tr("starting database transaction"));

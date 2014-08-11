@@ -1326,55 +1326,67 @@ p, li { white-space: pre-wrap; }
         <translation>WARNUNG: Prüfsummen Datenbank &apos;%1&apos; konnte nicht geöffnet werden: Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="51"/>
-        <location filename="../../checksumdbmgr.cpp" line="75"/>
-        <location filename="../../checksumdbmgr.cpp" line="88"/>
-        <location filename="../../checksumdbmgr.cpp" line="112"/>
-        <location filename="../../checksumdbmgr.cpp" line="125"/>
-        <location filename="../../checksumdbmgr.cpp" line="149"/>
-        <location filename="../../checksumdbmgr.cpp" line="198"/>
-        <location filename="../../checksumdbmgr.cpp" line="233"/>
-        <location filename="../../checksumdbmgr.cpp" line="249"/>
-        <location filename="../../checksumdbmgr.cpp" line="265"/>
+        <location filename="../../checksumdbmgr.cpp" line="52"/>
+        <location filename="../../checksumdbmgr.cpp" line="76"/>
+        <location filename="../../checksumdbmgr.cpp" line="89"/>
+        <location filename="../../checksumdbmgr.cpp" line="113"/>
+        <location filename="../../checksumdbmgr.cpp" line="126"/>
+        <location filename="../../checksumdbmgr.cpp" line="150"/>
+        <location filename="../../checksumdbmgr.cpp" line="227"/>
+        <location filename="../../checksumdbmgr.cpp" line="262"/>
+        <location filename="../../checksumdbmgr.cpp" line="278"/>
+        <location filename="../../checksumdbmgr.cpp" line="294"/>
+        <location filename="../../checksumdbmgr.cpp" line="310"/>
+        <location filename="../../checksumdbmgr.cpp" line="335"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from check-sum database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht von der Prüfsummen Datenbank gelesen werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="65"/>
-        <location filename="../../checksumdbmgr.cpp" line="102"/>
-        <location filename="../../checksumdbmgr.cpp" line="139"/>
-        <location filename="../../checksumdbmgr.cpp" line="214"/>
+        <location filename="../../checksumdbmgr.cpp" line="66"/>
+        <location filename="../../checksumdbmgr.cpp" line="103"/>
+        <location filename="../../checksumdbmgr.cpp" line="140"/>
+        <location filename="../../checksumdbmgr.cpp" line="243"/>
         <source>WARNING: failed to add &apos;%1&apos; to check-sum database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht zur Prüfsummen Datenbank hinzugefügt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="71"/>
-        <location filename="../../checksumdbmgr.cpp" line="108"/>
-        <location filename="../../checksumdbmgr.cpp" line="145"/>
+        <location filename="../../checksumdbmgr.cpp" line="72"/>
+        <location filename="../../checksumdbmgr.cpp" line="109"/>
+        <location filename="../../checksumdbmgr.cpp" line="146"/>
         <source>WARNING: failed to update &apos;%1&apos; in check-sum database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht in der Prüfsummen Datenbank geändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="161"/>
+        <location filename="../../checksumdbmgr.cpp" line="162"/>
         <source>WARNING: failed to fetch row count from check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Anzahl der Tabellenzeilen konnte nicht aus der Prüfsummen Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="287"/>
-        <location filename="../../checksumdbmgr.cpp" line="292"/>
-        <location filename="../../checksumdbmgr.cpp" line="297"/>
+        <location filename="../../checksumdbmgr.cpp" line="181"/>
+        <source>WARNING: failed to fetch row IDs from check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
+        <translation>WARNUNG: Tabellenzeilen IDs konnten nicht aus der Prüfsummen Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
+    </message>
+    <message>
+        <location filename="../../checksumdbmgr.cpp" line="321"/>
+        <source>WARNING: failed to remove path &apos;%1&apos; from check-sum database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
+        <translation>WARNUNG: Pfad &apos;%1&apos; konnte nicht aus der Prüfsummen Datenbank entfernt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
+    </message>
+    <message>
+        <location filename="../../checksumdbmgr.cpp" line="364"/>
+        <location filename="../../checksumdbmgr.cpp" line="369"/>
+        <location filename="../../checksumdbmgr.cpp" line="374"/>
         <source>WARNING: failed to remove check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Prüfsummen Datenbank konnte nicht entfernt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="305"/>
-        <location filename="../../checksumdbmgr.cpp" line="310"/>
-        <location filename="../../checksumdbmgr.cpp" line="315"/>
+        <location filename="../../checksumdbmgr.cpp" line="382"/>
+        <location filename="../../checksumdbmgr.cpp" line="387"/>
+        <location filename="../../checksumdbmgr.cpp" line="392"/>
         <source>WARNING: failed to create check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Prüfsummen Datenbank konnte nicht erstellt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="319"/>
+        <location filename="../../checksumdbmgr.cpp" line="396"/>
         <source>check-sum database &apos;%1&apos; initialized</source>
         <translation>Prüfsummen Datenbank &apos;%1&apos; initialisiert</translation>
     </message>
@@ -1460,27 +1472,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CheckSumScannerThread</name>
     <message>
-        <location filename="../../romalyzer.cpp" line="4071"/>
+        <location filename="../../romalyzer.cpp" line="4072"/>
         <source>exiting</source>
         <translation>wird beendet</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4073"/>
+        <location filename="../../romalyzer.cpp" line="4074"/>
         <source>stopping</source>
         <translation>wird angehalten</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4075"/>
+        <location filename="../../romalyzer.cpp" line="4076"/>
         <source>paused</source>
         <translation>pausiert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4077"/>
+        <location filename="../../romalyzer.cpp" line="4078"/>
         <source>scanning</source>
         <translation>scannt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4078"/>
+        <location filename="../../romalyzer.cpp" line="4079"/>
         <source>idle</source>
         <translation>wartet</translation>
     </message>
@@ -1489,12 +1501,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">unbekannt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4103"/>
+        <location filename="../../romalyzer.cpp" line="4171"/>
         <source>scanner thread started</source>
         <translation>Scanner Thread gestartet</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4105"/>
+        <location filename="../../romalyzer.cpp" line="4173"/>
         <source>waiting for work</source>
         <translation>Warte auf Arbeit</translation>
     </message>
@@ -1503,7 +1515,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Scannen des Pfades &apos;%1&apos; gestartet</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="4127"/>
+        <location filename="../../romalyzer.cpp" line="4194"/>
         <source>found %n file(s) for path &apos;%1&apos;</source>
         <translation>
             <numerusform>%n Datei in Pfad &apos;%1&apos; gefunden</numerusform>
@@ -1519,7 +1531,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Starte Transaktion</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4141"/>
+        <location filename="../../romalyzer.cpp" line="4213"/>
         <source>scan started for file &apos;%1&apos;</source>
         <translation>Scannen der Datei &apos;%1&apos; gestartet</translation>
     </message>
@@ -1528,18 +1540,18 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Schließe Transaktion ab</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4246"/>
+        <location filename="../../romalyzer.cpp" line="4318"/>
         <source>scan finished for file &apos;%1&apos;</source>
         <translation>Scannen der Datei &apos;%1&apos; beendet</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4250"/>
+        <location filename="../../romalyzer.cpp" line="4322"/>
         <source>scanner interrupted</source>
         <translation>Scannen unterbrochen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4134"/>
-        <location filename="../../romalyzer.cpp" line="4221"/>
+        <location filename="../../romalyzer.cpp" line="4206"/>
+        <location filename="../../romalyzer.cpp" line="4293"/>
         <source>starting database transaction</source>
         <translation>Starte Datenbank-Transaktion</translation>
     </message>
@@ -1552,104 +1564,162 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">WARNUNG: kann auf &apos;%1&apos; nicht zugreifen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4119"/>
-        <location filename="../../romalyzer.cpp" line="4240"/>
+        <location filename="../../romalyzer.cpp" line="4084"/>
+        <source>preparing incremental scan</source>
+        <translation>Bereite inkrementelles Scannen vor</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="4087"/>
+        <location filename="../../romalyzer.cpp" line="4107"/>
+        <location filename="../../romalyzer.cpp" line="4129"/>
+        <source>Preparing</source>
+        <translation>Vorbereitung</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="4087"/>
+        <location filename="../../romalyzer.cpp" line="4107"/>
+        <location filename="../../romalyzer.cpp" line="4129"/>
+        <source>Step %1 of %2</source>
+        <translation>Schritt %1 von %2</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n obsolete entry/ies removed from database</source>
+        <translation type="obsolete">
+            <numerusform>%n obsoleter Eintrag aus Datenbank entfernt</numerusform>
+            <numerusform>%n obsolete Einträge aus Datenbank entfernt</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../romalyzer.cpp" line="4126"/>
+        <source>%n unchanged file(s) removed from scan</source>
+        <translation>
+            <numerusform>%n unveränderte Datei vom Scan ausgenommen</numerusform>
+            <numerusform>%n unveränderte Dateien vom Scan ausgenommen</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n outdated entry/ies removed from database</source>
+        <translation type="obsolete">
+            <numerusform>%n veralteter Eintrag aus Datenbank entfernt</numerusform>
+            <numerusform>%n veraltete Einträge aus Datenbank entfernt</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../romalyzer.cpp" line="4104"/>
+        <source>%n obsolete path(s) removed from database</source>
+        <translation>
+            <numerusform>%n obsoleter Pfad aus Datenbank entfernt</numerusform>
+            <numerusform>%n obsolete Pfade aus Datenbank entfernt</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../romalyzer.cpp" line="4146"/>
+        <source>%n outdated path(s) removed from database</source>
+        <translation>
+            <numerusform>%n veralteter Pfad aus Datenbank entfernt</numerusform>
+            <numerusform>%n veraltete Pfade aus Datenbank entfernt</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="4186"/>
+        <location filename="../../romalyzer.cpp" line="4203"/>
+        <location filename="../../romalyzer.cpp" line="4312"/>
         <source>Scanning</source>
         <translation>Scannt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4123"/>
+        <location filename="../../romalyzer.cpp" line="4190"/>
         <source>searching available files for path &apos;%1&apos;</source>
         <translation>Suche vorhandene Dateien in Pfad &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4152"/>
-        <location filename="../../romalyzer.cpp" line="4158"/>
-        <location filename="../../romalyzer.cpp" line="4164"/>
-        <location filename="../../romalyzer.cpp" line="4170"/>
+        <location filename="../../romalyzer.cpp" line="4224"/>
+        <location filename="../../romalyzer.cpp" line="4230"/>
+        <location filename="../../romalyzer.cpp" line="4236"/>
+        <location filename="../../romalyzer.cpp" line="4242"/>
         <source>WARNING: scan failed for file &apos;%1&apos;</source>
         <translation>WARNUNG: Scannen der Datei &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4176"/>
+        <location filename="../../romalyzer.cpp" line="4248"/>
         <source>WARNING: can&apos;t access file &apos;%1&apos;, please check permissions</source>
         <translation>WARNUNG: kann auf die Datei &apos;%1&apos; nicht zugreifen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4189"/>
-        <location filename="../../romalyzer.cpp" line="4193"/>
-        <location filename="../../romalyzer.cpp" line="4198"/>
-        <location filename="../../romalyzer.cpp" line="4202"/>
-        <location filename="../../romalyzer.cpp" line="4206"/>
-        <location filename="../../romalyzer.cpp" line="4210"/>
+        <location filename="../../romalyzer.cpp" line="4261"/>
+        <location filename="../../romalyzer.cpp" line="4265"/>
+        <location filename="../../romalyzer.cpp" line="4270"/>
+        <location filename="../../romalyzer.cpp" line="4274"/>
+        <location filename="../../romalyzer.cpp" line="4278"/>
+        <location filename="../../romalyzer.cpp" line="4282"/>
         <source>database update</source>
         <translation>Datenbank Update</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4189"/>
+        <location filename="../../romalyzer.cpp" line="4261"/>
         <source>adding member &apos;%1&apos; from archive &apos;%2&apos; with SHA-1 &apos;%3&apos; and CRC &apos;%4&apos; to database</source>
         <translation>Füge Datei &apos;%1&apos; aus Archiv &apos;%2&apos; mit SHA-1 &apos;%3&apos; und CRC &apos;%4&apos; der Datenbank hinzu</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4193"/>
-        <location filename="../../romalyzer.cpp" line="4202"/>
-        <location filename="../../romalyzer.cpp" line="4210"/>
+        <location filename="../../romalyzer.cpp" line="4265"/>
+        <location filename="../../romalyzer.cpp" line="4274"/>
+        <location filename="../../romalyzer.cpp" line="4282"/>
         <source>an object with SHA-1 &apos;%1&apos; and CRC &apos;%2&apos; already exists in the database</source>
         <translation>Ein Objekt mit SHA-1 &apos;%1&apos; und CRC &apos;%2&apos; existiert bereits in der Datenbank</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4193"/>
+        <location filename="../../romalyzer.cpp" line="4265"/>
         <source>member &apos;%1&apos; from archive &apos;%2&apos; ignored</source>
         <translation>Datei &apos;%1&apos; aus Archiv &apos;%2&apos; ignoriert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4198"/>
+        <location filename="../../romalyzer.cpp" line="4270"/>
         <source>adding CHD &apos;%1&apos; with SHA-1 &apos;%2&apos; to database</source>
         <translation>Füge CHD &apos;%1&apos; mit SHA-1 &apos;%2&apos; der Datenbank hinzu</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4202"/>
+        <location filename="../../romalyzer.cpp" line="4274"/>
         <source>CHD &apos;%1&apos; ignored</source>
         <translation>CHD &apos;%1&apos; ignoriert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4206"/>
+        <location filename="../../romalyzer.cpp" line="4278"/>
         <source>adding file &apos;%1&apos; with SHA-1 &apos;%2&apos; and CRC &apos;%3&apos; to database</source>
         <translation>Füge Datei &apos;%1&apos; mit SHA-1 &apos;%2&apos; und CRC &apos;%3&apos; der Datenbank hinzu</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4210"/>
+        <location filename="../../romalyzer.cpp" line="4282"/>
         <source>file &apos;%1&apos; ignored</source>
         <translation>Datei &apos;%1&apos; ignoriert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4217"/>
-        <location filename="../../romalyzer.cpp" line="4251"/>
+        <location filename="../../romalyzer.cpp" line="4289"/>
+        <location filename="../../romalyzer.cpp" line="4323"/>
         <source>committing database transaction</source>
         <translation>Schließe Datenbank-Transaktion ab</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4231"/>
+        <location filename="../../romalyzer.cpp" line="4303"/>
         <source>scanner paused</source>
         <translation>Scannen pausiert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4232"/>
+        <location filename="../../romalyzer.cpp" line="4304"/>
         <source>Paused</source>
         <translation>Pausiert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4239"/>
+        <location filename="../../romalyzer.cpp" line="4311"/>
         <source>scanner resumed</source>
         <translation>Scannen wird fortgesetzt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4255"/>
+        <location filename="../../romalyzer.cpp" line="4327"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4259"/>
+        <location filename="../../romalyzer.cpp" line="4331"/>
         <source>scan finished - total scanning time = %1, objects in database = %2, database size = %3</source>
         <translation>Scannen beendet - verwendete Zeit insgesamt = %1, Objekte in Datenbank = %2, Datenbank Größe = %3</translation>
     </message>
@@ -1662,67 +1732,67 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Scannen beendet, benötigte Zeit = %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4263"/>
+        <location filename="../../romalyzer.cpp" line="4335"/>
         <source>scanner thread ended</source>
         <translation>Scanner Thread beendet</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4340"/>
-        <location filename="../../romalyzer.cpp" line="4342"/>
+        <location filename="../../romalyzer.cpp" line="4412"/>
+        <location filename="../../romalyzer.cpp" line="4414"/>
         <source>ZIP scan</source>
         <translation>ZIP Scan</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4340"/>
-        <location filename="../../romalyzer.cpp" line="4371"/>
+        <location filename="../../romalyzer.cpp" line="4412"/>
+        <location filename="../../romalyzer.cpp" line="4443"/>
         <source>member &apos;%1&apos; from archive &apos;%2&apos; has SHA-1 &apos;%3&apos; and CRC &apos;%4&apos;</source>
         <translation>Datei &apos;%1&apos; aus Archiv &apos;%2&apos; hat SHA-1 &apos;%3&apos; und CRC &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4342"/>
+        <location filename="../../romalyzer.cpp" line="4414"/>
         <source>WARNING: can&apos;t open member &apos;%1&apos; from archive &apos;%2&apos;</source>
         <translation>WARNUNG: kann die Datei &apos;%1&apos; aus dem Archiv &apos;%2&apos; nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4371"/>
-        <location filename="../../romalyzer.cpp" line="4373"/>
+        <location filename="../../romalyzer.cpp" line="4443"/>
+        <location filename="../../romalyzer.cpp" line="4445"/>
         <source>7Z scan</source>
         <translation>7Z Scan</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4373"/>
+        <location filename="../../romalyzer.cpp" line="4445"/>
         <source>WARNING: can&apos;t read member &apos;%1&apos; from archive &apos;%2&apos;</source>
         <translation>WARNUNG: kann die Datei &apos;%1&apos; aus dem Archiv &apos;%2&apos; nicht lesen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4408"/>
-        <location filename="../../romalyzer.cpp" line="4415"/>
-        <location filename="../../romalyzer.cpp" line="4423"/>
+        <location filename="../../romalyzer.cpp" line="4480"/>
+        <location filename="../../romalyzer.cpp" line="4487"/>
+        <location filename="../../romalyzer.cpp" line="4495"/>
         <source>CHD scan</source>
         <translation>CHD Scan</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4408"/>
+        <location filename="../../romalyzer.cpp" line="4480"/>
         <source>WARNING: version &apos;%1&apos; of CHD &apos;%2&apos; unknown</source>
         <translation>WARNUNG: Version &apos;%1&apos; der CHD Datei &apos;%2&apos; unbekannt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4415"/>
+        <location filename="../../romalyzer.cpp" line="4487"/>
         <source>WARNING: can&apos;t read CHD &apos;%1&apos;</source>
         <translation>WARNUNG: kann CHD &apos;%1&apos; nicht lesen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4423"/>
+        <location filename="../../romalyzer.cpp" line="4495"/>
         <source>CHD &apos;%1&apos; has SHA-1 &apos;%2&apos; (CHD v%3)</source>
         <translation>CHD &apos;%1&apos; hat SHA-1 &apos;%2&apos; (CHD v%3)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4455"/>
+        <location filename="../../romalyzer.cpp" line="4527"/>
         <source>file scan</source>
         <translation>Datei Scan</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4455"/>
+        <location filename="../../romalyzer.cpp" line="4527"/>
         <source>file &apos;%1&apos; has SHA-1 &apos;%2&apos; and CRC &apos;%3&apos;</source>
         <translation>Datei &apos;%1&apos; hat SHA-1 &apos;%2&apos; und CRC &apos;%3&apos;</translation>
     </message>
@@ -16875,9 +16945,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
     <message>
         <location filename="../../gamelist.cpp" line="3540"/>
         <location filename="../../gamelist.cpp" line="3578"/>
-        <location filename="../../romalyzer.cpp" line="3970"/>
-        <location filename="../../romalyzer.cpp" line="4006"/>
-        <location filename="../../romalyzer.cpp" line="4018"/>
+        <location filename="../../romalyzer.cpp" line="3971"/>
+        <location filename="../../romalyzer.cpp" line="4007"/>
+        <location filename="../../romalyzer.cpp" line="4019"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
@@ -16967,38 +17037,38 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Verarbeite globale Emulator-Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3954"/>
+        <location filename="../../romalyzer.cpp" line="3955"/>
         <source>ROM</source>
         <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="836"/>
-        <location filename="../../romalyzer.cpp" line="3954"/>
+        <location filename="../../romalyzer.cpp" line="3955"/>
         <source>CHD</source>
         <translation>CHD</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3958"/>
-        <location filename="../../romalyzer.cpp" line="4003"/>
-        <location filename="../../romalyzer.cpp" line="4022"/>
+        <location filename="../../romalyzer.cpp" line="3959"/>
+        <location filename="../../romalyzer.cpp" line="4004"/>
+        <location filename="../../romalyzer.cpp" line="4023"/>
         <source>good</source>
         <translation>gut</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="838"/>
-        <location filename="../../romalyzer.cpp" line="3962"/>
-        <location filename="../../romalyzer.cpp" line="4012"/>
+        <location filename="../../romalyzer.cpp" line="3963"/>
+        <location filename="../../romalyzer.cpp" line="4013"/>
         <source>no dump</source>
         <translation>kein Dump</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3966"/>
-        <location filename="../../romalyzer.cpp" line="4015"/>
+        <location filename="../../romalyzer.cpp" line="3967"/>
+        <location filename="../../romalyzer.cpp" line="4016"/>
         <source>bad dump</source>
         <translation>Schlechter Dump</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4009"/>
+        <location filename="../../romalyzer.cpp" line="4010"/>
         <source>no / bad dump</source>
         <translation>kein / schlechter Dump</translation>
     </message>
@@ -17580,32 +17650,32 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Prüfsummen Datenbank Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3761"/>
+        <location filename="../../romalyzer.cpp" line="3762"/>
         <source>Close log</source>
         <translation>Log schließen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3784"/>
+        <location filename="../../romalyzer.cpp" line="3785"/>
         <source>Stop scanner</source>
         <translation>Scanner stoppen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3820"/>
+        <location filename="../../romalyzer.cpp" line="3821"/>
         <source>Resume</source>
         <translation>Fortsetzen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3841"/>
+        <location filename="../../romalyzer.cpp" line="3842"/>
         <source>Objects in database</source>
         <translation>Objekte in Datenbank</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3842"/>
+        <location filename="../../romalyzer.cpp" line="3843"/>
         <source>Database size</source>
         <translation>Datenbank Größe</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="3848"/>
+        <location filename="../../romalyzer.cpp" line="3849"/>
         <source>%n day(s)</source>
         <translation>
             <numerusform>%n Tag</numerusform>
@@ -17613,7 +17683,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="3852"/>
+        <location filename="../../romalyzer.cpp" line="3853"/>
         <source>%n second(s)</source>
         <translation>
             <numerusform>%n Sekunde</numerusform>
@@ -17621,7 +17691,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="3858"/>
+        <location filename="../../romalyzer.cpp" line="3859"/>
         <source>%n hour(s)</source>
         <translation>
             <numerusform>%n Stunde</numerusform>
@@ -17629,7 +17699,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="3860"/>
+        <location filename="../../romalyzer.cpp" line="3861"/>
         <source>%n minute(s)</source>
         <translation>
             <numerusform>%n Minute</numerusform>
@@ -17637,17 +17707,17 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3863"/>
+        <location filename="../../romalyzer.cpp" line="3864"/>
         <source>Age of stored data</source>
         <translation>Alter gespeicherter Daten</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3864"/>
+        <location filename="../../romalyzer.cpp" line="3865"/>
         <source>Pending updates</source>
         <translation>Ausstehende Aktualisierungen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3865"/>
+        <location filename="../../romalyzer.cpp" line="3866"/>
         <source>Scanner status</source>
         <translation>Scanner Status</translation>
     </message>
@@ -18031,9 +18101,14 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1202"/>
-        <location filename="../../romalyzer.cpp" line="3770"/>
+        <location filename="../../romalyzer.cpp" line="3771"/>
         <source>Open log</source>
         <translation>Log öffnen</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="1409"/>
+        <source>If enabled, only files that were changed since / ignored in the last scan will be scanned again, updating the database - otherwise the database will be reinitialized</source>
+        <translation>Wenn aktiviert werden nur die Dateien neu gescannt, welche sich seit dem letzten Scannen geändert haben oder ignoriert wurden - andernfalls wird die Datenbank neu initialisiert</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1567"/>
@@ -18393,7 +18468,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1139"/>
-        <location filename="../../romalyzer.cpp" line="3803"/>
+        <location filename="../../romalyzer.cpp" line="3804"/>
         <source>Start scanner</source>
         <translation>Scanner starten</translation>
     </message>
@@ -18429,15 +18504,14 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1156"/>
-        <location filename="../../romalyzer.cpp" line="3785"/>
-        <location filename="../../romalyzer.cpp" line="3830"/>
+        <location filename="../../romalyzer.cpp" line="3786"/>
+        <location filename="../../romalyzer.cpp" line="3831"/>
         <source>Pause</source>
         <translation>Pausieren</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1409"/>
         <source>If enabled, only files that were changed since the last scan will be scanned again, updating the database - otherwise the database will be initialized on each scan</source>
-        <translation>Wenn aktiviert werden nur die Dateien neu gescannt, welche sich seit dem letzten Scannen geändert haben - andernfalls wird die Datenbank bei jedem Scannen initialisiert</translation>
+        <translation type="obsolete">Wenn aktiviert werden nur die Dateien neu gescannt, welche sich seit dem letzten Scannen geändert haben - andernfalls wird die Datenbank bei jedem Scannen initialisiert</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1412"/>
@@ -22651,8 +22725,8 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../userdatadbmgr.cpp" line="241"/>
         <location filename="../../userdatadbmgr.cpp" line="256"/>
         <location filename="../../userdatadbmgr.cpp" line="289"/>
-        <location filename="../../userdatadbmgr.cpp" line="345"/>
-        <location filename="../../userdatadbmgr.cpp" line="361"/>
+        <location filename="../../userdatadbmgr.cpp" line="344"/>
+        <location filename="../../userdatadbmgr.cpp" line="360"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht von der Benutzerdaten Datenbank gelesen werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
@@ -22680,63 +22754,63 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>WARNUNG: Anzahl der Tabellenzeilen konnte nicht aus der Benutzerdaten Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="321"/>
+        <location filename="../../userdatadbmgr.cpp" line="320"/>
         <source>WARNING: failed to fetch row IDs from user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Tabellenzeilen IDs konnten nicht aus der Benutzerdaten Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="368"/>
+        <location filename="../../userdatadbmgr.cpp" line="367"/>
         <source>cleaning up user data database &apos;%1&apos;</source>
         <translation>Säubere Benutzerdaten Datenbank &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="381"/>
+        <location filename="../../userdatadbmgr.cpp" line="380"/>
         <source>removed obsolete ID &apos;%1&apos;</source>
         <translation>Überflüssige ID &apos;%1&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="383"/>
-        <location filename="../../userdatadbmgr.cpp" line="392"/>
-        <location filename="../../userdatadbmgr.cpp" line="412"/>
+        <location filename="../../userdatadbmgr.cpp" line="382"/>
+        <location filename="../../userdatadbmgr.cpp" line="391"/>
+        <location filename="../../userdatadbmgr.cpp" line="411"/>
         <source>WARNING: failed to remove &apos;%1&apos; from user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht aus der Benutzerdaten Datenbank entfernt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="390"/>
+        <location filename="../../userdatadbmgr.cpp" line="389"/>
         <source>removed ID &apos;%1&apos; due to no data</source>
         <translation>ID &apos;%1&apos; entfernt, weil keine Daten vorliegen</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="403"/>
+        <location filename="../../userdatadbmgr.cpp" line="402"/>
         <source>done (cleaning up user data database &apos;%1&apos;)</source>
         <translation>Fertig (Säubere Benutzerdaten Datenbank &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="442"/>
-        <location filename="../../userdatadbmgr.cpp" line="447"/>
-        <location filename="../../userdatadbmgr.cpp" line="452"/>
+        <location filename="../../userdatadbmgr.cpp" line="441"/>
+        <location filename="../../userdatadbmgr.cpp" line="446"/>
+        <location filename="../../userdatadbmgr.cpp" line="451"/>
         <source>WARNING: failed to remove user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Benutzerdaten Datenbank konnte nicht entfernt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="460"/>
-        <location filename="../../userdatadbmgr.cpp" line="465"/>
-        <location filename="../../userdatadbmgr.cpp" line="470"/>
+        <location filename="../../userdatadbmgr.cpp" line="459"/>
+        <location filename="../../userdatadbmgr.cpp" line="464"/>
+        <location filename="../../userdatadbmgr.cpp" line="469"/>
         <source>WARNING: failed to create user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Benutzerdaten Datenbank konnte nicht erstellt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="474"/>
+        <location filename="../../userdatadbmgr.cpp" line="473"/>
         <source>user data database &apos;%1&apos; initialized</source>
         <translation>Benutzerdaten Datenbank &apos;%1&apos; initialisiert</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="479"/>
+        <location filename="../../userdatadbmgr.cpp" line="478"/>
         <source>filling up rank cache from user data database &apos;%1&apos;</source>
         <translation>Lese Rang-Informationen aus Benutzerdaten Datenbank &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="506"/>
+        <location filename="../../userdatadbmgr.cpp" line="505"/>
         <source>done (filling up rank cache from user data database &apos;%1&apos;)</source>
         <translation>Fertig (Lese Rang-Informationen aus Benutzerdaten Datenbank &apos;%1&apos;)</translation>
     </message>

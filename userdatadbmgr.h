@@ -59,8 +59,8 @@ class UserDataDatabaseManager : public QObject
 		QString m_tableBasename;
 		QString m_connectionName;
 		bool m_logActive;
-		QList<int> m_rowIdList;
-		int m_lastRowId;
+		QList<qint64> m_rowIdList;
+		qint64 m_lastRowId;
 		QHash<QString, int> m_rankCache;
 		QHash<QString, QString> m_commentCache;
 };
