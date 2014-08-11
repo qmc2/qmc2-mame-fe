@@ -307,7 +307,6 @@ qint64 UserDataDatabaseManager::nextRowId(bool refreshRowIds)
 	if ( refreshRowIds ) {
 		m_rowIdList.clear();
 		m_lastRowId = -1;
-		// FIXME: get list of row IDs and return the first one
 		QSqlQuery query(m_db);
 		if ( query.exec(QString("SELECT rowid FROM %1").arg(m_tableBasename)) ) {
 			if ( query.first() ) {

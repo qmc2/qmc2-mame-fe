@@ -177,6 +177,7 @@ class CheckSumScannerThread : public QThread
 		bool isWaiting;
 		bool isPaused;
 		bool pauseRequested;
+		bool scanIncrementally;
 		QMutex mutex;
 		QWaitCondition waitCondition;
 		QStringList scannedPaths;
@@ -189,6 +190,7 @@ class CheckSumScannerThread : public QThread
 		QString status();
 		void reopenDatabase();
 		int fileType(QString);
+		void prepareIncrementalScan(QStringList *fileList);
 
 	public slots:
 		void pause();
