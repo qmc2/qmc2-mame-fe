@@ -4080,13 +4080,13 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 	QHash<QString, bool> pathsInDatabase;
 
 	// step 1: remove entries from the database that "point to nowhere" (a.k.a. aren't contained in 'fileList')
+	qint64 row = checkSumDb()->nextRowId(true);
 	emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(1).arg(3));
 	emit progressRangeChanged(0, checkSumDb()->checkSumRowCount() - 1);
 	emit progressChanged(0);
-	int pathsRemoved = 0;
-	qint64 row = checkSumDb()->nextRowId(true);
-	checkSumDb()->beginTransaction();
 	int count = 0;
+	qint64 pathsRemoved = 0;
+	checkSumDb()->beginTransaction();
 	while ( row > 0 ) {
 		emit progressChanged(count++);
 		QString path = checkSumDb()->pathOfRow(row);
@@ -4094,7 +4094,7 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 			if ( !fileList->contains(path) ) {
 				checkSumDb()->pathRemove(path);
 				pathsRemoved++;
-			} else if ( !path.isEmpty() )
+			} else
 				pathsInDatabase[path] = true;
 		}
 		row = checkSumDb()->nextRowId();
@@ -4129,8 +4129,8 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 	emit progressRangeChanged(0, pathsInDatabase.count());
 	emit progressChanged(0);
 	pathsRemoved = 0;
-	checkSumDb()->beginTransaction();
 	count = 0;
+	checkSumDb()->beginTransaction();
 	foreach (QString path, pathsInDatabase.keys()) {
 		emit progressChanged(count++);
 		if ( fileList->contains(path) ) {
