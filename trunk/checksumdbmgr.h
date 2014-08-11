@@ -35,7 +35,6 @@ class CheckSumDatabaseManager : public QObject
 		QString getCrc(QString sha1);
 		QString getSha1(QString crc);
 
-		bool pathExists(QString path);
 		void pathRemove(QString path);
 		QString pathOfRow(int row);
 
