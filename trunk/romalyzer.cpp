@@ -4137,6 +4137,9 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 	}
 	checkSumDb()->commitTransaction();
 	emit log(tr("%n outdated path(s) removed from database", "", pathsRemoved));
+
+	// vaccum'ing the database frees all disk-space previously used
+	checkSumDb()->vacuum();
 }
 
 void CheckSumScannerThread::reopenDatabase()
