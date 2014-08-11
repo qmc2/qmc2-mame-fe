@@ -88,6 +88,13 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   
 	setupUi(this);
 
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: WIP
+	toolButtonCheckSumDbScanIncrementally->setChecked(false);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScanIncrementally", false);
+	toolButtonCheckSumDbScanIncrementally->hide();
+#endif
+
 	m_checkSumDbQueryStatusPixmap = QPixmap(QString::fromUtf8(":/data/img/database.png"));
 
 #if defined(QMC2_SDLMESS)
@@ -448,6 +455,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 		checkSumDbScannedPaths << listWidgetCheckSumDbScannedPaths->item(i)->text();
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", checkSumDbScannedPaths);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbDatabasePath", lineEditCheckSumDbDatabasePath->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScanIncrementally", toolButtonCheckSumDbScanIncrementally->isChecked());
 
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/ReportHeaderState", treeWidgetChecksums->header()->saveState());
@@ -528,6 +536,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	listWidgetCheckSumDbScannedPaths->addItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", QStringList()).toStringList());
 	pushButtonCheckSumDbScan->setEnabled(listWidgetCheckSumDbScannedPaths->count() > 0);
 	lineEditCheckSumDbDatabasePath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbDatabasePath", QString(userScopePath + "/%1-checksum.db").arg(variantName.replace("-", "_").replace(QRegExp("\\..*$"), ""))).toString());
+	toolButtonCheckSumDbScanIncrementally->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScanIncrementally", true).toBool());
 
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Visible", true);

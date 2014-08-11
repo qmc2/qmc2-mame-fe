@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>662</width>
-    <height>786</height>
+    <width>744</width>
+    <height>810</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -328,8 +328,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>646</width>
-            <height>690</height>
+            <width>728</width>
+            <height>714</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayoutScrollAreeaSettings" rowstretch="0,0,0,1,0">
@@ -1111,231 +1111,15 @@
              </property>
              <layout class="QGridLayout" name="gridLayout_4">
               <item row="0" column="0">
-               <layout class="QGridLayout" name="gridLayoutCheckSumDatabase" columnstretch="2,0,0,1,0">
-                <item row="2" column="0" rowspan="9">
-                 <widget class="QListWidget" name="listWidgetCheckSumDbScannedPaths">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="contextMenuPolicy">
-                   <enum>Qt::CustomContextMenu</enum>
-                  </property>
-                  <property name="toolTip">
-                   <string>List of scanned paths</string>
-                  </property>
-                  <property name="dragDropMode">
-                   <enum>QAbstractItemView::InternalMove</enum>
-                  </property>
-                  <property name="selectionMode">
-                   <enum>QAbstractItemView::ExtendedSelection</enum>
-                  </property>
-                  <property name="textElideMode">
-                   <enum>Qt::ElideMiddle</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="1" rowspan="9">
-                 <layout class="QVBoxLayout" name="verticalLayout_3">
-                  <item>
-                   <widget class="QToolButton" name="toolButtonCheckSumDbAddPath">
-                    <property name="toolTip">
-                     <string>Add a path</string>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="qmc2.qrc">
-                      <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_2">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item>
-                   <widget class="QToolButton" name="toolButtonCheckSumDbRemovePath">
-                    <property name="enabled">
-                     <bool>false</bool>
-                    </property>
-                    <property name="toolTip">
-                     <string>Remove selected paths</string>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="qmc2.qrc">
-                      <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item row="1" column="0" colspan="2">
-                 <widget class="Line" name="line_16">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="2" rowspan="11">
+               <layout class="QGridLayout" name="gridLayoutCheckSumDatabase" columnstretch="3,1,0,0,2,0">
+                <item row="0" column="3" rowspan="12">
                  <widget class="Line" name="line_18">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
                   </property>
                  </widget>
                 </item>
-                <item row="0" column="0" colspan="2">
-                 <widget class="QLabel" name="labelCheckSumDbScannedPaths">
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Scanned paths&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="8" column="3">
-                 <widget class="QLabel" name="labelCheckSumDbScannerControl">
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Scanner control&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="8" column="4">
-                 <widget class="QToolButton" name="toolButtonCheckSumDbViewLog">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="toolTip">
-                   <string>Open / close the scanner log window</string>
-                  </property>
-                  <property name="text">
-                   <string>Open log</string>
-                  </property>
-                  <property name="toolButtonStyle">
-                   <enum>Qt::ToolButtonTextOnly</enum>
-                  </property>
-                  <property name="autoRaise">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item row="9" column="3" colspan="2">
-                 <widget class="Line" name="line_20">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="6" column="3" colspan="2">
-                 <widget class="QLabel" name="labelCheckSumDbStatusDisplay">
-                  <property name="toolTip">
-                   <string>Database / scanner status</string>
-                  </property>
-                  <property name="frameShape">
-                   <enum>QFrame::StyledPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
-                  <property name="text">
-                   <string notr="true">&lt;center&gt;
-&lt;table border=&quot;0&quot; cellpadding=&quot;2&quot; cellspacing=&quot;2&quot;&gt;
-&lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Objects in database&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;100000&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Database size&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;10.00 MB&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Age of stored data&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;10 days&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Pending updates&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;100&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Scanner status&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;idle&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/center&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="5" column="3" colspan="2">
-                 <widget class="Line" name="line_19">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="3" rowspan="2" colspan="2">
-                 <widget class="QLabel" name="labelCheckSumDbStatus">
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="3" colspan="2">
-                 <layout class="QHBoxLayout" name="horizontalLayout_3">
-                  <item>
-                   <widget class="QLineEdit" name="lineEditCheckSumDbDatabasePath">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="toolTip">
-                     <string>Path to the check-sum database file</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QToolButton" name="toolButtonBrowseCheckSumDbDatabasePath">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="toolTip">
-                     <string>Browse path to the check-sum database file</string>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="qmc2.qrc">
-                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item row="1" column="3" colspan="2">
-                 <widget class="Line" name="line_17">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="7" column="3" colspan="2">
-                 <spacer name="verticalSpacer_3">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="0" column="3" colspan="2">
-                 <widget class="QLabel" name="labelCheckSumDbDatabasePath">
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Database path&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="10" column="3" colspan="2">
+                <item row="11" column="4" colspan="2">
                  <layout class="QHBoxLayout" name="horizontalLayout_8">
                   <item>
                    <widget class="QPushButton" name="pushButtonCheckSumDbScan">
@@ -1377,6 +1161,264 @@
                     </property>
                     <property name="autoDefault">
                      <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="labelCheckSumDbScannedPaths">
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Scanned paths&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0" colspan="3">
+                 <widget class="Line" name="line_16">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="8" column="4">
+                 <widget class="QLabel" name="labelCheckSumDbScannerControl">
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Scanner control&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="8" column="5">
+                 <widget class="QToolButton" name="toolButtonCheckSumDbViewLog">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="toolTip">
+                   <string>Open / close the scanner log window</string>
+                  </property>
+                  <property name="text">
+                   <string>Open log</string>
+                  </property>
+                  <property name="toolButtonStyle">
+                   <enum>Qt::ToolButtonTextOnly</enum>
+                  </property>
+                  <property name="autoRaise">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="9" column="4" colspan="2">
+                 <widget class="Line" name="line_20">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="4" colspan="2">
+                 <widget class="QLabel" name="labelCheckSumDbStatusDisplay">
+                  <property name="toolTip">
+                   <string>Database / scanner status</string>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Sunken</enum>
+                  </property>
+                  <property name="text">
+                   <string notr="true">&lt;center&gt;
+&lt;table border=&quot;0&quot; cellpadding=&quot;2&quot; cellspacing=&quot;2&quot;&gt;
+&lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Objects in database&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;100000&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Database size&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;10.00 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Age of stored data&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;10 days&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Pending updates&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;100&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td valign=&quot;top&quot; align=&quot;right&quot;&gt;&lt;b&gt;Scanner status&lt;/b&gt;&lt;/td&gt;&lt;td valign=&quot;top&quot;&gt;idle&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/center&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="4" colspan="2">
+                 <widget class="Line" name="line_19">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="4" rowspan="2" colspan="2">
+                 <widget class="QLabel" name="labelCheckSumDbStatus">
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="4" colspan="2">
+                 <spacer name="verticalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="2" column="4" colspan="2">
+                 <layout class="QHBoxLayout" name="horizontalLayout_3">
+                  <item>
+                   <widget class="QLineEdit" name="lineEditCheckSumDbDatabasePath">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="toolTip">
+                     <string>Path to the check-sum database file</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButtonBrowseCheckSumDbDatabasePath">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="toolTip">
+                     <string>Browse path to the check-sum database file</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="qmc2.qrc">
+                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="1" column="4" colspan="2">
+                 <widget class="Line" name="line_17">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="4" colspan="2">
+                 <widget class="QLabel" name="labelCheckSumDbDatabasePath">
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Database path&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0" rowspan="10" colspan="2">
+                 <widget class="QListWidget" name="listWidgetCheckSumDbScannedPaths">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="contextMenuPolicy">
+                   <enum>Qt::CustomContextMenu</enum>
+                  </property>
+                  <property name="toolTip">
+                   <string>List of scanned paths</string>
+                  </property>
+                  <property name="dragDropMode">
+                   <enum>QAbstractItemView::InternalMove</enum>
+                  </property>
+                  <property name="selectionMode">
+                   <enum>QAbstractItemView::ExtendedSelection</enum>
+                  </property>
+                  <property name="textElideMode">
+                   <enum>Qt::ElideMiddle</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="2" rowspan="10">
+                 <layout class="QVBoxLayout" name="verticalLayout_3">
+                  <item>
+                   <widget class="QToolButton" name="toolButtonCheckSumDbAddPath">
+                    <property name="toolTip">
+                     <string>Add a path</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="qmc2.qrc">
+                      <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_2">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>0</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButtonCheckSumDbRemovePath">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>Remove selected paths</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="qmc2.qrc">
+                      <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="0" column="1" colspan="2">
+                 <layout class="QHBoxLayout" name="horizontalLayout">
+                  <item>
+                   <spacer name="horizontalSpacer">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButtonCheckSumDbScanIncrementally">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="toolTip">
+                     <string>If enabled, only files that were changed since the last scan will be scanned again, updating the database - otherwise the database will be initialized on each scan</string>
+                    </property>
+                    <property name="text">
+                     <string>Scan incrementally</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <property name="toolButtonStyle">
+                     <enum>Qt::ToolButtonTextOnly</enum>
+                    </property>
+                    <property name="autoRaise">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -1782,6 +1824,7 @@
   <tabstop>toolButtonBrowseSetRewriterAdditionalRomPath</tabstop>
   <tabstop>pushButtonRomCollectionRebuilder</tabstop>
   <tabstop>groupBoxCheckSumDatabase</tabstop>
+  <tabstop>toolButtonCheckSumDbScanIncrementally</tabstop>
   <tabstop>listWidgetCheckSumDbScannedPaths</tabstop>
   <tabstop>toolButtonCheckSumDbAddPath</tabstop>
   <tabstop>toolButtonCheckSumDbRemovePath</tabstop>
