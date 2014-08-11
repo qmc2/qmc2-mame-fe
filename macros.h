@@ -116,7 +116,7 @@
 #define QMC2_USERDATA_VERSION			1
 
 // current format version of the check-sum database schema
-#define QMC2_CHECKSUM_DB_VERSION		1
+#define QMC2_CHECKSUM_DB_VERSION		2
 
 // check-sum DB status updates
 #define QMC2_CHECKSUM_DB_STATUS_UPDATE_SHORT	1000
