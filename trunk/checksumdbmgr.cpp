@@ -26,7 +26,7 @@ CheckSumDatabaseManager::CheckSumDatabaseManager(QObject *parent)
 	m_tableBasename = QString("%1_checksum").arg(variantName.replace("-", "_").replace(QRegExp("\\..*$"), ""));
 	if ( m_db.open() ) {
 		QStringList tables = m_db.driver()->tables(QSql::Tables);
-		if ( tables.count() != 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) )
+		if ( tables.count() != 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) || checkSumDbVersion() != QMC2_CHECKSUM_DB_VERSION )
 			recreateDatabase();
 	} else
 		emit log(tr("WARNING: failed to open check-sum database '%1': error = '%2'").arg(m_db.databaseName()).arg(m_db.lastError().text()));
@@ -378,12 +378,12 @@ void CheckSumDatabaseManager::recreateDatabase()
 	// vaccum'ing the database frees all disk-space previously used
 	query.exec("VACUUM");
 	query.finish();
-	if ( !query.exec(QString("CREATE TABLE %1 (sha1 TEXT, crc TEXT, size UNSIGNED BIG INT, path TEXT, member TEXT, type TEXT, PRIMARY KEY (sha1, crc), CONSTRAINT %1_unique_checksums UNIQUE (sha1, crc))").arg(m_tableBasename)) ) {
+	if ( !query.exec(QString("CREATE TABLE %1 (sha1 TEXT, crc TEXT, size UNSIGNED BIG INT, path TEXT, member TEXT, type TEXT, PRIMARY KEY (sha1, crc, path), CONSTRAINT %1_unique_checksums UNIQUE (sha1, crc))").arg(m_tableBasename)) ) {
 		emit log(tr("WARNING: failed to create check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
 	query.finish();
-	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (sha1, crc)").arg(m_tableBasename)) ) {
+	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (sha1, crc, path)").arg(m_tableBasename)) ) {
 		emit log(tr("WARNING: failed to create check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
@@ -393,5 +393,6 @@ void CheckSumDatabaseManager::recreateDatabase()
 		return;
 	}
 	setScanTime(QDateTime::currentDateTime().toTime_t());
+	setCheckSumDbVersion(QMC2_CHECKSUM_DB_VERSION);
 	emit log(tr("check-sum database '%1' initialized").arg(databasePath()));
 }
