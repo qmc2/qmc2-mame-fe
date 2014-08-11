@@ -496,7 +496,7 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 									diskSha1 = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
 							if ( !diskSha1.isEmpty() ) {
-								*diskNameList << diskName;
+								*diskNameList << diskName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");;
 								*diskSha1List << diskSha1;
 							}
 						}
