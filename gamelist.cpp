@@ -1092,7 +1092,7 @@ QString Gamelist::value(QString element, QString attribute, bool translate)
 	QString attributePattern = " " + attribute + "=\"";
 	if ( element.contains(attributePattern) ) {
 		QString valueString = element.remove(0, element.indexOf(attributePattern) + attributePattern.length());
-		valueString = valueString.remove(valueString.indexOf("\""), valueString.lastIndexOf(">")).replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
+		valueString = valueString.remove(valueString.indexOf("\""), valueString.lastIndexOf(">")).replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
 		if ( valueString == ">" )
 			return QString::null;
 		if ( translate )
@@ -1183,7 +1183,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
 		}
 		if ( element.contains("<manufacturer>") ) {
 			content = element.remove("<manufacturer>").remove("</manufacturer>");
-			content.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
+			content.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
 			childItem = new QTreeWidgetItem();
 			childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Manufacturer"));
 			childItem->setText(QMC2_GAMELIST_COLUMN_ICON, content);
@@ -1834,7 +1834,7 @@ void Gamelist::parse()
 						continue;
 					}
 					QString gameCloneOf = value(gameElement, "cloneof");
-					QString gameDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
+					QString gameDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
 					GamelistItem *gameDescriptionItem = new GamelistItem();
 					gameDescriptionItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
 					gameDescriptionItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
@@ -1860,7 +1860,7 @@ void Gamelist::parse()
 							gameYear = xmlLine.simplified().remove("<year>").remove("</year>");
 							yearFound = true;
 						} else if ( xmlLine.contains("<manufacturer>") ) {
-							gameManufacturer = xmlLine.simplified().remove("<manufacturer>").remove("</manufacturer>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
+							gameManufacturer = xmlLine.simplified().remove("<manufacturer>").remove("</manufacturer>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
 							manufacturerFound = true;
 						} else if ( xmlLine.contains("<rom name") ) {
 							hasROMs = true;
