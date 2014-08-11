@@ -6,6 +6,7 @@
 #include <QTextStream>
 #include <QScrollBar>
 #include <QTest>
+#include <QHash>
 #include <QMap>
 #include <QFileDialog>
 #include <QClipboard>
@@ -4076,7 +4077,7 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 {
 	emit log(tr("preparing incremental scan"));
 
-	QStringList pathsInDatabase;
+	QHash<QString, bool> pathsInDatabase;
 
 	// step 1: remove entries from the database that "point to nowhere" (a.k.a. aren't contained in 'fileList')
 	emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(1).arg(3));
@@ -4093,16 +4094,15 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 			if ( !fileList->contains(path) ) {
 				checkSumDb()->pathRemove(path);
 				pathsRemoved++;
-			} else
-				pathsInDatabase << path;
+			} else if ( !path.isEmpty() )
+				pathsInDatabase[path] = true;
 		}
 		row = checkSumDb()->nextRowId();
 	}
-	pathsInDatabase.removeDuplicates();
 	checkSumDb()->commitTransaction();
 	emit log(tr("%n obsolete path(s) removed from database", "", pathsRemoved));
 
-	// step 2: remove entries from 'fileList' where 'scanTime' is newer than the file's modification time *and* the database has entries for it
+	// step 2: remove entries from 'fileList' where 'scanTime' is later than the file's modification time *and* the database has entries for it
 	emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(2).arg(3));
 	int oldFileListCount = fileList->count();
 	emit progressRangeChanged(0, oldFileListCount - 1);
@@ -4130,10 +4130,10 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 	emit progressChanged(0);
 	pathsRemoved = 0;
 	checkSumDb()->beginTransaction();
-	for (int i = 0; i < pathsInDatabase.count(); i++) {
-		emit progressChanged(i);
-		QString path = pathsInDatabase[i];
-		if ( !path.isEmpty() && fileList->contains(path) ) {
+	count = 0;
+	foreach (QString path, pathsInDatabase.keys()) {
+		emit progressChanged(count++);
+		if ( fileList->contains(path) ) {
 			checkSumDb()->pathRemove(path);
 			pathsRemoved++;
 		}

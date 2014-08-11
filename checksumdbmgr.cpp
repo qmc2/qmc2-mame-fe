@@ -362,12 +362,12 @@ void CheckSumDatabaseManager::recreateDatabase()
 	// vaccum'ing the database frees all disk-space previously used
 	query.exec("VACUUM");
 	query.finish();
-	if ( !query.exec(QString("CREATE TABLE %1 (sha1 TEXT, crc TEXT, size UNSIGNED BIG INT, path TEXT, member TEXT, type TEXT, PRIMARY KEY (sha1, crc, path), CONSTRAINT %1_unique_checksums UNIQUE (sha1, crc))").arg(m_tableBasename)) ) {
+	if ( !query.exec(QString("CREATE TABLE %1 (sha1 TEXT, crc TEXT, size UNSIGNED BIG INT, path TEXT, member TEXT, type TEXT, PRIMARY KEY (sha1, crc), CONSTRAINT %1_unique_checksums UNIQUE (sha1, crc))").arg(m_tableBasename)) ) {
 		emit log(tr("WARNING: failed to create check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
 	query.finish();
-	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (sha1, crc, path)").arg(m_tableBasename)) ) {
+	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (sha1, crc)").arg(m_tableBasename)) ) {
 		emit log(tr("WARNING: failed to create check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
