@@ -305,7 +305,7 @@ void CheckSumDatabaseManager::pathRemove(QString path)
 		emit log(tr("WARNING: failed to remove path '%1' from check-sum database: query = '%2', error = '%3'").arg(path).arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
-QString CheckSumDatabaseManager::pathOfRow(int row)
+QString CheckSumDatabaseManager::pathOfRow(qint64 row)
 {
 	QSqlQuery query(m_db);
 	query.prepare(QString("SELECT path FROM %1 WHERE rowid=:row").arg(m_tableBasename));
