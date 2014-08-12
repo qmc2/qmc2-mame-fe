@@ -4087,7 +4087,7 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 	int count = 0;
 	qint64 pathsRemoved = 0;
 	checkSumDb()->beginTransaction();
-	while ( row > 0 ) {
+	while ( row > 0 && !exitThread && !stopScan ) {
 		emit progressChanged(count++);
 		QString path = checkSumDb()->pathOfRow(row);
 		if ( !path.isEmpty() ) {
@@ -4098,51 +4098,59 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 				pathsInDatabase[path] = true;
 		}
 		row = checkSumDb()->nextRowId();
+		if ( exitThread || stopScan )
+			break;
 	}
 	checkSumDb()->commitTransaction();
 	emit log(tr("%n obsolete path(s) removed from database", "", pathsRemoved));
 
-	// step 2: remove entries from 'fileList' where 'scanTime' is later than the file's modification time *and* the database has entries for it
-	emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(2).arg(3));
-	int oldFileListCount = fileList->count();
-	emit progressRangeChanged(0, oldFileListCount - 1);
-	emit progressChanged(0);
-	int filesRemoved = 0;
-	uint scanTime = checkSumDb()->scanTime();
-	for (int i = 0; i < fileList->count(); i++) {
-		if ( oldFileListCount != fileList->count() ) {
-			oldFileListCount = fileList->count();
-			emit progressRangeChanged(0, oldFileListCount - 1);
+	if ( !exitThread && !stopScan ) {
+		// step 2: remove entries from 'fileList' where 'scanTime' is later than the file's modification time *and* the database has entries for it
+		emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(2).arg(3));
+		int oldFileListCount = fileList->count();
+		emit progressRangeChanged(0, oldFileListCount - 1);
+		emit progressChanged(0);
+		int filesRemoved = 0;
+		uint scanTime = checkSumDb()->scanTime();
+		for (int i = 0; i < fileList->count() && !exitThread && !stopScan; i++) {
+			if ( oldFileListCount != fileList->count() ) {
+				oldFileListCount = fileList->count();
+				emit progressRangeChanged(0, oldFileListCount - 1);
+			}
+			emit progressChanged(i);
+			QFileInfo fi(fileList->at(i));
+			if ( fi.lastModified().toTime_t() < scanTime && pathsInDatabase.contains(fileList->at(i)) ) {
+				fileList->removeAt(i);
+				filesRemoved++;
+				i--;
+			}
 		}
-		emit progressChanged(i);
-		QFileInfo fi(fileList->at(i));
-		if ( fi.lastModified().toTime_t() < scanTime && pathsInDatabase.contains(fileList->at(i)) ) {
-			fileList->removeAt(i);
-			filesRemoved++;
-			i--;
+		emit log(tr("%n unchanged file(s) removed from scan", "", filesRemoved));
+
+		if ( !exitThread && !stopScan ) {
+			// step 3: remove entries from the database that "point to new stuff" (a.k.a. are still contained in the modified 'fileList')
+			emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(3).arg(3));
+			emit progressRangeChanged(0, pathsInDatabase.count());
+			emit progressChanged(0);
+			pathsRemoved = 0;
+			count = 0;
+			checkSumDb()->beginTransaction();
+			foreach (QString path, pathsInDatabase.keys()) {
+				emit progressChanged(count++);
+				if ( fileList->contains(path) ) {
+					checkSumDb()->pathRemove(path);
+					pathsRemoved++;
+				}
+				if ( exitThread || stopScan )
+					break;
+			}
+			checkSumDb()->commitTransaction();
+			emit log(tr("%n outdated path(s) removed from database", "", pathsRemoved));
+
+			// vaccum'ing the database frees all disk-space previously used
+			checkSumDb()->vacuum();
 		}
 	}
-	emit log(tr("%n unchanged file(s) removed from scan", "", filesRemoved));
-
-	// step 3: remove entries from the database that "point to new stuff" (a.k.a. are still contained in the modified 'fileList')
-	emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(3).arg(3));
-	emit progressRangeChanged(0, pathsInDatabase.count());
-	emit progressChanged(0);
-	pathsRemoved = 0;
-	count = 0;
-	checkSumDb()->beginTransaction();
-	foreach (QString path, pathsInDatabase.keys()) {
-		emit progressChanged(count++);
-		if ( fileList->contains(path) ) {
-			checkSumDb()->pathRemove(path);
-			pathsRemoved++;
-		}
-	}
-	checkSumDb()->commitTransaction();
-	emit log(tr("%n outdated path(s) removed from database", "", pathsRemoved));
-
-	// vaccum'ing the database frees all disk-space previously used
-	checkSumDb()->vacuum();
 }
 
 void CheckSumScannerThread::reopenDatabase()
