@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>744</width>
-    <height>810</height>
+    <width>831</width>
+    <height>854</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -328,8 +328,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>728</width>
-            <height>714</height>
+            <width>815</width>
+            <height>758</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayoutScrollAreeaSettings" rowstretch="0,0,0,1,0">
@@ -410,6 +410,9 @@
                 </item>
                 <item row="3" column="6">
                  <widget class="QToolButton" name="toolButtonBrowseSetRewriterAdditionalRomPath">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                     <horstretch>0</horstretch>
@@ -450,6 +453,9 @@
                 </item>
                 <item row="3" column="5">
                  <widget class="QLineEdit" name="lineEditSetRewriterAdditionalRomPath">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
                     <horstretch>0</horstretch>
@@ -936,6 +942,73 @@
                  <widget class="Line" name="line_3">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="0" colspan="8">
+                 <layout class="QHBoxLayout" name="horizontalLayout_7">
+                  <item>
+                   <widget class="QCheckBox" name="checkBoxCreateBackups">
+                    <property name="toolTip">
+                     <string>Create backups whenever modifying / overwriting files by copying them to the specified folder</string>
+                    </property>
+                    <property name="text">
+                     <string>Create backups in this folder</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEditBackupFolder">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="toolTip">
+                     <string>Backup folder (write)</string>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Specify backup folder</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButtonBrowseBackupFolder">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="toolTip">
+                     <string>Browse the backup folder</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="qmc2.qrc">
+                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="5" column="0" colspan="8">
+                 <widget class="QLabel" name="label">
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Backup settings&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="0" colspan="8">
+                 <widget class="Line" name="line_21">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
                   </property>
                  </widget>
                 </item>
@@ -1802,6 +1875,9 @@
   <tabstop>spinBoxMaxFileSize</tabstop>
   <tabstop>spinBoxMaxLogSize</tabstop>
   <tabstop>spinBoxMaxReports</tabstop>
+  <tabstop>checkBoxCreateBackups</tabstop>
+  <tabstop>lineEditBackupFolder</tabstop>
+  <tabstop>toolButtonBrowseBackupFolder</tabstop>
   <tabstop>groupBoxCHDManager</tabstop>
   <tabstop>checkBoxVerifyCHDs</tabstop>
   <tabstop>checkBoxUpdateCHDs</tabstop>
@@ -1854,7 +1930,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>79</x>
-     <y>769</y>
+     <y>848</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
@@ -1917,12 +1993,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>57</x>
-     <y>376</y>
+     <x>71</x>
+     <y>445</y>
     </hint>
     <hint type="destinationlabel">
-     <x>56</x>
-     <y>399</y>
+     <x>70</x>
+     <y>474</y>
     </hint>
    </hints>
   </connection>
@@ -1933,12 +2009,76 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>207</x>
-     <y>383</y>
+     <x>218</x>
+     <y>449</y>
     </hint>
     <hint type="destinationlabel">
-     <x>208</x>
-     <y>411</y>
+     <x>261</x>
+     <y>483</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxCreateBackups</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lineEditBackupFolder</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>218</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>188</x>
+     <y>218</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxCreateBackups</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonBrowseBackupFolder</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>227</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>677</x>
+     <y>230</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxSetRewriterUseAdditionalRomPath</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lineEditSetRewriterAdditionalRomPath</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>385</x>
+     <y>462</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>445</x>
+     <y>460</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxSetRewriterUseAdditionalRomPath</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonBrowseSetRewriterAdditionalRomPath</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>326</x>
+     <y>468</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>465</y>
     </hint>
    </hints>
   </connection>

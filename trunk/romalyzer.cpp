@@ -253,6 +253,7 @@ void ROMAlyzer::adjustIconSizes()
 	toolButtonBrowseTemporaryWorkingDirectory->setIconSize(iconSize);
 	toolButtonBrowseSetRewriterOutputPath->setIconSize(iconSize);
 	toolButtonBrowseSetRewriterAdditionalRomPath->setIconSize(iconSize);
+	toolButtonBrowseBackupFolder->setIconSize(iconSize);
 	pushButtonRomCollectionRebuilder->setIconSize(iconSize);
 	toolButtonToolsMenu->setIconSize(iconSize);
 	pushButtonChecksumWizardAnalyzeSelectedSets->setIconSize(iconSize);
@@ -425,6 +426,8 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxFileSize", spinBoxMaxFileSize->value());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxLogSize", spinBoxMaxLogSize->value());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxReports", spinBoxMaxReports->value());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CreateBackups", checkBoxCreateBackups->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/BackupFolder", lineEditBackupFolder->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCHDManager", groupBoxCHDManager->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", lineEditCHDManagerExecutableFile->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", lineEditTemporaryWorkingDirectory->text());
@@ -505,6 +508,8 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	spinBoxMaxFileSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxFileSize", 0).toInt());
 	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxLogSize", 10000).toInt());
 	spinBoxMaxReports->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxReports", 1000).toInt());
+	checkBoxCreateBackups->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CreateBackups", false).toBool());
+	lineEditBackupFolder->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/BackupFolder", QString()).toString());
 	groupBoxCHDManager->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCHDManager", false).toBool());
 	checkBoxVerifyCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", true).toBool());
 	checkBoxUpdateCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/UpdateCHDs", false).toBool());
@@ -1401,7 +1406,10 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 
 							if ( calcSHA1 || calcMD5 || chdManagerEnabled ) {
 								chdFilePath = fi.absoluteFilePath();
-								QString chdTempFilePath = lineEditTemporaryWorkingDirectory->text() + fi.baseName() + "-chdman-update.chd";
+								QString chdTempFilePath = QDir::cleanPath(lineEditTemporaryWorkingDirectory->text());
+								if ( !chdTempFilePath.endsWith("/") )
+									chdTempFilePath += "/";
+								chdTempFilePath += fi.baseName() + "-chdman-update.chd";
 								if ( chdManagerEnabled ) {
 									romFile.close();
 									chdManagerCurrentHunk = 0;
@@ -2014,6 +2022,71 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 	return effectiveFile;
 }
 
+bool ROMAlyzer::createBackup(QString filePath)
+{
+	if ( !checkBoxCreateBackups->isChecked() || lineEditBackupFolder->text().isEmpty() )
+		return true;
+	QFile sourceFile(filePath);
+	if ( !sourceFile.exists() )
+		return true;
+	QDir backupDir(lineEditBackupFolder->text());
+	QFileInfo backupDirInfo(backupDir.absolutePath());
+	if ( backupDirInfo.exists() ) {
+		if ( backupDirInfo.isWritable() ) {
+#if defined(QMC2_OS_WIN)
+			QString destinationPath = QDir::cleanPath(QString(backupDir.absolutePath() + "/" + filePath).replace(":", ""));
+#else
+			QString destinationPath = QDir::cleanPath(backupDir.absolutePath() + "/" + filePath);
+#endif
+			QFileInfo destinationPathInfo(destinationPath);
+			if ( !destinationPathInfo.dir().exists() ) {
+				if ( !backupDir.mkpath(destinationPathInfo.dir().absolutePath()) ) {
+					log(tr("backup") + ": " + tr("FATAL: target path '%1' cannot be created").arg(destinationPathInfo.dir().absolutePath()));
+					return false;
+				}
+			}
+			if ( !sourceFile.open(QIODevice::ReadOnly) ) {
+				log(tr("backup") + ": " + tr("FATAL: source file '%1' cannot be opened for reading").arg(filePath));
+				return false;
+			}
+			QFile destinationFile(destinationPath);
+			if ( destinationFile.open(QIODevice::WriteOnly) ) {
+				// FIXME
+				log(tr("backup") + ": " + tr("creating backup copy of '%1' as '%2'").arg(filePath).arg(destinationPath));
+				char ioBuffer[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
+				int count = 0;
+				int len = 0;
+				bool success = true;
+				while ( success && (len = sourceFile.read(ioBuffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 ) {
+					if ( count++ % QMC2_BACKUP_IO_RESPONSE == 0 )
+						qApp->processEvents();
+					if ( destinationFile.write(ioBuffer, len) != len ) {
+						log(tr("backup") + ": " + tr("FATAL: I/O error while writing to '%1'").arg(destinationPath));
+						success = false;
+					}
+				}
+				sourceFile.close();
+				destinationFile.close();
+				if ( success ) {
+					log(tr("backup") + ": " + tr("done (creating backup copy of '%1' as '%2')").arg(filePath).arg(destinationPath));
+					return true;
+				} else
+					return false;
+			} else {
+				log(tr("backup") + ": " + tr("FATAL: destination file '%1' cannot be opened for writing").arg(destinationPath));
+				sourceFile.close();
+				return false;
+			}
+		} else {
+			log(tr("backup") + ": " + tr("FATAL: backup folder '%1' isn't writable").arg(backupDir.absolutePath()));
+			return false;
+		}
+	} else {
+		log(tr("backup") + ": " + tr("FATAL: backup folder '%1' doesn't exist").arg(backupDir.absolutePath()));
+		return false;
+	}
+}
+
 void ROMAlyzer::on_tabWidgetAnalysis_currentChanged(int index)
 {
 #ifdef QMC2_DEBUG
@@ -2155,6 +2228,18 @@ void ROMAlyzer::log(const QString &msg)
 	}
 }
 
+void ROMAlyzer::on_toolButtonBrowseBackupFolder_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseBackupFolder_clicked()");
+#endif
+
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose backup folder"), lineEditBackupFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
+	if ( !s.isNull() )
+		lineEditBackupFolder->setText(s);
+	raise();
+}
+
 void ROMAlyzer::on_toolButtonBrowseCHDManagerExecutableFile_clicked()
 {
 #ifdef QMC2_DEBUG
@@ -2173,12 +2258,9 @@ void ROMAlyzer::on_toolButtonBrowseTemporaryWorkingDirectory_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseTemporaryWorkingDirectory_clicked()");
 #endif
 
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose temporary working directory"), lineEditTemporaryWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-	if ( !s.isNull() ) {
-		if ( !s.endsWith("/") )
-			s += "/";
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose temporary working directory"), lineEditTemporaryWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
+	if ( !s.isNull() )
 		lineEditTemporaryWorkingDirectory->setText(s);
-	}
 	raise();
 }
 
@@ -2188,12 +2270,9 @@ void ROMAlyzer::on_toolButtonBrowseSetRewriterOutputPath_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseSetRewriterOutputPath_clicked()");
 #endif
 
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose output directory"), lineEditSetRewriterOutputPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-	if ( !s.isNull() ) {
-		if ( !s.endsWith("/") )
-			s += "/";
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose output directory"), lineEditSetRewriterOutputPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
+	if ( !s.isNull() )
 		lineEditSetRewriterOutputPath->setText(s);
-	}
 	raise();
 }
 
@@ -2203,7 +2282,7 @@ void ROMAlyzer::on_toolButtonBrowseSetRewriterAdditionalRomPath_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseSetRewriterAdditionalRomPath_clicked()");
 #endif
 
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose additional ROM path"), lineEditSetRewriterAdditionalRomPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose additional ROM path"), lineEditSetRewriterAdditionalRomPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() )
 		lineEditSetRewriterAdditionalRomPath->setText(s);
 	raise();
@@ -2595,7 +2674,8 @@ void ROMAlyzer::runSetRewriter()
 		return;
 	}
 
-	if ( !outPath.endsWith("/") ) outPath += "/";
+	if ( !outPath.endsWith("/") )
+		outPath += "/";
 
 	if ( radioButtonSetRewriterZipArchives->isChecked() )
 		outPath += setRewriterSetName + ".zip";
@@ -3166,7 +3246,7 @@ bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 	return success;
 }
 
-// creates the directory 'dirName' (overwrites any existing files in it w/o creating backups!)
+// creates the directory 'dirName'
 // and stores the data found in 'fileDataMap' into individual files
 // - 'fileDataMap' maps file names to their data
 bool ROMAlyzer::writeAllFileData(QString dirName, QMap<QString, QByteArray> *fileDataMap, bool writeLog, QProgressBar *pBar)
@@ -3185,13 +3265,15 @@ bool ROMAlyzer::writeAllFileData(QString dirName, QMap<QString, QByteArray> *fil
 	QMapIterator<QString, QByteArray> it(*fileDataMap);
 	int count = 0;
 	while ( it.hasNext() && success ) {
-		if ( pBar ) pBar->setValue(++count);
+		if ( pBar )
+			pBar->setValue(++count);
 		it.next();
 		QString file = dirName + "/" + it.key();
 		QFile f(file);
 		QByteArray data = it.value();
 		if ( writeLog )
 			log(tr("set rewriter: writing '%1' (size: %2)").arg(file).arg(humanReadable(data.length())));
+		createBackup(file);
 		if ( f.open(QIODevice::WriteOnly) ) {
 			quint64 bytesWritten = 0;
 			progressBarFileIO->setInvertedAppearance(true);
@@ -3218,13 +3300,14 @@ bool ROMAlyzer::writeAllFileData(QString dirName, QMap<QString, QByteArray> *fil
 			success = false;
 	}
 
-	if ( pBar ) pBar->reset();
+	if ( pBar )
+		pBar->reset();
 	progressBarFileIO->reset();
 	progressBarFileIO->setInvertedAppearance(false);
 	return success;
 }
 
-// creates the new ZIP 'fileName' (overwrites an existing file w/o creating a backup!)
+// creates the new ZIP 'fileName'
 // and stores the data found in 'fileDataMap' into the ZIP:
 // - 'fileDataMap' maps file names to their data
 bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fileDataMap, bool writeLog, QProgressBar *pBar)
@@ -3232,8 +3315,8 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 	bool success = true;
 
 	QFile f(fileName);
-	if (  f.exists() )
-		success = f.remove();
+	if ( f.exists() )
+		success = createBackup(fileName) && f.remove();
 
 	zipFile zip = NULL;
 	if ( success )
@@ -3440,17 +3523,21 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 											targetFileMap.remove(crc);
 										}
 									}
-									QString newName = targetPath + QString(".qmc2-backup.%1").arg(QDateTime::currentDateTime().toString("yyyyMMddhhmmsszzz"));
-									if ( f.rename(newName) ) {
-										log(tr("check-sum wizard: backup file '%1' successfully created").arg(newName));
+									if ( createBackup(targetPath) ) {
 										copyTargetData = true;
 										appendType = APPEND_STATUS_CREATE;
 									} else {
-										log(tr("check-sum wizard: FATAL: failed to create backup file '%1', aborting"));
+										log(tr("check-sum wizard: FATAL: backup creation failed, aborting"));
 										saveOkay = false;
 									}
-								} else
-									log(tr("check-sum wizard: no entry with the CRC '%1' or name '%2' was found, adding the missing file to the existing ZIP").arg(sourceCRC).arg(targetFile));
+								} else {
+									if ( createBackup(targetPath) ) {
+										log(tr("check-sum wizard: no entry with the CRC '%1' or name '%2' was found, adding the missing file to the existing ZIP").arg(sourceCRC).arg(targetFile));
+									} else {
+										log(tr("check-sum wizard: FATAL: backup creation failed, aborting"));
+										saveOkay = false;
+									}
+								}
 							} else {
 								log(tr("check-sum wizard: FATAL: failed to load target ZIP, aborting"));
 								saveOkay = false;

@@ -296,6 +296,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		static QString humanReadable(quint64, int digits = 2);
 		static QString &getXmlData(QString, bool includeDTD = false);
 		QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString, QByteArray *, QString *, QString *, bool *, bool *, bool *, int, QString *, bool, bool *);
+		bool createBackup(QString filePath);
 		CheckSumDatabaseManager *checkSumDb() { return m_checkSumDb; }
 		CheckSumScannerLog *checkSumScannerLog() { return m_checkSumScannerLog; }
 		CheckSumScannerThread *checkSumScannerThread() { return m_checkSumScannerThread; }
@@ -311,6 +312,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void on_lineEditGames_textChanged(QString);
 		void on_treeWidgetChecksums_itemSelectionChanged();
 		void on_spinBoxMaxLogSize_valueChanged(int);
+		void on_toolButtonBrowseBackupFolder_clicked();
 		void on_toolButtonBrowseCHDManagerExecutableFile_clicked();
 		void on_toolButtonBrowseTemporaryWorkingDirectory_clicked();
 		void on_toolButtonBrowseSetRewriterOutputPath_clicked();
