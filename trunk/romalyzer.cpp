@@ -4112,12 +4112,9 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 		emit progressChanged(0);
 		int filesRemoved = 0;
 		uint scanTime = checkSumDb()->scanTime();
+		count = 0;
 		for (int i = 0; i < fileList->count() && !exitThread && !stopScan; i++) {
-			if ( oldFileListCount != fileList->count() ) {
-				oldFileListCount = fileList->count();
-				emit progressRangeChanged(0, oldFileListCount - 1);
-			}
-			emit progressChanged(i);
+			emit progressChanged(count++);
 			QFileInfo fi(fileList->at(i));
 			if ( fi.lastModified().toTime_t() < scanTime && pathsInDatabase.contains(fileList->at(i)) ) {
 				fileList->removeAt(i);
@@ -4147,8 +4144,13 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 			checkSumDb()->commitTransaction();
 			emit log(tr("%n outdated path(s) removed from database", "", pathsRemoved));
 
-			// vaccum'ing the database frees all disk-space previously used
-			checkSumDb()->vacuum();
+			if ( !exitThread && !stopScan ) {
+				emit progressTextChanged(tr("Preparing"));
+				emit progressRangeChanged(0, 0);
+				emit progressChanged(-1);
+				emit log(tr("freeing unused space previously occupied by database"));
+				checkSumDb()->vacuum();
+			}
 		}
 	}
 }
