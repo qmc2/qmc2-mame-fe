@@ -41,6 +41,7 @@ class CollectionRebuilderThread : public QThread
 		bool readFileData(QString, QByteArray *);
 		bool readSevenZipFileData(QString, QString, QByteArray *);
 		bool readZipFileData(QString, QString, QByteArray *);
+		bool createBackup(QString filePath);
 
 	public slots:
 		void pause();

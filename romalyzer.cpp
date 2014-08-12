@@ -2051,7 +2051,6 @@ bool ROMAlyzer::createBackup(QString filePath)
 			}
 			QFile destinationFile(destinationPath);
 			if ( destinationFile.open(QIODevice::WriteOnly) ) {
-				// FIXME
 				log(tr("backup") + ": " + tr("creating backup copy of '%1' as '%2'").arg(filePath).arg(destinationPath));
 				char ioBuffer[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
 				int count = 0;

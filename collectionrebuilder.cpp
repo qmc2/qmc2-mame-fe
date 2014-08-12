@@ -605,6 +605,10 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 		success = d.mkdir(QDir::cleanPath(baseDir + "/" + id));
 	for (int i = 0; i < romNameList->count() && !exitThread && !stopRebuilding && success; i++) {
 		QString fileName = d.absoluteFilePath(romNameList->at(i));
+		if ( !createBackup(fileName) ) {
+			emit log(tr("FATAL: backup creation failed"));
+			success = false;
+		}
 		QFile f(fileName);
 		if ( f.open(QIODevice::WriteOnly) ) {
 			QByteArray data;
@@ -652,6 +656,10 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 		if ( !d.mkdir(QDir::cleanPath(baseDir)) )
 			return false;
 	QString fileName = QDir::cleanPath(baseDir) + "/" + id + ".zip";
+	if ( !createBackup(fileName) ) {
+		emit log(tr("FATAL: backup creation failed"));
+		return false;
+	}
 	QFile f(fileName);
 	if ( f.exists() )
 		if ( !f.remove() )
@@ -807,6 +815,70 @@ bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, Q
 		success = false;
 	}
 	return success;
+}
+
+bool CollectionRebuilderThread::createBackup(QString filePath)
+{
+	if ( !qmc2ROMAlyzer->checkBoxCreateBackups->isChecked() || qmc2ROMAlyzer->lineEditBackupFolder->text().isEmpty() )
+		return true;
+	QFile sourceFile(filePath);
+	if ( !sourceFile.exists() )
+		return true;
+	QDir backupDir(qmc2ROMAlyzer->lineEditBackupFolder->text());
+	QFileInfo backupDirInfo(backupDir.absolutePath());
+	if ( backupDirInfo.exists() ) {
+		if ( backupDirInfo.isWritable() ) {
+#if defined(QMC2_OS_WIN)
+			QString destinationPath = QDir::cleanPath(QString(backupDir.absolutePath() + "/" + filePath).replace(":", ""));
+#else
+			QString destinationPath = QDir::cleanPath(backupDir.absolutePath() + "/" + filePath);
+#endif
+			QFileInfo destinationPathInfo(destinationPath);
+			if ( !destinationPathInfo.dir().exists() ) {
+				if ( !backupDir.mkpath(destinationPathInfo.dir().absolutePath()) ) {
+					emit log(tr("backup") + ": " + tr("FATAL: target path '%1' cannot be created").arg(destinationPathInfo.dir().absolutePath()));
+					return false;
+				}
+			}
+			if ( !sourceFile.open(QIODevice::ReadOnly) ) {
+				emit log(tr("backup") + ": " + tr("FATAL: source file '%1' cannot be opened for reading").arg(filePath));
+				return false;
+			}
+			QFile destinationFile(destinationPath);
+			if ( destinationFile.open(QIODevice::WriteOnly) ) {
+				emit log(tr("backup") + ": " + tr("creating backup copy of '%1' as '%2'").arg(filePath).arg(destinationPath));
+				char ioBuffer[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
+				int count = 0;
+				int len = 0;
+				bool success = true;
+				while ( success && (len = sourceFile.read(ioBuffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 ) {
+					if ( count++ % QMC2_BACKUP_IO_RESPONSE == 0 )
+						qApp->processEvents();
+					if ( destinationFile.write(ioBuffer, len) != len ) {
+						emit log(tr("backup") + ": " + tr("FATAL: I/O error while writing to '%1'").arg(destinationPath));
+						success = false;
+					}
+				}
+				sourceFile.close();
+				destinationFile.close();
+				if ( success ) {
+					emit log(tr("backup") + ": " + tr("done (creating backup copy of '%1' as '%2')").arg(filePath).arg(destinationPath));
+					return true;
+				} else
+					return false;
+			} else {
+				emit log(tr("backup") + ": " + tr("FATAL: destination file '%1' cannot be opened for writing").arg(destinationPath));
+				sourceFile.close();
+				return false;
+			}
+		} else {
+			emit log(tr("backup") + ": " + tr("FATAL: backup folder '%1' isn't writable").arg(backupDir.absolutePath()));
+			return false;
+		}
+	} else {
+		emit log(tr("backup") + ": " + tr("FATAL: backup folder '%1' doesn't exist").arg(backupDir.absolutePath()));
+		return false;
+	}
 }
 
 void CollectionRebuilderThread::pause()
