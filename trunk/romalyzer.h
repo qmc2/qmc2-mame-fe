@@ -213,6 +213,7 @@ class CheckSumScannerThread : public QThread
 		CheckSumDatabaseManager *m_checkSumDb;
 		CheckSumScannerLog *m_scannerLog;
 		quint64 m_pendingUpdates;
+		bool m_preparingIncrementalScan;
 		void recursiveFileList(const QString &, QStringList *);
 		bool scanZip(QString, QStringList *, QList<quint64> *, QStringList *, QStringList *);
 		bool scanSevenZip(QString, QStringList *, QList<quint64> *, QStringList *, QStringList *);

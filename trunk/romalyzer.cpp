@@ -4042,6 +4042,7 @@ CheckSumScannerThread::CheckSumScannerThread(CheckSumScannerLog *scannerLog, QOb
 	: QThread(parent)
 {
 	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopScan = scanIncrementally = false;
+	m_preparingIncrementalScan = false;
 	m_checkSumDb = NULL;
 	m_scannerLog = scannerLog;
 	m_pendingUpdates = 0;
@@ -4062,6 +4063,8 @@ CheckSumScannerThread::~CheckSumScannerThread()
 
 QString CheckSumScannerThread::status()
 {
+	if ( m_preparingIncrementalScan )
+		return tr("preparing");
 	if ( exitThread )
 		return tr("exiting");
 	if ( stopScan )
@@ -4075,11 +4078,11 @@ QString CheckSumScannerThread::status()
 
 void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 {
+	m_preparingIncrementalScan = true;
 	emit log(tr("preparing incremental scan"));
-
+	// step 1: remove entries from the database that "point to nowhere" (a.k.a. aren't contained in 'fileList'), storing all paths kept in the database
+	//         in the 'pathsInDatabase' hash for use in steps 2 and 3 so we don't need to query the database again
 	QHash<QString, bool> pathsInDatabase;
-
-	// step 1: remove entries from the database that "point to nowhere" (a.k.a. aren't contained in 'fileList')
 	qint64 row = checkSumDb()->nextRowId(true);
 	emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(1).arg(3));
 	emit progressRangeChanged(0, checkSumDb()->checkSumRowCount() - 1);
@@ -4103,7 +4106,6 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 	}
 	checkSumDb()->commitTransaction();
 	emit log(tr("%n obsolete path(s) removed from database", "", pathsRemoved));
-
 	if ( !exitThread && !stopScan ) {
 		// step 2: remove entries from 'fileList' where 'scanTime' is later than the file's modification time *and* the database has entries for it
 		emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(2).arg(3));
@@ -4123,7 +4125,6 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 			}
 		}
 		emit log(tr("%n unchanged file(s) removed from scan", "", filesRemoved));
-
 		if ( !exitThread && !stopScan ) {
 			// step 3: remove entries from the database that "point to new stuff" (a.k.a. are still contained in the modified 'fileList')
 			emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(3).arg(3));
@@ -4153,6 +4154,7 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 			}
 		}
 	}
+	m_preparingIncrementalScan = false;
 }
 
 void CheckSumScannerThread::reopenDatabase()
