@@ -2034,7 +2034,8 @@ bool ROMAlyzer::createBackup(QString filePath)
 	if ( backupDirInfo.exists() ) {
 		if ( backupDirInfo.isWritable() ) {
 #if defined(QMC2_OS_WIN)
-			QString destinationPath = QDir::cleanPath(QString(backupDir.absolutePath() + "/" + filePath).replace(":", ""));
+			QString filePathCopy = filePath;
+			QString destinationPath = QDir::cleanPath(QString(backupDir.absolutePath() + "/" + filePathCopy.replace(":", "")));
 #else
 			QString destinationPath = QDir::cleanPath(backupDir.absolutePath() + "/" + filePath);
 #endif
@@ -4440,7 +4441,7 @@ void CheckSumScannerThread::recursiveFileList(const QString &sDir, QStringList *
 	foreach (QFileInfo info, dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden | QDir::System)) {
 		if ( exitThread || stopScan )
 			break;
-		QString path = QDir::toNativeSeparators(info.filePath());
+		QString path = info.filePath();
 		if ( info.isDir() ) {
 			// directory recursion
 			if ( info.fileName() != ".." && info.fileName() != "." )
