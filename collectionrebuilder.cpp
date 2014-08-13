@@ -829,7 +829,8 @@ bool CollectionRebuilderThread::createBackup(QString filePath)
 	if ( backupDirInfo.exists() ) {
 		if ( backupDirInfo.isWritable() ) {
 #if defined(QMC2_OS_WIN)
-			QString destinationPath = QDir::cleanPath(QString(backupDir.absolutePath() + "/" + filePath).replace(":", ""));
+			QString filePathCopy = filePath;
+			QString destinationPath = QDir::cleanPath(QString(backupDir.absolutePath() + "/" + filePathCopy.replace(":", "")));
 #else
 			QString destinationPath = QDir::cleanPath(backupDir.absolutePath() + "/" + filePath);
 #endif
