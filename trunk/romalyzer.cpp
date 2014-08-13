@@ -494,7 +494,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 #endif
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
-	QString variantName = QMC2_VARIANT_NAME.toLower();
+	QString variantName = QMC2_VARIANT_NAME.toLower().replace(QRegExp("\\..*$"), "");
 
 	// restore settings
 	checkBoxAppendReport->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/AppendReport", false).toBool());
@@ -534,7 +534,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	listWidgetCheckSumDbScannedPaths->clear();
 	listWidgetCheckSumDbScannedPaths->addItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", QStringList()).toStringList());
 	pushButtonCheckSumDbScan->setEnabled(listWidgetCheckSumDbScannedPaths->count() > 0);
-	lineEditCheckSumDbDatabasePath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbDatabasePath", QString(userScopePath + "/%1-checksum.db").arg(variantName.replace("-", "_").replace(QRegExp("\\..*$"), ""))).toString());
+	lineEditCheckSumDbDatabasePath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbDatabasePath", QString(userScopePath + "/%1-checksum.db").arg(variantName)).toString());
 	toolButtonCheckSumDbScanIncrementally->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScanIncrementally", true).toBool());
 
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
