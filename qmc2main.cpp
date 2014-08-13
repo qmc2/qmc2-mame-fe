@@ -2693,7 +2693,7 @@ void MainWindow::on_actionROMAlyzer_triggered(bool)
 #endif
 
 	if ( !qmc2ROMAlyzer )
-		qmc2ROMAlyzer = new ROMAlyzer(this);
+		qmc2ROMAlyzer = new ROMAlyzer(0);
 
 	if ( !qmc2ROMAlyzerActive )
 		qmc2ROMAlyzer->lineEditGames->setText("*");
@@ -2748,7 +2748,7 @@ void MainWindow::on_actionAnalyseCurrentROM_triggered(bool)
 	}
 
 	if ( !qmc2ROMAlyzer )
-		qmc2ROMAlyzer = new ROMAlyzer(this);
+		qmc2ROMAlyzer = new ROMAlyzer(0);
 
 	qmc2ROMAlyzer->lineEditGames->setText(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME));
 
@@ -11154,7 +11154,7 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 	}
 
 	if ( !qmc2ROMAlyzer )
-		qmc2ROMAlyzer = new ROMAlyzer(this);
+		qmc2ROMAlyzer = new ROMAlyzer(0);
 
 	qmc2ROMAlyzer->quickSearch = true;
 	qmc2ROMAlyzer->lineEditGames->setText(setsToAnalyze.join(" "));
