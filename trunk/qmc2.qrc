@@ -16,6 +16,7 @@
         <file>data/img/category.png</file>
         <file>data/img/cd.png</file>
         <file>data/img/characters.png</file>
+        <file>data/img/checkpoint.png</file>
         <file>data/img/circuit.png</file>
         <file>data/img/clock.png</file>
         <file>data/img/clone.png</file>
@@ -145,6 +146,7 @@
         <file>data/img/next-sail.png</file>
         <file>data/img/next.png</file>
         <file>data/img/no.png</file>
+        <file>data/img/no_checkpoint.png</file>
         <file>data/img/no_sound.png</file>
         <file>data/img/north.png</file>
         <file>data/img/notes.png</file>

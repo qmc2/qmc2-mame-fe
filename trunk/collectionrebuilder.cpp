@@ -8,6 +8,7 @@
 #include <QFileDialog>
 #include <QMap>
 #include <QDateTime>
+#include <QMessageBox>
 
 #include "collectionrebuilder.h"
 #include "settings.h"
@@ -52,29 +53,51 @@ CollectionRebuilder::CollectionRebuilder(QWidget *parent)
 	m_defaultRomEntity = "rom";
 	m_defaultDiskEntity = "disk";
 
+	m_iconCheckpoint = QIcon(QString::fromUtf8(":/data/img/checkpoint.png"));
+	m_iconNoCheckpoint = QIcon(QString::fromUtf8(":/data/img/no_checkpoint.png"));
+
 	frameEntities->setVisible(false);
 	toolButtonRemoveXmlSource->setVisible(false);
 	comboBoxXmlSource->blockSignals(true);
 	comboBoxXmlSource->clear();
 	comboBoxXmlSource->insertItem(0, tr("Current default emulator"));
-	comboBoxXmlSource->insertSeparator(1);
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/Checkpoint", -1).toLongLong() >= 0 ) {
+		comboBoxXmlSource->setItemIcon(0, m_iconCheckpoint);
+		comboBoxXmlSource->setItemData(0, true);
+	} else {
+		comboBoxXmlSource->setItemIcon(0, m_iconNoCheckpoint);
+		comboBoxXmlSource->setItemData(0, false);
+	}
 	QStringList xmlSources = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSources", QStringList()).toStringList();
 	QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", QStringList()).toStringList();
 	QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", QStringList()).toStringList();
 	QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", QStringList()).toStringList();
-	int index = 2;
-	if ( xmlSources.count() > 0 && setEntities.count() == xmlSources.count() && romEntities.count() == xmlSources.count() && diskEntities.count() == xmlSources.count() ) {
+	QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", QStringList()).toStringList();
+	QList<qint64> checkpoints;
+	foreach (QString cp, checkpointList)
+		checkpoints << cp.toLongLong();
+	int index = 1;
+	if ( xmlSources.count() > 0 && setEntities.count() == xmlSources.count() && romEntities.count() == xmlSources.count() && diskEntities.count() == xmlSources.count() && checkpointList.count() == xmlSources.count() ) {
 		for (int i = 0; i < xmlSources.count(); i++) {
 			QString xmlSource = xmlSources[i];
 			QFileInfo fi(xmlSource);
 			if ( fi.exists() && fi.isReadable() ) {
 				comboBoxXmlSource->insertItem(index, xmlSource);
+				if ( checkpoints[i] >= 0 ) {
+					comboBoxXmlSource->setItemIcon(index, m_iconCheckpoint);
+					comboBoxXmlSource->setItemData(index, true);
+				} else {
+					comboBoxXmlSource->setItemIcon(index, m_iconNoCheckpoint);
+					comboBoxXmlSource->setItemData(index, false);
+				}
 				index++;
 			} else {
 				xmlSources.removeAt(i);
 				setEntities.removeAt(i);
 				romEntities.removeAt(i);
 				diskEntities.removeAt(i);
+				checkpointList.removeAt(i);
+				checkpoints.removeAt(i);
 				i--;
 			}
 		}
@@ -82,16 +105,16 @@ CollectionRebuilder::CollectionRebuilder(QWidget *parent)
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", setEntities);
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", romEntities);
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", diskEntities);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", checkpointList);
 	} else {
 		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSources");
 		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities");
 		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities");
 		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities");
+		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints");
 	}
-	if ( index > 2 ) {
-		comboBoxXmlSource->insertSeparator(index);
-		index++;
-	}
+	comboBoxXmlSource->insertSeparator(index);
+	index++;
 	comboBoxXmlSource->insertItem(index, tr("Select XML file..."));
 	comboBoxXmlSource->setItemIcon(index, QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
 	comboBoxXmlSource->setCurrentIndex(0);
@@ -148,8 +171,31 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 	qApp->processEvents();
 	if ( rebuilderThread()->isActive )
 		rebuilderThread()->stopRebuilding = true;
-	else if ( rebuilderThread()->isWaiting )
+	else if ( rebuilderThread()->isWaiting ) {
+		if ( comboBoxXmlSource->itemData(comboBoxXmlSource->currentIndex()).toBool() ) {
+			if ( QMessageBox::question(this, tr("Confirm checkpoint restart"), tr("Restart from stored checkpoint?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes ) {
+				qint64 cp = 0;
+				int index = comboBoxXmlSource->currentIndex();
+				if ( index == 0 )
+					cp = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/Checkpoint", -1).toLongLong();
+				else {
+					index -= 1;
+					QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", QStringList()).toStringList();
+					if ( index >= 0 && index < checkpointList.count() )
+						cp = checkpointList[index].toLongLong();
+					else
+						cp = -1;
+				}
+				if ( cp >= 0 )
+					rebuilderThread()->checkpointRestart(cp);
+				else
+					rebuilderThread()->checkpointRestart(-1);
+			} else
+				rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
+		} else
+			rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
 		rebuilderThread()->waitCondition.wakeAll();
+	}
 }
 
 void CollectionRebuilder::on_pushButtonPauseResume_clicked()
@@ -211,9 +257,14 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 				diskEntities << m_defaultDiskEntity;
 				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", diskEntities);
 				lineEditDiskEntity->setText(m_defaultDiskEntity);
+				QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", QStringList()).toStringList();
+				checkpointList << "-1";
+				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", checkpointList);
 				int insertIndex = comboBoxXmlSource->count() - 2;
-				lastIndex = insertIndex;
+				lastIndex = insertIndex - 1;
 				comboBoxXmlSource->insertItem(insertIndex, xmlSource);
+				comboBoxXmlSource->setItemIcon(insertIndex, m_iconNoCheckpoint);
+				comboBoxXmlSource->setItemData(insertIndex, false);
 				comboBoxXmlSource->setCurrentIndex(insertIndex);
 				comboBoxXmlSource->blockSignals(false);
 				frameEntities->setVisible(true);
@@ -225,41 +276,39 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 			comboBoxXmlSource->setCurrentIndex(0);
 		raise();
 	} else {
-		index -= 2;
-		QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", QStringList()).toStringList();
-		QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", QStringList()).toStringList();
-		QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", QStringList()).toStringList();
-		if ( lastIndex >= 0 ) {
-			if ( lastIndex < setEntities.count() ) {
-				setEntities.replace(lastIndex, lineEditSetEntity->text());
-				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", setEntities);
+		index -= 1;
+		if ( index >= 0 ) {
+			QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", QStringList()).toStringList();
+			QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", QStringList()).toStringList();
+			QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", QStringList()).toStringList();
+			if ( lastIndex >= 0 ) {
+				if ( lastIndex < setEntities.count() ) {
+					setEntities.replace(lastIndex, lineEditSetEntity->text());
+					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", setEntities);
+				}
+				if ( lastIndex < romEntities.count() ) {
+					romEntities.replace(lastIndex, lineEditRomEntity->text());
+					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", romEntities);
+				}
+				if ( lastIndex < diskEntities.count() ) {
+					diskEntities.replace(lastIndex, lineEditDiskEntity->text());
+					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", diskEntities);
+				}
 			}
-			if ( lastIndex < romEntities.count() ) {
-				romEntities.replace(lastIndex, lineEditRomEntity->text());
-				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", romEntities);
-			}
-			if ( lastIndex < diskEntities.count() ) {
-				diskEntities.replace(lastIndex, lineEditDiskEntity->text());
-				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", diskEntities);
-			}
+			lastIndex = index;
+			lineEditSetEntity->setText(setEntities[index]);
+			lineEditRomEntity->setText(romEntities[index]);
+			lineEditDiskEntity->setText(diskEntities[index]);
+			frameEntities->setVisible(true);
+			toolButtonRemoveXmlSource->setVisible(true);
+			QTimer::singleShot(0, this, SLOT(scrollToEnd()));
 		}
-		lastIndex = index;
-		lineEditSetEntity->setText(setEntities[index]);
-		lineEditRomEntity->setText(romEntities[index]);
-		lineEditDiskEntity->setText(diskEntities[index]);
-		frameEntities->setVisible(true);
-		toolButtonRemoveXmlSource->setVisible(true);
-		QTimer::singleShot(0, this, SLOT(scrollToEnd()));
 	}
-
 }
 
 void CollectionRebuilder::on_toolButtonRemoveXmlSource_clicked()
 {
-	int index = comboBoxXmlSource->currentIndex() - 2;
-	comboBoxXmlSource->blockSignals(true);
-	comboBoxXmlSource->removeItem(comboBoxXmlSource->currentIndex());
-	comboBoxXmlSource->blockSignals(false);
+	int index = comboBoxXmlSource->currentIndex() - 1;
 	comboBoxXmlSource->setCurrentIndex(0);
 	QStringList xmlSources = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSources", QStringList()).toStringList();
 	xmlSources.removeAt(index);
@@ -273,6 +322,12 @@ void CollectionRebuilder::on_toolButtonRemoveXmlSource_clicked()
 	QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", QStringList()).toStringList();
 	diskEntities.removeAt(index);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", diskEntities);
+	QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", QStringList()).toStringList();
+	checkpointList.removeAt(index);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", checkpointList);
+	comboBoxXmlSource->blockSignals(true);
+	comboBoxXmlSource->removeItem(index + 1);
+	comboBoxXmlSource->blockSignals(false);
 }
 
 void CollectionRebuilder::rebuilderThread_rebuildStarted()
@@ -284,6 +339,8 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	pushButtonStartStop->setEnabled(true);
 	pushButtonPauseResume->setEnabled(true);
 	comboBoxXmlSource->setEnabled(false);
+	comboBoxXmlSource->setItemIcon(comboBoxXmlSource->currentIndex(), m_iconCheckpoint);
+	comboBoxXmlSource->setItemData(comboBoxXmlSource->currentIndex(), true);
 	labelXmlSource->setEnabled(false);
 	toolButtonRemoveXmlSource->setEnabled(false);
 	frameEntities->setEnabled(false);
@@ -293,6 +350,27 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 
 void CollectionRebuilder::rebuilderThread_rebuildFinished()
 {
+	int index = comboBoxXmlSource->currentIndex();
+	qint64 cp = rebuilderThread()->checkpoint();
+	if ( index == 0 )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/Checkpoint", cp);
+	else {
+		index -= 1;
+		QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", QStringList()).toStringList();
+		if ( index >= 0 && index < checkpointList.count() ) {
+			checkpointList.replace(index, QString::number(cp));
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", checkpointList);
+		}
+	}
+	if ( index < 0 )
+		return;
+	if ( cp >= 0 ) {
+		comboBoxXmlSource->setItemIcon(index, m_iconCheckpoint);
+		comboBoxXmlSource->setItemData(index, true);
+	} else {
+		comboBoxXmlSource->setItemIcon(index, m_iconNoCheckpoint);
+		comboBoxXmlSource->setItemData(index, false);
+	}
 	pushButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
 	pushButtonStartStop->setText(tr("Start rebuilding"));
 	pushButtonPauseResume->hide();
@@ -380,7 +458,7 @@ CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
 	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopRebuilding = false;
 	m_rebuilderDialog = (CollectionRebuilder *)parent;
 	m_checkSumDb = NULL;
-	m_xmlIndex = m_xmlIndexCount = -1;
+	m_xmlIndex = m_xmlIndexCount = m_checkpoint = -1;
 	reopenDatabase();
 	m_xmlDb = new XmlDatabaseManager(this);
 	start();
@@ -524,6 +602,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 			m_xmlIndexCount = xmlDb()->xmlRowCount();
 			emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
 			emit progressChanged(m_xmlIndex);
+			setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 			return true;
 		} else {
 			m_xmlFile.setFileName(rebuilderDialog()->comboBoxXmlSource->currentText());
@@ -532,59 +611,113 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 				m_xmlIndexCount = m_xmlFile.size() - 1;
 				emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
 				emit progressChanged(m_xmlIndex);
+				setCheckpoint(0, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 				return true;
 			} else {
 				emit log(tr("FATAL: can't open XML file '%1' for reading, please check permissions").arg(rebuilderDialog()->comboBoxXmlSource->currentText()));
+				setCheckpoint(-1, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 				return false;
 			}
 		}
 	} else {
 		if ( m_xmlIndex > m_xmlIndexCount ) {
 			emit progressChanged(m_xmlIndexCount);
+			setCheckpoint(-1, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 			return false;
 		}
 		if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
 			if ( parseXml(xmlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List) ) {
 				m_xmlIndex++;
 				emit progressChanged(m_xmlIndex);
+				setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 				return true;
 			} else {
 				emit log(tr("FATAL: XML parsing failed"));
+				setCheckpoint(-1, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 				return false;
 			}
 		} else {
 			QString setEntityStartPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
 			QByteArray line = m_xmlFile.readLine();
-			while ( !m_xmlFile.atEnd() && line.indexOf(setEntityStartPattern) < 0 && !exitThread && !stopRebuilding )
+			while ( !m_xmlFile.atEnd() && line.indexOf(setEntityStartPattern) < 0 && !exitThread )
 				line = m_xmlFile.readLine();
 			if ( m_xmlFile.atEnd() ) {
 				emit progressChanged(m_xmlIndexCount);
+				setCheckpoint(-1, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 				return false;
-			} else if ( !exitThread && !stopRebuilding ) {
+			} else if ( !exitThread ) {
 				QString xmlString;
 				QString setEntityEndPattern("</" + rebuilderDialog()->lineEditSetEntity->text() + ">");
-				while ( !m_xmlFile.atEnd() && line.indexOf(setEntityEndPattern) < 0 && !exitThread && !stopRebuilding ) {
+				while ( !m_xmlFile.atEnd() && line.indexOf(setEntityEndPattern) < 0 && !exitThread ) {
 					xmlString += line;
 					line = m_xmlFile.readLine();
 				}
-				if ( !m_xmlFile.atEnd() && !exitThread && !stopRebuilding ) {
+				if ( !m_xmlFile.atEnd() && !exitThread ) {
 					xmlString += line;
 					if ( parseXml(xmlString, id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List) ) {
 						m_xmlIndex = m_xmlFile.pos();
 						emit progressChanged(m_xmlIndex);
+						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						return true;
 					} else {
 						emit log(tr("FATAL: XML parsing failed"));
+						setCheckpoint(-1, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						return false;
 					}
 				} else {
 					emit log(tr("FATAL: XML parsing failed"));
+					setCheckpoint(-1, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 					return false;
 				}
-			} else
+			} else {
+				setCheckpoint(-1, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 				return false;
+			}
 		}
 	}
+}
+
+void CollectionRebuilderThread::setCheckpoint(qint64 cp, int xmlSourceIndex)
+{
+	m_checkpoint = cp;
+	if ( xmlSourceIndex == 0 )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/Checkpoint", checkpoint());
+	else if ( xmlSourceIndex > 0 && xmlSourceIndex < rebuilderDialog()->comboBoxXmlSource->count() - 1 ) {
+		xmlSourceIndex -= 1;
+		QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", QStringList()).toStringList();
+		checkpointList.replace(xmlSourceIndex, QString::number(checkpoint()));
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", checkpointList);
+	}
+}
+
+void CollectionRebuilderThread::checkpointRestart(qint64 cp)
+{
+	if ( cp < 0 ) {
+		m_xmlIndex = m_xmlIndexCount = -1;
+		return;
+	}
+	m_xmlIndex = cp;
+	if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
+		emit log(tr("restarting from checkpoint '%1'").arg(m_xmlIndex));
+		m_xmlIndexCount = xmlDb()->xmlRowCount();
+		emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
+		emit progressChanged(m_xmlIndex);
+	} else {
+		if ( m_xmlFile.isOpen() )
+			m_xmlFile.close();
+		m_xmlFile.setFileName(rebuilderDialog()->comboBoxXmlSource->currentText());
+		if ( m_xmlFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+			emit log(tr("restarting from checkpoint '%1'").arg(m_xmlIndex));
+			m_xmlIndexCount = m_xmlFile.size() - 1;
+			m_xmlFile.seek(m_xmlIndex);
+			emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
+			emit progressChanged(m_xmlIndex);
+		} else {
+			emit log(tr("FATAL: can't open XML file '%1' for reading, please check permissions").arg(rebuilderDialog()->comboBoxXmlSource->currentText()));
+			m_xmlIndex = m_xmlIndexCount = -1;
+		}
+	}
+	setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 }
 
 bool CollectionRebuilderThread::rewriteSet(QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
@@ -603,7 +736,7 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 	QDir d(QDir::cleanPath(baseDir + "/" + id));
 	if ( !d.exists() )
 		success = d.mkdir(QDir::cleanPath(baseDir + "/" + id));
-	for (int i = 0; i < romNameList->count() && !exitThread && !stopRebuilding && success; i++) {
+	for (int i = 0; i < romNameList->count() && !exitThread && success; i++) {
 		QString fileName = d.absoluteFilePath(romNameList->at(i));
 		if ( !createBackup(fileName) ) {
 			emit log(tr("FATAL: backup creation failed"));
@@ -626,7 +759,7 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 				if ( success ) {
 					emit log(tr("writing '%1' (size: %2)").arg(fileName).arg(ROMAlyzer::humanReadable(data.length())));
 					quint64 bytesWritten = 0;
-					while ( bytesWritten < (quint64)data.length() && !exitThread && !stopRebuilding && success ) {
+					while ( bytesWritten < (quint64)data.length() && !exitThread && success ) {
 						quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
 						if ( bytesWritten + bufferLength > (quint64)data.length() )
 							bufferLength = data.length() - bytesWritten;
@@ -680,7 +813,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 		zipInfo.tmz_date.tm_year = cDT.date().year();
 		zipInfo.dosDate = zipInfo.internal_fa = zipInfo.external_fa = 0;
 		QStringList storedCRCs;
-		for (int i = 0; i < romNameList->count() && !exitThread && !stopRebuilding && success; i++) {
+		for (int i = 0; i < romNameList->count() && !exitThread && success; i++) {
 			if ( uniqueCRCs && storedCRCs.contains(romCrcList->at(i)) ) {
 				emit log(tr("skipping '%1'").arg(romNameList->at(i)) + " ("+ tr("a dump with CRC '%1' already exists").arg(romCrcList->at(i)) + ")");
 				continue;
@@ -701,7 +834,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 				if ( success && zipOpenNewFileInZip(zip, file.toLocal8Bit().constData(), &zipInfo, (const void *)file.toLocal8Bit().constData(), file.length(), 0, 0, 0, Z_DEFLATED, zipLevel) == ZIP_OK ) {
 					emit log(tr("writing '%1' to ZIP archive '%2' (uncompressed size: %3)").arg(file).arg(fileName).arg(ROMAlyzer::humanReadable(data.length())));
 					quint64 bytesWritten = 0;
-					while ( bytesWritten < (quint64)data.length() && !exitThread && !stopRebuilding && success ) {
+					while ( bytesWritten < (quint64)data.length() && !exitThread && success ) {
 						quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
 						if ( bytesWritten + bufferLength > (quint64)data.length() )
 							bufferLength = data.length() - bytesWritten;
@@ -736,7 +869,7 @@ bool CollectionRebuilderThread::readFileData(QString fileName, QByteArray *data)
   		char ioBuffer[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
 		int len = 0;
 		emit log(tr("reading '%1' (size: %2)").arg(fileName).arg(ROMAlyzer::humanReadable(file.size())));
-		while ( (len = file.read(ioBuffer, QMC2_FILE_BUFFER_SIZE)) > 0 && !exitThread && !stopRebuilding )
+		while ( (len = file.read(ioBuffer, QMC2_FILE_BUFFER_SIZE)) > 0 && !exitThread )
 			data->append(QByteArray((const char *)ioBuffer, len));
 		file.close();
 		return true;
@@ -794,7 +927,7 @@ bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, Q
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
 					emit log(tr("reading '%1' from ZIP archive '%2' (uncompressed size: %3)").arg(fn).arg(fileName).arg(ROMAlyzer::humanReadable(zipInfo.uncompressed_size)));
 					qint64 len;
-					while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 && !exitThread && !stopRebuilding )
+					while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 && !exitThread )
 						data->append(QByteArray((const char *)ioBuffer, len));
 					unzCloseCurrentFile(zipFile);
 				} else {
@@ -912,7 +1045,8 @@ void CollectionRebuilderThread::run()
 			emit progressTextChanged(tr("Rebuilding"));
 			QTime rebuildTimer, elapsedTime(0, 0, 0, 0);
 			rebuildTimer.start();
-			m_xmlIndex = m_xmlIndexCount = -1;
+			if ( checkpoint() < 0 )
+				m_xmlIndex = m_xmlIndexCount = -1;
 			QString id;
 			QStringList romNameList, romSha1List, romCrcList, diskNameList, diskSha1List;
 			while ( !exitThread && !stopRebuilding && nextId(&id, &romNameList, &romSha1List, &romCrcList, &diskNameList, &diskSha1List) ) {
@@ -937,7 +1071,7 @@ void CollectionRebuilderThread::run()
 				QTest::qWait(0);
 				if ( id.isEmpty() )
 					continue;
-				if ( !romNameList.isEmpty() || !diskNameList.isEmpty() ) {
+				if ( !exitThread && !stopRebuilding && !romNameList.isEmpty() || !diskNameList.isEmpty() ) {
 					emit log(tr("set rebuilding started for '%1'").arg(id));
 					for (int i = 0; i < romNameList.count(); i++) {
 						bool dbStatusGood = checkSumDb()->exists(romSha1List[i], romCrcList[i]);

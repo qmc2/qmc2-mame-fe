@@ -5,6 +5,7 @@
 #include <QMutex>
 #include <QWaitCondition>
 #include <QFile>
+#include <QIcon>
 
 #include "checksumdbmgr.h"
 #include "xmldbmgr.h"
@@ -32,9 +33,12 @@ class CollectionRebuilderThread : public QThread
 		CheckSumDatabaseManager *checkSumDb() { return m_checkSumDb; }
 		CollectionRebuilder *rebuilderDialog() { return m_rebuilderDialog; }
 		XmlDatabaseManager *xmlDb() { return m_xmlDb; }
+		qint64 checkpoint() { return m_checkpoint; }
+		void setCheckpoint(qint64 cp, int xmlSourceIndex);
 		void reopenDatabase();
 		bool parseXml(QString, QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
 		bool nextId(QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
+		void checkpointRestart(qint64 checkpoint);
 		bool rewriteSet(QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
 		bool writeAllFileData(QString, QString, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
 		bool writeAllZipData(QString, QString, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
@@ -65,7 +69,7 @@ class CollectionRebuilderThread : public QThread
 		CheckSumDatabaseManager *m_checkSumDb;
 		XmlDatabaseManager *m_xmlDb;
 		CollectionRebuilder *m_rebuilderDialog;
-		qint64 m_xmlIndex, m_xmlIndexCount;
+		qint64 m_xmlIndex, m_xmlIndexCount, m_checkpoint;
 		QFile m_xmlFile;
 };
 
@@ -107,6 +111,7 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 	private:
 		CollectionRebuilderThread *m_rebuilderThread;
 		QString m_defaultSetEntity, m_defaultRomEntity, m_defaultDiskEntity;
+		QIcon m_iconCheckpoint, m_iconNoCheckpoint;
 };
 
 #endif
