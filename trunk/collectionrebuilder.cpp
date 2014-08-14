@@ -237,7 +237,7 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 		toolButtonRemoveXmlSource->setVisible(false);
 		lastIndex = -1;
 	} else if ( index == comboBoxXmlSource->count() - 1 ) {
-		QString xmlSource = QFileDialog::getOpenFileName(this, tr("Choose source XML file"), QString(), tr("Data files (*.dat)") + ";;" + tr("XML files (*.xml)") + ";;" + tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+		QString xmlSource = QFileDialog::getOpenFileName(this, tr("Choose source XML file"), QString(), tr("Data and XML files (*.dat *.xml)") + ";;" + tr("Data files (*.dat)") + ";;" + tr("XML files (*.xml)") + ";;" + tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 		if ( !xmlSource.isNull() ) {
 			int foundAtIndex = comboBoxXmlSource->findText(xmlSource);
 			if ( foundAtIndex < 0 ) {
