@@ -517,6 +517,14 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 						romFound = true;
 						QString romName = xmlLine.mid(startIndex, endIndex - startIndex);
 						QString mergeName;
+						QString status;
+						startIndex = xmlLine.indexOf("status=\"");
+						if ( startIndex >= 0 ) {
+							startIndex += 8;
+							endIndex = xmlLine.indexOf("\"", startIndex);
+							if ( endIndex >= 0 )
+								status = xmlLine.mid(startIndex, endIndex - startIndex);
+						}
 						startIndex = xmlLine.indexOf("merge=\"");
 						if ( startIndex >= 0 ) {
 							startIndex += 7;
@@ -524,7 +532,7 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 							if ( endIndex >= 0 )
 								mergeName = xmlLine.mid(startIndex, endIndex - startIndex);
 						}
-						if ( !merge || mergeName.isEmpty() ) {
+						if ( status != "nodump" && (!merge || mergeName.isEmpty()) ) {
 							QString romSha1, romCrc;
 							startIndex = xmlLine.indexOf("sha1=\"");
 							if ( startIndex >= 0 ) {
