@@ -635,9 +635,9 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 		}
 		if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
 			if ( parseXml(xmlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List) ) {
+				setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 				m_xmlIndex++;
 				emit progressChanged(m_xmlIndex);
-				setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 				return true;
 			} else {
 				emit log(tr("FATAL: XML parsing failed"));
@@ -663,9 +663,9 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 				if ( !m_xmlFile.atEnd() && !exitThread ) {
 					xmlString += line;
 					if ( parseXml(xmlString, id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List) ) {
+						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex = m_xmlFile.pos();
 						emit progressChanged(m_xmlIndex);
-						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						return true;
 					} else {
 						emit log(tr("FATAL: XML parsing failed"));
