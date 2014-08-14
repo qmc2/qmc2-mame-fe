@@ -1079,7 +1079,7 @@ void CollectionRebuilderThread::run()
 				QTest::qWait(0);
 				if ( id.isEmpty() )
 					continue;
-				if ( !exitThread && !stopRebuilding && !romNameList.isEmpty() || !diskNameList.isEmpty() ) {
+				if ( !exitThread && !stopRebuilding && (!romNameList.isEmpty() || !diskNameList.isEmpty()) ) {
 					emit log(tr("set rebuilding started for '%1'").arg(id));
 					for (int i = 0; i < romNameList.count(); i++) {
 						bool dbStatusGood = checkSumDb()->exists(romSha1List[i], romCrcList[i]);
@@ -1093,7 +1093,10 @@ void CollectionRebuilderThread::run()
 						if ( !dbStatusGood )
 							missingDisks++;
 					}
-					if ( rewriteSet(&id, &romNameList, &romSha1List, &romCrcList, &diskNameList, &diskSha1List) )
+					bool rewriteOkay = true;
+					if ( !romNameList.isEmpty() )
+						rewriteOkay = rewriteSet(&id, &romNameList, &romSha1List, &romCrcList, &diskNameList, &diskSha1List);
+					if ( rewriteOkay )
 						emit log(tr("set rebuilding finished for '%1'").arg(id));
 					else
 						emit log(tr("set rebuilding failed for '%1'").arg(id));
