@@ -2476,7 +2476,10 @@ void ROMAlyzer::on_groupBoxCheckSumDatabase_toggled(bool enable)
 {
 	widgetCheckSumDbQueryStatus->setVisible(enable);
 	qApp->processEvents();
-	pushButtonRomCollectionRebuilder->setEnabled(groupBoxSetRewriter->isChecked() && enable && !checkSumScannerThread()->isActive);
+	if ( checkSumScannerThread() )
+		pushButtonRomCollectionRebuilder->setEnabled(groupBoxSetRewriter->isChecked() && enable && !checkSumScannerThread()->isActive);
+	else
+		pushButtonRomCollectionRebuilder->setEnabled(groupBoxSetRewriter->isChecked() && enable);
 	if ( enable )
 		QTimer::singleShot(0, this, SLOT(lineEditChecksumWizardHash_textChanged_delayed()));
 	else {
