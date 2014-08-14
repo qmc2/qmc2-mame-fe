@@ -215,9 +215,17 @@ quint64 CheckSumDatabaseManager::databaseSize()
 bool CheckSumDatabaseManager::exists(QString sha1, QString crc)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT sha1, crc FROM %1 WHERE sha1=:sha1 OR crc=:crc").arg(m_tableBasename));
-	query.bindValue(":sha1", sha1);
-	query.bindValue(":crc", crc);
+	if ( sha1.isEmpty() ) {
+		query.prepare(QString("SELECT sha1, crc FROM %1 WHERE crc=:crc").arg(m_tableBasename));
+		query.bindValue(":crc", crc);
+	} else if ( crc.isEmpty() ) {
+		query.prepare(QString("SELECT sha1, crc FROM %1 WHERE sha1=:sha1").arg(m_tableBasename));
+		query.bindValue(":sha1", sha1);
+	} else {
+		query.prepare(QString("SELECT sha1, crc FROM %1 WHERE sha1=:sha1 AND crc=:crc").arg(m_tableBasename));
+		query.bindValue(":sha1", sha1);
+		query.bindValue(":crc", crc);
+	}
 	if ( query.exec() ) {
 		if ( query.first() )
 			return (query.value(0).toString() == sha1 || query.value(1).toString() == crc);
@@ -246,9 +254,17 @@ void CheckSumDatabaseManager::setData(QString sha1, QString crc, quint64 size, Q
 bool CheckSumDatabaseManager::getData(QString sha1, QString crc, quint64 *size, QString *path, QString *member, QString *type)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT size, path, member, type FROM %1 WHERE sha1=:sha1 OR crc=:crc").arg(m_tableBasename));
-	query.bindValue(":sha1", sha1);
-	query.bindValue(":crc", crc);
+	if ( sha1.isEmpty() ) {
+		query.prepare(QString("SELECT size, path, member, type FROM %1 WHERE crc=:crc").arg(m_tableBasename));
+		query.bindValue(":crc", crc);
+	} else if ( crc.isEmpty() ) {
+		query.prepare(QString("SELECT size, path, member, type FROM %1 WHERE sha1=:sha1").arg(m_tableBasename));
+		query.bindValue(":sha1", sha1);
+	} else {
+		query.prepare(QString("SELECT size, path, member, type FROM %1 WHERE sha1=:sha1 AND crc=:crc").arg(m_tableBasename));
+		query.bindValue(":sha1", sha1);
+		query.bindValue(":crc", crc);
+	}
 	if ( query.exec() ) {
 		if ( query.first() ) {
 			*size = query.value(0).toULongLong();
