@@ -6,6 +6,7 @@
 #include <QWaitCondition>
 #include <QFile>
 #include <QIcon>
+#include <QTimer>
 
 #include "checksumdbmgr.h"
 #include "xmldbmgr.h"
@@ -101,6 +102,7 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		void rebuilderThread_progressRangeChanged(int, int);
 		void rebuilderThread_progressChanged(int);
 		void rebuilderThread_statusUpdated(int, int, int);
+		void animationTimer_timeout();
 
 	protected:
 		void showEvent(QShowEvent *);
@@ -112,6 +114,8 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		CollectionRebuilderThread *m_rebuilderThread;
 		QString m_defaultSetEntity, m_defaultRomEntity, m_defaultDiskEntity;
 		QIcon m_iconCheckpoint, m_iconNoCheckpoint;
+		QTimer m_animationTimer;
+		int m_animationSequence;
 };
 
 #endif

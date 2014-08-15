@@ -56,6 +56,9 @@ CollectionRebuilder::CollectionRebuilder(QWidget *parent)
 	m_iconCheckpoint = QIcon(QString::fromUtf8(":/data/img/checkpoint.png"));
 	m_iconNoCheckpoint = QIcon(QString::fromUtf8(":/data/img/no_checkpoint.png"));
 
+	m_animationSequence = 0;
+	connect(&m_animationTimer, SIGNAL(timeout()), this, SLOT(animationTimer_timeout()));
+
 	frameEntities->setVisible(false);
 	toolButtonRemoveXmlSource->setVisible(false);
 	comboBoxXmlSource->blockSignals(true);
@@ -345,6 +348,8 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	toolButtonRemoveXmlSource->setEnabled(false);
 	frameEntities->setEnabled(false);
 	qmc2ROMAlyzer->groupBoxCheckSumDatabase->setEnabled(false);
+	m_animationSequence = 0;
+	m_animationTimer.start(QMC2_ROMALYZER_REBUILD_ANIM_SPEED);
 	qApp->processEvents();
 }
 
@@ -381,6 +386,8 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	toolButtonRemoveXmlSource->setEnabled(true);
 	frameEntities->setEnabled(true);
 	qmc2ROMAlyzer->groupBoxCheckSumDatabase->setEnabled(true);
+	m_animationTimer.stop();
+	qmc2ROMAlyzer->pushButtonRomCollectionRebuilder->setIcon(QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
 	qApp->processEvents();
 }
 
@@ -421,6 +428,21 @@ void CollectionRebuilder::rebuilderThread_statusUpdated(int setsProcessed, int m
 	statusString += "<td nowrap width=\"16.5%\" align=\"left\"><b>" + tr("Missing disks") + ":</b></td><td nowrap width=\"16.5%\" align=\"right\">" + QString::number(missingDisks) + "</td>";
 	statusString += "</tr></table></center>";
 	labelRebuildStatus->setText(statusString);
+}
+
+void CollectionRebuilder::animationTimer_timeout()
+{
+	QPixmap pixmap(QString::fromUtf8(":/data/img/rebuild.png"));
+	QPixmap rotatedPixmap(pixmap.size());
+	rotatedPixmap.fill(Qt::transparent);
+	QPainter p(&rotatedPixmap); 
+	QSize size = pixmap.size();
+	p.translate(size.height()/2,size.height()/2);
+	p.rotate(45 * ++m_animationSequence);
+	p.translate(-size.height()/2,-size.height()/2);
+	p.drawPixmap(0, 0, pixmap);
+	p.end();
+	qmc2ROMAlyzer->pushButtonRomCollectionRebuilder->setIcon(QIcon(rotatedPixmap));
 }
 
 void CollectionRebuilder::showEvent(QShowEvent *e)
