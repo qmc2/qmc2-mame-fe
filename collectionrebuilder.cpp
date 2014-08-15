@@ -432,17 +432,21 @@ void CollectionRebuilder::rebuilderThread_statusUpdated(int setsProcessed, int m
 
 void CollectionRebuilder::animationTimer_timeout()
 {
+	m_animationTimer.stop();
 	QPixmap pixmap(QString::fromUtf8(":/data/img/rebuild.png"));
 	QPixmap rotatedPixmap(pixmap.size());
 	rotatedPixmap.fill(Qt::transparent);
 	QPainter p(&rotatedPixmap); 
 	QSize size = pixmap.size();
 	p.translate(size.height()/2,size.height()/2);
-	p.rotate(45 * ++m_animationSequence);
+	p.rotate(24 * ++m_animationSequence);
+	if ( m_animationSequence > 14 )
+		m_animationSequence = 0;
 	p.translate(-size.height()/2,-size.height()/2);
 	p.drawPixmap(0, 0, pixmap);
 	p.end();
 	qmc2ROMAlyzer->pushButtonRomCollectionRebuilder->setIcon(QIcon(rotatedPixmap));
+	m_animationTimer.start(QMC2_ROMALYZER_REBUILD_ANIM_SPEED);
 }
 
 void CollectionRebuilder::showEvent(QShowEvent *e)
