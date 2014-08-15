@@ -770,6 +770,7 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 	QDir d(QDir::cleanPath(baseDir + "/" + id));
 	if ( !d.exists() )
 		success = d.mkdir(QDir::cleanPath(baseDir + "/" + id));
+	int reproducedDumps = 0;
 	for (int i = 0; i < romNameList->count() && !exitThread && success; i++) {
 		QString fileName = d.absoluteFilePath(romNameList->at(i));
 		if ( !createBackup(fileName) ) {
@@ -805,13 +806,19 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 							log(tr("FATAL: failed writing '%1'").arg(fileName));
 					}
 				}
+				f.close();
+				reproducedDumps++;
+			} else {
+				f.close();
+				f.remove();
 			}
-			f.close();
 		} else {
 			emit log(tr("FATAL: failed opening '%1' for writing"));
 			success = false;
 		}
 	}
+	if ( reproducedDumps == 0 )
+		d.rmdir(d.absolutePath());
 	return success;
 }
 
@@ -847,6 +854,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 		zipInfo.tmz_date.tm_year = cDT.date().year();
 		zipInfo.dosDate = zipInfo.internal_fa = zipInfo.external_fa = 0;
 		QStringList storedCRCs;
+		int reproducedDumps = 0;
 		for (int i = 0; i < romNameList->count() && !exitThread && success; i++) {
 			if ( uniqueCRCs && storedCRCs.contains(romCrcList->at(i)) ) {
 				emit log(tr("skipping '%1'").arg(romNameList->at(i)) + " ("+ tr("a dump with CRC '%1' already exists").arg(romCrcList->at(i)) + ")");
@@ -883,10 +891,14 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 					}
 					storedCRCs << romCrcList->at(i);
 					zipCloseFileInZip(zip);
+					if ( success )
+						reproducedDumps++;
 				}
 			}
 		}
 		zipClose(zip, tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit().constData());
+		if ( reproducedDumps == 0 )
+			f.remove();
 		emit log(tr("done (creating new ZIP archive '%1')").arg(fileName));
 	} else {
 		emit log(tr("FATAL: failed creating ZIP archive '%1'").arg(fileName));
