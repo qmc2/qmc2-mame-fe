@@ -448,9 +448,13 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", comboBoxChecksumWizardAutomationLevel->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCheckSumDb", groupBoxCheckSumDatabase->isChecked());
 	QStringList checkSumDbScannedPaths;
-	for (int i = 0; i < listWidgetCheckSumDbScannedPaths->count(); i++)
+	QStringList checkSumDbScannedPathsEnabled;
+	for (int i = 0; i < listWidgetCheckSumDbScannedPaths->count(); i++) {
 		checkSumDbScannedPaths << listWidgetCheckSumDbScannedPaths->item(i)->text();
+		checkSumDbScannedPathsEnabled << (listWidgetCheckSumDbScannedPaths->item(i)->checkState() == Qt::Checked ? "true" : "false");
+	}
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", checkSumDbScannedPaths);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPathsEnabled", checkSumDbScannedPathsEnabled);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbDatabasePath", lineEditCheckSumDbDatabasePath->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScanIncrementally", toolButtonCheckSumDbScanIncrementally->isChecked());
 
@@ -532,7 +536,16 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	on_groupBoxCheckSumDatabase_toggled(groupBoxCheckSumDatabase->isChecked());
 	pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked() && !checkSumScannerThread()->isActive);
 	listWidgetCheckSumDbScannedPaths->clear();
-	listWidgetCheckSumDbScannedPaths->addItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", QStringList()).toStringList());
+	QStringList checkSumDbScannedPaths = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", QStringList()).toStringList();
+	QStringList checkSumDbScannedPathsEnabled = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPathsEnabled", QStringList()).toStringList();
+	for (int i = 0; i < checkSumDbScannedPaths.count(); i++) {
+		QListWidgetItem *item = new QListWidgetItem(checkSumDbScannedPaths[i]);
+		if ( i < checkSumDbScannedPathsEnabled.count() )
+			item->setCheckState(checkSumDbScannedPathsEnabled[i] == "true" ? Qt::Checked : Qt::Unchecked);
+		else
+			item->setCheckState(Qt::Checked);
+		listWidgetCheckSumDbScannedPaths->addItem(item);
+	}
 	pushButtonCheckSumDbScan->setEnabled(listWidgetCheckSumDbScannedPaths->count() > 0);
 	lineEditCheckSumDbDatabasePath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbDatabasePath", QString(userScopePath + "/%1-checksum.db").arg(variantName)).toString());
 	toolButtonCheckSumDbScanIncrementally->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScanIncrementally", true).toBool());
@@ -3716,8 +3729,11 @@ void ROMAlyzer::on_toolButtonCheckSumDbAddPath_clicked()
 		QStringList checkSumDbScannedPaths;
 		for (int i = 0; i < listWidgetCheckSumDbScannedPaths->count(); i++)
 			checkSumDbScannedPaths << listWidgetCheckSumDbScannedPaths->item(i)->text();
-		if ( !checkSumDbScannedPaths.contains(newPath) )
-			listWidgetCheckSumDbScannedPaths->addItem(newPath);
+		if ( !checkSumDbScannedPaths.contains(newPath) ) {
+			QListWidgetItem *item = new QListWidgetItem(newPath);
+			item->setCheckState(Qt::Checked);
+			listWidgetCheckSumDbScannedPaths->addItem(item);
+		}
 	}
 
 	pushButtonCheckSumDbScan->setEnabled(listWidgetCheckSumDbScannedPaths->count() > 0);
@@ -3799,7 +3815,8 @@ void ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()
 		checkSumScannerThread()->reopenDatabase();
 		checkSumScannerThread()->scannedPaths.clear();
 		for (int i = 0; i < listWidgetCheckSumDbScannedPaths->count(); i++)
-			checkSumScannerThread()->scannedPaths << listWidgetCheckSumDbScannedPaths->item(i)->text();
+			if ( listWidgetCheckSumDbScannedPaths->item(i)->checkState() == Qt::Checked )
+				checkSumScannerThread()->scannedPaths << listWidgetCheckSumDbScannedPaths->item(i)->text();
 		checkSumScannerThread()->scanIncrementally = toolButtonCheckSumDbScanIncrementally->isChecked();
 		checkSumScannerThread()->waitCondition.wakeAll();
 	}
