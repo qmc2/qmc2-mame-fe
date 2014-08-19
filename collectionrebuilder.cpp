@@ -348,6 +348,7 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	toolButtonRemoveXmlSource->setEnabled(false);
 	frameEntities->setEnabled(false);
 	qmc2ROMAlyzer->groupBoxCheckSumDatabase->setEnabled(false);
+	qmc2ROMAlyzer->pushButtonRomCollectionRebuilder->setText(tr("Rebuilding ROM collection..."));
 	m_animationSequence = 0;
 	m_animationTimer.start(QMC2_ROMALYZER_REBUILD_ANIM_SPEED);
 	qApp->processEvents();
@@ -388,6 +389,7 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	qmc2ROMAlyzer->groupBoxCheckSumDatabase->setEnabled(true);
 	m_animationTimer.stop();
 	qmc2ROMAlyzer->pushButtonRomCollectionRebuilder->setIcon(QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
+	qmc2ROMAlyzer->pushButtonRomCollectionRebuilder->setText(tr("Rebuild ROM collection..."));
 	qApp->processEvents();
 }
 
