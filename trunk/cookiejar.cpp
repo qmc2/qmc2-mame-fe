@@ -25,6 +25,10 @@ CookieJar::CookieJar(QObject *parent) : QNetworkCookieJar(parent)
 	QStringList tables = db.driver()->tables(QSql::Tables);
 	if ( tables.count() != 1 || !tables.contains("qmc2_cookies") )
 		recreateDatabase();
+	static QStringList dbSyncModes = QStringList() << "OFF" << "NORMAL" << "FULL";
+	QSqlQuery query(db);
+	query.exec("PRAGMA synchronous = OFF");
+	query.exec("PRAGMA journal_mode = MEMORY");
 }
 
 CookieJar::~CookieJar()
