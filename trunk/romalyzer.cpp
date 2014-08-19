@@ -4271,6 +4271,8 @@ void CheckSumScannerThread::reopenDatabase()
 		delete checkSumDb();
 	}
 	m_checkSumDb = new CheckSumDatabaseManager(this);
+	checkSumDb()->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
+	checkSumDb()->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
 	connect(checkSumDb(), SIGNAL(log(const QString &)), m_scannerLog, SLOT(log(const QString &)));
 }
 

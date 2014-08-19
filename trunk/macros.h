@@ -914,4 +914,17 @@
 // backup related
 #define QMC2_BACKUP_IO_RESPONSE			100
 
+// database journal modes
+#define QMC2_DB_JOURNAL_MODE_DELETE		0
+#define QMC2_DB_JOURNAL_MODE_TRUNCATE		1
+#define QMC2_DB_JOURNAL_MODE_PERSIST		2
+#define QMC2_DB_JOURNAL_MODE_MEMORY		3
+#define QMC2_DB_JOURNAL_MODE_WAL		4
+#define QMC2_DB_JOURNAL_MODE_OFF		5
+
+// database sync modes
+#define QMC2_DB_SYNC_MODE_OFF			0
+#define QMC2_DB_SYNC_MODE_NORMAL		1
+#define QMC2_DB_SYNC_MODE_FULL			2
+
 #endif

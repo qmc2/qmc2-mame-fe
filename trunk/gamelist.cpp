@@ -214,7 +214,11 @@ Gamelist::Gamelist(QObject *parent)
 	}
 
 	m_xmlDb = new XmlDatabaseManager(this);
+	xmlDb()->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
+	xmlDb()->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
 	m_userDataDb = new UserDataDatabaseManager(this);
+	userDataDb()->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
+	userDataDb()->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
 }
 
 Gamelist::~Gamelist()
