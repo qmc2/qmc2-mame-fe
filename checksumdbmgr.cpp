@@ -212,6 +212,33 @@ quint64 CheckSumDatabaseManager::databaseSize()
 		return 0;
 }
 
+void CheckSumDatabaseManager::setCacheSize(quint64 kiloBytes)
+{
+	QSqlQuery query(m_db);
+	if ( !query.exec(QString("PRAGMA cache_size = -%1").arg(kiloBytes)) )
+		emit log(tr("WARNING: failed to change the '%1' setting for the check-sum database: query = '%2', error = '%3'").arg("cache_size").arg(query.lastQuery()).arg(m_db.lastError().text()));
+}
+
+void CheckSumDatabaseManager::setSyncMode(uint syncMode)
+{
+	static QStringList dbSyncModes = QStringList() << "OFF" << "NORMAL" << "FULL";
+	if ( syncMode > dbSyncModes.count() - 1 )
+		return;
+	QSqlQuery query(m_db);
+	if ( !query.exec(QString("PRAGMA synchronous = %1").arg(dbSyncModes[syncMode])) )
+		emit log(tr("WARNING: failed to change the '%1' setting for the check-sum database: query = '%2', error = '%3'").arg("synchronous").arg(query.lastQuery()).arg(m_db.lastError().text()));
+}
+
+void CheckSumDatabaseManager::setJournalMode(uint journalMode)
+{
+	static QStringList dbJournalModes = QStringList() << "DELETE" << "TRUNCATE" << "PERSIST" << "MEMORY" << "WAL" << "OFF";
+	if ( journalMode > dbJournalModes.count() - 1 )
+		return;
+	QSqlQuery query(m_db);
+	if ( !query.exec(QString("PRAGMA journal_mode = %1").arg(dbJournalModes[journalMode])) )
+		emit log(tr("WARNING: failed to change the '%1' setting for the check-sum database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(m_db.lastError().text()));
+}
+
 bool CheckSumDatabaseManager::exists(QString sha1, QString crc)
 {
 	QSqlQuery query(m_db);

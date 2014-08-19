@@ -35,6 +35,9 @@ class XmlDatabaseManager : public QObject
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
 		quint64 databaseSize();
+		void setCacheSize(quint64 kiloBytes);
+		void setSyncMode(uint syncMode);
+		void setJournalMode(uint journalMode);
 
 	public slots:
 		void recreateDatabase();
