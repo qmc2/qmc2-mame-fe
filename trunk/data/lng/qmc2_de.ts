@@ -1940,7 +1940,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="242"/>
-        <location filename="../../collectionrebuilder.cpp" line="380"/>
+        <location filename="../../collectionrebuilder.cpp" line="381"/>
         <source>Start rebuilding</source>
         <translation>Neu-Erzeugung starten</translation>
     </message>
@@ -1952,7 +1952,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.ui" line="262"/>
         <location filename="../../collectionrebuilder.cpp" line="340"/>
-        <location filename="../../collectionrebuilder.cpp" line="402"/>
+        <location filename="../../collectionrebuilder.cpp" line="404"/>
         <source>Pause</source>
         <translation>Pausieren</translation>
     </message>
@@ -2002,22 +2002,32 @@ p, li { white-space: pre-wrap; }
         <translation>Neu-Erzeugung beenden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="396"/>
+        <location filename="../../collectionrebuilder.cpp" line="351"/>
+        <source>Rebuilding ROM collection...</source>
+        <translation>Erzeuge ROM Sammlung neu...</translation>
+    </message>
+    <message>
+        <location filename="../../collectionrebuilder.cpp" line="392"/>
+        <source>Rebuild ROM collection...</source>
+        <translation>ROM Sammlung neu erzeugen...</translation>
+    </message>
+    <message>
+        <location filename="../../collectionrebuilder.cpp" line="398"/>
         <source>Resume</source>
         <translation>Fortsetzen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="424"/>
+        <location filename="../../collectionrebuilder.cpp" line="426"/>
         <source>Sets processed</source>
         <translation>Verarbeitete Sets</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="426"/>
+        <location filename="../../collectionrebuilder.cpp" line="428"/>
         <source>Missing ROMs</source>
         <translation>Fehlende ROMs</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="428"/>
+        <location filename="../../collectionrebuilder.cpp" line="430"/>
         <source>Missing disks</source>
         <translation>Fehlende Disks</translation>
     </message>
@@ -2025,57 +2035,57 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CollectionRebuilderThread</name>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="651"/>
-        <location filename="../../collectionrebuilder.cpp" line="750"/>
+        <location filename="../../collectionrebuilder.cpp" line="653"/>
+        <location filename="../../collectionrebuilder.cpp" line="752"/>
         <source>FATAL: can&apos;t open XML file &apos;%1&apos; for reading, please check permissions</source>
         <translation>FATAL: kann XML Datei &apos;%1&apos; nicht zum Lesen öffnen, bitte Zugriffsrechte überprüfen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="669"/>
-        <location filename="../../collectionrebuilder.cpp" line="697"/>
-        <location filename="../../collectionrebuilder.cpp" line="702"/>
+        <location filename="../../collectionrebuilder.cpp" line="671"/>
+        <location filename="../../collectionrebuilder.cpp" line="699"/>
+        <location filename="../../collectionrebuilder.cpp" line="704"/>
         <source>FATAL: XML parsing failed</source>
         <translation>FATAL: XML Parsen fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="735"/>
-        <location filename="../../collectionrebuilder.cpp" line="744"/>
+        <location filename="../../collectionrebuilder.cpp" line="737"/>
+        <location filename="../../collectionrebuilder.cpp" line="746"/>
         <source>restarting from checkpoint &apos;%1&apos;</source>
         <translation>Neustart ab Kontrollpunkt &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="777"/>
-        <location filename="../../collectionrebuilder.cpp" line="834"/>
+        <location filename="../../collectionrebuilder.cpp" line="779"/>
+        <location filename="../../collectionrebuilder.cpp" line="836"/>
         <source>FATAL: backup creation failed</source>
         <translation>FATAL: Backup Erzeugung fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="795"/>
+        <location filename="../../collectionrebuilder.cpp" line="797"/>
         <source>writing &apos;%1&apos; (size: %2)</source>
         <translation>Schreibe &apos;%1&apos; (Größe: %2)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="806"/>
+        <location filename="../../collectionrebuilder.cpp" line="808"/>
         <source>FATAL: failed writing &apos;%1&apos;</source>
         <translation>FATAL: Schreiben von &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="816"/>
+        <location filename="../../collectionrebuilder.cpp" line="818"/>
         <source>FATAL: failed opening &apos;%1&apos; for writing</source>
         <translation>FATAL: kann &apos;%1&apos; nicht zum Schreiben öffnen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="846"/>
+        <location filename="../../collectionrebuilder.cpp" line="848"/>
         <source>creating new ZIP archive &apos;%1&apos;</source>
         <translation>Erzeuge neues ZIP Archiv &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="860"/>
+        <location filename="../../collectionrebuilder.cpp" line="862"/>
         <source>skipping &apos;%1&apos;</source>
         <translation>Überspringe &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="860"/>
+        <location filename="../../collectionrebuilder.cpp" line="862"/>
         <source>a dump with CRC &apos;%1&apos; already exists</source>
         <translation>ein Dump mit CRC &apos;%1&apos; existiert bereits</translation>
     </message>
@@ -2088,225 +2098,225 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Schreibe &apos;%1&apos; (unkomprimierte Größe: %2)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="877"/>
+        <location filename="../../collectionrebuilder.cpp" line="879"/>
         <source>writing &apos;%1&apos; to ZIP archive &apos;%2&apos; (uncompressed size: %3)</source>
         <translation>Schreibe &apos;%1&apos; in ZIP Archiv &apos;%2&apos; (unkomprimierte Größe: %3)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="888"/>
+        <location filename="../../collectionrebuilder.cpp" line="890"/>
         <source>FATAL: failed writing &apos;%1&apos; to ZIP archive &apos;%2&apos;</source>
         <translation>FATAL: Schreiben von &apos;%1&apos; in ZIP Archiv &apos;%2&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="899"/>
+        <location filename="../../collectionrebuilder.cpp" line="901"/>
         <source>Created by QMC2 v%1 (%2)</source>
         <translation>Erzeugt durch QMC2 v%1 (%2)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="902"/>
+        <location filename="../../collectionrebuilder.cpp" line="904"/>
         <source>done (creating new ZIP archive &apos;%1&apos;)</source>
         <translation>Fertig (Erzeuge neues ZIP Archiv &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="904"/>
+        <location filename="../../collectionrebuilder.cpp" line="906"/>
         <source>FATAL: failed creating ZIP archive &apos;%1&apos;</source>
         <translation>FATAL: Erzeugung des ZIP Archivs &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="917"/>
+        <location filename="../../collectionrebuilder.cpp" line="919"/>
         <source>reading &apos;%1&apos; (size: %2)</source>
         <translation>Lese &apos;%1&apos; (Größe: %2)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="923"/>
+        <location filename="../../collectionrebuilder.cpp" line="925"/>
         <source>FATAL: failed reading &apos;%1&apos;</source>
         <translation>FATAL: Lesen von &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="935"/>
+        <location filename="../../collectionrebuilder.cpp" line="937"/>
         <source>reading &apos;%1&apos; from 7Z archive &apos;%2&apos; (uncompressed size: %3)</source>
         <translation>Lese &apos;%1&apos; aus 7Z Archiv &apos;%2&apos; (unkomprimierte Größe: %3)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="938"/>
-        <location filename="../../collectionrebuilder.cpp" line="942"/>
+        <location filename="../../collectionrebuilder.cpp" line="940"/>
+        <location filename="../../collectionrebuilder.cpp" line="944"/>
         <source>FATAL: failed reading &apos;%1&apos; from 7Z archive &apos;%2&apos;</source>
         <translation>FATAL: Lesen von &apos;%1&apos; aus 7Z Archiv &apos;%2&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="947"/>
-        <location filename="../../collectionrebuilder.cpp" line="951"/>
+        <location filename="../../collectionrebuilder.cpp" line="949"/>
+        <location filename="../../collectionrebuilder.cpp" line="953"/>
         <source>FATAL: failed reading from 7Z archive &apos;%1&apos;</source>
         <translation>FATAL: Lesen von 7Z Archiv &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="974"/>
+        <location filename="../../collectionrebuilder.cpp" line="976"/>
         <source>reading &apos;%1&apos; from ZIP archive &apos;%2&apos; (uncompressed size: %3)</source>
         <translation>Lese &apos;%1&apos; aus ZIP Archiv &apos;%2&apos; (unkomprimierte Größe: %3)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="980"/>
-        <location filename="../../collectionrebuilder.cpp" line="984"/>
+        <location filename="../../collectionrebuilder.cpp" line="982"/>
+        <location filename="../../collectionrebuilder.cpp" line="986"/>
         <source>FATAL: failed reading &apos;%1&apos; from ZIP archive &apos;%2&apos;</source>
         <translation>FATAL: Lesen von &apos;%1&apos; aus ZIP Archiv &apos;%2&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="988"/>
+        <location filename="../../collectionrebuilder.cpp" line="990"/>
         <source>FATAL: CRC &apos;%1&apos; not found in ZIP archive &apos;%2&apos;</source>
         <translation>FATAL: CRC &apos;%1&apos; wurde in ZIP Archiv &apos;%2&apos; nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="993"/>
+        <location filename="../../collectionrebuilder.cpp" line="995"/>
         <source>FATAL: failed reading from ZIP archive &apos;%1&apos;</source>
         <translation>FATAL: Lesen von ZIP Archiv &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1019"/>
-        <location filename="../../collectionrebuilder.cpp" line="1024"/>
-        <location filename="../../collectionrebuilder.cpp" line="1029"/>
-        <location filename="../../collectionrebuilder.cpp" line="1038"/>
-        <location filename="../../collectionrebuilder.cpp" line="1045"/>
-        <location filename="../../collectionrebuilder.cpp" line="1050"/>
-        <location filename="../../collectionrebuilder.cpp" line="1055"/>
-        <location filename="../../collectionrebuilder.cpp" line="1059"/>
+        <location filename="../../collectionrebuilder.cpp" line="1021"/>
+        <location filename="../../collectionrebuilder.cpp" line="1026"/>
+        <location filename="../../collectionrebuilder.cpp" line="1031"/>
+        <location filename="../../collectionrebuilder.cpp" line="1040"/>
+        <location filename="../../collectionrebuilder.cpp" line="1047"/>
+        <location filename="../../collectionrebuilder.cpp" line="1052"/>
+        <location filename="../../collectionrebuilder.cpp" line="1057"/>
+        <location filename="../../collectionrebuilder.cpp" line="1061"/>
         <source>backup</source>
         <translation>Backup</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1019"/>
+        <location filename="../../collectionrebuilder.cpp" line="1021"/>
         <source>FATAL: target path &apos;%1&apos; cannot be created</source>
         <translation>FATAL: Ziel Pfad &apos;%1&apos; kann nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1024"/>
+        <location filename="../../collectionrebuilder.cpp" line="1026"/>
         <source>FATAL: source file &apos;%1&apos; cannot be opened for reading</source>
         <translation>FATAL: Quell Datei &apos;%1&apos; kann nicht zum Lesen geöffnet werden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1029"/>
+        <location filename="../../collectionrebuilder.cpp" line="1031"/>
         <source>creating backup copy of &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>Erstelle Backup Kopie von &apos;%1&apos; als &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1038"/>
+        <location filename="../../collectionrebuilder.cpp" line="1040"/>
         <source>FATAL: I/O error while writing to &apos;%1&apos;</source>
         <translation>FATAL: I/O Fehler beim Schreiben von &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1045"/>
+        <location filename="../../collectionrebuilder.cpp" line="1047"/>
         <source>done (creating backup copy of &apos;%1&apos; as &apos;%2&apos;)</source>
         <translation>Fertig (Erstelle Backup Kopie von &apos;%1&apos; als &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1050"/>
+        <location filename="../../collectionrebuilder.cpp" line="1052"/>
         <source>FATAL: destination file &apos;%1&apos; cannot be opened for writing</source>
         <translation>FATAL: Ziel Datei &apos;%1&apos; kann nicht zum Schreiben geöffnet werden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1055"/>
+        <location filename="../../collectionrebuilder.cpp" line="1057"/>
         <source>FATAL: backup folder &apos;%1&apos; isn&apos;t writable</source>
         <translation>FATAL: Backup Verzeichnis &apos;%1&apos; kann nicht beschrieben werden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1059"/>
+        <location filename="../../collectionrebuilder.cpp" line="1061"/>
         <source>FATAL: backup folder &apos;%1&apos; doesn&apos;t exist</source>
         <translation>FATAL: Backup Verzeichnis &apos;%1&apos; existiert nicht</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1076"/>
+        <location filename="../../collectionrebuilder.cpp" line="1078"/>
         <source>rebuilder thread started</source>
         <translation>Neu-Erzeuger Thread gestartet</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1078"/>
+        <location filename="../../collectionrebuilder.cpp" line="1080"/>
         <source>waiting for work</source>
         <translation>Warte auf Arbeit</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1088"/>
+        <location filename="../../collectionrebuilder.cpp" line="1090"/>
         <source>rebuilding started</source>
         <translation>Neu-Erzeugung gestartet</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1091"/>
-        <location filename="../../collectionrebuilder.cpp" line="1113"/>
+        <location filename="../../collectionrebuilder.cpp" line="1093"/>
+        <location filename="../../collectionrebuilder.cpp" line="1115"/>
         <source>Rebuilding</source>
         <translation>Erzeuge</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1105"/>
+        <location filename="../../collectionrebuilder.cpp" line="1107"/>
         <source>Paused</source>
         <translation>Pausiert</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1107"/>
+        <location filename="../../collectionrebuilder.cpp" line="1109"/>
         <source>rebuilding paused</source>
         <translation>Neu-Erzeugung pausiert</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1115"/>
+        <location filename="../../collectionrebuilder.cpp" line="1117"/>
         <source>rebuilding resumed</source>
         <translation>Neu-Erzeugung wird fortgesetzt</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1121"/>
+        <location filename="../../collectionrebuilder.cpp" line="1123"/>
         <source>set rebuilding started for &apos;%1&apos;</source>
         <translation>Set Neu-Erzeugung für &apos;%1&apos; gestartet</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1124"/>
+        <location filename="../../collectionrebuilder.cpp" line="1126"/>
         <source>required ROM</source>
         <translation>Erforderliches ROM</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1124"/>
+        <location filename="../../collectionrebuilder.cpp" line="1126"/>
         <source>name = &apos;%1&apos;, crc = &apos;%2&apos;, sha1 = &apos;%3&apos;, database status = &apos;%4&apos;</source>
         <translation>Name = &apos;%1&apos;, CRC = &apos;%2&apos;, SHA-1 = &apos;%3&apos;, Datenbank Status = &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1124"/>
-        <location filename="../../collectionrebuilder.cpp" line="1130"/>
+        <location filename="../../collectionrebuilder.cpp" line="1126"/>
+        <location filename="../../collectionrebuilder.cpp" line="1132"/>
         <source>available</source>
         <translation>verfügbar</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1124"/>
-        <location filename="../../collectionrebuilder.cpp" line="1130"/>
+        <location filename="../../collectionrebuilder.cpp" line="1126"/>
+        <location filename="../../collectionrebuilder.cpp" line="1132"/>
         <source>not available</source>
         <translation>nicht verfügbar</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1130"/>
+        <location filename="../../collectionrebuilder.cpp" line="1132"/>
         <source>required disk</source>
         <translation>Erforderliche Disk</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1130"/>
+        <location filename="../../collectionrebuilder.cpp" line="1132"/>
         <source>name = &apos;%1&apos;, sha1 = &apos;%2&apos;, database status = &apos;%3&apos;</source>
         <translation>Name = &apos;%1&apos;, SHA-1 = &apos;%2&apos;, Datenbank Status = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1138"/>
+        <location filename="../../collectionrebuilder.cpp" line="1140"/>
         <source>set rebuilding finished for &apos;%1&apos;</source>
         <translation>Set Neu-Erzeugung für &apos;%1&apos; beendet</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1140"/>
+        <location filename="../../collectionrebuilder.cpp" line="1142"/>
         <source>set rebuilding failed for &apos;%1&apos;</source>
         <translation>Set Neu-Erzeugung für &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1145"/>
+        <location filename="../../collectionrebuilder.cpp" line="1147"/>
         <source>rebuilding finished - total rebuild time = %1, sets processed = %2, missing ROMs = %3, missing disks = %4</source>
         <translation>Neu-Erzeugung beendet - verwendete Zeit insgesamt = %1, verarbeitete Sets = %2, fehlende ROMs = %3, fehlende Disks = %4</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1148"/>
+        <location filename="../../collectionrebuilder.cpp" line="1150"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1154"/>
+        <location filename="../../collectionrebuilder.cpp" line="1156"/>
         <source>rebuilder thread ended</source>
         <translation>Neu-Erzeuger Thread beendet</translation>
     </message>
