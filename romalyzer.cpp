@@ -534,7 +534,10 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", false).toBool());
 	groupBoxCheckSumDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCheckSumDb", false).toBool());
 	on_groupBoxCheckSumDatabase_toggled(groupBoxCheckSumDatabase->isChecked());
-	pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked() && !checkSumScannerThread()->isActive);
+	if ( checkSumScannerThread() )
+		pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked() && !checkSumScannerThread()->isActive);
+	else
+		pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked());
 	listWidgetCheckSumDbScannedPaths->clear();
 	QStringList checkSumDbScannedPaths = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", QStringList()).toStringList();
 	QStringList checkSumDbScannedPathsEnabled = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPathsEnabled", QStringList()).toStringList();
