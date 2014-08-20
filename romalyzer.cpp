@@ -497,6 +497,8 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
+	static bool initialCall = true;
+
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 	QString variantName = QMC2_VARIANT_NAME.toLower().replace(QRegExp("\\..*$"), "");
 
@@ -534,10 +536,10 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", false).toBool());
 	groupBoxCheckSumDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCheckSumDb", false).toBool());
 	on_groupBoxCheckSumDatabase_toggled(groupBoxCheckSumDatabase->isChecked());
-	if ( checkSumScannerThread() )
-		pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked() && !checkSumScannerThread()->isActive);
-	else
+	if ( initialCall || !checkSumScannerThread() )
 		pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked());
+	else
+		pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked() && !checkSumScannerThread()->isActive);
 	listWidgetCheckSumDbScannedPaths->clear();
 	QStringList checkSumDbScannedPaths = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPaths", QStringList()).toStringList();
 	QStringList checkSumDbScannedPathsEnabled = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CheckSumDbScannedPathsEnabled", QStringList()).toStringList();
@@ -558,6 +560,8 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 
 	if ( e )
 		e->accept();
+
+	initialCall = false;
 }
 
 void ROMAlyzer::on_spinBoxMaxLogSize_valueChanged(int value)
