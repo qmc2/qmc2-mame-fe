@@ -4586,30 +4586,35 @@ bool CheckSumScannerThread::scanChd(QString fileName, quint64 *size, QString *sh
 		int len = 0;
 		quint32 chdVersion = 0;
 		if ( (len = file.read(ioBuffer, QMC2_CHD_HEADER_V3_LENGTH)) > 0 ) {
-			chdVersion = QMC2_TO_UINT32(ioBuffer + QMC2_CHD_HEADER_VERSION_OFFSET);
-			switch ( chdVersion ) {
-				case 3: {
-					QByteArray sha1Data((const char *)(ioBuffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
-					*sha1 = QString(sha1Data.toHex());
-					break;
+			if ( len < QMC2_CHD_HEADER_V3_LENGTH ) {
+				emit log(tr("CHD scan") + ": " + tr("WARNING: can't read CHD '%1'").arg(fileName));
+				success = false;
+			} else {
+				chdVersion = QMC2_TO_UINT32(ioBuffer + QMC2_CHD_HEADER_VERSION_OFFSET);
+				switch ( chdVersion ) {
+					case 3: {
+						QByteArray sha1Data((const char *)(ioBuffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
+						*sha1 = QString(sha1Data.toHex());
+						break;
+					}
+					case 4: {
+						QByteArray sha1Data((const char *)(ioBuffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+						*sha1 = QString(sha1Data.toHex());
+						break;
+					}
+					case 5: {
+						QByteArray sha1Data((const char *)(ioBuffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+						*sha1 = QString(sha1Data.toHex());
+						break;
+					}
+					default: {
+						emit log(tr("CHD scan") + ": " + tr("WARNING: version '%1' of CHD '%2' unknown").arg(fileName));
+						success = false;
+						break;
+					}
 				}
-				case 4: {
-					QByteArray sha1Data((const char *)(ioBuffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-					*sha1 = QString(sha1Data.toHex());
-					break;
-				}
-				case 5: {
-					QByteArray sha1Data((const char *)(ioBuffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-					*sha1 = QString(sha1Data.toHex());
-					break;
-				}
-				default: {
-					emit log(tr("CHD scan") + ": " + tr("WARNING: version '%1' of CHD '%2' unknown").arg(fileName));
-					success = false;
-					break;
-				}
+				*size = file.size();
 			}
-			*size = file.size();
 		} else {
 			emit log(tr("CHD scan") + ": " + tr("WARNING: can't read CHD '%1'").arg(fileName));
 			success = false;
