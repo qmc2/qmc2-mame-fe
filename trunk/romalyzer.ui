@@ -599,14 +599,20 @@
                       <property name="toolTip">
                        <string>Select the ZIP compression level (0 = lowest / fastest, 9 = highest / slowest)</string>
                       </property>
+                      <property name="specialValueText">
+                       <string>Default</string>
+                      </property>
                       <property name="prefix">
                        <string>Level </string>
+                      </property>
+                      <property name="minimum">
+                       <number>-1</number>
                       </property>
                       <property name="maximum">
                        <number>9</number>
                       </property>
                       <property name="value">
-                       <number>0</number>
+                       <number>-1</number>
                       </property>
                      </widget>
                     </item>
