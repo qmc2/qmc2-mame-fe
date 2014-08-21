@@ -19,6 +19,7 @@ inf: informational only
   <li>fix: ROMAlyzer: the fix.dat export action needs to be <i>disabled</i> initially (minor)</li>
   <li>fix: rank images didn't update their color or shape on the fly</li>
   <li>fix: ROMAlyzer: corrected set rewriter issues with data read from regular files (their CRCs couldn't be correlated)</li>
+  <li>fix: ROMAlyzer: the default ZIP compression level (Z_DEFAULT_COMPRESSION) is -1, corresponding to level 6, but the the spin-box only supported values from 0 to 9 so the default level was actually 0</li>
   <li>imp: ROMAlyzer: major UI and logic overhaul (the settings page has been redesigned completely)</li>
   <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to SVN r31702</li>
   <li>imp: ROMAlyzer: allow set repairing from 7-zip archived reproduction templates</li>
