@@ -1332,346 +1332,353 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 						QString chdFilePath;
 						quint32 chdTotalHunks = 0;
 						if ( (len = romFile.read(buffer, QMC2_CHD_HEADER_V3_LENGTH)) > 0 ) {
-							log(tr("CHD header information:"));
-							QByteArray chdTag(buffer + QMC2_CHD_HEADER_TAG_OFFSET, QMC2_CHD_HEADER_TAG_LENGTH);
-							log(tr("  tag: %1").arg(chdTag.constData()));
-							quint32 chdVersion = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_VERSION_OFFSET);
-							log(tr("  version: %1").arg(chdVersion));
-							myItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, tr("CHD v%1").arg(chdVersion));
-							QLocale locale;
-							switch ( chdVersion ) {
-								case 3: {
-										quint32 chdCompression = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_COMPRESSION_OFFSET);
-										log(tr("  compression: %1").arg(chdCompressionTypes[chdCompression]));
-										quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
-										log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
-										chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_TOTALHUNKS_OFFSET);
-										log(tr("  number of total hunks: %1").arg(locale.toString(chdTotalHunks)));
-										quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_HUNKBYTES_OFFSET);
-										log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
-										quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V3_LOGICALBYTES_OFFSET);
-										log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
-										log(tr("  real size: %1 (%2 B)").arg(humanReadable(fi.size())).arg(locale.toString(fi.size())));
-										QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
-										log(tr("  MD5 check-sum: %1").arg(QString(md5Data.toHex())));
-										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
-										log(tr("  SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
-										if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
-											QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTMD5_OFFSET), QMC2_CHD_HEADER_V3_PARENTMD5_LENGTH);
-											log(tr("  parent CHD's MD5 check-sum: %1").arg(QString(md5Data.toHex())));
-											QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V3_PARENTSHA1_LENGTH);
-											log(tr("  parent CHD's SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
+							if ( len >= QMC2_CHD_HEADER_V3_LENGTH ) {
+								log(tr("CHD header information:"));
+								QByteArray chdTag(buffer + QMC2_CHD_HEADER_TAG_OFFSET, QMC2_CHD_HEADER_TAG_LENGTH);
+								log(tr("  tag: %1").arg(chdTag.constData()));
+								quint32 chdVersion = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_VERSION_OFFSET);
+								log(tr("  version: %1").arg(chdVersion));
+								myItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, tr("CHD v%1").arg(chdVersion));
+								QLocale locale;
+								switch ( chdVersion ) {
+									case 3: {
+											quint32 chdCompression = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_COMPRESSION_OFFSET);
+											log(tr("  compression: %1").arg(chdCompressionTypes[chdCompression]));
+											quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
+											log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
+											chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_TOTALHUNKS_OFFSET);
+											log(tr("  number of total hunks: %1").arg(locale.toString(chdTotalHunks)));
+											quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_HUNKBYTES_OFFSET);
+											log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
+											quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V3_LOGICALBYTES_OFFSET);
+											log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
+											log(tr("  real size: %1 (%2 B)").arg(humanReadable(fi.size())).arg(locale.toString(fi.size())));
+											QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
+											log(tr("  MD5 check-sum: %1").arg(QString(md5Data.toHex())));
+											QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
+											log(tr("  SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
+											if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
+												QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTMD5_OFFSET), QMC2_CHD_HEADER_V3_PARENTMD5_LENGTH);
+												log(tr("  parent CHD's MD5 check-sum: %1").arg(QString(md5Data.toHex())));
+												QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V3_PARENTSHA1_LENGTH);
+												log(tr("  parent CHD's SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
+											}
 										}
-									}
-									break;
+										break;
 
-								case 4: {
-										quint32 chdCompression = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_COMPRESSION_OFFSET);
-										log(tr("  compression: %1").arg(chdCompressionTypes[chdCompression]));
-										quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
-										log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
-										chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_TOTALHUNKS_OFFSET);
-										log(tr("  number of total hunks: %1").arg(locale.toString(chdTotalHunks)));
-										quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_HUNKBYTES_OFFSET);
-										log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
-										quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V4_LOGICALBYTES_OFFSET);
-										log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
-										log(tr("  real size: %1 (%2 B)").arg(humanReadable(fi.size())).arg(locale.toString(fi.size())));
-										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-										log(tr("  SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
-										if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
-											QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V4_PARENTSHA1_LENGTH);
-											log(tr("  parent CHD's SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
+									case 4: {
+											quint32 chdCompression = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_COMPRESSION_OFFSET);
+											log(tr("  compression: %1").arg(chdCompressionTypes[chdCompression]));
+											quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
+											log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
+											chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_TOTALHUNKS_OFFSET);
+											log(tr("  number of total hunks: %1").arg(locale.toString(chdTotalHunks)));
+											quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_HUNKBYTES_OFFSET);
+											log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
+											quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V4_LOGICALBYTES_OFFSET);
+											log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
+											log(tr("  real size: %1 (%2 B)").arg(humanReadable(fi.size())).arg(locale.toString(fi.size())));
+											QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+											log(tr("  SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
+											if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
+												QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V4_PARENTSHA1_LENGTH);
+												log(tr("  parent CHD's SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
+											}
+											QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+											log(tr("  raw SHA-1 check-sum: %1").arg(QString(rawsha1Data.toHex())));
 										}
-										QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-										log(tr("  raw SHA-1 check-sum: %1").arg(QString(rawsha1Data.toHex())));
-									}
-									break;
+										break;
 
-								case 5: {
-										QString chdCompressors;
-										for (int i = 0; i < QMC2_CHD_HEADER_V5_COMPRESSORS_COUNT; i++) {
-											QString compressor = QString::fromLocal8Bit(buffer + i * 4 + QMC2_CHD_HEADER_V5_COMPRESSORS_OFFSET, 4);
-											if ( chdCompressionTypesV5.contains(compressor) ) {
-												if ( i > 0 ) chdCompressors += ", ";
-												chdCompressors += chdCompressionTypesV5[compressor];
-											} else if ( i == 0 ) {
-												chdCompressors = tr("none (uncompressed)");
-												break;
-											} else
-												break;
-										}
-										log(tr("  compressors: %1").arg(chdCompressors));
-										quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V5_HUNKBYTES_OFFSET);
-										log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
-										quint32 chdUnitBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V5_UNITBYTES_OFFSET);
-										log(tr("  number of bytes per unit: %1").arg(locale.toString(chdUnitBytes)));
-										quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V5_LOGICALBYTES_OFFSET);
-										log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
-										log(tr("  real size: %1 (%2 B)").arg(humanReadable(fi.size())).arg(locale.toString(fi.size())));
-										QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-										log(tr("  SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
-										QByteArray parentSha1DataHex = QByteArray((const char *)(buffer + QMC2_CHD_HEADER_V5_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V5_PARENTSHA1_LENGTH).toHex();
-										if ( !QMC2_CHD_CHECK_NULL_SHA1(parentSha1DataHex) )
-											log(tr("  parent CHD's SHA-1 check-sum: %1").arg(QString(parentSha1DataHex)));
-										QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-										log(tr("  raw SHA-1 check-sum: %1").arg(QString(rawsha1Data.toHex())));
-									}
-									break;
-
-								default:
-									log(tr("CHD v%1 not supported -- rest of header information skipped").arg(chdVersion));
-									break;
-							}
-
-							if ( calcSHA1 || calcMD5 || chdManagerEnabled ) {
-								chdFilePath = fi.absoluteFilePath();
-								QString chdTempFilePath = QDir::cleanPath(lineEditTemporaryWorkingDirectory->text());
-								if ( !chdTempFilePath.endsWith("/") )
-									chdTempFilePath += "/";
-								chdTempFilePath += fi.baseName() + "-chdman-update.chd";
-								if ( chdManagerEnabled ) {
-									romFile.close();
-									chdManagerCurrentHunk = 0;
-#if QMC2_CHD_CURRENT_VERSION >= 5
-									chdTotalHunks = 100;
-#endif
-									chdManagerTotalHunks = chdTotalHunks;
-									if ( progressWidget ) {
-										progressWidget->setRange(0, chdTotalHunks);
-										progressWidget->setValue(0);
-									}
-									progressBarFileIO->setRange(0, chdTotalHunks);
-									progressBarFileIO->reset();
-									int step;
-									for (step = 0; step < 2 && !qmc2StopParser; step++) {
-										QStringList args;
-										QString oldFormat;
-										if ( progressWidget ) oldFormat = progressWidget->format();
-										switch ( step ) {
-											case 0:
-												if ( chdManagerVerifyCHDs ) {
-													if ( progressWidget ) progressWidget->setFormat(tr("Verify - %p%"));
-#if QMC2_CHD_CURRENT_VERSION >= 5
-													log(tr("CHD manager: verifying CHD"));
-													args << "verify" << "--input" << chdFilePath;
-#else
-													log(tr("CHD manager: verifying CHD"));
-													args << "-verify" << chdFilePath;
-#endif
+									case 5: {
+											QString chdCompressors;
+											for (int i = 0; i < QMC2_CHD_HEADER_V5_COMPRESSORS_COUNT; i++) {
+												QString compressor = QString::fromLocal8Bit(buffer + i * 4 + QMC2_CHD_HEADER_V5_COMPRESSORS_OFFSET, 4);
+												if ( chdCompressionTypesV5.contains(compressor) ) {
+													if ( i > 0 ) chdCompressors += ", ";
+													chdCompressors += chdCompressionTypesV5[compressor];
+												} else if ( i == 0 ) {
+													chdCompressors = tr("none (uncompressed)");
+													break;
 												} else
-													continue;
-												break;
+													break;
+											}
+											log(tr("  compressors: %1").arg(chdCompressors));
+											quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V5_HUNKBYTES_OFFSET);
+											log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
+											quint32 chdUnitBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V5_UNITBYTES_OFFSET);
+											log(tr("  number of bytes per unit: %1").arg(locale.toString(chdUnitBytes)));
+											quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V5_LOGICALBYTES_OFFSET);
+											log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
+											log(tr("  real size: %1 (%2 B)").arg(humanReadable(fi.size())).arg(locale.toString(fi.size())));
+											QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+											log(tr("  SHA-1 check-sum: %1").arg(QString(sha1Data.toHex())));
+											QByteArray parentSha1DataHex = QByteArray((const char *)(buffer + QMC2_CHD_HEADER_V5_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V5_PARENTSHA1_LENGTH).toHex();
+											if ( !QMC2_CHD_CHECK_NULL_SHA1(parentSha1DataHex) )
+												log(tr("  parent CHD's SHA-1 check-sum: %1").arg(QString(parentSha1DataHex)));
+											QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+											log(tr("  raw SHA-1 check-sum: %1").arg(QString(rawsha1Data.toHex())));
+										}
+										break;
 
-											case 1:
-												if ( chdManagerUpdateCHDs ) {
-													if ( chdVersion < QMC2_CHD_CURRENT_VERSION ) {
-														if ( progressWidget ) progressWidget->setFormat(tr("Update - %p%"));
-														log(tr("CHD manager: updating CHD (v%1 -> v%2)").arg(chdVersion).arg(QMC2_CHD_CURRENT_VERSION));
+									default:
+										log(tr("CHD v%1 not supported -- rest of header information skipped").arg(chdVersion));
+										break;
+								}
+
+								if ( calcSHA1 || calcMD5 || chdManagerEnabled ) {
+									chdFilePath = fi.absoluteFilePath();
+									QString chdTempFilePath = QDir::cleanPath(lineEditTemporaryWorkingDirectory->text());
+									if ( !chdTempFilePath.endsWith("/") )
+										chdTempFilePath += "/";
+									chdTempFilePath += fi.baseName() + "-chdman-update.chd";
+									if ( chdManagerEnabled ) {
+										romFile.close();
+										chdManagerCurrentHunk = 0;
 #if QMC2_CHD_CURRENT_VERSION >= 5
-														args << "copy" << "--input" << chdFilePath << "--output" << chdTempFilePath;
-#else
-														args << "-update" << chdFilePath << chdTempFilePath;
+										chdTotalHunks = 100;
 #endif
-													} else if ( !chdManagerVerifyCHDs ) {
-														switch ( chdVersion ) {
-															case 3:
-																log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
-																if ( calcSHA1 ) {
-																	QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
-																	*sha1Str = QString(sha1Data.toHex());
-																}
-																if ( calcMD5 ) {
-																	QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
-																	*md5Str = QString(md5Data.toHex());
-																}
-																break;
-
-															case 4:
-																log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
-																if ( calcSHA1 ) {
-																	QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-																	*sha1Str = QString(sha1Data.toHex());
-																}
-																break;
-
-															case 5:
-																log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
-																if ( calcSHA1 ) {
-																	QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-																	*sha1Str = QString(sha1Data.toHex());
-																}
-																break;
-
-															default:
-																log(tr("CHD manager: no header check-sums available for CHD verification"));
-																effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
-																if ( fallbackPath->isEmpty() )
-																	*fallbackPath = chdFilePath;
-																break;
-														}
-														continue;
+										chdManagerTotalHunks = chdTotalHunks;
+										if ( progressWidget ) {
+											progressWidget->setRange(0, chdTotalHunks);
+											progressWidget->setValue(0);
+										}
+										progressBarFileIO->setRange(0, chdTotalHunks);
+										progressBarFileIO->reset();
+										int step;
+										for (step = 0; step < 2 && !qmc2StopParser; step++) {
+											QStringList args;
+											QString oldFormat;
+											if ( progressWidget ) oldFormat = progressWidget->format();
+											switch ( step ) {
+												case 0:
+													if ( chdManagerVerifyCHDs ) {
+														if ( progressWidget ) progressWidget->setFormat(tr("Verify - %p%"));
+#if QMC2_CHD_CURRENT_VERSION >= 5
+														log(tr("CHD manager: verifying CHD"));
+														args << "verify" << "--input" << chdFilePath;
+#else
+														log(tr("CHD manager: verifying CHD"));
+														args << "-verify" << chdFilePath;
+#endif
 													} else
 														continue;
-												} else
-													continue;
+													break;
+
+												case 1:
+													if ( chdManagerUpdateCHDs ) {
+														if ( chdVersion < QMC2_CHD_CURRENT_VERSION ) {
+															if ( progressWidget ) progressWidget->setFormat(tr("Update - %p%"));
+															log(tr("CHD manager: updating CHD (v%1 -> v%2)").arg(chdVersion).arg(QMC2_CHD_CURRENT_VERSION));
+#if QMC2_CHD_CURRENT_VERSION >= 5
+															args << "copy" << "--input" << chdFilePath << "--output" << chdTempFilePath;
+#else
+															args << "-update" << chdFilePath << chdTempFilePath;
+#endif
+														} else if ( !chdManagerVerifyCHDs ) {
+															switch ( chdVersion ) {
+																case 3:
+																	log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
+																	if ( calcSHA1 ) {
+																		QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
+																		*sha1Str = QString(sha1Data.toHex());
+																	}
+																	if ( calcMD5 ) {
+																		QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
+																		*md5Str = QString(md5Data.toHex());
+																	}
+																	break;
+
+																case 4:
+																	log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
+																	if ( calcSHA1 ) {
+																		QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+																		*sha1Str = QString(sha1Data.toHex());
+																	}
+																	break;
+
+																case 5:
+																	log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
+																	if ( calcSHA1 ) {
+																		QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+																		*sha1Str = QString(sha1Data.toHex());
+																	}
+																	break;
+
+																default:
+																	log(tr("CHD manager: no header check-sums available for CHD verification"));
+																	effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
+																	if ( fallbackPath->isEmpty() )
+																		*fallbackPath = chdFilePath;
+																	break;
+															}
+															continue;
+														} else
+															continue;
+													} else
+														continue;
+													break;
+											}
+											QString command = lineEditCHDManagerExecutableFile->text();
+											QProcess *chdManagerProc = new QProcess(this);
+											connect(chdManagerProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(chdManagerError(QProcess::ProcessError)));
+											connect(chdManagerProc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(chdManagerFinished(int, QProcess::ExitStatus)));
+											connect(chdManagerProc, SIGNAL(readyReadStandardOutput()), this, SLOT(chdManagerReadyReadStandardOutput()));
+											connect(chdManagerProc, SIGNAL(readyReadStandardError()), this, SLOT(chdManagerReadyReadStandardError()));
+											connect(chdManagerProc, SIGNAL(started()), this, SLOT(chdManagerStarted()));
+											chdManagerProc->start(command, args);
+											chdManagerRunning = true;
+											chdManagerMD5Success = chdManagerSHA1Success = false;
+
+											// wait for CHD manager to finish...
+											while ( chdManagerRunning && !qmc2StopParser ) {
+												QTest::qWait(QMC2_ROMALYZER_PAUSE_TIMEOUT);
+												if ( qmc2StopParser ) {
+													log(tr("CHD manager: terminating external process"));
+													chdManagerProc->kill();
+													chdManagerProc->waitForFinished();
+													disconnect(chdManagerProc);
+													chdManagerProc->deleteLater();
+												} else {
+													if ( progressWidget ) {
+														if ( chdManagerTotalHunks != (quint64)progressWidget->maximum() )
+															progressWidget->setRange(0, chdManagerTotalHunks);
+														if ( chdManagerCurrentHunk != (quint64)progressWidget->value() )
+															progressWidget->setValue(chdManagerCurrentHunk);
+													}
+													if ( chdManagerTotalHunks != (quint64)progressBarFileIO->maximum() )
+														progressBarFileIO->setRange(0, chdManagerTotalHunks);
+													if ( chdManagerCurrentHunk != (quint64)progressBarFileIO->value() )
+														progressBarFileIO->setValue(chdManagerCurrentHunk);
+													progressBarFileIO->update();
+													qApp->processEvents();
+												}
+											}
+											chdManagerRunning = false;
+											if ( !qmc2StopParser ) {
+												if ( chdManagerMD5Success && calcMD5 )
+													log(tr("CHD manager: CHD file integrity is good"));
+												else if ( chdManagerSHA1Success && calcSHA1 )
+													log(tr("CHD manager: CHD file integrity is good"));
+												else
+													log(tr("CHD manager: WARNING: CHD file integrity is bad"));
+
+												if ( step == 1 && (chdManagerMD5Success || chdManagerSHA1Success) ) {
+													log(tr("CHD manager: replacing CHD"));
+													if ( progressWidget ) {
+														progressWidget->setFormat(tr("Copy"));
+														progressWidget->setRange(-1, -1);
+														progressWidget->setValue(-1);
+													}
+													QFile::remove(chdFilePath);
+													if ( QFile::rename(chdTempFilePath, chdFilePath) ) {
+														log(tr("CHD manager: CHD replaced"));
+														myItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, tr("CHD v%1").arg(QMC2_CHD_CURRENT_VERSION));
+														QFile romFileTmp(chdFilePath);
+														if ( romFileTmp.open(QIODevice::ReadOnly) ) {
+															char bufferCopy[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
+															strncpy(bufferCopy, buffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE);
+															if ( romFileTmp.read(buffer, QMC2_CHD_HEADER_V3_LENGTH) <= 0 ) {
+																log(tr("CHD manager: WARNING: failed updating CHD header information"));
+																strncpy(buffer, bufferCopy, QMC2_ROMALYZER_FILE_BUFFER_SIZE);
+															} else
+																chdVersion = QMC2_CHD_CURRENT_VERSION;
+															romFileTmp.close();
+														}
+													} else
+														log(tr("CHD manager: FATAL: failed to replace CHD -- updated CHD preserved as '%1', please copy it to '%2' manually!").arg(chdTempFilePath).arg(chdFilePath));
+												}
+
+												switch ( chdVersion ) {
+													case 3:
+														log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
+														if ( chdManagerSHA1Success && calcSHA1 ) {
+															QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
+															*sha1Str = QString(sha1Data.toHex());
+														}
+														if ( chdManagerMD5Success && calcMD5 ) {
+															QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
+															*md5Str = QString(md5Data.toHex());
+														}
+														break;
+
+													case 4:
+														log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
+														if ( chdManagerSHA1Success && calcSHA1 ) {
+															QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+															*sha1Str = QString(sha1Data.toHex());
+														}
+														break;
+
+													case 5:
+														log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
+														if ( chdManagerSHA1Success && calcSHA1 ) {
+															QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+															*sha1Str = QString(sha1Data.toHex());
+														}
+														break;
+
+													default:
+														log(tr("CHD manager: WARNING: no header check-sums available for CHD verification"));
+														effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
+														if ( fallbackPath->isEmpty() )
+															*fallbackPath = chdFilePath;
+														break;
+												}
+											}
+											if ( QFile::exists(chdTempFilePath) ) {
+												log(tr("CHD manager: cleaning up"));
+												QFile::remove(chdTempFilePath);
+											}
+											if ( progressWidget ) {
+												progressWidget->setFormat(oldFormat);
+												progressWidget->reset();
+											}
+											progressBarFileIO->reset();
+										}
+									} else {
+										switch ( chdVersion ) {
+											case 3:
+												log(tr("using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
+												if ( calcSHA1 ) {
+													QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
+													*sha1Str = QString(sha1Data.toHex());
+												}
+												if ( calcMD5 ) {
+													QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
+													*md5Str = QString(md5Data.toHex());
+												}
+												break;
+
+											case 4:
+												log(tr("using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
+												if ( calcSHA1 ) {
+													QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+													*sha1Str = QString(sha1Data.toHex());
+												}
+												break;
+
+											case 5:
+												log(tr("using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
+												if ( calcSHA1 ) {
+													QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+													*sha1Str = QString(sha1Data.toHex());
+												}
+												break;
+
+											default:
+												log(tr("WARNING: no header check-sums available for CHD verification"));
+												effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
+												if ( fallbackPath->isEmpty() )
+													*fallbackPath = chdFilePath;
 												break;
 										}
-										QString command = lineEditCHDManagerExecutableFile->text();
-										QProcess *chdManagerProc = new QProcess(this);
-										connect(chdManagerProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(chdManagerError(QProcess::ProcessError)));
-										connect(chdManagerProc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(chdManagerFinished(int, QProcess::ExitStatus)));
-										connect(chdManagerProc, SIGNAL(readyReadStandardOutput()), this, SLOT(chdManagerReadyReadStandardOutput()));
-										connect(chdManagerProc, SIGNAL(readyReadStandardError()), this, SLOT(chdManagerReadyReadStandardError()));
-										connect(chdManagerProc, SIGNAL(started()), this, SLOT(chdManagerStarted()));
-										chdManagerProc->start(command, args);
-										chdManagerRunning = true;
-										chdManagerMD5Success = chdManagerSHA1Success = false;
-
-										// wait for CHD manager to finish...
-										while ( chdManagerRunning && !qmc2StopParser ) {
-											QTest::qWait(QMC2_ROMALYZER_PAUSE_TIMEOUT);
-											if ( qmc2StopParser ) {
-												log(tr("CHD manager: terminating external process"));
-												chdManagerProc->kill();
-												chdManagerProc->waitForFinished();
-												disconnect(chdManagerProc);
-												chdManagerProc->deleteLater();
-											} else {
-												if ( progressWidget ) {
-													if ( chdManagerTotalHunks != (quint64)progressWidget->maximum() )
-														progressWidget->setRange(0, chdManagerTotalHunks);
-													if ( chdManagerCurrentHunk != (quint64)progressWidget->value() )
-														progressWidget->setValue(chdManagerCurrentHunk);
-												}
-												if ( chdManagerTotalHunks != (quint64)progressBarFileIO->maximum() )
-													progressBarFileIO->setRange(0, chdManagerTotalHunks);
-												if ( chdManagerCurrentHunk != (quint64)progressBarFileIO->value() )
-													progressBarFileIO->setValue(chdManagerCurrentHunk);
-												progressBarFileIO->update();
-												qApp->processEvents();
-											}
-										}
-										chdManagerRunning = false;
-										if ( !qmc2StopParser ) {
-											if ( chdManagerMD5Success && calcMD5 )
-												log(tr("CHD manager: CHD file integrity is good"));
-											else if ( chdManagerSHA1Success && calcSHA1 )
-												log(tr("CHD manager: CHD file integrity is good"));
-											else
-												log(tr("CHD manager: WARNING: CHD file integrity is bad"));
-
-											if ( step == 1 && (chdManagerMD5Success || chdManagerSHA1Success) ) {
-												log(tr("CHD manager: replacing CHD"));
-												if ( progressWidget ) {
-													progressWidget->setFormat(tr("Copy"));
-													progressWidget->setRange(-1, -1);
-													progressWidget->setValue(-1);
-												}
-												QFile::remove(chdFilePath);
-												if ( QFile::rename(chdTempFilePath, chdFilePath) ) {
-													log(tr("CHD manager: CHD replaced"));
-													myItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, tr("CHD v%1").arg(QMC2_CHD_CURRENT_VERSION));
-													QFile romFileTmp(chdFilePath);
-													if ( romFileTmp.open(QIODevice::ReadOnly) ) {
-														char bufferCopy[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
-														strncpy(bufferCopy, buffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE);
-														if ( romFileTmp.read(buffer, QMC2_CHD_HEADER_V3_LENGTH) <= 0 ) {
-															log(tr("CHD manager: WARNING: failed updating CHD header information"));
-															strncpy(buffer, bufferCopy, QMC2_ROMALYZER_FILE_BUFFER_SIZE);
-														} else
-															chdVersion = QMC2_CHD_CURRENT_VERSION;
-														romFileTmp.close();
-													}
-												} else
-													log(tr("CHD manager: FATAL: failed to replace CHD -- updated CHD preserved as '%1', please copy it to '%2' manually!").arg(chdTempFilePath).arg(chdFilePath));
-											}
-
-											switch ( chdVersion ) {
-												case 3:
-													log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
-													if ( chdManagerSHA1Success && calcSHA1 ) {
-														QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
-														*sha1Str = QString(sha1Data.toHex());
-													}
-													if ( chdManagerMD5Success && calcMD5 ) {
-														QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
-														*md5Str = QString(md5Data.toHex());
-													}
-													break;
-
-												case 4:
-													log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
-													if ( chdManagerSHA1Success && calcSHA1 ) {
-														QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-														*sha1Str = QString(sha1Data.toHex());
-													}
-													break;
-
-												case 5:
-													log(tr("CHD manager: using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
-													if ( chdManagerSHA1Success && calcSHA1 ) {
-														QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-														*sha1Str = QString(sha1Data.toHex());
-													}
-													break;
-
-												default:
-													log(tr("CHD manager: WARNING: no header check-sums available for CHD verification"));
-													effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
-													if ( fallbackPath->isEmpty() )
-														*fallbackPath = chdFilePath;
-													break;
-											}
-										}
-										if ( QFile::exists(chdTempFilePath) ) {
-											log(tr("CHD manager: cleaning up"));
-											QFile::remove(chdTempFilePath);
-										}
-										if ( progressWidget ) {
-											progressWidget->setFormat(oldFormat);
-											progressWidget->reset();
-										}
-										progressBarFileIO->reset();
-									}
-								} else {
-									switch ( chdVersion ) {
-										case 3:
-											log(tr("using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
-											if ( calcSHA1 ) {
-												QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
-												*sha1Str = QString(sha1Data.toHex());
-											}
-											if ( calcMD5 ) {
-												QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
-												*md5Str = QString(md5Data.toHex());
-											}
-											break;
-
-										case 4:
-											log(tr("using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
-											if ( calcSHA1 ) {
-												QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-												*sha1Str = QString(sha1Data.toHex());
-											}
-											break;
-
-										case 5:
-											log(tr("using CHD v%1 header check-sums for CHD verification").arg(chdVersion));
-											if ( calcSHA1 ) {
-												QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
-												*sha1Str = QString(sha1Data.toHex());
-											}
-											break;
-
-										default:
-											log(tr("WARNING: no header check-sums available for CHD verification"));
-											effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
-											if ( fallbackPath->isEmpty() )
-												*fallbackPath = chdFilePath;
-											break;
 									}
 								}
+							} else {
+								log(tr("WARNING: can't read CHD header information"));
+								effectiveFile = QMC2_ROMALYZER_FILE_ERROR;
+								if ( fallbackPath->isEmpty() )
+									*fallbackPath = chdFilePath;
 							}
 						} else {
 							log(tr("WARNING: can't read CHD header information"));
