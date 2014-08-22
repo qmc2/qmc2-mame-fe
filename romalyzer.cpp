@@ -16,6 +16,9 @@
 #include <QXmlQuery>
 #include <QPalette>
 #include <QRegExp>
+#if defined(QMC2_OS_WIN)
+#include <windows.h>
+#endif
 
 #include "romalyzer.h"
 #include "qmc2main.h"
@@ -4473,6 +4476,29 @@ void CheckSumScannerThread::recursiveFileList(const QString &sDir, QStringList *
 {
 	if ( exitThread || stopScan )
 		return;
+#if defined(QMC2_OS_WIN)
+	WIN32_FIND_DATA ffd;
+	QString dirName = QDir::toNativeSeparators(QDir::cleanPath(sDir + "/*"));
+#ifdef UNICODE
+	HANDLE hFind = FindFirstFile((TCHAR *)dirName.utf16(), &ffd);
+#else
+	HANDLE hFind = FindFirstFile((TCHAR *)dirName.toLocal8Bit().constData(), &ffd);
+#endif
+	if ( !exitThread && !stopScan && hFind != INVALID_HANDLE_VALUE ) {
+		do {
+#ifdef UNICODE
+			QString fName = QString::fromUtf16((ushort*)ffd.cFileName);
+#else
+			QString fName = QString::fromLocal8Bit(ffd.cFileName);
+#endif
+			if ( ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) {
+				if ( fName != ".." && fName != "." )
+					recursiveFileList(sDir + "/" + fName, fileNames);
+			} else
+				fileNames->append(sDir + "/" + fName);
+		} while ( !exitThread && !stopScan && FindNextFile(hFind, &ffd) != 0 );
+	}
+#else
 	QDir dir(sDir);
 	foreach (QFileInfo info, dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden | QDir::System)) {
 		if ( exitThread || stopScan )
@@ -4485,6 +4511,7 @@ void CheckSumScannerThread::recursiveFileList(const QString &sDir, QStringList *
 		} else
 			fileNames->append(path);
 	}
+#endif
 }
 
 int CheckSumScannerThread::fileType(QString fileName)
