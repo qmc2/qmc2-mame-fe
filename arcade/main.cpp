@@ -425,7 +425,7 @@ int main(int argc, char *argv[])
 #if QT_VERSION < 0x050000
         viewer->setSource(QUrl(QString("qrc:/qml/%1/1.1/%1.qml").arg(theme)));
 #else
-        viewer->setSource(QUrl(QString("qrc:/qml/%1/2.0/%1.qml").arg(theme));
+        viewer->setSource(QUrl(QString("qrc:/qml/%1/2.0/%1.qml").arg(theme)));
 #endif
 
         // set up display mode initially

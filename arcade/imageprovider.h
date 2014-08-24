@@ -81,6 +81,8 @@ public:
     QImage requestImage(const QString &, QSize *, const QSize &);
     QPixmap requestPixmap(const QString &, QSize *, const QSize &);
     QString loadImage(const QString &);
+    bool isZippedImageType(QString);
+    bool isSevenZippedImageType(QString);
 
     enum CacheClass { CacheClassImage, CacheClassPixmap };
 
@@ -94,8 +96,6 @@ private:
     QString loadImage(const QString &id, const enum CacheClass cacheClass);
     QString imageTypeToFile(QString);
     QString imageTypeToLongName(QString);
-    bool isZippedImageType(QString);
-    bool isSevenZippedImageType(QString);
     QString imageFolder(QString);
     bool isAsync(QString);
 
