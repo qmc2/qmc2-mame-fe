@@ -9,6 +9,7 @@
 #include <QMap>
 #include <QDateTime>
 #include <QMessageBox>
+#include <QScrollBar>
 
 #include "collectionrebuilder.h"
 #include "settings.h"
