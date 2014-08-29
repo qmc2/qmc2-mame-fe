@@ -577,7 +577,7 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 								if ( endIndex >= 0 )
 									romCrc = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
-							if ( !romSha1.isEmpty() && !romCrc.isEmpty() ) {
+							if ( !romSha1.isEmpty() || !romCrc.isEmpty() ) {
 								*romNameList << romName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
 								*romSha1List << romSha1;
 								*romCrcList << romCrc;
