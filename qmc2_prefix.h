@@ -48,19 +48,13 @@
 #endif /* __cplusplus */
 
 #if defined(QMC2_OS_WIN)
-#if QMC2_JOYSTICK == 1
-#if defined(QMC2_MINGW)
-#include <SDL/SDL.h>
-#else
-#include <SDL.h>
-#endif
-#endif
 #include <io.h>
 #else
-#if QMC2_JOYSTICK == 1
-#include <SDL/SDL.h>
-#endif
 #include <unistd.h>
+#endif
+
+#if QMC2_JOYSTICK == 1
+#include <SDL.h>
 #endif
 
 #ifdef __OBJC__

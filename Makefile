@@ -306,32 +306,6 @@ ifndef DISTCC
 DISTCC = 0
 endif
 
-# >>> SDLLOCAL <<<
-#
-# Enable (1) or disable (0) the use of a 'local' SDL library installation.
-#
-# Make sure to also set SDLLOCAL_INC and SDLLOCAL_LIB if you enable this!
-#
-ifndef SDLLOCAL
-SDLLOCAL = 0
-endif
-
-# >>> SDLLOCAL_INC <<<
-#
-# Base include directory of the 'local' SDL headers.
-#
-ifndef SDLLOCAL_INC
-SDLLOCAL_INC = /usr/local/include
-endif
-
-# >>> SDLLOCAL_LIB <<<
-#
-# Base library directory of the 'local' SDL installation.
-#
-ifndef SDLLOCAL_LIB
-SDLLOCAL_LIB = /usr/local/lib
-endif
-
 # >>> QT_TRANSLATION <<<
 #
 # This is used by the 'make install' target to define the Qt translations QMC2
@@ -539,13 +513,34 @@ endif
 #
 # The base-directory used by the 'make doc-install' target to install man-pages.
 #
-ifneq '$(ARCH)' 'Windows'
+ifneq '$(MINGW)' '1'
 ifndef MAN_DIR
 ifeq '$(ARCH)' 'Darwin'
 MAN_DIR = /usr/share/man
 else
 MAN_DIR = $(PREFIX)/man
 endif
+endif
+endif
+
+# >>> SDL <<<
+#
+# SDL version to use (1 or 2). Auto-detected if unspecified -- SDL=1 has
+# precendence.
+#
+ifneq '$(MINGW)' '1'
+ifndef SDL
+SDL = $(shell scripts/sdl-version.sh)
+else
+ifneq '$(SDL)' '1'
+ifneq '$(SDL)' '2'
+SDL = $(shell scripts/sdl-version.sh)
+endif
+endif
+endif
+else
+ifndef SDL
+SDL = 1
 endif
 endif
 
@@ -768,9 +763,16 @@ endif
 ifdef SDL_LIBS
 undef SDL_LIBS
 endif
+ifdef SDL_INCLUDEPATH
+undef SDL_INCLUDEPATH
+endif
+ifneq '$(ARCH)' 'Windows'
+ifneq '$(ARCH)' 'Darwin'
 ifeq '$(JOYSTICK)' '1'
-ifeq '$(SDLLOCAL)' '1'
-SDL_LIBS += INCLUDEPATH+=$(SDLLOCAL_INC) LIBS+=-L$(SDLLOCAL_LIB)
+SDL_LIBS = LIBS+='$(shell scripts/sdl-libs.sh $(SDL))'
+SDL_INCLUDEPATH = INCLUDEPATH+='$(shell scripts/sdl-includepath.sh $(SDL))'
+DEFINES += $(shell scripts/sdl-defines.sh $(SDL))
+endif
 endif
 endif
 
@@ -818,7 +820,7 @@ endif
 ifeq '$(ARCH)' 'Windows'
 TEST_FILE=$(shell gcc -print-file-name=libSDL.a)
 MINGW_LIBDIR=$(shell arch\Windows\dirname.bat $(TEST_FILE))
-QMAKE_CONF += QMC2_LIBS=-L$(MINGW_LIBDIR) QMC2_INCLUDEPATH=$(MINGW_LIBDIR)../include
+QMAKE_CONF += QMC2_LIBS+=-L$(MINGW_LIBDIR) QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL
 endif
 
 # optionally setup the qmake spec
@@ -1005,7 +1007,7 @@ ARCADE_DEFINES += QMC2_ARCADE_MAC_UNIVERSAL
 endif
 endif
 ARCADE_VERSION=$(shell $(GREP) "VERSION =" arcade/qmc2-arcade.pro | $(AWK) '{ print $$3 }')
-ARCADE_QMAKE_DEFS = QMC2_ARCADE_QML_IMPORT_PATH=$(LOCAL_QML_IMPORT_PATH) QMC2_ARCADE_JOYSTICK=$(JOYSTICK)
+ARCADE_QMAKE_DEFS = QMC2_ARCADE_QML_IMPORT_PATH=$(LOCAL_QML_IMPORT_PATH) QMC2_ARCADE_JOYSTICK=$(JOYSTICK) SDL=$(SDL)
 
 arcade: arcade-bin
 arcade-bin:
@@ -1111,10 +1113,10 @@ endif
 	@$(ECHO) "Configuring build of QMC2 v$(VERSION)"
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
-	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
+	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
 else
 	@$(shell scripts\\setup_imgset.bat $(IMGSET)) 
-	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 ifeq '$(ARCH)' 'Darwin'
 ifneq '$(QT_LIB48PLUS)' 'true'
@@ -1187,15 +1189,15 @@ else
 endif
 ifeq '$(ARCH)' 'Darwin'
 ifneq '$(QT_LIB48PLUS)' 'true'
-	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
 	@$(SED) -e "s/-c /cc -c /" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
 	@$(RM) ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 	@$(MV) ./Makefile.qmake.xcodeproj/qt_preprocess.mak.new ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 else
-	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 else
-	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 endif
 
@@ -1530,9 +1532,6 @@ endif
 	@$(ECHO) "RM                     UNIX command rm                               $(RM)"
 	@$(ECHO) "RMDIR                  UNIX command rmdir                            $(RMDIR)"
 	@$(ECHO) "RSYNC                  UNIX command rsync                            $(RSYNC)"
-	@$(ECHO) "SDLLOCAL               Enable use of a 'local' SDL library (0, 1)    $(SDLLOCAL)"
-	@$(ECHO) "SDLLOCAL_INC           Base include directory of the 'local' SDL     $(SDLLOCAL_INC)"
-	@$(ECHO) "SDLLOCAL_LIB           Base library directory of the 'local' SDL     $(SDLLOCAL_LIB)"
 	@$(ECHO) "SED                    UNIX command sed                              $(SED)"
 	@$(ECHO) "SVNVERSION             UNIX command svnversion (optional)            $(SVNVERSION)"
 	@$(ECHO) "SYSCONFDIR             System configuration directory                $(SYSCONFDIR)"

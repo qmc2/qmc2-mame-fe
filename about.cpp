@@ -9,15 +9,7 @@
 #include "gamelist.h"
 
 #if QMC2_JOYSTICK == 1
-#if defined(QMC2_OS_WIN)
-#if defined(QMC2_MINGW)
-#include <SDL/SDL.h>
-#else
 #include <SDL.h>
-#endif
-#else
-#include <SDL/SDL.h>
-#endif
 #endif
 
 #if QMC2_USE_PHONON_API
@@ -102,7 +94,12 @@ void About::showEvent(QShowEvent *e)
 #endif
 
 #if QMC2_JOYSTICK == 1
+#if SDL_MAJOR_VERSION == 1
 	const SDL_version *sdlVersionLinked = SDL_Linked_Version();
+#elif SDL_MAJOR_VERSION == 2
+	SDL_version sdlVersionLinked;
+	SDL_GetVersion(&sdlVersionLinked);
+#endif
 	SDL_version sdlVersionCompile;
 	SDL_VERSION(&sdlVersionCompile);
 #endif
@@ -158,7 +155,11 @@ void About::showEvent(QShowEvent *e)
 #endif
 		"<p><b>" + tr("Qt library paths:") + "</b>" + libPaths + "</p>";
 #if QMC2_JOYSTICK == 1
+#if SDL_MAJOR_VERSION == 1
 	sysInfoString += "<p><b>" + tr("SDL version:") + "</b><br>" + tr("Compile-time:") + " " + QString("%1.%2.%3").arg(sdlVersionCompile.major).arg(sdlVersionCompile.minor).arg(sdlVersionCompile.patch) + "<br>" + tr("Run-time:") + " " + QString("%1.%2.%3").arg(sdlVersionLinked->major).arg(sdlVersionLinked->minor).arg(sdlVersionLinked->patch) + "</p>";
+#elif SDL_MAJOR_VERSION == 2
+	sysInfoString += "<p><b>" + tr("SDL version:") + "</b><br>" + tr("Compile-time:") + " " + QString("%1.%2.%3").arg(sdlVersionCompile.major).arg(sdlVersionCompile.minor).arg(sdlVersionCompile.patch) + "<br>" + tr("Run-time:") + " " + QString("%1.%2.%3").arg(sdlVersionLinked.major).arg(sdlVersionLinked.minor).arg(sdlVersionLinked.patch) + "</p>";
+#endif
 #endif
 #if QMC2_USE_PHONON_API
 	sysInfoString += "<p><b>" + tr("Phonon version:") + "</b><br>" + tr("Run-time:") + " " + QString("%1").arg(Phonon::phononVersion()) + "</p><p><b>" + tr("Phonon backend / supported MIME types:") + "</b>";
