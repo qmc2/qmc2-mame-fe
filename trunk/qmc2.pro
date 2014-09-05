@@ -273,8 +273,10 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			HEADERS += SDLMain_tmpl.h
 			greaterThan(SDL, 1) {
 				LIBS += -framework SDL2 -framework Cocoa
+				INCLUDEPATH += /Library/Frameworks/SDL2.framework/Headers
 			} else {
 				LIBS += -framework SDL -framework Cocoa
+				INCLUDEPATH += /Library/Frameworks/SDL.framework/Headers
 			}
 			contains(TARGET, qmc2-sdlmame): ICON = data/img/classic/mame.icns
 			contains(TARGET, qmc2-sdlmess): ICON = data/img/classic/mess.icns

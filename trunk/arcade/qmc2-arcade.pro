@@ -169,20 +169,15 @@ macx {
     HEADERS += ../SDLMain_tmpl.h
     greaterThan(SDL, 1) {
         LIBS += -framework SDL2 -framework Cocoa
+	INCLUDEPATH += /Library/Frameworks/SDL2.framework/Headers
     } else {
         LIBS += -framework SDL -framework Cocoa
+	INCLUDEPATH += /Library/Frameworks/SDL.framework/Headers
     }
     ICON = images/qmc2-arcade.icns
     contains(DEFINES, QMC2_ARCADE_MAC_UNIVERSAL): CONFIG += x86 ppc
     QMAKE_INFO_PLIST = Info.plist
     QT += opengl
-    greaterThan(SDL, 0) {
-        LIBS += $$system("../scripts/sdl-libs.sh $$SDL")
-        INCLUDEPATH += $$system("../scripts/sdl-includepath.sh $$SDL")
-    } else {
-        LIBS += $$system("../scripts/sdl-libs.sh")
-        INCLUDEPATH += $$system("../scripts/sdl-includepath.sh")
-    }
 } else {
     !win32 {
         greaterThan(SDL, 0) {
