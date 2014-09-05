@@ -24,6 +24,7 @@ inf: informational only
   <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to SVN r31912</li>
   <li>imp: ROMAlyzer: allow set repairing from 7-zip archived reproduction templates</li>
   <li>imp: all database updates are fully asynchronous now, using in-memory journals (that's faster on slow I/O, but also <i>slightly</i> more risky)</li>
+  <li>imp: added support for SDL2 (SDL 1.x remains the default if available, you can force either version using 'SDL=1' or 'SDL=2' on the make command line)</li>
   <li>new: ROMAlyzer: added a check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (aka support for <i>unstructured additional ROM paths</i>) -- see also <a href="http://tracker.batcom-it.net/view.php?id=62" target="_blank">bug tracker ID #62</a></li>
   <li>new: ROMAlyzer: added a <i>ROM Collection Rebuilder</i> which uses the check-sum database to rebuild a complete ROM path from 'any' given XML (including XML from foreign emulators as long as it's MAME/MESS/UME-compatible) -- see also <a href="http://tracker.batcom-it.net/view.php?id=71" target="_blank">bug tracker ID #71</a></li>
   <li>new: ROMAlyzer: added a new 'create backups' option that will create backup copies of all existing files that are going to be modified / overwritten -- see also <a href="http://tracker.batcom-it.net/view.php?id=73" target="_blank">bug tracker ID #73</a></li>

@@ -271,7 +271,11 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			QMAKESPEC = macx-xcode
 			OBJECTIVE_SOURCES += SDLMain_tmpl.m
 			HEADERS += SDLMain_tmpl.h
-			LIBS += -framework SDL -framework Cocoa
+			greaterThan(SDL, 1) {
+				LIBS += -framework SDL2 -framework Cocoa
+			} else {
+				LIBS += -framework SDL -framework Cocoa
+			}
 			contains(TARGET, qmc2-sdlmame): ICON = data/img/classic/mame.icns
 			contains(TARGET, qmc2-sdlmess): ICON = data/img/classic/mess.icns
 			contains(TARGET, qmc2-sdlume): ICON = data/img/classic/ume.icns
@@ -281,7 +285,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			QMAKE_INFO_PLIST = arch/Darwin/Info.plist
 		} else {
 			!win32 {
-				LIBS += -lSDL -lX11
+				LIBS += -lX11
 				lessThan(QT_MAJOR_VERSION, 5) {
 					SOURCES += x11_tools.cpp
 				}
@@ -296,8 +300,12 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 				DEFINES += QMC2_MINGW
 				QMAKE_LIBS_QT_ENTRY =
 				QMAKE_LFLAGS_CONSOLE =
-				LIBS += -lSDLmain -lSDL.dll -lSDL -lole32 -lpsapi $$quote($$QMC2_LIBS)
-				INCLUDEPATH += $$quote($$QMC2_INCLUDEPATH)
+				greaterThan(SDL, 1) {
+					LIBS += -lSDLmain -lSDL2.dll -lSDL2 -lole32 -lpsapi $$QMC2_LIBS
+				} else {
+					LIBS += -lSDLmain -lSDL.dll -lSDL -lole32 -lpsapi $$QMC2_LIBS
+				}
+				INCLUDEPATH += $$QMC2_INCLUDEPATH
 				contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc
 				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
 				contains(TARGET, qmc2-ume):RC_FILE = qmc2-ume.rc

@@ -167,26 +167,47 @@ DEFINES += QMC2_ARCADE_QML_IMPORT_PATH=$$QMC2_ARCADE_QML_IMPORT_PATH
 macx {
     OBJECTIVE_SOURCES += ../SDLMain_tmpl.m
     HEADERS += ../SDLMain_tmpl.h
-    LIBS += -framework SDL -framework Cocoa
+    greaterThan(SDL, 1) {
+        LIBS += -framework SDL2 -framework Cocoa
+    } else {
+        LIBS += -framework SDL -framework Cocoa
+    }
     ICON = images/qmc2-arcade.icns
     contains(DEFINES, QMC2_ARCADE_MAC_UNIVERSAL): CONFIG += x86 ppc
     QMAKE_INFO_PLIST = Info.plist
     QT += opengl
+    greaterThan(SDL, 0) {
+        LIBS += $$system("../scripts/sdl-libs.sh $$SDL")
+        INCLUDEPATH += $$system("../scripts/sdl-includepath.sh $$SDL")
+    } else {
+        LIBS += $$system("../scripts/sdl-libs.sh")
+        INCLUDEPATH += $$system("../scripts/sdl-includepath.sh")
+    }
 } else {
     !win32 {
-        LIBS += -lSDL
+        greaterThan(SDL, 0) {
+            LIBS += $$system("../scripts/sdl-libs.sh $$SDL")
+            INCLUDEPATH += $$system("../scripts/sdl-includepath.sh $$SDL")
+        } else {
+            LIBS += $$system("../scripts/sdl-libs.sh")
+            INCLUDEPATH += $$system("../scripts/sdl-includepath.sh")
+        }
     } else {
         DEFINES += PSAPI_VERSION=1
         SOURCES += ../windows_tools.cpp
         contains(DEFINES, QMC2_ARCADE_MINGW) {
-                CONFIG += windows
+            CONFIG += windows
+            greaterThan(SDL, 1) {
+                LIBS += -lSDLmain -lSDL2.dll -lSDL2 -lole32 -lpsapi
+            } else {
                 LIBS += -lSDLmain -lSDL.dll -lSDL -lole32 -lpsapi
-                QMAKE_CXXFLAGS += -Wl,-subsystem,windows
-                QMAKE_CFLAGS += -Wl,-subsystem,windows
-                QMAKE_LFLAGS += -Wl,-subsystem,windows
+            }
+            QMAKE_CXXFLAGS += -Wl,-subsystem,windows
+            QMAKE_CFLAGS += -Wl,-subsystem,windows
+            QMAKE_LFLAGS += -Wl,-subsystem,windows
         } else {
-                CONFIG += embed_manifest_exe windows
-                LIBS += psapi.lib ole32.lib
+            CONFIG += embed_manifest_exe windows
+            LIBS += psapi.lib ole32.lib
         }
         RC_FILE = qmc2-arcade.rc
     }

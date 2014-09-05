@@ -13057,8 +13057,14 @@ int main(int argc, char *argv[])
 #endif
 
 #if QMC2_JOYSTICK == 1
+#if SDL_MAJOR_VERSION == 1
 	const SDL_version *sdlVersion = SDL_Linked_Version();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("SDL joystick support enabled - using SDL v%1.%2.%3").arg(sdlVersion->major).arg(sdlVersion->minor).arg(sdlVersion->patch));
+#elif SDL_MAJOR_VERSION == 2
+	SDL_version sdlVersion;
+	SDL_GetVersion(&sdlVersion);
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("SDL joystick support enabled - using SDL v%1.%2.%3").arg(sdlVersion.major).arg(sdlVersion.minor).arg(sdlVersion.patch));
+#endif
 #endif
 
 	// process global emulator configuration and create import/export popup menus
