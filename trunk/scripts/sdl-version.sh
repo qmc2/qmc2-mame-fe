@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 SDL_VERSION=
 if [ "$(uname)" == "Darwin" ]; then
 	# we assume a framework install
