@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 if [ "$1" != "" ]; then
 	if [ "$1" == "1" ]; then
 		SDL_LIBS=$(sdl-config --libs)
