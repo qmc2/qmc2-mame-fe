@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Create man-pages using txt2man.sh
 
 usage() {

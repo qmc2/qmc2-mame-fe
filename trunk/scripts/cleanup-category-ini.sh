@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Note: this script *assumes* that 'qmc2-sdlmess' has been run prior to using it, that
 # its XML cache database is *up-to-date* and stored as ~/.qmc2/mess-xml-cache.db. Also,
