@@ -8,16 +8,8 @@
 #include <QTime>
 #include <QTimer>
 #include <QStringList>
-#include "macros.h"
-#if defined(QMC2_ARCADE_OS_WIN)
-#if defined(QMC2_ARCADE_MINGW)
-#include <SDL/SDL.h>
-#else
 #include <SDL.h>
-#endif
-#else
-#include <SDL/SDL.h>
-#endif
+#include "macros.h"
 
 #define QMC2_ARCADE_SDL_JOYSTICK_DEFAULT_EVENT_TIMEOUT		25
 #define QMC2_ARCADE_SDL_JOYSTICK_DEFAULT_AUTOREPEAT_DELAY	250

@@ -16,7 +16,13 @@ Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat,
     if ( SDL_Init(SDL_INIT_JOYSTICK) == 0 ) {
         QRegExp rx("(\\b.*\\b)\\1");
         for (int i = 0; i < SDL_NumJoysticks(); i++) {
+#if SDL_MAJOR_VERSION == 1
             QString jsName = SDL_JoystickName(i);
+#elif SDL_MAJOR_VERSION == 2
+            SDL_Joystick *js = SDL_JoystickOpen(i);
+            QString jsName = SDL_JoystickName(js);
+            SDL_JoystickClose(js);
+#endif
             jsName.replace(rx, "\\1"); // remove consecutive duplicate words in the joystick name (i. e. "Logitech Logitech Extreme 3D" becomes "Logitech Extreme 3D")
             joystickNames.append(jsName);
         }
