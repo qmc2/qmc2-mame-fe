@@ -171,7 +171,11 @@ if (typeof PDFJS === 'undefined') {
   if (typeof VBArray !== 'undefined') {
     Object.defineProperty(xhrPrototype, 'response', {
       get: function xmlHttpRequestResponseGet() {
-        return new Uint8Array(new VBArray(this.responseBody).toArray());
+        if (this.responseType === 'arraybuffer') {
+          return new Uint8Array(new VBArray(this.responseBody).toArray());
+        } else {
+          return this.responseText;
+        }
       }
     });
     return;
@@ -237,7 +241,7 @@ if (typeof PDFJS === 'undefined') {
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
   window.atob = function (input) {
     input = input.replace(/=+$/, '');
-    if (input.length % 4 == 1) {
+    if (input.length % 4 === 1) {
       throw new Error('bad atob input');
     }
     for (
@@ -293,7 +297,7 @@ if (typeof PDFJS === 'undefined') {
       var dataset = {};
       for (var j = 0, jj = this.attributes.length; j < jj; j++) {
         var attribute = this.attributes[j];
-        if (attribute.name.substring(0, 5) != 'data-') {
+        if (attribute.name.substring(0, 5) !== 'data-') {
           continue;
         }
         var key = attribute.name.substring(5).replace(/\-([a-z])/g,
@@ -416,7 +420,7 @@ if (typeof PDFJS === 'undefined') {
   function isDisabled(node) {
     return node.disabled || (node.parentNode && isDisabled(node.parentNode));
   }
-  if (navigator.userAgent.indexOf('Opera') != -1) {
+  if (navigator.userAgent.indexOf('Opera') !== -1) {
     // use browser detection since we cannot feature-check this bug
     document.addEventListener('click', ignoreIfTargetDisabled, true);
   }
@@ -481,7 +485,7 @@ if (typeof PDFJS === 'undefined') {
   }
 })();
 
-// Support: IE<11, Chrome<21, Android<4.4
+// Support: IE<11, Chrome<21, Android<4.4, Safari<6
 (function checkSetPresenceInImageData() {
   // IE < 11 will use window.CanvasPixelArray which lacks set function.
   if (window.CanvasPixelArray) {
@@ -495,21 +499,21 @@ if (typeof PDFJS === 'undefined') {
   } else {
     // Old Chrome and Android use an inaccessible CanvasPixelArray prototype.
     // Because we cannot feature detect it, we rely on user agent parsing.
-    var polyfill = false;
+    var polyfill = false, versionMatch;
     if (navigator.userAgent.indexOf('Chrom') >= 0) {
-      var versionMatch = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
-      if (versionMatch && parseInt(versionMatch[2]) < 21) {
-        // Chrome < 21 lacks the set function.
-        polyfill = true;
-      }
+      versionMatch = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
+      // Chrome < 21 lacks the set function.
+      polyfill = versionMatch && parseInt(versionMatch[2]) < 21;
     } else if (navigator.userAgent.indexOf('Android') >= 0) {
       // Android < 4.4 lacks the set function.
       // Android >= 4.4 will contain Chrome in the user agent,
       // thus pass the Chrome check above and not reach this block.
-      var isOldAndroid = /Android\s[0-4][^\d]/g.test(navigator.userAgent);
-      if (isOldAndroid) {
-        polyfill = true;
-      }
+      polyfill = /Android\s[0-4][^\d]/g.test(navigator.userAgent);
+    } else if (navigator.userAgent.indexOf('Safari') >= 0) {
+      versionMatch = navigator.userAgent.
+        match(/Version\/([0-9]+)\.([0-9]+)\.([0-9]+) Safari\//);
+      // Safari < 6 lacks the set function.
+      polyfill = versionMatch && parseInt(versionMatch[1]) < 6;
     }
 
     if (polyfill) {
