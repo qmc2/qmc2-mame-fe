@@ -8,16 +8,16 @@ set QT_PATH=c:\Qt
 set QT_PATH_64=c:\Qt-64
 set QT_PATH_ESCAPED=c:\\Qt
 set QT_PATH_64_ESCAPED=c:\\Qt-64
-set SDL_INC_PATH=c:\sdl\include
-set SDL_LIB_PATH=c:\sdl\lib\x86\sdl.lib
-set SDL_LIB_PATH_64=c:\sdl\lib\x64\sdl.lib
-set SDLMAIN_LIB_PATH=c:\sdl\lib\x86\sdlmain.lib
-set SDLMAIN_LIB_PATH_64=c:\sdl\lib\x64\sdlmain.lib
 set PSAPI_LIB_PATH_64=c:\Program Files\Microsoft SDKs\Windows\v7.1\Lib\x64\Psapi.Lib
 set LIB_PATH_64=c:\Program Files\Microsoft SDKs\Windows\v7.1\Lib\x64
 set SVN_REV_COMMAND="c:\Program Files\TortoiseSVN\bin\SubWCRev.exe"
 set SED_COMMAND=c:\GnuWin32\bin\sed.exe
-set SDL_VERSION=1
+set SDL_VERSION=2
+set SDL_INC_PATH=c:\sdl2\include
+set SDL_LIB_PATH=c:\sdl2\lib\x86\sdl2.lib
+set SDL_LIB_PATH_64=c:\sdl2\lib\x64\sdl2.lib
+set SDLMAIN_LIB_PATH=c:\sdl2\lib\x86\sdl2main.lib
+set SDLMAIN_LIB_PATH_64=c:\sdl2\lib\x64\sdl2main.lib
 
 REM #####################################################################
 REM # !!! FOR VS2010, QMAKESPEC NEEDS TO BE SET TO "win32-msvc2010" !!! #
