@@ -197,6 +197,7 @@ macx {
             } else {
                 LIBS += -lSDLmain -lSDL.dll -lSDL -lole32 -lpsapi
             }
+            INCLUDEPATH += $$QMC2_ARCADE_INCLUDEPATH
             QMAKE_CXXFLAGS += -Wl,-subsystem,windows
             QMAKE_CFLAGS += -Wl,-subsystem,windows
             QMAKE_LFLAGS += -Wl,-subsystem,windows
