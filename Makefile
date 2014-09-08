@@ -820,7 +820,11 @@ endif
 ifeq '$(ARCH)' 'Windows'
 TEST_FILE=$(shell gcc -print-file-name=libSDL.a)
 MINGW_LIBDIR=$(shell arch\Windows\dirname.bat $(TEST_FILE))
+ifeq '$(SDL)' '2'
+QMAKE_CONF += QMC2_LIBS+=-L$(MINGW_LIBDIR) QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL2
+else
 QMAKE_CONF += QMC2_LIBS+=-L$(MINGW_LIBDIR) QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL
+endif
 endif
 
 # optionally setup the qmake spec
