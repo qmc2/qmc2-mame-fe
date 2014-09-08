@@ -1536,6 +1536,7 @@ endif
 	@$(ECHO) "RM                     UNIX command rm                               $(RM)"
 	@$(ECHO) "RMDIR                  UNIX command rmdir                            $(RMDIR)"
 	@$(ECHO) "RSYNC                  UNIX command rsync                            $(RSYNC)"
+	@$(ECHO) "SDL                    SDL major version to be used (1, 2)           $(SDL)"
 	@$(ECHO) "SED                    UNIX command sed                              $(SED)"
 	@$(ECHO) "SVNVERSION             UNIX command svnversion (optional)            $(SVNVERSION)"
 	@$(ECHO) "SYSCONFDIR             System configuration directory                $(SYSCONFDIR)"
