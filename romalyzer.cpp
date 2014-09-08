@@ -649,11 +649,7 @@ void ROMAlyzer::analyze()
 	QTime analysisTimer, elapsedTime(0, 0, 0, 0);
 	analysisTimer.start();
 	log(tr("analysis started"));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	log(tr("determining list of games to analyze"));
-#elif defined(QMC2_EMUTYPE_MESS)
-	log(tr("determining list of machines to analyze"));
-#endif
+	log(tr("determining list of sets to analyze"));
 
 	int i = 0;
 	QRegExp wildcardRx("(\\*|\\?)");
@@ -666,18 +662,14 @@ void ROMAlyzer::analyze()
 	} else {
 		if ( patternList.count() == 1 ) {
 			if ( qmc2GamelistItemMap.contains(patternList[0]) ) {
-				// special case for exactly ONE matching game/machine -- no need to search
+				// special case for exactly ONE matching set -- no need to search
 				analyzerList << patternList[0];
 			}
 		}
 
 		if ( analyzerList.empty() ) {
-			// determine list of games to analyze
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-			labelStatus->setText(tr("Searching games"));
-#elif defined(QMC2_EMUTYPE_MESS)
-			labelStatus->setText(tr("Searching machines"));
-#endif
+			// determine list of sets to analyze
+			labelStatus->setText(tr("Searching sets"));
 			progressBar->setRange(0, qmc2Gamelist->numGames);
 			progressBar->reset();
 			QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
@@ -706,13 +698,8 @@ void ROMAlyzer::analyze()
 	quickSearch = false;
 
 	if ( !qmc2StopParser ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		log(tr("done (determining list of games to analyze)"));
-		log(tr("%n game(s) to analyze", "", analyzerList.count()));
-#elif defined(QMC2_EMUTYPE_MESS)
-		log(tr("done (determining list of machines to analyze)"));
-		log(tr("%n machine(s) to analyze", "", analyzerList.count()));
-#endif
+		log(tr("done (determining list of sets to analyze)"));
+		log(tr("%n set(s) to analyze", "", analyzerList.count()));
 
 		i = 0;
 		int setsInMemory = 0;
@@ -758,7 +745,7 @@ void ROMAlyzer::analyze()
 
 			QLocale locale;
 
-			// analyze game
+			// analyze set
 			log(tr("analyzing '%1'").arg(gameName));
 			setRewriterSetCount = analyzerList.count() - i;
 			labelStatus->setText(tr("Analyzing '%1'").arg(gameName) + QString(" - %1").arg(locale.toString(setRewriterSetCount)));
@@ -858,6 +845,7 @@ void ROMAlyzer::analyze()
 					bool isCHD = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).split(" ")[0] == QObject::tr("CHD");
 					bool isROM = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).startsWith(tr("ROM"));
 					bool hasDump = childItem->text(QMC2_ROMALYZER_COLUMN_EMUSTATUS) != QObject::tr("no dump");
+					QTreeWidgetItem *fileItem = NULL;
 
 					if ( effectiveFile != QMC2_ROMALYZER_FILE_NOT_FOUND ) {
 						QIcon icon;
@@ -946,7 +934,7 @@ void ROMAlyzer::analyze()
 							noDumpCounter++;
 						}
 					} else {
-						QTreeWidgetItem *fileItem = new QTreeWidgetItem(childItem);
+						fileItem = new QTreeWidgetItem(childItem);
 						fileItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/hash.png")));
 						fileItem->setText(QMC2_ROMALYZER_COLUMN_GAME, tr("Calculated check-sums"));
 						childItem->setExpanded(false);
@@ -1080,12 +1068,86 @@ void ROMAlyzer::analyze()
 						}
 					}
 
-					childItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, fileStatus);
 					if ( somethingsWrong ) {
-						gameOkay = false;
-						childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
-						childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/warning.png")));
-						log(tr("WARNING: %1 file '%2' loaded from '%3' has incorrect / unexpected check-sums").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile));
+						if ( !fromCheckSumDb && groupBoxCheckSumDatabase->isChecked() && checkSumDb()->exists(childItem->text(QMC2_ROMALYZER_COLUMN_SHA1), childItem->text(QMC2_ROMALYZER_COLUMN_CRC)) ) {
+							QString pathFromDb, memberFromDb, typeFromDb;
+							quint64 sizeFromDb;
+							if ( checkSumDb()->getData(childItem->text(QMC2_ROMALYZER_COLUMN_SHA1), childItem->text(QMC2_ROMALYZER_COLUMN_CRC), &sizeFromDb, &pathFromDb, &memberFromDb, &typeFromDb) ) {
+								fileItem = new QTreeWidgetItem(childItem);
+								QStringList sl;
+								switch ( checkSumDb()->nameToType(typeFromDb) ) {
+									case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
+										//    fromName        fromPath      toName                                      fromZip
+										sl << memberFromDb << pathFromDb << childItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "zip";
+										log(tr("check-sum database") + ": " + tr("using member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' as '%5'").arg(memberFromDb).arg(pathFromDb).arg(childItem->text(QMC2_ROMALYZER_COLUMN_SHA1)).arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)));
+										break;
+									case QMC2_CHECKSUM_SCANNER_FILE_7Z:
+										//    fromName        fromPath      toName                                      fromZip
+										sl << memberFromDb << pathFromDb << childItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "7z";
+										log(tr("check-sum database") + ": " + tr("using member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' as '%5'").arg(memberFromDb).arg(pathFromDb).arg(childItem->text(QMC2_ROMALYZER_COLUMN_SHA1)).arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)));
+										break;
+									case QMC2_CHECKSUM_SCANNER_FILE_CHD:
+										//    fromName        fromPath      toName                                      fromZip
+										sl << memberFromDb << pathFromDb << childItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "chd";
+										log(tr("check-sum database") + ": " + tr("using CHD '%1' with SHA-1 '%2' as '%3'").arg(pathFromDb).arg(childItem->text(QMC2_ROMALYZER_COLUMN_SHA1)).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)));
+										break;
+									case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
+										//    fromName        fromPath      toName                                      fromZip
+										sl << memberFromDb << pathFromDb << childItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "file";
+										log(tr("check-sum database") + ": " + tr("using file '%1' with SHA-1 '%2' and CRC '%3' as '%4'").arg(pathFromDb).arg(childItem->text(QMC2_ROMALYZER_COLUMN_SHA1)).arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)));
+										break;
+									default:
+										break;
+								}
+								if ( !sl.isEmpty() ) {
+									setRewriterFileMap.insert(childItem->text(QMC2_ROMALYZER_COLUMN_CRC), sl); 
+									QIcon icon;
+									if ( isROM )
+										icon = QIcon(QString::fromUtf8(":/data/img/rom.png"));
+									else if ( isCHD )
+										icon = QIcon(QString::fromUtf8(":/data/img/disk2.png"));
+									else if ( hasDump )
+										icon = QIcon(QString::fromUtf8(":/data/img/fileopen.png"));
+									else
+										icon = QIcon(QString::fromUtf8(":/data/img/wip.png"));
+									QPainter p;
+									QPixmap pm(128, 64);
+									QPixmap pmIcon = icon.pixmap(64, 64);
+									QPixmap pmDb = QIcon(QString::fromUtf8(":/data/img/database.png")).pixmap(64, 64);
+									pm.fill(Qt::transparent);
+									p.begin(&pm);
+									p.setBackgroundMode(Qt::TransparentMode);
+									p.drawPixmap(0, 0, pmIcon);
+									p.drawPixmap(64, 0, pmDb);
+									p.end();
+									icon = QIcon(pm);
+									childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
+									childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, icon);
+									fileStatus.clear();
+									if ( !childItem->text(QMC2_ROMALYZER_COLUMN_SIZE).isEmpty() ) {
+										fileStatus = tr("SIZE");
+										fileItem->setText(QMC2_ROMALYZER_COLUMN_SIZE, childItem->text(QMC2_ROMALYZER_COLUMN_SIZE));
+									}
+									if ( checkBoxCalculateCRC->isChecked() && !childItem->text(QMC2_ROMALYZER_COLUMN_CRC).isEmpty() ) {
+										if ( !fileStatus.isEmpty() )
+											fileStatus += " ";
+										fileStatus += tr("CRC");
+										fileItem->setText(QMC2_ROMALYZER_COLUMN_CRC, childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
+									}
+									if ( checkBoxCalculateSHA1->isChecked() && !childItem->text(QMC2_ROMALYZER_COLUMN_SHA1).isEmpty() ) {
+										if ( !fileStatus.isEmpty() )
+											fileStatus += " ";
+										fileStatus += tr("SHA-1");
+										fileItem->setText(QMC2_ROMALYZER_COLUMN_SHA1, childItem->text(QMC2_ROMALYZER_COLUMN_SHA1));
+									}
+								}
+							}
+						} else {
+							gameOkay = false;
+							childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
+							childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/warning.png")));
+							log(tr("WARNING: %1 file '%2' loaded from '%3' has incorrect / unexpected check-sums").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile));
+						}
 					} else {
 						if ( fileStatus == tr("skipped") )
 							childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.blueBrush);
@@ -1096,6 +1158,8 @@ void ROMAlyzer::analyze()
 						else
 							childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
 					}
+
+					childItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, fileStatus);
 
 					if ( checkBoxExpandChecksums->isChecked() && checkBoxExpandFiles->isChecked() )
 						childItem->setExpanded(true);
