@@ -931,6 +931,7 @@
       <choice name="auto"/>
       <choice name="none"/>
       <choice name="soft"/>
+      <choice name="accel"/>
       <choice name="opengl"/>
     </option>
     <option default="1" name="numscreens" type="int">
