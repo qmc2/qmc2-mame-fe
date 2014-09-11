@@ -1255,6 +1255,24 @@ void EmulatorOptions::checkTemplateMap()
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("checking template configuration map against selected emulator"));
 
+	QFileInfo fi(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString());
+	if ( !fi.exists() ) {
+		if ( qmc2TemplateCheck ) {
+			printf("%s\n", tr("FATAL: %1 executable file '%2' doesn't exist").arg(QMC2_EMU_NAME).arg(fi.filePath()).toLocal8Bit().constData());
+			fflush(stdout);
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: %1 executable file '%2' doesn't exist").arg(QMC2_EMU_NAME).arg(fi.filePath()));
+		return;
+	}
+	if ( !fi.isExecutable() ) {
+		if ( qmc2TemplateCheck ) {
+			printf("%s\n", tr("FATAL: '%1' isn't executable").arg(fi.filePath()).toLocal8Bit().constData());
+			fflush(stdout);
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: '%1' isn't executable").arg(fi.filePath()));
+		return;
+	}
+
 	QStringList args;
 	QProcess commandProc;
 #if defined(QMC2_SDLMAME)
