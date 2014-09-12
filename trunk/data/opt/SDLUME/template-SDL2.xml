@@ -47,7 +47,7 @@
       <description lang="fr" text="Répertoire des paramètres des controleurs"/>
       <description lang="pt" text="Caminho para as definições de controles"/>
     </option>
-    <option default="~/.ume;.;ini" default.Darwin="~/Library/Application Support/ume;~/.ume;.;ini" name="inipath" type="directory">
+    <option default="~/.ume;.;ini" default.Windows=".;ini" default.Darwin="~/Library/Application Support/ume;~/.ume;.;ini" name="inipath" type="directory">
       <description lang="es" text="Ruta a archivos ini"/>
       <description lang="us" text="Path to ini files"/>
       <description lang="de" text="Suchpfad für INI-Dateien"/>
@@ -1484,7 +1484,7 @@
       <description lang="fr" text="Autoriser le changement de résolution d'écran"/>
       <description lang="pt" text="Habilitar troca de resolução"/>
     </option>
-    <option default="false" ignore.Darwin="true" name="useallheads" type="bool">
+    <option default="false" ignore.Windows="true" ignore.Darwin="true" name="useallheads" type="bool">
       <description lang="us" text="Split full screen image across monitors"/>
       <description lang="de" text="Vollbildschirm-Darstellung über alle Monitore verteilen"/>
       <description lang="pl" text="Rozdziel obraz pełnoekranowy na wszystkie monitory"/>
