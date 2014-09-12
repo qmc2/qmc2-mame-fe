@@ -22,8 +22,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '1.0.744';
-PDFJS.build = 'f925e7d';
+PDFJS.version = '1.0.770';
+PDFJS.build = '74d02c3';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -1967,6 +1967,12 @@ var ChunkedStream = (function ChunkedStreamClosure() {
 
       this.pos = end;
       return bytes.subarray(pos, end);
+    },
+
+    peekByte: function ChunkedStream_peekByte() {
+      var peekedByte = this.getByte();
+      this.pos--;
+      return peekedByte;
     },
 
     peekBytes: function ChunkedStream_peekBytes(length) {
@@ -30068,6 +30074,9 @@ var Parser = (function ParserClosure() {
         return new NullStream(stream);
       }
       try {
+        if (params) {
+          params = this.fetchIfRef(params);
+        }
         var xrefStreamStats = this.xref.stats.streamTypes;
         if (name === 'FlateDecode' || name === 'Fl') {
           xrefStreamStats[StreamType.FLATE] = true;
@@ -30091,6 +30100,22 @@ var Parser = (function ParserClosure() {
           return new LZWStream(stream, maybeLength, earlyChange);
         }
         if (name === 'DCTDecode' || name === 'DCT') {
+          // According to the specification: for inline images, the ID operator
+          // shall be followed by a single whitespace character (unless it uses
+          // ASCII85Decode or ASCIIHexDecode filters).
+          // In practice this only seems to be followed for inline JPEG images,
+          // and generally ignoring the first byte of the stream if it is a
+          // whitespace char can even *cause* issues (e.g. in the CCITTFaxDecode
+          // filters used in issue2984.pdf).
+          // Hence when the first byte of the stream of an inline JPEG image is
+          // a whitespace character, we thus simply skip over it.
+          if (isCmd(this.buf1, 'ID')) {
+            var firstByte = stream.peekByte();
+            if (firstByte === 0x0A /* LF */ || firstByte === 0x0D /* CR */ ||
+                firstByte === 0x20 /* SPACE */) {
+              stream.skip();
+            }
+          }
           xrefStreamStats[StreamType.DCT] = true;
           return new JpegStream(stream, maybeLength, stream.dict, this.xref);
         }
@@ -30108,7 +30133,6 @@ var Parser = (function ParserClosure() {
         }
         if (name === 'CCITTFaxDecode' || name === 'CCF') {
           xrefStreamStats[StreamType.CCF] = true;
-          params = this.fetchIfRef(params);
           return new CCITTFaxStream(stream, maybeLength, params);
         }
         if (name === 'RunLengthDecode' || name === 'RL') {
@@ -30198,7 +30222,7 @@ var Lexer = (function LexerClosure() {
       return (this.currentChar = this.stream.getByte());
     },
     peekChar: function Lexer_peekChar() {
-      return this.stream.peekBytes(1)[0];
+      return this.stream.peekByte();
     },
     getNumber: function Lexer_getNumber() {
       var ch = this.currentChar;
@@ -30855,6 +30879,11 @@ var Stream = (function StreamClosure() {
       this.pos = end;
       return bytes.subarray(pos, end);
     },
+    peekByte: function Stream_peekByte() {
+      var peekedByte = this.getByte();
+      this.pos--;
+      return peekedByte;
+    },
     peekBytes: function Stream_peekBytes(length) {
       var bytes = this.getBytes(length);
       this.pos -= bytes.length;
@@ -30983,6 +31012,11 @@ var DecodeStream = (function DecodeStreamClosure() {
 
       this.pos = end;
       return this.buffer.subarray(pos, end);
+    },
+    peekByte: function DecodeStream_peekByte() {
+      var peekedByte = this.getByte();
+      this.pos--;
+      return peekedByte;
     },
     peekBytes: function DecodeStream_peekBytes(length) {
       var bytes = this.getBytes(length);
@@ -31309,7 +31343,7 @@ var FlateStream = (function FlateStreamClosure() {
       var end = bufferLength + blockLen;
       this.bufferLength = end;
       if (blockLen === 0) {
-        if (str.peekBytes(1).length === 0) {
+        if (str.peekByte() === -1) {
           this.eof = true;
         }
       } else {
@@ -31815,7 +31849,8 @@ var Jbig2Stream = (function Jbig2StreamClosure() {
 
     var jbig2Image = new Jbig2Image();
 
-    var chunks = [], decodeParams = this.dict.get('DecodeParms');
+    var chunks = [], xref = this.dict.xref;
+    var decodeParams = xref.fetchIfRef(this.dict.get('DecodeParms'));
 
     // According to the PDF specification, DecodeParms can be either
     // a dictionary, or an array whose elements are dictionaries.
@@ -31824,7 +31859,7 @@ var Jbig2Stream = (function Jbig2StreamClosure() {
         warn('JBIG2 - \'DecodeParms\' array with multiple elements ' +
              'not supported.');
       }
-      decodeParams = decodeParams[0];
+      decodeParams = xref.fetchIfRef(decodeParams[0]);
     }
     if (decodeParams && decodeParams.has('JBIG2Globals')) {
       var globalsStream = decodeParams.get('JBIG2Globals');
@@ -35356,7 +35391,7 @@ var JpxImage = (function JpxImageClosure() {
       codeblockWidth: xcb_,
       codeblockHeight: ycb_,
       numcodeblockwide: cbx1 - cbx0 + 1,
-      numcodeblockhigh: cby1 - cby1 + 1
+      numcodeblockhigh: cby1 - cby0 + 1
     };
     subband.codeblocks = codeblocks;
     subband.precincts = precincts;
