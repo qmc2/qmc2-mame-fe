@@ -33,6 +33,10 @@ CollectionRebuilder::CollectionRebuilder(QWidget *parent)
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
 	plainTextEditLog->setFont(logFont);
 	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/MaxLogSize", 10000).toInt());
+	comboBoxFilterSyntax->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/FilterSyntax", 0).toInt());
+	comboBoxFilterType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/FilterType", 0).toInt());
+	checkBoxFilterExpression->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/UseFilterExpression", false).toBool());
+	lineEditFilterExpression->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/FilterExpression", QString()).toString());
 	adjustIconSizes();
 
 	m_rebuilderThread = new CollectionRebuilderThread(this);
@@ -164,6 +168,7 @@ void CollectionRebuilder::adjustIconSizes()
 	pushButtonPauseResume->setIconSize(iconSize);
 	comboBoxXmlSource->setIconSize(iconSize);
 	toolButtonRemoveXmlSource->setIconSize(iconSize);
+	toolButtonClearFilterExpression->setIconSize(iconSize);
 }
 
 void CollectionRebuilder::on_pushButtonStartStop_clicked()
@@ -198,6 +203,10 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 				rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
 		} else
 			rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
+		if ( checkBoxFilterExpression->isChecked() && !lineEditFilterExpression->text().isEmpty() )
+			rebuilderThread()->setFilterExpression(lineEditFilterExpression->text(), comboBoxFilterSyntax->currentIndex(), comboBoxFilterType->currentIndex());
+		else
+			rebuilderThread()->clearFilterExpression();
 		rebuilderThread()->waitCondition.wakeAll();
 	}
 }
@@ -347,6 +356,11 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	comboBoxXmlSource->setItemData(comboBoxXmlSource->currentIndex(), true);
 	labelXmlSource->setEnabled(false);
 	toolButtonRemoveXmlSource->setEnabled(false);
+	checkBoxFilterExpression->setEnabled(false);
+	comboBoxFilterSyntax->setEnabled(false);
+	comboBoxFilterType->setEnabled(false);
+	lineEditFilterExpression->setEnabled(false);
+	toolButtonClearFilterExpression->setEnabled(false);
 	frameEntities->setEnabled(false);
 	qmc2ROMAlyzer->groupBoxCheckSumDatabase->setEnabled(false);
 	qmc2ROMAlyzer->pushButtonRomCollectionRebuilder->setText(tr("Rebuilding ROM collection..."));
@@ -386,6 +400,11 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	comboBoxXmlSource->setEnabled(true);
 	labelXmlSource->setEnabled(true);
 	toolButtonRemoveXmlSource->setEnabled(true);
+	checkBoxFilterExpression->setEnabled(true);
+	comboBoxFilterSyntax->setEnabled(checkBoxFilterExpression->isChecked());
+	comboBoxFilterType->setEnabled(checkBoxFilterExpression->isChecked());
+	lineEditFilterExpression->setEnabled(checkBoxFilterExpression->isChecked());
+	toolButtonClearFilterExpression->setEnabled(checkBoxFilterExpression->isChecked());
 	frameEntities->setEnabled(true);
 	qmc2ROMAlyzer->groupBoxCheckSumDatabase->setEnabled(true);
 	m_animationTimer.stop();
@@ -471,6 +490,10 @@ void CollectionRebuilder::closeEvent(QCloseEvent *e)
 {
 	hideEvent(0);
 	QDialog::closeEvent(e);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/UseFilterExpression", checkBoxFilterExpression->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/FilterSyntax", comboBoxFilterSyntax->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/FilterType", comboBoxFilterType->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/FilterExpression", lineEditFilterExpression->text());
 }
 
 void CollectionRebuilder::keyPressEvent(QKeyEvent *e)
@@ -484,7 +507,7 @@ void CollectionRebuilder::keyPressEvent(QKeyEvent *e)
 CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
 	: QThread(parent)
 {
-	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopRebuilding = false;
+	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopRebuilding = doFilter = isIncludeFilter = false;
 	m_rebuilderDialog = (CollectionRebuilder *)parent;
 	m_checkSumDb = NULL;
 	m_xmlIndex = m_xmlIndexCount = m_checkpoint = -1;
@@ -1064,6 +1087,39 @@ bool CollectionRebuilderThread::createBackup(QString filePath)
 	}
 }
 
+void CollectionRebuilderThread::setFilterExpression(QString expression, int syntax, int type)
+{
+	doFilter = !expression.isEmpty();
+	isIncludeFilter = (type == 0);
+	QRegExp::PatternSyntax ps;
+	switch ( syntax ) {
+		case 1:
+			ps = QRegExp::RegExp2;
+			break;
+		case 2:
+			ps = QRegExp::Wildcard;
+			break;
+		case 3:
+			ps = QRegExp::WildcardUnix;
+			break;
+		case 4:
+			ps = QRegExp::FixedString;
+			break;
+		case 5:
+			ps = QRegExp::W3CXmlSchema11;
+			break;
+		case 0:
+		default:
+			ps = QRegExp::RegExp;
+			break;
+	}
+	filterRx = QRegExp(expression, Qt::CaseSensitive, ps);
+	if ( doFilter && !filterRx.isValid() ) {
+		emit log(tr("WARNING: invalid filter expression '%1' ignored").arg(expression));
+		doFilter = false;
+	}
+}
+
 void CollectionRebuilderThread::pause()
 {
 	pauseRequested = true;
@@ -1120,6 +1176,19 @@ void CollectionRebuilderThread::run()
 				QTest::qWait(0);
 				if ( id.isEmpty() )
 					continue;
+				if ( doFilter ) {
+					if ( isIncludeFilter ) {
+						if ( filterRx.indexIn(id) < 0 ) {
+							emit log(tr("rebuilding of '%1' skipped due to filter").arg(id));
+							continue;
+						}
+					} else {
+						if ( filterRx.indexIn(id) >= 0 ) {
+							emit log(tr("rebuilding of '%1' skipped due to filter").arg(id));
+							continue;
+						}
+					}
+				}
 				if ( !exitThread && !stopRebuilding && (!romNameList.isEmpty() || !diskNameList.isEmpty()) ) {
 					emit log(tr("set rebuilding started for '%1'").arg(id));
 					for (int i = 0; i < romNameList.count(); i++) {
