@@ -3039,7 +3039,9 @@ void MainWindow::on_actionRecreateTemplateMap_triggered(bool)
 
 	if ( qmc2GlobalEmulatorOptions != NULL ) {
 		qmc2GlobalEmulatorOptions->createTemplateMap();
+		qmc2GlobalEmulatorOptions->clear();
 		qmc2GlobalEmulatorOptions->createMap();
+		qmc2GlobalEmulatorOptions->load();
 	}
 }
 
