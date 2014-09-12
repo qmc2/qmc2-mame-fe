@@ -7,6 +7,8 @@
 #include <QFile>
 #include <QIcon>
 #include <QTimer>
+#include <QRegExp>
+#include <QString>
 
 #include "checksumdbmgr.h"
 #include "xmldbmgr.h"
@@ -25,6 +27,9 @@ class CollectionRebuilderThread : public QThread
 		bool isPaused;
 		bool pauseRequested;
 		bool stopRebuilding;
+		bool doFilter;
+		bool isIncludeFilter;
+		QRegExp filterRx;
 		QMutex mutex;
 		QWaitCondition waitCondition;
 
@@ -47,6 +52,8 @@ class CollectionRebuilderThread : public QThread
 		bool readSevenZipFileData(QString, QString, QByteArray *);
 		bool readZipFileData(QString, QString, QByteArray *);
 		bool createBackup(QString filePath);
+		void setFilterExpression(QString, int, int);
+		void clearFilterExpression() { setFilterExpression(QString(), 0, 0); }
 
 	public slots:
 		void pause();
