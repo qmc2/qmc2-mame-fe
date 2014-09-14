@@ -1099,7 +1099,9 @@ QStringList EmulatorOptions::readChoices(QXmlStreamReader *xmlReader)
 				if ( elementType == "choice" ) {
 					QXmlStreamAttributes attributes = xmlReader->attributes();
 					QString choiceName = attributes.value("name").toString();
-					if ( !choiceName.isEmpty() )
+					bool ignore = (attributes.value("ignore").toString() == "true");
+					bool ignoreOnThisPlatform = (attributes.value(QString("ignore.%1").arg(XSTR(BUILD_OS_NAME))).toString() == "true");
+					if ( !choiceName.isEmpty() && !ignore && !ignoreOnThisPlatform )
 						validChoices << choiceName;
 				} else
 					readNext = false;

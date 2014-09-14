@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<template emulator="SDLMAME" format="0.2.7" version="0.154">
+<template emulator="SDLMAME" format="0.2.8" version="0.154">
   <section name="search_paths">
     <description lang="es" text="Rutas de búsqueda"/>
     <description lang="us" text="Search paths"/>
@@ -1824,8 +1824,10 @@
       <description lang="pt" text="Driver de vídeo do SDL à utilizar ('x11', 'directfb', ... ou 'auto' para usar o padrão)"/>
       <description lang="es" text="Driver de video SDL a utilizar ('x11', 'directfb', ... o 'auto' para el predeterminado de SDL)"/>
       <choice name="auto"/>
-      <choice name="x11"/>
-      <choice name="directfb"/>
+      <choice ignore.Linux="true" ignore.Windows="true" name="cocoa"/>
+      <choice ignore.Darwin="true" name="x11"/>
+      <choice ignore.Darwin="true" name="directfb"/>
+      <choice name="dummy"/>
     </option>
     <option default="auto" name="audiodriver" type="combo">
       <description lang="us" text="SDL audio driver to use ('alsa', 'arts', ... or 'auto' for SDL default)"/>
@@ -1835,10 +1837,11 @@
       <description lang="pt" text="Driver de áudio do SDL à utilizar ('alsa', 'arts', ... ou 'auto' para usar o padrão)"/>
       <description lang="es" text="Driver de audio SDL a utilizar ('alsa', 'arts', ... o 'auto' para el predeterminado de SDL)"/>
       <choice name="auto"/>
-      <choice name="pulseaudio"/>
-      <choice name="alsa"/>
-      <choice name="dsp"/>
-      <choice name="esd"/>
+      <choice ignore.Darwin="true" name="pulseaudio"/>
+      <choice ignore.Darwin="true" name="alsa"/>
+      <choice ignore.Darwin="true" name="dsp"/>
+      <choice ignore.Darwin="true" name="esd"/>
+      <choice ignore.Linux="true" ignore.Windows="true" name="coreaudio"/>
       <choice name="disk"/>
       <choice name="dummy"/>
     </option>
@@ -1847,8 +1850,8 @@
       <description lang="de" text="Einzusetzender SDL Render Treiber ('software', 'opengl', ... oder 'auto' für SDL Standard)"/>
       <choice name="auto"/>
       <choice name="opengl"/>
-      <choice name="opengles2"/>
-      <choice name="opengles"/>
+      <choice ignore.Darwin="true" name="opengles2"/>
+      <choice ignore.Darwin="true" name="opengles"/>
       <choice name="software"/>
     </option>
     <option default="auto" default.Darwin="/System/Library/Frameworks/OpenGL.framework/Libraries/libGL.dylib" name="gl_lib" type="file">
