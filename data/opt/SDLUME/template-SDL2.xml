@@ -1825,8 +1825,9 @@
       <description lang="es" text="Driver de video SDL a utilizar ('x11', 'directfb', ... o 'auto' para el predeterminado de SDL)"/>
       <choice name="auto"/>
       <choice ignore.Linux="true" ignore.Windows="true" name="cocoa"/>
-      <choice ignore.Darwin="true" name="x11"/>
-      <choice ignore.Darwin="true" name="directfb"/>
+      <choice ignore.Linux="true" ignore.Darwin="true" name="windows"/>
+      <choice ignore.Darwin="true" ignore.Windows="true" name="x11"/>
+      <choice ignore.Darwin="true" ignore.Windows="true" name="directfb"/>
       <choice name="dummy"/>
     </option>
     <option default="auto" name="audiodriver" type="combo">
@@ -1837,10 +1838,13 @@
       <description lang="pt" text="Driver de áudio do SDL à utilizar ('alsa', 'arts', ... ou 'auto' para usar o padrão)"/>
       <description lang="es" text="Driver de audio SDL a utilizar ('alsa', 'arts', ... o 'auto' para el predeterminado de SDL)"/>
       <choice name="auto"/>
-      <choice ignore.Darwin="true" name="pulseaudio"/>
-      <choice ignore.Darwin="true" name="alsa"/>
-      <choice ignore.Darwin="true" name="dsp"/>
-      <choice ignore.Darwin="true" name="esd"/>
+      <choice ignore.Linux="true" ignore.Darwin="true" name="xaudio2"/>
+      <choice ignore.Linux="true" ignore.Darwin="true" name="directsound"/>
+      <choice ignore.Linux="true" ignore.Darwin="true" name="winmm"/>
+      <choice ignore.Darwin="true" ignore.Windows="true" name="pulseaudio"/>
+      <choice ignore.Darwin="true" ignore.Windows="true" name="alsa"/>
+      <choice ignore.Darwin="true" ignore.Windows="true" name="dsp"/>
+      <choice ignore.Darwin="true" ignore.Windows="true" name="esd"/>
       <choice ignore.Linux="true" ignore.Windows="true" name="coreaudio"/>
       <choice name="disk"/>
       <choice name="dummy"/>
@@ -1849,9 +1853,10 @@
       <description lang="us" text="SDL render driver to use ('software', 'opengl', ... or 'auto' for SDL default)"/>
       <description lang="de" text="Einzusetzender SDL Render Treiber ('software', 'opengl', ... oder 'auto' für SDL Standard)"/>
       <choice name="auto"/>
+      <choice ignore.Linux="true" ignore.Darwin="true" name="direct3d"/>
       <choice name="opengl"/>
       <choice ignore.Darwin="true" name="opengles2"/>
-      <choice ignore.Darwin="true" name="opengles"/>
+      <choice ignore.Darwin="true" ignore.Windows="true" name="opengles"/>
       <choice name="software"/>
     </option>
     <option default="auto" default.Darwin="/System/Library/Frameworks/OpenGL.framework/Libraries/libGL.dylib" name="gl_lib" type="file">
