@@ -2090,7 +2090,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 					case QMC2_CHECKSUM_SCANNER_FILE_CHD:
 						//    fromName        fromPath      toName                                      fromZip
 						sl << memberFromDb << pathFromDb << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "chd";
-						log(tr("check-sum database") + ": " + tr("using CHD '%1' with SHA-1 '%2' as '%3'").arg(pathFromDb).arg(wantedSHA1).arg(myItem->text(QMC2_ROMALYZER_COLUMN_GAME)));
+						log(tr("check-sum database") + ": " + tr("using CHD '%1' with SHA-1 '%2' as '%3'").arg(pathFromDb).arg(wantedSHA1).arg(myItem->text(QMC2_ROMALYZER_COLUMN_GAME) + ".chd"));
 						break;
 					case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
 						//    fromName        fromPath      toName                                      fromZip
