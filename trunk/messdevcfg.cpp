@@ -2284,12 +2284,14 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(constQItemSelection &selected = ..., const QItemSelection &deselected = ...)");
 #endif
 
-	toolButtonChooserPlay->setEnabled(false);
-	toolButtonChooserPlayEmbedded->setEnabled(false);
-	toolButtonChooserSaveConfiguration->setEnabled(false);
-	QString path = dirModel->fileInfo(selected.indexes()[0]).absoluteFilePath();
-	fileModel->setCurrentPath(path, false);
-	on_toolButtonChooserFilter_toggled(toolButtonChooserFilter->isChecked());
+	if ( !selected.isEmpty() ) {
+		toolButtonChooserPlay->setEnabled(false);
+		toolButtonChooserPlayEmbedded->setEnabled(false);
+		toolButtonChooserSaveConfiguration->setEnabled(false);
+		QString path = dirModel->fileInfo(selected.indexes()[0]).absoluteFilePath();
+		fileModel->setCurrentPath(path, false);
+		on_toolButtonChooserFilter_toggled(toolButtonChooserFilter->isChecked());
+	}
 }
 
 void MESSDeviceConfigurator::treeViewFileChooser_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
