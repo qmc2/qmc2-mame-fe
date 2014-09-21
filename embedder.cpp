@@ -487,7 +487,6 @@ void Embedder::checkWindow()
 			return;
 		}
 		if ( hwnd && hwnd != windowHandle ) {
-			HWND oldHandle = windowHandle;
 			windowHandle = embeddedWinId = hwnd;
   			SetWindowPos(windowHandle, HWND_BOTTOM, 0, 0, embedContainer->width(), embedContainer->height(), SWP_HIDEWINDOW);
 			SetParent(windowHandle, embedContainer->winId());

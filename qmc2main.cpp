@@ -7280,6 +7280,13 @@ void MainWindow::showEvent(QShowEvent *e)
 
 void MainWindow::resizeEvent(QResizeEvent *e)
 {
+	static bool mainWindowResizeEventActive = false;
+
+	if ( mainWindowResizeEventActive )
+		return;
+	else
+		mainWindowResizeEventActive = true;
+
 	bool refreshViews = true;
 
 	if ( e ) {
@@ -7310,6 +7317,8 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 				break;
 		}
 	}
+
+	mainWindowResizeEventActive = false;
 }
 
 void MainWindow::init()
