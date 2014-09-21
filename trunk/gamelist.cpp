@@ -3341,11 +3341,11 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		if ( doFilter )
 			QTimer::singleShot(0, this, SLOT(filter()));
 		else {
-			enableWidgets(true);
+			QTimer::singleShot(0, this, SLOT(enableWidgets()));
 			QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 		}
 	} else
-		enableWidgets(true);
+		QTimer::singleShot(0, this, SLOT(enableWidgets()));
 }
 
 void Gamelist::verifyReadyReadStandardOutput()
@@ -3355,7 +3355,8 @@ void Gamelist::verifyReadyReadStandardOutput()
 #endif
 
 	// this makes the GUI much more responsive, but is HAS to be called before verifyProc->readAllStandardOutput()!
-	qApp->processEvents();
+	if ( !verifyCurrentOnly )
+		qApp->processEvents();
 
 	// process rom verification output
 	char romState;
