@@ -33,7 +33,6 @@ RankItemWidget::RankItemWidget(QTreeWidgetItem *item, QWidget *parent)
 	m_item = item;
 	setupUi(this);
 	updateSize();
-	setMouseTracking(true);
 	QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
 }
 
