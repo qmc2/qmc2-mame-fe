@@ -33,6 +33,7 @@ RankItemWidget::RankItemWidget(QTreeWidgetItem *item, QWidget *parent)
 	m_item = item;
 	setupUi(this);
 	updateSize();
+	setMouseTracking(true);
 	QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
 }
 
@@ -152,6 +153,7 @@ void RankItemWidget::mousePressEvent(QMouseEvent *e)
 	if ( e->buttons() & Qt::LeftButton )
 		if ( rect().contains(e->pos()) )
 			updateRankFromMousePos(e->x());
+	e->ignore();
 }
 
 void RankItemWidget::mouseMoveEvent(QMouseEvent *e)
@@ -159,6 +161,7 @@ void RankItemWidget::mouseMoveEvent(QMouseEvent *e)
 	if ( e->buttons() & Qt::LeftButton )
 		if ( rect().contains(e->pos()) )
 			updateRankFromMousePos(e->x());
+	e->ignore();
 }
 
 void RankItemWidget::updateForeignItems()
