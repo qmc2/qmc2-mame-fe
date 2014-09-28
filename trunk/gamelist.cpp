@@ -2048,7 +2048,10 @@ void Gamelist::parse()
 			qApp->processEvents();
 		counter++;
 		QString iValue = i.key();
-		QString iDescription = qmc2GamelistItemMap[iValue]->text(QMC2_GAMELIST_COLUMN_GAME);
+		QTreeWidgetItem *listItem = qmc2GamelistItemMap.value(iValue);
+		QString iDescription;
+		if ( listItem )
+			iDescription = listItem->text(QMC2_GAMELIST_COLUMN_GAME);
 		if ( iDescription.isEmpty() )
 			continue;
 		bool isBIOS = isBios(iValue);
