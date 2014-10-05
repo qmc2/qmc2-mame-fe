@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.45, 03-OCT-2014</h3>
+<h3>CHANGES - v0.45, 05-OCT-2014</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.45, 03-OCT-2014:</b></p>
+<p><b>v0.45, 05-OCT-2014:</b></p>
 <ul>
   <li>fix: ROMAlyzer: the fix.dat export action needs to be <i>disabled</i> initially (minor)</li>
   <li>fix: rank images didn't update their color or shape on the fly</li>
@@ -23,11 +23,11 @@ inf: informational only
   <li>fix: avoid crash when checking an individual set's ROM status (probably only seen on slow systems)</li>
   <li>fix: avoid start-up crash on gcc 4.9+ builds -- see also <a href="http://tracker.batcom-it.net/view.php?id=77" target="_blank">bug tracker ID #77</a> (thanks to <i>Pulfer</i>)</li>
   <li>imp: ROMAlyzer: major UI and logic overhaul (the settings page has been redesigned completely)</li>
-  <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to SVN r32509</li>
+  <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to SVN r32554</li>
   <li>imp: ROMAlyzer: allow set repairing from 7-zip archived reproduction templates</li>
   <li>imp: all database updates are fully asynchronous now, using in-memory journals (that's faster on slow I/O, but also <i>slightly</i> more risky)</li>
   <li>imp: added support for SDL2 (SDL 1.x remains the default if available, you can force either version using 'SDL=1' or 'SDL=2' on the make command line)</li>
-  <li>imp: MAME/MESS/UME emulator templates updated to SVN r32509 (added new templates for SDL2 builds)</li>
+  <li>imp: MAME/MESS/UME emulator templates updated to SVN r32554 (added new templates for SDL2 builds)</li>
   <li>imp: updated template format to v0.2.8 which adds support for ignoring &lt;choice&gt; nodes on certain platforms (or generally)</li>
   <li>imp: improved mouse event handling of rank-item widgets (also fixes a minor UI bug)</li>
   <li>new: ROMAlyzer: added a check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (aka support for <i>unstructured additional ROM paths</i>) -- see also <a href="http://tracker.batcom-it.net/view.php?id=62" target="_blank">bug tracker ID #62</a></li>
