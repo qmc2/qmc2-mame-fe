@@ -22,8 +22,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '1.0.770';
-PDFJS.build = '74d02c3';
+PDFJS.version = '1.0.892';
+PDFJS.build = 'c8d729f';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -373,6 +373,7 @@ var PasswordException = (function PasswordExceptionClosure() {
 
   return PasswordException;
 })();
+PDFJS.PasswordException = PasswordException;
 
 var UnknownErrorException = (function UnknownErrorExceptionClosure() {
   function UnknownErrorException(msg, details) {
@@ -386,6 +387,7 @@ var UnknownErrorException = (function UnknownErrorExceptionClosure() {
 
   return UnknownErrorException;
 })();
+PDFJS.UnknownErrorException = UnknownErrorException;
 
 var InvalidPDFException = (function InvalidPDFExceptionClosure() {
   function InvalidPDFException(msg) {
@@ -398,6 +400,7 @@ var InvalidPDFException = (function InvalidPDFExceptionClosure() {
 
   return InvalidPDFException;
 })();
+PDFJS.InvalidPDFException = InvalidPDFException;
 
 var MissingPDFException = (function MissingPDFExceptionClosure() {
   function MissingPDFException(msg) {
@@ -410,6 +413,22 @@ var MissingPDFException = (function MissingPDFExceptionClosure() {
 
   return MissingPDFException;
 })();
+PDFJS.MissingPDFException = MissingPDFException;
+
+var UnexpectedResponseException =
+    (function UnexpectedResponseExceptionClosure() {
+  function UnexpectedResponseException(msg, status) {
+    this.name = 'UnexpectedResponseException';
+    this.message = msg;
+    this.status = status;
+  }
+
+  UnexpectedResponseException.prototype = new Error();
+  UnexpectedResponseException.constructor = UnexpectedResponseException;
+
+  return UnexpectedResponseException;
+})();
+PDFJS.UnexpectedResponseException = UnexpectedResponseException;
 
 var NotImplementedException = (function NotImplementedExceptionClosure() {
   function NotImplementedException(msg) {
@@ -1620,11 +1639,11 @@ var NetworkManager = (function NetworkManagerClosure() {
       return data;
     }
     var length = data.length;
-    var buffer = new Uint8Array(length);
+    var array = new Uint8Array(length);
     for (var i = 0; i < length; i++) {
-      buffer[i] = data.charCodeAt(i) & 0xFF;
+      array[i] = data.charCodeAt(i) & 0xFF;
     }
-    return buffer;
+    return array.buffer;
   }
 
   NetworkManager.prototype = {
@@ -1639,11 +1658,11 @@ var NetworkManager = (function NetworkManagerClosure() {
       return this.request(args);
     },
 
-    requestFull: function NetworkManager_requestRange(listeners) {
+    requestFull: function NetworkManager_requestFull(listeners) {
       return this.request(listeners);
     },
 
-    request: function NetworkManager_requestRange(args) {
+    request: function NetworkManager_request(args) {
       var xhr = this.getXhr();
       var xhrId = this.currXhrId++;
       var pendingRequest = this.pendingRequests[xhrId] = {
@@ -1667,25 +1686,52 @@ var NetworkManager = (function NetworkManagerClosure() {
         pendingRequest.expectedStatus = 200;
       }
 
-      xhr.responseType = 'arraybuffer';
-
-      if (args.onProgress) {
-        xhr.onprogress = args.onProgress;
+      if (args.onProgressiveData) {
+        xhr.responseType = 'moz-chunked-arraybuffer';
+        if (xhr.responseType === 'moz-chunked-arraybuffer') {
+          pendingRequest.onProgressiveData = args.onProgressiveData;
+          pendingRequest.mozChunked = true;
+        } else {
+          xhr.responseType = 'arraybuffer';
+        }
+      } else {
+        xhr.responseType = 'arraybuffer';
       }
+
       if (args.onError) {
         xhr.onerror = function(evt) {
           args.onError(xhr.status);
         };
       }
       xhr.onreadystatechange = this.onStateChange.bind(this, xhrId);
+      xhr.onprogress = this.onProgress.bind(this, xhrId);
 
       pendingRequest.onHeadersReceived = args.onHeadersReceived;
       pendingRequest.onDone = args.onDone;
       pendingRequest.onError = args.onError;
+      pendingRequest.onProgress = args.onProgress;
 
       xhr.send(null);
 
       return xhrId;
+    },
+
+    onProgress: function NetworkManager_onProgress(xhrId, evt) {
+      var pendingRequest = this.pendingRequests[xhrId];
+      if (!pendingRequest) {
+        // Maybe abortRequest was called...
+        return;
+      }
+
+      if (pendingRequest.mozChunked) {
+        var chunk = getArrayBuffer(pendingRequest.xhr);
+        pendingRequest.onProgressiveData(chunk);
+      }
+
+      var onProgress = pendingRequest.onProgress;
+      if (onProgress) {
+        onProgress(evt);
+      }
     },
 
     onStateChange: function NetworkManager_onStateChange(xhrId, evt) {
@@ -1748,6 +1794,8 @@ var NetworkManager = (function NetworkManagerClosure() {
           begin: begin,
           chunk: chunk
         });
+      } else if (pendingRequest.onProgressiveData) {
+        pendingRequest.onDone(null);
       } else {
         pendingRequest.onDone({
           begin: 0,
@@ -1765,6 +1813,10 @@ var NetworkManager = (function NetworkManagerClosure() {
 
     getRequestXhr: function NetworkManager_getXhr(xhrId) {
       return this.pendingRequests[xhrId].xhr;
+    },
+
+    isStreamingRequest: function NetworkManager_isStreamingRequest(xhrId) {
+      return !!(this.pendingRequests[xhrId].onProgressiveData);
     },
 
     isPendingRequest: function NetworkManager_isPendingRequest(xhrId) {
@@ -1804,7 +1856,7 @@ var ChunkedStream = (function ChunkedStreamClosure() {
     this.numChunksLoaded = 0;
     this.numChunks = Math.ceil(length / chunkSize);
     this.manager = manager;
-    this.initialDataLength = 0;
+    this.progressiveDataLength = 0;
     this.lastSuccessfulEnsureByteChunk = -1;  // a single-entry cache
   }
 
@@ -1815,7 +1867,7 @@ var ChunkedStream = (function ChunkedStreamClosure() {
     getMissingChunks: function ChunkedStream_getMissingChunks() {
       var chunks = [];
       for (var chunk = 0, n = this.numChunks; chunk < n; ++chunk) {
-        if (!(chunk in this.loadedChunks)) {
+        if (!this.loadedChunks[chunk]) {
           chunks.push(chunk);
         }
       }
@@ -1847,21 +1899,29 @@ var ChunkedStream = (function ChunkedStreamClosure() {
       var curChunk;
 
       for (curChunk = beginChunk; curChunk < endChunk; ++curChunk) {
-        if (!(curChunk in this.loadedChunks)) {
+        if (!this.loadedChunks[curChunk]) {
           this.loadedChunks[curChunk] = true;
           ++this.numChunksLoaded;
         }
       }
     },
 
-    onReceiveInitialData: function ChunkedStream_onReceiveInitialData(data) {
-      this.bytes.set(data);
-      this.initialDataLength = data.length;
-      var endChunk = (this.end === data.length ?
-        this.numChunks : Math.floor(data.length / this.chunkSize));
-      for (var i = 0; i < endChunk; i++) {
-        this.loadedChunks[i] = true;
-        ++this.numChunksLoaded;
+    onReceiveProgressiveData:
+        function ChunkedStream_onReceiveProgressiveData(data) {
+      var position = this.progressiveDataLength;
+      var beginChunk = Math.floor(position / this.chunkSize);
+
+      this.bytes.set(new Uint8Array(data), position);
+      position += data.byteLength;
+      this.progressiveDataLength = position;
+      var endChunk = position >= this.end ? this.numChunks :
+                     Math.floor(position / this.chunkSize);
+      var curChunk;
+      for (curChunk = beginChunk; curChunk < endChunk; ++curChunk) {
+        if (!this.loadedChunks[curChunk]) {
+          this.loadedChunks[curChunk] = true;
+          ++this.numChunksLoaded;
+        }
       }
     },
 
@@ -1871,7 +1931,7 @@ var ChunkedStream = (function ChunkedStreamClosure() {
         return;
       }
 
-      if (!(chunk in this.loadedChunks)) {
+      if (!this.loadedChunks[chunk]) {
         throw new MissingDataException(pos, pos + 1);
       }
       this.lastSuccessfulEnsureByteChunk = chunk;
@@ -1882,7 +1942,7 @@ var ChunkedStream = (function ChunkedStreamClosure() {
         return;
       }
 
-      if (end <= this.initialDataLength) {
+      if (end <= this.progressiveDataLength) {
         return;
       }
 
@@ -1890,7 +1950,7 @@ var ChunkedStream = (function ChunkedStreamClosure() {
       var beginChunk = Math.floor(begin / chunkSize);
       var endChunk = Math.floor((end - 1) / chunkSize) + 1;
       for (var chunk = beginChunk; chunk < endChunk; ++chunk) {
-        if (!(chunk in this.loadedChunks)) {
+        if (!this.loadedChunks[chunk]) {
           throw new MissingDataException(begin, end);
         }
       }
@@ -1899,13 +1959,13 @@ var ChunkedStream = (function ChunkedStreamClosure() {
     nextEmptyChunk: function ChunkedStream_nextEmptyChunk(beginChunk) {
       var chunk, n;
       for (chunk = beginChunk, n = this.numChunks; chunk < n; ++chunk) {
-        if (!(chunk in this.loadedChunks)) {
+        if (!this.loadedChunks[chunk]) {
           return chunk;
         }
       }
       // Wrap around to beginning
       for (chunk = 0; chunk < beginChunk; ++chunk) {
-        if (!(chunk in this.loadedChunks)) {
+        if (!this.loadedChunks[chunk]) {
           return chunk;
         }
       }
@@ -1913,7 +1973,7 @@ var ChunkedStream = (function ChunkedStreamClosure() {
     },
 
     hasChunk: function ChunkedStream_hasChunk(chunk) {
-      return chunk in this.loadedChunks;
+      return !!this.loadedChunks[chunk];
     },
 
     get length() {
@@ -2012,7 +2072,7 @@ var ChunkedStream = (function ChunkedStreamClosure() {
         var endChunk = Math.floor((this.end - 1) / chunkSize) + 1;
         var missingChunks = [];
         for (var chunk = beginChunk; chunk < endChunk; ++chunk) {
-          if (!(chunk in this.loadedChunks)) {
+          if (!this.loadedChunks[chunk]) {
             missingChunks.push(chunk);
           }
         }
@@ -2070,28 +2130,16 @@ var ChunkedStreamManager = (function ChunkedStreamManagerClosure() {
     this.chunksNeededByRequest = {};
     this.requestsByChunk = {};
     this.callbacksByRequest = {};
+    this.progressiveDataLength = 0;
 
     this._loadedStreamCapability = createPromiseCapability();
 
     if (args.initialData) {
-      this.setInitialData(args.initialData);
+      this.onReceiveData({chunk: args.initialData});
     }
   }
 
   ChunkedStreamManager.prototype = {
-
-    setInitialData: function ChunkedStreamManager_setInitialData(data) {
-      this.stream.onReceiveInitialData(data);
-      if (this.stream.allChunksLoaded()) {
-        this._loadedStreamCapability.resolve(this.stream);
-      } else if (this.msgHandler) {
-        this.msgHandler.send('DocProgress', {
-          loaded: data.length,
-          total: this.length
-        });
-      }
-    },
-
     onLoadedStream: function ChunkedStreamManager_getLoadedStream() {
       return this._loadedStreamCapability.promise;
     },
@@ -2229,13 +2277,21 @@ var ChunkedStreamManager = (function ChunkedStreamManagerClosure() {
 
     onReceiveData: function ChunkedStreamManager_onReceiveData(args) {
       var chunk = args.chunk;
-      var begin = args.begin;
+      var isProgressive = args.begin === undefined;
+      var begin = isProgressive ? this.progressiveDataLength : args.begin;
       var end = begin + chunk.byteLength;
 
-      var beginChunk = this.getBeginChunk(begin);
-      var endChunk = this.getEndChunk(end);
+      var beginChunk = Math.floor(begin / this.chunkSize);
+      var endChunk = end < this.length ? Math.floor(end / this.chunkSize) :
+                                         Math.ceil(end / this.chunkSize);
 
-      this.stream.onReceiveData(begin, chunk);
+      if (isProgressive) {
+        this.stream.onReceiveProgressiveData(chunk);
+        this.progressiveDataLength = end;
+      } else {
+        this.stream.onReceiveData(begin, chunk);
+      }
+
       if (this.stream.allChunksLoaded()) {
         this._loadedStreamCapability.resolve(this.stream);
       }
@@ -2369,6 +2425,10 @@ var BasePdfManager = (function BasePdfManagerClosure() {
     },
 
     requestLoadedStream: function BasePdfManager_requestLoadedStream() {
+      return new NotImplementedException();
+    },
+
+    sendProgressiveData: function BasePdfManager_sendProgressiveData(chunk) {
       return new NotImplementedException();
     },
 
@@ -2506,6 +2566,11 @@ var NetworkPdfManager = (function NetworkPdfManagerClosure() {
   NetworkPdfManager.prototype.requestLoadedStream =
       function NetworkPdfManager_requestLoadedStream() {
     this.streamManager.requestAllChunks();
+  };
+
+  NetworkPdfManager.prototype.sendProgressiveData =
+      function NetworkPdfManager_sendProgressiveData(chunk) {
+    this.streamManager.onReceiveData({ chunk: chunk });
   };
 
   NetworkPdfManager.prototype.onLoadedStream =
@@ -3454,6 +3519,38 @@ var Catalog = (function CatalogClosure() {
       }
       return shadow(this, 'destinations', dests);
     },
+    getDestination: function Catalog_getDestination(destinationId) {
+      function fetchDestination(dest) {
+        return isDict(dest) ? dest.get('D') : dest;
+      }
+
+      var xref = this.xref;
+      var dest, nameTreeRef, nameDictionaryRef;
+      var obj = this.catDict.get('Names');
+      if (obj && obj.has('Dests')) {
+        nameTreeRef = obj.getRaw('Dests');
+      } else if (this.catDict.has('Dests')) {
+        nameDictionaryRef = this.catDict.get('Dests');
+      }
+
+      if (nameDictionaryRef) {
+        // reading simple destination dictionary
+        obj = nameDictionaryRef;
+        obj.forEach(function catalogForEach(key, value) {
+          if (!value) {
+            return;
+          }
+          if (key === destinationId) {
+            dest = fetchDestination(value);
+          }
+        });
+      }
+      if (nameTreeRef) {
+        var nameTree = new NameTree(nameTreeRef, xref);
+        dest = fetchDestination(nameTree.get(destinationId));
+      }
+      return dest;
+    },
     get attachments() {
       var xref = this.xref;
       var attachments = null, nameTreeRef;
@@ -4355,6 +4452,76 @@ var NameTree = (function NameTreeClosure() {
         }
       }
       return dict;
+    },
+
+    get: function NameTree_get(destinationId) {
+      if (!this.root) {
+        return null;
+      }
+
+      var xref = this.xref;
+      var kidsOrNames = xref.fetchIfRef(this.root);
+      var loopCount = 0;
+      var MAX_NAMES_LEVELS = 10;
+      var l, r, m;
+
+      // Perform a binary search to quickly find the entry that
+      // contains the named destination we are looking for.
+      while (kidsOrNames.has('Kids')) {
+        loopCount++;
+        if (loopCount > MAX_NAMES_LEVELS) {
+          warn('Search depth limit for named destionations has been reached.');
+          return null;
+        }
+        
+        var kids = kidsOrNames.get('Kids');
+        if (!isArray(kids)) {
+          return null;
+        }
+
+        l = 0;
+        r = kids.length - 1;
+        while (l <= r) {
+          m = (l + r) >> 1;
+          var kid = xref.fetchIfRef(kids[m]);
+          var limits = kid.get('Limits');
+
+          if (destinationId < limits[0]) {
+            r = m - 1;
+          } else if (destinationId > limits[1]) {
+            l = m + 1;
+          } else {
+            kidsOrNames = xref.fetchIfRef(kids[m]);
+            break;
+          }
+        }
+        if (l > r) {
+          return null;
+        }
+      }
+
+      // If we get here, then we have found the right entry. Now
+      // go through the named destinations in the Named dictionary
+      // until we find the exact destination we're looking for.
+      var names = kidsOrNames.get('Names');
+      if (isArray(names)) {
+        // Perform a binary search to reduce the lookup time.
+        l = 0;
+        r = names.length - 2;
+        while (l <= r) {
+          // Check only even indices (0, 2, 4, ...) because the
+          // odd indices contain the actual D array.
+          m = (l + r) & ~1;
+          if (destinationId < names[m]) {
+            r = m - 2;
+          } else if (destinationId > names[m]) {
+            l = m + 2;
+          } else {
+            return xref.fetchIfRef(names[m + 1]);
+          }
+        }
+      }
+      return null;
     }
   };
   return NameTree;
@@ -14332,8 +14499,11 @@ var GlyphMapForStandardFonts = {
   '156': 8747, '157': 170, '158': 186, '159': 8486, '160': 230, '161': 248,
   '162': 191, '163': 161, '164': 172, '165': 8730, '166': 402, '167': 8776,
   '168': 8710, '169': 171, '170': 187, '171': 8230, '210': 218, '223': 711,
-  '227': 353, '229': 382, '234': 253, '253': 268, '254': 269, '258': 258,
-  '268': 283, '269': 313, '278': 328, '284': 345, '292': 367, '305': 963,
+  '224': 321, '225': 322, '227': 353, '229': 382, '234': 253, '252': 263,
+  '253': 268, '254': 269, '258': 258, '260': 260, '261': 261, '265': 280,
+  '266': 281, '268': 283, '269': 313, '275': 323, '276': 324, '278': 328,
+  '284': 345, '285': 346, '286': 347, '292': 367, '295': 377, '296': 378,
+  '298': 380, '305': 963,
   '306': 964, '307': 966, '308': 8215, '309': 8252, '310': 8319, '311': 8359,
   '312': 8592, '313': 8593, '337': 9552, '493': 1039, '494': 1040, '705': 1524,
   '706': 8362, '710': 64288, '711': 64298, '759': 1617, '761': 1776,
@@ -16349,12 +16519,25 @@ var Font = (function FontClosure() {
         for (var code in GlyphMapForStandardFonts) {
           map[+code] = GlyphMapForStandardFonts[code];
         }
+        var isIdentityUnicode = this.toUnicode instanceof IdentityToUnicodeMap;
+        if (!isIdentityUnicode) {
+          this.toUnicode.forEach(function(charCode, unicodeCharCode) {
+            map[+charCode] = unicodeCharCode;
+          });
+        }
         this.toFontChar = map;
         this.toUnicode = new ToUnicodeMap(map);
       } else if (/Symbol/i.test(fontName)) {
         var symbols = Encodings.SymbolSetEncoding;
         for (charCode in symbols) {
           fontChar = GlyphsUnicode[symbols[charCode]];
+          if (!fontChar) {
+            continue;
+          }
+          this.toFontChar[charCode] = fontChar;
+        }
+        for (charCode in properties.differences) {
+          fontChar = GlyphsUnicode[properties.differences[charCode]];
           if (!fontChar) {
             continue;
           }
@@ -16420,6 +16603,9 @@ var Font = (function FontClosure() {
 
     var data;
     switch (type) {
+      case 'MMType1':
+        info('MMType1 font (' + name + '), falling back to Type1.');
+        /* falls through */
       case 'Type1':
       case 'CIDFontType0':
         this.mimetype = 'font/opentype';
@@ -17940,7 +18126,15 @@ var Font = (function FontClosure() {
         // where the the font is symbolic and it has an encoding.
         if (hasEncoding &&
             (cmapPlatformId === 3 && cmapEncodingId === 1 ||
-             cmapPlatformId === 1 && cmapEncodingId === 0)) {
+             cmapPlatformId === 1 && cmapEncodingId === 0) ||
+            (cmapPlatformId === -1 && cmapEncodingId === -1 && // Temporary hack
+             !!Encodings[properties.baseEncodingName])) {      // Temporary hack
+          // When no preferred cmap table was found and |baseEncodingName| is
+          // one of the predefined encodings, we seem to obtain a better
+          // |charCodeToGlyphId| map from the code below (fixes bug 1057544).
+          // TODO: Note that this is a hack which should be removed as soon as
+          //       we have proper support for more exotic cmap tables.
+
           var baseEncoding = [];
           if (properties.baseEncodingName === 'MacRomanEncoding' ||
               properties.baseEncodingName === 'WinAnsiEncoding') {
@@ -33324,6 +33518,7 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
         httpHeaders: source.httpHeaders,
         withCredentials: source.withCredentials
       });
+      var cachedChunks = [];
       var fullRequestXhrId = networkManager.requestFull({
         onHeadersReceived: function onHeadersReceived() {
           if (disableRange) {
@@ -33354,11 +33549,18 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
             return;
           }
 
-          // NOTE: by cancelling the full request, and then issuing range
-          // requests, there will be an issue for sites where you can only
-          // request the pdf once. However, if this is the case, then the
-          // server should not be returning that it can support range requests.
-          networkManager.abortRequest(fullRequestXhrId);
+          if (networkManager.isStreamingRequest(fullRequestXhrId)) {
+            // We can continue fetching when progressive loading is enabled,
+            // and we don't need the autoFetch feature.
+            source.disableAutoFetch = true;
+          } else {
+            // NOTE: by cancelling the full request, and then issuing range
+            // requests, there will be an issue for sites where you can only
+            // request the pdf once. However, if this is the case, then the
+            // server should not be returning that it can support range
+            // requests.
+            networkManager.abortRequest(fullRequestXhrId);
+          }
 
           try {
             pdfManager = new NetworkPdfManager(source, handler);
@@ -33368,10 +33570,44 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
           }
         },
 
+        onProgressiveData: source.disableStream ? null :
+            function onProgressiveData(chunk) {
+          if (!pdfManager) {
+            cachedChunks.push(chunk);
+            return;
+          }
+          pdfManager.sendProgressiveData(chunk);
+        },
+
         onDone: function onDone(args) {
+          if (pdfManager) {
+            return; // already processed
+          }
+
+          var pdfFile;
+          if (args === null) {
+            // TODO add some streaming manager, e.g. for unknown length files.
+            // The data was returned in the onProgressiveData, combining...
+            var pdfFileLength = 0, pos = 0;
+            cachedChunks.forEach(function (chunk) {
+              pdfFileLength += chunk.byteLength;
+            });
+            if (source.length && pdfFileLength !== source.length) {
+              warn('reported HTTP length is different from actual');
+            }
+            var pdfFileArray = new Uint8Array(pdfFileLength);
+            cachedChunks.forEach(function (chunk) {
+              pdfFileArray.set(new Uint8Array(chunk), pos);
+              pos += chunk.byteLength;
+            });
+            pdfFile = pdfFileArray.buffer;
+          } else {
+            pdfFile = args.chunk;
+          }
+
           // the data is array, instantiating directly from it
           try {
-            pdfManager = new LocalPdfManager(args.chunk, source.password);
+            pdfManager = new LocalPdfManager(pdfFile, source.password);
             pdfManagerCapability.resolve();
           } catch (ex) {
             pdfManagerCapability.reject(ex);
@@ -33379,14 +33615,16 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
         },
 
         onError: function onError(status) {
+          var exception;
           if (status === 404) {
-            var exception = new MissingPDFException('Missing PDF "' +
-                                                    source.url + '".');
-            handler.send('MissingPDF', { exception: exception });
+            exception = new MissingPDFException('Missing PDF "' +
+                                                source.url + '".');
+            handler.send('MissingPDF', exception);
           } else {
-            handler.send('DocError', 'Unexpected server response (' +
-                         status + ') while retrieving PDF "' +
-                         source.url + '".');
+            exception = new UnexpectedResponseException(
+              'Unexpected server response (' + status +
+              ') while retrieving PDF "' + source.url + '".', status);
+            handler.send('UnexpectedResponse', exception);
           }
         },
 
@@ -33438,26 +33676,19 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
       var onFailure = function(e) {
         if (e instanceof PasswordException) {
           if (e.code === PasswordResponses.NEED_PASSWORD) {
-            handler.send('NeedPassword', {
-              exception: e
-            });
+            handler.send('NeedPassword', e);
           } else if (e.code === PasswordResponses.INCORRECT_PASSWORD) {
-            handler.send('IncorrectPassword', {
-              exception: e
-            });
+            handler.send('IncorrectPassword', e);
           }
         } else if (e instanceof InvalidPDFException) {
-          handler.send('InvalidPDF', {
-            exception: e
-          });
+          handler.send('InvalidPDF', e);
         } else if (e instanceof MissingPDFException) {
-          handler.send('MissingPDF', {
-            exception: e
-          });
+          handler.send('MissingPDF', e);
+        } else if (e instanceof UnexpectedResponseException) {
+          handler.send('UnexpectedResponse', e);
         } else {
-          handler.send('UnknownError', {
-            exception: new UnknownErrorException(e.message, e.toString())
-          });
+          handler.send('UnknownError',
+                       new UnknownErrorException(e.message, e.toString()));
         }
       };
 
@@ -33471,6 +33702,7 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
       PDFJS.cMapPacked = data.cMapPacked === true;
 
       getPdfManager(data).then(function () {
+        handler.send('PDFManagerReady', null);
         pdfManager.onLoadedStream().then(function(stream) {
           handler.send('DataLoaded', { length: stream.bytes.byteLength });
         });
@@ -33522,6 +33754,12 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
     handler.on('GetDestinations',
       function wphSetupGetDestinations(data) {
         return pdfManager.ensureCatalog('destinations');
+      }
+    );
+
+    handler.on('GetDestination',
+      function wphSetupGetDestination(data) {
+        return pdfManager.ensureCatalog('getDestination', [ data.id ]);
       }
     );
 
