@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.45
+Version:        0.46
 Release:        1
 Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
@@ -180,6 +180,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/runonce.6.gz
 
 %changelog
+* Thu Oct 16 2014 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.46-1
+- updated spec to QMC2 0.46
+
 * Wed Jul 23 2014 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.45-1
 - updated spec to QMC2 0.45
 

@@ -22,8 +22,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '1.0.892';
-PDFJS.build = 'c8d729f';
+PDFJS.version = '1.0.907';
+PDFJS.build = 'e9072ac';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -31884,7 +31884,7 @@ var JpegStream = (function JpegStreamClosure() {
       var jpegImage = new JpegImage();
 
       // checking if values needs to be transformed before conversion
-      if (this.dict && isArray(this.dict.get('Decode'))) {
+      if (this.forceRGB && this.dict && isArray(this.dict.get('Decode'))) {
         var decodeArr = this.dict.get('Decode');
         var bitsPerComponent = this.dict.get('BitsPerComponent') || 8;
         var decodeArrLength = decodeArr.length;
