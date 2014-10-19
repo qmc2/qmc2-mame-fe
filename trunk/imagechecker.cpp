@@ -1651,12 +1651,12 @@ void ImageChecker::checkObsoleteFiles()
 			} else {
 				// unzipped images
 				foreach (QString dirPath, dirList) {
+					dirPath = QDir::toNativeSeparators(dirPath);
 					if ( isValidPath )
 						break;
 					QString pathCopy = path;
 					pathCopy.remove(dirPath);
 					fi.setFile(pathCopy);
-
 					foreach (int format, imageWidget->activeFormats) {
 						foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
 							if ( pathCopy.endsWith(QDir::separator()) ) {
