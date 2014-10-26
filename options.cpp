@@ -2926,7 +2926,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 		mawsCacheDir.mkdir(mawsCachePath);
 	lineEditMAWSCacheDirectory->setText(mawsCachePath);
 #if defined(QMC2_SDLMAME)
-	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template.xml").toString());
+	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template-SDL2.xml").toString());
 #elif defined(QMC2_MAME)
 	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/MAME/template.xml").toString());
 #endif
@@ -2948,7 +2948,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	lineEditSoftwareListCache->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/SoftwareListCache", userScopePath + "/mess.swl").toString());
 	lineEditGeneralSoftwareFolder->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", QString()).toString());
 #if defined(QMC2_SDLMESS)
-	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMESS/template.xml").toString());
+	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMESS/template-SDL2.xml").toString());
 #elif defined(QMC2_MESS)
 	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/MESS/template.xml").toString());
 #endif
@@ -2970,7 +2970,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	lineEditSoftwareListCache->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/SoftwareListCache", userScopePath + "/ume.swl").toString());
 	lineEditGeneralSoftwareFolder->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/GeneralSoftwareFolder", QString()).toString());
 #if defined(QMC2_SDLUME)
-	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLUME/template.xml").toString());
+	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLUME/template-SDL2.xml").toString());
 #elif defined(QMC2_UME)
 	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/UME/template.xml").toString());
 #endif

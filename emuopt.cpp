@@ -1133,11 +1133,11 @@ void EmulatorOptions::createTemplateMap()
 	QString templateFile = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/OptionsTemplateFile").toString();
 	if ( templateFile.isEmpty() )
 #if defined(QMC2_SDLMAME)
-		templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template.xml";
+		templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template-SDL2.xml";
 #elif defined(QMC2_SDLMESS)
-		templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/SDLMESS/template.xml";
+		templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/SDLMESS/template-SDL2.xml";
 #elif defined(QMC2_SDLUME)
-		templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/SDLUME/template.xml";
+		templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/SDLUME/template-SDL2.xml";
 #elif defined(QMC2_MAME)
 		templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/MAME/template.xml";
 #elif defined(QMC2_MESS)
