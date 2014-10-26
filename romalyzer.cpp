@@ -2622,7 +2622,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 		return;
 
 	pushButtonChecksumWizardSearch->setEnabled(false);
-	lineEditChecksumWizardHash->setEnabled(false);
+	lineEditChecksumWizardHash->setReadOnly(true);
 	pushButtonAnalyze->setEnabled(false);
 	toolButtonToolsMenu->setEnabled(false);
 	lineEditGames->setEnabled(false);
@@ -2687,7 +2687,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	toolButtonToolsMenu->setEnabled(true);
 	lineEditGames->setEnabled(true);
 	pushButtonChecksumWizardSearch->setEnabled(true);
-	lineEditChecksumWizardHash->setEnabled(true);
+	lineEditChecksumWizardHash->setReadOnly(false);
 	qApp->processEvents();
 
 	if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_ANALYZE && !qmc2StopParser ) {
