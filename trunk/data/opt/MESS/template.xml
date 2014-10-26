@@ -240,6 +240,10 @@
       <description lang="pt" text="Especifique a visão do snapshot/filme ou 'internal' para usar as visões internas do aspecto do pixel"/>
       <choice name="internal"/>
     </option>
+    <option default="true" name="snapbilinear" type="bool">
+      <description lang="us" text="Specify if the snapshot/movie should have bilinear filtering applied"/>
+      <description lang="de" text="Screenshot/Movie mit bilinearer Filterung ausstatten"/>
+    </option>
     <option default="false" name="burnin" type="bool">
       <description lang="es" text="Crear capturas para cada pantalla"/>
       <description lang="us" text="Create burn-in snapshots for each screen"/>
