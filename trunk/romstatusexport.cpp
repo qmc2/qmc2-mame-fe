@@ -4,6 +4,8 @@
 #include <QClipboard>
 #include <QTreeWidget>
 #include <QLocale>
+#include <QMap>
+#include <QMultiMap>
 
 #include "romstatusexport.h"
 #include "macros.h"
@@ -16,7 +18,6 @@ extern MainWindow *qmc2MainWindow;
 extern Options *qmc2Options;
 extern Settings *qmc2Config;
 extern bool qmc2WidgetsEnabled;
-extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern Gamelist *qmc2Gamelist;
 extern bool qmc2ExportingROMStatus;
 extern bool qmc2StopParser;

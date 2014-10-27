@@ -1,7 +1,8 @@
 #include <QFileDialog>
 #include <QTest>
-#include <QHash>
 #include <QMap>
+#include <QHash>
+#include <QHashIterator>
 
 #include "settings.h"
 #include "imagechecker.h"
@@ -22,11 +23,11 @@
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
-extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
-extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
-extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
 #endif
 extern QHash<QString, QIcon> qmc2IconHash;
 extern Settings *qmc2Config;
@@ -591,7 +592,7 @@ void ImageChecker::startStop()
 		toolButtonRemoveObsolete->setEnabled(false);
 		listWidgetObsolete->clear();
 		labelObsolete->setText(tr("Obsolete:") + " 0");
-		progressBar->setRange(0, qmc2GamelistItemMap.count());
+		progressBar->setRange(0, qmc2GamelistItemHash.count());
 		progressBar->setValue(0);
 		avgScanSpeed = 0.0;
 		foundCount = missingCount = badCount = 0;
@@ -679,7 +680,7 @@ void ImageChecker::feedWorkerThreads()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::feedWorkerThreads()");
 #endif
 
-	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
 	int lastThreadID = -1;
 #ifdef QMC2_DEBUG
 	int count = 0;
@@ -749,7 +750,7 @@ void ImageChecker::feedWorkerThreads()
 					toolButtonStartStop->setEnabled(true);
 					qmc2MainWindow->actionExitStop->setEnabled(true);
 					labelStatus->setText(tr("Checking %1 images").arg(imageType));
-					progressBar->setRange(0, qmc2GamelistItemMap.count());
+					progressBar->setRange(0, qmc2GamelistItemHash.count());
 					decompressionDone = true;
 				} else {
 					toolButtonStartStop->setEnabled(false);
@@ -797,7 +798,7 @@ void ImageChecker::feedWorkerThreads()
 			qmc2IconsPreloaded = false;
 			int itemCount = 0;
 			bool firstCheck = true;
-			qmc2MainWindow->progressBarGamelist->setRange(0, qmc2GamelistItemMap.count());
+			qmc2MainWindow->progressBarGamelist->setRange(0, qmc2GamelistItemHash.count());
 			qmc2MainWindow->progressBarGamelist->setFormat(QString());
 			while ( it.hasNext() && qmc2ImageCheckActive && !qmc2StopParser ) {
 				it.next();
@@ -843,7 +844,7 @@ void ImageChecker::on_toolButtonClear_clicked()
 	listWidgetObsolete->clear();
 	labelObsolete->setText(tr("Obsolete:") + " 0");
 	plainTextEditLog->clear();
-	progressBar->setRange(0, qmc2GamelistItemMap.count());
+	progressBar->setRange(0, qmc2GamelistItemHash.count());
 	progressBar->setValue(0);
 	avgScanSpeed = 0.0;
 	foundCount = missingCount = badCount = passNumber = 0;
@@ -1614,11 +1615,11 @@ void ImageChecker::checkObsoleteFiles()
 					foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
 #if defined(Q_OS_WIN)
 						if ( pathCopy == fi.filePath() && fi.completeSuffix().toLower() == extension )
-							if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
+							if ( qmc2GamelistItemHash.contains(fi.baseName().toLower()) )
 								isValidPath = true;
 #else
 						if ( pathCopy == fi.filePath() && fi.completeSuffix() == extension )
-							if ( qmc2GamelistItemMap.contains(fi.baseName()) )
+							if ( qmc2GamelistItemHash.contains(fi.baseName()) )
 								isValidPath = true;
 #endif
 						if ( !isValidPath ) {
@@ -1626,22 +1627,22 @@ void ImageChecker::checkObsoleteFiles()
 							QString imageFile = fi.baseName();
 							if ( !subPath.isEmpty() && !imageFile.isEmpty() ) {
 #if defined(Q_OS_WIN)
-								if ( qmc2GamelistItemMap.contains(subPath.toLower()) ) {
+								if ( qmc2GamelistItemHash.contains(subPath.toLower()) ) {
 									if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
 										isValidPath = fi.completeSuffix().toLower() == extension;
 								}
 #else
-								if ( qmc2GamelistItemMap.contains(subPath) ) {
+								if ( qmc2GamelistItemHash.contains(subPath) ) {
 									if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
 										isValidPath = fi.completeSuffix() == extension;
 								}
 #endif
 							} else if ( !subPath.isEmpty() ) {
 #if defined(Q_OS_WIN)
-								if ( qmc2GamelistItemMap.contains(subPath.toLower()) )
+								if ( qmc2GamelistItemHash.contains(subPath.toLower()) )
 									isValidPath = true;
 #else
-								if ( qmc2GamelistItemMap.contains(subPath) )
+								if ( qmc2GamelistItemHash.contains(subPath) )
 									isValidPath = true;
 #endif
 							}
@@ -1662,20 +1663,20 @@ void ImageChecker::checkObsoleteFiles()
 							if ( pathCopy.endsWith(QDir::separator()) ) {
 								pathCopy.remove(pathCopy.length() - 1, 1);
 #if defined(Q_OS_WIN)
-								if ( qmc2GamelistItemMap.contains(pathCopy.toLower()) )
+								if ( qmc2GamelistItemHash.contains(pathCopy.toLower()) )
 									isValidPath = true;
 #else
-								if ( qmc2GamelistItemMap.contains(pathCopy) )
+								if ( qmc2GamelistItemHash.contains(pathCopy) )
 									isValidPath = true;
 #endif
 							} else {
 #if defined(Q_OS_WIN)
 								if ( pathCopy == fi.fileName() && fi.completeSuffix().toLower() == extension )
-									if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
+									if ( qmc2GamelistItemHash.contains(fi.baseName().toLower()) )
 										isValidPath = true;
 #else
 								if ( pathCopy == fi.fileName() && fi.completeSuffix() == extension )
-									if ( qmc2GamelistItemMap.contains(fi.baseName()) )
+									if ( qmc2GamelistItemHash.contains(fi.baseName()) )
 										isValidPath = true;
 #endif
 							}
@@ -1685,12 +1686,12 @@ void ImageChecker::checkObsoleteFiles()
 								QString imageFile = fi.baseName();
 								if ( !subPath.isEmpty() && !imageFile.isEmpty() ) {
 #if defined(Q_OS_WIN)
-									if ( qmc2GamelistItemMap.contains(subPath.toLower()) ) {
+									if ( qmc2GamelistItemHash.contains(subPath.toLower()) ) {
 										if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
 											isValidPath = fi.completeSuffix().toLower() == extension;
 									}
 #else
-									if ( qmc2GamelistItemMap.contains(subPath) ) {
+									if ( qmc2GamelistItemHash.contains(subPath) ) {
 										if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
 											isValidPath = fi.completeSuffix() == extension;
 									}
@@ -1709,16 +1710,16 @@ void ImageChecker::checkObsoleteFiles()
 				pathCopy.remove(QRegExp("^.*\\: "));
 				fi.setFile(pathCopy);
 				if ( imageFormats.contains(fi.completeSuffix().toLower()) ) {
-					if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
+					if ( qmc2GamelistItemHash.contains(fi.baseName().toLower()) )
 						isValidPath = true;
 				}
 			} else {
 				// for unzipped icons, only PNG images are supported
 #if defined(Q_OS_WIN)
-				if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) && fi.completeSuffix().toLower() == "png" )
+				if ( qmc2GamelistItemHash.contains(fi.baseName().toLower()) && fi.completeSuffix().toLower() == "png" )
 					isValidPath = true;
 #else
-				if ( qmc2GamelistItemMap.contains(fi.baseName()) && fi.completeSuffix() == "png" )
+				if ( qmc2GamelistItemHash.contains(fi.baseName()) && fi.completeSuffix() == "png" )
 					isValidPath = true;
 #endif
 			}
@@ -1792,7 +1793,7 @@ void ImageChecker::updateResults()
 
 	qApp->processEvents();
 
-	if ( listWidgetFound->count() + listWidgetMissing->count() >= qmc2GamelistItemMap.count() && isRunning && passNumber != 2 ) {
+	if ( listWidgetFound->count() + listWidgetMissing->count() >= qmc2GamelistItemHash.count() && isRunning && passNumber != 2 ) {
 		passNumber = 2;
 		QTimer::singleShot(0, this, SLOT(startStop()));
 	} else {
@@ -1818,7 +1819,7 @@ void ImageChecker::selectItem(QString setName)
 
 	switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 		case QMC2_VIEWGAMELIST_INDEX: {
-			QTreeWidgetItem *gameItem = qmc2GamelistItemMap[setName];
+			QTreeWidgetItem *gameItem = qmc2GamelistItemHash[setName];
 			if ( gameItem ) {
 				qmc2MainWindow->treeWidgetGamelist->clearSelection();
 				qmc2MainWindow->treeWidgetGamelist->setCurrentItem(gameItem);
@@ -1829,7 +1830,7 @@ void ImageChecker::selectItem(QString setName)
 		}
 
 		case QMC2_VIEWHIERARCHY_INDEX: {
-			QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemMap[setName];
+			QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[setName];
 			if ( hierarchyItem ) {
 				qmc2MainWindow->treeWidgetHierarchy->clearSelection();
 				qmc2MainWindow->treeWidgetHierarchy->setCurrentItem(hierarchyItem);
@@ -1840,7 +1841,7 @@ void ImageChecker::selectItem(QString setName)
 		}
 
 		case QMC2_VIEWCATEGORY_INDEX: {
-			QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[setName];
+			QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[setName];
 			if ( categoryItem ) {
 				qmc2MainWindow->treeWidgetCategoryView->clearSelection();
 				qmc2MainWindow->treeWidgetCategoryView->setCurrentItem(categoryItem);
@@ -1852,7 +1853,7 @@ void ImageChecker::selectItem(QString setName)
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_VIEWVERSION_INDEX: {
-			QTreeWidgetItem *versionItem = qmc2VersionItemMap[setName];
+			QTreeWidgetItem *versionItem = qmc2VersionItemHash[setName];
 			if ( versionItem ) {
 				qmc2MainWindow->treeWidgetVersionView->clearSelection();
 				qmc2MainWindow->treeWidgetVersionView->setCurrentItem(versionItem);

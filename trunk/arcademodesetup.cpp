@@ -22,8 +22,8 @@
 
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
-extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
-extern QMap<QString, QString> qmc2ParentMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+extern QHash<QString, QString> qmc2ParentHash;
 extern Gamelist *qmc2Gamelist;
 extern Options *qmc2Options;
 extern KeyPressFilter *qmc2KeyPressFilter;
@@ -647,9 +647,9 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: arcade mode: the name filter regular expression is invalid"));
 
 	progressBarFilter->setFormat(tr("Filtering"));
-	progressBarFilter->setRange(0, qmc2GamelistItemMap.count());
+	progressBarFilter->setRange(0, qmc2GamelistItemHash.count());
 
-	foreach (QString game, qmc2GamelistItemMap.keys()) {
+	foreach (QString game, qmc2GamelistItemHash.keys()) {
 		progressBarFilter->setValue(++itemCount);
 
 		// no devices
@@ -658,7 +658,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 
 		// tagged
 		if ( checkBoxTaggedSetsOnly->isChecked() ) {
-			GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemMap[game];
+			GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemHash[game];
 			if ( gameItem && gameItem->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked )
 				selectedGames << gameItem;
 			continue;
@@ -666,7 +666,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 
 		// favorites
 		if ( checkBoxFavoriteSetsOnly->isChecked() ) {
-			GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemMap[game];
+			GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemHash[game];
 			if ( gameItem ) {
 				QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(gameItem->text(QMC2_GAMELIST_COLUMN_GAME), Qt::MatchExactly);
 				if ( !favoritesMatches.isEmpty() )
@@ -691,7 +691,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		if ( !qmc2Gamelist->categoryMap.isEmpty() && excludedCategories.contains(category) )
 			continue;
 
-		GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemMap[game];
+		GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemHash[game];
 		if ( !gameItem )
 			continue;
 
@@ -751,7 +751,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		   << gameItem->text(QMC2_GAMELIST_COLUMN_GAME) << "\t"
 		   << gameItem->text(QMC2_GAMELIST_COLUMN_MANU) << "\t"
 		   << gameItem->text(QMC2_GAMELIST_COLUMN_YEAR) << "\t"
-		   << qmc2ParentMap[gameName] << "\t"
+		   << qmc2ParentHash[gameName] << "\t"
 	   	   << (qmc2Gamelist->isBios(gameName) ? "1": "0") << "\t"
 		   << (gameItem->text(QMC2_GAMELIST_COLUMN_RTYPES).contains(tr("ROM")) ? "1" : "0") << "\t"
 		   << (gameItem->text(QMC2_GAMELIST_COLUMN_RTYPES).contains(tr("CHD")) ? "1": "0") << "\t"

@@ -32,7 +32,7 @@ extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
 extern bool qmc2UseDefaultEmulator;
 extern bool qmc2TemplateCheck;
 extern Options *qmc2Options;
-extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
 
 QList<FileEditWidget *> messFileEditWidgetList;
 QHash<QString, QHash<QString, QStringList> > messSystemSlotHash;
@@ -1070,7 +1070,7 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 #endif
 			QStringList newSlotOptionDescriptions;
 			foreach (QString newSlotOption, xmlHandler.newSlotOptions[newSlot]) {
-				QString slotOptionDescription = qmc2GamelistItemMap[xmlHandler.newSlotDevices[newSlotOption]]->text(QMC2_GAMELIST_COLUMN_GAME);
+				QString slotOptionDescription = qmc2GamelistItemHash[xmlHandler.newSlotDevices[newSlotOption]]->text(QMC2_GAMELIST_COLUMN_GAME);
 #ifdef QMC2_DEBUG
 				printf("MESSDeviceConfigurator::refreshDeviceMap():     newSlotOption = %s [%s], default = %s\n",
 				       newSlotOption.toLocal8Bit().constData(), slotOptionDescription.toLocal8Bit().constData(), xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no");

@@ -6,8 +6,9 @@
 #include <QTextStream>
 #include <QScrollBar>
 #include <QTest>
-#include <QHash>
 #include <QMap>
+#include <QHash>
+#include <QHashIterator>
 #include <QFileDialog>
 #include <QClipboard>
 #include <QDateTime>
@@ -41,11 +42,11 @@ extern bool qmc2ROMAlyzerPaused;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
 extern bool qmc2StopParser;
-extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
-extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
-extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
 #endif
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
@@ -661,7 +662,7 @@ void ROMAlyzer::analyze()
 		analyzerList.sort();
 	} else {
 		if ( patternList.count() == 1 ) {
-			if ( qmc2GamelistItemMap.contains(patternList[0]) ) {
+			if ( qmc2GamelistItemHash.contains(patternList[0]) ) {
 				// special case for exactly ONE matching set -- no need to search
 				analyzerList << patternList[0];
 			}
@@ -672,7 +673,7 @@ void ROMAlyzer::analyze()
 			labelStatus->setText(tr("Searching sets"));
 			progressBar->setRange(0, qmc2Gamelist->numGames);
 			progressBar->reset();
-			QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
+			QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
 			i = 0;
 			bool matchAll = (lineEditGames->text().simplified() == "*");
 			while ( it.hasNext() && !qmc2StopParser ) {
@@ -2225,7 +2226,7 @@ void ROMAlyzer::selectItem(QString gameName)
 
 	switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 		case QMC2_VIEWGAMELIST_INDEX: {
-			      QTreeWidgetItem *gameItem = qmc2GamelistItemMap[gameName];
+			      QTreeWidgetItem *gameItem = qmc2GamelistItemHash[gameName];
 			      if ( gameItem ) {
 				      qmc2MainWindow->treeWidgetGamelist->clearSelection();
 				      qmc2MainWindow->treeWidgetGamelist->setCurrentItem(gameItem);
@@ -2235,7 +2236,7 @@ void ROMAlyzer::selectItem(QString gameName)
 			      break;
 		      }
 		case QMC2_VIEWHIERARCHY_INDEX: {
-			       QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemMap[gameName];
+			       QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[gameName];
 			       if ( hierarchyItem ) {
 				       qmc2MainWindow->treeWidgetHierarchy->clearSelection();
 				       qmc2MainWindow->treeWidgetHierarchy->setCurrentItem(hierarchyItem);
@@ -2245,7 +2246,7 @@ void ROMAlyzer::selectItem(QString gameName)
 			       break;
 		       }
 		case QMC2_VIEWCATEGORY_INDEX: {
-			      QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
+			      QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
 			      if ( categoryItem ) {
 				      qmc2MainWindow->treeWidgetCategoryView->clearSelection();
 				      qmc2MainWindow->treeWidgetCategoryView->setCurrentItem(categoryItem);
@@ -2256,7 +2257,7 @@ void ROMAlyzer::selectItem(QString gameName)
 		      }
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_VIEWVERSION_INDEX: {
-			     QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
+			     QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
 			     if ( versionItem ) {
 				     qmc2MainWindow->treeWidgetVersionView->clearSelection();
 				     qmc2MainWindow->treeWidgetVersionView->setCurrentItem(versionItem);

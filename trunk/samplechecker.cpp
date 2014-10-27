@@ -1,5 +1,6 @@
 #include <QTimer>
 #include <QMap>
+#include <QHash>
 #include <QDir>
 #include <QFileInfo>
 #include <QProcess>
@@ -21,7 +22,7 @@ extern bool qmc2CleaningUp;
 extern bool qmc2SampleCheckActive;
 extern bool qmc2StopParser;
 extern bool qmc2TemplateCheck;
-extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
 
 SampleChecker::SampleChecker(QWidget *parent)
 #if defined(QMC2_OS_WIN)
@@ -200,7 +201,7 @@ void SampleChecker::verify()
 							sampleMap[currentGameName] = currentGameName;
 							sampleCountMap[currentGameName] = sampleCount;
 						} else {
-							if ( qmc2GamelistItemMap.contains(currentSampleOf) ) {
+							if ( qmc2GamelistItemHash.contains(currentSampleOf) ) {
 								sampleMap[currentGameName] = currentSampleOf;
 								sampleCountMap[currentGameName] = sampleCount;
 							} else

@@ -5,7 +5,7 @@
 #include <QTreeWidgetItem>
 #include <QDir>
 #include <QUuid>
-#include <QMap>
+#include <QHash>
 
 #include "macros.h"
 #include "qmc2main.h"
@@ -17,11 +17,11 @@
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern Gamelist *qmc2Gamelist;
-extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
-extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
-extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
 #endif
 
 UserDataDatabaseManager::UserDataDatabaseManager(QObject *parent)
@@ -510,17 +510,17 @@ void UserDataDatabaseManager::fillUpRankCache()
 			int rankInt = rank(row);
 			m_rankCache[idString] = rankInt;
 			QString rankString = QString::number(rankInt);
-			QTreeWidgetItem *item = qmc2GamelistItemMap[idString];
+			QTreeWidgetItem *item = qmc2GamelistItemHash[idString];
 			if ( item )
 				item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, rankString);
-			item = qmc2HierarchyItemMap[idString];
+			item = qmc2HierarchyItemHash[idString];
 			if ( item)
 				item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, rankString);
-			item = qmc2CategoryItemMap[idString];
+			item = qmc2CategoryItemHash[idString];
 			if ( item )
 				item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, rankString);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-			item = qmc2VersionItemMap[idString];
+			item = qmc2VersionItemHash[idString];
 			if ( item )
 				item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, rankString);
 #endif

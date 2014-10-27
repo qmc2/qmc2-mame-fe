@@ -9,6 +9,7 @@
 #include <QFile>
 #include <QDir>
 #include <QMap>
+#include <QHash>
 #include <QCache>
 #include <QApplication>
 
@@ -24,8 +25,8 @@ extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
 extern QMap <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoMap;
-extern QMap<QString, QString> qmc2CustomShortcutMap;
-extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
+extern QMap<QString, QString> qmc2CustomShortcutHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
 extern bool qmc2YouTubeVideoInfoMapChanged;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
@@ -797,7 +798,7 @@ void YouTubeVideoPlayer::switchToFullScreen()
 #if QT_VERSION < 0x050000
 	if ( !videoWidget()->isFullScreen() ) {
 		videoWidget()->setFullScreen(true);
-		QString keySeq = qmc2CustomShortcutMap["F11"];
+		QString keySeq = qmc2CustomShortcutHash["F11"];
 		if ( !keySeq.isEmpty() )
 			showMessage(tr("Full-screen mode -- press %1 to return to windowed mode").arg(keySeq), 4000);
 		else
@@ -815,7 +816,7 @@ void YouTubeVideoPlayer::switchToFullScreen()
 		qApp->processEvents();
 		videoPlayer()->setVideoOutput(videoWidget());
 		videoOverlayWidget->setVideoWidget(videoWidget());
-		QString keySeq = qmc2CustomShortcutMap["F11"];
+		QString keySeq = qmc2CustomShortcutHash["F11"];
 		if ( !keySeq.isEmpty() )
 			showMessage(tr("Full-screen mode -- press %1 to return to windowed mode").arg(keySeq), 4000);
 		else
@@ -1722,7 +1723,7 @@ void YouTubeVideoPlayer::videoPlayer_customContextMenuRequested(const QPoint &p)
 			}
 		}
 
-		QString keySeq = qmc2CustomShortcutMap["F11"];
+		QString keySeq = qmc2CustomShortcutHash["F11"];
 		if ( !keySeq.isEmpty() )
 			videoMenuFullscreenAction->setText(tr("Full screen (press %1 to return)").arg(keySeq));
 		else
@@ -1767,7 +1768,7 @@ void YouTubeVideoPlayer::on_toolButtonSuggest_clicked()
 	suggestedSearchPattern = suggestedSearchPattern.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").simplified();
 	if ( !suggestorAppendString.isEmpty() )
 		suggestedSearchPattern.append(" " + suggestorAppendString);
-	QTreeWidgetItem *item = qmc2GamelistItemMap[mySetID];
+	QTreeWidgetItem *item = qmc2GamelistItemHash[mySetID];
 	if ( item )
 		suggestedSearchPattern.replace("$MANUFACTURER$", item->text(QMC2_GAMELIST_COLUMN_MANU)).replace("$YEAR$", item->text(QMC2_GAMELIST_COLUMN_YEAR));
 	lineEditSearchString->setText(suggestedSearchPattern);

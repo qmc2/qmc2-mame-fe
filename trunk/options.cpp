@@ -7,6 +7,7 @@
 #include <QMap>
 #include <QMultiMap>
 #include <QHash>
+#include <QHashIterator>
 #include <QStyleFactory>
 #include <QHeaderView>
 #include <QBitArray>
@@ -136,10 +137,10 @@ extern Settings *qmc2Config;
 extern QBitArray qmc2Filter;
 extern QMap<QString, unzFile> qmc2IconFileMap;
 extern QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
-extern QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
-extern QMap<QString, QString> qmc2CustomShortcutMap;
+extern QHash<QString, QPair<QString, QAction *> > qmc2ShortcutHash;
+extern QHash<QString, QString> qmc2CustomShortcutHash;
 extern KeyPressFilter *qmc2KeyPressFilter;
-extern QMap<QString, QKeySequence> qmc2QtKeyMap;
+extern QHash<QString, QKeySequence> qmc2QtKeyHash;
 extern QHash<QString, QByteArray *> qmc2GameInfoDB;
 extern QHash<QString, QByteArray *> qmc2EmuInfoDB;
 extern QHash<QString, QByteArray *> qmc2SoftwareInfoDB;
@@ -394,138 +395,138 @@ Options::Options(QWidget *parent)
 #endif
 
 	// shortcuts
-	qmc2ShortcutMap["Ctrl+1"] = QPair<QString, QAction *>(tr("Check all ROM states"), NULL);
+	qmc2ShortcutHash["Ctrl+1"] = QPair<QString, QAction *>(tr("Check all ROM states"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	qmc2ShortcutMap["Ctrl+2"] = QPair<QString, QAction *>(tr("Check all sample sets"), NULL);
+	qmc2ShortcutHash["Ctrl+2"] = QPair<QString, QAction *>(tr("Check all sample sets"), NULL);
 #endif
-	qmc2ShortcutMap["Ctrl+3"] = QPair<QString, QAction *>(tr("Check images and icons"), NULL);
-	qmc2ShortcutMap["Ctrl+B"] = QPair<QString, QAction *>(tr("About QMC2"), NULL);
+	qmc2ShortcutHash["Ctrl+3"] = QPair<QString, QAction *>(tr("Check images and icons"), NULL);
+	qmc2ShortcutHash["Ctrl+B"] = QPair<QString, QAction *>(tr("About QMC2"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	qmc2ShortcutMap["Ctrl+D"] = QPair<QString, QAction *>(tr("Analyze current game"), NULL);
+	qmc2ShortcutHash["Ctrl+D"] = QPair<QString, QAction *>(tr("Analyze current game"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
-	qmc2ShortcutMap["Ctrl+D"] = QPair<QString, QAction *>(tr("Analyze current machine"), NULL);
+	qmc2ShortcutHash["Ctrl+D"] = QPair<QString, QAction *>(tr("Analyze current machine"), NULL);
 #endif
-	qmc2ShortcutMap["Ctrl+Shift+D"] = QPair<QString, QAction *>(tr("Analyze tagged sets"), NULL);
-	qmc2ShortcutMap["Ctrl+E"] = QPair<QString, QAction *>(tr("Export ROM Status"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+D"] = QPair<QString, QAction *>(tr("Analyze tagged sets"), NULL);
+	qmc2ShortcutHash["Ctrl+E"] = QPair<QString, QAction *>(tr("Export ROM Status"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	qmc2ShortcutMap["Ctrl+J"] = QPair<QString, QAction *>(tr("Copy game to favorites"), NULL);
+	qmc2ShortcutHash["Ctrl+J"] = QPair<QString, QAction *>(tr("Copy game to favorites"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
-	qmc2ShortcutMap["Ctrl+J"] = QPair<QString, QAction *>(tr("Copy machine to favorites"), NULL);
+	qmc2ShortcutHash["Ctrl+J"] = QPair<QString, QAction *>(tr("Copy machine to favorites"), NULL);
 #endif
-	qmc2ShortcutMap["Ctrl+Shift+J"] = QPair<QString, QAction *>(tr("Copy tagged sets to favorites"), NULL);
-	qmc2ShortcutMap["Ctrl+H"] = QPair<QString, QAction *>(tr("Online documentation"), NULL);
-	qmc2ShortcutMap["Ctrl+I"] = QPair<QString, QAction *>(tr("Clear image cache"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+J"] = QPair<QString, QAction *>(tr("Copy tagged sets to favorites"), NULL);
+	qmc2ShortcutHash["Ctrl+H"] = QPair<QString, QAction *>(tr("Online documentation"), NULL);
+	qmc2ShortcutHash["Ctrl+I"] = QPair<QString, QAction *>(tr("Clear image cache"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME) // FIXME: we have no MESS arcade theme yet!
-	qmc2ShortcutMap["Ctrl+Shift+A"] = QPair<QString, QAction *>(tr("Setup arcade mode"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+A"] = QPair<QString, QAction *>(tr("Setup arcade mode"), NULL);
 #endif
 #if defined(QMC2_EMUTYPE_MAME)
-	qmc2ShortcutMap["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear MAWS cache"), NULL);
+	qmc2ShortcutHash["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear MAWS cache"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
-	qmc2ShortcutMap["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear ProjectMESS cache"), NULL);
+	qmc2ShortcutHash["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear ProjectMESS cache"), NULL);
 #endif
-	qmc2ShortcutMap["Ctrl+N"] = QPair<QString, QAction *>(tr("Clear icon cache"), NULL);
+	qmc2ShortcutHash["Ctrl+N"] = QPair<QString, QAction *>(tr("Clear icon cache"), NULL);
 #if defined(QMC2_OS_MAC)
-	qmc2ShortcutMap["Ctrl+,"] = QPair<QString, QAction *>(tr("Open options dialog"), NULL);
+	qmc2ShortcutHash["Ctrl+,"] = QPair<QString, QAction *>(tr("Open options dialog"), NULL);
 #else
-	qmc2ShortcutMap["Ctrl+O"] = QPair<QString, QAction *>(tr("Open options dialog"), NULL);
+	qmc2ShortcutHash["Ctrl+O"] = QPair<QString, QAction *>(tr("Open options dialog"), NULL);
 #endif
-	qmc2ShortcutMap["Ctrl+P"] = QPair<QString, QAction *>(tr("Play (independent)"), NULL);
+	qmc2ShortcutHash["Ctrl+P"] = QPair<QString, QAction *>(tr("Play (independent)"), NULL);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-	qmc2ShortcutMap["Ctrl+Shift+P"] = QPair<QString, QAction *>(tr("Play (embedded)"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+P"] = QPair<QString, QAction *>(tr("Play (embedded)"), NULL);
 #endif
-	qmc2ShortcutMap["Ctrl+Q"] = QPair<QString, QAction *>(tr("About Qt"), NULL);
+	qmc2ShortcutHash["Ctrl+Q"] = QPair<QString, QAction *>(tr("About Qt"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	qmc2ShortcutMap["Ctrl+R"] = QPair<QString, QAction *>(tr("Reload game list"), NULL);
-	qmc2ShortcutMap["Ctrl+S"] = QPair<QString, QAction *>(tr("Check game's ROM state"), NULL);
+	qmc2ShortcutHash["Ctrl+R"] = QPair<QString, QAction *>(tr("Reload game list"), NULL);
+	qmc2ShortcutHash["Ctrl+S"] = QPair<QString, QAction *>(tr("Check game's ROM state"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
-	qmc2ShortcutMap["Ctrl+R"] = QPair<QString, QAction *>(tr("Reload machine list"), NULL);
-	qmc2ShortcutMap["Ctrl+S"] = QPair<QString, QAction *>(tr("Check machine's ROM state"), NULL);
+	qmc2ShortcutHash["Ctrl+R"] = QPair<QString, QAction *>(tr("Reload machine list"), NULL);
+	qmc2ShortcutHash["Ctrl+S"] = QPair<QString, QAction *>(tr("Check machine's ROM state"), NULL);
 #endif
-	qmc2ShortcutMap["Ctrl+Shift+S"] = QPair<QString, QAction *>(tr("Check states of tagged ROMs"), NULL);
-	qmc2ShortcutMap["Ctrl+T"] = QPair<QString, QAction *>(tr("Recreate template map"), NULL);
-	qmc2ShortcutMap["Ctrl+Shift+C"] = QPair<QString, QAction *>(tr("Check template map"), NULL);
-	qmc2ShortcutMap["Ctrl+X"] = QPair<QString, QAction *>(tr("Stop processing / exit QMC2"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+S"] = QPair<QString, QAction *>(tr("Check states of tagged ROMs"), NULL);
+	qmc2ShortcutHash["Ctrl+T"] = QPair<QString, QAction *>(tr("Recreate template map"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+C"] = QPair<QString, QAction *>(tr("Check template map"), NULL);
+	qmc2ShortcutHash["Ctrl+X"] = QPair<QString, QAction *>(tr("Stop processing / exit QMC2"), NULL);
 #if defined(QMC2_YOUTUBE_ENABLED)
-	qmc2ShortcutMap["Ctrl+Y"] = QPair<QString, QAction *>(tr("Clear YouTube cache"), NULL);
+	qmc2ShortcutHash["Ctrl+Y"] = QPair<QString, QAction *>(tr("Clear YouTube cache"), NULL);
 #endif
-	qmc2ShortcutMap["Ctrl+Z"] = QPair<QString, QAction *>(tr("Open ROMAlyzer dialog"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+C"] = QPair<QString, QAction *>(tr("Toggle ROM state C"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+M"] = QPair<QString, QAction *>(tr("Toggle ROM state M"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+I"] = QPair<QString, QAction *>(tr("Toggle ROM state I"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+N"] = QPair<QString, QAction *>(tr("Toggle ROM state N"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+U"] = QPair<QString, QAction *>(tr("Toggle ROM state U"), NULL);
+	qmc2ShortcutHash["Ctrl+Z"] = QPair<QString, QAction *>(tr("Open ROMAlyzer dialog"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+C"] = QPair<QString, QAction *>(tr("Toggle ROM state C"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+M"] = QPair<QString, QAction *>(tr("Toggle ROM state M"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+I"] = QPair<QString, QAction *>(tr("Toggle ROM state I"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+N"] = QPair<QString, QAction *>(tr("Toggle ROM state N"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+U"] = QPair<QString, QAction *>(tr("Toggle ROM state U"), NULL);
 #if defined(QMC2_VARIANT_LAUNCHER)
 #if defined(QMC2_OS_WIN)
-	qmc2ShortcutMap["Ctrl+Alt+1"] = QPair<QString, QAction *>(tr("Launch QMC2 for MAME"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+2"] = QPair<QString, QAction *>(tr("Launch QMC2 for MESS"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+3"] = QPair<QString, QAction *>(tr("Launch QMC2 for UME"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+1"] = QPair<QString, QAction *>(tr("Launch QMC2 for MAME"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+2"] = QPair<QString, QAction *>(tr("Launch QMC2 for MESS"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+3"] = QPair<QString, QAction *>(tr("Launch QMC2 for UME"), NULL);
 #else
-	qmc2ShortcutMap["Ctrl+Alt+1"] = QPair<QString, QAction *>(tr("Launch QMC2 for SDLMAME"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+2"] = QPair<QString, QAction *>(tr("Launch QMC2 for SDLMESS"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+3"] = QPair<QString, QAction *>(tr("Launch QMC2 for SDLUME"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+1"] = QPair<QString, QAction *>(tr("Launch QMC2 for SDLMAME"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+2"] = QPair<QString, QAction *>(tr("Launch QMC2 for SDLMESS"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+3"] = QPair<QString, QAction *>(tr("Launch QMC2 for SDLUME"), NULL);
 #endif
 #endif
-	qmc2ShortcutMap["Ctrl+Shift+T"] = QPair<QString, QAction *>(tr("Tag current set"), NULL);
-	qmc2ShortcutMap["Ctrl+Shift+U"] = QPair<QString, QAction *>(tr("Untag current set"), NULL);
-	qmc2ShortcutMap["Ctrl+Shift+G"] = QPair<QString, QAction *>(tr("Toggle tag mark"), NULL);
-	qmc2ShortcutMap["Shift+Down"] = QPair<QString, QAction *>(tr("Toggle tag / cursor down"), NULL);
-	qmc2ShortcutMap["Shift+Up"] = QPair<QString, QAction *>(tr("Toggle tag / cursor up"), NULL);
-	qmc2ShortcutMap["Ctrl+Shift+L"] = QPair<QString, QAction *>(tr("Tag all sets"), NULL);
-	qmc2ShortcutMap["Ctrl+Shift+N"] = QPair<QString, QAction *>(tr("Untag all sets"), NULL);
-	qmc2ShortcutMap["Ctrl+Shift+I"] = QPair<QString, QAction *>(tr("Invert all tags"), NULL);
-	qmc2ShortcutMap["Ctrl+Shift+X"] = QPair<QString, QAction *>(tr("Tag visible sets"), NULL);
-	qmc2ShortcutMap["Ctrl+Shift+Y"] = QPair<QString, QAction *>(tr("Untag visible sets"), NULL);
-	qmc2ShortcutMap["Ctrl+Shift+Z"] = QPair<QString, QAction *>(tr("Invert visible tags"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+T"] = QPair<QString, QAction *>(tr("Tag current set"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+U"] = QPair<QString, QAction *>(tr("Untag current set"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+G"] = QPair<QString, QAction *>(tr("Toggle tag mark"), NULL);
+	qmc2ShortcutHash["Shift+Down"] = QPair<QString, QAction *>(tr("Toggle tag / cursor down"), NULL);
+	qmc2ShortcutHash["Shift+Up"] = QPair<QString, QAction *>(tr("Toggle tag / cursor up"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+L"] = QPair<QString, QAction *>(tr("Tag all sets"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+N"] = QPair<QString, QAction *>(tr("Untag all sets"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+I"] = QPair<QString, QAction *>(tr("Invert all tags"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+X"] = QPair<QString, QAction *>(tr("Tag visible sets"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+Y"] = QPair<QString, QAction *>(tr("Untag visible sets"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+Z"] = QPair<QString, QAction *>(tr("Invert visible tags"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	qmc2ShortcutMap["F5"] = QPair<QString, QAction *>(tr("Game list with full detail"), NULL);
+	qmc2ShortcutHash["F5"] = QPair<QString, QAction *>(tr("Game list with full detail"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
-	qmc2ShortcutMap["F5"] = QPair<QString, QAction *>(tr("Machine list with full detail"), NULL);
+	qmc2ShortcutHash["F5"] = QPair<QString, QAction *>(tr("Machine list with full detail"), NULL);
 #endif
-	qmc2ShortcutMap["F6"] = QPair<QString, QAction *>(tr("Parent / clone hierarchy"), NULL);
+	qmc2ShortcutHash["F6"] = QPair<QString, QAction *>(tr("Parent / clone hierarchy"), NULL);
 #if defined(QMC2_EMUTYPE_MESS)
-	qmc2ShortcutMap["F7"] = QPair<QString, QAction *>(tr("View machines by category"), NULL);
+	qmc2ShortcutHash["F7"] = QPair<QString, QAction *>(tr("View machines by category"), NULL);
 #elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	qmc2ShortcutMap["F7"] = QPair<QString, QAction *>(tr("View games by category"), NULL);
-	qmc2ShortcutMap["F8"] = QPair<QString, QAction *>(tr("View games by version"), NULL);
+	qmc2ShortcutHash["F7"] = QPair<QString, QAction *>(tr("View games by category"), NULL);
+	qmc2ShortcutHash["F8"] = QPair<QString, QAction *>(tr("View games by version"), NULL);
 #endif
-	qmc2ShortcutMap["F9"] = QPair<QString, QAction *>(tr("Run external ROM tool"), NULL);
-	qmc2ShortcutMap["Ctrl+Shift+F9"] = QPair<QString, QAction *>(tr("Run ROM tool for tagged sets"), NULL);
-	qmc2ShortcutMap["F10"] = QPair<QString, QAction *>(tr("Check software-states"), NULL);
-	qmc2ShortcutMap["F11"] = QPair<QString, QAction *>(tr("Toggle full screen"), NULL);
+	qmc2ShortcutHash["F9"] = QPair<QString, QAction *>(tr("Run external ROM tool"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+F9"] = QPair<QString, QAction *>(tr("Run ROM tool for tagged sets"), NULL);
+	qmc2ShortcutHash["F10"] = QPair<QString, QAction *>(tr("Check software-states"), NULL);
+	qmc2ShortcutHash["F11"] = QPair<QString, QAction *>(tr("Toggle full screen"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME) // FIXME: we have no MESS arcade theme yet!
-	qmc2ShortcutMap["F12"] = QPair<QString, QAction *>(tr("Launch arcade mode"), NULL);
+	qmc2ShortcutHash["F12"] = QPair<QString, QAction *>(tr("Launch arcade mode"), NULL);
 #endif
 #if QMC2_USE_PHONON_API
-	qmc2ShortcutMap["Ctrl+Alt+Left"] = QPair<QString, QAction *>(tr("Previous track (audio player)"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+Right"] = QPair<QString, QAction *>(tr("Next track (audio player)"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+B"] = QPair<QString, QAction *>(tr("Fast backward (audio player)"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+F"] = QPair<QString, QAction *>(tr("Fast forward (audio player)"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+S"] = QPair<QString, QAction *>(tr("Stop track (audio player)"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+#"] = QPair<QString, QAction *>(tr("Pause track (audio player)"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+P"] = QPair<QString, QAction *>(tr("Play track (audio player)"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+PgUp"] = QPair<QString, QAction *>(tr("Raise volume (audio player)"), NULL);
-	qmc2ShortcutMap["Ctrl+Alt+PgDown"] = QPair<QString, QAction *>(tr("Lower volume (audio player)"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+Left"] = QPair<QString, QAction *>(tr("Previous track (audio player)"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+Right"] = QPair<QString, QAction *>(tr("Next track (audio player)"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+B"] = QPair<QString, QAction *>(tr("Fast backward (audio player)"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+F"] = QPair<QString, QAction *>(tr("Fast forward (audio player)"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+S"] = QPair<QString, QAction *>(tr("Stop track (audio player)"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+#"] = QPair<QString, QAction *>(tr("Pause track (audio player)"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+P"] = QPair<QString, QAction *>(tr("Play track (audio player)"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+PgUp"] = QPair<QString, QAction *>(tr("Raise volume (audio player)"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+PgDown"] = QPair<QString, QAction *>(tr("Lower volume (audio player)"), NULL);
 #endif
-	qmc2ShortcutMap["Alt+PgUp"] = QPair<QString, QAction *>(tr("Increase rank"), NULL);
-	qmc2ShortcutMap["Alt+PgDown"] = QPair<QString, QAction *>(tr("Decrease rank"), NULL);
+	qmc2ShortcutHash["Alt+PgUp"] = QPair<QString, QAction *>(tr("Increase rank"), NULL);
+	qmc2ShortcutHash["Alt+PgDown"] = QPair<QString, QAction *>(tr("Decrease rank"), NULL);
 
 	// special keys
-	qmc2ShortcutMap["+"] = QPair<QString, QAction *>(tr("Plus (+)"), NULL);
-	qmc2ShortcutMap["-"] = QPair<QString, QAction *>(tr("Minus (-)"), NULL);
-	qmc2ShortcutMap["Down"] = QPair<QString, QAction *>(tr("Cursor down"), NULL);
-	qmc2ShortcutMap["End"] = QPair<QString, QAction *>(tr("End"), NULL);
-	qmc2ShortcutMap["Enter"] = QPair<QString, QAction *>(tr("Enter key"), NULL);
-	qmc2ShortcutMap["Esc"] = QPair<QString, QAction *>(tr("Escape"), NULL);
-	qmc2ShortcutMap["Left"] = QPair<QString, QAction *>(tr("Cursor left"), NULL);
-	qmc2ShortcutMap["Home"] = QPair<QString, QAction *>(tr("Home"), NULL);
-	qmc2ShortcutMap["PgDown"] = QPair<QString, QAction *>(tr("Page down"), NULL);
-	qmc2ShortcutMap["PgUp"] = QPair<QString, QAction *>(tr("Page up"), NULL);
-	qmc2ShortcutMap["Return"] = QPair<QString, QAction *>(tr("Return key"), NULL);
-	qmc2ShortcutMap["Right"] = QPair<QString, QAction *>(tr("Cursor right"), NULL);
-	qmc2ShortcutMap["Tab"] = QPair<QString, QAction *>(tr("Tabulator"), NULL);
-	qmc2ShortcutMap["Up"] = QPair<QString, QAction *>(tr("Cursor up"), NULL);
+	qmc2ShortcutHash["+"] = QPair<QString, QAction *>(tr("Plus (+)"), NULL);
+	qmc2ShortcutHash["-"] = QPair<QString, QAction *>(tr("Minus (-)"), NULL);
+	qmc2ShortcutHash["Down"] = QPair<QString, QAction *>(tr("Cursor down"), NULL);
+	qmc2ShortcutHash["End"] = QPair<QString, QAction *>(tr("End"), NULL);
+	qmc2ShortcutHash["Enter"] = QPair<QString, QAction *>(tr("Enter key"), NULL);
+	qmc2ShortcutHash["Esc"] = QPair<QString, QAction *>(tr("Escape"), NULL);
+	qmc2ShortcutHash["Left"] = QPair<QString, QAction *>(tr("Cursor left"), NULL);
+	qmc2ShortcutHash["Home"] = QPair<QString, QAction *>(tr("Home"), NULL);
+	qmc2ShortcutHash["PgDown"] = QPair<QString, QAction *>(tr("Page down"), NULL);
+	qmc2ShortcutHash["PgUp"] = QPair<QString, QAction *>(tr("Page up"), NULL);
+	qmc2ShortcutHash["Return"] = QPair<QString, QAction *>(tr("Return key"), NULL);
+	qmc2ShortcutHash["Right"] = QPair<QString, QAction *>(tr("Cursor right"), NULL);
+	qmc2ShortcutHash["Tab"] = QPair<QString, QAction *>(tr("Tabulator"), NULL);
+	qmc2ShortcutHash["Up"] = QPair<QString, QAction *>(tr("Cursor up"), NULL);
 #if defined(QMC2_OS_MAC)
-	qmc2ShortcutMap["Ctrl+O"] = QPair<QString, QAction *>(tr("Activate item"), NULL);
+	qmc2ShortcutHash["Ctrl+O"] = QPair<QString, QAction *>(tr("Activate item"), NULL);
 #endif
 
 	if ( !config->isWritable() )
@@ -1618,11 +1619,11 @@ void Options::on_pushButtonApply_clicked()
 	}
 
 	// Shortcuts / Keys
-	QMapIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutMap);
+	QHashIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutHash);
 	while ( it.hasNext() ) {
 		it.next();
 		QString itShortcut = it.key();
-		config->setValue(QString(QMC2_FRONTEND_PREFIX + "Shortcuts/%1").arg(itShortcut), qmc2CustomShortcutMap[itShortcut]);
+		config->setValue(QString(QMC2_FRONTEND_PREFIX + "Shortcuts/%1").arg(itShortcut), qmc2CustomShortcutHash[itShortcut]);
 	}
 	setupShortcutActions();
 
@@ -2824,7 +2825,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	}
 
 	// Shortcuts / Keys
-	QMapIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutMap);
+	QHashIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutHash);
 	while ( it.hasNext() ) {
 		it.next();
 		QString itShortcut = it.key();
@@ -2840,7 +2841,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 		}
 		item->setText(1, itemText);
 		QString customSC = config->value(QString(QMC2_FRONTEND_PREFIX + "Shortcuts/%1").arg(itShortcut), itShortcut).toString();
-		qmc2CustomShortcutMap[itShortcut] = customSC;
+		qmc2CustomShortcutHash[itShortcut] = customSC;
 		if ( customSC != itShortcut ) {
 			words = customSC.split("+");
 			customSC = "";
@@ -4393,7 +4394,7 @@ void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
 
 	qApp->removeEventFilter(qmc2KeyPressFilter);
 
-	KeySequenceScanner keySeqScanner(this, qmc2QtKeyMap.contains(item->text(1)));
+	KeySequenceScanner keySeqScanner(this, qmc2QtKeyHash.contains(item->text(1)));
 	if ( keySeqScanner.exec() == QDialog::Accepted ) {
 		QStringList words = item->text(1).split("+");
 		QString nativeShortcut = "";
@@ -4404,7 +4405,7 @@ void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
 		}
 
 		bool found = false;
-		QMapIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutMap);
+		QHashIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutHash);
 		while ( it.hasNext() && !found ) {
 			it.next();
 			words = it.key().split("+");
@@ -4422,7 +4423,7 @@ void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
 		}
 
 		if ( found ) {
-			qmc2CustomShortcutMap[nativeShortcut] = keySeqScanner.currentKeySequence;
+			qmc2CustomShortcutHash[nativeShortcut] = keySeqScanner.currentKeySequence;
 			item->setText(2, keySeqScanner.labelKeySequence->text());
 			QTimer::singleShot(0, this, SLOT(checkShortcuts()));
 		}
@@ -4477,7 +4478,7 @@ void Options::on_pushButtonResetShortcut_clicked()
 		}
 
 		bool found = false;
-		QMapIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutMap);
+		QHashIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutHash);
 		while ( it.hasNext() && !found ) {
 			it.next();
 			words = it.key().split("+");
@@ -4495,7 +4496,7 @@ void Options::on_pushButtonResetShortcut_clicked()
 		}
 
 		if ( found ) {
-			qmc2CustomShortcutMap[nativeShortcut] = nativeShortcut;
+			qmc2CustomShortcutHash[nativeShortcut] = nativeShortcut;
 			selItems[0]->setText(2, "");
 			QTimer::singleShot(0, this, SLOT(checkShortcuts()));
 		}
@@ -4620,12 +4621,12 @@ void Options::setupShortcutActions()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::setupShortcutActions()");
 #endif
 
-	QMapIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutMap);
+	QHashIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutHash);
 	while ( it.hasNext() ) {
 		it.next();
 		QAction *action = it.value().second;
 		if ( action ) {
-			action->setShortcut(QKeySequence(qmc2CustomShortcutMap[it.key()]));
+			action->setShortcut(QKeySequence(qmc2CustomShortcutHash[it.key()]));
 			action->setShortcutContext(Qt::ApplicationShortcut);
 		}
 	}
