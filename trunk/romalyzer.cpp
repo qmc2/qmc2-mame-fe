@@ -3144,15 +3144,27 @@ void ROMAlyzer::copyToClipboard()
 		}
 
 		QString cbText;
-		for (int i = 0; i < columnTitles.count(); i++)
-			cbText += columnTitles[i].leftJustified(columnWidths[i] + 2, ' ');
+		for (int i = 0; i < columnTitles.count(); i++) {
+			if ( i == columnTitles.count() - 1 )
+				cbText += columnTitles[i].leftJustified(columnWidths[i], ' ');
+			else
+				cbText += columnTitles[i].leftJustified(columnWidths[i] + 2, ' ');
+		}
 		cbText += "\n";
-		for (int i = 0; i < columnTitles.count(); i++)
-			cbText += QString().fill('-', columnWidths[i]) + "  ";
+		for (int i = 0; i < columnTitles.count(); i++) {
+			if ( i == columnTitles.count() - 1 )
+				cbText += QString().fill('-', columnWidths[i]);
+			else
+				cbText += QString().fill('-', columnWidths[i]) + "  ";
+		}
 		cbText += "\n";
 		foreach (QStringList row, rows) {
-			for (int i = 0; i < row.count(); i++)
-				cbText += row[i].leftJustified(columnWidths[i] + 2, ' ');
+			for (int i = 0; i < row.count(); i++) {
+				if ( i == row.count() - 1 )
+					cbText += row[i].leftJustified(columnWidths[i], ' ');
+				else
+					cbText += row[i].leftJustified(columnWidths[i] + 2, ' ');
+			}
 			cbText += "\n";
 		}
 
