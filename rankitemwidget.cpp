@@ -1,6 +1,6 @@
 #include <QPainter>
 #include <QPixmap>
-#include <QMap>
+#include <QHash>
 #include <QApplication>
 #include <QStyle>
 
@@ -11,11 +11,11 @@
 
 extern Gamelist *qmc2Gamelist;
 extern Settings *qmc2Config;
-extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
-extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
-extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
 #endif
 
 QImage RankItemWidget::rankBackround;
@@ -167,26 +167,26 @@ void RankItemWidget::updateForeignItems()
 {
 	RankItemWidget *foreignRiw;
 	QString myId = m_item->text(QMC2_GAMELIST_COLUMN_NAME);
-	QTreeWidgetItem *item = qmc2GamelistItemMap[myId];
+	QTreeWidgetItem *item = qmc2GamelistItemHash[myId];
 	if ( item && item != m_item ) {
 		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
 		if ( foreignRiw )
 			foreignRiw->setRank(m_rank);
 	}
-	item = qmc2HierarchyItemMap[myId];
+	item = qmc2HierarchyItemHash[myId];
 	if ( item && item != m_item ) {
 		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
 		if ( foreignRiw )
 			foreignRiw->setRank(m_rank);
 	}
-	item = qmc2CategoryItemMap[myId];
+	item = qmc2CategoryItemHash[myId];
 	if ( item && item != m_item ) {
 		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
 		if ( foreignRiw )
 			foreignRiw->setRank(m_rank);
 	}
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	item = qmc2VersionItemMap[myId];
+	item = qmc2VersionItemHash[myId];
 	if ( item && item != m_item ) {
 		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
 		if ( foreignRiw )

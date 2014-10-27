@@ -96,10 +96,9 @@ extern QMap<QString, QStringList> systemSoftwareFilterMap;
 extern QMap<QString, QString> softwareListXmlDataCache;
 extern QString swlBuffer;
 extern bool swlSupported;
-extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
-extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
-extern QMap<QString, QStringList> qmc2HierarchyMap;
-extern QMap<QString, QString> qmc2ParentMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
+extern QHash<QString, QString> qmc2ParentHash;
 extern int qmc2SortCriteria;
 extern Qt::SortOrder qmc2SortOrder;
 extern QBitArray qmc2Filter;
@@ -109,9 +108,9 @@ extern QHash<QString, QIcon> qmc2IconHash;
 extern QHash<QString, QByteArray *> qmc2EmuInfoDB;
 extern QTreeWidgetItem *qmc2LastMAWSItem;
 extern MiniWebBrowser *qmc2MAWSLookup;
-extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
 extern DemoModeDialog *qmc2DemoModeDialog;
 #endif
 #if defined(QMC2_YOUTUBE_ENABLED)
@@ -129,6 +128,7 @@ extern bool qmc2ParentImageFallback;
 QStringList Gamelist::phraseTranslatorList;
 QStringList Gamelist::romTypeNames;
 QMap<QString, QString> Gamelist::reverseTranslation;
+QHash<QString, QStringList> qmc2HierarchyHash;
 
 Gamelist::Gamelist(QObject *parent)
 	: QObject(parent)
@@ -446,10 +446,10 @@ void Gamelist::load()
 	qmc2ReloadActive = qmc2EarlyReloadActive = true;
 	qmc2StopParser = false;
 	gameStatusHash.clear();
-	qmc2GamelistItemMap.clear();
+	qmc2GamelistItemHash.clear();
 	biosSets.clear();
 	deviceSets.clear();
-	qmc2HierarchyItemMap.clear();
+	qmc2HierarchyItemHash.clear();
 	qmc2ExpandedGamelistItems.clear();
 	userDataDb()->clearRankCache();
 	userDataDb()->clearCommentCache();
@@ -462,10 +462,10 @@ void Gamelist::load()
 	numTaggedSets = numSearchGames = 0;
 	qmc2MainWindow->treeWidgetGamelist->clear();
 	qmc2MainWindow->treeWidgetHierarchy->clear();
-	qmc2CategoryItemMap.clear();
+	qmc2CategoryItemHash.clear();
 	qmc2MainWindow->treeWidgetCategoryView->clear();
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	qmc2VersionItemMap.clear();
+	qmc2VersionItemHash.clear();
 	qmc2MainWindow->treeWidgetVersionView->clear();
 #endif
 	qmc2MainWindow->listWidgetSearch->clear();
@@ -1498,8 +1498,8 @@ void Gamelist::parse()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("processing machine list"));
 #endif
 	qmc2MainWindow->treeWidgetGamelist->clear();
-	qmc2HierarchyMap.clear();
-	qmc2ParentMap.clear();
+	qmc2HierarchyHash.clear();
+	qmc2ParentHash.clear();
 	qmc2MainWindow->progressBarGamelist->reset();
 
 	gamelistCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GamelistCacheFile").toString());
@@ -1620,9 +1620,9 @@ void Gamelist::parse()
 							hideList << gameDescriptionItem;
 
 						if ( !gameCloneOf.isEmpty() )
-							qmc2HierarchyMap[gameCloneOf].append(gameName);
-						else if ( !qmc2HierarchyMap.contains(gameName) )
-							qmc2HierarchyMap.insert(gameName, QStringList());
+							qmc2HierarchyHash[gameCloneOf].append(gameName);
+						else if ( !qmc2HierarchyHash.contains(gameName) )
+							qmc2HierarchyHash.insert(gameName, QStringList());
 
 						gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_GAME, gameDescription);
 						gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_YEAR, gameYear);
@@ -1724,7 +1724,7 @@ void Gamelist::parse()
 						QTreeWidgetItem *nameItem = new QTreeWidgetItem(gameDescriptionItem);
 						nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
 						nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, gameName);
-						qmc2GamelistItemMap[gameName] = gameDescriptionItem;
+						qmc2GamelistItemHash[gameName] = gameDescriptionItem;
 						loadIcon(gameName, gameDescriptionItem);
 
 						numGames++;
@@ -1889,9 +1889,9 @@ void Gamelist::parse()
 					}
 
 					if ( !gameCloneOf.isEmpty() )
-						qmc2HierarchyMap[gameCloneOf].append(gameName);
-					else if ( !qmc2HierarchyMap.contains(gameName) )
-						qmc2HierarchyMap.insert(gameName, QStringList());
+						qmc2HierarchyHash[gameCloneOf].append(gameName);
+					else if ( !qmc2HierarchyHash.contains(gameName) )
+						qmc2HierarchyHash.insert(gameName, QStringList());
 
 					gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_GAME, gameDescription);
 					gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_YEAR, gameYear);
@@ -1993,7 +1993,7 @@ void Gamelist::parse()
 					QTreeWidgetItem *nameItem = new QTreeWidgetItem(gameDescriptionItem);
 					nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
 					nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, gameName);
-					qmc2GamelistItemMap[gameName] = gameDescriptionItem;
+					qmc2GamelistItemHash[gameName] = gameDescriptionItem;
 					loadIcon(gameName, gameDescriptionItem);
 
 					if ( gamelistCache.isOpen() )
@@ -2038,7 +2038,7 @@ void Gamelist::parse()
 
 	// create parent/clone hierarchy tree
 	qmc2MainWindow->treeWidgetHierarchy->clear();
-	QMapIterator<QString, QStringList> i(qmc2HierarchyMap);
+	QHashIterator<QString, QStringList> i(qmc2HierarchyHash);
 	QList<QTreeWidgetItem *> itemList, hideList;
 	int loadResponse = numGames / QMC2_GENERAL_LOADING_UPDATES;
 	int counter = 0;
@@ -2048,7 +2048,7 @@ void Gamelist::parse()
 			qApp->processEvents();
 		counter++;
 		QString iValue = i.key();
-		QTreeWidgetItem *listItem = qmc2GamelistItemMap.value(iValue);
+		QTreeWidgetItem *listItem = qmc2GamelistItemHash.value(iValue);
 		QString iDescription;
 		if ( listItem )
 			iDescription = listItem->text(QMC2_GAMELIST_COLUMN_GAME);
@@ -2062,7 +2062,7 @@ void Gamelist::parse()
 		hierarchyItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
 		hierarchyItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
 		hierarchyItem->setText(QMC2_GAMELIST_COLUMN_GAME, iDescription);
-		QTreeWidgetItem *baseItem = qmc2GamelistItemMap[iValue];
+		QTreeWidgetItem *baseItem = qmc2GamelistItemHash[iValue];
 		hierarchyItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
 		hierarchyItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
 		hierarchyItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
@@ -2077,7 +2077,7 @@ void Gamelist::parse()
 #endif
 		}
 		hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_ICON, baseItem->icon(QMC2_GAMELIST_COLUMN_ICON));
-		qmc2HierarchyItemMap[iValue] = hierarchyItem;
+		qmc2HierarchyItemHash[iValue] = hierarchyItem;
 		if ( showROMStatusIcons ) {
 			switch ( gameStatusHash[iValue] ) {
 				case 'C': 
@@ -2130,7 +2130,7 @@ void Gamelist::parse()
 
 		for (int j = 0; j < i.value().count(); j++) {
 			QString jValue = i.value().at(j);
-			QString jDescription = qmc2GamelistItemMap[jValue]->text(QMC2_GAMELIST_COLUMN_GAME);
+			QString jDescription = qmc2GamelistItemHash[jValue]->text(QMC2_GAMELIST_COLUMN_GAME);
 			if ( jDescription.isEmpty() )
 				continue;
 			isBIOS = isBios(jValue);
@@ -2141,7 +2141,7 @@ void Gamelist::parse()
 			hierarchySubItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
 			hierarchySubItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
 			hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_GAME, jDescription);
-			baseItem = qmc2GamelistItemMap[jValue];
+			baseItem = qmc2GamelistItemHash[jValue];
 			hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
 			hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
 			hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
@@ -2155,8 +2155,8 @@ void Gamelist::parse()
 				hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_VERSION, baseItem->text(QMC2_GAMELIST_COLUMN_VERSION));
 #endif
 			}
-			qmc2HierarchyItemMap[jValue] = hierarchySubItem;
-			qmc2ParentMap[jValue] = iValue;
+			qmc2HierarchyItemHash[jValue] = hierarchySubItem;
+			qmc2ParentHash[jValue] = iValue;
 
 			QIcon icon = baseItem->icon(QMC2_GAMELIST_COLUMN_ICON);
 			if ( icon.isNull() ) {
@@ -2315,7 +2315,7 @@ void Gamelist::parse()
 		} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
 			QString selectedGame = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
 			if ( !selectedGame.isEmpty() ) {
-				QTreeWidgetItem *glItem = qmc2GamelistItemMap[selectedGame];
+				QTreeWidgetItem *glItem = qmc2GamelistItemHash[selectedGame];
 				if ( glItem ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring game selection"));
@@ -2330,7 +2330,7 @@ void Gamelist::parse()
 	} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
 		QString selectedGame = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
 		if ( !selectedGame.isEmpty() ) {
-			QTreeWidgetItem *glItem = qmc2GamelistItemMap[selectedGame];
+			QTreeWidgetItem *glItem = qmc2GamelistItemHash[selectedGame];
 			if ( glItem ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring game selection"));
@@ -2551,7 +2551,7 @@ void Gamelist::loadFavorites()
 		while ( !ts.atEnd() ) {
 			QString gameName = ts.readLine();
 			if ( !gameName.isEmpty() ) {
-				QTreeWidgetItem *gameItem = qmc2GamelistItemMap[gameName];
+				QTreeWidgetItem *gameItem = qmc2GamelistItemHash[gameName];
 				if ( gameItem ) {
 					QListWidgetItem *item = new QListWidgetItem(qmc2MainWindow->listWidgetFavorites);
 					item->setText(gameItem->text(QMC2_GAMELIST_COLUMN_GAME));
@@ -2607,7 +2607,7 @@ void Gamelist::loadPlayHistory()
 		while ( !ts.atEnd() ) {
 			QString gameName = ts.readLine();
 			if ( !gameName.isEmpty() ) {
-				QTreeWidgetItem *gameItem = qmc2GamelistItemMap[gameName];
+				QTreeWidgetItem *gameItem = qmc2GamelistItemHash[gameName];
 				if ( gameItem ) {
 					QListWidgetItem *item = new QListWidgetItem(qmc2MainWindow->listWidgetPlayed);
 					item->setText(gameItem->text(QMC2_GAMELIST_COLUMN_GAME));
@@ -2970,7 +2970,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		// the progress text may have changed in the meantime...
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 			qmc2MainWindow->progressBarGamelist->setFormat(tr("ROM check - %p%"));
-		QSet<QString> gameSet = QSet<QString>::fromList(qmc2GamelistItemMap.uniqueKeys());
+		QSet<QString> gameSet = QSet<QString>::fromList(qmc2GamelistItemHash.uniqueKeys());
 		QList<QString> remainingGames = gameSet.subtract(QSet<QString>::fromList(verifiedList)).values();
 		int counter = qmc2MainWindow->progressBarGamelist->value();
 		if ( qmc2StopParser || !cleanExit ) {
@@ -2985,11 +2985,11 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				gameStatusHash[gameName] = 'U';
 				bool isBIOS = isBios(gameName);
 				bool isDevice = this->isDevice(gameName);
-				QTreeWidgetItem *romItem = qmc2GamelistItemMap[gameName];
-				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemMap[gameName];
-				QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
+				QTreeWidgetItem *romItem = qmc2GamelistItemHash[gameName];
+				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[gameName];
+				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-				QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
+				QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
 #endif
 				if ( romCache.isOpen() )
 					tsRomCache << gameName << " U\n";
@@ -3047,11 +3047,11 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				QString gameName = remainingGames[i];
 				bool isBIOS = isBios(gameName);
 				bool isDevice = this->isDevice(gameName);
-				QTreeWidgetItem *romItem = qmc2GamelistItemMap[gameName];
-				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemMap[gameName];
-				QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
+				QTreeWidgetItem *romItem = qmc2GamelistItemHash[gameName];
+				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[gameName];
+				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-				QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
+				QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
 #endif
 				// there are quite a number of sets in MESS and MAME that don't require any ROMs... many/most device-sets in particular
 				bool romRequired = true;
@@ -3186,7 +3186,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		if ( verifiedList.isEmpty() && checkedItem && exitCode == QMC2_MAME_ERROR_NO_SUCH_GAME ) {
 			// many device-sets that have no ROMs are declared as being "invalid" during the audit, but that isn't true :)
 			gameName = checkedItem->text(QMC2_GAMELIST_COLUMN_NAME);
-			QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemMap[gameName];
+			QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[gameName];
 			if ( hierarchyItem ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM status for '%1' is '%2'").arg(checkedItem->text(QMC2_GAMELIST_COLUMN_GAME)).arg(QObject::tr("correct")));
 				gameStatusHash[gameName] = 'C';
@@ -3194,9 +3194,9 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				numCorrectGames++;
 				if ( checkedItem == qmc2CurrentItem )
 					qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorGreen);
-				QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
+				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-				QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
+				QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
 #endif
 				if ( isBios(gameName) ) {
 					if ( showROMStatusIcons ) {
@@ -3392,12 +3392,12 @@ void Gamelist::verifyReadyReadStandardOutput()
 				romName = words[1].remove("\"");
 				bool isBIOS = isBios(romName);
 				bool isDevice = this->isDevice(romName);
-				if ( qmc2GamelistItemMap.contains(romName) ) {
-					QTreeWidgetItem *romItem = qmc2GamelistItemMap[romName];
-					QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemMap[romName];
-					QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[romName];
+				if ( qmc2GamelistItemHash.contains(romName) ) {
+					QTreeWidgetItem *romItem = qmc2GamelistItemHash[romName];
+					QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[romName];
+					QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[romName];
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-					QTreeWidgetItem *versionItem = qmc2VersionItemMap[romName];
+					QTreeWidgetItem *versionItem = qmc2VersionItemHash[romName];
 #endif
 					if ( romItem && hierarchyItem ) {
 						if ( words.last() == "good" || lines[i].endsWith("has no roms!") ) {
@@ -3920,7 +3920,7 @@ void Gamelist::createCategoryView()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::createCategoryView()");
 #endif
 
-	qmc2CategoryItemMap.clear();
+	qmc2CategoryItemHash.clear();
 	qmc2MainWindow->treeWidgetCategoryView->setVisible(false);
 	((AspectRatioLabel *)qmc2MainWindow->labelCreatingCategoryView)->setLabelText(tr("Loading, please wait..."));
 	qmc2MainWindow->labelCreatingCategoryView->setVisible(true);
@@ -3966,9 +3966,9 @@ void Gamelist::createCategoryView()
 			QString gameName = it.key();
 			if ( gameName.isEmpty() )
 				continue;
-			if ( !qmc2GamelistItemMap.contains(gameName) )
+			if ( !qmc2GamelistItemHash.contains(gameName) )
 				continue;
-			QTreeWidgetItem *baseItem = qmc2GamelistItemMap[gameName];
+			QTreeWidgetItem *baseItem = qmc2GamelistItemHash[gameName];
 			QString *categoryPtr = it.value();
 			QString category;
 			if ( categoryPtr )
@@ -4051,7 +4051,7 @@ void Gamelist::createCategoryView()
 						break;
 				}
 			}
-			qmc2CategoryItemMap[gameName] = gameItem;
+			qmc2CategoryItemHash[gameName] = gameItem;
 		}
 		qmc2MainWindow->treeWidgetCategoryView->insertTopLevelItems(0, itemList);
 		foreach (QTreeWidgetItem *hiddenItem, hideList)
@@ -4150,7 +4150,7 @@ void Gamelist::createVersionView()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::createVersionView()");
 #endif
 
-	qmc2VersionItemMap.clear();
+	qmc2VersionItemHash.clear();
 	qmc2MainWindow->treeWidgetVersionView->setVisible(false);
 	((AspectRatioLabel *)qmc2MainWindow->labelCreatingVersionView)->setLabelText(tr("Loading, please wait..."));
 	qmc2MainWindow->labelCreatingVersionView->setVisible(true);
@@ -4196,9 +4196,9 @@ void Gamelist::createVersionView()
 			QString gameName = it.key();
 			if ( gameName.isEmpty() )
 				continue;
-			if ( !qmc2GamelistItemMap.contains(gameName) )
+			if ( !qmc2GamelistItemHash.contains(gameName) )
 				continue;
-			QTreeWidgetItem *baseItem = qmc2GamelistItemMap[gameName];
+			QTreeWidgetItem *baseItem = qmc2GamelistItemHash[gameName];
 			QString *versionPtr = it.value();
 			QString version;
 			if ( versionPtr )
@@ -4281,7 +4281,7 @@ void Gamelist::createVersionView()
 						break;
 				}
 			}
-			qmc2VersionItemMap[gameName] = gameItem;
+			qmc2VersionItemHash[gameName] = gameItem;
 		}
 		qmc2MainWindow->treeWidgetVersionView->insertTopLevelItems(0, itemList);
 		foreach (QTreeWidgetItem *hiddenItem, hideList)

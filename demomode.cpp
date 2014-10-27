@@ -1,4 +1,5 @@
 #include <QMap>
+#include <QHash>
 #include <QTreeWidgetItem>
 #include <QStringList>
 
@@ -9,7 +10,7 @@
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
+extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
 extern QString qmc2DemoGame;
 extern QStringList qmc2DemoArgs;
 extern bool qmc2ReloadActive;
@@ -203,20 +204,20 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Sequential", checkBoxSequential->isChecked());
 		selectedGames.clear();
 		if ( checkBoxTagged->isChecked() ) {
-			foreach (QString game, qmc2GamelistItemMap.keys()) {
+			foreach (QString game, qmc2GamelistItemHash.keys()) {
 				if ( qmc2Gamelist->isDevice(game) )
 					continue;
-				QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
+				QTreeWidgetItem *gameItem = qmc2GamelistItemHash[game];
 				if ( !gameItem )
 					continue;
 				if ( gameItem->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked )
 					selectedGames << game;
 			}
 		} else if ( checkBoxFavorites->isChecked() ) {
-			foreach (QString game, qmc2GamelistItemMap.keys()) {
+			foreach (QString game, qmc2GamelistItemHash.keys()) {
 				if ( qmc2Gamelist->isDevice(game) )
 					continue;
-				QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
+				QTreeWidgetItem *gameItem = qmc2GamelistItemHash[game];
 				if ( gameItem ) {
 					QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(gameItem->text(QMC2_GAMELIST_COLUMN_GAME), Qt::MatchExactly);
 					if ( !favoritesMatches.isEmpty() )
@@ -230,7 +231,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 			QRegExp nameFilterRegExp(nameFilter);
 			if ( !nameFilter.isEmpty() && !nameFilterRegExp.isValid() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: demo mode: the name filter regular expression is invalid"));
-			foreach (QString game, qmc2GamelistItemMap.keys()) {
+			foreach (QString game, qmc2GamelistItemHash.keys()) {
 				if ( !nameFilter.isEmpty() )
 					if ( game.indexOf(nameFilterRegExp) < 0 )
 						continue;
@@ -242,7 +243,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 					category = tr("?");
 				if ( qmc2Gamelist->isDevice(game) || (!qmc2Gamelist->categoryMap.isEmpty() && excludedCategories.contains(category)) )
 					continue;
-				QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
+				QTreeWidgetItem *gameItem = qmc2GamelistItemHash[game];
 				if ( !gameItem )
 					continue;
 				if ( minDrvStatus < QMC2_DEMO_MODE_DRV_STATUS_PRELIMINARY ) {
@@ -356,7 +357,7 @@ void DemoModeDialog::startNextEmu()
 		qmc2DemoGame = selectedGames[seqNum];
 	} else
 		qmc2DemoGame = selectedGames[qrand() % selectedGames.count()];
-	QString gameDescription = qmc2GamelistItemMap[qmc2DemoGame]->text(QMC2_GAMELIST_COLUMN_GAME);
+	QString gameDescription = qmc2GamelistItemHash[qmc2DemoGame]->text(QMC2_GAMELIST_COLUMN_GAME);
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulation in demo mode for '%1'").arg(gameDescription));
 	setStatus(gameDescription);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)

@@ -40,8 +40,8 @@ extern bool qmc2CriticalSection;
 extern bool qmc2UseDefaultEmulator;
 extern bool qmc2TemplateCheck;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
-extern QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
-extern QMap<QString, QString> qmc2CustomShortcutMap;
+extern QHash<QString, QPair<QString, QAction *> > qmc2ShortcutHash;
+extern QHash<QString, QString> qmc2CustomShortcutHash;
 
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QStringList> systemSoftwareFilterMap;
@@ -200,9 +200,9 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/update.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(checkSoftwareStates()));
 	actionCheckSoftwareStates = action;
-	actionCheckSoftwareStates->setShortcut(QKeySequence(qmc2CustomShortcutMap["F10"]));
+	actionCheckSoftwareStates->setShortcut(QKeySequence(qmc2CustomShortcutHash["F10"]));
 	actionCheckSoftwareStates->setShortcutContext(Qt::ApplicationShortcut);
-	qmc2ShortcutMap["F10"].second = actionCheckSoftwareStates;
+	qmc2ShortcutHash["F10"].second = actionCheckSoftwareStates;
 	menuSoftwareStates->addSeparator();
 	stateFilter = new SoftwareStateFilter(menuSoftwareStates);
 	QWidgetAction *stateFilterAction = new QWidgetAction(menuSoftwareStates);
