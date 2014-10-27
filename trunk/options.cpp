@@ -151,7 +151,7 @@ extern ToolBarCustomizer *qmc2ToolBarCustomizer;
 extern PaletteEditor *qmc2PaletteEditor;
 extern QWidget *qmc2DetailSetupParent;
 #if QMC2_JOYSTICK == 1
-extern QMap<QString, QString> qmc2JoystickFunctionMap;
+extern QHash<QString, QString> qmc2JoystickFunctionHash;
 extern bool qmc2JoystickIsCalibrating;
 #endif
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
@@ -1640,7 +1640,7 @@ void Options::on_pushButtonApply_clicked()
 	while ( it.hasNext() ) {
 		it.next();
 		QString itShortcut = it.key();
-		QString myKey = qmc2JoystickFunctionMap.key(itShortcut);
+		QString myKey = qmc2JoystickFunctionHash.key(itShortcut);
 		if ( myKey.isEmpty() )
 			config->remove(QString(QMC2_FRONTEND_PREFIX + "Joystick/Map/%1").arg(itShortcut));
 		else
@@ -2874,7 +2874,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 		item->setWhatsThis(0, itShortcut);
 		QString joyMapFunction = config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/Map/%1").arg(itShortcut), "").toString();
 		if ( !joyMapFunction.isEmpty() ) {
-			qmc2JoystickFunctionMap.insertMulti(joyMapFunction, itShortcut);
+			qmc2JoystickFunctionHash.insertMulti(joyMapFunction, itShortcut);
 			item->setText(1, joyMapFunction);
 		}
 	}
@@ -5248,7 +5248,7 @@ void Options::on_treeWidgetJoystickMappings_itemActivated(QTreeWidgetItem *item)
 			JoystickFunctionScanner joyFuncScanner(joystick, false, this);
 			if ( joyFuncScanner.exec() == QDialog::Accepted ) {
 				item->setText(1, joyFuncScanner.labelJoystickFunction->text());
-				qmc2JoystickFunctionMap.insertMulti(joyFuncScanner.labelJoystickFunction->text(), item->whatsThis(0));
+				qmc2JoystickFunctionHash.insertMulti(joyFuncScanner.labelJoystickFunction->text(), item->whatsThis(0));
 				pushButtonRemoveJoystickMapping->setEnabled(item->text(1).length() > 0);
 				QTimer::singleShot(0, this, SLOT(checkJoystickMappings()));
 			}
@@ -5292,14 +5292,14 @@ void Options::on_pushButtonRemoveJoystickMapping_clicked()
 
 	QList<QTreeWidgetItem *> selItems = treeWidgetJoystickMappings->selectedItems();
 	if ( selItems.count() > 0 ) {
-		QList<QString> valueList = qmc2JoystickFunctionMap.values(selItems[0]->text(1));
-		qmc2JoystickFunctionMap.remove(selItems[0]->text(1));
+		QList<QString> valueList = qmc2JoystickFunctionHash.values(selItems[0]->text(1));
+		qmc2JoystickFunctionHash.remove(selItems[0]->text(1));
 		if ( valueList.count() > 1 ) {
 			int i;
 			QString valueToRemove = selItems[0]->whatsThis(0);
 			for (i = 0; i < valueList.count(); i++)
 				if ( valueList[i] != valueToRemove )
-					qmc2JoystickFunctionMap.insertMulti(selItems[0]->text(1), valueList[i]);
+					qmc2JoystickFunctionHash.insertMulti(selItems[0]->text(1), valueList[i]);
 		}
 		selItems[0]->setText(1, "");
 		pushButtonRemoveJoystickMapping->setEnabled(false);
