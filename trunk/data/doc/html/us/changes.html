@@ -23,6 +23,7 @@ inf: informational only
   <li>imp: Linux / UNIX / Mac OS X: defaulting to SDL2 templates now since SDLMAME/SDLMESS switched to SDL2 as default build target after 0.155</li>
   <li>imp: replaced the colored sphere icons showing the ROM status with new images</li>
   <li>imp: using QHash instead of QMap for all internal item lookup tables (less dependent on the number of entries, thus faster in the long run)</li>
+  <li>imp: drastically improved the performance of all game/machine views by enabling <i>uniformRowHeights</i> which allows for neat optimizations by Qt (improves loading time as well as sorting and scrolling)</li>
 </ul>
 <p><b>v0.45, 15-OCT-2014:</b></p>
 <ul>

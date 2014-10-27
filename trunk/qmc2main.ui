@@ -146,6 +146,9 @@
                   <property name="statusTip">
                    <string>List of all supported games</string>
                   </property>
+                  <property name="uniformRowHeights">
+                   <bool>true</bool>
+                  </property>
                   <property name="columnCount">
                    <number>13</number>
                   </property>
@@ -297,6 +300,9 @@
                   <property name="statusTip">
                    <string>Parent / clone hierarchy</string>
                   </property>
+                  <property name="uniformRowHeights">
+                   <bool>true</bool>
+                  </property>
                   <column>
                    <property name="text">
                     <string>Game / Clones</string>
@@ -444,6 +450,9 @@
                   </property>
                   <property name="statusTip">
                    <string>List of games viewed by category</string>
+                  </property>
+                  <property name="uniformRowHeights">
+                   <bool>true</bool>
                   </property>
                   <property name="columnCount">
                    <number>13</number>
@@ -595,6 +604,9 @@
                   </property>
                   <property name="statusTip">
                    <string>List of games viewed by version they were added to the emulator</string>
+                  </property>
+                  <property name="uniformRowHeights">
+                   <bool>true</bool>
                   </property>
                   <property name="columnCount">
                    <number>13</number>

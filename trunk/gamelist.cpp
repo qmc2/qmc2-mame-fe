@@ -2304,10 +2304,6 @@ void Gamelist::parse()
 		qmc2Gamelist->userDataDb()->fillUpRankCache();
 	qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 	qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
-	qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
-	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
-	qApp->processEvents();
-
 	QTreeWidgetItem *ci = qmc2MainWindow->treeWidgetGamelist->currentItem();
 	if ( ci ) {
 		if ( ci->isSelected() ) {
@@ -2344,6 +2340,8 @@ void Gamelist::parse()
 	}
 	qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
 	qmc2MainWindow->labelGamelistStatus->setText(status());
+	qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
 
 	processGamelistElapsedTimer = processGamelistElapsedTimer.addMSecs(parseTimer.elapsed());
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
