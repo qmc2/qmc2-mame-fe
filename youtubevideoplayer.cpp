@@ -24,10 +24,10 @@
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
-extern QMap <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoMap;
-extern QMap<QString, QString> qmc2CustomShortcutHash;
+extern QHash <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoHash;
+extern QHash<QString, QString> qmc2CustomShortcutHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
-extern bool qmc2YouTubeVideoInfoMapChanged;
+extern bool qmc2YouTubeVideoInfoHashChanged;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
@@ -901,8 +901,8 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 		videoItemWidget = new VideoItemWidget(id, title, author, 0, itemType, this, listWidgetAttachedVideos);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 	viwMap[id] = videoItemWidget;
-	qmc2YouTubeVideoInfoMap[id] = YouTubeVideoInfo(title, author);
-	qmc2YouTubeVideoInfoMapChanged = true;
+	qmc2YouTubeVideoInfoHash[id] = YouTubeVideoInfo(title, author);
+	qmc2YouTubeVideoInfoHashChanged = true;
 }
 
 void YouTubeVideoPlayer::attachCurrentVideo()
@@ -954,8 +954,8 @@ void YouTubeVideoPlayer::init()
 		if ( vid.startsWith("#:" ) )
 			attachVideo(vid, QString(), QString());
 		else {
-			if ( qmc2YouTubeVideoInfoMap.contains(vid) ) {
-				YouTubeVideoInfo vi = qmc2YouTubeVideoInfoMap[vid];
+			if ( qmc2YouTubeVideoInfoHash.contains(vid) ) {
+				YouTubeVideoInfo vi = qmc2YouTubeVideoInfoHash[vid];
 				attachVideo(vid, vi.title, vi.author);
 			} else
 				attachVideoById(vid); // this is more expensive
