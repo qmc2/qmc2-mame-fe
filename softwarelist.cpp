@@ -54,11 +54,21 @@ QString swStatesLastLine;
 bool swlSupported = true;
 bool SoftwareList::isInitialLoad = true;
 
+#define swlDb	qmc2MainWindow->swlDb
+
 SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	: QWidget(parent)
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::SoftwareList(QString sysName = %1, QWidget *parent = %2)").arg(sysName).arg((qulonglong)parent));
+#endif
+
+#if defined(QMC2_WIP_ENABLED)
+	if ( !swlDb ) {
+		swlDb = new SoftwareListXmlDatabaseManager(qmc2MainWindow);
+		swlDb->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
+		swlDb->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
+	}
 #endif
 
 	setupUi(this);

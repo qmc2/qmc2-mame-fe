@@ -21,6 +21,7 @@
 #endif
 #include "imagewidget.h"
 #include "rankitemwidget.h"
+#include "swldbmgr.h"
 
 class ProxyStyle : public QProxyStyle
 {
@@ -205,6 +206,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QPoint adjustedWidgetPosition(QPoint, QWidget *);
 		QStringList &getXmlChoices(QString, QString, QString optionAttribute = QString(), QString *defaultChoice = NULL);
 		static bool qStringListLessThan(const QString &, const QString &);
+		SoftwareListXmlDatabaseManager *swlDb;
 
 		MainWindow(QWidget *parent = 0);
 		~MainWindow();

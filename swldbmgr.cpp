@@ -110,41 +110,41 @@ void SoftwareListXmlDatabaseManager::setQmc2Version(QString qmc2_version)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from software-list XML cache database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
-int SoftwareListXmlDatabaseManager::xmlCacheVersion()
+int SoftwareListXmlDatabaseManager::swlCacheVersion()
 {
-	int xmlcache_version = -1;
+	int swlcache_version = -1;
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT xmlcache_version FROM %1_metadata WHERE row=0").arg(m_tableBasename));
+	query.prepare(QString("SELECT swlcache_version FROM %1_metadata WHERE row=0").arg(m_tableBasename));
 	if ( query.exec() ) {
 		if ( query.first() )
-			xmlcache_version = query.value(0).toInt();
+			swlcache_version = query.value(0).toInt();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from software-list XML cache database: query = '%2', error = '%3'").arg("xmlcache_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	return xmlcache_version;
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from software-list XML cache database: query = '%2', error = '%3'").arg("swlcache_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+	return swlcache_version;
 }
 
-void SoftwareListXmlDatabaseManager::setXmlCacheVersion(int xmlcache_version)
+void SoftwareListXmlDatabaseManager::setSwlCacheVersion(int swlcache_version)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT xmlcache_version FROM %1_metadata WHERE row=0").arg(m_tableBasename));
+	query.prepare(QString("SELECT swlcache_version FROM %1_metadata WHERE row=0").arg(m_tableBasename));
 	if ( query.exec() ) {
 		if ( !query.next() ) {
 			query.finish();
-			query.prepare(QString("INSERT INTO %1_metadata (xmlcache_version, row) VALUES (:xmlcache_version, 0)").arg(m_tableBasename));
-			query.bindValue(":xmlcache_version", xmlcache_version);
+			query.prepare(QString("INSERT INTO %1_metadata (swlcache_version, row) VALUES (:swlcache_version, 0)").arg(m_tableBasename));
+			query.bindValue(":swlcache_version", swlcache_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to software-list XML cache database: query = '%2', error = '%3'").arg("xmlcache_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to software-list XML cache database: query = '%2', error = '%3'").arg("swlcache_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		} else {
 			query.finish();
-			query.prepare(QString("UPDATE %1_metadata SET xmlcache_version=:xmlcache_version WHERE row=0").arg(m_tableBasename));
-			query.bindValue(":xmlcache_version", xmlcache_version);
+			query.prepare(QString("UPDATE %1_metadata SET swlcache_version=:swlcache_version WHERE row=0").arg(m_tableBasename));
+			query.bindValue(":swlcache_version", swlcache_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in software-list XML cache database: query = '%2', error = '%3'").arg("xmlcache_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in software-list XML cache database: query = '%2', error = '%3'").arg("swlcache_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from software-list XML cache database: query = '%2', error = '%3'").arg("xmlcache_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from software-list XML cache database: query = '%2', error = '%3'").arg("swlcache_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
 QString SoftwareListXmlDatabaseManager::dtd()
@@ -382,11 +382,11 @@ void SoftwareListXmlDatabaseManager::recreateDatabase()
 		return;
 	}
 	query.finish();
-	if ( !query.exec(QString("CREATE TABLE %1_metadata (row INTEGER PRIMARY KEY, dtd TEXT, emu_version TEXT, qmc2_version TEXT, xmlcache_version INTEGER)").arg(m_tableBasename)) ) {
+	if ( !query.exec(QString("CREATE TABLE %1_metadata (row INTEGER PRIMARY KEY, dtd TEXT, emu_version TEXT, qmc2_version TEXT, swlcache_version INTEGER)").arg(m_tableBasename)) ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create software-list XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
 	setQmc2Version(XSTR(QMC2_VERSION));
-	setXmlCacheVersion(QMC2_SWLCACHE_VERSION);
+	setSwlCacheVersion(QMC2_SWLCACHE_VERSION);
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("software-list XML cache database '%1' initialized").arg(m_db.databaseName()));
 }
