@@ -4436,6 +4436,7 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 			QComboBox *comboBoxMountDevices = NULL;
 			if ( mountList.count() > 0 ) {
 				comboBoxMountDevices = new QComboBox;
+				comboBoxMountDevices->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 				mountList.prepend(QObject::tr("Don't mount"));
 				mountList.prepend(QObject::tr("Auto mount"));
 				comboBoxMountDevices->insertItems(0, mountList);
