@@ -3135,37 +3135,45 @@ void ROMAlyzer::copyToClipboard()
 			for (int j = 0; j < treeWidgetChecksums->columnCount(); j++) {
 				if ( !treeWidgetChecksums->isColumnHidden(header->logicalIndex(j)) ) {
 					QString t = childItem->text(header->logicalIndex(j));
-					if ( j == 0 ) t.prepend("\\ ");
+					if ( j == 0 )
+						t.prepend("\\ ");
 					row << t;
-					if ( columnWidths[j] < t.length() ) columnWidths[j] = t.length();
+					if ( columnWidths[j] < t.length() )
+						columnWidths[j] = t.length();
 				}
 			}
 			rows.append(row);
 		}
 
-		QString cbText;
+		QString cbText, cbLine;
+		QRegExp removeTrailingSpacesRx("\\s+$");
 		for (int i = 0; i < columnTitles.count(); i++) {
 			if ( i == columnTitles.count() - 1 )
-				cbText += columnTitles[i].leftJustified(columnWidths[i], ' ');
+				cbLine += columnTitles[i].leftJustified(columnWidths[i], ' ');
 			else
-				cbText += columnTitles[i].leftJustified(columnWidths[i] + 2, ' ');
+				cbLine += columnTitles[i].leftJustified(columnWidths[i] + 2, ' ');
 		}
-		cbText += "\n";
+		cbLine.replace(removeTrailingSpacesRx, QString());
+		cbText += cbLine + "\n";
+		cbLine.clear();
 		for (int i = 0; i < columnTitles.count(); i++) {
 			if ( i == columnTitles.count() - 1 )
-				cbText += QString().fill('-', columnWidths[i]);
+				cbLine += QString().fill('-', columnWidths[i]);
 			else
-				cbText += QString().fill('-', columnWidths[i]) + "  ";
+				cbLine += QString().fill('-', columnWidths[i]) + "  ";
 		}
-		cbText += "\n";
+		cbLine.replace(removeTrailingSpacesRx, QString());
+		cbText += cbLine + "\n";
 		foreach (QStringList row, rows) {
+			cbLine.clear();
 			for (int i = 0; i < row.count(); i++) {
 				if ( i == row.count() - 1 )
-					cbText += row[i].leftJustified(columnWidths[i], ' ');
+					cbLine += row[i].leftJustified(columnWidths[i], ' ');
 				else
-					cbText += row[i].leftJustified(columnWidths[i] + 2, ' ');
+					cbLine += row[i].leftJustified(columnWidths[i] + 2, ' ');
 			}
-			cbText += "\n";
+			cbLine.replace(removeTrailingSpacesRx, QString());
+			cbText += cbLine + "\n";
 		}
 
 		qApp->clipboard()->setText(cbText);
