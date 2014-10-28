@@ -18,8 +18,8 @@ class SoftwareListXmlDatabaseManager : public QObject
 		void setEmulatorVersion(QString emu_version);
 		QString qmc2Version();
 		void setQmc2Version(QString qmc2_version);
-		int xmlCacheVersion();
-		void setXmlCacheVersion(int xmlcache_version);
+		int swlCacheVersion();
+		void setSwlCacheVersion(int swlcache_version);
 		QString dtd();
 		void setDtd(QString dtd);
 		QString xml(QString list, QString id);

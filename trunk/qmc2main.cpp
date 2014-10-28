@@ -438,6 +438,7 @@ MainWindow::MainWindow(QWidget *parent)
 	isActiveState = launchForeignID = negatedMatch = isCreatingSoftList = false;
 	comboBoxEmuSelector = NULL;
 	proxyStyle = NULL;
+	swlDb = NULL;
 
 	FileIconProvider::setCacheSize(QMC2_FILEICONPROVIDER_CACHE_SIZE);
 
@@ -7035,6 +7036,12 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		delete qmc2MESSDeviceConfigurator;
 	}
 #endif
+
+	if ( swlDb ) {
+		QString connectionName = swlDb->connectionName();
+		delete swlDb;
+		QSqlDatabase::removeDatabase(connectionName);
+	}
 
 	if ( qmc2EmulatorOptions ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)

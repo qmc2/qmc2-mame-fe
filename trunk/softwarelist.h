@@ -204,8 +204,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool loadFinishedFlag;
 		bool updatingMountDevices;
 		bool negatedMatch;
-		int oldMax, oldMin;
 		bool verifyReadingStdout;
+		int oldMax, oldMin;
 		QAction *actionAddToFavorites;
 		QAction *actionRemoveFromFavorites;
 		QAction *actionSaveFavoritesToFile;
