@@ -274,6 +274,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		QAction *actionAnalyzeDeviceRefs;
 		QAction *actionImportFromDataFile;
 		QAction *actionExportToDataFile;
+		QAction *actionCopyBadToClipboard;
 		QString currentFilesSHA1Checksum;
 		QString currentFilesCrcChecksum;
 		QStringList wizardSelectedSets;
@@ -357,7 +358,8 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void adjustIconSizes();
 		void runChecksumWizard();
 		void runSetRewriter();
-		void copyToClipboard();
+		void copyToClipboard(bool onlyBadOrMissing = false);
+		void copyBadToClipboard();
 		void analyzeDeviceRefs();
 		void importFromDataFile();
 		void exportToDataFile();

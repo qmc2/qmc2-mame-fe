@@ -182,6 +182,13 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
 
+	s = tr("Copy to clipboard (bad / missing dumps)");
+	action = romSetContextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopybad.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyBadToClipboard()));
+	actionCopyBadToClipboard = action;
+
 	// setup tools-menu
 	toolsMenu = new QMenu(this);
 	actionImportFromDataFile = toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Import from data file"), this, SLOT(importFromDataFile()));
@@ -733,7 +740,7 @@ void ROMAlyzer::analyze()
 					for (int j = 0; j < setsToBeRemoved; j++) {
 						QTreeWidgetItem *ti = treeWidgetChecksums->topLevelItem(0);
 						if ( ti ) {
-							analyzerBadSets.removeAll(ti->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ")[0]);
+							analyzerBadSets.removeAll(ti->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ", QString::SkipEmptyParts)[0]);
 							if ( ti->isSelected() )
 								treeWidgetChecksums->selectionModel()->clear();
 							delete treeWidgetChecksums->takeTopLevelItem(0);
@@ -843,7 +850,7 @@ void ROMAlyzer::analyze()
 					QString fileStatus;
 					bool somethingsWrong = false;
 					bool goodDump = false;
-					bool isCHD = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).split(" ")[0] == QObject::tr("CHD");
+					bool isCHD = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).split(" ", QString::SkipEmptyParts)[0] == QObject::tr("CHD");
 					bool isROM = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).startsWith(tr("ROM"));
 					bool hasDump = childItem->text(QMC2_ROMALYZER_COLUMN_EMUSTATUS) != QObject::tr("no dump");
 					QTreeWidgetItem *fileItem = NULL;
@@ -1328,7 +1335,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 
 	bool calcMD5 = checkBoxCalculateMD5->isChecked();
 	bool calcSHA1 = checkBoxCalculateSHA1->isChecked();
-	bool isCHD = type.split(" ")[0] == tr("CHD");
+	bool isCHD = type.split(" ", QString::SkipEmptyParts)[0] == tr("CHD");
 	bool sizeLimited = spinBoxMaxFileSize->value() > 0;
 	bool chdManagerVerifyCHDs = checkBoxVerifyCHDs->isChecked();
 	bool chdManagerUpdateCHDs = checkBoxUpdateCHDs->isChecked();
@@ -2212,7 +2219,7 @@ void ROMAlyzer::on_treeWidgetChecksums_itemSelectionChanged()
 			QTreeWidgetItem *item = items[0];
 			while ( (void*)item->parent() != (void *)treeWidgetChecksums && item->parent() != 0 )
 				item = item->parent();
-			QStringList words = item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ");
+			QStringList words = item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ", QString::SkipEmptyParts);
 			selectItem(words[0]);
 		}
 	}
@@ -2733,7 +2740,7 @@ void ROMAlyzer::runSetRewriter()
 					groupBoxSetRewriter->setEnabled(false);
 					bool savedSRWA = checkBoxSetRewriterWhileAnalyzing->isChecked();
 					checkBoxSetRewriterWhileAnalyzing->setChecked(false);
-					lineEditGames->setText(item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ")[0]);
+					lineEditGames->setText(item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ", QString::SkipEmptyParts)[0]);
 					qmc2StopParser = false;
 					analyze();
 					checkBoxSetRewriterWhileAnalyzing->setChecked(savedSRWA);
@@ -3011,7 +3018,7 @@ void ROMAlyzer::exportToDataFile()
 					qApp->processEvents();
 				}
 				QTreeWidgetItem *item = treeWidgetChecksums->topLevelItem(i);
-				QString name = item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ")[0];
+				QString name = item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ", QString::SkipEmptyParts)[0];
 				if ( analyzerBadSets.contains(name) ) {
 					QString sourcefile, isbios, cloneof, romof, sampleof;
 					QByteArray xmlDocument(ROMAlyzer::getXmlData(name, true).toLocal8Bit());
@@ -3105,11 +3112,13 @@ void ROMAlyzer::exportToDataFile()
 	}
 }
 
-void ROMAlyzer::copyToClipboard()
+void ROMAlyzer::copyToClipboard(bool onlyBadOrMissing)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::copyToClipboard()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::copyToClipboard(bool onlyBadOrMissing = %1)").arg(onlyBadOrMissing));
 #endif
+
+	static QStringList excludedColumnsBadOrMissing = QStringList() << tr("Merge") << tr("Emu status") << tr("File status");
 
 	QList<QTreeWidgetItem *> il = treeWidgetChecksums->selectedItems();
 	if ( !il.isEmpty() ) {
@@ -3120,27 +3129,45 @@ void ROMAlyzer::copyToClipboard()
 		QList<int> columnWidths;
 		QList<QStringList> rows;
 		QStringList firstRow;
-		for (int i = 0; i < treeWidgetChecksums->columnCount(); i++)
+		for (int i = 0; i < treeWidgetChecksums->columnCount(); i++) {
 			if ( !treeWidgetChecksums->isColumnHidden(header->logicalIndex(i)) ) {
 				QString h = headerItem->text(header->logicalIndex(i));
+				if ( onlyBadOrMissing )
+					if ( excludedColumnsBadOrMissing.contains(h) )
+						continue;
 				columnTitles << h;
 				QString t = item->text(header->logicalIndex(i));
+				if ( i == 0 )
+					if ( onlyBadOrMissing )
+						t = t.split(" ", QString::SkipEmptyParts)[0];
 				firstRow << t;
 				columnWidths.append(QMC2_MAX(t.length(), h.length()));
 			}
+		}
 		rows.append(firstRow);
 		for (int i = 0; i < item->childCount(); i++) {
 			QTreeWidgetItem *childItem = item->child(i);
+			if ( onlyBadOrMissing ) {
+				QString filestatus = childItem->text(QMC2_ROMALYZER_COLUMN_FILESTATUS);
+				if ( !(filestatus == tr("not found") || (filestatus.toUpper() != filestatus && filestatus != tr("no dump"))) )
+					continue;
+			}
 			QStringList row;
+			int columnCount = 0;
 			for (int j = 0; j < treeWidgetChecksums->columnCount(); j++) {
 				if ( !treeWidgetChecksums->isColumnHidden(header->logicalIndex(j)) ) {
+					if ( onlyBadOrMissing ) {
+						if ( excludedColumnsBadOrMissing.contains(headerItem->text(header->logicalIndex(j))) )
+							continue;
+					}
 					QString t = childItem->text(header->logicalIndex(j));
 					if ( j == 0 )
 						t.prepend("\\ ");
 					row << t;
-					if ( columnWidths[j] < t.length() )
-						columnWidths[j] = t.length();
+					if ( columnWidths[columnCount] < t.length() )
+						columnWidths[columnCount] = t.length();
 				}
+				columnCount++;
 			}
 			rows.append(row);
 		}
@@ -3178,6 +3205,15 @@ void ROMAlyzer::copyToClipboard()
 
 		qApp->clipboard()->setText(cbText);
 	}
+}
+
+void ROMAlyzer::copyBadToClipboard()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::copyBadToClipboard()");
+#endif
+
+	copyToClipboard(true);
 }
 
 void ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()
@@ -3781,6 +3817,9 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 				romFileContextMenu->show();
 			}
 		} else {
+			bool hasBadOrMissingDumps = analyzerBadSets.contains(item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ", QString::SkipEmptyParts)[0]);
+			actionCopyBadToClipboard->setVisible(hasBadOrMissingDumps);
+			actionCopyBadToClipboard->setEnabled(hasBadOrMissingDumps);
 			actionRewriteSet->setVisible(groupBoxSetRewriter->isChecked());
 			actionRewriteSet->setEnabled(groupBoxSetRewriter->isChecked());
 			QStringList deviceRefs = item->whatsThis(QMC2_ROMALYZER_COLUMN_GAME).split(",", QString::SkipEmptyParts);
