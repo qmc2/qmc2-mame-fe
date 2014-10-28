@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QSqlDatabase>
 #include <QSqlDriver>
+#include <QSqlQuery>
 
 class SoftwareListXmlDatabaseManager : public QObject
 {
@@ -23,6 +24,7 @@ class SoftwareListXmlDatabaseManager : public QObject
 		void setDtd(QString dtd);
 		QString xml(QString list, QString id);
 		QString xml(int rowid);
+		QString nextXml(QString list, QString *id, bool start = false);
 		void setXml(QString list, QString id, QString xml);
 		bool exists(QString list, QString id);
 		qint64 xmlRowCount();
@@ -42,6 +44,7 @@ class SoftwareListXmlDatabaseManager : public QObject
 		mutable QSqlDatabase m_db;
 		QString m_tableBasename;
 		QString m_connectionName;
+		QSqlQuery *m_listIterationQuery;
 };
 
 #endif
