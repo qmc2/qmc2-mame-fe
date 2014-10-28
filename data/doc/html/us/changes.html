@@ -24,6 +24,7 @@ inf: informational only
   <li>imp: replaced the colored sphere icons showing the ROM status with new images</li>
   <li>imp: using QHash instead of QMap for all internal item lookup tables (less dependent on the number of entries, thus faster in the long run)</li>
   <li>imp: drastically improved the performance of all game/machine and software-list views by enabling <i>uniformRowHeights</i> which allows for neat optimizations by Qt (improves loading time as well as sorting and scrolling)</li>
+  <li>new: ROMAlyzer: added a second 'copy to clipboard' function that only copies the bad or missing dumps from a given set and excludes columns that aren't important for this purpose</li>
   <li>wip: revising the software-list XML cache to be stored in / retrieved from an SQLite 3 database in order to save memory, speed up software-list loading and allow for later support by the ROMAlyzer -- see also <a href="http://tracker.batcom-it.net/view.php?id=63" target="_blank">bug tracker ID #63</a></li>
 </ul>
 <p><b>v0.45, 15-OCT-2014:</b></p>
