@@ -118,6 +118,9 @@
 // current format version of the check-sum database schema
 #define QMC2_CHECKSUM_DB_VERSION		1
 
+// current format version of the software-list XML cache database schema
+#define QMC2_SWLCACHE_VERSION			1
+
 // check-sum DB status updates
 #define QMC2_CHECKSUM_DB_STATUS_UPDATE_SHORT	1000
 #define QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG	60000

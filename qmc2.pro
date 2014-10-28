@@ -130,6 +130,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			aspectratiolabel.cpp \
 			checksumscannerlog.cpp \
 			collectionrebuilder.cpp \
+			swldbmgr.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -248,6 +249,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			aspectratiolabel.h \
 			checksumscannerlog.h \
 			collectionrebuilder.h \
+			swldbmgr.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h
