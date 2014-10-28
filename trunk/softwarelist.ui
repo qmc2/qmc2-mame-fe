@@ -324,7 +324,7 @@
         <x>0</x>
         <y>0</y>
         <width>587</width>
-        <height>177</height>
+        <height>179</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -354,6 +354,9 @@
          </property>
          <property name="statusTip">
           <string>List of known software</string>
+         </property>
+         <property name="uniformRowHeights">
+          <bool>true</bool>
          </property>
          <property name="sortingEnabled">
           <bool>true</bool>
@@ -413,8 +416,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>83</width>
-        <height>64</height>
+        <width>587</width>
+        <height>179</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -444,6 +447,9 @@
          </property>
          <property name="statusTip">
           <string>Favorite software configurations</string>
+         </property>
+         <property name="uniformRowHeights">
+          <bool>true</bool>
          </property>
          <property name="sortingEnabled">
           <bool>true</bool>
@@ -508,8 +514,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>83</width>
-        <height>90</height>
+        <width>587</width>
+        <height>179</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -558,6 +564,9 @@
          </property>
          <property name="statusTip">
           <string>Search results</string>
+         </property>
+         <property name="uniformRowHeights">
+          <bool>true</bool>
          </property>
          <property name="sortingEnabled">
           <bool>true</bool>
