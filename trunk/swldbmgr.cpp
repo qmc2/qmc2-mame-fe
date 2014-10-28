@@ -17,6 +17,7 @@ SoftwareListXmlDatabaseManager::SoftwareListXmlDatabaseManager(QObject *parent)
 	: QObject(parent)
 {
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	m_listIterationQuery = NULL;
 	m_connectionName = QString("swl-cache-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
 	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SwlCacheDatabase", QString(userScopePath + "/%1-swl-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
@@ -212,6 +213,36 @@ QString SoftwareListXmlDatabaseManager::xml(int rowid)
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from software-list XML cache database: query = '%2', error = '%3'").arg("xml").arg(query.lastQuery()).arg(m_db.lastError().text()));
 	return xml;
+}
+
+QString SoftwareListXmlDatabaseManager::nextXml(QString list, QString *id, bool start)
+{
+	if ( start || m_listIterationQuery == NULL ) {
+		if ( m_listIterationQuery )
+			delete m_listIterationQuery;
+		m_listIterationQuery = new QSqlQuery(m_db);
+		m_listIterationQuery->prepare("SELECT id, xml FROM %1 WHERE list=:list");
+		m_listIterationQuery->bindValue(":list", list);
+		if ( m_listIterationQuery->exec() ) {
+			if ( m_listIterationQuery->first() ) {
+				if ( id )
+					*id = m_listIterationQuery->value(0).toString();
+				return m_listIterationQuery->value(1).toString();
+			}
+		}
+	} else {
+		if ( m_listIterationQuery->next() ) {
+			if ( id )
+				*id = m_listIterationQuery->value(0).toString();
+			return m_listIterationQuery->value(1).toString();
+		} else {
+			delete m_listIterationQuery;
+			m_listIterationQuery = NULL;
+			if ( id )
+				id->clear();
+			return QString();
+		}
+	}
 }
 
 void SoftwareListXmlDatabaseManager::setXml(QString list, QString id, QString xml)
