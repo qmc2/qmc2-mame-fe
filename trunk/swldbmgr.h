@@ -25,9 +25,10 @@ class SoftwareListXmlDatabaseManager : public QObject
 		QString xml(QString list, QString id);
 		QString xml(int rowid);
 		QString nextXml(QString list, QString *id, bool start = false);
+		QString allXml(QString list);
 		void setXml(QString list, QString id, QString xml);
 		bool exists(QString list, QString id);
-		qint64 xmlRowCount();
+		qint64 swlRowCount();
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
 		quint64 databaseSize();
@@ -36,7 +37,7 @@ class SoftwareListXmlDatabaseManager : public QObject
 		void setJournalMode(uint journalMode);
 
 	public slots:
-		void recreateDatabase();
+		void recreateDatabase(bool quiet = false);
 		void beginTransaction() { m_db.driver()->beginTransaction(); }
 		void commitTransaction() { m_db.driver()->commitTransaction(); }
 
