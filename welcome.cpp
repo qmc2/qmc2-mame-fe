@@ -448,12 +448,24 @@ bool Welcome::checkConfig()
 			}
 		}
 		if ( QMC2_TEST_VERSION(omv, 46, osr, 6280) ) {
-			// remove the old software-list xml-cache file and the deprecated "FilesAndDirectories/SoftwareListCache" settings key
-			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCache") ) {
-				QFile f(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCache").toString());
+			// remove the old software-list xml-cache file and the deprecated "FilesAndDirectories/SoftwareListCache" settings keys
+			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_MAME + "FilesAndDirectories/SoftwareListCache") ) {
+				QFile f(startupConfig->value(QMC2_EMULATOR_PREFIX_MAME + "FilesAndDirectories/SoftwareListCache").toString());
 				if ( f.exists() )
 					f.remove();
-				startupConfig->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCache");
+				startupConfig->remove(QMC2_EMULATOR_PREFIX_MAME + "FilesAndDirectories/SoftwareListCache");
+			}
+			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_MESS + "FilesAndDirectories/SoftwareListCache") ) {
+				QFile f(startupConfig->value(QMC2_EMULATOR_PREFIX_MESS + "FilesAndDirectories/SoftwareListCache").toString());
+				if ( f.exists() )
+					f.remove();
+				startupConfig->remove(QMC2_EMULATOR_PREFIX_MESS + "FilesAndDirectories/SoftwareListCache");
+			}
+			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_UME + "FilesAndDirectories/SoftwareListCache") ) {
+				QFile f(startupConfig->value(QMC2_EMULATOR_PREFIX_UME + "FilesAndDirectories/SoftwareListCache").toString());
+				if ( f.exists() )
+					f.remove();
+				startupConfig->remove(QMC2_EMULATOR_PREFIX_UME + "FilesAndDirectories/SoftwareListCache");
 			}
 		}
 	}
