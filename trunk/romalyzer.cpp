@@ -4338,11 +4338,14 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 	int count = 0;
 	qint64 pathsRemoved = 0;
 	checkSumDb()->beginTransaction();
+	QHash<QString, bool> fileHash;
+	foreach (QString file, *fileList)
+		fileHash.insert(file, true);
 	while ( row > 0 && !exitThread && !stopScan ) {
 		emit progressChanged(count++);
 		QString path = checkSumDb()->pathOfRow(row);
 		if ( !path.isEmpty() ) {
-			if ( !fileList->contains(path) ) {
+			if ( !fileHash.contains(path) ) {
 				checkSumDb()->pathRemove(path);
 				pathsRemoved++;
 			} else
