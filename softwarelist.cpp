@@ -91,6 +91,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	currentItem = enteredItem = NULL;
 	snapForced = autoSelectSearchItem = interruptLoad = isLoading = isReady = fullyLoaded = updatingMountDevices = negatedMatch = false;
 	validData = autoMounted = true;
+	uncommittedSwlDbRows = 0;
 
 #if defined(QMC2_EMUTYPE_MAME)
 	comboBoxDeviceConfiguration->setVisible(false);
@@ -1040,6 +1041,7 @@ bool SoftwareList::load()
 		tsSWLCache << "UME_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
 #endif
 		
+		uncommittedSwlDbRows = 0;
 		loadProc = new QProcess(this);
 
 		connect(loadProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(loadError(QProcess::ProcessError)));
@@ -1362,6 +1364,10 @@ void SoftwareList::loadStarted()
 
 	// we don't know how many items there are...
 	loadFinishedFlag = false;
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+		qmc2MainWindow->progressBarGamelist->setFormat(tr("SWL data - %p%"));
+	else
+		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 	qmc2MainWindow->progressBarGamelist->setRange(0, 0);
 	qmc2MainWindow->progressBarGamelist->reset();
 }
@@ -1393,6 +1399,11 @@ void SoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
 	loadFinishedFlag = true;
 
+#if defined(QMC2_WIP_ENABLED)
+	swlDb->commitTransaction();
+	uncommittedSwlDbRows = 0;
+#endif
+
 	qmc2MainWindow->progressBarGamelist->setRange(oldMin, oldMax);
 	qmc2MainWindow->progressBarGamelist->setFormat(oldFmt);
 	qmc2MainWindow->progressBarGamelist->reset();
@@ -1402,28 +1413,111 @@ void SoftwareList::loadReadyReadStandardOutput()
 {
 	QProcess *proc = (QProcess *)sender();
 
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadReadyReadStandardOutput()"));
+#if defined(QMC2_WIP_ENABLED)
+	static QString dtdBuffer;
+	static QString currentListName;
+	static QString currentSetName;
+	static QString setXmlBuffer;
+	static bool dtdReady = false;
 #endif
 
-	QString s = swlLastLine + proc->readAllStandardOutput();
-	QStringList lines = s.split("\n");
+	if ( qmc2MainWindow->progressBarGamelist->minimum() != 0 || qmc2MainWindow->progressBarGamelist->maximum() != 0 ) {
+		qmc2MainWindow->progressBarGamelist->setRange(0, 0);
+		qmc2MainWindow->progressBarGamelist->reset();
+	}
 
-	if ( s.endsWith("\n") ) {
+	// this makes the GUI much more responsive, but is HAS to be called before proc->readAllStandardOutput()!
+	qApp->processEvents();
+
+#if defined(QMC2_OS_WIN)
+	QString readBuffer = swlLastLine + QString::fromUtf8(proc->readAllStandardOutput());
+#else
+	QString readBuffer = swlLastLine + proc->readAllStandardOutput();
+#endif
+
+	QStringList lines = readBuffer.split("\n");
+
+	if ( readBuffer.endsWith("\n") )
 		swlLastLine.clear();
-	} else {
+	else {
 		swlLastLine = lines.last();
 		lines.removeLast();
 	}
 
+#if !defined(QMC2_WIP_ENABLED)
 	foreach (QString line, lines) {
 		line = line.trimmed();
-		if ( !line.isEmpty() )
+		if ( !line.isEmpty() ) {
 			if ( !line.startsWith("<!") && !line.startsWith("<?xml") && !line.startsWith("]>") ) {
 				tsSWLCache << line << "\n";
 				swlBuffer += line + "\n";
 			}
+		}
 	}
+#else
+	if ( uncommittedSwlDbRows == 0 )
+		swlDb->beginTransaction();
+	foreach (QString line, lines) {
+		line = line.trimmed();
+		if ( !line.isEmpty() ) {
+			if ( !line.startsWith("<?xml") ) {
+				if ( line.startsWith("<!") )
+					dtdBuffer += line + "\n";
+				else if ( line.startsWith("]>") ) {
+					dtdBuffer += line;
+					dtdReady = true;
+					swlDb->setDtd(dtdBuffer);
+					dtdBuffer.clear();
+				} else if ( dtdReady ) {
+					// FIXME (start) remove when transition is done
+					tsSWLCache << line << "\n";
+					swlBuffer += line + "\n";
+					// FIXME (end)
+					int startIndex = line.indexOf("<softwarelist name=\"");
+					int endIndex = -1;
+					if ( startIndex >= 0 ) {
+						startIndex += 20;
+						endIndex = line.indexOf("\"", startIndex);
+						if ( endIndex >= 0 )
+							currentListName = line.mid(startIndex, endIndex - startIndex);
+					} else if ( line.startsWith("</softwarelist>") )
+						currentListName.clear();
+					else if ( !currentListName.isEmpty() ) {
+						startIndex = line.indexOf("<software name=\"");
+						if ( startIndex >= 0 ) {
+							startIndex += 16;
+							endIndex = line.indexOf("\"", startIndex);
+							if ( endIndex >= 0 )
+								currentSetName = line.mid(startIndex, endIndex - startIndex);
+						} else if ( line.startsWith("</software>") ) {
+							if ( swlDb->exists(currentListName, currentSetName) )
+								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: software-list XML bug: the software name '%1' is used multiple times within software-list '%2'").arg(currentSetName).arg(currentListName));
+							else if ( !currentSetName.isEmpty() ) {
+								setXmlBuffer += line;
+								swlDb->setXml(currentListName, currentSetName, setXmlBuffer);
+								uncommittedSwlDbRows++;
+							}
+							currentSetName.clear();
+							setXmlBuffer.clear();
+						}
+						if ( !currentSetName.isEmpty() )
+							setXmlBuffer += line + "\n";
+					}
+				}
+			} else {
+				dtdBuffer.clear();
+				setXmlBuffer.clear();
+				currentListName.clear();
+				currentSetName.clear();
+				dtdReady = false;
+			}
+		}
+	}
+	if ( uncommittedSwlDbRows >= QMC2_SWLCACHE_COMMIT ) {
+		swlDb->commitTransaction();
+		uncommittedSwlDbRows = 0;
+	}
+#endif
 }
 
 void SoftwareList::loadReadyReadStandardError()

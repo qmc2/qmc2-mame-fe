@@ -206,6 +206,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool negatedMatch;
 		bool verifyReadingStdout;
 		int oldMax, oldMin;
+		int uncommittedSwlDbRows;
 		QAction *actionAddToFavorites;
 		QAction *actionRemoveFromFavorites;
 		QAction *actionSaveFavoritesToFile;
