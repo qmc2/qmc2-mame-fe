@@ -3017,6 +3017,15 @@ void MainWindow::on_actionClearSoftwareListCache_triggered(bool)
 		else
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the software list cache file '%1', please check permissions").arg(fileName));
 	}
+
+#if defined(QMC2_WIP_ENABLED)
+	if ( !swlDb ) {
+		swlDb = new SoftwareListXmlDatabaseManager(qmc2MainWindow);
+		swlDb->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
+		swlDb->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
+	}
+	swlDb->recreateDatabase();
+#endif
 }
 
 void MainWindow::on_actionClearAllEmulatorCaches_triggered(bool)
