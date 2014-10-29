@@ -6,12 +6,14 @@
 
 #include "macros.h"
 #include "qmc2main.h"
+#include "gamelist.h"
 #include "settings.h"
 #include "swldbmgr.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
+extern Gamelist *qmc2Gamelist;
 
 SoftwareListXmlDatabaseManager::SoftwareListXmlDatabaseManager(QObject *parent)
 	: QObject(parent)
@@ -20,7 +22,7 @@ SoftwareListXmlDatabaseManager::SoftwareListXmlDatabaseManager(QObject *parent)
 	m_listIterationQuery = NULL;
 	m_connectionName = QString("swl-cache-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
-	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SwlCacheDatabase", QString(userScopePath + "/%1-swl-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
+	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCacheDatabase", QString(userScopePath + "/%1-swl-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
 	m_tableBasename = QString("%1_swl_cache").arg(QMC2_EMU_NAME.toLower());
 	if ( m_db.open() ) {
 		QStringList tables = m_db.driver()->tables(QSql::Tables);
@@ -245,10 +247,33 @@ QString SoftwareListXmlDatabaseManager::nextXml(QString list, QString *id, bool 
 	}
 }
 
+QString SoftwareListXmlDatabaseManager::allXml(QString list)
+{
+	static QString softwareListBuffer;
+	softwareListBuffer.clear();
+
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT xml FROM %1 WHERE list=:list").arg(m_tableBasename));
+	query.bindValue(":list", list);
+	if ( query.exec() ) {
+		if ( query.first() ) {
+			softwareListBuffer = QString("<softwarelist name=\"%1\">\n").arg(list);
+			softwareListBuffer += query.value(0).toString();
+			while ( query.next() )
+				softwareListBuffer += query.value(0).toString();
+			softwareListBuffer += "</softwarelist>";
+		}
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from software-list XML cache database: query = '%2', error = '%3'").arg("xml").arg(query.lastQuery()).arg(m_db.lastError().text()));
+
+	return softwareListBuffer;
+}
+
 void SoftwareListXmlDatabaseManager::setXml(QString list, QString id, QString xml)
 {
 	QSqlQuery query(m_db);
 	query.prepare(QString("SELECT xml FROM %1 WHERE list=:list AND id=:id").arg(m_tableBasename));
+	query.bindValue(":list", list);
 	query.bindValue(":id", id);
 	if ( query.exec() ) {
 		if ( !query.next() ) {
@@ -273,7 +298,7 @@ void SoftwareListXmlDatabaseManager::setXml(QString list, QString id, QString xm
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from software-list XML cache database: query = '%2', error = '%3'").arg("xml").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
-qint64 SoftwareListXmlDatabaseManager::xmlRowCount()
+qint64 SoftwareListXmlDatabaseManager::swlRowCount()
 {
 	QSqlQuery query(m_db);
 	if ( query.exec(QString("SELECT COUNT(*) FROM %1").arg(m_tableBasename)) ) {
@@ -351,7 +376,7 @@ void SoftwareListXmlDatabaseManager::setJournalMode(uint journalMode)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the software-list XML cache database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
-void SoftwareListXmlDatabaseManager::recreateDatabase()
+void SoftwareListXmlDatabaseManager::recreateDatabase(bool quiet)
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_tableBasename)) ) {
@@ -388,5 +413,7 @@ void SoftwareListXmlDatabaseManager::recreateDatabase()
 	}
 	setQmc2Version(XSTR(QMC2_VERSION));
 	setSwlCacheVersion(QMC2_SWLCACHE_VERSION);
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("software-list XML cache database '%1' initialized").arg(m_db.databaseName()));
+	setEmulatorVersion(qmc2Gamelist->emulatorVersion);
+	if ( !quiet )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("software-list XML cache database '%1' initialized").arg(m_db.databaseName()));
 }

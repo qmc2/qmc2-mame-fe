@@ -45,14 +45,10 @@ extern QHash<QString, QString> qmc2CustomShortcutHash;
 
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QStringList> systemSoftwareFilterMap;
-QMap<QString, QString> softwareListXmlDataCache;
 QHash<QString, QMap<QString, char> > softwareListStateHash;
-QString swlBuffer;
-QString swlSelectedMountDevice;
-QString swStatesBuffer;
-QString swStatesLastLine;
-bool swlSupported = true;
 bool SoftwareList::isInitialLoad = true;
+bool SoftwareList::swlSupported = true;
+QString SoftwareList::swStatesLastLine;
 
 #define swlDb	qmc2MainWindow->swlDb
 
@@ -63,13 +59,11 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::SoftwareList(QString sysName = %1, QWidget *parent = %2)").arg(sysName).arg((qulonglong)parent));
 #endif
 
-#if defined(QMC2_WIP_ENABLED)
 	if ( !swlDb ) {
 		swlDb = new SoftwareListXmlDatabaseManager(qmc2MainWindow);
 		swlDb->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
 		swlDb->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
 	}
-#endif
 
 	setupUi(this);
 
@@ -422,28 +416,9 @@ QString &SoftwareList::getSoftwareListXmlData(QString listName)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::getSoftwareListXmlData(QString listName = %1)").arg(listName));
 #endif
 
-	static QString softwareListXmlBuffer;
-
-	softwareListXmlBuffer = softwareListXmlDataCache[listName];
-
-	if ( softwareListXmlBuffer.isEmpty() ) {
-		int i = 0;
-		int swlLinesMax = swlLines.count() - 1;
-		QString s = "<softwarelist name=\"" + listName + "\"";
-		while ( !swlLines[i].startsWith(s) && i < swlLinesMax && !interruptLoad ) i++;
-		softwareListXmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-		while ( !swlLines[i].startsWith("</softwarelist>") && i < swlLinesMax && !interruptLoad )
-			softwareListXmlBuffer += swlLines[i++].simplified() + "\n";
-		softwareListXmlBuffer += "</softwarelist>";
-		if ( i < swlLinesMax )
-			softwareListXmlDataCache[listName] = softwareListXmlBuffer;
-		else {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: software list '%1' not found").arg(listName));
-			softwareListXmlBuffer.clear();
-		}
-	}
-
-	return softwareListXmlBuffer;
+	static QString softwareListBuffer;
+	softwareListBuffer = swlDb->allXml(listName);
+	return softwareListBuffer;
 }
 
 QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
@@ -877,7 +852,6 @@ bool SoftwareList::load()
 	isLoading = true;
 	fullyLoaded = false;
 	validData = swlSupported;
-	QString swlCachePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCache").toString();
 	numSoftwareTotal = numSoftwareCorrect = numSoftwareIncorrect = numSoftwareMostlyCorrect = numSoftwareNotFound = numSoftwareUnknown = 0;
 	updateStats();
 
@@ -894,7 +868,7 @@ bool SoftwareList::load()
 	treeWidgetSearchResults->setSortingEnabled(false);
 	treeWidgetSearchResults->header()->setSortIndicatorShown(false);
 
-	if ( swlBuffer.isEmpty() && swlSupported ) {
+	if ( swlSupported ) {
 		oldMin = qmc2MainWindow->progressBarGamelist->minimum();
 		oldMax = qmc2MainWindow->progressBarGamelist->maximum();
 		oldFmt = qmc2MainWindow->progressBarGamelist->format();
@@ -906,97 +880,8 @@ bool SoftwareList::load()
 		show();
 		qApp->processEvents();
 
-		swlLines.clear();
-		swlCacheOkay = false;
-		if ( !swlCachePath.isEmpty() ) {
-			fileSWLCache.setFileName(swlCachePath);
-			if ( fileSWLCache.open(QIODevice::ReadOnly | QIODevice::Text) ) {
-				QTextStream ts(&fileSWLCache);
-				ts.setCodec(QTextCodec::codecForName("UTF-8"));
-				QString line = ts.readLine();
-				line = ts.readLine();
-#if defined(QMC2_EMUTYPE_MAME)
-				if ( line.startsWith("MAME_VERSION") ) {
-					QStringList words = line.split("\t");
-					if ( words.count() > 1 ) {
-						if ( qmc2Gamelist->emulatorVersion == words[1] )
-							swlCacheOkay = true;
-					}
-				}
-#elif defined(QMC2_EMUTYPE_MESS)
-				if ( line.startsWith("MESS_VERSION") ) {
-					QStringList words = line.split("\t");
-					if ( words.count() > 1 ) {
-						if ( qmc2Gamelist->emulatorVersion == words[1] )
-							swlCacheOkay = true;
-					}
-				}
-#elif defined(QMC2_EMUTYPE_UME)
-				if ( line.startsWith("UME_VERSION") ) {
-					QStringList words = line.split("\t");
-					if ( words.count() > 1 ) {
-						if ( qmc2Gamelist->emulatorVersion == words[1] )
-							swlCacheOkay = true;
-					}
-				}
-#endif
-				if ( swlCacheOkay ) {
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML software list data from cache"));
-					QTime elapsedTime(0, 0, 0, 0);
-					loadTimer.start();
-
-					if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-						qmc2MainWindow->progressBarGamelist->setFormat(tr("SWL cache - %p%"));
-					else
-						qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-					QFileInfo fi(swlCachePath);
-					qmc2MainWindow->progressBarGamelist->setRange(0, fi.size());
-					qmc2MainWindow->progressBarGamelist->setValue(0);
-					QString readBuffer;
-					while ( !ts.atEnd() || !readBuffer.isEmpty() ) {
-						readBuffer += ts.read(QMC2_FILE_BUFFER_SIZE);
-						bool endsWithNewLine = readBuffer.endsWith("\n");
-						QStringList lines = readBuffer.split("\n");
-						int l, lc = lines.count();
-						if ( !endsWithNewLine )
-							lc -= 1;
-						for (l = 0; l < lc; l++) {
-							if ( !lines[l].isEmpty() ) {
-								line = lines[l];
-								swlBuffer += line + "\n";
-							}
-						}
-						if ( endsWithNewLine )
-							readBuffer.clear();
-						else
-							readBuffer = lines.last();
-						qmc2MainWindow->progressBarGamelist->setValue(swlBuffer.length());
-					}
-					qmc2MainWindow->progressBarGamelist->reset();
-					qmc2MainWindow->progressBarGamelist->setRange(oldMin, oldMax);
-					elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML software list data from cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-					validData = true;
-				}
-				if ( fileSWLCache.isOpen() )
-					fileSWLCache.close();
-			}
-		} else {
-#if defined(QMC2_EMUTYPE_MAME)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: the file name for the MAME software list cache is empty -- please correct this and reload the game list afterwards"));
-#elif defined(QMC2_EMUTYPE_MESS)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: the file name for the MESS software list cache is empty -- please correct this and reload the machine list afterwards"));
-#elif defined(QMC2_EMUTYPE_UME)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: the file name for the UME software list cache is empty -- please correct this and reload the game list afterwards"));
-#endif
-			labelLoadingSoftwareLists->setVisible(false);
-			toolBoxSoftwareList->setVisible(true);
-
-			isLoading = false;
-			isInitialLoad = false;
-			return false;
-		}
-        }
+		swlCacheOkay = (swlDb->swlRowCount() > 0) && (qmc2Gamelist->emulatorVersion == swlDb->emulatorVersion());
+	}
 
 	if ( !swlCacheOkay ) {
 		isInitialLoad = true;
@@ -1004,52 +889,21 @@ bool SoftwareList::load()
 		labelLoadingSoftwareLists->setVisible(true);
 		toolBoxSoftwareList->setVisible(false);
 		show();
-
 		loadTimer.start();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML software list data and recreating cache"));
-
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 			qmc2MainWindow->progressBarGamelist->setFormat(tr("SWL data - %p%"));
 		else
 			qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-
-		if ( !fileSWLCache.open(QIODevice::WriteOnly | QIODevice::Text) ) {
-#if defined(QMC2_EMUTYPE_MAME)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open the MAME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards").arg(swlCachePath));
-#elif defined(QMC2_EMUTYPE_MESS)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open the MESS software list cache for writing, path = %1 -- please check/correct access permissions and reload the machine list afterwards").arg(swlCachePath));
-#elif defined(QMC2_EMUTYPE_UME)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open the UME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards").arg(swlCachePath));
-#endif
-			isLoading = false;
-			isInitialLoad = false;
-			return false;
-		}
-
-		swlBuffer.clear();
 		swlLastLine.clear();
-
-		tsSWLCache.setDevice(&fileSWLCache);
-		tsSWLCache.setCodec(QTextCodec::codecForName("UTF-8"));
-		tsSWLCache.reset();
-		tsSWLCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
-#if defined(QMC2_EMUTYPE_MAME)
-		tsSWLCache << "MAME_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
-#elif defined(QMC2_EMUTYPE_MESS)
-		tsSWLCache << "MESS_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
-#elif defined(QMC2_EMUTYPE_UME)
-		tsSWLCache << "UME_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
-#endif
-		
+		swlDb->recreateDatabase(true);
 		uncommittedSwlDbRows = 0;
 		loadProc = new QProcess(this);
-
 		connect(loadProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(loadError(QProcess::ProcessError)));
 		connect(loadProc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(loadFinished(int, QProcess::ExitStatus)));
 		connect(loadProc, SIGNAL(readyReadStandardOutput()), this, SLOT(loadReadyReadStandardOutput()));
 		connect(loadProc, SIGNAL(readyReadStandardError()), this, SLOT(loadReadyReadStandardError()));
 		connect(loadProc, SIGNAL(started()), this, SLOT(loadStarted()));
-		connect(loadProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(loadStateChanged(QProcess::ProcessState)));
 
 		QString command = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString();
 		QStringList args;
@@ -1111,7 +965,6 @@ bool SoftwareList::load()
 
 	QStringList softwareList = systemSoftwareListMap[systemName];
 	if ( !softwareList.contains("NO_SOFTWARE_LIST") && !interruptLoad ) {
-		swlLines = swlBuffer.split("\n");
 		foreach (QString swList, softwareList) {
 			if ( interruptLoad ) break;
 			QString softwareListXml = getSoftwareListXmlData(swList);
@@ -1393,17 +1246,9 @@ void SoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	QTime elapsedTime(0, 0, 0, 0);
 	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML software list data and recreating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-
-	if ( fileSWLCache.isOpen() )
-		fileSWLCache.close();
-
-	loadFinishedFlag = true;
-
-#if defined(QMC2_WIP_ENABLED)
 	swlDb->commitTransaction();
 	uncommittedSwlDbRows = 0;
-#endif
-
+	loadFinishedFlag = true;
 	qmc2MainWindow->progressBarGamelist->setRange(oldMin, oldMax);
 	qmc2MainWindow->progressBarGamelist->setFormat(oldFmt);
 	qmc2MainWindow->progressBarGamelist->reset();
@@ -1413,13 +1258,11 @@ void SoftwareList::loadReadyReadStandardOutput()
 {
 	QProcess *proc = (QProcess *)sender();
 
-#if defined(QMC2_WIP_ENABLED)
 	static QString dtdBuffer;
 	static QString currentListName;
 	static QString currentSetName;
 	static QString setXmlBuffer;
 	static bool dtdReady = false;
-#endif
 
 	if ( qmc2MainWindow->progressBarGamelist->minimum() != 0 || qmc2MainWindow->progressBarGamelist->maximum() != 0 ) {
 		qmc2MainWindow->progressBarGamelist->setRange(0, 0);
@@ -1444,19 +1287,9 @@ void SoftwareList::loadReadyReadStandardOutput()
 		lines.removeLast();
 	}
 
-#if !defined(QMC2_WIP_ENABLED)
-	foreach (QString line, lines) {
-		line = line.trimmed();
-		if ( !line.isEmpty() ) {
-			if ( !line.startsWith("<!") && !line.startsWith("<?xml") && !line.startsWith("]>") ) {
-				tsSWLCache << line << "\n";
-				swlBuffer += line + "\n";
-			}
-		}
-	}
-#else
 	if ( uncommittedSwlDbRows == 0 )
 		swlDb->beginTransaction();
+
 	foreach (QString line, lines) {
 		line = line.trimmed();
 		if ( !line.isEmpty() ) {
@@ -1469,10 +1302,6 @@ void SoftwareList::loadReadyReadStandardOutput()
 					swlDb->setDtd(dtdBuffer);
 					dtdBuffer.clear();
 				} else if ( dtdReady ) {
-					// FIXME (start) remove when transition is done
-					tsSWLCache << line << "\n";
-					swlBuffer += line + "\n";
-					// FIXME (end)
 					int startIndex = line.indexOf("<softwarelist name=\"");
 					int endIndex = -1;
 					if ( startIndex >= 0 ) {
@@ -1517,7 +1346,6 @@ void SoftwareList::loadReadyReadStandardOutput()
 		swlDb->commitTransaction();
 		uncommittedSwlDbRows = 0;
 	}
-#endif
 }
 
 void SoftwareList::loadReadyReadStandardError()
@@ -1540,9 +1368,6 @@ void SoftwareList::loadReadyReadStandardError()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the currently selected UME emulator doesn't support software lists"));
 #endif
 		swlSupported = false;
-		if ( fileSWLCache.isOpen() )
-			fileSWLCache.close();
-		fileSWLCache.remove();
 	}
 }
 
@@ -1562,19 +1387,8 @@ void SoftwareList::loadError(QProcess::ProcessError processError)
 	validData = false;
 	loadFinishedFlag = true;
 
-	if ( fileSWLCache.isOpen() )
-		fileSWLCache.close();
-
 	qmc2MainWindow->progressBarGamelist->setRange(0, 1);
 	qmc2MainWindow->progressBarGamelist->reset();
-}
-
-void SoftwareList::loadStateChanged(QProcess::ProcessState processState)
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadStateChanged(QProcess::ProcessState processState = %1)").arg(processState));
-#endif
-
 }
 
 void SoftwareList::checkSoftwareStates()
@@ -1617,7 +1431,6 @@ void SoftwareList::checkSoftwareStates()
 		connect(verifyProc, SIGNAL(readyReadStandardOutput()), this, SLOT(verifyReadyReadStandardOutput()));
 		connect(verifyProc, SIGNAL(readyReadStandardError()), this, SLOT(verifyReadyReadStandardError()));
 		connect(verifyProc, SIGNAL(started()), this, SLOT(verifyStarted()));
-		connect(verifyProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(verifyStateChanged(QProcess::ProcessState)));
 
 		softwareListName = softwareList;
 		swStatesLastLine.clear();
@@ -1939,13 +1752,6 @@ void SoftwareList::verifyError(QProcess::ProcessError processError)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to verify software-states caused an error -- processError = %1").arg(processError));
 
 	progressBar->setVisible(false);
-}
-
-void SoftwareList::verifyStateChanged(QProcess::ProcessState processState)
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyStateChanged(QProcess::ProcessState processState = %1)").arg(processState));
-#endif
 }
 
 void SoftwareList::on_toolButtonToggleSnapnameAdjustment_clicked(bool checked)
@@ -2312,10 +2118,10 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemExpanded(QTreeWidgetItem *item
 		return;
 
 	if ( item->child(0)->text(QMC2_SWLIST_COLUMN_TITLE) == tr("Waiting for data...") ) {
-		QString softwareListXml = getSoftwareListXmlData(item->text(QMC2_SWLIST_COLUMN_LIST));
-		if ( !softwareListXml.isEmpty() ) {
+		QString softwareXml = swlDb->xml(item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME));
+		if ( !softwareXml.isEmpty() ) {
 			QXmlInputSource xmlInputSource;
-			xmlInputSource.setData(softwareListXml);
+			xmlInputSource.setData(softwareXml);
 			successfulLookups.clear();
 			SoftwareEntryXmlHandler xmlHandler(item);
 			QXmlSimpleReader xmlReader;
@@ -2330,9 +2136,8 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemExpanded(QTreeWidgetItem *item
 				if ( !xmlHandler.success )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
 			treeWidgetKnownSoftware->setSortingEnabled(true);
-		} else {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't find XML data for software list '%1'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)));
-		}
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't find XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
 	}
 }
 
@@ -2346,10 +2151,10 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemExpanded(QTreeWidgetItem *i
 		return;
 
 	if ( item->child(0)->text(QMC2_SWLIST_COLUMN_TITLE) == tr("Waiting for data...") ) {
-		QString softwareListXml = getSoftwareListXmlData(item->text(QMC2_SWLIST_COLUMN_LIST));
-		if ( !softwareListXml.isEmpty() ) {
+		QString softwareXml = swlDb->xml(item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME));
+		if ( !softwareXml.isEmpty() ) {
 			QXmlInputSource xmlInputSource;
-			xmlInputSource.setData(softwareListXml);
+			xmlInputSource.setData(softwareXml);
 			successfulLookups.clear();
 			SoftwareEntryXmlHandler xmlHandler(item);
 			QXmlSimpleReader xmlReader;
@@ -2364,9 +2169,8 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemExpanded(QTreeWidgetItem *i
 				if ( !xmlHandler.success )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
 			treeWidgetFavoriteSoftware->setSortingEnabled(true);
-		} else {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't find XML data for software list '%1'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)));
-		}
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't find XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
 	}
 }
 
@@ -2380,10 +2184,10 @@ void SoftwareList::on_treeWidgetSearchResults_itemExpanded(QTreeWidgetItem *item
 		return;
 
 	if ( item->child(0)->text(QMC2_SWLIST_COLUMN_TITLE) == tr("Waiting for data...") ) {
-		QString softwareListXml = getSoftwareListXmlData(item->text(QMC2_SWLIST_COLUMN_LIST));
-		if ( !softwareListXml.isEmpty() ) {
+		QString softwareXml = swlDb->xml(item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME));
+		if ( !softwareXml.isEmpty() ) {
 			QXmlInputSource xmlInputSource;
-			xmlInputSource.setData(softwareListXml);
+			xmlInputSource.setData(softwareXml);
 			successfulLookups.clear();
 			SoftwareEntryXmlHandler xmlHandler(item);
 			QXmlSimpleReader xmlReader;
@@ -2398,9 +2202,8 @@ void SoftwareList::on_treeWidgetSearchResults_itemExpanded(QTreeWidgetItem *item
 				if ( !xmlHandler.success )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
 			treeWidgetSearchResults->setSortingEnabled(true);
-		} else {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't find XML data for software list '%1'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)));
-		}
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't find XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
 	}
 }
 

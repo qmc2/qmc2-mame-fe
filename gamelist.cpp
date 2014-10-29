@@ -93,9 +93,6 @@ extern bool messSystemSlotsSupported;
 extern SoftwareList *qmc2SoftwareList;
 extern QMap<QString, QStringList> systemSoftwareListMap;
 extern QMap<QString, QStringList> systemSoftwareFilterMap;
-extern QMap<QString, QString> softwareListXmlDataCache;
-extern QString swlBuffer;
-extern bool swlSupported;
 extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
 extern QHash<QString, QString> qmc2ParentHash;
@@ -307,7 +304,7 @@ void Gamelist::enableWidgets(bool enable)
 	qmc2Options->checkBoxRomStateFilter->setEnabled(enable);
 	qmc2Options->checkBoxShowBiosSets->setEnabled(enable);
 	qmc2Options->checkBoxShowDeviceSets->setEnabled(enable);
-	qmc2Options->toolButtonBrowseSoftwareListCache->setEnabled(enable);
+	qmc2Options->toolButtonBrowseSoftwareListCacheDb->setEnabled(enable);
 	qmc2Options->toolButtonBrowseSoftwareStateCache->setEnabled(enable);
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	qmc2Options->toolButtonBrowseGeneralSoftwareFolder->setEnabled(enable);
@@ -518,11 +515,9 @@ void Gamelist::load()
 		qmc2SoftwareList = NULL;
 	}
 	qmc2LastSoftwareListItem = NULL;
-	swlSupported = true;
+	SoftwareList::swlSupported = true;
 	systemSoftwareListMap.clear();
 	systemSoftwareFilterMap.clear();
-	softwareListXmlDataCache.clear();
-	swlBuffer.clear();
 	qmc2LastGameInfoItem = NULL;
 	qmc2LastEmuInfoItem = NULL;
 	if ( qmc2MAWSLookup ) {

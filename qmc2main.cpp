@@ -304,7 +304,6 @@ QColor MainWindow::qmc2StatusColorGrey = QColor("#7f7f7f");
 // extern global variables
 extern QMap<QString, QStringList> systemSoftwareListMap;
 extern QMap<QString, QStringList> systemSoftwareFilterMap;
-extern QMap<QString, QString> softwareListXmlDataCache;
 #if defined(QMC2_OS_WIN)
 extern QMap<HWND, QString> winWindowMap;
 #endif
@@ -2941,10 +2940,7 @@ void MainWindow::on_actionClearXMLCache_triggered(bool)
 			return;
 		}
 	}
-
 	qmc2Gamelist->xmlDb()->recreateDatabase();
-
-	softwareListXmlDataCache.clear();
 	systemSoftwareListMap.clear();
 	systemSoftwareFilterMap.clear();
 }
@@ -2998,34 +2994,12 @@ void MainWindow::on_actionClearSoftwareListCache_triggered(bool)
 		}
 	}
 
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
-
-#if defined(QMC2_EMUTYPE_MAME)
-	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/SoftwareListCache", userScopePath + "/mame.swl").toString();
-#elif defined(QMC2_EMUTYPE_MESS)
-	QString fileName = qmc2Config->value("MESS/FilesAndDirectories/SoftwareListCache", userScopePath + "/mess.swl").toString();
-#elif defined(QMC2_EMUTYPE_UME)
-	QString fileName = qmc2Config->value("UME/FilesAndDirectories/SoftwareListCache", userScopePath + "/ume.swl").toString();
-#else
-	return;
-#endif
-
-	QFile f(fileName);
-	if ( f.exists() ) {
-		if ( f.remove() )
-			log(QMC2_LOG_FRONTEND, tr("software list cache file '%1' removed").arg(fileName));
-		else
-			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the software list cache file '%1', please check permissions").arg(fileName));
-	}
-
-#if defined(QMC2_WIP_ENABLED)
 	if ( !swlDb ) {
 		swlDb = new SoftwareListXmlDatabaseManager(qmc2MainWindow);
 		swlDb->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
 		swlDb->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
 	}
 	swlDb->recreateDatabase();
-#endif
 }
 
 void MainWindow::on_actionClearAllEmulatorCaches_triggered(bool)

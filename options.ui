@@ -891,7 +891,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>349</width>
+                <width>534</width>
                 <height>793</height>
                </rect>
               </property>
@@ -2973,8 +2973,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>505</width>
-                <height>248</height>
+                <width>548</width>
+                <height>542</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
@@ -3629,8 +3629,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>249</width>
-                <height>39</height>
+                <width>548</width>
+                <height>542</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -3751,8 +3751,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>342</width>
-                <height>209</height>
+                <width>548</width>
+                <height>542</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
@@ -4214,7 +4214,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>374</width>
+                <width>534</width>
                 <height>543</height>
                </rect>
               </property>
@@ -4976,14 +4976,14 @@
                   </widget>
                  </item>
                  <item row="13" column="0">
-                  <widget class="QLabel" name="labelSoftwareListCache">
+                  <widget class="QLabel" name="labelSoftwareListCacheDb">
                    <property name="text">
-                    <string>Software list cache</string>
+                    <string>Software list cache DB</string>
                    </property>
                   </widget>
                  </item>
                  <item row="13" column="4">
-                  <widget class="QToolButton" name="toolButtonBrowseSoftwareListCache">
+                  <widget class="QToolButton" name="toolButtonBrowseSoftwareListCacheDb">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                      <horstretch>0</horstretch>
@@ -4991,7 +4991,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Browse software list cache file</string>
+                    <string>Browse software list cache database file</string>
                    </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
@@ -5419,7 +5419,7 @@
                   </widget>
                  </item>
                  <item row="13" column="1" colspan="3">
-                  <widget class="QLineEdit" name="lineEditSoftwareListCache">
+                  <widget class="QLineEdit" name="lineEditSoftwareListCacheDb">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
                      <horstretch>0</horstretch>
@@ -5427,7 +5427,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Software list cache file (write)</string>
+                    <string>Database file for caching the ouput from -listsoftware (write)</string>
                    </property>
                   </widget>
                  </item>
@@ -5502,8 +5502,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>548</width>
-                <height>542</height>
+                <width>318</width>
+                <height>216</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_26">
@@ -6178,8 +6178,8 @@
   <tabstop>toolButtonBrowseSlotInfoCacheFile</tabstop>
   <tabstop>lineEditMAWSCacheDirectory</tabstop>
   <tabstop>toolButtonBrowseMAWSCacheDirectory</tabstop>
-  <tabstop>lineEditSoftwareListCache</tabstop>
-  <tabstop>toolButtonBrowseSoftwareListCache</tabstop>
+  <tabstop>lineEditSoftwareListCacheDb</tabstop>
+  <tabstop>toolButtonBrowseSoftwareListCacheDb</tabstop>
   <tabstop>lineEditSoftwareStateCache</tabstop>
   <tabstop>toolButtonBrowseSoftwareStateCache</tabstop>
   <tabstop>lineEditGeneralSoftwareFolder</tabstop>

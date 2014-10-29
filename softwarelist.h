@@ -213,7 +213,6 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QAction *actionClearSelection;
 		QAction *actionNegateSearch;
 		QAction *actionCheckSoftwareStates;
-		QFile fileSWLCache;
 		QFile softwareStateFile;
 		QList<QTreeWidgetItem *> softwareListItems, favoritesListItems, searchListItems;
 		QMenu *softwareListMenu;
@@ -233,7 +232,6 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QStringList successfulLookups;
 		QStringList mountedSoftware;
 		QStringList swlLines;
-		QTextStream tsSWLCache;
 		QTextStream softwareStateStream;
 		QTime loadTimer;
 		QTimer snapTimer;
@@ -246,6 +244,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		SoftwareStateFilter *stateFilter;
 
 		static bool isInitialLoad;
+		static bool swlSupported;
+		static QString swStatesLastLine;
 
 		SoftwareList(QString, QWidget *);
 		~SoftwareList();
@@ -308,13 +308,11 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void loadReadyReadStandardOutput();
 		void loadReadyReadStandardError();
 		void loadError(QProcess::ProcessError);
-		void loadStateChanged(QProcess::ProcessState);
 		void verifyStarted();
 		void verifyFinished(int, QProcess::ExitStatus);
 		void verifyReadyReadStandardOutput();
 		void verifyReadyReadStandardError();
 		void verifyError(QProcess::ProcessError);
-		void verifyStateChanged(QProcess::ProcessState);
  
 		// other
 		void treeWidgetKnownSoftware_headerSectionClicked(int);
