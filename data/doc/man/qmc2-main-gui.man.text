@@ -41,7 +41,7 @@ FILES
 
   CONFIG_PATH/mame.glc.filtered, CONFIG_PATH/mess.glc.filtered, CONFIG_PATH/ume.glc.filtered  Filtered version of the game/machine list cache used by qmc2-arcade(6) (optional)
 
-  CONFIG_PATH/mame.swl, CONFIG_PATH/mess.swl, CONFIG_PATH/ume.swl  Software-list cache
+  CONFIG_PATH/mame-swl-cache.db, CONFIG_PATH/mess-swl-cache.db, CONFIG_PATH/ume-swl-cache.db  Software-list XML cache database (SQLite 3)
 
   CONFIG_PATH/mess.sic, CONFIG_PATH/ume.sic  Slot-info cache (MESS/UME only)
 
