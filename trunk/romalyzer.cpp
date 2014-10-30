@@ -80,7 +80,7 @@ extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
   Backward engineering powered by strace :)! 
 */
 
-ROMAlyzer::ROMAlyzer(QWidget *parent)
+ROMAlyzer::ROMAlyzer(QWidget *parent, int mode)
 #if defined(QMC2_OS_WIN)
 	: QDialog(parent, Qt::Dialog)
 #else
@@ -92,6 +92,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 #endif
   
 	setupUi(this);
+	setMode(mode);
 
 	m_checkSumDbQueryStatusPixmap = QPixmap(QString::fromUtf8(":/data/img/database.png"));
 
@@ -2186,6 +2187,23 @@ bool ROMAlyzer::createBackup(QString filePath)
 	} else {
 		log(tr("backup") + ": " + tr("FATAL: backup folder '%1' doesn't exist").arg(backupDir.absolutePath()));
 		return false;
+	}
+}
+
+void ROMAlyzer::setMode(int mode)
+{
+	switch ( mode ) {
+		case QMC2_ROMALYZER_MODE_SOFTWARE:
+			m_currentMode = QMC2_ROMALYZER_MODE_SOFTWARE;
+			setWindowTitle(tr("ROMAlyzer") + " [" + tr("software mode") + "]");
+			// FIXME
+			break;
+		case QMC2_ROMALYZER_MODE_SYSTEM:
+		default:
+			m_currentMode = QMC2_ROMALYZER_MODE_SYSTEM;
+			setWindowTitle(tr("ROMAlyzer") + " [" + tr("system mode") + "]");
+			// FIXME
+			break;
 	}
 }
 
