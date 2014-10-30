@@ -168,6 +168,9 @@
 
 #define QMC2_ROMALYZER_REBUILD_ANIM_SPEED	500
 
+#define QMC2_ROMALYZER_MODE_SYSTEM		0
+#define QMC2_ROMALYZER_MODE_SOFTWARE		1
+
 class CheckSumScannerThread : public QThread
 {
 	Q_OBJECT
@@ -286,7 +289,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		bool wizardSearch;
 		bool quickSearch;
 
-		ROMAlyzer(QWidget *);
+		ROMAlyzer(QWidget *, int mode = QMC2_ROMALYZER_MODE_SYSTEM);
 		~ROMAlyzer();
 
 		void saveState() { closeEvent(NULL); }
@@ -304,6 +307,8 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		CheckSumScannerLog *checkSumScannerLog() { return m_checkSumScannerLog; }
 		CheckSumScannerThread *checkSumScannerThread() { return m_checkSumScannerThread; }
 		CollectionRebuilder *collectionRebuilder() { return m_collectionRebuilder; }
+		int mode() { return m_currentMode; }
+		void setMode(int mode);
 
 	public slots:
 		// callback functions
@@ -392,6 +397,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		QPixmap m_checkSumDbQueryStatusPixmap;
 		QTimer m_checkSumTextChangedTimer;
 		CollectionRebuilder *m_collectionRebuilder;
+		int m_currentMode;
 };
 
 #endif
