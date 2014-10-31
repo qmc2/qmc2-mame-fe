@@ -4098,10 +4098,28 @@ void ROMAlyzer::updateCheckSumDbStatus()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::updateCheckSumDbStatus()");
 #endif
 
-	QString statusString = "<center><table border=\"0\" cellpadding=\"2\" cellspacing=\"2\">";
-	statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(checkSumDb()->checkSumRowCount()) + "</td></tr>";
-	statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Database size") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + humanReadable(checkSumDb()->databaseSize()) + "</td></tr>";
+	static quint64 lastRowCount = 0;
+	static QDateTime lastDateTime;
+
 	QDateTime now = QDateTime::currentDateTime();
+	QString statusString = "<center><table border=\"0\" cellpadding=\"2\" cellspacing=\"2\">";
+	if ( checkSumScannerThread()->status() == tr("scanning") ) {
+		quint64 currentRowCount = checkSumDb()->checkSumRowCount();
+		if ( lastRowCount > 0 ) {
+			quint64 deltaSecs = lastDateTime.secsTo(now);
+			quint64 objectsPerSecond = 0;
+			if ( deltaSecs > 0 )
+				objectsPerSecond = (currentRowCount - lastRowCount) / deltaSecs;
+			statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(currentRowCount) + " | &Delta; " + QString::number(objectsPerSecond) + "/" + tr("s") + "</td></tr>";
+		} else
+			statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(currentRowCount) + "</td></tr>";
+		lastRowCount = currentRowCount;
+		lastDateTime = now;
+	} else {
+		statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(checkSumDb()->checkSumRowCount()) + "</td></tr>";
+		lastRowCount = 0;
+	}
+	statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Database size") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + humanReadable(checkSumDb()->databaseSize()) + "</td></tr>";
 	QDateTime scanTime = QDateTime::fromTime_t(checkSumDb()->scanTime());
 	QString ageString;
 	int days = scanTime.daysTo(now);
@@ -4394,6 +4412,9 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 			}
 		}
 		emit log(tr("%n unchanged file(s) removed from scan", "", filesRemoved));
+		fileHash.clear();
+		foreach (QString file, *fileList)
+			fileHash.insert(file, true);
 		if ( !exitThread && !stopScan ) {
 			// step 3: remove entries from the database that "point to new stuff" (a.k.a. are still contained in the modified 'fileList')
 			emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(3).arg(3));
@@ -4404,7 +4425,7 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 			checkSumDb()->beginTransaction();
 			foreach (QString path, pathsInDatabase.keys()) {
 				emit progressChanged(count++);
-				if ( fileList->contains(path) ) {
+				if ( fileHash.contains(path) ) {
 					checkSumDb()->pathRemove(path);
 					pathsRemoved++;
 				}
