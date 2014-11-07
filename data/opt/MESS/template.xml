@@ -756,6 +756,10 @@
       <description lang="us" text="Force DRC to use C back-end"/>
       <description lang="de" text="C-Backend für DRC erzwingen"/>
     </option>
+    <option default="false" name="drc_log_uml" type="bool">
+      <description lang="us" text="Write DRC UML disassembly log"/>
+      <description lang="de" text="DRC UML Disassemblierungs-Log schreiben"/>
+    </option>
     <option default="" name="bios" type="combo">
       <description lang="es" text="Seleccionar la BIOS de sistema a utilizar"/>
       <description lang="us" text="Select the system BIOS to use"/>
