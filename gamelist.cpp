@@ -56,7 +56,8 @@ extern Options *qmc2Options;
 extern Settings *qmc2Config;
 extern EmulatorOptions *qmc2EmulatorOptions;
 extern ROMStatusExporter *qmc2ROMStatusExporter;
-extern ROMAlyzer *qmc2ROMAlyzer;
+extern ROMAlyzer *qmc2SystemROMAlyzer;
+extern ROMAlyzer *qmc2SoftwareROMAlyzer;
 extern bool qmc2ReloadActive;
 extern bool qmc2EarlyReloadActive;
 extern bool qmc2StopParser;
@@ -395,29 +396,47 @@ void Gamelist::enableWidgets(bool enable)
 #endif
 	if ( qmc2ROMStatusExporter )
 		qmc2ROMStatusExporter->pushButtonExport->setEnabled(enable);
-	if ( qmc2ROMAlyzer ) {
-		qmc2ROMAlyzer->pushButtonAnalyze->setEnabled(enable);
-		qmc2ROMAlyzer->toolButtonToolsMenu->setEnabled(enable);
-		qmc2ROMAlyzer->toolButtonBrowseBackupFolder->setEnabled(qmc2ROMAlyzer->checkBoxCreateBackups->isChecked() && enable);
-		if ( qmc2ROMAlyzer->groupBoxCHDManager->isChecked() ) {
-			qmc2ROMAlyzer->toolButtonBrowseCHDManagerExecutableFile->setEnabled(enable);
-			qmc2ROMAlyzer->toolButtonBrowseTemporaryWorkingDirectory->setEnabled(enable);
+	if ( qmc2SystemROMAlyzer ) {
+		qmc2SystemROMAlyzer->pushButtonAnalyze->setEnabled(enable);
+		qmc2SystemROMAlyzer->toolButtonToolsMenu->setEnabled(enable);
+		qmc2SystemROMAlyzer->toolButtonBrowseBackupFolder->setEnabled(qmc2SystemROMAlyzer->checkBoxCreateBackups->isChecked() && enable);
+		if ( qmc2SystemROMAlyzer->groupBoxCHDManager->isChecked() ) {
+			qmc2SystemROMAlyzer->toolButtonBrowseCHDManagerExecutableFile->setEnabled(enable);
+			qmc2SystemROMAlyzer->toolButtonBrowseTemporaryWorkingDirectory->setEnabled(enable);
 		}
-		if ( qmc2ROMAlyzer->groupBoxSetRewriter->isChecked() ) {
-			qmc2ROMAlyzer->toolButtonBrowseSetRewriterOutputPath->setEnabled(enable);
-			qmc2ROMAlyzer->toolButtonBrowseSetRewriterAdditionalRomPath->setEnabled(qmc2ROMAlyzer->checkBoxSetRewriterUseAdditionalRomPath->isChecked() && enable);
+		if ( qmc2SystemROMAlyzer->groupBoxSetRewriter->isChecked() ) {
+			qmc2SystemROMAlyzer->toolButtonBrowseSetRewriterOutputPath->setEnabled(enable);
+			qmc2SystemROMAlyzer->toolButtonBrowseSetRewriterAdditionalRomPath->setEnabled(qmc2SystemROMAlyzer->checkBoxSetRewriterUseAdditionalRomPath->isChecked() && enable);
 		}
-		if ( qmc2ROMAlyzer->groupBoxCheckSumDatabase->isChecked() ) {
-			qmc2ROMAlyzer->toolButtonBrowseCheckSumDbDatabasePath->setEnabled(enable);
-			qmc2ROMAlyzer->toolButtonCheckSumDbAddPath->setEnabled(enable);
+		if ( qmc2SystemROMAlyzer->groupBoxCheckSumDatabase->isChecked() ) {
+			qmc2SystemROMAlyzer->toolButtonBrowseCheckSumDbDatabasePath->setEnabled(enable);
+			qmc2SystemROMAlyzer->toolButtonCheckSumDbAddPath->setEnabled(enable);
 		}
 	} else {
-		qmc2MainWindow->actionROMAlyzer->setEnabled(enable);
+		qmc2MainWindow->actionSystemROMAlyzer->setEnabled(enable);
 		qmc2MainWindow->actionAnalyseCurrentROM->setEnabled(enable);
 		qmc2MainWindow->actionAnalyseROMTagged->setEnabled(enable);
 		foreach (QAction *action, qmc2MainWindow->criticalActions)
 			action->setEnabled(enable);
 	}
+	if ( qmc2SoftwareROMAlyzer ) {
+		qmc2SoftwareROMAlyzer->pushButtonAnalyze->setEnabled(enable);
+		qmc2SoftwareROMAlyzer->toolButtonToolsMenu->setEnabled(enable);
+		qmc2SoftwareROMAlyzer->toolButtonBrowseBackupFolder->setEnabled(qmc2SoftwareROMAlyzer->checkBoxCreateBackups->isChecked() && enable);
+		if ( qmc2SoftwareROMAlyzer->groupBoxCHDManager->isChecked() ) {
+			qmc2SoftwareROMAlyzer->toolButtonBrowseCHDManagerExecutableFile->setEnabled(enable);
+			qmc2SoftwareROMAlyzer->toolButtonBrowseTemporaryWorkingDirectory->setEnabled(enable);
+		}
+		if ( qmc2SoftwareROMAlyzer->groupBoxSetRewriter->isChecked() ) {
+			qmc2SoftwareROMAlyzer->toolButtonBrowseSetRewriterOutputPath->setEnabled(enable);
+			qmc2SoftwareROMAlyzer->toolButtonBrowseSetRewriterAdditionalRomPath->setEnabled(qmc2SoftwareROMAlyzer->checkBoxSetRewriterUseAdditionalRomPath->isChecked() && enable);
+		}
+		if ( qmc2SoftwareROMAlyzer->groupBoxCheckSumDatabase->isChecked() ) {
+			qmc2SoftwareROMAlyzer->toolButtonBrowseCheckSumDbDatabasePath->setEnabled(enable);
+			qmc2SoftwareROMAlyzer->toolButtonCheckSumDbAddPath->setEnabled(enable);
+		}
+	} else
+		qmc2MainWindow->actionSoftwareROMAlyzer->setEnabled(enable);
 	qmc2MainWindow->pushButtonSelectRomFilter->setEnabled(enable);
 	qmc2MainWindow->actionLaunchArcade->setEnabled(enable);
 	qmc2MainWindow->actionArcadeSetup->setEnabled(enable);

@@ -4,11 +4,11 @@
 
 #include "settings.h"
 #include "qmc2main.h"
-#include "romalyzer.h"
 #include "macros.h"
 #include "ftpreply.h"
 #include "downloaditem.h"
 #include "networkaccessmanager.h"
+#include "romalyzer.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;

@@ -254,7 +254,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_actionCheckROMs_triggered(bool checked = false);
 		void on_actionCheckSamples_triggered(bool checked = false);
 		void on_actionCheckImagesAndIcons_triggered(bool checked = false);
-		void on_actionROMAlyzer_triggered(bool checked = false);
+		void on_actionSystemROMAlyzer_triggered(bool checked = false);
+		void on_actionSoftwareROMAlyzer_triggered(bool checked = false);
 		void on_actionExportROMStatus_triggered(bool checked = false);
 		void on_actionDemoMode_triggered(bool checked = false);
 		void on_actionNewBrowserWindow_triggered(bool checked = false);

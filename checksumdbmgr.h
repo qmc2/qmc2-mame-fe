@@ -12,7 +12,7 @@ class CheckSumDatabaseManager : public QObject
 	Q_OBJECT
 
 	public:
-		explicit CheckSumDatabaseManager(QObject *parent);
+		explicit CheckSumDatabaseManager(QObject *parent, QString settingsKey);
 		~CheckSumDatabaseManager();
 
 		QString qmc2Version();
@@ -60,6 +60,7 @@ class CheckSumDatabaseManager : public QObject
 		QStringList m_fileTypes;
 		QList<qint64> m_rowIdList;
 		qint64 m_lastRowId;
+		QString m_settingsKey;
 };
 
 #endif

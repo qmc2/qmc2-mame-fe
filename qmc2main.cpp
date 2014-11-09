@@ -122,7 +122,8 @@ DocBrowser *qmc2DocBrowser = NULL;
 Welcome *qmc2Welcome = NULL;
 ImageChecker *qmc2ImageChecker = NULL;
 SampleChecker *qmc2SampleChecker = NULL;
-ROMAlyzer *qmc2ROMAlyzer = NULL;
+ROMAlyzer *qmc2SystemROMAlyzer = NULL;
+ROMAlyzer *qmc2SoftwareROMAlyzer = NULL;
 ROMStatusExporter *qmc2ROMStatusExporter = NULL;
 DetailSetup *qmc2DetailSetup = NULL;
 ToolBarCustomizer *qmc2ToolBarCustomizer = NULL;
@@ -148,8 +149,6 @@ bool qmc2SampleCheckActive = false;
 bool qmc2EarlyReloadActive = false;
 bool qmc2VerifyActive = false;
 bool qmc2FilterActive = false;
-bool qmc2ROMAlyzerActive = false;
-bool qmc2ROMAlyzerPaused = false;
 bool qmc2GuiReady = false;
 bool qmc2CleaningUp = false;
 bool qmc2StartingUp = true;
@@ -453,6 +452,11 @@ MainWindow::MainWindow(QWidget *parent)
 	setUpdatesEnabled(false);
 
 	setupUi(this);
+
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: remove when ROMAlyzer's software mode works
+	actionSoftwareROMAlyzer->setVisible(false);
+#endif
 
 	// palette-editor related
 	PaletteEditor::colorNames << "Window" << "WindowText" << "Base" << "AlternateBase" << "Text" << "BrightText" << "Button"
@@ -886,9 +890,11 @@ MainWindow::MainWindow(QWidget *parent)
 		treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED2);
 #endif
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible").toBool() )
-			on_actionCheckSamples_triggered();
+			QTimer::singleShot(0, this, SLOT(on_actionCheckSamples_triggered()));
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Visible").toBool() )
-			on_actionROMAlyzer_triggered();
+			QTimer::singleShot(0, this, SLOT(on_actionSystemROMAlyzer_triggered()));
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareROMAlyzer/Visible").toBool() )
+			QTimer::singleShot(0, this, SLOT(on_actionSoftwareROMAlyzer_triggered()));
 		actionFullscreenToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Fullscreen", false).toBool());
 		tabWidgetGamelist->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::North).toInt());
 		tabWidgetGameDetail->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::North).toInt());
@@ -2396,7 +2402,12 @@ void MainWindow::on_actionReload_triggered(bool)
 		return;
 	}
 
-	if ( qmc2ROMAlyzerActive ) {
+	if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active() ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
+		return;
+	}
+
+	if ( qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active() ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
 		return;
 	}
@@ -2484,7 +2495,9 @@ void MainWindow::on_actionCheckCurrentROM_triggered(bool)
 		log(QMC2_LOG_FRONTEND, tr("please wait for image check to finish and try again"));
 	} else if ( qmc2SampleCheckActive ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for sample check to finish and try again"));
-	} else if ( qmc2ROMAlyzerActive ) {
+	} else if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active() ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
+	} else if ( qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active() ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
 	} else
 		qmc2Gamelist->verify(true);
@@ -2506,7 +2519,9 @@ void MainWindow::on_actionCheckROMs_triggered(bool)
 		log(QMC2_LOG_FRONTEND, tr("please wait for image check to finish and try again"));
 	} else if ( qmc2SampleCheckActive ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for sample check to finish and try again"));
-	} else if ( qmc2ROMAlyzerActive ) {
+	} else if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active() ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
+	} else if ( qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active() ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
 	} else {
 		if ( !qmc2Gamelist->autoRomCheck ) {
@@ -2686,24 +2701,44 @@ void MainWindow::on_actionCheckImagesAndIcons_triggered(bool)
 	QTimer::singleShot(0, qmc2ImageChecker, SLOT(raise()));
 }
 
-void MainWindow::on_actionROMAlyzer_triggered(bool)
+void MainWindow::on_actionSystemROMAlyzer_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionROMAlyzer_triggered(bool)");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSystemROMAlyzer_triggered(bool)");
 #endif
 
-	if ( !qmc2ROMAlyzer )
-		qmc2ROMAlyzer = new ROMAlyzer(0);
+	if ( !qmc2SystemROMAlyzer )
+		qmc2SystemROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SYSTEM);
 
-	if ( !qmc2ROMAlyzerActive )
-		qmc2ROMAlyzer->lineEditGames->setText("*");
+	if ( !qmc2SystemROMAlyzer->active() )
+		qmc2SystemROMAlyzer->lineEditGames->setText("*");
 
-	if ( qmc2ROMAlyzer->isHidden() )
-		qmc2ROMAlyzer->show();
-	else if ( qmc2ROMAlyzer->isMinimized() )
-		qmc2ROMAlyzer->showNormal();
+	if ( qmc2SystemROMAlyzer->isHidden() )
+		qmc2SystemROMAlyzer->show();
+	else if ( qmc2SystemROMAlyzer->isMinimized() )
+		qmc2SystemROMAlyzer->showNormal();
 
-	QTimer::singleShot(0, qmc2ROMAlyzer, SLOT(raise()));
+	QTimer::singleShot(0, qmc2SystemROMAlyzer, SLOT(raise()));
+}
+
+void MainWindow::on_actionSoftwareROMAlyzer_triggered(bool)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSoftwareROMAlyzer_triggered(bool)");
+#endif
+
+	if ( !qmc2SoftwareROMAlyzer )
+		qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
+
+	if ( !qmc2SoftwareROMAlyzer->active() )
+		qmc2SoftwareROMAlyzer->lineEditGames->setText("*:*");
+
+	if ( qmc2SoftwareROMAlyzer->isHidden() )
+		qmc2SoftwareROMAlyzer->show();
+	else if ( qmc2SoftwareROMAlyzer->isMinimized() )
+		qmc2SoftwareROMAlyzer->showNormal();
+
+	QTimer::singleShot(0, qmc2SoftwareROMAlyzer, SLOT(raise()));
 }
 
 void MainWindow::on_actionRunRomTool_triggered(bool)
@@ -2742,26 +2777,26 @@ void MainWindow::on_actionAnalyseCurrentROM_triggered(bool)
 	if ( qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
 		return;
 
-	if ( qmc2ROMAlyzerActive ) {
+	if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active() ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
 		return;
 	}
 
-	if ( !qmc2ROMAlyzer )
-		qmc2ROMAlyzer = new ROMAlyzer(0);
+	if ( !qmc2SystemROMAlyzer )
+		qmc2SystemROMAlyzer = new ROMAlyzer(0);
 
-	qmc2ROMAlyzer->lineEditGames->setText(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME));
+	qmc2SystemROMAlyzer->lineEditGames->setText(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME));
 
-	if ( qmc2ROMAlyzer->isHidden() )
-		qmc2ROMAlyzer->show();
-	else if ( qmc2ROMAlyzer->isMinimized() )
-		qmc2ROMAlyzer->showNormal();
+	if ( qmc2SystemROMAlyzer->isHidden() )
+		qmc2SystemROMAlyzer->show();
+	else if ( qmc2SystemROMAlyzer->isMinimized() )
+		qmc2SystemROMAlyzer->showNormal();
 
-	if ( qmc2ROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2ROMAlyzer->tabReport && qmc2ROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2ROMAlyzer->tabLog )
-		qmc2ROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2ROMAlyzer->tabReport);
+	if ( qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabReport && qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabLog )
+		qmc2SystemROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SystemROMAlyzer->tabReport);
 
-	QTimer::singleShot(0, qmc2ROMAlyzer, SLOT(raise()));
-	QTimer::singleShot(0, qmc2ROMAlyzer->pushButtonAnalyze, SLOT(click()));
+	QTimer::singleShot(0, qmc2SystemROMAlyzer, SLOT(raise()));
+	QTimer::singleShot(0, qmc2SystemROMAlyzer->pushButtonAnalyze, SLOT(click()));
 }
 
 void MainWindow::on_actionClearImageCache_triggered(bool)
@@ -6685,7 +6720,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		return;
 	}
 
-	if ( qmc2ReloadActive || qmc2VerifyActive || qmc2FilterActive || qmc2ImageCheckActive || qmc2SampleCheckActive || qmc2ROMAlyzerActive || qmc2LoadingGameInfoDB || qmc2LoadingSoftwareInfoDB || qmc2LoadingEmuInfoDB ) {
+	if ( qmc2ReloadActive || qmc2VerifyActive || qmc2FilterActive || qmc2ImageCheckActive || qmc2SampleCheckActive || (qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active()) || qmc2LoadingGameInfoDB || qmc2LoadingSoftwareInfoDB || qmc2LoadingEmuInfoDB ) {
 		qmc2StopParser = true;
 		log(QMC2_LOG_FRONTEND, tr("stopping current processing upon user request"));
 		e->ignore();
@@ -7115,10 +7150,15 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		qmc2SampleChecker->close();
 		delete qmc2SampleChecker;
 	}
-	if ( qmc2ROMAlyzer ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying ROMAlyzer"));
-		qmc2ROMAlyzer->saveState();
-		delete qmc2ROMAlyzer;
+	if ( qmc2SystemROMAlyzer ) {
+		log(QMC2_LOG_FRONTEND, tr("destroying ROMAlyzer") + " (" + tr("system mode") + ")");
+		qmc2SystemROMAlyzer->saveState();
+		delete qmc2SystemROMAlyzer;
+	}
+	if ( qmc2SoftwareROMAlyzer ) {
+		log(QMC2_LOG_FRONTEND, tr("destroying ROMAlyzer") + " (" + tr("software mode") + ")");
+		qmc2SoftwareROMAlyzer->saveState();
+		delete qmc2SoftwareROMAlyzer;
 	}
 	if ( qmc2ROMStatusExporter ) {
 		log(QMC2_LOG_FRONTEND, tr("destroying ROM status exporter"));
@@ -10552,7 +10592,7 @@ void MainWindow::checkActivity()
 	// resync timer (as far as possible)
 	activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 
-	if ( qmc2ReloadActive || qmc2VerifyActive || qmc2FilterActive || qmc2ImageCheckActive || qmc2SampleCheckActive || qmc2ROMAlyzerActive || qmc2LoadingGameInfoDB || qmc2LoadingSoftwareInfoDB || qmc2LoadingEmuInfoDB || (qmc2SoftwareList && qmc2SoftwareList->isLoading) ) {
+	if ( qmc2ReloadActive || qmc2VerifyActive || qmc2FilterActive || qmc2ImageCheckActive || qmc2SampleCheckActive || (qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active()) || qmc2LoadingGameInfoDB || qmc2LoadingSoftwareInfoDB || qmc2LoadingEmuInfoDB || (qmc2SoftwareList && qmc2SoftwareList->isLoading) ) {
 		activityState = !activityState;
 		if ( activityState )
 			actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/activity_green.png")));
@@ -11157,22 +11197,22 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 				setsToAnalyze << item->text(QMC2_GAMELIST_COLUMN_NAME);
 	}
 
-	if ( !qmc2ROMAlyzer )
-		qmc2ROMAlyzer = new ROMAlyzer(0);
+	if ( !qmc2SystemROMAlyzer )
+		qmc2SystemROMAlyzer = new ROMAlyzer(0);
 
-	qmc2ROMAlyzer->quickSearch = true;
-	qmc2ROMAlyzer->lineEditGames->setText(setsToAnalyze.join(" "));
+	qmc2SystemROMAlyzer->quickSearch = true;
+	qmc2SystemROMAlyzer->lineEditGames->setText(setsToAnalyze.join(" "));
 
-	if ( qmc2ROMAlyzer->isHidden() )
-		qmc2ROMAlyzer->show();
-	else if ( qmc2ROMAlyzer->isMinimized() )
-		qmc2ROMAlyzer->showNormal();
+	if ( qmc2SystemROMAlyzer->isHidden() )
+		qmc2SystemROMAlyzer->show();
+	else if ( qmc2SystemROMAlyzer->isMinimized() )
+		qmc2SystemROMAlyzer->showNormal();
 
-	if ( qmc2ROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2ROMAlyzer->tabReport && qmc2ROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2ROMAlyzer->tabLog )
-		qmc2ROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2ROMAlyzer->tabReport);
+	if ( qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabReport && qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabLog )
+		qmc2SystemROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SystemROMAlyzer->tabReport);
 
-	QTimer::singleShot(0, qmc2ROMAlyzer, SLOT(raise()));
-	QTimer::singleShot(0, qmc2ROMAlyzer->pushButtonAnalyze, SLOT(animateClick()));
+	QTimer::singleShot(0, qmc2SystemROMAlyzer, SLOT(raise()));
+	QTimer::singleShot(0, qmc2SystemROMAlyzer->pushButtonAnalyze, SLOT(animateClick()));
 }
 
 void MainWindow::on_actionRunRomToolTagged_triggered(bool)
@@ -12832,7 +12872,11 @@ void prepareShortcuts()
 #if defined(QMC2_YOUTUBE_ENABLED)
 	qmc2ShortcutHash["Ctrl+Y"].second = qmc2MainWindow->actionClearYouTubeCache;
 #endif
-	qmc2ShortcutHash["Ctrl+Z"].second = qmc2MainWindow->actionROMAlyzer;
+	qmc2ShortcutHash["Ctrl+Z"].second = qmc2MainWindow->actionSystemROMAlyzer;
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: remove when ROMAlyzer's software mode works
+	qmc2ShortcutHash["Ctrl+W"].second = qmc2MainWindow->actionSoftwareROMAlyzer;
+#endif
 	qmc2ShortcutHash["Ctrl+Alt+C"].second = qmc2MainWindow->actionRomStatusFilterC;
 	qmc2ShortcutHash["Ctrl+Alt+M"].second = qmc2MainWindow->actionRomStatusFilterM;
 	qmc2ShortcutHash["Ctrl+Alt+I"].second = qmc2MainWindow->actionRomStatusFilterI;

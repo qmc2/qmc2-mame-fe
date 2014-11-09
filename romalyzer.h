@@ -187,7 +187,7 @@ class CheckSumScannerThread : public QThread
 		QWaitCondition waitCondition;
 		QStringList scannedPaths;
 
-		CheckSumScannerThread(CheckSumScannerLog *scannerLog, QObject *parent = 0);
+		CheckSumScannerThread(CheckSumScannerLog *scannerLog, QString settingsKey, QObject *parent = 0);
 		~CheckSumScannerThread();
 
 		CheckSumDatabaseManager *checkSumDb() { return m_checkSumDb; }
@@ -219,6 +219,7 @@ class CheckSumScannerThread : public QThread
 		CheckSumScannerLog *m_scannerLog;
 		quint64 m_pendingUpdates;
 		bool m_preparingIncrementalScan;
+		QString m_settingsKey;
 		void recursiveFileList(const QString &, QStringList *);
 		bool scanZip(QString, QStringList *, QList<quint64> *, QStringList *, QStringList *);
 		bool scanSevenZip(QString, QStringList *, QList<quint64> *, QStringList *, QStringList *);
@@ -309,6 +310,11 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		CollectionRebuilder *collectionRebuilder() { return m_collectionRebuilder; }
 		int mode() { return m_currentMode; }
 		void setMode(int mode);
+		bool active() { return m_active; }
+		void setActive(bool active) { m_active = active; }
+		bool paused() { return m_paused; }
+		void setPaused(bool paused) { m_paused = paused; }
+		QString settingsKey() { return m_settingsKey; }
 
 	public slots:
 		// callback functions
@@ -398,6 +404,9 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		QTimer m_checkSumTextChangedTimer;
 		CollectionRebuilder *m_collectionRebuilder;
 		int m_currentMode;
+		bool m_active;
+		bool m_paused;
+		QString m_settingsKey;
 };
 
 #endif

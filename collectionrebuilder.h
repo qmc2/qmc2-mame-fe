@@ -1,5 +1,5 @@
-#ifndef _FILEEDITWIDGET_H_
-#define _FILEEDITWIDGET_H_
+#ifndef _COLLECTIONREBUILDER_H_
+#define _COLLECTIONREBUILDER_H_
 
 #include <QThread>
 #include <QMutex>
@@ -15,6 +15,7 @@
 #include "ui_collectionrebuilder.h"
 
 class CollectionRebuilder;
+class ROMAlyzer;
 
 class CollectionRebuilderThread : public QThread
 {
@@ -86,10 +87,11 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 	Q_OBJECT
 
        	public:
-		CollectionRebuilder(QWidget *parent = 0);
+		CollectionRebuilder(ROMAlyzer *romAlyzer, QWidget *parent = 0);
 		~CollectionRebuilder();
 
 		CollectionRebuilderThread *rebuilderThread() { return m_rebuilderThread; }
+		ROMAlyzer *romAlyzer() { return m_romAlyzer; }
 
 	public slots:
 		void on_spinBoxMaxLogSize_valueChanged(int);
@@ -123,6 +125,9 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		QIcon m_iconCheckpoint, m_iconNoCheckpoint;
 		QTimer m_animationTimer;
 		int m_animationSequence;
+		ROMAlyzer *m_romAlyzer;
 };
 
 #endif
+
+#include "romalyzer.h"
