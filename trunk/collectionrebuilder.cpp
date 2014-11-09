@@ -14,20 +14,19 @@
 #include "collectionrebuilder.h"
 #include "settings.h"
 #include "options.h"
-#include "romalyzer.h"
 #include "unzip.h"
 #include "zip.h"
 #include "sevenzipfile.h"
 #include "macros.h"
 
 extern Settings *qmc2Config;
-extern ROMAlyzer *qmc2ROMAlyzer;
 extern Options *qmc2Options;
 
-CollectionRebuilder::CollectionRebuilder(QWidget *parent)
+CollectionRebuilder::CollectionRebuilder(ROMAlyzer *romAlyzer, QWidget *parent)
 	: QDialog(parent)
 {
 	setupUi(this);
+	m_romAlyzer = romAlyzer;
 	pushButtonPauseResume->setVisible(false);
 	QFont logFont;
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
@@ -362,8 +361,8 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	lineEditFilterExpression->setEnabled(false);
 	toolButtonClearFilterExpression->setEnabled(false);
 	frameEntities->setEnabled(false);
-	qmc2ROMAlyzer->groupBoxCheckSumDatabase->setEnabled(false);
-	qmc2ROMAlyzer->pushButtonRomCollectionRebuilder->setText(tr("Rebuilding ROM collection..."));
+	romAlyzer()->groupBoxCheckSumDatabase->setEnabled(false);
+	romAlyzer()->pushButtonRomCollectionRebuilder->setText(tr("Rebuilding ROM collection..."));
 	m_animationSequence = 0;
 	m_animationTimer.start(QMC2_ROMALYZER_REBUILD_ANIM_SPEED);
 	qApp->processEvents();
@@ -406,10 +405,10 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	lineEditFilterExpression->setEnabled(checkBoxFilterExpression->isChecked());
 	toolButtonClearFilterExpression->setEnabled(checkBoxFilterExpression->isChecked());
 	frameEntities->setEnabled(true);
-	qmc2ROMAlyzer->groupBoxCheckSumDatabase->setEnabled(true);
+	romAlyzer()->groupBoxCheckSumDatabase->setEnabled(true);
 	m_animationTimer.stop();
-	qmc2ROMAlyzer->pushButtonRomCollectionRebuilder->setIcon(QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
-	qmc2ROMAlyzer->pushButtonRomCollectionRebuilder->setText(tr("Rebuild ROM collection..."));
+	romAlyzer()->pushButtonRomCollectionRebuilder->setIcon(QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
+	romAlyzer()->pushButtonRomCollectionRebuilder->setText(tr("Rebuild ROM collection..."));
 	qApp->processEvents();
 }
 
@@ -467,7 +466,7 @@ void CollectionRebuilder::animationTimer_timeout()
 	p.translate(-size.height()/2,-size.height()/2);
 	p.drawPixmap(0, 0, pixmap);
 	p.end();
-	qmc2ROMAlyzer->pushButtonRomCollectionRebuilder->setIcon(QIcon(rotatedPixmap));
+	romAlyzer()->pushButtonRomCollectionRebuilder->setIcon(QIcon(rotatedPixmap));
 	m_animationTimer.start(QMC2_ROMALYZER_REBUILD_ANIM_SPEED);
 }
 
@@ -522,7 +521,7 @@ CollectionRebuilderThread::~CollectionRebuilderThread()
 	waitCondition.wakeAll();
 	wait();
 	if ( checkSumDb() ) {
-		checkSumDb()->disconnect(m_rebuilderDialog);
+		checkSumDb()->disconnect(rebuilderDialog());
 		delete checkSumDb();
 	}
 	if ( xmlDb() )
@@ -532,11 +531,11 @@ CollectionRebuilderThread::~CollectionRebuilderThread()
 void CollectionRebuilderThread::reopenDatabase()
 {
 	if ( checkSumDb() ) {
-		checkSumDb()->disconnect(m_rebuilderDialog);
+		checkSumDb()->disconnect(rebuilderDialog());
 		delete checkSumDb();
 	}
-	m_checkSumDb = new CheckSumDatabaseManager(this);
-	connect(checkSumDb(), SIGNAL(log(const QString &)), m_rebuilderDialog, SLOT(log(const QString &)));
+	m_checkSumDb = new CheckSumDatabaseManager(this, rebuilderDialog()->romAlyzer()->settingsKey());
+	connect(checkSumDb(), SIGNAL(log(const QString &)), rebuilderDialog(), SLOT(log(const QString &)));
 }
 
 bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
@@ -547,7 +546,7 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 	QString setEntityPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
 	QString romEntityPattern("<" + rebuilderDialog()->lineEditRomEntity->text() + " name=\"");
 	QString diskEntityPattern("<" + rebuilderDialog()->lineEditDiskEntity->text() + " name=\"");
-	bool merge = !qmc2ROMAlyzer->checkBoxSetRewriterSelfContainedSets->isChecked();
+	bool merge = !rebuilderDialog()->romAlyzer()->checkBoxSetRewriterSelfContainedSets->isChecked();
 	int startIndex = -1;
 	int endIndex = -1;
 	QStringList xmlLines = xml.split("\n");
@@ -782,8 +781,8 @@ void CollectionRebuilderThread::checkpointRestart(qint64 cp)
 
 bool CollectionRebuilderThread::rewriteSet(QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
 {
-	QString baseDir = qmc2ROMAlyzer->lineEditSetRewriterOutputPath->text();
-	if ( qmc2ROMAlyzer->radioButtonSetRewriterZipArchives->isChecked() )
+	QString baseDir = rebuilderDialog()->romAlyzer()->lineEditSetRewriterOutputPath->text();
+	if ( rebuilderDialog()->romAlyzer()->radioButtonSetRewriterZipArchives->isChecked() )
 		return writeAllZipData(baseDir, *id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List);
 	else
 		return writeAllFileData(baseDir, *id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List);
@@ -865,8 +864,8 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 		if ( !f.remove() )
 			return false;
 	bool success = true;
-	bool uniqueCRCs = qmc2ROMAlyzer->checkBoxSetRewriterUniqueCRCs->isChecked();
-	int zipLevel = qmc2ROMAlyzer->spinBoxSetRewriterZipLevel->value();
+	bool uniqueCRCs = rebuilderDialog()->romAlyzer()->checkBoxSetRewriterUniqueCRCs->isChecked();
+	int zipLevel = rebuilderDialog()->romAlyzer()->spinBoxSetRewriterZipLevel->value();
 	zipFile zip = zipOpen(fileName.toLocal8Bit().constData(), APPEND_STATUS_CREATE);
 	if ( zip ) {
 		emit log(tr("creating new ZIP archive '%1'").arg(fileName));
@@ -1024,12 +1023,12 @@ bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, Q
 
 bool CollectionRebuilderThread::createBackup(QString filePath)
 {
-	if ( !qmc2ROMAlyzer->checkBoxCreateBackups->isChecked() || qmc2ROMAlyzer->lineEditBackupFolder->text().isEmpty() )
+	if ( !rebuilderDialog()->romAlyzer()->checkBoxCreateBackups->isChecked() || rebuilderDialog()->romAlyzer()->lineEditBackupFolder->text().isEmpty() )
 		return true;
 	QFile sourceFile(filePath);
 	if ( !sourceFile.exists() )
 		return true;
-	QDir backupDir(qmc2ROMAlyzer->lineEditBackupFolder->text());
+	QDir backupDir(rebuilderDialog()->romAlyzer()->lineEditBackupFolder->text());
 	QFileInfo backupDirInfo(backupDir.absolutePath());
 	if ( backupDirInfo.exists() ) {
 		if ( backupDirInfo.isWritable() ) {

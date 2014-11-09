@@ -128,7 +128,7 @@ extern PCB *qmc2PCB;
 extern SoftwareSnap *qmc2SoftwareSnap;
 extern Gamelist *qmc2Gamelist;
 extern ImageChecker *qmc2ImageChecker;
-extern ROMAlyzer *qmc2ROMAlyzer;
+extern ROMAlyzer *qmc2SystemROMAlyzer;
 extern ROMStatusExporter *qmc2ROMStatusExporter;
 extern DocBrowser *qmc2DocBrowser;
 extern int qmc2SortCriteria;
@@ -449,7 +449,11 @@ Options::Options(QWidget *parent)
 #if defined(QMC2_YOUTUBE_ENABLED)
 	qmc2ShortcutHash["Ctrl+Y"] = QPair<QString, QAction *>(tr("Clear YouTube cache"), NULL);
 #endif
-	qmc2ShortcutHash["Ctrl+Z"] = QPair<QString, QAction *>(tr("Open ROMAlyzer dialog"), NULL);
+	qmc2ShortcutHash["Ctrl+Z"] = QPair<QString, QAction *>(tr("Open ROMAlyzer (system mode)"), NULL);
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: remove when ROMAlyzer's software mode works
+	qmc2ShortcutHash["Ctrl+W"] = QPair<QString, QAction *>(tr("Open ROMAlyzer (software mode)"), NULL);
+#endif
 	qmc2ShortcutHash["Ctrl+Alt+C"] = QPair<QString, QAction *>(tr("Toggle ROM state C"), NULL);
 	qmc2ShortcutHash["Ctrl+Alt+M"] = QPair<QString, QAction *>(tr("Toggle ROM state M"), NULL);
 	qmc2ShortcutHash["Ctrl+Alt+I"] = QPair<QString, QAction *>(tr("Toggle ROM state I"), NULL);
@@ -795,14 +799,14 @@ void Options::apply()
 	pushButtonRemapJoystickFunction->setIconSize(iconSize);
 	pushButtonRemoveJoystickMapping->setIconSize(iconSize);
 #endif
-	if ( qmc2ROMAlyzer ) {
-		qmc2ROMAlyzer->textBrowserLog->setFont(logFont);
-		QTimer::singleShot(0, qmc2ROMAlyzer, SLOT(adjustIconSizes()));
-		if ( qmc2ROMAlyzer->checkSumScannerLog() )
-			qmc2ROMAlyzer->checkSumScannerLog()->plainTextEditLog->setFont(logFont);
-		if ( qmc2ROMAlyzer->collectionRebuilder() ) {
-			qmc2ROMAlyzer->collectionRebuilder()->plainTextEditLog->setFont(logFont);
-			QTimer::singleShot(0, qmc2ROMAlyzer->collectionRebuilder(), SLOT(adjustIconSizes()));
+	if ( qmc2SystemROMAlyzer ) {
+		qmc2SystemROMAlyzer->textBrowserLog->setFont(logFont);
+		QTimer::singleShot(0, qmc2SystemROMAlyzer, SLOT(adjustIconSizes()));
+		if ( qmc2SystemROMAlyzer->checkSumScannerLog() )
+			qmc2SystemROMAlyzer->checkSumScannerLog()->plainTextEditLog->setFont(logFont);
+		if ( qmc2SystemROMAlyzer->collectionRebuilder() ) {
+			qmc2SystemROMAlyzer->collectionRebuilder()->plainTextEditLog->setFont(logFont);
+			QTimer::singleShot(0, qmc2SystemROMAlyzer->collectionRebuilder(), SLOT(adjustIconSizes()));
 		}
 	}
 	if ( qmc2ImageChecker )

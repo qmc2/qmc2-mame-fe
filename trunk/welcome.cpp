@@ -468,6 +468,31 @@ bool Welcome::checkConfig()
 				startupConfig->remove(QMC2_EMULATOR_PREFIX_UME + "FilesAndDirectories/SoftwareListCache");
 			}
 		}
+		if ( QMC2_TEST_VERSION(omv, 46, osr, 6295) ) {
+			// rename old action name 'actionROMAlyzer' to 'actionSystemROMAlyzer'
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/ToolBarActions") ) {
+				QStringList sl = startupConfig->value(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/ToolBarActions").toStringList();
+				int index = sl.indexOf("actionROMAlyzer");
+				if ( index >= 0 )
+					sl[index] = "actionSystemROMAlyzer";
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/ToolBarActions", sl);
+			}
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/ToolBarActions") ) {
+				QStringList sl = startupConfig->value(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/ToolBarActions").toStringList();
+				int index = sl.indexOf("actionROMAlyzer");
+				if ( index >= 0 )
+					sl[index] = "actionSystemROMAlyzer";
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/ToolBarActions", sl);
+			}
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/ToolBarActions") ) {
+				QStringList sl = startupConfig->value(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/ToolBarActions").toStringList();
+				int index = sl.indexOf("actionROMAlyzer");
+				if ( index >= 0 )
+					sl[index] = "actionSystemROMAlyzer";
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/ToolBarActions", sl);
+			}
+		}
+
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

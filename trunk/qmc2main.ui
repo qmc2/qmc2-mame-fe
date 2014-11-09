@@ -2593,7 +2593,7 @@
      <x>0</x>
      <y>0</y>
      <width>550</width>
-     <height>17</height>
+     <height>18</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -2661,7 +2661,9 @@
     <addaction name="actionCheckSamples"/>
     <addaction name="actionCheckImagesAndIcons"/>
     <addaction name="separator"/>
-    <addaction name="actionROMAlyzer"/>
+    <addaction name="actionSystemROMAlyzer"/>
+    <addaction name="actionSoftwareROMAlyzer"/>
+    <addaction name="separator"/>
     <addaction name="actionExportROMStatus"/>
     <addaction name="separator"/>
     <addaction name="actionDemoMode"/>
@@ -2881,7 +2883,7 @@
    <addaction name="actionCheckSamples"/>
    <addaction name="actionCheckImagesAndIcons"/>
    <addaction name="separator"/>
-   <addaction name="actionROMAlyzer"/>
+   <addaction name="actionSystemROMAlyzer"/>
    <addaction name="actionExportROMStatus"/>
    <addaction name="separator"/>
    <addaction name="actionOptions"/>
@@ -3265,28 +3267,25 @@
     <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
-  <action name="actionROMAlyzer">
+  <action name="actionSystemROMAlyzer">
    <property name="icon">
     <iconset resource="qmc2.qrc">
      <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
    </property>
    <property name="text">
-    <string>ROMAly&amp;zer...</string>
+    <string>ROMAlyzer (system mode)...</string>
    </property>
    <property name="toolTip">
-    <string>Open ROMAlyzer dialog</string>
+    <string>Open ROMAlyzer (system mode)</string>
    </property>
    <property name="statusTip">
-    <string>Open ROMAlyzer dialog</string>
+    <string>Open ROMAlyzer (system mode)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Z</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
-   </property>
-   <property name="visible">
-    <bool>true</bool>
    </property>
   </action>
   <action name="actionArcadeSetup">
@@ -4697,6 +4696,27 @@
    </property>
    <property name="statusTip">
     <string>Lock ranks</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionSoftwareROMAlyzer">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/romalyzer_sw.png</normaloff>:/data/img/romalyzer_sw.png</iconset>
+   </property>
+   <property name="text">
+    <string>ROMAlyzer (software mode)...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open ROMAlyzer (software mode)</string>
+   </property>
+   <property name="statusTip">
+    <string>Open ROMAlyzer (software mode)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
