@@ -846,7 +846,6 @@ bool SoftwareList::load()
 
 	setEnabled(qmc2UseDefaultEmulator);
 
-	bool swlCacheOkay = true;
 	autoMounted = true;
 	interruptLoad = false;
 	isLoading = true;
@@ -868,27 +867,19 @@ bool SoftwareList::load()
 	treeWidgetSearchResults->setSortingEnabled(false);
 	treeWidgetSearchResults->header()->setSortIndicatorShown(false);
 
-	if ( swlSupported ) {
+	bool swlCacheOkay = (swlDb->swlRowCount() > 0) && (qmc2Gamelist->emulatorVersion == swlDb->emulatorVersion());
+
+	if ( swlSupported && !swlCacheOkay ) {
+		isInitialLoad = true;
 		oldMin = qmc2MainWindow->progressBarGamelist->minimum();
 		oldMax = qmc2MainWindow->progressBarGamelist->maximum();
 		oldFmt = qmc2MainWindow->progressBarGamelist->format();
-
           	qmc2MainWindow->tabSoftwareList->setUpdatesEnabled(true);
 		labelLoadingSoftwareLists->setText(tr("Loading software-lists, please wait..."));
 		labelLoadingSoftwareLists->setVisible(true);
 		toolBoxSoftwareList->setVisible(false);
 		show();
 		qApp->processEvents();
-
-		swlCacheOkay = (swlDb->swlRowCount() > 0) && (qmc2Gamelist->emulatorVersion == swlDb->emulatorVersion());
-	}
-
-	if ( !swlCacheOkay ) {
-		isInitialLoad = true;
-          	qmc2MainWindow->tabSoftwareList->setUpdatesEnabled(true);
-		labelLoadingSoftwareLists->setVisible(true);
-		toolBoxSoftwareList->setVisible(false);
-		show();
 		loadTimer.start();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML software list data and recreating cache"));
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
