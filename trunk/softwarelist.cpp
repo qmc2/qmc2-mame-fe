@@ -1768,8 +1768,12 @@ void SoftwareList::on_toolButtonSoftwareStates_toggled(bool checked)
 
 	if ( checked ) {
 		toolButtonSoftwareStates->setMenu(menuSoftwareStates);
-		if ( isReady )
-			qmc2SoftwareList->toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, itemText + " - " + tr("filtered"));
+		if ( isReady ) {
+			if ( stateFilter->checkBoxStateFilter->isChecked() )
+				qmc2SoftwareList->toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, itemText + " - " + tr("filtered"));
+			else
+				qmc2SoftwareList->toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, itemText);
+		}
 	} else {
 		toolButtonSoftwareStates->setMenu(NULL);
 		if ( isReady )
