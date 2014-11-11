@@ -295,7 +295,7 @@ QMultiMap<QString, QString> qmc2GameInfoSourceMap;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
-QColor MainWindow::qmc2StatusColorYellowGreen = QColor("#a2c743");
+QColor MainWindow::qmc2StatusColorYellowGreen = QColor("#799632");
 QColor MainWindow::qmc2StatusColorRed = QColor("#f90000");
 QColor MainWindow::qmc2StatusColorBlue = QColor("#0000f9");
 QColor MainWindow::qmc2StatusColorGrey = QColor("#7f7f7f");
