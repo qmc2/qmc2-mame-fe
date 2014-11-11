@@ -2667,14 +2667,14 @@ QString Gamelist::status()
 
 	QLocale locale;
 	QString statusString = "<b>";
-	statusString += "<font color=black>" + tr("L:") + QString(numGames > -1 ? locale.toString(numGames) : tr("?")) + "</font>\n";
-	statusString += "<font color=#00cc00>" + tr("C:") + QString(numCorrectGames > -1 ? locale.toString(numCorrectGames) : tr("?")) + "</font>\n";
-	statusString += "<font color=#a2c743>" + tr("M:") + QString(numMostlyCorrectGames > -1 ? locale.toString(numMostlyCorrectGames) : tr("?")) + "</font>\n";
-	statusString += "<font color=#f90000>" + tr("I:") + QString(numIncorrectGames > -1 ? locale.toString(numIncorrectGames) : tr("?")) + "</font>\n";
-	statusString += "<font color=#7f7f7f>" + tr("N:") + QString(numNotFoundGames > -1 ? locale.toString(numNotFoundGames) : tr("?")) + "</font>\n";
-	statusString += "<font color=#0000f9>" + tr("U:") + QString(numUnknownGames > -1 ? locale.toString(numUnknownGames) : tr("?")) + "</font>\n";
-	statusString += "<font color=chocolate>" + tr("S:") + QString(numSearchGames > -1 ? locale.toString(numSearchGames) : tr("?")) + "</font>\n";
-	statusString += "<font color=sandybrown>" + tr("T:") + QString(numTaggedSets > -1 ? locale.toString(numTaggedSets) : tr("?")) + "</font>";
+	statusString += "<font color=\"black\">" + tr("L:") + QString(numGames > -1 ? locale.toString(numGames) : tr("?")) + "</font>\n";
+	statusString += "<font color=\"#00cc00\">" + tr("C:") + QString(numCorrectGames > -1 ? locale.toString(numCorrectGames) : tr("?")) + "</font>\n";
+	statusString += "<font color=\"#799632\">" + tr("M:") + QString(numMostlyCorrectGames > -1 ? locale.toString(numMostlyCorrectGames) : tr("?")) + "</font>\n";
+	statusString += "<font color=\"#f90000\">" + tr("I:") + QString(numIncorrectGames > -1 ? locale.toString(numIncorrectGames) : tr("?")) + "</font>\n";
+	statusString += "<font color=\"#7f7f7f\">" + tr("N:") + QString(numNotFoundGames > -1 ? locale.toString(numNotFoundGames) : tr("?")) + "</font>\n";
+	statusString += "<font color=\"#0000f9\">" + tr("U:") + QString(numUnknownGames > -1 ? locale.toString(numUnknownGames) : tr("?")) + "</font>\n";
+	statusString += "<font color=\"chocolate\">" + tr("S:") + QString(numSearchGames > -1 ? locale.toString(numSearchGames) : tr("?")) + "</font>\n";
+	statusString += "<font color=\"sandybrown\">" + tr("T:") + QString(numTaggedSets > -1 ? locale.toString(numTaggedSets) : tr("?")) + "</font>";
 	statusString += "</b>";
 
 	return statusString;
