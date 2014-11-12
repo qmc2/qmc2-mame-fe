@@ -181,7 +181,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 		qmc2DemoArgs.clear();
 		seqNum = -1;
 		if ( emuProcess ) {
-			emuProcess->terminate();
+			emuProcess->kill(); // terminate() doesn't work with SDL2-MAME/MESS, so we have to use kill() :(
 			emuProcess = NULL;
 		}
 		qmc2MainWindow->actionCheckROMs->setEnabled(true);
