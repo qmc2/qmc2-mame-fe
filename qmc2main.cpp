@@ -7852,12 +7852,10 @@ void MainWindow::loadGameInfoDB()
 			quint64 recordsProcessed = 0;
 			QRegExp lineBreakRx("(<br>){2,}");
 			while ( !ts.atEnd() && !qmc2StopParser ) {
-				QString singleLine = ts.readLine();
-				QString singleLineSimplified = singleLine.simplified();
+				QString singleLineSimplified = ts.readLine().simplified();
 				bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
 				while ( !startsWithDollarInfo && !ts.atEnd() ) {
-					singleLine = ts.readLine();
-					singleLineSimplified = singleLine.simplified();
+					singleLineSimplified = ts.readLine().simplified();
 					if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 						progressBarGamelist->setValue(gameInfoDB.pos());
 						qApp->processEvents();
@@ -7865,11 +7863,10 @@ void MainWindow::loadGameInfoDB()
 					startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
 				}
 				if ( startsWithDollarInfo ) {
-					QStringList gameWords = singleLineSimplified.mid(6).split(",", QString::SkipEmptyParts);
+					QStringList gameNames = singleLineSimplified.mid(6).split(",", QString::SkipEmptyParts);
 					bool startsWithDollarBio = false;
 					while ( !startsWithDollarBio && !ts.atEnd() ) {
-						singleLine = ts.readLine();
-						singleLineSimplified = singleLine.simplified();
+						singleLineSimplified = ts.readLine().simplified();
 						if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 							progressBarGamelist->setValue(gameInfoDB.pos());
 							qApp->processEvents();
@@ -7882,7 +7879,7 @@ void MainWindow::loadGameInfoDB()
 						bool lastLineWasHeader = false;
 						bool startsWithDollarEnd = false;
 						while ( !startsWithDollarEnd && !ts.atEnd() ) {
-							singleLine = ts.readLine();
+							QString singleLine = ts.readLine();
 							singleLineSimplified = singleLine.simplified();
 							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
 							if ( !startsWithDollarEnd ) {
@@ -7918,7 +7915,7 @@ void MainWindow::loadGameInfoDB()
 							else
 								gameInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString));
 #endif
-							foreach (QString setName, gameWords) {
+							foreach (QString setName, gameNames) {
 								qmc2GameInfoDB[setName] = gameInfo;
 #if defined(QMC2_EMUTYPE_UME)
 								qmc2GameInfoSourceMap.insert(gameInfoSource, setName);
@@ -8061,35 +8058,32 @@ void MainWindow::loadEmuInfoDB()
 			quint64 recordsProcessed = 0;
 			QRegExp lineBreakRx("(<br>){2,}");
 			while ( !ts.atEnd() && !qmc2StopParser ) {
-				QString singleLine = ts.readLine();
-				QString singleLineSimplified = singleLine.simplified();
+				QString singleLineSimplified = ts.readLine().simplified();
 				bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
 				while ( !startsWithDollarInfo && !ts.atEnd() ) {
-					singleLine = ts.readLine();
+					singleLineSimplified = ts.readLine().simplified();
 					if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 						progressBarGamelist->setValue(emuInfoDB.pos());
 						qApp->processEvents();
 					}
-					singleLineSimplified = singleLine.simplified();
 					startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
 				}
 				if ( startsWithDollarInfo ) {
-					QStringList gameWords = singleLineSimplified.mid(6).split(",", QString::SkipEmptyParts);
+					QStringList gameNames = singleLineSimplified.mid(6).split(",", QString::SkipEmptyParts);
 					bool startsWithDollarMame = false;
 					while ( !startsWithDollarMame && !ts.atEnd() ) {
-						singleLine = ts.readLine();
+						singleLineSimplified = ts.readLine().simplified();
 						if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 							progressBarGamelist->setValue(emuInfoDB.pos());
 							qApp->processEvents();
 						}
-						singleLineSimplified = singleLine.simplified();
 						startsWithDollarMame = singleLineSimplified.startsWith("$mame");
 					}
 					if ( startsWithDollarMame ) {
 						QString emuInfoString;
 						bool startsWithDollarEnd = false;
 						while ( !startsWithDollarEnd && !ts.atEnd() ) {
-							singleLine = ts.readLine();
+							QString singleLine = ts.readLine();
 							singleLineSimplified = singleLine.simplified();
 							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
 							if ( !startsWithDollarEnd )
@@ -8118,7 +8112,7 @@ void MainWindow::loadEmuInfoDB()
 							else
 								emuInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString));
 #endif
-							foreach (QString setName, gameWords)
+							foreach (QString setName, gameNames)
 								qmc2EmuInfoDB[setName] = emuInfo;
 						} else
 							log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in emulator info DB %1").arg(pathToEmuInfoDB));
@@ -8206,12 +8200,10 @@ void MainWindow::loadSoftwareInfoDB()
 		QRegExp markRegExp("^\\$\\S+\\=\\S+\\,$");
 		QRegExp reduceLinesRegExp("(<br>){2,}");
 		while ( !ts.atEnd() && !qmc2StopParser ) {
-			QString singleLine = ts.readLine();
-			QString singleLineSimplified = singleLine.simplified();
+			QString singleLineSimplified = ts.readLine().simplified();
 			bool containsMark = singleLineSimplified.contains(markRegExp);
 			while ( !containsMark && !ts.atEnd() ) {
-				singleLine = ts.readLine();
-				singleLineSimplified = singleLine.simplified();
+				singleLineSimplified = ts.readLine().simplified();
 				if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
 					progressBarGamelist->setValue(swInfoDB.pos());
 					qApp->processEvents();
@@ -8222,11 +8214,10 @@ void MainWindow::loadSoftwareInfoDB()
 				QStringList infoWords = singleLineSimplified.mid(1).split("=", QString::SkipEmptyParts);
 				if ( infoWords.count() == 2 ) {
 					QStringList systemNames = infoWords[0].split(",", QString::SkipEmptyParts);
-					QStringList gameWords = infoWords[1].split(",", QString::SkipEmptyParts);
+					QStringList gameNames = infoWords[1].split(",", QString::SkipEmptyParts);
 					bool startsWithDollarBio = false;
 					while ( !startsWithDollarBio && !ts.atEnd() ) {
-						singleLine = ts.readLine();
-						singleLineSimplified = singleLine.simplified();
+						singleLineSimplified = ts.readLine().simplified();
 						if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
 							progressBarGamelist->setValue(swInfoDB.pos());
 							qApp->processEvents();
@@ -8238,7 +8229,7 @@ void MainWindow::loadSoftwareInfoDB()
 						bool firstLine = true;
 						bool startsWithDollarEnd = false;
 						while ( !startsWithDollarEnd && !ts.atEnd() ) {
-							singleLine = ts.readLine();
+							QString singleLine = ts.readLine();
 							singleLineSimplified = singleLine.simplified();
 							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
 							if ( !startsWithDollarEnd ) {
@@ -8271,7 +8262,7 @@ void MainWindow::loadSoftwareInfoDB()
 							else
 								swInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(swInfoString));
 #endif
-							foreach (QString gameName, gameWords)
+							foreach (QString gameName, gameNames)
 								foreach (QString systemName, systemNames)
 									qmc2SoftwareInfoDB[systemName + ":" + gameName] = swInfo;
 						}
