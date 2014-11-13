@@ -4235,9 +4235,9 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					QByteArray *swInfo = qmc2SoftwareInfoDB[listName + ":" + entryName];
 					if ( swInfo ) {
 						if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressSoftwareInfoDB").toBool() )
-							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = QString(QMC2_UNCOMPRESS(*swInfo));
+							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = QString(QMC2_UNCOMPRESS(*swInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 						else
-							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = QString(*swInfo);
+							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = QString(*swInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "OK";
 					} else {
 						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = tr("No data available");
@@ -4273,9 +4273,9 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				if ( swInfo ) {
 					QString swInfoText;
 					if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressSoftwareInfoDB").toBool() )
-						swInfoText = QString(QMC2_UNCOMPRESS(*swInfo));
+						swInfoText = QString(QMC2_UNCOMPRESS(*swInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 					else
-						swInfoText = QString(*swInfo);
+						swInfoText = QString(*swInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 					textBrowserSoftwareInfo->setHtml(swInfoText);
 				} else
 					textBrowserSoftwareInfo->setHtml("<p>" + tr("No data available") + "</p>");
@@ -7849,7 +7849,7 @@ void MainWindow::loadGameInfoDB()
 			qApp->processEvents();
 			QTextStream ts(&gameInfoDB);
 			ts.setCodec(QTextCodec::codecForName("UTF-8"));
-			int recordsProcessed = 0;
+			quint64 recordsProcessed = 0;
 			QRegExp lineBreakRx("(<br>){2,}");
 			while ( !ts.atEnd() && !qmc2StopParser ) {
 				QString singleLine = ts.readLine();
@@ -8058,12 +8058,11 @@ void MainWindow::loadEmuInfoDB()
 			qApp->processEvents();
 			QTextStream ts(&emuInfoDB);
 			ts.setCodec(QTextCodec::codecForName("UTF-8"));
-			int recordsProcessed = 0;
+			quint64 recordsProcessed = 0;
 			QRegExp lineBreakRx("(<br>){2,}");
 			while ( !ts.atEnd() && !qmc2StopParser ) {
 				QString singleLine = ts.readLine();
 				QString singleLineSimplified = singleLine.simplified();
-				recordsProcessed++;
 				bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
 				while ( !startsWithDollarInfo && !ts.atEnd() ) {
 					singleLine = ts.readLine();
@@ -8092,7 +8091,6 @@ void MainWindow::loadEmuInfoDB()
 						while ( !startsWithDollarEnd && !ts.atEnd() ) {
 							singleLine = ts.readLine();
 							singleLineSimplified = singleLine.simplified();
-							recordsProcessed++;
 							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
 							if ( !startsWithDollarEnd )
 								emuInfoString.append(singleLine + "<br>");
@@ -8204,13 +8202,12 @@ void MainWindow::loadSoftwareInfoDB()
 		qApp->processEvents();
 		QTextStream ts(&swInfoDB);
 		ts.setCodec(QTextCodec::codecForName("UTF-8"));
-		int recordsProcessed = 0;
+		quint64 recordsProcessed = 0;
 		QRegExp markRegExp("^\\$\\S+\\=\\S+\\,$");
 		QRegExp reduceLinesRegExp("(<br>){2,}");
 		while ( !ts.atEnd() && !qmc2StopParser ) {
 			QString singleLine = ts.readLine();
 			QString singleLineSimplified = singleLine.simplified();
-			recordsProcessed++;
 			bool containsMark = singleLineSimplified.contains(markRegExp);
 			while ( !containsMark && !ts.atEnd() ) {
 				singleLine = ts.readLine();
@@ -8262,7 +8259,6 @@ void MainWindow::loadSoftwareInfoDB()
 							swInfoString.replace(reduceLinesRegExp, "<p>");
 							if ( swInfoString.endsWith("<p>") )
 								swInfoString.remove(swInfoString.length() - 3, swInfoString.length() - 1);
-							swInfoString.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 							QByteArray *swInfo;
 #if QT_VERSION >= 0x050000
 							if ( compressData )
