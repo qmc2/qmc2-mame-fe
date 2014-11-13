@@ -11,6 +11,7 @@
 
 #include "xmldbmgr.h"
 #include "userdatadbmgr.h"
+#include "datinfodbmgr.h"
 #include "macros.h"
 
 class Gamelist : public QObject
@@ -97,6 +98,7 @@ class Gamelist : public QObject
 #endif
 		XmlDatabaseManager *xmlDb() { return m_xmlDb; }
 		UserDataDatabaseManager *userDataDb() { return m_userDataDb; }
+		DatInfoDatabaseManager *datInfoDb() { return m_datInfoDb; }
 
 		Gamelist(QObject *parent = 0);
 		~Gamelist();
@@ -141,6 +143,7 @@ class Gamelist : public QObject
 	private:
 		XmlDatabaseManager *m_xmlDb;
 		UserDataDatabaseManager *m_userDataDb;
+		DatInfoDatabaseManager *m_datInfoDb;
 };
 
 class GamelistItem : public QTreeWidgetItem

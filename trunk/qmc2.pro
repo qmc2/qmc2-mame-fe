@@ -131,6 +131,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			checksumscannerlog.cpp \
 			collectionrebuilder.cpp \
 			swldbmgr.cpp \
+			datinfodbmgr.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -250,6 +251,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			checksumscannerlog.h \
 			collectionrebuilder.h \
 			swldbmgr.h \
+			datinfodbmgr.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h
