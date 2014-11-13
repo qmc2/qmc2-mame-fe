@@ -92,8 +92,8 @@ extern QHash<QString, QString> messSlotNameHash;
 extern bool messSystemSlotsSupported;
 #endif
 extern SoftwareList *qmc2SoftwareList;
-extern QMap<QString, QStringList> systemSoftwareListMap;
-extern QMap<QString, QStringList> systemSoftwareFilterMap;
+extern QHash<QString, QStringList> systemSoftwareListHash;
+extern QHash<QString, QStringList> systemSoftwareFilterHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
 extern QHash<QString, QString> qmc2ParentHash;
@@ -535,8 +535,8 @@ void Gamelist::load()
 	}
 	qmc2LastSoftwareListItem = NULL;
 	SoftwareList::swlSupported = true;
-	systemSoftwareListMap.clear();
-	systemSoftwareFilterMap.clear();
+	systemSoftwareListHash.clear();
+	systemSoftwareFilterHash.clear();
 	qmc2LastGameInfoItem = NULL;
 	qmc2LastEmuInfoItem = NULL;
 	if ( qmc2MAWSLookup ) {
