@@ -316,6 +316,10 @@ ImageChecker::ImageChecker(QWidget *parent)
 	progressBar->setRange(-1, -1);
 	progressBar->setValue(-1);
 
+	rxFourDigits = QRegExp("^\\d{4}$");
+	rxCharsToEscape = QRegExp("(\\s|\\\\|\\(|\\))");
+	rxColonSepStr = QRegExp("^.*\\: ");
+
 	startStopClicked = isRunning = false;
 	currentImageType = QMC2_IMGCHK_INDEX_NONE;
 	avgScanSpeed = 0.0;
@@ -967,7 +971,7 @@ void ImageChecker::on_toolButtonRemoveBad_clicked()
 				}
 				if ( !pathsToRemoveLocal.isEmpty() ) {
 					foreach (QString s, args) {
-						if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
+						if ( s.contains(rxCharsToEscape) )
 							s = "\"" + s + "\"";
 						fullCommandString += " " + s;
 					}
@@ -1040,7 +1044,7 @@ void ImageChecker::on_toolButtonRemoveBad_clicked()
 				}
 				if ( !pathsToRemoveLocal.isEmpty() ) {
 					foreach (QString s, args) {
-						if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
+						if ( s.contains(rxCharsToEscape) )
 							s = "\"" + s + "\"";
 						fullCommandString += " " + s;
 					}
@@ -1184,7 +1188,7 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 				}
 				if ( !addArgs.isEmpty() ) {
 					foreach (QString s, args) {
-						if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
+						if ( s.contains(rxCharsToEscape) )
 							s = "\"" + s + "\"";
 						fullCommandString += " " + s;
 					}
@@ -1246,7 +1250,7 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 				}
 				if ( !addArgs.isEmpty() ) {
 					foreach (QString s, args) {
-						if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
+						if ( s.contains(rxCharsToEscape) )
 							s = "\"" + s + "\"";
 						fullCommandString += " " + s;
 					}
@@ -1349,7 +1353,7 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 				}
 				if ( !addArgs.isEmpty() ) {
 					foreach (QString s, args) {
-						if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
+						if ( s.contains(rxCharsToEscape) )
 							s = "\"" + s + "\"";
 						fullCommandString += " " + s;
 					}
@@ -1411,7 +1415,7 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 				}
 				if ( !addArgs.isEmpty() ) {
 					foreach (QString s, args) {
-						if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
+						if ( s.contains(rxCharsToEscape) )
 							s = "\"" + s + "\"";
 						fullCommandString += " " + s;
 					}
@@ -1608,7 +1612,7 @@ void ImageChecker::checkObsoleteFiles()
 			if ( imageWidget->useZip() || imageWidget->useSevenZip() ) {
 				// zipped and 7-zipped images
 				QString pathCopy = path;
-				pathCopy.remove(QRegExp("^.*\\: "));
+				pathCopy.remove(rxColonSepStr);
 				fi.setFile(pathCopy);
 
 				foreach (int format, imageWidget->activeFormats) {
@@ -1628,12 +1632,12 @@ void ImageChecker::checkObsoleteFiles()
 							if ( !subPath.isEmpty() && !imageFile.isEmpty() ) {
 #if defined(Q_OS_WIN)
 								if ( qmc2GamelistItemHash.contains(subPath.toLower()) ) {
-									if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
+									if ( imageFile.indexOf(rxFourDigits) == 0 )
 										isValidPath = fi.completeSuffix().toLower() == extension;
 								}
 #else
 								if ( qmc2GamelistItemHash.contains(subPath) ) {
-									if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
+									if ( imageFile.indexOf(rxFourDigits) == 0 )
 										isValidPath = fi.completeSuffix() == extension;
 								}
 #endif
@@ -1687,12 +1691,12 @@ void ImageChecker::checkObsoleteFiles()
 								if ( !subPath.isEmpty() && !imageFile.isEmpty() ) {
 #if defined(Q_OS_WIN)
 									if ( qmc2GamelistItemHash.contains(subPath.toLower()) ) {
-										if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
+										if ( imageFile.indexOf(rxFourDigits) == 0 )
 											isValidPath = fi.completeSuffix().toLower() == extension;
 									}
 #else
 									if ( qmc2GamelistItemHash.contains(subPath) ) {
-										if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
+										if ( imageFile.indexOf(rxFourDigits) == 0 )
 											isValidPath = fi.completeSuffix() == extension;
 									}
 #endif
@@ -1707,7 +1711,7 @@ void ImageChecker::checkObsoleteFiles()
 			if ( QMC2_ICON_FILETYPE_ZIP || QMC2_ICON_FILETYPE_7Z ) {
 				// for zipped and 7-zipped icons, only the lower-case basenames and image-type suffixes count (.ico, .png, ...)
 				QString pathCopy = path;
-				pathCopy.remove(QRegExp("^.*\\: "));
+				pathCopy.remove(rxColonSepStr);
 				fi.setFile(pathCopy);
 				if ( imageFormats.contains(fi.completeSuffix().toLower()) ) {
 					if ( qmc2GamelistItemHash.contains(fi.baseName().toLower()) )

@@ -2771,6 +2771,7 @@ void Gamelist::loadReadyReadStandardOutput()
 	static QString dtdBuffer;
 	static QString setXmlBuffer;
 	static QString currentSetName;
+	static QRegExp rxDescYearManu("\\<description\\>$|\\<year\\>$|\\<manufacturer\\>$");
 
 	// this makes the GUI much more responsive, but is HAS to be called before loadProc->readAllStandardOutput()!
 	qApp->processEvents();
@@ -2818,7 +2819,7 @@ void Gamelist::loadReadyReadStandardOutput()
 		QString singleXMLLine = sl[l];
 		bool newLine = singleXMLLine.endsWith(">");
 		if ( newLine ) {
-			if ( singleXMLLine.indexOf(QRegExp("\\<description\\>$|\\<year\\>$|\\<manufacturer\\>$")) >= 0 )
+			if ( singleXMLLine.indexOf(rxDescYearManu) >= 0 )
 				newLine = false;
 			if ( newLine ) {
 				bool found = false;
