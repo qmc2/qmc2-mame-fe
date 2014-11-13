@@ -43,8 +43,8 @@ extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 extern QHash<QString, QPair<QString, QAction *> > qmc2ShortcutHash;
 extern QHash<QString, QString> qmc2CustomShortcutHash;
 
-QMap<QString, QStringList> systemSoftwareListMap;
-QMap<QString, QStringList> systemSoftwareFilterMap;
+QHash<QString, QStringList> systemSoftwareListHash;
+QHash<QString, QStringList> systemSoftwareFilterHash;
 QHash<QString, QMap<QString, char> > softwareListStateHash;
 bool SoftwareList::isInitialLoad = true;
 bool SoftwareList::swlSupported = true;
@@ -697,7 +697,7 @@ void SoftwareList::getXmlData()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::getXmlData()");
 #endif
 
-	QStringList softwareList = systemSoftwareListMap[systemName];
+	QStringList softwareList = systemSoftwareListHash[systemName];
 	if ( softwareList.isEmpty() || softwareList.contains("NO_SOFTWARE_LIST") ) {
 		softwareList.clear();
 		int i = 0;
@@ -739,18 +739,18 @@ void SoftwareList::getXmlData()
 			softwareList << "NO_SOFTWARE_LIST";
 		else
 			softwareList.sort();
-		systemSoftwareListMap[systemName] = softwareList;
+		systemSoftwareListHash[systemName] = softwareList;
 
 #ifdef QMC2_DEBUG
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: systemSoftwareListMap[%1] = %2").arg(systemName).arg(softwareList.join(", ")));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: systemSoftwareListHash[%1] = %2").arg(systemName).arg(softwareList.join(", ")));
 #endif
 
 		if ( !filter.isEmpty() )
-			systemSoftwareFilterMap[systemName] = filter.split(",", QString::SkipEmptyParts);
+			systemSoftwareFilterHash[systemName] = filter.split(",", QString::SkipEmptyParts);
 	}
 #ifdef QMC2_DEBUG
 	else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: systemSoftwareListMap[%1] = %2 (cached)").arg(systemName).arg(systemSoftwareListMap[systemName].join(", ")));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: systemSoftwareListHash[%1] = %2 (cached)").arg(systemName).arg(systemSoftwareListHash[systemName].join(", ")));
 #endif
 
 	if ( !softwareList.isEmpty() && !softwareList.contains("NO_SOFTWARE_LIST") ) {
@@ -954,7 +954,7 @@ bool SoftwareList::load()
 
 	getXmlData();
 
-	QStringList softwareList = systemSoftwareListMap[systemName];
+	QStringList softwareList = systemSoftwareListHash[systemName];
 	if ( !softwareList.contains("NO_SOFTWARE_LIST") && !interruptLoad ) {
 		foreach (QString swList, softwareList) {
 			if ( interruptLoad ) break;
@@ -1001,7 +1001,7 @@ bool SoftwareList::load()
 		QStringList configNames = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName)).toStringList();
 #endif
 
-		QStringList compatFilters = systemSoftwareFilterMap[systemName];
+		QStringList compatFilters = systemSoftwareFilterHash[systemName];
 		for (int i = 0; i < softwareNames.count() && !interruptLoad; i++) {
 			if ( interruptLoad )
 				break;
@@ -1388,7 +1388,7 @@ void SoftwareList::checkSoftwareStates()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::checkSoftwareStates()"));
 #endif
 
-	QStringList softwareLists = systemSoftwareListMap[systemName];
+	QStringList softwareLists = systemSoftwareListHash[systemName];
 	progressBar->setFormat(tr("Checking software-states - %p%"));
 	progressBar->setRange(0, treeWidgetKnownSoftware->topLevelItemCount());
 	progressBar->setValue(0);
@@ -1834,7 +1834,7 @@ void SoftwareList::on_toolButtonCompatFilterToggle_clicked(bool checked)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonCompatFilterToggle_clicked(bool checked = %1)").arg(checked));
 #endif
 
-	QStringList compatFilters = systemSoftwareFilterMap[qmc2SoftwareList->systemName];
+	QStringList compatFilters = systemSoftwareFilterHash[qmc2SoftwareList->systemName];
 	for (int count = 0; count < treeWidgetKnownSoftware->topLevelItemCount(); count++) {
 		QTreeWidgetItem *item = treeWidgetKnownSoftware->topLevelItem(count);
 		QStringList compatList = item->whatsThis(QMC2_SWLIST_COLUMN_TITLE).split(",", QString::SkipEmptyParts);
@@ -1981,7 +1981,7 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 	if ( selectedItems.count() > 0 )
 		si = selectedItems.at(0);
 
-	QStringList compatFilters = systemSoftwareFilterMap[qmc2SoftwareList->systemName];
+	QStringList compatFilters = systemSoftwareFilterHash[qmc2SoftwareList->systemName];
 	if ( si ) {
 		while ( si->parent() ) si = si->parent();
 		SoftwareItem *item = NULL;
@@ -2655,7 +2655,7 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 			matches.append(item);
 	}
 
-	QStringList compatFilters = systemSoftwareFilterMap[qmc2SoftwareList->systemName];
+	QStringList compatFilters = systemSoftwareFilterHash[qmc2SoftwareList->systemName];
 	for (int i = 0; i < matches.count(); i++) {
 		SoftwareItem *item = new SoftwareItem(treeWidgetSearchResults);
 		SoftwareItem *subItem = new SoftwareItem(item);
@@ -3076,7 +3076,7 @@ void SoftwareList::loadFavoritesFromFile()
 
 		// import software-list favorites
 		QFile favoritesFile(filePath);
-		QStringList compatFilters = systemSoftwareFilterMap[systemName];
+		QStringList compatFilters = systemSoftwareFilterHash[systemName];
 		if ( favoritesFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading software-favorites for '%1' from '%2'").arg(systemName).arg(filePath));
 			QTextStream ts(&favoritesFile);
@@ -3347,7 +3347,7 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 
 	if ( qName == "softwarelist" ) {
 		softwareListName = attributes.value("name");
-		compatFilters = systemSoftwareFilterMap[qmc2SoftwareList->systemName];
+		compatFilters = systemSoftwareFilterHash[qmc2SoftwareList->systemName];
 		if ( qmc2SoftwareList->toolButtonSoftwareStates->isChecked() )
 			if ( !softwareListStateHash.contains(softwareListName) )
 				loadSoftwareStates(softwareListName);

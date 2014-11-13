@@ -301,8 +301,8 @@ QColor MainWindow::qmc2StatusColorBlue = QColor("#0000f9");
 QColor MainWindow::qmc2StatusColorGrey = QColor("#7f7f7f");
 
 // extern global variables
-extern QMap<QString, QStringList> systemSoftwareListMap;
-extern QMap<QString, QStringList> systemSoftwareFilterMap;
+extern QHash<QString, QStringList> systemSoftwareListHash;
+extern QHash<QString, QStringList> systemSoftwareFilterHash;
 #if defined(QMC2_OS_WIN)
 extern QMap<HWND, QString> winWindowMap;
 #endif
@@ -2976,8 +2976,8 @@ void MainWindow::on_actionClearXMLCache_triggered(bool)
 		}
 	}
 	qmc2Gamelist->xmlDb()->recreateDatabase();
-	systemSoftwareListMap.clear();
-	systemSoftwareFilterMap.clear();
+	systemSoftwareListHash.clear();
+	systemSoftwareFilterHash.clear();
 }
 
 void MainWindow::on_actionClearSlotInfoCache_triggered(bool)
@@ -8047,9 +8047,7 @@ void MainWindow::loadEmuInfoDB()
 		bool compressData = compressDataList[index];
 #endif
 		QFile emuInfoDB(pathToEmuInfoDB);
-		emuInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
-
-		if ( emuInfoDB.isOpen() ) {
+		if ( emuInfoDB.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 			qmc2MainWindow->progressBarGamelist->reset();
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 				progressBarGamelist->setFormat(tr("Emu info - %p%"));
@@ -8065,6 +8063,7 @@ void MainWindow::loadEmuInfoDB()
 			while ( !ts.atEnd() && !qmc2StopParser ) {
 				QString singleLine = ts.readLine();
 				QString singleLineSimplified = singleLine.simplified();
+				recordsProcessed++;
 				bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
 				while ( !startsWithDollarInfo && !ts.atEnd() ) {
 					singleLine = ts.readLine();
@@ -8093,6 +8092,7 @@ void MainWindow::loadEmuInfoDB()
 						while ( !startsWithDollarEnd && !ts.atEnd() ) {
 							singleLine = ts.readLine();
 							singleLineSimplified = singleLine.simplified();
+							recordsProcessed++;
 							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
 							if ( !startsWithDollarEnd )
 								emuInfoString.append(singleLine + "<br>");
@@ -8193,9 +8193,7 @@ void MainWindow::loadSoftwareInfoDB()
 	bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressSoftwareInfoDB").toBool();
 	QString pathToSwInfoDB = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB").toString();
 	QFile swInfoDB(pathToSwInfoDB);
-	swInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
-
-	if ( swInfoDB.isOpen() ) {
+	if ( swInfoDB.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		qmc2MainWindow->progressBarGamelist->reset();
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 			progressBarGamelist->setFormat(tr("Software info - %p%"));
@@ -8212,6 +8210,7 @@ void MainWindow::loadSoftwareInfoDB()
 		while ( !ts.atEnd() && !qmc2StopParser ) {
 			QString singleLine = ts.readLine();
 			QString singleLineSimplified = singleLine.simplified();
+			recordsProcessed++;
 			bool containsMark = singleLineSimplified.contains(markRegExp);
 			while ( !containsMark && !ts.atEnd() ) {
 				singleLine = ts.readLine();
