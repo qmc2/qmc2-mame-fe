@@ -7905,7 +7905,7 @@ void MainWindow::loadGameInfoDB()
 							// reduce the number of line breaks
 							gameInfoString.replace(lineBreakRx, "<p>");
 							if ( gameInfoString.endsWith("<p>") )
-								gameInfoString.remove(gameInfoString.length() - 3, gameInfoString.length() - 1);
+								gameInfoString.remove(gameInfoString.length() - 3, 3);
 							QByteArray *gameInfo;
 #if QT_VERSION >= 0x050000
 							if ( compressData )
@@ -8105,7 +8105,7 @@ void MainWindow::loadEmuInfoDB()
 							if ( emuInfoString.startsWith("<br>") )
 								emuInfoString.remove(0, 4);
 							if ( emuInfoString.endsWith("<p>") )
-								emuInfoString.remove(emuInfoString.length() - 3, emuInfoString.length() - 1);
+								emuInfoString.remove(emuInfoString.length() - 3, 3);
 							QByteArray *emuInfo;
 #if QT_VERSION >= 0x050000
 							if ( compressData )
@@ -8258,7 +8258,7 @@ void MainWindow::loadSoftwareInfoDB()
 							// reduce the number of line breaks
 							swInfoString.replace(reduceLinesRegExp, "<p>");
 							if ( swInfoString.endsWith("<p>") )
-								swInfoString.remove(swInfoString.length() - 3, swInfoString.length() - 1);
+								swInfoString.remove(swInfoString.length() - 3, 3);
 							QByteArray *swInfo;
 #if QT_VERSION >= 0x050000
 							if ( compressData )
