@@ -4235,9 +4235,9 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					QByteArray *swInfo = qmc2SoftwareInfoDB[listName + ":" + entryName];
 					if ( swInfo ) {
 						if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressSoftwareInfoDB").toBool() )
-							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = QString(QMC2_UNCOMPRESS(*swInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")).replace("\"", "\\\"");
+							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = QString(QMC2_UNCOMPRESS(*swInfo));
 						else
-							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = QString(*swInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")).replace("\"", "\\\"");
+							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = QString(*swInfo);
 						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "OK";
 					} else {
 						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = tr("No data available");
@@ -8262,6 +8262,7 @@ void MainWindow::loadSoftwareInfoDB()
 							swInfoString.replace(reduceLinesRegExp, "<p>");
 							if ( swInfoString.endsWith("<p>") )
 								swInfoString.remove(swInfoString.length() - 3, swInfoString.length() - 1);
+							swInfoString.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 							QByteArray *swInfo;
 #if QT_VERSION >= 0x050000
 							if ( compressData )
