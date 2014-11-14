@@ -86,23 +86,19 @@ void InfoProvider::loadGameInfoDB()
 
     clearGameInfoDB();
 
-    QList<bool> compressDataList;
     QStringList gameInfoPathList;
     QStringList gameInfoSourceList;
 
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
-        compressDataList << globalConfig->compressMameHistoryDat();
         gameInfoPathList << globalConfig->mameHistoryDat();
         gameInfoSourceList << "MAME";
         break;
     case QMC2_ARCADE_EMUMODE_MESS:
-        compressDataList << globalConfig->compressMessSysinfoDat();
         gameInfoPathList << globalConfig->messSysinfoDat();
         gameInfoSourceList << "MESS";
         break;
     case QMC2_ARCADE_EMUMODE_UME:
-        compressDataList << globalConfig->compressMameHistoryDat() << globalConfig->compressMessSysinfoDat();
         gameInfoPathList << globalConfig->mameHistoryDat() << globalConfig->messSysinfoDat();
         gameInfoSourceList << "MAME" << "MESS";
         break;
@@ -110,10 +106,9 @@ void InfoProvider::loadGameInfoDB()
         return;
     }
 
-    for (int index = 0; index < compressDataList.count(); index++) {
+    for (int index = 0; index < gameInfoPathList.count(); index++) {
         if ( index % QMC2_ARCADE_LOAD_RESPONSE == 0 )
             qApp->processEvents();
-        bool compressData = compressDataList[index];
         QString pathToGameInfoDB = gameInfoPathList[index];
         QString gameInfoSource = gameInfoSourceList[index];
         QFile gameInfoDB(pathToGameInfoDB);
@@ -153,17 +148,11 @@ void InfoProvider::loadGameInfoDB()
                             if ( gameInfoString.endsWith("<p>") )
                                 gameInfoString.remove(gameInfoString.length() - 3, gameInfoString.length() - 1);
                             QByteArray *gameInfo;
-    #if QT_VERSION >= 0x050000
-                            if ( compressData )
-                                gameInfo = new QByteArray(QMC2_ARCADE_COMPRESS(QTextCodec::codecForLocale()->fromUnicode(gameInfoString)));
-                            else
-                                gameInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(gameInfoString));
-    #else
-                            if ( compressData )
-                                gameInfo = new QByteArray(QMC2_ARCADE_COMPRESS(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString)));
-                            else
-                                gameInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString));
-    #endif
+#if QT_VERSION >= 0x050000
+                            gameInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(gameInfoString));
+#else
+                            gameInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString));
+#endif
                             for (int i = 0; i < gameWords.count(); i++) {
                                 QString setName = gameWords[i];
                                 if ( !setName.isEmpty() ) {
@@ -248,30 +237,25 @@ void InfoProvider::loadEmuInfoDB()
 
     clearEmuInfoDB();
 
-    QList<bool> compressDataList;
     QStringList emuInfoPathList;
 
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
-        compressDataList << globalConfig->compressMameInfoDat();
         emuInfoPathList << globalConfig->mameInfoDat();
         break;
     case QMC2_ARCADE_EMUMODE_MESS:
-        compressDataList << globalConfig->compressMessInfoDat();
         emuInfoPathList << globalConfig->messInfoDat();
         break;
     case QMC2_ARCADE_EMUMODE_UME:
-        compressDataList << globalConfig->compressMameInfoDat() << globalConfig->compressMessInfoDat();
         emuInfoPathList << globalConfig->mameInfoDat() << globalConfig->messInfoDat();
         break;
     default:
         return;
     }
 
-    for (int index = 0; index < compressDataList.count(); index++) {
+    for (int index = 0; index < emuInfoPathList.count(); index++) {
         if ( index % QMC2_ARCADE_LOAD_RESPONSE == 0 )
             qApp->processEvents();
-        bool compressData = compressDataList[index];
         QString pathToEmuInfoDB = emuInfoPathList[index];
         QFile emuInfoDB(pathToEmuInfoDB);
         emuInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -301,17 +285,11 @@ void InfoProvider::loadEmuInfoDB()
                             if ( emuInfoString.endsWith("<p>") )
                                 emuInfoString.remove(emuInfoString.length() - 3, emuInfoString.length() - 1);
                             QByteArray *emuInfo;
-    #if QT_VERSION >= 0x050000
-                            if ( compressData )
-                                emuInfo = new QByteArray(QMC2_ARCADE_COMPRESS(QTextCodec::codecForLocale()->fromUnicode(emuInfoString)));
-                            else
-                                emuInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(emuInfoString));
-    #else
-                            if ( compressData )
-                                emuInfo = new QByteArray(QMC2_ARCADE_COMPRESS(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString)));
-                            else
-                                emuInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString));
-    #endif
+#if QT_VERSION >= 0x050000
+                            emuInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(emuInfoString));
+#else
+                            emuInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString));
+#endif
                             for (int i = 0; i < gameWords.count(); i++)
                                 if ( !gameWords[i].isEmpty() )
                                     qmc2EmuInfoDB[gameWords[i]] = emuInfo;
@@ -348,26 +326,17 @@ QString InfoProvider::requestInfo(const QString &id, InfoClass infoClass)
             if ( newGameInfo ) {
                 switch ( emulatorMode ) {
                 case QMC2_ARCADE_EMUMODE_MAME:
-                    if ( globalConfig->compressMameHistoryDat() )
-                        infoText = QString(QMC2_ARCADE_UNCOMPRESS(*newGameInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-                    else
-                        infoText = QString(*newGameInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+                    infoText = QString(*newGameInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
                     break;
                 case QMC2_ARCADE_EMUMODE_UME:
-                    if ( globalConfig->compressMameHistoryDat() )
-                        infoText = QString(QMC2_ARCADE_UNCOMPRESS(*newGameInfo));
-                    else
-                        infoText = QString(*newGameInfo);
+                    infoText = QString(*newGameInfo);
                     if ( isMessGameInfo(id) )
                         infoText = messWikiToHtml(infoText);
                     else
                         infoText.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
                     break;
                 case QMC2_ARCADE_EMUMODE_MESS:
-                    if ( globalConfig->compressMameHistoryDat() )
-                        infoText = QString(QMC2_ARCADE_UNCOMPRESS(*newGameInfo));
-                    else
-                        infoText = QString(*newGameInfo);
+                    infoText = QString(*newGameInfo);
                     infoText = messWikiToHtml(infoText);
                     break;
                 }
@@ -379,12 +348,9 @@ QString InfoProvider::requestInfo(const QString &id, InfoClass infoClass)
     case InfoProvider::InfoClassEmu:
         if ( qmc2EmuInfoDB.contains(id) ) {
             QByteArray *newEmuInfo = qmc2EmuInfoDB[id];
-            if ( newEmuInfo ) {
-                if ( globalConfig->compressMameInfoDat() )
-                    infoText = QString(QMC2_ARCADE_UNCOMPRESS(*newEmuInfo)).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-                else
-                    infoText = QString(*newEmuInfo).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-            } else
+            if ( newEmuInfo )
+                infoText = QString(*newEmuInfo).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+            else
                 infoText = "<p>" + QObject::tr("no info available") + "</p>";
         } else
             infoText = "<p>" + QObject::tr("no info available") + "</p>";

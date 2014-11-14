@@ -732,19 +732,9 @@ QString ArcadeSettings::mameHistoryDat()
     return value(QString("%1/FilesAndDirectories/MameHistoryDat").arg(frontEndPrefix)).toString();
 }
 
-bool ArcadeSettings::compressMameHistoryDat()
-{
-    return value(QString("%1/GUI/CompressMameHistoryDat").arg(frontEndPrefix)).toBool();
-}
-
 QString ArcadeSettings::messSysinfoDat()
 {
     return value(QString("%1/FilesAndDirectories/MessSysinfoDat").arg(frontEndPrefix)).toString();
-}
-
-bool ArcadeSettings::compressMessSysinfoDat()
-{
-    return value(QString("%1/GUI/CompressMessSysinfoDat").arg(frontEndPrefix)).toBool();
 }
 
 QString ArcadeSettings::mameInfoDat()
@@ -752,19 +742,9 @@ QString ArcadeSettings::mameInfoDat()
     return value(QString("%1/FilesAndDirectories/MameInfoDat").arg(frontEndPrefix)).toString();
 }
 
-bool ArcadeSettings::compressMameInfoDat()
-{
-    return value(QString("%1/FilesAndDirectories/CompressMameInfoDat").arg(frontEndPrefix)).toBool();
-}
-
 QString ArcadeSettings::messInfoDat()
 {
     return value(QString("%1/FilesAndDirectories/MessInfoDat").arg(frontEndPrefix)).toString();
-}
-
-bool ArcadeSettings::compressMessInfoDat()
-{
-    return value(QString("%1/FilesAndDirectories/CompressMessInfoDat").arg(frontEndPrefix)).toBool();
 }
 
 QStringList ArcadeSettings::activeImageFormats(QString imageType)

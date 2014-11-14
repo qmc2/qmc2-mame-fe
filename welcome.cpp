@@ -492,6 +492,17 @@ bool Welcome::checkConfig()
 				startupConfig->setValue(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/ToolBarActions", sl);
 			}
 		}
+		if ( QMC2_TEST_VERSION(omv, 46, osr, 6310) ) {
+			// remove obsolete "Compress*Info*" keys
+			foreach (QString cKey, QStringList() << "GUI/CompressSoftwareInfoDB" << "FilesAndDirectories/CompressMessInfoDat" << "FilesAndDirectories/CompressMameInfoDat" << "FilesAndDirectories/CompressMessSysinfoDat" << "FilesAndDirectories/CompressMameHistoryDat") {
+				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + cKey) )
+					startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + cKey);
+				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + cKey) )
+					startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + cKey);
+				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + cKey) )
+					startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + cKey);
+			}
+		}
 
 	}
 
