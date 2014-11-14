@@ -183,6 +183,7 @@ extern bool qmc2VersionInfoUsed;
 extern QMultiMap<QString, QString> qmc2GameInfoSourceMap;
 #endif
 extern bool qmc2LoadingSoftwareInfoDB;
+extern bool qmc2LoadingEmuInfoDB;
 
 QBrush Options::greenBrush(QColor(0, 255, 0));
 QBrush Options::yellowBrush(QColor(255, 255, 0));
@@ -3262,7 +3263,25 @@ void Options::on_toolButtonImportMameInfo_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonImportMameInfo_clicked()");
 #endif
 
-	// FIXME
+#if defined(QMC2_EMUTYPE_MAME)
+	QStringList pathList = QStringList() << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
+#elif defined(QMC2_EMUTYPE_UME)
+	QStringList pathList;
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() )
+		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() )
+		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString();
+#endif
+
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	qmc2LoadingEmuInfoDB = true;
+	toolButtonImportMameInfo->setEnabled(false);
+	toolButtonImportMessInfo->setEnabled(false);
+	qmc2Gamelist->datInfoDb()->importEmuInfo(pathList);
+	toolButtonImportMameInfo->setEnabled(true);
+	toolButtonImportMessInfo->setEnabled(true);
+	qmc2LoadingEmuInfoDB = false;
+#endif
 }
 
 void Options::on_toolButtonImportMessInfo_clicked()
@@ -3271,7 +3290,25 @@ void Options::on_toolButtonImportMessInfo_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonImportMessInfo_clicked()");
 #endif
 
-	// FIXME
+#if defined(QMC2_EMUTYPE_MESS)
+	QStringList pathList = QStringList() << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString();
+#elif defined(QMC2_EMUTYPE_UME)
+	QStringList pathList;
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() )
+		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() )
+		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString();
+#endif
+
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+	qmc2LoadingEmuInfoDB = true;
+	toolButtonImportMameInfo->setEnabled(false);
+	toolButtonImportMessInfo->setEnabled(false);
+	qmc2Gamelist->datInfoDb()->importEmuInfo(pathList);
+	toolButtonImportMameInfo->setEnabled(true);
+	toolButtonImportMessInfo->setEnabled(true);
+	qmc2LoadingEmuInfoDB = false;
+#endif
 }
 
 void Options::on_toolButtonImportSoftwareInfo_clicked()
