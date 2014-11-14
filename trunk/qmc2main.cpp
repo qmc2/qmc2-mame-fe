@@ -207,7 +207,6 @@ QTreeWidgetItem *qmc2LastConfigItem = NULL;
 QTreeWidgetItem *qmc2LastGameInfoItem = NULL;
 bool qmc2LoadingEmuInfoDB = false;
 QTreeWidgetItem *qmc2LastEmuInfoItem = NULL;
-QHash<QString, QByteArray *> qmc2EmuInfoDB;
 bool qmc2LoadingSoftwareInfoDB = false;
 QTreeWidgetItem *qmc2LastSoftwareInfoItem = NULL;
 MiniWebBrowser *qmc2MAWSLookup = NULL;
@@ -2435,15 +2434,15 @@ void MainWindow::on_actionReload_triggered(bool)
 #endif
 #if defined(QMC2_EMUTYPE_MAME)
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() )
-			if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser )
+			if ( !qmc2StopParser )
 				loadEmuInfoDB();
 #elif defined(QMC2_EMUTYPE_MESS)
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() )
-			if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser )
+			if ( !qmc2StopParser )
 				loadEmuInfoDB();
 #elif defined(QMC2_EMUTYPE_UME)
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() )
-			if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser )
+			if ( !qmc2StopParser )
 				loadEmuInfoDB();
 #endif
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessSoftwareInfoDB").toBool() )
@@ -5073,27 +5072,18 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 			if ( qmc2CurrentItem != qmc2LastEmuInfoItem ) {
 				tabEmuInfo->setUpdatesEnabled(false);
-				if ( qmc2EmuInfoDB.contains(gameName) || qmc2EmuInfoDB.contains(qmc2ParentHash[gameName]) ) {
-					// update emulator info if it points to a different DB record
-					bool updateInfo = true;
-					QByteArray *newEmuInfo = qmc2EmuInfoDB[gameName];
-					if ( !newEmuInfo )
-						// fall back to parent's emulator info, if applicable
-						newEmuInfo = qmc2EmuInfoDB[qmc2ParentHash[gameName]];
-					if ( qmc2LastEmuInfoItem )
-						if ( qmc2LastEmuInfoItem->child(0) ) {
-							QByteArray *oldEmuInfo = qmc2EmuInfoDB[qmc2LastEmuInfoItem->text(QMC2_GAMELIST_COLUMN_NAME)];
-							if ( !oldEmuInfo )
-								// fall back to parent's emulator info, if applicable
-								oldEmuInfo = qmc2EmuInfoDB[qmc2ParentHash[qmc2LastEmuInfoItem->text(QMC2_GAMELIST_COLUMN_NAME)]];
-							updateInfo = (newEmuInfo != oldEmuInfo || !oldEmuInfo);
-						}
-					if ( updateInfo ) {
-						if ( newEmuInfo )
-							textBrowserEmuInfo->setHtml(QString(*newEmuInfo).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
-						else
-							textBrowserEmuInfo->setHtml(tr("No data available"));
-					}
+				QString emuInfoKey = gameName;
+				if ( !qmc2Gamelist->datInfoDb()->existsEmuInfo(emuInfoKey) ) {
+					emuInfoKey = qmc2ParentHash[gameName];
+					if ( !qmc2Gamelist->datInfoDb()->existsEmuInfo(emuInfoKey) )
+						emuInfoKey.clear();
+				}
+				if ( !emuInfoKey.isEmpty() ) {
+					QString emuInfoText = qmc2Gamelist->datInfoDb()->emuInfo(emuInfoKey);
+					if ( !emuInfoText.isEmpty() )
+						textBrowserEmuInfo->setHtml(emuInfoText.replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
+					else
+						textBrowserEmuInfo->setHtml(tr("No data available"));
 				} else
 					textBrowserEmuInfo->setHtml(tr("No data available"));
 				qmc2LastEmuInfoItem = qmc2CurrentItem;
@@ -5131,6 +5121,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 				bool useSystemNotesTemplate = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UseSystemNotesTemplate").toBool();
 				QString fileName = systemNotesFolder + gameName + ".html";
 				qmc2SystemNotesEditor->setCurrentFileName(fileName);
+				QString parentSystem = qmc2ParentHash[gameName];
 
 				qmc2SystemNotesEditor->enableFileNewFromTemplateAction(useSystemNotesTemplate);
 
@@ -5147,7 +5138,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 				qmc2SystemNotesEditor->templateMap["$CATEGORY$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_CATEGORY).toHtmlEscaped();
 #endif
 				qmc2SystemNotesEditor->templateMap["$ID$"] = gameName;
-				qmc2SystemNotesEditor->templateMap["$PARENT_ID$"] = qmc2ParentHash[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
+				qmc2SystemNotesEditor->templateMap["$PARENT_ID$"] = parentSystem;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 #if QT_VERSION < 0x050000
 				qmc2SystemNotesEditor->templateMap["$VERSION$"] = Qt::escape(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_VERSION));
@@ -5273,12 +5264,16 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 				}
 
-				if ( qmc2EmuInfoDB.contains(gameName) || qmc2EmuInfoDB.contains(qmc2ParentHash[gameName]) ) {
-					QByteArray *newEmuInfo = qmc2EmuInfoDB[gameName];
-					if ( !newEmuInfo )
-						newEmuInfo = qmc2EmuInfoDB[qmc2ParentHash[gameName]];
-					if ( newEmuInfo ) {
-						qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = QString(*newEmuInfo).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+				QString emuInfoKey = gameName;
+				if ( !qmc2Gamelist->datInfoDb()->existsEmuInfo(emuInfoKey) ) {
+					emuInfoKey = parentSystem;
+					if ( !qmc2Gamelist->datInfoDb()->existsEmuInfo(emuInfoKey) )
+						emuInfoKey.clear();
+				}
+				if ( !emuInfoKey.isEmpty() ) {
+					QString emuInfoText = qmc2Gamelist->datInfoDb()->emuInfo(emuInfoKey);
+					if ( !emuInfoText.isEmpty() ) {
+						qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = emuInfoText.replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 						qmc2SystemNotesEditor->templateMap["$EMU_INFO_STATUS$"] = "OK";
 					} else {
 						qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = tr("No data available");
@@ -7172,21 +7167,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		deletedRecords.clear();
 		qmc2GameInfoDB.clear();
 	}
-	if ( !qmc2EmuInfoDB.isEmpty() ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying emulator info DB"));
-		QHashIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
-		QList<QByteArray *> deletedRecords;
-		while ( it.hasNext() ) {
-			it.next();
-			if ( !deletedRecords.contains(it.value()) ) {
-				if ( it.value() )
-					delete it.value();
-				deletedRecords.append(it.value());
-			}
-		}
-		deletedRecords.clear();
-		qmc2EmuInfoDB.clear();
-	}
 
 	log(QMC2_LOG_FRONTEND, tr("destroying process manager"));
 	if ( qmc2ProcessManager->procMap.count() > 0 ) {
@@ -7942,144 +7922,27 @@ void MainWindow::loadEmuInfoDB()
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadEmuInfoDB()");
 #endif
 
-	QTime emuInfoElapsedTime(0, 0, 0, 0),
-	      emuInfoTimer;
-
-	qmc2LoadingEmuInfoDB = true;
-	qmc2StopParser = false;
-	log(QMC2_LOG_FRONTEND, tr("loading emulator info DB"));
-	emuInfoTimer.start();
-
-	// clear emulator info DB
-	QHashIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
-	QList<QByteArray *> deletedRecords;
-	while ( it.hasNext() ) {
-		it.next();
-		if ( !deletedRecords.contains(it.value()) ) {
-			if ( it.value() )
-				delete it.value();
-			deletedRecords.append(it.value());
-		}
-	}
-	deletedRecords.clear();
-	qmc2EmuInfoDB.clear();
-
 #if defined(QMC2_EMUTYPE_MAME)
-	QString pathToEmuInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
+	QStringList pathList = QStringList() << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
 #elif defined(QMC2_EMUTYPE_MESS)
-	QString pathToEmuInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString();
+	QStringList pathList = QStringList() << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString();
 #elif defined(QMC2_EMUTYPE_UME)
-	QStringList pathToEmuInfoDBList;
+	QStringList pathList;
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() )
-		pathToEmuInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
+		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() )
-		pathToEmuInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString();
-	for (int index = 0; index < pathToEmuInfoDBList.count(); index++) {
-		QString pathToEmuInfoDB = pathToEmuInfoDBList[index];
-#endif
-		QFile emuInfoDB(pathToEmuInfoDB);
-		if ( emuInfoDB.open(QIODevice::ReadOnly | QIODevice::Text) ) {
-			qmc2MainWindow->progressBarGamelist->reset();
-			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-				progressBarGamelist->setFormat(tr("Emu info - %p%"));
-			else
-				progressBarGamelist->setFormat("%p%");
-			progressBarGamelist->setRange(0, emuInfoDB.size());
-			progressBarGamelist->setValue(0);
-			qApp->processEvents();
-			QTextStream ts(&emuInfoDB);
-			ts.setCodec(QTextCodec::codecForName("UTF-8"));
-			quint64 recordsProcessed = 0;
-			QRegExp lineBreakRx("(<br>){2,}");
-			while ( !ts.atEnd() && !qmc2StopParser ) {
-				QString singleLineSimplified = ts.readLine().simplified();
-				bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
-				while ( !startsWithDollarInfo && !ts.atEnd() ) {
-					singleLineSimplified = ts.readLine().simplified();
-					if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-						progressBarGamelist->setValue(emuInfoDB.pos());
-						qApp->processEvents();
-					}
-					startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
-				}
-				if ( startsWithDollarInfo ) {
-					QStringList gameNames = singleLineSimplified.mid(6).split(",", QString::SkipEmptyParts);
-					bool startsWithDollarMame = false;
-					while ( !startsWithDollarMame && !ts.atEnd() ) {
-						singleLineSimplified = ts.readLine().simplified();
-						if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-							progressBarGamelist->setValue(emuInfoDB.pos());
-							qApp->processEvents();
-						}
-						startsWithDollarMame = singleLineSimplified.startsWith("$mame");
-					}
-					if ( startsWithDollarMame ) {
-						QString emuInfoString;
-						bool startsWithDollarEnd = false;
-						while ( !startsWithDollarEnd && !ts.atEnd() ) {
-							QString singleLine = ts.readLine();
-							singleLineSimplified = singleLine.simplified();
-							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
-							if ( !startsWithDollarEnd )
-								emuInfoString.append(singleLine + "<br>");
-							if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-								progressBarGamelist->setValue(emuInfoDB.pos());
-								qApp->processEvents();
-							}
-						}
-						if ( startsWithDollarEnd ) {
-							// reduce the number of line breaks
-							emuInfoString.replace(lineBreakRx, "<p>");
-							if ( emuInfoString.startsWith("<br>") )
-								emuInfoString.remove(0, 4);
-							if ( emuInfoString.endsWith("<p>") )
-								emuInfoString.remove(emuInfoString.length() - 3, 3);
-#if QT_VERSION >= 0x050000
-							QByteArray *emuInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(emuInfoString));
-#else
-							QByteArray *emuInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString));
-#endif
-							foreach (QString setName, gameNames)
-								qmc2EmuInfoDB[setName] = emuInfo;
-						} else
-							log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in emulator info DB %1").arg(pathToEmuInfoDB));
-					} else if ( !ts.atEnd() )
-						log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$mame' in emulator info DB %1").arg(pathToEmuInfoDB));
-				} else if ( !ts.atEnd() )
-					log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in emulator info DB %1").arg(pathToEmuInfoDB));
-				if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-					progressBarGamelist->setValue(emuInfoDB.pos());
-					qApp->processEvents();
-				}
-			}
-			progressBarGamelist->setValue(emuInfoDB.pos());
-			emuInfoDB.close();
-		} else
-			log(QMC2_LOG_FRONTEND, tr("WARNING: can't open emulator info DB %1").arg(pathToEmuInfoDB));
-#if defined(QMC2_EMUTYPE_UME)
-	}
+		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString();
 #endif
 
-	emuInfoElapsedTime = emuInfoElapsedTime.addMSecs(emuInfoTimer.elapsed());
-	log(QMC2_LOG_FRONTEND, tr("done (loading emulator info DB, elapsed time = %1)").arg(emuInfoElapsedTime.toString("mm:ss.zzz")));
-	log(QMC2_LOG_FRONTEND, tr("%n emulator info record(s) loaded", "", qmc2EmuInfoDB.count()));
-	if ( qmc2StopParser ) {
-		log(QMC2_LOG_FRONTEND, tr("invalidating emulator info DB"));
-		QHashIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
-		QList<QByteArray *> deletedRecords;
-		while ( it.hasNext() ) {
-			it.next();
-			if ( !deletedRecords.contains(it.value()) ) {
-				if ( it.value() )
-					delete it.value();
-				deletedRecords.append(it.value());
-			}
-		}
-		deletedRecords.clear();
-		qmc2EmuInfoDB.clear();
+	if ( qmc2Gamelist->datInfoDb()->emuInfoImportRequired(pathList) ) {
+		qmc2LoadingEmuInfoDB = true;
+		qmc2Options->toolButtonImportMameInfo->setEnabled(false);
+		qmc2Options->toolButtonImportMessInfo->setEnabled(false);
+		qmc2Gamelist->datInfoDb()->importEmuInfo(pathList);
+		qmc2Options->toolButtonImportMameInfo->setEnabled(true);
+		qmc2Options->toolButtonImportMessInfo->setEnabled(true);
+		qmc2LoadingEmuInfoDB = false;
 	}
-	qmc2LoadingEmuInfoDB = false;
-	qmc2MainWindow->progressBarGamelist->reset();
 }
 
 void MainWindow::loadSoftwareInfoDB()

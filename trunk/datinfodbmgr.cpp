@@ -540,6 +540,8 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 
 	QStringList importPaths, importDates;
 	foreach(QString path, pathList) {
+		if ( path.isEmpty() )
+			continue;
 		QFile swInfoDB(path);
 		if ( swInfoDB.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 			qmc2StopParser = false;
@@ -629,16 +631,18 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 			if ( qmc2StopParser ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("import stopped, invalidating %1 table").arg(tr("software info")));
 				recreateSoftwareInfoTable();
-			} else {
+				break;
+			} else
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("done (importing %1 from '%2')").arg(tr("software info-texts")).arg(QDir::toNativeSeparators(path)));
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n software info record(s) imported", "", softwareInfoRowCount()));
-			}
 			importPaths << path;
 			importDates << QString::number(QFileInfo(path).lastModified().toTime_t());
 			swInfoDB.close();
 		} else
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: can't open software info file '%1'").arg(QDir::toNativeSeparators(path)));
 	}
+
+	if ( !qmc2StopParser )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n software info record(s) imported", "", softwareInfoRowCount()));
 
 	if ( !importPaths.isEmpty() ) {
 		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "DatInfoDatabase/SoftwareInfoImportFiles", importPaths);
@@ -695,16 +699,121 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 	if ( fromScratch )
 		recreateEmuInfoTable();
 
+	QStringList importPaths, importDates;
 	foreach(QString path, pathList) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("importing %1 from '%2'").arg(tr("emulator info-texts")).arg(QDir::toNativeSeparators(path)));
-		beginTransaction();
-		// FIXME
-		commitTransaction();
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("done (importing %1 from '%2')").arg(tr("emulator info-texts")).arg(QDir::toNativeSeparators(path)));
+		if ( path.isEmpty() )
+			continue;
+		QFile emuInfoDB(path);
+		if ( emuInfoDB.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+			qmc2StopParser = false;
+			beginTransaction();
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("importing %1 from '%2'").arg(tr("emulator info-texts")).arg(QDir::toNativeSeparators(path)));
+			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+				qmc2MainWindow->progressBarGamelist->setFormat(tr("Emu info - %p%"));
+			else
+				qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+			qmc2MainWindow->progressBarGamelist->setRange(0, emuInfoDB.size());
+			qmc2MainWindow->progressBarGamelist->setValue(0);
+			qApp->processEvents();
+			QTextStream ts(&emuInfoDB);
+			ts.setCodec(QTextCodec::codecForName("UTF-8"));
+			quint64 recordsProcessed = 0, pendingUpdates = 0;
+			QRegExp lineBreakRx("(<br>){2,}");
+			while ( !ts.atEnd() && !qmc2StopParser ) {
+				QString singleLineSimplified = ts.readLine().simplified();
+				bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
+				while ( !startsWithDollarInfo && !ts.atEnd() ) {
+					singleLineSimplified = ts.readLine().simplified();
+					if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+						qmc2MainWindow->progressBarGamelist->setValue(emuInfoDB.pos());
+						qApp->processEvents();
+					}
+					startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
+				}
+				if ( startsWithDollarInfo ) {
+					QStringList gameNames = singleLineSimplified.mid(6).split(",", QString::SkipEmptyParts);
+					bool startsWithDollarMame = false;
+					while ( !startsWithDollarMame && !ts.atEnd() ) {
+						singleLineSimplified = ts.readLine().simplified();
+						if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+							qmc2MainWindow->progressBarGamelist->setValue(emuInfoDB.pos());
+							qApp->processEvents();
+						}
+						startsWithDollarMame = singleLineSimplified.startsWith("$mame");
+					}
+					if ( startsWithDollarMame ) {
+						QString emuInfoString;
+						bool startsWithDollarEnd = false;
+						while ( !startsWithDollarEnd && !ts.atEnd() ) {
+							QString singleLine = ts.readLine();
+							singleLineSimplified = singleLine.simplified();
+							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
+							if ( !startsWithDollarEnd )
+								emuInfoString.append(singleLine + "<br>");
+							if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+								qmc2MainWindow->progressBarGamelist->setValue(emuInfoDB.pos());
+								qApp->processEvents();
+							}
+						}
+						if ( startsWithDollarEnd ) {
+							// reduce the number of line breaks
+							emuInfoString.replace(lineBreakRx, "<p>");
+							if ( emuInfoString.startsWith("<br>") )
+								emuInfoString.remove(0, 4);
+							if ( emuInfoString.endsWith("<p>") )
+								emuInfoString.remove(emuInfoString.length() - 3, 3);
+							foreach (QString setName, gameNames) {
+								setEmuInfo(setName, emuInfoString);
+								pendingUpdates++;
+							}
+							if ( pendingUpdates > QMC2_DATINFO_COMMIT ) {
+								commitTransaction();
+								pendingUpdates = 0;
+								beginTransaction();
+							}
+						} else
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in emulator info file %1").arg(QDir::toNativeSeparators(path)));
+					} else if ( !ts.atEnd() )
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$mame' in emulator info file %1").arg(QDir::toNativeSeparators(path)));
+				} else if ( !ts.atEnd() )
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in emulator info file %1").arg(QDir::toNativeSeparators(path)));
+				/*
+				if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+					qmc2MainWindow->progressBarGamelist->setValue(emuInfoDB.pos());
+					qApp->processEvents();
+				}
+				*/
+			}
+			commitTransaction();
+			qmc2MainWindow->progressBarGamelist->setValue(emuInfoDB.pos());
+			if ( qmc2StopParser ) {
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("import stopped, invalidating %1 table").arg(tr("emu info")));
+				recreateSoftwareInfoTable();
+				break;
+			} else
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("done (importing %1 from '%2')").arg(tr("emulator info-texts")).arg(QDir::toNativeSeparators(path)));
+			importPaths << path;
+			importDates << QString::number(QFileInfo(path).lastModified().toTime_t());
+			emuInfoDB.close();
+
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open emulator info file %1").arg(QDir::toNativeSeparators(path)));
+	}
+
+	if ( !qmc2StopParser )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n emulator info record(s) imported", "", emuInfoRowCount()));
+
+	if ( !importPaths.isEmpty() ) {
+		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "DatInfoDatabase/EmuInfoImportFiles", importPaths);
+		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "DatInfoDatabase/EmuInfoImportDates", importDates);
+	} else {
+		qmc2Config->remove(QMC2_EMULATOR_PREFIX + "DatInfoDatabase/EmuInfoImportFiles");
+		qmc2Config->remove(QMC2_EMULATOR_PREFIX + "DatInfoDatabase/EmuInfoImportDates");
 	}
 
 	setQmc2Version(XSTR(QMC2_VERSION));
 	setDatInfoVersion(QMC2_DATINFO_VERSION);
+	qmc2MainWindow->progressBarGamelist->reset();
 }
 
 bool DatInfoDatabaseManager::gameInfoImportRequired(QStringList pathList)

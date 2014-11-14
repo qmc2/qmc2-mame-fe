@@ -142,7 +142,6 @@ extern QHash<QString, QString> qmc2CustomShortcutHash;
 extern KeyPressFilter *qmc2KeyPressFilter;
 extern QHash<QString, QKeySequence> qmc2QtKeyHash;
 extern QHash<QString, QByteArray *> qmc2GameInfoDB;
-extern QHash<QString, QByteArray *> qmc2EmuInfoDB;
 extern MiniWebBrowser *qmc2MAWSLookup;
 extern MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup;
 extern DetailSetup *qmc2DetailSetup;
@@ -232,8 +231,6 @@ Options::Options(QWidget *parent)
 #if !defined(QMC2_WIP_ENABLED)
 	toolButtonImportGameInfo->setVisible(false);
 	toolButtonImportMachineInfo->setVisible(false);
-	toolButtonImportMameInfo->setVisible(false);
-	toolButtonImportMessInfo->setVisible(false);
 #endif
 
 #if !defined(QMC2_WIP_ENABLED)
@@ -1891,21 +1888,8 @@ void Options::on_pushButtonApply_clicked()
 #endif
 	}
 
-	if ( invalidateEmuInfoDB ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("invalidating emulator info DB"));
-		QHashIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
-		QList<QByteArray *> deletedRecords;
-		while ( it.hasNext() ) {
-			it.next();
-			if ( !deletedRecords.contains(it.value()) ) {
-				if ( it.value() )
-					delete it.value();
-				deletedRecords.append(it.value());
-			}
-		}
-		deletedRecords.clear();
-		qmc2EmuInfoDB.clear();
-	}
+	if ( invalidateEmuInfoDB )
+		qmc2Gamelist->datInfoDb()->recreateEmuInfoTable();
 
 	if ( invalidateSoftwareInfoDB )
 		qmc2Gamelist->datInfoDb()->recreateSoftwareInfoTable();

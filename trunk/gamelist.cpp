@@ -103,7 +103,6 @@ extern QBitArray qmc2Filter;
 extern QMap<QString, unzFile> qmc2IconFileMap;
 extern QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
 extern QHash<QString, QIcon> qmc2IconHash;
-extern QHash<QString, QByteArray *> qmc2EmuInfoDB;
 extern QTreeWidgetItem *qmc2LastMAWSItem;
 extern MiniWebBrowser *qmc2MAWSLookup;
 extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
@@ -2187,14 +2186,6 @@ void Gamelist::parse()
 				}
 			} else
 				hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_ICON, icon);
-
-			// "fill up" emulator info data for clones
-			if ( !qmc2EmuInfoDB.isEmpty() ) {
-				QByteArray *p = qmc2EmuInfoDB[hierarchyItem->text(QMC2_GAMELIST_COLUMN_NAME)];
-				if ( p )
-					if ( !qmc2EmuInfoDB.contains(baseItem->text(QMC2_GAMELIST_COLUMN_NAME)) )
-						qmc2EmuInfoDB[baseItem->text(QMC2_GAMELIST_COLUMN_NAME)] = p;
-			}
 
 			if ( showROMStatusIcons ) {
 				switch ( gameStatusHash[jValue] ) {
