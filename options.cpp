@@ -179,11 +179,9 @@ extern QPalette qmc2CustomPalette;
 extern QMap<QString, QPalette> qmc2StandardPalettes;
 extern bool qmc2CategoryInfoUsed;
 extern bool qmc2VersionInfoUsed;
-#if defined(QMC2_EMUTYPE_UME)
-extern QMultiMap<QString, QString> qmc2GameInfoSourceMap;
-#endif
 extern bool qmc2LoadingSoftwareInfoDB;
 extern bool qmc2LoadingEmuInfoDB;
+extern bool qmc2LoadingGameInfoDB;
 
 QBrush Options::greenBrush(QColor(0, 255, 0));
 QBrush Options::yellowBrush(QColor(255, 255, 0));
@@ -228,11 +226,6 @@ Options::Options(QWidget *parent)
 	setupUi(this);
 
 	cancelClicked = false;
-
-#if !defined(QMC2_WIP_ENABLED)
-	toolButtonImportGameInfo->setVisible(false);
-	toolButtonImportMachineInfo->setVisible(false);
-#endif
 
 #if !defined(QMC2_WIP_ENABLED)
 	// FIXME: remove WIP clause when "additional artwork support" is working
@@ -1864,30 +1857,8 @@ void Options::on_pushButtonApply_clicked()
 	if ( qmc2GuiReady )
 		apply();
 
-	if ( invalidateGameInfoDB ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("invalidating game info DB"));
-#elif defined(QMC2_EMUTYPE_MESS)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("invalidating machine info DB"));
-#endif
-		QHashIterator<QString, QByteArray *> it(qmc2GameInfoDB);
-		QList<QByteArray *> deletedRecords;
-		while ( it.hasNext() ) {
-			it.next();
-			if ( !deletedRecords.contains(it.value()) ) {
-				if ( it.value() )
-					delete it.value();
-				deletedRecords.append(it.value());
-			}
-		}
-		deletedRecords.clear();
-		qmc2GameInfoDB.clear();
-#if defined(QMC2_EMUTYPE_UME)
-		foreach (QString key, qmc2GameInfoSourceMap)
-			qmc2GameInfoSourceMap.remove(key);
-		qmc2GameInfoSourceMap.clear();
-#endif
-	}
+	if ( invalidateGameInfoDB )
+		qmc2Gamelist->datInfoDb()->recreateGameInfoTable();
 
 	if ( invalidateEmuInfoDB )
 		qmc2Gamelist->datInfoDb()->recreateEmuInfoTable();
@@ -3245,7 +3216,32 @@ void Options::on_toolButtonImportGameInfo_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonImportGameInfo_clicked()");
 #endif
 
-	// FIXME
+#if defined(QMC2_EMUTYPE_MAME)
+	QStringList pathList = QStringList() << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString();
+	QStringList emulatorList = QStringList() << "MAME";
+#elif defined(QMC2_EMUTYPE_UME)
+	QStringList pathList;
+	QStringList emulatorList;
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() ) {
+		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString();
+		emulatorList << "MAME";
+	}
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() ) {
+		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
+		emulatorList << "MESS";
+	}
+#endif
+
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	qmc2LoadingGameInfoDB = true;
+	qmc2Options->toolButtonImportGameInfo->setEnabled(false);
+	qmc2Options->toolButtonImportMachineInfo->setEnabled(false);
+	qApp->processEvents();
+	qmc2Gamelist->datInfoDb()->importGameInfo(pathList, emulatorList);
+	qmc2Options->toolButtonImportGameInfo->setEnabled(true);
+	qmc2Options->toolButtonImportMachineInfo->setEnabled(true);
+	qmc2LoadingGameInfoDB = false;
+#endif
 }
 
 void Options::on_toolButtonImportMachineInfo_clicked()
@@ -3254,7 +3250,32 @@ void Options::on_toolButtonImportMachineInfo_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonImportMachineInfo_clicked()");
 #endif
 
-	// FIXME
+#if defined(QMC2_EMUTYPE_MESS)
+	QStringList pathList = QStringList() << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
+	QStringList emulatorList = QStringList() << "MESS";
+#elif defined(QMC2_EMUTYPE_UME)
+	QStringList pathList;
+	QStringList emulatorList;
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() ) {
+		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString();
+		emulatorList << "MAME";
+	}
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() ) {
+		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
+		emulatorList << "MESS";
+	}
+#endif
+
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+	qmc2LoadingGameInfoDB = true;
+	qmc2Options->toolButtonImportGameInfo->setEnabled(false);
+	qmc2Options->toolButtonImportMachineInfo->setEnabled(false);
+	qApp->processEvents();
+	qmc2Gamelist->datInfoDb()->importGameInfo(pathList, emulatorList);
+	qmc2Options->toolButtonImportGameInfo->setEnabled(true);
+	qmc2Options->toolButtonImportMachineInfo->setEnabled(true);
+	qmc2LoadingGameInfoDB = false;
+#endif
 }
 
 void Options::on_toolButtonImportMameInfo_clicked()
@@ -3277,6 +3298,7 @@ void Options::on_toolButtonImportMameInfo_clicked()
 	qmc2LoadingEmuInfoDB = true;
 	toolButtonImportMameInfo->setEnabled(false);
 	toolButtonImportMessInfo->setEnabled(false);
+	qApp->processEvents();
 	qmc2Gamelist->datInfoDb()->importEmuInfo(pathList);
 	toolButtonImportMameInfo->setEnabled(true);
 	toolButtonImportMessInfo->setEnabled(true);
@@ -3304,6 +3326,7 @@ void Options::on_toolButtonImportMessInfo_clicked()
 	qmc2LoadingEmuInfoDB = true;
 	toolButtonImportMameInfo->setEnabled(false);
 	toolButtonImportMessInfo->setEnabled(false);
+	qApp->processEvents();
 	qmc2Gamelist->datInfoDb()->importEmuInfo(pathList);
 	toolButtonImportMameInfo->setEnabled(true);
 	toolButtonImportMessInfo->setEnabled(true);
@@ -3319,6 +3342,7 @@ void Options::on_toolButtonImportSoftwareInfo_clicked()
 
 	qmc2LoadingSoftwareInfoDB = true;
 	toolButtonImportSoftwareInfo->setEnabled(false);
+	qApp->processEvents();
 	QStringList pathList = QStringList() << QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB").toString();
 	qmc2Gamelist->datInfoDb()->importSoftwareInfo(pathList);
 	toolButtonImportSoftwareInfo->setEnabled(true);

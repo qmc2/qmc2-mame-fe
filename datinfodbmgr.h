@@ -32,7 +32,8 @@ class DatInfoDatabaseManager : public QObject
 		bool emuInfoImportRequired(QStringList pathList);
 
 		QString gameInfo(QString id);
-		void setGameInfo(QString id, QString infotext);
+		QString gameInfoEmulator(QString id);
+		void setGameInfo(QString id, QString infotext, QString emulator);
 		bool existsGameInfo(QString id);
 		qint64 gameInfoRowCount();
 		bool gameInfoImportRequired(QStringList pathList);
@@ -52,7 +53,7 @@ class DatInfoDatabaseManager : public QObject
 		void recreateDatabase();
 		void importSoftwareInfo(QStringList pathList, bool fromScratch = true);
 		void importEmuInfo(QStringList pathList, bool fromScratch = true);
-		void importGameInfo(QStringList pathList, bool fromScratch = true);
+		void importGameInfo(QStringList pathList, QStringList emulatorList, bool fromScratch = true);
 		void beginTransaction() { m_db.driver()->beginTransaction(); }
 		void commitTransaction() { m_db.driver()->commitTransaction(); }
 
