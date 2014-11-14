@@ -280,20 +280,16 @@ void Gamelist::enableWidgets(bool enable)
 	qmc2Options->toolButtonBrowsePreviewDirectory->setEnabled(enable);
 	qmc2Options->toolButtonBrowsePreviewFile->setEnabled(enable);
 	qmc2Options->toolButtonBrowseDataDirectory->setEnabled(enable);
+	qmc2Options->toolButtonBrowseDatInfoDatabase->setEnabled(enable);
 	qmc2Options->toolButtonBrowseMameHistoryDat->setEnabled(enable);
 	qmc2Options->toolButtonBrowseMessSysinfoDat->setEnabled(enable);
-	qmc2Options->toolButtonCompressMameHistoryDat->setEnabled(enable);
-	qmc2Options->toolButtonCompressMessSysinfoDat->setEnabled(enable);
 	qmc2Options->checkBoxProcessMameHistoryDat->setEnabled(enable);
 	qmc2Options->checkBoxProcessMessSysinfoDat->setEnabled(enable);
 	qmc2Options->toolButtonBrowseMameInfoDat->setEnabled(enable);
 	qmc2Options->toolButtonBrowseMessInfoDat->setEnabled(enable);
-	qmc2Options->toolButtonCompressMameInfoDat->setEnabled(enable);
-	qmc2Options->toolButtonCompressMessInfoDat->setEnabled(enable);
 	qmc2Options->checkBoxProcessMameInfoDat->setEnabled(enable);
 	qmc2Options->checkBoxProcessMessInfoDat->setEnabled(enable);
 	qmc2Options->toolButtonBrowseSoftwareInfoDB->setEnabled(enable);
-	qmc2Options->toolButtonCompressSoftwareInfoDB->setEnabled(enable);
 	qmc2Options->checkBoxProcessSoftwareInfoDB->setEnabled(enable);
 #if defined(QMC2_EMUTYPE_MAME)
 	qmc2Options->toolButtonBrowseMAWSCacheDirectory->setEnabled(enable);

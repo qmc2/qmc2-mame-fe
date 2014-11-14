@@ -155,6 +155,7 @@ class Options : public QDialog, public Ui::Options
 		void umeVariantSpecifyArguments();
 #endif
 		void on_toolButtonBrowseDataDirectory_clicked();
+		void on_toolButtonBrowseDatInfoDatabase_clicked();
 		void on_toolButtonBrowseMameHistoryDat_clicked();
 		void on_toolButtonBrowseMessSysinfoDat_clicked();
 		void on_toolButtonBrowseMameInfoDat_clicked();
@@ -208,12 +209,6 @@ class Options : public QDialog, public Ui::Options
 		void on_pushButtonManageCookies_clicked();
 		void on_pushButtonAdditionalArtworkSetup_clicked();
 		void on_pushButtonImageFormats_clicked();
-#if defined(QMC2_EMUTYPE_UME)
-		void on_toolButtonCompressMameHistoryDat_clicked();
-		void on_toolButtonCompressMessSysinfoDat_clicked();
-		void on_toolButtonCompressMameInfoDat_clicked();
-		void on_toolButtonCompressMessInfoDat_clicked();
-#endif
 
 		// joystick setup callbacks
 #if QMC2_JOYSTICK == 1

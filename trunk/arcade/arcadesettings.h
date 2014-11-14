@@ -176,13 +176,9 @@ public slots:
     QString emulatorExecutablePath();
     QString emulatorWorkingDirectory();
     QString mameHistoryDat();
-    bool compressMameHistoryDat();
     QString messSysinfoDat();
-    bool compressMessSysinfoDat();
     QString mameInfoDat();
-    bool compressMameInfoDat();
     QString messInfoDat();
-    bool compressMessInfoDat();
     QStringList activeImageFormats(QString);
     bool parentImageFallback();
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
