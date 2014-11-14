@@ -57,7 +57,9 @@ FILES
 
   CONFIG_PATH/qmc2-sdlmame-cookies.db, CONFIG_PATH/qmc2-sdlmess-cookies.db, CONFIG_PATH/qmc2-sdlume-cookies.db  Permanent web-page cookie database (SQLite 3)
 
-  CONFIG_PATH/qmc2-sdlmame-checksum.db, CONFIG_PATH/qmc2-sdlmess-checksum.db, CONFIG_PATH/qmc2-sdlume-checksum.db  ROMAlyzer's check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (SQLite 3)
+  CONFIG_PATH/qmc2-sdlmame-checksum.db, CONFIG_PATH/qmc2-sdlmess-checksum.db, CONFIG_PATH/qmc2-sdlume-checksum.db  ROMAlyzer's system-mode check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (SQLite 3)
+
+  CONFIG_PATH/qmc2-sdlmame-software-checksum.db, CONFIG_PATH/qmc2-sdlmess-software-checksum.db, CONFIG_PATH/qmc2-sdlume-software-checksum.db  ROMAlyzer's software-mode check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (SQLite 3)
 
   CONFIG_PATH/WebpageIcons.db  Web-page icon database (SQLite 3)
 
