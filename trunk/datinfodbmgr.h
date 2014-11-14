@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QSqlDatabase>
 #include <QSqlDriver>
+#include <QStringList>
 
 class DatInfoDatabaseManager : public QObject
 {
@@ -22,16 +23,19 @@ class DatInfoDatabaseManager : public QObject
 		void setSoftwareInfo(QString list, QString id, QString infotext);
 		bool existsSoftwareInfo(QString list, QString id);
 		qint64 softwareInfoRowCount();
+		bool softwareInfoImportRequired(QStringList pathList);
 
 		QString emuInfo(QString id);
 		void setEmuInfo(QString id, QString infotext);
 		bool existsEmuInfo(QString id);
 		qint64 emuInfoRowCount();
+		bool emuInfoImportRequired(QStringList pathList);
 
 		QString gameInfo(QString id);
 		void setGameInfo(QString id, QString infotext);
 		bool existsGameInfo(QString id);
 		qint64 gameInfoRowCount();
+		bool gameInfoImportRequired(QStringList pathList);
 
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
@@ -46,6 +50,9 @@ class DatInfoDatabaseManager : public QObject
 		void recreateGameInfoTable();
 		void recreateMetaDataTable();
 		void recreateDatabase();
+		void importSoftwareInfo(QStringList pathList, bool fromScratch = true);
+		void importEmuInfo(QStringList pathList, bool fromScratch = true);
+		void importGameInfo(QStringList pathList, bool fromScratch = true);
 		void beginTransaction() { m_db.driver()->beginTransaction(); }
 		void commitTransaction() { m_db.driver()->commitTransaction(); }
 

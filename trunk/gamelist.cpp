@@ -289,6 +289,11 @@ void Gamelist::enableWidgets(bool enable)
 	qmc2Options->checkBoxProcessMessInfoDat->setEnabled(enable);
 	qmc2Options->toolButtonBrowseSoftwareInfoDB->setEnabled(enable);
 	qmc2Options->checkBoxProcessSoftwareInfoDB->setEnabled(enable);
+	qmc2Options->toolButtonImportGameInfo->setEnabled(enable);
+	qmc2Options->toolButtonImportMachineInfo->setEnabled(enable);
+	qmc2Options->toolButtonImportMameInfo->setEnabled(enable);
+	qmc2Options->toolButtonImportMessInfo->setEnabled(enable);
+	qmc2Options->toolButtonImportSoftwareInfo->setEnabled(enable);
 #if defined(QMC2_EMUTYPE_MAME)
 	qmc2Options->toolButtonBrowseMAWSCacheDirectory->setEnabled(enable);
 #endif

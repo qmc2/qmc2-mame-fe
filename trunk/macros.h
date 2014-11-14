@@ -124,8 +124,11 @@
 // number of rows added to the software-list XML cache database in *one* transaction
 #define QMC2_SWLCACHE_COMMIT			1000
 
-// current format version of the dat-info database schema
+// current format version of the DAT-info database schema
 #define QMC2_DATINFO_VERSION			1
+
+// number of rows added to the DAT-info database in *one* transaction
+#define QMC2_DATINFO_COMMIT			5000
 
 // check-sum DB status updates
 #define QMC2_CHECKSUM_DB_STATUS_UPDATE_SHORT	1000

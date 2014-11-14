@@ -209,6 +209,11 @@ class Options : public QDialog, public Ui::Options
 		void on_pushButtonManageCookies_clicked();
 		void on_pushButtonAdditionalArtworkSetup_clicked();
 		void on_pushButtonImageFormats_clicked();
+		void on_toolButtonImportGameInfo_clicked();
+		void on_toolButtonImportMachineInfo_clicked();
+		void on_toolButtonImportMameInfo_clicked();
+		void on_toolButtonImportMessInfo_clicked();
+		void on_toolButtonImportSoftwareInfo_clicked();
 
 		// joystick setup callbacks
 #if QMC2_JOYSTICK == 1

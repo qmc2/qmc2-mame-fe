@@ -210,7 +210,6 @@ QTreeWidgetItem *qmc2LastEmuInfoItem = NULL;
 QHash<QString, QByteArray *> qmc2EmuInfoDB;
 bool qmc2LoadingSoftwareInfoDB = false;
 QTreeWidgetItem *qmc2LastSoftwareInfoItem = NULL;
-QHash<QString, QByteArray *> qmc2SoftwareInfoDB;
 MiniWebBrowser *qmc2MAWSLookup = NULL;
 QTreeWidgetItem *qmc2LastMAWSItem = NULL;
 QCache<QString, QByteArray> qmc2MAWSCache;
@@ -2448,7 +2447,7 @@ void MainWindow::on_actionReload_triggered(bool)
 				loadEmuInfoDB();
 #endif
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessSoftwareInfoDB").toBool() )
-			if ( qmc2SoftwareInfoDB.isEmpty() && !qmc2StopParser )
+			if ( !qmc2StopParser )
 				loadSoftwareInfoDB();
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection").toBool() && !qmc2StartingUp ) {
 			if ( qmc2CurrentItem ) {
@@ -4231,18 +4230,30 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file://" + QDir::fromNativeSeparators(qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath);
 #endif
 
-				if ( qmc2SoftwareInfoDB.contains(listName + ":" + entryName) ) {
-					QByteArray *swInfo = qmc2SoftwareInfoDB[listName + ":" + entryName];
-					if ( swInfo ) {
-						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = QString(*swInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+				if ( qmc2Gamelist->datInfoDb()->existsSoftwareInfo(qmc2SoftwareList->systemName, entryName) ) {
+					QString swInfo = qmc2Gamelist->datInfoDb()->softwareInfo(qmc2SoftwareList->systemName, entryName);
+					if ( !swInfo.isEmpty() ) {
+						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = swInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "OK";
 					} else {
 						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = tr("No data available");
 						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "NO_DATA";
 					}
 				} else {
-					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = tr("No data available");
-					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "NO_DATA";
+					QString parentSystem = qmc2ParentHash[qmc2SoftwareList->systemName];
+					if ( !parentSystem.isEmpty() && qmc2Gamelist->datInfoDb()->existsSoftwareInfo(parentSystem, entryName) ) {
+						QString swInfo = qmc2Gamelist->datInfoDb()->softwareInfo(parentSystem, entryName);
+						if ( !swInfo.isEmpty() ) {
+							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = swInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "OK";
+						} else {
+							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = tr("No data available");
+							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "NO_DATA";
+						}
+					} else {
+						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = tr("No data available");
+						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "NO_DATA";
+					}
 				}
 
 				qmc2SoftwareNotesEditor->setCurrentTemplateName(softwareNotesTemplate);
@@ -4264,13 +4275,24 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 
 		case QMC2_SWINFO_INFO_PAGE:
 			if ( qmc2SoftwareList->currentItem != qmc2LastSoftwareInfoItem ) {
-				QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
 				QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
-				QByteArray *swInfo = qmc2SoftwareInfoDB[listName + ":" + entryName];
-				if ( swInfo )
-					textBrowserSoftwareInfo->setHtml(QString(*swInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
-				else
-					textBrowserSoftwareInfo->setHtml("<p>" + tr("No data available") + "</p>");
+				if ( qmc2Gamelist->datInfoDb()->existsSoftwareInfo(qmc2SoftwareList->systemName, entryName) ) {
+					QString swInfo = qmc2Gamelist->datInfoDb()->softwareInfo(qmc2SoftwareList->systemName, entryName);
+					if ( !swInfo.isEmpty() )
+						textBrowserSoftwareInfo->setHtml(swInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
+					else
+						textBrowserSoftwareInfo->setHtml("<p>" + tr("No data available") + "</p>");
+				} else {
+					QString parentSystem = qmc2ParentHash[qmc2SoftwareList->systemName];
+					if ( !parentSystem.isEmpty() && qmc2Gamelist->datInfoDb()->existsSoftwareInfo(parentSystem, entryName) ) {
+						QString swInfo = qmc2Gamelist->datInfoDb()->softwareInfo(parentSystem, entryName);
+						if ( !swInfo.isEmpty() )
+							textBrowserSoftwareInfo->setHtml(swInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
+						else
+							textBrowserSoftwareInfo->setHtml("<p>" + tr("No data available") + "</p>");
+					} else
+						textBrowserSoftwareInfo->setHtml("<p>" + tr("No data available") + "</p>");
+				}
 				qmc2LastSoftwareInfoItem = qmc2SoftwareList->currentItem;
 			}
 			break;
@@ -7165,21 +7187,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		deletedRecords.clear();
 		qmc2EmuInfoDB.clear();
 	}
-	if ( !qmc2SoftwareInfoDB.isEmpty() ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying software info DB"));
-		QHashIterator<QString, QByteArray *> it(qmc2SoftwareInfoDB);
-		QList<QByteArray *> deletedRecords;
-		while ( it.hasNext() ) {
-			it.next();
-			if ( !deletedRecords.contains(it.value()) ) {
-				if ( it.value() )
-					delete it.value();
-				deletedRecords.append(it.value());
-			}
-		}
-		deletedRecords.clear();
-		qmc2SoftwareInfoDB.clear();
-	}
 
 	log(QMC2_LOG_FRONTEND, tr("destroying process manager"));
 	if ( qmc2ProcessManager->procMap.count() > 0 ) {
@@ -8080,131 +8087,15 @@ void MainWindow::loadSoftwareInfoDB()
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadSoftwareInfoDB()");
 #endif
-	QTime swInfoElapsedTime(0, 0, 0, 0),
-	      swInfoTimer;
 
-	qmc2LoadingSoftwareInfoDB = true;
-	qmc2StopParser = false;
-	log(QMC2_LOG_FRONTEND, tr("loading software info DB"));
-	swInfoTimer.start();
-
-	// clear software info DB
-	QHashIterator<QString, QByteArray *> it(qmc2SoftwareInfoDB);
-	QList<QByteArray *> deletedRecords;
-	while ( it.hasNext() ) {
-		it.next();
-		if ( !deletedRecords.contains(it.value()) ) {
-			if ( it.value() )
-				delete it.value();
-			deletedRecords.append(it.value());
-		}
+	QStringList pathList = QStringList() << qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB").toString();
+	if ( qmc2Gamelist->datInfoDb()->softwareInfoImportRequired(pathList) ) {
+		qmc2LoadingSoftwareInfoDB = true;
+		qmc2Options->toolButtonImportSoftwareInfo->setEnabled(false);
+		qmc2Gamelist->datInfoDb()->importSoftwareInfo(pathList);
+		qmc2Options->toolButtonImportSoftwareInfo->setEnabled(true);
+		qmc2LoadingSoftwareInfoDB = false;
 	}
-	deletedRecords.clear();
-	qmc2SoftwareInfoDB.clear();
-
-	QString pathToSwInfoDB = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB").toString();
-	QFile swInfoDB(pathToSwInfoDB);
-	if ( swInfoDB.open(QIODevice::ReadOnly | QIODevice::Text) ) {
-		qmc2MainWindow->progressBarGamelist->reset();
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-			progressBarGamelist->setFormat(tr("Software info - %p%"));
-		else
-			progressBarGamelist->setFormat("%p%");
-		progressBarGamelist->setRange(0, swInfoDB.size());
-		progressBarGamelist->setValue(0);
-		qApp->processEvents();
-		QTextStream ts(&swInfoDB);
-		ts.setCodec(QTextCodec::codecForName("UTF-8"));
-		quint64 recordsProcessed = 0;
-		QRegExp markRegExp("^\\$\\S+\\=\\S+\\,$");
-		QRegExp reduceLinesRegExp("(<br>){2,}");
-		while ( !ts.atEnd() && !qmc2StopParser ) {
-			QString singleLineSimplified = ts.readLine().simplified();
-			bool containsMark = singleLineSimplified.contains(markRegExp);
-			while ( !containsMark && !ts.atEnd() ) {
-				singleLineSimplified = ts.readLine().simplified();
-				if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
-					progressBarGamelist->setValue(swInfoDB.pos());
-					qApp->processEvents();
-				}
-				containsMark = singleLineSimplified.contains(markRegExp);
-			}
-			if ( containsMark && !singleLineSimplified.startsWith("$info=") ) {
-				QStringList infoWords = singleLineSimplified.mid(1).split("=", QString::SkipEmptyParts);
-				if ( infoWords.count() == 2 ) {
-					QStringList systemNames = infoWords[0].split(",", QString::SkipEmptyParts);
-					QStringList gameNames = infoWords[1].split(",", QString::SkipEmptyParts);
-					bool startsWithDollarBio = false;
-					while ( !startsWithDollarBio && !ts.atEnd() ) {
-						singleLineSimplified = ts.readLine().simplified();
-						if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
-							progressBarGamelist->setValue(swInfoDB.pos());
-							qApp->processEvents();
-						}
-						startsWithDollarBio = singleLineSimplified.startsWith("$bio");
-					}
-					if ( startsWithDollarBio ) {
-						QString swInfoString;
-						bool firstLine = true;
-						bool startsWithDollarEnd = false;
-						while ( !startsWithDollarEnd && !ts.atEnd() ) {
-							QString singleLine = ts.readLine();
-							singleLineSimplified = singleLine.simplified();
-							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
-							if ( !startsWithDollarEnd ) {
-								if ( !firstLine )
-									swInfoString.append(singleLine + "<br>");
-								else if ( !singleLine.isEmpty() ) {
-									swInfoString.append("<b>" + singleLine + "</b><br>");
-									firstLine = false;
-								}
-							}
-							if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
-								progressBarGamelist->setValue(swInfoDB.pos());
-								qApp->processEvents();
-							}
-						}
-						if ( startsWithDollarEnd ) {
-							// reduce the number of line breaks
-							swInfoString.replace(reduceLinesRegExp, "<p>");
-							if ( swInfoString.endsWith("<p>") )
-								swInfoString.remove(swInfoString.length() - 3, 3);
-#if QT_VERSION >= 0x050000
-							QByteArray *swInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(swInfoString));
-#else
-							QByteArray *swInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(swInfoString));
-#endif
-							foreach (QString gameName, gameNames)
-								foreach (QString systemName, systemNames)
-									qmc2SoftwareInfoDB[systemName + ":" + gameName] = swInfo;
-						}
-					}
-				}
-			}
-		}
-	} else
-		log(QMC2_LOG_FRONTEND, tr("WARNING: can't open software info DB %1").arg(pathToSwInfoDB));
-
-	swInfoElapsedTime = swInfoElapsedTime.addMSecs(swInfoTimer.elapsed());
-	log(QMC2_LOG_FRONTEND, tr("done (loading software info DB, elapsed time = %1)").arg(swInfoElapsedTime.toString("mm:ss.zzz")));
-	log(QMC2_LOG_FRONTEND, tr("%n software info record(s) loaded", "", qmc2SoftwareInfoDB.count()));
-	if ( qmc2StopParser ) {
-		log(QMC2_LOG_FRONTEND, tr("invalidating software info DB"));
-		QHashIterator<QString, QByteArray *> it(qmc2SoftwareInfoDB);
-		QList<QByteArray *> deletedRecords;
-		while ( it.hasNext() ) {
-			it.next();
-			if ( !deletedRecords.contains(it.value()) ) {
-				if ( it.value() )
-					delete it.value();
-				deletedRecords.append(it.value());
-			}
-		}
-		deletedRecords.clear();
-		qmc2SoftwareInfoDB.clear();
-	}
-	qmc2LoadingSoftwareInfoDB = false;
-	qmc2MainWindow->progressBarGamelist->reset();
 }
 
 #if QMC2_USE_PHONON_API

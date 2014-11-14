@@ -143,7 +143,6 @@ extern KeyPressFilter *qmc2KeyPressFilter;
 extern QHash<QString, QKeySequence> qmc2QtKeyHash;
 extern QHash<QString, QByteArray *> qmc2GameInfoDB;
 extern QHash<QString, QByteArray *> qmc2EmuInfoDB;
-extern QHash<QString, QByteArray *> qmc2SoftwareInfoDB;
 extern MiniWebBrowser *qmc2MAWSLookup;
 extern MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup;
 extern DetailSetup *qmc2DetailSetup;
@@ -184,6 +183,7 @@ extern bool qmc2VersionInfoUsed;
 #if defined(QMC2_EMUTYPE_UME)
 extern QMultiMap<QString, QString> qmc2GameInfoSourceMap;
 #endif
+extern bool qmc2LoadingSoftwareInfoDB;
 
 QBrush Options::greenBrush(QColor(0, 255, 0));
 QBrush Options::yellowBrush(QColor(255, 255, 0));
@@ -228,6 +228,13 @@ Options::Options(QWidget *parent)
 	setupUi(this);
 
 	cancelClicked = false;
+
+#if !defined(QMC2_WIP_ENABLED)
+	toolButtonImportGameInfo->setVisible(false);
+	toolButtonImportMachineInfo->setVisible(false);
+	toolButtonImportMameInfo->setVisible(false);
+	toolButtonImportMessInfo->setVisible(false);
+#endif
 
 #if !defined(QMC2_WIP_ENABLED)
 	// FIXME: remove WIP clause when "additional artwork support" is working
@@ -352,14 +359,16 @@ Options::Options(QWidget *parent)
 	labelGamelistCacheFile->setText(tr("Machine list cache"));
 	lineEditGamelistCacheFile->setToolTip(tr("Machine list cache file (write)"));
 	toolButtonBrowseGamelistCacheFile->setToolTip(tr("Browse machine list cache file"));
-	checkBoxProcessMessSysinfoDat->setText(tr("Machine info DB"));
+	checkBoxProcessMessSysinfoDat->setText(tr("Machine info"));
 	checkBoxProcessMameHistoryDat->setVisible(false);
 	toolButtonBrowseMameHistoryDat->setVisible(false);
 	lineEditMameHistoryDat->setVisible(false);
-	checkBoxProcessMessInfoDat->setText(tr("Emu info DB"));
+	checkBoxProcessMessInfoDat->setText(tr("Emu info"));
 	checkBoxProcessMameInfoDat->setVisible(false);
 	lineEditMameInfoDat->setVisible(false);
 	toolButtonBrowseMameInfoDat->setVisible(false);
+	toolButtonImportGameInfo->setVisible(false);
+	toolButtonImportMameInfo->setVisible(false);
 #endif
 #if defined(QMC2_EMUTYPE_MAME)
 	labelGeneralSoftwareFolder->setVisible(false);
@@ -371,14 +380,16 @@ Options::Options(QWidget *parent)
 	labelSlotInfoCacheFile->setVisible(false);
 	lineEditSlotInfoCacheFile->setVisible(false);
 	toolButtonBrowseSlotInfoCacheFile->setVisible(false);
-	checkBoxProcessMameHistoryDat->setText(tr("Game info DB"));
+	checkBoxProcessMameHistoryDat->setText(tr("Game info"));
 	checkBoxProcessMessSysinfoDat->setVisible(false);
 	lineEditMessSysinfoDat->setVisible(false);
 	toolButtonBrowseMessSysinfoDat->setVisible(false);
-	checkBoxProcessMameInfoDat->setText(tr("Emu info DB"));
+	checkBoxProcessMameInfoDat->setText(tr("Emu info"));
 	checkBoxProcessMessInfoDat->setVisible(false);
 	lineEditMessInfoDat->setVisible(false);
 	toolButtonBrowseMessInfoDat->setVisible(false);
+	toolButtonImportMachineInfo->setVisible(false);
+	toolButtonImportMessInfo->setVisible(false);
 #endif
 #if defined(QMC2_EMUTYPE_UME)
 	labelMAWSCacheDirectory->setVisible(false);
@@ -676,6 +687,11 @@ void Options::apply()
 	toolButtonBrowseMameInfoDat->setIconSize(iconSize);
 	toolButtonBrowseMessInfoDat->setIconSize(iconSize);
 	toolButtonBrowseSoftwareInfoDB->setIconSize(iconSize);
+	toolButtonImportGameInfo->setIconSize(iconSize);
+	toolButtonImportMachineInfo->setIconSize(iconSize);
+	toolButtonImportMameInfo->setIconSize(iconSize);
+	toolButtonImportMessInfo->setIconSize(iconSize);
+	toolButtonImportSoftwareInfo->setIconSize(iconSize);
 #if defined(QMC2_EMUTYPE_MAME)
 	toolButtonBrowseMAWSCacheDirectory->setIconSize(iconSize);
 #endif
@@ -755,11 +771,6 @@ void Options::apply()
 	toolButtonRemoveEmulator->setIconSize(iconSize);
 	toolButtonBrowseAdditionalEmulatorExecutable->setIconSize(iconSize);
 	toolButtonBrowseAdditionalEmulatorWorkingDirectory->setIconSize(iconSize);
-	checkBoxProcessMameInfoDat->setIconSize(iconSize);
-	checkBoxProcessMessInfoDat->setIconSize(iconSize);
-	checkBoxProcessMameHistoryDat->setIconSize(iconSize);
-	checkBoxProcessMessSysinfoDat->setIconSize(iconSize);
-	checkBoxProcessSoftwareInfoDB->setIconSize(iconSize);
 	QPixmap exitPixmap = QPixmap(QString::fromUtf8(":/data/img/exit.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	QPixmap reloadPixmap = QPixmap(QString::fromUtf8(":/data/img/reload.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	labelLanguagePic->setPixmap(exitPixmap);
@@ -1896,21 +1907,8 @@ void Options::on_pushButtonApply_clicked()
 		qmc2EmuInfoDB.clear();
 	}
 
-	if ( invalidateSoftwareInfoDB ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("invalidating software info DB"));
-		QHashIterator<QString, QByteArray *> it(qmc2SoftwareInfoDB);
-		QList<QByteArray *> deletedRecords;
-		while ( it.hasNext() ) {
-			it.next();
-			if ( !deletedRecords.contains(it.value()) ) {
-				if ( it.value() )
-					delete it.value();
-				deletedRecords.append(it.value());
-			}
-		}
-		deletedRecords.clear();
-		qmc2SoftwareInfoDB.clear();
-	}
+	if ( invalidateSoftwareInfoDB )
+		qmc2Gamelist->datInfoDb()->recreateSoftwareInfoTable();
 
 	if ( needManualReload )
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -3254,6 +3252,56 @@ void Options::on_pushButtonImageFormats_clicked()
 
 	ImageFormatSetup ifs(this);
 	ifs.exec();
+}
+
+void Options::on_toolButtonImportGameInfo_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonImportGameInfo_clicked()");
+#endif
+
+	// FIXME
+}
+
+void Options::on_toolButtonImportMachineInfo_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonImportMachineInfo_clicked()");
+#endif
+
+	// FIXME
+}
+
+void Options::on_toolButtonImportMameInfo_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonImportMameInfo_clicked()");
+#endif
+
+	// FIXME
+}
+
+void Options::on_toolButtonImportMessInfo_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonImportMessInfo_clicked()");
+#endif
+
+	// FIXME
+}
+
+void Options::on_toolButtonImportSoftwareInfo_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonImportSoftwareInfo_clicked()");
+#endif
+
+	qmc2LoadingSoftwareInfoDB = true;
+	toolButtonImportSoftwareInfo->setEnabled(false);
+	QStringList pathList = QStringList() << QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB").toString();
+	qmc2Gamelist->datInfoDb()->importSoftwareInfo(pathList);
+	toolButtonImportSoftwareInfo->setEnabled(true);
+	qmc2LoadingSoftwareInfoDB = false;
 }
 
 void Options::on_toolButtonBrowseStyleSheet_clicked()
