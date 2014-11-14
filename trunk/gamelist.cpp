@@ -217,11 +217,9 @@ Gamelist::Gamelist(QObject *parent)
 	m_userDataDb = new UserDataDatabaseManager(this);
 	userDataDb()->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
 	userDataDb()->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
-#if defined(QMC2_WIP_ENABLED)
 	m_datInfoDb = new DatInfoDatabaseManager(this);
 	datInfoDb()->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
 	datInfoDb()->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
-#endif
 }
 
 Gamelist::~Gamelist()
