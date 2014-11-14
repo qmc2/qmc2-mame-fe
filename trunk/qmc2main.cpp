@@ -287,9 +287,6 @@ bool qmc2CategoryInfoUsed = false;
 bool qmc2VersionInfoUsed = false;
 bool qmc2TemplateCheck = false;
 QMap<QWidget *, Qt::WindowStates> qmc2AutoMinimizedWidgets;
-#if defined(QMC2_EMUTYPE_UME)
-QMultiMap<QString, QString> qmc2GameInfoSourceMap;
-#endif
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -2421,15 +2418,15 @@ void MainWindow::on_actionReload_triggered(bool)
 		qmc2Gamelist->enableWidgets(false);
 #if defined(QMC2_EMUTYPE_MAME)
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() )
-			if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser )
+			if ( !qmc2StopParser )
 				loadGameInfoDB();
 #elif defined(QMC2_EMUTYPE_MESS)
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() )
-			if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser )
+			if ( !qmc2StopParser )
 				loadGameInfoDB();
 #elif defined(QMC2_EMUTYPE_UME)
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() )
-			if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser )
+			if ( !qmc2StopParser )
 				loadGameInfoDB();
 #endif
 #if defined(QMC2_EMUTYPE_MAME)
@@ -5023,44 +5020,25 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 			if ( qmc2CurrentItem != qmc2LastGameInfoItem ) {
 				tabGameInfo->setUpdatesEnabled(false);
-				if ( qmc2GameInfoDB.contains(gameName) || qmc2GameInfoDB.contains(qmc2ParentHash[gameName]) ) {
-					// update game/machine info if it points to a different DB record
-					bool updateInfo = true;
-					QByteArray *newGameInfo = qmc2GameInfoDB[gameName];
-					if ( !newGameInfo ) {
-						// fall back to parent's game/machine info, if applicable
-						newGameInfo = qmc2GameInfoDB[qmc2ParentHash[gameName]];
-					}
-					if ( qmc2LastGameInfoItem )
-						if ( qmc2LastGameInfoItem->child(0) ) {
-							QByteArray *oldGameInfo = qmc2GameInfoDB[qmc2LastGameInfoItem->text(QMC2_GAMELIST_COLUMN_NAME)];
-							if ( !oldGameInfo ) {
-								// fall back to parent's game/machine info, if applicable
-								oldGameInfo = qmc2GameInfoDB[qmc2ParentHash[qmc2LastGameInfoItem->text(QMC2_GAMELIST_COLUMN_NAME)]];
-							}
-							updateInfo = (newGameInfo != oldGameInfo || !oldGameInfo);
-						}
-					if ( updateInfo ) {
-						if ( newGameInfo ) {
-							QString ngi = QString(*newGameInfo);
-#if defined(QMC2_EMUTYPE_MESS)
-							textBrowserGameInfo->setHtml(messWikiToHtml(ngi));
-#elif defined(QMC2_EMUTYPE_MAME)
-							textBrowserGameInfo->setHtml(ngi.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
-#elif defined(QMC2_EMUTYPE_UME)
-							if ( qmc2GameInfoSourceMap.values("MESS").contains(gameName) )
-								textBrowserGameInfo->setHtml(messWikiToHtml(ngi));
-							else if ( qmc2GameInfoSourceMap.values("MESS").contains(qmc2ParentHash[gameName]) )
-								textBrowserGameInfo->setHtml(messWikiToHtml(ngi));
-							else
-								textBrowserGameInfo->setHtml(ngi.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
-#endif
-						} else
-							textBrowserGameInfo->setHtml("<h2>" + qmc2GamelistItemHash[gameName]->text(QMC2_GAMELIST_COLUMN_GAME) + "</h2>" + tr("<p>No data available</p>"));
-					}
+				QString gameInfoKey = gameName;
+				if ( !qmc2Gamelist->datInfoDb()->existsGameInfo(gameInfoKey) ) {
+					gameInfoKey = qmc2ParentHash[gameName];
+					if ( !qmc2Gamelist->datInfoDb()->existsGameInfo(gameInfoKey) )
+						gameInfoKey.clear();
+				}
+				if ( !gameInfoKey.isEmpty() ) {
+					QString gameInfoText = qmc2Gamelist->datInfoDb()->gameInfo(gameInfoKey);
+					if ( !gameInfoText.isEmpty() ) {
+						QString emulator = qmc2Gamelist->datInfoDb()->gameInfoEmulator(gameInfoKey);
+						if ( emulator == "MESS" )
+							textBrowserGameInfo->setHtml(messWikiToHtml(gameInfoText));
+						else
+							textBrowserGameInfo->setHtml(gameInfoText.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
+					} else
+						textBrowserGameInfo->setHtml("<h2>" + qmc2GamelistItemHash[gameName]->text(QMC2_GAMELIST_COLUMN_GAME) + "</h2>" + tr("<p>No data available</p>"));
 				} else
 					textBrowserGameInfo->setHtml("<h2>" + qmc2GamelistItemHash[gameName]->text(QMC2_GAMELIST_COLUMN_GAME) + "</h2>" + tr("<p>No data available</p>"));
-				qmc2LastGameInfoItem = qmc2CurrentItem;
+				qmc2LastEmuInfoItem = qmc2CurrentItem;
 				tabGameInfo->setUpdatesEnabled(true);
 			}
 			break;
@@ -5284,24 +5262,20 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 					qmc2SystemNotesEditor->templateMap["$EMU_INFO_STATUS$"] = "NO_DATA";
 				}
 
-				if ( qmc2GameInfoDB.contains(gameName) || qmc2GameInfoDB.contains(qmc2ParentHash[gameName]) ) {
-					QByteArray *newGameInfo = qmc2GameInfoDB[gameName];
-					if ( !newGameInfo )
-						newGameInfo = qmc2GameInfoDB[qmc2ParentHash[gameName]];
-					if ( newGameInfo ) {
-						QString ngi = QString(*newGameInfo);
-#if defined(QMC2_EMUTYPE_MESS)
-						qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = messWikiToHtml(ngi);
-#elif defined(QMC2_EMUTYPE_MAME)
-						qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = ngi.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-#elif defined(QMC2_EMUTYPE_UME)
-						if ( qmc2GameInfoSourceMap.values("MESS").contains(gameName) )
-							qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = messWikiToHtml(ngi);
-						else if ( qmc2GameInfoSourceMap.values("MESS").contains(qmc2ParentHash[gameName]) )
-							qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = messWikiToHtml(ngi);
+				QString gameInfoKey = gameName;
+				if ( !qmc2Gamelist->datInfoDb()->existsGameInfo(gameInfoKey) ) {
+					gameInfoKey = parentSystem;
+					if ( !qmc2Gamelist->datInfoDb()->existsGameInfo(gameInfoKey) )
+						gameInfoKey.clear();
+				}
+				if ( !gameInfoKey.isEmpty() ) {
+					QString gameInfoText = qmc2Gamelist->datInfoDb()->gameInfo(gameInfoKey);
+					if ( !gameInfoText.isEmpty() ) {
+						QString emulator = qmc2Gamelist->datInfoDb()->gameInfoEmulator(gameInfoKey);
+						if ( emulator == "MESS" )
+							qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = messWikiToHtml(gameInfoText);
 						else
-							qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = ngi.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-#endif
+							qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = gameInfoText.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 						qmc2SystemNotesEditor->templateMap["$GAME_INFO_STATUS$"] = "OK";
 					} else {
 						qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = tr("No data available");
@@ -7714,206 +7688,34 @@ void MainWindow::loadGameInfoDB()
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadGameInfoDB()");
 #endif
 
-	QTime gameInfoElapsedTime(0, 0, 0, 0),
-	      gameInfoTimer;
-
-	qmc2LoadingGameInfoDB = true;
-	qmc2StopParser = false;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	log(QMC2_LOG_FRONTEND, tr("loading game info DB"));
-#elif defined(QMC2_EMUTYPE_MESS)
-	log(QMC2_LOG_FRONTEND, tr("loading machine info DB"));
-#endif
-
-	gameInfoTimer.start();
-
-	// clear game/machine info DB
-	QHashIterator<QString, QByteArray *> it(qmc2GameInfoDB);
-	QList<QByteArray *> deletedRecords;
-	while ( it.hasNext() ) {
-		it.next();
-		if ( !deletedRecords.contains(it.value()) ) {
-			if ( it.value() )
-				delete it.value();
-			deletedRecords.append(it.value());
-		}
-	}
-	deletedRecords.clear();
-	qmc2GameInfoDB.clear();
-
 #if defined(QMC2_EMUTYPE_MAME)
-	QString pathToGameInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString();
+	QStringList pathList = QStringList() << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString();
+	QStringList emulatorList = QStringList() << "MAME";
 #elif defined(QMC2_EMUTYPE_MESS)
-	QString pathToGameInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
+	QStringList pathList = QStringList() << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
+	QStringList emulatorList = QStringList() << "MESS";
 #elif defined(QMC2_EMUTYPE_UME)
-	QStringList pathToGameInfoDBList;
-	QStringList gameInfoSourceList;
+	QStringList pathList;
+	QStringList emulatorList;
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() ) {
-		pathToGameInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString();
-		gameInfoSourceList << "MAME";
+		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString();
+		emulatorList << "MAME";
 	}
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() ) {
-		pathToGameInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
-		gameInfoSourceList << "MESS";
-	}
-	for (int index = 0; index < pathToGameInfoDBList.count(); index++) {
-		QString pathToGameInfoDB = pathToGameInfoDBList[index];
-		QString gameInfoSource = gameInfoSourceList[index];
-#endif
-		QFile gameInfoDB(pathToGameInfoDB);
-		gameInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
-
-		if ( gameInfoDB.isOpen() ) {
-			qmc2MainWindow->progressBarGamelist->reset();
-			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-				progressBarGamelist->setFormat(tr("Game info - %p%"));
-#elif defined(QMC2_EMUTYPE_MESS)
-				progressBarGamelist->setFormat(tr("Machine info - %p%"));
-#endif
-			else
-				progressBarGamelist->setFormat("%p%");
-			progressBarGamelist->setRange(0, gameInfoDB.size());
-			progressBarGamelist->setValue(0);
-			qApp->processEvents();
-			QTextStream ts(&gameInfoDB);
-			ts.setCodec(QTextCodec::codecForName("UTF-8"));
-			quint64 recordsProcessed = 0;
-			QRegExp lineBreakRx("(<br>){2,}");
-			while ( !ts.atEnd() && !qmc2StopParser ) {
-				QString singleLineSimplified = ts.readLine().simplified();
-				bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
-				while ( !startsWithDollarInfo && !ts.atEnd() ) {
-					singleLineSimplified = ts.readLine().simplified();
-					if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-						progressBarGamelist->setValue(gameInfoDB.pos());
-						qApp->processEvents();
-					}
-					startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
-				}
-				if ( startsWithDollarInfo ) {
-					QStringList gameNames = singleLineSimplified.mid(6).split(",", QString::SkipEmptyParts);
-					bool startsWithDollarBio = false;
-					while ( !startsWithDollarBio && !ts.atEnd() ) {
-						singleLineSimplified = ts.readLine().simplified();
-						if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-							progressBarGamelist->setValue(gameInfoDB.pos());
-							qApp->processEvents();
-						}
-						startsWithDollarBio = singleLineSimplified.startsWith("$bio");
-					}
-					if ( startsWithDollarBio ) {
-						QString gameInfoString;
-						bool firstLine = true;
-						bool lastLineWasHeader = false;
-						bool startsWithDollarEnd = false;
-						while ( !startsWithDollarEnd && !ts.atEnd() ) {
-							QString singleLine = ts.readLine();
-							singleLineSimplified = singleLine.simplified();
-							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
-							if ( !startsWithDollarEnd ) {
-								if ( !firstLine ) {
-									if ( !lastLineWasHeader )
-										gameInfoString.append(singleLine + "<br>");
-									lastLineWasHeader = false;
-								} else if ( !singleLine.isEmpty() ) {
-									gameInfoString.append("<h2>" + singleLine + "</h2>");
-									firstLine = false;
-									lastLineWasHeader = true;
-								}
-							}
-							if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-								progressBarGamelist->setValue(gameInfoDB.pos());
-								qApp->processEvents();
-							}
-						}
-						if ( startsWithDollarEnd ) {
-							// reduce the number of line breaks
-							gameInfoString.replace(lineBreakRx, "<p>");
-							if ( gameInfoString.endsWith("<p>") )
-								gameInfoString.remove(gameInfoString.length() - 3, 3);
-#if QT_VERSION >= 0x050000
-							QByteArray *gameInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(gameInfoString));
-#else
-							QByteArray *gameInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString));
-#endif
-							foreach (QString setName, gameNames) {
-								qmc2GameInfoDB[setName] = gameInfo;
-#if defined(QMC2_EMUTYPE_UME)
-								qmc2GameInfoSourceMap.insert(gameInfoSource, setName);
-#endif
-							}
-						} else {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-							log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in game info DB %1").arg(pathToGameInfoDB));
-#elif defined(QMC2_EMUTYPE_MESS)
-							log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in machine info DB %1").arg(pathToGameInfoDB));
-#endif
-						}
-					} else {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-						log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$bio' in game info DB %1").arg(pathToGameInfoDB));
-#elif defined(QMC2_EMUTYPE_MESS)
-						log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$bio' in machine info DB %1").arg(pathToGameInfoDB));
-#endif
-					}
-				} else if ( !ts.atEnd() ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-					log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in game info DB %1").arg(pathToGameInfoDB));
-#elif defined(QMC2_EMUTYPE_MESS)
-					log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in machine info DB %1").arg(pathToGameInfoDB));
-#endif
-				}
-				if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-					progressBarGamelist->setValue(gameInfoDB.pos());
-					qApp->processEvents();
-				}
-			}
-			progressBarGamelist->setValue(gameInfoDB.pos());
-			gameInfoDB.close();
-		} else {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-			log(QMC2_LOG_FRONTEND, tr("WARNING: can't open game info DB %1").arg(pathToGameInfoDB));
-#elif defined(QMC2_EMUTYPE_MESS)
-			log(QMC2_LOG_FRONTEND, tr("WARNING: can't open machine info DB %1").arg(pathToGameInfoDB));
-#endif
-		}
-#if defined(QMC2_EMUTYPE_UME)
+		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
+		emulatorList << "MESS";
 	}
 #endif
 
-	gameInfoElapsedTime = gameInfoElapsedTime.addMSecs(gameInfoTimer.elapsed());
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	log(QMC2_LOG_FRONTEND, tr("done (loading game info DB, elapsed time = %1)").arg(gameInfoElapsedTime.toString("mm:ss.zzz")));
-	log(QMC2_LOG_FRONTEND, tr("%n game info record(s) loaded", "", qmc2GameInfoDB.count()));
-	if ( qmc2StopParser ) {
-		log(QMC2_LOG_FRONTEND, tr("invalidating game info DB"));
-#elif defined(QMC2_EMUTYPE_MESS)
-		log(QMC2_LOG_FRONTEND, tr("done (loading machine info DB, elapsed time = %1)").arg(gameInfoElapsedTime.toString("mm:ss.zzz")));
-		log(QMC2_LOG_FRONTEND, tr("%n machine info record(s) loaded", "", qmc2GameInfoDB.count()));
-		if ( qmc2StopParser ) {
-			log(QMC2_LOG_FRONTEND, tr("invalidating machine info DB"));
-#endif
-			QHashIterator<QString, QByteArray *> it(qmc2GameInfoDB);
-			QList<QByteArray *> deletedRecords;
-			while ( it.hasNext() ) {
-				it.next();
-				if ( !deletedRecords.contains(it.value()) ) {
-					if ( it.value() )
-						delete it.value();
-					deletedRecords.append(it.value());
-				}
-			}
-			deletedRecords.clear();
-			qmc2GameInfoDB.clear();
-#if defined(QMC2_EMUTYPE_UME)
-			foreach (QString key, qmc2GameInfoSourceMap)
-				qmc2GameInfoSourceMap.remove(key);
-			qmc2GameInfoSourceMap.clear();
-#endif
-		}
+	if ( qmc2Gamelist->datInfoDb()->gameInfoImportRequired(pathList) ) {
+		qmc2LoadingGameInfoDB = true;
+		qmc2Options->toolButtonImportGameInfo->setEnabled(false);
+		qmc2Options->toolButtonImportMachineInfo->setEnabled(false);
+		qmc2Gamelist->datInfoDb()->importGameInfo(pathList, emulatorList);
+		qmc2Options->toolButtonImportGameInfo->setEnabled(true);
+		qmc2Options->toolButtonImportMachineInfo->setEnabled(true);
 		qmc2LoadingGameInfoDB = false;
-		qmc2MainWindow->progressBarGamelist->reset();
+	}
 }
 
 void MainWindow::loadEmuInfoDB()
@@ -11533,7 +11335,6 @@ void MainWindow::on_actionSearchInternalBrowser_triggered(bool checked)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "WebSearch/InternalBrowser", checked);
 }
 
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 // note: - this routine is far from "elegant" but basically works (there may be minor conversion "bugs", though, depending on the quality of the wiki source data)
 //       - if someone knows a CLEAN wiki2html converter that's not "bloated" and written in C/C++ (and legally redistributable open source code), please let us know!
 QString &MainWindow::messWikiToHtml(QString &wikiText)
@@ -11686,7 +11487,6 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 
 	return wikiText;
 }
-#endif
 
 void MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked)
 {

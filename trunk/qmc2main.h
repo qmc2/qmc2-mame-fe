@@ -514,9 +514,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void processEvents() { qApp->processEvents(); }
 		void treeWidgetGamelist_headerSectionClicked(int);
 		void treeWidgetHierarchy_headerSectionClicked(int);
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		QString &messWikiToHtml(QString &);
-#endif
 		void startDownload(QWidget *, QNetworkReply *, QString saveAsName = QString(), QString savePath = QString());
 		void on_pushButtonClearFinishedDownloads_clicked();
 		void on_pushButtonReloadSelectedDownloads_clicked();
