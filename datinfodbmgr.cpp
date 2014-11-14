@@ -544,9 +544,10 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 			continue;
 		QFile swInfoDB(path);
 		if ( swInfoDB.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("importing %1 from '%2'").arg(tr("software info-texts")).arg(QDir::toNativeSeparators(path)));
+			qApp->processEvents();
 			qmc2StopParser = false;
 			beginTransaction();
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("importing %1 from '%2'").arg(tr("software info-texts")).arg(QDir::toNativeSeparators(path)));
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 				qmc2MainWindow->progressBarGamelist->setFormat(tr("Software info - %p%"));
 			else
@@ -705,9 +706,10 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 			continue;
 		QFile emuInfoDB(path);
 		if ( emuInfoDB.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("importing %1 from '%2'").arg(tr("emulator info-texts")).arg(QDir::toNativeSeparators(path)));
+			qApp->processEvents();
 			qmc2StopParser = false;
 			beginTransaction();
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("importing %1 from '%2'").arg(tr("emulator info-texts")).arg(QDir::toNativeSeparators(path)));
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 				qmc2MainWindow->progressBarGamelist->setFormat(tr("Emu info - %p%"));
 			else
