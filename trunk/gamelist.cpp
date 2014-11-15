@@ -3934,7 +3934,7 @@ void Gamelist::createCategoryView()
 	qmc2MainWindow->labelCreatingCategoryView->setVisible(true);
 	qmc2MainWindow->loadAnimMovie->start();
 
-	if ( numGames == -1 && qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_CATEGORY_INDEX ) {
+	if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_CATEGORY_INDEX ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
 		return;
 	} else if ( numGames == -1 ) {
@@ -4164,7 +4164,7 @@ void Gamelist::createVersionView()
 	qmc2MainWindow->labelCreatingVersionView->setVisible(true);
 	qmc2MainWindow->loadAnimMovie->start();
 
-	if ( numGames == -1 && qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_VERSION_INDEX ) {
+	if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_VERSION_INDEX ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
 		return;
 	} else if ( numGames == -1 ) {
