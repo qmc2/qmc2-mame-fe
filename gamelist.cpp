@@ -3928,21 +3928,30 @@ void Gamelist::createCategoryView()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::createCategoryView()");
 #endif
 
-	qmc2CategoryItemHash.clear();
-	qmc2MainWindow->treeWidgetCategoryView->setVisible(false);
-	((AspectRatioLabel *)qmc2MainWindow->labelCreatingCategoryView)->setLabelText(tr("Loading, please wait..."));
-	qmc2MainWindow->labelCreatingCategoryView->setVisible(true);
-	qmc2MainWindow->loadAnimMovie->start();
+	static bool creatingCatView = false;
+
+	if ( !creatingCatView ) {
+		qmc2CategoryItemHash.clear();
+		qmc2MainWindow->treeWidgetCategoryView->setVisible(false);
+		((AspectRatioLabel *)qmc2MainWindow->labelCreatingCategoryView)->setLabelText(tr("Loading, please wait..."));
+		qmc2MainWindow->labelCreatingCategoryView->setVisible(true);
+		qmc2MainWindow->loadAnimMovie->start();
+	}
 
 	if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_CATEGORY_INDEX ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
 		return;
 	} else if ( numGames == -1 ) {
+		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
 		return;
 	} else if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_CATEGORY_INDEX ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
 		return;
 	}
+
+	if ( creatingCatView )
+		return;
+	creatingCatView = true;
 
 	qmc2MainWindow->stackedWidgetView->setCurrentIndex(QMC2_VIEW_CATEGORY_INDEX);
 	qmc2MainWindow->treeWidgetCategoryView->setColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY, true);
@@ -4070,12 +4079,11 @@ void Gamelist::createCategoryView()
 
 		QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
 	}
-
 	qmc2MainWindow->loadAnimMovie->setPaused(true);
 	qmc2MainWindow->labelCreatingCategoryView->setVisible(false);
 	qmc2MainWindow->treeWidgetCategoryView->setVisible(true);
-
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
+	creatingCatView = false;
 }
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -4158,21 +4166,30 @@ void Gamelist::createVersionView()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::createVersionView()");
 #endif
 
-	qmc2VersionItemHash.clear();
-	qmc2MainWindow->treeWidgetVersionView->setVisible(false);
-	((AspectRatioLabel *)qmc2MainWindow->labelCreatingVersionView)->setLabelText(tr("Loading, please wait..."));
-	qmc2MainWindow->labelCreatingVersionView->setVisible(true);
-	qmc2MainWindow->loadAnimMovie->start();
+	static bool creatingVerView = false;
+
+	if ( !creatingVerView ) {
+		qmc2VersionItemHash.clear();
+		qmc2MainWindow->treeWidgetVersionView->setVisible(false);
+		((AspectRatioLabel *)qmc2MainWindow->labelCreatingVersionView)->setLabelText(tr("Loading, please wait..."));
+		qmc2MainWindow->labelCreatingVersionView->setVisible(true);
+		qmc2MainWindow->loadAnimMovie->start();
+	}
 
 	if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_VERSION_INDEX ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
 		return;
 	} else if ( numGames == -1 ) {
+		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
 		return;
 	} else if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_VERSION_INDEX ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
 		return;
 	}
+
+	if ( creatingVerView )
+		return;
+	creatingVerView = true;
 
 	qmc2MainWindow->stackedWidgetView->setCurrentIndex(QMC2_VIEW_VERSION_INDEX);
 	qmc2MainWindow->treeWidgetVersionView->setColumnHidden(QMC2_GAMELIST_COLUMN_VERSION, true);
@@ -4300,12 +4317,11 @@ void Gamelist::createVersionView()
 
 		QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetVersionView_verticalScrollChanged()));
 	}
-
 	qmc2MainWindow->loadAnimMovie->setPaused(true);
 	qmc2MainWindow->labelCreatingVersionView->setVisible(false);
 	qmc2MainWindow->treeWidgetVersionView->setVisible(true);
-
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
+	creatingVerView = true;
 }
 #endif
 
