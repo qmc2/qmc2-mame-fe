@@ -276,10 +276,10 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			OBJECTIVE_SOURCES += SDLMain_tmpl.m
 			HEADERS += SDLMain_tmpl.h
 			greaterThan(SDL, 1) {
-				LIBS += -framework SDL2 -framework Cocoa
+				LIBS += -framework SDL2 -framework Cocoa -F/Library/Frameworks
 				INCLUDEPATH += /Library/Frameworks/SDL2.framework/Headers
 			} else {
-				LIBS += -framework SDL -framework Cocoa
+				LIBS += -framework SDL -framework Cocoa -F/Library/Frameworks
 				INCLUDEPATH += /Library/Frameworks/SDL.framework/Headers
 			}
 			contains(TARGET, qmc2-sdlmame): ICON = data/img/classic/mame.icns
