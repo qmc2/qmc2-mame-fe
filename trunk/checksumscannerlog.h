@@ -12,6 +12,8 @@ class CheckSumScannerLog : public QWidget, public Ui::CheckSumScannerLog
        	public:
 		CheckSumScannerLog(QWidget *parent = 0);
 
+		qreal progress() { return m_progress; }
+
 	public slots:
 		void on_spinBoxMaxLogSize_valueChanged(int);
 		void log(const QString &);
@@ -30,6 +32,9 @@ class CheckSumScannerLog : public QWidget, public Ui::CheckSumScannerLog
 		void hideEvent(QHideEvent *);
 		void closeEvent(QCloseEvent *);
 		void keyPressEvent(QKeyEvent *);
+
+	private:
+		qreal m_progress;
 };
 
 #endif

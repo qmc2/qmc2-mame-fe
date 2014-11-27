@@ -14,6 +14,7 @@ CheckSumScannerLog::CheckSumScannerLog(QWidget *parent)
 	: QWidget(parent)
 {
 	hide();
+	m_progress = -1;
 	setupUi(this);
 	QFont logFont;
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
@@ -46,11 +47,16 @@ void CheckSumScannerLog::progressTextChanged(const QString &text)
 void CheckSumScannerLog::progressRangeChanged(int min, int max)
 {
 	progressBar->setRange(min, max);
+	m_progress = -1;
 }
 
 void CheckSumScannerLog::progressChanged(int progress)
 {
 	progressBar->setValue(progress);
+	if ( progressBar->maximum() > progressBar->minimum() )
+		m_progress = 100.0 * (qreal)progress / (qreal)(progressBar->maximum() - progressBar->minimum());
+	else
+		m_progress = -1;
 }
 
 void CheckSumScannerLog::showEvent(QShowEvent *e)
