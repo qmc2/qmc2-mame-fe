@@ -54,22 +54,17 @@ QString InfoProvider::requestInfo(const QString &id, InfoClass infoClass)
                     infoText = messWikiToHtml(newGameInfo);
                     break;
                 }
-            } else
-                infoText = "<p>" + QObject::tr("no info available") + "</p>";
-        } else
-            infoText = "<p>" + QObject::tr("no info available") + "</p>";
+            }
+        }
         break;
     case InfoProvider::InfoClassEmu:
         if ( datInfoDb()->existsEmuInfo(id) ) {
             QString newEmuInfo = datInfoDb()->emuInfo(id);
             if ( !newEmuInfo.isEmpty() )
                 infoText = newEmuInfo.replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-            else
-                infoText = "<p>" + QObject::tr("no info available") + "</p>";
-        } else
-            infoText = "<p>" + QObject::tr("no info available") + "</p>";
+        }
         break;
-    case InfoProvider::InfoClassSoftware:
+    case InfoProvider::InfoClassSoft:
         // FIXME
         break;
     }
