@@ -39,6 +39,7 @@ extern bool qmc2StopParser;
 extern bool qmc2CriticalSection;
 extern bool qmc2UseDefaultEmulator;
 extern bool qmc2TemplateCheck;
+extern bool qmc2VerifyActive;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 extern QHash<QString, QPair<QString, QAction *> > qmc2ShortcutHash;
 extern QHash<QString, QString> qmc2CustomShortcutHash;
@@ -1261,7 +1262,8 @@ void SoftwareList::loadReadyReadStandardOutput()
 	}
 
 	// this makes the GUI much more responsive, but is HAS to be called before proc->readAllStandardOutput()!
-	qApp->processEvents();
+	if ( !qmc2VerifyActive )
+		qApp->processEvents();
 
 #if defined(QMC2_OS_WIN)
 	QString readBuffer = swlLastLine + QString::fromUtf8(proc->readAllStandardOutput());
