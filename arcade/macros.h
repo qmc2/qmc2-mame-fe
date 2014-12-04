@@ -33,6 +33,12 @@
 #include <QDir>
 #include <stdio.h>
 
+// current format version of the DAT-info database schema
+#define QMC2_ARCADE_DATINFO_VERSION     1
+
+// number of rows added to the DAT-info database in *one* transaction
+#define QMC2_ARCADE_DATINFO_COMMIT      5000
+
 // min/max of two constants
 #define QMC2_ARCADE_MAX(a, b)           (((a) > (b)) ? (a) : (b))
 #define QMC2_ARCADE_MIN(a, b)           (((a) < (b)) ? (a) : (b))

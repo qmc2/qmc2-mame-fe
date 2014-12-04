@@ -2,6 +2,7 @@
 #include "macros.h"
 
 extern int emulatorMode;
+extern QStringList argumentList;
 
 ArcadeSettings::ArcadeSettings(QString theme)
     : Settings(QSettings::IniFormat, QSettings::UserScope, QMC2_ARCADE_APP_NAME)
@@ -81,6 +82,20 @@ QString ArcadeSettings::joyFunctionMapBaseKey()
     return QString("Arcade/%1/joyFunctionMap").arg(arcadeTheme);
 }
 #endif
+
+QString ArcadeSettings::emulatorName()
+{
+    switch ( emulatorMode ) {
+    case QMC2_ARCADE_EMUMODE_MAME:
+        return QString("MAME");
+    case QMC2_ARCADE_EMUMODE_MESS:
+        return QString("MESS");
+    case QMC2_ARCADE_EMUMODE_UME:
+        return QString("UME");
+    default:
+        return QString();
+    }
+}
 
 void ArcadeSettings::setApplicationVersion(QString version)
 {
@@ -747,6 +762,11 @@ QString ArcadeSettings::messInfoDat()
     return value(QString("%1/FilesAndDirectories/MessInfoDat").arg(frontEndPrefix)).toString();
 }
 
+QString ArcadeSettings::softwareInfoDat()
+{
+    return value(QString("%1/FilesAndDirectories/SoftwareInfoDB").arg(emulatorPrefix)).toString();
+}
+
 QStringList ArcadeSettings::activeImageFormats(QString imageType)
 {
     return value(QString("%1/ActiveImageFormats/%2").arg(frontEndPrefix).arg(imageType)).toStringList();
@@ -808,3 +828,98 @@ int ArcadeSettings::joystickSensitivity(int joystickIndex, int axis)
     return value(QString("%1/Joystick/%2/Axis%3Sensitivity").arg(frontEndPrefix).arg(joystickIndex).arg(axis), 0).toInt();
 }
 #endif
+
+QString ArcadeSettings::datInfoDatabaseName()
+{
+    return value(QString("%1/FilesAndDirectories/DatInfoDatabase").arg(emulatorName().toLower()), QString(QMC2_ARCADE_DYN_DOT_PATH + "/%1-dat-info.db").arg(emulatorPrefix)).toString();
+}
+
+QStringList ArcadeSettings::softwareInfoImportFiles()
+{
+    return value(QString("%1/DatInfoDatabase/SoftwareInfoImportFiles").arg(emulatorPrefix), QStringList()).toStringList();
+}
+
+void ArcadeSettings::setSoftwareInfoImportFiles(QStringList &files)
+{
+    setValue(QString("%1/DatInfoDatabase/SoftwareInfoImportFiles").arg(emulatorPrefix), files);
+}
+
+void ArcadeSettings::removeSoftwareInfoImportFiles()
+{
+    remove(QString("%1/DatInfoDatabase/SoftwareInfoImportFiles").arg(emulatorPrefix));
+}
+
+QStringList ArcadeSettings::softwareInfoImportDates()
+{
+    return value(QString("%1/DatInfoDatabase/SoftwareInfoImportDates").arg(emulatorPrefix), QStringList()).toStringList();
+}
+
+void ArcadeSettings::setSoftwareInfoImportDates(QStringList &dates)
+{
+    setValue(QString("%1/DatInfoDatabase/SoftwareInfoImportDates").arg(emulatorPrefix), dates);
+}
+
+void ArcadeSettings::removeSoftwareInfoImportDates()
+{
+    remove(QString("%1/DatInfoDatabase/SoftwareInfoImportDates").arg(emulatorPrefix));
+}
+
+QStringList ArcadeSettings::emuInfoImportFiles()
+{
+    return value(QString("%1/DatInfoDatabase/EmuInfoImportFiles").arg(emulatorPrefix), QStringList()).toStringList();
+}
+
+void ArcadeSettings::setEmuInfoImportFiles(QStringList &files)
+{
+    setValue(QString("%1/DatInfoDatabase/EmuInfoImportFiles").arg(emulatorPrefix), files);
+}
+
+void ArcadeSettings::removeEmuInfoImportFiles()
+{
+    remove(QString("%1/DatInfoDatabase/EmuInfoImportFiles").arg(emulatorPrefix));
+}
+
+QStringList ArcadeSettings::emuInfoImportDates()
+{
+    return value(QString("%1/DatInfoDatabase/EmuInfoImportDates").arg(emulatorPrefix), QStringList()).toStringList();
+}
+
+void ArcadeSettings::setEmuInfoImportDates(QStringList &dates)
+{
+    setValue(QString("%1/DatInfoDatabase/EmuInfoImportDates").arg(emulatorPrefix), dates);
+}
+
+void ArcadeSettings::removeEmuInfoImportDates()
+{
+    remove(QString("%1/DatInfoDatabase/EmuInfoImportDates").arg(emulatorPrefix));
+}
+
+QStringList ArcadeSettings::gameInfoImportFiles()
+{
+    return value(QString("%1/DatInfoDatabase/GameInfoImportFiles").arg(emulatorPrefix), QStringList()).toStringList();
+}
+
+void ArcadeSettings::setGameInfoImportFiles(QStringList &files)
+{
+    setValue(QString("%1/DatInfoDatabase/GameInfoImportFiles").arg(emulatorPrefix), files);
+}
+
+void ArcadeSettings::removeGameInfoImportFiles()
+{
+    remove(QString("%1/DatInfoDatabase/GameInfoImportFiles").arg(emulatorPrefix));
+}
+
+QStringList ArcadeSettings::gameInfoImportDates()
+{
+    return value(QString("%1/DatInfoDatabase/GameInfoImportDates").arg(emulatorPrefix), QStringList()).toStringList();
+}
+
+void ArcadeSettings::setGameInfoImportDates(QStringList &dates)
+{
+    setValue(QString("%1/DatInfoDatabase/GameInfoImportDates").arg(emulatorPrefix), dates);
+}
+
+void ArcadeSettings::removeGameInfoImportDates()
+{
+    remove(QString("%1/DatInfoDatabase/GameInfoImportDates").arg(emulatorPrefix));
+}
