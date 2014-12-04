@@ -11,7 +11,7 @@ public:
     explicit InfoProvider();
     virtual ~InfoProvider();
 
-    enum InfoClass { InfoClassGame, InfoClassEmu, InfoClassSoftware };
+    enum InfoClass { InfoClassGame, InfoClassEmu, InfoClassSoft };
     QString requestInfo(const QString &, InfoClass);
 
     bool isMessGameInfo(QString id) { return datInfoDb()->gameInfoEmulator(id) == "MESS"; }

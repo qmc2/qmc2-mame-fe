@@ -113,6 +113,7 @@
 // indexed info classes
 #define QMC2_ARCADE_INFO_CLASS_GAME     0
 #define QMC2_ARCADE_INFO_CLASS_EMU      1
+#define QMC2_ARCADE_INFO_CLASS_SOFT     2
 
 // additional command line arguments
 // -emu <emu> ([mame], mess, ume)

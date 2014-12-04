@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QStringList>
 #include <QMap>
+#include <QHash>
 
 #if QT_VERSION < 0x050000
 #include "qmlapplicationviewer.h"
@@ -125,9 +126,11 @@ public slots:
     void imageDataUpdate(QString cachePrefix) { emit imageDataUpdated(cachePrefix); }
     bool isSevenZippedImageType(QString type) { return imageProvider->isSevenZippedImageType(type); }
     bool isZippedImageType(QString type) { return imageProvider->isZippedImageType(type); }
+    QString parentId(QString id);
 
 private:
-    bool initialised;
+    bool m_initialized;
+    QHash<QString, QString> m_parentHash;
 
 #if QT_VERSION < 0x050000
 protected:

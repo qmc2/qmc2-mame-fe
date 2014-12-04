@@ -48,7 +48,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
     : QQuickView(parent)
 #endif
 {
-    initialised = false;
+    m_initialized = false;
     numFrames = 0;
     windowModeSwitching = false;
 
@@ -68,7 +68,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
     joystickManager = new JoystickManager(joyFunctionMap);
 #endif
 
-    infoClasses << "gameinfo" << "emuinfo";
+    infoClasses << "gameinfo" << "emuinfo" << "softinfo";
 
 #if QT_VERSION < 0x050000
     cliParams << "theme" << "graphicssystem" << "console" << "language";
@@ -147,7 +147,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
 
 TweakedQmlApplicationViewer::~TweakedQmlApplicationViewer()
 {
-    if ( initialised )
+    if ( m_initialized )
         saveSettings();
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
     delete joystickManager;
@@ -220,7 +220,7 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("colourScheme", globalConfig->colourScheme());
         break;
     }
-    initialised = true;
+    m_initialized = true;
 }
 
 void TweakedQmlApplicationViewer::saveSettings()
@@ -387,6 +387,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
 {
     QString gameListCachePath;
     gameList.clear();
+    m_parentHash.clear();
 
     if ( globalConfig->useFilteredList() ) {
         gameListCachePath = QFileInfo(globalConfig->filteredListFile()).absoluteFilePath();
@@ -421,11 +422,9 @@ void TweakedQmlApplicationViewer::loadGamelist()
                     qApp->processEvents();
             }
         } else
-            QMC2_ARCADE_LOG_STR(tr("WARNING: Can't open ROM state cache file '%1', please check permissions").
-                         arg(QDir::toNativeSeparators(romStateCachePath)));
+            QMC2_ARCADE_LOG_STR(tr("WARNING: Can't open ROM state cache file '%1', please check permissions").arg(QDir::toNativeSeparators(romStateCachePath)));
     } else
-        QMC2_ARCADE_LOG_STR(tr("WARNING: The ROM state cache file '%1' doesn't exist, please run main front-end executable to create it").
-                     arg(QDir::toNativeSeparators(romStateCachePath)));
+        QMC2_ARCADE_LOG_STR(tr("WARNING: The ROM state cache file '%1' doesn't exist, please run main front-end executable to create it").arg(QDir::toNativeSeparators(romStateCachePath)));
 
     QFile gameListCache(gameListCachePath);
     if ( gameListCache.exists() ) {
@@ -438,19 +437,17 @@ void TweakedQmlApplicationViewer::loadGamelist()
                 QStringList words = tsGameListCache.readLine().split("\t");
                 if ( words[QMC2_ARCADE_GLC_DEVICE] != "1" ) {
                     QString gameId = words[QMC2_ARCADE_GLC_ID];
-                    gameList.append(new GameObject(gameId, words[QMC2_ARCADE_GLC_PARENT], words[QMC2_ARCADE_GLC_DESCRIPTION], romStateCharToInt(rscHash[gameId])));
+                    QString parentId = words[QMC2_ARCADE_GLC_PARENT];
+                    gameList.append(new GameObject(gameId, parentId, words[QMC2_ARCADE_GLC_DESCRIPTION], romStateCharToInt(rscHash[gameId])));
+                    m_parentHash.insert(gameId, parentId);
                 }
                 if ( lineCounter++ % QMC2_ARCADE_LOAD_RESPONSE == 0 )
                     qApp->processEvents();
             }
         } else
-            QMC2_ARCADE_LOG_STR(tr("FATAL: Can't open %1 cache file '%2', please check permissions").
-                         arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
-                         arg(QDir::toNativeSeparators(gameListCachePath)));
+            QMC2_ARCADE_LOG_STR(tr("FATAL: Can't open %1 cache file '%2', please check permissions").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).arg(QDir::toNativeSeparators(gameListCachePath)));
     } else
-        QMC2_ARCADE_LOG_STR(tr("FATAL: The %1 cache file '%2' doesn't exist, please run main front-end executable to create it").
-                     arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
-                     arg(QDir::toNativeSeparators(gameListCachePath)));
+        QMC2_ARCADE_LOG_STR(tr("FATAL: The %1 cache file '%2' doesn't exist, please run main front-end executable to create it").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).arg(QDir::toNativeSeparators(gameListCachePath)));
 
     if ( globalConfig->sortByName() )
         qSort(gameList.begin(), gameList.end(), GameObject::lessThan);
@@ -459,9 +456,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
     rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
     rootContext()->setContextProperty("gameListModelCount", gameList.count());
 
-    QMC2_ARCADE_LOG_STR(QString(tr("Done (loading %1 from '%2')").
-                         arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())).
-                         arg(QDir::toNativeSeparators(gameListCachePath)));
+    QMC2_ARCADE_LOG_STR(QString(tr("Done (loading %1 from '%2')").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())).arg(QDir::toNativeSeparators(gameListCachePath)));
 }
 
 void TweakedQmlApplicationViewer::launchEmulator(QString id)
@@ -477,15 +472,44 @@ QString TweakedQmlApplicationViewer::loadImage(const QString &id)
 
 QString TweakedQmlApplicationViewer::requestInfo(const QString &id, const QString &infoClass)
 {
+    QString infoText;
+
     switch ( infoClasses.indexOf(infoClass) ) {
     case QMC2_ARCADE_INFO_CLASS_GAME:
-        return infoProvider->requestInfo(id, InfoProvider::InfoClassGame);
+        infoText = infoProvider->requestInfo(id, InfoProvider::InfoClassGame);
+        break;
     case QMC2_ARCADE_INFO_CLASS_EMU:
-        return infoProvider->requestInfo(id, InfoProvider::InfoClassEmu);
+        infoText = infoProvider->requestInfo(id, InfoProvider::InfoClassEmu);
+        break;
+    case QMC2_ARCADE_INFO_CLASS_SOFT:
+        infoText = infoProvider->requestInfo(id, InfoProvider::InfoClassSoft);
+        break;
     default:
         QMC2_ARCADE_LOG_STR(tr("WARNING: TweakedQmlApplicationViewer::requestInfo(): unsupported info class '%1'").arg(infoClass));
-        return tr("no info available");
+        return QString("<p>" + tr("no info available") + "</p>");
     }
+
+    if ( infoText.isEmpty() ) {
+        QString pI = parentId(id);
+        if ( !pI.isEmpty() ) {
+            switch ( infoClasses.indexOf(infoClass) ) {
+            case QMC2_ARCADE_INFO_CLASS_GAME:
+                infoText = infoProvider->requestInfo(pI, InfoProvider::InfoClassGame);
+                break;
+            case QMC2_ARCADE_INFO_CLASS_EMU:
+                infoText = infoProvider->requestInfo(pI, InfoProvider::InfoClassEmu);
+                break;
+            case QMC2_ARCADE_INFO_CLASS_SOFT:
+                infoText = infoProvider->requestInfo(pI, InfoProvider::InfoClassSoft);
+                break;
+            }
+        }
+    }
+
+    if ( infoText.isEmpty() )
+        infoText = "<p>" + tr("no info available") + "</p>";
+
+    return infoText;
 }
 
 int TweakedQmlApplicationViewer::findIndex(QString pattern, int startIndex)
@@ -601,6 +625,14 @@ QString TweakedQmlApplicationViewer::emuMode()
     default:
         return "unknown";
     }
+}
+
+QString TweakedQmlApplicationViewer::parentId(QString id)
+{
+    if ( m_parentHash.contains(id) )
+        return m_parentHash[id];
+    else
+        return QString();
 }
 
 #if QT_VERSION >= 0x050000
