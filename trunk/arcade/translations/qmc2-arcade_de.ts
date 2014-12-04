@@ -25,6 +25,268 @@
     </message>
 </context>
 <context>
+    <name>DatInfoDatabaseManager</name>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="38"/>
+        <source>WARNING: failed to open DAT-info database &apos;%1&apos;: error = &apos;%2&apos;</source>
+        <translation>WARNUNG: DAT-Info Datenbank &apos;%1&apos; konnte nicht geöffnet werden: Fehler = &apos;%2&apos;</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="57"/>
+        <location filename="../datinfodbmgr.cpp" line="81"/>
+        <location filename="../datinfodbmgr.cpp" line="94"/>
+        <location filename="../datinfodbmgr.cpp" line="118"/>
+        <location filename="../datinfodbmgr.cpp" line="133"/>
+        <location filename="../datinfodbmgr.cpp" line="163"/>
+        <location filename="../datinfodbmgr.cpp" line="178"/>
+        <location filename="../datinfodbmgr.cpp" line="207"/>
+        <location filename="../datinfodbmgr.cpp" line="234"/>
+        <location filename="../datinfodbmgr.cpp" line="248"/>
+        <location filename="../datinfodbmgr.cpp" line="277"/>
+        <location filename="../datinfodbmgr.cpp" line="292"/>
+        <location filename="../datinfodbmgr.cpp" line="321"/>
+        <location filename="../datinfodbmgr.cpp" line="335"/>
+        <source>WARNING: failed to fetch &apos;%1&apos; from DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
+        <translation>WARNUNG: &apos;%1&apos; konnte nicht von der DAT-Info Datenbank gelesen werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="71"/>
+        <location filename="../datinfodbmgr.cpp" line="108"/>
+        <location filename="../datinfodbmgr.cpp" line="151"/>
+        <location filename="../datinfodbmgr.cpp" line="223"/>
+        <location filename="../datinfodbmgr.cpp" line="309"/>
+        <source>WARNING: failed to add &apos;%1&apos; to DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
+        <translation>WARNUNG: &apos;%1&apos; konnte nicht zur DAT-Info Datenbank hinzugefügt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="77"/>
+        <location filename="../datinfodbmgr.cpp" line="114"/>
+        <location filename="../datinfodbmgr.cpp" line="159"/>
+        <location filename="../datinfodbmgr.cpp" line="230"/>
+        <location filename="../datinfodbmgr.cpp" line="317"/>
+        <source>WARNING: failed to update &apos;%1&apos; in DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
+        <translation>WARNUNG: &apos;%1&apos; konnte nicht in der DAT-Info Datenbank geändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="192"/>
+        <location filename="../datinfodbmgr.cpp" line="262"/>
+        <location filename="../datinfodbmgr.cpp" line="349"/>
+        <source>WARNING: failed to fetch row count from DAT-info database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
+        <translation>WARNUNG: Anzahl der Tabellenzeilen konnte nicht aus der DAT-Info Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="378"/>
+        <location filename="../datinfodbmgr.cpp" line="388"/>
+        <location filename="../datinfodbmgr.cpp" line="398"/>
+        <source>WARNING: failed to change the &apos;%1&apos; setting for the DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
+        <translation>WARNUNG: Die Einstellung &apos;%1&apos; konnte in der DAT-Info Datenbank nicht verändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="405"/>
+        <location filename="../datinfodbmgr.cpp" line="410"/>
+        <location filename="../datinfodbmgr.cpp" line="429"/>
+        <location filename="../datinfodbmgr.cpp" line="434"/>
+        <location filename="../datinfodbmgr.cpp" line="454"/>
+        <location filename="../datinfodbmgr.cpp" line="456"/>
+        <location filename="../datinfodbmgr.cpp" line="463"/>
+        <location filename="../datinfodbmgr.cpp" line="465"/>
+        <location filename="../datinfodbmgr.cpp" line="493"/>
+        <source>WARNING: failed to remove %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
+        <translation>WARNUNG: %1 Tabelle konnte nicht entfernt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="405"/>
+        <location filename="../datinfodbmgr.cpp" line="410"/>
+        <location filename="../datinfodbmgr.cpp" line="417"/>
+        <location filename="../datinfodbmgr.cpp" line="422"/>
+        <source>software-info</source>
+        <translation>Software-Info</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="417"/>
+        <location filename="../datinfodbmgr.cpp" line="422"/>
+        <location filename="../datinfodbmgr.cpp" line="441"/>
+        <location filename="../datinfodbmgr.cpp" line="446"/>
+        <location filename="../datinfodbmgr.cpp" line="474"/>
+        <location filename="../datinfodbmgr.cpp" line="476"/>
+        <location filename="../datinfodbmgr.cpp" line="483"/>
+        <location filename="../datinfodbmgr.cpp" line="485"/>
+        <location filename="../datinfodbmgr.cpp" line="500"/>
+        <source>WARNING: failed to create %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
+        <translation>WARNUNG: %1 Tabelle konnte nicht erstellt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="429"/>
+        <location filename="../datinfodbmgr.cpp" line="434"/>
+        <location filename="../datinfodbmgr.cpp" line="441"/>
+        <location filename="../datinfodbmgr.cpp" line="446"/>
+        <source>emu-info</source>
+        <translation>Emu-Info</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="454"/>
+        <location filename="../datinfodbmgr.cpp" line="463"/>
+        <location filename="../datinfodbmgr.cpp" line="474"/>
+        <location filename="../datinfodbmgr.cpp" line="483"/>
+        <source>machine-info</source>
+        <translation>Maschinen-Info</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="456"/>
+        <location filename="../datinfodbmgr.cpp" line="465"/>
+        <location filename="../datinfodbmgr.cpp" line="476"/>
+        <location filename="../datinfodbmgr.cpp" line="485"/>
+        <source>game-info</source>
+        <translation>Spiel-Info</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="493"/>
+        <location filename="../datinfodbmgr.cpp" line="500"/>
+        <source>meta-data</source>
+        <translation>Meta-Daten</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="561"/>
+        <location filename="../datinfodbmgr.cpp" line="631"/>
+        <location filename="../datinfodbmgr.cpp" line="636"/>
+        <location filename="../datinfodbmgr.cpp" line="701"/>
+        <location filename="../datinfodbmgr.cpp" line="762"/>
+        <location filename="../datinfodbmgr.cpp" line="835"/>
+        <location filename="../datinfodbmgr.cpp" line="920"/>
+        <source>DAT-info database</source>
+        <translation>DAT-Info Datenbank</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="561"/>
+        <location filename="../datinfodbmgr.cpp" line="701"/>
+        <location filename="../datinfodbmgr.cpp" line="835"/>
+        <source>importing %1 from &apos;%2&apos;</source>
+        <translation>Importiere %1 von &apos;%2&apos;</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="561"/>
+        <location filename="../datinfodbmgr.cpp" line="631"/>
+        <source>software info-texts</source>
+        <translation>Software Info-Texte</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="631"/>
+        <location filename="../datinfodbmgr.cpp" line="762"/>
+        <location filename="../datinfodbmgr.cpp" line="920"/>
+        <source>done (importing %1 from &apos;%2&apos;)</source>
+        <translation>Fertig (Importiere %1 von &apos;%2&apos;)</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="636"/>
+        <source>WARNING: can&apos;t open software info file &apos;%1&apos;</source>
+        <translation>WARNUNG: kann Software Info Datei &apos;%1&apos; nicht öffnen</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../datinfodbmgr.cpp" line="639"/>
+        <source>%n software info record(s) imported</source>
+        <translation>
+            <numerusform>%n Software Info Datensatz importiert</numerusform>
+            <numerusform>%n Software Info Datensätze importiert</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="701"/>
+        <location filename="../datinfodbmgr.cpp" line="762"/>
+        <source>emulator info-texts</source>
+        <translation>Emulator Info-Texte</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="755"/>
+        <source>WARNING: missing &apos;$end&apos; in emulator info file %1</source>
+        <translation>WARNUNG: &apos;$end&apos; fehlt in Emulator Info Datei %1</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="757"/>
+        <source>WARNING: missing &apos;$mame&apos; in emulator info file %1</source>
+        <translation>WARNUNG: &apos;$mame&apos; fehlt in Emulator Info Datei %1</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="759"/>
+        <source>WARNING: missing &apos;$info&apos; in emulator info file %1</source>
+        <translation>WARNUNG: &apos;$info&apos; fehlt in Emulator Info Datei %1</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="768"/>
+        <source>WARNING: can&apos;t open emulator info file %1</source>
+        <translation>WARNUNG: kann Emulator Info Datei &apos;%1&apos; nicht öffnen</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../datinfodbmgr.cpp" line="771"/>
+        <source>%n emulator info record(s) imported</source>
+        <translation>
+            <numerusform>%n Emulator Info Datensatz importiert</numerusform>
+            <numerusform>%n Emulator Info Datensätze importiert</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="835"/>
+        <location filename="../datinfodbmgr.cpp" line="920"/>
+        <source>system info-texts</source>
+        <translation>System Info-Texte</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="899"/>
+        <source>WARNING: missing &apos;$end&apos; in machine info file %1</source>
+        <translation>WARNUNG: &apos;$end&apos; fehlt in Maschinen Info Datei %1</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="901"/>
+        <source>WARNING: missing &apos;$end&apos; in game info file %1</source>
+        <translation>WARNUNG: &apos;$end&apos; fehlt in Spiel Info Datei %1</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="906"/>
+        <source>WARNING: missing &apos;$bio&apos; in machine info file %1</source>
+        <translation>WARNUNG: &apos;$bio&apos; fehlt in Maschinen Info Datei %1</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="908"/>
+        <source>WARNING: missing &apos;$bio&apos; in game info file %1</source>
+        <translation>WARNUNG: &apos;$bio&apos; fehlt in Spiel Info Datei %1</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="913"/>
+        <source>WARNING: missing &apos;$info&apos; in machine info file %1</source>
+        <translation>WARNUNG: &apos;$info&apos; fehlt in Maschinen Info Datei %1</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="915"/>
+        <source>WARNING: missing &apos;$info&apos; in game info file %1</source>
+        <translation>WARNUNG: &apos;$info&apos; fehlt in Spiel Info Datei %1</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="926"/>
+        <source>WARNING: can&apos;t open machine info file %1</source>
+        <translation>WARNUNG: kann Maschinen Info Datei &apos;%1&apos; nicht öffnen</translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="928"/>
+        <source>WARNING: can&apos;t open game info file %1</source>
+        <translation>WARNUNG: kann Spiel Info Datei &apos;%1&apos; nicht öffnen</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../datinfodbmgr.cpp" line="934"/>
+        <source>%n machine info record(s) imported</source>
+        <translation>
+            <numerusform>%n Maschinen Info Datensatz importiert</numerusform>
+            <numerusform>%n Maschinen Info Datensätze importiert</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../datinfodbmgr.cpp" line="936"/>
+        <source>%n game info record(s) imported</source>
+        <translation>
+            <numerusform>%n Spiel Info Datensatz importiert</numerusform>
+            <numerusform>%n Spiel Info Datensätze importiert</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>ImageProvider</name>
     <message>
         <location filename="../imageprovider.cpp" line="96"/>
@@ -36,22 +298,22 @@
 <context>
     <name>Joystick</name>
     <message>
-        <location filename="../joystick.cpp" line="25"/>
+        <location filename="../joystick.cpp" line="31"/>
         <source>ERROR: couldn&apos;t initialize SDL joystick support</source>
         <translation>FEHLER: Konnte SDL Joystick Unterstützung nicht initialisieren</translation>
     </message>
     <message>
-        <location filename="../joystick.cpp" line="54"/>
+        <location filename="../joystick.cpp" line="60"/>
         <source>SDL joystick #%1 opened: name = %2, axes = %3, buttons = %4, hats = %5, trackballs = %6</source>
         <translation>SDL Joystick #%1 geöffnet: Name = %2, Achsen = %3, Knöpfe = %4, Hats = %5, Trackballs = %6</translation>
     </message>
     <message>
-        <location filename="../joystick.cpp" line="65"/>
+        <location filename="../joystick.cpp" line="71"/>
         <source>ERROR: couldn&apos;t open SDL joystick #%1</source>
         <translation>FEHLER: Konnte SDL Joystick #%1 nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../joystick.cpp" line="76"/>
+        <location filename="../joystick.cpp" line="82"/>
         <source>SDL joystick #%1 closed</source>
         <translation>SDL Joystick #%1 geschlossen</translation>
     </message>
@@ -347,7 +609,7 @@
         <translation>Icon</translation>
     </message>
     <message>
-        <location filename="../macros.h" line="44"/>
+        <location filename="../macros.h" line="50"/>
         <source>QMC2 Arcade</source>
         <translation>QMC2 Arcade</translation>
     </message>
@@ -421,139 +683,10 @@
         <translation>QML Anzeige nicht gestartet - bitte Konsolenfenster schließen um das Programm zu beenden</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="76"/>
-        <source>Loading game info DB</source>
-        <translation>Lade Spiel-Info DB</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="79"/>
-        <source>Loading machine info DB</source>
-        <translation>Lade Maschinen-Info DB</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="178"/>
-        <source>WARNING: Missing &apos;$end&apos; in game info DB %1</source>
-        <translation>WARNUNG: &apos;$end&apos; fehlt in Spiel-Info DB %1</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="181"/>
-        <source>WARNING: Missing &apos;$end&apos; in machine info DB %1</source>
-        <translation>WARNUNG: &apos;$end&apos; fehlt in Maschinen-Info DB %1</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="189"/>
-        <source>WARNING: Missing &apos;$bio&apos; in game info DB %1</source>
-        <translation>WARNUNG: &apos;$bio&apos; fehlt in Spiel-Info DB %1</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="192"/>
-        <source>WARNING: Missing &apos;$bio&apos; in machine info DB %1</source>
-        <translation>WARNUNG: &apos;$bio&apos; fehlt in Maschinen-Info DB %1</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="200"/>
-        <source>WARNING: Missing &apos;$info&apos; in game info DB %1</source>
-        <translation>WARNUNG: &apos;$info&apos; fehlt in Spiel-Info DB %1</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="203"/>
-        <source>WARNING: Missing &apos;$info&apos; in machine info DB %1</source>
-        <translation>WARNUNG: &apos;$info&apos; fehlt in Maschinen-Info DB %1</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="213"/>
-        <source>WARNING: Can&apos;t open game info DB %1</source>
-        <translation>WARNUNG: Kann Spiel-Info DB %1 nicht öffnen</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="216"/>
-        <source>WARNING: Can&apos;t open machine info DB %1</source>
-        <translation>WARNUNG: Kann Maschinen-Info DB %1 nicht öffnen</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="233"/>
-        <source>Done (Loading machine info DB)</source>
-        <translation>Fertig (Lade Maschinen-Info DB)</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="225"/>
-        <source>Done (Loading game info DB)</source>
-        <translation>Fertig (Lade Spiel-Info DB)</translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="234"/>
-        <source>%n machine info record(s) loaded</source>
-        <translation>
-            <numerusform>%n Maschinen-Info Datensatz geladen</numerusform>
-            <numerusform>%n Maschinen-Info Datensätze geladen</numerusform>
-        </translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="236"/>
-        <source>Invalidating machine info DB</source>
-        <translation>Invalidiere Maschinen-Info DB</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="228"/>
-        <source>Invalidating game info DB</source>
-        <translation>Invalidiere Spiel-Info DB</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="245"/>
-        <source>Loading emulator info DB</source>
-        <translation>Lade Emulator-Info DB</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="319"/>
-        <source>WARNING: Missing &apos;$end&apos; in emulator info DB %1</source>
-        <translation>WARNUNG: &apos;$end&apos; fehlt in Emulator-Info DB %1</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="321"/>
-        <source>WARNING: Missing &apos;$mame&apos; in emulator info DB %1</source>
-        <translation>WARNUNG: &apos;$mame&apos; fehlt in Emulator-Info DB %1</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="324"/>
-        <source>WARNING: Missing &apos;$info&apos; in emulator info DB %1</source>
-        <translation>WARNUNG: &apos;$info&apos; fehlt in Emulator-Info DB %1</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="329"/>
-        <source>WARNING: Can&apos;t open emulator info DB %1</source>
-        <translation>WARNUNG: Kann Emulator-Info DB %1 nicht öffnen</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="332"/>
-        <source>Done (Loading emulator info DB)</source>
-        <translation>Fertig (Lade Emulator-Info DB)</translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="335"/>
-        <source>Invalidating emulator info DB</source>
-        <translation>Invalidiere Emulator-Info DB</translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="226"/>
-        <source>%n game info record(s) loaded</source>
-        <translation>
-            <numerusform>%n Spiel-Info Datensatz geladen</numerusform>
-            <numerusform>%n Spiel-Info Datensätze geladen</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="333"/>
-        <source>%n emulator info record(s) loaded</source>
-        <translation>
-            <numerusform>%n Emulator-Info Datensatz geladen</numerusform>
-            <numerusform>%n Emulator-Info Datensätze geladen</numerusform>
-        </translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="375"/>
-        <location filename="../infoprovider.cpp" line="377"/>
-        <location filename="../infoprovider.cpp" line="388"/>
-        <location filename="../infoprovider.cpp" line="390"/>
+        <location filename="../infoprovider.cpp" line="58"/>
+        <location filename="../infoprovider.cpp" line="60"/>
+        <location filename="../infoprovider.cpp" line="68"/>
+        <location filename="../infoprovider.cpp" line="70"/>
         <source>no info available</source>
         <translation>Keine Daten verfügbar</translation>
     </message>

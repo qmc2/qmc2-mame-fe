@@ -1,4 +1,5 @@
 VERSION = 0.10
+MAIN_UI_VERSION = 0.47
 
 # Add more folders to ship with the application, here
 folder_01.source = qml/ToxicWaste
@@ -33,6 +34,7 @@ SOURCES += main.cpp \
     keysequencemap.cpp \
     joyfunctionmap.cpp \
     joystickmanager.cpp \
+    datinfodbmgr.cpp \
     ../settings.cpp \
     ../sevenzipfile.cpp \
     ../zlib/zutil.c \
@@ -86,18 +88,6 @@ SOURCES += main.cpp \
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
-OTHER_FILES += \
-    qml/ToxicWaste/1.1/ToxicWaste.qml \
-    qml/ToxicWaste/1.1/ToxicWaste.js \
-    qml/ToxicWaste/1.1/BackgroundAnimation.qml \
-    qml/ToxicWaste/2.0/ToxicWaste.qml \
-    qml/ToxicWaste/2.0/ToxicWaste.js \
-    qml/ToxicWaste/2.0/BackgroundAnimation.qml \
-    qml/darkone/1.1/darkone.qml \
-    qml/darkone/1.1/darkone.js \
-    qml/darkone/2.0/darkone.qml \
-    qml/darkone/2.0/darkone.js
-
 HEADERS += \
     tweakedqmlappviewer.h \
     imageprovider.h \
@@ -116,10 +106,11 @@ HEADERS += \
     keysequencemap.h \
     joyfunctionmap.h \
     joystickmanager.h \
+    datinfodbmgr.h \
     ../settings.h \
     ../sevenzipfile.h
 
-DEFINES += _7ZIP_PPMD_SUPPORT _7ZIP_ST QMC2_ARCADE_VERSION=$$VERSION
+DEFINES += _7ZIP_PPMD_SUPPORT _7ZIP_ST QMC2_ARCADE_VERSION=$$VERSION QMC2_ARCADE_MAIN_UI_VERSION=$$MAIN_UI_VERSION
 
 RESOURCES += qmc2-arcade-common.qrc
 greaterThan(QT_MAJOR_VERSION, 4) {
@@ -215,6 +206,6 @@ greaterThan(QT_MAJOR_VERSION, 4) {
     CONFIG += qtestlib
 }
 
-QT += svg
+QT += svg sql
 
 INCLUDEPATH += ../minizip ../zlib ../lzma

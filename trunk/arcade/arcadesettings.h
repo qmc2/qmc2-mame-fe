@@ -27,6 +27,7 @@ public:
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
     QString joyFunctionMapBaseKey();
 #endif
+    QString emulatorName();
 
 signals:
     
@@ -179,8 +180,11 @@ public slots:
     QString messSysinfoDat();
     QString mameInfoDat();
     QString messInfoDat();
+    QString softwareInfoDat();
     QStringList activeImageFormats(QString);
     bool parentImageFallback();
+
+    // joystick related
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
     int joystickAxisMinimum(int, int);
     int joystickAxisMaximum(int, int);
@@ -193,6 +197,27 @@ public slots:
     int joystickDeadzone(int, int);
     int joystickSensitivity(int, int);
 #endif
+
+    // DAT-info database related
+    QString datInfoDatabaseName();
+    QStringList softwareInfoImportFiles();
+    void setSoftwareInfoImportFiles(QStringList &);
+    void removeSoftwareInfoImportFiles();
+    QStringList softwareInfoImportDates();
+    void setSoftwareInfoImportDates(QStringList &);
+    void removeSoftwareInfoImportDates();
+    QStringList emuInfoImportFiles();
+    void setEmuInfoImportFiles(QStringList &);
+    void removeEmuInfoImportFiles();
+    QStringList emuInfoImportDates();
+    void setEmuInfoImportDates(QStringList &);
+    void removeEmuInfoImportDates();
+    QStringList gameInfoImportFiles();
+    void setGameInfoImportFiles(QStringList &);
+    void removeGameInfoImportFiles();
+    QStringList gameInfoImportDates();
+    void setGameInfoImportDates(QStringList &);
+    void removeGameInfoImportDates();
 
 private:
     QMap<QString, QMap<QString, QVariant> > m_themeDefaults;
