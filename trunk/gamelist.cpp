@@ -2769,7 +2769,8 @@ void Gamelist::loadReadyReadStandardOutput()
 	static QRegExp rxDescYearManu("\\<description\\>$|\\<year\\>$|\\<manufacturer\\>$");
 
 	// this makes the GUI much more responsive, but is HAS to be called before loadProc->readAllStandardOutput()!
-	qApp->processEvents();
+	if ( QCoreApplication::hasPendingEvents() )
+		qApp->processEvents();
 
 #if defined(QMC2_OS_WIN)
 	QString readBuffer = QString::fromUtf8(loadProc->readAllStandardOutput());
@@ -3367,7 +3368,8 @@ void Gamelist::verifyReadyReadStandardOutput()
 
 	// this makes the GUI much more responsive, but is HAS to be called before verifyProc->readAllStandardOutput()!
 	if ( !verifyCurrentOnly )
-		qApp->processEvents();
+		if ( QCoreApplication::hasPendingEvents() )
+			qApp->processEvents();
 
 	// process rom verification output
 	char romState;
