@@ -1461,42 +1461,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CheckSumScannerThread</name>
     <message>
-        <location filename="../../romalyzer.cpp" line="4362"/>
+        <location filename="../../romalyzer.cpp" line="4383"/>
         <source>exiting</source>
         <translation>wird beendet</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4364"/>
+        <location filename="../../romalyzer.cpp" line="4385"/>
         <source>stopping</source>
         <translation>wird angehalten</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4366"/>
+        <location filename="../../romalyzer.cpp" line="4387"/>
         <source>paused</source>
         <translation>pausiert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4368"/>
+        <location filename="../../romalyzer.cpp" line="4389"/>
         <source>scanning</source>
         <translation>scannt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4369"/>
+        <location filename="../../romalyzer.cpp" line="4390"/>
         <source>idle</source>
         <translation>wartet</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4483"/>
+        <location filename="../../romalyzer.cpp" line="4504"/>
         <source>scanner thread started</source>
         <translation>Scanner Thread gestartet</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4485"/>
+        <location filename="../../romalyzer.cpp" line="4506"/>
         <source>waiting for work</source>
         <translation>Warte auf Arbeit</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="4506"/>
+        <location filename="../../romalyzer.cpp" line="4527"/>
         <source>found %n file(s) for path &apos;%1&apos;</source>
         <translation>
             <numerusform>%n Datei in Pfad &apos;%1&apos; gefunden</numerusform>
@@ -1504,48 +1504,48 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4525"/>
+        <location filename="../../romalyzer.cpp" line="4546"/>
         <source>scan started for file &apos;%1&apos;</source>
         <translation>Scannen der Datei &apos;%1&apos; gestartet</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4630"/>
+        <location filename="../../romalyzer.cpp" line="4651"/>
         <source>scan finished for file &apos;%1&apos;</source>
         <translation>Scannen der Datei &apos;%1&apos; beendet</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4634"/>
+        <location filename="../../romalyzer.cpp" line="4655"/>
         <source>scanner interrupted</source>
         <translation>Scannen unterbrochen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4518"/>
-        <location filename="../../romalyzer.cpp" line="4605"/>
+        <location filename="../../romalyzer.cpp" line="4539"/>
+        <location filename="../../romalyzer.cpp" line="4626"/>
         <source>starting database transaction</source>
         <translation>Starte Datenbank-Transaktion</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4375"/>
+        <location filename="../../romalyzer.cpp" line="4396"/>
         <source>preparing incremental scan</source>
         <translation>Bereite inkrementelles Scannen vor</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4380"/>
-        <location filename="../../romalyzer.cpp" line="4407"/>
-        <location filename="../../romalyzer.cpp" line="4429"/>
-        <location filename="../../romalyzer.cpp" line="4448"/>
+        <location filename="../../romalyzer.cpp" line="4401"/>
+        <location filename="../../romalyzer.cpp" line="4428"/>
+        <location filename="../../romalyzer.cpp" line="4450"/>
+        <location filename="../../romalyzer.cpp" line="4469"/>
         <source>Preparing</source>
         <translation>Vorbereitung</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4380"/>
-        <location filename="../../romalyzer.cpp" line="4407"/>
-        <location filename="../../romalyzer.cpp" line="4429"/>
+        <location filename="../../romalyzer.cpp" line="4401"/>
+        <location filename="../../romalyzer.cpp" line="4428"/>
+        <location filename="../../romalyzer.cpp" line="4450"/>
         <source>Step %1 of %2</source>
         <translation>Schritt %1 von %2</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="4423"/>
+        <location filename="../../romalyzer.cpp" line="4444"/>
         <source>%n unchanged file(s) removed from scan</source>
         <translation>
             <numerusform>%n unveränderte Datei vom Scan ausgenommen</numerusform>
@@ -1553,12 +1553,12 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4360"/>
+        <location filename="../../romalyzer.cpp" line="4381"/>
         <source>preparing</source>
         <translation>bereitet vor</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="4404"/>
+        <location filename="../../romalyzer.cpp" line="4425"/>
         <source>%n obsolete path(s) removed from database</source>
         <translation>
             <numerusform>%n obsoleter Pfad aus Datenbank entfernt</numerusform>
@@ -1566,7 +1566,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="4445"/>
+        <location filename="../../romalyzer.cpp" line="4466"/>
         <source>%n outdated path(s) removed from database</source>
         <translation>
             <numerusform>%n veralteter Pfad aus Datenbank entfernt</numerusform>
@@ -1574,177 +1574,177 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4451"/>
+        <location filename="../../romalyzer.cpp" line="4472"/>
         <source>freeing unused space previously occupied by database</source>
         <translation>Gebe nicht mehr verwendeten Speicherplatz frei, welcher zuvor von der Datenbank belegt wurde</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4498"/>
-        <location filename="../../romalyzer.cpp" line="4515"/>
-        <location filename="../../romalyzer.cpp" line="4624"/>
+        <location filename="../../romalyzer.cpp" line="4519"/>
+        <location filename="../../romalyzer.cpp" line="4536"/>
+        <location filename="../../romalyzer.cpp" line="4645"/>
         <source>Scanning</source>
         <translation>Scannt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4502"/>
+        <location filename="../../romalyzer.cpp" line="4523"/>
         <source>searching available files for path &apos;%1&apos;</source>
         <translation>Suche vorhandene Dateien in Pfad &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4536"/>
-        <location filename="../../romalyzer.cpp" line="4542"/>
-        <location filename="../../romalyzer.cpp" line="4548"/>
-        <location filename="../../romalyzer.cpp" line="4554"/>
+        <location filename="../../romalyzer.cpp" line="4557"/>
+        <location filename="../../romalyzer.cpp" line="4563"/>
+        <location filename="../../romalyzer.cpp" line="4569"/>
+        <location filename="../../romalyzer.cpp" line="4575"/>
         <source>WARNING: scan failed for file &apos;%1&apos;</source>
         <translation>WARNUNG: Scannen der Datei &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4560"/>
+        <location filename="../../romalyzer.cpp" line="4581"/>
         <source>WARNING: can&apos;t access file &apos;%1&apos;, please check permissions</source>
         <translation>WARNUNG: kann auf die Datei &apos;%1&apos; nicht zugreifen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4573"/>
-        <location filename="../../romalyzer.cpp" line="4577"/>
-        <location filename="../../romalyzer.cpp" line="4582"/>
-        <location filename="../../romalyzer.cpp" line="4586"/>
-        <location filename="../../romalyzer.cpp" line="4590"/>
         <location filename="../../romalyzer.cpp" line="4594"/>
+        <location filename="../../romalyzer.cpp" line="4598"/>
+        <location filename="../../romalyzer.cpp" line="4603"/>
+        <location filename="../../romalyzer.cpp" line="4607"/>
+        <location filename="../../romalyzer.cpp" line="4611"/>
+        <location filename="../../romalyzer.cpp" line="4615"/>
         <source>database update</source>
         <translation>Datenbank Update</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4573"/>
+        <location filename="../../romalyzer.cpp" line="4594"/>
         <source>adding member &apos;%1&apos; from archive &apos;%2&apos; with SHA-1 &apos;%3&apos; and CRC &apos;%4&apos; to database</source>
         <translation>Füge Datei &apos;%1&apos; aus Archiv &apos;%2&apos; mit SHA-1 &apos;%3&apos; und CRC &apos;%4&apos; der Datenbank hinzu</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4577"/>
-        <location filename="../../romalyzer.cpp" line="4586"/>
-        <location filename="../../romalyzer.cpp" line="4594"/>
+        <location filename="../../romalyzer.cpp" line="4598"/>
+        <location filename="../../romalyzer.cpp" line="4607"/>
+        <location filename="../../romalyzer.cpp" line="4615"/>
         <source>an object with SHA-1 &apos;%1&apos; and CRC &apos;%2&apos; already exists in the database</source>
         <translation>Ein Objekt mit SHA-1 &apos;%1&apos; und CRC &apos;%2&apos; existiert bereits in der Datenbank</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4577"/>
+        <location filename="../../romalyzer.cpp" line="4598"/>
         <source>member &apos;%1&apos; from archive &apos;%2&apos; ignored</source>
         <translation>Datei &apos;%1&apos; aus Archiv &apos;%2&apos; ignoriert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4582"/>
+        <location filename="../../romalyzer.cpp" line="4603"/>
         <source>adding CHD &apos;%1&apos; with SHA-1 &apos;%2&apos; to database</source>
         <translation>Füge CHD &apos;%1&apos; mit SHA-1 &apos;%2&apos; der Datenbank hinzu</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4586"/>
+        <location filename="../../romalyzer.cpp" line="4607"/>
         <source>CHD &apos;%1&apos; ignored</source>
         <translation>CHD &apos;%1&apos; ignoriert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4590"/>
+        <location filename="../../romalyzer.cpp" line="4611"/>
         <source>adding file &apos;%1&apos; with SHA-1 &apos;%2&apos; and CRC &apos;%3&apos; to database</source>
         <translation>Füge Datei &apos;%1&apos; mit SHA-1 &apos;%2&apos; und CRC &apos;%3&apos; der Datenbank hinzu</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4594"/>
+        <location filename="../../romalyzer.cpp" line="4615"/>
         <source>file &apos;%1&apos; ignored</source>
         <translation>Datei &apos;%1&apos; ignoriert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4601"/>
-        <location filename="../../romalyzer.cpp" line="4635"/>
+        <location filename="../../romalyzer.cpp" line="4622"/>
+        <location filename="../../romalyzer.cpp" line="4656"/>
         <source>committing database transaction</source>
         <translation>Schließe Datenbank-Transaktion ab</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4615"/>
+        <location filename="../../romalyzer.cpp" line="4636"/>
         <source>scanner paused</source>
         <translation>Scannen pausiert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4616"/>
+        <location filename="../../romalyzer.cpp" line="4637"/>
         <source>Paused</source>
         <translation>Pausiert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4623"/>
+        <location filename="../../romalyzer.cpp" line="4644"/>
         <source>scanner resumed</source>
         <translation>Scannen wird fortgesetzt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4639"/>
+        <location filename="../../romalyzer.cpp" line="4660"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4643"/>
+        <location filename="../../romalyzer.cpp" line="4664"/>
         <source>scan finished - total scanning time = %1, objects in database = %2, database size = %3</source>
         <translation>Scannen beendet - verwendete Zeit insgesamt = %1, Objekte in Datenbank = %2, Datenbank Größe = %3</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4647"/>
+        <location filename="../../romalyzer.cpp" line="4668"/>
         <source>scanner thread ended</source>
         <translation>Scanner Thread beendet</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4748"/>
-        <location filename="../../romalyzer.cpp" line="4750"/>
+        <location filename="../../romalyzer.cpp" line="4769"/>
+        <location filename="../../romalyzer.cpp" line="4771"/>
         <source>ZIP scan</source>
         <translation>ZIP Scan</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4748"/>
-        <location filename="../../romalyzer.cpp" line="4779"/>
+        <location filename="../../romalyzer.cpp" line="4769"/>
+        <location filename="../../romalyzer.cpp" line="4800"/>
         <source>member &apos;%1&apos; from archive &apos;%2&apos; has SHA-1 &apos;%3&apos; and CRC &apos;%4&apos;</source>
         <translation>Datei &apos;%1&apos; aus Archiv &apos;%2&apos; hat SHA-1 &apos;%3&apos; und CRC &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4750"/>
+        <location filename="../../romalyzer.cpp" line="4771"/>
         <source>WARNING: can&apos;t open member &apos;%1&apos; from archive &apos;%2&apos;</source>
         <translation>WARNUNG: kann die Datei &apos;%1&apos; aus dem Archiv &apos;%2&apos; nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4779"/>
-        <location filename="../../romalyzer.cpp" line="4781"/>
+        <location filename="../../romalyzer.cpp" line="4800"/>
+        <location filename="../../romalyzer.cpp" line="4802"/>
         <source>7Z scan</source>
         <translation>7Z Scan</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4781"/>
+        <location filename="../../romalyzer.cpp" line="4802"/>
         <source>WARNING: can&apos;t read member &apos;%1&apos; from archive &apos;%2&apos;</source>
         <translation>WARNUNG: kann die Datei &apos;%1&apos; aus dem Archiv &apos;%2&apos; nicht lesen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4799"/>
         <location filename="../../romalyzer.cpp" line="4820"/>
-        <location filename="../../romalyzer.cpp" line="4828"/>
-        <location filename="../../romalyzer.cpp" line="4836"/>
+        <location filename="../../romalyzer.cpp" line="4841"/>
+        <location filename="../../romalyzer.cpp" line="4849"/>
+        <location filename="../../romalyzer.cpp" line="4857"/>
         <source>CHD scan</source>
         <translation>CHD Scan</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4820"/>
+        <location filename="../../romalyzer.cpp" line="4841"/>
         <source>WARNING: version &apos;%1&apos; of CHD &apos;%2&apos; unknown</source>
         <translation>WARNUNG: Version &apos;%1&apos; der CHD Datei &apos;%2&apos; unbekannt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4799"/>
-        <location filename="../../romalyzer.cpp" line="4828"/>
+        <location filename="../../romalyzer.cpp" line="4820"/>
+        <location filename="../../romalyzer.cpp" line="4849"/>
         <source>WARNING: can&apos;t read CHD &apos;%1&apos;</source>
         <translation>WARNUNG: kann CHD &apos;%1&apos; nicht lesen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4836"/>
+        <location filename="../../romalyzer.cpp" line="4857"/>
         <source>CHD &apos;%1&apos; has SHA-1 &apos;%2&apos; (CHD v%3)</source>
         <translation>CHD &apos;%1&apos; hat SHA-1 &apos;%2&apos; (CHD v%3)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4868"/>
+        <location filename="../../romalyzer.cpp" line="4889"/>
         <source>file scan</source>
         <translation>Datei Scan</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4868"/>
+        <location filename="../../romalyzer.cpp" line="4889"/>
         <source>file &apos;%1&apos; has SHA-1 &apos;%2&apos; and CRC &apos;%3&apos;</source>
         <translation>Datei &apos;%1&apos; hat SHA-1 &apos;%2&apos; und CRC &apos;%3&apos;</translation>
     </message>
@@ -2565,179 +2565,179 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DatInfoDatabaseManager</name>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="41"/>
+        <location filename="../../datinfodbmgr.cpp" line="40"/>
         <source>WARNING: failed to open DAT-info database &apos;%1&apos;: error = &apos;%2&apos;</source>
         <translation>WARNUNG: DAT-Info Datenbank &apos;%1&apos; konnte nicht geöffnet werden: Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="60"/>
-        <location filename="../../datinfodbmgr.cpp" line="84"/>
-        <location filename="../../datinfodbmgr.cpp" line="97"/>
-        <location filename="../../datinfodbmgr.cpp" line="121"/>
-        <location filename="../../datinfodbmgr.cpp" line="136"/>
-        <location filename="../../datinfodbmgr.cpp" line="166"/>
-        <location filename="../../datinfodbmgr.cpp" line="181"/>
-        <location filename="../../datinfodbmgr.cpp" line="210"/>
-        <location filename="../../datinfodbmgr.cpp" line="237"/>
-        <location filename="../../datinfodbmgr.cpp" line="251"/>
-        <location filename="../../datinfodbmgr.cpp" line="280"/>
-        <location filename="../../datinfodbmgr.cpp" line="295"/>
-        <location filename="../../datinfodbmgr.cpp" line="324"/>
-        <location filename="../../datinfodbmgr.cpp" line="338"/>
+        <location filename="../../datinfodbmgr.cpp" line="59"/>
+        <location filename="../../datinfodbmgr.cpp" line="83"/>
+        <location filename="../../datinfodbmgr.cpp" line="96"/>
+        <location filename="../../datinfodbmgr.cpp" line="120"/>
+        <location filename="../../datinfodbmgr.cpp" line="135"/>
+        <location filename="../../datinfodbmgr.cpp" line="165"/>
+        <location filename="../../datinfodbmgr.cpp" line="180"/>
+        <location filename="../../datinfodbmgr.cpp" line="209"/>
+        <location filename="../../datinfodbmgr.cpp" line="236"/>
+        <location filename="../../datinfodbmgr.cpp" line="250"/>
+        <location filename="../../datinfodbmgr.cpp" line="279"/>
+        <location filename="../../datinfodbmgr.cpp" line="294"/>
+        <location filename="../../datinfodbmgr.cpp" line="323"/>
+        <location filename="../../datinfodbmgr.cpp" line="337"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht von der DAT-Info Datenbank gelesen werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="74"/>
-        <location filename="../../datinfodbmgr.cpp" line="111"/>
-        <location filename="../../datinfodbmgr.cpp" line="154"/>
-        <location filename="../../datinfodbmgr.cpp" line="226"/>
-        <location filename="../../datinfodbmgr.cpp" line="312"/>
+        <location filename="../../datinfodbmgr.cpp" line="73"/>
+        <location filename="../../datinfodbmgr.cpp" line="110"/>
+        <location filename="../../datinfodbmgr.cpp" line="153"/>
+        <location filename="../../datinfodbmgr.cpp" line="225"/>
+        <location filename="../../datinfodbmgr.cpp" line="311"/>
         <source>WARNING: failed to add &apos;%1&apos; to DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht zur DAT-Info Datenbank hinzugefügt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="80"/>
-        <location filename="../../datinfodbmgr.cpp" line="117"/>
-        <location filename="../../datinfodbmgr.cpp" line="162"/>
-        <location filename="../../datinfodbmgr.cpp" line="233"/>
-        <location filename="../../datinfodbmgr.cpp" line="320"/>
+        <location filename="../../datinfodbmgr.cpp" line="79"/>
+        <location filename="../../datinfodbmgr.cpp" line="116"/>
+        <location filename="../../datinfodbmgr.cpp" line="161"/>
+        <location filename="../../datinfodbmgr.cpp" line="232"/>
+        <location filename="../../datinfodbmgr.cpp" line="319"/>
         <source>WARNING: failed to update &apos;%1&apos; in DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht in der DAT-Info Datenbank geändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="195"/>
-        <location filename="../../datinfodbmgr.cpp" line="265"/>
-        <location filename="../../datinfodbmgr.cpp" line="352"/>
+        <location filename="../../datinfodbmgr.cpp" line="194"/>
+        <location filename="../../datinfodbmgr.cpp" line="264"/>
+        <location filename="../../datinfodbmgr.cpp" line="351"/>
         <source>WARNING: failed to fetch row count from DAT-info database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Anzahl der Tabellenzeilen konnte nicht aus der DAT-Info Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="381"/>
-        <location filename="../../datinfodbmgr.cpp" line="391"/>
-        <location filename="../../datinfodbmgr.cpp" line="401"/>
+        <location filename="../../datinfodbmgr.cpp" line="380"/>
+        <location filename="../../datinfodbmgr.cpp" line="390"/>
+        <location filename="../../datinfodbmgr.cpp" line="400"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: Die Einstellung &apos;%1&apos; konnte in der DAT-Info Datenbank nicht verändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="408"/>
-        <location filename="../../datinfodbmgr.cpp" line="413"/>
-        <location filename="../../datinfodbmgr.cpp" line="432"/>
-        <location filename="../../datinfodbmgr.cpp" line="437"/>
-        <location filename="../../datinfodbmgr.cpp" line="457"/>
-        <location filename="../../datinfodbmgr.cpp" line="459"/>
-        <location filename="../../datinfodbmgr.cpp" line="466"/>
-        <location filename="../../datinfodbmgr.cpp" line="468"/>
-        <location filename="../../datinfodbmgr.cpp" line="496"/>
+        <location filename="../../datinfodbmgr.cpp" line="407"/>
+        <location filename="../../datinfodbmgr.cpp" line="412"/>
+        <location filename="../../datinfodbmgr.cpp" line="431"/>
+        <location filename="../../datinfodbmgr.cpp" line="436"/>
+        <location filename="../../datinfodbmgr.cpp" line="456"/>
+        <location filename="../../datinfodbmgr.cpp" line="458"/>
+        <location filename="../../datinfodbmgr.cpp" line="465"/>
+        <location filename="../../datinfodbmgr.cpp" line="467"/>
+        <location filename="../../datinfodbmgr.cpp" line="495"/>
         <source>WARNING: failed to remove %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: %1 Tabelle konnte nicht entfernt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="408"/>
-        <location filename="../../datinfodbmgr.cpp" line="413"/>
-        <location filename="../../datinfodbmgr.cpp" line="420"/>
-        <location filename="../../datinfodbmgr.cpp" line="425"/>
+        <location filename="../../datinfodbmgr.cpp" line="407"/>
+        <location filename="../../datinfodbmgr.cpp" line="412"/>
+        <location filename="../../datinfodbmgr.cpp" line="419"/>
+        <location filename="../../datinfodbmgr.cpp" line="424"/>
         <source>software-info</source>
         <translation>Software-Info</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="420"/>
-        <location filename="../../datinfodbmgr.cpp" line="425"/>
-        <location filename="../../datinfodbmgr.cpp" line="444"/>
-        <location filename="../../datinfodbmgr.cpp" line="449"/>
-        <location filename="../../datinfodbmgr.cpp" line="477"/>
-        <location filename="../../datinfodbmgr.cpp" line="479"/>
-        <location filename="../../datinfodbmgr.cpp" line="486"/>
-        <location filename="../../datinfodbmgr.cpp" line="488"/>
-        <location filename="../../datinfodbmgr.cpp" line="503"/>
+        <location filename="../../datinfodbmgr.cpp" line="419"/>
+        <location filename="../../datinfodbmgr.cpp" line="424"/>
+        <location filename="../../datinfodbmgr.cpp" line="443"/>
+        <location filename="../../datinfodbmgr.cpp" line="448"/>
+        <location filename="../../datinfodbmgr.cpp" line="476"/>
+        <location filename="../../datinfodbmgr.cpp" line="478"/>
+        <location filename="../../datinfodbmgr.cpp" line="485"/>
+        <location filename="../../datinfodbmgr.cpp" line="487"/>
+        <location filename="../../datinfodbmgr.cpp" line="502"/>
         <source>WARNING: failed to create %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: %1 Tabelle konnte nicht erstellt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="432"/>
-        <location filename="../../datinfodbmgr.cpp" line="437"/>
-        <location filename="../../datinfodbmgr.cpp" line="444"/>
-        <location filename="../../datinfodbmgr.cpp" line="449"/>
+        <location filename="../../datinfodbmgr.cpp" line="431"/>
+        <location filename="../../datinfodbmgr.cpp" line="436"/>
+        <location filename="../../datinfodbmgr.cpp" line="443"/>
+        <location filename="../../datinfodbmgr.cpp" line="448"/>
         <source>emu-info</source>
         <translation>Emu-Info</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="457"/>
-        <location filename="../../datinfodbmgr.cpp" line="466"/>
-        <location filename="../../datinfodbmgr.cpp" line="477"/>
-        <location filename="../../datinfodbmgr.cpp" line="486"/>
+        <location filename="../../datinfodbmgr.cpp" line="456"/>
+        <location filename="../../datinfodbmgr.cpp" line="465"/>
+        <location filename="../../datinfodbmgr.cpp" line="476"/>
+        <location filename="../../datinfodbmgr.cpp" line="485"/>
         <source>machine-info</source>
         <translation>Maschinen-Info</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="459"/>
-        <location filename="../../datinfodbmgr.cpp" line="468"/>
-        <location filename="../../datinfodbmgr.cpp" line="479"/>
-        <location filename="../../datinfodbmgr.cpp" line="488"/>
+        <location filename="../../datinfodbmgr.cpp" line="458"/>
+        <location filename="../../datinfodbmgr.cpp" line="467"/>
+        <location filename="../../datinfodbmgr.cpp" line="478"/>
+        <location filename="../../datinfodbmgr.cpp" line="487"/>
         <source>game-info</source>
         <translation>Spiel-Info</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="496"/>
-        <location filename="../../datinfodbmgr.cpp" line="503"/>
+        <location filename="../../datinfodbmgr.cpp" line="495"/>
+        <location filename="../../datinfodbmgr.cpp" line="502"/>
         <source>meta-data</source>
         <translation>Meta-Daten</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="564"/>
-        <location filename="../../datinfodbmgr.cpp" line="650"/>
-        <location filename="../../datinfodbmgr.cpp" line="654"/>
-        <location filename="../../datinfodbmgr.cpp" line="659"/>
-        <location filename="../../datinfodbmgr.cpp" line="726"/>
-        <location filename="../../datinfodbmgr.cpp" line="803"/>
-        <location filename="../../datinfodbmgr.cpp" line="807"/>
-        <location filename="../../datinfodbmgr.cpp" line="882"/>
-        <location filename="../../datinfodbmgr.cpp" line="988"/>
-        <location filename="../../datinfodbmgr.cpp" line="990"/>
-        <location filename="../../datinfodbmgr.cpp" line="995"/>
+        <location filename="../../datinfodbmgr.cpp" line="563"/>
+        <location filename="../../datinfodbmgr.cpp" line="649"/>
+        <location filename="../../datinfodbmgr.cpp" line="653"/>
+        <location filename="../../datinfodbmgr.cpp" line="658"/>
+        <location filename="../../datinfodbmgr.cpp" line="725"/>
+        <location filename="../../datinfodbmgr.cpp" line="802"/>
+        <location filename="../../datinfodbmgr.cpp" line="806"/>
+        <location filename="../../datinfodbmgr.cpp" line="881"/>
+        <location filename="../../datinfodbmgr.cpp" line="987"/>
+        <location filename="../../datinfodbmgr.cpp" line="989"/>
+        <location filename="../../datinfodbmgr.cpp" line="994"/>
         <source>DAT-info database</source>
         <translation>DAT-Info Datenbank</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="564"/>
-        <location filename="../../datinfodbmgr.cpp" line="726"/>
-        <location filename="../../datinfodbmgr.cpp" line="882"/>
+        <location filename="../../datinfodbmgr.cpp" line="563"/>
+        <location filename="../../datinfodbmgr.cpp" line="725"/>
+        <location filename="../../datinfodbmgr.cpp" line="881"/>
         <source>importing %1 from &apos;%2&apos;</source>
         <translation>Importiere %1 von &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="564"/>
-        <location filename="../../datinfodbmgr.cpp" line="654"/>
+        <location filename="../../datinfodbmgr.cpp" line="563"/>
+        <location filename="../../datinfodbmgr.cpp" line="653"/>
         <source>software info-texts</source>
         <translation>Software Info-Texte</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="569"/>
+        <location filename="../../datinfodbmgr.cpp" line="568"/>
         <source>Software info - %p%</source>
         <translation>Software Info - %p%</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="650"/>
-        <location filename="../../datinfodbmgr.cpp" line="803"/>
-        <location filename="../../datinfodbmgr.cpp" line="988"/>
-        <location filename="../../datinfodbmgr.cpp" line="990"/>
+        <location filename="../../datinfodbmgr.cpp" line="649"/>
+        <location filename="../../datinfodbmgr.cpp" line="802"/>
+        <location filename="../../datinfodbmgr.cpp" line="987"/>
+        <location filename="../../datinfodbmgr.cpp" line="989"/>
         <source>import stopped, invalidating %1 table</source>
         <translation>Import gestoppt, invalidiere %1 Tabelle</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="650"/>
+        <location filename="../../datinfodbmgr.cpp" line="649"/>
         <source>software info</source>
         <translation>Software Info</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="654"/>
-        <location filename="../../datinfodbmgr.cpp" line="807"/>
-        <location filename="../../datinfodbmgr.cpp" line="995"/>
+        <location filename="../../datinfodbmgr.cpp" line="653"/>
+        <location filename="../../datinfodbmgr.cpp" line="806"/>
+        <location filename="../../datinfodbmgr.cpp" line="994"/>
         <source>done (importing %1 from &apos;%2&apos;)</source>
         <translation>Fertig (Importiere %1 von &apos;%2&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../datinfodbmgr.cpp" line="663"/>
+        <location filename="../../datinfodbmgr.cpp" line="662"/>
         <source>%n software info record(s) imported</source>
         <translation>
             <numerusform>%n Software Info Datensatz importiert</numerusform>
@@ -2745,67 +2745,67 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="888"/>
+        <location filename="../../datinfodbmgr.cpp" line="887"/>
         <source>Game info - %p%</source>
         <translation>Spiel Info - %p%</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="890"/>
+        <location filename="../../datinfodbmgr.cpp" line="889"/>
         <source>Machine info - %p%</source>
         <translation>Maschinen Info - %p%</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="964"/>
+        <location filename="../../datinfodbmgr.cpp" line="963"/>
         <source>WARNING: missing &apos;$end&apos; in game info file %1</source>
         <translation>WARNUNG: &apos;$end&apos; fehlt in Spiel Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="966"/>
+        <location filename="../../datinfodbmgr.cpp" line="965"/>
         <source>WARNING: missing &apos;$end&apos; in machine info file %1</source>
         <translation>WARNUNG: &apos;$end&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="971"/>
+        <location filename="../../datinfodbmgr.cpp" line="970"/>
         <source>WARNING: missing &apos;$bio&apos; in game info file %1</source>
         <translation>WARNUNG: &apos;$bio&apos; fehlt in Spiel Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="973"/>
+        <location filename="../../datinfodbmgr.cpp" line="972"/>
         <source>WARNING: missing &apos;$bio&apos; in machine info file %1</source>
         <translation>WARNUNG: &apos;$bio&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="978"/>
+        <location filename="../../datinfodbmgr.cpp" line="977"/>
         <source>WARNING: missing &apos;$info&apos; in game info file %1</source>
         <translation>WARNUNG: &apos;$info&apos; fehlt in Spiel Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="980"/>
+        <location filename="../../datinfodbmgr.cpp" line="979"/>
         <source>WARNING: missing &apos;$info&apos; in machine info file %1</source>
         <translation>WARNUNG: &apos;$info&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="988"/>
+        <location filename="../../datinfodbmgr.cpp" line="987"/>
         <source>game info</source>
         <translation>Spiel Info</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="990"/>
+        <location filename="../../datinfodbmgr.cpp" line="989"/>
         <source>machine info</source>
         <translation>Maschinen Info</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="1001"/>
+        <location filename="../../datinfodbmgr.cpp" line="1000"/>
         <source>WARNING: can&apos;t open game info file %1</source>
         <translation>WARNUNG: kann Spiel Info Datei &apos;%1&apos; nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="1003"/>
+        <location filename="../../datinfodbmgr.cpp" line="1002"/>
         <source>WARNING: can&apos;t open machine info file %1</source>
         <translation>WARNUNG: kann Maschinen Info Datei &apos;%1&apos; nicht öffnen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../datinfodbmgr.cpp" line="1010"/>
+        <location filename="../../datinfodbmgr.cpp" line="1009"/>
         <source>%n game info record(s) imported</source>
         <translation>
             <numerusform>%n Spiel Info Datensatz importiert</numerusform>
@@ -2813,7 +2813,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../datinfodbmgr.cpp" line="1013"/>
+        <location filename="../../datinfodbmgr.cpp" line="1012"/>
         <source>%n machine info record(s) imported</source>
         <translation>
             <numerusform>%n Maschinen Info Datensatz importiert</numerusform>
@@ -2821,43 +2821,43 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="659"/>
+        <location filename="../../datinfodbmgr.cpp" line="658"/>
         <source>WARNING: can&apos;t open software info file &apos;%1&apos;</source>
         <translation>WARNUNG: kann Software Info Datei &apos;%1&apos; nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="726"/>
-        <location filename="../../datinfodbmgr.cpp" line="807"/>
+        <location filename="../../datinfodbmgr.cpp" line="725"/>
+        <location filename="../../datinfodbmgr.cpp" line="806"/>
         <source>emulator info-texts</source>
         <translation>Emulator Info-Texte</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="731"/>
+        <location filename="../../datinfodbmgr.cpp" line="730"/>
         <source>Emu info - %p%</source>
         <translation>Emu Info - %p%</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="794"/>
+        <location filename="../../datinfodbmgr.cpp" line="793"/>
         <source>WARNING: missing &apos;$end&apos; in emulator info file %1</source>
         <translation>WARNUNG: &apos;$end&apos; fehlt in Emulator Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="796"/>
+        <location filename="../../datinfodbmgr.cpp" line="795"/>
         <source>WARNING: missing &apos;$mame&apos; in emulator info file %1</source>
         <translation>WARNUNG: &apos;$mame&apos; fehlt in Emulator Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="798"/>
+        <location filename="../../datinfodbmgr.cpp" line="797"/>
         <source>WARNING: missing &apos;$info&apos; in emulator info file %1</source>
         <translation>WARNUNG: &apos;$info&apos; fehlt in Emulator Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="803"/>
+        <location filename="../../datinfodbmgr.cpp" line="802"/>
         <source>emu info</source>
         <translation>Emu Info</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../datinfodbmgr.cpp" line="817"/>
+        <location filename="../../datinfodbmgr.cpp" line="816"/>
         <source>%n emulator info record(s) imported</source>
         <translation>
             <numerusform>%n Emulator Info Datensatz importiert</numerusform>
@@ -2865,13 +2865,13 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="813"/>
+        <location filename="../../datinfodbmgr.cpp" line="812"/>
         <source>WARNING: can&apos;t open emulator info file %1</source>
         <translation>WARNUNG: kann Emulator Info Datei &apos;%1&apos; nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="882"/>
-        <location filename="../../datinfodbmgr.cpp" line="995"/>
+        <location filename="../../datinfodbmgr.cpp" line="881"/>
+        <location filename="../../datinfodbmgr.cpp" line="994"/>
         <source>system info-texts</source>
         <translation>System Info-Texte</translation>
     </message>
@@ -4330,7 +4330,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../gamelist.cpp" line="587"/>
         <location filename="../../gamelist.cpp" line="1742"/>
         <location filename="../../gamelist.cpp" line="2011"/>
-        <location filename="../../gamelist.cpp" line="3317"/>
+        <location filename="../../gamelist.cpp" line="3318"/>
         <source>Waiting for data...</source>
         <translation>Warte auf Daten...</translation>
     </message>
@@ -4834,16 +4834,16 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     <message>
         <location filename="../../gamelist.cpp" line="2299"/>
         <location filename="../../gamelist.cpp" line="2301"/>
-        <location filename="../../gamelist.cpp" line="3305"/>
-        <location filename="../../gamelist.cpp" line="3307"/>
+        <location filename="../../gamelist.cpp" line="3306"/>
+        <location filename="../../gamelist.cpp" line="3308"/>
         <source>ascending</source>
         <translation>aufsteigend</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2299"/>
         <location filename="../../gamelist.cpp" line="2301"/>
-        <location filename="../../gamelist.cpp" line="3305"/>
-        <location filename="../../gamelist.cpp" line="3307"/>
+        <location filename="../../gamelist.cpp" line="3306"/>
+        <location filename="../../gamelist.cpp" line="3308"/>
         <source>descending</source>
         <translation>absteigend</translation>
     </message>
@@ -4888,22 +4888,22 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>FATAL: kann Icon-Archiv nicht öffnen, bitte Zugriffsrechte für %1 überprüfen</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3663"/>
+        <location filename="../../gamelist.cpp" line="3665"/>
         <source>pre-caching icons from ZIP archive</source>
         <translation>Lade Icons aus ZIP Archiv</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3720"/>
+        <location filename="../../gamelist.cpp" line="3722"/>
         <source>done (pre-caching icons from ZIP archive, elapsed time = %1)</source>
         <translation>Fertig (Lade Icons aus ZIP Archiv, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3783"/>
+        <location filename="../../gamelist.cpp" line="3785"/>
         <source>pre-caching icons from directory</source>
         <translation>Lade Icons aus Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3827"/>
+        <location filename="../../gamelist.cpp" line="3829"/>
         <source>done (pre-caching icons from directory, elapsed time = %1)</source>
         <translation>Fertig (Lade Icons aus Verzeichnis, benötigte Zeit = %1)</translation>
     </message>
@@ -4919,13 +4919,13 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Prüfe ROM Status für &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3280"/>
+        <location filename="../../gamelist.cpp" line="3281"/>
         <source>done (verifying ROM status for &apos;%1&apos;, elapsed time = %2)</source>
         <translation>Fertig (Prüfe ROM Status für &apos;%1&apos;; benötigte Zeit = %2)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3199"/>
-        <location filename="../../gamelist.cpp" line="3604"/>
+        <location filename="../../gamelist.cpp" line="3200"/>
+        <location filename="../../gamelist.cpp" line="3606"/>
         <source>ROM status for &apos;%1&apos; is &apos;%2&apos;</source>
         <translation>ROM Status für &apos;%1&apos; ist &apos;%2&apos;</translation>
     </message>
@@ -4945,7 +4945,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../gamelist.cpp" line="771"/>
         <location filename="../../gamelist.cpp" line="839"/>
         <location filename="../../gamelist.cpp" line="842"/>
-        <location filename="../../gamelist.cpp" line="4346"/>
+        <location filename="../../gamelist.cpp" line="4364"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
@@ -4972,8 +4972,8 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1083"/>
-        <location filename="../../gamelist.cpp" line="2980"/>
-        <location filename="../../gamelist.cpp" line="3391"/>
+        <location filename="../../gamelist.cpp" line="2981"/>
+        <location filename="../../gamelist.cpp" line="3393"/>
         <source>ROM check - %p%</source>
         <translation>ROM Prüfung - %p%</translation>
     </message>
@@ -4983,8 +4983,8 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>XML Daten - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3305"/>
-        <location filename="../../gamelist.cpp" line="3307"/>
+        <location filename="../../gamelist.cpp" line="3306"/>
+        <location filename="../../gamelist.cpp" line="3308"/>
         <source>ROM state</source>
         <translation>ROM-Status</translation>
     </message>
@@ -5003,9 +5003,9 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3721"/>
-        <location filename="../../gamelist.cpp" line="3769"/>
-        <location filename="../../gamelist.cpp" line="3828"/>
+        <location filename="../../gamelist.cpp" line="3723"/>
+        <location filename="../../gamelist.cpp" line="3771"/>
+        <location filename="../../gamelist.cpp" line="3830"/>
         <source>%n icon(s) loaded</source>
         <translation>
             <numerusform>%n Icon geladen</numerusform>
@@ -5013,9 +5013,9 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3670"/>
-        <location filename="../../gamelist.cpp" line="3729"/>
-        <location filename="../../gamelist.cpp" line="3794"/>
+        <location filename="../../gamelist.cpp" line="3672"/>
+        <location filename="../../gamelist.cpp" line="3731"/>
+        <location filename="../../gamelist.cpp" line="3796"/>
         <source>Icon cache - %p%</source>
         <translation>Icon Cache - %p%</translation>
     </message>
@@ -5259,8 +5259,8 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     <message>
         <location filename="../../gamelist.cpp" line="908"/>
         <location filename="../../gamelist.cpp" line="911"/>
-        <location filename="../../gamelist.cpp" line="3933"/>
-        <location filename="../../gamelist.cpp" line="4163"/>
+        <location filename="../../gamelist.cpp" line="3938"/>
+        <location filename="../../gamelist.cpp" line="4176"/>
         <source>Loading, please wait...</source>
         <translation>Lade, bitte warten...</translation>
     </message>
@@ -5486,42 +5486,42 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2904"/>
+        <location filename="../../gamelist.cpp" line="2905"/>
         <source>WARNING: XML bug: the name &apos;%1&apos; is used for multiple sets -- please inform MAME developers</source>
         <translation>WARNUNG: XML Bug: der Name &apos;%1&apos; wird für mehrere Sets verwendet -- bitte MAME Entwickler informieren</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2906"/>
+        <location filename="../../gamelist.cpp" line="2907"/>
         <source>WARNING: XML bug: the name &apos;%1&apos; is used for multiple sets -- please inform MESS developers</source>
         <translation>WARNUNG: XML Bug: der Name &apos;%1&apos; wird für mehrere Sets verwendet -- bitte MESS Entwickler informieren</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2908"/>
+        <location filename="../../gamelist.cpp" line="2909"/>
         <source>WARNING: XML bug: the name &apos;%1&apos; is used for multiple sets -- please inform MAME/MESS developers</source>
         <translation>WARNUNG: XML Bug: der Name &apos;%1&apos; wird für mehrere Sets verwendet -- bitte MAME/MESS Entwickler informieren</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3282"/>
+        <location filename="../../gamelist.cpp" line="3283"/>
         <source>done (verifying ROM status for all sets, elapsed time = %1)</source>
         <translation>Fertig (Prüfe ROM Status aller Sets, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4321"/>
+        <location filename="../../gamelist.cpp" line="4339"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4327"/>
+        <location filename="../../gamelist.cpp" line="4345"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4333"/>
+        <location filename="../../gamelist.cpp" line="4351"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4339"/>
+        <location filename="../../gamelist.cpp" line="4357"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
@@ -5546,14 +5546,14 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../gamelist.cpp" line="2670"/>
         <location filename="../../gamelist.cpp" line="2671"/>
         <location filename="../../gamelist.cpp" line="2672"/>
-        <location filename="../../gamelist.cpp" line="3284"/>
         <location filename="../../gamelist.cpp" line="3285"/>
         <location filename="../../gamelist.cpp" line="3286"/>
         <location filename="../../gamelist.cpp" line="3287"/>
         <location filename="../../gamelist.cpp" line="3288"/>
         <location filename="../../gamelist.cpp" line="3289"/>
-        <location filename="../../gamelist.cpp" line="3985"/>
-        <location filename="../../gamelist.cpp" line="4215"/>
+        <location filename="../../gamelist.cpp" line="3290"/>
+        <location filename="../../gamelist.cpp" line="3996"/>
+        <location filename="../../gamelist.cpp" line="4234"/>
         <source>?</source>
         <translation>?</translation>
     </message>
@@ -5599,13 +5599,13 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2299"/>
-        <location filename="../../gamelist.cpp" line="3305"/>
+        <location filename="../../gamelist.cpp" line="3306"/>
         <source>sorting game list by %1 in %2 order</source>
         <translation>Sortiere Spieleliste nach %1 in %2er Reihenfolge</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2301"/>
-        <location filename="../../gamelist.cpp" line="3307"/>
+        <location filename="../../gamelist.cpp" line="3308"/>
         <source>sorting machine list by %1 in %2 order</source>
         <translation>Sortiere Maschinenliste nach %1 in %2er Reihenfolge</translation>
     </message>
@@ -5673,7 +5673,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2391"/>
-        <location filename="../../gamelist.cpp" line="3290"/>
+        <location filename="../../gamelist.cpp" line="3291"/>
         <source>ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</source>
         <translation>ROM Status Info: L:%1 K:%2 B:%3 I:%4 N:%5 U:%6</translation>
     </message>
@@ -5693,7 +5693,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Fertig (Lade XML Daten und erzeuge Cache neu, benötigte Zeit = %1)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3047"/>
+        <location filename="../../gamelist.cpp" line="3048"/>
         <source>checking real status of %n set(s) not mentioned during full audit</source>
         <translation>
             <numerusform>Prüfe echten Status eines Sets, welches während der Analyse nicht erwähnt wurde</numerusform>
@@ -5701,7 +5701,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3186"/>
+        <location filename="../../gamelist.cpp" line="3187"/>
         <source>done (checking real status of %n set(s) not mentioned during full audit)</source>
         <translation>
             <numerusform>Fertig (Prüfe echten Status eines Sets, welches während der Analyse nicht erwähnt wurde)</numerusform>
@@ -5709,67 +5709,67 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3724"/>
+        <location filename="../../gamelist.cpp" line="3726"/>
         <source>pre-caching icons from 7z archive</source>
         <translation>Lade Icons aus 7z Archiv</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3768"/>
+        <location filename="../../gamelist.cpp" line="3770"/>
         <source>done (pre-caching icons from 7z archive, elapsed time = %1)</source>
         <translation>Fertig (Lade Icons aus 7z Archiv, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3858"/>
+        <location filename="../../gamelist.cpp" line="3860"/>
         <source>loading category.ini</source>
         <translation>Lade category.ini</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3864"/>
+        <location filename="../../gamelist.cpp" line="3866"/>
         <source>Category.ini - %p%</source>
         <translation>Category.ini - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3911"/>
+        <location filename="../../gamelist.cpp" line="3913"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no category.ini data available</source>
         <translation>FEHLER: kann &apos;%1&apos; nicht zum Lesen öffnen -- keine category.ini Daten verfügbar</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3920"/>
+        <location filename="../../gamelist.cpp" line="3922"/>
         <source>done (loading category.ini, elapsed time = %1)</source>
         <translation>Fertig (Lade category.ini, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4095"/>
+        <location filename="../../gamelist.cpp" line="4105"/>
         <source>loading catver.ini</source>
         <translation>Lade catver.ini</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4101"/>
+        <location filename="../../gamelist.cpp" line="4111"/>
         <source>Catver.ini - %p%</source>
         <translation>Catver.ini - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4142"/>
+        <location filename="../../gamelist.cpp" line="4152"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation>FEHLER: kann &apos;%1&apos; nicht zum Lesen öffnen -- keine catver.ini Daten verfügbar</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4151"/>
+        <location filename="../../gamelist.cpp" line="4161"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation>Fertig (Lade catver.ini, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4152"/>
+        <location filename="../../gamelist.cpp" line="4162"/>
         <source>%1 category / %2 version records loaded</source>
         <translation>%1 Kategorie- / %2 Versions-Datensätze geladen</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3955"/>
+        <location filename="../../gamelist.cpp" line="3966"/>
         <source>Category view - %p%</source>
         <translation>Kategorieansicht - %p%</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3921"/>
+        <location filename="../../gamelist.cpp" line="3923"/>
         <source>%n category record(s) loaded</source>
         <translation>
             <numerusform>%n Kategorie-Datensatz geladen</numerusform>
@@ -5777,7 +5777,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4185"/>
+        <location filename="../../gamelist.cpp" line="4204"/>
         <source>Version view - %p%</source>
         <translation>Versionsansicht - %p%</translation>
     </message>
@@ -5808,27 +5808,27 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Option</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3041"/>
-        <location filename="../../gamelist.cpp" line="3178"/>
-        <location filename="../../gamelist.cpp" line="3593"/>
+        <location filename="../../gamelist.cpp" line="3042"/>
+        <location filename="../../gamelist.cpp" line="3179"/>
+        <location filename="../../gamelist.cpp" line="3595"/>
         <source>WARNING: can&apos;t find item map entry for &apos;%1&apos; - ROM state cannot be determined</source>
         <translation>WARNUNG: kann Eintrag für &apos;%1&apos; in Lookup-Tabelle nicht finden - ROM Status kann nicht ermittelt werden</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2696"/>
-        <location filename="../../gamelist.cpp" line="2972"/>
+        <location filename="../../gamelist.cpp" line="2973"/>
         <source>WARNING: emulator audit call didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation>WARNUNG: Emulator-Aufruf zur Auditierung wurde nicht ordentlich beendet -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2696"/>
-        <location filename="../../gamelist.cpp" line="2972"/>
+        <location filename="../../gamelist.cpp" line="2973"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2696"/>
-        <location filename="../../gamelist.cpp" line="2972"/>
+        <location filename="../../gamelist.cpp" line="2973"/>
         <source>crashed</source>
         <translation>abgestürzt</translation>
     </message>
@@ -7640,42 +7640,42 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
 <context>
     <name>JoystickCalibrationWidget</name>
     <message>
-        <location filename="../../options.cpp" line="5441"/>
+        <location filename="../../options.cpp" line="5436"/>
         <source>Axis %1:</source>
         <translation>Achse %1:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5450"/>
+        <location filename="../../options.cpp" line="5445"/>
         <source>Current value of axis %1</source>
         <translation>Aktueller Wert der Achse %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5454"/>
+        <location filename="../../options.cpp" line="5449"/>
         <source>DZ:</source>
         <translation>TZ:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5456"/>
+        <location filename="../../options.cpp" line="5451"/>
         <source>Deadzone of axis %1</source>
         <translation>Todeszone der Achse %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5462"/>
+        <location filename="../../options.cpp" line="5457"/>
         <source>S:</source>
         <translation>S:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5464"/>
+        <location filename="../../options.cpp" line="5459"/>
         <source>Sensitivity of axis %1</source>
         <translation>Empfindlichkeit der Achse %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5442"/>
+        <location filename="../../options.cpp" line="5437"/>
         <source>Reset calibration of axis %1</source>
         <translation>Kalibrierung der Achse %1 zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5437"/>
+        <location filename="../../options.cpp" line="5432"/>
         <source>Enable/disable axis %1</source>
         <translation>Achse %1 ein-/ausschalten</translation>
     </message>
@@ -7729,67 +7729,67 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
 <context>
     <name>JoystickTestWidget</name>
     <message>
-        <location filename="../../options.cpp" line="5681"/>
+        <location filename="../../options.cpp" line="5676"/>
         <source>A%1: %v</source>
         <translation>A%1: %v</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5682"/>
+        <location filename="../../options.cpp" line="5677"/>
         <source>Current value of axis %1</source>
         <translation>Aktueller Wert der Achse %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5692"/>
+        <location filename="../../options.cpp" line="5687"/>
         <source>B%1</source>
         <translation>K%1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5693"/>
+        <location filename="../../options.cpp" line="5688"/>
         <source>Current state of button %1</source>
         <translation>Aktueller Status von Knopf %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5703"/>
+        <location filename="../../options.cpp" line="5698"/>
         <source>H%1: 0</source>
         <translation>H%1: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5704"/>
+        <location filename="../../options.cpp" line="5699"/>
         <source>Current value of hat %1</source>
         <translation>Aktueller Wert von Coolie-Hat %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5714"/>
+        <location filename="../../options.cpp" line="5709"/>
         <source>T%1 DX: 0</source>
         <translation>T%1 DX: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5715"/>
+        <location filename="../../options.cpp" line="5710"/>
         <source>Current X-delta of trackball %1</source>
         <translation>Aktuelles X-Delta von Trackball %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5725"/>
+        <location filename="../../options.cpp" line="5720"/>
         <source>T%1 DY: 0</source>
         <translation>T%1 DY: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5726"/>
+        <location filename="../../options.cpp" line="5721"/>
         <source>Current Y-delta of trackball %1</source>
         <translation>Aktuelles Y-Delta von Trackball %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5814"/>
+        <location filename="../../options.cpp" line="5809"/>
         <source>H%1: %2</source>
         <translation>H%1: %2</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5848"/>
+        <location filename="../../options.cpp" line="5843"/>
         <source>T%1 DX: %2</source>
         <translation>T%1 DX: %2</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5849"/>
+        <location filename="../../options.cpp" line="5844"/>
         <source>T%1 DY: %2</source>
         <translation>T%1 DY: %2</translation>
     </message>
@@ -8370,8 +8370,8 @@ Einen anderen Namen wählen?</translation>
     <name>MainWindow</name>
     <message>
         <location filename="../../qmc2main.ui" line="15"/>
-        <location filename="../../macros.h" line="586"/>
-        <location filename="../../macros.h" line="595"/>
+        <location filename="../../macros.h" line="587"/>
+        <location filename="../../macros.h" line="596"/>
         <source>M.A.M.E. Catalog / Launcher II</source>
         <translation>M.A.M.E. Catalog / Launcher II</translation>
     </message>
@@ -11634,15 +11634,15 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Indiviuelle ROM Stati ein-/ausblenden</translation>
     </message>
     <message>
-        <location filename="../../macros.h" line="589"/>
-        <location filename="../../macros.h" line="598"/>
+        <location filename="../../macros.h" line="590"/>
+        <location filename="../../macros.h" line="599"/>
         <location filename="../../qmc2main.cpp" line="686"/>
         <source>M.E.S.S. Catalog / Launcher II</source>
         <translation>M.E.S.S. Catalog / Launcher II</translation>
     </message>
     <message>
-        <location filename="../../macros.h" line="592"/>
-        <location filename="../../macros.h" line="601"/>
+        <location filename="../../macros.h" line="593"/>
+        <location filename="../../macros.h" line="602"/>
         <location filename="../../qmc2main.cpp" line="672"/>
         <source>U.M.E. Catalog / Launcher II</source>
         <translation>U.M.E. Catalog / Launcher II</translation>
@@ -12814,12 +12814,12 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
 <context>
     <name>Options</name>
     <message>
-        <location filename="../../options.cpp" line="1479"/>
+        <location filename="../../options.cpp" line="1474"/>
         <source>View games by category (not filtered)</source>
         <translation>Spiele nach Kategorie anzeigen (ungefiltert)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1481"/>
+        <location filename="../../options.cpp" line="1476"/>
         <source>View games by emulator version (not filtered)</source>
         <translation>Spiele nach Emulator Version anzeigen (ungefiltert)</translation>
     </message>
@@ -12855,10 +12855,10 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
     </message>
     <message>
         <location filename="../../options.ui" line="1106"/>
-        <location filename="../../options.cpp" line="2494"/>
-        <location filename="../../options.cpp" line="2566"/>
-        <location filename="../../options.cpp" line="2638"/>
-        <location filename="../../options.cpp" line="4125"/>
+        <location filename="../../options.cpp" line="2489"/>
+        <location filename="../../options.cpp" line="2561"/>
+        <location filename="../../options.cpp" line="2633"/>
+        <location filename="../../options.cpp" line="4120"/>
         <source>Preview directory</source>
         <translation>Vorschau-Verzeichnis</translation>
     </message>
@@ -12959,10 +12959,10 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
     </message>
     <message>
         <location filename="../../options.ui" line="1175"/>
-        <location filename="../../options.cpp" line="2542"/>
-        <location filename="../../options.cpp" line="2614"/>
-        <location filename="../../options.cpp" line="2686"/>
-        <location filename="../../options.cpp" line="4217"/>
+        <location filename="../../options.cpp" line="2537"/>
+        <location filename="../../options.cpp" line="2609"/>
+        <location filename="../../options.cpp" line="2681"/>
+        <location filename="../../options.cpp" line="4212"/>
         <source>SW snap folder</source>
         <translation>SW Snap Ordner</translation>
     </message>
@@ -14039,7 +14039,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>&amp;Restaurieren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="540"/>
+        <location filename="../../options.cpp" line="535"/>
         <source>WARNING: configuration is not writeable, please check access permissions for </source>
         <translation>WARNUNG: Konfiguration ist nicht beschreibbar, bitte überprüfe Zugriffsrechte für </translation>
     </message>
@@ -14064,43 +14064,43 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Daten-Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3375"/>
+        <location filename="../../options.cpp" line="3370"/>
         <source>Choose temporary work file</source>
         <translation>Temporäre Arbeitsdatei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3375"/>
-        <location filename="../../options.cpp" line="3511"/>
-        <location filename="../../options.cpp" line="3523"/>
-        <location filename="../../options.cpp" line="3536"/>
-        <location filename="../../options.cpp" line="3548"/>
-        <location filename="../../options.cpp" line="3560"/>
-        <location filename="../../options.cpp" line="3630"/>
-        <location filename="../../options.cpp" line="3642"/>
-        <location filename="../../options.cpp" line="3689"/>
-        <location filename="../../options.cpp" line="3701"/>
-        <location filename="../../options.cpp" line="3713"/>
-        <location filename="../../options.cpp" line="3725"/>
-        <location filename="../../options.cpp" line="3737"/>
-        <location filename="../../options.cpp" line="3761"/>
-        <location filename="../../options.cpp" line="3773"/>
-        <location filename="../../options.cpp" line="3785"/>
-        <location filename="../../options.cpp" line="3800"/>
-        <location filename="../../options.cpp" line="3812"/>
-        <location filename="../../options.cpp" line="3854"/>
-        <location filename="../../options.cpp" line="3896"/>
-        <location filename="../../options.cpp" line="3923"/>
-        <location filename="../../options.cpp" line="3935"/>
-        <location filename="../../options.cpp" line="3947"/>
-        <location filename="../../options.cpp" line="3959"/>
-        <location filename="../../options.cpp" line="3971"/>
-        <location filename="../../options.cpp" line="3983"/>
-        <location filename="../../options.cpp" line="3996"/>
-        <location filename="../../options.cpp" line="4010"/>
-        <location filename="../../options.cpp" line="4413"/>
-        <location filename="../../options.cpp" line="4440"/>
-        <location filename="../../options.cpp" line="4697"/>
-        <location filename="../../options.cpp" line="4953"/>
+        <location filename="../../options.cpp" line="3370"/>
+        <location filename="../../options.cpp" line="3506"/>
+        <location filename="../../options.cpp" line="3518"/>
+        <location filename="../../options.cpp" line="3531"/>
+        <location filename="../../options.cpp" line="3543"/>
+        <location filename="../../options.cpp" line="3555"/>
+        <location filename="../../options.cpp" line="3625"/>
+        <location filename="../../options.cpp" line="3637"/>
+        <location filename="../../options.cpp" line="3684"/>
+        <location filename="../../options.cpp" line="3696"/>
+        <location filename="../../options.cpp" line="3708"/>
+        <location filename="../../options.cpp" line="3720"/>
+        <location filename="../../options.cpp" line="3732"/>
+        <location filename="../../options.cpp" line="3756"/>
+        <location filename="../../options.cpp" line="3768"/>
+        <location filename="../../options.cpp" line="3780"/>
+        <location filename="../../options.cpp" line="3795"/>
+        <location filename="../../options.cpp" line="3807"/>
+        <location filename="../../options.cpp" line="3849"/>
+        <location filename="../../options.cpp" line="3891"/>
+        <location filename="../../options.cpp" line="3918"/>
+        <location filename="../../options.cpp" line="3930"/>
+        <location filename="../../options.cpp" line="3942"/>
+        <location filename="../../options.cpp" line="3954"/>
+        <location filename="../../options.cpp" line="3966"/>
+        <location filename="../../options.cpp" line="3978"/>
+        <location filename="../../options.cpp" line="3991"/>
+        <location filename="../../options.cpp" line="4005"/>
+        <location filename="../../options.cpp" line="4408"/>
+        <location filename="../../options.cpp" line="4435"/>
+        <location filename="../../options.cpp" line="4692"/>
+        <location filename="../../options.cpp" line="4948"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
@@ -14135,17 +14135,17 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Optionsvorlage-Datei (lesen)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3387"/>
+        <location filename="../../options.cpp" line="3382"/>
         <source>Choose preview directory</source>
         <translation>Vorschau-Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3511"/>
+        <location filename="../../options.cpp" line="3506"/>
         <source>Choose options template file</source>
         <translation>Optionsvorlage-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3908"/>
+        <location filename="../../options.cpp" line="3903"/>
         <source>Choose data directory</source>
         <translation>Daten-Verzeichnis auswählen</translation>
     </message>
@@ -14170,23 +14170,23 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Fenster-Layout beim Beenden sichern</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1720"/>
-        <location filename="../../options.cpp" line="3655"/>
+        <location filename="../../options.cpp" line="1715"/>
+        <location filename="../../options.cpp" line="3650"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1726"/>
+        <location filename="../../options.cpp" line="1721"/>
         <source>&amp;Local</source>
         <translation>&amp;Lokal</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1726"/>
+        <location filename="../../options.cpp" line="1721"/>
         <source>&amp;Overwrite</source>
         <translation>&amp;Überschreiben</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1726"/>
+        <location filename="../../options.cpp" line="1721"/>
         <source>Do&amp;n&apos;t apply</source>
         <translation>&amp;Nicht anwenden</translation>
     </message>
@@ -14227,7 +14227,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1112"/>
+        <location filename="../../options.cpp" line="1107"/>
         <source>image cache size set to %1 MB</source>
         <translation>Größe des Bild-Zugriffsspeichers auf %1 MB gesetzt</translation>
     </message>
@@ -14242,7 +14242,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>ROM-Status Cache</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3800"/>
+        <location filename="../../options.cpp" line="3795"/>
         <source>Choose ROM state cache file</source>
         <translation>ROM-Status Cache Datei auswählen</translation>
     </message>
@@ -14297,12 +14297,12 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Favoriten-Datei</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3761"/>
+        <location filename="../../options.cpp" line="3756"/>
         <source>Choose game favorites file</source>
         <translation>Spiel-Favoriten Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3773"/>
+        <location filename="../../options.cpp" line="3768"/>
         <source>Choose play history file</source>
         <translation>Spiel-Historien Datei auswählen</translation>
     </message>
@@ -14342,25 +14342,25 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>ROM-Status</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1968"/>
+        <location filename="../../options.cpp" line="1963"/>
         <source>Waiting for data...</source>
         <translation>Warte auf Daten...</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1957"/>
-        <location filename="../../options.cpp" line="1959"/>
+        <location filename="../../options.cpp" line="1952"/>
+        <location filename="../../options.cpp" line="1954"/>
         <source>ascending</source>
         <translation>aufsteigend</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="559"/>
-        <location filename="../../options.cpp" line="565"/>
+        <location filename="../../options.cpp" line="554"/>
+        <location filename="../../options.cpp" line="560"/>
         <source>No style sheet</source>
         <translation>Kein Style Sheet</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1957"/>
-        <location filename="../../options.cpp" line="1959"/>
+        <location filename="../../options.cpp" line="1952"/>
+        <location filename="../../options.cpp" line="1954"/>
         <source>descending</source>
         <translation>absteigend</translation>
     </message>
@@ -14370,7 +14370,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Spiel-Beschreibung</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3402"/>
+        <location filename="../../options.cpp" line="3397"/>
         <source>Choose flyer directory</source>
         <translation>Flyer Verzeichnis auswählen</translation>
     </message>
@@ -14386,10 +14386,10 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
     </message>
     <message>
         <location filename="../../options.ui" line="1002"/>
-        <location filename="../../options.cpp" line="2500"/>
-        <location filename="../../options.cpp" line="2572"/>
-        <location filename="../../options.cpp" line="2644"/>
-        <location filename="../../options.cpp" line="4136"/>
+        <location filename="../../options.cpp" line="2495"/>
+        <location filename="../../options.cpp" line="2567"/>
+        <location filename="../../options.cpp" line="2639"/>
+        <location filename="../../options.cpp" line="4131"/>
         <source>Flyer directory</source>
         <translation>Flyer Verzeichnis</translation>
     </message>
@@ -14435,9 +14435,9 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
     </message>
     <message>
         <location filename="../../options.ui" line="3697"/>
-        <location filename="../../options.cpp" line="566"/>
-        <location filename="../../options.cpp" line="567"/>
-        <location filename="../../options.cpp" line="4894"/>
+        <location filename="../../options.cpp" line="561"/>
+        <location filename="../../options.cpp" line="562"/>
+        <location filename="../../options.cpp" line="4889"/>
         <source>Default</source>
         <translation>Standard</translation>
     </message>
@@ -14472,18 +14472,18 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Zeige ROM Status U (unbekannt)?</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2494"/>
-        <location filename="../../options.cpp" line="2566"/>
-        <location filename="../../options.cpp" line="2638"/>
-        <location filename="../../options.cpp" line="4125"/>
+        <location filename="../../options.cpp" line="2489"/>
+        <location filename="../../options.cpp" line="2561"/>
+        <location filename="../../options.cpp" line="2633"/>
+        <location filename="../../options.cpp" line="4120"/>
         <source>Preview file</source>
         <translation>Vorschau Datei</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2500"/>
-        <location filename="../../options.cpp" line="2572"/>
-        <location filename="../../options.cpp" line="2644"/>
-        <location filename="../../options.cpp" line="4136"/>
+        <location filename="../../options.cpp" line="2495"/>
+        <location filename="../../options.cpp" line="2567"/>
+        <location filename="../../options.cpp" line="2639"/>
+        <location filename="../../options.cpp" line="4131"/>
         <source>Flyer file</source>
         <translation>Flyer Datei</translation>
     </message>
@@ -14493,29 +14493,29 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Frontend Daten-Verzeichnis (lesen)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2294"/>
+        <location filename="../../options.cpp" line="2289"/>
         <source>FATAL: can&apos;t open icon file, please check access permissions for %1</source>
         <translation>FATAL: kann Icon-Archiv nicht öffnen, bitte Zugriffsrechte für %1 überprüfen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2506"/>
-        <location filename="../../options.cpp" line="2578"/>
-        <location filename="../../options.cpp" line="2650"/>
-        <location filename="../../options.cpp" line="4147"/>
+        <location filename="../../options.cpp" line="2501"/>
+        <location filename="../../options.cpp" line="2573"/>
+        <location filename="../../options.cpp" line="2645"/>
+        <location filename="../../options.cpp" line="4142"/>
         <source>Icon file</source>
         <translation>Icon Datei</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1690"/>
-        <location filename="../../options.cpp" line="2506"/>
-        <location filename="../../options.cpp" line="2578"/>
-        <location filename="../../options.cpp" line="2650"/>
-        <location filename="../../options.cpp" line="4147"/>
+        <location filename="../../options.cpp" line="2501"/>
+        <location filename="../../options.cpp" line="2573"/>
+        <location filename="../../options.cpp" line="2645"/>
+        <location filename="../../options.cpp" line="4142"/>
         <source>Icon directory</source>
         <translation>Icon Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3417"/>
+        <location filename="../../options.cpp" line="3412"/>
         <source>Choose icon directory</source>
         <translation>Icon Verzeichnis auswählen</translation>
     </message>
@@ -14540,7 +14540,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Hersteller</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3785"/>
+        <location filename="../../options.cpp" line="3780"/>
         <source>Choose gamelist cache file</source>
         <translation>Cache Datei für Spieleliste auswählen</translation>
     </message>
@@ -14586,133 +14586,133 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Ta&amp;staturkürzel</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="401"/>
+        <location filename="../../options.cpp" line="396"/>
         <source>Check all ROM states</source>
         <translation>Alle ROM Stati prüfen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="403"/>
+        <location filename="../../options.cpp" line="398"/>
         <source>Check all sample sets</source>
         <translation>Alle Sample-Sets prüfen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="406"/>
+        <location filename="../../options.cpp" line="401"/>
         <source>About QMC2</source>
         <translation>Über QMC2</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="412"/>
+        <location filename="../../options.cpp" line="407"/>
         <source>Analyze tagged sets</source>
         <translation>Markierte Sets analysieren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="415"/>
+        <location filename="../../options.cpp" line="410"/>
         <source>Copy game to favorites</source>
         <translation>Nach Favoriten kopieren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="419"/>
+        <location filename="../../options.cpp" line="414"/>
         <source>Copy tagged sets to favorites</source>
         <translation>Markierte Sets den Favoriten hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="420"/>
+        <location filename="../../options.cpp" line="415"/>
         <source>Online documentation</source>
         <translation>Online Dokumentation</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="421"/>
+        <location filename="../../options.cpp" line="416"/>
         <source>Clear image cache</source>
         <translation>Bild-Zugriffsspeicher leeren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="428"/>
+        <location filename="../../options.cpp" line="423"/>
         <source>Clear ProjectMESS cache</source>
         <translation>ProjectMESS Cache leeren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="432"/>
-        <location filename="../../options.cpp" line="434"/>
+        <location filename="../../options.cpp" line="427"/>
+        <location filename="../../options.cpp" line="429"/>
         <source>Open options dialog</source>
         <translation>Options-Dialog öffnen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="440"/>
+        <location filename="../../options.cpp" line="435"/>
         <source>About Qt</source>
         <translation>Über Qt</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="443"/>
+        <location filename="../../options.cpp" line="438"/>
         <source>Check game&apos;s ROM state</source>
         <translation>ROM Status des aktuellen Spieles prüfen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="449"/>
+        <location filename="../../options.cpp" line="444"/>
         <source>Recreate template map</source>
         <translation>Abbildungsvorlage neu erzeugen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="451"/>
+        <location filename="../../options.cpp" line="446"/>
         <source>Stop processing / exit QMC2</source>
         <translation>Verarbeitung anhalten / QMC2 beenden</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="523"/>
+        <location filename="../../options.cpp" line="518"/>
         <source>Cursor down</source>
         <translation>Cursor runter</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="527"/>
+        <location filename="../../options.cpp" line="522"/>
         <source>Cursor left</source>
         <translation>Cursor links</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="522"/>
+        <location filename="../../options.cpp" line="517"/>
         <source>Minus (-)</source>
         <translation>Minus (-)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="529"/>
+        <location filename="../../options.cpp" line="524"/>
         <source>Page down</source>
         <translation>Seite runter</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="530"/>
+        <location filename="../../options.cpp" line="525"/>
         <source>Page up</source>
         <translation>Seite rauf</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="521"/>
+        <location filename="../../options.cpp" line="516"/>
         <source>Plus (+)</source>
         <translation>Plus (+)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="335"/>
+        <location filename="../../options.cpp" line="330"/>
         <source>Switch between specifying a logo directory or a compressed logo file</source>
         <translation>Zwischen der Angabe eines Logo-Verzeichnisses oder einer komprimierten Logo-Datei umschalten</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="337"/>
+        <location filename="../../options.cpp" line="332"/>
         <source>Compressed logo file (read)</source>
         <translation>Komprimierte Logo-Datei (lesen)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="339"/>
+        <location filename="../../options.cpp" line="334"/>
         <source>Browse compressed logo file</source>
         <translation>Komprimierte Logo Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="532"/>
+        <location filename="../../options.cpp" line="527"/>
         <source>Cursor right</source>
         <translation>Cursor rechts</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="533"/>
+        <location filename="../../options.cpp" line="528"/>
         <source>Tabulator</source>
         <translation>Tabulator</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="534"/>
+        <location filename="../../options.cpp" line="529"/>
         <source>Cursor up</source>
         <translation>Cursor rauf</translation>
     </message>
@@ -14722,7 +14722,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Angepasst</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="525"/>
+        <location filename="../../options.cpp" line="520"/>
         <source>Enter key</source>
         <translation>Eingabetaste</translation>
     </message>
@@ -14743,7 +14743,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Aktive Tastaturkürzel; Doppel-Klick zur Festlegung eines neuen Tastaturkürzels</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="430"/>
+        <location filename="../../options.cpp" line="425"/>
         <source>Clear icon cache</source>
         <translation>Icon-Zugriffsspeicher leeren</translation>
     </message>
@@ -14763,12 +14763,12 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation> ms</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4673"/>
+        <location filename="../../options.cpp" line="4668"/>
         <source>WARNING: shortcut map contains duplicates</source>
         <translation>WARNUNG: Tastaturkürzel-Definition enthält Duplikate</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4671"/>
+        <location filename="../../options.cpp" line="4666"/>
         <source>shortcut map is clean</source>
         <translation>Tastaturkürzel-Definition ist in Ordnung</translation>
     </message>
@@ -14778,17 +14778,17 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="524"/>
+        <location filename="../../options.cpp" line="519"/>
         <source>End</source>
         <translation>Ende</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="526"/>
+        <location filename="../../options.cpp" line="521"/>
         <source>Escape</source>
         <translation>Escape</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="528"/>
+        <location filename="../../options.cpp" line="523"/>
         <source>Home</source>
         <translation>Pos1</translation>
     </message>
@@ -14803,7 +14803,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Zip Werkzeug auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3713"/>
+        <location filename="../../options.cpp" line="3708"/>
         <source>Choose zip tool</source>
         <translation>Zip Werkzeug auswählen</translation>
     </message>
@@ -14832,13 +14832,13 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Anzeige einer Kurz-Beschreibung der aktuellen Verarbeitung in Fortschritts-Anzeige</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3523"/>
-        <location filename="../../options.cpp" line="4697"/>
+        <location filename="../../options.cpp" line="3518"/>
+        <location filename="../../options.cpp" line="4692"/>
         <source>Choose emulator executable file</source>
         <translation>Ausführbare Emulator Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3630"/>
+        <location filename="../../options.cpp" line="3625"/>
         <source>Choose emulator log file</source>
         <translation>Emulator Log Datei auswählen</translation>
     </message>
@@ -14879,7 +14879,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>PL (Polnisch)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="408"/>
+        <location filename="../../options.cpp" line="403"/>
         <source>Analyze current game</source>
         <translation>Aktuelles Spiel analysieren</translation>
     </message>
@@ -15045,10 +15045,10 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
     </message>
     <message>
         <location filename="../../options.ui" line="3805"/>
-        <location filename="../../options.cpp" line="5052"/>
-        <location filename="../../options.cpp" line="5079"/>
-        <location filename="../../options.cpp" line="5135"/>
-        <location filename="../../options.cpp" line="5224"/>
+        <location filename="../../options.cpp" line="5047"/>
+        <location filename="../../options.cpp" line="5074"/>
+        <location filename="../../options.cpp" line="5130"/>
+        <location filename="../../options.cpp" line="5219"/>
         <source>No joysticks found</source>
         <translation>Keine Joysticks gefunden</translation>
     </message>
@@ -15203,89 +15203,89 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Joystick Zuweisung von ausgewählter GUI Funktion entfernen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2226"/>
+        <location filename="../../options.cpp" line="2221"/>
         <source>FATAL: can&apos;t open %1 file, please check access permissions for %2</source>
         <translation>FATAL: kann %1-Datei nicht öffnen, bitte Zugriffsrechte für %2 überprüfen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2542"/>
-        <location filename="../../options.cpp" line="2614"/>
-        <location filename="../../options.cpp" line="2686"/>
-        <location filename="../../options.cpp" line="4217"/>
+        <location filename="../../options.cpp" line="2537"/>
+        <location filename="../../options.cpp" line="2609"/>
+        <location filename="../../options.cpp" line="2681"/>
+        <location filename="../../options.cpp" line="4212"/>
         <source>SW snap file</source>
         <translation>SW Snap Datei</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2596"/>
-        <location filename="../../options.cpp" line="4181"/>
+        <location filename="../../options.cpp" line="2591"/>
+        <location filename="../../options.cpp" line="4176"/>
         <source>Logo file</source>
         <translation>Logo Datei</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5667"/>
-        <location filename="../../options.cpp" line="2941"/>
-        <location filename="../../options.cpp" line="4739"/>
+        <location filename="../../options.cpp" line="2936"/>
+        <location filename="../../options.cpp" line="4734"/>
         <source>Custom IDs...</source>
         <translation>IDs festlegen...</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4366"/>
+        <location filename="../../options.cpp" line="4361"/>
         <source>Choose software snap directory</source>
         <translation>Software Snapshot Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4398"/>
+        <location filename="../../options.cpp" line="4393"/>
         <source>Choose software notes folder</source>
         <translation>Ordner für SW-Notizen auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4413"/>
+        <location filename="../../options.cpp" line="4408"/>
         <source>Choose software notes template</source>
         <translation>Vorlage für SW-Notizen auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4413"/>
-        <location filename="../../options.cpp" line="4440"/>
+        <location filename="../../options.cpp" line="4408"/>
+        <location filename="../../options.cpp" line="4435"/>
         <source>HTML files (*.html *.htm)</source>
         <translation>HTML-Dateien (*.html *.htm)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4425"/>
+        <location filename="../../options.cpp" line="4420"/>
         <source>Choose system notes folder</source>
         <translation>Ordner für System-Notizen auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4440"/>
+        <location filename="../../options.cpp" line="4435"/>
         <source>Choose system notes template</source>
         <translation>Vorlage für System-Notizen auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4953"/>
+        <location filename="../../options.cpp" line="4948"/>
         <source>Choose image file</source>
         <translation>Bild Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4953"/>
+        <location filename="../../options.cpp" line="4948"/>
         <source>Supported image files (%1)</source>
         <translation>Unterstützte Bild-Dateien (%1)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5063"/>
+        <location filename="../../options.cpp" line="5058"/>
         <source>ERROR: couldn&apos;t initialize SDL joystick support</source>
         <translation>FEHLER: konnte SDL Joystick Unterstützung nicht initialisieren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5402"/>
+        <location filename="../../options.cpp" line="5397"/>
         <source>joystick map is clean</source>
         <translation>Joystick-Abbilding ist in Ordnung</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5404"/>
+        <location filename="../../options.cpp" line="5399"/>
         <source>WARNING: joystick map contains duplicates</source>
         <translation>WARNUNG: Joystick-Abbildung enthält Duplikate</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1882"/>
+        <location filename="../../options.cpp" line="1877"/>
         <source>please restart QMC2 for some changes to take effect</source>
         <translation>Bitte QMC2 neu starten um einige der Änderungen wirksam werden zu lassen</translation>
     </message>
@@ -15347,57 +15347,57 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Maximale Anzahl von Zeilen, die im Emulator Log Browser gehalten werden</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="507"/>
+        <location filename="../../options.cpp" line="502"/>
         <source>Previous track (audio player)</source>
         <translation>Vorheriges Stück (Audio Player)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="508"/>
+        <location filename="../../options.cpp" line="503"/>
         <source>Next track (audio player)</source>
         <translation>Nächstes Stück (Audio Player)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="509"/>
+        <location filename="../../options.cpp" line="504"/>
         <source>Fast backward (audio player)</source>
         <translation>Schneller Rücklauf (Audio Player)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="510"/>
+        <location filename="../../options.cpp" line="505"/>
         <source>Fast forward (audio player)</source>
         <translation>Schneller Vorlauf (Audio Player)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="511"/>
+        <location filename="../../options.cpp" line="506"/>
         <source>Stop track (audio player)</source>
         <translation>Stück anhalten (Audio Player)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="512"/>
+        <location filename="../../options.cpp" line="507"/>
         <source>Pause track (audio player)</source>
         <translation>Stück pausieren (Audio Player)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="513"/>
+        <location filename="../../options.cpp" line="508"/>
         <source>Play track (audio player)</source>
         <translation>Stück abspielen (Audio Player)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="492"/>
+        <location filename="../../options.cpp" line="487"/>
         <source>Parent / clone hierarchy</source>
         <translation>Original / Klon Hierarchie</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="514"/>
+        <location filename="../../options.cpp" line="509"/>
         <source>Raise volume (audio player)</source>
         <translation>Laustärke anheben (Audio Player)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="515"/>
+        <location filename="../../options.cpp" line="510"/>
         <source>Lower volume (audio player)</source>
         <translation>Lautstärke absenken (Audio Player)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="413"/>
+        <location filename="../../options.cpp" line="408"/>
         <source>Export ROM Status</source>
         <translation>ROM Status exportieren</translation>
     </message>
@@ -15465,27 +15465,27 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Zeige Werzeugleiste</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="460"/>
+        <location filename="../../options.cpp" line="455"/>
         <source>Toggle ROM state C</source>
         <translation>ROM Status K ein-/ausblenden</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="461"/>
+        <location filename="../../options.cpp" line="456"/>
         <source>Toggle ROM state M</source>
         <translation>ROM Status B ein-/ausblenden</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="462"/>
+        <location filename="../../options.cpp" line="457"/>
         <source>Toggle ROM state I</source>
         <translation>ROM Status I ein-/ausblenden</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="463"/>
+        <location filename="../../options.cpp" line="458"/>
         <source>Toggle ROM state N</source>
         <translation>ROM Status N ein-/ausblenden</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="464"/>
+        <location filename="../../options.cpp" line="459"/>
         <source>Toggle ROM state U</source>
         <translation>ROM Status U ein-/ausblenden</translation>
     </message>
@@ -15500,12 +15500,12 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Einzel-Instanz Prüfung</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="471"/>
+        <location filename="../../options.cpp" line="466"/>
         <source>Launch QMC2 for SDLMAME</source>
         <translation>QMC2 für SDLMAME starten</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="472"/>
+        <location filename="../../options.cpp" line="467"/>
         <source>Launch QMC2 for SDLMESS</source>
         <translation>QMC2 für SDLMESS starten</translation>
     </message>
@@ -15520,27 +15520,27 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Minimieren beim Start einer Variante</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="423"/>
+        <location filename="../../options.cpp" line="418"/>
         <source>Setup arcade mode</source>
         <translation>Acade Modus einstellen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="328"/>
+        <location filename="../../options.cpp" line="323"/>
         <source>Machine description</source>
         <translation>Maschinenbeschreibung</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="329"/>
+        <location filename="../../options.cpp" line="324"/>
         <source>Machine name</source>
         <translation>Maschinenname</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="330"/>
+        <location filename="../../options.cpp" line="325"/>
         <source>Number of item insertions between machine list updates during reload (higher means faster, but makes the GUI less responsive)</source>
         <translation>Anzahl der Objekt-Einfügungen zwischen Updates der Maschinenliste beim Laden (höhere Werte sind schneller, beeinflussen jedoch die Ansprechbarkeit der GUI negativ)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="331"/>
+        <location filename="../../options.cpp" line="326"/>
         <source>Delay update of any machine details (preview, flyer, info, configuration, ...) by how many milliseconds?</source>
         <translation>Updates aller Maschinendetails (Vorschaubildr, Flyer, Infos, Konfiguration, ...) um wie viele Millisekunden verzögern?</translation>
     </message>
@@ -15565,12 +15565,12 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>ROM Prüfung automatisch auslösen, wenn benötigt</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="467"/>
+        <location filename="../../options.cpp" line="462"/>
         <source>Launch QMC2 for MAME</source>
         <translation>QMC2 für MAME starten</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="468"/>
+        <location filename="../../options.cpp" line="463"/>
         <source>Launch QMC2 for MESS</source>
         <translation>QMC2 für MESS starten</translation>
     </message>
@@ -15592,809 +15592,809 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Aktivierung bei Doppel-Klick</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1957"/>
+        <location filename="../../options.cpp" line="1952"/>
         <source>sorting game list by %1 in %2 order</source>
         <translation>Sortiere Spieleliste nach %1 in %2er Reihenfolge</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1959"/>
+        <location filename="../../options.cpp" line="1954"/>
         <source>sorting machine list by %1 in %2 order</source>
         <translation>Sortiere Maschinenliste nach %1 in %2er Reihenfolge</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1722"/>
+        <location filename="../../options.cpp" line="1717"/>
         <source>An open game-specific emulator configuration has been detected.
 Use local game-settings, overwrite with global settings or don&apos;t apply?</source>
         <translation>Eine geöffnete Spiel-spezifische Emulator-Konfiguration wurde entdeckt.
 Lokale Spiel-Einstellungen verwenden, mit globalen Einstellungen überschreiben oder Änderungen nicht anwenden?</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1724"/>
+        <location filename="../../options.cpp" line="1719"/>
         <source>An open machine-specific emulator configuration has been detected.
 Use local machine-settings, overwrite with global settings or don&apos;t apply?</source>
         <translation>Eine geöffnete Maschinen-spezifische Emulator-Konfiguration wurde entdeckt.
 Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschreiben oder Änderungen nicht anwenden?</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="502"/>
+        <location filename="../../options.cpp" line="497"/>
         <source>Toggle full screen</source>
         <translation>Vollbild-Modus umschalten</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="261"/>
+        <location filename="../../options.cpp" line="256"/>
         <source>Minimize when launching (non-embedded) emulators?</source>
         <translation>Minimieren beim Start eines (nicht eingebetteten) Emulators?</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="280"/>
-        <location filename="../../options.cpp" line="286"/>
-        <location filename="../../options.cpp" line="296"/>
-        <location filename="../../options.cpp" line="302"/>
-        <location filename="../../options.cpp" line="312"/>
-        <location filename="../../options.cpp" line="318"/>
+        <location filename="../../options.cpp" line="275"/>
+        <location filename="../../options.cpp" line="281"/>
+        <location filename="../../options.cpp" line="291"/>
+        <location filename="../../options.cpp" line="297"/>
+        <location filename="../../options.cpp" line="307"/>
+        <location filename="../../options.cpp" line="313"/>
         <source>Specify arguments...</source>
         <translation>Kommandozeilen-Optionen festlegen...</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="283"/>
-        <location filename="../../options.cpp" line="289"/>
-        <location filename="../../options.cpp" line="299"/>
-        <location filename="../../options.cpp" line="305"/>
-        <location filename="../../options.cpp" line="315"/>
-        <location filename="../../options.cpp" line="321"/>
+        <location filename="../../options.cpp" line="278"/>
+        <location filename="../../options.cpp" line="284"/>
+        <location filename="../../options.cpp" line="294"/>
+        <location filename="../../options.cpp" line="300"/>
+        <location filename="../../options.cpp" line="310"/>
+        <location filename="../../options.cpp" line="316"/>
         <source>Reset to default (same path assumed)</source>
         <translation>Auf Standard zurücksetzen (gleicher Pfad)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="333"/>
+        <location filename="../../options.cpp" line="328"/>
         <source>Scaled logo</source>
         <translation>Logo-Bilder skalieren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="334"/>
-        <location filename="../../options.cpp" line="2596"/>
-        <location filename="../../options.cpp" line="4181"/>
+        <location filename="../../options.cpp" line="329"/>
+        <location filename="../../options.cpp" line="2591"/>
+        <location filename="../../options.cpp" line="4176"/>
         <source>Logo directory</source>
         <translation>Logo Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="336"/>
+        <location filename="../../options.cpp" line="331"/>
         <source>Logo directory (read)</source>
         <translation>Logo Verzeichnis (lesen)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="338"/>
+        <location filename="../../options.cpp" line="333"/>
         <source>Browse logo directory</source>
         <translation>Logo Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="348"/>
-        <location filename="../../options.cpp" line="349"/>
+        <location filename="../../options.cpp" line="343"/>
+        <location filename="../../options.cpp" line="344"/>
         <source>Option requires a reload of the entire machine list to take effect</source>
         <translation>Option erfordert eine Aktualisierung der Maschinenliste um wirksam zu werden</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="350"/>
+        <location filename="../../options.cpp" line="345"/>
         <source>Registered emulators -- you may select one of these in the machine-specific emulator configuration</source>
         <translation>Registrierte Emulatoren -- diese lassen sich in den Maschinen-spezifischen Emulator Einstellungen auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="351"/>
+        <location filename="../../options.cpp" line="346"/>
         <source>Save machine selection</source>
         <translation>Speichere Maschinen-Selektion</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="352"/>
+        <location filename="../../options.cpp" line="347"/>
         <source>Save machine selection on exit and before reloading the machine list</source>
         <translation>Ausgewählte Maschine beim Beenden und vor dem Neuladen der Maschinenliste speichern</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="353"/>
+        <location filename="../../options.cpp" line="348"/>
         <source>Restore machine selection</source>
         <translation>Restauriere Maschinen-Selektion</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="354"/>
+        <location filename="../../options.cpp" line="349"/>
         <source>Restore saved machine selection at start and after reloading the machine list</source>
         <translation>Gespeicherte Maschinenauswahl beim Start und nach dem Neuladen der Maschinenliste wieder herstellen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="355"/>
+        <location filename="../../options.cpp" line="350"/>
         <source>Machine list cache</source>
         <translation>Maschinenlisten-Cache</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="356"/>
+        <location filename="../../options.cpp" line="351"/>
         <source>Machine list cache file (write)</source>
         <translation>Cache Datei für die Maschinenliste (schreiben)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="357"/>
+        <location filename="../../options.cpp" line="352"/>
         <source>Browse machine list cache file</source>
         <translation>Cache Datei für Maschinenliste auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="358"/>
+        <location filename="../../options.cpp" line="353"/>
         <source>Machine info</source>
         <translation>Maschinen-Info</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="362"/>
-        <location filename="../../options.cpp" line="383"/>
+        <location filename="../../options.cpp" line="357"/>
+        <location filename="../../options.cpp" line="378"/>
         <source>Emu info</source>
         <translation>Emu Info</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="379"/>
+        <location filename="../../options.cpp" line="374"/>
         <source>Game info</source>
         <translation>Spiel Info</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="395"/>
-        <location filename="../../options.cpp" line="1472"/>
+        <location filename="../../options.cpp" line="390"/>
+        <location filename="../../options.cpp" line="1467"/>
         <source>Category</source>
         <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="397"/>
-        <location filename="../../options.cpp" line="1474"/>
+        <location filename="../../options.cpp" line="392"/>
+        <location filename="../../options.cpp" line="1469"/>
         <source>Version</source>
         <translation>Version</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="405"/>
+        <location filename="../../options.cpp" line="400"/>
         <source>Check images and icons</source>
         <translation>Bilder und Icons überprüfen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="410"/>
+        <location filename="../../options.cpp" line="405"/>
         <source>Analyze current machine</source>
         <translation>Aktuelle Maschine analysieren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="417"/>
+        <location filename="../../options.cpp" line="412"/>
         <source>Copy machine to favorites</source>
         <translation>Maschine zu Favoriten hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="436"/>
+        <location filename="../../options.cpp" line="431"/>
         <source>Play (independent)</source>
         <translation>Spielen (unabhängig)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="438"/>
+        <location filename="../../options.cpp" line="433"/>
         <source>Play (embedded)</source>
         <translation>Spielen (eingebettet)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="442"/>
+        <location filename="../../options.cpp" line="437"/>
         <source>Reload game list</source>
         <translation>Spieleliste neu laden</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="445"/>
+        <location filename="../../options.cpp" line="440"/>
         <source>Reload machine list</source>
         <translation>Maschinenliste neu laden</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="446"/>
+        <location filename="../../options.cpp" line="441"/>
         <source>Check machine&apos;s ROM state</source>
         <translation>ROM Status der aktuellen Maschine prüfen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="448"/>
+        <location filename="../../options.cpp" line="443"/>
         <source>Check states of tagged ROMs</source>
         <translation>ROM Status markierter Sets prüfen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="450"/>
+        <location filename="../../options.cpp" line="445"/>
         <source>Check template map</source>
         <translation>Abbildungsvorlage überprüfen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="453"/>
+        <location filename="../../options.cpp" line="448"/>
         <source>Clear YouTube cache</source>
         <translation>YouTube Cache leeren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="455"/>
+        <location filename="../../options.cpp" line="450"/>
         <source>Open ROMAlyzer (system mode)</source>
         <translation>ROMAlyzer öffnen (System Modus)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="458"/>
+        <location filename="../../options.cpp" line="453"/>
         <source>Open ROMAlyzer (software mode)</source>
         <translation>ROMAlyzer öffnen (Software Modus)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="469"/>
+        <location filename="../../options.cpp" line="464"/>
         <source>Launch QMC2 for UME</source>
         <translation>QMC2 für UME starten</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="473"/>
+        <location filename="../../options.cpp" line="468"/>
         <source>Launch QMC2 for SDLUME</source>
         <translation>QMC2 für SDLUME starten</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="476"/>
+        <location filename="../../options.cpp" line="471"/>
         <source>Tag current set</source>
         <translation>Aktuelles Sets markieren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="477"/>
+        <location filename="../../options.cpp" line="472"/>
         <source>Untag current set</source>
         <translation>Markierung aufheben</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="478"/>
+        <location filename="../../options.cpp" line="473"/>
         <source>Toggle tag mark</source>
         <translation>Markierung umkehren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="479"/>
+        <location filename="../../options.cpp" line="474"/>
         <source>Toggle tag / cursor down</source>
         <translation>Markierung umkehren / Cursor runter</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="480"/>
+        <location filename="../../options.cpp" line="475"/>
         <source>Toggle tag / cursor up</source>
         <translation>Markierung umkehren / Cursor rauf</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="481"/>
+        <location filename="../../options.cpp" line="476"/>
         <source>Tag all sets</source>
         <translation>Alle Sets markieren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="482"/>
+        <location filename="../../options.cpp" line="477"/>
         <source>Untag all sets</source>
         <translation>Alle Markierungen aufheben </translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="483"/>
+        <location filename="../../options.cpp" line="478"/>
         <source>Invert all tags</source>
         <translation>Alle Markierungen umkehren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="484"/>
+        <location filename="../../options.cpp" line="479"/>
         <source>Tag visible sets</source>
         <translation>Markierung sichtbarer Sets setzen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="485"/>
+        <location filename="../../options.cpp" line="480"/>
         <source>Untag visible sets</source>
         <translation>Markierung sichtbarer Sets aufheben</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="486"/>
+        <location filename="../../options.cpp" line="481"/>
         <source>Invert visible tags</source>
         <translation>Markierung sichtbarer Sets umkehren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="488"/>
+        <location filename="../../options.cpp" line="483"/>
         <source>Game list with full detail</source>
         <translation>Spieleliste mit vollen Details</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="490"/>
+        <location filename="../../options.cpp" line="485"/>
         <source>Machine list with full detail</source>
         <translation>Maschinenliste mit vollen Details</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="494"/>
+        <location filename="../../options.cpp" line="489"/>
         <source>View machines by category</source>
         <translation>Maschinen nach Kategorien anzeigen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="496"/>
+        <location filename="../../options.cpp" line="491"/>
         <source>View games by category</source>
         <translation>Spiele nach Kategorien anzeigen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="497"/>
+        <location filename="../../options.cpp" line="492"/>
         <source>View games by version</source>
         <translation>Spiele nach Version anzeigen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="499"/>
+        <location filename="../../options.cpp" line="494"/>
         <source>Run external ROM tool</source>
         <translation>Externes ROM Werkzeug ausführen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="500"/>
+        <location filename="../../options.cpp" line="495"/>
         <source>Run ROM tool for tagged sets</source>
         <translation>Externes ROM Werkzeug für alle markierten Sets ausführen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="501"/>
+        <location filename="../../options.cpp" line="496"/>
         <source>Check software-states</source>
         <translation>Software-Stati prüfen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="504"/>
+        <location filename="../../options.cpp" line="499"/>
         <source>Launch arcade mode</source>
         <translation>Arcade Modus ausführen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="517"/>
+        <location filename="../../options.cpp" line="512"/>
         <source>Increase rank</source>
         <translation>Rang erhöhen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="518"/>
+        <location filename="../../options.cpp" line="513"/>
         <source>Decrease rank</source>
         <translation>Rang verringern</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="531"/>
+        <location filename="../../options.cpp" line="526"/>
         <source>Return key</source>
         <translation>Return-Taste</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="536"/>
+        <location filename="../../options.cpp" line="531"/>
         <source>Activate item</source>
         <translation>Element aktivieren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="544"/>
-        <location filename="../../options.cpp" line="551"/>
+        <location filename="../../options.cpp" line="539"/>
+        <location filename="../../options.cpp" line="546"/>
         <source>Reset to default font</source>
         <translation>Auf Standard-Schriftart zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="568"/>
-        <location filename="../../options.cpp" line="569"/>
-        <location filename="../../options.cpp" line="570"/>
+        <location filename="../../options.cpp" line="563"/>
+        <location filename="../../options.cpp" line="564"/>
+        <location filename="../../options.cpp" line="565"/>
         <source>Search in the folder we were called from</source>
         <translation>Suche im Ordner aus dem wir aufgerufen wurden</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1484"/>
+        <location filename="../../options.cpp" line="1479"/>
         <source>View machines by category (not filtered)</source>
         <translation>Maschinen nach Kategorie anzeigen (ungefiltert)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1876"/>
+        <location filename="../../options.cpp" line="1871"/>
         <source>please reload game list for some changes to take effect</source>
         <translation>Bitte Spieleliste neu laden um einige der Änderungen wirksam werden zu lassen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1878"/>
+        <location filename="../../options.cpp" line="1873"/>
         <source>please reload machine list for some changes to take effect</source>
         <translation>Bitte Maschinenliste neu laden um einige der Änderungen wirksam werden zu lassen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1892"/>
+        <location filename="../../options.cpp" line="1887"/>
         <source>re-sort of game list impossible at this time, please wait for ROM verification to finish and try again</source>
         <translation>Sortierung der Spieleliste ist derzeit nicht möglich, bitte auf die Beendigung der ROM Verifikation warten und dann ggf. neu versuchen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1894"/>
+        <location filename="../../options.cpp" line="1889"/>
         <source>re-sort of machine list impossible at this time, please wait for ROM verification to finish and try again</source>
         <translation>Sortierung der Maschinenliste ist derzeit nicht möglich, bitte auf die Beendigung der ROM Verifikation warten und dann ggf. neu versuchen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1903"/>
+        <location filename="../../options.cpp" line="1898"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2234"/>
+        <location filename="../../options.cpp" line="2229"/>
         <source>FATAL: can&apos;t open %1 file %2</source>
         <translation>FATAL: kann %1 Datei %2 nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2234"/>
-        <location filename="../../options.cpp" line="2269"/>
-        <location filename="../../options.cpp" line="2302"/>
+        <location filename="../../options.cpp" line="2229"/>
+        <location filename="../../options.cpp" line="2264"/>
+        <location filename="../../options.cpp" line="2297"/>
         <source>7z error</source>
         <translation>7z Fehler</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2261"/>
+        <location filename="../../options.cpp" line="2256"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: kann Software Snapshot Datei nicht öffnen; bitte Zugriffsrechte für %1 überprüfen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2269"/>
+        <location filename="../../options.cpp" line="2264"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
         <translation>FATAL: kann Software Snapshot Datei %1 nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2302"/>
+        <location filename="../../options.cpp" line="2297"/>
         <source>FATAL: can&apos;t open icon file %1</source>
         <translation>FATAL: kann Icon Datei %1 nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2312"/>
+        <location filename="../../options.cpp" line="2307"/>
         <source>triggering automatic reload of game list</source>
         <translation>Löse automatische Aktualisierung der Spieleliste aus</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2314"/>
+        <location filename="../../options.cpp" line="2309"/>
         <source>triggering automatic reload of machine list</source>
         <translation>Löse automatische Aktualisierung der Maschinenliste aus</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2512"/>
-        <location filename="../../options.cpp" line="2584"/>
-        <location filename="../../options.cpp" line="2656"/>
-        <location filename="../../options.cpp" line="4158"/>
+        <location filename="../../options.cpp" line="2507"/>
+        <location filename="../../options.cpp" line="2579"/>
+        <location filename="../../options.cpp" line="2651"/>
+        <location filename="../../options.cpp" line="4153"/>
         <source>Cabinet file</source>
         <translation>Gehäuse Datei</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5664"/>
-        <location filename="../../options.cpp" line="2942"/>
-        <location filename="../../options.cpp" line="4740"/>
+        <location filename="../../options.cpp" line="2937"/>
+        <location filename="../../options.cpp" line="4735"/>
         <source>Specify pre-defined foreign IDs for this emulator, launchable from the &apos;foreign emulators&apos; view</source>
         <translation>Vordefinierte fremde IDs für diesen Emulator festlegen, diese können dann direkt aus der Liste der &apos;fremden Emulatoren&apos; gestartet werden</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2960"/>
-        <location filename="../../options.cpp" line="4748"/>
+        <location filename="../../options.cpp" line="2955"/>
+        <location filename="../../options.cpp" line="4743"/>
         <source>Choose icon for this foreign emulator (hold down for menu)</source>
         <translation>Icon für diesen fremde Emulator auswählen (oder gedrückt halten um Menü anzuzeigen)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2962"/>
-        <location filename="../../options.cpp" line="4750"/>
+        <location filename="../../options.cpp" line="2957"/>
+        <location filename="../../options.cpp" line="4745"/>
         <source>Default icon</source>
         <translation>Standard Icon</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2965"/>
-        <location filename="../../options.cpp" line="4753"/>
+        <location filename="../../options.cpp" line="2960"/>
+        <location filename="../../options.cpp" line="4748"/>
         <source>No icon</source>
         <translation>Kein Icon</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3090"/>
+        <location filename="../../options.cpp" line="3085"/>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3126"/>
+        <location filename="../../options.cpp" line="3121"/>
         <source>Foreign IDs</source>
         <translation>Fremde IDs</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3642"/>
+        <location filename="../../options.cpp" line="3637"/>
         <source>Choose XML cache database file</source>
         <translation>Datei für XML Cache Datenbank auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3655"/>
+        <location filename="../../options.cpp" line="3650"/>
         <source>This will remove &lt;b&gt;all&lt;/b&gt; existing user data and recreate the database.
 Are you sure you want to do this?</source>
         <translation>Diese Aktion entfernt &lt;b&gt;alle&lt;/b&gt; existierenden Benutzerdaten und erstellt die Datenbank neu.
 Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3655"/>
+        <location filename="../../options.cpp" line="3650"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3655"/>
+        <location filename="../../options.cpp" line="3650"/>
         <source>&amp;No</source>
         <translation>&amp;Nein</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3689"/>
+        <location filename="../../options.cpp" line="3684"/>
         <source>Choose user data database file</source>
         <translation>Datei für Benutzerdaten Datenbank auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3725"/>
+        <location filename="../../options.cpp" line="3720"/>
         <source>Choose 7-zip tool</source>
         <translation>7-Zip Werkzeug auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3854"/>
+        <location filename="../../options.cpp" line="3849"/>
         <source>Choose software list cache database file</source>
         <translation>Datei für Software-Listen Cache Datenbank auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3923"/>
+        <location filename="../../options.cpp" line="3918"/>
         <source>Choose dat-info database file</source>
         <translation>Datei für DAT-Info Datenbank auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3935"/>
+        <location filename="../../options.cpp" line="3930"/>
         <source>Choose MAME game info DB</source>
         <translation>MAME Spiel Info DB auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3947"/>
+        <location filename="../../options.cpp" line="3942"/>
         <source>Choose MESS machine info DB</source>
         <translation>MESS Maschinen Info DB auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3959"/>
+        <location filename="../../options.cpp" line="3954"/>
         <source>Choose MAME emulator info DB</source>
         <translation>MAME Emulator Info DB auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3971"/>
+        <location filename="../../options.cpp" line="3966"/>
         <source>Choose MESS emulator info DB</source>
         <translation>MESS Emulator Info DB auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4226"/>
+        <location filename="../../options.cpp" line="4221"/>
         <source>Choose compressed preview file</source>
         <translation>Komprimierte Vorschau-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4226"/>
-        <location filename="../../options.cpp" line="4243"/>
-        <location filename="../../options.cpp" line="4260"/>
-        <location filename="../../options.cpp" line="4277"/>
-        <location filename="../../options.cpp" line="4294"/>
-        <location filename="../../options.cpp" line="4312"/>
-        <location filename="../../options.cpp" line="4314"/>
-        <location filename="../../options.cpp" line="4332"/>
-        <location filename="../../options.cpp" line="4349"/>
-        <location filename="../../options.cpp" line="4381"/>
+        <location filename="../../options.cpp" line="4221"/>
+        <location filename="../../options.cpp" line="4238"/>
+        <location filename="../../options.cpp" line="4255"/>
+        <location filename="../../options.cpp" line="4272"/>
+        <location filename="../../options.cpp" line="4289"/>
+        <location filename="../../options.cpp" line="4307"/>
+        <location filename="../../options.cpp" line="4309"/>
+        <location filename="../../options.cpp" line="4327"/>
+        <location filename="../../options.cpp" line="4344"/>
+        <location filename="../../options.cpp" line="4376"/>
         <source>ZIP archives</source>
         <translation>ZIP Archive</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4226"/>
-        <location filename="../../options.cpp" line="4243"/>
-        <location filename="../../options.cpp" line="4260"/>
-        <location filename="../../options.cpp" line="4277"/>
-        <location filename="../../options.cpp" line="4294"/>
-        <location filename="../../options.cpp" line="4312"/>
-        <location filename="../../options.cpp" line="4314"/>
-        <location filename="../../options.cpp" line="4332"/>
-        <location filename="../../options.cpp" line="4349"/>
-        <location filename="../../options.cpp" line="4381"/>
+        <location filename="../../options.cpp" line="4221"/>
+        <location filename="../../options.cpp" line="4238"/>
+        <location filename="../../options.cpp" line="4255"/>
+        <location filename="../../options.cpp" line="4272"/>
+        <location filename="../../options.cpp" line="4289"/>
+        <location filename="../../options.cpp" line="4307"/>
+        <location filename="../../options.cpp" line="4309"/>
+        <location filename="../../options.cpp" line="4327"/>
+        <location filename="../../options.cpp" line="4344"/>
+        <location filename="../../options.cpp" line="4376"/>
         <source>7z archives</source>
         <translation>7z Archive</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4226"/>
-        <location filename="../../options.cpp" line="4243"/>
-        <location filename="../../options.cpp" line="4260"/>
-        <location filename="../../options.cpp" line="4277"/>
-        <location filename="../../options.cpp" line="4294"/>
-        <location filename="../../options.cpp" line="4312"/>
-        <location filename="../../options.cpp" line="4314"/>
-        <location filename="../../options.cpp" line="4332"/>
-        <location filename="../../options.cpp" line="4349"/>
-        <location filename="../../options.cpp" line="4381"/>
+        <location filename="../../options.cpp" line="4221"/>
+        <location filename="../../options.cpp" line="4238"/>
+        <location filename="../../options.cpp" line="4255"/>
+        <location filename="../../options.cpp" line="4272"/>
+        <location filename="../../options.cpp" line="4289"/>
+        <location filename="../../options.cpp" line="4307"/>
+        <location filename="../../options.cpp" line="4309"/>
+        <location filename="../../options.cpp" line="4327"/>
+        <location filename="../../options.cpp" line="4344"/>
+        <location filename="../../options.cpp" line="4376"/>
         <source>All files</source>
         <translation>Alle Dateien</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4226"/>
-        <location filename="../../options.cpp" line="4243"/>
-        <location filename="../../options.cpp" line="4260"/>
-        <location filename="../../options.cpp" line="4277"/>
-        <location filename="../../options.cpp" line="4294"/>
-        <location filename="../../options.cpp" line="4312"/>
-        <location filename="../../options.cpp" line="4314"/>
-        <location filename="../../options.cpp" line="4332"/>
-        <location filename="../../options.cpp" line="4349"/>
-        <location filename="../../options.cpp" line="4381"/>
+        <location filename="../../options.cpp" line="4221"/>
+        <location filename="../../options.cpp" line="4238"/>
+        <location filename="../../options.cpp" line="4255"/>
+        <location filename="../../options.cpp" line="4272"/>
+        <location filename="../../options.cpp" line="4289"/>
+        <location filename="../../options.cpp" line="4307"/>
+        <location filename="../../options.cpp" line="4309"/>
+        <location filename="../../options.cpp" line="4327"/>
+        <location filename="../../options.cpp" line="4344"/>
+        <location filename="../../options.cpp" line="4376"/>
         <source>Supported archives</source>
         <translation>Unterstützte Archive</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4243"/>
+        <location filename="../../options.cpp" line="4238"/>
         <source>Choose compressed flyer file</source>
         <translation>Komprimierte Flyer-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4260"/>
+        <location filename="../../options.cpp" line="4255"/>
         <source>Choose compressed icon file</source>
         <translation>Komprimierte Icon-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4277"/>
+        <location filename="../../options.cpp" line="4272"/>
         <source>Choose compressed cabinet file</source>
         <translation>Komprimierte Gehäuse-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4294"/>
+        <location filename="../../options.cpp" line="4289"/>
         <source>Choose compressed controller file</source>
         <translation>Komprimierte Controller-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4312"/>
+        <location filename="../../options.cpp" line="4307"/>
         <source>Choose compressed logo file</source>
         <translation>Komprimierte Logo Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4314"/>
+        <location filename="../../options.cpp" line="4309"/>
         <source>Choose compressed marquee file</source>
         <translation>Komprimierte Marquee Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4332"/>
+        <location filename="../../options.cpp" line="4327"/>
         <source>Choose compressed title file</source>
         <translation>Komprimierte Titel-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4349"/>
+        <location filename="../../options.cpp" line="4344"/>
         <source>Choose compressed PCB file</source>
         <translation>Komprimierte PCB-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4381"/>
+        <location filename="../../options.cpp" line="4376"/>
         <source>Choose compressed software snap file</source>
         <translation>Komprimierte Software Snapshot Datei auswählen</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="969"/>
-        <location filename="../../options.cpp" line="2512"/>
-        <location filename="../../options.cpp" line="2584"/>
-        <location filename="../../options.cpp" line="2656"/>
-        <location filename="../../options.cpp" line="4158"/>
+        <location filename="../../options.cpp" line="2507"/>
+        <location filename="../../options.cpp" line="2579"/>
+        <location filename="../../options.cpp" line="2651"/>
+        <location filename="../../options.cpp" line="4153"/>
         <source>Cabinet directory</source>
         <translation>Gehäuse-Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2518"/>
-        <location filename="../../options.cpp" line="2590"/>
-        <location filename="../../options.cpp" line="2662"/>
-        <location filename="../../options.cpp" line="4169"/>
+        <location filename="../../options.cpp" line="2513"/>
+        <location filename="../../options.cpp" line="2585"/>
+        <location filename="../../options.cpp" line="2657"/>
+        <location filename="../../options.cpp" line="4164"/>
         <source>Controller file</source>
         <translation>Controller Datei</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2262"/>
-        <location filename="../../options.cpp" line="2518"/>
-        <location filename="../../options.cpp" line="2590"/>
-        <location filename="../../options.cpp" line="2662"/>
-        <location filename="../../options.cpp" line="4169"/>
+        <location filename="../../options.cpp" line="2513"/>
+        <location filename="../../options.cpp" line="2585"/>
+        <location filename="../../options.cpp" line="2657"/>
+        <location filename="../../options.cpp" line="4164"/>
         <source>Controller directory</source>
         <translation>Controller-Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2536"/>
-        <location filename="../../options.cpp" line="2608"/>
-        <location filename="../../options.cpp" line="2680"/>
-        <location filename="../../options.cpp" line="4206"/>
+        <location filename="../../options.cpp" line="2531"/>
+        <location filename="../../options.cpp" line="2603"/>
+        <location filename="../../options.cpp" line="2675"/>
+        <location filename="../../options.cpp" line="4201"/>
         <source>PCB file</source>
         <translation>PCB Datei</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1122"/>
-        <location filename="../../options.cpp" line="2536"/>
-        <location filename="../../options.cpp" line="2608"/>
-        <location filename="../../options.cpp" line="2680"/>
-        <location filename="../../options.cpp" line="4206"/>
+        <location filename="../../options.cpp" line="2531"/>
+        <location filename="../../options.cpp" line="2603"/>
+        <location filename="../../options.cpp" line="2675"/>
+        <location filename="../../options.cpp" line="4201"/>
         <source>PCB directory</source>
         <translation>PCB Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3363"/>
+        <location filename="../../options.cpp" line="3358"/>
         <source>Choose Qt style sheet file</source>
         <translation>Qt Style Sheet Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3363"/>
+        <location filename="../../options.cpp" line="3358"/>
         <source>Qt Style Sheets (*.qss)</source>
         <translation>Qt Style Sheets (*.qss)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3432"/>
+        <location filename="../../options.cpp" line="3427"/>
         <source>Choose cabinet directory</source>
         <translation>Gehäuse-Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3447"/>
+        <location filename="../../options.cpp" line="3442"/>
         <source>Choose controller directory</source>
         <translation>Controller-Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3463"/>
+        <location filename="../../options.cpp" line="3458"/>
         <source>Choose logo directory</source>
         <translation>Logo Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3496"/>
+        <location filename="../../options.cpp" line="3491"/>
         <source>Choose PCB directory</source>
         <translation>PCB Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3536"/>
+        <location filename="../../options.cpp" line="3531"/>
         <source>Choose MAME variant&apos;s exe file</source>
         <translation>Exe-Datei der MAME Variante auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3548"/>
+        <location filename="../../options.cpp" line="3543"/>
         <source>Choose MESS variant&apos;s exe file</source>
         <translation>Exe-Datei der MESS Variante auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3560"/>
+        <location filename="../../options.cpp" line="3555"/>
         <source>Choose UME variant&apos;s exe file</source>
         <translation>Exe-Datei der UME Variante auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3575"/>
+        <location filename="../../options.cpp" line="3570"/>
         <source>MAME variant arguments</source>
         <translation>Kommandozeilen-Optionen der MAME Variante</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3576"/>
+        <location filename="../../options.cpp" line="3571"/>
         <source>Specify command line arguments passed to the MAME variant
 (empty means: &apos;pass the arguments we were called with&apos;):</source>
         <translation>Kommandozeilen-Optionen, die beim Aufruf der MAME Variante übergeben werden
 (leer bedeutet: &apos;verwende dieselben Optionen, die uns übergeben wurden&apos;):</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3594"/>
+        <location filename="../../options.cpp" line="3589"/>
         <source>MESS variant arguments</source>
         <translation>Kommandozeilen-Optionen der MESS Variante</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3595"/>
+        <location filename="../../options.cpp" line="3590"/>
         <source>Specify command line arguments passed to the MESS variant
 (empty means: &apos;pass the arguments we were called with&apos;):</source>
         <translation>Kommandozeilen-Optionen, die beim Aufruf der MESS Variante übergeben werden
 (leer bedeutet: &apos;verwende dieselben Optionen, die uns übergeben wurden&apos;):</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3613"/>
+        <location filename="../../options.cpp" line="3608"/>
         <source>UME variant arguments</source>
         <translation>Kommandozeilen-Optionen der UME Variante</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3614"/>
+        <location filename="../../options.cpp" line="3609"/>
         <source>Specify command line arguments passed to the UME variant
 (empty means: &apos;pass the arguments we were called with&apos;):</source>
         <translation>Kommandozeilen-Optionen, die beim Aufruf der UME Variante übergeben werden
 (leer bedeutet: &apos;verwende dieselben Optionen, die uns übergeben wurden&apos;):</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3701"/>
+        <location filename="../../options.cpp" line="3696"/>
         <source>Choose cookie database file</source>
         <translation>Datei für Cookie-Datenbank auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3737"/>
+        <location filename="../../options.cpp" line="3732"/>
         <source>Choose ROM tool</source>
         <translation>ROM Werkzeug auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3749"/>
-        <location filename="../../options.cpp" line="3824"/>
-        <location filename="../../options.cpp" line="4713"/>
+        <location filename="../../options.cpp" line="3744"/>
+        <location filename="../../options.cpp" line="3819"/>
+        <location filename="../../options.cpp" line="4708"/>
         <source>Choose working directory</source>
         <translation>Arbeitsverzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3812"/>
+        <location filename="../../options.cpp" line="3807"/>
         <source>Choose slot info cache file</source>
         <translation>Slot-Info Cache Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3866"/>
+        <location filename="../../options.cpp" line="3861"/>
         <source>Choose software state cache directory</source>
         <translation>Software Status Cache Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3881"/>
+        <location filename="../../options.cpp" line="3876"/>
         <source>Choose general software folder</source>
         <translation>Allgmeines Software-Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3983"/>
+        <location filename="../../options.cpp" line="3978"/>
         <source>Choose software info DB</source>
         <translation>Software Info DB auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3996"/>
+        <location filename="../../options.cpp" line="3991"/>
         <source>Choose catver.ini file</source>
         <translation>Datei catver.ini auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4010"/>
+        <location filename="../../options.cpp" line="4005"/>
         <source>Choose category.ini file</source>
         <translation>Datei category.ini auswählen</translation>
     </message>
@@ -16471,44 +16471,44 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Controller-Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2524"/>
-        <location filename="../../options.cpp" line="2668"/>
-        <location filename="../../options.cpp" line="4183"/>
+        <location filename="../../options.cpp" line="2519"/>
+        <location filename="../../options.cpp" line="2663"/>
+        <location filename="../../options.cpp" line="4178"/>
         <source>Marquee file</source>
         <translation>Marquee Datei</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1152"/>
-        <location filename="../../options.cpp" line="2524"/>
-        <location filename="../../options.cpp" line="2668"/>
-        <location filename="../../options.cpp" line="4183"/>
+        <location filename="../../options.cpp" line="2519"/>
+        <location filename="../../options.cpp" line="2663"/>
+        <location filename="../../options.cpp" line="4178"/>
         <source>Marquee directory</source>
         <translation>Marquee Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2530"/>
-        <location filename="../../options.cpp" line="2602"/>
-        <location filename="../../options.cpp" line="2674"/>
-        <location filename="../../options.cpp" line="4195"/>
+        <location filename="../../options.cpp" line="2525"/>
+        <location filename="../../options.cpp" line="2597"/>
+        <location filename="../../options.cpp" line="2669"/>
+        <location filename="../../options.cpp" line="4190"/>
         <source>Title file</source>
         <translation>Titel Datei</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1056"/>
-        <location filename="../../options.cpp" line="2530"/>
-        <location filename="../../options.cpp" line="2602"/>
-        <location filename="../../options.cpp" line="2674"/>
-        <location filename="../../options.cpp" line="4195"/>
+        <location filename="../../options.cpp" line="2525"/>
+        <location filename="../../options.cpp" line="2597"/>
+        <location filename="../../options.cpp" line="2669"/>
+        <location filename="../../options.cpp" line="4190"/>
         <source>Title directory</source>
         <translation>Titel Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3465"/>
+        <location filename="../../options.cpp" line="3460"/>
         <source>Choose marquee directory</source>
         <translation>Marquee-Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3481"/>
+        <location filename="../../options.cpp" line="3476"/>
         <source>Choose title directory</source>
         <translation>Titel-Verzeichnis auswählen</translation>
     </message>
@@ -16543,7 +16543,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Titel-Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="327"/>
+        <location filename="../../options.cpp" line="322"/>
         <source>Machine &amp;list</source>
         <translation>Maschinen&amp;liste</translation>
     </message>
@@ -16578,12 +16578,12 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Frontend Log Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3896"/>
+        <location filename="../../options.cpp" line="3891"/>
         <source>Choose front end log file</source>
         <translation>Frontend Log Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3839"/>
+        <location filename="../../options.cpp" line="3834"/>
         <source>Choose MAWS cache directory</source>
         <translation>MAWS Cache Verzeichnis auswählen</translation>
     </message>
@@ -16653,7 +16653,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Passwort zum Zugriff auf den HTTP Proxy Dienst (leer = keine Authentifikation)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="426"/>
+        <location filename="../../options.cpp" line="421"/>
         <source>Clear MAWS cache</source>
         <translation>MAWS Cache leeren</translation>
     </message>
@@ -17122,25 +17122,25 @@ Bist Du sicher, dass Du das tun willst?</translation>
     <name>QObject</name>
     <message>
         <location filename="../../gamelist.cpp" line="2278"/>
-        <location filename="../../options.cpp" line="1936"/>
+        <location filename="../../options.cpp" line="1931"/>
         <source>players</source>
         <translation>Spieler</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2290"/>
-        <location filename="../../options.cpp" line="1948"/>
+        <location filename="../../options.cpp" line="1943"/>
         <source>category</source>
         <translation>Kategorie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2294"/>
-        <location filename="../../options.cpp" line="1952"/>
+        <location filename="../../options.cpp" line="1947"/>
         <source>version</source>
         <translation>Version</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2275"/>
-        <location filename="../../options.cpp" line="1933"/>
+        <location filename="../../options.cpp" line="1928"/>
         <source>ROM types</source>
         <translation>ROM Typen</translation>
     </message>
@@ -17151,86 +17151,86 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>M.A.M.E. Catalog / Launcher II v</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2327"/>
-        <location filename="../../options.cpp" line="2425"/>
+        <location filename="../../options.cpp" line="2322"/>
+        <location filename="../../options.cpp" line="2420"/>
         <source>Default</source>
         <translation>Standard</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2251"/>
-        <location filename="../../options.cpp" line="1907"/>
+        <location filename="../../options.cpp" line="1902"/>
         <source>game description</source>
         <translation>Spiel-Beschreibung</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2257"/>
-        <location filename="../../options.cpp" line="1914"/>
+        <location filename="../../options.cpp" line="1909"/>
         <source>ROM state</source>
         <translation>ROM-Status</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2260"/>
-        <location filename="../../options.cpp" line="1917"/>
+        <location filename="../../options.cpp" line="1912"/>
         <source>tag</source>
         <translation>Markierung</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2263"/>
-        <location filename="../../options.cpp" line="1920"/>
+        <location filename="../../options.cpp" line="1915"/>
         <source>year</source>
         <translation>Jahr</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2266"/>
-        <location filename="../../options.cpp" line="1923"/>
+        <location filename="../../options.cpp" line="1918"/>
         <source>manufacturer</source>
         <translation>Hersteller</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2281"/>
-        <location filename="../../options.cpp" line="1939"/>
+        <location filename="../../options.cpp" line="1934"/>
         <source>driver status</source>
         <translation>Treiberstatus</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2284"/>
-        <location filename="../../options.cpp" line="1942"/>
+        <location filename="../../options.cpp" line="1937"/>
         <source>source file</source>
         <translation>Quelldatei</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2287"/>
-        <location filename="../../options.cpp" line="1945"/>
+        <location filename="../../options.cpp" line="1940"/>
         <source>rank</source>
         <translation>Rang</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3199"/>
-        <location filename="../../gamelist.cpp" line="3413"/>
+        <location filename="../../gamelist.cpp" line="3200"/>
+        <location filename="../../gamelist.cpp" line="3415"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3449"/>
+        <location filename="../../gamelist.cpp" line="3451"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3485"/>
+        <location filename="../../gamelist.cpp" line="3487"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3521"/>
+        <location filename="../../gamelist.cpp" line="3523"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3557"/>
-        <location filename="../../gamelist.cpp" line="3595"/>
-        <location filename="../../romalyzer.cpp" line="4257"/>
-        <location filename="../../romalyzer.cpp" line="4293"/>
-        <location filename="../../romalyzer.cpp" line="4305"/>
+        <location filename="../../gamelist.cpp" line="3559"/>
+        <location filename="../../gamelist.cpp" line="3597"/>
+        <location filename="../../romalyzer.cpp" line="4278"/>
+        <location filename="../../romalyzer.cpp" line="4314"/>
+        <location filename="../../romalyzer.cpp" line="4326"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
@@ -17320,44 +17320,44 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Verarbeite globale Emulator-Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4241"/>
+        <location filename="../../romalyzer.cpp" line="4262"/>
         <source>ROM</source>
         <translation>ROM</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="862"/>
-        <location filename="../../romalyzer.cpp" line="4241"/>
+        <location filename="../../romalyzer.cpp" line="873"/>
+        <location filename="../../romalyzer.cpp" line="4262"/>
         <source>CHD</source>
         <translation>CHD</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4245"/>
-        <location filename="../../romalyzer.cpp" line="4290"/>
-        <location filename="../../romalyzer.cpp" line="4309"/>
+        <location filename="../../romalyzer.cpp" line="4266"/>
+        <location filename="../../romalyzer.cpp" line="4311"/>
+        <location filename="../../romalyzer.cpp" line="4330"/>
         <source>good</source>
         <translation>gut</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="864"/>
-        <location filename="../../romalyzer.cpp" line="4249"/>
-        <location filename="../../romalyzer.cpp" line="4299"/>
+        <location filename="../../romalyzer.cpp" line="875"/>
+        <location filename="../../romalyzer.cpp" line="4270"/>
+        <location filename="../../romalyzer.cpp" line="4320"/>
         <source>no dump</source>
         <translation>kein Dump</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4253"/>
-        <location filename="../../romalyzer.cpp" line="4302"/>
+        <location filename="../../romalyzer.cpp" line="4274"/>
+        <location filename="../../romalyzer.cpp" line="4323"/>
         <source>bad dump</source>
         <translation>Schlechter Dump</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4296"/>
+        <location filename="../../romalyzer.cpp" line="4317"/>
         <source>no / bad dump</source>
         <translation>kein / schlechter Dump</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2270"/>
-        <location filename="../../options.cpp" line="1927"/>
+        <location filename="../../options.cpp" line="1922"/>
         <source>game name</source>
         <translation>Spielname</translation>
     </message>
@@ -17380,13 +17380,13 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2253"/>
-        <location filename="../../options.cpp" line="1910"/>
+        <location filename="../../options.cpp" line="1905"/>
         <source>machine description</source>
         <translation>Maschinen-Beschreibung</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2272"/>
-        <location filename="../../options.cpp" line="1929"/>
+        <location filename="../../options.cpp" line="1924"/>
         <source>machine name</source>
         <translation>Maschinen Name</translation>
     </message>
@@ -17430,121 +17430,121 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Videospieler: XML-Fehler: fataler Fehler in Zeile %1, Spalte %2: %3</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="820"/>
-        <location filename="../../softwarelist.cpp" line="2982"/>
-        <location filename="../../softwarelist.cpp" line="3027"/>
-        <location filename="../../softwarelist.cpp" line="4343"/>
+        <location filename="../../softwarelist.cpp" line="821"/>
+        <location filename="../../softwarelist.cpp" line="2984"/>
+        <location filename="../../softwarelist.cpp" line="3029"/>
+        <location filename="../../softwarelist.cpp" line="4345"/>
         <source>Auto mount</source>
         <translation>Automatisch</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="825"/>
-        <location filename="../../softwarelist.cpp" line="2992"/>
-        <location filename="../../softwarelist.cpp" line="3007"/>
-        <location filename="../../softwarelist.cpp" line="3013"/>
-        <location filename="../../softwarelist.cpp" line="3031"/>
-        <location filename="../../softwarelist.cpp" line="4348"/>
-        <location filename="../../softwarelist.cpp" line="4352"/>
+        <location filename="../../softwarelist.cpp" line="826"/>
+        <location filename="../../softwarelist.cpp" line="2994"/>
+        <location filename="../../softwarelist.cpp" line="3009"/>
+        <location filename="../../softwarelist.cpp" line="3015"/>
+        <location filename="../../softwarelist.cpp" line="3033"/>
+        <location filename="../../softwarelist.cpp" line="4350"/>
+        <location filename="../../softwarelist.cpp" line="4354"/>
         <source>Not mounted</source>
         <translation>Nicht zugeordnet</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="827"/>
-        <location filename="../../softwarelist.cpp" line="2994"/>
-        <location filename="../../softwarelist.cpp" line="3035"/>
-        <location filename="../../softwarelist.cpp" line="4354"/>
+        <location filename="../../softwarelist.cpp" line="828"/>
+        <location filename="../../softwarelist.cpp" line="2996"/>
+        <location filename="../../softwarelist.cpp" line="3037"/>
+        <location filename="../../softwarelist.cpp" line="4356"/>
         <source>Mounted on:</source>
         <translation>Zuordnung:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="819"/>
-        <location filename="../../softwarelist.cpp" line="3000"/>
-        <location filename="../../softwarelist.cpp" line="4342"/>
+        <location filename="../../softwarelist.cpp" line="820"/>
+        <location filename="../../softwarelist.cpp" line="3002"/>
+        <location filename="../../softwarelist.cpp" line="4344"/>
         <source>Don&apos;t mount</source>
         <translation>Nicht zuordnen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3365"/>
+        <location filename="../../softwarelist.cpp" line="3367"/>
         <source>Waiting for data...</source>
         <translation>Warte auf Daten...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4306"/>
         <location filename="../../softwarelist.cpp" line="4308"/>
+        <location filename="../../softwarelist.cpp" line="4310"/>
         <source>Searching</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4320"/>
+        <location filename="../../softwarelist.cpp" line="4322"/>
         <source>Updating</source>
         <translation>Aktualisierung</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4332"/>
+        <location filename="../../softwarelist.cpp" line="4334"/>
         <source>Part:</source>
         <translation>Teil:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="829"/>
-        <location filename="../../softwarelist.cpp" line="4359"/>
+        <location filename="../../softwarelist.cpp" line="830"/>
+        <location filename="../../softwarelist.cpp" line="4361"/>
         <source>No mount device</source>
         <translation>Nicht montierbar</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="830"/>
-        <location filename="../../softwarelist.cpp" line="4360"/>
+        <location filename="../../softwarelist.cpp" line="831"/>
+        <location filename="../../softwarelist.cpp" line="4362"/>
         <source>Unmanaged</source>
         <translation>Nicht verwaltet</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="982"/>
+        <location filename="../../softwarelist.cpp" line="983"/>
         <source>state info for software-list &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</source>
         <translation>Status-Info für Software-Liste &apos;%1&apos;: L:%2 K:%3 B:%4 I:%5 N:%6 U:%7</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3358"/>
+        <location filename="../../softwarelist.cpp" line="3360"/>
         <source>yes</source>
         <translation>ja</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3360"/>
+        <location filename="../../softwarelist.cpp" line="3362"/>
         <source>no</source>
         <translation>nein</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3362"/>
+        <location filename="../../softwarelist.cpp" line="3364"/>
         <source>partially</source>
         <translation>teilweise</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4385"/>
+        <location filename="../../softwarelist.cpp" line="4387"/>
         <source>Data area:</source>
         <translation>Datenbereich:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4388"/>
-        <location filename="../../softwarelist.cpp" line="4400"/>
-        <location filename="../../softwarelist.cpp" line="4414"/>
+        <location filename="../../softwarelist.cpp" line="4390"/>
+        <location filename="../../softwarelist.cpp" line="4402"/>
+        <location filename="../../softwarelist.cpp" line="4416"/>
         <source>Size:</source>
         <translation>Größe:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4397"/>
+        <location filename="../../softwarelist.cpp" line="4399"/>
         <source>Disk area:</source>
         <translation>Diskbereich:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4417"/>
+        <location filename="../../softwarelist.cpp" line="4419"/>
         <source>CRC:</source>
         <translation>CRC:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4432"/>
+        <location filename="../../softwarelist.cpp" line="4434"/>
         <source>SHA1:</source>
         <translation>SHA1:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4441"/>
+        <location filename="../../softwarelist.cpp" line="4443"/>
         <source>Info:</source>
         <translation>Info:</translation>
     </message>
@@ -17751,22 +17751,22 @@ Bist Du sicher, dass Du das tun willst?</translation>
 <context>
     <name>ROMAlyzer</name>
     <message>
-        <location filename="../../romalyzer.cpp" line="3656"/>
+        <location filename="../../romalyzer.cpp" line="3672"/>
         <source>Repairing set &apos;%1&apos; - %2</source>
         <translation>Repariere Set &apos;%1&apos; - %2</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3783"/>
+        <location filename="../../romalyzer.cpp" line="3799"/>
         <source>Fixed by QMC2 v%1 (%2)</source>
         <translation>Korrigiert durch QMC2 v%1 (%2)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3804"/>
+        <location filename="../../romalyzer.cpp" line="3820"/>
         <source>repaired</source>
         <translation>repariert</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="3597"/>
+        <location filename="../../romalyzer.cpp" line="3613"/>
         <source>check-sum wizard: repairing %n bad set(s)</source>
         <translation>
             <numerusform>Prüfsummen-Assistent: repariere %n schlechtes Set</numerusform>
@@ -17774,109 +17774,109 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2206"/>
+        <location filename="../../romalyzer.cpp" line="2218"/>
         <source>software mode</source>
         <translation>Software Modus</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2212"/>
+        <location filename="../../romalyzer.cpp" line="2225"/>
         <source>system mode</source>
         <translation>System Modus</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3603"/>
+        <location filename="../../romalyzer.cpp" line="3619"/>
         <source>check-sum wizard: using %1 file &apos;%2&apos; from &apos;%3&apos; as repro template</source>
         <translation>Prüfsummen-Assistent: verwende %1 Datei &apos;%2&apos; von &apos;%3&apos; als Repro-Vorlage</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3614"/>
+        <location filename="../../romalyzer.cpp" line="3630"/>
         <source>check-sum wizard: FATAL: can&apos;t open ZIP archive &apos;%1&apos; for reading</source>
         <translation>Prüfsummen-Assistent: FATAL: kann ZIP Archiv &apos;%1&apos; nicht zum Lesen öffnen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3620"/>
-        <location filename="../../romalyzer.cpp" line="3626"/>
+        <location filename="../../romalyzer.cpp" line="3636"/>
+        <location filename="../../romalyzer.cpp" line="3642"/>
         <source>check-sum wizard: FATAL: can&apos;t load repro template data from &apos;%1&apos; with expected CRC &apos;%2&apos;</source>
         <translation>Prüfsummen-Assistent: FATAL: kann Repro-Vorlage Daten mit erwartetem CRC &apos;%2&apos; nicht von &apos;%1&apos; laden</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3632"/>
-        <location filename="../../romalyzer.cpp" line="3799"/>
+        <location filename="../../romalyzer.cpp" line="3648"/>
+        <location filename="../../romalyzer.cpp" line="3815"/>
         <source>check-sum wizard: sorry, no support for CHD files yet</source>
         <translation>Prüfsummen-Assistent: sorry, CHD Dateien werden noch nicht unterstützt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3657"/>
+        <location filename="../../romalyzer.cpp" line="3673"/>
         <source>check-sum wizard: repairing %1 file &apos;%2&apos; in &apos;%3&apos; from repro template</source>
         <translation>Prüfsummen-Assistent: repariere %1 Datei &apos;%2&apos; in &apos;%3&apos; aus Repro-Vorlage</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3669"/>
+        <location filename="../../romalyzer.cpp" line="3685"/>
         <source>check-sum wizard: target ZIP exists, loading complete data and structure</source>
         <translation>Prüfsummen-Assistent: das ZIP Ziel existiert bereits, lade Daten und Struktur vollständig</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3672"/>
+        <location filename="../../romalyzer.cpp" line="3688"/>
         <source>check-sum wizard: target ZIP successfully loaded</source>
         <translation>Prüfsummen-Assistent: ZIP Ziel erfolgreich geladen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3677"/>
+        <location filename="../../romalyzer.cpp" line="3693"/>
         <source>check-sum wizard: an entry with the CRC &apos;%1&apos; already exists, recreating the ZIP from scratch to replace the bad file</source>
         <translation>Prüfsummen-Assistent: ein Eintrag mit dem CRC &apos;%1&apos; existiert bereits, erzeuge das ZIP Ziel komplett neu um die schlechte Datei auszutauschen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3682"/>
+        <location filename="../../romalyzer.cpp" line="3698"/>
         <source>check-sum wizard: an entry with the name &apos;%1&apos; already exists, recreating the ZIP from scratch to replace the bad file</source>
         <translation>Prüfsummen-Assistent: ein Eintrag mit dem Namen &apos;%1&apos; existiert bereits, erzeuge das ZIP Ziel komplett neu um die schlechte Datei auszutauschen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3715"/>
+        <location filename="../../romalyzer.cpp" line="3731"/>
         <source>check-sum wizard: no entry with the CRC &apos;%1&apos; or name &apos;%2&apos; was found, adding the missing file to the existing ZIP</source>
         <translation>Prüfsummen-Assistent: kein Eintrag mit dem CRC &apos;%1&apos; oder Namen &apos;%2&apos; gefunden, füge die fehlende Datei dem ZIP Ziel hinzu</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3722"/>
+        <location filename="../../romalyzer.cpp" line="3738"/>
         <source>check-sum wizard: FATAL: failed to load target ZIP, aborting</source>
         <translation>Prüfsummen-Assistent: FATAL: ZIP Ziel kann nicht geladen werden, breche ab</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3727"/>
+        <location filename="../../romalyzer.cpp" line="3743"/>
         <source>check-sum wizard: the target ZIP does not exist, creating a new ZIP with just the missing file</source>
         <translation>Prüfsummen-Assistent: das ZIP Ziel existiert nicht, erzeuge ein neues ZIP, das nur die fehlende Datei enthält</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3777"/>
+        <location filename="../../romalyzer.cpp" line="3793"/>
         <source>check-sum wizard: FATAL: can&apos;t open file &apos;%1&apos; in ZIP archive &apos;%2&apos; for writing</source>
         <translation>Prüfsummen-Assistent: FATAL: kann Datei &apos;%1&apos; in ZIP Archiv &apos;%2&apos; nicht zum Schreiben öffnen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3789"/>
+        <location filename="../../romalyzer.cpp" line="3805"/>
         <source>check-sum wizard: FATAL: can&apos;t open ZIP archive &apos;%1&apos; for writing</source>
         <translation>Prüfsummen-Assistent: FATAL: kann ZIP Archiv &apos;%1&apos; nicht zum Schreiben öffnen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3794"/>
+        <location filename="../../romalyzer.cpp" line="3810"/>
         <source>check-sum wizard: sorry, no support for regular files yet</source>
         <translation>Prüfsummen-Assistent: sorry, herkömmliche Dateien werden noch nicht unterstützt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3806"/>
+        <location filename="../../romalyzer.cpp" line="3822"/>
         <source>check-sum wizard: successfully repaired %1 file &apos;%2&apos; in &apos;%3&apos; from repro template</source>
         <translation>Prüfsummen-Assistent: %1 Datei &apos;%2&apos; in &apos;%3&apos; wurde erfolgreich repariert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3810"/>
+        <location filename="../../romalyzer.cpp" line="3826"/>
         <source>check-sum wizard: FATAL: failed to repair %1 file &apos;%2&apos; in &apos;%3&apos; from repro template</source>
         <translation>Prüfsummen-Assistent: FATAL: %1 Datei &apos;%2&apos; in &apos;%3&apos; konnte nicht repariert werden</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3820"/>
+        <location filename="../../romalyzer.cpp" line="3836"/>
         <source>check-sum wizard: FATAL: can&apos;t find any good set</source>
         <translation>Prüfsummen-Assistent: FATAL: kann keine guten Sets finden</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="3822"/>
+        <location filename="../../romalyzer.cpp" line="3838"/>
         <source>check-sum wizard: done (repairing %n bad set(s))</source>
         <translation>
             <numerusform>Prüfsummen-Assistent: fertig (repariere %n schlechtes Set)</numerusform>
@@ -17884,54 +17884,54 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3894"/>
+        <location filename="../../romalyzer.cpp" line="3910"/>
         <source>Choose path to be added to scan-list</source>
         <translation>Zusätzlichen Pfad für Scan-Liste auwählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3938"/>
+        <location filename="../../romalyzer.cpp" line="3954"/>
         <source>Choose check-sum database file</source>
         <translation>Prüfsummen Datenbank Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4030"/>
+        <location filename="../../romalyzer.cpp" line="4046"/>
         <source>Close log</source>
         <translation>Log schließen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4053"/>
+        <location filename="../../romalyzer.cpp" line="4069"/>
         <source>Stop scanner</source>
         <translation>Scanner stoppen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4089"/>
+        <location filename="../../romalyzer.cpp" line="4105"/>
         <source>Resume</source>
         <translation>Fortsetzen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4114"/>
+        <location filename="../../romalyzer.cpp" line="4128"/>
         <source>scanning</source>
         <translation>scannt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4121"/>
-        <location filename="../../romalyzer.cpp" line="4123"/>
-        <location filename="../../romalyzer.cpp" line="4127"/>
+        <location filename="../../romalyzer.cpp" line="4139"/>
+        <location filename="../../romalyzer.cpp" line="4141"/>
+        <location filename="../../romalyzer.cpp" line="4145"/>
         <source>Objects in database</source>
         <translation>Objekte in Datenbank</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4121"/>
+        <location filename="../../romalyzer.cpp" line="4139"/>
         <source>s</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4130"/>
+        <location filename="../../romalyzer.cpp" line="4148"/>
         <source>Database size</source>
         <translation>Datenbank Größe</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="4135"/>
+        <location filename="../../romalyzer.cpp" line="4153"/>
         <source>%n day(s)</source>
         <translation>
             <numerusform>%n Tag</numerusform>
@@ -17939,7 +17939,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="4139"/>
+        <location filename="../../romalyzer.cpp" line="4157"/>
         <source>%n second(s)</source>
         <translation>
             <numerusform>%n Sekunde</numerusform>
@@ -17947,7 +17947,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="4145"/>
+        <location filename="../../romalyzer.cpp" line="4163"/>
         <source>%n hour(s)</source>
         <translation>
             <numerusform>%n Stunde</numerusform>
@@ -17955,7 +17955,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="4147"/>
+        <location filename="../../romalyzer.cpp" line="4165"/>
         <source>%n minute(s)</source>
         <translation>
             <numerusform>%n Minute</numerusform>
@@ -17963,766 +17963,777 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4150"/>
+        <location filename="../../romalyzer.cpp" line="4168"/>
         <source>Age of stored data</source>
         <translation>Alter gespeicherter Daten</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4151"/>
+        <location filename="../../romalyzer.cpp" line="4169"/>
         <source>Pending updates</source>
         <translation>Ausstehende Aktualisierungen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="4152"/>
+        <location filename="../../romalyzer.cpp" line="4171"/>
+        <location filename="../../romalyzer.cpp" line="4173"/>
         <source>Scanner status</source>
         <translation>Scanner Status</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2377"/>
+        <location filename="../../romalyzer.cpp" line="2391"/>
         <source>Choose CHD manager executable file</source>
         <translation>Ausführbare CHD Manager Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2377"/>
-        <location filename="../../romalyzer.cpp" line="2980"/>
-        <location filename="../../romalyzer.cpp" line="3012"/>
-        <location filename="../../romalyzer.cpp" line="3870"/>
-        <location filename="../../romalyzer.cpp" line="3938"/>
+        <location filename="../../romalyzer.cpp" line="2391"/>
+        <location filename="../../romalyzer.cpp" line="2996"/>
+        <location filename="../../romalyzer.cpp" line="3028"/>
+        <location filename="../../romalyzer.cpp" line="3886"/>
+        <location filename="../../romalyzer.cpp" line="3954"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2389"/>
+        <location filename="../../romalyzer.cpp" line="2403"/>
         <source>Choose temporary working directory</source>
         <translation>Temporäres Arbeitsverzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2428"/>
+        <location filename="../../romalyzer.cpp" line="2442"/>
         <source>CHD manager: external process started</source>
         <translation>CHD Manager: externer Prozess gestartet</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1833"/>
-        <location filename="../../romalyzer.cpp" line="2439"/>
-        <location filename="../../romalyzer.cpp" line="2710"/>
+        <location filename="../../romalyzer.cpp" line="1845"/>
+        <location filename="../../romalyzer.cpp" line="2453"/>
+        <location filename="../../romalyzer.cpp" line="2725"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="956"/>
+        <location filename="../../romalyzer.cpp" line="967"/>
         <source>Calculated check-sums</source>
         <translation>Berechnete Prüfsummen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1099"/>
-        <location filename="../../romalyzer.cpp" line="1104"/>
-        <location filename="../../romalyzer.cpp" line="1109"/>
-        <location filename="../../romalyzer.cpp" line="1114"/>
-        <location filename="../../romalyzer.cpp" line="2098"/>
-        <location filename="../../romalyzer.cpp" line="2104"/>
+        <location filename="../../romalyzer.cpp" line="1110"/>
+        <location filename="../../romalyzer.cpp" line="1115"/>
+        <location filename="../../romalyzer.cpp" line="1120"/>
+        <location filename="../../romalyzer.cpp" line="1125"/>
         <location filename="../../romalyzer.cpp" line="2110"/>
-        <location filename="../../romalyzer.cpp" line="2115"/>
+        <location filename="../../romalyzer.cpp" line="2116"/>
+        <location filename="../../romalyzer.cpp" line="2122"/>
+        <location filename="../../romalyzer.cpp" line="2127"/>
         <source>check-sum database</source>
         <translation>Prüfsummen Datenbank</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1099"/>
-        <location filename="../../romalyzer.cpp" line="1104"/>
-        <location filename="../../romalyzer.cpp" line="2098"/>
-        <location filename="../../romalyzer.cpp" line="2104"/>
+        <location filename="../../romalyzer.cpp" line="1110"/>
+        <location filename="../../romalyzer.cpp" line="1115"/>
+        <location filename="../../romalyzer.cpp" line="2110"/>
+        <location filename="../../romalyzer.cpp" line="2116"/>
         <source>using member &apos;%1&apos; from archive &apos;%2&apos; with SHA-1 &apos;%3&apos; and CRC &apos;%4&apos; as &apos;%5&apos;</source>
         <translation>Verwende Datei &apos;%1&apos; aus Archiv &apos;%2&apos; mit SHA-1 &apos;%3&apos; und CRC &apos;%4&apos; als &apos;%5&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1109"/>
-        <location filename="../../romalyzer.cpp" line="2110"/>
+        <location filename="../../romalyzer.cpp" line="1120"/>
+        <location filename="../../romalyzer.cpp" line="2122"/>
         <source>using CHD &apos;%1&apos; with SHA-1 &apos;%2&apos; as &apos;%3&apos;</source>
         <translation>Verwende CHD &apos;%1&apos; mit SHA-1 &apos;%2&apos; als &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1114"/>
-        <location filename="../../romalyzer.cpp" line="2115"/>
+        <location filename="../../romalyzer.cpp" line="1125"/>
+        <location filename="../../romalyzer.cpp" line="2127"/>
         <source>using file &apos;%1&apos; with SHA-1 &apos;%2&apos; and CRC &apos;%3&apos; as &apos;%4&apos;</source>
         <translation>Verwende Datei &apos;%1&apos; mit SHA-1 &apos;%2&apos; und CRC &apos;%3&apos; als &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2156"/>
-        <location filename="../../romalyzer.cpp" line="2161"/>
-        <location filename="../../romalyzer.cpp" line="2166"/>
-        <location filename="../../romalyzer.cpp" line="2175"/>
-        <location filename="../../romalyzer.cpp" line="2182"/>
+        <location filename="../../romalyzer.cpp" line="2168"/>
+        <location filename="../../romalyzer.cpp" line="2173"/>
+        <location filename="../../romalyzer.cpp" line="2178"/>
         <location filename="../../romalyzer.cpp" line="2187"/>
-        <location filename="../../romalyzer.cpp" line="2192"/>
-        <location filename="../../romalyzer.cpp" line="2196"/>
+        <location filename="../../romalyzer.cpp" line="2194"/>
+        <location filename="../../romalyzer.cpp" line="2199"/>
+        <location filename="../../romalyzer.cpp" line="2204"/>
+        <location filename="../../romalyzer.cpp" line="2208"/>
         <source>backup</source>
         <translation>Backup</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2156"/>
+        <location filename="../../romalyzer.cpp" line="2168"/>
         <source>FATAL: target path &apos;%1&apos; cannot be created</source>
         <translation>FATAL: Ziel Pfad &apos;%1&apos; kann nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2161"/>
+        <location filename="../../romalyzer.cpp" line="2173"/>
         <source>FATAL: source file &apos;%1&apos; cannot be opened for reading</source>
         <translation>FATAL: Quell Datei &apos;%1&apos; kann nicht zum Lesen geöffnet werden</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2166"/>
+        <location filename="../../romalyzer.cpp" line="2178"/>
         <source>creating backup copy of &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>Erstelle Backup Kopie von &apos;%1&apos; als &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2175"/>
+        <location filename="../../romalyzer.cpp" line="2187"/>
         <source>FATAL: I/O error while writing to &apos;%1&apos;</source>
         <translation>FATAL: I/O Fehler beim Schreiben von &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2182"/>
+        <location filename="../../romalyzer.cpp" line="2194"/>
         <source>done (creating backup copy of &apos;%1&apos; as &apos;%2&apos;)</source>
         <translation>Fertig (Erstelle Backup Kopie von &apos;%1&apos; als &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2187"/>
+        <location filename="../../romalyzer.cpp" line="2199"/>
         <source>FATAL: destination file &apos;%1&apos; cannot be opened for writing</source>
         <translation>FATAL: Ziel Datei &apos;%1&apos; kann nicht zum Schreiben geöffnet werden</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2192"/>
+        <location filename="../../romalyzer.cpp" line="2204"/>
         <source>FATAL: backup folder &apos;%1&apos; isn&apos;t writable</source>
         <translation>FATAL: Backup Verzeichnis &apos;%1&apos; kann nicht beschrieben werden</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2196"/>
+        <location filename="../../romalyzer.cpp" line="2208"/>
         <source>FATAL: backup folder &apos;%1&apos; doesn&apos;t exist</source>
         <translation>FATAL: Backup Verzeichnis &apos;%1&apos; existiert nicht</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2365"/>
+        <location filename="../../romalyzer.cpp" line="2379"/>
         <source>Choose backup folder</source>
         <translation>Backup Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2442"/>
+        <location filename="../../romalyzer.cpp" line="2456"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2445"/>
+        <location filename="../../romalyzer.cpp" line="2459"/>
         <source>crashed</source>
         <translation>abgestürzt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2448"/>
+        <location filename="../../romalyzer.cpp" line="2462"/>
         <source>CHD manager: external process finished (exit code = %1, exit status = %2)</source>
         <translation>CHD Manager: externer Prozess beendet (Exit-Code = %1, Exit-Status = %2)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2464"/>
+        <location filename="../../romalyzer.cpp" line="2478"/>
         <source>CHD manager: stdout: %1</source>
         <translation>CHD Manager: stdout: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2486"/>
+        <location filename="../../romalyzer.cpp" line="2500"/>
         <source>CHD manager: stderr: %1</source>
         <translation>CHD Manager: stderr: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2528"/>
+        <location filename="../../romalyzer.cpp" line="2542"/>
         <source>CHD manager: failed to start</source>
         <translation>CHD Manager: Starten fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2532"/>
+        <location filename="../../romalyzer.cpp" line="2546"/>
         <source>CHD manager: crashed</source>
         <translation>CHD Manager: abgestürzt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2536"/>
+        <location filename="../../romalyzer.cpp" line="2550"/>
         <source>CHD manager: write error</source>
         <translation>CHD Manager: Schreibfehler</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2540"/>
+        <location filename="../../romalyzer.cpp" line="2554"/>
         <source>CHD manager: read error</source>
         <translation>CHD Manager: Lesefehler</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2544"/>
+        <location filename="../../romalyzer.cpp" line="2558"/>
         <source>CHD manager: unknown error %1</source>
         <translation>CHD Manager: unbekannter Fehler %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3710"/>
-        <location filename="../../romalyzer.cpp" line="3717"/>
+        <location filename="../../romalyzer.cpp" line="3726"/>
+        <location filename="../../romalyzer.cpp" line="3733"/>
         <source>check-sum wizard: FATAL: backup creation failed, aborting</source>
         <translation>Prüfsummen-Assistent: FATAL: Backup kann nicht erstellt werden, breche ab</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="15"/>
-        <location filename="../../romalyzer.cpp" line="2206"/>
-        <location filename="../../romalyzer.cpp" line="2212"/>
+        <location filename="../../romalyzer.cpp" line="2218"/>
+        <location filename="../../romalyzer.cpp" line="2225"/>
         <source>ROMAlyzer</source>
         <translation>ROMAlyzer</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="65"/>
-        <location filename="../../romalyzer.cpp" line="1290"/>
+        <location filename="../../romalyzer.ui" line="81"/>
+        <location filename="../../romalyzer.cpp" line="1301"/>
         <source>&amp;Analyze</source>
         <translation>&amp;Analysieren</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="123"/>
+        <location filename="../../romalyzer.ui" line="139"/>
         <source>Analysis report</source>
         <translation>Analyse-Bericht</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="168"/>
+        <location filename="../../romalyzer.ui" line="184"/>
         <source>SHA1</source>
         <translation>SHA1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="173"/>
-        <location filename="../../romalyzer.ui" line="715"/>
-        <location filename="../../romalyzer.cpp" line="1077"/>
+        <location filename="../../romalyzer.ui" line="189"/>
+        <location filename="../../romalyzer.ui" line="731"/>
+        <location filename="../../romalyzer.cpp" line="1088"/>
         <source>MD5</source>
         <translation>MD5</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1075"/>
+        <location filename="../../romalyzer.ui" line="1091"/>
         <source>Temporary directory used by the CHD manager (make sure it has enough room to store the biggest CHDs)</source>
         <translation>Temporäres Arbeitsverzeichnis des CHD Managers (stelle sicher, dass genug Platz vorhanden ist, um die größten CHDs zwischen zu speichern)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1088"/>
+        <location filename="../../romalyzer.ui" line="1104"/>
         <source>Browse temporary directory used by the CHD manager</source>
         <translation>Temporäres Arbeitsverzeichnis des CHD Managers auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="663"/>
+        <location filename="../../romalyzer.ui" line="679"/>
         <source>General analysis flags and limits</source>
         <translation>Allgemeine Analyse-Einstellungen und Obergrenzen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="778"/>
+        <location filename="../../romalyzer.ui" line="794"/>
         <source>File size</source>
         <translation>Dateigröße</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="725"/>
+        <location filename="../../romalyzer.ui" line="741"/>
         <source>Maximum size (in MB) of files to be loaded, files are skipped when they are bigger than that (0 = no limit)</source>
         <translation>Maximale Größe (in MB) zu ladender Dateien, größere Dateien werden übersprungen (0 = keine Beschränkung)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="677"/>
+        <location filename="../../romalyzer.ui" line="693"/>
         <source>Log size</source>
         <translation>Log Größe</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="943"/>
+        <location filename="../../romalyzer.ui" line="959"/>
         <source>Reports</source>
         <translation>Berichte</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="750"/>
+        <location filename="../../romalyzer.ui" line="766"/>
         <source>Maximum number of reported sets held in memory (0 = no limit)</source>
         <translation>Maximale Anzahl im Hauptspeicher gehaltener Reports (0 = keine Beschränkung)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="345"/>
+        <location filename="../../romalyzer.ui" line="361"/>
         <source>Enable set rewriter</source>
         <translation>Neuerzeugung der Sets aktivieren</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="383"/>
+        <location filename="../../romalyzer.ui" line="399"/>
         <source>Output path for the set rewriter (WARNING: existing files will be overwritten!) -- you should NEVER use one of your primary ROM paths here!!!</source>
         <translation>Ausgabepfad für neu geschriebene Sets (WARNUNG: existierende Dateien werden überschrieben!) -- Du solltest hier NIEMALS eines Deiner primären ROM Verzeichnisse verwenden!!!</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="403"/>
+        <location filename="../../romalyzer.ui" line="419"/>
         <source>Browse output path for the set rewriter</source>
         <translation>Ausgabepfad für neu erzeugte Sets auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="542"/>
+        <location filename="../../romalyzer.ui" line="558"/>
         <source>Rewrite sets while analyzing them (otherwise sets will only be rewritten on demand / through the context menu)</source>
         <translation>Sets während der Analyse neu schreiben (andernfalls werden Sets nur nach Aufforderung / durch Auswahl im Kontext-Menü neu geschrieben)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="440"/>
+        <location filename="../../romalyzer.ui" line="456"/>
         <source>Output directory</source>
         <translation>Ausgabeverzeichnis</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="565"/>
+        <location filename="../../romalyzer.ui" line="581"/>
         <source>Create sets that do not need parent sets (otherwise create merged sets, which is recommended)</source>
         <translation>Erzeuge Sets, die von keinem anderen Set abhängen (andernfalls werden zusammengefügte Sets erzeugt, was die empfohlene Einstellung ist) </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="587"/>
+        <location filename="../../romalyzer.ui" line="603"/>
         <source>Produce ZIP archived sets (recommended)</source>
         <translation>Sets in ZIP Archiven erzeugen (empfohlen)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="606"/>
+        <location filename="../../romalyzer.ui" line="622"/>
         <source>Level </source>
         <translation>Stufe </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="633"/>
+        <location filename="../../romalyzer.ui" line="649"/>
         <source>Unique CRCs</source>
         <translation>Einmalige CRCs</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="423"/>
+        <location filename="../../romalyzer.ui" line="439"/>
         <source>Browse additional ROM path</source>
         <translation>Zusätzlichen ROM Pfadi auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1604"/>
+        <location filename="../../romalyzer.ui" line="1620"/>
         <source>Search</source>
         <translation>Suchen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1691"/>
+        <location filename="../../romalyzer.ui" line="1707"/>
         <source>ID</source>
         <translation>ID</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1701"/>
+        <location filename="../../romalyzer.ui" line="1717"/>
         <source>Status</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1711"/>
+        <location filename="../../romalyzer.ui" line="1727"/>
         <source>Path</source>
         <translation>Pfad</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1643"/>
+        <location filename="../../romalyzer.ui" line="1659"/>
         <source>Repair selected &apos;bad&apos; sets using the file from the first selected &apos;good&apos; set (at least 1 good and 1 bad set must be selected)</source>
         <translation>Ausgewählte &apos;schlechte&apos; Sets mit Hilfe des ersten ausgewählten &apos;guten&apos; Sets reparieren (mindestens 1 gutes und 1 schlechtes Set müssen selektiert sein)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1278"/>
+        <location filename="../../romalyzer.ui" line="1294"/>
         <source>Open / close the scanner log window</source>
         <translation>Scanner Log Fenster öffnen / schließen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1281"/>
-        <location filename="../../romalyzer.cpp" line="4039"/>
+        <location filename="../../romalyzer.ui" line="1297"/>
+        <location filename="../../romalyzer.cpp" line="4055"/>
         <source>Open log</source>
         <translation>Log öffnen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1488"/>
+        <location filename="../../romalyzer.ui" line="1504"/>
         <source>If enabled, only files that were changed since / ignored in the last scan will be scanned again, updating the database - otherwise the database will be reinitialized</source>
         <translation>Wenn aktiviert werden nur die Dateien neu gescannt, welche sich seit dem letzten Scannen geändert haben oder ignoriert wurden - andernfalls wird die Datenbank neu initialisiert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1646"/>
+        <location filename="../../romalyzer.ui" line="1662"/>
         <source>Repair bad sets</source>
         <translation>Schlechte Sets reparieren</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1623"/>
+        <location filename="../../romalyzer.ui" line="1639"/>
         <source>Analyze all selected sets in order to qualify them</source>
         <translation>Alle ausgewählten Sets für Qualifikation überprüfen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="29"/>
+        <location filename="../../romalyzer.ui" line="45"/>
         <source>Enter short names / IDs of sets to be analyzed - wildcards allowed, use space as delimiter for multiple sets or search patterns</source>
         <translation>Kurznamen / IDs der zu analysierenden Sets angeben - Wildcards sind erlaubt, Leerzeichen zur Trennung mehrerer Sets oder Such-Zeichenketten verwenden</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="32"/>
+        <location filename="../../romalyzer.ui" line="48"/>
         <source>Specify sets to analyze</source>
         <translation>Sets zur Analyse angeben</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="45"/>
+        <location filename="../../romalyzer.ui" line="61"/>
         <source>Tools menu</source>
         <translation>Werkzeug Menü</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="269"/>
+        <location filename="../../romalyzer.ui" line="285"/>
         <source>Enter search string</source>
         <translation>Such-Zeichenkette eingeben</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="640"/>
+        <location filename="../../romalyzer.ui" line="656"/>
         <source>Produce sets in individual sub-directories (not recommended)</source>
         <translation>Sets in individuellen Unterverzeichnissen erzeugen (nicht empfohlen)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="370"/>
-        <location filename="../../romalyzer.ui" line="705"/>
-        <location filename="../../romalyzer.ui" line="1116"/>
+        <location filename="../../romalyzer.ui" line="386"/>
+        <location filename="../../romalyzer.ui" line="721"/>
+        <location filename="../../romalyzer.ui" line="1132"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Flags&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Schalter&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="843"/>
+        <location filename="../../romalyzer.ui" line="859"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Expansion&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Expansion&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="863"/>
+        <location filename="../../romalyzer.ui" line="879"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Hashes&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Prüfsummen&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="691"/>
+        <location filename="../../romalyzer.ui" line="707"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Limits&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Grenzen&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="873"/>
+        <location filename="../../romalyzer.ui" line="889"/>
         <source>Append</source>
         <translation>Anhängen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="883"/>
+        <location filename="../../romalyzer.ui" line="899"/>
         <source>File info</source>
         <translation>Datei Info</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="830"/>
+        <location filename="../../romalyzer.ui" line="846"/>
         <source>Calculate SHA-1 hash</source>
         <translation>SHA-1 Prüfsumme berechnen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="833"/>
-        <location filename="../../romalyzer.ui" line="1550"/>
-        <location filename="../../romalyzer.cpp" line="1039"/>
-        <location filename="../../romalyzer.cpp" line="1157"/>
-        <location filename="../../romalyzer.cpp" line="1833"/>
+        <location filename="../../romalyzer.ui" line="849"/>
+        <location filename="../../romalyzer.ui" line="1566"/>
+        <location filename="../../romalyzer.cpp" line="1050"/>
+        <location filename="../../romalyzer.cpp" line="1168"/>
+        <location filename="../../romalyzer.cpp" line="1845"/>
         <source>SHA-1</source>
         <translation>SHA-1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="913"/>
+        <location filename="../../romalyzer.ui" line="929"/>
         <source>Scroll</source>
         <translation>Scrollen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="856"/>
+        <location filename="../../romalyzer.ui" line="872"/>
         <source>Check-sums</source>
         <translation>Prüfsummen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="893"/>
-        <location filename="../../romalyzer.ui" line="1555"/>
+        <location filename="../../romalyzer.ui" line="909"/>
+        <location filename="../../romalyzer.ui" line="1571"/>
         <source>CRC-32</source>
         <translation>CRC-32</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="795"/>
+        <location filename="../../romalyzer.ui" line="811"/>
         <source>Select</source>
         <translation>Auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1532"/>
+        <location filename="../../romalyzer.ui" line="1548"/>
         <source>Check-sum wizard</source>
         <translation>Prüfsummen-Assistent</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1626"/>
+        <location filename="../../romalyzer.ui" line="1642"/>
         <source>Analyze selected sets</source>
         <translation>Ausgewählte Sets prüfen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1696"/>
+        <location filename="../../romalyzer.ui" line="1712"/>
         <source>File name</source>
         <translation>Dateiname</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1721"/>
+        <location filename="../../romalyzer.ui" line="1737"/>
         <source>Level of automation</source>
         <translation>Automatisierungsstufe</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1734"/>
+        <location filename="../../romalyzer.ui" line="1750"/>
         <source>Choose the level of automated wizard operations</source>
         <translation>Automatisierungsstufe der Wizard Operationen auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1738"/>
+        <location filename="../../romalyzer.ui" line="1754"/>
         <source>Do nothing automatically</source>
         <translation>Nichts automatisch durchführen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1743"/>
+        <location filename="../../romalyzer.ui" line="1759"/>
         <source>Automatically select matches</source>
         <translation>Automatische Selektion der Treffer</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1748"/>
+        <location filename="../../romalyzer.ui" line="1764"/>
         <source>Automatically select matches and analyze sets</source>
         <translation>Automatische Selektion der Treffer und Set-Analyse</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1753"/>
+        <location filename="../../romalyzer.ui" line="1769"/>
         <source>Automatically select matches, analyze sets and repair bad ones</source>
         <translation>Automatische Selektion der Treffer, Set-Analyse und Reparatur der defekten Sets</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1772"/>
+        <location filename="../../romalyzer.ui" line="1788"/>
         <source>Close ROMAlyzer</source>
         <translation>ROMAlyzer schließen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1775"/>
+        <location filename="../../romalyzer.ui" line="1791"/>
         <source>&amp;Close</source>
         <translation>S&amp;chließen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="870"/>
+        <location filename="../../romalyzer.ui" line="886"/>
         <source>If set, analysis output is appended (otherwise the report is cleared before the analysis)</source>
         <translation>Wenn gesetzt, wird die Ausgabe der Analyse angehängt (andernfalls wird der Bericht vor der Analyse gelöscht)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="558"/>
+        <location filename="../../romalyzer.ui" line="574"/>
         <source>Good dumps only</source>
         <translation>Nur gute Dumps</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="466"/>
+        <location filename="../../romalyzer.ui" line="482"/>
         <source>Specify an additional (source) ROM path used when the set rewriter is active</source>
         <translation>Angabe eines zusätzlichen (Quell) ROM Pfades, der bei aktivierter Set Neuerzeugung verwendet wird</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="356"/>
-        <location filename="../../romalyzer.ui" line="1168"/>
+        <location filename="../../romalyzer.ui" line="29"/>
+        <source>Specify software-lists to be analyzed - wildcards allowed, use space as delimiter for multiple software-lists or search patterns</source>
+        <translation>Namen der zu analysierenden Software-Listen angeben - Wildcards sind erlaubt, Leerzeichen zur Trennung mehrerer Software-Listen oder Such-Zeichenketten verwenden</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="32"/>
+        <source>Specify software-lists to analyze</source>
+        <translation>Software-Listen zur Analyse angeben</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="372"/>
+        <location filename="../../romalyzer.ui" line="1184"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Paths&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Pfade&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="447"/>
+        <location filename="../../romalyzer.ui" line="463"/>
         <source>Use the following additional ROM path</source>
         <translation>Verwendung des folgenden zusätzlichen ROM Pfades aktivieren</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="450"/>
+        <location filename="../../romalyzer.ui" line="466"/>
         <source>Addl. ROM path</source>
         <translation>Zus. ROM Pfad</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="473"/>
+        <location filename="../../romalyzer.ui" line="489"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Reproduction&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Reproduktion&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="510"/>
+        <location filename="../../romalyzer.ui" line="526"/>
         <source>Opens the &apos;ROM Collection Rebuilder&apos; dialog (requires the check-sum database)</source>
         <translation>Öffnet den Dialog zur Neu-Erzeugung der ROM Sammlung</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="513"/>
+        <location filename="../../romalyzer.ui" line="529"/>
         <source>Rebuild ROM collection...</source>
         <translation>ROM Sammlung neu erzeugen...</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="555"/>
+        <location filename="../../romalyzer.ui" line="571"/>
         <source>Automatically rewrite sets only when all their dumps are &apos;good&apos;</source>
         <translation>Sets nur dann automatisch neu schreiben, wenn alle Dumps in Ordnung sind</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="603"/>
+        <location filename="../../romalyzer.ui" line="619"/>
         <source>Default</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="853"/>
+        <location filename="../../romalyzer.ui" line="869"/>
         <source>Automatically expand calculated check-sums</source>
         <translation>Berechnete Prüfsummen automatisch expandieren</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="890"/>
+        <location filename="../../romalyzer.ui" line="906"/>
         <source>Calculate CRC-32 check-sum</source>
         <translation>CRC-32 Prüfsumme berechnen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="959"/>
+        <location filename="../../romalyzer.ui" line="975"/>
         <source>Create backups whenever modifying / overwriting files by copying them to the specified folder</source>
         <translation>Erstellt Backup Kopien im angegebenen Verzeichnis wenn Dateien modifiziert / überschrieben werden</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="962"/>
+        <location filename="../../romalyzer.ui" line="978"/>
         <source>Create backups in this folder</source>
         <translation>Erstelle Backups in diesem Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="978"/>
+        <location filename="../../romalyzer.ui" line="994"/>
         <source>Backup folder (write)</source>
         <translation>Backup Verzeichnis (schreiben)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="981"/>
+        <location filename="../../romalyzer.ui" line="997"/>
         <source>Specify backup folder</source>
         <translation>Backup Verzeichnis angeben</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="997"/>
+        <location filename="../../romalyzer.ui" line="1013"/>
         <source>Browse the backup folder</source>
         <translation>Backup Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1010"/>
+        <location filename="../../romalyzer.ui" line="1026"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Backup settings&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Backup Einstellungen&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1186"/>
+        <location filename="../../romalyzer.ui" line="1202"/>
         <source>Enable check-sum database</source>
         <translation>Prüfsummen Datenbank aktivieren</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1409"/>
+        <location filename="../../romalyzer.ui" line="1425"/>
         <source>List of scanned paths</source>
         <translation>Liste zu scannender Pfade</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1427"/>
+        <location filename="../../romalyzer.ui" line="1443"/>
         <source>Add a path</source>
         <translation>Einen Pfad hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1454"/>
+        <location filename="../../romalyzer.ui" line="1470"/>
         <source>Remove selected paths</source>
         <translation>Ausgewählte Pfade entfernen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1251"/>
+        <location filename="../../romalyzer.ui" line="1267"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Scanned paths&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Zu scannende Pfade&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1265"/>
+        <location filename="../../romalyzer.ui" line="1281"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Scanner control&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Scanner Steuerung&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1215"/>
+        <location filename="../../romalyzer.ui" line="1231"/>
         <source>Start / stop scanner</source>
         <translation>Scanner starten / stoppen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1218"/>
-        <location filename="../../romalyzer.cpp" line="4072"/>
+        <location filename="../../romalyzer.ui" line="1234"/>
+        <location filename="../../romalyzer.cpp" line="4088"/>
         <source>Start scanner</source>
         <translation>Scanner starten</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1301"/>
+        <location filename="../../romalyzer.ui" line="1317"/>
         <source>Database / scanner status</source>
         <translation>Datenbank / Scanner Status</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1332"/>
+        <location filename="../../romalyzer.ui" line="1348"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1360"/>
+        <location filename="../../romalyzer.ui" line="1376"/>
         <source>Path to the check-sum database file</source>
         <translation>Pfad zur Prüfsummen Datenbank Datei</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1373"/>
+        <location filename="../../romalyzer.ui" line="1389"/>
         <source>Browse path to the check-sum database file</source>
         <translation>Datei für Prüfsummen Datenbank auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1393"/>
+        <location filename="../../romalyzer.ui" line="1409"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Database path&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Datenbank Pfad&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1232"/>
+        <location filename="../../romalyzer.ui" line="1248"/>
         <source>Pause / resume scanner</source>
         <translation>Scannen pausieren / fortsetzen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1235"/>
-        <location filename="../../romalyzer.cpp" line="4054"/>
-        <location filename="../../romalyzer.cpp" line="4099"/>
+        <location filename="../../romalyzer.ui" line="1251"/>
+        <location filename="../../romalyzer.cpp" line="4070"/>
+        <location filename="../../romalyzer.cpp" line="4115"/>
         <source>Pause</source>
         <translation>Pausieren</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1491"/>
+        <location filename="../../romalyzer.ui" line="1507"/>
         <source>Scan incrementally</source>
         <translation>Inkrementelles Scannen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1569"/>
+        <location filename="../../romalyzer.ui" line="1585"/>
         <source>Check-sum to be searched</source>
         <translation>Zu suchende Prüfsumme</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1572"/>
+        <location filename="../../romalyzer.ui" line="1588"/>
         <source>Enter check-sum</source>
         <translation>Prüfsumme eingeben</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1601"/>
+        <location filename="../../romalyzer.ui" line="1617"/>
         <source>Search for the check-sum now</source>
         <translation>Nach der Prüfsumme jetzt suchen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1666"/>
+        <location filename="../../romalyzer.ui" line="1682"/>
         <source>Search results for the current check-sum</source>
         <translation>Suchergebnis für die aktuelle Prüfsumme</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1546"/>
+        <location filename="../../romalyzer.ui" line="1562"/>
         <source>Select the check-sum type</source>
         <translation>Prüfsummen-Typ auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1585"/>
+        <location filename="../../romalyzer.ui" line="1601"/>
         <source>Indicates if the check-sum is available in the database (green) or not (red)</source>
         <translation>Zeigt an, ob die gesuchte Prüfsumme in der Datenbank enthalten ist (grün) oder nicht (rot)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1795"/>
+        <location filename="../../romalyzer.ui" line="1811"/>
         <source>Current ROMAlyzer status</source>
         <translation>Aktueller ROMAlyzer Status</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1798"/>
-        <location filename="../../romalyzer.cpp" line="711"/>
-        <location filename="../../romalyzer.cpp" line="1300"/>
-        <location filename="../../romalyzer.cpp" line="2719"/>
-        <location filename="../../romalyzer.cpp" line="3133"/>
-        <location filename="../../romalyzer.cpp" line="3816"/>
+        <location filename="../../romalyzer.ui" line="1814"/>
+        <location filename="../../romalyzer.cpp" line="722"/>
+        <location filename="../../romalyzer.cpp" line="1312"/>
+        <location filename="../../romalyzer.cpp" line="2734"/>
+        <location filename="../../romalyzer.cpp" line="3149"/>
+        <location filename="../../romalyzer.cpp" line="3832"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1814"/>
+        <location filename="../../romalyzer.ui" line="1830"/>
         <source>Analysis progress indicator</source>
         <translation>Fortschrittsanzeige für Analyse</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="143"/>
-        <location filename="../../romalyzer.ui" line="1706"/>
+        <location filename="../../romalyzer.ui" line="159"/>
+        <location filename="../../romalyzer.ui" line="1722"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="108"/>
+        <location filename="../../romalyzer.ui" line="124"/>
         <source>Report</source>
         <translation>Report</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="182"/>
+        <location filename="../../romalyzer.ui" line="198"/>
         <source>Log</source>
         <translation>Log</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="282"/>
+        <location filename="../../romalyzer.ui" line="298"/>
         <source>Analysis log</source>
         <translation>Analyse Log</translation>
     </message>
@@ -18732,7 +18743,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Bitte warte bis die Spieleliste aktualisiert wurde und versuche es dann erneut</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="658"/>
+        <location filename="../../romalyzer.cpp" line="668"/>
         <source>&amp;Stop</source>
         <translation>&amp;Anhalten</translation>
     </message>
@@ -18747,87 +18758,87 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Beginne Analyse</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="668"/>
+        <location filename="../../romalyzer.cpp" line="679"/>
         <source>analysis started</source>
         <translation>Analyse gestarted</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1303"/>
+        <location filename="../../romalyzer.cpp" line="1315"/>
         <source>analysis ended</source>
         <translation>Analyse beendet</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="766"/>
+        <location filename="../../romalyzer.cpp" line="777"/>
         <source>analyzing &apos;%1&apos;</source>
         <translation>Analysiere &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="768"/>
+        <location filename="../../romalyzer.cpp" line="779"/>
         <source>Analyzing &apos;%1&apos;</source>
         <translation>Analysiere &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1284"/>
+        <location filename="../../romalyzer.cpp" line="1295"/>
         <source>done (analyzing &apos;%1&apos;)</source>
         <translation>Fertig (Analysiere &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="779"/>
+        <location filename="../../romalyzer.cpp" line="790"/>
         <source>parsing XML data for &apos;%1&apos;</source>
         <translation>Verarbeite XML Daten für &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="786"/>
+        <location filename="../../romalyzer.cpp" line="797"/>
         <source>done (parsing XML data for &apos;%1&apos;)</source>
         <translation>Fertig (Verarbeite XML Daten für &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="788"/>
+        <location filename="../../romalyzer.cpp" line="799"/>
         <source>error (parsing XML data for &apos;%1&apos;)</source>
         <translation>Fehler (Verarbeite XML Daten für &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="133"/>
+        <location filename="../../romalyzer.ui" line="149"/>
         <source>Game / File</source>
         <translation>Spiel / Datei</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="138"/>
-        <location filename="../../romalyzer.cpp" line="3147"/>
+        <location filename="../../romalyzer.ui" line="154"/>
+        <location filename="../../romalyzer.cpp" line="3163"/>
         <source>Merge</source>
         <translation>Merge</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="148"/>
-        <location filename="../../romalyzer.cpp" line="3147"/>
+        <location filename="../../romalyzer.ui" line="164"/>
+        <location filename="../../romalyzer.cpp" line="3163"/>
         <source>Emu status</source>
         <translation>Emu Status</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="309"/>
+        <location filename="../../romalyzer.ui" line="325"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="153"/>
-        <location filename="../../romalyzer.cpp" line="3147"/>
+        <location filename="../../romalyzer.ui" line="169"/>
+        <location filename="../../romalyzer.cpp" line="3163"/>
         <source>File status</source>
         <translation>Datei Status</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="163"/>
-        <location filename="../../romalyzer.cpp" line="1021"/>
-        <location filename="../../romalyzer.cpp" line="1151"/>
+        <location filename="../../romalyzer.ui" line="179"/>
+        <location filename="../../romalyzer.cpp" line="1032"/>
+        <location filename="../../romalyzer.cpp" line="1162"/>
         <source>CRC</source>
         <translation>CRC</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="158"/>
+        <location filename="../../romalyzer.ui" line="174"/>
         <source>Size</source>
         <translation>Größe</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="801"/>
+        <location filename="../../romalyzer.cpp" line="812"/>
         <source>checking %n file(s) for &apos;%1&apos;</source>
         <translation>
             <numerusform>Prüfe %n Datei für &apos;%1&apos;</numerusform>
@@ -18835,30 +18846,30 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="863"/>
-        <location filename="../../romalyzer.cpp" line="963"/>
-        <location filename="../../romalyzer.cpp" line="972"/>
+        <location filename="../../romalyzer.cpp" line="874"/>
         <location filename="../../romalyzer.cpp" line="974"/>
-        <location filename="../../romalyzer.cpp" line="976"/>
-        <location filename="../../romalyzer.cpp" line="1166"/>
-        <location filename="../../romalyzer.cpp" line="2702"/>
-        <location filename="../../romalyzer.cpp" line="3608"/>
-        <location filename="../../romalyzer.cpp" line="3660"/>
+        <location filename="../../romalyzer.cpp" line="983"/>
+        <location filename="../../romalyzer.cpp" line="985"/>
+        <location filename="../../romalyzer.cpp" line="987"/>
+        <location filename="../../romalyzer.cpp" line="1177"/>
+        <location filename="../../romalyzer.cpp" line="2717"/>
+        <location filename="../../romalyzer.cpp" line="3624"/>
+        <location filename="../../romalyzer.cpp" line="3676"/>
         <source>ROM</source>
         <translation>ROM</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="851"/>
-        <location filename="../../romalyzer.cpp" line="924"/>
-        <location filename="../../romalyzer.cpp" line="1171"/>
-        <location filename="../../romalyzer.cpp" line="1206"/>
-        <location filename="../../romalyzer.cpp" line="3099"/>
-        <location filename="../../romalyzer.cpp" line="3178"/>
+        <location filename="../../romalyzer.cpp" line="862"/>
+        <location filename="../../romalyzer.cpp" line="935"/>
+        <location filename="../../romalyzer.cpp" line="1182"/>
+        <location filename="../../romalyzer.cpp" line="1217"/>
+        <location filename="../../romalyzer.cpp" line="3115"/>
+        <location filename="../../romalyzer.cpp" line="3194"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="1195"/>
+        <location filename="../../romalyzer.cpp" line="1206"/>
         <source>interrupted (checking %n file(s) for &apos;%1&apos;)</source>
         <translation>
             <numerusform>Unterbrochen (Prüfe %n Datei für &apos;%1&apos;)</numerusform>
@@ -18866,16 +18877,16 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1214"/>
+        <location filename="../../romalyzer.cpp" line="1225"/>
         <source>good / not found</source>
         <translation>gut / nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1057"/>
-        <location filename="../../romalyzer.cpp" line="1203"/>
-        <location filename="../../romalyzer.cpp" line="1227"/>
-        <location filename="../../romalyzer.cpp" line="3258"/>
-        <location filename="../../romalyzer.cpp" line="3583"/>
+        <location filename="../../romalyzer.cpp" line="1068"/>
+        <location filename="../../romalyzer.cpp" line="1214"/>
+        <location filename="../../romalyzer.cpp" line="1238"/>
+        <location filename="../../romalyzer.cpp" line="3274"/>
+        <location filename="../../romalyzer.cpp" line="3599"/>
         <source>good</source>
         <translation>gut</translation>
     </message>
@@ -18885,23 +18896,23 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Set neu schreiben</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="916"/>
-        <location filename="../../romalyzer.cpp" line="941"/>
-        <location filename="../../romalyzer.cpp" line="1054"/>
-        <location filename="../../romalyzer.cpp" line="1057"/>
-        <location filename="../../romalyzer.cpp" line="1247"/>
-        <location filename="../../romalyzer.cpp" line="3260"/>
-        <location filename="../../romalyzer.cpp" line="3579"/>
+        <location filename="../../romalyzer.cpp" line="927"/>
+        <location filename="../../romalyzer.cpp" line="952"/>
+        <location filename="../../romalyzer.cpp" line="1065"/>
+        <location filename="../../romalyzer.cpp" line="1068"/>
+        <location filename="../../romalyzer.cpp" line="1258"/>
+        <location filename="../../romalyzer.cpp" line="3276"/>
+        <location filename="../../romalyzer.cpp" line="3595"/>
         <source>bad</source>
         <translation>schlecht</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="963"/>
+        <location filename="../../romalyzer.cpp" line="974"/>
         <source>WARNING: %1 file &apos;%2&apos; loaded from &apos;%3&apos; may be obsolete, should be merged from parent set &apos;%4&apos;</source>
         <translation>WARNUNG: %1 Datei &apos;%2&apos; geladen von &apos;%3&apos; ist möglicherweise überflüssig, sollte vom Eltern-Set &apos;%4&apos; genommen werden</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="1268"/>
+        <location filename="../../romalyzer.cpp" line="1279"/>
         <source>done (checking %n file(s) for &apos;%1&apos;)</source>
         <translation>
             <numerusform>Fertig (Prüfe %n Datei für &apos;%1&apos;)</numerusform>
@@ -18909,90 +18920,90 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1438"/>
-        <location filename="../../romalyzer.cpp" line="1463"/>
-        <location filename="../../romalyzer.cpp" line="1495"/>
+        <location filename="../../romalyzer.cpp" line="1450"/>
+        <location filename="../../romalyzer.cpp" line="1475"/>
+        <location filename="../../romalyzer.cpp" line="1507"/>
         <source>  logical size: %1 (%2 B)</source>
         <translation>  Logische Größe: %1 (%2 B)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1539"/>
+        <location filename="../../romalyzer.cpp" line="1551"/>
         <source>Verify - %p%</source>
         <translation>Prüfen - %p%</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1541"/>
-        <location filename="../../romalyzer.cpp" line="1544"/>
+        <location filename="../../romalyzer.cpp" line="1553"/>
+        <location filename="../../romalyzer.cpp" line="1556"/>
         <source>CHD manager: verifying CHD</source>
         <translation>CHD Manager: prüfe CHD</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1554"/>
+        <location filename="../../romalyzer.cpp" line="1566"/>
         <source>Update - %p%</source>
         <translation>Aktualisiere - %p%</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1555"/>
+        <location filename="../../romalyzer.cpp" line="1567"/>
         <source>CHD manager: updating CHD (v%1 -&gt; v%2)</source>
         <translation>CHD Manager: aktualisiere CHD (v%1 -&gt; v%2)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1620"/>
+        <location filename="../../romalyzer.cpp" line="1632"/>
         <source>CHD manager: terminating external process</source>
         <translation>CHD Manager: terminiere externen Prozess</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1643"/>
-        <location filename="../../romalyzer.cpp" line="1645"/>
+        <location filename="../../romalyzer.cpp" line="1655"/>
+        <location filename="../../romalyzer.cpp" line="1657"/>
         <source>CHD manager: CHD file integrity is good</source>
         <translation>CHD Manager: CHD Datei-Integrität ist gut</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1647"/>
+        <location filename="../../romalyzer.cpp" line="1659"/>
         <source>CHD manager: WARNING: CHD file integrity is bad</source>
         <translation>CHD Manager: CHD Datei-Integrität ist schlecht</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1650"/>
+        <location filename="../../romalyzer.cpp" line="1662"/>
         <source>CHD manager: replacing CHD</source>
         <translation>CHD Manager: ersetze CHD</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1652"/>
+        <location filename="../../romalyzer.cpp" line="1664"/>
         <source>Copy</source>
         <translation>Kopieren</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1658"/>
+        <location filename="../../romalyzer.cpp" line="1670"/>
         <source>CHD manager: CHD replaced</source>
         <translation>CHD Manager: CHD ersetzt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1672"/>
+        <location filename="../../romalyzer.cpp" line="1684"/>
         <source>CHD manager: FATAL: failed to replace CHD -- updated CHD preserved as &apos;%1&apos;, please copy it to &apos;%2&apos; manually!</source>
         <translation>CHD Manager: FATAL: Ersetzen der CHD Datei fehlgeschlagen -- erhalte aktualisierte CHD Datei &apos;%1&apos;, bitte manuell nach &apos;%2&apos; kopieren!</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1713"/>
+        <location filename="../../romalyzer.cpp" line="1725"/>
         <source>CHD manager: cleaning up</source>
         <translation>CHD Manager: räume auf</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1819"/>
-        <location filename="../../romalyzer.cpp" line="1926"/>
-        <location filename="../../romalyzer.cpp" line="2058"/>
+        <location filename="../../romalyzer.cpp" line="1831"/>
+        <location filename="../../romalyzer.cpp" line="1938"/>
+        <location filename="../../romalyzer.cpp" line="2070"/>
         <source>WARNING: found &apos;%1&apos; but can&apos;t read from it - check permission</source>
         <translation>WARNUNG: &apos;%1&apos; wurde gefunden, kann aber nicht zum Lesen geöffnet werden - Berechtigungen prüfen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1920"/>
-        <location filename="../../romalyzer.cpp" line="1959"/>
+        <location filename="../../romalyzer.cpp" line="1932"/>
+        <location filename="../../romalyzer.cpp" line="1971"/>
         <source>WARNING: unable to identify &apos;%1&apos; from &apos;%2&apos; by CRC &apos;%3&apos;</source>
         <translation>WARNUNG: kann &apos;%1&apos; aus &apos;%2&apos; nicht per CRC &apos;%3&apos; identifizieren</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1917"/>
-        <location filename="../../romalyzer.cpp" line="1956"/>
+        <location filename="../../romalyzer.cpp" line="1929"/>
+        <location filename="../../romalyzer.cpp" line="1968"/>
         <source>WARNING: unable to identify &apos;%1&apos; from &apos;%2&apos; by CRC (no dump exists / CRC unknown)</source>
         <translation>WARNUNG: kann &apos;%1&apos; aus &apos;%2&apos; nicht per CRC (kein existierender Dump / CRC unbekannt)</translation>
     </message>
@@ -19037,7 +19048,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1046"/>
+        <location filename="../../romalyzer.ui" line="1062"/>
         <location filename="../../romalyzer.cpp" line="133"/>
         <source>Verify CHDs through &apos;chdman verify&apos;</source>
         <translation>CHDs überprüfen mittels &apos;chdman verify&apos;</translation>
@@ -19049,7 +19060,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="172"/>
-        <location filename="../../romalyzer.cpp" line="3853"/>
+        <location filename="../../romalyzer.cpp" line="3869"/>
         <source>Analyse referenced devices</source>
         <translation>Referenzierte Geräte analysieren</translation>
     </message>
@@ -19074,22 +19085,22 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Nach Data-Datei exportieren</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="669"/>
+        <location filename="../../romalyzer.cpp" line="680"/>
         <source>determining list of sets to analyze</source>
         <translation>Ermittle Liste der zu analysierenden Sets</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="689"/>
+        <location filename="../../romalyzer.cpp" line="700"/>
         <source>Searching sets</source>
         <translation>Suche Sets</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="718"/>
+        <location filename="../../romalyzer.cpp" line="729"/>
         <source>done (determining list of sets to analyze)</source>
         <translation>Fertig (Ermittle Liste der zu analysierenden Sets)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="719"/>
+        <location filename="../../romalyzer.cpp" line="730"/>
         <source>%n set(s) to analyze</source>
         <translation>
             <numerusform>%n Spiel zu analysieren</numerusform>
@@ -19097,67 +19108,67 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="949"/>
-        <location filename="../../romalyzer.cpp" line="1173"/>
-        <location filename="../../romalyzer.cpp" line="1832"/>
-        <location filename="../../romalyzer.cpp" line="3099"/>
-        <location filename="../../romalyzer.cpp" line="3178"/>
+        <location filename="../../romalyzer.cpp" line="960"/>
+        <location filename="../../romalyzer.cpp" line="1184"/>
+        <location filename="../../romalyzer.cpp" line="1844"/>
+        <location filename="../../romalyzer.cpp" line="3115"/>
+        <location filename="../../romalyzer.cpp" line="3194"/>
         <source>no dump</source>
         <translation>kein Dump</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="976"/>
+        <location filename="../../romalyzer.cpp" line="987"/>
         <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the UME developers as a possible XML bug of the respective driver</source>
         <translation>INFORMATION: %1 Datei &apos;%2&apos; hat eine benannte Merge-Datei (&apos;%3&apos;) aber kein Eltern-Set -- dies wird ignoriert, sollte aber an die UME Entwickler gemeldet werden, da es sich um einen potenziellen XML Bug des betreffenden Treibers handelt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="995"/>
-        <location filename="../../romalyzer.cpp" line="1145"/>
+        <location filename="../../romalyzer.cpp" line="1006"/>
+        <location filename="../../romalyzer.cpp" line="1156"/>
         <source>SIZE</source>
         <translation>GR</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="997"/>
+        <location filename="../../romalyzer.cpp" line="1008"/>
         <source>size</source>
         <translation>gr</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1023"/>
+        <location filename="../../romalyzer.cpp" line="1034"/>
         <source>crc</source>
         <translation>crc</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1079"/>
+        <location filename="../../romalyzer.cpp" line="1090"/>
         <source>md5</source>
         <translation>md5</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1166"/>
+        <location filename="../../romalyzer.cpp" line="1177"/>
         <source>WARNING: %1 file &apos;%2&apos; loaded from &apos;%3&apos; has incorrect / unexpected check-sums</source>
         <translation>WARNUNG: %1 Datei &apos;%2&apos; geladen von &apos;%3&apos; hat falsche / unerwartete Prüfsummen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1219"/>
+        <location filename="../../romalyzer.cpp" line="1230"/>
         <source>good / no dump / skipped</source>
         <translation>gut / kein Dump / übersprungen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1221"/>
+        <location filename="../../romalyzer.cpp" line="1232"/>
         <source>good / no dump</source>
         <translation>gut / kein Dump</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1239"/>
+        <location filename="../../romalyzer.cpp" line="1250"/>
         <source>bad / no dump / skipped</source>
         <translation>schlecht / kein Dump / übersprungen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1241"/>
+        <location filename="../../romalyzer.cpp" line="1252"/>
         <source>bad / no dump</source>
         <translation>schlecht / kein Dump</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="1285"/>
+        <location filename="../../romalyzer.cpp" line="1296"/>
         <source>%n set(s) remaining</source>
         <translation>
             <numerusform>%n Set verbleibend</numerusform>
@@ -19165,405 +19176,405 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1441"/>
+        <location filename="../../romalyzer.cpp" line="1453"/>
         <source>  MD5 check-sum: %1</source>
         <translation>  MD5 Prüfsumme: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1446"/>
+        <location filename="../../romalyzer.cpp" line="1458"/>
         <source>  parent CHD&apos;s MD5 check-sum: %1</source>
         <translation>  MD5 Prüfsumme des Eltern CHDs: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1484"/>
+        <location filename="../../romalyzer.cpp" line="1496"/>
         <source>none (uncompressed)</source>
         <translation>keine (unkomprimiert)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1489"/>
+        <location filename="../../romalyzer.cpp" line="1501"/>
         <source>  compressors: %1</source>
         <translation>  Kompressoren: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1493"/>
+        <location filename="../../romalyzer.cpp" line="1505"/>
         <source>  number of bytes per unit: %1</source>
         <translation>  Bytes pro Einheit: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1508"/>
+        <location filename="../../romalyzer.cpp" line="1520"/>
         <source>CHD v%1 not supported -- rest of header information skipped</source>
         <translation>CHD v%1 nicht unterstützt -- Rest der Header-Informationen übersprungen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1564"/>
         <location filename="../../romalyzer.cpp" line="1576"/>
-        <location filename="../../romalyzer.cpp" line="1584"/>
-        <location filename="../../romalyzer.cpp" line="1677"/>
+        <location filename="../../romalyzer.cpp" line="1588"/>
+        <location filename="../../romalyzer.cpp" line="1596"/>
         <location filename="../../romalyzer.cpp" line="1689"/>
-        <location filename="../../romalyzer.cpp" line="1697"/>
+        <location filename="../../romalyzer.cpp" line="1701"/>
+        <location filename="../../romalyzer.cpp" line="1709"/>
         <source>CHD manager: using CHD v%1 header check-sums for CHD verification</source>
         <translation>CHD Manager: verwende CHD v%1 Header Prüfsummen zur CHD Verifikation</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1592"/>
+        <location filename="../../romalyzer.cpp" line="1604"/>
         <source>CHD manager: no header check-sums available for CHD verification</source>
         <translation>CHD Manager: keine Header Prüfsummen für CHD Verifikation verfügbar</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1665"/>
+        <location filename="../../romalyzer.cpp" line="1677"/>
         <source>CHD manager: WARNING: failed updating CHD header information</source>
         <translation>CHD Manager: WARNUNG: Aktualisieren der CHD Header Informationen fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1705"/>
+        <location filename="../../romalyzer.cpp" line="1717"/>
         <source>CHD manager: WARNING: no header check-sums available for CHD verification</source>
         <translation>CHD Manager: WARNUNG: keine Header Prüfsummen für CHD Verifikation verfügbar</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1725"/>
         <location filename="../../romalyzer.cpp" line="1737"/>
-        <location filename="../../romalyzer.cpp" line="1745"/>
+        <location filename="../../romalyzer.cpp" line="1749"/>
+        <location filename="../../romalyzer.cpp" line="1757"/>
         <source>using CHD v%1 header check-sums for CHD verification</source>
         <translation>verwende CHD v%1 Header Prüfsummen zur CHD Verifikation</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1753"/>
+        <location filename="../../romalyzer.cpp" line="1765"/>
         <source>WARNING: no header check-sums available for CHD verification</source>
         <translation>WARNUNG: keine Header Prüfsummen für CHD Verifikation verfügbar</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1829"/>
+        <location filename="../../romalyzer.cpp" line="1841"/>
         <source>searched paths: %1</source>
         <translation>gesuchte Pfade: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1831"/>
+        <location filename="../../romalyzer.cpp" line="1843"/>
         <source>searched path: %1</source>
         <translation>gesuchter Pfad: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1870"/>
+        <location filename="../../romalyzer.cpp" line="1882"/>
         <source>ERROR</source>
         <translation>FEHLER</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1872"/>
-        <location filename="../../romalyzer.cpp" line="1877"/>
+        <location filename="../../romalyzer.cpp" line="1884"/>
+        <location filename="../../romalyzer.cpp" line="1889"/>
         <source>WARNING</source>
         <translation>WARNUNG</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1872"/>
+        <location filename="../../romalyzer.cpp" line="1884"/>
         <source>actual bytes read != file size in header</source>
         <translation>tatsächliche Anzahl gelesener Bytes != Dateigröße gemäß Header</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1872"/>
-        <location filename="../../romalyzer.cpp" line="1877"/>
+        <location filename="../../romalyzer.cpp" line="1884"/>
+        <location filename="../../romalyzer.cpp" line="1889"/>
         <source>check archive integrity</source>
         <translation>Archiv-Integrität prüfen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1877"/>
+        <location filename="../../romalyzer.cpp" line="1889"/>
         <source>actual CRC != CRC in header</source>
         <translation>tatsächlicher CRC != CRC im Header</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1920"/>
-        <location filename="../../romalyzer.cpp" line="1959"/>
+        <location filename="../../romalyzer.cpp" line="1932"/>
+        <location filename="../../romalyzer.cpp" line="1971"/>
         <source>optional</source>
         <translation>optional</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1864"/>
-        <location filename="../../romalyzer.cpp" line="1980"/>
+        <location filename="../../romalyzer.cpp" line="1876"/>
+        <location filename="../../romalyzer.cpp" line="1992"/>
         <source>loading &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos; as &apos;%4&apos;%5</source>
         <translation>Lade &apos;%1&apos; mit CRC &apos;%2&apos; von &apos;%3&apos; als &apos;%4&apos;%5</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2052"/>
+        <location filename="../../romalyzer.cpp" line="2064"/>
         <source>WARNING: unable to decompress &apos;%1&apos; from &apos;%2&apos; - check file integrity</source>
         <translation>WARNUNG: kann &apos;%1&apos; nicht aus &apos;%2&apos; entpacken - Datei Integrität prüfen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1924"/>
-        <location filename="../../romalyzer.cpp" line="2056"/>
+        <location filename="../../romalyzer.cpp" line="1936"/>
+        <location filename="../../romalyzer.cpp" line="2068"/>
         <source>WARNING: found &apos;%1&apos; but can&apos;t open it for decompression - check file integrity</source>
         <translation>WARNUNG: &apos;%1&apos; wurde gefunden, kann aber nicht zur Dekompression geöffnet werden - Datei Integrität prüfen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1041"/>
+        <location filename="../../romalyzer.cpp" line="1052"/>
         <source>sha-1</source>
         <translation>sha-1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1439"/>
-        <location filename="../../romalyzer.cpp" line="1464"/>
-        <location filename="../../romalyzer.cpp" line="1496"/>
+        <location filename="../../romalyzer.cpp" line="1451"/>
+        <location filename="../../romalyzer.cpp" line="1476"/>
+        <location filename="../../romalyzer.cpp" line="1508"/>
         <source>  real size: %1 (%2 B)</source>
         <translation>  Echte Größe: %1 (%2 B)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1443"/>
-        <location filename="../../romalyzer.cpp" line="1466"/>
-        <location filename="../../romalyzer.cpp" line="1498"/>
+        <location filename="../../romalyzer.cpp" line="1455"/>
+        <location filename="../../romalyzer.cpp" line="1478"/>
+        <location filename="../../romalyzer.cpp" line="1510"/>
         <source>  SHA-1 check-sum: %1</source>
         <translation>  SHA-1 Prüfsumme: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1448"/>
-        <location filename="../../romalyzer.cpp" line="1469"/>
-        <location filename="../../romalyzer.cpp" line="1501"/>
+        <location filename="../../romalyzer.cpp" line="1460"/>
+        <location filename="../../romalyzer.cpp" line="1481"/>
+        <location filename="../../romalyzer.cpp" line="1513"/>
         <source>  parent CHD&apos;s SHA-1 check-sum: %1</source>
         <translation>  SHA-1 Prüfsumme des Eltern CHDs: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1472"/>
-        <location filename="../../romalyzer.cpp" line="1503"/>
+        <location filename="../../romalyzer.cpp" line="1484"/>
+        <location filename="../../romalyzer.cpp" line="1515"/>
         <source>  raw SHA-1 check-sum: %1</source>
         <translation>  SHA-1 Prüfsumme der Rohdaten: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1833"/>
+        <location filename="../../romalyzer.cpp" line="1845"/>
         <source>no dump exists</source>
         <translation>kein existierender Dump</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2401"/>
+        <location filename="../../romalyzer.cpp" line="2415"/>
         <source>Choose output directory</source>
         <translation>Ausgabe-Verzeichnis wählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2413"/>
+        <location filename="../../romalyzer.cpp" line="2427"/>
         <source>Choose additional ROM path</source>
         <translation>Zusätzlichen ROM Pfadi auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2791"/>
+        <location filename="../../romalyzer.cpp" line="2807"/>
         <source>set rewriter: WARNING: can&apos;t rewrite set &apos;%1&apos;, output path is not a directory</source>
         <translation>Set Neuerzeugung: WARNUNG: kann Set &apos;%1&apos; nicht neu schreiben, der angegebene Ausgabepfad ist kein Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2795"/>
+        <location filename="../../romalyzer.cpp" line="2811"/>
         <source>set rewriter: WARNING: can&apos;t rewrite set &apos;%1&apos;, output path is not writable</source>
         <translation>Set Neuerzeugung: WARNUNG: kann Set &apos;%1&apos; nicht neu schreiben, der angegebene Ausgabepfad ist nicht beschreibbar</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2800"/>
+        <location filename="../../romalyzer.cpp" line="2816"/>
         <source>set rewriter: WARNING: can&apos;t rewrite set &apos;%1&apos;, output path does not exist</source>
         <translation>Set Neuerzeugung: WARNUNG: kann Set &apos;%1&apos; nicht neu schreiben, der angegebene Ausgabepfad existiert nicht</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2804"/>
+        <location filename="../../romalyzer.cpp" line="2820"/>
         <source>set rewriter: WARNING: can&apos;t rewrite set &apos;%1&apos;, output path is empty</source>
         <translation>Set Neuerzeugung: WARNUNG: kann Set &apos;%1&apos; nicht neu schreiben, es wurde kein Ausgabepfad angegeben</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2823"/>
+        <location filename="../../romalyzer.cpp" line="2839"/>
         <source>space-efficient</source>
         <translation>platzsparendes</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2825"/>
+        <location filename="../../romalyzer.cpp" line="2841"/>
         <source>self-contained</source>
         <translation>in sich abgeschlossenes</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2827"/>
+        <location filename="../../romalyzer.cpp" line="2843"/>
         <source>set rewriter: rewriting %1 set &apos;%2&apos; to &apos;%3&apos;</source>
         <translation>Set Neuerzeugung: erzeuge ein %1 Set für &apos;%2&apos; in &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2848"/>
+        <location filename="../../romalyzer.cpp" line="2864"/>
         <source>set rewriter: skipping &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos; as &apos;%4&apos;</source>
         <translation>Set Neuerzeugung: überspringe &apos;%1&apos; mit CRC &apos;%2&apos; von &apos;%3&apos; als &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2862"/>
-        <location filename="../../romalyzer.cpp" line="2873"/>
+        <location filename="../../romalyzer.cpp" line="2878"/>
+        <location filename="../../romalyzer.cpp" line="2889"/>
         <source>set rewriter: FATAL: can&apos;t load &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos;, aborting</source>
         <translation>Set Neuerzeugung: FATAL: kann &apos;%1&apos; mit CRC &apos;%2&apos; nicht von &apos;%3&apos; laden, breche ab</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2865"/>
-        <location filename="../../romalyzer.cpp" line="2876"/>
+        <location filename="../../romalyzer.cpp" line="2881"/>
+        <location filename="../../romalyzer.cpp" line="2892"/>
         <source>set rewriter: WARNING: can&apos;t load &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos;, ignoring this file</source>
         <translation>Set Neuerzeugung: WARNUNG: kann &apos;%1&apos; mit CRC &apos;%2&apos; nicht von &apos;%3&apos; laden, ignoriere diese Datei</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2884"/>
+        <location filename="../../romalyzer.cpp" line="2900"/>
         <source>set rewriter: FATAL: can&apos;t load &apos;%1&apos; with CRC &apos;%2&apos;, aborting</source>
         <translation>Set Neuerzeugung: FATAL: kann &apos;%1&apos; mit CRC &apos;%2&apos; nicht laden, breche ab</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2887"/>
+        <location filename="../../romalyzer.cpp" line="2903"/>
         <source>set rewriter: WARNING: can&apos;t load &apos;%1&apos; with CRC &apos;%2&apos;, ignoring this file</source>
         <translation>Set Neuerzeugung: WARNUNG: kann &apos;%1&apos; mit CRC &apos;%2&apos; nicht laden, ignoriere diese Datei</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2917"/>
+        <location filename="../../romalyzer.cpp" line="2933"/>
         <source>set rewriter: writing new %1 set &apos;%2&apos; in &apos;%3&apos;</source>
         <translation>Set Neuerzeugung: schreibe neues %1 Set für &apos;%2&apos; nach &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2918"/>
+        <location filename="../../romalyzer.cpp" line="2934"/>
         <source>Writing &apos;%1&apos; - %2</source>
         <translation>Schreibe &apos;%1&apos; - %2</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2921"/>
-        <location filename="../../romalyzer.cpp" line="2928"/>
+        <location filename="../../romalyzer.cpp" line="2937"/>
+        <location filename="../../romalyzer.cpp" line="2944"/>
         <source>set rewriter: new %1 set &apos;%2&apos; in &apos;%3&apos; successfully created</source>
         <translation>Set Neuerzeugung: neues %1 Set für &apos;%2&apos; erfolgreich in &apos;%3&apos; erzeugt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2923"/>
-        <location filename="../../romalyzer.cpp" line="2930"/>
+        <location filename="../../romalyzer.cpp" line="2939"/>
+        <location filename="../../romalyzer.cpp" line="2946"/>
         <source>set rewriter: FATAL: failed to create new %1 set &apos;%2&apos; in &apos;%3&apos;</source>
         <translation>Set Neuerzeugung: FATAL: die Erzeugung des neuen %1 Sets für &apos;%2&apos; in &apos;%3&apos; ist fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2942"/>
+        <location filename="../../romalyzer.cpp" line="2958"/>
         <source>set rewriter: done (rewriting %1 set &apos;%2&apos; to &apos;%3&apos;)</source>
         <translation>Set Neuerzeugung: fertig (erzeuge ein %1 Set für &apos;%2&apos; in &apos;%3&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2980"/>
-        <location filename="../../romalyzer.cpp" line="3012"/>
+        <location filename="../../romalyzer.cpp" line="2996"/>
+        <location filename="../../romalyzer.cpp" line="3028"/>
         <source>Data files (*.dat)</source>
         <translation>Data Dateien (*.dat)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2998"/>
+        <location filename="../../romalyzer.cpp" line="3014"/>
         <source>FATAL: can&apos;t open data file &apos;%1&apos; for reading</source>
         <translation>FATAL: kann Data Datei &apos;%1&apos; nicht zum Lesen öffnen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3019"/>
+        <location filename="../../romalyzer.cpp" line="3035"/>
         <source>Exporting</source>
         <translation>Exportiere</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3034"/>
+        <location filename="../../romalyzer.cpp" line="3050"/>
         <source>Created by QMC2 v%1</source>
         <translation>Erzeugt durch QMC2 v%1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3136"/>
+        <location filename="../../romalyzer.cpp" line="3152"/>
         <source>FATAL: can&apos;t open data file &apos;%1&apos; for writing</source>
         <translation>FATAL: kann Data Datei &apos;%1&apos; nicht zum Schreiben öffnen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3455"/>
+        <location filename="../../romalyzer.cpp" line="3471"/>
         <source>set rewriter: writing &apos;%1&apos; (size: %2)</source>
         <translation>Set Neuerzeugung: schreibe &apos;%1&apos; (Größe: %2)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3476"/>
+        <location filename="../../romalyzer.cpp" line="3492"/>
         <source>set rewriter: WARNING: failed to write &apos;%1&apos;</source>
         <translation>Set Neuerzeugung: WARNUNG: konnte &apos;%1&apos; nicht schreiben</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3556"/>
-        <location filename="../../romalyzer.cpp" line="3785"/>
+        <location filename="../../romalyzer.cpp" line="3572"/>
+        <location filename="../../romalyzer.cpp" line="3801"/>
         <source>Created by QMC2 v%1 (%2)</source>
         <translation>Erzeugt durch QMC2 v%1 (%2)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2819"/>
+        <location filename="../../romalyzer.cpp" line="2835"/>
         <source>Reading &apos;%1&apos; - %2</source>
         <translation>Lese &apos;%1&apos; - %2</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2665"/>
+        <location filename="../../romalyzer.cpp" line="2680"/>
         <source>Check-sum search</source>
         <translation>Suche nach Prüfsummen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2853"/>
+        <location filename="../../romalyzer.cpp" line="2869"/>
         <source>set rewriter: loading &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos; as &apos;%4&apos;</source>
         <translation>Set Neuerzeugung: lade &apos;%1&apos; mit CRC &apos;%2&apos; von &apos;%3&apos; als &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2907"/>
+        <location filename="../../romalyzer.cpp" line="2923"/>
         <source>set rewriter: removing redundant file &apos;%1&apos; with CRC &apos;%2&apos; from output data</source>
         <translation>Set Neuerzeugung: entferne redundante Datei &apos;%1&apos; mit CRC &apos;%2&apos; von den Ausgabedaten</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2935"/>
+        <location filename="../../romalyzer.cpp" line="2951"/>
         <source>set rewriter: INFORMATION: no output data available, thus not rewriting set &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>Set Neuerzeugung: INFORMATION: es sind keine Ausgabedaten verfügbar, daher wird das Set für &apos;%1&apos; nicht nach &apos;%2&apos; geschrieben</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2980"/>
+        <location filename="../../romalyzer.cpp" line="2996"/>
         <source>Choose data file to import from</source>
         <translation>Data-Datei für den Import auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3012"/>
+        <location filename="../../romalyzer.cpp" line="3028"/>
         <source>Choose data file to export to</source>
         <translation>Data-Datei für den Export auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3530"/>
+        <location filename="../../romalyzer.cpp" line="3546"/>
         <source>set rewriter: deflating &apos;%1&apos; (uncompressed size: %2)</source>
         <translation>Set Neuerzeugung: komprimiere &apos;%1&apos; (Größe: %2)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3550"/>
+        <location filename="../../romalyzer.cpp" line="3566"/>
         <source>set rewriter: WARNING: failed to deflate &apos;%1&apos;</source>
         <translation>Set Neuerzeugung: WARNUNG: konnte &apos;%1&apos; nicht schreiben</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3808"/>
+        <location filename="../../romalyzer.cpp" line="3824"/>
         <source>repair failed</source>
         <translation>Reparatur fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3870"/>
+        <location filename="../../romalyzer.cpp" line="3886"/>
         <source>Choose file to store the ROMAlyzer log</source>
         <translation>Datei zum Speichern des ROMAlyzer-Logs auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3875"/>
-        <location filename="../../romalyzer.cpp" line="3876"/>
+        <location filename="../../romalyzer.cpp" line="3891"/>
+        <location filename="../../romalyzer.cpp" line="3892"/>
         <source>saving ROMAlyzer log to &apos;%1&apos;</source>
         <translation>Speichere ROMAlyzer-Log in &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3879"/>
-        <location filename="../../romalyzer.cpp" line="3880"/>
+        <location filename="../../romalyzer.cpp" line="3895"/>
+        <location filename="../../romalyzer.cpp" line="3896"/>
         <source>done (saving ROMAlyzer log to &apos;%1&apos;)</source>
         <translation>Fertig (Speichere ROMAlyzer-Log in &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="3882"/>
-        <location filename="../../romalyzer.cpp" line="3883"/>
+        <location filename="../../romalyzer.cpp" line="3898"/>
+        <location filename="../../romalyzer.cpp" line="3899"/>
         <source>WARNING: can&apos;t open file &apos;%1&apos; for writing, please check permissions</source>
         <translation>WARNUNG: kann Datei &apos;%1&apos; nicht zum Schreiben öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="910"/>
+        <location filename="../../romalyzer.ui" line="926"/>
         <source>Automatically scroll to the currently analyzed game</source>
         <translation>Automatisch zum aktuell analysierten Spiel scrollen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="880"/>
+        <location filename="../../romalyzer.ui" line="896"/>
         <source>Automatically expand file info</source>
         <translation>Automatisch Datei Information expandieren</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="712"/>
+        <location filename="../../romalyzer.ui" line="728"/>
         <source>Calculate MD5 hash</source>
         <translation>MD5 Prüfsumme berechnen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1235"/>
+        <location filename="../../romalyzer.cpp" line="1246"/>
         <source>bad / not found</source>
         <translation>schlecht / nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1816"/>
+        <location filename="../../romalyzer.cpp" line="1828"/>
         <source>WARNING: found &apos;%1&apos; but can&apos;t read from it although permissions seem okay - check file integrity</source>
         <translation>WARNUNG: &apos;%1&apos; wurde gefunden, kann aber nicht zum Lesen geöffnet werden, obwohl die Zugrifssrechte okay sind - Datei Integrität prüfen</translation>
     </message>
@@ -19578,81 +19589,81 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Nehme Analyse wieder auf</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="82"/>
+        <location filename="../../romalyzer.ui" line="98"/>
         <location filename="../../romalyzer.cpp" line="331"/>
-        <location filename="../../romalyzer.cpp" line="661"/>
+        <location filename="../../romalyzer.cpp" line="671"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pausieren</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="727"/>
+        <location filename="../../romalyzer.cpp" line="738"/>
         <source>analysis paused</source>
         <translation>Analyse pausiert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="728"/>
+        <location filename="../../romalyzer.cpp" line="739"/>
         <source>&amp;Resume</source>
         <translation>&amp;Fortsetzen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="731"/>
+        <location filename="../../romalyzer.cpp" line="742"/>
         <source>Paused</source>
         <translation>Pausiert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="79"/>
+        <location filename="../../romalyzer.ui" line="95"/>
         <source>Pause / resume active analysis</source>
         <translation>Pausieren / Wiederaufnehmen der aktiven Analyse</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1384"/>
+        <location filename="../../romalyzer.cpp" line="1396"/>
         <source>loading &apos;%1&apos;%2</source>
         <translation>Lade &apos;%1&apos;%2</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1384"/>
-        <location filename="../../romalyzer.cpp" line="1864"/>
-        <location filename="../../romalyzer.cpp" line="1980"/>
+        <location filename="../../romalyzer.cpp" line="1396"/>
+        <location filename="../../romalyzer.cpp" line="1876"/>
+        <location filename="../../romalyzer.cpp" line="1992"/>
         <source> (merged)</source>
         <translation> (vererbt)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1833"/>
+        <location filename="../../romalyzer.ui" line="1849"/>
         <source>File I/O progress indicator</source>
         <translation>Fortschrittsanzeige für Datei Ein-/Ausgabe</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="837"/>
-        <location filename="../../romalyzer.cpp" line="894"/>
-        <location filename="../../romalyzer.cpp" line="897"/>
-        <location filename="../../romalyzer.cpp" line="1169"/>
+        <location filename="../../romalyzer.cpp" line="848"/>
+        <location filename="../../romalyzer.cpp" line="905"/>
+        <location filename="../../romalyzer.cpp" line="908"/>
+        <location filename="../../romalyzer.cpp" line="1180"/>
         <source>skipped</source>
         <translation>übersprungen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1212"/>
+        <location filename="../../romalyzer.cpp" line="1223"/>
         <source>good / not found / skipped</source>
         <translation>gut / nicht gefunden / übersprungen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1225"/>
+        <location filename="../../romalyzer.cpp" line="1236"/>
         <source>good / skipped</source>
         <translation>gut / übersprungen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1233"/>
+        <location filename="../../romalyzer.cpp" line="1244"/>
         <source>bad / not found / skipped</source>
         <translation>schlecht / nicht gefunden / übersprungen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1245"/>
+        <location filename="../../romalyzer.cpp" line="1256"/>
         <source>bad / skipped</source>
         <translation>schlecht / übersprungen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="731"/>
-        <location filename="../../romalyzer.cpp" line="2322"/>
+        <location filename="../../romalyzer.ui" line="747"/>
         <location filename="../../romalyzer.cpp" line="2336"/>
+        <location filename="../../romalyzer.cpp" line="2350"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
@@ -19682,13 +19693,13 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>A/V Codec</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1137"/>
+        <location filename="../../romalyzer.ui" line="1153"/>
         <location filename="../../romalyzer.cpp" line="134"/>
         <source>Try to update CHDs if their header indicates an older version (&apos;chdman copy&apos;)</source>
         <translation>CHDs aktualisieren falls der Header anzeigt, dass die Version veraltet ist (&apos;chdman copy&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="748"/>
+        <location filename="../../romalyzer.cpp" line="759"/>
         <source>report limit reached, removing %n set(s) from the report</source>
         <translation>
             <numerusform>Berichtgrenze erreicht, entferne das älteste Set aus dem Bericht</numerusform>
@@ -19696,250 +19707,250 @@ Bist Du sicher, dass Du das tun willst?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="900"/>
+        <location filename="../../romalyzer.cpp" line="911"/>
         <source>error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="972"/>
+        <location filename="../../romalyzer.cpp" line="983"/>
         <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver</source>
         <translation>INFORMATION: %1 Datei &apos;%2&apos; hat eine benannte Merge-Datei (&apos;%3&apos;) aber kein Eltern-Set -- dies wird ignoriert, sollte aber an die MAME Entwickler gemeldet werden, da es sich um einen potenziellen XML Bug des betreffenden Treibers handelt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="974"/>
+        <location filename="../../romalyzer.cpp" line="985"/>
         <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver</source>
         <translation>INFORMATION: %1 Datei &apos;%2&apos; hat eine benannte Merge-Datei (&apos;%3&apos;) aber kein Eltern-Set -- dies wird ignoriert, sollte aber an die MESS Entwickler gemeldet werden, da es sich um einen potenziellen XML Bug des betreffenden Treibers handelt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1420"/>
+        <location filename="../../romalyzer.cpp" line="1432"/>
         <source>CHD header information:</source>
         <translation>CHD Header Information:</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1424"/>
+        <location filename="../../romalyzer.cpp" line="1436"/>
         <source>  version: %1</source>
         <translation>  Version: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1425"/>
-        <location filename="../../romalyzer.cpp" line="1659"/>
+        <location filename="../../romalyzer.cpp" line="1437"/>
+        <location filename="../../romalyzer.cpp" line="1671"/>
         <source>CHD v%1</source>
         <translation>CHD v%1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1430"/>
-        <location filename="../../romalyzer.cpp" line="1455"/>
+        <location filename="../../romalyzer.cpp" line="1442"/>
+        <location filename="../../romalyzer.cpp" line="1467"/>
         <source>  compression: %1</source>
         <translation>  Kompression: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1434"/>
-        <location filename="../../romalyzer.cpp" line="1459"/>
+        <location filename="../../romalyzer.cpp" line="1446"/>
+        <location filename="../../romalyzer.cpp" line="1471"/>
         <source>  number of total hunks: %1</source>
         <translation>  Gesamtzahl Abschnitte: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1436"/>
-        <location filename="../../romalyzer.cpp" line="1461"/>
-        <location filename="../../romalyzer.cpp" line="1491"/>
+        <location filename="../../romalyzer.cpp" line="1448"/>
+        <location filename="../../romalyzer.cpp" line="1473"/>
+        <location filename="../../romalyzer.cpp" line="1503"/>
         <source>  number of bytes per hunk: %1</source>
         <translation>  Bytes pro Abschnitt: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1762"/>
-        <location filename="../../romalyzer.cpp" line="1768"/>
+        <location filename="../../romalyzer.cpp" line="1774"/>
+        <location filename="../../romalyzer.cpp" line="1780"/>
         <source>WARNING: can&apos;t read CHD header information</source>
         <translation>WARNUNG: kann CHD Header Information nicht lesen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1891"/>
-        <location filename="../../romalyzer.cpp" line="2033"/>
+        <location filename="../../romalyzer.cpp" line="1903"/>
+        <location filename="../../romalyzer.cpp" line="2045"/>
         <source>WARNING: the CRC for &apos;%1&apos; from &apos;%2&apos; is unknown to the emulator, the set rewriter will use the recalculated CRC &apos;%3&apos; to qualify the file</source>
         <translation>WARNUNG: der CRC für &apos;%1&apos; von &apos;%2&apos; ist dem Emulator unbekannt, für die Set-Neuerzeugung wird der berechnete CRC &apos;%3&apos; verwendet</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1893"/>
-        <location filename="../../romalyzer.cpp" line="2035"/>
+        <location filename="../../romalyzer.cpp" line="1905"/>
+        <location filename="../../romalyzer.cpp" line="2047"/>
         <source>WARNING: unable to determine the CRC for &apos;%1&apos; from &apos;%2&apos;, the set rewriter will NOT store this file in the new set</source>
         <translation>WARNUNG: der CRC für &apos;%1&apos; von &apos;%2&apos; konnte nicht ermittelt werden, diese Datei wird bei der Set-Neuerzeugung NICHT mit abgespeichert</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2319"/>
         <location filename="../../romalyzer.cpp" line="2333"/>
+        <location filename="../../romalyzer.cpp" line="2347"/>
         <source> KB</source>
         <translation> KB</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2325"/>
         <location filename="../../romalyzer.cpp" line="2339"/>
+        <location filename="../../romalyzer.cpp" line="2353"/>
         <source> GB</source>
         <translation> GB</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2328"/>
+        <location filename="../../romalyzer.cpp" line="2342"/>
         <source> TB</source>
         <translation> TB</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="243"/>
+        <location filename="../../romalyzer.ui" line="259"/>
         <source>&amp;Forward</source>
         <translation>&amp;Vorwärts</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="197"/>
+        <location filename="../../romalyzer.ui" line="213"/>
         <source>&amp;Backward</source>
         <translation>&amp;Rückwärts</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="266"/>
+        <location filename="../../romalyzer.ui" line="282"/>
         <source>Search string</source>
         <translation>Such-Zeichenkette</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="240"/>
+        <location filename="../../romalyzer.ui" line="256"/>
         <source>Search string forward</source>
         <translation>Zeichenkette vorwärts suchen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="194"/>
+        <location filename="../../romalyzer.ui" line="210"/>
         <source>Search string backward</source>
         <translation>Zeichenkette rückwärts suchen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="220"/>
+        <location filename="../../romalyzer.ui" line="236"/>
         <source>Save the current log contents to a file</source>
         <translation>Speichere den aktuellen Inhalt des Logs in einer Datei</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1035"/>
+        <location filename="../../romalyzer.ui" line="1051"/>
         <source>Enable CHD manager (may be slow)</source>
         <translation>CHD Manager aktivieren (langsam)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1130"/>
+        <location filename="../../romalyzer.ui" line="1146"/>
         <source>CHD manager (chdman)</source>
         <translation>CHD Manager (chdman)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1062"/>
+        <location filename="../../romalyzer.ui" line="1078"/>
         <source>CHD manager executable file (read and execute)</source>
         <translation>Ausführbare CHD Manager Datei (lesen und ausführen)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1105"/>
+        <location filename="../../romalyzer.ui" line="1121"/>
         <source>Browse CHD manager executable file</source>
         <translation>Ausführbare CHD Manager Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1123"/>
+        <location filename="../../romalyzer.ui" line="1139"/>
         <source>Temporary working directory</source>
         <translation>Temporäres Arbeitsverzeichnis</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1049"/>
+        <location filename="../../romalyzer.ui" line="1065"/>
         <source>Verify CHDs</source>
         <translation>CHDs prüfen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1140"/>
+        <location filename="../../romalyzer.ui" line="1156"/>
         <source>Update CHDs</source>
         <translation>CHDs aktualisieren</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="805"/>
+        <location filename="../../romalyzer.ui" line="821"/>
         <source>Maximum number of lines in log (0 = no limit)</source>
         <translation>Maximale Anzahl von Zeilen im Log (0 = keine Beschränkung)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="811"/>
+        <location filename="../../romalyzer.ui" line="827"/>
         <source> lines</source>
         <translation> Zeilen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="545"/>
+        <location filename="../../romalyzer.ui" line="561"/>
         <source>Rewrite while analyzing</source>
         <translation>Während Analyse</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="568"/>
+        <location filename="../../romalyzer.ui" line="584"/>
         <source>Self-contained</source>
         <translation>Unabhängige Sets</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="590"/>
+        <location filename="../../romalyzer.ui" line="606"/>
         <source>ZIPs</source>
         <translation>ZIPs</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="600"/>
+        <location filename="../../romalyzer.ui" line="616"/>
         <source>Select the ZIP compression level (0 = lowest / fastest, 9 = highest / slowest)</source>
         <translation>ZIP Kompressionsstufe auswählen (0 = niedrigste / schnellste, 9 = höchste / langsamste)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="630"/>
+        <location filename="../../romalyzer.ui" line="646"/>
         <source>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</source>
         <translation>Wenn ein Set mehrere Dateien mit demselben CRC enthält, soll das erzeugte ZIP dann alle einzelnen Dateien enthalten oder nur die erste (was eigentlich ausreichend ist)?</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="643"/>
+        <location filename="../../romalyzer.ui" line="659"/>
         <source>Directories</source>
         <translation>Verzeichnisse</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="728"/>
-        <location filename="../../romalyzer.ui" line="753"/>
-        <location filename="../../romalyzer.ui" line="808"/>
+        <location filename="../../romalyzer.ui" line="744"/>
+        <location filename="../../romalyzer.ui" line="769"/>
+        <location filename="../../romalyzer.ui" line="824"/>
         <source>unlimited</source>
         <translation>unbegrenzt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1422"/>
+        <location filename="../../romalyzer.cpp" line="1434"/>
         <source>  tag: %1</source>
         <translation>  Markierung: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1432"/>
-        <location filename="../../romalyzer.cpp" line="1457"/>
+        <location filename="../../romalyzer.cpp" line="1444"/>
+        <location filename="../../romalyzer.cpp" line="1469"/>
         <source>  flags: %1, %2</source>
         <translation>  Flags: %1, %2</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1432"/>
-        <location filename="../../romalyzer.cpp" line="1457"/>
+        <location filename="../../romalyzer.cpp" line="1444"/>
+        <location filename="../../romalyzer.cpp" line="1469"/>
         <source>has parent</source>
         <translation>Hat Eltern CHD</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1432"/>
-        <location filename="../../romalyzer.cpp" line="1457"/>
+        <location filename="../../romalyzer.cpp" line="1444"/>
+        <location filename="../../romalyzer.cpp" line="1469"/>
         <source>no parent</source>
         <translation>Kein Eltern CHD</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1432"/>
-        <location filename="../../romalyzer.cpp" line="1457"/>
+        <location filename="../../romalyzer.cpp" line="1444"/>
+        <location filename="../../romalyzer.cpp" line="1469"/>
         <source>allows writes</source>
         <translation>Schreiben erlaubt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1432"/>
-        <location filename="../../romalyzer.cpp" line="1457"/>
+        <location filename="../../romalyzer.cpp" line="1444"/>
+        <location filename="../../romalyzer.cpp" line="1469"/>
         <source>read only</source>
         <translation>Nur lesen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1834"/>
+        <location filename="../../romalyzer.cpp" line="1846"/>
         <source>WARNING: CHD file &apos;%1&apos; not found</source>
         <translation>WARNUNG: CHD Datei &apos;%1&apos; nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="963"/>
-        <location filename="../../romalyzer.cpp" line="972"/>
         <location filename="../../romalyzer.cpp" line="974"/>
-        <location filename="../../romalyzer.cpp" line="976"/>
-        <location filename="../../romalyzer.cpp" line="1166"/>
-        <location filename="../../romalyzer.cpp" line="1347"/>
-        <location filename="../../romalyzer.cpp" line="2699"/>
+        <location filename="../../romalyzer.cpp" line="983"/>
+        <location filename="../../romalyzer.cpp" line="985"/>
+        <location filename="../../romalyzer.cpp" line="987"/>
+        <location filename="../../romalyzer.cpp" line="1177"/>
+        <location filename="../../romalyzer.cpp" line="1359"/>
+        <location filename="../../romalyzer.cpp" line="2714"/>
         <source>CHD</source>
         <translation>CHD</translation>
     </message>
@@ -19954,7 +19965,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Maschine in Machinenliste auswählen, wenn im Analyse-Report selektiert?</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="792"/>
+        <location filename="../../romalyzer.ui" line="808"/>
         <source>Select game in game list if selected in analysis report?</source>
         <translation>Spiel in Spieleliste auswählen, wenn in Analyse-Report selektiert?</translation>
     </message>
@@ -19964,23 +19975,23 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Maschine / Datei</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1303"/>
+        <location filename="../../romalyzer.cpp" line="1315"/>
         <source>elapsed time = %1</source>
         <translation>benötigte Zeit  = %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="62"/>
+        <location filename="../../romalyzer.ui" line="78"/>
         <source>Start / stop analysis</source>
         <translation>Analyse starten / stoppen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1375"/>
+        <location filename="../../romalyzer.cpp" line="1387"/>
         <source>size of &apos;%1&apos; is greater than allowed maximum -- skipped</source>
         <translation>Die Datei &apos;%1&apos; ist größer als das erlaubte Maximum - übersprungen</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1856"/>
-        <location filename="../../romalyzer.cpp" line="1970"/>
+        <location filename="../../romalyzer.cpp" line="1868"/>
+        <location filename="../../romalyzer.cpp" line="1982"/>
         <source>size of &apos;%1&apos; from &apos;%2&apos; is greater than allowed maximum -- skipped</source>
         <translation>Die Datei &apos;%1&apos; aus &apos;%2&apos; ist größer als das erlaubte Maximum - übersprungen</translation>
     </message>
@@ -21224,8 +21235,8 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="170"/>
-        <location filename="../../softwarelist.cpp" line="1941"/>
-        <location filename="../../softwarelist.cpp" line="2731"/>
+        <location filename="../../softwarelist.cpp" line="1943"/>
+        <location filename="../../softwarelist.cpp" line="2733"/>
         <source>Default configuration</source>
         <translation>Standard Konfiguration</translation>
     </message>
@@ -21254,9 +21265,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="372"/>
         <location filename="../../softwarelist.ui" line="465"/>
         <location filename="../../softwarelist.ui" line="582"/>
-        <location filename="../../softwarelist.cpp" line="257"/>
-        <location filename="../../softwarelist.cpp" line="280"/>
-        <location filename="../../softwarelist.cpp" line="307"/>
+        <location filename="../../softwarelist.cpp" line="258"/>
+        <location filename="../../softwarelist.cpp" line="281"/>
+        <location filename="../../softwarelist.cpp" line="308"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
@@ -21264,9 +21275,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="377"/>
         <location filename="../../softwarelist.ui" line="470"/>
         <location filename="../../softwarelist.ui" line="587"/>
-        <location filename="../../softwarelist.cpp" line="259"/>
-        <location filename="../../softwarelist.cpp" line="282"/>
-        <location filename="../../softwarelist.cpp" line="309"/>
+        <location filename="../../softwarelist.cpp" line="260"/>
+        <location filename="../../softwarelist.cpp" line="283"/>
+        <location filename="../../softwarelist.cpp" line="310"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
@@ -21274,9 +21285,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="382"/>
         <location filename="../../softwarelist.ui" line="475"/>
         <location filename="../../softwarelist.ui" line="592"/>
-        <location filename="../../softwarelist.cpp" line="261"/>
-        <location filename="../../softwarelist.cpp" line="284"/>
-        <location filename="../../softwarelist.cpp" line="311"/>
+        <location filename="../../softwarelist.cpp" line="262"/>
+        <location filename="../../softwarelist.cpp" line="285"/>
+        <location filename="../../softwarelist.cpp" line="312"/>
         <source>Publisher</source>
         <translation>Herausgeber</translation>
     </message>
@@ -21284,9 +21295,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="387"/>
         <location filename="../../softwarelist.ui" line="480"/>
         <location filename="../../softwarelist.ui" line="597"/>
-        <location filename="../../softwarelist.cpp" line="263"/>
-        <location filename="../../softwarelist.cpp" line="286"/>
-        <location filename="../../softwarelist.cpp" line="313"/>
+        <location filename="../../softwarelist.cpp" line="264"/>
+        <location filename="../../softwarelist.cpp" line="287"/>
+        <location filename="../../softwarelist.cpp" line="314"/>
         <source>Year</source>
         <translation>Jahr</translation>
     </message>
@@ -21294,9 +21305,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="392"/>
         <location filename="../../softwarelist.ui" line="485"/>
         <location filename="../../softwarelist.ui" line="602"/>
-        <location filename="../../softwarelist.cpp" line="265"/>
-        <location filename="../../softwarelist.cpp" line="288"/>
-        <location filename="../../softwarelist.cpp" line="315"/>
+        <location filename="../../softwarelist.cpp" line="266"/>
+        <location filename="../../softwarelist.cpp" line="289"/>
+        <location filename="../../softwarelist.cpp" line="316"/>
         <source>Part</source>
         <translation>Teil</translation>
     </message>
@@ -21304,9 +21315,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="397"/>
         <location filename="../../softwarelist.ui" line="490"/>
         <location filename="../../softwarelist.ui" line="607"/>
-        <location filename="../../softwarelist.cpp" line="267"/>
-        <location filename="../../softwarelist.cpp" line="290"/>
-        <location filename="../../softwarelist.cpp" line="317"/>
+        <location filename="../../softwarelist.cpp" line="268"/>
+        <location filename="../../softwarelist.cpp" line="291"/>
+        <location filename="../../softwarelist.cpp" line="318"/>
         <source>Interface</source>
         <translation>Schnittstelle</translation>
     </message>
@@ -21314,9 +21325,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="402"/>
         <location filename="../../softwarelist.ui" line="495"/>
         <location filename="../../softwarelist.ui" line="612"/>
-        <location filename="../../softwarelist.cpp" line="269"/>
-        <location filename="../../softwarelist.cpp" line="292"/>
-        <location filename="../../softwarelist.cpp" line="319"/>
+        <location filename="../../softwarelist.cpp" line="270"/>
+        <location filename="../../softwarelist.cpp" line="293"/>
+        <location filename="../../softwarelist.cpp" line="320"/>
         <source>List</source>
         <translation>Liste</translation>
     </message>
@@ -21324,9 +21335,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="407"/>
         <location filename="../../softwarelist.ui" line="500"/>
         <location filename="../../softwarelist.ui" line="617"/>
-        <location filename="../../softwarelist.cpp" line="271"/>
-        <location filename="../../softwarelist.cpp" line="294"/>
-        <location filename="../../softwarelist.cpp" line="321"/>
+        <location filename="../../softwarelist.cpp" line="272"/>
+        <location filename="../../softwarelist.cpp" line="295"/>
+        <location filename="../../softwarelist.cpp" line="322"/>
         <source>Supported</source>
         <translation>Unterstützt</translation>
     </message>
@@ -21343,7 +21354,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="505"/>
-        <location filename="../../softwarelist.cpp" line="297"/>
+        <location filename="../../softwarelist.cpp" line="298"/>
         <source>Device configuration</source>
         <translation>Geräte-Konfiguration</translation>
     </message>
@@ -21366,7 +21377,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="641"/>
-        <location filename="../../softwarelist.cpp" line="878"/>
+        <location filename="../../softwarelist.cpp" line="879"/>
         <source>Loading software-lists, please wait...</source>
         <translation>Lade Software-Listen, bitte warten...</translation>
     </message>
@@ -21378,443 +21389,443 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="681"/>
-        <location filename="../../softwarelist.cpp" line="1392"/>
+        <location filename="../../softwarelist.cpp" line="1394"/>
         <source>Checking software-states - %p%</source>
         <translation>Prüfe Software-Stati - %p%</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="92"/>
+        <location filename="../../softwarelist.cpp" line="93"/>
         <source>Add the currently selected software to the favorites list</source>
         <translation>Aktuell ausgewählte Software-Konfiguration den Favoriten hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="104"/>
+        <location filename="../../softwarelist.cpp" line="105"/>
         <source>Enter search string</source>
         <translation>Such-Zeichenkette eingeben</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="146"/>
+        <location filename="../../softwarelist.cpp" line="147"/>
         <source>Play selected software</source>
         <translation>Ausgewählte Software spielen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="147"/>
+        <location filename="../../softwarelist.cpp" line="148"/>
         <source>&amp;Play</source>
         <translation>S&amp;pielen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="152"/>
+        <location filename="../../softwarelist.cpp" line="153"/>
         <source>Play selected software (embedded)</source>
         <translation>Ausgewählte Software spielen (eingebettet)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="153"/>
+        <location filename="../../softwarelist.cpp" line="154"/>
         <source>Play &amp;embedded</source>
         <translation>Spielen (&amp;eingebettet)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="159"/>
+        <location filename="../../softwarelist.cpp" line="160"/>
         <source>Add to favorite software list</source>
         <translation>Zu Software-Favoriten hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="160"/>
+        <location filename="../../softwarelist.cpp" line="161"/>
         <source>&amp;Add to favorites</source>
         <translation>&amp;Zu Favoriten hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="164"/>
+        <location filename="../../softwarelist.cpp" line="165"/>
         <source>Remove from favorite software list</source>
         <translation>Von Software-Favoriten entfernen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="165"/>
+        <location filename="../../softwarelist.cpp" line="166"/>
         <source>&amp;Remove from favorites</source>
         <translation>&amp;Von Favoriten entfernen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="170"/>
+        <location filename="../../softwarelist.cpp" line="171"/>
         <source>Clear software selection</source>
         <translation>Software-Auswahl aufheben</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="171"/>
+        <location filename="../../softwarelist.cpp" line="172"/>
         <source>&amp;Clear selection</source>
         <translation>&amp;Auswahl aufheben</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="178"/>
+        <location filename="../../softwarelist.cpp" line="179"/>
         <source>Load favorites from a file...</source>
         <translation>Favoriten aus Datei laden...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="183"/>
+        <location filename="../../softwarelist.cpp" line="184"/>
         <source>Save favorites to a file...</source>
         <translation>Favoriten in Datei speichern...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="193"/>
+        <location filename="../../softwarelist.cpp" line="194"/>
         <source>Adjust pattern...</source>
         <translation>Schablone anpassen...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="202"/>
+        <location filename="../../softwarelist.cpp" line="203"/>
         <source>Check software-states</source>
         <translation>Software-Stati prüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="219"/>
+        <location filename="../../softwarelist.cpp" line="220"/>
         <source>Negate search</source>
         <translation>Suche negieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="274"/>
-        <location filename="../../softwarelist.cpp" line="301"/>
-        <location filename="../../softwarelist.cpp" line="324"/>
+        <location filename="../../softwarelist.cpp" line="275"/>
+        <location filename="../../softwarelist.cpp" line="302"/>
+        <location filename="../../softwarelist.cpp" line="325"/>
         <source>Reset</source>
         <translation>Zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="371"/>
+        <location filename="../../softwarelist.cpp" line="372"/>
         <source>Snapname adjustment pattern</source>
         <translation>Schablone für Snapname-Anpassung</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="372"/>
+        <location filename="../../softwarelist.cpp" line="373"/>
         <source>Enter the pattern used for snapname adjustment:
 (Allowed macros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)</source>
         <translation>Schablone für Snapname-Anpassung eingeben:
 (Erlaubte Makros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="479"/>
-        <location filename="../../softwarelist.cpp" line="1471"/>
+        <location filename="../../softwarelist.cpp" line="480"/>
+        <location filename="../../softwarelist.cpp" line="1473"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
         <translation>FATAL: kann ausführbare Emulator Datei nicht in einem angemessenen Zeitraum starten, gebe auf</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="525"/>
-        <location filename="../../softwarelist.cpp" line="533"/>
-        <location filename="../../softwarelist.cpp" line="539"/>
+        <location filename="../../softwarelist.cpp" line="526"/>
+        <location filename="../../softwarelist.cpp" line="534"/>
+        <location filename="../../softwarelist.cpp" line="540"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
         <translation>FATAL: ungültige XML Daten für &apos;%1&apos; erhalten</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="759"/>
-        <location filename="../../softwarelist.cpp" line="761"/>
+        <location filename="../../softwarelist.cpp" line="760"/>
+        <location filename="../../softwarelist.cpp" line="762"/>
         <source>Known software (%1)</source>
         <translation>Bekannte Software (%1)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="759"/>
-        <location filename="../../softwarelist.cpp" line="1767"/>
-        <location filename="../../softwarelist.cpp" line="1773"/>
+        <location filename="../../softwarelist.cpp" line="760"/>
+        <location filename="../../softwarelist.cpp" line="1769"/>
+        <location filename="../../softwarelist.cpp" line="1775"/>
         <source>filtered</source>
         <translation>gefiltert</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="762"/>
+        <location filename="../../softwarelist.cpp" line="763"/>
         <source>Favorites (%1)</source>
         <translation>Favoriten (%1)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="763"/>
+        <location filename="../../softwarelist.cpp" line="764"/>
         <source>Search (%1)</source>
         <translation>Suchen (%1)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="777"/>
-        <location filename="../../softwarelist.cpp" line="935"/>
+        <location filename="../../softwarelist.cpp" line="778"/>
+        <location filename="../../softwarelist.cpp" line="936"/>
         <source>Known software (no data available)</source>
         <translation>Bekannte Software (keine Daten verfügbar)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="778"/>
-        <location filename="../../softwarelist.cpp" line="936"/>
+        <location filename="../../softwarelist.cpp" line="779"/>
+        <location filename="../../softwarelist.cpp" line="937"/>
         <source>Favorites (no data available)</source>
         <translation>Favoriten (keine Daten verfügbar)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="779"/>
-        <location filename="../../softwarelist.cpp" line="937"/>
+        <location filename="../../softwarelist.cpp" line="780"/>
+        <location filename="../../softwarelist.cpp" line="938"/>
         <source>Search (no data available)</source>
         <translation>Suchen (keine Daten verfügbar)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="886"/>
-        <location filename="../../softwarelist.cpp" line="1212"/>
+        <location filename="../../softwarelist.cpp" line="887"/>
+        <location filename="../../softwarelist.cpp" line="1213"/>
         <source>SWL data - %p%</source>
         <translation>SWL Daten - %p%</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="965"/>
+        <location filename="../../softwarelist.cpp" line="966"/>
         <source>Loading software-list &apos;%1&apos;, please wait...</source>
         <translation>Lade Software-Liste &apos;%1&apos;, bitte warten...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="980"/>
+        <location filename="../../softwarelist.cpp" line="981"/>
         <source>FATAL: error while parsing XML data for software list &apos;%1&apos;</source>
         <translation>FATAL: Fehler beim Parsen der XML Daten für Software-Liste &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1035"/>
-        <location filename="../../softwarelist.cpp" line="1994"/>
-        <location filename="../../softwarelist.cpp" line="2115"/>
-        <location filename="../../softwarelist.cpp" line="2148"/>
-        <location filename="../../softwarelist.cpp" line="2181"/>
-        <location filename="../../softwarelist.cpp" line="2662"/>
-        <location filename="../../softwarelist.cpp" line="3099"/>
+        <location filename="../../softwarelist.cpp" line="1036"/>
+        <location filename="../../softwarelist.cpp" line="1996"/>
+        <location filename="../../softwarelist.cpp" line="2117"/>
+        <location filename="../../softwarelist.cpp" line="2150"/>
+        <location filename="../../softwarelist.cpp" line="2183"/>
+        <location filename="../../softwarelist.cpp" line="2664"/>
+        <location filename="../../softwarelist.cpp" line="3101"/>
         <source>Waiting for data...</source>
         <translation>Warte auf Daten...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1229"/>
+        <location filename="../../softwarelist.cpp" line="1230"/>
         <source>WARNING: the external process called to load the MAME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation>WARNUNG: Der externe Prozess, der zum Laden der MAME Softwarelisten gestartet wurde, konnte nicht ordentlich beendet werden -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1229"/>
-        <location filename="../../softwarelist.cpp" line="1231"/>
-        <location filename="../../softwarelist.cpp" line="1233"/>
-        <location filename="../../softwarelist.cpp" line="1512"/>
+        <location filename="../../softwarelist.cpp" line="1230"/>
+        <location filename="../../softwarelist.cpp" line="1232"/>
+        <location filename="../../softwarelist.cpp" line="1234"/>
+        <location filename="../../softwarelist.cpp" line="1514"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1229"/>
-        <location filename="../../softwarelist.cpp" line="1231"/>
-        <location filename="../../softwarelist.cpp" line="1233"/>
-        <location filename="../../softwarelist.cpp" line="1512"/>
+        <location filename="../../softwarelist.cpp" line="1230"/>
+        <location filename="../../softwarelist.cpp" line="1232"/>
+        <location filename="../../softwarelist.cpp" line="1234"/>
+        <location filename="../../softwarelist.cpp" line="1514"/>
         <source>crashed</source>
         <translation>abgestürzt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1231"/>
+        <location filename="../../softwarelist.cpp" line="1232"/>
         <source>WARNING: the external process called to load the MESS software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation>WARNUNG: Der externe Prozess, der zum Laden der MESS Softwarelisten gestartet wurde, konnte nicht ordentlich beendet werden -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1233"/>
+        <location filename="../../softwarelist.cpp" line="1234"/>
         <source>WARNING: the external process called to load the UME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation>WARNUNG: Der externe Prozess, der zum Laden der UME Softwarelisten gestartet wurde, konnte nicht ordentlich beendet werden -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1314"/>
+        <location filename="../../softwarelist.cpp" line="1316"/>
         <source>WARNING: software-list XML bug: the software name &apos;%1&apos; is used multiple times within software-list &apos;%2&apos;</source>
         <translation>WARNUNG: Software-Listen XML Bug: der Software Name &apos;%1&apos; wird in der Software-Liste &apos;%2&apos; mehrfach verwendet</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1355"/>
+        <location filename="../../softwarelist.cpp" line="1357"/>
         <source>WARNING: the currently selected MAME emulator doesn&apos;t support software lists</source>
         <translation>WARNUNG: der zur Zeit ausgewählte MAME Emulator unterstützt keine Software-Listen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1357"/>
+        <location filename="../../softwarelist.cpp" line="1359"/>
         <source>WARNING: the currently selected MESS emulator doesn&apos;t support software lists</source>
         <translation>WARNUNG: der zur Zeit ausgewählte MESS Emulator unterstützt keine Software-Listen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1359"/>
+        <location filename="../../softwarelist.cpp" line="1361"/>
         <source>WARNING: the currently selected UME emulator doesn&apos;t support software lists</source>
         <translation>WARNUNG: der zur Zeit ausgewählte UME Emulator unterstützt keine Software-Listen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1372"/>
+        <location filename="../../softwarelist.cpp" line="1374"/>
         <source>WARNING: the external process called to load the MAME software lists caused an error -- processError = %1</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Laden der MAME Softwarelisten gestartet wurde, verursachte einen Fehler -- processError = %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1374"/>
+        <location filename="../../softwarelist.cpp" line="1376"/>
         <source>WARNING: the external process called to load the MESS software lists caused an error -- processError = %1</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Laden der MESS Softwarelisten gestartet wurde, verursachte einen Fehler -- processError = %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1376"/>
+        <location filename="../../softwarelist.cpp" line="1378"/>
         <source>WARNING: the external process called to load the UME software lists caused an error -- processError = %1</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Laden der UME Softwarelisten gestartet wurde, verursachte einen Fehler -- processError = %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1436"/>
+        <location filename="../../softwarelist.cpp" line="1438"/>
         <source>WARNING: can&apos;t open software state cache file &apos;%1&apos; for writing, please check access permissions</source>
         <translation>WARNUNG: kann Software Status Cache Datei &apos;%1&apos; nicht zum Schreiben öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1512"/>
+        <location filename="../../softwarelist.cpp" line="1514"/>
         <source>WARNING: the external process called to verify the states for software-list &apos;%1&apos; didn&apos;t exit cleanly -- exitCode = %2, exitStatus = %3</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Überprüfen des Status der Software-Liste &apos;%1&apos; gestartet wurde, konnte nicht ordentlich beendet werden -- exitCode = %2, exitStatus = %3</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2135"/>
-        <location filename="../../softwarelist.cpp" line="2168"/>
-        <location filename="../../softwarelist.cpp" line="2201"/>
+        <location filename="../../softwarelist.cpp" line="2137"/>
+        <location filename="../../softwarelist.cpp" line="2170"/>
+        <location filename="../../softwarelist.cpp" line="2203"/>
         <source>FATAL: couldn&apos;t find XML data for software list entry &apos;%1:%2&apos;</source>
         <translation>FATAL: konnte XML Daten für Software-Listen Eintrag &apos;%1:%2&apos; nicht finden</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3248"/>
-        <location filename="../../softwarelist.cpp" line="3257"/>
+        <location filename="../../softwarelist.cpp" line="3250"/>
+        <location filename="../../softwarelist.cpp" line="3259"/>
         <source>L:</source>
         <translation>L:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3250"/>
-        <location filename="../../softwarelist.cpp" line="3259"/>
+        <location filename="../../softwarelist.cpp" line="3252"/>
+        <location filename="../../softwarelist.cpp" line="3261"/>
         <source>C:</source>
         <translation>K:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3251"/>
-        <location filename="../../softwarelist.cpp" line="3260"/>
+        <location filename="../../softwarelist.cpp" line="3253"/>
+        <location filename="../../softwarelist.cpp" line="3262"/>
         <source>M:</source>
         <translation>B:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3252"/>
-        <location filename="../../softwarelist.cpp" line="3261"/>
+        <location filename="../../softwarelist.cpp" line="3254"/>
+        <location filename="../../softwarelist.cpp" line="3263"/>
         <source>I:</source>
         <translation>I:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3253"/>
-        <location filename="../../softwarelist.cpp" line="3262"/>
+        <location filename="../../softwarelist.cpp" line="3255"/>
+        <location filename="../../softwarelist.cpp" line="3264"/>
         <source>N:</source>
         <translation>N:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3254"/>
-        <location filename="../../softwarelist.cpp" line="3263"/>
+        <location filename="../../softwarelist.cpp" line="3256"/>
+        <location filename="../../softwarelist.cpp" line="3265"/>
         <source>U:</source>
         <translation>U:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1403"/>
+        <location filename="../../softwarelist.cpp" line="1405"/>
         <source>Checking software-states, please wait...</source>
         <translation>Prüfe Software-Stati, bitte warten...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="884"/>
+        <location filename="../../softwarelist.cpp" line="885"/>
         <source>loading XML software list data and recreating cache</source>
         <translation>Lade XML Softwarelisten-Daten und erzeuge Cache neu</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1239"/>
+        <location filename="../../softwarelist.cpp" line="1240"/>
         <source>done (loading XML software list data and recreating cache, elapsed time = %1)</source>
         <translation>Fertig (Lade XML Softwarelisten-Daten und erzeuge Cache neu, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1583"/>
+        <location filename="../../softwarelist.cpp" line="1585"/>
         <source>state info for software-list &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</source>
         <translation>Status-Info für Software-Liste &apos;%1&apos;: L:%2 K:%3 B:%4 I:%5 N:%6 U:%7</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1743"/>
+        <location filename="../../softwarelist.cpp" line="1745"/>
         <source>WARNING: the external process called to verify software-states caused an error -- processError = %1</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Überprüfen der Software-Stati gestartet wurde, erzeugte einen Fehler -- processError = %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2127"/>
-        <location filename="../../softwarelist.cpp" line="2160"/>
-        <location filename="../../softwarelist.cpp" line="2193"/>
+        <location filename="../../softwarelist.cpp" line="2129"/>
+        <location filename="../../softwarelist.cpp" line="2162"/>
+        <location filename="../../softwarelist.cpp" line="2195"/>
         <source>Searching</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2132"/>
-        <location filename="../../softwarelist.cpp" line="2165"/>
-        <location filename="../../softwarelist.cpp" line="2198"/>
+        <location filename="../../softwarelist.cpp" line="2134"/>
+        <location filename="../../softwarelist.cpp" line="2167"/>
+        <location filename="../../softwarelist.cpp" line="2200"/>
         <source>FATAL: error while parsing XML data for software list entry &apos;%1:%2&apos;</source>
         <translation>FATAL: Fehler beim Parsen der XML Daten für Software-Listen Eintrag &apos;%1:%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3069"/>
+        <location filename="../../softwarelist.cpp" line="3071"/>
         <source>Choose file to merge favorites from</source>
         <translation>Datei zum Hinzufügen enthaltener Favoriten auswählen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3069"/>
-        <location filename="../../softwarelist.cpp" line="3150"/>
+        <location filename="../../softwarelist.cpp" line="3071"/>
+        <location filename="../../softwarelist.cpp" line="3152"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3081"/>
+        <location filename="../../softwarelist.cpp" line="3083"/>
         <source>loading software-favorites for &apos;%1&apos; from &apos;%2&apos;</source>
         <translation>Lade Software-Favoriten für &apos;%1&apos; aus &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3123"/>
+        <location filename="../../softwarelist.cpp" line="3125"/>
         <source>entry &apos;%1:%2&apos; successfully imported</source>
         <translation>Eintrag &apos;%1:%2&apos; erfolgreich importiert</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3125"/>
+        <location filename="../../softwarelist.cpp" line="3127"/>
         <source>WARNING: entry &apos;%1:%2&apos; cannot be associated with any known software for this system (line %3 ignored)</source>
         <translation>WARNUNG: Eintrag &apos;%1:%2&apos; kann mit keiner bekannten Software für dieses System assoziiert werden (Zeile %3 ignoriert)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3127"/>
+        <location filename="../../softwarelist.cpp" line="3129"/>
         <source>WARNING: a favorite entry for &apos;%1:%2&apos; already exists (line %3 ignored)</source>
         <translation>WARNUNG: ein Favoriten-Eintrag für &apos;%1:%2&apos; existiert bereits (Zeile %3 ignoriert)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3129"/>
+        <location filename="../../softwarelist.cpp" line="3131"/>
         <source>WARNING: syntax error on line %1 (ignored)</source>
         <translation>WARNUNG: ungültige Syntax in Zeile %1 (ignoriert)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3133"/>
+        <location filename="../../softwarelist.cpp" line="3135"/>
         <source>done (loading software-favorites for &apos;%1&apos; from &apos;%2&apos;)</source>
         <translation>Fertig (Lade Software-Favoriten für &apos;%1&apos; aus &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3135"/>
+        <location filename="../../softwarelist.cpp" line="3137"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for reading, please check permissions</source>
         <translation>FATAL: kann &apos;%1&apos; nicht zum Lesen öffnen, bitte Zugriffsrechte überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3150"/>
+        <location filename="../../softwarelist.cpp" line="3152"/>
         <source>Choose file to store favorites to</source>
         <translation>Datei zum Speichern der Favoriten wählen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3161"/>
+        <location filename="../../softwarelist.cpp" line="3163"/>
         <source>saving software-favorites for &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>Speichere Software-Favoriten für &apos;%1&apos; in &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3186"/>
+        <location filename="../../softwarelist.cpp" line="3188"/>
         <source>done (saving software-favorites for &apos;%1&apos; to &apos;%2&apos;)</source>
         <translation>Fertig (Speichere Software-Favoriten für &apos;%1&apos; in &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3188"/>
+        <location filename="../../softwarelist.cpp" line="3190"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing, please check permissions</source>
         <translation>FATAL: kann &apos;%1&apos; nicht zum Schreiben öffnen, bitte Zugriffsrechte überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3199"/>
+        <location filename="../../softwarelist.cpp" line="3201"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3205"/>
+        <location filename="../../softwarelist.cpp" line="3207"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3211"/>
+        <location filename="../../softwarelist.cpp" line="3213"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3217"/>
+        <location filename="../../softwarelist.cpp" line="3219"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3224"/>
-        <location filename="../../softwarelist.cpp" line="3231"/>
-        <location filename="../../softwarelist.cpp" line="3237"/>
+        <location filename="../../softwarelist.cpp" line="3226"/>
+        <location filename="../../softwarelist.cpp" line="3233"/>
+        <location filename="../../softwarelist.cpp" line="3239"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
@@ -22233,75 +22244,75 @@ Bist Du sicher, dass Du das tun willst?</translation>
 <context>
     <name>SoftwareSnap</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="3520"/>
+        <location filename="../../softwarelist.cpp" line="3522"/>
         <source>Copy image to clipboard</source>
         <translation>Bild in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3526"/>
+        <location filename="../../softwarelist.cpp" line="3528"/>
         <source>Copy file path to clipboard</source>
         <translation>Datei-Pfad in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3535"/>
+        <location filename="../../softwarelist.cpp" line="3537"/>
         <source>Zoom in (+10%)</source>
         <translation>Vergrößern (+10%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3541"/>
+        <location filename="../../softwarelist.cpp" line="3543"/>
         <source>Zoom out (-10%)</source>
         <translation>Verkleinern (-10%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3547"/>
+        <location filename="../../softwarelist.cpp" line="3549"/>
         <source>Reset zoom (100%)</source>
         <translation>Zoomfaktor zurücksetzen (100%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3555"/>
+        <location filename="../../softwarelist.cpp" line="3557"/>
         <source>Refresh cache slot</source>
         <translation>Cache-Slot aktualisieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3567"/>
-        <location filename="../../softwarelist.cpp" line="3881"/>
+        <location filename="../../softwarelist.cpp" line="3569"/>
+        <location filename="../../softwarelist.cpp" line="3883"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: kann Software Snapshot Datei nicht öffnen; bitte Zugriffsrechte für %1 überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3573"/>
-        <location filename="../../softwarelist.cpp" line="3928"/>
+        <location filename="../../softwarelist.cpp" line="3575"/>
+        <location filename="../../softwarelist.cpp" line="3930"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
         <translation>FATAL: kann Software Snapshot Datei %1 nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3573"/>
-        <location filename="../../softwarelist.cpp" line="3928"/>
+        <location filename="../../softwarelist.cpp" line="3575"/>
+        <location filename="../../softwarelist.cpp" line="3930"/>
         <source>7z error</source>
         <translation>7z Fehler</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3626"/>
+        <location filename="../../softwarelist.cpp" line="3628"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>FATAL: kann Backup der existierenden Bild-Datei &apos;%1&apos; nicht unter &apos;%2&apos; erstellen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3641"/>
+        <location filename="../../softwarelist.cpp" line="3643"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
         <translation>FATAL: kann Bild-Datei &apos;%1&apos; nicht erstellen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3647"/>
+        <location filename="../../softwarelist.cpp" line="3649"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
         <translation>FATAL: kann den primären Pfad für Bild-Typ &apos;%1&apos; nicht ermitteln</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3647"/>
+        <location filename="../../softwarelist.cpp" line="3649"/>
         <source>software snapshot</source>
         <translation>Software Schnappschuss</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3963"/>
+        <location filename="../../softwarelist.cpp" line="3965"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Dekomprimiere Archiv, bitte warten...</translation>
     </message>
@@ -22309,37 +22320,37 @@ Bist Du sicher, dass Du das tun willst?</translation>
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="4518"/>
+        <location filename="../../softwarelist.cpp" line="4520"/>
         <source>Copy image to clipboard</source>
         <translation>Bild in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4524"/>
+        <location filename="../../softwarelist.cpp" line="4526"/>
         <source>Copy file path to clipboard</source>
         <translation>Datei-Pfad in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4533"/>
+        <location filename="../../softwarelist.cpp" line="4535"/>
         <source>Refresh cache slot</source>
         <translation>Cache-Slot aktualisieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4648"/>
+        <location filename="../../softwarelist.cpp" line="4650"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: kann Software Snapshot Datei nicht öffnen; bitte Zugriffsrechte für %1 überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4697"/>
+        <location filename="../../softwarelist.cpp" line="4699"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
         <translation>FATAL: kann Software Snapshot Datei %1 nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4697"/>
+        <location filename="../../softwarelist.cpp" line="4699"/>
         <source>7z error</source>
         <translation>7z Fehler</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4730"/>
+        <location filename="../../softwarelist.cpp" line="4732"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Dekomprimiere Archiv, bitte warten...</translation>
     </message>

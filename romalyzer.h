@@ -323,7 +323,8 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void on_pushButtonClose_clicked();
 		void on_pushButtonSearchForward_clicked();
 		void on_pushButtonSearchBackward_clicked();
-		void on_lineEditGames_textChanged(QString);
+		void on_lineEditSoftwareLists_textChanged(QString);
+		void on_lineEditSets_textChanged(QString);
 		void on_treeWidgetChecksums_itemSelectionChanged();
 		void on_spinBoxMaxLogSize_valueChanged(int);
 		void on_toolButtonBrowseBackupFolder_clicked();

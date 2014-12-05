@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>831</width>
-    <height>854</height>
+    <width>702</width>
+    <height>590</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,23 @@
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout1">
      <item>
-      <widget class="QLineEdit" name="lineEditGames">
+      <widget class="QLineEdit" name="lineEditSoftwareLists">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Specify software-lists to be analyzed - wildcards allowed, use space as delimiter for multiple software-lists or search patterns</string>
+       </property>
+       <property name="placeholderText">
+        <string>Specify software-lists to analyze</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditSets">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
          <horstretch>0</horstretch>
@@ -328,8 +344,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>815</width>
-            <height>758</height>
+            <width>801</width>
+            <height>770</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayoutScrollAreeaSettings" rowstretch="0,0,0,1,0">
@@ -1858,7 +1874,8 @@
  </widget>
  <layoutdefault spacing="6" margin="6"/>
  <tabstops>
-  <tabstop>lineEditGames</tabstop>
+  <tabstop>lineEditSoftwareLists</tabstop>
+  <tabstop>lineEditSets</tabstop>
   <tabstop>toolButtonToolsMenu</tabstop>
   <tabstop>pushButtonAnalyze</tabstop>
   <tabstop>pushButtonPause</tabstop>
@@ -1961,7 +1978,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>lineEditGames</sender>
+   <sender>lineEditSets</sender>
    <signal>returnPressed()</signal>
    <receiver>pushButtonAnalyze</receiver>
    <slot>animateClick()</slot>

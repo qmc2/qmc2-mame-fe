@@ -356,14 +356,24 @@ void ROMAlyzer::on_pushButtonSearchBackward_clicked()
 	}
 }
 
-void ROMAlyzer::on_lineEditGames_textChanged(QString text)
+void ROMAlyzer::on_lineEditSoftwareLists_textChanged(QString text)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_lineEditGames_textChanged(QString text = %1)").arg(text));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_lineEditSoftwareLists_textChanged(QString text = %1)").arg(text));
 #endif
 
 	if ( !active() )
-		pushButtonAnalyze->setEnabled(!text.isEmpty());
+		pushButtonAnalyze->setEnabled(!text.isEmpty() && !lineEditSets->text().isEmpty());
+}
+
+void ROMAlyzer::on_lineEditSets_textChanged(QString text)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_lineEditSets_textChanged(QString text = %1)").arg(text));
+#endif
+
+	if ( !active() )
+		pushButtonAnalyze->setEnabled(mode() == QMC2_ROMALYZER_MODE_SYSTEM ? !text.isEmpty() : !text.isEmpty() && !lineEditSoftwareLists->text().isEmpty());
 }
 
 void ROMAlyzer::on_checkBoxCalculateCRC_toggled(bool enable)
@@ -643,7 +653,7 @@ void ROMAlyzer::analyze()
 	romPaths = myRomPath.split(";", QString::SkipEmptyParts);
 
 	QStringList analyzerList;
-	QStringList patternList = lineEditGames->text().simplified().split(" ", QString::SkipEmptyParts);
+	QStringList patternList = lineEditSets->text().simplified().split(" ", QString::SkipEmptyParts);
 
 	if ( !checkBoxAppendReport->isChecked() ) {
 		treeWidgetChecksums->clear();
@@ -659,7 +669,8 @@ void ROMAlyzer::analyze()
 	pushButtonPause->setVisible(true);
 	pushButtonPause->setEnabled(true);
 	pushButtonPause->setText(tr("&Pause"));
-	lineEditGames->setEnabled(false);
+	lineEditSoftwareLists->setEnabled(false);
+	lineEditSets->setEnabled(false);
 	toolButtonToolsMenu->setEnabled(false);
 	if ( checkBoxCalculateSHA1->isChecked() )
 		tabChecksumWizard->setEnabled(false);
@@ -670,7 +681,7 @@ void ROMAlyzer::analyze()
 
 	int i = 0;
 	QRegExp wildcardRx("(\\*|\\?)");
-	if ( wizardSearch || quickSearch || wildcardRx.indexIn(lineEditGames->text().simplified()) == -1 ) {
+	if ( wizardSearch || quickSearch || wildcardRx.indexIn(lineEditSets->text().simplified()) == -1 ) {
 		// no wild-cards => no need to search!
 		foreach (QString id, patternList)
 			if ( qmc2Gamelist->xmlDb()->exists(id) )
@@ -691,7 +702,7 @@ void ROMAlyzer::analyze()
 			progressBar->reset();
 			QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
 			i = 0;
-			bool matchAll = (lineEditGames->text().simplified() == "*");
+			bool matchAll = (lineEditSets->text().simplified() == "*");
 			while ( it.hasNext() && !qmc2StopParser ) {
 				it.next();
 				progressBar->setValue(++i);
@@ -1290,7 +1301,8 @@ void ROMAlyzer::analyze()
 	pushButtonAnalyze->setText(tr("&Analyze"));
 	pushButtonPause->setVisible(false);
 	pushButtonAnalyze->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer.png")));
-	lineEditGames->setEnabled(true);
+	lineEditSoftwareLists->setEnabled(true);
+	lineEditSets->setEnabled(true);
 	toolButtonToolsMenu->setEnabled(true);
 	if ( checkBoxCalculateSHA1->isChecked() )
 		tabChecksumWizard->setEnabled(true);
@@ -2205,12 +2217,14 @@ void ROMAlyzer::setMode(int mode)
 			m_currentMode = QMC2_ROMALYZER_MODE_SOFTWARE;
 			setWindowTitle(tr("ROMAlyzer") + " [" + tr("software mode") + "]");
 			m_settingsKey = "SoftwareROMAlyzer";
+			lineEditSoftwareLists->setVisible(true);
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
 			m_currentMode = QMC2_ROMALYZER_MODE_SYSTEM;
 			setWindowTitle(tr("ROMAlyzer") + " [" + tr("system mode") + "]");
 			m_settingsKey = "ROMAlyzer";
+			lineEditSoftwareLists->setVisible(false);
 			break;
 	}
 }
@@ -2659,7 +2673,8 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	lineEditChecksumWizardHash->setReadOnly(true);
 	pushButtonAnalyze->setEnabled(false);
 	toolButtonToolsMenu->setEnabled(false);
-	lineEditGames->setEnabled(false);
+	lineEditSoftwareLists->setEnabled(false);
+	lineEditSets->setEnabled(false);
 
 	progressBar->setRange(0, qmc2MainWindow->treeWidgetGamelist->topLevelItemCount());
 	labelStatus->setText(tr("Check-sum search"));
@@ -2719,7 +2734,8 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	labelStatus->setText(tr("Idle"));
 	pushButtonAnalyze->setEnabled(true);
 	toolButtonToolsMenu->setEnabled(true);
-	lineEditGames->setEnabled(true);
+	lineEditSoftwareLists->setEnabled(true);
+	lineEditSets->setEnabled(true);
 	pushButtonChecksumWizardSearch->setEnabled(true);
 	lineEditChecksumWizardHash->setReadOnly(false);
 	qApp->processEvents();
@@ -2766,7 +2782,7 @@ void ROMAlyzer::runSetRewriter()
 					groupBoxSetRewriter->setEnabled(false);
 					bool savedSRWA = checkBoxSetRewriterWhileAnalyzing->isChecked();
 					checkBoxSetRewriterWhileAnalyzing->setChecked(false);
-					lineEditGames->setText(item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ", QString::SkipEmptyParts)[0]);
+					lineEditSets->setText(item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ", QString::SkipEmptyParts)[0]);
 					qmc2StopParser = false;
 					analyze();
 					checkBoxSetRewriterWhileAnalyzing->setChecked(savedSRWA);
@@ -2962,7 +2978,7 @@ void ROMAlyzer::analyzeDeviceRefs()
 		QStringList deviceRefs = il[0]->whatsThis(QMC2_ROMALYZER_COLUMN_GAME).split(",", QString::SkipEmptyParts);
 		deviceRefs.removeDuplicates();
 		if ( !deviceRefs.isEmpty() ) {
-			lineEditGames->setText(deviceRefs.join(" "));
+			lineEditSets->setText(deviceRefs.join(" "));
 			QTimer::singleShot(0, this, SLOT(analyze()));
 		}
 	}
@@ -2992,7 +3008,7 @@ void ROMAlyzer::importFromDataFile()
 			}
 			dataFile.close();
 			if ( !nameList.isEmpty() )
-				lineEditGames->setText(nameList.join(" "));
+				lineEditSets->setText(nameList.join(" "));
 			setActive(false);
 		} else
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open data file '%1' for reading").arg(dataFilePath));
@@ -3273,7 +3289,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()");
 #endif
 
-	lineEditGames->setText(wizardSelectedSets.join(" "));
+	lineEditSets->setText(wizardSelectedSets.join(" "));
 	wizardSearch = true;
 	pushButtonAnalyze->animateClick();
 }
