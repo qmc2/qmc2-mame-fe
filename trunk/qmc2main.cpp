@@ -2706,7 +2706,7 @@ void MainWindow::on_actionSystemROMAlyzer_triggered(bool)
 		qmc2SystemROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SYSTEM);
 
 	if ( !qmc2SystemROMAlyzer->active() )
-		qmc2SystemROMAlyzer->lineEditGames->setText("*");
+		qmc2SystemROMAlyzer->lineEditSets->setText("*");
 
 	if ( qmc2SystemROMAlyzer->isHidden() )
 		qmc2SystemROMAlyzer->show();
@@ -2725,8 +2725,10 @@ void MainWindow::on_actionSoftwareROMAlyzer_triggered(bool)
 	if ( !qmc2SoftwareROMAlyzer )
 		qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
 
-	if ( !qmc2SoftwareROMAlyzer->active() )
-		qmc2SoftwareROMAlyzer->lineEditGames->setText("*:*");
+	if ( !qmc2SoftwareROMAlyzer->active() ) {
+		qmc2SoftwareROMAlyzer->lineEditSoftwareLists->setText("*");
+		qmc2SoftwareROMAlyzer->lineEditSets->setText("*");
+	}
 
 	if ( qmc2SoftwareROMAlyzer->isHidden() )
 		qmc2SoftwareROMAlyzer->show();
@@ -2780,7 +2782,7 @@ void MainWindow::on_actionAnalyseCurrentROM_triggered(bool)
 	if ( !qmc2SystemROMAlyzer )
 		qmc2SystemROMAlyzer = new ROMAlyzer(0);
 
-	qmc2SystemROMAlyzer->lineEditGames->setText(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME));
+	qmc2SystemROMAlyzer->lineEditSets->setText(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME));
 
 	if ( qmc2SystemROMAlyzer->isHidden() )
 		qmc2SystemROMAlyzer->show();
@@ -10656,7 +10658,7 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 		qmc2SystemROMAlyzer = new ROMAlyzer(0);
 
 	qmc2SystemROMAlyzer->quickSearch = true;
-	qmc2SystemROMAlyzer->lineEditGames->setText(setsToAnalyze.join(" "));
+	qmc2SystemROMAlyzer->lineEditSets->setText(setsToAnalyze.join(" "));
 
 	if ( qmc2SystemROMAlyzer->isHidden() )
 		qmc2SystemROMAlyzer->show();
