@@ -683,14 +683,6 @@
         <translation>QML Anzeige nicht gestartet - bitte Konsolenfenster schließen um das Programm zu beenden</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="58"/>
-        <location filename="../infoprovider.cpp" line="60"/>
-        <location filename="../infoprovider.cpp" line="68"/>
-        <location filename="../infoprovider.cpp" line="70"/>
-        <source>no info available</source>
-        <translation>Keine Daten verfügbar</translation>
-    </message>
-    <message>
         <location filename="../keysequences.h" line="79"/>
         <source>[context] Previous component / List page up / Info page up</source>
         <translation>[Kontext] Vorherige Komponente / Liste eine Seite rauf / Info eine Seite rauf</translation>
@@ -1234,20 +1226,20 @@ QMC2 Arcade neu starten!</translation>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1411"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1409"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1416"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1414"/>
         <source>FPS</source>
         <translation>FPS</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1634"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1632"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1655"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1653"/>
         <source>Starting shader effect</source>
         <translation>Starte Shader-Effekt</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1636"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1634"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1657"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1655"/>
         <source>Shader effect stopped</source>
         <translation>Shader-Effekt gestoppt</translation>
     </message>
@@ -1320,35 +1312,35 @@ QMC2 Arcade neu starten!</translation>
         <translation>unbekannt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="394"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="395"/>
         <source>WARNING: filtered list file &apos;%1&apos; doesn&apos;t exist or isn&apos;t accessible, falling back to the full %2</source>
         <translation>WARNUNG: Die gefilterte Listen-Datei &apos;%1&apos; existiert nicht oder kann nicht geöffnet werden, verwende stattdessen die volle %2</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="396"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="405"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="397"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="406"/>
         <location filename="../tweakedqmlappviewer.cpp" line="448"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="452"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="463"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="450"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="459"/>
         <source>game list</source>
         <translation>Spieleliste</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="396"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="405"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="397"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="406"/>
         <location filename="../tweakedqmlappviewer.cpp" line="448"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="452"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="463"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="450"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="459"/>
         <source>machine list</source>
         <translation>Maschinenliste</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="404"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="405"/>
         <source>Loading %1 from &apos;%2&apos;</source>
         <translation>Lade %1 von &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="424"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="425"/>
         <source>WARNING: Can&apos;t open ROM state cache file &apos;%1&apos;, please check permissions</source>
         <translation>WARNUNG: Kann ROM Status Cache Datei &apos;%1&apos; nicht öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
@@ -1358,22 +1350,22 @@ QMC2 Arcade neu starten!</translation>
         <translation>WARNUNG: Die ROM Status Cache Datei &apos;%1&apos; existiert nicht, bitte Haupt-Frontend ausführen um diese zu erstellen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="447"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="448"/>
         <source>FATAL: Can&apos;t open %1 cache file &apos;%2&apos;, please check permissions</source>
         <translation>FATAL: Kann die %1-Cache Datei &apos;%2&apos; nicht öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="451"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="450"/>
         <source>FATAL: The %1 cache file &apos;%2&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>FATAL: Die %1-Cache Datei &apos;%2&apos; existiert nicht, bitte Haupt-Frontend ausführen um diese zu erstellen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="462"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="459"/>
         <source>Done (loading %1 from &apos;%2&apos;)</source>
         <translation>Fertig (Lade &apos;%1&apos; von &apos;%2&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tweakedqmlappviewer.cpp" line="463"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="459"/>
         <source>%n non-device set(s) loaded</source>
         <translation>
             <numerusform>%n unterstütztes Set (ohne Geräte-Sets)</numerusform>
@@ -1381,39 +1373,40 @@ QMC2 Arcade neu starten!</translation>
         </translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="469"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="464"/>
         <source>Starting emulator #%1 for %2 ID &apos;%3&apos;</source>
         <translation>Starte Emulator #%1 für %2 mit der ID &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="469"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="464"/>
         <source>game</source>
         <translation>Spiel</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="469"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="464"/>
         <source>machine</source>
         <translation>Maschine</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="486"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="488"/>
         <source>WARNING: TweakedQmlApplicationViewer::requestInfo(): unsupported info class &apos;%1&apos;</source>
         <translation>WARNUNG: TweakedQmlApplicationViewer::requestInfo(): Nicht unterstützte Info-Klasse &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="487"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="489"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="510"/>
         <source>no info available</source>
         <translation>Keine Daten verfügbar</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="609"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="631"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="641"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="663"/>
         <source>Stopping QML viewer</source>
         <translation>Beende QML Viewer</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="612"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="634"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="644"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="666"/>
         <source>QML viewer stopped - please close the console window to exit</source>
         <translation>QML Viewer gestoppt - bitte zum Beenden Konsolenfenster schließen</translation>
     </message>

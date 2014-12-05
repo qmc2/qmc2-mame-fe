@@ -1362,6 +1362,8 @@ Rectangle {
             anchors.fill: parent
             hoverEnabled: true
             onEntered: parent.opacity = 1.0
+            onMouseXChanged: parent.opacity = 1.0
+            onMouseYChanged: parent.opacity = 1.0
             onExited: parent.opacity = 0.5
             onClicked: {
                 parent.opacity = 0.5;
@@ -1393,17 +1395,20 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0
         transformOrigin: Rectangle.Bottom
-        opacity: 0.5
+        opacity: 1.0
         smooth: true
         gradient: Gradient {
-            GradientStop { position: 0.0; color: "lightgrey" }
-            GradientStop { position: 1.0; color: "black" }
+            GradientStop { position: 0.00; color: "#40AAAAAA" }
+            GradientStop { position: 0.33; color: "#60AAAAAA" }
+            GradientStop { position: 0.66; color: "#60AAAAAA" }
+            GradientStop { position: 1.00; color: "#40AAAAAA" }
         }
         Text {
             id: fpsText
             anchors.left: parent.left
             anchors.leftMargin: showHideMenuBarButton.width + 10 * ToxicWaste.scaleFactorX()
             anchors.verticalCenter: menuAndStatusBar.verticalCenter
+            opacity: 0.8
             smooth: true
             color: "white"
             text: qsTr("FPS") + ": " + toxicWasteMain.fps.toString()
@@ -1421,11 +1426,14 @@ Rectangle {
             source: "images/exit.png"
             smooth: true
             fillMode: Image.PreserveAspectFit
+            opacity: 0.5
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
-                onEntered: parent.opacity = 0.5
-                onExited: parent.opacity = 1.0
+                onEntered: parent.opacity = 1.0
+                onMouseXChanged: parent.opacity = 1.0
+                onMouseYChanged: parent.opacity = 1.0
+                onExited: parent.opacity = 0.5
                 onClicked: {
                     if ( toxicWasteMain.confirmQuit ) {
                         parent.opacity = 1.0;
@@ -1448,11 +1456,14 @@ Rectangle {
             state: toxicWasteMain.fullScreen ? "fullscreen" : "windowed"
             smooth: true
             fillMode: Image.PreserveAspectFit
+            opacity: 0.5
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
-                onEntered: parent.opacity = 0.5
-                onExited: parent.opacity = 1.0
+                onEntered: parent.opacity = 1.0
+                onMouseXChanged: parent.opacity = 1.0
+                onMouseYChanged: parent.opacity = 1.0
+                onExited: parent.opacity = 0.5
                 onClicked: {
                     if ( fullScreenToggleButton.state == "windowed" ) {
                         fullScreenToggleButton.state = "fullscreen"
@@ -1487,11 +1498,14 @@ Rectangle {
             source: "images/preferences.png"
             smooth: true
             fillMode: Image.PreserveAspectFit
+            opacity: 0.5
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
-                onEntered: parent.opacity = 0.5
-                onExited: parent.opacity = 1.0
+                onEntered: parent.opacity = 1.0
+                onMouseXChanged: parent.opacity = 1.0
+                onMouseYChanged: parent.opacity = 1.0
+                onExited: parent.opacity = 0.5
                 onClicked: {
                     parent.opacity = 1.0;
                     preferencesDialog.state = "shown";
@@ -1511,11 +1525,14 @@ Rectangle {
                 fillMode: Image.PreserveAspectFit
                 smooth: true
                 anchors.verticalCenter: parent.verticalCenter
+                opacity: 0.5
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: parent.opacity = 0.5
-                    onExited: parent.opacity = 1.0
+                    onEntered: parent.opacity = 1.0
+                    onMouseXChanged: parent.opacity = 1.0
+                    onMouseYChanged: parent.opacity = 1.0
+                    onExited: parent.opacity = 0.5
                     onClicked: {
                         parent.opacity = 1.0;
                         gamelistView.positionViewAtIndex(viewer.findIndex(searchTextInput.text, gamelistView.currentIndex), ListView.Beginning);
@@ -1545,6 +1562,7 @@ Rectangle {
                     autoScroll: true
                     clip: true
                     selectByMouse: true
+                    opacity: 0.8
                     cursorDelegate: Rectangle {
                         id: searchTextCursorDelegate
                         color: "black"
@@ -1577,11 +1595,14 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: searchTextInputBox.right
                 anchors.leftMargin: 5 * ToxicWaste.scaleFactorY()
+                opacity: 0.5
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: parent.opacity = 0.5
-                    onExited: parent.opacity = 1.0
+                    onEntered: parent.opacity = 1.0
+                    onMouseXChanged: parent.opacity = 1.0
+                    onMouseYChanged: parent.opacity = 1.0
+                    onExited: parent.opacity = 0.5
                     onClicked: {
                         parent.opacity = 1.0;
                         searchTextInput.text = "";
