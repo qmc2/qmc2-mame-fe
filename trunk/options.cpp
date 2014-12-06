@@ -2462,7 +2462,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #if defined(QMC2_MEMORY_INFO_ENABLED)
 	checkBoxMemoryIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", false).toBool());
 #endif
+#if defined(QMC2_OS_MAC)
+	checkBoxNativeFileDialogs->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", true).toBool());
+#else
 	checkBoxNativeFileDialogs->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", false).toBool());
+#endif
 
 	// Files / Directories
 #if defined(QMC2_YOUTUBE_ENABLED)
