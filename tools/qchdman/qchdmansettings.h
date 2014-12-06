@@ -92,7 +92,11 @@ public slots:
     void setPreferencesLanguage(QString lang) { setValue("Preferences/Language", lang); }
     QString preferencesLanguage() { return value("Preferences/Language", languageToString(QLocale::system().language())).toString(); }
     void setPreferencesNativeFileDialogs(bool enable) { setValue("Preferences/NativeFileDialogs", enable); }
+#if defined(QCHDMAN_OS_MAC)
     bool preferencesNativeFileDialogs() { return value("Preferences/NativeFileDialogs", true).toBool(); }
+#else
+    bool preferencesNativeFileDialogs() { return value("Preferences/NativeFileDialogs", false).toBool(); }
+#endif
     void setPreferencesLogChannelNames(bool enable) { setValue("Preferences/LogChannelNames", enable); }
     bool preferencesLogChannelNames() { return value("Preferences/LogChannelNames", true).toBool(); }
 
