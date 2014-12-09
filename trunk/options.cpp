@@ -432,9 +432,7 @@ Options::Options(QWidget *parent)
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	qmc2ShortcutHash["Ctrl+Shift+P"] = QPair<QString, QAction *>(tr("Play (embedded)"), NULL);
 #endif
-#if !defined(QMC2_OS_MAC)
 	qmc2ShortcutHash["Ctrl+Q"] = QPair<QString, QAction *>(tr("About Qt"), NULL);
-#endif
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2ShortcutHash["Ctrl+R"] = QPair<QString, QAction *>(tr("Reload game list"), NULL);
 	qmc2ShortcutHash["Ctrl+S"] = QPair<QString, QAction *>(tr("Check game's ROM state"), NULL);
