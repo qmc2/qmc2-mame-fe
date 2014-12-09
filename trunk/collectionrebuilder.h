@@ -92,6 +92,7 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 
 		CollectionRebuilderThread *rebuilderThread() { return m_rebuilderThread; }
 		ROMAlyzer *romAlyzer() { return m_romAlyzer; }
+		QString settingsKey() { return m_settingsKey; }
 
 	public slots:
 		void on_spinBoxMaxLogSize_valueChanged(int);
@@ -126,6 +127,7 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		QTimer m_animationTimer;
 		int m_animationSequence;
 		ROMAlyzer *m_romAlyzer;
+		QString m_settingsKey;
 };
 
 #endif

@@ -27,15 +27,36 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *romAlyzer, QWidget *parent)
 {
 	setupUi(this);
 	m_romAlyzer = romAlyzer;
+	switch ( this->romAlyzer()->mode() ) {
+		case QMC2_ROMALYZER_MODE_SOFTWARE:
+			setWindowTitle(tr("Software Collection Rebuilder"));
+			m_settingsKey = "SoftwareCollectionRebuilder";
+			m_defaultSetEntity = "software";
+			m_defaultRomEntity = "rom";
+			m_defaultDiskEntity = "disk";
+			break;
+		case QMC2_ROMALYZER_MODE_SYSTEM:
+		default:
+			setWindowTitle(tr("ROM Collection Rebuilder"));
+			m_settingsKey = "CollectionRebuilder";
+#if defined(QMC2_EMUTYPE_MESS)
+			m_defaultSetEntity = "machine";
+#else
+			m_defaultSetEntity = "game";
+#endif
+			m_defaultRomEntity = "rom";
+			m_defaultDiskEntity = "disk";
+			break;
+	}
 	pushButtonPauseResume->setVisible(false);
 	QFont logFont;
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
 	plainTextEditLog->setFont(logFont);
-	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/MaxLogSize", 10000).toInt());
-	comboBoxFilterSyntax->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/FilterSyntax", 0).toInt());
-	comboBoxFilterType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/FilterType", 0).toInt());
-	checkBoxFilterExpression->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/UseFilterExpression", false).toBool());
-	lineEditFilterExpression->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/FilterExpression", QString()).toString());
+	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/MaxLogSize", 10000).toInt());
+	comboBoxFilterSyntax->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntax", 0).toInt());
+	comboBoxFilterType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterType", 0).toInt());
+	checkBoxFilterExpression->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpression", false).toBool());
+	lineEditFilterExpression->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", QString()).toString());
 	adjustIconSizes();
 
 	m_rebuilderThread = new CollectionRebuilderThread(this);
@@ -49,14 +70,6 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *romAlyzer, QWidget *parent)
 	connect(rebuilderThread(), SIGNAL(progressChanged(int)), this, SLOT(rebuilderThread_progressChanged(int)));
 	connect(rebuilderThread(), SIGNAL(statusUpdated(int, int, int)), this, SLOT(rebuilderThread_statusUpdated(int, int, int)));
 
-#if defined(QMC2_EMUTYPE_MESS)
-	m_defaultSetEntity = "machine";
-#else
-	m_defaultSetEntity = "game";
-#endif
-	m_defaultRomEntity = "rom";
-	m_defaultDiskEntity = "disk";
-
 	m_iconCheckpoint = QIcon(QString::fromUtf8(":/data/img/checkpoint.png"));
 	m_iconNoCheckpoint = QIcon(QString::fromUtf8(":/data/img/no_checkpoint.png"));
 
@@ -68,18 +81,18 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *romAlyzer, QWidget *parent)
 	comboBoxXmlSource->blockSignals(true);
 	comboBoxXmlSource->clear();
 	comboBoxXmlSource->insertItem(0, tr("Current default emulator"));
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/Checkpoint", -1).toLongLong() >= 0 ) {
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/Checkpoint", -1).toLongLong() >= 0 ) {
 		comboBoxXmlSource->setItemIcon(0, m_iconCheckpoint);
 		comboBoxXmlSource->setItemData(0, true);
 	} else {
 		comboBoxXmlSource->setItemIcon(0, m_iconNoCheckpoint);
 		comboBoxXmlSource->setItemData(0, false);
 	}
-	QStringList xmlSources = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSources", QStringList()).toStringList();
-	QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", QStringList()).toStringList();
-	QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", QStringList()).toStringList();
-	QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", QStringList()).toStringList();
-	QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", QStringList()).toStringList();
+	QStringList xmlSources = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSources", QStringList()).toStringList();
+	QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", QStringList()).toStringList();
+	QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", QStringList()).toStringList();
+	QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", QStringList()).toStringList();
+	QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
 	QList<qint64> checkpoints;
 	foreach (QString cp, checkpointList)
 		checkpoints << cp.toLongLong();
@@ -108,17 +121,17 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *romAlyzer, QWidget *parent)
 				i--;
 			}
 		}
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSources", xmlSources);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", setEntities);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", romEntities);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", diskEntities);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", checkpointList);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSources", xmlSources);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", setEntities);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", romEntities);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", diskEntities);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", checkpointList);
 	} else {
-		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSources");
-		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities");
-		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities");
-		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities");
-		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints");
+		qmc2Config->remove(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSources");
+		qmc2Config->remove(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities");
+		qmc2Config->remove(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities");
+		qmc2Config->remove(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities");
+		qmc2Config->remove(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints");
 	}
 	comboBoxXmlSource->insertSeparator(index);
 	index++;
@@ -141,7 +154,7 @@ CollectionRebuilder::~CollectionRebuilder()
 
 void CollectionRebuilder::on_spinBoxMaxLogSize_valueChanged(int value)
 {
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/MaxLogSize", value);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/MaxLogSize", value);
 	plainTextEditLog->setMaximumBlockCount(value);
 }
 
@@ -185,10 +198,10 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 				qint64 cp = 0;
 				int index = comboBoxXmlSource->currentIndex();
 				if ( index == 0 )
-					cp = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/Checkpoint", -1).toLongLong();
+					cp = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/Checkpoint", -1).toLongLong();
 				else {
 					index -= 1;
-					QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", QStringList()).toStringList();
+					QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
 					if ( index >= 0 && index < checkpointList.count() )
 						cp = checkpointList[index].toLongLong();
 					else
@@ -225,20 +238,20 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 
 	if ( index == 0 ) {
 		if ( lastIndex >= 0 ) {
-			QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", QStringList()).toStringList();
-			QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", QStringList()).toStringList();
-			QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", QStringList()).toStringList();
+			QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", QStringList()).toStringList();
+			QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", QStringList()).toStringList();
+			QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", QStringList()).toStringList();
 			if ( lastIndex < setEntities.count() ) {
 				setEntities.replace(lastIndex, lineEditSetEntity->text());
-				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", setEntities);
+				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", setEntities);
 			}
 			if ( lastIndex < romEntities.count() ) {
 				romEntities.replace(lastIndex, lineEditRomEntity->text());
-				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", romEntities);
+				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", romEntities);
 			}
 			if ( lastIndex < diskEntities.count() ) {
 				diskEntities.replace(lastIndex, lineEditDiskEntity->text());
-				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", diskEntities);
+				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", diskEntities);
 			}
 		}
 		lineEditSetEntity->setText(m_defaultSetEntity);
@@ -254,24 +267,24 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 			int foundAtIndex = comboBoxXmlSource->findText(xmlSource);
 			if ( foundAtIndex < 0 ) {
 				comboBoxXmlSource->blockSignals(true);
-				QStringList xmlSources = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSources", QStringList()).toStringList();
+				QStringList xmlSources = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSources", QStringList()).toStringList();
 				xmlSources << xmlSource;
-				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSources", xmlSources);
-				QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", QStringList()).toStringList();
+				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSources", xmlSources);
+				QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", QStringList()).toStringList();
 				setEntities << m_defaultSetEntity;
-				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", setEntities);
+				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", setEntities);
 				lineEditSetEntity->setText(m_defaultSetEntity);
-				QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", QStringList()).toStringList();
+				QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", QStringList()).toStringList();
 				romEntities << m_defaultRomEntity;
-				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", romEntities);
+				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", romEntities);
 				lineEditRomEntity->setText(m_defaultRomEntity);
-				QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", QStringList()).toStringList();
+				QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", QStringList()).toStringList();
 				diskEntities << m_defaultDiskEntity;
-				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", diskEntities);
+				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", diskEntities);
 				lineEditDiskEntity->setText(m_defaultDiskEntity);
-				QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", QStringList()).toStringList();
+				QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
 				checkpointList << "-1";
-				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", checkpointList);
+				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", checkpointList);
 				int insertIndex = comboBoxXmlSource->count() - 2;
 				lastIndex = insertIndex - 1;
 				comboBoxXmlSource->insertItem(insertIndex, xmlSource);
@@ -290,21 +303,21 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 	} else {
 		index -= 1;
 		if ( index >= 0 ) {
-			QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", QStringList()).toStringList();
-			QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", QStringList()).toStringList();
-			QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", QStringList()).toStringList();
+			QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", QStringList()).toStringList();
+			QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", QStringList()).toStringList();
+			QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", QStringList()).toStringList();
 			if ( lastIndex >= 0 ) {
 				if ( lastIndex < setEntities.count() ) {
 					setEntities.replace(lastIndex, lineEditSetEntity->text());
-					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", setEntities);
+					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", setEntities);
 				}
 				if ( lastIndex < romEntities.count() ) {
 					romEntities.replace(lastIndex, lineEditRomEntity->text());
-					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", romEntities);
+					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", romEntities);
 				}
 				if ( lastIndex < diskEntities.count() ) {
 					diskEntities.replace(lastIndex, lineEditDiskEntity->text());
-					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", diskEntities);
+					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", diskEntities);
 				}
 			}
 			lastIndex = index;
@@ -322,21 +335,21 @@ void CollectionRebuilder::on_toolButtonRemoveXmlSource_clicked()
 {
 	int index = comboBoxXmlSource->currentIndex() - 1;
 	comboBoxXmlSource->setCurrentIndex(0);
-	QStringList xmlSources = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSources", QStringList()).toStringList();
+	QStringList xmlSources = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSources", QStringList()).toStringList();
 	xmlSources.removeAt(index);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSources", xmlSources);
-	QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", QStringList()).toStringList();
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSources", xmlSources);
+	QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", QStringList()).toStringList();
 	setEntities.removeAt(index);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/SetEntities", setEntities);
-	QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", QStringList()).toStringList();
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", setEntities);
+	QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", QStringList()).toStringList();
 	romEntities.removeAt(index);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/RomEntities", romEntities);
-	QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", QStringList()).toStringList();
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", romEntities);
+	QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", QStringList()).toStringList();
 	diskEntities.removeAt(index);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/DiskEntities", diskEntities);
-	QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", QStringList()).toStringList();
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", diskEntities);
+	QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
 	checkpointList.removeAt(index);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", checkpointList);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", checkpointList);
 	comboBoxXmlSource->blockSignals(true);
 	comboBoxXmlSource->removeItem(index + 1);
 	comboBoxXmlSource->blockSignals(false);
@@ -362,7 +375,15 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	toolButtonClearFilterExpression->setEnabled(false);
 	frameEntities->setEnabled(false);
 	romAlyzer()->groupBoxCheckSumDatabase->setEnabled(false);
-	romAlyzer()->pushButtonRomCollectionRebuilder->setText(tr("Rebuilding ROM collection..."));
+	switch ( romAlyzer()->mode() ) {
+		case QMC2_ROMALYZER_MODE_SOFTWARE:
+			romAlyzer()->pushButtonRomCollectionRebuilder->setText(tr("Rebuilding software collection..."));
+			break;
+		case QMC2_ROMALYZER_MODE_SYSTEM:
+		default:
+			romAlyzer()->pushButtonRomCollectionRebuilder->setText(tr("Rebuilding ROM collection..."));
+			break;
+	}
 	m_animationSequence = 0;
 	m_animationTimer.start(QMC2_ROMALYZER_REBUILD_ANIM_SPEED);
 	qApp->processEvents();
@@ -373,13 +394,13 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	int index = comboBoxXmlSource->currentIndex();
 	qint64 cp = rebuilderThread()->checkpoint();
 	if ( index == 0 )
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/Checkpoint", cp);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/Checkpoint", cp);
 	else {
 		index -= 1;
-		QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", QStringList()).toStringList();
+		QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
 		if ( index >= 0 && index < checkpointList.count() ) {
 			checkpointList.replace(index, QString::number(cp));
-			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", checkpointList);
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", checkpointList);
 		}
 	}
 	if ( index < 0 )
@@ -408,7 +429,15 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	romAlyzer()->groupBoxCheckSumDatabase->setEnabled(true);
 	m_animationTimer.stop();
 	romAlyzer()->pushButtonRomCollectionRebuilder->setIcon(QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
-	romAlyzer()->pushButtonRomCollectionRebuilder->setText(tr("Rebuild ROM collection..."));
+	switch ( romAlyzer()->mode() ) {
+		case QMC2_ROMALYZER_MODE_SOFTWARE:
+			romAlyzer()->pushButtonRomCollectionRebuilder->setText(tr("Rebuild software collection..."));
+			break;
+		case QMC2_ROMALYZER_MODE_SYSTEM:
+		default:
+			romAlyzer()->pushButtonRomCollectionRebuilder->setText(tr("Rebuild ROM collection..."));
+			break;
+	}
 	qApp->processEvents();
 }
 
@@ -472,7 +501,7 @@ void CollectionRebuilder::animationTimer_timeout()
 
 void CollectionRebuilder::showEvent(QShowEvent *e)
 {
-	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CollectionRebuilder/Geometry", QByteArray()).toByteArray());
+	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("Layout/%1/Geometry").arg(m_settingsKey), QByteArray()).toByteArray());
 	if ( e )
 		QDialog::showEvent(e);
 }
@@ -480,7 +509,7 @@ void CollectionRebuilder::showEvent(QShowEvent *e)
 void CollectionRebuilder::hideEvent(QHideEvent *e)
 {
 	if ( isVisible() )
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CollectionRebuilder/Geometry", saveGeometry());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("Layout/%1/Geometry").arg(m_settingsKey), saveGeometry());
 	if ( e )
 		QDialog::hideEvent(e);
 }
@@ -489,10 +518,10 @@ void CollectionRebuilder::closeEvent(QCloseEvent *e)
 {
 	hideEvent(0);
 	QDialog::closeEvent(e);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/UseFilterExpression", checkBoxFilterExpression->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/FilterSyntax", comboBoxFilterSyntax->currentIndex());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/FilterType", comboBoxFilterType->currentIndex());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/FilterExpression", lineEditFilterExpression->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpression", checkBoxFilterExpression->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntax", comboBoxFilterSyntax->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterType", comboBoxFilterType->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", lineEditFilterExpression->text());
 }
 
 void CollectionRebuilder::keyPressEvent(QKeyEvent *e)
@@ -740,12 +769,12 @@ void CollectionRebuilderThread::setCheckpoint(qint64 cp, int xmlSourceIndex)
 {
 	m_checkpoint = cp;
 	if ( xmlSourceIndex == 0 )
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/Checkpoint", checkpoint());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + rebuilderDialog()->settingsKey() + "/Checkpoint", checkpoint());
 	else if ( xmlSourceIndex > 0 && xmlSourceIndex < rebuilderDialog()->comboBoxXmlSource->count() - 1 ) {
 		xmlSourceIndex -= 1;
-		QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", QStringList()).toStringList();
+		QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + rebuilderDialog()->settingsKey() + "/XmlSourceCheckpoints", QStringList()).toStringList();
 		checkpointList.replace(xmlSourceIndex, QString::number(checkpoint()));
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "CollectionRebuilder/XmlSourceCheckpoints", checkpointList);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + rebuilderDialog()->settingsKey() + "/XmlSourceCheckpoints", checkpointList);
 	}
 }
 
