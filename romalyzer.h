@@ -168,9 +168,6 @@
 
 #define QMC2_ROMALYZER_REBUILD_ANIM_SPEED	500
 
-#define QMC2_ROMALYZER_MODE_SYSTEM		0
-#define QMC2_ROMALYZER_MODE_SOFTWARE		1
-
 class CheckSumScannerThread : public QThread
 {
 	Q_OBJECT

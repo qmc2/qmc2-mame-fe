@@ -95,13 +95,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int mode)
 
 	m_checkSumDbQueryStatusPixmap = QPixmap(QString::fromUtf8(":/data/img/database.png"));
 
-#if defined(QMC2_SDLMESS)
-	treeWidgetChecksums->headerItem()->setText(0, tr("Machine / File"));
-	checkBoxSelectGame->setText(tr("Select machine"));
-	checkBoxSelectGame->setToolTip(tr("Select machine in machine list if selected in analysis report?"));
-	checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed machine"));
-#endif
-
 	treeWidgetChecksums->header()->setSortIndicatorShown(false);
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
 		treeWidgetChecksums->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ReportHeaderState", QByteArray()).toByteArray());
@@ -2215,6 +2208,10 @@ void ROMAlyzer::setMode(int mode)
 	switch ( mode ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE:
 			m_currentMode = QMC2_ROMALYZER_MODE_SOFTWARE;
+			checkBoxSelectGame->setText(tr("Select software"));
+			checkBoxSelectGame->setToolTip(tr("Select software in software list if selected in analysis report?"));
+			checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed software"));
+			pushButtonRomCollectionRebuilder->setText(tr("Rebuild ROM collection..."));
 			setWindowTitle(tr("ROMAlyzer") + " [" + tr("software mode") + "]");
 			m_settingsKey = "SoftwareROMAlyzer";
 			lineEditSoftwareLists->setVisible(true);
@@ -2222,6 +2219,16 @@ void ROMAlyzer::setMode(int mode)
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
 			m_currentMode = QMC2_ROMALYZER_MODE_SYSTEM;
+#if defined(QMC2_SDLMESS)
+			checkBoxSelectGame->setText(tr("Select machine"));
+			checkBoxSelectGame->setToolTip(tr("Select machine in machine list if selected in analysis report?"));
+			checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed machine"));
+#else
+			checkBoxSelectGame->setText(tr("Select game"));
+			checkBoxSelectGame->setToolTip(tr("Select game in game list if selected in analysis report?"));
+			checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed game"));
+#endif
+			pushButtonRomCollectionRebuilder->setText(tr("Rebuild software collection..."));
 			setWindowTitle(tr("ROMAlyzer") + " [" + tr("system mode") + "]");
 			m_settingsKey = "ROMAlyzer";
 			lineEditSoftwareLists->setVisible(false);

@@ -940,4 +940,8 @@
 #define QMC2_DB_SYNC_MODE_NORMAL		1
 #define QMC2_DB_SYNC_MODE_FULL			2
 
+// ROMAlyzer modes
+#define QMC2_ROMALYZER_MODE_SYSTEM		0
+#define QMC2_ROMALYZER_MODE_SOFTWARE		1
+
 #endif

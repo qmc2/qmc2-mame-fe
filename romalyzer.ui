@@ -146,7 +146,7 @@
          </property>
          <column>
           <property name="text">
-           <string>Game / File</string>
+           <string>Set / File</string>
           </property>
          </column>
          <column>
@@ -344,7 +344,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>801</width>
+            <width>672</width>
             <height>770</height>
            </rect>
           </property>
