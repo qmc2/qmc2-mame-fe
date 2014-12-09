@@ -12317,9 +12317,7 @@ void prepareShortcuts()
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	qmc2ShortcutHash["Ctrl+Shift+P"].second = qmc2MainWindow->actionPlayEmbedded;
 #endif
-#if !defined(QMC2_OS_MAC)
 	qmc2ShortcutHash["Ctrl+Q"].second = qmc2MainWindow->actionAboutQt;
-#endif
 	qmc2ShortcutHash["Ctrl+R"].second = qmc2MainWindow->actionReload;
 	qmc2ShortcutHash["Ctrl+S"].second = qmc2MainWindow->actionCheckCurrentROM;
 	qmc2ShortcutHash["Ctrl+Shift+S"].second = qmc2MainWindow->actionCheckROMStateTagged;
