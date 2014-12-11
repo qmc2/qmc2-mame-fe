@@ -1,9 +1,13 @@
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
 
-#include <QApplication>
+#include <qglobal.h>
+
 #if QT_VERSION >= 0x050000
+#include <QGuiApplication>
 #include <QWindow>
 #include <QTest>
+#else
+#include <QApplication>
 #endif
 
 #include "joystickmanager.h"

@@ -1,6 +1,12 @@
+#include <qglobal.h>
+
+#if QT_VERSION < 0x050000
+#include <QApplication>
+#else
+#include <QGuiApplication>
+#endif
 #include <QTextStream>
 #include <QTextCodec>
-#include <QApplication>
 
 #include "infoprovider.h"
 #include "arcadesettings.h"

@@ -2,8 +2,9 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 	greaterThan(QT_MINOR_VERSION, 7)|greaterThan(QT_MAJOR_VERSION, 4) {
 		# general project settings
 		isEmpty(TARGET):TARGET = qmc2
+		QT += core gui xml xmlpatterns webkit network sql svg
 		greaterThan(QT_MAJOR_VERSION, 4) {
-			QT += testlib widgets webkitwidgets
+			QT += testlib widgets webkitwidgets quick qml opengl printsupport
 			contains(DEFINES, "QMC2_YOUTUBE_ENABLED"): QT += multimedia multimediawidgets
 			HEADERS += qftp/qftp.h \
 				qftp/qurlinfo.h
@@ -13,7 +14,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		} else {
 			CONFIG += qtestlib
 		}
-		QT += xml xmlpatterns webkit network sql svg
 		TEMPLATE = app
 		INCLUDEPATH += minizip zlib lzma
 		FORMS += qmc2main.ui \

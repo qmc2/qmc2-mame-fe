@@ -84,9 +84,10 @@ SOURCES += main.cpp \
     ../lzma/Ppmd7Enc.c \
     ../lzma/Sha256.c
 
-# Please do not modify the following two lines. Required for deployment.
-include(qmlapplicationviewer/qmlapplicationviewer.pri)
-qtcAddDeployment()
+!greaterThan(QT_MAJOR_VERSION, 4) {
+    include(qmlapplicationviewer/qmlapplicationviewer.pri)
+    qtcAddDeployment()
+}
 
 HEADERS += \
     tweakedqmlappviewer.h \
@@ -160,10 +161,10 @@ macx {
     HEADERS += ../SDLMain_tmpl.h
     greaterThan(SDL, 1) {
         LIBS += -framework SDL2 -framework Cocoa -F/Library/Frameworks
-	INCLUDEPATH += /Library/Frameworks/SDL2.framework/Headers
+        INCLUDEPATH += /Library/Frameworks/SDL2.framework/Headers
     } else {
         LIBS += -framework SDL -framework Cocoa -F/Library/Frameworks
-	INCLUDEPATH += /Library/Frameworks/SDL.framework/Headers
+        INCLUDEPATH += /Library/Frameworks/SDL.framework/Headers
     }
     ICON = images/qmc2-arcade.icns
     contains(DEFINES, QMC2_ARCADE_MAC_UNIVERSAL): CONFIG += x86 ppc
@@ -200,12 +201,13 @@ macx {
     }
 }
 
+QT += core gui svg sql
+
 greaterThan(QT_MAJOR_VERSION, 4) {
-    QT += gui quick qml testlib
+    QT += quick qml testlib
 } else {
+    QT += declarative
     CONFIG += qtestlib
 }
-
-QT += svg sql
 
 INCLUDEPATH += ../minizip ../zlib ../lzma

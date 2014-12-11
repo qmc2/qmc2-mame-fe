@@ -1,4 +1,10 @@
+#include <qglobal.h>
+
+#if QT_VERSION < 0x050000
 #include <QApplication>
+#else
+#include <QGuiApplication>
+#endif
 #include <QSqlDriver>
 #include <QSqlQuery>
 #include <QSqlError>

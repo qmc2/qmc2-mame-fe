@@ -8,7 +8,7 @@
 #include <QHash>
 
 #if QT_VERSION < 0x050000
-#include "qmlapplicationviewer.h"
+#include "qmlapplicationviewer/qmlapplicationviewer.h"
 #else
 #include <QQuickView>
 #include <QWindow>
