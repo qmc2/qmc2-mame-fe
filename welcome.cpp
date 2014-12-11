@@ -503,6 +503,17 @@ bool Welcome::checkConfig()
 					startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + cKey);
 			}
 		}
+#if defined(QMC2_OS_MAC)
+		if ( QMC2_TEST_VERSION(omv, 47, osr, 6350) ) {
+			// changed meaning of Command+Q / Command+X no longer used
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Shortcuts/Ctrl+Q");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Shortcuts/Ctrl+X");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Shortcuts/Ctrl+Q");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Shortcuts/Ctrl+X");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Shortcuts/Ctrl+Q");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Shortcuts/Ctrl+X");
+		}
+#endif
 
 	}
 
