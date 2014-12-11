@@ -432,7 +432,9 @@ Options::Options(QWidget *parent)
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	qmc2ShortcutHash["Ctrl+Shift+P"] = QPair<QString, QAction *>(tr("Play (embedded)"), NULL);
 #endif
+#if !defined(QMC2_OS_MAC)
 	qmc2ShortcutHash["Ctrl+Q"] = QPair<QString, QAction *>(tr("About Qt"), NULL);
+#endif
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2ShortcutHash["Ctrl+R"] = QPair<QString, QAction *>(tr("Reload game list"), NULL);
 	qmc2ShortcutHash["Ctrl+S"] = QPair<QString, QAction *>(tr("Check game's ROM state"), NULL);
@@ -443,7 +445,11 @@ Options::Options(QWidget *parent)
 	qmc2ShortcutHash["Ctrl+Shift+S"] = QPair<QString, QAction *>(tr("Check states of tagged ROMs"), NULL);
 	qmc2ShortcutHash["Ctrl+T"] = QPair<QString, QAction *>(tr("Recreate template map"), NULL);
 	qmc2ShortcutHash["Ctrl+Shift+C"] = QPair<QString, QAction *>(tr("Check template map"), NULL);
+#if defined(QMC2_OS_MAC)
+	qmc2ShortcutHash["Ctrl+Q"] = QPair<QString, QAction *>(tr("Stop processing / exit QMC2"), NULL);
+#else
 	qmc2ShortcutHash["Ctrl+X"] = QPair<QString, QAction *>(tr("Stop processing / exit QMC2"), NULL);
+#endif
 #if defined(QMC2_YOUTUBE_ENABLED)
 	qmc2ShortcutHash["Ctrl+Y"] = QPair<QString, QAction *>(tr("Clear YouTube cache"), NULL);
 #endif
