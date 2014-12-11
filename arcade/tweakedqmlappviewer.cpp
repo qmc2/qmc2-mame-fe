@@ -1,5 +1,14 @@
-#include <QGraphicsObject>
+#include <qglobal.h>
+
+#if QT_VERSION < 0x050000
 #include <QApplication>
+#include <QGraphicsObject>
+#include <QDeclarativeContext>
+#include <QDeclarativeEngine>
+#else
+#include <QGuiApplication>
+#include <QtQml>
+#endif
 #include <QFileInfo>
 #include <QFile>
 #include <QTextStream>
@@ -9,20 +18,14 @@
 #include <QHash>
 #include <QMap>
 
-#if QT_VERSION < 0x050000
-#include <QDeclarativeContext>
-#include <QDeclarativeEngine>
-#else
-#include <QQmlContext>
-#include <QQmlEngine>
-#endif
-
 #include "tweakedqmlappviewer.h"
 #include "arcadesettings.h"
 #include "gameobject.h"
 #include "consolewindow.h"
 #include "macros.h"
+#if QT_VERSION < 0x050000
 #include "wheel.h"
+#endif
 #include "pointer.h"
 #include "keysequences.h"
 
@@ -100,8 +103,8 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
 
 #if QT_VERSION < 0x050000
     qmlRegisterType<WheelArea>("Wheel", 1, 0, "WheelArea");
-    qmlRegisterType<CursorShapeArea>("Pointer", 1, 0, "CursorShapeArea");
 #endif
+    qmlRegisterType<CursorShapeArea>("Pointer", 1, 0, "CursorShapeArea");
 
     processManager = new ProcessManager(this);
     processManager->createTemplateList();

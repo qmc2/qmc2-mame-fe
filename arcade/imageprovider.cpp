@@ -1,8 +1,14 @@
+#include <qglobal.h>
+
+#if QT_VERSION < 0x050000
+#include <QApplication>
+#else
+#include <QGuiApplication>
+#endif
 #include <QImage>
 #include <QPixmap>
 #include <QPainter>
 #include <QPainterPath>
-#include <QApplication>
 #include <QTimer>
 
 #include "imageprovider.h"

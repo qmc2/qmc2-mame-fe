@@ -13,7 +13,7 @@ class CursorShapeArea : public QDeclarativeItem
 
 public:
     explicit CursorShapeArea(QDeclarativeItem *parent = 0);
-    Qt::CursorShape cursorShape() const;
+    Q_INVOKABLE Qt::CursorShape cursorShape() const;
     Q_INVOKABLE void setCursorShape(Qt::CursorShape cursorShape);
 
 private:
@@ -33,7 +33,7 @@ class CursorShapeArea : public QQuickItem
 
 public:
     explicit CursorShapeArea(QQuickItem *parent = 0);
-    Qt::CursorShape cursorShape() const;
+    Q_INVOKABLE Qt::CursorShape cursorShape() const;
     Q_INVOKABLE void setCursorShape(Qt::CursorShape cursorShape);
 
 private:
