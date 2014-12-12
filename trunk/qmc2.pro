@@ -4,7 +4,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		isEmpty(TARGET):TARGET = qmc2
 		QT += core gui xml xmlpatterns webkit network sql svg
 		greaterThan(QT_MAJOR_VERSION, 4) {
-			QT += testlib widgets webkitwidgets quick qml opengl printsupport
+			QT += testlib widgets webkitwidgets
 			contains(DEFINES, "QMC2_YOUTUBE_ENABLED"): QT += multimedia multimediawidgets
 			HEADERS += qftp/qftp.h \
 				qftp/qurlinfo.h

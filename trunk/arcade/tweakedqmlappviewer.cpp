@@ -6,6 +6,7 @@
 #include <QDeclarativeContext>
 #include <QDeclarativeEngine>
 #else
+#include <QMetaType>
 #include <QGuiApplication>
 #include <QtQml>
 #endif
