@@ -84,7 +84,7 @@ SOURCES += main.cpp \
     ../lzma/Ppmd7Enc.c \
     ../lzma/Sha256.c
 
-!greaterThan(QT_MAJOR_VERSION, 4) {
+lessThan(QT_MAJOR_VERSION, 5) {
     include(qmlapplicationviewer/qmlapplicationviewer.pri)
     qtcAddDeployment()
 }
