@@ -134,9 +134,6 @@ class EmulatorOptions : public QTreeWidget
 
 	protected:
 		virtual void keyPressEvent(QKeyEvent *);
-#if QT_VERSION > 0x050000
-		virtual QSize viewportSizeHint() const { return viewport()->sizeHint(); }
-#endif
 };
 
 #endif

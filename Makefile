@@ -444,6 +444,14 @@ ifndef L_LIBDIRS
 L_LIBDIRS =
 endif
 
+# >>> L_LIBDIRFLAGS <<<
+#
+# Specify an optional value for QMAKE_LIBDIR_FLAGS (hacky :)
+#
+ifndef L_LIBDIRFLAGS
+L_LIBDIRFLAGS =
+endif
+
 # >>> LINKER <<<
 #
 # Specify (overwrite) the linker to be used (may be useful for cross-compile).
@@ -912,6 +920,14 @@ ifneq '$(L_LIBDIRS)' ''
 QMAKE_L_LIBDIRS += QMAKE_LIBDIR='$(L_LIBDIRS)'
 endif
 
+# optional QMAKE_LIBDIR_FLAGS
+ifdef QMAKE_L_LIBDIRFLAGS
+undef QMAKE_L_LIBDIRFLAGS
+endif
+ifneq '$(L_LIBDIRFLAGS)' ''
+QMAKE_L_LIBDIRFLAGS += QMAKE_LIBDIR_FLAGS='$(L_LIBDIRFLAGS)'
+endif
+
 # optional linker binary overwrite
 ifdef QMAKE_LINKER
 undef QMAKE_LINKER
@@ -954,10 +970,10 @@ endif
 
 ifeq '$(ARCH)' 'Windows'
 qchdman:
-	@$(CD) tools\qchdman && $(QMAKE) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) "$(QCHDMAN_DEFINES)" && $(MAKE)
+	@$(CD) tools\qchdman && $(QMAKE) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(QCHDMAN_DEFINES)" && $(MAKE)
 
 qchdman-clean:
-	@$(CD) tools\qchdman && $(QMAKE) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) "$(QCHDMAN_DEFINES)" && $(MAKE) distclean
+	@$(CD) tools\qchdman && $(QMAKE) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(QCHDMAN_DEFINES)" && $(MAKE) distclean
 	@$(RMDIR) /s /q tools\qchdman\release
 	@$(RMDIR) /s /q tools\qchdman\debug
 	@$(RM) tools\qchdman\object_script.qchdman.Release tools\qchdman\object_script.qchdman.Debug
@@ -966,10 +982,10 @@ tools: qchdman
 tools-clean: qchdman-clean
 else
 qchdman:
-	@$(CD) tools/qchdman && $(QMAKE) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(QCHDMAN_DEFINES)' && $(MAKE)
+	@$(CD) tools/qchdman && $(QMAKE) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(QCHDMAN_DEFINES)' && $(MAKE)
 
 qchdman-clean:
-	@$(CD) tools/qchdman && $(QMAKE) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(QCHDMAN_DEFINES)' && $(MAKE) distclean
+	@$(CD) tools/qchdman && $(QMAKE) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(QCHDMAN_DEFINES)' && $(MAKE) distclean
 ifeq '$(ARCH)' 'Darwin'
 	@$(RM) tools/qchdman/Info.plist
 
@@ -1020,10 +1036,10 @@ ARCADE_QMAKE_DEFS = QMC2_ARCADE_QML_IMPORT_PATH=$(LOCAL_QML_IMPORT_PATH) QMC2_AR
 
 arcade: arcade-bin
 arcade-bin:
-	@$(CD) arcade && $(QMAKE) $(ARCADE_CONF) $(ARCADE_QMAKE_DEFS) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) "$(ARCADE_DEFINES)" && $(MAKE)
+	@$(CD) arcade && $(QMAKE) $(ARCADE_CONF) $(ARCADE_QMAKE_DEFS) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(ARCADE_DEFINES)" && $(MAKE)
 
 arcade-clean:
-	@$(CD) arcade && $(QMAKE) $(ARCADE_CONF) $(ARCADE_QMAKE_DEFS) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) "$(ARCADE_DEFINES)" && $(MAKE) distclean
+	@$(CD) arcade && $(QMAKE) $(ARCADE_CONF) $(ARCADE_QMAKE_DEFS) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(ARCADE_DEFINES)" && $(MAKE) distclean
 ifeq '$(ARCH)' 'Windows'
 	@$(RMDIR) /s /q arcade\release
 	@$(RMDIR) /s /q arcade\debug
@@ -1122,10 +1138,10 @@ endif
 	@$(ECHO) "Configuring build of QMC2 v$(VERSION)"
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
-	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
+	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
 else
 	@$(shell scripts\\setup_imgset.bat $(IMGSET)) 
-	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 ifeq '$(ARCH)' 'Darwin'
 ifneq '$(QT_LIB48PLUS)' 'true'
@@ -1167,9 +1183,9 @@ ifeq '$(ARCH)' 'Windows'
 	+@$(MAKE) -f $(QMAKEFILE)
 else
 ifeq '$(CTIME)' '0'
-	+@$(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) runonce.pro && $(MAKE) -f $(QMAKEFILE)
+	+@$(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) runonce.pro && $(MAKE) -f $(QMAKEFILE)
 else
-	+@$(TIME) ($(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) runonce.pro && $(MAKE) -f $(QMAKEFILE))
+	+@$(TIME) ($(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) runonce.pro && $(MAKE) -f $(QMAKEFILE))
 endif
 endif
 endif
@@ -1198,15 +1214,15 @@ else
 endif
 ifeq '$(ARCH)' 'Darwin'
 ifneq '$(QT_LIB48PLUS)' 'true'
-	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $<
 	@$(SED) -e "s/-c /cc -c /" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
 	@$(RM) ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 	@$(MV) ./Makefile.qmake.xcodeproj/qt_preprocess.mak.new ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 else
-	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 else
-	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 endif
 
@@ -1504,6 +1520,7 @@ endif
 	@$(ECHO) "L_FLAGS                Additional flags passed to the linker         $(L_FLAGS)"
 	@$(ECHO) "L_LIBS                 Additional libraries passed to the linker     $(L_LIBS)"
 	@$(ECHO) "L_LIBDIRS              Additional library paths for the linker       $(L_LIBDIRS)"
+	@$(ECHO) "L_LIBDIRFLAGS          Optional value for QMAKE_LIBDIR_FLAGS         $(L_LIBDIRFLAGS)"
 	@$(ECHO) "LINKER                 The linker to be used (empty = default)       $(LINKER)"
 	@$(ECHO) "LN                     UNIX command ln                               $(LN)"
 	@$(ECHO) "LOCAL_QML_IMPORT_PATH  Additional QML import path to use             $(LOCAL_QML_IMPORT_PATH)"
