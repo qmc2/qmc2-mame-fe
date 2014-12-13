@@ -446,7 +446,12 @@ endif
 
 # >>> L_LIBDIRFLAGS <<<
 #
-# Specify an optional value for QMAKE_LIBDIR_FLAGS (hacky :)
+# Specify an optional value for QMAKE_LIBDIR_FLAGS (usually not required).
+#
+# This option can be useful to solve Qt library version conflicts when you have
+# different versions of Qt installed and the linker chooses the wrong one, then
+# for example using "L_LIBDIRFLAGS=-L<path-to-qt>/lib" will ensure that the
+# given library path will be used before other (system library) paths.
 #
 ifndef L_LIBDIRFLAGS
 L_LIBDIRFLAGS =
