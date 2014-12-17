@@ -679,15 +679,12 @@ void ROMAlyzer::analyze()
 		foreach (QString id, patternList)
 			if ( qmc2Gamelist->xmlDb()->exists(id) )
 				analyzerList << id;
-		analyzerList.sort();
 	} else {
 		if ( patternList.count() == 1 ) {
-			if ( qmc2GamelistItemHash.contains(patternList[0]) ) {
-				// special case for exactly ONE matching set -- no need to search
+			// special case for exactly ONE matching set -- no need to search
+			if ( qmc2GamelistItemHash.contains(patternList[0]) )
 				analyzerList << patternList[0];
-			}
 		}
-
 		if ( analyzerList.empty() ) {
 			// determine list of sets to analyze
 			labelStatus->setText(tr("Searching sets"));
@@ -715,13 +712,11 @@ void ROMAlyzer::analyze()
 			labelStatus->setText(tr("Idle"));
 		}
 	}
-
+	analyzerList.sort();
 	quickSearch = false;
-
 	if ( !qmc2StopParser ) {
 		log(tr("done (determining list of sets to analyze)"));
 		log(tr("%n set(s) to analyze", "", analyzerList.count()));
-
 		i = 0;
 		int setsInMemory = 0;
 		foreach (QString gameName, analyzerList) {
