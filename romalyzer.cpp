@@ -454,6 +454,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipArchives", radioButtonSetRewriterZipArchives->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipLevel", spinBoxSetRewriterZipLevel->value());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUniqueCRCs", checkBoxSetRewriterUniqueCRCs->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAddZipComment", checkBoxAddZipComment->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterIndividualDirectories", radioButtonSetRewriterIndividualDirectories->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterOutputPath", lineEditSetRewriterOutputPath->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUseAdditionalRomPath", checkBoxSetRewriterUseAdditionalRomPath->isChecked());
@@ -545,6 +546,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	radioButtonSetRewriterZipArchives->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipArchives", true).toBool());
 	spinBoxSetRewriterZipLevel->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipLevel", Z_DEFAULT_COMPRESSION).toInt());
 	checkBoxSetRewriterUniqueCRCs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUniqueCRCs", false).toBool());
+	checkBoxAddZipComment->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAddZipComment", true).toBool());
 	comboBoxChecksumWizardHashType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardHashType", QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1).toInt());
 	comboBoxChecksumWizardAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardAutomationLevel", QMC2_ROMALYZER_CSWIZ_AMLVL_NONE).toInt());
 	radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterIndividualDirectories", false).toBool());
@@ -895,7 +897,7 @@ void ROMAlyzer::analyze()
 			int mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_OK;
 
 			setRewriterFileMap.clear();
-			setRewriterSetName = gameName;
+			setRewriterSetName = setKey;
 			setRewriterItem = item;
 
 			for (fileCounter = 0; fileCounter < xmlHandler.fileCounter && !qmc2StopParser; fileCounter++) {
@@ -2328,7 +2330,7 @@ void ROMAlyzer::setMode(int mode)
 			checkBoxSelectGame->setText(tr("Select software"));
 			checkBoxSelectGame->setToolTip(tr("Select software in software list if selected in analysis report?"));
 			checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed software"));
-			pushButtonRomCollectionRebuilder->setText(tr("Rebuild ROM collection..."));
+			pushButtonRomCollectionRebuilder->setText(tr("Rebuild software collection..."));
 			setWindowTitle(tr("ROMAlyzer") + " [" + tr("software mode") + "]");
 			m_settingsKey = "SoftwareROMAlyzer";
 			lineEditSoftwareLists->setVisible(true);
@@ -2345,7 +2347,7 @@ void ROMAlyzer::setMode(int mode)
 			checkBoxSelectGame->setToolTip(tr("Select game in game list if selected in analysis report?"));
 			checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed game"));
 #endif
-			pushButtonRomCollectionRebuilder->setText(tr("Rebuild software collection..."));
+			pushButtonRomCollectionRebuilder->setText(tr("Rebuild ROM collection..."));
 			setWindowTitle(tr("ROMAlyzer") + " [" + tr("system mode") + "]");
 			m_settingsKey = "ROMAlyzer";
 			lineEditSoftwareLists->setVisible(false);
@@ -2906,7 +2908,17 @@ void ROMAlyzer::runSetRewriter()
 					groupBoxSetRewriter->setEnabled(false);
 					bool savedSRWA = checkBoxSetRewriterWhileAnalyzing->isChecked();
 					checkBoxSetRewriterWhileAnalyzing->setChecked(false);
-					lineEditSets->setText(item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ", QString::SkipEmptyParts)[0]);
+					QStringList setKeyTokens = item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ", QString::SkipEmptyParts)[0].split(":", QString::SkipEmptyParts);
+					switch ( mode() ) {
+						case QMC2_ROMALYZER_MODE_SOFTWARE:
+							lineEditSoftwareLists->setText(setKeyTokens[0]);
+							lineEditSets->setText(setKeyTokens[1]);
+							break;
+						case QMC2_ROMALYZER_MODE_SYSTEM:
+						default:
+							lineEditSets->setText(setKeyTokens[0]);
+							break;
+					}
 					qmc2StopParser = false;
 					analyze();
 					checkBoxSetRewriterWhileAnalyzing->setChecked(savedSRWA);
@@ -2935,7 +2947,6 @@ void ROMAlyzer::runSetRewriter()
 				log(tr("set rewriter: WARNING: can't rewrite set '%1', output path is not writable").arg(setRewriterSetName));
 				return;
 			}
-
 		} else {
 			log(tr("set rewriter: WARNING: can't rewrite set '%1', output path does not exist").arg(setRewriterSetName));
 			return;
@@ -2945,13 +2956,38 @@ void ROMAlyzer::runSetRewriter()
 		return;
 	}
 
+	QString setName, listName;
+	QStringList setKeyTokens;
+	switch ( mode() ) {
+		case QMC2_ROMALYZER_MODE_SOFTWARE:
+			setKeyTokens = setRewriterSetName.split(":", QString::SkipEmptyParts);
+			if ( setKeyTokens.count() > 1 ) {
+				listName = setKeyTokens[0];
+				setName = setKeyTokens[1];
+				outPath += "/" + listName;
+				bool success = true;
+				QDir d(QDir::cleanPath(outPath));
+				if ( !d.exists() )
+					success = d.mkdir(QDir::cleanPath(outPath));
+				if ( !success ) {
+					log(tr("set rewriter: WARNING: can't rewrite set '%1', output path is not writable").arg(setRewriterSetName));
+					return;
+				}
+			}
+			break;
+		case QMC2_ROMALYZER_MODE_SYSTEM:
+		default:
+			setName = setRewriterSetName;
+			break;
+	}
+
 	if ( !outPath.endsWith("/") )
 		outPath += "/";
 
 	if ( radioButtonSetRewriterZipArchives->isChecked() )
-		outPath += setRewriterSetName + ".zip";
+		outPath += setName + ".zip";
 	else
-		outPath += setRewriterSetName;
+		outPath += setName;
 
 	QLocale locale;
 
@@ -3693,7 +3729,10 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 			} else
 				success = false;
 		}
-		zipClose(zip, (const char *)tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit());
+		if ( checkBoxAddZipComment->isChecked() )
+			zipClose(zip, (const char *)tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit());
+		else
+			zipClose(zip, "");
 	} else
 		success = false;
 
@@ -3919,10 +3958,13 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 								}
 							}
 							if ( saveOkay )
-								if ( appendType == APPEND_STATUS_ADDINZIP )
-									zipClose(zip, (const char *)tr("Fixed by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit());
-								else
-									zipClose(zip, (const char *)tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit());
+								if ( checkBoxAddZipComment->isChecked() ) {
+									if ( appendType == APPEND_STATUS_ADDINZIP )
+										zipClose(zip, (const char *)tr("Fixed by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit());
+									else
+										zipClose(zip, (const char *)tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit());
+								} else
+									zipClose(zip, "");
 							else
 								zipClose(zip, 0);
 						} else {
