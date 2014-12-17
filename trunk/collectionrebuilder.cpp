@@ -950,7 +950,10 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 				}
 			}
 		}
-		zipClose(zip, tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit().constData());
+		if ( rebuilderDialog()->romAlyzer()->checkBoxAddZipComment->isChecked() )
+			zipClose(zip, tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit().constData());
+		else
+			zipClose(zip, "");
 		if ( reproducedDumps == 0 )
 			f.remove();
 		emit log(tr("done (creating new ZIP archive '%1')").arg(fileName));
