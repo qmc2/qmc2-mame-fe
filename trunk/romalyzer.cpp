@@ -986,14 +986,14 @@ void ROMAlyzer::analyze()
 					} else if ( effectiveFile == QMC2_ROMALYZER_FILE_ERROR ) {
 						fileStatus = tr("error");
 						childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/warning.png")));
-
-						QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
-						if ( !mergeName.isEmpty() ) {
-							if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_CRIT )
-								mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_CRIT;
-							childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
+						if ( mode() == QMC2_ROMALYZER_MODE_SYSTEM ) {
+							QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
+							if ( !mergeName.isEmpty() ) {
+								if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_CRIT )
+									mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_CRIT;
+								childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
+							}
 						}
-
 						filesError = true;
 						if ( wizardSelectedSets.contains(gameName) ) {
 							QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
@@ -1014,13 +1014,14 @@ void ROMAlyzer::analyze()
 							else
 								childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/remove.png")));
 							notFoundCounter++;
-							QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
-							if ( !mergeName.isEmpty() ) {
-								if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_CRIT )
-									mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_CRIT;
-								childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
+							if ( mode() == QMC2_ROMALYZER_MODE_SYSTEM ) {
+								QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
+								if ( !mergeName.isEmpty() ) {
+									if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_CRIT )
+										mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_CRIT;
+									childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
+								}
 							}
-
 							if ( wizardSelectedSets.contains(gameName) ) {
 								QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
 								foreach (QTreeWidgetItem *item, il) {
@@ -1042,27 +1043,28 @@ void ROMAlyzer::analyze()
 						fileItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/hash.png")));
 						fileItem->setText(QMC2_ROMALYZER_COLUMN_GAME, tr("Calculated check-sums"));
 						childItem->setExpanded(false);
-
-						QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
-						if ( !mergeName.isEmpty() ) {
-							if ( !parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
-								if ( !merged ) {
-									log(tr("WARNING: %1 file '%2' loaded from '%3' may be obsolete, should be merged from parent set '%4'").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile).arg(parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE)));
-									childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
-									if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_WARN )
-										mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_WARN;
-								} else
-									childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
-							} else {
-								// this is actually an XML bug in the driver, inform via log and ignore...
+						if ( mode() == QMC2_ROMALYZER_MODE_SYSTEM ) {
+							QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
+							if ( !mergeName.isEmpty() ) {
+								if ( !parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
+									if ( !merged ) {
+										log(tr("WARNING: %1 file '%2' loaded from '%3' may be obsolete, should be merged from parent set '%4'").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile).arg(parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE)));
+										childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
+										if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_WARN )
+											mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_WARN;
+									} else
+										childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
+								} else {
+									// this is actually an XML bug in the driver, inform via log and ignore...
 #if defined(QMC2_EMUTYPE_MAME)
-								log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
+									log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
 #elif defined(QMC2_EMUTYPE_MESS)
-								log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
+									log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
 #elif defined(QMC2_EMUTYPE_UME)
-								log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the UME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
+									log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the UME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
 #endif
-								childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
+									childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
+								}
 							}
 						}
 
@@ -1335,19 +1337,21 @@ void ROMAlyzer::analyze()
 							xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
 						}
 					}
-					if ( !xmlHandler.parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
-						switch ( mergeStatus ) {
-							case QMC2_ROMALYZER_MERGE_STATUS_OK:
-								xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
-								break;
-							case QMC2_ROMALYZER_MERGE_STATUS_WARN:
-								xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
-								break;
-							case QMC2_ROMALYZER_MERGE_STATUS_CRIT:
-								xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
-								break;
-							default:
-								break;
+					if ( mode() == QMC2_ROMALYZER_MODE_SYSTEM ) {
+						if ( !xmlHandler.parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
+							switch ( mergeStatus ) {
+								case QMC2_ROMALYZER_MERGE_STATUS_OK:
+									xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
+									break;
+								case QMC2_ROMALYZER_MERGE_STATUS_WARN:
+									xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
+									break;
+								case QMC2_ROMALYZER_MERGE_STATUS_CRIT:
+									xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
+									break;
+								default:
+									break;
+							}
 						}
 					}
 				}
@@ -2172,23 +2176,32 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 			break;
 	}
 
-	// try merges if applicable...
+	// try merging if applicable...
 	if ( effectiveFile.isEmpty() && !qmc2StopParser ) {
 		if ( mergeFile.isEmpty() && !merge.isEmpty() ) {
-			// romof is set, but the merge's file name is missing... use the same file name for the merge
+			// romof/cloneof is set, but the merge's file name is missing... use the same file name for the merge
 			mergeFile = fileName;
 		}
 		if ( !mergeFile.isEmpty() && !qmc2StopParser ) {
-			// romof is set, and the merge's file name is given
-			QString nextMerge = getXmlData(merge).split("\n")[0];
-			int romofPosition = nextMerge.indexOf("romof=");
+			// romof/clonef is set, and the merge's file name is given
 			*mergeUsed = true;
-			if ( romofPosition > -1 ) {
-				nextMerge = nextMerge.mid(romofPosition + 7);
-				nextMerge = nextMerge.left(nextMerge.indexOf("\""));
-				effectiveFile = getEffectiveFile(myItem, listName, merge, mergeFile, wantedCRC, nextMerge, mergeFile, type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM, fromCheckSumDb);
-			} else
-				effectiveFile = getEffectiveFile(myItem, listName, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM, fromCheckSumDb);
+			switch ( mode() ) {
+				case QMC2_ROMALYZER_MODE_SOFTWARE:
+					effectiveFile = getEffectiveFile(myItem, listName, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM, fromCheckSumDb);
+					break;
+				case QMC2_ROMALYZER_MODE_SYSTEM:
+				default: {
+						QString nextMerge = getXmlData(merge).split("\n")[0];
+						int position = nextMerge.indexOf("romof=");
+						if ( position > -1 ) {
+							nextMerge = nextMerge.mid(position + 7);
+							nextMerge = nextMerge.left(nextMerge.indexOf("\""));
+							effectiveFile = getEffectiveFile(myItem, listName, merge, mergeFile, wantedCRC, nextMerge, mergeFile, type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM, fromCheckSumDb);
+						} else
+							effectiveFile = getEffectiveFile(myItem, listName, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM, fromCheckSumDb);
+					}
+					break;
+			}
 		}
 	}
 
@@ -4369,7 +4382,15 @@ bool ROMAlyzerXmlHandler::startElement(const QString &namespaceURI, const QStrin
 	}
 
 	if ( qName == mainEntityName ) {
-		parentItem->setText(QMC2_ROMALYZER_COLUMN_MERGE, attributes.value("romof"));
+		switch ( romalyzerMode ) {
+			case QMC2_ROMALYZER_MODE_SOFTWARE:
+				parentItem->setText(QMC2_ROMALYZER_COLUMN_MERGE, attributes.value("cloneof"));
+				break;
+			case QMC2_ROMALYZER_MODE_SYSTEM:
+			default:
+				parentItem->setText(QMC2_ROMALYZER_COLUMN_MERGE, attributes.value("romof"));
+				break;
+		}
 		parentItem->setExpanded(false);
 		emuStatus = 0;
 		fileCounter = 0;
@@ -4378,36 +4399,38 @@ bool ROMAlyzerXmlHandler::startElement(const QString &namespaceURI, const QStrin
 		deviceReferences.clear();
 		optionalROMs.clear();
 	} else if ( qName == "rom" || qName == "disk" ) {
-		fileCounter++;
-		childItem = new QTreeWidgetItem(parentItem);
-		childItems << childItem;
-		childItem->setText(QMC2_ROMALYZER_COLUMN_GAME, attributes.value("name"));
-		childItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, qName == "rom" ? QObject::tr("ROM") : QObject::tr("CHD"));
-		childItem->setText(QMC2_ROMALYZER_COLUMN_MERGE, attributes.value("merge"));
-		s = attributes.value("status");
-		if ( s.isEmpty() || s == "good" ) {
-			childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("good"));
-			childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, greenBrush);
-			emuStatus |= QMC2_ROMALYZER_EMUSTATUS_GOOD;
-		} else if ( s == "nodump" ) {
-			childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("no dump"));
-			childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, brownBrush);
-			emuStatus |= QMC2_ROMALYZER_EMUSTATUS_NODUMP;
-		} else if ( s == "baddump" ) {
-			childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("bad dump"));
-			childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, brownBrush);
-			emuStatus |= QMC2_ROMALYZER_EMUSTATUS_BADDUMP;
-		} else {
-			childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("unknown"));
-			childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, blueBrush);
-			emuStatus |= QMC2_ROMALYZER_EMUSTATUS_UNKNOWN;
+		if ( !attributes.value("name").isEmpty() ) {
+			fileCounter++;
+			childItem = new QTreeWidgetItem(parentItem);
+			childItems << childItem;
+			childItem->setText(QMC2_ROMALYZER_COLUMN_GAME, attributes.value("name"));
+			childItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, qName == "rom" ? QObject::tr("ROM") : QObject::tr("CHD"));
+			childItem->setText(QMC2_ROMALYZER_COLUMN_MERGE, attributes.value("merge"));
+			s = attributes.value("status");
+			if ( s.isEmpty() || s == "good" ) {
+				childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("good"));
+				childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, greenBrush);
+				emuStatus |= QMC2_ROMALYZER_EMUSTATUS_GOOD;
+			} else if ( s == "nodump" ) {
+				childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("no dump"));
+				childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, brownBrush);
+				emuStatus |= QMC2_ROMALYZER_EMUSTATUS_NODUMP;
+			} else if ( s == "baddump" ) {
+				childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("bad dump"));
+				childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, brownBrush);
+				emuStatus |= QMC2_ROMALYZER_EMUSTATUS_BADDUMP;
+			} else {
+				childItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, QObject::tr("unknown"));
+				childItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, blueBrush);
+				emuStatus |= QMC2_ROMALYZER_EMUSTATUS_UNKNOWN;
+			}
+			childItem->setText(QMC2_ROMALYZER_COLUMN_SIZE, attributes.value("size"));
+			childItem->setText(QMC2_ROMALYZER_COLUMN_CRC, attributes.value("crc"));
+			childItem->setText(QMC2_ROMALYZER_COLUMN_SHA1, attributes.value("sha1"));
+			childItem->setText(QMC2_ROMALYZER_COLUMN_MD5, attributes.value("md5"));
+			if ( attributes.value("optional") == "yes" )
+				optionalROMs << attributes.value("crc");
 		}
-		childItem->setText(QMC2_ROMALYZER_COLUMN_SIZE, attributes.value("size"));
-		childItem->setText(QMC2_ROMALYZER_COLUMN_CRC, attributes.value("crc"));
-		childItem->setText(QMC2_ROMALYZER_COLUMN_SHA1, attributes.value("sha1"));
-		childItem->setText(QMC2_ROMALYZER_COLUMN_MD5, attributes.value("md5"));
-		if ( attributes.value("optional") == "yes" )
-			optionalROMs << attributes.value("crc");
 	} else if ( qName == "device_ref" )
 		deviceReferences << attributes.value("name");
 
