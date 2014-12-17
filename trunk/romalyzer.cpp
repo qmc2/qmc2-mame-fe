@@ -681,10 +681,19 @@ void ROMAlyzer::analyze()
 		case QMC2_ROMALYZER_MODE_SOFTWARE:
 			if ( wizardSearch || quickSearch || (wildcardRx.indexIn(lineEditSets->text().simplified()) == -1 && wildcardRx.indexIn(lineEditSoftwareLists->text().simplified()) == -1 )) {
 				// no wild-cards => no need to search!
-				foreach (QString list, softwareListPatternList)
-					foreach (QString id, setPatternList)
-						if ( qmc2MainWindow->swlDb->exists(list, id) )
-							analyzerList << list + ":" + id;
+				if ( wizardSearch ) {
+					for (int j = 0; j < softwareListPatternList.count(); j++) {
+						QString list = softwareListPatternList[j];
+						QString set = setPatternList[j];
+						if ( qmc2MainWindow->swlDb->exists(list, set) )
+							analyzerList << list + ":" + set;
+					}
+				} else {
+					foreach (QString list, softwareListPatternList)
+						foreach (QString set, setPatternList)
+							if ( qmc2MainWindow->swlDb->exists(list, set) )
+								analyzerList << list + ":" + set;
+				}
 			} else {
 				if ( softwareListPatternList.count() == 1 && setPatternList.count() == 1 ) {
 					// special case for exactly ONE matching softlist + set -- no need to search
@@ -884,7 +893,7 @@ void ROMAlyzer::analyze()
 
 			int numWizardFiles = 1;
 			if ( wizardSearch )
-				numWizardFiles = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID).count();
+				numWizardFiles = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID).count();
 
 			// step 3: check file status of ROMs and CHDs, recalculate check-sums
 			log(tr("checking %n file(s) for '%1'", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(setKey));
@@ -915,7 +924,7 @@ void ROMAlyzer::analyze()
 				bool optionalRom = xmlHandler.optionalROMs.contains(childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
 
 				if ( wizardSearch ) {
-					QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+					QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
 					bool itemFound = false;
 					foreach (QTreeWidgetItem *it, il)
 						if ( it->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ) {
@@ -997,8 +1006,8 @@ void ROMAlyzer::analyze()
 							}
 						}
 						filesError = true;
-						if ( wizardSelectedSets.contains(gameName) ) {
-							QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+						if ( wizardSelectedSets.contains(setKey) ) {
+							QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
 							foreach (QTreeWidgetItem *item, il)
 								if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ||
 										item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
@@ -1024,8 +1033,8 @@ void ROMAlyzer::analyze()
 									childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
 								}
 							}
-							if ( wizardSelectedSets.contains(gameName) ) {
-								QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+							if ( wizardSelectedSets.contains(setKey) ) {
+								QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
 								foreach (QTreeWidgetItem *item, il) {
 									if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) || item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
 										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
@@ -1135,8 +1144,8 @@ void ROMAlyzer::analyze()
 								fileItem->setForeground(QMC2_ROMALYZER_COLUMN_SHA1, xmlHandler.redBrush);
 							} else if ( hasDump )
 								goodDump = true;
-							if ( wizardSelectedSets.contains(gameName) ) {
-								QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+							if ( wizardSelectedSets.contains(setKey) ) {
+								QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
 								foreach (QTreeWidgetItem *item, il) {
 									if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ||
 									     item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
@@ -2801,8 +2810,6 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	toolButtonToolsMenu->setEnabled(false);
 	lineEditSoftwareLists->setEnabled(false);
 	lineEditSets->setEnabled(false);
-
-	progressBar->setRange(0, qmc2MainWindow->treeWidgetGamelist->topLevelItemCount());
 	labelStatus->setText(tr("Check-sum search"));
 
 	QString hashStartString;
@@ -2820,40 +2827,90 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 			break;
 	}
 
-	for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount(); i++) {
-		if ( i % QMC2_ROMALYZER_CKSUM_SEARCH_RESPONSE ) {
-			progressBar->setValue(i);
-			qApp->processEvents();
-		}
-		QString currentGame = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i)->text(QMC2_GAMELIST_COLUMN_NAME);
-		QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(currentGame).split("\n", QString::SkipEmptyParts);
-		for (int j = 0; j < xmlLines.count(); j++) {
-			QString xmlLine = xmlLines[j];
-			int hashIndex = xmlLine.indexOf(hashStartString);
-			if ( hashIndex >= 0 ) {
-				int hashPos = hashIndex + hashStartOffset;
-				QString currentChecksum = xmlLine.mid(hashPos, xmlLine.indexOf("\"", hashPos) - hashPos).toLower();
-				if ( currentChecksum == searchedChecksum ) {
-					int fileNamePos;
-					QString fileType;
-					if ( xmlLine.startsWith("<disk name=\"") ) {
-						fileType = tr("CHD");
-						fileNamePos = xmlLine.indexOf("<disk name=\"") + 12;
-					} else {
-						fileType = tr("ROM");
-						fileNamePos = xmlLine.indexOf("<rom name=\"") + 11;
+	switch ( mode() ) {
+		case QMC2_ROMALYZER_MODE_SOFTWARE: {
+				QStringList uniqueSoftwareLists = qmc2MainWindow->swlDb->uniqueSoftwareLists();
+				progressBar->setRange(0, uniqueSoftwareLists.count());
+				int progressCount = 0, updateCount = 0;
+				foreach (QString list, uniqueSoftwareLists) {
+					foreach (QString set, qmc2MainWindow->swlDb->uniqueSoftwareSets(list)) {
+						QStringList xmlLines = qmc2MainWindow->swlDb->xml(list, set).split("\n", QString::SkipEmptyParts);
+						for (int i = 0; i < xmlLines.count(); i++) {
+							QString xmlLine = xmlLines[i];
+							int hashIndex = xmlLine.indexOf(hashStartString);
+							if ( hashIndex >= 0 ) {
+								int hashPos = hashIndex + hashStartOffset;
+								QString currentChecksum = xmlLine.mid(hashPos, xmlLine.indexOf("\"", hashPos) - hashPos).toLower();
+								if ( currentChecksum == searchedChecksum ) {
+									int fileNamePos;
+									QString fileType;
+									if ( xmlLine.startsWith("<disk name=\"") ) {
+										fileType = tr("CHD");
+										fileNamePos = xmlLine.indexOf("<disk name=\"") + 12;
+									} else {
+										fileType = tr("ROM");
+										fileNamePos = xmlLine.indexOf("<rom name=\"") + 11;
+									}
+									QString fileName = xmlLine.mid(fileNamePos, xmlLine.indexOf("\"", fileNamePos) - fileNamePos);
+									QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
+									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_ID, list + ":" + set);
+									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
+									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE, fileType);
+									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("unknown"));
+									if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_SELECT )
+										item->setSelected(true);
+								}
+							}
+						}
+						if ( updateCount++ % QMC2_ROMALYZER_CKSUM_SEARCH_RESPONSE ) {
+							progressBar->setValue(progressCount);
+							qApp->processEvents();
+						}
 					}
-					QString fileName = xmlLine.mid(fileNamePos, xmlLine.indexOf("\"", fileNamePos) - fileNamePos);
-					QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
-					item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_ID, currentGame);
-					item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
-					item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE, fileType);
-					item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("unknown"));
-					if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_SELECT )
-						item->setSelected(true);
+					progressBar->setValue(progressCount++);
+					qApp->processEvents();
 				}
 			}
-		}
+			break;
+		case QMC2_ROMALYZER_MODE_SYSTEM:
+		default:
+			progressBar->setRange(0, qmc2MainWindow->treeWidgetGamelist->topLevelItemCount());
+			for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount(); i++) {
+				if ( i % QMC2_ROMALYZER_CKSUM_SEARCH_RESPONSE ) {
+					progressBar->setValue(i);
+					qApp->processEvents();
+				}
+				QString currentGame = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i)->text(QMC2_GAMELIST_COLUMN_NAME);
+				QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(currentGame).split("\n", QString::SkipEmptyParts);
+				for (int j = 0; j < xmlLines.count(); j++) {
+					QString xmlLine = xmlLines[j];
+					int hashIndex = xmlLine.indexOf(hashStartString);
+					if ( hashIndex >= 0 ) {
+						int hashPos = hashIndex + hashStartOffset;
+						QString currentChecksum = xmlLine.mid(hashPos, xmlLine.indexOf("\"", hashPos) - hashPos).toLower();
+						if ( currentChecksum == searchedChecksum ) {
+							int fileNamePos;
+							QString fileType;
+							if ( xmlLine.startsWith("<disk name=\"") ) {
+								fileType = tr("CHD");
+								fileNamePos = xmlLine.indexOf("<disk name=\"") + 12;
+							} else {
+								fileType = tr("ROM");
+								fileNamePos = xmlLine.indexOf("<rom name=\"") + 11;
+							}
+							QString fileName = xmlLine.mid(fileNamePos, xmlLine.indexOf("\"", fileNamePos) - fileNamePos);
+							QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
+							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_ID, currentGame);
+							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
+							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE, fileType);
+							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("unknown"));
+							if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_SELECT )
+								item->setSelected(true);
+						}
+					}
+				}
+			}
+			break;
 	}
 
 	progressBar->reset();
@@ -3449,7 +3506,25 @@ void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()");
 #endif
 
-	lineEditSets->setText(wizardSelectedSets.join(" "));
+	switch ( mode() ) {
+		case QMC2_ROMALYZER_MODE_SOFTWARE: {
+				QStringList lists, sets;
+				foreach (QString setKey, wizardSelectedSets) {
+					QStringList setKeyTokens = setKey.split(":", QString::SkipEmptyParts);
+					if ( setKeyTokens.count() < 2 )
+						continue;
+					lists << setKeyTokens[0];
+					sets << setKeyTokens[1];
+				}
+				lineEditSoftwareLists->setText(lists.join(" "));
+				lineEditSets->setText(sets.join(" "));
+			}
+			break;
+		case QMC2_ROMALYZER_MODE_SYSTEM:
+		default:
+			lineEditSets->setText(wizardSelectedSets.join(" "));
+			break;
+	}
 	wizardSearch = true;
 	pushButtonAnalyze->animateClick();
 }
