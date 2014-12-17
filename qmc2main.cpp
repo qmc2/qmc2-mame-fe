@@ -2722,6 +2722,12 @@ void MainWindow::on_actionSoftwareROMAlyzer_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSoftwareROMAlyzer_triggered(bool)");
 #endif
 
+	if ( !swlDb ) {
+		swlDb = new SoftwareListXmlDatabaseManager(qmc2MainWindow);
+		swlDb->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
+		swlDb->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
+	}
+
 	if ( !qmc2SoftwareROMAlyzer )
 		qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
 
