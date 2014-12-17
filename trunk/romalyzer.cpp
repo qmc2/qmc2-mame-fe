@@ -537,7 +537,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	lineEditCHDManagerExecutableFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CHDManagerExecutableFile", QString()).toString());
 	lineEditTemporaryWorkingDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/TemporaryWorkingDirectory", QString()).toString());
 	lineEditSetRewriterOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterOutputPath", QString()).toString());
-	checkBoxSetRewriterUseAdditionalRomPath->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUseAdditionalRomPath", true).toBool());
+	checkBoxSetRewriterUseAdditionalRomPath->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUseAdditionalRomPath", false).toBool());
 	lineEditSetRewriterAdditionalRomPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAdditionalRomPath", QString()).toString());
 	groupBoxSetRewriter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableSetRewriter", false).toBool());
 	checkBoxSetRewriterWhileAnalyzing->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterWhileAnalyzing", false).toBool());
