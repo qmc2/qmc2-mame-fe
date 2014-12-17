@@ -22,6 +22,8 @@ class SoftwareListXmlDatabaseManager : public QObject
 		void setSwlCacheVersion(int swlcache_version);
 		QString dtd();
 		void setDtd(QString dtd);
+		QStringList uniqueSoftwareLists();
+		QStringList uniqueSoftwareSets(QString list);
 		QString xml(QString list, QString id);
 		QString xml(int rowid);
 		QString nextXml(QString list, QString *id, bool start = false);

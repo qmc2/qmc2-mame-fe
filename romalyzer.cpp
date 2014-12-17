@@ -646,7 +646,8 @@ void ROMAlyzer::analyze()
 	romPaths = myRomPath.split(";", QString::SkipEmptyParts);
 
 	QStringList analyzerList;
-	QStringList patternList = lineEditSets->text().simplified().split(" ", QString::SkipEmptyParts);
+	QStringList softwareListPatternList = lineEditSoftwareLists->text().simplified().split(" ", QString::SkipEmptyParts);
+	QStringList setPatternList = lineEditSets->text().simplified().split(" ", QString::SkipEmptyParts);
 
 	if ( !checkBoxAppendReport->isChecked() ) {
 		treeWidgetChecksums->clear();
@@ -674,52 +675,130 @@ void ROMAlyzer::analyze()
 
 	int i = 0;
 	QRegExp wildcardRx("(\\*|\\?)");
-	if ( wizardSearch || quickSearch || wildcardRx.indexIn(lineEditSets->text().simplified()) == -1 ) {
-		// no wild-cards => no need to search!
-		foreach (QString id, patternList)
-			if ( qmc2Gamelist->xmlDb()->exists(id) )
-				analyzerList << id;
-	} else {
-		if ( patternList.count() == 1 ) {
-			// special case for exactly ONE matching set -- no need to search
-			if ( qmc2GamelistItemHash.contains(patternList[0]) )
-				analyzerList << patternList[0];
-		}
-		if ( analyzerList.empty() ) {
-			// determine list of sets to analyze
-			labelStatus->setText(tr("Searching sets"));
-			progressBar->setRange(0, qmc2Gamelist->numGames);
-			progressBar->reset();
-			QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
-			i = 0;
-			bool matchAll = (lineEditSets->text().simplified() == "*");
-			while ( it.hasNext() && !qmc2StopParser ) {
-				it.next();
-				progressBar->setValue(++i);
-				QString gameID = it.key();
-				if ( matchAll )
-					analyzerList << gameID;
-				else foreach (QString pattern, patternList) {
-					QRegExp regexp(pattern, Qt::CaseSensitive, QRegExp::Wildcard);
-					if ( regexp.exactMatch(gameID) )
-						if ( !analyzerList.contains(gameID) )
-							analyzerList << gameID;
+	switch ( mode() ) {
+		case QMC2_ROMALYZER_MODE_SOFTWARE:
+			if ( wizardSearch || quickSearch || (wildcardRx.indexIn(lineEditSets->text().simplified()) == -1 && wildcardRx.indexIn(lineEditSoftwareLists->text().simplified()) == -1 )) {
+				// no wild-cards => no need to search!
+				foreach (QString list, softwareListPatternList)
+					foreach (QString id, setPatternList)
+						if ( qmc2MainWindow->swlDb->exists(list, id) )
+							analyzerList << list + ":" + id;
+			} else {
+				if ( softwareListPatternList.count() == 1 && setPatternList.count() == 1 ) {
+					// special case for exactly ONE matching softlist + set -- no need to search
+					if ( qmc2MainWindow->swlDb->exists(softwareListPatternList.first(), setPatternList.first()) )
+						analyzerList << softwareListPatternList.first() + ":" + setPatternList.first();
 				}
-				if ( i % QMC2_ROMALYZER_SEARCH_RESPONSE == 0 )
-					qApp->processEvents();
+				if ( analyzerList.empty() ) {
+					// determine list of softlists + sets to analyze
+					QStringList uniqueSoftwareLists = qmc2MainWindow->swlDb->uniqueSoftwareLists();
+					if ( !uniqueSoftwareLists.isEmpty() ) {
+						labelStatus->setText(tr("Searching sets"));
+						i = 0;
+						bool matchAllSoftwareLists = (lineEditSoftwareLists->text().simplified() == "*");
+						bool matchAllSets = (lineEditSets->text().simplified() == "*");
+						progressBar->setRange(0, uniqueSoftwareLists.count());
+						progressBar->reset();
+						foreach (QString softList, uniqueSoftwareLists) {
+							progressBar->setValue(++i);
+							bool swlMatched = matchAllSoftwareLists;
+							if ( !swlMatched ) {
+								foreach (QString pattern, softwareListPatternList) {
+									QRegExp regexp(pattern, Qt::CaseSensitive, QRegExp::Wildcard);
+									if ( regexp.exactMatch(softList) ) {
+										swlMatched = true;
+										break;
+									}
+								}
+							}
+							if ( swlMatched ) {
+								QStringList uniqueSoftwareSets = qmc2MainWindow->swlDb->uniqueSoftwareSets(softList);
+								foreach (QString setName, uniqueSoftwareSets) {
+									QString softwareKey = softList + ":" + setName;
+									if ( matchAllSets )
+										analyzerList << softwareKey;
+									else foreach (QString pattern, setPatternList) {
+										QRegExp regexp(pattern, Qt::CaseSensitive, QRegExp::Wildcard);
+										if ( regexp.exactMatch(setName) )
+											analyzerList << softwareKey;
+									}
+								}
+							}
+							qApp->processEvents();
+						}
+						progressBar->reset();
+						labelStatus->setText(tr("Idle"));
+					}
+				}
 			}
-			progressBar->reset();
-			labelStatus->setText(tr("Idle"));
-		}
+			break;
+		case QMC2_ROMALYZER_MODE_SYSTEM:
+		default:
+			if ( wizardSearch || quickSearch || wildcardRx.indexIn(lineEditSets->text().simplified()) == -1 ) {
+				// no wild-cards => no need to search!
+				foreach (QString id, setPatternList)
+					if ( qmc2Gamelist->xmlDb()->exists(id) )
+						analyzerList << id;
+			} else {
+				if ( setPatternList.count() == 1 ) {
+					// special case for exactly ONE matching set -- no need to search
+					if ( qmc2GamelistItemHash.contains(setPatternList[0]) )
+						analyzerList << setPatternList[0];
+				}
+				if ( analyzerList.empty() ) {
+					// determine list of sets to analyze
+					labelStatus->setText(tr("Searching sets"));
+					progressBar->setRange(0, qmc2Gamelist->numGames);
+					progressBar->reset();
+					QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+					i = 0;
+					bool matchAll = (lineEditSets->text().simplified() == "*");
+					while ( it.hasNext() && !qmc2StopParser ) {
+						it.next();
+						progressBar->setValue(++i);
+						QString gameID = it.key();
+						if ( matchAll )
+							analyzerList << gameID;
+						else foreach (QString pattern, setPatternList) {
+							QRegExp regexp(pattern, Qt::CaseSensitive, QRegExp::Wildcard);
+							if ( regexp.exactMatch(gameID) )
+								if ( !analyzerList.contains(gameID) )
+									analyzerList << gameID;
+						}
+						if ( i % QMC2_ROMALYZER_SEARCH_RESPONSE == 0 )
+							qApp->processEvents();
+					}
+					progressBar->reset();
+					labelStatus->setText(tr("Idle"));
+				}
+			}
+			break;
 	}
+
 	analyzerList.sort();
 	quickSearch = false;
+
 	if ( !qmc2StopParser ) {
 		log(tr("done (determining list of sets to analyze)"));
 		log(tr("%n set(s) to analyze", "", analyzerList.count()));
 		i = 0;
 		int setsInMemory = 0;
-		foreach (QString gameName, analyzerList) {
+		foreach (QString setKey, analyzerList) {
+			QString gameName, softListName;
+			QStringList setKeyTokens;
+			switch ( mode() ) {
+				case QMC2_ROMALYZER_MODE_SOFTWARE:
+					setKeyTokens = setKey.split(":", QString::SkipEmptyParts);
+					if ( setKeyTokens.count() < 2 )
+						continue;
+					softListName = setKeyTokens[0];
+					gameName = setKeyTokens[1];
+					break;
+				case QMC2_ROMALYZER_MODE_SYSTEM:
+				default:
+					gameName = setKey;
+					break;
+			}
 			// wait if paused...
 			for (quint64 waitCounter = 0; paused() && !qmc2StopParser; waitCounter++) {
 				if ( waitCounter == 0 ) {
@@ -762,14 +841,23 @@ void ROMAlyzer::analyze()
 			QLocale locale;
 
 			// analyze set
-			log(tr("analyzing '%1'").arg(gameName));
+			log(tr("analyzing '%1'").arg(setKey));
 			setRewriterSetCount = analyzerList.count() - i;
-			labelStatus->setText(tr("Analyzing '%1'").arg(gameName) + QString(" - %1").arg(locale.toString(setRewriterSetCount)));
+			labelStatus->setText(tr("Analyzing '%1'").arg(setKey) + QString(" - %1").arg(locale.toString(setRewriterSetCount)));
 
 			// step 1: retrieve XML data, insert item with game name
 			QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksums);
-			item->setText(QMC2_ROMALYZER_COLUMN_GAME, gameName);
-			QString xmlBuffer = getXmlData(gameName);
+			item->setText(QMC2_ROMALYZER_COLUMN_GAME, setKey);
+			QString xmlBuffer;
+			switch ( mode() ) {
+				case QMC2_ROMALYZER_MODE_SOFTWARE:
+					xmlBuffer = getSoftwareXmlData(softListName, gameName);
+					break;
+				case QMC2_ROMALYZER_MODE_SYSTEM:
+				default:
+					xmlBuffer = getXmlData(gameName);
+					break;
+			}
 
 			if ( qmc2StopParser )
 				break;
@@ -778,13 +866,13 @@ void ROMAlyzer::analyze()
 			log(tr("parsing XML data for '%1'").arg(gameName));
 			QXmlInputSource xmlInputSource;
 			xmlInputSource.setData(xmlBuffer);
-			ROMAlyzerXmlHandler xmlHandler(item, checkBoxExpandFiles->isChecked(), checkBoxAutoScroll->isChecked());
+			ROMAlyzerXmlHandler xmlHandler(item, checkBoxExpandFiles->isChecked(), checkBoxAutoScroll->isChecked(), mode());
 			QXmlSimpleReader xmlReader;
 			xmlReader.setContentHandler(&xmlHandler);
 			if ( xmlReader.parse(xmlInputSource) )
-				log(tr("done (parsing XML data for '%1')").arg(gameName));
+				log(tr("done (parsing XML data for '%1')").arg(setKey));
 			else
-				log(tr("error (parsing XML data for '%1')").arg(gameName));
+				log(tr("error (parsing XML data for '%1')").arg(setKey));
 
 			if ( qmc2StopParser )
 				break;
@@ -797,7 +885,7 @@ void ROMAlyzer::analyze()
 				numWizardFiles = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID).count();
 
 			// step 3: check file status of ROMs and CHDs, recalculate check-sums
-			log(tr("checking %n file(s) for '%1'", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(gameName));
+			log(tr("checking %n file(s) for '%1'", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(setKey));
 			progressBar->reset();
 			progressBar->setRange(0, xmlHandler.fileCounter);
 			int fileCounter;
@@ -839,7 +927,7 @@ void ROMAlyzer::analyze()
 					}
 				}
 
-				QString effectiveFile = getEffectiveFile(childItem, gameName, childItem->text(QMC2_ROMALYZER_COLUMN_GAME), childItem->text(QMC2_ROMALYZER_COLUMN_CRC),
+				QString effectiveFile = getEffectiveFile(childItem, softListName, gameName, childItem->text(QMC2_ROMALYZER_COLUMN_GAME), childItem->text(QMC2_ROMALYZER_COLUMN_CRC),
 									 parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE), childItem->text(QMC2_ROMALYZER_COLUMN_MERGE), childItem->text(QMC2_ROMALYZER_COLUMN_TYPE),
 									 &data, &sha1Calculated, &md5Calculated, &zipped, &sevenZipped, &merged, fileCounter, &fallbackPath, optionalRom, &fromCheckSumDb); 
 
@@ -1332,7 +1420,26 @@ QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 	return xmlBuffer;
 }
 
-QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, QString fileName, QString wantedCRC, QString merge, QString mergeFile, QString type, QByteArray *fileData, QString *sha1Str, QString *md5Str, bool *isZipped, bool *isSevenZipped, bool *mergeUsed, int fileCounter, QString *fallbackPath, bool isOptionalROM, bool *fromCheckSumDb)
+QString &ROMAlyzer::getSoftwareXmlData(QString listName, QString setName, bool includeDTD)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::getSoftwareXmlData(QString listName = %1, QString setName = %2, bool includeDTD = %3)").arg(listName).arg(setName).arg(includeDTD));
+#endif
+
+	static QString swlBuffer;
+
+	swlBuffer.clear();
+
+	if ( includeDTD ) {
+		swlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+		swlBuffer += qmc2MainWindow->swlDb->dtd();
+	}
+	swlBuffer += qmc2MainWindow->swlDb->xml(listName, setName);
+
+	return swlBuffer;
+}
+
+QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, QString gameName, QString fileName, QString wantedCRC, QString merge, QString mergeFile, QString type, QByteArray *fileData, QString *sha1Str, QString *md5Str, bool *isZipped, bool *isSevenZipped, bool *mergeUsed, int fileCounter, QString *fallbackPath, bool isOptionalROM, bool *fromCheckSumDb)
 {
 	static QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
 	static QCryptographicHash md5Hash(QCryptographicHash::Md5);
@@ -1359,6 +1466,8 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 		romPathCount++;
 		progressWidget = NULL;
 		needProgressWidget = false;
+		if ( mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+			romPath += "/" + listName;
 		QString filePath(romPath + "/" + gameName + "/" + fileName);
 		if ( isCHD ) {
 			filePath += ".chd";
@@ -2077,9 +2186,9 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 			if ( romofPosition > -1 ) {
 				nextMerge = nextMerge.mid(romofPosition + 7);
 				nextMerge = nextMerge.left(nextMerge.indexOf("\""));
-				effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, nextMerge, mergeFile, type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM, fromCheckSumDb);
+				effectiveFile = getEffectiveFile(myItem, listName, merge, mergeFile, wantedCRC, nextMerge, mergeFile, type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM, fromCheckSumDb);
 			} else
-				effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM, fromCheckSumDb);
+				effectiveFile = getEffectiveFile(myItem, listName, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM, fromCheckSumDb);
 		}
 	}
 
@@ -4217,15 +4326,16 @@ void ROMAlyzer::on_pushButtonRomCollectionRebuilder_clicked()
 	collectionRebuilder()->raise();
 }
 
-ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, bool scroll)
+ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, bool scroll, int mode)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent = %1, bool expand = %2, bool scroll = %3)").arg((qulonglong)parent).arg(expand).arg(scroll));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent = %1, bool expand = %2, bool scroll = %3, int mode = %4)").arg((qulonglong)parent).arg(expand).arg(scroll).arg(mode));
 #endif
 
 	parentItem = parent;
 	autoExpand = expand;
 	autoScroll = scroll;
+	romalyzerMode = mode;
 
 	redBrush = QBrush(QColor(255, 0, 0));
 	greenBrush = QBrush(QColor(0, 255, 0));
@@ -4242,12 +4352,23 @@ bool ROMAlyzerXmlHandler::startElement(const QString &namespaceURI, const QStrin
 #endif
 
 	QString s;
+	QString mainEntityName;
 
+	switch ( romalyzerMode ) {
+		case QMC2_ROMALYZER_MODE_SOFTWARE:
+			mainEntityName = "software";
+			break;
+		case QMC2_ROMALYZER_MODE_SYSTEM:
+		default:
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	if ( qName == "game" ) {
+			mainEntityName = "game";
 #elif defined(QMC2_EMUTYPE_MESS)
-	if ( qName == "machine" ) {
+			mainEntityName = "machine";
 #endif
+			break;
+	}
+
+	if ( qName == mainEntityName ) {
 		parentItem->setText(QMC2_ROMALYZER_COLUMN_MERGE, attributes.value("romof"));
 		parentItem->setExpanded(false);
 		emuStatus = 0;
@@ -4299,11 +4420,23 @@ bool ROMAlyzerXmlHandler::endElement(const QString &namespaceURI, const QString 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::endElement(...)");
 #endif
 
+	QString mainEntityName;
+
+	switch ( romalyzerMode ) {
+		case QMC2_ROMALYZER_MODE_SOFTWARE:
+			mainEntityName = "software";
+			break;
+		case QMC2_ROMALYZER_MODE_SYSTEM:
+		default:
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	if ( qName == "game" ) {
+			mainEntityName = "game";
 #elif defined(QMC2_EMUTYPE_MESS)
-	if ( qName == "machine" ) {
+			mainEntityName = "machine";
 #endif
+			break;
+	}
+
+	if ( qName == mainEntityName ) {
 		QString s(parentItem->text(QMC2_ROMALYZER_COLUMN_GAME));
 		s += " [" + QString::number(fileCounter) + "]";
 		parentItem->setText(QMC2_ROMALYZER_COLUMN_GAME, s);

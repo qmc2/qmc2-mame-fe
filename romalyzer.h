@@ -237,6 +237,7 @@ class ROMAlyzerXmlHandler : public QXmlDefaultHandler
 		bool autoScroll;
 		int emuStatus;
 		int fileCounter;
+		int romalyzerMode;
 		QBrush redBrush;
 		QBrush greenBrush;
 		QBrush blueBrush;
@@ -244,7 +245,7 @@ class ROMAlyzerXmlHandler : public QXmlDefaultHandler
 		QBrush brownBrush;
 		QBrush greyBrush;
 
-		ROMAlyzerXmlHandler(QTreeWidgetItem *, bool expand = false, bool scroll = false);
+		ROMAlyzerXmlHandler(QTreeWidgetItem *, bool expand = false, bool scroll = false, int mode = QMC2_ROMALYZER_MODE_SYSTEM);
 
 		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
 		bool endElement(const QString &, const QString &, const QString &);
@@ -299,7 +300,8 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		bool writeAllFileData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
 		static QString humanReadable(quint64, int digits = 2);
 		static QString &getXmlData(QString, bool includeDTD = false);
-		QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString, QByteArray *, QString *, QString *, bool *, bool *, bool *, int, QString *, bool, bool *);
+		static QString &getSoftwareXmlData(QString, QString, bool includeDTD = false);
+		QString &getEffectiveFile(QTreeWidgetItem *, QString, QString, QString, QString, QString, QString, QString, QByteArray *, QString *, QString *, bool *, bool *, bool *, int, QString *, bool, bool *);
 		bool createBackup(QString filePath);
 		CheckSumDatabaseManager *checkSumDb() { return m_checkSumDb; }
 		CheckSumScannerLog *checkSumScannerLog() { return m_checkSumScannerLog; }
