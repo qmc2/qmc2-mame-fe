@@ -29,6 +29,7 @@
 #include "unzip.h"
 #include "zip.h"
 #include "sevenzipfile.h"
+#include "softwarelist.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -39,6 +40,7 @@ extern bool qmc2ReloadActive;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
 extern bool qmc2StopParser;
+extern SoftwareList *qmc2SoftwareList;
 extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
@@ -77,7 +79,7 @@ extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
   Backward engineering powered by strace :)! 
 */
 
-ROMAlyzer::ROMAlyzer(QWidget *parent, int mode)
+ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 #if defined(QMC2_OS_WIN)
 	: QDialog(parent, Qt::Dialog)
 #else
@@ -89,7 +91,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int mode)
 #endif
   
 	setupUi(this);
-	setMode(mode);
+	setMode(romalyzerMode);
 	setActive(false);
 	setPaused(false);
 
@@ -217,6 +219,23 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int mode)
 #if defined(QMC2_OS_MAC)
 	setParent(qmc2MainWindow, Qt::Dialog);
 #endif
+
+	if ( mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
+		if ( !qmc2SoftwareList ) {
+			QLayout *vbl = qmc2MainWindow->tabSoftwareList->layout();
+			if ( vbl )
+				delete vbl;
+			int left, top, right, bottom;
+			qmc2MainWindow->gridLayout->getContentsMargins(&left, &top, &right, &bottom);
+			QVBoxLayout *layout = new QVBoxLayout;
+			layout->setContentsMargins(left, top, right, bottom);
+			qmc2SoftwareList = new SoftwareList("qmc2_romalyzer_dummy", qmc2MainWindow->tabSoftwareList);
+			layout->addWidget(qmc2SoftwareList);
+			qmc2MainWindow->tabSoftwareList->setLayout(layout);
+			qmc2MainWindow->isCreatingSoftList = false;
+			QTimer::singleShot(0, qmc2SoftwareList, SLOT(load()));
+		}
+	}
 }
 
 ROMAlyzer::~ROMAlyzer()
@@ -478,7 +497,6 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/AnalysisTab", tabWidgetAnalysis->currentIndex());
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ChecksumWizardHeaderState", treeWidgetChecksumWizardSearchResult->header()->saveState());
 		if ( !qmc2CleaningUp ) {
-			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Visible", false);
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Position", pos());
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Size", size());
 		}
@@ -579,9 +597,6 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	}
 	lineEditCheckSumDbDatabasePath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDatabasePath", QString(userScopePath + "/%1-checksum.db").arg(variantName)).toString());
 	toolButtonCheckSumDbScanIncrementally->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScanIncrementally", true).toBool());
-
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Visible", true);
 
 	if ( e )
 		e->accept();

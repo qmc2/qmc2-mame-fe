@@ -288,7 +288,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		bool wizardSearch;
 		bool quickSearch;
 
-		ROMAlyzer(QWidget *, int mode = QMC2_ROMALYZER_MODE_SYSTEM);
+		ROMAlyzer(QWidget *, int romalyzerMode = QMC2_ROMALYZER_MODE_SYSTEM);
 		~ROMAlyzer();
 
 		void saveState() { closeEvent(NULL); }

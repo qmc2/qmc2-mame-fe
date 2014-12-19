@@ -884,12 +884,6 @@ MainWindow::MainWindow(QWidget *parent)
 		treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED1);
 		treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED2);
 #endif
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible").toBool() )
-			QTimer::singleShot(0, this, SLOT(on_actionCheckSamples_triggered()));
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Visible").toBool() )
-			QTimer::singleShot(0, this, SLOT(on_actionSystemROMAlyzer_triggered()));
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareROMAlyzer/Visible").toBool() )
-			QTimer::singleShot(0, this, SLOT(on_actionSoftwareROMAlyzer_triggered()));
 		actionFullscreenToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Fullscreen", false).toBool());
 		tabWidgetGamelist->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::North).toInt());
 		tabWidgetGameDetail->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::North).toInt());

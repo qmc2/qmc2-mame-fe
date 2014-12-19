@@ -22,12 +22,12 @@
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
 
-CollectionRebuilder::CollectionRebuilder(ROMAlyzer *romAlyzer, QWidget *parent)
+CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent)
 	: QDialog(parent)
 {
 	setupUi(this);
-	m_romAlyzer = romAlyzer;
-	switch ( this->romAlyzer()->mode() ) {
+	m_romAlyzer = myROMAlyzer;
+	switch ( romAlyzer()->mode() ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE:
 			setWindowTitle(tr("Software Collection Rebuilder"));
 			m_settingsKey = "SoftwareCollectionRebuilder";
