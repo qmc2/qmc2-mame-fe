@@ -15,6 +15,7 @@
 #include "qmc2main.h"
 #include "options.h"
 #include "iconlineedit.h"
+#include "romalyzer.h"
 #include "macros.h"
 
 // external global variables
@@ -43,6 +44,7 @@ extern bool qmc2VerifyActive;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 extern QHash<QString, QPair<QString, QAction *> > qmc2ShortcutHash;
 extern QHash<QString, QString> qmc2CustomShortcutHash;
+extern ROMAlyzer *qmc2SoftwareROMAlyzer;
 
 QHash<QString, QStringList> systemSoftwareListHash;
 QHash<QString, QStringList> systemSoftwareFilterHash;
@@ -167,6 +169,20 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	actionRemoveFromFavorites->setToolTip(s); actionRemoveFromFavorites->setStatusTip(s);
 	actionRemoveFromFavorites->setIcon(QIcon(QString::fromUtf8(":/data/img/remove_from_favorites.png")));
 	connect(actionRemoveFromFavorites, SIGNAL(triggered()), this, SLOT(removeFromFavorites()));
+#if defined(QMC2_WIP_ENABLED)
+	// FIXME: remove when ROMAlyzer's software mode works
+	softwareListMenu->addSeparator();
+	s = tr("Analyze the currently selected software with the ROMAlyzer");
+	actionAnalyzeSoftware = softwareListMenu->addAction(tr("Analyze &software..."));
+	actionAnalyzeSoftware->setToolTip(s); actionAnalyzeSoftware->setStatusTip(s);
+	actionAnalyzeSoftware->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer_sw.png")));
+	connect(actionAnalyzeSoftware, SIGNAL(triggered()), this, SLOT(analyzeSoftware()));
+	s = tr("Analyze all relevant software-lists for the current system with the ROMAlyzer");
+	actionAnalyzeSoftwareLists = softwareListMenu->addAction(tr("Analyze software-&lists..."));
+	actionAnalyzeSoftwareLists->setToolTip(s); actionAnalyzeSoftwareLists->setStatusTip(s);
+	actionAnalyzeSoftwareLists->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer_sw.png")));
+	connect(actionAnalyzeSoftwareLists, SIGNAL(triggered()), this, SLOT(analyzeSoftwareLists()));
+#endif
 	softwareListMenu->addSeparator();
 	s = tr("Clear software selection");
 	actionClearSelection = softwareListMenu->addAction(tr("&Clear selection"));
@@ -3274,12 +3290,72 @@ void SoftwareList::updateStats(SoftwareListXmlHandler *handler)
 	labelSoftwareListStats->setText(status(handler));
 }
 
+void SoftwareList::analyzeSoftware()
+{
+	QTreeWidget *treeWidget;
+	switch ( toolBoxSoftwareList->currentIndex() ) {
+		case QMC2_SWLIST_KNOWN_SW_PAGE:
+			treeWidget = treeWidgetKnownSoftware;
+			break;
+		case QMC2_SWLIST_FAVORITES_PAGE:
+			treeWidget = treeWidgetFavoriteSoftware;
+			break;
+		case QMC2_SWLIST_SEARCH_PAGE:
+			treeWidget = treeWidgetSearchResults;
+			break;
+	}
+	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
+	if ( !selectedItems.isEmpty() ) {
+		QTreeWidgetItem *item = selectedItems[0];
+		if ( !qmc2SoftwareROMAlyzer )
+			qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
+		if ( !qmc2SoftwareROMAlyzer->active() ) {
+			qmc2SoftwareROMAlyzer->lineEditSoftwareLists->setText(item->text(QMC2_SWLIST_COLUMN_LIST));
+			qmc2SoftwareROMAlyzer->lineEditSets->setText(item->text(QMC2_SWLIST_COLUMN_NAME));
+		}
+		if ( qmc2SoftwareROMAlyzer->isHidden() )
+			qmc2SoftwareROMAlyzer->show();
+		else if ( qmc2SoftwareROMAlyzer->isMinimized() )
+			qmc2SoftwareROMAlyzer->showNormal();
+		QTimer::singleShot(0, qmc2SoftwareROMAlyzer, SLOT(raise()));
+		QTimer::singleShot(0, qmc2SoftwareROMAlyzer->pushButtonAnalyze, SLOT(animateClick()));
+	}
+}
+
+void SoftwareList::analyzeSoftwareLists()
+{
+	QTreeWidget *treeWidget;
+	switch ( toolBoxSoftwareList->currentIndex() ) {
+		case QMC2_SWLIST_KNOWN_SW_PAGE:
+			treeWidget = treeWidgetKnownSoftware;
+			break;
+		case QMC2_SWLIST_FAVORITES_PAGE:
+			treeWidget = treeWidgetFavoriteSoftware;
+			break;
+		case QMC2_SWLIST_SEARCH_PAGE:
+			treeWidget = treeWidgetSearchResults;
+			break;
+	}
+	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
+	if ( !selectedItems.isEmpty() ) {
+		QTreeWidgetItem *item = selectedItems[0];
+		if ( !qmc2SoftwareROMAlyzer )
+			qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
+		if ( !qmc2SoftwareROMAlyzer->active() ) {
+			qmc2SoftwareROMAlyzer->lineEditSoftwareLists->setText(systemSoftwareListHash[systemName].join(" "));
+			qmc2SoftwareROMAlyzer->lineEditSets->setText("*");
+		}
+		if ( qmc2SoftwareROMAlyzer->isHidden() )
+			qmc2SoftwareROMAlyzer->show();
+		else if ( qmc2SoftwareROMAlyzer->isMinimized() )
+			qmc2SoftwareROMAlyzer->showNormal();
+		QTimer::singleShot(0, qmc2SoftwareROMAlyzer, SLOT(raise()));
+		QTimer::singleShot(0, qmc2SoftwareROMAlyzer->pushButtonAnalyze, SLOT(animateClick()));
+	}
+}
+
 SoftwareListXmlHandler::SoftwareListXmlHandler(QTreeWidget *parent)
 {
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListXmlHandler::SoftwareListXmlHandler(QTreeWidget *parent = %1)").arg((qulonglong)parent));
-#endif
-
 	parentTreeWidget = parent;
 	numTotal = numCorrect = numMostlyCorrect = numIncorrect = numNotFound = numUnknown = elementCounter = 0;
 	newSoftwareStates = false;
@@ -3287,18 +3363,11 @@ SoftwareListXmlHandler::SoftwareListXmlHandler(QTreeWidget *parent)
 
 SoftwareListXmlHandler::~SoftwareListXmlHandler()
 {
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareListXmlHandler::~SoftwareListXmlHandler()");
-#endif
-
+	// NOP
 }
 
 void SoftwareListXmlHandler::loadSoftwareStates(QString listName)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListXmlHandler::loadSoftwareStates(QString listName = %1)").arg(listName));
-#endif
-
 	QString softwareStateCachePath = QDir::toNativeSeparators(QDir::cleanPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareStateCache").toString() + "/" + listName + ".ssc"));
 	QFile stateCacheFile(softwareStateCachePath);
 	if ( stateCacheFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
@@ -3335,10 +3404,6 @@ void SoftwareListXmlHandler::loadSoftwareStates(QString listName)
 
 bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
 {
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListXmlHandler::startElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2, const QXmlAttributes &attributes = ...)").arg(localName).arg(qName));
-#endif
-
 	if ( qmc2SoftwareList->interruptLoad )
 		return false;
 
@@ -3468,10 +3533,6 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 
 bool SoftwareListXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
 {
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListXmlHandler::endElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2)").arg(localName).arg(qName));
-#endif
-
 	if ( qmc2SoftwareList->interruptLoad )
 		return false;
 
@@ -3491,10 +3552,6 @@ bool SoftwareListXmlHandler::endElement(const QString &namespaceURI, const QStri
 
 bool SoftwareListXmlHandler::characters(const QString &str)
 {
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListXmlHandler::characters(const QString &str = ...)"));
-#endif
-
 	currentText += QString::fromUtf8(str.toLocal8Bit());
 	return true;
 }
