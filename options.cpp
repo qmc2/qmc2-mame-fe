@@ -3022,9 +3022,6 @@ void Options::applyDelayed()
 				resize(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Size").toSize());
 			if ( cl.contains(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Position") )
 				move(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Position").toPoint());
-			if ( cl.contains(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Visible") )
-				if ( config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Visible").toBool() )
-					show();
 			treeWidgetShortcuts->header()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/ShortcutsHeaderState").toByteArray());
 #if QT_VERSION < 0x050000
 			treeWidgetShortcuts->header()->setClickable(true);
@@ -4065,32 +4062,6 @@ void Options::on_toolButtonBrowseLogFont_clicked()
 		lineEditLogFont->setText(f.toString());
 	}
 	raise();
-}
-
-void Options::showEvent(QShowEvent *e)
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
-#endif
-
-	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-		if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-			config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Visible", true);
-
-	e->accept();
-}
-
-void Options::hideEvent(QHideEvent *e)
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
-#endif
-
-	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-		if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-			config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Visible", false);
-
-	e->accept();
 }
 
 void Options::moveEvent(QMoveEvent *e)

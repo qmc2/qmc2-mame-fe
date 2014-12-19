@@ -514,7 +514,20 @@ bool Welcome::checkConfig()
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Shortcuts/Ctrl+X");
 		}
 #endif
-
+		if ( QMC2_TEST_VERSION(omv, 47, osr, 6367) ) {
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/SampleChecker/Visible");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/OptionsWidget/Visible");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/ROMAlyzer/Visible");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/SoftwareROMAlyzer/Visible");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/SampleChecker/Visible");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/OptionsWidget/Visible");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/ROMAlyzer/Visible");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/SoftwareROMAlyzer/Visible");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/SampleChecker/Visible");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/OptionsWidget/Visible");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/ROMAlyzer/Visible");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/SoftwareROMAlyzer/Visible");
+		}
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

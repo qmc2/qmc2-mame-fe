@@ -86,8 +86,6 @@ void SampleChecker::closeEvent(QCloseEvent *e)
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Position", pos());
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Size", size());
-		if ( !qmc2CleaningUp )
-			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible", false);
 	}
 
 	if ( e )
@@ -112,9 +110,6 @@ void SampleChecker::showEvent(QShowEvent *e)
 
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() )
 		restoreLayout();
-
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible", true);
 
 	if ( e )
 		e->accept();
