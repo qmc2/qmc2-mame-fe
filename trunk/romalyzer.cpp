@@ -2358,6 +2358,7 @@ void ROMAlyzer::setMode(int mode)
 			setWindowTitle(tr("ROMAlyzer") + " [" + tr("software mode") + "]");
 			m_settingsKey = "SoftwareROMAlyzer";
 			lineEditSoftwareLists->setVisible(true);
+			toolButtonToolsMenu->setVisible(false);
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
@@ -2375,6 +2376,7 @@ void ROMAlyzer::setMode(int mode)
 			setWindowTitle(tr("ROMAlyzer") + " [" + tr("system mode") + "]");
 			m_settingsKey = "ROMAlyzer";
 			lineEditSoftwareLists->setVisible(false);
+			toolButtonToolsMenu->setVisible(true);
 			break;
 	}
 }
