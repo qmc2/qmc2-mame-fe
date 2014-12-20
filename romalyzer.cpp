@@ -30,6 +30,7 @@
 #include "zip.h"
 #include "sevenzipfile.h"
 #include "softwarelist.h"
+#include "detailsetup.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -40,6 +41,7 @@ extern bool qmc2ReloadActive;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
 extern bool qmc2StopParser;
+extern DetailSetup *qmc2DetailSetup;
 extern SoftwareList *qmc2SoftwareList;
 extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
@@ -1492,12 +1494,16 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 
 	// search for file in ROM paths (first search for "game/file", then search for "file" in "game.7z", then in "game.zip"), load file data when found
 	int romPathCount = 0;
+	QStringList actualRomPaths;
 	foreach (QString romPath, romPaths) {
+		if ( mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+			actualRomPaths << romPath + "/" + listName;
+		actualRomPaths << romPath;
+	}
+	foreach (QString romPath, actualRomPaths) {
 		romPathCount++;
 		progressWidget = NULL;
 		needProgressWidget = false;
-		if ( mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
-			romPath += "/" + listName;
 		QString filePath(romPath + "/" + gameName + "/" + fileName);
 		if ( isCHD ) {
 			filePath += ".chd";
@@ -1958,13 +1964,13 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 				log(tr("WARNING: found '%1' but can't read from it - check permission").arg(filePath));
 		} else {
 			if ( isCHD ) {
-				if ( romPathCount == romPaths.count() ) {
+				if ( romPathCount == actualRomPaths.count() ) {
 					QString baseName = QFileInfo(filePath).baseName();
-					QStringList chdPaths = romPaths;
+					QStringList chdPaths = actualRomPaths;
 					for (int i = 0; i < chdPaths.count(); i++)
 						chdPaths[i] = chdPaths[i] + QDir::separator() + gameName + QDir::separator() + baseName + ".chd";
 					QString sP;
-					if ( romPaths.count() > 1 )
+					if ( actualRomPaths.count() > 1 )
 						sP = tr("searched paths: %1").arg(chdPaths.join(", "));
 					else
 						sP = tr("searched path: %1").arg(chdPaths[0]);
@@ -2351,14 +2357,13 @@ void ROMAlyzer::setMode(int mode)
 	switch ( mode ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE:
 			m_currentMode = QMC2_ROMALYZER_MODE_SOFTWARE;
-			checkBoxSelectGame->setText(tr("Select software"));
-			checkBoxSelectGame->setToolTip(tr("Select software in software list if selected in analysis report?"));
 			checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed software"));
 			pushButtonRomCollectionRebuilder->setText(tr("Rebuild software collection..."));
 			setWindowTitle(tr("ROMAlyzer") + " [" + tr("software mode") + "]");
 			m_settingsKey = "SoftwareROMAlyzer";
 			lineEditSoftwareLists->setVisible(true);
 			toolButtonToolsMenu->setVisible(false);
+			checkBoxSelectGame->setVisible(false);
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
@@ -2377,6 +2382,7 @@ void ROMAlyzer::setMode(int mode)
 			m_settingsKey = "ROMAlyzer";
 			lineEditSoftwareLists->setVisible(false);
 			toolButtonToolsMenu->setVisible(true);
+			checkBoxSelectGame->setVisible(true);
 			break;
 	}
 }
