@@ -3317,6 +3317,8 @@ void SoftwareList::analyzeSoftware()
 			qmc2SoftwareROMAlyzer->show();
 		else if ( qmc2SoftwareROMAlyzer->isMinimized() )
 			qmc2SoftwareROMAlyzer->showNormal();
+		if ( qmc2SoftwareROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SoftwareROMAlyzer->tabReport && qmc2SoftwareROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SoftwareROMAlyzer->tabLog )
+			qmc2SoftwareROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SoftwareROMAlyzer->tabReport);
 		QTimer::singleShot(0, qmc2SoftwareROMAlyzer, SLOT(raise()));
 		QTimer::singleShot(0, qmc2SoftwareROMAlyzer->pushButtonAnalyze, SLOT(animateClick()));
 	}
@@ -3349,6 +3351,8 @@ void SoftwareList::analyzeSoftwareLists()
 			qmc2SoftwareROMAlyzer->show();
 		else if ( qmc2SoftwareROMAlyzer->isMinimized() )
 			qmc2SoftwareROMAlyzer->showNormal();
+		if ( qmc2SoftwareROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SoftwareROMAlyzer->tabReport && qmc2SoftwareROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SoftwareROMAlyzer->tabLog )
+			qmc2SoftwareROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SoftwareROMAlyzer->tabReport);
 		QTimer::singleShot(0, qmc2SoftwareROMAlyzer, SLOT(raise()));
 		QTimer::singleShot(0, qmc2SoftwareROMAlyzer->pushButtonAnalyze, SLOT(animateClick()));
 	}
