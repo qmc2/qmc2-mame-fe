@@ -1407,6 +1407,7 @@ void CollectionRebuilderThread::run()
 						emit log(tr("set rebuilding failed for '%1'").arg(setKey));
 					emit statusUpdated(++setsProcessed, missingDumps, missingDisks);
 				}
+				QTest::qWait(0);
 			}
 			elapsedTime = elapsedTime.addMSecs(rebuildTimer.elapsed());
 			emit log(tr("rebuilding finished - total rebuild time = %1, sets processed = %2, missing ROMs = %3, missing disks = %4").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(setsProcessed).arg(missingDumps).arg(missingDisks));
