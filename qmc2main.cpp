@@ -12334,7 +12334,7 @@ void prepareShortcuts()
 	qmc2ShortcutHash["Ctrl+Y"].second = qmc2MainWindow->actionClearYouTubeCache;
 #endif
 	qmc2ShortcutHash["Ctrl+Z"].second = qmc2MainWindow->actionSystemROMAlyzer;
-#if !defined(QMC2_WIP_ENABLED)
+#if defined(QMC2_WIP_ENABLED)
 	// FIXME: remove when ROMAlyzer's software mode works
 	qmc2ShortcutHash["Ctrl+W"].second = qmc2MainWindow->actionSoftwareROMAlyzer;
 #endif
