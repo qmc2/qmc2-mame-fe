@@ -448,11 +448,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 	setupUi(this);
 
-#if !defined(QMC2_WIP_ENABLED)
-	// FIXME: remove when ROMAlyzer's software mode works
-	actionSoftwareROMAlyzer->setVisible(false);
-#endif
-
 	// palette-editor related
 	PaletteEditor::colorNames << "Window" << "WindowText" << "Base" << "AlternateBase" << "Text" << "BrightText" << "Button"
 		<< "ButtonText" << "ToolTipBase" << "ToolTipText" << "Light" << "Midlight" << "Dark" << "Mid"
@@ -12334,10 +12329,7 @@ void prepareShortcuts()
 	qmc2ShortcutHash["Ctrl+Y"].second = qmc2MainWindow->actionClearYouTubeCache;
 #endif
 	qmc2ShortcutHash["Ctrl+Z"].second = qmc2MainWindow->actionSystemROMAlyzer;
-#if defined(QMC2_WIP_ENABLED)
-	// FIXME: remove when ROMAlyzer's software mode works
 	qmc2ShortcutHash["Ctrl+W"].second = qmc2MainWindow->actionSoftwareROMAlyzer;
-#endif
 	qmc2ShortcutHash["Ctrl+Alt+C"].second = qmc2MainWindow->actionRomStatusFilterC;
 	qmc2ShortcutHash["Ctrl+Alt+M"].second = qmc2MainWindow->actionRomStatusFilterM;
 	qmc2ShortcutHash["Ctrl+Alt+I"].second = qmc2MainWindow->actionRomStatusFilterI;

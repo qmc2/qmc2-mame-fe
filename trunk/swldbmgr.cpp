@@ -252,6 +252,21 @@ QString SoftwareListXmlDatabaseManager::xml(int rowid)
 	return xml;
 }
 
+QString SoftwareListXmlDatabaseManager::list(int rowid)
+{
+	QString list;
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT list FROM %1 WHERE rowid=:rowid").arg(m_tableBasename));
+	query.bindValue(":rowid", rowid);
+	if ( query.exec() ) {
+		if ( query.first() )
+			list = query.value(0).toString();
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from software-list XML cache database: query = '%2', error = '%3'").arg("list").arg(query.lastQuery()).arg(m_db.lastError().text()));
+	return list;
+}
+
 QString SoftwareListXmlDatabaseManager::nextXml(QString list, QString *id, bool start)
 {
 	if ( start || m_listIterationQuery == NULL ) {

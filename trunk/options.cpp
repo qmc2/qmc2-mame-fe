@@ -454,10 +454,7 @@ Options::Options(QWidget *parent)
 	qmc2ShortcutHash["Ctrl+Y"] = QPair<QString, QAction *>(tr("Clear YouTube cache"), NULL);
 #endif
 	qmc2ShortcutHash["Ctrl+Z"] = QPair<QString, QAction *>(tr("Open ROMAlyzer (system mode)"), NULL);
-#if defined(QMC2_WIP_ENABLED)
-	// FIXME: remove when ROMAlyzer's software mode works
 	qmc2ShortcutHash["Ctrl+W"] = QPair<QString, QAction *>(tr("Open ROMAlyzer (software mode)"), NULL);
-#endif
 	qmc2ShortcutHash["Ctrl+Alt+C"] = QPair<QString, QAction *>(tr("Toggle ROM state C"), NULL);
 	qmc2ShortcutHash["Ctrl+Alt+M"] = QPair<QString, QAction *>(tr("Toggle ROM state M"), NULL);
 	qmc2ShortcutHash["Ctrl+Alt+I"] = QPair<QString, QAction *>(tr("Toggle ROM state I"), NULL);

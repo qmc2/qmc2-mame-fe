@@ -1867,7 +1867,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="242"/>
-        <location filename="../../collectionrebuilder.cpp" line="434"/>
+        <location filename="../../collectionrebuilder.cpp" line="445"/>
         <source>Start rebuilding</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1878,8 +1878,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="262"/>
-        <location filename="../../collectionrebuilder.cpp" line="380"/>
-        <location filename="../../collectionrebuilder.cpp" line="470"/>
+        <location filename="../../collectionrebuilder.cpp" line="386"/>
+        <location filename="../../collectionrebuilder.cpp" line="486"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1964,72 +1964,72 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="283"/>
+        <location filename="../../collectionrebuilder.cpp" line="289"/>
         <source>Choose source XML file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="283"/>
+        <location filename="../../collectionrebuilder.cpp" line="289"/>
         <source>XML files (*.xml)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="283"/>
+        <location filename="../../collectionrebuilder.cpp" line="289"/>
         <source>All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="283"/>
+        <location filename="../../collectionrebuilder.cpp" line="289"/>
         <source>Data files (*.dat)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="283"/>
+        <location filename="../../collectionrebuilder.cpp" line="289"/>
         <source>Data and XML files (*.dat *.xml)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="379"/>
+        <location filename="../../collectionrebuilder.cpp" line="385"/>
         <source>Stop rebuilding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="398"/>
+        <location filename="../../collectionrebuilder.cpp" line="409"/>
         <source>Rebuilding software collection...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="402"/>
+        <location filename="../../collectionrebuilder.cpp" line="413"/>
         <source>Rebuilding ROM collection...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="452"/>
+        <location filename="../../collectionrebuilder.cpp" line="468"/>
         <source>Rebuild software collection...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="456"/>
+        <location filename="../../collectionrebuilder.cpp" line="472"/>
         <source>Rebuild ROM collection...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="464"/>
+        <location filename="../../collectionrebuilder.cpp" line="480"/>
         <source>Resume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="492"/>
+        <location filename="../../collectionrebuilder.cpp" line="508"/>
         <source>Sets processed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="494"/>
+        <location filename="../../collectionrebuilder.cpp" line="510"/>
         <source>Missing ROMs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="496"/>
+        <location filename="../../collectionrebuilder.cpp" line="512"/>
         <source>Missing disks</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2037,292 +2037,295 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CollectionRebuilderThread</name>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="759"/>
-        <location filename="../../collectionrebuilder.cpp" line="881"/>
+        <location filename="../../collectionrebuilder.cpp" line="775"/>
+        <location filename="../../collectionrebuilder.cpp" line="898"/>
         <source>FATAL: can&apos;t open XML file &apos;%1&apos; for reading, please check permissions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="779"/>
-        <location filename="../../collectionrebuilder.cpp" line="791"/>
-        <location filename="../../collectionrebuilder.cpp" line="820"/>
-        <location filename="../../collectionrebuilder.cpp" line="825"/>
+        <location filename="../../collectionrebuilder.cpp" line="796"/>
+        <location filename="../../collectionrebuilder.cpp" line="808"/>
+        <location filename="../../collectionrebuilder.cpp" line="837"/>
+        <location filename="../../collectionrebuilder.cpp" line="842"/>
         <source>FATAL: XML parsing failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="858"/>
         <location filename="../../collectionrebuilder.cpp" line="875"/>
+        <location filename="../../collectionrebuilder.cpp" line="892"/>
         <source>restarting from checkpoint &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="908"/>
-        <location filename="../../collectionrebuilder.cpp" line="965"/>
+        <location filename="../../collectionrebuilder.cpp" line="935"/>
+        <location filename="../../collectionrebuilder.cpp" line="992"/>
         <source>FATAL: backup creation failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="926"/>
+        <location filename="../../collectionrebuilder.cpp" line="953"/>
         <source>writing &apos;%1&apos; (size: %2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="937"/>
+        <location filename="../../collectionrebuilder.cpp" line="964"/>
         <source>FATAL: failed writing &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="947"/>
+        <location filename="../../collectionrebuilder.cpp" line="974"/>
         <source>FATAL: failed opening &apos;%1&apos; for writing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="977"/>
+        <location filename="../../collectionrebuilder.cpp" line="1004"/>
         <source>creating new ZIP archive &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="991"/>
+        <location filename="../../collectionrebuilder.cpp" line="1018"/>
         <source>skipping &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="991"/>
+        <location filename="../../collectionrebuilder.cpp" line="1018"/>
         <source>a dump with CRC &apos;%1&apos; already exists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1008"/>
+        <location filename="../../collectionrebuilder.cpp" line="1035"/>
         <source>writing &apos;%1&apos; to ZIP archive &apos;%2&apos; (uncompressed size: %3)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1019"/>
+        <location filename="../../collectionrebuilder.cpp" line="1046"/>
         <source>FATAL: failed writing &apos;%1&apos; to ZIP archive &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1031"/>
+        <location filename="../../collectionrebuilder.cpp" line="1058"/>
         <source>Created by QMC2 v%1 (%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1036"/>
+        <location filename="../../collectionrebuilder.cpp" line="1063"/>
         <source>done (creating new ZIP archive &apos;%1&apos;)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1038"/>
+        <location filename="../../collectionrebuilder.cpp" line="1065"/>
         <source>FATAL: failed creating ZIP archive &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1051"/>
+        <location filename="../../collectionrebuilder.cpp" line="1078"/>
         <source>reading &apos;%1&apos; (size: %2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1057"/>
+        <location filename="../../collectionrebuilder.cpp" line="1084"/>
         <source>FATAL: failed reading &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1069"/>
+        <location filename="../../collectionrebuilder.cpp" line="1096"/>
         <source>reading &apos;%1&apos; from 7Z archive &apos;%2&apos; (uncompressed size: %3)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1072"/>
-        <location filename="../../collectionrebuilder.cpp" line="1076"/>
+        <location filename="../../collectionrebuilder.cpp" line="1099"/>
+        <location filename="../../collectionrebuilder.cpp" line="1103"/>
         <source>FATAL: failed reading &apos;%1&apos; from 7Z archive &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1081"/>
-        <location filename="../../collectionrebuilder.cpp" line="1085"/>
+        <location filename="../../collectionrebuilder.cpp" line="1108"/>
+        <location filename="../../collectionrebuilder.cpp" line="1112"/>
         <source>FATAL: failed reading from 7Z archive &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1108"/>
+        <location filename="../../collectionrebuilder.cpp" line="1135"/>
         <source>reading &apos;%1&apos; from ZIP archive &apos;%2&apos; (uncompressed size: %3)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1114"/>
-        <location filename="../../collectionrebuilder.cpp" line="1118"/>
+        <location filename="../../collectionrebuilder.cpp" line="1141"/>
+        <location filename="../../collectionrebuilder.cpp" line="1145"/>
         <source>FATAL: failed reading &apos;%1&apos; from ZIP archive &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1122"/>
+        <location filename="../../collectionrebuilder.cpp" line="1149"/>
         <source>FATAL: CRC &apos;%1&apos; not found in ZIP archive &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1127"/>
+        <location filename="../../collectionrebuilder.cpp" line="1154"/>
         <source>FATAL: failed reading from ZIP archive &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1153"/>
-        <location filename="../../collectionrebuilder.cpp" line="1158"/>
-        <location filename="../../collectionrebuilder.cpp" line="1163"/>
-        <location filename="../../collectionrebuilder.cpp" line="1172"/>
-        <location filename="../../collectionrebuilder.cpp" line="1179"/>
-        <location filename="../../collectionrebuilder.cpp" line="1184"/>
-        <location filename="../../collectionrebuilder.cpp" line="1189"/>
-        <location filename="../../collectionrebuilder.cpp" line="1193"/>
+        <location filename="../../collectionrebuilder.cpp" line="1180"/>
+        <location filename="../../collectionrebuilder.cpp" line="1185"/>
+        <location filename="../../collectionrebuilder.cpp" line="1190"/>
+        <location filename="../../collectionrebuilder.cpp" line="1199"/>
+        <location filename="../../collectionrebuilder.cpp" line="1206"/>
+        <location filename="../../collectionrebuilder.cpp" line="1211"/>
+        <location filename="../../collectionrebuilder.cpp" line="1216"/>
+        <location filename="../../collectionrebuilder.cpp" line="1220"/>
         <source>backup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1153"/>
+        <location filename="../../collectionrebuilder.cpp" line="1180"/>
         <source>FATAL: target path &apos;%1&apos; cannot be created</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1158"/>
+        <location filename="../../collectionrebuilder.cpp" line="1185"/>
         <source>FATAL: source file &apos;%1&apos; cannot be opened for reading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1163"/>
+        <location filename="../../collectionrebuilder.cpp" line="1190"/>
         <source>creating backup copy of &apos;%1&apos; as &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1172"/>
+        <location filename="../../collectionrebuilder.cpp" line="1199"/>
         <source>FATAL: I/O error while writing to &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1179"/>
+        <location filename="../../collectionrebuilder.cpp" line="1206"/>
         <source>done (creating backup copy of &apos;%1&apos; as &apos;%2&apos;)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1184"/>
+        <location filename="../../collectionrebuilder.cpp" line="1211"/>
         <source>FATAL: destination file &apos;%1&apos; cannot be opened for writing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1189"/>
+        <location filename="../../collectionrebuilder.cpp" line="1216"/>
         <source>FATAL: backup folder &apos;%1&apos; isn&apos;t writable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1193"/>
+        <location filename="../../collectionrebuilder.cpp" line="1220"/>
         <source>FATAL: backup folder &apos;%1&apos; doesn&apos;t exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1226"/>
+        <location filename="../../collectionrebuilder.cpp" line="1253"/>
+        <location filename="../../collectionrebuilder.cpp" line="1286"/>
         <source>WARNING: invalid filter expression &apos;%1&apos; ignored</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1243"/>
+        <location filename="../../collectionrebuilder.cpp" line="1303"/>
         <source>rebuilder thread started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1245"/>
+        <location filename="../../collectionrebuilder.cpp" line="1305"/>
         <source>waiting for work</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1255"/>
+        <location filename="../../collectionrebuilder.cpp" line="1315"/>
         <source>rebuilding started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1258"/>
-        <location filename="../../collectionrebuilder.cpp" line="1280"/>
+        <location filename="../../collectionrebuilder.cpp" line="1318"/>
+        <location filename="../../collectionrebuilder.cpp" line="1340"/>
         <source>Rebuilding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1272"/>
+        <location filename="../../collectionrebuilder.cpp" line="1332"/>
         <source>Paused</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1274"/>
+        <location filename="../../collectionrebuilder.cpp" line="1334"/>
         <source>rebuilding paused</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1282"/>
+        <location filename="../../collectionrebuilder.cpp" line="1342"/>
         <source>rebuilding resumed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1290"/>
-        <location filename="../../collectionrebuilder.cpp" line="1295"/>
+        <location filename="../../collectionrebuilder.cpp" line="1357"/>
+        <location filename="../../collectionrebuilder.cpp" line="1362"/>
+        <location filename="../../collectionrebuilder.cpp" line="1377"/>
+        <location filename="../../collectionrebuilder.cpp" line="1382"/>
         <source>rebuilding of &apos;%1&apos; skipped due to filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1301"/>
+        <location filename="../../collectionrebuilder.cpp" line="1388"/>
         <source>set rebuilding started for &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1304"/>
+        <location filename="../../collectionrebuilder.cpp" line="1391"/>
         <source>required ROM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1304"/>
+        <location filename="../../collectionrebuilder.cpp" line="1391"/>
         <source>name = &apos;%1&apos;, crc = &apos;%2&apos;, sha1 = &apos;%3&apos;, database status = &apos;%4&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1304"/>
-        <location filename="../../collectionrebuilder.cpp" line="1310"/>
+        <location filename="../../collectionrebuilder.cpp" line="1391"/>
+        <location filename="../../collectionrebuilder.cpp" line="1397"/>
         <source>available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1304"/>
-        <location filename="../../collectionrebuilder.cpp" line="1310"/>
+        <location filename="../../collectionrebuilder.cpp" line="1391"/>
+        <location filename="../../collectionrebuilder.cpp" line="1397"/>
         <source>not available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1310"/>
+        <location filename="../../collectionrebuilder.cpp" line="1397"/>
         <source>required disk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1310"/>
+        <location filename="../../collectionrebuilder.cpp" line="1397"/>
         <source>name = &apos;%1&apos;, sha1 = &apos;%2&apos;, database status = &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1318"/>
+        <location filename="../../collectionrebuilder.cpp" line="1405"/>
         <source>set rebuilding finished for &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1320"/>
+        <location filename="../../collectionrebuilder.cpp" line="1407"/>
         <source>set rebuilding failed for &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1325"/>
+        <location filename="../../collectionrebuilder.cpp" line="1412"/>
         <source>rebuilding finished - total rebuild time = %1, sets processed = %2, missing ROMs = %3, missing disks = %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1328"/>
+        <location filename="../../collectionrebuilder.cpp" line="1415"/>
         <source>Idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1334"/>
+        <location filename="../../collectionrebuilder.cpp" line="1421"/>
         <source>rebuilder thread ended</source>
         <translation type="unfinished"></translation>
     </message>
@@ -22198,9 +22201,10 @@ Are you sure you want to do this?</source>
         <location filename="../../swldbmgr.cpp" line="220"/>
         <location filename="../../swldbmgr.cpp" line="236"/>
         <location filename="../../swldbmgr.cpp" line="251"/>
-        <location filename="../../swldbmgr.cpp" line="302"/>
-        <location filename="../../swldbmgr.cpp" line="333"/>
-        <location filename="../../swldbmgr.cpp" line="361"/>
+        <location filename="../../swldbmgr.cpp" line="266"/>
+        <location filename="../../swldbmgr.cpp" line="317"/>
+        <location filename="../../swldbmgr.cpp" line="348"/>
+        <location filename="../../swldbmgr.cpp" line="376"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from software-list XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -22209,7 +22213,7 @@ Are you sure you want to do this?</source>
         <location filename="../../swldbmgr.cpp" line="102"/>
         <location filename="../../swldbmgr.cpp" line="139"/>
         <location filename="../../swldbmgr.cpp" line="176"/>
-        <location filename="../../swldbmgr.cpp" line="321"/>
+        <location filename="../../swldbmgr.cpp" line="336"/>
         <source>WARNING: failed to add &apos;%1&apos; to software-list XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -22218,38 +22222,38 @@ Are you sure you want to do this?</source>
         <location filename="../../swldbmgr.cpp" line="108"/>
         <location filename="../../swldbmgr.cpp" line="145"/>
         <location filename="../../swldbmgr.cpp" line="182"/>
-        <location filename="../../swldbmgr.cpp" line="329"/>
+        <location filename="../../swldbmgr.cpp" line="344"/>
         <source>WARNING: failed to update &apos;%1&apos; in software-list XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swldbmgr.cpp" line="345"/>
+        <location filename="../../swldbmgr.cpp" line="360"/>
         <source>WARNING: failed to fetch row count from software-list XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swldbmgr.cpp" line="391"/>
-        <location filename="../../swldbmgr.cpp" line="401"/>
-        <location filename="../../swldbmgr.cpp" line="411"/>
+        <location filename="../../swldbmgr.cpp" line="406"/>
+        <location filename="../../swldbmgr.cpp" line="416"/>
+        <location filename="../../swldbmgr.cpp" line="426"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the software-list XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swldbmgr.cpp" line="418"/>
-        <location filename="../../swldbmgr.cpp" line="423"/>
-        <location filename="../../swldbmgr.cpp" line="428"/>
+        <location filename="../../swldbmgr.cpp" line="433"/>
+        <location filename="../../swldbmgr.cpp" line="438"/>
+        <location filename="../../swldbmgr.cpp" line="443"/>
         <source>WARNING: failed to remove software-list XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swldbmgr.cpp" line="436"/>
-        <location filename="../../swldbmgr.cpp" line="441"/>
-        <location filename="../../swldbmgr.cpp" line="446"/>
+        <location filename="../../swldbmgr.cpp" line="451"/>
+        <location filename="../../swldbmgr.cpp" line="456"/>
+        <location filename="../../swldbmgr.cpp" line="461"/>
         <source>WARNING: failed to create software-list XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swldbmgr.cpp" line="453"/>
+        <location filename="../../swldbmgr.cpp" line="468"/>
         <source>software-list XML cache database &apos;%1&apos; initialized</source>
         <translation type="unfinished"></translation>
     </message>
