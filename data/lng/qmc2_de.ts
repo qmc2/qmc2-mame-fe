@@ -1753,7 +1753,7 @@ p, li { white-space: pre-wrap; }
     <name>CollectionRebuilder</name>
     <message>
         <location filename="../../collectionrebuilder.ui" line="14"/>
-        <location filename="../../collectionrebuilder.cpp" line="40"/>
+        <location filename="../../collectionrebuilder.cpp" line="50"/>
         <source>ROM Collection Rebuilder</source>
         <translation>Neu-Erzeugung der ROM Sammlung</translation>
     </message>
@@ -1769,13 +1769,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="43"/>
-        <location filename="../../collectionrebuilder.cpp" line="88"/>
+        <location filename="../../collectionrebuilder.cpp" line="100"/>
         <source>Current default emulator</source>
         <translation>Aktueller Standard Emulator</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="48"/>
-        <location filename="../../collectionrebuilder.cpp" line="143"/>
+        <location filename="../../collectionrebuilder.cpp" line="155"/>
         <source>Select XML file...</source>
         <translation>XML Datei auswählen...</translation>
     </message>
@@ -1872,7 +1872,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="242"/>
-        <location filename="../../collectionrebuilder.cpp" line="422"/>
+        <location filename="../../collectionrebuilder.cpp" line="434"/>
         <source>Start rebuilding</source>
         <translation>Neu-Erzeugung starten</translation>
     </message>
@@ -1883,8 +1883,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="262"/>
-        <location filename="../../collectionrebuilder.cpp" line="368"/>
-        <location filename="../../collectionrebuilder.cpp" line="458"/>
+        <location filename="../../collectionrebuilder.cpp" line="380"/>
+        <location filename="../../collectionrebuilder.cpp" line="470"/>
         <source>Pause</source>
         <translation>Pausieren</translation>
     </message>
@@ -1954,87 +1954,87 @@ p, li { white-space: pre-wrap; }
         <translation>Filter Ausdruck leeren</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="32"/>
+        <location filename="../../collectionrebuilder.cpp" line="34"/>
         <source>Software Collection Rebuilder</source>
         <translation>Neu-Erzeugung der Software Sammlung</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="203"/>
+        <location filename="../../collectionrebuilder.cpp" line="215"/>
         <source>Confirm checkpoint restart</source>
         <translation>Kontrollpunkt bestätigen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="203"/>
+        <location filename="../../collectionrebuilder.cpp" line="215"/>
         <source>Restart from stored checkpoint?</source>
         <translation>Neustart ab gespeichertem Kontrollpunkt?</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="271"/>
+        <location filename="../../collectionrebuilder.cpp" line="283"/>
         <source>Choose source XML file</source>
         <translation>Quell XML Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="271"/>
+        <location filename="../../collectionrebuilder.cpp" line="283"/>
         <source>XML files (*.xml)</source>
         <translation>XML Dateien (*.xml)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="271"/>
+        <location filename="../../collectionrebuilder.cpp" line="283"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="271"/>
+        <location filename="../../collectionrebuilder.cpp" line="283"/>
         <source>Data files (*.dat)</source>
         <translation>Data Dateien (*.dat)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="271"/>
+        <location filename="../../collectionrebuilder.cpp" line="283"/>
         <source>Data and XML files (*.dat *.xml)</source>
         <translation>Data und XML Dateien (*.dat)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="367"/>
+        <location filename="../../collectionrebuilder.cpp" line="379"/>
         <source>Stop rebuilding</source>
         <translation>Neu-Erzeugung beenden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="386"/>
+        <location filename="../../collectionrebuilder.cpp" line="398"/>
         <source>Rebuilding software collection...</source>
         <translation>Erzeuge Software Sammlung neu...</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="390"/>
+        <location filename="../../collectionrebuilder.cpp" line="402"/>
         <source>Rebuilding ROM collection...</source>
         <translation>Erzeuge ROM Sammlung neu...</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="440"/>
+        <location filename="../../collectionrebuilder.cpp" line="452"/>
         <source>Rebuild software collection...</source>
         <translation>Software Sammlung neu erzeugen...</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="444"/>
+        <location filename="../../collectionrebuilder.cpp" line="456"/>
         <source>Rebuild ROM collection...</source>
         <translation>ROM Sammlung neu erzeugen...</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="452"/>
+        <location filename="../../collectionrebuilder.cpp" line="464"/>
         <source>Resume</source>
         <translation>Fortsetzen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="480"/>
+        <location filename="../../collectionrebuilder.cpp" line="492"/>
         <source>Sets processed</source>
         <translation>Verarbeitete Sets</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="482"/>
+        <location filename="../../collectionrebuilder.cpp" line="494"/>
         <source>Missing ROMs</source>
         <translation>Fehlende ROMs</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="484"/>
+        <location filename="../../collectionrebuilder.cpp" line="496"/>
         <source>Missing disks</source>
         <translation>Fehlende Disks</translation>
     </message>
@@ -2042,292 +2042,292 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CollectionRebuilderThread</name>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="731"/>
-        <location filename="../../collectionrebuilder.cpp" line="853"/>
+        <location filename="../../collectionrebuilder.cpp" line="759"/>
+        <location filename="../../collectionrebuilder.cpp" line="881"/>
         <source>FATAL: can&apos;t open XML file &apos;%1&apos; for reading, please check permissions</source>
         <translation>FATAL: kann XML Datei &apos;%1&apos; nicht zum Lesen öffnen, bitte Zugriffsrechte überprüfen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="751"/>
-        <location filename="../../collectionrebuilder.cpp" line="763"/>
-        <location filename="../../collectionrebuilder.cpp" line="792"/>
-        <location filename="../../collectionrebuilder.cpp" line="797"/>
+        <location filename="../../collectionrebuilder.cpp" line="779"/>
+        <location filename="../../collectionrebuilder.cpp" line="791"/>
+        <location filename="../../collectionrebuilder.cpp" line="820"/>
+        <location filename="../../collectionrebuilder.cpp" line="825"/>
         <source>FATAL: XML parsing failed</source>
         <translation>FATAL: XML Parsen fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="830"/>
-        <location filename="../../collectionrebuilder.cpp" line="847"/>
+        <location filename="../../collectionrebuilder.cpp" line="858"/>
+        <location filename="../../collectionrebuilder.cpp" line="875"/>
         <source>restarting from checkpoint &apos;%1&apos;</source>
         <translation>Neustart ab Kontrollpunkt &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="880"/>
-        <location filename="../../collectionrebuilder.cpp" line="937"/>
+        <location filename="../../collectionrebuilder.cpp" line="908"/>
+        <location filename="../../collectionrebuilder.cpp" line="965"/>
         <source>FATAL: backup creation failed</source>
         <translation>FATAL: Backup Erzeugung fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="898"/>
+        <location filename="../../collectionrebuilder.cpp" line="926"/>
         <source>writing &apos;%1&apos; (size: %2)</source>
         <translation>Schreibe &apos;%1&apos; (Größe: %2)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="909"/>
+        <location filename="../../collectionrebuilder.cpp" line="937"/>
         <source>FATAL: failed writing &apos;%1&apos;</source>
         <translation>FATAL: Schreiben von &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="919"/>
+        <location filename="../../collectionrebuilder.cpp" line="947"/>
         <source>FATAL: failed opening &apos;%1&apos; for writing</source>
         <translation>FATAL: kann &apos;%1&apos; nicht zum Schreiben öffnen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="949"/>
+        <location filename="../../collectionrebuilder.cpp" line="977"/>
         <source>creating new ZIP archive &apos;%1&apos;</source>
         <translation>Erzeuge neues ZIP Archiv &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="963"/>
+        <location filename="../../collectionrebuilder.cpp" line="991"/>
         <source>skipping &apos;%1&apos;</source>
         <translation>Überspringe &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="963"/>
+        <location filename="../../collectionrebuilder.cpp" line="991"/>
         <source>a dump with CRC &apos;%1&apos; already exists</source>
         <translation>ein Dump mit CRC &apos;%1&apos; existiert bereits</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="980"/>
+        <location filename="../../collectionrebuilder.cpp" line="1008"/>
         <source>writing &apos;%1&apos; to ZIP archive &apos;%2&apos; (uncompressed size: %3)</source>
         <translation>Schreibe &apos;%1&apos; in ZIP Archiv &apos;%2&apos; (unkomprimierte Größe: %3)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="991"/>
+        <location filename="../../collectionrebuilder.cpp" line="1019"/>
         <source>FATAL: failed writing &apos;%1&apos; to ZIP archive &apos;%2&apos;</source>
         <translation>FATAL: Schreiben von &apos;%1&apos; in ZIP Archiv &apos;%2&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1003"/>
+        <location filename="../../collectionrebuilder.cpp" line="1031"/>
         <source>Created by QMC2 v%1 (%2)</source>
         <translation>Erzeugt durch QMC2 v%1 (%2)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1008"/>
+        <location filename="../../collectionrebuilder.cpp" line="1036"/>
         <source>done (creating new ZIP archive &apos;%1&apos;)</source>
         <translation>Fertig (Erzeuge neues ZIP Archiv &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1010"/>
+        <location filename="../../collectionrebuilder.cpp" line="1038"/>
         <source>FATAL: failed creating ZIP archive &apos;%1&apos;</source>
         <translation>FATAL: Erzeugung des ZIP Archivs &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1023"/>
+        <location filename="../../collectionrebuilder.cpp" line="1051"/>
         <source>reading &apos;%1&apos; (size: %2)</source>
         <translation>Lese &apos;%1&apos; (Größe: %2)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1029"/>
+        <location filename="../../collectionrebuilder.cpp" line="1057"/>
         <source>FATAL: failed reading &apos;%1&apos;</source>
         <translation>FATAL: Lesen von &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1041"/>
+        <location filename="../../collectionrebuilder.cpp" line="1069"/>
         <source>reading &apos;%1&apos; from 7Z archive &apos;%2&apos; (uncompressed size: %3)</source>
         <translation>Lese &apos;%1&apos; aus 7Z Archiv &apos;%2&apos; (unkomprimierte Größe: %3)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1044"/>
-        <location filename="../../collectionrebuilder.cpp" line="1048"/>
+        <location filename="../../collectionrebuilder.cpp" line="1072"/>
+        <location filename="../../collectionrebuilder.cpp" line="1076"/>
         <source>FATAL: failed reading &apos;%1&apos; from 7Z archive &apos;%2&apos;</source>
         <translation>FATAL: Lesen von &apos;%1&apos; aus 7Z Archiv &apos;%2&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1053"/>
-        <location filename="../../collectionrebuilder.cpp" line="1057"/>
+        <location filename="../../collectionrebuilder.cpp" line="1081"/>
+        <location filename="../../collectionrebuilder.cpp" line="1085"/>
         <source>FATAL: failed reading from 7Z archive &apos;%1&apos;</source>
         <translation>FATAL: Lesen von 7Z Archiv &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1080"/>
+        <location filename="../../collectionrebuilder.cpp" line="1108"/>
         <source>reading &apos;%1&apos; from ZIP archive &apos;%2&apos; (uncompressed size: %3)</source>
         <translation>Lese &apos;%1&apos; aus ZIP Archiv &apos;%2&apos; (unkomprimierte Größe: %3)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1086"/>
-        <location filename="../../collectionrebuilder.cpp" line="1090"/>
+        <location filename="../../collectionrebuilder.cpp" line="1114"/>
+        <location filename="../../collectionrebuilder.cpp" line="1118"/>
         <source>FATAL: failed reading &apos;%1&apos; from ZIP archive &apos;%2&apos;</source>
         <translation>FATAL: Lesen von &apos;%1&apos; aus ZIP Archiv &apos;%2&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1094"/>
+        <location filename="../../collectionrebuilder.cpp" line="1122"/>
         <source>FATAL: CRC &apos;%1&apos; not found in ZIP archive &apos;%2&apos;</source>
         <translation>FATAL: CRC &apos;%1&apos; wurde in ZIP Archiv &apos;%2&apos; nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1099"/>
+        <location filename="../../collectionrebuilder.cpp" line="1127"/>
         <source>FATAL: failed reading from ZIP archive &apos;%1&apos;</source>
         <translation>FATAL: Lesen von ZIP Archiv &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1125"/>
-        <location filename="../../collectionrebuilder.cpp" line="1130"/>
-        <location filename="../../collectionrebuilder.cpp" line="1135"/>
-        <location filename="../../collectionrebuilder.cpp" line="1144"/>
-        <location filename="../../collectionrebuilder.cpp" line="1151"/>
-        <location filename="../../collectionrebuilder.cpp" line="1156"/>
-        <location filename="../../collectionrebuilder.cpp" line="1161"/>
-        <location filename="../../collectionrebuilder.cpp" line="1165"/>
+        <location filename="../../collectionrebuilder.cpp" line="1153"/>
+        <location filename="../../collectionrebuilder.cpp" line="1158"/>
+        <location filename="../../collectionrebuilder.cpp" line="1163"/>
+        <location filename="../../collectionrebuilder.cpp" line="1172"/>
+        <location filename="../../collectionrebuilder.cpp" line="1179"/>
+        <location filename="../../collectionrebuilder.cpp" line="1184"/>
+        <location filename="../../collectionrebuilder.cpp" line="1189"/>
+        <location filename="../../collectionrebuilder.cpp" line="1193"/>
         <source>backup</source>
         <translation>Backup</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1125"/>
+        <location filename="../../collectionrebuilder.cpp" line="1153"/>
         <source>FATAL: target path &apos;%1&apos; cannot be created</source>
         <translation>FATAL: Ziel Pfad &apos;%1&apos; kann nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1130"/>
+        <location filename="../../collectionrebuilder.cpp" line="1158"/>
         <source>FATAL: source file &apos;%1&apos; cannot be opened for reading</source>
         <translation>FATAL: Quell Datei &apos;%1&apos; kann nicht zum Lesen geöffnet werden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1135"/>
+        <location filename="../../collectionrebuilder.cpp" line="1163"/>
         <source>creating backup copy of &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>Erstelle Backup Kopie von &apos;%1&apos; als &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1144"/>
+        <location filename="../../collectionrebuilder.cpp" line="1172"/>
         <source>FATAL: I/O error while writing to &apos;%1&apos;</source>
         <translation>FATAL: I/O Fehler beim Schreiben von &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1151"/>
+        <location filename="../../collectionrebuilder.cpp" line="1179"/>
         <source>done (creating backup copy of &apos;%1&apos; as &apos;%2&apos;)</source>
         <translation>Fertig (Erstelle Backup Kopie von &apos;%1&apos; als &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1156"/>
+        <location filename="../../collectionrebuilder.cpp" line="1184"/>
         <source>FATAL: destination file &apos;%1&apos; cannot be opened for writing</source>
         <translation>FATAL: Ziel Datei &apos;%1&apos; kann nicht zum Schreiben geöffnet werden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1161"/>
+        <location filename="../../collectionrebuilder.cpp" line="1189"/>
         <source>FATAL: backup folder &apos;%1&apos; isn&apos;t writable</source>
         <translation>FATAL: Backup Verzeichnis &apos;%1&apos; kann nicht beschrieben werden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1165"/>
+        <location filename="../../collectionrebuilder.cpp" line="1193"/>
         <source>FATAL: backup folder &apos;%1&apos; doesn&apos;t exist</source>
         <translation>FATAL: Backup Verzeichnis &apos;%1&apos; existiert nicht</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1198"/>
+        <location filename="../../collectionrebuilder.cpp" line="1226"/>
         <source>WARNING: invalid filter expression &apos;%1&apos; ignored</source>
         <translation>WARNUNG: ungültiger Filter Ausdruck &apos;%1&apos; wird ignoriert</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1215"/>
+        <location filename="../../collectionrebuilder.cpp" line="1243"/>
         <source>rebuilder thread started</source>
         <translation>Neu-Erzeuger Thread gestartet</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1217"/>
+        <location filename="../../collectionrebuilder.cpp" line="1245"/>
         <source>waiting for work</source>
         <translation>Warte auf Arbeit</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1227"/>
+        <location filename="../../collectionrebuilder.cpp" line="1255"/>
         <source>rebuilding started</source>
         <translation>Neu-Erzeugung gestartet</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1230"/>
-        <location filename="../../collectionrebuilder.cpp" line="1252"/>
+        <location filename="../../collectionrebuilder.cpp" line="1258"/>
+        <location filename="../../collectionrebuilder.cpp" line="1280"/>
         <source>Rebuilding</source>
         <translation>Erzeuge</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1244"/>
+        <location filename="../../collectionrebuilder.cpp" line="1272"/>
         <source>Paused</source>
         <translation>Pausiert</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1246"/>
+        <location filename="../../collectionrebuilder.cpp" line="1274"/>
         <source>rebuilding paused</source>
         <translation>Neu-Erzeugung pausiert</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1254"/>
+        <location filename="../../collectionrebuilder.cpp" line="1282"/>
         <source>rebuilding resumed</source>
         <translation>Neu-Erzeugung wird fortgesetzt</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1262"/>
-        <location filename="../../collectionrebuilder.cpp" line="1267"/>
+        <location filename="../../collectionrebuilder.cpp" line="1290"/>
+        <location filename="../../collectionrebuilder.cpp" line="1295"/>
         <source>rebuilding of &apos;%1&apos; skipped due to filter</source>
         <translation>Neu-Erzeugung von &apos;%1&apos; aufgrund des Filters übersprungen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1273"/>
+        <location filename="../../collectionrebuilder.cpp" line="1301"/>
         <source>set rebuilding started for &apos;%1&apos;</source>
         <translation>Set Neu-Erzeugung für &apos;%1&apos; gestartet</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1276"/>
+        <location filename="../../collectionrebuilder.cpp" line="1304"/>
         <source>required ROM</source>
         <translation>Erforderliches ROM</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1276"/>
+        <location filename="../../collectionrebuilder.cpp" line="1304"/>
         <source>name = &apos;%1&apos;, crc = &apos;%2&apos;, sha1 = &apos;%3&apos;, database status = &apos;%4&apos;</source>
         <translation>Name = &apos;%1&apos;, CRC = &apos;%2&apos;, SHA-1 = &apos;%3&apos;, Datenbank Status = &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1276"/>
-        <location filename="../../collectionrebuilder.cpp" line="1282"/>
+        <location filename="../../collectionrebuilder.cpp" line="1304"/>
+        <location filename="../../collectionrebuilder.cpp" line="1310"/>
         <source>available</source>
         <translation>verfügbar</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1276"/>
-        <location filename="../../collectionrebuilder.cpp" line="1282"/>
+        <location filename="../../collectionrebuilder.cpp" line="1304"/>
+        <location filename="../../collectionrebuilder.cpp" line="1310"/>
         <source>not available</source>
         <translation>nicht verfügbar</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1282"/>
+        <location filename="../../collectionrebuilder.cpp" line="1310"/>
         <source>required disk</source>
         <translation>Erforderliche Disk</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1282"/>
+        <location filename="../../collectionrebuilder.cpp" line="1310"/>
         <source>name = &apos;%1&apos;, sha1 = &apos;%2&apos;, database status = &apos;%3&apos;</source>
         <translation>Name = &apos;%1&apos;, SHA-1 = &apos;%2&apos;, Datenbank Status = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1290"/>
+        <location filename="../../collectionrebuilder.cpp" line="1318"/>
         <source>set rebuilding finished for &apos;%1&apos;</source>
         <translation>Set Neu-Erzeugung für &apos;%1&apos; beendet</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1292"/>
+        <location filename="../../collectionrebuilder.cpp" line="1320"/>
         <source>set rebuilding failed for &apos;%1&apos;</source>
         <translation>Set Neu-Erzeugung für &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1297"/>
+        <location filename="../../collectionrebuilder.cpp" line="1325"/>
         <source>rebuilding finished - total rebuild time = %1, sets processed = %2, missing ROMs = %3, missing disks = %4</source>
         <translation>Neu-Erzeugung beendet - verwendete Zeit insgesamt = %1, verarbeitete Sets = %2, fehlende ROMs = %3, fehlende Disks = %4</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1300"/>
+        <location filename="../../collectionrebuilder.cpp" line="1328"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1306"/>
+        <location filename="../../collectionrebuilder.cpp" line="1334"/>
         <source>rebuilder thread ended</source>
         <translation>Neu-Erzeuger Thread beendet</translation>
     </message>
@@ -17468,121 +17468,121 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Videospieler: XML-Fehler: fataler Fehler in Zeile %1, Spalte %2: %3</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="837"/>
-        <location filename="../../softwarelist.cpp" line="3000"/>
-        <location filename="../../softwarelist.cpp" line="3045"/>
-        <location filename="../../softwarelist.cpp" line="4406"/>
+        <location filename="../../softwarelist.cpp" line="838"/>
+        <location filename="../../softwarelist.cpp" line="3074"/>
+        <location filename="../../softwarelist.cpp" line="3119"/>
+        <location filename="../../softwarelist.cpp" line="4480"/>
         <source>Auto mount</source>
         <translation>Automatisch</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="842"/>
-        <location filename="../../softwarelist.cpp" line="3010"/>
-        <location filename="../../softwarelist.cpp" line="3025"/>
-        <location filename="../../softwarelist.cpp" line="3031"/>
-        <location filename="../../softwarelist.cpp" line="3049"/>
-        <location filename="../../softwarelist.cpp" line="4411"/>
-        <location filename="../../softwarelist.cpp" line="4415"/>
+        <location filename="../../softwarelist.cpp" line="843"/>
+        <location filename="../../softwarelist.cpp" line="3084"/>
+        <location filename="../../softwarelist.cpp" line="3099"/>
+        <location filename="../../softwarelist.cpp" line="3105"/>
+        <location filename="../../softwarelist.cpp" line="3123"/>
+        <location filename="../../softwarelist.cpp" line="4485"/>
+        <location filename="../../softwarelist.cpp" line="4489"/>
         <source>Not mounted</source>
         <translation>Nicht zugeordnet</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="844"/>
-        <location filename="../../softwarelist.cpp" line="3012"/>
-        <location filename="../../softwarelist.cpp" line="3053"/>
-        <location filename="../../softwarelist.cpp" line="4417"/>
+        <location filename="../../softwarelist.cpp" line="845"/>
+        <location filename="../../softwarelist.cpp" line="3086"/>
+        <location filename="../../softwarelist.cpp" line="3127"/>
+        <location filename="../../softwarelist.cpp" line="4491"/>
         <source>Mounted on:</source>
         <translation>Zuordnung:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="836"/>
-        <location filename="../../softwarelist.cpp" line="3018"/>
-        <location filename="../../softwarelist.cpp" line="4405"/>
+        <location filename="../../softwarelist.cpp" line="837"/>
+        <location filename="../../softwarelist.cpp" line="3092"/>
+        <location filename="../../softwarelist.cpp" line="4479"/>
         <source>Don&apos;t mount</source>
         <translation>Nicht zuordnen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3436"/>
+        <location filename="../../softwarelist.cpp" line="3510"/>
         <source>Waiting for data...</source>
         <translation>Warte auf Daten...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4369"/>
-        <location filename="../../softwarelist.cpp" line="4371"/>
+        <location filename="../../softwarelist.cpp" line="4443"/>
+        <location filename="../../softwarelist.cpp" line="4445"/>
         <source>Searching</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4383"/>
+        <location filename="../../softwarelist.cpp" line="4457"/>
         <source>Updating</source>
         <translation>Aktualisierung</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4395"/>
+        <location filename="../../softwarelist.cpp" line="4469"/>
         <source>Part:</source>
         <translation>Teil:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="846"/>
-        <location filename="../../softwarelist.cpp" line="4422"/>
+        <location filename="../../softwarelist.cpp" line="847"/>
+        <location filename="../../softwarelist.cpp" line="4496"/>
         <source>No mount device</source>
         <translation>Nicht montierbar</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="847"/>
-        <location filename="../../softwarelist.cpp" line="4423"/>
+        <location filename="../../softwarelist.cpp" line="848"/>
+        <location filename="../../softwarelist.cpp" line="4497"/>
         <source>Unmanaged</source>
         <translation>Nicht verwaltet</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="999"/>
+        <location filename="../../softwarelist.cpp" line="1000"/>
         <source>state info for software-list &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</source>
         <translation>Status-Info für Software-Liste &apos;%1&apos;: L:%2 K:%3 B:%4 I:%5 N:%6 U:%7</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3429"/>
+        <location filename="../../softwarelist.cpp" line="3503"/>
         <source>yes</source>
         <translation>ja</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3431"/>
+        <location filename="../../softwarelist.cpp" line="3505"/>
         <source>no</source>
         <translation>nein</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3433"/>
+        <location filename="../../softwarelist.cpp" line="3507"/>
         <source>partially</source>
         <translation>teilweise</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4448"/>
+        <location filename="../../softwarelist.cpp" line="4522"/>
         <source>Data area:</source>
         <translation>Datenbereich:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4451"/>
-        <location filename="../../softwarelist.cpp" line="4463"/>
-        <location filename="../../softwarelist.cpp" line="4477"/>
+        <location filename="../../softwarelist.cpp" line="4525"/>
+        <location filename="../../softwarelist.cpp" line="4537"/>
+        <location filename="../../softwarelist.cpp" line="4551"/>
         <source>Size:</source>
         <translation>Größe:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4460"/>
+        <location filename="../../softwarelist.cpp" line="4534"/>
         <source>Disk area:</source>
         <translation>Diskbereich:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4480"/>
+        <location filename="../../softwarelist.cpp" line="4554"/>
         <source>CRC:</source>
         <translation>CRC:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4495"/>
+        <location filename="../../softwarelist.cpp" line="4569"/>
         <source>SHA1:</source>
         <translation>SHA1:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4504"/>
+        <location filename="../../softwarelist.cpp" line="4578"/>
         <source>Info:</source>
         <translation>Info:</translation>
     </message>
@@ -21307,8 +21307,8 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="170"/>
-        <location filename="../../softwarelist.cpp" line="1959"/>
-        <location filename="../../softwarelist.cpp" line="2749"/>
+        <location filename="../../softwarelist.cpp" line="1960"/>
+        <location filename="../../softwarelist.cpp" line="2823"/>
         <source>Default configuration</source>
         <translation>Standard Konfiguration</translation>
     </message>
@@ -21337,9 +21337,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="372"/>
         <location filename="../../softwarelist.ui" line="465"/>
         <location filename="../../softwarelist.ui" line="582"/>
-        <location filename="../../softwarelist.cpp" line="274"/>
-        <location filename="../../softwarelist.cpp" line="297"/>
-        <location filename="../../softwarelist.cpp" line="324"/>
+        <location filename="../../softwarelist.cpp" line="275"/>
+        <location filename="../../softwarelist.cpp" line="298"/>
+        <location filename="../../softwarelist.cpp" line="325"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
@@ -21347,9 +21347,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="377"/>
         <location filename="../../softwarelist.ui" line="470"/>
         <location filename="../../softwarelist.ui" line="587"/>
-        <location filename="../../softwarelist.cpp" line="276"/>
-        <location filename="../../softwarelist.cpp" line="299"/>
-        <location filename="../../softwarelist.cpp" line="326"/>
+        <location filename="../../softwarelist.cpp" line="277"/>
+        <location filename="../../softwarelist.cpp" line="300"/>
+        <location filename="../../softwarelist.cpp" line="327"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
@@ -21357,9 +21357,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="382"/>
         <location filename="../../softwarelist.ui" line="475"/>
         <location filename="../../softwarelist.ui" line="592"/>
-        <location filename="../../softwarelist.cpp" line="278"/>
-        <location filename="../../softwarelist.cpp" line="301"/>
-        <location filename="../../softwarelist.cpp" line="328"/>
+        <location filename="../../softwarelist.cpp" line="279"/>
+        <location filename="../../softwarelist.cpp" line="302"/>
+        <location filename="../../softwarelist.cpp" line="329"/>
         <source>Publisher</source>
         <translation>Herausgeber</translation>
     </message>
@@ -21367,9 +21367,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="387"/>
         <location filename="../../softwarelist.ui" line="480"/>
         <location filename="../../softwarelist.ui" line="597"/>
-        <location filename="../../softwarelist.cpp" line="280"/>
-        <location filename="../../softwarelist.cpp" line="303"/>
-        <location filename="../../softwarelist.cpp" line="330"/>
+        <location filename="../../softwarelist.cpp" line="281"/>
+        <location filename="../../softwarelist.cpp" line="304"/>
+        <location filename="../../softwarelist.cpp" line="331"/>
         <source>Year</source>
         <translation>Jahr</translation>
     </message>
@@ -21377,9 +21377,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="392"/>
         <location filename="../../softwarelist.ui" line="485"/>
         <location filename="../../softwarelist.ui" line="602"/>
-        <location filename="../../softwarelist.cpp" line="282"/>
-        <location filename="../../softwarelist.cpp" line="305"/>
-        <location filename="../../softwarelist.cpp" line="332"/>
+        <location filename="../../softwarelist.cpp" line="283"/>
+        <location filename="../../softwarelist.cpp" line="306"/>
+        <location filename="../../softwarelist.cpp" line="333"/>
         <source>Part</source>
         <translation>Teil</translation>
     </message>
@@ -21387,9 +21387,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="397"/>
         <location filename="../../softwarelist.ui" line="490"/>
         <location filename="../../softwarelist.ui" line="607"/>
-        <location filename="../../softwarelist.cpp" line="284"/>
-        <location filename="../../softwarelist.cpp" line="307"/>
-        <location filename="../../softwarelist.cpp" line="334"/>
+        <location filename="../../softwarelist.cpp" line="285"/>
+        <location filename="../../softwarelist.cpp" line="308"/>
+        <location filename="../../softwarelist.cpp" line="335"/>
         <source>Interface</source>
         <translation>Schnittstelle</translation>
     </message>
@@ -21397,9 +21397,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="402"/>
         <location filename="../../softwarelist.ui" line="495"/>
         <location filename="../../softwarelist.ui" line="612"/>
-        <location filename="../../softwarelist.cpp" line="286"/>
-        <location filename="../../softwarelist.cpp" line="309"/>
-        <location filename="../../softwarelist.cpp" line="336"/>
+        <location filename="../../softwarelist.cpp" line="287"/>
+        <location filename="../../softwarelist.cpp" line="310"/>
+        <location filename="../../softwarelist.cpp" line="337"/>
         <source>List</source>
         <translation>Liste</translation>
     </message>
@@ -21407,9 +21407,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="407"/>
         <location filename="../../softwarelist.ui" line="500"/>
         <location filename="../../softwarelist.ui" line="617"/>
-        <location filename="../../softwarelist.cpp" line="288"/>
-        <location filename="../../softwarelist.cpp" line="311"/>
-        <location filename="../../softwarelist.cpp" line="338"/>
+        <location filename="../../softwarelist.cpp" line="289"/>
+        <location filename="../../softwarelist.cpp" line="312"/>
+        <location filename="../../softwarelist.cpp" line="339"/>
         <source>Supported</source>
         <translation>Unterstützt</translation>
     </message>
@@ -21426,7 +21426,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="505"/>
-        <location filename="../../softwarelist.cpp" line="314"/>
+        <location filename="../../softwarelist.cpp" line="315"/>
         <source>Device configuration</source>
         <translation>Geräte-Konfiguration</translation>
     </message>
@@ -21448,476 +21448,487 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Suchergebnis</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="641"/>
-        <location filename="../../softwarelist.cpp" line="895"/>
+        <location filename="../../softwarelist.ui" line="625"/>
+        <location filename="../../softwarelist.ui" line="628"/>
+        <source>Search progress</source>
+        <translation>Suchfortschritt</translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.ui" line="634"/>
+        <source>Searching software - %p%</source>
+        <translation>Suche Software - %p%</translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.ui" line="657"/>
+        <location filename="../../softwarelist.cpp" line="896"/>
         <source>Loading software-lists, please wait...</source>
         <translation>Lade Software-Listen, bitte warten...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="659"/>
-        <location filename="../../softwarelist.ui" line="662"/>
+        <location filename="../../softwarelist.ui" line="675"/>
+        <location filename="../../softwarelist.ui" line="678"/>
         <source>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown</source>
         <translation>L:Liste - K:Korrekt - B:Beinahe korrekt - I:Inkorrekt - N:Nicht gefunden - U:Unbekannt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="681"/>
-        <location filename="../../softwarelist.cpp" line="1410"/>
+        <location filename="../../softwarelist.ui" line="697"/>
+        <location filename="../../softwarelist.cpp" line="1411"/>
         <source>Checking software-states - %p%</source>
         <translation>Prüfe Software-Stati - %p%</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="95"/>
+        <location filename="../../softwarelist.cpp" line="96"/>
         <source>Add the currently selected software to the favorites list</source>
         <translation>Aktuell ausgewählte Software-Konfiguration den Favoriten hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="107"/>
+        <location filename="../../softwarelist.cpp" line="108"/>
         <source>Enter search string</source>
         <translation>Such-Zeichenkette eingeben</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="149"/>
+        <location filename="../../softwarelist.cpp" line="150"/>
         <source>Play selected software</source>
         <translation>Ausgewählte Software spielen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="150"/>
+        <location filename="../../softwarelist.cpp" line="151"/>
         <source>&amp;Play</source>
         <translation>S&amp;pielen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="155"/>
+        <location filename="../../softwarelist.cpp" line="156"/>
         <source>Play selected software (embedded)</source>
         <translation>Ausgewählte Software spielen (eingebettet)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="156"/>
+        <location filename="../../softwarelist.cpp" line="157"/>
         <source>Play &amp;embedded</source>
         <translation>Spielen (&amp;eingebettet)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="162"/>
+        <location filename="../../softwarelist.cpp" line="163"/>
         <source>Add to favorite software list</source>
         <translation>Zu Software-Favoriten hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="163"/>
+        <location filename="../../softwarelist.cpp" line="164"/>
         <source>&amp;Add to favorites</source>
         <translation>&amp;Zu Favoriten hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="167"/>
+        <location filename="../../softwarelist.cpp" line="168"/>
         <source>Remove from favorite software list</source>
         <translation>Von Software-Favoriten entfernen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="168"/>
+        <location filename="../../softwarelist.cpp" line="169"/>
         <source>&amp;Remove from favorites</source>
         <translation>&amp;Von Favoriten entfernen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="175"/>
+        <location filename="../../softwarelist.cpp" line="176"/>
         <source>Analyze the currently selected software with the ROMAlyzer</source>
         <translation>Aktuell ausgewählte Software mit dem ROMAlyzer analysieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="176"/>
+        <location filename="../../softwarelist.cpp" line="177"/>
         <source>Analyze &amp;software...</source>
         <translation>&amp;Software analysieren...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="180"/>
+        <location filename="../../softwarelist.cpp" line="181"/>
         <source>Analyze all relevant software-lists for the current system with the ROMAlyzer</source>
         <translation>Alle für das aktuelle System relevanten Software-Listen mit dem ROMAlyzer überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="181"/>
+        <location filename="../../softwarelist.cpp" line="182"/>
         <source>Analyze software-&amp;lists...</source>
         <translation>Software-&amp;Listen analysieren...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="187"/>
+        <location filename="../../softwarelist.cpp" line="188"/>
         <source>Clear software selection</source>
         <translation>Software-Auswahl aufheben</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="188"/>
+        <location filename="../../softwarelist.cpp" line="189"/>
         <source>&amp;Clear selection</source>
         <translation>&amp;Auswahl aufheben</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="195"/>
+        <location filename="../../softwarelist.cpp" line="196"/>
         <source>Load favorites from a file...</source>
         <translation>Favoriten aus Datei laden...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="200"/>
+        <location filename="../../softwarelist.cpp" line="201"/>
         <source>Save favorites to a file...</source>
         <translation>Favoriten in Datei speichern...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="210"/>
+        <location filename="../../softwarelist.cpp" line="211"/>
         <source>Adjust pattern...</source>
         <translation>Schablone anpassen...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="219"/>
+        <location filename="../../softwarelist.cpp" line="220"/>
         <source>Check software-states</source>
         <translation>Software-Stati prüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="236"/>
+        <location filename="../../softwarelist.cpp" line="237"/>
         <source>Negate search</source>
         <translation>Suche negieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="291"/>
-        <location filename="../../softwarelist.cpp" line="318"/>
-        <location filename="../../softwarelist.cpp" line="341"/>
+        <location filename="../../softwarelist.cpp" line="292"/>
+        <location filename="../../softwarelist.cpp" line="319"/>
+        <location filename="../../softwarelist.cpp" line="342"/>
         <source>Reset</source>
         <translation>Zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="388"/>
+        <location filename="../../softwarelist.cpp" line="389"/>
         <source>Snapname adjustment pattern</source>
         <translation>Schablone für Snapname-Anpassung</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="389"/>
+        <location filename="../../softwarelist.cpp" line="390"/>
         <source>Enter the pattern used for snapname adjustment:
 (Allowed macros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)</source>
         <translation>Schablone für Snapname-Anpassung eingeben:
 (Erlaubte Makros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="496"/>
-        <location filename="../../softwarelist.cpp" line="1489"/>
+        <location filename="../../softwarelist.cpp" line="497"/>
+        <location filename="../../softwarelist.cpp" line="1490"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
         <translation>FATAL: kann ausführbare Emulator Datei nicht in einem angemessenen Zeitraum starten, gebe auf</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="542"/>
-        <location filename="../../softwarelist.cpp" line="550"/>
-        <location filename="../../softwarelist.cpp" line="556"/>
+        <location filename="../../softwarelist.cpp" line="543"/>
+        <location filename="../../softwarelist.cpp" line="551"/>
+        <location filename="../../softwarelist.cpp" line="557"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
         <translation>FATAL: ungültige XML Daten für &apos;%1&apos; erhalten</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="776"/>
-        <location filename="../../softwarelist.cpp" line="778"/>
+        <location filename="../../softwarelist.cpp" line="777"/>
+        <location filename="../../softwarelist.cpp" line="779"/>
         <source>Known software (%1)</source>
         <translation>Bekannte Software (%1)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="776"/>
-        <location filename="../../softwarelist.cpp" line="1785"/>
-        <location filename="../../softwarelist.cpp" line="1791"/>
+        <location filename="../../softwarelist.cpp" line="777"/>
+        <location filename="../../softwarelist.cpp" line="1786"/>
+        <location filename="../../softwarelist.cpp" line="1792"/>
         <source>filtered</source>
         <translation>gefiltert</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="779"/>
+        <location filename="../../softwarelist.cpp" line="780"/>
         <source>Favorites (%1)</source>
         <translation>Favoriten (%1)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="780"/>
+        <location filename="../../softwarelist.cpp" line="781"/>
         <source>Search (%1)</source>
         <translation>Suchen (%1)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="794"/>
-        <location filename="../../softwarelist.cpp" line="952"/>
+        <location filename="../../softwarelist.cpp" line="795"/>
+        <location filename="../../softwarelist.cpp" line="953"/>
         <source>Known software (no data available)</source>
         <translation>Bekannte Software (keine Daten verfügbar)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="795"/>
-        <location filename="../../softwarelist.cpp" line="953"/>
+        <location filename="../../softwarelist.cpp" line="796"/>
+        <location filename="../../softwarelist.cpp" line="954"/>
         <source>Favorites (no data available)</source>
         <translation>Favoriten (keine Daten verfügbar)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="796"/>
-        <location filename="../../softwarelist.cpp" line="954"/>
+        <location filename="../../softwarelist.cpp" line="797"/>
+        <location filename="../../softwarelist.cpp" line="955"/>
         <source>Search (no data available)</source>
         <translation>Suchen (keine Daten verfügbar)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="903"/>
-        <location filename="../../softwarelist.cpp" line="1229"/>
+        <location filename="../../softwarelist.cpp" line="904"/>
+        <location filename="../../softwarelist.cpp" line="1230"/>
         <source>SWL data - %p%</source>
         <translation>SWL Daten - %p%</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="982"/>
+        <location filename="../../softwarelist.cpp" line="983"/>
         <source>Loading software-list &apos;%1&apos;, please wait...</source>
         <translation>Lade Software-Liste &apos;%1&apos;, bitte warten...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="997"/>
+        <location filename="../../softwarelist.cpp" line="998"/>
         <source>FATAL: error while parsing XML data for software list &apos;%1&apos;</source>
         <translation>FATAL: Fehler beim Parsen der XML Daten für Software-Liste &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1052"/>
-        <location filename="../../softwarelist.cpp" line="2012"/>
-        <location filename="../../softwarelist.cpp" line="2133"/>
-        <location filename="../../softwarelist.cpp" line="2166"/>
-        <location filename="../../softwarelist.cpp" line="2199"/>
-        <location filename="../../softwarelist.cpp" line="2680"/>
-        <location filename="../../softwarelist.cpp" line="3117"/>
+        <location filename="../../softwarelist.cpp" line="1053"/>
+        <location filename="../../softwarelist.cpp" line="2013"/>
+        <location filename="../../softwarelist.cpp" line="2134"/>
+        <location filename="../../softwarelist.cpp" line="2167"/>
+        <location filename="../../softwarelist.cpp" line="2200"/>
+        <location filename="../../softwarelist.cpp" line="2722"/>
+        <location filename="../../softwarelist.cpp" line="3191"/>
         <source>Waiting for data...</source>
         <translation>Warte auf Daten...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1246"/>
+        <location filename="../../softwarelist.cpp" line="1247"/>
         <source>WARNING: the external process called to load the MAME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation>WARNUNG: Der externe Prozess, der zum Laden der MAME Softwarelisten gestartet wurde, konnte nicht ordentlich beendet werden -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1246"/>
-        <location filename="../../softwarelist.cpp" line="1248"/>
-        <location filename="../../softwarelist.cpp" line="1250"/>
-        <location filename="../../softwarelist.cpp" line="1530"/>
+        <location filename="../../softwarelist.cpp" line="1247"/>
+        <location filename="../../softwarelist.cpp" line="1249"/>
+        <location filename="../../softwarelist.cpp" line="1251"/>
+        <location filename="../../softwarelist.cpp" line="1531"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1246"/>
-        <location filename="../../softwarelist.cpp" line="1248"/>
-        <location filename="../../softwarelist.cpp" line="1250"/>
-        <location filename="../../softwarelist.cpp" line="1530"/>
+        <location filename="../../softwarelist.cpp" line="1247"/>
+        <location filename="../../softwarelist.cpp" line="1249"/>
+        <location filename="../../softwarelist.cpp" line="1251"/>
+        <location filename="../../softwarelist.cpp" line="1531"/>
         <source>crashed</source>
         <translation>abgestürzt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1248"/>
+        <location filename="../../softwarelist.cpp" line="1249"/>
         <source>WARNING: the external process called to load the MESS software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation>WARNUNG: Der externe Prozess, der zum Laden der MESS Softwarelisten gestartet wurde, konnte nicht ordentlich beendet werden -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1250"/>
+        <location filename="../../softwarelist.cpp" line="1251"/>
         <source>WARNING: the external process called to load the UME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation>WARNUNG: Der externe Prozess, der zum Laden der UME Softwarelisten gestartet wurde, konnte nicht ordentlich beendet werden -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1332"/>
+        <location filename="../../softwarelist.cpp" line="1333"/>
         <source>WARNING: software-list XML bug: the software name &apos;%1&apos; is used multiple times within software-list &apos;%2&apos;</source>
         <translation>WARNUNG: Software-Listen XML Bug: der Software Name &apos;%1&apos; wird in der Software-Liste &apos;%2&apos; mehrfach verwendet</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1373"/>
+        <location filename="../../softwarelist.cpp" line="1374"/>
         <source>WARNING: the currently selected MAME emulator doesn&apos;t support software lists</source>
         <translation>WARNUNG: der zur Zeit ausgewählte MAME Emulator unterstützt keine Software-Listen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1375"/>
+        <location filename="../../softwarelist.cpp" line="1376"/>
         <source>WARNING: the currently selected MESS emulator doesn&apos;t support software lists</source>
         <translation>WARNUNG: der zur Zeit ausgewählte MESS Emulator unterstützt keine Software-Listen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1377"/>
+        <location filename="../../softwarelist.cpp" line="1378"/>
         <source>WARNING: the currently selected UME emulator doesn&apos;t support software lists</source>
         <translation>WARNUNG: der zur Zeit ausgewählte UME Emulator unterstützt keine Software-Listen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1390"/>
+        <location filename="../../softwarelist.cpp" line="1391"/>
         <source>WARNING: the external process called to load the MAME software lists caused an error -- processError = %1</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Laden der MAME Softwarelisten gestartet wurde, verursachte einen Fehler -- processError = %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1392"/>
+        <location filename="../../softwarelist.cpp" line="1393"/>
         <source>WARNING: the external process called to load the MESS software lists caused an error -- processError = %1</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Laden der MESS Softwarelisten gestartet wurde, verursachte einen Fehler -- processError = %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1394"/>
+        <location filename="../../softwarelist.cpp" line="1395"/>
         <source>WARNING: the external process called to load the UME software lists caused an error -- processError = %1</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Laden der UME Softwarelisten gestartet wurde, verursachte einen Fehler -- processError = %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1454"/>
+        <location filename="../../softwarelist.cpp" line="1455"/>
         <source>WARNING: can&apos;t open software state cache file &apos;%1&apos; for writing, please check access permissions</source>
         <translation>WARNUNG: kann Software Status Cache Datei &apos;%1&apos; nicht zum Schreiben öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1530"/>
+        <location filename="../../softwarelist.cpp" line="1531"/>
         <source>WARNING: the external process called to verify the states for software-list &apos;%1&apos; didn&apos;t exit cleanly -- exitCode = %2, exitStatus = %3</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Überprüfen des Status der Software-Liste &apos;%1&apos; gestartet wurde, konnte nicht ordentlich beendet werden -- exitCode = %2, exitStatus = %3</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2153"/>
-        <location filename="../../softwarelist.cpp" line="2186"/>
-        <location filename="../../softwarelist.cpp" line="2219"/>
+        <location filename="../../softwarelist.cpp" line="2154"/>
+        <location filename="../../softwarelist.cpp" line="2187"/>
+        <location filename="../../softwarelist.cpp" line="2220"/>
         <source>FATAL: couldn&apos;t find XML data for software list entry &apos;%1:%2&apos;</source>
         <translation>FATAL: konnte XML Daten für Software-Listen Eintrag &apos;%1:%2&apos; nicht finden</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3266"/>
-        <location filename="../../softwarelist.cpp" line="3275"/>
+        <location filename="../../softwarelist.cpp" line="3340"/>
+        <location filename="../../softwarelist.cpp" line="3349"/>
         <source>L:</source>
         <translation>L:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3268"/>
-        <location filename="../../softwarelist.cpp" line="3277"/>
+        <location filename="../../softwarelist.cpp" line="3342"/>
+        <location filename="../../softwarelist.cpp" line="3351"/>
         <source>C:</source>
         <translation>K:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3269"/>
-        <location filename="../../softwarelist.cpp" line="3278"/>
+        <location filename="../../softwarelist.cpp" line="3343"/>
+        <location filename="../../softwarelist.cpp" line="3352"/>
         <source>M:</source>
         <translation>B:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3270"/>
-        <location filename="../../softwarelist.cpp" line="3279"/>
+        <location filename="../../softwarelist.cpp" line="3344"/>
+        <location filename="../../softwarelist.cpp" line="3353"/>
         <source>I:</source>
         <translation>I:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3271"/>
-        <location filename="../../softwarelist.cpp" line="3280"/>
+        <location filename="../../softwarelist.cpp" line="3345"/>
+        <location filename="../../softwarelist.cpp" line="3354"/>
         <source>N:</source>
         <translation>N:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3272"/>
-        <location filename="../../softwarelist.cpp" line="3281"/>
+        <location filename="../../softwarelist.cpp" line="3346"/>
+        <location filename="../../softwarelist.cpp" line="3355"/>
         <source>U:</source>
         <translation>U:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1421"/>
+        <location filename="../../softwarelist.cpp" line="1422"/>
         <source>Checking software-states, please wait...</source>
         <translation>Prüfe Software-Stati, bitte warten...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="901"/>
+        <location filename="../../softwarelist.cpp" line="902"/>
         <source>loading XML software list data and recreating cache</source>
         <translation>Lade XML Softwarelisten-Daten und erzeuge Cache neu</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1256"/>
+        <location filename="../../softwarelist.cpp" line="1257"/>
         <source>done (loading XML software list data and recreating cache, elapsed time = %1)</source>
         <translation>Fertig (Lade XML Softwarelisten-Daten und erzeuge Cache neu, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1601"/>
+        <location filename="../../softwarelist.cpp" line="1602"/>
         <source>state info for software-list &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</source>
         <translation>Status-Info für Software-Liste &apos;%1&apos;: L:%2 K:%3 B:%4 I:%5 N:%6 U:%7</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1761"/>
+        <location filename="../../softwarelist.cpp" line="1762"/>
         <source>WARNING: the external process called to verify software-states caused an error -- processError = %1</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Überprüfen der Software-Stati gestartet wurde, erzeugte einen Fehler -- processError = %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2145"/>
-        <location filename="../../softwarelist.cpp" line="2178"/>
-        <location filename="../../softwarelist.cpp" line="2211"/>
+        <location filename="../../softwarelist.cpp" line="2146"/>
+        <location filename="../../softwarelist.cpp" line="2179"/>
+        <location filename="../../softwarelist.cpp" line="2212"/>
         <source>Searching</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2150"/>
-        <location filename="../../softwarelist.cpp" line="2183"/>
-        <location filename="../../softwarelist.cpp" line="2216"/>
+        <location filename="../../softwarelist.cpp" line="2151"/>
+        <location filename="../../softwarelist.cpp" line="2184"/>
+        <location filename="../../softwarelist.cpp" line="2217"/>
         <source>FATAL: error while parsing XML data for software list entry &apos;%1:%2&apos;</source>
         <translation>FATAL: Fehler beim Parsen der XML Daten für Software-Listen Eintrag &apos;%1:%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3087"/>
+        <location filename="../../softwarelist.cpp" line="3161"/>
         <source>Choose file to merge favorites from</source>
         <translation>Datei zum Hinzufügen enthaltener Favoriten auswählen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3087"/>
-        <location filename="../../softwarelist.cpp" line="3168"/>
+        <location filename="../../softwarelist.cpp" line="3161"/>
+        <location filename="../../softwarelist.cpp" line="3242"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3099"/>
+        <location filename="../../softwarelist.cpp" line="3173"/>
         <source>loading software-favorites for &apos;%1&apos; from &apos;%2&apos;</source>
         <translation>Lade Software-Favoriten für &apos;%1&apos; aus &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3141"/>
+        <location filename="../../softwarelist.cpp" line="3215"/>
         <source>entry &apos;%1:%2&apos; successfully imported</source>
         <translation>Eintrag &apos;%1:%2&apos; erfolgreich importiert</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3143"/>
+        <location filename="../../softwarelist.cpp" line="3217"/>
         <source>WARNING: entry &apos;%1:%2&apos; cannot be associated with any known software for this system (line %3 ignored)</source>
         <translation>WARNUNG: Eintrag &apos;%1:%2&apos; kann mit keiner bekannten Software für dieses System assoziiert werden (Zeile %3 ignoriert)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3145"/>
+        <location filename="../../softwarelist.cpp" line="3219"/>
         <source>WARNING: a favorite entry for &apos;%1:%2&apos; already exists (line %3 ignored)</source>
         <translation>WARNUNG: ein Favoriten-Eintrag für &apos;%1:%2&apos; existiert bereits (Zeile %3 ignoriert)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3147"/>
+        <location filename="../../softwarelist.cpp" line="3221"/>
         <source>WARNING: syntax error on line %1 (ignored)</source>
         <translation>WARNUNG: ungültige Syntax in Zeile %1 (ignoriert)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3151"/>
+        <location filename="../../softwarelist.cpp" line="3225"/>
         <source>done (loading software-favorites for &apos;%1&apos; from &apos;%2&apos;)</source>
         <translation>Fertig (Lade Software-Favoriten für &apos;%1&apos; aus &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3153"/>
+        <location filename="../../softwarelist.cpp" line="3227"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for reading, please check permissions</source>
         <translation>FATAL: kann &apos;%1&apos; nicht zum Lesen öffnen, bitte Zugriffsrechte überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3168"/>
+        <location filename="../../softwarelist.cpp" line="3242"/>
         <source>Choose file to store favorites to</source>
         <translation>Datei zum Speichern der Favoriten wählen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3179"/>
+        <location filename="../../softwarelist.cpp" line="3253"/>
         <source>saving software-favorites for &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>Speichere Software-Favoriten für &apos;%1&apos; in &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3204"/>
+        <location filename="../../softwarelist.cpp" line="3278"/>
         <source>done (saving software-favorites for &apos;%1&apos; to &apos;%2&apos;)</source>
         <translation>Fertig (Speichere Software-Favoriten für &apos;%1&apos; in &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3206"/>
+        <location filename="../../softwarelist.cpp" line="3280"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing, please check permissions</source>
         <translation>FATAL: kann &apos;%1&apos; nicht zum Schreiben öffnen, bitte Zugriffsrechte überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3217"/>
+        <location filename="../../softwarelist.cpp" line="3291"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3223"/>
+        <location filename="../../softwarelist.cpp" line="3297"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3229"/>
+        <location filename="../../softwarelist.cpp" line="3303"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3235"/>
+        <location filename="../../softwarelist.cpp" line="3309"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3242"/>
-        <location filename="../../softwarelist.cpp" line="3249"/>
-        <location filename="../../softwarelist.cpp" line="3255"/>
+        <location filename="../../softwarelist.cpp" line="3316"/>
+        <location filename="../../softwarelist.cpp" line="3323"/>
+        <location filename="../../softwarelist.cpp" line="3329"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
@@ -22338,75 +22349,75 @@ Bist Du sicher, dass Du das tun willst?</translation>
 <context>
     <name>SoftwareSnap</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="3583"/>
+        <location filename="../../softwarelist.cpp" line="3657"/>
         <source>Copy image to clipboard</source>
         <translation>Bild in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3589"/>
+        <location filename="../../softwarelist.cpp" line="3663"/>
         <source>Copy file path to clipboard</source>
         <translation>Datei-Pfad in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3598"/>
+        <location filename="../../softwarelist.cpp" line="3672"/>
         <source>Zoom in (+10%)</source>
         <translation>Vergrößern (+10%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3604"/>
+        <location filename="../../softwarelist.cpp" line="3678"/>
         <source>Zoom out (-10%)</source>
         <translation>Verkleinern (-10%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3610"/>
+        <location filename="../../softwarelist.cpp" line="3684"/>
         <source>Reset zoom (100%)</source>
         <translation>Zoomfaktor zurücksetzen (100%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3618"/>
+        <location filename="../../softwarelist.cpp" line="3692"/>
         <source>Refresh cache slot</source>
         <translation>Cache-Slot aktualisieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3630"/>
-        <location filename="../../softwarelist.cpp" line="3944"/>
+        <location filename="../../softwarelist.cpp" line="3704"/>
+        <location filename="../../softwarelist.cpp" line="4018"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: kann Software Snapshot Datei nicht öffnen; bitte Zugriffsrechte für %1 überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3636"/>
-        <location filename="../../softwarelist.cpp" line="3991"/>
+        <location filename="../../softwarelist.cpp" line="3710"/>
+        <location filename="../../softwarelist.cpp" line="4065"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
         <translation>FATAL: kann Software Snapshot Datei %1 nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3636"/>
-        <location filename="../../softwarelist.cpp" line="3991"/>
+        <location filename="../../softwarelist.cpp" line="3710"/>
+        <location filename="../../softwarelist.cpp" line="4065"/>
         <source>7z error</source>
         <translation>7z Fehler</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3689"/>
+        <location filename="../../softwarelist.cpp" line="3763"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>FATAL: kann Backup der existierenden Bild-Datei &apos;%1&apos; nicht unter &apos;%2&apos; erstellen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3704"/>
+        <location filename="../../softwarelist.cpp" line="3778"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
         <translation>FATAL: kann Bild-Datei &apos;%1&apos; nicht erstellen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3710"/>
+        <location filename="../../softwarelist.cpp" line="3784"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
         <translation>FATAL: kann den primären Pfad für Bild-Typ &apos;%1&apos; nicht ermitteln</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3710"/>
+        <location filename="../../softwarelist.cpp" line="3784"/>
         <source>software snapshot</source>
         <translation>Software Schnappschuss</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4026"/>
+        <location filename="../../softwarelist.cpp" line="4100"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Dekomprimiere Archiv, bitte warten...</translation>
     </message>
@@ -22414,37 +22425,37 @@ Bist Du sicher, dass Du das tun willst?</translation>
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="4581"/>
+        <location filename="../../softwarelist.cpp" line="4655"/>
         <source>Copy image to clipboard</source>
         <translation>Bild in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4587"/>
+        <location filename="../../softwarelist.cpp" line="4661"/>
         <source>Copy file path to clipboard</source>
         <translation>Datei-Pfad in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4596"/>
+        <location filename="../../softwarelist.cpp" line="4670"/>
         <source>Refresh cache slot</source>
         <translation>Cache-Slot aktualisieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4711"/>
+        <location filename="../../softwarelist.cpp" line="4785"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: kann Software Snapshot Datei nicht öffnen; bitte Zugriffsrechte für %1 überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4760"/>
+        <location filename="../../softwarelist.cpp" line="4834"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
         <translation>FATAL: kann Software Snapshot Datei %1 nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4760"/>
+        <location filename="../../softwarelist.cpp" line="4834"/>
         <source>7z error</source>
         <translation>7z Fehler</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4793"/>
+        <location filename="../../softwarelist.cpp" line="4867"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Dekomprimiere Archiv, bitte warten...</translation>
     </message>

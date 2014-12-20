@@ -71,6 +71,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	setupUi(this);
 
 	progressBar->setVisible(false);
+	progressBarSearch->setVisible(false);
 
 	// hide snapname device selection initially
 	comboBoxSnapnameDevice->hide();
@@ -2628,78 +2629,151 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 #endif
 
 	static bool searchActive = false;
-
-	if ( searchActive || isLoading )
-		return;
-
-	searchActive = true;
+	static bool stopSearch = false;
+	static QString lastSearchText;
+	static bool lastNegatedMatch = false;
 
 	searchTimer.stop();
 
+	if ( isLoading || qmc2CleaningUp )
+		return;
+
+	if ( searchActive ) {
+		stopSearch = true;
+		searchTimer.start(QMC2_SEARCH_DELAY/10);
+		return;
+	} else
+		stopSearch = false;
+
 	QString pattern = comboBoxSearch->currentText();
 
+	if ( pattern.isEmpty() ) {
+		treeWidgetSearchResults->clear();
+		lastSearchText.clear();
+		lastNegatedMatch = negatedMatch;
+		return;
+	} else if ( treeWidgetSearchResults->topLevelItemCount() == 0 )
+		lastSearchText.clear();
+
+	if ( pattern == lastSearchText && lastNegatedMatch == negatedMatch )
+		return;
+
+	QString patternCopy = pattern;
+
 	// easy pattern match
-	if ( !pattern.isEmpty() ) {
-		pattern = "*" + pattern.replace(' ', "* *") + "*";
-		pattern.replace(QString("*^"), "");
-		pattern.replace(QString("$*"), "");
+	int pos = 0;
+	QRegExp rxAsterisk("(\\*)");
+	while ( (pos = rxAsterisk.indexIn(pattern, pos)) != -1 ) {
+		int matchedLength = rxAsterisk.matchedLength();
+		if ( pos > 0 ) {
+			if ( pattern[pos - 1] != '\\' ) {
+				pattern.replace(pos, 1, ".*");
+				matchedLength = 2;
+			}
+		} else {
+			pattern.replace(pos, 1, ".*");
+			matchedLength = 2;
+		}
+		pos += matchedLength;
 	}
+	pos = 0;
+	QRegExp rxQuestionMark("(\\?)");
+	while ( (pos = rxQuestionMark.indexIn(pattern, pos)) != -1 ) {
+		if ( pos > 0 ) {
+			if ( pattern[pos - 1] != '\\' )
+				pattern.replace(pos, 1, ".");
+		} else
+			pattern.replace(pos, 1, ".");
+		pos += rxQuestionMark.matchedLength();
+	}
+	pattern.replace(' ', ".* .*").replace(".*^", "").replace("$.*", "");
 
 	treeWidgetSearchResults->clear();
 
-	QList<QTreeWidgetItem *> matches = treeWidgetKnownSoftware->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard, QMC2_SWLIST_COLUMN_TITLE);
-	QList<QTreeWidgetItem *> matchesByShortName = treeWidgetKnownSoftware->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard, QMC2_SWLIST_COLUMN_NAME);
+	QRegExp patternRx = QRegExp(pattern, Qt::CaseInsensitive, QRegExp::RegExp2);
+	if ( !patternRx.isValid() ) {
+		lastSearchText.clear();
+		lastNegatedMatch = negatedMatch;
+		return;
+	}
 
-	if ( negatedMatch ) {
-		QList<QTreeWidgetItem *> positiveMatches = matches;
-		QList<QTreeWidgetItem *> positiveMatchesByShortName = matchesByShortName;
-		matches.clear();
-		matchesByShortName.clear();
-		for (int i = 0; i < treeWidgetKnownSoftware->topLevelItemCount(); i++) {
-			QTreeWidgetItem *item = treeWidgetKnownSoftware->topLevelItem(i);
-			if ( !positiveMatches.contains(item) && !positiveMatchesByShortName.contains(item))
-				matches << item;
+	searchActive = true;
+	lastSearchText = patternCopy;
+
+	progressBarSearch->setVisible(true);
+	progressBarSearch->setRange(0, treeWidgetKnownSoftware->topLevelItemCount());
+	progressBarSearch->setValue(0);
+
+	QList<QTreeWidgetItem *> matches;
+        QList<SoftwareItem *> itemList;
+	QList<SoftwareItem *> hideList;
+	QStringList compatFilters = systemSoftwareFilterHash[systemName];
+	for (int i = 0; i < treeWidgetKnownSoftware->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
+		QTreeWidgetItem *item = treeWidgetKnownSoftware->topLevelItem(i);
+		QString itemText = item->text(QMC2_SWLIST_COLUMN_TITLE);
+		QString itemName = item->text(QMC2_SWLIST_COLUMN_NAME);
+		bool matched = itemText.indexOf(patternRx) > -1 || itemName.indexOf(patternRx) > -1;
+		if ( negatedMatch )
+			matched = !matched;
+		if ( matched ) {
+			matches << item;
+			SoftwareItem *newItem = new SoftwareItem((QTreeWidget *)0);
+			SoftwareItem *subItem = new SoftwareItem(newItem);
+			subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
+			newItem->setText(QMC2_SWLIST_COLUMN_TITLE, item->text(QMC2_SWLIST_COLUMN_TITLE));
+			newItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, item->icon(QMC2_SWLIST_COLUMN_TITLE));
+			newItem->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, item->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
+			newItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, item->whatsThis(QMC2_SWLIST_COLUMN_NAME));
+			newItem->setText(QMC2_SWLIST_COLUMN_NAME, item->text(QMC2_SWLIST_COLUMN_NAME));
+			newItem->setText(QMC2_SWLIST_COLUMN_PUBLISHER, item->text(QMC2_SWLIST_COLUMN_PUBLISHER));
+			newItem->setText(QMC2_SWLIST_COLUMN_YEAR, item->text(QMC2_SWLIST_COLUMN_YEAR));
+			newItem->setText(QMC2_SWLIST_COLUMN_PART, item->text(QMC2_SWLIST_COLUMN_PART));
+			newItem->setText(QMC2_SWLIST_COLUMN_INTERFACE, item->text(QMC2_SWLIST_COLUMN_INTERFACE));
+			newItem->setText(QMC2_SWLIST_COLUMN_LIST, item->text(QMC2_SWLIST_COLUMN_LIST));
+			newItem->setText(QMC2_SWLIST_COLUMN_SUPPORTED, item->text(QMC2_SWLIST_COLUMN_SUPPORTED));
+			itemList << newItem;
+			bool showItem = true;
+			if ( qmc2SoftwareList->toolButtonCompatFilterToggle->isChecked() ) {
+				QStringList compatList = newItem->whatsThis(QMC2_SWLIST_COLUMN_TITLE).split(",", QString::SkipEmptyParts);
+				showItem = compatList.isEmpty() || compatFilters.isEmpty();
+				for (int j = 0; j < compatList.count() && !showItem; j++)
+					for (int k = 0; k < compatFilters.count() && !showItem; k++)
+						showItem = (compatList[j] == compatFilters[k]);
+			}
+			if ( !showItem )
+				hideList << newItem;
 		}
-		for (int i = 0; i < treeWidgetKnownSoftware->topLevelItemCount(); i++) {
-			QTreeWidgetItem *item = treeWidgetKnownSoftware->topLevelItem(i);
-			if ( !positiveMatches.contains(item) && !positiveMatchesByShortName.contains(item))
-				matchesByShortName << item;
+		progressBarSearch->setValue(progressBarSearch->value() + 1);
+		if ( i % QMC2_SEARCH_RESULT_UPDATE == 0 ) {
+			treeWidgetSearchResults->setUpdatesEnabled(false);
+			foreach (SoftwareItem *item, itemList)
+				treeWidgetSearchResults->addTopLevelItem(item);
+			foreach (SoftwareItem *item, hideList)
+				item->setHidden(true);
+			itemList.clear();
+			hideList.clear();
+			treeWidgetSearchResults->setUpdatesEnabled(true);
+			qApp->processEvents();
 		}
 	}
 
-	for (int i = 0; i < matchesByShortName.count(); i++) {
-		QTreeWidgetItem *item = matchesByShortName[i];
-		if ( !matches.contains(item) )
-			matches.append(item);
-	}
+	if ( !stopSearch && !qmc2CleaningUp ) {
+		treeWidgetSearchResults->setUpdatesEnabled(false);
+		foreach (SoftwareItem *item, itemList)
+			treeWidgetSearchResults->addTopLevelItem(item);
+		foreach (SoftwareItem *item, hideList)
+			item->setHidden(true);
+		itemList.clear();
+		hideList.clear();
+		treeWidgetSearchResults->setUpdatesEnabled(true);
+		qApp->processEvents();
+	} else
+		lastSearchText.clear();
 
-	QStringList compatFilters = systemSoftwareFilterHash[qmc2SoftwareList->systemName];
-	for (int i = 0; i < matches.count(); i++) {
-		SoftwareItem *item = new SoftwareItem(treeWidgetSearchResults);
-		SoftwareItem *subItem = new SoftwareItem(item);
-		subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
-		QTreeWidgetItem *matchItem = matches.at(i);
-		item->setText(QMC2_SWLIST_COLUMN_TITLE, matchItem->text(QMC2_SWLIST_COLUMN_TITLE));
-		item->setIcon(QMC2_SWLIST_COLUMN_TITLE, matchItem->icon(QMC2_SWLIST_COLUMN_TITLE));
-		item->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, matchItem->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
-		item->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, matchItem->whatsThis(QMC2_SWLIST_COLUMN_NAME));
-		bool showItem = true;
-		if ( qmc2SoftwareList->toolButtonCompatFilterToggle->isChecked() ) {
-			QStringList compatList = item->whatsThis(QMC2_SWLIST_COLUMN_TITLE).split(",", QString::SkipEmptyParts);
-			showItem = compatList.isEmpty() || compatFilters.isEmpty();
-			for (int j = 0; j < compatList.count() && !showItem; j++)
-				for (int k = 0; k < compatFilters.count() && !showItem; k++)
-					showItem = (compatList[j] == compatFilters[k]);
-		}
-		item->setHidden(!showItem);
-		item->setText(QMC2_SWLIST_COLUMN_NAME, matchItem->text(QMC2_SWLIST_COLUMN_NAME));
-		item->setText(QMC2_SWLIST_COLUMN_PUBLISHER, matchItem->text(QMC2_SWLIST_COLUMN_PUBLISHER));
-		item->setText(QMC2_SWLIST_COLUMN_YEAR, matchItem->text(QMC2_SWLIST_COLUMN_YEAR));
-		item->setText(QMC2_SWLIST_COLUMN_PART, matchItem->text(QMC2_SWLIST_COLUMN_PART));
-		item->setText(QMC2_SWLIST_COLUMN_INTERFACE, matchItem->text(QMC2_SWLIST_COLUMN_INTERFACE));
-		item->setText(QMC2_SWLIST_COLUMN_LIST, matchItem->text(QMC2_SWLIST_COLUMN_LIST));
-		item->setText(QMC2_SWLIST_COLUMN_SUPPORTED, matchItem->text(QMC2_SWLIST_COLUMN_SUPPORTED));
-	}
+	lastNegatedMatch = negatedMatch;
+
+	progressBarSearch->setVisible(false);
+	progressBarSearch->reset();
 
 	if ( autoSelectSearchItem ) {
   		treeWidgetSearchResults->setFocus();
