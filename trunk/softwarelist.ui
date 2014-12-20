@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>597</width>
-    <height>331</height>
+    <height>359</height>
    </rect>
   </property>
   <property name="mouseTracking">
@@ -324,7 +324,7 @@
         <x>0</x>
         <y>0</y>
         <width>587</width>
-        <height>179</height>
+        <height>192</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -416,8 +416,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>587</width>
-        <height>179</height>
+        <width>86</width>
+        <height>67</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -515,7 +515,7 @@
         <x>0</x>
         <y>0</y>
         <width>587</width>
-        <height>179</height>
+        <height>205</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -617,6 +617,22 @@
            <string>Supported</string>
           </property>
          </column>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QProgressBar" name="progressBarSearch">
+         <property name="toolTip">
+          <string>Search progress</string>
+         </property>
+         <property name="statusTip">
+          <string>Search progress</string>
+         </property>
+         <property name="value">
+          <number>0</number>
+         </property>
+         <property name="format">
+          <string>Searching software - %p%</string>
+         </property>
         </widget>
        </item>
       </layout>
