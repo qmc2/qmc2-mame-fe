@@ -25,8 +25,10 @@ extern Options *qmc2Options;
 CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent)
 	: QDialog(parent)
 {
-	setupUi(this);
 	m_romAlyzer = myROMAlyzer;
+
+	setupUi(this);
+
 	switch ( romAlyzer()->mode() ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE:
 			setWindowTitle(tr("Software Collection Rebuilder"));
@@ -34,6 +36,14 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 			m_defaultSetEntity = "software";
 			m_defaultRomEntity = "rom";
 			m_defaultDiskEntity = "disk";
+			checkBoxFilterExpressionSoftwareLists->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpressionSoftwareLists", false).toBool());
+			comboBoxFilterSyntaxSoftwareLists->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntaxSoftwareLists", 0).toInt());
+			comboBoxFilterTypeSoftwareLists->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterTypeSoftwareLists", 0).toInt());
+			lineEditFilterExpressionSoftwareLists->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpressionSoftwareLists", QString()).toString());
+			checkBoxFilterExpression->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpression", false).toBool());
+			comboBoxFilterSyntax->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntax", 0).toInt());
+			comboBoxFilterType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterType", 0).toInt());
+			lineEditFilterExpression->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", QString()).toString());
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
@@ -51,17 +61,19 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 			comboBoxFilterTypeSoftwareLists->setVisible(false);
 			lineEditFilterExpressionSoftwareLists->setVisible(false);
 			toolButtonClearFilterExpressionSoftwareLists->setVisible(false);
+			checkBoxFilterExpression->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpression", false).toBool());
+			comboBoxFilterSyntax->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntax", 0).toInt());
+			comboBoxFilterType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterType", 0).toInt());
+			lineEditFilterExpression->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", QString()).toString());
 			break;
 	}
+
 	pushButtonPauseResume->setVisible(false);
+
 	QFont logFont;
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
 	plainTextEditLog->setFont(logFont);
 	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/MaxLogSize", 10000).toInt());
-	comboBoxFilterSyntax->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntax", 0).toInt());
-	comboBoxFilterType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterType", 0).toInt());
-	checkBoxFilterExpression->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpression", false).toBool());
-	lineEditFilterExpression->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", QString()).toString());
 	adjustIconSizes();
 
 	m_rebuilderThread = new CollectionRebuilderThread(this);
@@ -524,10 +536,26 @@ void CollectionRebuilder::closeEvent(QCloseEvent *e)
 {
 	hideEvent(0);
 	QDialog::closeEvent(e);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpression", checkBoxFilterExpression->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntax", comboBoxFilterSyntax->currentIndex());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterType", comboBoxFilterType->currentIndex());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", lineEditFilterExpression->text());
+
+	switch ( romAlyzer()->mode() ) {
+		case QMC2_ROMALYZER_MODE_SOFTWARE:
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpressionSoftwareLists", checkBoxFilterExpressionSoftwareLists->isChecked());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntaxSoftwareLists", comboBoxFilterSyntaxSoftwareLists->currentIndex());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterTypeSoftwareLists", comboBoxFilterTypeSoftwareLists->currentIndex());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpressionSoftwareLists", lineEditFilterExpressionSoftwareLists->text());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpression", checkBoxFilterExpression->isChecked());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntax", comboBoxFilterSyntax->currentIndex());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterType", comboBoxFilterType->currentIndex());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", lineEditFilterExpression->text());
+			break;
+		case QMC2_ROMALYZER_MODE_SYSTEM:
+		default:
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpression", checkBoxFilterExpression->isChecked());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntax", comboBoxFilterSyntax->currentIndex());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterType", comboBoxFilterType->currentIndex());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", lineEditFilterExpression->text());
+			break;
+	}
 }
 
 void CollectionRebuilder::keyPressEvent(QKeyEvent *e)

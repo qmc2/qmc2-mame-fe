@@ -194,7 +194,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	toolButtonToolsMenu->setMenu(toolsMenu);
 
 	// check-sum DB related
-	m_checkSumScannerLog = new CheckSumScannerLog(0);
+	m_checkSumScannerLog = new CheckSumScannerLog(mode() == QMC2_ROMALYZER_MODE_SYSTEM ? "CheckSumScannerLog" : "SoftwareCheckSumScannerLog" , 0);
 	connect(checkSumScannerLog(), SIGNAL(windowOpened()), this, SLOT(checkSumScannerLog_windowOpened()));
 	connect(checkSumScannerLog(), SIGNAL(windowClosed()), this, SLOT(checkSumScannerLog_windowClosed()));
 	m_checkSumDb = new CheckSumDatabaseManager(this, m_settingsKey);

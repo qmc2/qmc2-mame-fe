@@ -1,7 +1,7 @@
 #ifndef _CHECKSUMSCANNERLOG_H_
 #define _CHECKSUMSCANNERLOG_H_
 
-#include <QStringList>
+#include <QString>
 
 #include "ui_checksumscannerlog.h"
 
@@ -10,7 +10,7 @@ class CheckSumScannerLog : public QWidget, public Ui::CheckSumScannerLog
 	Q_OBJECT
 
        	public:
-		CheckSumScannerLog(QWidget *parent = 0);
+		CheckSumScannerLog(QString settingsKey, QWidget *parent = 0);
 
 		qreal progress() { return m_progress; }
 
@@ -35,6 +35,7 @@ class CheckSumScannerLog : public QWidget, public Ui::CheckSumScannerLog
 
 	private:
 		qreal m_progress;
+		QString m_settingsKey;
 };
 
 #endif
