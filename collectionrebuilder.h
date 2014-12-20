@@ -12,6 +12,7 @@
 
 #include "checksumdbmgr.h"
 #include "xmldbmgr.h"
+#include "swldbmgr.h"
 #include "ui_collectionrebuilder.h"
 
 class CollectionRebuilder;
@@ -40,6 +41,7 @@ class CollectionRebuilderThread : public QThread
 		CheckSumDatabaseManager *checkSumDb() { return m_checkSumDb; }
 		CollectionRebuilder *rebuilderDialog() { return m_rebuilderDialog; }
 		XmlDatabaseManager *xmlDb() { return m_xmlDb; }
+		SoftwareListXmlDatabaseManager *swlDb() { return m_swlDb; }
 		qint64 checkpoint() { return m_checkpoint; }
 		void setCheckpoint(qint64 cp, int xmlSourceIndex);
 		void reopenDatabase();
@@ -77,6 +79,7 @@ class CollectionRebuilderThread : public QThread
 	private:
 		CheckSumDatabaseManager *m_checkSumDb;
 		XmlDatabaseManager *m_xmlDb;
+		SoftwareListXmlDatabaseManager *m_swlDb;
 		CollectionRebuilder *m_rebuilderDialog;
 		qint64 m_xmlIndex, m_xmlIndexCount, m_checkpoint;
 		QFile m_xmlFile;

@@ -46,6 +46,11 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 #endif
 			m_defaultRomEntity = "rom";
 			m_defaultDiskEntity = "disk";
+			checkBoxFilterExpressionSoftwareLists->setVisible(false);
+			comboBoxFilterSyntaxSoftwareLists->setVisible(false);
+			comboBoxFilterTypeSoftwareLists->setVisible(false);
+			lineEditFilterExpressionSoftwareLists->setVisible(false);
+			toolButtonClearFilterExpressionSoftwareLists->setVisible(false);
 			break;
 	}
 	pushButtonPauseResume->setVisible(false);
@@ -181,6 +186,7 @@ void CollectionRebuilder::adjustIconSizes()
 	comboBoxXmlSource->setIconSize(iconSize);
 	toolButtonRemoveXmlSource->setIconSize(iconSize);
 	toolButtonClearFilterExpression->setIconSize(iconSize);
+	toolButtonClearFilterExpressionSoftwareLists->setIconSize(iconSize);
 }
 
 void CollectionRebuilder::on_pushButtonStartStop_clicked()
@@ -540,7 +546,17 @@ CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
 	m_checkSumDb = NULL;
 	m_xmlIndex = m_xmlIndexCount = m_checkpoint = -1;
 	reopenDatabase();
-	m_xmlDb = new XmlDatabaseManager(this);
+	switch ( rebuilderDialog()->romAlyzer()->mode() ) {
+		case QMC2_ROMALYZER_MODE_SOFTWARE:
+			m_swlDb = new SoftwareListXmlDatabaseManager(this);
+			m_xmlDb = NULL;
+			break;
+		case QMC2_ROMALYZER_MODE_SYSTEM:
+		default:
+			m_xmlDb = new XmlDatabaseManager(this);
+			m_swlDb = NULL;
+			break;
+	}
 	start();
 }
 
@@ -555,6 +571,8 @@ CollectionRebuilderThread::~CollectionRebuilderThread()
 	}
 	if ( xmlDb() )
 		delete xmlDb();
+	if ( swlDb() )
+		delete swlDb();
 }
 
 void CollectionRebuilderThread::reopenDatabase()
@@ -687,7 +705,15 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 	if ( m_xmlIndex < 0 || m_xmlIndexCount < 0 ) {
 		if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
 			m_xmlIndex = 1;
-			m_xmlIndexCount = xmlDb()->xmlRowCount();
+			switch ( rebuilderDialog()->romAlyzer()->mode() ) {
+				case QMC2_ROMALYZER_MODE_SOFTWARE:
+					m_xmlIndexCount = swlDb()->swlRowCount();
+					break;
+				case QMC2_ROMALYZER_MODE_SYSTEM:
+				default:
+					m_xmlIndexCount = xmlDb()->xmlRowCount();
+					break;
+			}
 			emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
 			emit progressChanged(m_xmlIndex);
 			setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
@@ -714,15 +740,30 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 			return false;
 		}
 		if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
-			if ( parseXml(xmlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List) ) {
-				setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
-				m_xmlIndex++;
-				emit progressChanged(m_xmlIndex);
-				return true;
-			} else {
-				emit log(tr("FATAL: XML parsing failed"));
-				setCheckpoint(-1, rebuilderDialog()->comboBoxXmlSource->currentIndex());
-				return false;
+			switch ( rebuilderDialog()->romAlyzer()->mode() ) {
+				case QMC2_ROMALYZER_MODE_SOFTWARE:
+					if ( parseXml(swlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List) ) {
+						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
+						m_xmlIndex++;
+						emit progressChanged(m_xmlIndex);
+						return true;
+					} else {
+						emit log(tr("FATAL: XML parsing failed"));
+						setCheckpoint(-1, rebuilderDialog()->comboBoxXmlSource->currentIndex());
+						return false;
+					}
+				case QMC2_ROMALYZER_MODE_SYSTEM:
+				default:
+					if ( parseXml(xmlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List) ) {
+						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
+						m_xmlIndex++;
+						emit progressChanged(m_xmlIndex);
+						return true;
+					} else {
+						emit log(tr("FATAL: XML parsing failed"));
+						setCheckpoint(-1, rebuilderDialog()->comboBoxXmlSource->currentIndex());
+						return false;
+					}
 			}
 		} else {
 			QString setEntityStartPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
@@ -787,7 +828,15 @@ void CollectionRebuilderThread::checkpointRestart(qint64 cp)
 	m_xmlIndex = cp;
 	if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
 		emit log(tr("restarting from checkpoint '%1'").arg(m_xmlIndex));
-		m_xmlIndexCount = xmlDb()->xmlRowCount();
+		switch ( rebuilderDialog()->romAlyzer()->mode() ) {
+			case QMC2_ROMALYZER_MODE_SOFTWARE:
+				m_xmlIndexCount = swlDb()->swlRowCount();
+				break;
+			case QMC2_ROMALYZER_MODE_SYSTEM:
+			default:
+				m_xmlIndexCount = xmlDb()->xmlRowCount();
+				break;
+		}
 		emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
 		emit progressChanged(m_xmlIndex);
 	} else {

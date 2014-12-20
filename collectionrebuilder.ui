@@ -300,19 +300,144 @@
      </layout>
     </widget>
    </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="Line" name="line1">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
    <item row="2" column="0" colspan="3">
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
-     <item>
+    <layout class="QGridLayout" name="gridLayoutFilters">
+     <item row="0" column="0">
+      <widget class="QCheckBox" name="checkBoxFilterExpressionSoftwareLists">
+       <property name="toolTip">
+        <string>Enable the use of a Qt regular expression that a software-list's name has to match in order to be processed</string>
+       </property>
+       <property name="text">
+        <string>Filter lists</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="comboBoxFilterSyntaxSoftwareLists">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Choose the regular expression syntax</string>
+       </property>
+       <item>
+        <property name="text">
+         <string notr="true">RegExp</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">RegExp2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">Wildcard</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">WildcardUnix</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">FixedString</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">W3CXmlSchema11</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QComboBox" name="comboBoxFilterTypeSoftwareLists">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Select the filter type (include / exclude filter)</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>Include</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Exclude</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLineEdit" name="lineEditFilterExpressionSoftwareLists">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Specify a Qt regular expression that a software-list's name has to match in order to be processed</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QToolButton" name="toolButtonClearFilterExpressionSoftwareLists">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Clear filter expression</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
       <widget class="QCheckBox" name="checkBoxFilterExpression">
        <property name="toolTip">
         <string>Enable the use of a Qt regular expression that a set's ID has to match in order to be processed</string>
        </property>
        <property name="text">
-        <string>Filter expression</string>
+        <string>Filter sets</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="1" column="1">
       <widget class="QComboBox" name="comboBoxFilterSyntax">
        <property name="enabled">
         <bool>false</bool>
@@ -358,7 +483,7 @@
        </item>
       </widget>
      </item>
-     <item>
+     <item row="1" column="2">
       <widget class="QComboBox" name="comboBoxFilterType">
        <property name="enabled">
         <bool>false</bool>
@@ -384,7 +509,7 @@
        </item>
       </widget>
      </item>
-     <item>
+     <item row="1" column="3">
       <widget class="QLineEdit" name="lineEditFilterExpression">
        <property name="enabled">
         <bool>false</bool>
@@ -400,7 +525,7 @@
        </property>
       </widget>
      </item>
-     <item>
+     <item row="1" column="4">
       <widget class="QToolButton" name="toolButtonClearFilterExpression">
        <property name="enabled">
         <bool>false</bool>
@@ -422,13 +547,6 @@
      </item>
     </layout>
    </item>
-   <item row="1" column="0" colspan="3">
-    <widget class="Line" name="line1">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <tabstops>
@@ -436,6 +554,11 @@
   <tabstop>toolButtonRemoveXmlSource</tabstop>
   <tabstop>pushButtonStartStop</tabstop>
   <tabstop>pushButtonPauseResume</tabstop>
+  <tabstop>checkBoxFilterExpressionSoftwareLists</tabstop>
+  <tabstop>comboBoxFilterSyntaxSoftwareLists</tabstop>
+  <tabstop>comboBoxFilterTypeSoftwareLists</tabstop>
+  <tabstop>lineEditFilterExpressionSoftwareLists</tabstop>
+  <tabstop>toolButtonClearFilterExpressionSoftwareLists</tabstop>
   <tabstop>checkBoxFilterExpression</tabstop>
   <tabstop>comboBoxFilterSyntax</tabstop>
   <tabstop>comboBoxFilterType</tabstop>
@@ -486,22 +609,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkBoxFilterExpression</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>lineEditFilterExpression</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>91</x>
-     <y>49</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>453</x>
-     <y>60</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>toolButtonClearFilterExpression</sender>
    <signal>clicked()</signal>
    <receiver>lineEditFilterExpression</receiver>
@@ -509,27 +616,91 @@
    <hints>
     <hint type="sourcelabel">
      <x>478</x>
-     <y>45</y>
+     <y>85</y>
     </hint>
     <hint type="destinationlabel">
-     <x>411</x>
-     <y>48</y>
+     <x>424</x>
+     <y>84</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>checkBoxFilterExpression</sender>
+   <sender>toolButtonClearFilterExpressionSoftwareLists</sender>
+   <signal>clicked()</signal>
+   <receiver>lineEditFilterExpressionSoftwareLists</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>482</x>
+     <y>56</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>419</x>
+     <y>56</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFilterExpressionSoftwareLists</sender>
    <signal>toggled(bool)</signal>
-   <receiver>toolButtonClearFilterExpression</receiver>
+   <receiver>comboBoxFilterSyntaxSoftwareLists</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
+     <x>57</x>
+     <y>54</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>122</x>
+     <y>53</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFilterExpressionSoftwareLists</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>comboBoxFilterTypeSoftwareLists</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>49</x>
+     <y>60</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>60</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFilterExpressionSoftwareLists</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lineEditFilterExpressionSoftwareLists</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>56</x>
+     <y>55</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>51</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFilterExpressionSoftwareLists</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonClearFilterExpressionSoftwareLists</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>38</x>
      <y>53</y>
     </hint>
     <hint type="destinationlabel">
-     <x>469</x>
-     <y>53</y>
+     <x>479</x>
+     <y>49</y>
     </hint>
    </hints>
   </connection>
@@ -540,12 +711,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>41</y>
+     <x>37</x>
+     <y>85</y>
     </hint>
     <hint type="destinationlabel">
-     <x>131</x>
-     <y>42</y>
+     <x>106</x>
+     <y>85</y>
     </hint>
    </hints>
   </connection>
@@ -556,12 +727,44 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>26</x>
-     <y>51</y>
+     <x>48</x>
+     <y>86</y>
     </hint>
     <hint type="destinationlabel">
-     <x>232</x>
-     <y>49</y>
+     <x>209</x>
+     <y>85</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFilterExpression</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lineEditFilterExpression</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>33</x>
+     <y>80</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>347</x>
+     <y>89</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFilterExpression</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonClearFilterExpression</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>22</x>
+     <y>85</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>479</x>
+     <y>89</y>
     </hint>
    </hints>
   </connection>
