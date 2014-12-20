@@ -233,6 +233,12 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 				rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
 		} else
 			rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
+		if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
+			if ( checkBoxFilterExpressionSoftwareLists->isChecked() && !lineEditFilterExpressionSoftwareLists->text().isEmpty() )
+				rebuilderThread()->setFilterExpressionSoftware(lineEditFilterExpressionSoftwareLists->text(), comboBoxFilterSyntaxSoftwareLists->currentIndex(), comboBoxFilterTypeSoftwareLists->currentIndex());
+			else
+				rebuilderThread()->clearFilterExpressionSoftware();
+		}
 		if ( checkBoxFilterExpression->isChecked() && !lineEditFilterExpression->text().isEmpty() )
 			rebuilderThread()->setFilterExpression(lineEditFilterExpression->text(), comboBoxFilterSyntax->currentIndex(), comboBoxFilterType->currentIndex());
 		else
@@ -387,10 +393,15 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	labelXmlSource->setEnabled(false);
 	toolButtonRemoveXmlSource->setEnabled(false);
 	checkBoxFilterExpression->setEnabled(false);
+	checkBoxFilterExpressionSoftwareLists->setEnabled(false);
 	comboBoxFilterSyntax->setEnabled(false);
+	comboBoxFilterSyntaxSoftwareLists->setEnabled(false);
 	comboBoxFilterType->setEnabled(false);
+	comboBoxFilterTypeSoftwareLists->setEnabled(false);
 	lineEditFilterExpression->setEnabled(false);
+	lineEditFilterExpressionSoftwareLists->setEnabled(false);
 	toolButtonClearFilterExpression->setEnabled(false);
+	toolButtonClearFilterExpressionSoftwareLists->setEnabled(false);
 	frameEntities->setEnabled(false);
 	romAlyzer()->groupBoxCheckSumDatabase->setEnabled(false);
 	switch ( romAlyzer()->mode() ) {
@@ -439,10 +450,15 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	labelXmlSource->setEnabled(true);
 	toolButtonRemoveXmlSource->setEnabled(true);
 	checkBoxFilterExpression->setEnabled(true);
+	checkBoxFilterExpressionSoftwareLists->setEnabled(true);
 	comboBoxFilterSyntax->setEnabled(checkBoxFilterExpression->isChecked());
+	comboBoxFilterSyntaxSoftwareLists->setEnabled(checkBoxFilterExpressionSoftwareLists->isChecked());
 	comboBoxFilterType->setEnabled(checkBoxFilterExpression->isChecked());
+	comboBoxFilterTypeSoftwareLists->setEnabled(checkBoxFilterExpressionSoftwareLists->isChecked());
 	lineEditFilterExpression->setEnabled(checkBoxFilterExpression->isChecked());
+	lineEditFilterExpressionSoftwareLists->setEnabled(checkBoxFilterExpressionSoftwareLists->isChecked());
 	toolButtonClearFilterExpression->setEnabled(checkBoxFilterExpression->isChecked());
+	toolButtonClearFilterExpressionSoftwareLists->setEnabled(checkBoxFilterExpressionSoftwareLists->isChecked());
 	frameEntities->setEnabled(true);
 	romAlyzer()->groupBoxCheckSumDatabase->setEnabled(true);
 	m_animationTimer.stop();
@@ -569,7 +585,7 @@ void CollectionRebuilder::keyPressEvent(QKeyEvent *e)
 CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
 	: QThread(parent)
 {
-	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopRebuilding = doFilter = isIncludeFilter = false;
+	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopRebuilding = doFilter = doFilterSoftware = isIncludeFilter = isIncludeFilterSoftware = false;
 	m_rebuilderDialog = (CollectionRebuilder *)parent;
 	m_checkSumDb = NULL;
 	m_xmlIndex = m_xmlIndexCount = m_checkpoint = -1;
@@ -771,6 +787,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 			switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 				case QMC2_ROMALYZER_MODE_SOFTWARE:
 					if ( parseXml(swlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List) ) {
+						id->prepend(swlDb()->list(m_xmlIndex) + ":");
 						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex++;
 						emit progressChanged(m_xmlIndex);
@@ -885,13 +902,23 @@ void CollectionRebuilderThread::checkpointRestart(qint64 cp)
 	setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 }
 
-bool CollectionRebuilderThread::rewriteSet(QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
+bool CollectionRebuilderThread::rewriteSet(QString *setKey, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
 {
-	QString baseDir = rebuilderDialog()->romAlyzer()->lineEditSetRewriterOutputPath->text();
+	QString set, baseDir = rebuilderDialog()->romAlyzer()->lineEditSetRewriterOutputPath->text();
+	if ( rebuilderDialog()->romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
+		QStringList setKeyTokens = setKey->split(":", QString::SkipEmptyParts);
+		if ( setKeyTokens.count() < 2 )
+			return false;
+		else {
+			baseDir += "/" + setKeyTokens[0];
+			set = setKeyTokens[1];
+		}
+	} else
+		set = *setKey;
 	if ( rebuilderDialog()->romAlyzer()->radioButtonSetRewriterZipArchives->isChecked() )
-		return writeAllZipData(baseDir, *id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List);
+		return writeAllZipData(baseDir, set, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List);
 	else
-		return writeAllFileData(baseDir, *id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List);
+		return writeAllFileData(baseDir, set, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List);
 }
 
 bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
@@ -1228,6 +1255,39 @@ void CollectionRebuilderThread::setFilterExpression(QString expression, int synt
 	}
 }
 
+void CollectionRebuilderThread::setFilterExpressionSoftware(QString expression, int syntax, int type)
+{
+	doFilterSoftware = !expression.isEmpty();
+	isIncludeFilterSoftware = (type == 0);
+	QRegExp::PatternSyntax ps;
+	switch ( syntax ) {
+		case 1:
+			ps = QRegExp::RegExp2;
+			break;
+		case 2:
+			ps = QRegExp::Wildcard;
+			break;
+		case 3:
+			ps = QRegExp::WildcardUnix;
+			break;
+		case 4:
+			ps = QRegExp::FixedString;
+			break;
+		case 5:
+			ps = QRegExp::W3CXmlSchema11;
+			break;
+		case 0:
+		default:
+			ps = QRegExp::RegExp;
+			break;
+	}
+	filterRxSoftware = QRegExp(expression, Qt::CaseSensitive, ps);
+	if ( doFilterSoftware && !filterRxSoftware.isValid() ) {
+		emit log(tr("WARNING: invalid filter expression '%1' ignored").arg(expression));
+		doFilterSoftware = false;
+	}
+}
+
 void CollectionRebuilderThread::pause()
 {
 	pauseRequested = true;
@@ -1260,9 +1320,9 @@ void CollectionRebuilderThread::run()
 			rebuildTimer.start();
 			if ( checkpoint() < 0 )
 				m_xmlIndex = m_xmlIndexCount = -1;
-			QString id;
+			QString setKey, list, set;
 			QStringList romNameList, romSha1List, romCrcList, diskNameList, diskSha1List;
-			while ( !exitThread && !stopRebuilding && nextId(&id, &romNameList, &romSha1List, &romCrcList, &diskNameList, &diskSha1List) ) {
+			while ( !exitThread && !stopRebuilding && nextId(&setKey, &romNameList, &romSha1List, &romCrcList, &diskNameList, &diskSha1List) ) {
 				bool pauseMessageLogged = false;
 				while ( (pauseRequested || isPaused) && !exitThread && !stopRebuilding ) {
 					if ( !pauseMessageLogged ) {
@@ -1282,23 +1342,50 @@ void CollectionRebuilderThread::run()
 					emit log(tr("rebuilding resumed"));
 				}
 				QTest::qWait(0);
-				if ( id.isEmpty() )
+				if ( setKey.isEmpty() )
 					continue;
+				switch ( rebuilderDialog()->romAlyzer()->mode() ) {
+					case QMC2_ROMALYZER_MODE_SOFTWARE: {
+							QStringList setKeyTokens = setKey.split(":", QString::SkipEmptyParts);
+							if ( setKeyTokens.count() < 2 )
+								continue;
+							list = setKeyTokens[0];
+							set = setKeyTokens[1];
+							if ( doFilterSoftware ) {
+								if ( isIncludeFilterSoftware ) {
+									if ( filterRxSoftware.indexIn(list) < 0 ) {
+										emit log(tr("rebuilding of '%1' skipped due to filter").arg(setKey));
+										continue;
+									}
+								} else {
+									if ( filterRxSoftware.indexIn(list) >= 0 ) {
+										emit log(tr("rebuilding of '%1' skipped due to filter").arg(setKey));
+										continue;
+									}
+								}
+							}
+						}
+						break;
+					case QMC2_ROMALYZER_MODE_SYSTEM:
+					default:
+						set = setKey;
+						break;
+				}
 				if ( doFilter ) {
 					if ( isIncludeFilter ) {
-						if ( filterRx.indexIn(id) < 0 ) {
-							emit log(tr("rebuilding of '%1' skipped due to filter").arg(id));
+						if ( filterRx.indexIn(set) < 0 ) {
+							emit log(tr("rebuilding of '%1' skipped due to filter").arg(setKey));
 							continue;
 						}
 					} else {
-						if ( filterRx.indexIn(id) >= 0 ) {
-							emit log(tr("rebuilding of '%1' skipped due to filter").arg(id));
+						if ( filterRx.indexIn(set) >= 0 ) {
+							emit log(tr("rebuilding of '%1' skipped due to filter").arg(setKey));
 							continue;
 						}
 					}
 				}
 				if ( !exitThread && !stopRebuilding && (!romNameList.isEmpty() || !diskNameList.isEmpty()) ) {
-					emit log(tr("set rebuilding started for '%1'").arg(id));
+					emit log(tr("set rebuilding started for '%1'").arg(setKey));
 					for (int i = 0; i < romNameList.count(); i++) {
 						bool dbStatusGood = checkSumDb()->exists(romSha1List[i], romCrcList[i]);
 						emit log(tr("required ROM") + ": " + tr("name = '%1', crc = '%2', sha1 = '%3', database status = '%4'").arg(romNameList[i]).arg(romCrcList[i]).arg(romSha1List[i]).arg(dbStatusGood ? tr("available") : tr("not available")));
@@ -1313,11 +1400,11 @@ void CollectionRebuilderThread::run()
 					}
 					bool rewriteOkay = true;
 					if ( !romNameList.isEmpty() )
-						rewriteOkay = rewriteSet(&id, &romNameList, &romSha1List, &romCrcList, &diskNameList, &diskSha1List);
+						rewriteOkay = rewriteSet(&setKey, &romNameList, &romSha1List, &romCrcList, &diskNameList, &diskSha1List);
 					if ( rewriteOkay )
-						emit log(tr("set rebuilding finished for '%1'").arg(id));
+						emit log(tr("set rebuilding finished for '%1'").arg(setKey));
 					else
-						emit log(tr("set rebuilding failed for '%1'").arg(id));
+						emit log(tr("set rebuilding failed for '%1'").arg(setKey));
 					emit statusUpdated(++setsProcessed, missingDumps, missingDisks);
 				}
 			}

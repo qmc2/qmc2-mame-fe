@@ -30,8 +30,11 @@ class CollectionRebuilderThread : public QThread
 		bool pauseRequested;
 		bool stopRebuilding;
 		bool doFilter;
+		bool doFilterSoftware;
 		bool isIncludeFilter;
+		bool isIncludeFilterSoftware;
 		QRegExp filterRx;
+		QRegExp filterRxSoftware;
 		QMutex mutex;
 		QWaitCondition waitCondition;
 
@@ -56,7 +59,9 @@ class CollectionRebuilderThread : public QThread
 		bool readZipFileData(QString, QString, QByteArray *);
 		bool createBackup(QString filePath);
 		void setFilterExpression(QString, int, int);
+		void setFilterExpressionSoftware(QString, int, int);
 		void clearFilterExpression() { setFilterExpression(QString(), 0, 0); }
+		void clearFilterExpressionSoftware() { setFilterExpressionSoftware(QString(), 0, 0); }
 
 	public slots:
 		void pause();

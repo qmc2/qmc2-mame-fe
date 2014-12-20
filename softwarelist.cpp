@@ -170,8 +170,6 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	actionRemoveFromFavorites->setToolTip(s); actionRemoveFromFavorites->setStatusTip(s);
 	actionRemoveFromFavorites->setIcon(QIcon(QString::fromUtf8(":/data/img/remove_from_favorites.png")));
 	connect(actionRemoveFromFavorites, SIGNAL(triggered()), this, SLOT(removeFromFavorites()));
-#if defined(QMC2_WIP_ENABLED)
-	// FIXME: remove when ROMAlyzer's software mode works
 	softwareListMenu->addSeparator();
 	s = tr("Analyze the currently selected software with the ROMAlyzer");
 	actionAnalyzeSoftware = softwareListMenu->addAction(tr("Analyze &software..."));
@@ -183,7 +181,6 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	actionAnalyzeSoftwareLists->setToolTip(s); actionAnalyzeSoftwareLists->setStatusTip(s);
 	actionAnalyzeSoftwareLists->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer_sw.png")));
 	connect(actionAnalyzeSoftwareLists, SIGNAL(triggered()), this, SLOT(analyzeSoftwareLists()));
-#endif
 	softwareListMenu->addSeparator();
 	s = tr("Clear software selection");
 	actionClearSelection = softwareListMenu->addAction(tr("&Clear selection"));

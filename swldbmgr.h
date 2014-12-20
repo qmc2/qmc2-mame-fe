@@ -26,6 +26,7 @@ class SoftwareListXmlDatabaseManager : public QObject
 		QStringList uniqueSoftwareSets(QString list);
 		QString xml(QString list, QString id);
 		QString xml(int rowid);
+		QString list(int rowid);
 		QString nextXml(QString list, QString *id, bool start = false);
 		QString allXml(QString list);
 		void setXml(QString list, QString id, QString xml);
