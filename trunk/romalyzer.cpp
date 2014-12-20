@@ -891,7 +891,7 @@ void ROMAlyzer::analyze()
 				break;
 
 			// step 2: parse XML data, insert ROMs / CHDs and check-sums as they *should* be
-			log(tr("parsing XML data for '%1'").arg(gameName));
+			log(tr("parsing XML data for '%1'").arg(setKey));
 			QXmlInputSource xmlInputSource;
 			xmlInputSource.setData(xmlBuffer);
 			ROMAlyzerXmlHandler xmlHandler(item, checkBoxExpandFiles->isChecked(), checkBoxAutoScroll->isChecked(), mode());
@@ -1309,7 +1309,7 @@ void ROMAlyzer::analyze()
 			qApp->processEvents();
 
 			if ( qmc2StopParser ) 
-				log(tr("interrupted (checking %n file(s) for '%1')", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(gameName));
+				log(tr("interrupted (checking %n file(s) for '%1')", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(setKey));
 			else {
 				gameOkay |= filesError;
 				filesSkipped |= filesUnknown;
@@ -1384,10 +1384,10 @@ void ROMAlyzer::analyze()
 					}
 				}
 
-				log(tr("done (checking %n file(s) for '%1')", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(gameName));
+				log(tr("done (checking %n file(s) for '%1')", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(setKey));
 
 				if ( !gameOkay )
-					analyzerBadSets << gameName;
+					analyzerBadSets << setKey;
 
 				if ( gameOkay || !checkBoxSetRewriterGoodDumpsOnly->isChecked() )
 					if ( groupBoxSetRewriter->isChecked() )
@@ -1400,7 +1400,7 @@ void ROMAlyzer::analyze()
 			treeWidgetChecksums->update();
 
 			i++;
-			log(tr("done (analyzing '%1')").arg(gameName));
+			log(tr("done (analyzing '%1')").arg(setKey));
 			log(tr("%n set(s) remaining", "", analyzerList.count() - i));
 		}
 	}
