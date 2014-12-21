@@ -46,7 +46,9 @@ class CollectionRebuilderThread : public QThread
 		XmlDatabaseManager *xmlDb() { return m_xmlDb; }
 		SoftwareListXmlDatabaseManager *swlDb() { return m_swlDb; }
 		qint64 checkpoint() { return m_checkpoint; }
+		QString currentListName() { return m_currentListName; }
 		void setCheckpoint(qint64 cp, int xmlSourceIndex);
+		void setListCheckpoint(QString list, int xmlSourceIndex);
 		void reopenDatabase();
 		bool parseXml(QString, QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
 		bool nextId(QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);

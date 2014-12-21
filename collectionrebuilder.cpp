@@ -110,11 +110,13 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 	QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", QStringList()).toStringList();
 	QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", QStringList()).toStringList();
 	QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
+	QStringList softwareCheckpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", QStringList()).toStringList();
+	bool softwareCheckpointListOk = romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? (softwareCheckpointList.count() == xmlSources.count()) : true;
 	QList<qint64> checkpoints;
 	foreach (QString cp, checkpointList)
 		checkpoints << cp.toLongLong();
 	int index = 1;
-	if ( xmlSources.count() > 0 && setEntities.count() == xmlSources.count() && romEntities.count() == xmlSources.count() && diskEntities.count() == xmlSources.count() && checkpointList.count() == xmlSources.count() ) {
+	if ( xmlSources.count() > 0 && setEntities.count() == xmlSources.count() && romEntities.count() == xmlSources.count() && diskEntities.count() == xmlSources.count() && checkpointList.count() == xmlSources.count() && softwareCheckpointListOk ) {
 		for (int i = 0; i < xmlSources.count(); i++) {
 			QString xmlSource = xmlSources[i];
 			QFileInfo fi(xmlSource);
@@ -135,6 +137,8 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 				diskEntities.removeAt(i);
 				checkpointList.removeAt(i);
 				checkpoints.removeAt(i);
+				if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+					softwareCheckpointList.removeAt(i);
 				i--;
 			}
 		}
@@ -143,12 +147,15 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", romEntities);
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", diskEntities);
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", checkpointList);
+		if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", softwareCheckpointList);
 	} else {
 		qmc2Config->remove(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSources");
 		qmc2Config->remove(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities");
 		qmc2Config->remove(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities");
 		qmc2Config->remove(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities");
 		qmc2Config->remove(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints");
+		qmc2Config->remove(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints");
 	}
 	comboBoxXmlSource->insertSeparator(index);
 	index++;
@@ -220,19 +227,28 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 				else {
 					index -= 1;
 					QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
-					if ( index >= 0 && index < checkpointList.count() )
+					QStringList softwareCheckpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", QStringList()).toStringList();
+					if ( index >= 0 && index < checkpointList.count() ) {
 						cp = checkpointList[index].toLongLong();
-					else
+						if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+							rebuilderThread()->setListCheckpoint(softwareCheckpointList[index], index);
+					} else {
 						cp = -1;
+						if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+							rebuilderThread()->setListCheckpoint(QString(), index);
+					}
 				}
-				if ( cp >= 0 )
-					rebuilderThread()->checkpointRestart(cp);
-				else
-					rebuilderThread()->checkpointRestart(-1);
-			} else
+				rebuilderThread()->checkpointRestart(cp);
+			} else {
 				rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
-		} else
+				if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+					rebuilderThread()->setListCheckpoint(QString(), comboBoxXmlSource->currentIndex());
+			}
+		} else {
 			rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
+			if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+				rebuilderThread()->setListCheckpoint(QString(), comboBoxXmlSource->currentIndex());
+		}
 		if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
 			if ( checkBoxFilterExpressionSoftwareLists->isChecked() && !lineEditFilterExpressionSoftwareLists->text().isEmpty() )
 				rebuilderThread()->setFilterExpressionSoftware(lineEditFilterExpressionSoftwareLists->text(), comboBoxFilterSyntaxSoftwareLists->currentIndex(), comboBoxFilterTypeSoftwareLists->currentIndex());
@@ -309,6 +325,11 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 				QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
 				checkpointList << "-1";
 				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", checkpointList);
+				if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
+					QStringList softwareCheckpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", QStringList()).toStringList();
+					softwareCheckpointList << QString();
+					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", softwareCheckpointList);
+				}
 				int insertIndex = comboBoxXmlSource->count() - 2;
 				lastIndex = insertIndex - 1;
 				comboBoxXmlSource->insertItem(insertIndex, xmlSource);
@@ -374,6 +395,11 @@ void CollectionRebuilder::on_toolButtonRemoveXmlSource_clicked()
 	QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
 	checkpointList.removeAt(index);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", checkpointList);
+	if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
+		QStringList softwareCheckpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", QStringList()).toStringList();
+		softwareCheckpointList.removeAt(index);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", softwareCheckpointList);
+	}
 	comboBoxXmlSource->blockSignals(true);
 	comboBoxXmlSource->removeItem(index + 1);
 	comboBoxXmlSource->blockSignals(false);
@@ -425,11 +451,18 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	if ( index == 0 )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/Checkpoint", cp);
 	else {
-		index -= 1;
+		int xmlSourceIndex = index - 1;
 		QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
-		if ( index >= 0 && index < checkpointList.count() ) {
-			checkpointList.replace(index, QString::number(cp));
+		if ( xmlSourceIndex >= 0 && xmlSourceIndex < checkpointList.count() ) {
+			checkpointList.replace(xmlSourceIndex, QString::number(cp));
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", checkpointList);
+			if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
+				QStringList softwareCheckpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", QStringList()).toStringList();
+				if ( xmlSourceIndex < softwareCheckpointList.count() ) {
+					softwareCheckpointList.replace(xmlSourceIndex, rebuilderThread()->currentListName());
+					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", softwareCheckpointList);
+				}
+			}
 		}
 	}
 	if ( index < 0 )
@@ -826,7 +859,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 					int startIndex = line.indexOf(listEntityStartPattern);
 					if ( startIndex >= 0 ) {
 						startIndex += listEntityStartPattern.length();
-						m_currentListName = line.mid(startIndex, line.indexOf("\"", startIndex) - startIndex);
+						setListCheckpoint(line.mid(startIndex, line.indexOf("\"", startIndex) - startIndex), rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						return true;
 					}
 				}
@@ -872,6 +905,17 @@ void CollectionRebuilderThread::setCheckpoint(qint64 cp, int xmlSourceIndex)
 		QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + rebuilderDialog()->settingsKey() + "/XmlSourceCheckpoints", QStringList()).toStringList();
 		checkpointList.replace(xmlSourceIndex, QString::number(checkpoint()));
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + rebuilderDialog()->settingsKey() + "/XmlSourceCheckpoints", checkpointList);
+	}
+}
+
+void CollectionRebuilderThread::setListCheckpoint(QString list, int xmlSourceIndex)
+{
+	m_currentListName = list;
+	if ( xmlSourceIndex > 0 && xmlSourceIndex < rebuilderDialog()->comboBoxXmlSource->count() - 1 ) {
+		xmlSourceIndex -= 1;
+		QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + rebuilderDialog()->settingsKey() + "/XmlSourceListCheckpoints", QStringList()).toStringList();
+		checkpointList.replace(xmlSourceIndex, list);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + rebuilderDialog()->settingsKey() + "/XmlSourceListCheckpoints", checkpointList);
 	}
 }
 
@@ -1323,7 +1367,6 @@ void CollectionRebuilderThread::run()
 		mutex.unlock();
 		if ( !exitThread && !stopRebuilding ) {
 			quint64 setsProcessed = 0, missingDumps = 0, missingDisks = 0;
-			m_currentListName.clear();
 			emit log(tr("rebuilding started"));
 			emit statusUpdated(setsProcessed, missingDumps, missingDisks);
 			emit rebuildStarted();
