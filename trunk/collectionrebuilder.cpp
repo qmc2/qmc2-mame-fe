@@ -811,9 +811,10 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 					}
 			}
 		} else {
+			QString listEntityStartPattern("<softwarelist name=\"");
 			QString setEntityStartPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
 			QByteArray line = m_xmlFile.readLine();
-			while ( !m_xmlFile.atEnd() && line.indexOf(setEntityStartPattern) < 0 && !exitThread )
+			while ( !m_xmlFile.atEnd() && line.indexOf(setEntityStartPattern) < 0 && (rebuilderDialog()->romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? line.indexOf(listEntityStartPattern) < 0 : true) && !exitThread )
 				line = m_xmlFile.readLine();
 			if ( m_xmlFile.atEnd() ) {
 				emit progressChanged(m_xmlIndexCount);
@@ -821,6 +822,14 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 				return false;
 			} else if ( !exitThread ) {
 				QString xmlString;
+				if ( rebuilderDialog()->romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
+					int startIndex = line.indexOf(listEntityStartPattern);
+					if ( startIndex >= 0 ) {
+						startIndex += listEntityStartPattern.length();
+						m_currentListName = line.mid(startIndex, line.indexOf("\"", startIndex) - startIndex);
+						return true;
+					}
+				}
 				QString setEntityEndPattern("</" + rebuilderDialog()->lineEditSetEntity->text() + ">");
 				while ( !m_xmlFile.atEnd() && line.indexOf(setEntityEndPattern) < 0 && !exitThread ) {
 					xmlString += line;
@@ -829,6 +838,8 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 				if ( !m_xmlFile.atEnd() && !exitThread ) {
 					xmlString += line;
 					if ( parseXml(xmlString, id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List) ) {
+						if ( rebuilderDialog()->romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE && !m_currentListName.isEmpty() )
+							id->prepend(m_currentListName + ":");
 						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex = m_xmlFile.pos();
 						emit progressChanged(m_xmlIndex);
@@ -1312,6 +1323,7 @@ void CollectionRebuilderThread::run()
 		mutex.unlock();
 		if ( !exitThread && !stopRebuilding ) {
 			quint64 setsProcessed = 0, missingDumps = 0, missingDisks = 0;
+			m_currentListName.clear();
 			emit log(tr("rebuilding started"));
 			emit statusUpdated(setsProcessed, missingDumps, missingDisks);
 			emit rebuildStarted();
