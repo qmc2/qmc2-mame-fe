@@ -88,6 +88,7 @@ class CollectionRebuilderThread : public QThread
 		CollectionRebuilder *m_rebuilderDialog;
 		qint64 m_xmlIndex, m_xmlIndexCount, m_checkpoint;
 		QFile m_xmlFile;
+		QString m_currentListName;
 };
 
 class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
