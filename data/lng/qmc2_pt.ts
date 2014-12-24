@@ -1915,17 +1915,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.ui" line="315"/>
         <source>Enable the use of a Qt regular expression that a software-list&apos;s name has to match in order to be processed</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar o uso de uma expressão regular do Qt que o nome de uma lista de software tem que corresponder para ser processado</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="318"/>
         <source>Filter lists</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrar listas</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="406"/>
         <source>Specify a Qt regular expression that a software-list&apos;s name has to match in order to be processed</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique a expressão regular do Qt que o nome de uma lista de software precisa corresponder para ser processado</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="433"/>
@@ -1959,7 +1959,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.ui" line="436"/>
         <source>Filter sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrar conjuntos</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="524"/>
@@ -1975,7 +1975,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.cpp" line="34"/>
         <source>Software Collection Rebuilder</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstrutor de Coleção de Software</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="222"/>
@@ -2020,7 +2020,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.cpp" line="435"/>
         <source>Rebuilding software collection...</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruindo coleção de software...</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="439"/>
@@ -2030,7 +2030,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.cpp" line="501"/>
         <source>Rebuild software collection...</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir coleção de software...</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="505"/>
@@ -2626,7 +2626,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../datinfodbmgr.cpp" line="40"/>
         <source>WARNING: failed to open DAT-info database &apos;%1&apos;: error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao abrir a base de dados de informações DAT &apos;%1&apos; erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="59"/>
@@ -2644,7 +2644,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="323"/>
         <location filename="../../datinfodbmgr.cpp" line="337"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao carregar &apos;%1&apos; da base de dados de informações DAT: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="73"/>
@@ -2653,7 +2653,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="225"/>
         <location filename="../../datinfodbmgr.cpp" line="311"/>
         <source>WARNING: failed to add &apos;%1&apos; to DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao adicionar &apos;%1&apos; à base de dados de informações DAT: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="79"/>
@@ -2662,21 +2662,21 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="232"/>
         <location filename="../../datinfodbmgr.cpp" line="319"/>
         <source>WARNING: failed to update &apos;%1&apos; in DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao atualizar &apos;%1&apos; na base de dados de informações DAT: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="194"/>
         <location filename="../../datinfodbmgr.cpp" line="264"/>
         <location filename="../../datinfodbmgr.cpp" line="351"/>
         <source>WARNING: failed to fetch row count from DAT-info database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao ler quantidade de linhas da base de dados de informações DAT: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="380"/>
         <location filename="../../datinfodbmgr.cpp" line="390"/>
         <location filename="../../datinfodbmgr.cpp" line="400"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao alterar a configuração &apos;%1&apos; da base de dados de informações DAT: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="407"/>
@@ -2689,7 +2689,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="467"/>
         <location filename="../../datinfodbmgr.cpp" line="495"/>
         <source>WARNING: failed to remove %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao remover a tabela &apos;%1&apos;: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="407"/>
@@ -2697,7 +2697,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="419"/>
         <location filename="../../datinfodbmgr.cpp" line="424"/>
         <source>software-info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de Software</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="419"/>
@@ -2710,7 +2710,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="487"/>
         <location filename="../../datinfodbmgr.cpp" line="502"/>
         <source>WARNING: failed to create %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao criar a tabela &apos;%1&apos;: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="431"/>
@@ -2718,7 +2718,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="443"/>
         <location filename="../../datinfodbmgr.cpp" line="448"/>
         <source>emu-info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de emulador</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="456"/>
@@ -2726,7 +2726,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="476"/>
         <location filename="../../datinfodbmgr.cpp" line="485"/>
         <source>machine-info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de máquina</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="458"/>
@@ -2734,13 +2734,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="478"/>
         <location filename="../../datinfodbmgr.cpp" line="487"/>
         <source>game-info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de jogo</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="495"/>
         <location filename="../../datinfodbmgr.cpp" line="502"/>
         <source>meta-data</source>
-        <translation type="unfinished"></translation>
+        <translation>meta dados</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="563"/>
@@ -2755,25 +2755,25 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="989"/>
         <location filename="../../datinfodbmgr.cpp" line="994"/>
         <source>DAT-info database</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de dados de informação DAT</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="563"/>
         <location filename="../../datinfodbmgr.cpp" line="725"/>
         <location filename="../../datinfodbmgr.cpp" line="881"/>
         <source>importing %1 from &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Importando &apos;%1&apos; de &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="563"/>
         <location filename="../../datinfodbmgr.cpp" line="653"/>
         <source>software info-texts</source>
-        <translation type="unfinished"></translation>
+        <translation>textos de informação de software</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="568"/>
         <source>Software info - %p%</source>
-        <translation type="unfinished">Informação de software - %p%</translation>
+        <translation>Informação de software - %p%</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="649"/>
@@ -2781,158 +2781,158 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="987"/>
         <location filename="../../datinfodbmgr.cpp" line="989"/>
         <source>import stopped, invalidating %1 table</source>
-        <translation type="unfinished"></translation>
+        <translation>Importação parada, invalidando tabela %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="649"/>
         <source>software info</source>
-        <translation type="unfinished"></translation>
+        <translation>informação de software</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="653"/>
         <location filename="../../datinfodbmgr.cpp" line="806"/>
         <location filename="../../datinfodbmgr.cpp" line="994"/>
         <source>done (importing %1 from &apos;%2&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (importando %1 de %2)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../datinfodbmgr.cpp" line="662"/>
         <source>%n software info record(s) imported</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de software importado</numerusform>
+            <numerusform>%n registros de informação de software importados</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="887"/>
         <source>Game info - %p%</source>
-        <translation type="unfinished">Informação do jogo - %p%</translation>
+        <translation>Informação do jogo - %p%</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="889"/>
         <source>Machine info - %p%</source>
-        <translation type="unfinished">Informação da máquina - %p%</translation>
+        <translation>Informação da máquina - %p%</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="963"/>
         <source>WARNING: missing &apos;$end&apos; in game info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$end&apos; faltando no arquivo de informação de jogo %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="965"/>
         <source>WARNING: missing &apos;$end&apos; in machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$end&apos; faltando no arquivo de informação de máquina %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="970"/>
         <source>WARNING: missing &apos;$bio&apos; in game info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$bio&apos; faltando no arquivo de informação de jogo %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="972"/>
         <source>WARNING: missing &apos;$bio&apos; in machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$bio&apos; faltando no arquivo de informação de máquina %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="977"/>
         <source>WARNING: missing &apos;$info&apos; in game info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$info&apos; faltando no arquivo de informação de jogo %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="979"/>
         <source>WARNING: missing &apos;$info&apos; in machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$info&apos; faltando no arquivo de informação de máquina %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="987"/>
         <source>game info</source>
-        <translation type="unfinished"></translation>
+        <translation>informação de jogo</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="989"/>
         <source>machine info</source>
-        <translation type="unfinished"></translation>
+        <translation>informação de máquina</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="1000"/>
         <source>WARNING: can&apos;t open game info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível abrir arquivo de informação de jogo %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="1002"/>
         <source>WARNING: can&apos;t open machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível abrir arquivo de informação de máquina %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../../datinfodbmgr.cpp" line="1009"/>
         <source>%n game info record(s) imported</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de jogo importado</numerusform>
+            <numerusform>%n registros de informação de jogo importados</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../datinfodbmgr.cpp" line="1012"/>
         <source>%n machine info record(s) imported</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de máquina importado</numerusform>
+            <numerusform>%n registros de informação de máquina importados</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="658"/>
         <source>WARNING: can&apos;t open software info file &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível abrir arquivo de informação de software %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="725"/>
         <location filename="../../datinfodbmgr.cpp" line="806"/>
         <source>emulator info-texts</source>
-        <translation type="unfinished"></translation>
+        <translation>textos de informação de emulador</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="730"/>
         <source>Emu info - %p%</source>
-        <translation type="unfinished">Informação do emulador - %p%</translation>
+        <translation>Informação do emulador - %p%</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="793"/>
         <source>WARNING: missing &apos;$end&apos; in emulator info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$end&apos; faltando no arquivo de informação de emulador %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="795"/>
         <source>WARNING: missing &apos;$mame&apos; in emulator info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$mame&apos; faltando no arquivo de informação de emulador %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="797"/>
         <source>WARNING: missing &apos;$info&apos; in emulator info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$info&apos; faltando no arquivo de informação de emulador %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="802"/>
         <source>emu info</source>
-        <translation type="unfinished"></translation>
+        <translation>informação de emulador</translation>
     </message>
     <message numerus="yes">
         <location filename="../../datinfodbmgr.cpp" line="816"/>
         <source>%n emulator info record(s) imported</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de emulador importado</numerusform>
+            <numerusform>%n registros de informação de emulador importados</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="812"/>
         <source>WARNING: can&apos;t open emulator info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível abrir arquivo de informação de emulador %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="881"/>
         <location filename="../../datinfodbmgr.cpp" line="994"/>
         <source>system info-texts</source>
-        <translation type="unfinished"></translation>
+        <translation>textos de informação de software</translation>
     </message>
 </context>
 <context>
@@ -9835,12 +9835,12 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="7090"/>
         <source>system mode</source>
-        <translation type="unfinished"></translation>
+        <translation>modo de sistema</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7095"/>
         <source>software mode</source>
-        <translation type="unfinished"></translation>
+        <translation>modo de software</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7110"/>
@@ -12110,18 +12110,18 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
     <message>
         <location filename="../../qmc2main.ui" line="4710"/>
         <source>ROMAlyzer (software mode)...</source>
-        <translation type="unfinished"></translation>
+        <translation>ROMAlyzer (modo de software)...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4713"/>
         <location filename="../../qmc2main.ui" line="4716"/>
         <source>Open ROMAlyzer (software mode)</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir ROMAlyzer (modo de software)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4719"/>
         <source>Ctrl+W</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4167"/>
@@ -12163,13 +12163,13 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
     <message>
         <location filename="../../qmc2main.ui" line="3276"/>
         <source>ROMAlyzer (system mode)...</source>
-        <translation type="unfinished"></translation>
+        <translation>ROMAlyzer (modo de sistema)...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3279"/>
         <location filename="../../qmc2main.ui" line="3282"/>
         <source>Open ROMAlyzer (system mode)</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir ROMAlyzer (modo de sistema)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3709"/>
@@ -12988,18 +12988,18 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="353"/>
         <source>Machine info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de máquina</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="357"/>
         <location filename="../../options.cpp" line="378"/>
         <source>Emu info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de emulador</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="374"/>
         <source>Game info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de jogo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="390"/>
@@ -13482,12 +13482,12 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../options.cpp" line="3853"/>
         <source>Choose software list cache database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher arquivo de banco de dados do cache da lista de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3922"/>
         <source>Choose dat-info database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher arquivo de banco de dados de informações dat</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3934"/>
@@ -13653,12 +13653,12 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../options.cpp" line="456"/>
         <source>Open ROMAlyzer (system mode)</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir ROMAlyzer (modo de sistema)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="457"/>
         <source>Open ROMAlyzer (software mode)</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir ROMAlyzer (modo de software)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="502"/>
@@ -15247,67 +15247,67 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="988"/>
         <source>Import MESS emulator information to DAT-info database</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar informação do emulador MESS para a base de dados de informação DAT</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1042"/>
         <source>Import MAME game information to DAT-info database</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar informação de jogo do MAME para a base de dados de informação DAT</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1075"/>
         <source>Import MAME emulator information to DAT-info database</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar informação do emulador MAMAE para a base de dados de informação DAT</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1092"/>
         <source>Import MESS machine information to DAT-info database</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar informação do máquina do MESS para a base de dados de informação DAT</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1165"/>
         <source>DAT-info database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo da base de dados de informação DAT</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1241"/>
         <source>Browse DAT-info database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por arquivo de base de dados de informação DAT</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1752"/>
         <source>DAT-info database file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo do banco de dados de informação DAT (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2851"/>
         <source>Game info (MAME)</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de jogo (MAME)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2861"/>
         <source>Machine info (MESS)</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de máquina (MESS)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2871"/>
         <source>Emu info (MAME)</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de emulador (MAME)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2881"/>
         <source>Emu info (MESS)</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de emulador (MESS)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2891"/>
         <source>Software info</source>
-        <translation type="unfinished">Informação de software</translation>
+        <translation>Informação de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2904"/>
         <source>Import software information to DAT-info database</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar informação de software para a base de dados de informação DAT</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3441"/>
@@ -16337,12 +16337,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="4963"/>
         <source>Software list cache DB</source>
-        <translation type="unfinished"></translation>
+        <translation>BD de cache da lista de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4976"/>
         <source>Browse software list cache database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar arquivo da base de dados do cache da lista de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5239"/>
@@ -16573,7 +16573,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="5412"/>
         <source>Database file for caching the ouput from -listsoftware (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de base de dados para fazer cache da saída do comando -listsoftware (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5445"/>
@@ -17882,27 +17882,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="2360"/>
         <source>Automatically scroll to the currently analyzed software</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir automaticamente para o software analisado atualmente</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2362"/>
         <source>software mode</source>
-        <translation type="unfinished"></translation>
+        <translation>modo de software</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2376"/>
         <source>Select game</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar jogo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2361"/>
         <source>Rebuild software collection...</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir coleção de software...</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2381"/>
         <source>system mode</source>
-        <translation type="unfinished"></translation>
+        <translation>modo do sistema</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2836"/>
@@ -18622,7 +18622,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="182"/>
         <source>Copy to clipboard (bad / missing dumps)</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar para a área de transferência (dumps ruins / faltantes)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="191"/>
@@ -18956,7 +18956,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="4392"/>
         <source>scanning</source>
-        <translation type="unfinished">escaneando</translation>
+        <translation>escaneando</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4403"/>
@@ -18968,7 +18968,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="4403"/>
         <source>s</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4412"/>
@@ -19818,17 +19818,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="29"/>
         <source>Specify software-lists to be analyzed - wildcards allowed, use space as delimiter for multiple software-lists or search patterns</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique listas de software a serem analizados - caracteres coringa permitidos, use espaço como delimitador para múltiplas lista de software ou padrões de busca</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="32"/>
         <source>Specify software-lists to analyze</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique as listas de software a serem analisados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="149"/>
         <source>Set / File</source>
-        <translation type="unfinished"></translation>
+        <translation>Conjunto / Arquivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="633"/>
@@ -19838,17 +19838,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="670"/>
         <source>When enabled, QMC2 will add a comment to the ZIP containing its version and the archive creation- or fixing-date</source>
-        <translation type="unfinished"></translation>
+        <translation>When habilitado, QMC2 adicionará um comentário para o ZIP contendo a versão e a criação do arquivo - ou data fixa</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="673"/>
         <source>Add ZIP comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar comentário ao ZIP</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="695"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Collection rebuilder&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Reconstrutor de coleção&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1009"/>
@@ -21473,12 +21473,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.ui" line="625"/>
         <location filename="../../softwarelist.ui" line="628"/>
         <source>Search progress</source>
-        <translation type="unfinished">Progresso da busca</translation>
+        <translation>Progresso da busca</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="634"/>
         <source>Searching software - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscando software - %p%</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="657"/>
@@ -21551,22 +21551,22 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="174"/>
         <source>Analyze the currently selected software with the ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Analizar software selecionado com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="175"/>
         <source>Analyze &amp;software...</source>
-        <translation type="unfinished"></translation>
+        <translation>Analizar &amp;software...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="179"/>
         <source>Analyze all relevant software-lists for the current system with the ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Analizar todas as listas de software relevantes para o sistema atual com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="180"/>
         <source>Analyze software-&amp;lists...</source>
-        <translation type="unfinished"></translation>
+        <translation>Analizar &amp;listas de software...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="185"/>
@@ -21737,7 +21737,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="1330"/>
         <source>WARNING: software-list XML bug: the software name &apos;%1&apos; is used multiple times within software-list &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: defeito no XML da lista de software: o nome do software &apos;%1&apos; é usado várias vezes dentro da lista de software &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1371"/>
@@ -21784,7 +21784,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="2184"/>
         <location filename="../../softwarelist.cpp" line="2217"/>
         <source>FATAL: couldn&apos;t find XML data for software list entry &apos;%1:%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: não foi possível encontrar os dados XML para a entrada &apos;%1.%2&apos; da lista de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3337"/>
@@ -22297,7 +22297,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../swldbmgr.cpp" line="32"/>
         <source>WARNING: failed to open software-list XML cache database &apos;%1&apos;: error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao abrir a base de dados do cache XML da lista de software &apos;%1&apos; erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="51"/>
@@ -22317,7 +22317,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../swldbmgr.cpp" line="348"/>
         <location filename="../../swldbmgr.cpp" line="376"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from software-list XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao carregar &apos;%1&apos; da base de dados do cache XML da lista de software: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="65"/>
@@ -22326,7 +22326,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../swldbmgr.cpp" line="176"/>
         <location filename="../../swldbmgr.cpp" line="336"/>
         <source>WARNING: failed to add &apos;%1&apos; to software-list XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao adicionar &apos;%1&apos; à base de dados do cache XML da lista de software: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="71"/>
@@ -22335,38 +22335,38 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../swldbmgr.cpp" line="182"/>
         <location filename="../../swldbmgr.cpp" line="344"/>
         <source>WARNING: failed to update &apos;%1&apos; in software-list XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao atualizar &apos;%1&apos; na base de dados do cache XML da lista de software: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="360"/>
         <source>WARNING: failed to fetch row count from software-list XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao ler quantidade de linhas da base de dados do cache XML da lista de software: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="406"/>
         <location filename="../../swldbmgr.cpp" line="416"/>
         <location filename="../../swldbmgr.cpp" line="426"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the software-list XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao alterar a configuração de &apos;%1&apos; da base de dados do cache XML da lista de software: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="433"/>
         <location filename="../../swldbmgr.cpp" line="438"/>
         <location filename="../../swldbmgr.cpp" line="443"/>
         <source>WARNING: failed to remove software-list XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao remover base de dados do cache XML da lista de software: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="451"/>
         <location filename="../../swldbmgr.cpp" line="456"/>
         <location filename="../../swldbmgr.cpp" line="461"/>
         <source>WARNING: failed to create software-list XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao criar base de dados do cache XML da lista de software: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="468"/>
         <source>software-list XML cache database &apos;%1&apos; initialized</source>
-        <translation type="unfinished"></translation>
+        <translation>base de dados do cache XML da lista de software &apos;%1&apos; inicializada</translation>
     </message>
 </context>
 <context>
