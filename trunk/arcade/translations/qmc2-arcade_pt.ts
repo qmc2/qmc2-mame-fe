@@ -29,7 +29,7 @@
     <message>
         <location filename="../datinfodbmgr.cpp" line="38"/>
         <source>WARNING: failed to open DAT-info database &apos;%1&apos;: error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao abrir base de dados de informação DAT &apos;%1&apos; erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="57"/>
@@ -47,7 +47,7 @@
         <location filename="../datinfodbmgr.cpp" line="321"/>
         <location filename="../datinfodbmgr.cpp" line="335"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao carregar &apos;%1&apos; da base de dados de informação DAT: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="71"/>
@@ -56,7 +56,7 @@
         <location filename="../datinfodbmgr.cpp" line="223"/>
         <location filename="../datinfodbmgr.cpp" line="309"/>
         <source>WARNING: failed to add &apos;%1&apos; to DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao adicionar &apos;%1&apos; na base de dados de informação DAT: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="77"/>
@@ -65,21 +65,21 @@
         <location filename="../datinfodbmgr.cpp" line="230"/>
         <location filename="../datinfodbmgr.cpp" line="317"/>
         <source>WARNING: failed to update &apos;%1&apos; in DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao atualizar &apos;%1&apos; na base de dados de informação DAT: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="192"/>
         <location filename="../datinfodbmgr.cpp" line="262"/>
         <location filename="../datinfodbmgr.cpp" line="349"/>
         <source>WARNING: failed to fetch row count from DAT-info database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao carregar o número de linhas da base de dados de informação DAT: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="378"/>
         <location filename="../datinfodbmgr.cpp" line="388"/>
         <location filename="../datinfodbmgr.cpp" line="398"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao alterar a configuração &apos;%1&apos; na base de dados de informação DAT: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="405"/>
@@ -92,7 +92,7 @@
         <location filename="../datinfodbmgr.cpp" line="465"/>
         <location filename="../datinfodbmgr.cpp" line="493"/>
         <source>WARNING: failed to remove %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao remover tabela &apos;%1&apos;: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="405"/>
@@ -100,7 +100,7 @@
         <location filename="../datinfodbmgr.cpp" line="417"/>
         <location filename="../datinfodbmgr.cpp" line="422"/>
         <source>software-info</source>
-        <translation type="unfinished"></translation>
+        <translation>informação de software</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="417"/>
@@ -113,7 +113,7 @@
         <location filename="../datinfodbmgr.cpp" line="485"/>
         <location filename="../datinfodbmgr.cpp" line="500"/>
         <source>WARNING: failed to create %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao criar tabela &apos;%1&apos;: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="429"/>
@@ -121,7 +121,7 @@
         <location filename="../datinfodbmgr.cpp" line="441"/>
         <location filename="../datinfodbmgr.cpp" line="446"/>
         <source>emu-info</source>
-        <translation type="unfinished"></translation>
+        <translation>informação de emulador</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="454"/>
@@ -129,7 +129,7 @@
         <location filename="../datinfodbmgr.cpp" line="474"/>
         <location filename="../datinfodbmgr.cpp" line="483"/>
         <source>machine-info</source>
-        <translation type="unfinished"></translation>
+        <translation>informação de máquina</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="456"/>
@@ -137,13 +137,13 @@
         <location filename="../datinfodbmgr.cpp" line="476"/>
         <location filename="../datinfodbmgr.cpp" line="485"/>
         <source>game-info</source>
-        <translation type="unfinished"></translation>
+        <translation>informação de jogo</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="493"/>
         <location filename="../datinfodbmgr.cpp" line="500"/>
         <source>meta-data</source>
-        <translation type="unfinished"></translation>
+        <translation>meta dados</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="561"/>
@@ -154,135 +154,135 @@
         <location filename="../datinfodbmgr.cpp" line="835"/>
         <location filename="../datinfodbmgr.cpp" line="920"/>
         <source>DAT-info database</source>
-        <translation type="unfinished"></translation>
+        <translation>base de dados de informação DAT</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="561"/>
         <location filename="../datinfodbmgr.cpp" line="701"/>
         <location filename="../datinfodbmgr.cpp" line="835"/>
         <source>importing %1 from &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>importando %1 de &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="561"/>
         <location filename="../datinfodbmgr.cpp" line="631"/>
         <source>software info-texts</source>
-        <translation type="unfinished"></translation>
+        <translation>textos de informação de software</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="631"/>
         <location filename="../datinfodbmgr.cpp" line="762"/>
         <location filename="../datinfodbmgr.cpp" line="920"/>
         <source>done (importing %1 from &apos;%2&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (importando %1 de &apos;%2&apos;)</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="636"/>
         <source>WARNING: can&apos;t open software info file &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: não foi possível abrir arquivo de informação de software &apos;%1&apos;</translation>
     </message>
     <message numerus="yes">
         <location filename="../datinfodbmgr.cpp" line="639"/>
         <source>%n software info record(s) imported</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de software importado</numerusform>
+            <numerusform>%n registros de informação de software importados</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="701"/>
         <location filename="../datinfodbmgr.cpp" line="762"/>
         <source>emulator info-texts</source>
-        <translation type="unfinished"></translation>
+        <translation>textos de informação de emulador</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="755"/>
         <source>WARNING: missing &apos;$end&apos; in emulator info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$end&apos; faltando no arquivo de informação de emulador %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="757"/>
         <source>WARNING: missing &apos;$mame&apos; in emulator info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$mame&apos; faltando no arquivo de informação de emulador %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="759"/>
         <source>WARNING: missing &apos;$info&apos; in emulator info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$info&apos; faltando no arquivo de informação de emulador %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="768"/>
         <source>WARNING: can&apos;t open emulator info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: não foi possível abrir arquivo de informação de emulador %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../datinfodbmgr.cpp" line="771"/>
         <source>%n emulator info record(s) imported</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de emulador importado</numerusform>
+            <numerusform>%n registros de informação de emulador importados</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="835"/>
         <location filename="../datinfodbmgr.cpp" line="920"/>
         <source>system info-texts</source>
-        <translation type="unfinished"></translation>
+        <translation>textos de informação de sistema</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="899"/>
         <source>WARNING: missing &apos;$end&apos; in machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$end&apos; faltando no arquivo de informação de máquina %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="901"/>
         <source>WARNING: missing &apos;$end&apos; in game info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$end&apos; faltando no arquivo de informação de jogo %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="906"/>
         <source>WARNING: missing &apos;$bio&apos; in machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$bio&apos; faltando no arquivo de informação de máquina %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="908"/>
         <source>WARNING: missing &apos;$bio&apos; in game info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$bio&apos; faltando no arquivo de informação de jogo %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="913"/>
         <source>WARNING: missing &apos;$info&apos; in machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$info&apos; faltando no arquivo de informação de máquina %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="915"/>
         <source>WARNING: missing &apos;$info&apos; in game info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$info&apos; faltando no arquivo de informação de jogo %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="926"/>
         <source>WARNING: can&apos;t open machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: não foi possível abrir arquivo de informação de máquina %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="928"/>
         <source>WARNING: can&apos;t open game info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: não foi possível abrir arquivo de informação de jogo %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../datinfodbmgr.cpp" line="934"/>
         <source>%n machine info record(s) imported</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de máquina importado</numerusform>
+            <numerusform>%n registros de informação de máquina importados</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../datinfodbmgr.cpp" line="936"/>
         <source>%n game info record(s) imported</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de jogo importado</numerusform>
+            <numerusform>%n registros de informação de jogo importados</numerusform>
         </translation>
     </message>
 </context>
