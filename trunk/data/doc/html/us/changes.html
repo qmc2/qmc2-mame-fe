@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.47, 30-DEC-2014</h3>
+<h3>CHANGES - v0.47, 31-DEC-2014</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,18 +14,18 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.47, 30-DEC-2014:</b></p>
+<p><b>v0.47, 31-DEC-2014:</b></p>
 <ul>
   <li>fix: Mac OS X build: corrected linker issues when building with clang (LLVM)</li>
   <li>fix: avoid crash when caching software-lists while ROM states are being checked</li>
-  <li>fix: Mac OS X: using the platform's default key-sequence for "close application" (Command+Q) to stop processing / quit QMC2</li>
+  <li>fix: Mac OS X: using the platform's default key-sequence for 'close application' (Command+Q) to stop current processing / quit QMC2</li>
   <li>fix: ROMAlyzer (system-mode): sort selected set-names before analyzing them</li>
   <li>imp: ROMAlyzer / check-sum scanner: show the progress of running scans in the corresponding status widget as well</li>
-  <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS GIT/SVN latest</li>
+  <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS 0.157</li>
   <li>imp: QMC2 Arcade: teached QMC2 Arcade the use of the new DAT-info database added in 0.46 (including fall back to the parent's info if applicable)</li>
   <li>imp: QMC2 Arcade / ToxicWaste theme: minor cosmetic corrections regarding the bottom menu-bar</li>
   <li>imp: changed the default setting for 'NativeFileDialogs' to true on Mac OS X</li>
-  <li>imp: build: added make option 'L_LIBDIRFLAGS' which allows for changing the order in which library paths are searched for when linking (usually not required, but may be useful for solving Qt library version conflicts)</li>
+  <li>imp: build: added make option 'L_LIBDIRFLAGS' which allows for changing the order in which library paths are searched when linking (usually not required, but may be useful for solving Qt library version conflicts)</li>
   <li>imp: ROMAlyzer: added a reproduction option to toggle the creation of a ZIP comment (may be annoying)</li>
   <li>imp: the main GUI no longer restores the visibility of certain sub-windows as it's prone to trouble and wasn't consequently implemented anyway (i.e. not all sub-windows were restored)</li>
   <li>imp: software-lists: utilizing the same (much faster) algorithm for searching within known software as used by the system search</li>
