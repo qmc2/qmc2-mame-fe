@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.47, 01-DEC-2014</h3>
+<h3>TODO - v0.47, 31-DEC-2014</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>The built-in joystick GUI control includes support for trackballs -- this is completely untested due to the lack of controllers with trackballs (it should basically work, but be prepared for bugs and unexpected behavior).</li>
@@ -13,32 +13,26 @@
   <li>MAME/MESS output notifiers are not supported on Windows yet.</li>
   <li>The built-in <i>MiniWebBrowser</i> has a fairly restrictive set of features which is tailored to the uses of QMC2. It's not even <i>meant</i> to be a full-featured browser, even though it meanwhile supports most of the typical browser-functions.</li>
   <li>Depending on the complexity of a style / style sheet combination, it may slow down GUI operations (that's no bug, but you should note it).</li>
-  <li>The <i>set repair</i> function (a feature of the ROMAlyzer's checksum wizard) only operates on ZIPs! There's no support for ROM sets stored as 7z archives or <i>regular files</i> in individual sub-directores yet.</li>
   <li>The ROMAlyzer's <i>set rewriter</i> feature doesn't support reproduction of 7z archives (yet), only ZIPs or <i>regular files</i> in individual sub-directores can be created.</li> 
   <li>Due to a Qt restriction, a QTabWidget's corner-widget (if any) is only shown when the tab-position is either <i>north</i> or <i>south</i>.</li>
   <li>X11: Embedded emulators that change their display sizes at runtime (usually during startup) may not always be centered correctly. Unfortunately, newer window-managers may cause additional problems with resizing. We hope that we can avoid all of this with our planned embedder port to Qt 5.</li>
   <li>Windows: There's a known issue for <u>embedded</u> emulators running in <i>Direct 3D</i> mode ('-video d3d'): full-screen switching will lead to a crash of the emulator. To work around this, you have to <i>release</i> the emulator first; you can re-embed it later from the emulator control panel.</li>
-  <li>Windows: MinGW builds: The GIF animation used when loading / filtering the game/machine list (or when <i>mass tagging</i> sets) isn't displayed in case of MinGW builds. We have no idea why, nor do we think it's our fault since in the official binaries built with VC++ this work fine (seems to be a MinGW-specific Qt bug). However, it's just a 'cosmetic' issue.</li>
+  <li>Windows: MinGW builds: The GIF animation used when loading / filtering the game/machine list (or when <i>mass tagging</i> sets) isn't displayed in case of MinGW builds. We have no idea why, nor do we think it's our fault since in the official binaries built with VC++ this works fine (seems to be a MinGW-specific Qt bug). However, it's just a 'cosmetic' issue.</li>
 </ul>
 <p><b>Planned changes, new features and improvements</b></p>
 <ul>
   <li>Fulfill the accepted/open <a href="http://tracker.batcom-it.net/search.php?project_id=1&category=Feature%20requests&status_id=50&sticky_issues=off&sortby=last_updated&dir=DESC&hide_status_id=-2&match_type=0" target="_blank">feature requests from our bug-tracker</a> (see also our <a href="http://tracker.batcom-it.net/roadmap_page.php?project_id=1" target="_blank">current roadmap</a>)</li>
   <li>Create a Qt 5 specific embedder (platform-independent with regard to embed handling, so will hopefully also work on Mac OS X)</li>
   <li>Add support for MAME's/MESS's new HTTP web-console &amp; JSON interface (note: Qt 4.8.x needs a newer QtWebKit to support <a href="http://tools.ietf.org/html/rfc6455" target="_blank">RFC 6455</a>, it only comes with support for the <a href="http://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76" target="_blank">hixie-76</a> draft version of the WebSocket protocol, so this might be no option - QtWebKit in Qt 5.1.x has support for this, though)</li>
-  <li>Morph game/machine favorites, play-history and search results into tree-widgets (like the game/machine list views) and let the user categorize his/her favorites freely (probably add support for folder-ini's as well)</li>
-  <li>Store and retrieve the date a game/machine was added to the favorites and play-history and make it an additional source for item-categorization</li>
   <li>Add a nicer <i>quick-search</i> function (replacing the default keyboard-search implementation inherited from QAbstractItemView) to all 4 game/machine list views and the software-list view including a pop-up editor to display and customize the search string</li>
   <li>Add an optional reg-exp filtered game/machine list view (as an advanced alternative to the search feature)</li>
   <li>Add software-state info to the software-list export feature</li>
   <li>QMC2 Arcade: add support for dynamically changing background images based on the current game's category (category images being freely customizable)</li>
   <li>Add support for <b>multiple</b> images per image category</li>
   <li>Add <a href="https://developers.google.com/youtube/v3/" target="_blank">YouTube protocol 3.0</a> support (currently 'experimental')</li>
-  <li>Add support for 3D arcade cabinet models from the <a href="http://www.mameworld.info/3darcade/" target="_blank">3D Arcade</a> project -- this will likely not be done before Qt 5.4 is ready, provided it finally contains Qt3D (?)</li>
   <li>Add support for optional coloring of some game/machine list item cells, especially for the driver status column</li>
   <li>Add a 'record a video' dialog to make the creation of emulator session videos an easier task</li>
   <li>Allow changing the order and visibility of any 'special' widgets (emulator &amp; front-end logs, emulator control, audio player and downloads + tabs on the software-detail widget)</li>
-  <li>Add support to hide/show specific categories in both major game lists when the use of <i>catver.ini</i> (MAME/UME) and/or <i>category.ini</i> (MESS/UME) has been enabled</li>
-  <li>Add an option to allow for automatic switching to the last viewed detail of each game/machine (do we really need that?)</li>
   <li>Add support for launching emulators in record &amp; playback modes (input recording/playback)</li>
   <li>Add a backup / restore tool for QMC2's configuration and caches (though it's a trivial task, see <a href="http://wiki.batcom-it.net/index.php?title=QMC2_FAQ#How_do_I_backup_.2F_restore_QMC2.27s_configuration.3F" target="_blank">this FAQ</a> and/or <a href="http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Configuration_backup_.2F_restore" target="_blank">this section in the wiki</a>)</li>
   <li>Add export / import functionality for YouTube video attachments (to allow for merging of videos found by different people, or to backup / restore discovered videos)</li>
