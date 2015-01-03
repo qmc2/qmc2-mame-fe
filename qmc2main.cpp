@@ -5074,7 +5074,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 			if ( qmc2CurrentItem != qmc2LastSystemNotesItem ) {
 				qmc2LastSystemNotesItem = qmc2CurrentItem;
 				if ( !qmc2SystemNotesEditor ) {
-					int tabIndex = tabWidgetGameDetail->indexOf(tabSystemNotes);
+					int tabIndex = tabWidgetGameDetail->indexOf(qmc2DetailSetup->tabWidgetsMap[QMC2_SYSTEM_NOTES_INDEX]);
 					tabWidgetGameDetail->setUpdatesEnabled(false);
 					tabWidgetGameDetail->removeTab(tabIndex);
 					qmc2SystemNotesEditor = new HtmlEditor("SystemNotes", true);

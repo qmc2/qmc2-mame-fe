@@ -270,7 +270,6 @@ DetailSetup::DetailSetup(QWidget *parent)
 	configurableDetailList << QMC2_YOUTUBE_INDEX;
 #endif
 	tabWidgetsMap[QMC2_SYSTEM_NOTES_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SYSTEM_NOTES_INDEX);
-
 #endif
 
 	setupUi(this);
