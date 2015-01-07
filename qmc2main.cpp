@@ -10649,6 +10649,8 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 				setsToAnalyze << item->text(QMC2_GAMELIST_COLUMN_NAME);
 	}
 
+	qSort(setsToAnalyze);
+
 	if ( !qmc2SystemROMAlyzer )
 		qmc2SystemROMAlyzer = new ROMAlyzer(0);
 
