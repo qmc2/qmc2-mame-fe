@@ -168,6 +168,7 @@ class CheckSumScannerThread : public QThread
 		bool isPaused;
 		bool pauseRequested;
 		bool scanIncrementally;
+		bool deepScan;
 		QMutex mutex;
 		QWaitCondition waitCondition;
 		QStringList scannedPaths;

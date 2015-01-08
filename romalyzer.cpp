@@ -493,6 +493,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScannedPathsEnabled", checkSumDbScannedPathsEnabled);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDatabasePath", lineEditCheckSumDbDatabasePath->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScanIncrementally", toolButtonCheckSumDbScanIncrementally->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDeepScan", toolButtonCheckSumDbDeepScan->isChecked());
 
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ReportHeaderState", treeWidgetChecksums->header()->saveState());
@@ -599,6 +600,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	}
 	lineEditCheckSumDbDatabasePath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDatabasePath", QString(userScopePath + "/%1-checksum.db").arg(variantName)).toString());
 	toolButtonCheckSumDbScanIncrementally->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScanIncrementally", true).toBool());
+	toolButtonCheckSumDbDeepScan->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDeepScan", true).toBool());
 
 	if ( e )
 		e->accept();
@@ -4265,6 +4267,7 @@ void ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()
 			if ( listWidgetCheckSumDbScannedPaths->item(i)->checkState() == Qt::Checked )
 				checkSumScannerThread()->scannedPaths << listWidgetCheckSumDbScannedPaths->item(i)->text();
 		checkSumScannerThread()->scanIncrementally = toolButtonCheckSumDbScanIncrementally->isChecked();
+		checkSumScannerThread()->deepScan = toolButtonCheckSumDbDeepScan->isChecked();
 		checkSumScannerThread()->waitCondition.wakeAll();
 	}
 	qApp->processEvents();
@@ -4387,7 +4390,6 @@ void ROMAlyzer::updateCheckSumDbStatus()
 #endif
 
 	static quint64 lastRowCount = 0;
-	static QDateTime lastDateTime;
 
 	bool isScanning = checkSumScannerThread()->status() == tr("scanning");
 
@@ -4395,16 +4397,11 @@ void ROMAlyzer::updateCheckSumDbStatus()
 	QString statusString = "<center><table border=\"0\" cellpadding=\"2\" cellspacing=\"2\">";
 	if ( isScanning ) {
 		quint64 currentRowCount = checkSumDb()->checkSumRowCount();
-		if ( lastRowCount > 0 ) {
-			quint64 deltaSecs = lastDateTime.secsTo(now);
-			quint64 objectsPerSecond = 0;
-			if ( deltaSecs > 0 )
-				objectsPerSecond = (currentRowCount - lastRowCount) / deltaSecs;
-			statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(currentRowCount) + " | &Delta; " + QString::number(objectsPerSecond) + "/" + tr("s") + "</td></tr>";
-		} else
+		if ( lastRowCount > 0 )
+			statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(currentRowCount) + " | &Delta; " + QString::number(currentRowCount - lastRowCount) + "</td></tr>";
+		else
 			statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(currentRowCount) + "</td></tr>";
 		lastRowCount = currentRowCount;
-		lastDateTime = now;
 	} else {
 		statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(checkSumDb()->checkSumRowCount()) + "</td></tr>";
 		lastRowCount = 0;
@@ -4432,7 +4429,7 @@ void ROMAlyzer::updateCheckSumDbStatus()
 	statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Age of stored data") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + ageString + "</td></tr>";
 	statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Pending updates") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(checkSumScannerThread()->pendingUpdates()) + "</td></tr>";
 	if ( checkSumScannerLog()->progress() > 0 && isScanning )
-		statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Scanner status") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + checkSumScannerThread()->status() + " | " + QString::number(checkSumScannerLog()->progress(), 'f', 0) + "%</td></tr>";
+		statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Scanner status") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + checkSumScannerThread()->status() + " | " + QString::number(checkSumScannerLog()->progress(), 'f', 1) + "%</td></tr>";
 	else
 		statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Scanner status") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + checkSumScannerThread()->status() + "</td></tr>";
 	statusString += "</table></center>";
@@ -4652,7 +4649,7 @@ bool ROMAlyzerXmlHandler::characters(const QString &str)
 CheckSumScannerThread::CheckSumScannerThread(CheckSumScannerLog *scannerLog, QString settingsKey, QObject *parent)
 	: QThread(parent)
 {
-	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopScan = scanIncrementally = false;
+	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopScan = scanIncrementally = deepScan = false;
 	m_preparingIncrementalScan = false;
 	m_checkSumDb = NULL;
 	m_scannerLog = scannerLog;
@@ -4880,7 +4877,6 @@ void CheckSumScannerThread::run()
 						doDbUpdate = false;
 						break;
 				}
-				QTest::qWait(0);
 				if ( exitThread || stopScan )
 					break;
 				if ( doDbUpdate ) {
@@ -4888,7 +4884,7 @@ void CheckSumScannerThread::run()
 						case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
 						case QMC2_CHECKSUM_SCANNER_FILE_7Z:
 							for (int i = 0; i < memberList.count(); i++) {
-								if ( !checkSumDb()->exists(sha1List[i], crcList[i]) ) {
+								if ( !checkSumDb()->exists(sha1List[i], crcList[i], sizeList[i]) ) {
 									emit log(tr("database update") + ": " + tr("adding member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' to database").arg(memberList[i]).arg(filePath).arg(sha1List[i]).arg(crcList[i]));
 									checkSumDb()->setData(sha1List[i], crcList[i], sizeList[i], filePath, memberList[i], checkSumDb()->typeToName(type));
 									m_pendingUpdates++;
@@ -4897,7 +4893,7 @@ void CheckSumScannerThread::run()
 							}
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_CHD:
-							if ( !checkSumDb()->exists(sha1, crc) ) {
+							if ( !checkSumDb()->exists(sha1, crc, size) ) {
 								emit log(tr("database update") + ": " + tr("adding CHD '%1' with SHA-1 '%2' to database").arg(filePath).arg(sha1));
 								checkSumDb()->setData(sha1, QString(), size, filePath, QString(), checkSumDb()->typeToName(type));
 								m_pendingUpdates++;
@@ -4905,7 +4901,7 @@ void CheckSumScannerThread::run()
 								emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("CHD '%1' ignored").arg(filePath));
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
-							if ( !checkSumDb()->exists(sha1, crc) ) {
+							if ( !checkSumDb()->exists(sha1, crc, size) ) {
 								emit log(tr("database update") + ": " + tr("adding file '%1' with SHA-1 '%2' and CRC '%3' to database").arg(filePath).arg(sha1).arg(crc));
 								checkSumDb()->setData(sha1, crc, size, filePath, QString(), checkSumDb()->typeToName(type));
 								m_pendingUpdates++;
@@ -4942,7 +4938,6 @@ void CheckSumScannerThread::run()
 					emit log(tr("scanner resumed"));
 					emit progressTextChanged(tr("Scanning"));
 				}
-				QTest::qWait(0);
 				if ( exitThread || stopScan )
 					break;
 				else
@@ -5039,34 +5034,42 @@ bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, Q
 				break;
 			if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
 				QString fn((const char *)ioBuffer);
-				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
-					quint64 memberSize = 0;
-					qint64 len;
-					QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
-					ulong crc1 = crc32(0, NULL, 0);
-					while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
-						QByteArray fileData((const char *)ioBuffer, len);
-						sha1Hash.addData(fileData);
-						if ( crc1 > 0 ) {
-							ulong crc2 = crc32(0, NULL, 0);
-							crc2 = crc32(crc2, (const Bytef *)fileData.data(), fileData.size());
-							crc1 = crc32_combine(crc1, crc2, fileData.size());
-						} else
-							crc1 = crc32(crc1, (const Bytef *)fileData.data(), fileData.size());
-						memberSize += len;
-						if ( exitThread || stopScan )
-							break;
-					}
-					unzCloseCurrentFile(zipFile);
-					if ( exitThread || stopScan )
-						break;
+				if ( exitThread || stopScan )
+					break;
+				if ( deepScan ) {
+					if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
+						quint64 memberSize = 0;
+						qint64 len;
+						QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
+						ulong crc1 = crc32(0, NULL, 0);
+						while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
+							QByteArray fileData((const char *)ioBuffer, len);
+							sha1Hash.addData(fileData);
+							if ( crc1 > 0 ) {
+								ulong crc2 = crc32(0, NULL, 0);
+								crc2 = crc32(crc2, (const Bytef *)fileData.data(), fileData.size());
+								crc1 = crc32_combine(crc1, crc2, fileData.size());
+							} else
+								crc1 = crc32(crc1, (const Bytef *)fileData.data(), fileData.size());
+							memberSize += len;
+							if ( exitThread || stopScan )
+								break;
+						}
+						unzCloseCurrentFile(zipFile);
+						memberList->append(fn);
+						sizeList->append(memberSize);
+						sha1List->append(sha1Hash.result().toHex());
+						crcList->append(crcToString(crc1));
+						emit log(tr("ZIP scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(fn).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
+					} else
+						emit log(tr("ZIP scan") + ": " + tr("WARNING: can't open member '%1' from archive '%2'").arg(fn).arg(fileName));
+				} else {
 					memberList->append(fn);
-					sizeList->append(memberSize);
-					sha1List->append(sha1Hash.result().toHex());
-					crcList->append(crcToString(crc1));
+					sizeList->append(zipInfo.uncompressed_size);
+					sha1List->append(QString());
+					crcList->append(crcToString(zipInfo.crc));
 					emit log(tr("ZIP scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(fn).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
-				} else
-					emit log(tr("ZIP scan") + ": " + tr("WARNING: can't open member '%1' from archive '%2'").arg(fn).arg(fileName));
+				}
 			}
 		} while ( unzGoToNextFile(zipFile) == UNZ_OK );
 		unzClose(zipFile);
@@ -5082,22 +5085,30 @@ bool CheckSumScannerThread::scanSevenZip(QString fileName, QStringList *memberLi
 		foreach (SevenZipMetaData metaData, sevenZipFile.itemList()) {
 			if ( exitThread || stopScan )
 				break;
-			QByteArray fileData;
-			quint64 readLength = sevenZipFile.read(metaData.name(), &fileData);
-			if ( readLength > 0 ) {
-				if ( exitThread || stopScan )
-					break;
+			if ( deepScan ) {
+				QByteArray fileData;
+				quint64 readLength = sevenZipFile.read(metaData.name(), &fileData);
+				if ( readLength > 0 ) {
+					if ( exitThread || stopScan )
+						break;
+					memberList->append(metaData.name());
+					sizeList->append(metaData.size());
+					QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
+					sha1Hash.addData(fileData);
+					sha1List->append(sha1Hash.result().toHex());
+					ulong crc = crc32(0, NULL, 0);
+					crc = crc32(crc, (const Bytef *)fileData.data(), fileData.size());
+					crcList->append(crcToString(crc));
+					emit log(tr("7Z scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
+				} else
+					emit log(tr("7Z scan") + ": " + tr("WARNING: can't read member '%1' from archive '%2'").arg(metaData.name()).arg(fileName));
+			} else {
 				memberList->append(metaData.name());
 				sizeList->append(metaData.size());
-				QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
-				sha1Hash.addData(fileData);
-				sha1List->append(sha1Hash.result().toHex());
-				ulong crc = crc32(0, NULL, 0);
-				crc = crc32(crc, (const Bytef *)fileData.data(), fileData.size());
-				crcList->append(crcToString(crc));
+				sha1List->append(QString());
+				crcList->append(metaData.crc());
 				emit log(tr("7Z scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
-			} else
-				emit log(tr("7Z scan") + ": " + tr("WARNING: can't read member '%1' from archive '%2'").arg(metaData.name()).arg(fileName));
+			}
 		}
 		sevenZipFile.close();
 		return true;
