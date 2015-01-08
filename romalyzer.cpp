@@ -4397,7 +4397,7 @@ void ROMAlyzer::updateCheckSumDbStatus()
 	QString statusString = "<center><table border=\"0\" cellpadding=\"2\" cellspacing=\"2\">";
 	if ( isScanning ) {
 		quint64 currentRowCount = checkSumDb()->checkSumRowCount();
-		if ( lastRowCount > 0 )
+		if ( lastRowCount > 0 && currentRowCount >= lastRowCount )
 			statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(currentRowCount) + " | &Delta; " + QString::number(currentRowCount - lastRowCount) + "</td></tr>";
 		else
 			statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(currentRowCount) + "</td></tr>";
