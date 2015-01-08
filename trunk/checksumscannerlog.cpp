@@ -31,7 +31,8 @@ void CheckSumScannerLog::on_spinBoxMaxLogSize_valueChanged(int value)
 
 void CheckSumScannerLog::log(const QString &message)
 {
-	plainTextEditLog->appendPlainText(QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + message);
+	if ( checkBoxEnableLog->isChecked() )
+		plainTextEditLog->appendPlainText(QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + message);
 }
 
 void CheckSumScannerLog::scrollToEnd()

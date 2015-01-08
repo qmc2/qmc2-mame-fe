@@ -184,7 +184,8 @@ void CollectionRebuilder::on_spinBoxMaxLogSize_valueChanged(int value)
 
 void CollectionRebuilder::log(const QString &message)
 {
-	plainTextEditLog->appendPlainText(QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + message);
+	if ( checkBoxEnableLog->isChecked() )
+		plainTextEditLog->appendPlainText(QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + message);
 }
 
 void CollectionRebuilder::scrollToEnd()
@@ -662,7 +663,7 @@ void CollectionRebuilderThread::reopenDatabase()
 	connect(checkSumDb(), SIGNAL(log(const QString &)), rebuilderDialog(), SLOT(log(const QString &)));
 }
 
-bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
+bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List)
 {
 	if ( xml.isEmpty() )
 		return false;
@@ -708,7 +709,7 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 								mergeName = xmlLine.mid(startIndex, endIndex - startIndex);
 						}
 						if ( status != "nodump" && (!merge || mergeName.isEmpty()) ) {
-							QString romSha1, romCrc;
+							QString romSha1, romCrc, romSize;
 							startIndex = xmlLine.indexOf("sha1=\"");
 							if ( startIndex >= 0 ) {
 								startIndex += 6;
@@ -723,10 +724,18 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 								if ( endIndex >= 0 )
 									romCrc = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
+							startIndex = xmlLine.indexOf("size=\"");
+							if ( startIndex >= 0 ) {
+								startIndex += 6;
+								endIndex = xmlLine.indexOf("\"", startIndex);
+								if ( endIndex >= 0 )
+									romSize = xmlLine.mid(startIndex, endIndex - startIndex);
+							}
 							if ( !romSha1.isEmpty() || !romCrc.isEmpty() ) {
 								*romNameList << romName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
 								*romSha1List << romSha1;
 								*romCrcList << romCrc;
+								*romSizeList << romSize;
 							}
 						}
 					}
@@ -771,12 +780,13 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 		return false;
 }
 
-bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
+bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List)
 {
 	id->clear();
 	romNameList->clear();
 	romSha1List->clear();
 	romCrcList->clear();
+	romSizeList->clear();
 	diskNameList->clear();
 	diskSha1List->clear();
 	if ( m_xmlIndex < 0 || m_xmlIndexCount < 0 ) {
@@ -819,7 +829,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 		if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
 			switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 				case QMC2_ROMALYZER_MODE_SOFTWARE:
-					if ( parseXml(swlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List) ) {
+					if ( parseXml(swlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List) ) {
 						id->prepend(swlDb()->list(m_xmlIndex) + ":");
 						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex++;
@@ -832,7 +842,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 					}
 				case QMC2_ROMALYZER_MODE_SYSTEM:
 				default:
-					if ( parseXml(xmlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List) ) {
+					if ( parseXml(xmlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List) ) {
 						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex++;
 						emit progressChanged(m_xmlIndex);
@@ -870,7 +880,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 				}
 				if ( !m_xmlFile.atEnd() && !exitThread ) {
 					xmlString += line;
-					if ( parseXml(xmlString, id, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List) ) {
+					if ( parseXml(xmlString, id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List) ) {
 						if ( rebuilderDialog()->romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE && !m_currentListName.isEmpty() )
 							id->prepend(m_currentListName + ":");
 						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
@@ -957,7 +967,7 @@ void CollectionRebuilderThread::checkpointRestart(qint64 cp)
 	setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 }
 
-bool CollectionRebuilderThread::rewriteSet(QString *setKey, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
+bool CollectionRebuilderThread::rewriteSet(QString *setKey, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List)
 {
 	QString set, baseDir = rebuilderDialog()->romAlyzer()->lineEditSetRewriterOutputPath->text();
 	if ( rebuilderDialog()->romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
@@ -971,12 +981,12 @@ bool CollectionRebuilderThread::rewriteSet(QString *setKey, QStringList *romName
 	} else
 		set = *setKey;
 	if ( rebuilderDialog()->romAlyzer()->radioButtonSetRewriterZipArchives->isChecked() )
-		return writeAllZipData(baseDir, set, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List);
+		return writeAllZipData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
 	else
-		return writeAllFileData(baseDir, set, romNameList, romSha1List, romCrcList, diskNameList, diskSha1List);
+		return writeAllFileData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
 }
 
-bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
+bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List)
 {
 	// FIXME: no support for disks
 	bool success = true;
@@ -993,7 +1003,7 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 		QFile f(fileName);
 		if ( f.open(QIODevice::WriteOnly) ) {
 			QByteArray data;
-			quint64 size;
+			quint64 size = romSizeList->at(i).toULongLong();
 			QString path, member, type;
 			if ( checkSumDb()->getData(romSha1List->at(i), romCrcList->at(i), &size, &path, &member, &type) ) {
 				if ( type == "ZIP" )
@@ -1035,7 +1045,7 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 	return success;
 }
 
-bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *diskNameList, QStringList *diskSha1List)
+bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List)
 {
 	// FIXME: no support for disks
 	QDir d(QDir::cleanPath(baseDir));
@@ -1075,7 +1085,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 			}
 			QString file = romNameList->at(i);
 			QByteArray data;
-			quint64 size;
+			quint64 size = romSizeList->at(i).toULongLong();
 			QString path, member, type;
 			if ( checkSumDb()->getData(romSha1List->at(i), romCrcList->at(i), &size, &path, &member, &type) ) {
 				if ( type == "ZIP" )
@@ -1376,8 +1386,8 @@ void CollectionRebuilderThread::run()
 			if ( checkpoint() < 0 )
 				m_xmlIndex = m_xmlIndexCount = -1;
 			QString setKey, list, set;
-			QStringList romNameList, romSha1List, romCrcList, diskNameList, diskSha1List;
-			while ( !exitThread && !stopRebuilding && nextId(&setKey, &romNameList, &romSha1List, &romCrcList, &diskNameList, &diskSha1List) ) {
+			QStringList romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List;
+			while ( !exitThread && !stopRebuilding && nextId(&setKey, &romNameList, &romSha1List, &romCrcList, &romSizeList, &diskNameList, &diskSha1List) ) {
 				bool pauseMessageLogged = false;
 				while ( (pauseRequested || isPaused) && !exitThread && !stopRebuilding ) {
 					if ( !pauseMessageLogged ) {
@@ -1442,7 +1452,7 @@ void CollectionRebuilderThread::run()
 				if ( !exitThread && !stopRebuilding && (!romNameList.isEmpty() || !diskNameList.isEmpty()) ) {
 					emit log(tr("set rebuilding started for '%1'").arg(setKey));
 					for (int i = 0; i < romNameList.count(); i++) {
-						bool dbStatusGood = checkSumDb()->exists(romSha1List[i], romCrcList[i]);
+						bool dbStatusGood = checkSumDb()->exists(romSha1List[i], romCrcList[i], romSizeList[i].toULongLong());
 						emit log(tr("required ROM") + ": " + tr("name = '%1', crc = '%2', sha1 = '%3', database status = '%4'").arg(romNameList[i]).arg(romCrcList[i]).arg(romSha1List[i]).arg(dbStatusGood ? tr("available") : tr("not available")));
 						if ( !dbStatusGood )
 							missingDumps++;
@@ -1455,7 +1465,7 @@ void CollectionRebuilderThread::run()
 					}
 					bool rewriteOkay = true;
 					if ( !romNameList.isEmpty() )
-						rewriteOkay = rewriteSet(&setKey, &romNameList, &romSha1List, &romCrcList, &diskNameList, &diskSha1List);
+						rewriteOkay = rewriteSet(&setKey, &romNameList, &romSha1List, &romCrcList, &romSizeList, &diskNameList, &diskSha1List);
 					if ( rewriteOkay )
 						emit log(tr("set rebuilding finished for '%1'").arg(setKey));
 					else

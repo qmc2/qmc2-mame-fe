@@ -50,12 +50,12 @@ class CollectionRebuilderThread : public QThread
 		void setCheckpoint(qint64 cp, int xmlSourceIndex);
 		void setListCheckpoint(QString list, int xmlSourceIndex);
 		void reopenDatabase();
-		bool parseXml(QString, QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
-		bool nextId(QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
+		bool parseXml(QString, QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
+		bool nextId(QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
 		void checkpointRestart(qint64 checkpoint);
-		bool rewriteSet(QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
-		bool writeAllFileData(QString, QString, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
-		bool writeAllZipData(QString, QString, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
+		bool rewriteSet(QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
+		bool writeAllFileData(QString, QString, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
+		bool writeAllZipData(QString, QString, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
 		bool readFileData(QString, QByteArray *);
 		bool readSevenZipFileData(QString, QString, QByteArray *);
 		bool readZipFileData(QString, QString, QByteArray *);

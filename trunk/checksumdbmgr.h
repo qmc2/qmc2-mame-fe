@@ -32,7 +32,7 @@ class CheckSumDatabaseManager : public QObject
 		void setSyncMode(uint syncMode);
 		void setJournalMode(uint journalMode);
 
-		bool exists(QString sha1, QString crc);
+		bool exists(QString sha1, QString crc, quint64 size = 0);
 		void setData(QString sha1, QString crc, quint64 size, QString path, QString member, QString type);
 		bool getData(QString sha1, QString crc, quint64 *size, QString *path, QString *member, QString *type);
 		QString getCrc(QString sha1);

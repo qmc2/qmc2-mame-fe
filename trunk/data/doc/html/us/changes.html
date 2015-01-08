@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.48, 07-JAN-2015</h3>
+<h3>CHANGES - v0.48, 08-JAN-2015</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,10 +14,12 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.48, 07-JAN-2015:</b></p>
+<p><b>v0.48, 08-JAN-2015:</b></p>
 <ul>
   <li>fix: system-notes: fixed possible duplication of the system notes detail tab (the bug was only effective when Phonon or YouTube features were disabled)</li>
   <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS GIT/SVN latest</li>
+  <li>imp: ROMAlyzer: added an 'enable log output' option to both the check-sum scanner and the collection rebuilder (when disabled, log messages emitted by the respective worker thread are surpressed)</li>
+  <li>imp: ROMAlyzer: added a 'deep scan' option to the check-sum scanner - when enabled (default), the scanner will uncompress each ZIP/7z member in order to recalculate its check-sums (SHA-1, CRC and dump size), otherwise it will rely on the header check-sums (CRC and dump size)</li>
 </ul>
 <p><b>v0.47, 31-DEC-2014:</b></p>
 <ul>
@@ -27,7 +29,7 @@ inf: informational only
   <li>fix: ROMAlyzer (system-mode): sort selected set-names before analyzing them</li>
   <li>imp: ROMAlyzer / check-sum scanner: show the progress of running scans in the corresponding status widget as well</li>
   <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS 0.157</li>
-  <li>imp: QMC2 Arcade: teached QMC2 Arcade the use of the new DAT-info database added in 0.46 (including fall back to the parent's info if applicable)</li>
+  <li>imp: QMC2 Arcade: taught QMC2 Arcade the use of the new DAT-info database added in 0.46 (including fall back to the parent's info if applicable)</li>
   <li>imp: QMC2 Arcade / ToxicWaste theme: minor cosmetic corrections regarding the bottom menu-bar</li>
   <li>imp: changed the default setting for 'NativeFileDialogs' to true on Mac OS X</li>
   <li>imp: build: added make option 'L_LIBDIRFLAGS' which allows for changing the order in which library paths are searched when linking (usually not required, but may be useful for solving Qt library version conflicts)</li>

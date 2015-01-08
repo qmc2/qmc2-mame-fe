@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>762</width>
-    <height>592</height>
+    <width>588</width>
+    <height>594</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -344,7 +344,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>732</width>
+            <width>558</width>
             <height>797</height>
            </rect>
           </property>
@@ -1295,13 +1295,6 @@
                   </item>
                  </layout>
                 </item>
-                <item row="0" column="0">
-                 <widget class="QLabel" name="labelCheckSumDbScannedPaths">
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Scanned paths&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
                 <item row="1" column="0" colspan="3">
                  <widget class="Line" name="line_16">
                   <property name="orientation">
@@ -1511,8 +1504,15 @@
                   </item>
                  </layout>
                 </item>
-                <item row="0" column="1" colspan="2">
+                <item row="0" column="0" colspan="3">
                  <layout class="QHBoxLayout" name="horizontalLayout">
+                  <item>
+                   <widget class="QLabel" name="labelCheckSumDbScannedPaths">
+                    <property name="text">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Scanned paths&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                   </widget>
+                  </item>
                   <item>
                    <spacer name="horizontalSpacer">
                     <property name="orientation">
@@ -1520,7 +1520,7 @@
                     </property>
                     <property name="sizeHint" stdset="0">
                      <size>
-                      <width>40</width>
+                      <width>0</width>
                       <height>20</height>
                      </size>
                     </property>
@@ -1529,7 +1529,7 @@
                   <item>
                    <widget class="QToolButton" name="toolButtonCheckSumDbScanIncrementally">
                     <property name="sizePolicy">
-                     <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
                       <horstretch>0</horstretch>
                       <verstretch>0</verstretch>
                      </sizepolicy>
@@ -1543,10 +1543,29 @@
                     <property name="checkable">
                      <bool>true</bool>
                     </property>
-                    <property name="toolButtonStyle">
-                     <enum>Qt::ToolButtonTextOnly</enum>
+                    <property name="checked">
+                     <bool>true</bool>
                     </property>
-                    <property name="autoRaise">
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButtonCheckSumDbDeepScan">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="toolTip">
+                     <string>If enabled, all scanned members of ZIP/7z archives will be uncompressed in order to recalculate their check-sums (recommended but slow) - otherwise it will be relied on the header check-sums (not recommended but fast)</string>
+                    </property>
+                    <property name="text">
+                     <string>Deep scan</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <property name="checked">
                      <bool>true</bool>
                     </property>
                    </widget>
@@ -1959,6 +1978,7 @@
   <tabstop>pushButtonRomCollectionRebuilder</tabstop>
   <tabstop>groupBoxCheckSumDatabase</tabstop>
   <tabstop>toolButtonCheckSumDbScanIncrementally</tabstop>
+  <tabstop>toolButtonCheckSumDbDeepScan</tabstop>
   <tabstop>listWidgetCheckSumDbScannedPaths</tabstop>
   <tabstop>toolButtonCheckSumDbAddPath</tabstop>
   <tabstop>toolButtonCheckSumDbRemovePath</tabstop>
