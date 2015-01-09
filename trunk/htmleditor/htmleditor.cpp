@@ -33,6 +33,7 @@
 #include <QColorDialog>
 #include <QFileDialog>
 #include <QCache>
+#include <QRegExp>
 #if QT_VERSION >= 0x050000
 #include <QDesktopWidget>
 #include <QToolButton>
@@ -91,6 +92,7 @@ extern SoftwareList *qmc2SoftwareList;
 extern bool qmc2UseSoftwareSnapFile;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 extern Gamelist *qmc2Gamelist;
+extern MainWindow *qmc2MainWindow;
 
 HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(false), wysiwygDirty(false), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
@@ -1248,6 +1250,8 @@ QString HtmlEditor::systemInfo(QString id)
 	QString sysInfo = qmc2Gamelist->datInfoDb()->gameInfo(id);
 	if ( sysInfo.isEmpty() )
 		sysInfo = tr("No data available");
+	else
+		sysInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(qmc2MainWindow->urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 	return sysInfo;
 }
 
@@ -1256,6 +1260,8 @@ QString HtmlEditor::emuInfo(QString id)
 	QString emulatorInfo = qmc2Gamelist->datInfoDb()->emuInfo(id);
 	if ( emulatorInfo.isEmpty() )
 		emulatorInfo = tr("No data available");
+	else
+		emulatorInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(qmc2MainWindow->urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 	return emulatorInfo;
 }
 
@@ -1264,6 +1270,8 @@ QString HtmlEditor::softwareInfo(QString list, QString id)
 	QString softInfo = qmc2Gamelist->datInfoDb()->softwareInfo(list, id);
 	if ( softInfo.isEmpty() )
 		softInfo = tr("No data available");
+	else
+		softInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(qmc2MainWindow->urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 	return softInfo;
 }
 
