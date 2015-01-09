@@ -167,6 +167,9 @@ public slots:
     QString romStatus(QString id, bool translated = false);
     int rank(QString id);
     QString comment(QString id);
+    QString systemInfo(QString id);
+    QString emuInfo(QString id);
+    QString softwareInfo(QString list, QString id);
 
 private:
     Ui_HTMLEditorMainWindow *ui;

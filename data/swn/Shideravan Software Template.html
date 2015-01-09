@@ -1,6 +1,6 @@
 <!--
 SHIDERAVAN SOFTWARE TEMPLATE
-LAST MODIFICATION: 06/04/2014
+LAST MODIFICATION: 01/09/2014
   
 --------------------------------------------
 status of the languages supported: 
@@ -1069,7 +1069,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SoftwareNotesTemplate/Background
    document.write("<table border=\"0\" cellspacing=\"0\" height=\"5\" width=\"100%\">");
    supportCor();
    document.write("<tr><td height=\"5\"></td></tr></tbody></table>");
-   document.write("<table border=\"0\" cellspacing=\"0\" valign=\"middle\" width=\"100%\" style=\"table-layout: fixed;\"><tbody><tr><td>$SOFTWARE_INFO$</td></tr></tbody></table>");
+   document.write("<table border=\"0\" cellspacing=\"0\" valign=\"middle\" width=\"100%\" style=\"table-layout: fixed;\"><tbody><tr><td>" + qmc2NEO.softwareInfo("$SOFTWARE_LIST$", "$SOFTWARE_NAME$") + "</td></tr></tbody></table>");
 }
 </script>
 

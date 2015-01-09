@@ -1243,6 +1243,30 @@ QString HtmlEditor::comment(QString id)
 	return qmc2Gamelist->comment(id);
 }
 
+QString HtmlEditor::systemInfo(QString id)
+{
+	QString sysInfo = qmc2Gamelist->datInfoDb()->gameInfo(id);
+	if ( sysInfo.isEmpty() )
+		sysInfo = tr("No data available");
+	return sysInfo;
+}
+
+QString HtmlEditor::emuInfo(QString id)
+{
+	QString emulatorInfo = qmc2Gamelist->datInfoDb()->emuInfo(id);
+	if ( emulatorInfo.isEmpty() )
+		emulatorInfo = tr("No data available");
+	return emulatorInfo;
+}
+
+QString HtmlEditor::softwareInfo(QString list, QString id)
+{
+	QString softInfo = qmc2Gamelist->datInfoDb()->softwareInfo(list, id);
+	if ( softInfo.isEmpty() )
+		softInfo = tr("No data available");
+	return softInfo;
+}
+
 void HtmlEditor::closeXmlBuffer()
 {
 	if ( xmlQueryBuffer ) {
