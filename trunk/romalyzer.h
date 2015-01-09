@@ -268,6 +268,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		QAction *actionCopyBadToClipboard;
 		QString currentFilesSHA1Checksum;
 		QString currentFilesCrcChecksum;
+		quint64 currentFilesSize;
 		QStringList wizardSelectedSets;
 		QStringList analyzerBadSets;
 		QMultiMap<QString, QStringList> setRewriterFileMap;
