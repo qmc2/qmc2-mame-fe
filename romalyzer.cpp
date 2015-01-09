@@ -222,6 +222,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	setParent(qmc2MainWindow, Qt::Dialog);
 #endif
 
+	currentFilesSize = 0;
 	if ( mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
 		if ( !qmc2SoftwareList ) {
 			QLayout *vbl = qmc2MainWindow->tabSoftwareList->layout();
@@ -1205,10 +1206,10 @@ void ROMAlyzer::analyze()
 					}
 
 					if ( somethingsWrong ) {
-						if ( !fromCheckSumDb && groupBoxCheckSumDatabase->isChecked() && checkSumDb()->exists(childItem->text(QMC2_ROMALYZER_COLUMN_SHA1), childItem->text(QMC2_ROMALYZER_COLUMN_CRC)) ) {
+						quint64 size = childItem->text(QMC2_ROMALYZER_COLUMN_SIZE).toULongLong();
+						if ( !fromCheckSumDb && groupBoxCheckSumDatabase->isChecked() && checkSumDb()->exists(childItem->text(QMC2_ROMALYZER_COLUMN_SHA1), childItem->text(QMC2_ROMALYZER_COLUMN_CRC), size) ) {
 							QString pathFromDb, memberFromDb, typeFromDb;
-							quint64 sizeFromDb;
-							if ( checkSumDb()->getData(childItem->text(QMC2_ROMALYZER_COLUMN_SHA1), childItem->text(QMC2_ROMALYZER_COLUMN_CRC), &sizeFromDb, &pathFromDb, &memberFromDb, &typeFromDb) ) {
+							if ( checkSumDb()->getData(childItem->text(QMC2_ROMALYZER_COLUMN_SHA1), childItem->text(QMC2_ROMALYZER_COLUMN_CRC), &size, &pathFromDb, &memberFromDb, &typeFromDb) ) {
 								fileItem = new QTreeWidgetItem(childItem);
 								QStringList sl;
 								switch ( checkSumDb()->nameToType(typeFromDb) ) {
@@ -2242,10 +2243,10 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 	// try check-sum database if available/applicable...
 	if ( effectiveFile.isEmpty() && !qmc2StopParser && groupBoxCheckSumDatabase->isChecked() ) {
 		QString wantedSHA1 = myItem->text(QMC2_ROMALYZER_COLUMN_SHA1);
-		if ( checkSumDb()->exists(wantedSHA1, wantedCRC) ) {
+		quint64 size = myItem->text(QMC2_ROMALYZER_COLUMN_SIZE).toULongLong();
+		if ( checkSumDb()->exists(wantedSHA1, wantedCRC, size) ) {
 			QString pathFromDb, memberFromDb, typeFromDb;
-			quint64 sizeFromDb;
-			if ( checkSumDb()->getData(wantedSHA1, wantedCRC, &sizeFromDb, &pathFromDb, &memberFromDb, &typeFromDb) ) {
+			if ( checkSumDb()->getData(wantedSHA1, wantedCRC, &size, &pathFromDb, &memberFromDb, &typeFromDb) ) {
 				QStringList sl;
 				switch ( checkSumDb()->nameToType(typeFromDb) ) {
 					case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
@@ -2751,10 +2752,10 @@ void ROMAlyzer::lineEditChecksumWizardHash_textChanged_delayed()
 		if ( sha1.length() != 40 && crc.length() != 8 )
 			QTimer::singleShot(0, this, SLOT(indicateCheckSumDbQueryStatusUnknown()));
 		else {
-			if ( checkSumDb()->exists(sha1, crc) ) {
-				if ( crc.isEmpty() ) {
+			if ( checkSumDb()->exists(sha1, crc, currentFilesSize) ) {
+				if ( crc.isEmpty() )
 					currentFilesCrcChecksum = checkSumDb()->getCrc(sha1);
-				} else if ( sha1.isEmpty() )
+				else if ( sha1.isEmpty() )
 					currentFilesSHA1Checksum = checkSumDb()->getSha1(crc);
 				QTimer::singleShot(0, this, SLOT(indicateCheckSumDbQueryStatusGood()));
 			} else
@@ -2777,7 +2778,6 @@ void ROMAlyzer::on_groupBoxSetRewriter_toggled(bool enable)
 void ROMAlyzer::on_groupBoxCheckSumDatabase_toggled(bool enable)
 {
 	widgetCheckSumDbQueryStatus->setVisible(enable);
-	qApp->processEvents();
 	if ( checkSumScannerThread() )
 		pushButtonRomCollectionRebuilder->setEnabled(groupBoxSetRewriter->isChecked() && enable && !checkSumScannerThread()->isActive);
 	else
@@ -2952,6 +2952,8 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 		if ( pushButtonChecksumWizardAnalyzeSelectedSets->isEnabled() )
 			on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked();
 	}
+
+	currentFilesSize = 0;
 }
 
 void ROMAlyzer::runChecksumWizard()
@@ -4119,6 +4121,7 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 		if ( item->parent() != NULL ) {
 			currentFilesSHA1Checksum = item->text(QMC2_ROMALYZER_COLUMN_SHA1);
 			currentFilesCrcChecksum = item->text(QMC2_ROMALYZER_COLUMN_CRC);
+			currentFilesSize = item->text(QMC2_ROMALYZER_COLUMN_SIZE).toULongLong();
 			if ( !currentFilesSHA1Checksum.isEmpty() || !currentFilesCrcChecksum.isEmpty() ) {
 				treeWidgetChecksums->setItemSelected(item, true);
 				romFileContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetChecksums->viewport()->mapToGlobal(p), romFileContextMenu));
