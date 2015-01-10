@@ -956,6 +956,7 @@ bool SoftwareList::load()
 
 			isLoading = false;
 			isInitialLoad = false;
+			emit loadFinished(false);
 			return false;
 		}
 	}
@@ -1075,6 +1076,7 @@ bool SoftwareList::load()
 	isLoading = false;
 	fullyLoaded = !interruptLoad;
 	isInitialLoad = false;
+	emit loadFinished(true);
 	return true;
 }
 

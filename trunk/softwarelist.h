@@ -259,6 +259,9 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QStringList &arguments(QStringList *softwareLists = NULL, QStringList *softwareNames = NULL);
 		QString softwareStatus(QString, QString, bool translated = false);
 
+	signals:
+		void loadFinished(bool);
+
 	public slots:
 		bool load();
 		bool save();

@@ -369,6 +369,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void indicateCheckSumDbQueryStatusGood();
 		void indicateCheckSumDbQueryStatusBad();
 		void indicateCheckSumDbQueryStatusUnknown();
+		void softwareListLoadFinished(bool);
 		void on_groupBoxSetRewriter_toggled(bool);
 		void on_groupBoxCheckSumDatabase_toggled(bool);
 
