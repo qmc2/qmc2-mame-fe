@@ -218,10 +218,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	// we create the collection rebuilder on demand
 	m_collectionRebuilder = NULL;
 
-#if defined(QMC2_OS_MAC)
-	setParent(qmc2MainWindow, Qt::Dialog);
-#endif
-
 	currentFilesSize = 0;
 	if ( mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
 		if ( !qmc2SoftwareList ) {
@@ -236,9 +232,15 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 			layout->addWidget(qmc2SoftwareList);
 			qmc2MainWindow->tabSoftwareList->setLayout(layout);
 			qmc2MainWindow->isCreatingSoftList = false;
+			connect(qmc2SoftwareList, SIGNAL(loadFinished(bool)), this, SLOT(softwareListLoadFinished(bool)));
+			setEnabled(false);
 			QTimer::singleShot(0, qmc2SoftwareList, SLOT(load()));
 		}
 	}
+
+#if defined(QMC2_OS_MAC)
+	setParent(qmc2MainWindow, Qt::Dialog);
+#endif
 }
 
 ROMAlyzer::~ROMAlyzer()
@@ -4465,6 +4467,11 @@ void ROMAlyzer::indicateCheckSumDbQueryStatusUnknown()
 	QPalette pal = widgetCheckSumDbQueryStatus->palette();
 	pal.setBrush(QPalette::Window, m_checkSumDbQueryStatusPixmap.scaled(widgetCheckSumDbQueryStatus->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	widgetCheckSumDbQueryStatus->setPalette(pal);
+}
+
+void ROMAlyzer::softwareListLoadFinished(bool /* success */)
+{
+	setEnabled(true);
 }
 
 void ROMAlyzer::on_pushButtonRomCollectionRebuilder_clicked()
