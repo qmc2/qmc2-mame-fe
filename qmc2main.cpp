@@ -1508,22 +1508,30 @@ MainWindow::MainWindow(QWidget *parent)
 
 	// search options menus
 	menuSearchOptions = new QMenu(this);
-	menuToolbarSearchOptions = new QMenu(this);
 	s = tr("Negate search");
 	actionNegateSearch = menuSearchOptions->addAction(s);
-	actionToolbarNegateSearch = menuToolbarSearchOptions->addAction(s);
 	actionNegateSearch->setToolTip(s); actionNegateSearch->setStatusTip(s);
-	actionToolbarNegateSearch->setToolTip(s); actionToolbarNegateSearch->setStatusTip(s);
 	actionNegateSearch->setIcon(QIcon(QString::fromUtf8(":/data/img/find_negate.png")));
-	actionToolbarNegateSearch->setIcon(QIcon(QString::fromUtf8(":/data/img/find_negate.png")));
 	actionNegateSearch->setCheckable(true);
-	actionToolbarNegateSearch->setCheckable(true);
 	bool negated = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/NegateSearch", false).toBool();
 	actionNegateSearch->setChecked(negated);
-	actionToolbarNegateSearch->setChecked(negated);
 	negateSearchTriggered(negated);
+	menuSearchOptions->addSeparator();
+	s = tr("Include BIOS sets");
+	actionSearchIncludeBiosSets = menuSearchOptions->addAction(s);
+	actionSearchIncludeBiosSets->setToolTip(s); actionSearchIncludeBiosSets->setStatusTip(s);
+	actionSearchIncludeBiosSets->setCheckable(true);
+	bool includeBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SearchIncludeBiosSets", true).toBool();
+	actionSearchIncludeBiosSets->setChecked(includeBiosSets);
+	connect(actionSearchIncludeBiosSets, SIGNAL(triggered(bool)), this, SLOT(searchIncludeBiosSetsTriggered(bool)));
+	s = tr("Include device sets");
+	actionSearchIncludeDeviceSets = menuSearchOptions->addAction(s);
+	actionSearchIncludeDeviceSets->setToolTip(s); actionSearchIncludeDeviceSets->setStatusTip(s);
+	actionSearchIncludeDeviceSets->setCheckable(true);
+	bool includeDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SearchIncludeDeviceSets", true).toBool();
+	actionSearchIncludeDeviceSets->setChecked(includeDeviceSets);
+	connect(actionSearchIncludeDeviceSets, SIGNAL(triggered(bool)), this, SLOT(searchIncludeDeviceSetsTriggered(bool)));
 	connect(actionNegateSearch, SIGNAL(triggered(bool)), this, SLOT(negateSearchTriggered(bool)));
-	connect(actionToolbarNegateSearch, SIGNAL(triggered(bool)), this, SLOT(negateSearchTriggered(bool)));
 	IconLineEdit *ileSearch = ((IconLineEdit *)comboBoxSearch->lineEdit());
 	connect(ileSearch, SIGNAL(returnPressed()), this, SLOT(comboBoxSearch_editTextChanged_delayed()));
 	IconLineEdit *ileToolbarSearch = ((IconLineEdit *)comboBoxToolbarSearch->lineEdit());
@@ -1531,7 +1539,7 @@ MainWindow::MainWindow(QWidget *parent)
 	ileSearch->button()->setPopupMode(QToolButton::InstantPopup);
 	ileToolbarSearch->button()->setPopupMode(QToolButton::InstantPopup);
 	ileSearch->button()->setMenu(menuSearchOptions);
-	ileToolbarSearch->button()->setMenu(menuToolbarSearchOptions);
+	ileToolbarSearch->button()->setMenu(menuSearchOptions);
 
 	// rank locking
 	RankItemWidget::ranksLocked = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/RanksLocked", false).toBool();
@@ -3599,6 +3607,8 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	static bool stopSearch = false;
 	static QString lastSearchText;
 	static bool lastNegatedMatch = false;
+	static bool lastIncludeBioses = actionSearchIncludeBiosSets->isChecked();
+	static bool lastIncludeDevices = actionSearchIncludeDeviceSets->isChecked();
 
 	searchTimer.stop();
 
@@ -3617,18 +3627,22 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 			return;
 
 	QString pattern = comboBoxSearch->currentText();
+	bool includeBioses = actionSearchIncludeBiosSets->isChecked();
+	bool includeDevices = actionSearchIncludeDeviceSets->isChecked();
 
 	if ( pattern.isEmpty() ) {
 		listWidgetSearch->clear();
 		lastSearchText.clear();
 		lastNegatedMatch = negatedMatch;
+		lastIncludeBioses = includeBioses;
+		lastIncludeDevices = includeDevices;
 		qmc2Gamelist->numSearchGames = listWidgetSearch->count();
 		labelGamelistStatus->setText(qmc2Gamelist->status());
 		return;
 	} else if ( listWidgetSearch->count() == 0 )
 		lastSearchText.clear();
 
-	if ( pattern == lastSearchText && lastNegatedMatch == negatedMatch )
+	if ( pattern == lastSearchText && lastNegatedMatch == negatedMatch && lastIncludeBioses == includeBioses && lastIncludeDevices == includeDevices )
 		return;
 
 	QString patternCopy = pattern;
@@ -3669,6 +3683,8 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	if ( !patternRx.isValid() ) {
 		lastSearchText.clear();
 		lastNegatedMatch = negatedMatch;
+		lastIncludeBioses = includeBioses;
+		lastIncludeDevices = includeDevices;
 		qmc2Gamelist->numSearchGames = listWidgetSearch->count();
 		labelGamelistStatus->setText(qmc2Gamelist->status());
 		return;
@@ -3691,8 +3707,12 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 
 	for (int i = 0; i < treeWidgetGamelist->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
 		QTreeWidgetItem *item = treeWidgetGamelist->topLevelItem(i);
-		QString itemText = item->text(QMC2_GAMELIST_COLUMN_GAME);
 		QString itemName = item->text(QMC2_GAMELIST_COLUMN_NAME);
+		if ( !includeBioses && qmc2Gamelist->isBios(itemName) )
+			continue;
+		if ( !includeDevices && qmc2Gamelist->isDevice(itemName) )
+			continue;
+		QString itemText = item->text(QMC2_GAMELIST_COLUMN_GAME);
 		bool matched = itemText.indexOf(patternRx) > -1 || itemName.indexOf(patternRx) > -1;
 		if ( negatedMatch )
 			matched = !matched;
@@ -3733,6 +3753,8 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		lastSearchText.clear();
 
 	lastNegatedMatch = negatedMatch;
+	lastIncludeBioses = includeBioses;
+	lastIncludeDevices = includeDevices;
 
 	progressBarSearch->setVisible(false);
 	progressBarSearch->reset();
@@ -12187,15 +12209,9 @@ void MainWindow::checkRomPath()
 
 void MainWindow::negateSearchTriggered(bool negate)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::::negateSearchTriggered(bool negate = %1)").arg(negate));
-#endif
-
 	negatedMatch = negate;
-
 	IconLineEdit *ileSearch = ((IconLineEdit *)comboBoxSearch->lineEdit());
 	IconLineEdit *ileToolbarSearch = ((IconLineEdit *)comboBoxToolbarSearch->lineEdit());
-
 	if ( negatedMatch ) {
 		ileSearch->button()->setIcon(QIcon(QString::fromUtf8(":/data/img/find_negate.png")));
 		ileToolbarSearch->button()->setIcon(QIcon(QString::fromUtf8(":/data/img/find_negate.png")));
@@ -12203,10 +12219,19 @@ void MainWindow::negateSearchTriggered(bool negate)
 		ileSearch->button()->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
 		ileToolbarSearch->button()->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
 	}
-
 	actionNegateSearch->setChecked(negatedMatch);
-	actionToolbarNegateSearch->setChecked(negatedMatch);
+	searchTimer.start(QMC2_SEARCH_DELAY);
+}
 
+void MainWindow::searchIncludeBiosSetsTriggered(bool includeBioses)
+{
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SearchIncludeBiosSets", includeBioses);
+	searchTimer.start(QMC2_SEARCH_DELAY);
+}
+
+void MainWindow::searchIncludeDeviceSetsTriggered(bool includeDevices)
+{
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SearchIncludeDeviceSets", includeDevices);
 	searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
