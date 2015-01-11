@@ -1,6 +1,9 @@
 <!--
 SHIDERAVAN SYSTEM TEMPLATE
-LAST MODIFICATION: 01/04/2014
+LAST MODIFICATION: 10/January/2015
+
+Whatsnew:
+-Implemented Rank System
 
 This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.44 by Shideravan. Enjoy!
 
@@ -1946,7 +1949,7 @@ else
    else
    {
       document.write(tr('MAIN SYSTEM')+"!!!</b>");
-   }                             
+   }                                
 }  
 
 if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ProcXML'] == 'true')
@@ -2184,7 +2187,17 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMod
    <b valign="middle">$ID$</b> 
    <script language="JavaScript">
        if (qmc2NEO.isBios("$ID$")) document.write("<font size=\"4\">("+tr('BIOS set')+")</font>");
-       if (qmc2NEO.isDevice("$ID$")) document.write("<font size=\"4\">("+tr('device set')+")</font>");</script>
+       if (qmc2NEO.isDevice("$ID$")) document.write("<font size=\"4\">("+tr('device set')+")</font>");
+       rank=qmc2NEO.rank("$ID$");
+       document.write("   <font size=\"6\"><b>");
+  
+       for(i=0;i<rank;i++)
+       {
+          document.write("<img  style=\"border: 0; vertical-align: center; max-height: 16;\" src=\"../img/favorites.png\"></img>");
+       }
+       document.write("</b></font>");    
+   
+   </script>
    </font></td>
    <td width="33%" align="center" valign="middle"><font size="5" color="white">
    <b>Driver: $DRIVER_STATUS$</b></font></td>
