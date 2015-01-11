@@ -184,9 +184,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QWidgetAction *widgetActionToolbarSearch;
 		QComboBox *comboBoxToolbarSearch;
 		QMenu *menuSearchOptions;
-		QMenu *menuToolbarSearchOptions;
 		QAction *actionNegateSearch;
-		QAction *actionToolbarNegateSearch;
+		QAction *actionSearchIncludeDeviceSets;
+		QAction *actionSearchIncludeBiosSets;
 		QList<QAction *> criticalActions;
 		QMovie *loadAnimMovie;
 		bool activityState;
@@ -525,6 +525,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void softwareLoadInterrupted();
 		void checkRomPath();
 		void negateSearchTriggered(bool);
+		void searchIncludeBiosSetsTriggered(bool);
+		void searchIncludeDeviceSetsTriggered(bool);
 		void reloadImageFormats();
 		void updateTabWidgets();
 		void viewPdf(QString filePath = QString());
