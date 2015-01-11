@@ -232,9 +232,12 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 			layout->addWidget(qmc2SoftwareList);
 			qmc2MainWindow->tabSoftwareList->setLayout(layout);
 			qmc2MainWindow->isCreatingSoftList = false;
-			connect(qmc2SoftwareList, SIGNAL(loadFinished(bool)), this, SLOT(softwareListLoadFinished(bool)));
 			setEnabled(false);
+			connect(qmc2SoftwareList, SIGNAL(loadFinished(bool)), this, SLOT(softwareListLoadFinished(bool)));
 			QTimer::singleShot(0, qmc2SoftwareList, SLOT(load()));
+		} else {
+			setEnabled(false);
+			connect(qmc2SoftwareList, SIGNAL(loadFinished(bool)), this, SLOT(softwareListLoadFinished(bool)));
 		}
 	}
 
