@@ -1,6 +1,9 @@
 <!--
 SHIDERAVAN SOFTWARE TEMPLATE
-LAST MODIFICATION: 01/09/2014
+LAST MODIFICATION: 10/January/2015
+  
+Whatsnew:
+-Updates and Cleanups  
   
 --------------------------------------------
 status of the languages supported: 
@@ -881,7 +884,7 @@ var textCor = localStorage['Shideravan/$EMULATOR_VARIANT$/SoftwareNotesTemplate/
 if (textCor == undefined)
    textcor = "background-color: #000000";                
 
-
+<!--This shows the area with the image, in center if the selection is "none" and in top if the selection is any other-->
 if (localStorage['Shideravan/$EMULATOR_VARIANT$/SoftwareNotesTemplate/BackgroundMode2'] != 'none')
 {   
    document.write("<table border=\"0\" height=\"210\" width=\"100%\" cellspacing=\"0\" style=\"table-layout: fixed;\">");
@@ -891,12 +894,9 @@ else
    document.write("<table border=\"0\" height=\"100%\" width=\"100%\" cellspacing=\"0\" style=\"table-layout: fixed;\">");   
 }
 document.write("<tbody style=\""+corFun+";color:"+textCor+";\">");  
-
-</script>
-
-<tr>
-<script language="JavaScript">
+document.write("<tr>");
    
+<!--First image-->
 if (localStorage['Shideravan/$EMULATOR_VARIANT$/SoftwareNotesTemplate/ToggleSnap'] == 'true')
 {
    document.write("<td valign=\"middle\" align=\"center\">");
@@ -965,6 +965,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SoftwareNotesTemplate/ToggleSnap
    document.write("</font></td>");
 }
 
+<!--Information column-->
 if (localStorage['Shideravan/$EMULATOR_VARIANT$/SoftwareNotesTemplate/ToggleInfo'] == 'true')
 {
    document.write("<td align=\"center\" valign=\"middle\">"); 
@@ -988,9 +989,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SoftwareNotesTemplate/ToggleInfo
    document.write("</font></td>");
 }
 
-
-
-
+<!--Second image-->
 if (localStorage['Shideravan/$EMULATOR_VARIANT$/SoftwareNotesTemplate/Toggle2Snap'] == 'true')
 {
    document.write("<td valign=\"middle\" align=\"center\">");  
@@ -1072,7 +1071,6 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SoftwareNotesTemplate/Background
    document.write("<table border=\"0\" cellspacing=\"0\" valign=\"middle\" width=\"100%\" style=\"table-layout: fixed;\"><tbody><tr><td>" + qmc2NEO.softwareInfo("$SOFTWARE_LIST$", "$SOFTWARE_NAME$") + "</td></tr></tbody></table>");
 }
 </script>
-
 </div>
 
 <!--new option bar-->
