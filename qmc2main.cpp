@@ -424,6 +424,8 @@ MainWindow::MainWindow(QWidget *parent)
 	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::MainWindow(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
+	if ( qmc2TemplateCheck )
+		setVisible(false);
 	qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "InstanceRunning"), true);
  
 	qmc2StartupDefaultFont = new QFont(qApp->font());
