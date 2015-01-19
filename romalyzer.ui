@@ -343,7 +343,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>-300</y>
             <width>558</width>
             <height>797</height>
            </rect>
@@ -1538,7 +1538,7 @@
                      <string>If enabled, only files that were changed since / ignored in the last scan will be scanned again, updating the database - otherwise the database will be reinitialized</string>
                     </property>
                     <property name="text">
-                     <string>Scan incrementally</string>
+                     <string>Incremental</string>
                     </property>
                     <property name="checkable">
                      <bool>true</bool>
@@ -1560,7 +1560,7 @@
                      <string>If enabled, all scanned members of ZIP/7z archives will be uncompressed in order to recalculate their check-sums (recommended but slow) - otherwise it will be relied on the header check-sums (not recommended but fast)</string>
                     </property>
                     <property name="text">
-                     <string>Deep scan</string>
+                     <string>Deep</string>
                     </property>
                     <property name="checkable">
                      <bool>true</bool>
