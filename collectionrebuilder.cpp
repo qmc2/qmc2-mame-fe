@@ -44,6 +44,11 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 			comboBoxFilterSyntax->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntax", 0).toInt());
 			comboBoxFilterType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterType", 0).toInt());
 			lineEditFilterExpression->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", QString()).toString());
+			m_correctIconPixmap = QPixmap(QString::fromUtf8(":/data/img/software_correct.png"));
+			m_mostlyCorrectIconPixmap = QPixmap(QString::fromUtf8(":/data/img/software_mostlycorrect.png"));
+			m_incorrectIconPixmap = QPixmap(QString::fromUtf8(":/data/img/software_incorrect.png"));
+			m_notFoundIconPixmap = QPixmap(QString::fromUtf8(":/data/img/software_notfound.png"));
+			m_unknownIconPixmap = QPixmap(QString::fromUtf8(":/data/img/software_unknown.png"));
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
@@ -65,8 +70,20 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 			comboBoxFilterSyntax->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntax", 0).toInt());
 			comboBoxFilterType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterType", 0).toInt());
 			lineEditFilterExpression->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", QString()).toString());
+			m_correctIconPixmap = QPixmap(QString::fromUtf8(":/data/img/sphere_green.png"));
+			m_mostlyCorrectIconPixmap = QPixmap(QString::fromUtf8(":/data/img/sphere_yellowgreen.png"));
+			m_incorrectIconPixmap = QPixmap(QString::fromUtf8(":/data/img/sphere_red.png"));
+			m_notFoundIconPixmap = QPixmap(QString::fromUtf8(":/data/img/sphere_grey.png"));
+			m_unknownIconPixmap = QPixmap(QString::fromUtf8(":/data/img/sphere_blue.png"));
 			break;
 	}
+
+	checkBoxFilterStates->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseStateFilter", false).toBool());
+	toolButtonStateC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateC", true).toBool());
+	toolButtonStateM->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateM", true).toBool());
+	toolButtonStateI->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateI", true).toBool());
+	toolButtonStateN->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateN", true).toBool());
+	toolButtonStateU->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateU", true).toBool());
 
 	pushButtonPauseResume->setVisible(false);
 
@@ -168,6 +185,9 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 	lineEditDiskEntity->setText(m_defaultDiskEntity);
 	rebuilderThread_statusUpdated(0, 0, 0);
 	comboBoxXmlSource->setFocus();
+#if !defined(QMC2_WIP_ENABLED)
+	hideStateFilter();
+#endif
 }
 
 CollectionRebuilder::~CollectionRebuilder()
@@ -207,6 +227,13 @@ void CollectionRebuilder::adjustIconSizes()
 	toolButtonRemoveXmlSource->setIconSize(iconSize);
 	toolButtonClearFilterExpression->setIconSize(iconSize);
 	toolButtonClearFilterExpressionSoftwareLists->setIconSize(iconSize);
+
+	QSize iconSizeMiddle = QSize(fm.height(), fm.height());
+	toolButtonStateC->setIcon(QIcon(m_correctIconPixmap.scaled(iconSizeMiddle, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+	toolButtonStateM->setIcon(QIcon(m_mostlyCorrectIconPixmap.scaled(iconSizeMiddle, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+	toolButtonStateI->setIcon(QIcon(m_incorrectIconPixmap.scaled(iconSizeMiddle, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+	toolButtonStateN->setIcon(QIcon(m_notFoundIconPixmap.scaled(iconSizeMiddle, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+	toolButtonStateU->setIcon(QIcon(m_unknownIconPixmap.scaled(iconSizeMiddle, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 }
 
 void CollectionRebuilder::on_pushButtonStartStop_clicked()
@@ -273,6 +300,19 @@ void CollectionRebuilder::on_pushButtonPauseResume_clicked()
 		QTimer::singleShot(0, rebuilderThread(), SLOT(pause()));
 }
 
+void CollectionRebuilder::setStateFilterVisibility(bool visible)
+{
+#if !defined(QMC2_WIP_ENABLED)
+	visible = false;
+#endif
+	checkBoxFilterStates->setVisible(visible);
+	toolButtonStateC->setVisible(visible);
+	toolButtonStateM->setVisible(visible);
+	toolButtonStateI->setVisible(visible);
+	toolButtonStateN->setVisible(visible);
+	toolButtonStateU->setVisible(visible);
+}
+
 void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 {
 	static int lastIndex = -1;
@@ -299,6 +339,7 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 		lineEditRomEntity->setText(m_defaultRomEntity);
 		lineEditDiskEntity->setText(m_defaultDiskEntity);
 		frameEntities->setVisible(false);
+		showStateFilter();
 		QTimer::singleShot(0, this, SLOT(scrollToEnd()));
 		toolButtonRemoveXmlSource->setVisible(false);
 		lastIndex = -1;
@@ -339,6 +380,7 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 				comboBoxXmlSource->setCurrentIndex(insertIndex);
 				comboBoxXmlSource->blockSignals(false);
 				frameEntities->setVisible(true);
+				hideStateFilter();
 				toolButtonRemoveXmlSource->setVisible(true);
 				QTimer::singleShot(0, this, SLOT(scrollToEnd()));
 			} else
@@ -371,6 +413,7 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 			lineEditRomEntity->setText(romEntities[index]);
 			lineEditDiskEntity->setText(diskEntities[index]);
 			frameEntities->setVisible(true);
+			hideStateFilter();
 			toolButtonRemoveXmlSource->setVisible(true);
 			QTimer::singleShot(0, this, SLOT(scrollToEnd()));
 		}
@@ -606,6 +649,13 @@ void CollectionRebuilder::closeEvent(QCloseEvent *e)
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", lineEditFilterExpression->text());
 			break;
 	}
+
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseStateFilter", checkBoxFilterStates->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateC", toolButtonStateC->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateM", toolButtonStateM->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateI", toolButtonStateI->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateN", toolButtonStateN->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateU", toolButtonStateU->isChecked());
 }
 
 void CollectionRebuilder::keyPressEvent(QKeyEvent *e)
