@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>498</width>
-    <height>470</height>
+    <width>538</width>
+    <height>461</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -128,7 +128,7 @@
     </widget>
    </item>
    <item row="6" column="0" colspan="3">
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_1">
      <item>
       <widget class="QCheckBox" name="checkBoxEnableLog">
        <property name="toolTip">
@@ -344,12 +344,6 @@
        <property name="enabled">
         <bool>false</bool>
        </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="toolTip">
         <string>Choose the regular expression syntax</string>
        </property>
@@ -389,12 +383,6 @@
       <widget class="QComboBox" name="comboBoxFilterTypeSoftwareLists">
        <property name="enabled">
         <bool>false</bool>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
        </property>
        <property name="toolTip">
         <string>Select the filter type (include / exclude filter)</string>
@@ -462,12 +450,6 @@
        <property name="enabled">
         <bool>false</bool>
        </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="toolTip">
         <string>Choose the regular expression syntax</string>
        </property>
@@ -507,12 +489,6 @@
       <widget class="QComboBox" name="comboBoxFilterType">
        <property name="enabled">
         <bool>false</bool>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
        </property>
        <property name="toolTip">
         <string>Select the filter type (include / exclude filter)</string>
@@ -565,6 +541,180 @@
        </property>
       </widget>
      </item>
+     <item row="2" column="0">
+      <widget class="QCheckBox" name="checkBoxFilterStates">
+       <property name="toolTip">
+        <string>Enable state filtering (a set is included when its state is checked here)</string>
+       </property>
+       <property name="text">
+        <string>Filter states</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1" colspan="4">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QToolButton" name="toolButtonStateC">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Include sets with state C (correct)?</string>
+         </property>
+         <property name="text">
+          <string>Correct</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/sphere_green.png</normaloff>:/data/img/sphere_green.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextBesideIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButtonStateM">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Include sets with state M (mostly correct)?</string>
+         </property>
+         <property name="text">
+          <string>Mostly correct</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/sphere_yellowgreen.png</normaloff>:/data/img/sphere_yellowgreen.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextBesideIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButtonStateI">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Include sets with state I (incorrect)?</string>
+         </property>
+         <property name="text">
+          <string>Incorrect</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/sphere_red.png</normaloff>:/data/img/sphere_red.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextBesideIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButtonStateN">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Include sets with state N (not found)?</string>
+         </property>
+         <property name="text">
+          <string>Not found</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/sphere_grey.png</normaloff>:/data/img/sphere_grey.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextBesideIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButtonStateU">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Include sets with state U (unknown)?</string>
+         </property>
+         <property name="text">
+          <string>Unknown</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/sphere_blue.png</normaloff>:/data/img/sphere_blue.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextBesideIcon</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
     </layout>
    </item>
   </layout>
@@ -584,6 +734,12 @@
   <tabstop>comboBoxFilterType</tabstop>
   <tabstop>lineEditFilterExpression</tabstop>
   <tabstop>toolButtonClearFilterExpression</tabstop>
+  <tabstop>checkBoxFilterStates</tabstop>
+  <tabstop>toolButtonStateC</tabstop>
+  <tabstop>toolButtonStateM</tabstop>
+  <tabstop>toolButtonStateI</tabstop>
+  <tabstop>toolButtonStateN</tabstop>
+  <tabstop>toolButtonStateU</tabstop>
   <tabstop>lineEditSetEntity</tabstop>
   <tabstop>lineEditRomEntity</tabstop>
   <tabstop>lineEditDiskEntity</tabstop>
@@ -604,8 +760,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>492</x>
-     <y>464</y>
+     <x>450</x>
+     <y>484</y>
     </hint>
     <hint type="destinationlabel">
      <x>431</x>
@@ -620,8 +776,8 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>445</x>
-     <y>464</y>
+     <x>403</x>
+     <y>484</y>
     </hint>
     <hint type="destinationlabel">
      <x>350</x>
@@ -636,12 +792,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>478</x>
-     <y>85</y>
+     <x>450</x>
+     <y>96</y>
     </hint>
     <hint type="destinationlabel">
-     <x>424</x>
-     <y>84</y>
+     <x>420</x>
+     <y>96</y>
     </hint>
    </hints>
   </connection>
@@ -652,8 +808,8 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>482</x>
-     <y>56</y>
+     <x>450</x>
+     <y>67</y>
     </hint>
     <hint type="destinationlabel">
      <x>419</x>
@@ -720,8 +876,8 @@
      <y>53</y>
     </hint>
     <hint type="destinationlabel">
-     <x>479</x>
-     <y>49</y>
+     <x>450</x>
+     <y>67</y>
     </hint>
    </hints>
   </connection>
@@ -752,8 +908,8 @@
      <y>86</y>
     </hint>
     <hint type="destinationlabel">
-     <x>209</x>
-     <y>85</y>
+     <x>285</x>
+     <y>96</y>
     </hint>
    </hints>
   </connection>
@@ -784,8 +940,88 @@
      <y>85</y>
     </hint>
     <hint type="destinationlabel">
-     <x>479</x>
-     <y>89</y>
+     <x>450</x>
+     <y>96</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFilterStates</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonStateC</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>64</x>
+     <y>111</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>103</x>
+     <y>116</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFilterStates</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonStateM</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>10</x>
+     <y>114</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>130</x>
+     <y>113</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFilterStates</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonStateI</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>14</x>
+     <y>113</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>161</x>
+     <y>117</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFilterStates</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonStateN</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>11</x>
+     <y>116</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>189</x>
+     <y>113</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFilterStates</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonStateU</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>10</x>
+     <y>111</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>215</x>
+     <y>115</y>
     </hint>
    </hints>
   </connection>

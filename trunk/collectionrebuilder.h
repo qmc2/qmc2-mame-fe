@@ -9,6 +9,7 @@
 #include <QTimer>
 #include <QRegExp>
 #include <QString>
+#include <QPixmap>
 
 #include "checksumdbmgr.h"
 #include "xmldbmgr.h"
@@ -105,6 +106,10 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		ROMAlyzer *romAlyzer() { return m_romAlyzer; }
 		QString settingsKey() { return m_settingsKey; }
 
+		void setStateFilterVisibility(bool visible);
+		void showStateFilter() { setStateFilterVisibility(true); }
+		void hideStateFilter() { setStateFilterVisibility(false); }
+
 	public slots:
 		void on_spinBoxMaxLogSize_valueChanged(int);
 		void log(const QString &);
@@ -139,6 +144,11 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		int m_animationSequence;
 		ROMAlyzer *m_romAlyzer;
 		QString m_settingsKey;
+		QPixmap m_correctIconPixmap;
+		QPixmap m_mostlyCorrectIconPixmap;
+		QPixmap m_incorrectIconPixmap;
+		QPixmap m_notFoundIconPixmap;
+		QPixmap m_unknownIconPixmap;
 };
 
 #endif
