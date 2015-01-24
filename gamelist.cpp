@@ -823,12 +823,12 @@ void Gamelist::load()
 		QCryptographicHash sha1(QCryptographicHash::Sha1);
 		QTextStream ts(&qmc2Temp);
 		qApp->processEvents();
-		QStringList lfList = ts.readAll().split("\n", QString::SkipEmptyParts);
-		numTotalGames = lfList.count() - 1;
+		QString lfOutput = ts.readAll();
+		numTotalGames = lfOutput.count("\n") - 1;
 		qmc2Temp.close();
 		qmc2Temp.remove();
 		qApp->processEvents();
-		sha1.addData(lfList.join("\n").toLocal8Bit());
+		sha1.addData(lfOutput.toLocal8Bit());
 		listfullSha1 = sha1.result().toHex();
 		elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
