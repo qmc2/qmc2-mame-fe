@@ -719,6 +719,12 @@ void Gamelist::load()
 		s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
 		QStringList versionLines = s.split("\n");
+		while ( !versionLines.isEmpty() ){
+			if ( versionLines.first().startsWith("===>") )
+				versionLines.removeAt(0);
+			else
+				break;
+		}
 #if defined(QMC2_EMUTYPE_MAME)
 		QStringList versionWords = versionLines.first().split(" ");
 		if ( versionWords.count() > 1 ) {
@@ -823,12 +829,18 @@ void Gamelist::load()
 		QCryptographicHash sha1(QCryptographicHash::Sha1);
 		QTextStream ts(&qmc2Temp);
 		qApp->processEvents();
-		QString listfullOutput = ts.readAll();
-		numTotalGames = listfullOutput.count("\n") - 1;
+		QStringList lfList = ts.readAll().split("\n", QString::SkipEmptyParts);
+		while ( !lfList.isEmpty() ){
+			if ( lfList.first().startsWith("===>") )
+				lfList.removeAt(0);
+			else
+				break;
+		}
+		numTotalGames = lfList.count() - 1;
 		qmc2Temp.close();
 		qmc2Temp.remove();
 		qApp->processEvents();
-		sha1.addData(listfullOutput.toLocal8Bit());
+		sha1.addData(lfList.join("\n").toLocal8Bit());
 		listfullSha1 = sha1.result().toHex();
 		elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
@@ -839,18 +851,7 @@ void Gamelist::load()
 	if ( emulatorVersion != tr("unknown") )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator info: type = %1, version = %2").arg(emulatorType).arg(emulatorVersion));
 	else {
-		if ( emulatorType == tr("unknown") )
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine emulator type and version"));
-		else
-#if defined(QMC2_EMUTYPE_MAME)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine emulator version, type identification string is '%1' -- please inform developers if you're sure that this is a valid MAME binary"));
-#elif defined(QMC2_EMUTYPE_MESS)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine emulator version, type identification string is '%1' -- please inform developers if you're sure that this is a valid MESS binary"));
-#elif defined(QMC2_EMUTYPE_UME)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine emulator version, type identification string is '%1' -- please inform developers if you're sure that this is a valid UME binary"));
-#else
-			;
-#endif
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine emulator type and version"));
 		qmc2ReloadActive = false;
 		enableWidgets(true);
 		return;
@@ -2811,6 +2812,13 @@ void Gamelist::loadReadyReadStandardOutput()
 
 	QStringList sl = readBuffer.split("\n");
 
+	while ( !sl.isEmpty() ){
+		if ( sl.first().startsWith("===>") )
+			sl.removeAt(0);
+		else
+			break;
+	}
+
 	for (int l = 0; l < sl.count(); l++) {
 		QString singleXMLLine = sl[l];
 		bool newLine = singleXMLLine.endsWith(">");
@@ -3379,6 +3387,13 @@ void Gamelist::verifyReadyReadStandardOutput()
 	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
 	QStringList lines = s.split("\n");
+
+	while ( !lines.isEmpty() ){
+		if ( lines.first().startsWith("===>") )
+			lines.removeAt(0);
+		else
+			break;
+	}
 
 	if ( s.endsWith("\n") )
 		verifyLastLine.clear();
