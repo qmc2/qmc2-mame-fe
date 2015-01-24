@@ -1616,14 +1616,6 @@ void SoftwareList::verifyReadyReadStandardOutput()
 
 	QString s = swStatesLastLine + verifyProc->readAllStandardOutput();
 	QStringList lines = s.split("\n");
-
-	while ( !lines.isEmpty() ){
-		if ( lines.first().startsWith("===>") )
-			lines.removeAt(0);
-		else
-			break;
-	}
-
 	if ( s.endsWith("\n") ) {
 		swStatesLastLine.clear();
 	} else {
