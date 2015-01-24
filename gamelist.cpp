@@ -719,12 +719,6 @@ void Gamelist::load()
 		s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
 		QStringList versionLines = s.split("\n");
-		while ( !versionLines.isEmpty() ){
-			if ( versionLines.first().startsWith("===>") )
-				versionLines.removeAt(0);
-			else
-				break;
-		}
 #if defined(QMC2_EMUTYPE_MAME)
 		QStringList versionWords = versionLines.first().split(" ");
 		if ( versionWords.count() > 1 ) {
@@ -830,12 +824,6 @@ void Gamelist::load()
 		QTextStream ts(&qmc2Temp);
 		qApp->processEvents();
 		QStringList lfList = ts.readAll().split("\n", QString::SkipEmptyParts);
-		while ( !lfList.isEmpty() ){
-			if ( lfList.first().startsWith("===>") )
-				lfList.removeAt(0);
-			else
-				break;
-		}
 		numTotalGames = lfList.count() - 1;
 		qmc2Temp.close();
 		qmc2Temp.remove();
@@ -2812,13 +2800,6 @@ void Gamelist::loadReadyReadStandardOutput()
 
 	QStringList sl = readBuffer.split("\n");
 
-	while ( !sl.isEmpty() ){
-		if ( sl.first().startsWith("===>") )
-			sl.removeAt(0);
-		else
-			break;
-	}
-
 	for (int l = 0; l < sl.count(); l++) {
 		QString singleXMLLine = sl[l];
 		bool newLine = singleXMLLine.endsWith(">");
@@ -3387,13 +3368,6 @@ void Gamelist::verifyReadyReadStandardOutput()
 	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
 	QStringList lines = s.split("\n");
-
-	while ( !lines.isEmpty() ){
-		if ( lines.first().startsWith("===>") )
-			lines.removeAt(0);
-		else
-			break;
-	}
 
 	if ( s.endsWith("\n") )
 		verifyLastLine.clear();
