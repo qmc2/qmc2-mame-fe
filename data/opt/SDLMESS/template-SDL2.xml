@@ -786,6 +786,13 @@
       <description lang="pt" text="Especificar a fonte a ser usada"/>
       <choice name="default"/>
     </option>
+    <option default="auto" ignore.Windows="true" ignore.Darwin="true" name="uifontprovider" type="combo">
+      <description lang="us" text="Provider for ui font: 'auto', 'sdl' or 'none'"/>
+      <description lang="de" text="Provider für UI Schriftart: 'auto', 'sdl' oder 'none'"/>
+      <choice name="auto"/>
+      <choice name="sdl"/>
+      <choice name="none"/>
+    </option>
     <option default="false" name="confirm_quit" type="bool">
       <description lang="es" text="Mostrar confirmación al salir"/>
       <description lang="us" text="Display quit confirmation box on exit"/>

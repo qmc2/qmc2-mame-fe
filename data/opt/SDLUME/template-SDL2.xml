@@ -778,6 +778,13 @@
       <description lang="pt" text="Especificar a fonte a ser usada"/>
       <choice name="default"/>
     </option>
+    <option default="auto" ignore.Windows="true" ignore.Darwin="true" name="uifontprovider" type="combo">
+      <description lang="us" text="Provider for ui font: 'auto', 'sdl' or 'none'"/>
+      <description lang="de" text="Provider für UI Schriftart: 'auto', 'sdl' oder 'none'"/>
+      <choice name="auto"/>
+      <choice name="sdl"/>
+      <choice name="none"/>
+    </option>
     <option default="" name="ramsize" type="combo">
       <description lang="es" text="Tamaño de RAM (si lo soporta el driver)"/>
       <description lang="us" text="Size of RAM (if supported by driver)"/>
