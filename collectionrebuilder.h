@@ -34,6 +34,12 @@ class CollectionRebuilderThread : public QThread
 		bool doFilterSoftware;
 		bool isIncludeFilter;
 		bool isIncludeFilterSoftware;
+		bool doFilterState;
+		bool includeStateC;
+		bool includeStateM;
+		bool includeStateI;
+		bool includeStateN;
+		bool includeStateU;
 		QRegExp filterRx;
 		QRegExp filterRxSoftware;
 		QMutex mutex;
@@ -65,6 +71,10 @@ class CollectionRebuilderThread : public QThread
 		void setFilterExpressionSoftware(QString, int, int);
 		void clearFilterExpression() { setFilterExpression(QString(), 0, 0); }
 		void clearFilterExpressionSoftware() { setFilterExpressionSoftware(QString(), 0, 0); }
+		void setStateFilter(bool enableFilter, bool stateC = true, bool stateM = true, bool stateI = true, bool stateN = true, bool stateU = true) {
+			doFilterState = enableFilter; includeStateC = stateC; includeStateM = stateM; includeStateI = stateI; includeStateN = stateN; includeStateU = stateU;
+		}
+		void clearStateFilter() { setStateFilter(false); }
 
 	public slots:
 		void pause();
