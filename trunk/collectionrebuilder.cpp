@@ -17,10 +17,12 @@
 #include "unzip.h"
 #include "zip.h"
 #include "sevenzipfile.h"
+#include "gamelist.h"
 #include "macros.h"
 
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
+extern Gamelist *qmc2Gamelist;
 
 CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent)
 	: QDialog(parent)
@@ -49,6 +51,7 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 			m_incorrectIconPixmap = QPixmap(QString::fromUtf8(":/data/img/software_incorrect.png"));
 			m_notFoundIconPixmap = QPixmap(QString::fromUtf8(":/data/img/software_notfound.png"));
 			m_unknownIconPixmap = QPixmap(QString::fromUtf8(":/data/img/software_unknown.png"));
+			hideStateFilter(); // FIXME: add software-state filtering
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
@@ -185,9 +188,6 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 	lineEditDiskEntity->setText(m_defaultDiskEntity);
 	rebuilderThread_statusUpdated(0, 0, 0);
 	comboBoxXmlSource->setFocus();
-#if !defined(QMC2_WIP_ENABLED)
-	hideStateFilter();
-#endif
 }
 
 CollectionRebuilder::~CollectionRebuilder()
@@ -287,6 +287,10 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 			rebuilderThread()->setFilterExpression(lineEditFilterExpression->text(), comboBoxFilterSyntax->currentIndex(), comboBoxFilterType->currentIndex());
 		else
 			rebuilderThread()->clearFilterExpression();
+		if ( checkBoxFilterStates->isChecked() )
+			rebuilderThread()->setStateFilter(true, toolButtonStateC->isChecked(), toolButtonStateM->isChecked(), toolButtonStateI->isChecked(), toolButtonStateN->isChecked(), toolButtonStateU->isChecked());
+		else
+			rebuilderThread()->clearStateFilter();
 		rebuilderThread()->waitCondition.wakeAll();
 	}
 }
@@ -302,9 +306,6 @@ void CollectionRebuilder::on_pushButtonPauseResume_clicked()
 
 void CollectionRebuilder::setStateFilterVisibility(bool visible)
 {
-#if !defined(QMC2_WIP_ENABLED)
-	visible = false;
-#endif
 	checkBoxFilterStates->setVisible(visible);
 	toolButtonStateC->setVisible(visible);
 	toolButtonStateM->setVisible(visible);
@@ -339,7 +340,8 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 		lineEditRomEntity->setText(m_defaultRomEntity);
 		lineEditDiskEntity->setText(m_defaultDiskEntity);
 		frameEntities->setVisible(false);
-		showStateFilter();
+		if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SYSTEM )
+			showStateFilter(); // FIXME: add software-state filteirng
 		QTimer::singleShot(0, this, SLOT(scrollToEnd()));
 		toolButtonRemoveXmlSource->setVisible(false);
 		lastIndex = -1;
@@ -472,6 +474,12 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	lineEditFilterExpressionSoftwareLists->setEnabled(false);
 	toolButtonClearFilterExpression->setEnabled(false);
 	toolButtonClearFilterExpressionSoftwareLists->setEnabled(false);
+	checkBoxFilterStates->setEnabled(false);
+	toolButtonStateC->setEnabled(false);
+	toolButtonStateM->setEnabled(false);
+	toolButtonStateI->setEnabled(false);
+	toolButtonStateN->setEnabled(false);
+	toolButtonStateU->setEnabled(false);
 	frameEntities->setEnabled(false);
 	romAlyzer()->groupBoxCheckSumDatabase->setEnabled(false);
 	switch ( romAlyzer()->mode() ) {
@@ -536,6 +544,12 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	lineEditFilterExpressionSoftwareLists->setEnabled(checkBoxFilterExpressionSoftwareLists->isChecked());
 	toolButtonClearFilterExpression->setEnabled(checkBoxFilterExpression->isChecked());
 	toolButtonClearFilterExpressionSoftwareLists->setEnabled(checkBoxFilterExpressionSoftwareLists->isChecked());
+	checkBoxFilterStates->setEnabled(true);
+	toolButtonStateC->setEnabled(checkBoxFilterStates->isChecked());
+	toolButtonStateM->setEnabled(checkBoxFilterStates->isChecked());
+	toolButtonStateI->setEnabled(checkBoxFilterStates->isChecked());
+	toolButtonStateN->setEnabled(checkBoxFilterStates->isChecked());
+	toolButtonStateU->setEnabled(checkBoxFilterStates->isChecked());
 	frameEntities->setEnabled(true);
 	romAlyzer()->groupBoxCheckSumDatabase->setEnabled(true);
 	m_animationTimer.stop();
@@ -669,7 +683,8 @@ void CollectionRebuilder::keyPressEvent(QKeyEvent *e)
 CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
 	: QThread(parent)
 {
-	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopRebuilding = doFilter = doFilterSoftware = isIncludeFilter = isIncludeFilterSoftware = false;
+	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopRebuilding = doFilter = doFilterSoftware = isIncludeFilter = isIncludeFilterSoftware = doFilterState = false;
+	includeStateC = includeStateM = includeStateI = includeStateN = includeStateU = true;
 	m_rebuilderDialog = (CollectionRebuilder *)parent;
 	m_checkSumDb = NULL;
 	m_xmlIndex = m_xmlIndexCount = m_checkpoint = -1;
@@ -1456,9 +1471,10 @@ void CollectionRebuilderThread::run()
 					emit rebuildResumed();
 					emit log(tr("rebuilding resumed"));
 				}
-				QTest::qWait(0);
+
 				if ( setKey.isEmpty() )
 					continue;
+
 				switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 					case QMC2_ROMALYZER_MODE_SOFTWARE: {
 							QStringList setKeyTokens = setKey.split(":", QString::SkipEmptyParts);
@@ -1468,15 +1484,11 @@ void CollectionRebuilderThread::run()
 							set = setKeyTokens[1];
 							if ( doFilterSoftware ) {
 								if ( isIncludeFilterSoftware ) {
-									if ( filterRxSoftware.indexIn(list) < 0 ) {
-										emit log(tr("rebuilding of '%1' skipped due to filter").arg(setKey));
+									if ( filterRxSoftware.indexIn(list) < 0 )
 										continue;
-									}
 								} else {
-									if ( filterRxSoftware.indexIn(list) >= 0 ) {
-										emit log(tr("rebuilding of '%1' skipped due to filter").arg(setKey));
+									if ( filterRxSoftware.indexIn(list) >= 0 )
 										continue;
-									}
 								}
 							}
 						}
@@ -1484,19 +1496,40 @@ void CollectionRebuilderThread::run()
 					case QMC2_ROMALYZER_MODE_SYSTEM:
 					default:
 						set = setKey;
+						if ( doFilterState ) {
+							switch ( qmc2Gamelist->romState(set) ) {
+								case 'C':
+									if ( !includeStateC )
+										continue;
+									break;
+								case 'M':
+									if ( !includeStateM )
+										continue;
+									break;
+								case 'I':
+									if ( !includeStateI )
+										continue;
+									break;
+								case 'N':
+									if ( !includeStateN )
+										continue;
+									break;
+								case 'U':
+								default:
+									if ( !includeStateU )
+										continue;
+									break;
+							}
+						}
 						break;
 				}
 				if ( doFilter ) {
 					if ( isIncludeFilter ) {
-						if ( filterRx.indexIn(set) < 0 ) {
-							emit log(tr("rebuilding of '%1' skipped due to filter").arg(setKey));
+						if ( filterRx.indexIn(set) < 0 )
 							continue;
-						}
 					} else {
-						if ( filterRx.indexIn(set) >= 0 ) {
-							emit log(tr("rebuilding of '%1' skipped due to filter").arg(setKey));
+						if ( filterRx.indexIn(set) >= 0 )
 							continue;
-						}
 					}
 				}
 				if ( !exitThread && !stopRebuilding && (!romNameList.isEmpty() || !diskNameList.isEmpty()) ) {
