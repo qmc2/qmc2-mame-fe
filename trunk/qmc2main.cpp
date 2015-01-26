@@ -430,7 +430,7 @@ MainWindow::MainWindow(QWidget *parent)
  
 	qmc2StartupDefaultFont = new QFont(qApp->font());
 	desktopGeometry = qApp->desktop()->geometry();
-	isActiveState = launchForeignID = negatedMatch = isCreatingSoftList = false;
+	isActiveState = launchForeignID = negatedMatch = isCreatingSoftList = searchActive = stopSearch = false;
 	comboBoxEmuSelector = NULL;
 	proxyStyle = NULL;
 	swlDb = NULL;
@@ -3600,13 +3600,14 @@ void MainWindow::on_comboBoxSearch_editTextChanged(const QString &text)
 	comboBoxToolbarSearch->lineEdit()->setCursorPosition(cPos);
 	comboBoxToolbarSearch->lineEdit()->blockSignals(false);
 
+	if ( searchActive )
+		stopSearch = true;
+
 	searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
 void MainWindow::comboBoxSearch_editTextChanged_delayed()
 {
-	static bool searchActive = false;
-	static bool stopSearch = false;
 	static QString lastSearchText;
 	static bool lastNegatedMatch = false;
 	static bool lastIncludeBioses = actionSearchIncludeBiosSets->isChecked();

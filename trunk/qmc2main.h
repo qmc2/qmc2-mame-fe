@@ -193,6 +193,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		bool isCreatingSoftList;
 		bool negatedMatch;
 		bool launchForeignID;
+		bool searchActive;
+		bool stopSearch;
 
 		static QColor qmc2StatusColorGreen;
 		static QColor qmc2StatusColorYellowGreen;

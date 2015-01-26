@@ -205,6 +205,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool updatingMountDevices;
 		bool negatedMatch;
 		bool verifyReadingStdout;
+		bool searchActive;
+		bool stopSearch;
 		int oldMax, oldMin;
 		int uncommittedSwlDbRows;
 		QAction *actionAddToFavorites;
