@@ -2618,7 +2618,7 @@ void SoftwareList::on_comboBoxSearch_editTextChanged(const QString &)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_comboBoxSearch_editTextChanged(const QString &)");
 #endif
 
-	if ( searchAtive )
+	if ( searchActive )
 		stopSearch = true;
 
 	searchTimer.start(QMC2_SEARCH_DELAY);
