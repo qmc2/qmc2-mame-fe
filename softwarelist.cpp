@@ -89,6 +89,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	currentItem = enteredItem = NULL;
 	snapForced = autoSelectSearchItem = interruptLoad = isLoading = isReady = fullyLoaded = updatingMountDevices = negatedMatch = false;
 	validData = autoMounted = true;
+	searchActive = stopSearch = false;
 	uncommittedSwlDbRows = 0;
 
 #if defined(QMC2_EMUTYPE_MAME)
@@ -2617,6 +2618,9 @@ void SoftwareList::on_comboBoxSearch_editTextChanged(const QString &)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_comboBoxSearch_editTextChanged(const QString &)");
 #endif
 
+	if ( searchAtive )
+		stopSearch = true;
+
 	searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
@@ -2626,8 +2630,6 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::comboBoxSearch_editTextChanged_delayed()");
 #endif
 
-	static bool searchActive = false;
-	static bool stopSearch = false;
 	static QString lastSearchText;
 	static bool lastNegatedMatch = false;
 
