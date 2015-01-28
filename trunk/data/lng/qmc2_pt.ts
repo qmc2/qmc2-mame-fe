@@ -1429,12 +1429,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../checksumscannerlog.ui" line="38"/>
         <source>Enable log output</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar saída de log</translation>
     </message>
     <message>
         <location filename="../../checksumscannerlog.ui" line="41"/>
         <source>Enable log</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar log</translation>
     </message>
     <message>
         <location filename="../../checksumscannerlog.ui" line="58"/>
@@ -1846,12 +1846,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.ui" line="135"/>
         <source>Enable log output</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar saída de log</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="138"/>
         <source>Enable log</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar log</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="155"/>
@@ -1959,62 +1959,62 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.ui" line="547"/>
         <source>Enable state filtering (a set is included when its state is checked here)</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar filtro de estado (um conjunto é incluído quando seu estado está selecionado aqui)</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="550"/>
         <source>Filter states</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrar estados</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="568"/>
         <source>Include sets with state C (correct)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir conjuntos com estado C (correto)?</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="571"/>
         <source>Correct</source>
-        <translation type="unfinished">Correto</translation>
+        <translation>Correto</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="600"/>
         <source>Include sets with state M (mostly correct)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir conjuntos com estado M (maioria correto)?</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="603"/>
         <source>Mostly correct</source>
-        <translation type="unfinished">Maioria correto</translation>
+        <translation>Maioria correto</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="632"/>
         <source>Include sets with state I (incorrect)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir conjuntos com estado I (incorreto)?</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="635"/>
         <source>Incorrect</source>
-        <translation type="unfinished">Incorreto</translation>
+        <translation>Incorreto</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="664"/>
         <source>Include sets with state N (not found)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir conjuntos com estado N (não encontrado)?</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="667"/>
         <source>Not found</source>
-        <translation type="unfinished">Não encontrado</translation>
+        <translation>Não encontrado</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="696"/>
         <source>Include sets with state U (unknown)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir conjuntos com estado D (desconhecido)?</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="699"/>
         <source>Unknown</source>
-        <translation type="unfinished">Desconhecido</translation>
+        <translation>Desconhecido</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="348"/>
@@ -9822,12 +9822,12 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="1522"/>
         <source>Include BIOS sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir conjuntos de BIOS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1529"/>
         <source>Include device sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir conjuntos de dispositivos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1550"/>
@@ -19962,7 +19962,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1560"/>
         <source>If enabled, all scanned members of ZIP/7z archives will be uncompressed in order to recalculate their check-sums (recommended but slow) - otherwise it will be relied on the header check-sums (not recommended but fast)</source>
-        <translation type="unfinished"></translation>
+        <translation>Se habilitado, todos os membros escaneados dos arquivos ZIP/7z serão descomprimidos para recalcular seus códigos de verificação (recomendado, mas lento) - caso contrário o código de verificação no cabeçalho será utilizado (não recomendado, mas rápido)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1638"/>
@@ -20094,12 +20094,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1541"/>
         <source>Incremental</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1563"/>
         <source>Deep</source>
-        <translation type="unfinished"></translation>
+        <translation>Profundo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1601"/>
