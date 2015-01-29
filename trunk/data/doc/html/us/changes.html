@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.48, 28-JAN-2015</h3>
+<h3>CHANGES - v0.49, 29-JAN-2015</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,572 +14,576 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
+<p><b>v0.49, 29-JAN-2015:</b></p>
+<ul>
+ 	<li>inf: no changes yet</li>
+</ul>
 <p><b>v0.48, 28-JAN-2015:</b></p>
 <ul>
-  <li>fix: system-notes: fixed possible duplication of the system notes detail tab (the bug was only effective when Phonon or YouTube features were disabled)</li>
-  <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS 0.158</li>
-  <li>imp: ROMAlyzer: added an 'enable log output' option to both the check-sum scanner and the collection rebuilder (when disabled, log messages emitted by the respective worker thread are suppressed)</li>
-  <li>imp: ROMAlyzer: added a 'deep scan' option to the check-sum scanner - when enabled (default), the scanner will uncompress each ZIP/7z member in order to recalculate its check-sums (SHA-1, CRC and dump size), otherwise it will rely on the header check-sums (CRC and dump size)</li>
-  <li>imp: notes templates: added 3 new notes editor functions to retrieve system-, emu- and software-info within scripts</li>
-  <li>imp: ROMAlyzer (software-mode): the widget is now shown (but disabled) while the software-list XML cache is rebuilt; it gets enabled when the cache is ready (this avoids working on premature data)</li>
-  <li>imp: updated the alternative system- and software-notes templates contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
-  <li>imp: MAME/MESS/UME emulator templates updated to 0.158 (added new SDL2 option 'uifontprovider')</li>
-  <li>imp: interrupt a running search immediately when the system- or software-search's pattern changes</li>
-  <li>new: due to popular demand, the system search can now be configured to include (default) or exclude BIOS and device sets via the menu attached to the pattern input</li>
-  <li>new: ROMAlyzer (system-mode): added a ROM state filtering option to the 'ROM Collection Rebuilder'</li>
+ 	<li>fix: system-notes: fixed possible duplication of the system notes detail tab (the bug was only effective when Phonon or YouTube features were disabled)</li>
+ 	<li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS 0.158</li>
+ 	<li>imp: ROMAlyzer: added an 'enable log output' option to both the check-sum scanner and the collection rebuilder (when disabled, log messages emitted by the respective worker thread are suppressed)</li>
+ 	<li>imp: ROMAlyzer: added a 'deep scan' option to the check-sum scanner - when enabled (default), the scanner will uncompress each ZIP/7z member in order to recalculate its check-sums (SHA-1, CRC and dump size), otherwise it will rely on the header check-sums (CRC and dump size)</li>
+ 	<li>imp: notes templates: added 3 new notes editor functions to retrieve system-, emu- and software-info within scripts</li>
+ 	<li>imp: ROMAlyzer (software-mode): the widget is now shown (but disabled) while the software-list XML cache is rebuilt; it gets enabled when the cache is ready (this avoids working on premature data)</li>
+ 	<li>imp: updated the alternative system- and software-notes templates contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
+ 	<li>imp: MAME/MESS/UME emulator templates updated to 0.158 (added new SDL2 option 'uifontprovider')</li>
+ 	<li>imp: interrupt a running search immediately when the system- or software-search's pattern changes</li>
+ 	<li>new: due to popular demand, the system search can now be configured to include (default) or exclude BIOS and device sets via the menu attached to the pattern input</li>
+ 	<li>new: ROMAlyzer (system-mode): added a ROM state filtering option to the 'ROM Collection Rebuilder'</li>
 </ul>
 <p><b>v0.47, 31-DEC-2014:</b></p>
 <ul>
-  <li>fix: Mac OS X build: corrected linker issues when building with clang (LLVM)</li>
-  <li>fix: avoid crash when caching software-lists while ROM states are being checked</li>
-  <li>fix: Mac OS X: using the platform's default key-sequence for 'close application' (Command+Q) to stop current processing / quit QMC2</li>
-  <li>fix: ROMAlyzer (system-mode): sort selected set-names before analyzing them</li>
-  <li>imp: ROMAlyzer / check-sum scanner: show the progress of running scans in the corresponding status widget as well</li>
-  <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS 0.157</li>
-  <li>imp: QMC2 Arcade: taught QMC2 Arcade the use of the new DAT-info database added in 0.46 (including fall back to the parent's info if applicable)</li>
-  <li>imp: QMC2 Arcade / ToxicWaste theme: minor cosmetic corrections regarding the bottom menu-bar</li>
-  <li>imp: changed the default setting for 'NativeFileDialogs' to true on Mac OS X</li>
-  <li>imp: build: added make option 'L_LIBDIRFLAGS' which allows for changing the order in which library paths are searched when linking (usually not required, but may be useful for solving Qt library version conflicts)</li>
-  <li>imp: ROMAlyzer: added a reproduction option to toggle the creation of a ZIP comment (may be annoying)</li>
-  <li>imp: the main GUI no longer restores the visibility of certain sub-windows as it's prone to trouble and wasn't consequently implemented anyway (i.e. not all sub-windows were restored)</li>
-  <li>imp: software-lists: utilizing the same (much faster) algorithm for searching within known software as used by the system search</li>
-  <li>new: ROMAlyzer: added support for software / software-lists (there are two instances of the ROMAlyzer now, one for 'systems' and one for 'software') -- see also <a href="http://tracker.batcom-it.net/view.php?id=61" target="_blank">bug tracker ID #61</a></li>
+ 	<li>fix: Mac OS X build: corrected linker issues when building with clang (LLVM)</li>
+ 	<li>fix: avoid crash when caching software-lists while ROM states are being checked</li>
+ 	<li>fix: Mac OS X: using the platform's default key-sequence for 'close application' (Command+Q) to stop current processing / quit QMC2</li>
+ 	<li>fix: ROMAlyzer (system-mode): sort selected set-names before analyzing them</li>
+ 	<li>imp: ROMAlyzer / check-sum scanner: show the progress of running scans in the corresponding status widget as well</li>
+ 	<li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS 0.157</li>
+ 	<li>imp: QMC2 Arcade: taught QMC2 Arcade the use of the new DAT-info database added in 0.46 (including fall back to the parent's info if applicable)</li>
+ 	<li>imp: QMC2 Arcade / ToxicWaste theme: minor cosmetic corrections regarding the bottom menu-bar</li>
+ 	<li>imp: changed the default setting for 'NativeFileDialogs' to true on Mac OS X</li>
+ 	<li>imp: build: added make option 'L_LIBDIRFLAGS' which allows for changing the order in which library paths are searched when linking (usually not required, but may be useful for solving Qt library version conflicts)</li>
+ 	<li>imp: ROMAlyzer: added a reproduction option to toggle the creation of a ZIP comment (may be annoying)</li>
+ 	<li>imp: the main GUI no longer restores the visibility of certain sub-windows as it's prone to trouble and wasn't consequently implemented anyway (i.e. not all sub-windows were restored)</li>
+ 	<li>imp: software-lists: utilizing the same (much faster) algorithm for searching within known software as used by the system search</li>
+ 	<li>new: ROMAlyzer: added support for software / software-lists (there are two instances of the ROMAlyzer now, one for 'systems' and one for 'software') -- see also <a href="http://tracker.batcom-it.net/view.php?id=61" target="_blank">bug tracker ID #61</a></li>
 </ul>
 <p><b>v0.46, 26-NOV-2014:</b></p>
 <ul>
-  <li>fix: image-checker: corrected obsoleteness check for free-standing image files on Windows -- see also <a href="http://tracker.batcom-it.net/view.php?id=78" target="_blank">bug tracker ID #78</a></li>
-  <li>fix: corrected the HTML encoding of links in software-info DB entries so they actually work now</li>
-  <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS 0.156</li>
-  <li>imp: ROMAlyzer / check-sum wizard: temporarily set the 'searched check-sum hash' to <i>read-only</i> instead of disabling the widget in order to allow for copying the check-sum while it's being searched</li>
-  <li>imp: MAME/MESS/UME emulator templates updated to 0.156 (added new core options 'snapbilinear', 'drc_log_uml' and 'drc_log_native' to all templates)</li>
-  <li>imp: Linux / UNIX / Mac OS X: defaulting to SDL2 templates now since SDLMAME/SDLMESS switched to SDL2 as default build target after 0.155</li>
-  <li>imp: replaced the colored sphere icons showing the ROM status with new images</li>
-  <li>imp: using QHash instead of QMap for all internal item lookup tables (less dependent on the number of entries, thus faster in the long run)</li>
-  <li>imp: drastically improved the performance of all game/machine and software-list views by enabling <i>uniformRowHeights</i> which allows for neat optimizations by Qt (improves loading time as well as sorting and scrolling)</li>
-  <li>imp: check-sum scanner: lowered the algorithmic complexity of steps 1 and 3 when preparing incremental scans, so this works remarkably faster now</li>
-  <li>imp: slightly darkened the text-color for ROM-/software-state 'mostly correct' for better readability</li>
-  <li>new: ROMAlyzer: added a second 'copy to clipboard' function that only copies the bad or missing dumps from a given set and excludes columns that aren't important for this purpose</li>
-  <li>new: revised the software-list XML cache to be stored in / retrieved from an SQLite 3 database in order to save memory, speed up software-list loading and allow for ROMAlyzer support -- see also <a href="http://tracker.batcom-it.net/view.php?id=63" target="_blank">bug tracker ID #63</a></li>
-  <li>new: added a new combined database for all supported DAT-info sources (emu-info, game/machine-info and software-info) -- see also <a href="http://tracker.batcom-it.net/view.php?id=80" target="_blank">bug tracker ID #80</a></li>
+ 	<li>fix: image-checker: corrected obsoleteness check for free-standing image files on Windows -- see also <a href="http://tracker.batcom-it.net/view.php?id=78" target="_blank">bug tracker ID #78</a></li>
+ 	<li>fix: corrected the HTML encoding of links in software-info DB entries so they actually work now</li>
+ 	<li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS 0.156</li>
+ 	<li>imp: ROMAlyzer / check-sum wizard: temporarily set the 'searched check-sum hash' to <i>read-only</i> instead of disabling the widget in order to allow for copying the check-sum while it's being searched</li>
+ 	<li>imp: MAME/MESS/UME emulator templates updated to 0.156 (added new core options 'snapbilinear', 'drc_log_uml' and 'drc_log_native' to all templates)</li>
+ 	<li>imp: Linux / UNIX / Mac OS X: defaulting to SDL2 templates now since SDLMAME/SDLMESS switched to SDL2 as default build target after 0.155</li>
+ 	<li>imp: replaced the colored sphere icons showing the ROM status with new images</li>
+ 	<li>imp: using QHash instead of QMap for all internal item lookup tables (less dependent on the number of entries, thus faster in the long run)</li>
+ 	<li>imp: drastically improved the performance of all game/machine and software-list views by enabling <i>uniformRowHeights</i> which allows for neat optimizations by Qt (improves loading time as well as sorting and scrolling)</li>
+ 	<li>imp: check-sum scanner: lowered the algorithmic complexity of steps 1 and 3 when preparing incremental scans, so this works remarkably faster now</li>
+ 	<li>imp: slightly darkened the text-color for ROM-/software-state 'mostly correct' for better readability</li>
+ 	<li>new: ROMAlyzer: added a second 'copy to clipboard' function that only copies the bad or missing dumps from a given set and excludes columns that aren't important for this purpose</li>
+ 	<li>new: revised the software-list XML cache to be stored in / retrieved from an SQLite 3 database in order to save memory, speed up software-list loading and allow for ROMAlyzer support -- see also <a href="http://tracker.batcom-it.net/view.php?id=63" target="_blank">bug tracker ID #63</a></li>
+ 	<li>new: added a new combined database for all supported DAT-info sources (emu-info, game/machine-info and software-info) -- see also <a href="http://tracker.batcom-it.net/view.php?id=80" target="_blank">bug tracker ID #80</a></li>
 </ul>
 <p><b>v0.45, 15-OCT-2014:</b></p>
 <ul>
-  <li>fix: ROMAlyzer: the fix.dat export action needs to be <i>disabled</i> initially (minor)</li>
-  <li>fix: rank images didn't update their color or shape on the fly</li>
-  <li>fix: ROMAlyzer: corrected set rewriter issues with data read from regular files (their CRCs couldn't be correlated)</li>
-  <li>fix: ROMAlyzer: the default ZIP compression level (Z_DEFAULT_COMPRESSION) is -1, corresponding to level 6, but the spin-box only supported values from 0 to 9 so the default level was actually 0</li>
-  <li>fix: avoid crash when checking an individual set's ROM status (probably only seen on slow systems)</li>
-  <li>fix: avoid start-up crash on gcc 4.9+ builds -- see also <a href="http://tracker.batcom-it.net/view.php?id=77" target="_blank">bug tracker ID #77</a> (thanks to <i>Pulfer</i>)</li>
-  <li>imp: ROMAlyzer: major UI and logic overhaul (the settings page has been redesigned completely)</li>
-  <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS 0.155</li>
-  <li>imp: ROMAlyzer: allow set repairing from 7-zip archived reproduction templates</li>
-  <li>imp: all database updates are fully asynchronous now, using in-memory journals (that's faster on slow I/O, but also <i>slightly</i> more risky)</li>
-  <li>imp: added support for SDL2 (SDL 1.x remains the default if available, you can force either version using 'SDL=1' or 'SDL=2' on the make command line)</li>
-  <li>imp: MAME/MESS/UME emulator templates updated to 0.155 (added new templates for SDL2 builds)</li>
-  <li>imp: updated template format to v0.2.8 which adds support for ignoring &lt;choice&gt; nodes on certain platforms (or generally)</li>
-  <li>imp: improved mouse event handling of rank-item widgets (also fixes a minor UI bug)</li>
-  <li>new: ROMAlyzer: added a check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (aka support for <i>unstructured additional ROM paths</i>) -- see also <a href="http://tracker.batcom-it.net/view.php?id=62" target="_blank">bug tracker ID #62</a></li>
-  <li>new: ROMAlyzer: added a <i>ROM Collection Rebuilder</i> which uses the check-sum database to rebuild a complete ROM path from 'any' given XML (including XML from foreign emulators as long as it's MAME/MESS/UME-compatible) -- see also <a href="http://tracker.batcom-it.net/view.php?id=71" target="_blank">bug tracker ID #71</a></li>
-  <li>new: ROMAlyzer: added a new 'create backups' option that will create backup copies of all existing files that are going to be modified / overwritten -- see also <a href="http://tracker.batcom-it.net/view.php?id=73" target="_blank">bug tracker ID #73</a></li>
-  <li>doc: symbolic links to the English HTML docs are no longer required (falls back to English automatically when a language-specific index.html doesn't exist)</li>
+ 	<li>fix: ROMAlyzer: the fix.dat export action needs to be <i>disabled</i> initially (minor)</li>
+ 	<li>fix: rank images didn't update their color or shape on the fly</li>
+ 	<li>fix: ROMAlyzer: corrected set rewriter issues with data read from regular files (their CRCs couldn't be correlated)</li>
+ 	<li>fix: ROMAlyzer: the default ZIP compression level (Z_DEFAULT_COMPRESSION) is -1, corresponding to level 6, but the spin-box only supported values from 0 to 9 so the default level was actually 0</li>
+ 	<li>fix: avoid crash when checking an individual set's ROM status (probably only seen on slow systems)</li>
+ 	<li>fix: avoid start-up crash on gcc 4.9+ builds -- see also <a href="http://tracker.batcom-it.net/view.php?id=77" target="_blank">bug tracker ID #77</a> (thanks to <i>Pulfer</i>)</li>
+ 	<li>imp: ROMAlyzer: major UI and logic overhaul (the settings page has been redesigned completely)</li>
+ 	<li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS 0.155</li>
+ 	<li>imp: ROMAlyzer: allow set repairing from 7-zip archived reproduction templates</li>
+ 	<li>imp: all database updates are fully asynchronous now, using in-memory journals (that's faster on slow I/O, but also <i>slightly</i> more risky)</li>
+ 	<li>imp: added support for SDL2 (SDL 1.x remains the default if available, you can force either version using 'SDL=1' or 'SDL=2' on the make command line)</li>
+ 	<li>imp: MAME/MESS/UME emulator templates updated to 0.155 (added new templates for SDL2 builds)</li>
+ 	<li>imp: updated template format to v0.2.8 which adds support for ignoring &lt;choice&gt; nodes on certain platforms (or generally)</li>
+ 	<li>imp: improved mouse event handling of rank-item widgets (also fixes a minor UI bug)</li>
+ 	<li>new: ROMAlyzer: added a check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (aka support for <i>unstructured additional ROM paths</i>) -- see also <a href="http://tracker.batcom-it.net/view.php?id=62" target="_blank">bug tracker ID #62</a></li>
+ 	<li>new: ROMAlyzer: added a <i>ROM Collection Rebuilder</i> which uses the check-sum database to rebuild a complete ROM path from 'any' given XML (including XML from foreign emulators as long as it's MAME/MESS/UME-compatible) -- see also <a href="http://tracker.batcom-it.net/view.php?id=71" target="_blank">bug tracker ID #71</a></li>
+ 	<li>new: ROMAlyzer: added a new 'create backups' option that will create backup copies of all existing files that are going to be modified / overwritten -- see also <a href="http://tracker.batcom-it.net/view.php?id=73" target="_blank">bug tracker ID #73</a></li>
+ 	<li>doc: symbolic links to the English HTML docs are no longer required (falls back to English automatically when a language-specific index.html doesn't exist)</li>
 </ul>
 <p><b>v0.44, 23-JUL-2014:</b></p>
 <ul>
-  <li>fix: Mac OS X build: resolved type conflicts between LZMA SDK and older XCode headers (&lt; 4.x)</li>
-  <li>fix: corrected device and BIOS set hiding in the master list when ROM state filtering is disabled</li>
-  <li>fix: corrected initial opening of zip/7z image archives when the splash screen is disabled</li>
-  <li>fix: avoid crash when the game/machine list cache creation is prematurely interrupted (upon user request)</li>
-  <li>fix: MiniWebBrowser: corrected the network item downloader</li>
-  <li>fix: fixed a bug with individual ROM checks that corrupted the ROM state cache with an invalid entry, causing it to be invalidated during the next reload</li>
-  <li>fix: welcome dialog: 'NativeFileDialogs' setting didn't work as expected with folder browsers</li>
-  <li>imp: MAME/MESS/UME emulator templates updated to 0.154 (removed 'hlsl_write' from Windows OSD templates, removed 'memcard_directory' from all templates, added option 'console' to all templates)</li>
-  <li>imp: speeded up ROM- and software-state filtering as well as game-/machine-/emu-info lookups by using QHash [<i>amortized O(1)</i>] instead of QMap [<i>O(log n)</i>] to store/retrieve states &amp; infos internally</li>
-  <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to 0.154 (4 sets remain uncategorized, help appreciated)</li>
-  <li>imp: upon merging game/machine info-sources UME variants now keep track if a game's/machine's info came from MAME (history.dat) or MESS (sysinfo.dat) and formats/displays the data accordingly when requested</li>
-  <li>imp: updated the alternative system- and software-notes templates contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
-  <li>imp: hide game/machine list while filtering it by ROM state (faster)</li>
-  <li>imp: consecutive duplicate words in SDL joystick names are now cleaned up -- i.e. "Logitech Logitech Extreme 3D" becomes "Logitech Extreme 3D"</li>
-  <li>imp: QMC2 Arcade: added support for theme-specific default values used by certain settings -- i.e. <i>darkone</i> uses a 'sortByName' setting with an expected default value of 'true', <i>ToxicWaste</i> doesn't (want to) support this setting and uses the global default value of 'false' instead</li>
-  <li>imp: QMC2 Arcade: be more responsive while loading data from file (especially interesting when using a console window)</li>
-  <li>imp: updated minizip to version 1.1 which adds support for zip64 (zip archives can now be larger than 4 GB) -- see also <a href="http://tracker.batcom-it.net/view.php?id=45" target="_blank">bug tracker ID #45</a></li>
-  <li>imp: made category.ini translatable (caution: the new format is <b>not</b> backward-compatible (!) - however, you can use older category.ini's with the new code because translations are optional)</li>
-  <li>imp: revised slot-info cache creation/loading to be more responsive and faster</li>
-  <li>imp: changed default paths for 'category.ini' and 'catver.ini' (using the 'data/cat' folder now)</li>
-  <li>imp: about dialog: added Mac OS X 10.9 &amp; Windows 8.1 detection for Qt &gt;= 4.8.6 / 5.2.0</li>
-  <li>imp: improved ROM state filtering performance by resetting the internal state of the tree-widget before actually showing/hiding the items</li>
-  <li>imp: don't be fussy about <i>ignored</i> options when checking emulator configuration templates (they are ignored for good reason, so why confuse users by mentioning them?)</li>
-  <li>imp: QMC2 Arcade (Windows): when started from a command prompt, console-mode 'terminal' now causes QMC2 Arcade to use this console for logging</li>
-  <li>imp: QMC2 Arcade / ToxicWaste theme: load icons asynchronously (in a separate thread) in order to not affect flicking performance</li>
-  <li>new: added a 'user data' database (SQLite 3) to store &amp; retrieve rank information and personal comments per game/machine</li>
-  <li>new: added a new ranking system and a corresponding 'rank' column to all game/machine lists -- see also <a href="http://tracker.batcom-it.net/view.php?id=46" target="_blank">bug tracker ID #46</a></li>
-  <li>new: added missing 'restore' feature to the image format setup dialog</li>
-  <li>new: replaced the foreign IDs menu with a new (tree-)view for foreign emulators and their custom IDs (if any) shown as sub-items of each emulator; the view will only be shown when there <b>are</b> any registered (foreign) emulators -- see also <a href="http://tracker.batcom-it.net/view.php?id=53" target="_blank">bug tracker ID #53</a></li>
-  <li>new: icons for foreign emulators and their custom IDs can now be selected individually</li>
-  <li>new: eye-candy: pepped up the static loading &amp; filtering texts with an animation (also used for <i>mass tagging</i>)</li>
-  <li>new: automatically clear all emulator caches when the output of '-listfull' changes (optional, enabled per default) -- something users often forget is using QMC2's -cc command line switch when updating their MAME/MESS/UME SVN builds; this feature is supposed to automate that as far as possible (changes to devices and software-lists aren't recognized automatically)</li>
-  <li>new: added command line option '-tc' which will check the emulator configuration template (printing results to <i>stdout</i>) and exit before actual start-up occurs</li>
-  <li>new: ROMAlyzer: added support for CMP-compatible fix.dat exports -- see also <a href="http://tracker.batcom-it.net/view.php?id=51" target="_blank">bug tracker ID #51</a></li>
-  <li>new: QMC2 Arcade: added support for <b>multiple</b> image/icon files (per artwork category), supporting the main GUI's <i>ParentImageFallback</i> setting as well</li>
-  <li>new: icons of game/machine clones now fall back to the parent set's icon when the <i>ParentImageFallback</i> setting is enabled (and an individual icon for the clone isn't available)</li>
+ 	<li>fix: Mac OS X build: resolved type conflicts between LZMA SDK and older XCode headers (&lt; 4.x)</li>
+ 	<li>fix: corrected device and BIOS set hiding in the master list when ROM state filtering is disabled</li>
+ 	<li>fix: corrected initial opening of zip/7z image archives when the splash screen is disabled</li>
+ 	<li>fix: avoid crash when the game/machine list cache creation is prematurely interrupted (upon user request)</li>
+ 	<li>fix: MiniWebBrowser: corrected the network item downloader</li>
+ 	<li>fix: fixed a bug with individual ROM checks that corrupted the ROM state cache with an invalid entry, causing it to be invalidated during the next reload</li>
+ 	<li>fix: welcome dialog: 'NativeFileDialogs' setting didn't work as expected with folder browsers</li>
+ 	<li>imp: MAME/MESS/UME emulator templates updated to 0.154 (removed 'hlsl_write' from Windows OSD templates, removed 'memcard_directory' from all templates, added option 'console' to all templates)</li>
+ 	<li>imp: speeded up ROM- and software-state filtering as well as game-/machine-/emu-info lookups by using QHash [<i>amortized O(1)</i>] instead of QMap [<i>O(log n)</i>] to store/retrieve states &amp; infos internally</li>
+ 	<li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to 0.154 (4 sets remain uncategorized, help appreciated)</li>
+ 	<li>imp: upon merging game/machine info-sources UME variants now keep track if a game's/machine's info came from MAME (history.dat) or MESS (sysinfo.dat) and formats/displays the data accordingly when requested</li>
+ 	<li>imp: updated the alternative system- and software-notes templates contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
+ 	<li>imp: hide game/machine list while filtering it by ROM state (faster)</li>
+ 	<li>imp: consecutive duplicate words in SDL joystick names are now cleaned up -- i.e. "Logitech Logitech Extreme 3D" becomes "Logitech Extreme 3D"</li>
+ 	<li>imp: QMC2 Arcade: added support for theme-specific default values used by certain settings -- i.e. <i>darkone</i> uses a 'sortByName' setting with an expected default value of 'true', <i>ToxicWaste</i> doesn't (want to) support this setting and uses the global default value of 'false' instead</li>
+ 	<li>imp: QMC2 Arcade: be more responsive while loading data from file (especially interesting when using a console window)</li>
+ 	<li>imp: updated minizip to version 1.1 which adds support for zip64 (zip archives can now be larger than 4 GB) -- see also <a href="http://tracker.batcom-it.net/view.php?id=45" target="_blank">bug tracker ID #45</a></li>
+ 	<li>imp: made category.ini translatable (caution: the new format is <b>not</b> backward-compatible (!) - however, you can use older category.ini's with the new code because translations are optional)</li>
+ 	<li>imp: revised slot-info cache creation/loading to be more responsive and faster</li>
+ 	<li>imp: changed default paths for 'category.ini' and 'catver.ini' (using the 'data/cat' folder now)</li>
+ 	<li>imp: about dialog: added Mac OS X 10.9 &amp; Windows 8.1 detection for Qt &gt;= 4.8.6 / 5.2.0</li>
+ 	<li>imp: improved ROM state filtering performance by resetting the internal state of the tree-widget before actually showing/hiding the items</li>
+ 	<li>imp: don't be fussy about <i>ignored</i> options when checking emulator configuration templates (they are ignored for good reason, so why confuse users by mentioning them?)</li>
+ 	<li>imp: QMC2 Arcade (Windows): when started from a command prompt, console-mode 'terminal' now causes QMC2 Arcade to use this console for logging</li>
+ 	<li>imp: QMC2 Arcade / ToxicWaste theme: load icons asynchronously (in a separate thread) in order to not affect flicking performance</li>
+ 	<li>new: added a 'user data' database (SQLite 3) to store &amp; retrieve rank information and personal comments per game/machine</li>
+ 	<li>new: added a new ranking system and a corresponding 'rank' column to all game/machine lists -- see also <a href="http://tracker.batcom-it.net/view.php?id=46" target="_blank">bug tracker ID #46</a></li>
+ 	<li>new: added missing 'restore' feature to the image format setup dialog</li>
+ 	<li>new: replaced the foreign IDs menu with a new (tree-)view for foreign emulators and their custom IDs (if any) shown as sub-items of each emulator; the view will only be shown when there <b>are</b> any registered (foreign) emulators -- see also <a href="http://tracker.batcom-it.net/view.php?id=53" target="_blank">bug tracker ID #53</a></li>
+ 	<li>new: icons for foreign emulators and their custom IDs can now be selected individually</li>
+ 	<li>new: eye-candy: pepped up the static loading &amp; filtering texts with an animation (also used for <i>mass tagging</i>)</li>
+ 	<li>new: automatically clear all emulator caches when the output of '-listfull' changes (optional, enabled per default) -- something users often forget is using QMC2's -cc command line switch when updating their MAME/MESS/UME SVN builds; this feature is supposed to automate that as far as possible (changes to devices and software-lists aren't recognized automatically)</li>
+ 	<li>new: added command line option '-tc' which will check the emulator configuration template (printing results to <i>stdout</i>) and exit before actual start-up occurs</li>
+ 	<li>new: ROMAlyzer: added support for CMP-compatible fix.dat exports -- see also <a href="http://tracker.batcom-it.net/view.php?id=51" target="_blank">bug tracker ID #51</a></li>
+ 	<li>new: QMC2 Arcade: added support for <b>multiple</b> image/icon files (per artwork category), supporting the main GUI's <i>ParentImageFallback</i> setting as well</li>
+ 	<li>new: icons of game/machine clones now fall back to the parent set's icon when the <i>ParentImageFallback</i> setting is enabled (and an individual icon for the clone isn't available)</li>
 </ul>
 <p><b>v0.43, 07-APR-2014:</b></p>
 <ul>
-  <li>fix: avoid crash upon game/machine launch when <i>double-click activation</i> is enabled -- see also <a href="http://tracker.batcom-it.net/view.php?id=44" target="_blank">bug tracker ID #44</a></li>
-  <li>fix: ROM status exporter: corrected mix up of certain sort criteria indexes</li>
-  <li>fix: MinGW build: corrected compiler &amp; linker flags for QMC2 Arcade to not open a console window</li>
-  <li>fix: MiniWebBrowser: corrected a signal/slot auto-connection that caused a Qt warning with Qt 5 (minor)</li>
-  <li>fix: corrected tagging through Shift+Up/Down when the XML tree is expanded and the cursor is on a sub-item</li>
-  <li>fix: MiniWebBrowser: corrected the display of super-long links in the status-bar so the browser wouldn't resize in X direction</li>
-  <li>fix: corrected variant launching (broken in 0.42)</li>
-  <li>fix: main GUI / key- &amp; joy-mapping: don't trigger <i>disabled</i> actions</li>
-  <li>fix: MESS device configurator: avoid crash (seen on Windows) when the selected system changes while the available devices and slot-options are currently being determined for another system</li>
-  <li>fix: initial ROM path check: corrected handling of <i>relative</i> ROM paths</li>
-  <li>fix: updated the handling of character encoding in software-lists on Windows to modern MAME/MESS/UME -- see also <a href="http://tracker.batcom-it.net/view.php?id=65" target="_blank">bug tracker ID #65</a></li>
-  <li>fix: corrected the working directory the emulator would use when scanning software-lists (so that a <i>relative</i> hash path would actually be found)</li>
-  <li>fix: demo-mode (minor): corrected the produced command line when 'maximize' is disabled</li>
-  <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to 0.153</li>
-  <li>imp: QMC2 Arcade: enabled translation for joystick and key-sequence map debugging</li>
-  <li>imp: initial ROM path check: output more detailed information for each non-existing/inaccessible ROM path</li>
-  <li>imp: revised the help menu and added forum, wiki and bug-tracker links (opened in the default browser)</li>
-  <li>imp: ROMAlyzer: included an item counter in the progress bar when analyzing, reading or writing sets</li>
-  <li>imp: added <a href="http://www.7-zip.org/sdk.html" target="_blank">LZMA SDK 9.22</a> (7-zip) data compression/decompression library by Igor Pavlov</li>
-  <li>imp: optimized loading &amp; parsing of the software-info DB</li>
-  <li>imp: added a subset of the <a href="http://qt.gitorious.org/qt/qtftp/source/src/qftp" target="_blank">QtFtp add-on</a> for Qt 5 compatibility with the QFtp and QUrlInfo classes</li>
-  <li>imp: separated MAME &amp; MESS emulator-info DBs as well as their game-/machine-info counterparts in order to allow for merging them in case of UME</li>
-  <li>imp: MAME/MESS/UME emulator templates updated to 0.153</li>
-  <li>imp: system- and software-notes templates: new template macros ($IS_BIOS$ and $IS_DEVICE$) and JS functions (isBios(), isDevice() and romStatus())</li>
-  <li>imp: Windows: the FileSystemModel's directory scanner thread now uses native Win32 API calls instead of Qt classes -- see also <a href="http://tracker.batcom-it.net/view.php?id=56" target="_blank">bug tracker ID #56</a></li>
-  <li>imp: added a FileIconProvider wrapper class for QFileIconProvider that uses native Win32 API calls on Windows for better performance (also caches the icons internally)</li>
-  <li>imp: updated template format to v0.2.7 which adds support for a new <i>relativeTo</i> attribute (valid only for file-type options) which - if set - will be used to generate a path relative to the current value of the referenced directory-type option when using a file-picker; note that this will only work correctly when the referenced directory-type option consists of a <b>single</b> path (i.e. not for semicolon-seperated paths, in which case you'd have to edit the corresponding file-type option manually to reflect relative file paths)</li>
-  <li>imp: replaced some icons in the <i>classic</i> image-set</li>
-  <li>imp: produce a nicer command line when the emulator is launched in embedded- or demo-mode (no duplicate or redundant options)</li>
-  <li>imp: updated the alternative system- and software-notes template contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
-  <li>new: ROMAlyzer: added read-only support for 7z archived ROMs</li>
-  <li>new: added support for 7z archived icons and image artwork - note that for best performance 7-zipped icons should be packed in a solid block (7z default) and images should be packed <b>non-solid</b> (7za option <i>-ms=off</i>)</li>
-  <li>new: MESS device configurator: added support for 7z archives to the file-chooser (just like the existing support for zip archives)</li>
-  <li>new: QMC2 Arcade: added support for game/machine icons (only supported by the <i>ToxicWaste</i> theme at the moment)</li>
-  <li>new: revised the XML data cache to be stored in / retrieved from an SQLite 3 database in order to save memory and speed up initial loading (per game/machine XML data is queried from the DB on demand)</li>
-  <li>new: added a web-search feature (currently supporting Google, Wikipedia, DuckDuckGo and Yandex)</li>
-  <li>new: MiniWebBrowser: added experimental support for anonymous FTP (warning: don't use this for <b>big</b> downloads)</li>
-  <li>new: added a built-in PDF viewer based on <a href="https://github.com/mozilla/pdf.js" target="_blank">PDF.js</a> (experimental)</li>
+ 	<li>fix: avoid crash upon game/machine launch when <i>double-click activation</i> is enabled -- see also <a href="http://tracker.batcom-it.net/view.php?id=44" target="_blank">bug tracker ID #44</a></li>
+ 	<li>fix: ROM status exporter: corrected mix up of certain sort criteria indexes</li>
+ 	<li>fix: MinGW build: corrected compiler &amp; linker flags for QMC2 Arcade to not open a console window</li>
+ 	<li>fix: MiniWebBrowser: corrected a signal/slot auto-connection that caused a Qt warning with Qt 5 (minor)</li>
+ 	<li>fix: corrected tagging through Shift+Up/Down when the XML tree is expanded and the cursor is on a sub-item</li>
+ 	<li>fix: MiniWebBrowser: corrected the display of super-long links in the status-bar so the browser wouldn't resize in X direction</li>
+ 	<li>fix: corrected variant launching (broken in 0.42)</li>
+ 	<li>fix: main GUI / key- &amp; joy-mapping: don't trigger <i>disabled</i> actions</li>
+ 	<li>fix: MESS device configurator: avoid crash (seen on Windows) when the selected system changes while the available devices and slot-options are currently being determined for another system</li>
+ 	<li>fix: initial ROM path check: corrected handling of <i>relative</i> ROM paths</li>
+ 	<li>fix: updated the handling of character encoding in software-lists on Windows to modern MAME/MESS/UME -- see also <a href="http://tracker.batcom-it.net/view.php?id=65" target="_blank">bug tracker ID #65</a></li>
+ 	<li>fix: corrected the working directory the emulator would use when scanning software-lists (so that a <i>relative</i> hash path would actually be found)</li>
+ 	<li>fix: demo-mode (minor): corrected the produced command line when 'maximize' is disabled</li>
+ 	<li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to 0.153</li>
+ 	<li>imp: QMC2 Arcade: enabled translation for joystick and key-sequence map debugging</li>
+ 	<li>imp: initial ROM path check: output more detailed information for each non-existing/inaccessible ROM path</li>
+ 	<li>imp: revised the help menu and added forum, wiki and bug-tracker links (opened in the default browser)</li>
+ 	<li>imp: ROMAlyzer: included an item counter in the progress bar when analyzing, reading or writing sets</li>
+ 	<li>imp: added <a href="http://www.7-zip.org/sdk.html" target="_blank">LZMA SDK 9.22</a> (7-zip) data compression/decompression library by Igor Pavlov</li>
+ 	<li>imp: optimized loading &amp; parsing of the software-info DB</li>
+ 	<li>imp: added a subset of the <a href="http://qt.gitorious.org/qt/qtftp/source/src/qftp" target="_blank">QtFtp add-on</a> for Qt 5 compatibility with the QFtp and QUrlInfo classes</li>
+ 	<li>imp: separated MAME &amp; MESS emulator-info DBs as well as their game-/machine-info counterparts in order to allow for merging them in case of UME</li>
+ 	<li>imp: MAME/MESS/UME emulator templates updated to 0.153</li>
+ 	<li>imp: system- and software-notes templates: new template macros ($IS_BIOS$ and $IS_DEVICE$) and JS functions (isBios(), isDevice() and romStatus())</li>
+ 	<li>imp: Windows: the FileSystemModel's directory scanner thread now uses native Win32 API calls instead of Qt classes -- see also <a href="http://tracker.batcom-it.net/view.php?id=56" target="_blank">bug tracker ID #56</a></li>
+ 	<li>imp: added a FileIconProvider wrapper class for QFileIconProvider that uses native Win32 API calls on Windows for better performance (also caches the icons internally)</li>
+ 	<li>imp: updated template format to v0.2.7 which adds support for a new <i>relativeTo</i> attribute (valid only for file-type options) which - if set - will be used to generate a path relative to the current value of the referenced directory-type option when using a file-picker; note that this will only work correctly when the referenced directory-type option consists of a <b>single</b> path (i.e. not for semicolon-seperated paths, in which case you'd have to edit the corresponding file-type option manually to reflect relative file paths)</li>
+ 	<li>imp: replaced some icons in the <i>classic</i> image-set</li>
+ 	<li>imp: produce a nicer command line when the emulator is launched in embedded- or demo-mode (no duplicate or redundant options)</li>
+ 	<li>imp: updated the alternative system- and software-notes template contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
+ 	<li>new: ROMAlyzer: added read-only support for 7z archived ROMs</li>
+ 	<li>new: added support for 7z archived icons and image artwork - note that for best performance 7-zipped icons should be packed in a solid block (7z default) and images should be packed <b>non-solid</b> (7za option <i>-ms=off</i>)</li>
+ 	<li>new: MESS device configurator: added support for 7z archives to the file-chooser (just like the existing support for zip archives)</li>
+ 	<li>new: QMC2 Arcade: added support for game/machine icons (only supported by the <i>ToxicWaste</i> theme at the moment)</li>
+ 	<li>new: revised the XML data cache to be stored in / retrieved from an SQLite 3 database in order to save memory and speed up initial loading (per game/machine XML data is queried from the DB on demand)</li>
+ 	<li>new: added a web-search feature (currently supporting Google, Wikipedia, DuckDuckGo and Yandex)</li>
+ 	<li>new: MiniWebBrowser: added experimental support for anonymous FTP (warning: don't use this for <b>big</b> downloads)</li>
+ 	<li>new: added a built-in PDF viewer based on <a href="https://github.com/mozilla/pdf.js" target="_blank">PDF.js</a> (experimental)</li>
 </ul>
 <p><b>v0.42, 24-DEC-2013:</b></p>
 <ul>
-  <li>fix: changes to global emulator options weren't correctly merged with the current game/machine-specific ones when the corresponding save-button was pressed and 'overwrite' was selected on the subsequent dialog</li>
-  <li>fix: don't add 'ghost sets' to internal master list when creating category- or version-views</li>
-  <li>fix: don't allow initial ROMAlyzer setup while reload is active</li>
-  <li>fix: do final update of the progress bar before sorting the game/machine list after a reload</li>
-  <li>fix: emulator configuration widgets now honor the current style's highlight coloring for check-box (bool) type delegates</li>
-  <li>fix: corrected sRGB profile headers of all included PNGs</li>
-  <li>fix: software-list: favorite software wasn't shown initially when software-state filtering was active</li>
-  <li>fix: ROM check: the ROM status indication for the currently selected game/machine wasn't always correctly updated on-the-fly for 'not found' sets and sets w/o ROMs</li>
-  <li>fix: software-list: corrected combined state- and compatibility-filtering</li>
-  <li>fix: MESS device configurator: don't show slots that have no user-selectable options</li>
-  <li>imp: MAME/MESS/UME emulator templates updated to 0.152</li>
-  <li>imp: main GUI: renamed command line argument <i>-qmc2_config_path</i> to <i>-config_path</i> (the old argument name is still supported, though)</li>
-  <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to his latest version as of 20-DEC-2013</li>
-  <li>imp: greatly improved the game/machine search feature to be interruptable while the actual search is performed, indicating its progress; added reg-exp like features for the pattern syntax (the special characters $, (, ), *, +, ., ?, [, ], ^, {, |, } and \ must be <i>escaped</i> - by adding \ in front of them - when they are meant <i>literally</i>)</li>
-  <li>imp: X11 embedder: removed xwininfo requirement (done via Xlib directly now)</li>
-  <li>imp: QMC2 Arcade: countless improvements to the <i>darkone</i> theme</li>
-  <li>imp: speed up loading of cached game/machine lists and cached XML data</li>
-  <li>imp: added the run-time Qt version to the window titles of all variants / applications</li>
-  <li>imp: setup dialog: shuffled / replaced some button-bar icons</li>
-  <li>imp: modernized the YouTube video player and ported it to Qt 5 / QtMultimedia</li>
-  <li>imp: replaced splash screens with new ones based on current logos</li>
-  <li>imp: ROMAlyzer: indicate optional missing ROMs as such in the report (greyed-out icon) and when logging the CRC miss</li>
-  <li>new: added support for the use of environment variables in settings strings</li>
-  <li>new: ROMAlyzer: added data file import (imports all game names contained in a data file as the list of sets to be analyzed)</li>
-  <li>inf: <b>the new required minimum Qt version is 4.8.0</b>, support for older versions of Qt has been dropped</li>
+ 	<li>fix: changes to global emulator options weren't correctly merged with the current game/machine-specific ones when the corresponding save-button was pressed and 'overwrite' was selected on the subsequent dialog</li>
+ 	<li>fix: don't add 'ghost sets' to internal master list when creating category- or version-views</li>
+ 	<li>fix: don't allow initial ROMAlyzer setup while reload is active</li>
+ 	<li>fix: do final update of the progress bar before sorting the game/machine list after a reload</li>
+ 	<li>fix: emulator configuration widgets now honor the current style's highlight coloring for check-box (bool) type delegates</li>
+ 	<li>fix: corrected sRGB profile headers of all included PNGs</li>
+ 	<li>fix: software-list: favorite software wasn't shown initially when software-state filtering was active</li>
+ 	<li>fix: ROM check: the ROM status indication for the currently selected game/machine wasn't always correctly updated on-the-fly for 'not found' sets and sets w/o ROMs</li>
+ 	<li>fix: software-list: corrected combined state- and compatibility-filtering</li>
+ 	<li>fix: MESS device configurator: don't show slots that have no user-selectable options</li>
+ 	<li>imp: MAME/MESS/UME emulator templates updated to 0.152</li>
+ 	<li>imp: main GUI: renamed command line argument <i>-qmc2_config_path</i> to <i>-config_path</i> (the old argument name is still supported, though)</li>
+ 	<li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to his latest version as of 20-DEC-2013</li>
+ 	<li>imp: greatly improved the game/machine search feature to be interruptable while the actual search is performed, indicating its progress; added reg-exp like features for the pattern syntax (the special characters $, (, ), *, +, ., ?, [, ], ^, {, |, } and \ must be <i>escaped</i> - by adding \ in front of them - when they are meant <i>literally</i>)</li>
+ 	<li>imp: X11 embedder: removed xwininfo requirement (done via Xlib directly now)</li>
+ 	<li>imp: QMC2 Arcade: countless improvements to the <i>darkone</i> theme</li>
+ 	<li>imp: speed up loading of cached game/machine lists and cached XML data</li>
+ 	<li>imp: added the run-time Qt version to the window titles of all variants / applications</li>
+ 	<li>imp: setup dialog: shuffled / replaced some button-bar icons</li>
+ 	<li>imp: modernized the YouTube video player and ported it to Qt 5 / QtMultimedia</li>
+ 	<li>imp: replaced splash screens with new ones based on current logos</li>
+ 	<li>imp: ROMAlyzer: indicate optional missing ROMs as such in the report (greyed-out icon) and when logging the CRC miss</li>
+ 	<li>new: added support for the use of environment variables in settings strings</li>
+ 	<li>new: ROMAlyzer: added data file import (imports all game names contained in a data file as the list of sets to be analyzed)</li>
+ 	<li>inf: <b>the new required minimum Qt version is 4.8.0</b>, support for older versions of Qt has been dropped</li>
 </ul>
 <p><b>v0.41, 05-NOV-2013:</b></p>
 <ul>
-  <li>fix: QMC2 Arcade: disabled GTK style related work-around for Mac OS X</li>
-  <li>fix: foreign emulator support: the selection of a foreign emulator in the system's configuration wasn't correctly honored on emu-launch</li>
-  <li>imp: template-map check: switched the order in which differing default values are logged (the <b>expected</b> value is shown first now, the second value is the one from the currently active template)</li>
-  <li>imp: QMC2 Arcade / ToxicWaste theme: updated cabinet overlay image made by <a href="credits.html#JacKc">Jacques Châtelet (JacKc)</a>, added auto-stopping of animation and wave effect when emulators are running</li>
-  <li>imp: new logo images for all QMC2 variants, also by <a href="credits.html#JacKc">Jacques Châtelet (JacKc)</a></li>
-  <li>imp: improved key-sequence and joystick-function scanners</li>
-  <li>new: QMC2 Arcade: added support for key-sequence mapping</li>
-  <li>new: QMC2 Arcade: added support for digital joysticks (mapping their functions to key-sequences)</li>
-  <li>new: Qt CHDMAN GUI: added a script-engine based on QtScript (ECMAScript/JavaScript)</li>
-  <li>doc: completed all man-pages</li>
+ 	<li>fix: QMC2 Arcade: disabled GTK style related work-around for Mac OS X</li>
+ 	<li>fix: foreign emulator support: the selection of a foreign emulator in the system's configuration wasn't correctly honored on emu-launch</li>
+ 	<li>imp: template-map check: switched the order in which differing default values are logged (the <b>expected</b> value is shown first now, the second value is the one from the currently active template)</li>
+ 	<li>imp: QMC2 Arcade / ToxicWaste theme: updated cabinet overlay image made by <a href="credits.html#JacKc">Jacques Châtelet (JacKc)</a>, added auto-stopping of animation and wave effect when emulators are running</li>
+ 	<li>imp: new logo images for all QMC2 variants, also by <a href="credits.html#JacKc">Jacques Châtelet (JacKc)</a></li>
+ 	<li>imp: improved key-sequence and joystick-function scanners</li>
+ 	<li>new: QMC2 Arcade: added support for key-sequence mapping</li>
+ 	<li>new: QMC2 Arcade: added support for digital joysticks (mapping their functions to key-sequences)</li>
+ 	<li>new: Qt CHDMAN GUI: added a script-engine based on QtScript (ECMAScript/JavaScript)</li>
+ 	<li>doc: completed all man-pages</li>
 </ul>
 <p><b>v0.40, 18-SEP-2013:</b></p>
 <ul>
-  <li>fix: demo- &amp; arcade-mode setup dialogs: corrected driver status filter order</li>
-  <li>fix: corrected item selection in favorites and play-history when restoring the game/machine selection</li>
-  <li>fix: corrected device and BIOS set filtering for category- and version-views</li>
-  <li>fix: QMC2 Arcade: worked around a weird issue on some GTK environments (which may implicitly set a buggy default style causing start-up crashes) by explicitly setting a <b>safe</b> built-in Qt style</li>
-  <li>fix: QMC2 Arcade: corrected the path that's used when loading images from a ZIP</li>
-  <li>fix: software-list: don't trigger an unwanted search during the loading phase</li>
-  <li>fix: reopen/remap the currently selected joystick (if any) after scanning the available sticks</li>
-  <li>imp: ROMAlyzer: improved logging when CHDs can't be found</li>
-  <li>imp: variant launcher on Linux/UNIX: added fallback to the current working directory for launching QMC2 variant binaries</li>
-  <li>imp: implemented a generalized solution for 'MinimizeOnVariantLaunch' and 'MinimizeOnEmuLaunch' which also saves/restores the current window states of all top-level widgets</li>
-  <li>imp: QMC2 Arcade: added a '-language' command line option (using the main GUI's setting as the default, which is now customizable from within arcade themes as well)</li>
-  <li>imp: QMC2 Arcade / ToxicWaste theme: the flip direction (cabinet &lt;=&gt; game-card) now adapts to where the user clicks on the 'flippable' item (left/right half of vertical center area vs. top/bottom area), the back-end default options are customizable from within the theme, the quit confirmation is optional now and the image-class shown in the cabinet can be selected on the game-card</li>
-  <li>imp: suppress the initial ROM state filtering when <b>no</b> states or BIOS / device sets have been disabled (this speeds up loading in many cases), also do not run the actual filter when an individual set's ROM state is checked and doesn't change</li>
-  <li>imp: slightly improved the loading performance for cached XML data and all dat-info sources</li>
-  <li>imp: added support for Qt 5.1, however, the <b>recommended Qt version remains 4.8</b> (when Qt 5 is used, the build rules will automatically disable embedder functionality on X11 platforms as well as all Phonon features on all platforms -- new implementations using QtMultimedia as replacement for Phonon and a rewrite of the embedder code will most likely be done at a later stage</li>
-  <li>imp: MAME/MESS/UME emulator templates updated to 0.150</li>
-  <li>imp: ROMAlyzer: changed file-status indication slightly, using capital letters for good and lower letters for bad states</li>
-  <li>imp: added mamedb.com and progettoemma.net as additional MAWS sources and made progettoemma.net the new default URL</li>
-  <li>imp: MESS device configurator: renamed <i>available device configurations</i> to <i>stored device configurations</i> and simplified some tool-tips accordingly</li>
-  <li>imp: emulator control panel: exchanged LED on/off icons with fancier ones and added a third LED column</li>
-  <li>imp: more SDL joystick related logging</li>
-  <li>new: added display of software-state info as 'combined statistics' to the software-list widget (similar to the stats-label used for the game/machine list)</li>
-  <li>new: QMC2 Arcade / ToxicWaste theme: added support for displaying emulator- and game-infos on the game-card and for manual vs. automatic cabinet scaling/positioning</li>
-  <li>new: added 'tagged only' and 'favorites only' filter options to the arcade- and demo-mode setup dialogs</li>
-  <li>new: added optional support for additional image formats for all kinds of artwork</li>
-  <li>doc: added (preliminary) man-pages for all binaries</li>
-  <li>inf: globally renamed the 'XML game/machine list cache' to just 'XML data cache'</li>
+ 	<li>fix: demo- &amp; arcade-mode setup dialogs: corrected driver status filter order</li>
+ 	<li>fix: corrected item selection in favorites and play-history when restoring the game/machine selection</li>
+ 	<li>fix: corrected device and BIOS set filtering for category- and version-views</li>
+ 	<li>fix: QMC2 Arcade: worked around a weird issue on some GTK environments (which may implicitly set a buggy default style causing start-up crashes) by explicitly setting a <b>safe</b> built-in Qt style</li>
+ 	<li>fix: QMC2 Arcade: corrected the path that's used when loading images from a ZIP</li>
+ 	<li>fix: software-list: don't trigger an unwanted search during the loading phase</li>
+ 	<li>fix: reopen/remap the currently selected joystick (if any) after scanning the available sticks</li>
+ 	<li>imp: ROMAlyzer: improved logging when CHDs can't be found</li>
+ 	<li>imp: variant launcher on Linux/UNIX: added fallback to the current working directory for launching QMC2 variant binaries</li>
+ 	<li>imp: implemented a generalized solution for 'MinimizeOnVariantLaunch' and 'MinimizeOnEmuLaunch' which also saves/restores the current window states of all top-level widgets</li>
+ 	<li>imp: QMC2 Arcade: added a '-language' command line option (using the main GUI's setting as the default, which is now customizable from within arcade themes as well)</li>
+ 	<li>imp: QMC2 Arcade / ToxicWaste theme: the flip direction (cabinet &lt;=&gt; game-card) now adapts to where the user clicks on the 'flippable' item (left/right half of vertical center area vs. top/bottom area), the back-end default options are customizable from within the theme, the quit confirmation is optional now and the image-class shown in the cabinet can be selected on the game-card</li>
+ 	<li>imp: suppress the initial ROM state filtering when <b>no</b> states or BIOS / device sets have been disabled (this speeds up loading in many cases), also do not run the actual filter when an individual set's ROM state is checked and doesn't change</li>
+ 	<li>imp: slightly improved the loading performance for cached XML data and all dat-info sources</li>
+ 	<li>imp: added support for Qt 5.1, however, the <b>recommended Qt version remains 4.8</b> (when Qt 5 is used, the build rules will automatically disable embedder functionality on X11 platforms as well as all Phonon features on all platforms -- new implementations using QtMultimedia as replacement for Phonon and a rewrite of the embedder code will most likely be done at a later stage</li>
+ 	<li>imp: MAME/MESS/UME emulator templates updated to 0.150</li>
+ 	<li>imp: ROMAlyzer: changed file-status indication slightly, using capital letters for good and lower letters for bad states</li>
+ 	<li>imp: added mamedb.com and progettoemma.net as additional MAWS sources and made progettoemma.net the new default URL</li>
+ 	<li>imp: MESS device configurator: renamed <i>available device configurations</i> to <i>stored device configurations</i> and simplified some tool-tips accordingly</li>
+ 	<li>imp: emulator control panel: exchanged LED on/off icons with fancier ones and added a third LED column</li>
+ 	<li>imp: more SDL joystick related logging</li>
+ 	<li>new: added display of software-state info as 'combined statistics' to the software-list widget (similar to the stats-label used for the game/machine list)</li>
+ 	<li>new: QMC2 Arcade / ToxicWaste theme: added support for displaying emulator- and game-infos on the game-card and for manual vs. automatic cabinet scaling/positioning</li>
+ 	<li>new: added 'tagged only' and 'favorites only' filter options to the arcade- and demo-mode setup dialogs</li>
+ 	<li>new: added optional support for additional image formats for all kinds of artwork</li>
+ 	<li>doc: added (preliminary) man-pages for all binaries</li>
+ 	<li>inf: globally renamed the 'XML game/machine list cache' to just 'XML data cache'</li>
 </ul>
 <p><b>v0.39, 11-JUN-2013:</b></p>
 <ul>
-  <li>fix: software-list export: traverse the export map correctly</li>
-  <li>fix: avoid crash when play was triggered on premature game/machine list data</li>
-  <li>fix: minor: launch foreign emulators/IDs even if the current game/machine is a device set</li>
-  <li>fix: don't remove/hide the system-notes detail page when the game-/machine-list is reloaded</li>
-  <li>fix: slot-devices: default slot-options with non-default BIOS selections weren't passed to the emulator</li>
-  <li>fix: Windows 8 specific corrections (especially related to the file-chooser and the welcome-dialog)</li>
-  <li>fix: MESS device configurator: the UI setup wasn't correctly stored/restored under certain circumstances</li>
-  <li>fix: MESS device configurator: double-clicking stored configurations could lead to a crash</li>
-  <li>fix: MESS device configurator: adjust tab-orders after dynamically changing device-mappings and slot-options</li>
-  <li>fix: MESS device configurator: correctly clear all device-maps and reset the slot-configuration to the default one when the 'new configuration' button is clicked</li>
-  <li>fix: X11 embedder: call XUnmapWindow() &amp; XMapRaised() after releasing an emulator to avoid that its window may be hidden, corrected a centering issue upon resizing of the embed-container</li>
-  <li>fix: software-lists: floating software-snapshots should <b>never</b> be shown when their contents are the ghost-image</li>
-  <li>fix: software-lists: corrected a rare UI synchronization issue when switching systems while a software-list is currently being created</li>
-  <li>fix: software-lists: don't disable the complete widget when one or more expected software-lists weren't found</li>
-  <li>fix: avoid a rare crash that could be caused by subsequently applying settings very quickly</li>
-  <li>fix: QMC2 Arcade / ToxicWaste theme: corrected positioning of the imager-viewer (back-side)</li>
-  <li>fix: options / joystick: automatically select the 'Map' function when the user clicks 'Apply' or 'OK' so joystick function mappings actually get <b>activated</b> (joystick functions won't be mapped when in 'Calibrate' or 'Test' mode)</li>
-  <li>fix: honor the emulator's working directory (if specified) when verifying ROMs</li>
-  <li>fix: avoid crash of the front-end when 'mame/mess/ume -listxml' crashes</li>
-  <li>fix: minor: don't issue an actual search when no game/machine list data has been loaded yet</li>
-  <li>fix: key-sequence scanner: avoid <i>X Error: BadWindow invalid window parameter</i> warning when grabbing the keyboard -- on X11, the window must the 'mapped' (shown) first</li>
-  <li>fix: corrected joystick support on Mac OS X by implementing <i>real</i> calibration / axis value normalization -- see also <a href="http://tracker.batcom-it.net/view.php?id=39" target="_blank">bug tracker ID #39</a></li>
-  <li>imp: added tool-buttons to select/deselect all categories in the demo- and arcade-mode setup dialogs</li>
-  <li>imp: software-list export: added the 'supported' column to the software-list export feature</li>
-  <li>imp: software-lists: added a 'clear selection' item to the software-list's context-menu</li>
-  <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to his latest version as of 28-MAY-2013</li>
-  <li>imp: software-lists: save/restore an individual position of the vertical splitter for use with the software-detail widget</li>
-  <li>imp: added support for <b>multiple</b> ZIPs per image type, specified as a semicolon-separated list of ZIP file paths</li>
-  <li>imp: ROMAlyzer: when a set is analyzed, also check for any device-references and offer a context-menu item to analyze them separately</li>
-  <li>imp: MAME/MESS/UME emulator templates updated to 0.149</li>
-  <li>imp: HTML editor: added a shorter editor object reference named 'qmc2NEO' as an alternative to 'qmc2NotesEditorObject'</li>
-  <li>imp: system- and software-notes templates: template macro additions ($EMULATOR_TYPE$, $SOFTWARE_STATUS$, $SOFTWARE_STATUS_UT$ and $SOURCE_FILE$)</li>
-  <li>imp: updated &amp; renamed the alternative system-/software-notes templates contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
-  <li>imp: MESS device configurator: minor UI improvements using fewer frames and some new icons</li>
-  <li>imp: all MAME targets: added support for detection of HBMAME</li>
-  <li>imp: minor speed ups on the initial loading of the game/machine list views</li>
-  <li>imp: made XML cache loading/creation an interruptable process</li>
-  <li>imp: X11 and Windows only: the scaling mode for snapshots taken through the embedder can now be selected</li>
-  <li>imp: using Qt's built-in (= non-native) standard file-dialogs wherever possible (you can optionally switch back to using native dialogs, however, we don't recommend it due to possible issues on some platforms or desktop systems)</li>
-  <li>imp: added a 'reset' action to all header context-menus (will make all contained columns visible and stretch them equally)</li>
-  <li>imp: added support for samples to all MESS targets as well (MESS supports samples since sometime after 0.148u3), however, this doesn't include the sample-checker yet</li>
-  <li>imp: available 'bios' and 'ramsize' options are now displayed with their descriptions (bios) or as human readable values (ramsize), including an indication for the default option and natural sorting</li>
-  <li>imp: enabled free sorting for shortcut- and joystick-maps</li>
-  <li>imp: log a warning to the front-end log when QMC2 finds multiple uses of the same set name during game-/machine-list cache creation</li>
-  <li>imp: integrated zlib updated to version 1.2.8 (see <a href="http://zlib.net/ChangeLog.txt" target="_blank">zlib's change-log</a> for details)</li>
-  <li>new: system- and software-notes templates: added two new slots for use with zipped images: 'qmc2NEO.isZippedImage()' will determine if an image is from a ZIP, 'qmc2NEO.getImageData()' will return the base64-encoded image data which you can use in &lt;img&gt; tags (<b>caution: may be slow and will inflate the HTML enormously -- only use this with the WYSIWYG editor!</b>)</li>
-  <li>new: HTML editor: added an option to show/hide the HTML tab</li>
-  <li>new: system- and software-notes templates: added support for querying the XML (from -listxml) using XQuery through the new slots 'qmc2NEO.queryXml()' (will execute an XQuery on the complete XML data, warning: may be slow), 'qmc2NEO.queryLocalXml()' (same as before, restricted to a single game/machine and thus much faster) and 'qmc2NEO.getXmlResult()' (will return the list of result strings as an array)</li>
-  <li>new: search-patterns used to match games/machines or software-list entries can now be <i>negated</i> on-the-fly through a setup-menu attached to the search-box's find button</li>
-  <li>new: promoted 'Qt CHDMAN GUI' (see tools/qchdman) to non-WIP status as it meanwhile supports all 'chdman' commands</li>
-  <li>new: allow <i>merging</i> the file-chooser mapping with the currently set device-mappings</li>
-  <li>new: added a built-in palette-editor to easily set up UI colors (without the use of a Qt style-sheet or 'qtconfig' which isn't available on all platforms)</li>
-  <li>new: added a slot-info cache for faster initial loading of data from '-listslots'</li>
-  <li>new: added selectable zoom-factors for the software-list's floating snapshot-viewer and the embedder's snapshot-list/-viewer</li>
-  <li>new: X11 and Windows only: snapshots taken through the embedder can now directly replace an image of any type; the image will be stored to the <i>first</i> (primary) folder and a backup file will be created there first (note that this is only available for images stored in folders, <b>not</b> for zipped images)</li>
-  <li>new: added support for state-checking, -caching &amp; -filtering of software-lists</li>
-  <li>new: added a <i>source file</i> column to all game-/machine-list views</li>
-  <li>new: added an option to allow for automatic emulator termination when a new one is launched (i.e. run one emulator instance at a time)</li>
-  <li>new: added new QMC2 Arcade theme 'darkone' including additional functionality by <a href="credits.html#Pete">Pete Beardmore</a></li>
-  <li>new: QMC2 Arcade's default values for the command line switches <i>-theme</i>, <i>-console</i> and <i>-graphicssystem</i> now follow any customizations made in the main GUI's arcade mode setup dialog</li>
-  <li>wip: adding support for freely definable <i>additional artwork classes</i> (system- or software-images)</li>
-  <li>doc: the QMC2 FAQ has been <b>moved</b> to the <a href="http://wiki.batcom-it.net/index.php?title=QMC2_FAQ" target="_blank">wiki</a></li>
+ 	<li>fix: software-list export: traverse the export map correctly</li>
+ 	<li>fix: avoid crash when play was triggered on premature game/machine list data</li>
+ 	<li>fix: minor: launch foreign emulators/IDs even if the current game/machine is a device set</li>
+ 	<li>fix: don't remove/hide the system-notes detail page when the game-/machine-list is reloaded</li>
+ 	<li>fix: slot-devices: default slot-options with non-default BIOS selections weren't passed to the emulator</li>
+ 	<li>fix: Windows 8 specific corrections (especially related to the file-chooser and the welcome-dialog)</li>
+ 	<li>fix: MESS device configurator: the UI setup wasn't correctly stored/restored under certain circumstances</li>
+ 	<li>fix: MESS device configurator: double-clicking stored configurations could lead to a crash</li>
+ 	<li>fix: MESS device configurator: adjust tab-orders after dynamically changing device-mappings and slot-options</li>
+ 	<li>fix: MESS device configurator: correctly clear all device-maps and reset the slot-configuration to the default one when the 'new configuration' button is clicked</li>
+ 	<li>fix: X11 embedder: call XUnmapWindow() &amp; XMapRaised() after releasing an emulator to avoid that its window may be hidden, corrected a centering issue upon resizing of the embed-container</li>
+ 	<li>fix: software-lists: floating software-snapshots should <b>never</b> be shown when their contents are the ghost-image</li>
+ 	<li>fix: software-lists: corrected a rare UI synchronization issue when switching systems while a software-list is currently being created</li>
+ 	<li>fix: software-lists: don't disable the complete widget when one or more expected software-lists weren't found</li>
+ 	<li>fix: avoid a rare crash that could be caused by subsequently applying settings very quickly</li>
+ 	<li>fix: QMC2 Arcade / ToxicWaste theme: corrected positioning of the imager-viewer (back-side)</li>
+ 	<li>fix: options / joystick: automatically select the 'Map' function when the user clicks 'Apply' or 'OK' so joystick function mappings actually get <b>activated</b> (joystick functions won't be mapped when in 'Calibrate' or 'Test' mode)</li>
+ 	<li>fix: honor the emulator's working directory (if specified) when verifying ROMs</li>
+ 	<li>fix: avoid crash of the front-end when 'mame/mess/ume -listxml' crashes</li>
+ 	<li>fix: minor: don't issue an actual search when no game/machine list data has been loaded yet</li>
+ 	<li>fix: key-sequence scanner: avoid <i>X Error: BadWindow invalid window parameter</i> warning when grabbing the keyboard -- on X11, the window must the 'mapped' (shown) first</li>
+ 	<li>fix: corrected joystick support on Mac OS X by implementing <i>real</i> calibration / axis value normalization -- see also <a href="http://tracker.batcom-it.net/view.php?id=39" target="_blank">bug tracker ID #39</a></li>
+ 	<li>imp: added tool-buttons to select/deselect all categories in the demo- and arcade-mode setup dialogs</li>
+ 	<li>imp: software-list export: added the 'supported' column to the software-list export feature</li>
+ 	<li>imp: software-lists: added a 'clear selection' item to the software-list's context-menu</li>
+ 	<li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to his latest version as of 28-MAY-2013</li>
+ 	<li>imp: software-lists: save/restore an individual position of the vertical splitter for use with the software-detail widget</li>
+ 	<li>imp: added support for <b>multiple</b> ZIPs per image type, specified as a semicolon-separated list of ZIP file paths</li>
+ 	<li>imp: ROMAlyzer: when a set is analyzed, also check for any device-references and offer a context-menu item to analyze them separately</li>
+ 	<li>imp: MAME/MESS/UME emulator templates updated to 0.149</li>
+ 	<li>imp: HTML editor: added a shorter editor object reference named 'qmc2NEO' as an alternative to 'qmc2NotesEditorObject'</li>
+ 	<li>imp: system- and software-notes templates: template macro additions ($EMULATOR_TYPE$, $SOFTWARE_STATUS$, $SOFTWARE_STATUS_UT$ and $SOURCE_FILE$)</li>
+ 	<li>imp: updated &amp; renamed the alternative system-/software-notes templates contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
+ 	<li>imp: MESS device configurator: minor UI improvements using fewer frames and some new icons</li>
+ 	<li>imp: all MAME targets: added support for detection of HBMAME</li>
+ 	<li>imp: minor speed ups on the initial loading of the game/machine list views</li>
+ 	<li>imp: made XML cache loading/creation an interruptable process</li>
+ 	<li>imp: X11 and Windows only: the scaling mode for snapshots taken through the embedder can now be selected</li>
+ 	<li>imp: using Qt's built-in (= non-native) standard file-dialogs wherever possible (you can optionally switch back to using native dialogs, however, we don't recommend it due to possible issues on some platforms or desktop systems)</li>
+ 	<li>imp: added a 'reset' action to all header context-menus (will make all contained columns visible and stretch them equally)</li>
+ 	<li>imp: added support for samples to all MESS targets as well (MESS supports samples since sometime after 0.148u3), however, this doesn't include the sample-checker yet</li>
+ 	<li>imp: available 'bios' and 'ramsize' options are now displayed with their descriptions (bios) or as human readable values (ramsize), including an indication for the default option and natural sorting</li>
+ 	<li>imp: enabled free sorting for shortcut- and joystick-maps</li>
+ 	<li>imp: log a warning to the front-end log when QMC2 finds multiple uses of the same set name during game-/machine-list cache creation</li>
+ 	<li>imp: integrated zlib updated to version 1.2.8 (see <a href="http://zlib.net/ChangeLog.txt" target="_blank">zlib's change-log</a> for details)</li>
+ 	<li>new: system- and software-notes templates: added two new slots for use with zipped images: 'qmc2NEO.isZippedImage()' will determine if an image is from a ZIP, 'qmc2NEO.getImageData()' will return the base64-encoded image data which you can use in &lt;img&gt; tags (<b>caution: may be slow and will inflate the HTML enormously -- only use this with the WYSIWYG editor!</b>)</li>
+ 	<li>new: HTML editor: added an option to show/hide the HTML tab</li>
+ 	<li>new: system- and software-notes templates: added support for querying the XML (from -listxml) using XQuery through the new slots 'qmc2NEO.queryXml()' (will execute an XQuery on the complete XML data, warning: may be slow), 'qmc2NEO.queryLocalXml()' (same as before, restricted to a single game/machine and thus much faster) and 'qmc2NEO.getXmlResult()' (will return the list of result strings as an array)</li>
+ 	<li>new: search-patterns used to match games/machines or software-list entries can now be <i>negated</i> on-the-fly through a setup-menu attached to the search-box's find button</li>
+ 	<li>new: promoted 'Qt CHDMAN GUI' (see tools/qchdman) to non-WIP status as it meanwhile supports all 'chdman' commands</li>
+ 	<li>new: allow <i>merging</i> the file-chooser mapping with the currently set device-mappings</li>
+ 	<li>new: added a built-in palette-editor to easily set up UI colors (without the use of a Qt style-sheet or 'qtconfig' which isn't available on all platforms)</li>
+ 	<li>new: added a slot-info cache for faster initial loading of data from '-listslots'</li>
+ 	<li>new: added selectable zoom-factors for the software-list's floating snapshot-viewer and the embedder's snapshot-list/-viewer</li>
+ 	<li>new: X11 and Windows only: snapshots taken through the embedder can now directly replace an image of any type; the image will be stored to the <i>first</i> (primary) folder and a backup file will be created there first (note that this is only available for images stored in folders, <b>not</b> for zipped images)</li>
+ 	<li>new: added support for state-checking, -caching &amp; -filtering of software-lists</li>
+ 	<li>new: added a <i>source file</i> column to all game-/machine-list views</li>
+ 	<li>new: added an option to allow for automatic emulator termination when a new one is launched (i.e. run one emulator instance at a time)</li>
+ 	<li>new: added new QMC2 Arcade theme 'darkone' including additional functionality by <a href="credits.html#Pete">Pete Beardmore</a></li>
+ 	<li>new: QMC2 Arcade's default values for the command line switches <i>-theme</i>, <i>-console</i> and <i>-graphicssystem</i> now follow any customizations made in the main GUI's arcade mode setup dialog</li>
+ 	<li>wip: adding support for freely definable <i>additional artwork classes</i> (system- or software-images)</li>
+ 	<li>doc: the QMC2 FAQ has been <b>moved</b> to the <a href="http://wiki.batcom-it.net/index.php?title=QMC2_FAQ" target="_blank">wiki</a></li>
 </ul>
 <p><b>v0.38, 11-JAN-2013:</b></p>
 <ul>
-  <li>fix: corrected progress-bar updates when loading <i>catver.ini</i> or <i>category.ini</i></li>
-  <li>fix: corrected remapping of key-sequences using the Command key on Mac OS X</li>
-  <li>fix: the key-sequence scanner now also scans num-pad keys</li>
-  <li>fix: system-notes: template loading didn't work correctly initially</li>
-  <li>fix: corrected full-screen switching when the menu-bar is hidden</li>
-  <li>fix: Windows: corrected HLSL multi-part float handling</li>
-  <li>fix: fall back to the default style when a previously set style wasn't found</li>
-  <li>imp: system-notes: template macro additions ($PARENT_ID$, $ROM_STATUS$ and $ROM_STATUS_UT$)</li>
-  <li>imp: updated MESS/UME variant logos / splash-screens and all app-icons -- thanks to <a href="credits.html#JacKc">Jacques Châtelet (JacKc)</a></li>
-  <li>imp: demo-mode: added an option to launch emulators sequentially rather than randomly</li>
-  <li>imp: Win32 MinGW build: changed the default for 'MKSPEC' to 'win32-g++-4.6' -- <b>this assumes Qt 4.8</b>, so whoever still uses Qt 4.7 has to pass 'MKSPEC=win32-g++' on the make command (i.e. 'make configure MKSPEC=win32-g++')</li>
-  <li>imp: image-checker: potentially obsolete items contained in image- or icon-directories include files <b>and</b> folders now</li>
-  <li>imp: control-panel images are now available to all MESS variants as well (i. e. for use with <a href="http://www.progettosnaps.net/mess/" target="_blank">AntoPISA's new <i>MESS controllers</i></a>)</li>
-  <li>imp: YouTube video player: added support for YouTube's new requirement to add session signatures to stream URLs</li>
-  <li>imp: removed no longer required file-removal tool settings</li>
-  <li>imp: MAME/MESS/UME emulator templates updated to 0.148</li>
-  <li>imp: Mac OS X: replaced key-sequence 'Ctrl+O' with 'Ctrl+,' (commonly used short-cut for <i>open preferences dialog</i>); 'Ctrl+O' can now be used for its actual use case on Mac OS X (<i>open/activate item</i>)</li>
-  <li>imp: software-lists: added a 'supported' column (possible values: yes/no/partially)</li>
-  <li>imp: HTML editor: the menu-bar can be hidden now, and the editor's contents can be made read-only (i.e. to avoid unintended changes)</li>
-  <li>imp: system- and software-notes: template loading allows asynchronous URL retrieval now (i.e. remote image URLs), indicating the current progress while loading</li>
-  <li>imp: HTML editor: replaced the standard QWebView with the MiniWebBrowser's tweaked internal web-view to support JavaScript actions that open new windows</li>
-  <li>imp: software-notes: template macro additions ($SOFTWARE_SUPPORTED$, $SOFTWARE_SUPPORTED_UT$, $SOFTWARE_INFO$, $SOFTWARE_INFO_STATUS$)</li>
-  <li>imp: the documentation browser's zoom-setting is now restored as well</li>
-  <li>imp: added ability to store an option's short-name in the emulator configuration template (i. e. <i>&lt;option default="roms" name="rompath" shortname="rp" type="directory"&gt;)</i></li>
-  <li>imp: using a proxy-style when Qt 5 is detected to avoid single-click item activations (that's not really suitable for us)</li>
-  <li>new: ROMAlyzer: the set rewriter and checksum wizard now also load repro-data from regular files (when they are stored in expected folders and have the correct file names / CRCs), the set rewriter can also reproduce sets in individual sub-directories (see 'reproduction type' in ROMAlyzer settings)</li>
-  <li>new: demo-mode: added filtering by category, driver-status and set-names when selecting eligible sets for the demo</li>
-  <li>new: image-checker: <i>bad</i> image files (subset of the <i>missing</i> ones) can now be filtered and removed by means of the GUI (so searching for bad image files in the log and manually removing them is no longer required)</li>
-  <li>new: made a complete rewrite of the sample-checker which wasn't working correctly for ages -- see also <a href="http://tracker.batcom-it.net/view.php?id=31" target="_blank">bug tracker ID #31</a></li>
-  <li>new: MiniWebBrowser: added a search widget to find arbitrary text in web-pages</li>
-  <li>new: MiniWebBrowser: added support for persistent cookies (stored in / retrieved from an SQLite database)</li>
-  <li>new: added <a href="http://wiki.mozilla.org/PDF.js" target="_blank">PDF.js</a> -- a JavaScript / HTML5 PDF rendering library</li>
-  <li>new: added support for HTML5 'localStorage' to the MiniWebBrowser and notes-templates (this allows templates to store and retrieve local settings)</li>
-  <li>new: system- and software-notes templates: exposing the notes-editor object to JavaScript allowing templates to call editor slots directly (!) -- right now, there are four slots you can use: 'qmc2NotesEditorObject.loadCurrentTemplate()' will reload the template itself (for example to react on changed settings), 'qmc2NotesEditorObject.getIconData()' will return the base64-encoded icon data which you can use in &lt;img&gt; tags, 'qmc2NotesEditorObject.getColor()' will open a color-dialog and returns a named color, and finally 'qmc2NotesEditorObject.getImage()' will open a file-dialog to select an image file (see data/gmn/template.html for an example)</li>
-  <li>new: MESS device configurator: allow in-place renaming of stored device configurations (see context menu)</li>
-  <li>new: added support for a 'software info DB' using MAME history.dat's new (MAME &amp; MESS) software infos, available in all variants -- thanks to <a href="http://www.arcade-history.com" target="_blank">Alexis Bousiges</a> for his efforts and kind cooperation on this matter</li>
-  <li>new: added ability to reset, revert and/or store <i>individual</i> emulator options by adding a column with respective action tool-buttons that are enabled/disabled according to the option's current ini-state</li>
-  <li>new: file-chooser: folders can now be included in the file-list and are opened/followed when double-clicked or Enter/Return is pressed on them (there's also a new context-menu item for this); the <i>folder-mode</i> itself can be switched through a new menu-button in the widget's tool-bar (folders are hidden by default, select 'Show folders' to display them or 'Show folders first' to show them on top of the file-list, before any regular files)</li>
-  <li>new: added a new QML based implementation of the long-awaited 'arcade mode' as a stand-alone application (<i>QMC2 Arcade</i>, see arcade/ folder)</li>
-  <li>new: added support for Qt 5.0, however, the <b>recommended Qt version remains 4.8</b> (when Qt 5 is used, the build rules will automatically disable embedder functionality on X11 platforms as well as all Phonon features on all platforms -- this is due to dropped Qt modules, add-on modules may cover this later perhaps)</li>
-  <li>new: added alternative system- and software-notes templates contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
-  <li>new: added MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a></li>
-  <li>inf: the SVN repository has been moved to a new location -- use one of these URLs now: svn://svn.code.sf.net/p/qmc2/code/trunk or http://svn.code.sf.net/p/qmc2/code/trunk</li>
+ 	<li>fix: corrected progress-bar updates when loading <i>catver.ini</i> or <i>category.ini</i></li>
+ 	<li>fix: corrected remapping of key-sequences using the Command key on Mac OS X</li>
+ 	<li>fix: the key-sequence scanner now also scans num-pad keys</li>
+ 	<li>fix: system-notes: template loading didn't work correctly initially</li>
+ 	<li>fix: corrected full-screen switching when the menu-bar is hidden</li>
+ 	<li>fix: Windows: corrected HLSL multi-part float handling</li>
+ 	<li>fix: fall back to the default style when a previously set style wasn't found</li>
+ 	<li>imp: system-notes: template macro additions ($PARENT_ID$, $ROM_STATUS$ and $ROM_STATUS_UT$)</li>
+ 	<li>imp: updated MESS/UME variant logos / splash-screens and all app-icons -- thanks to <a href="credits.html#JacKc">Jacques Châtelet (JacKc)</a></li>
+ 	<li>imp: demo-mode: added an option to launch emulators sequentially rather than randomly</li>
+ 	<li>imp: Win32 MinGW build: changed the default for 'MKSPEC' to 'win32-g++-4.6' -- <b>this assumes Qt 4.8</b>, so whoever still uses Qt 4.7 has to pass 'MKSPEC=win32-g++' on the make command (i.e. 'make configure MKSPEC=win32-g++')</li>
+ 	<li>imp: image-checker: potentially obsolete items contained in image- or icon-directories include files <b>and</b> folders now</li>
+ 	<li>imp: control-panel images are now available to all MESS variants as well (i. e. for use with <a href="http://www.progettosnaps.net/mess/" target="_blank">AntoPISA's new <i>MESS controllers</i></a>)</li>
+ 	<li>imp: YouTube video player: added support for YouTube's new requirement to add session signatures to stream URLs</li>
+ 	<li>imp: removed no longer required file-removal tool settings</li>
+ 	<li>imp: MAME/MESS/UME emulator templates updated to 0.148</li>
+ 	<li>imp: Mac OS X: replaced key-sequence 'Ctrl+O' with 'Ctrl+,' (commonly used short-cut for <i>open preferences dialog</i>); 'Ctrl+O' can now be used for its actual use case on Mac OS X (<i>open/activate item</i>)</li>
+ 	<li>imp: software-lists: added a 'supported' column (possible values: yes/no/partially)</li>
+ 	<li>imp: HTML editor: the menu-bar can be hidden now, and the editor's contents can be made read-only (i.e. to avoid unintended changes)</li>
+ 	<li>imp: system- and software-notes: template loading allows asynchronous URL retrieval now (i.e. remote image URLs), indicating the current progress while loading</li>
+ 	<li>imp: HTML editor: replaced the standard QWebView with the MiniWebBrowser's tweaked internal web-view to support JavaScript actions that open new windows</li>
+ 	<li>imp: software-notes: template macro additions ($SOFTWARE_SUPPORTED$, $SOFTWARE_SUPPORTED_UT$, $SOFTWARE_INFO$, $SOFTWARE_INFO_STATUS$)</li>
+ 	<li>imp: the documentation browser's zoom-setting is now restored as well</li>
+ 	<li>imp: added ability to store an option's short-name in the emulator configuration template (i. e. <i>&lt;option default="roms" name="rompath" shortname="rp" type="directory"&gt;)</i></li>
+ 	<li>imp: using a proxy-style when Qt 5 is detected to avoid single-click item activations (that's not really suitable for us)</li>
+ 	<li>new: ROMAlyzer: the set rewriter and checksum wizard now also load repro-data from regular files (when they are stored in expected folders and have the correct file names / CRCs), the set rewriter can also reproduce sets in individual sub-directories (see 'reproduction type' in ROMAlyzer settings)</li>
+ 	<li>new: demo-mode: added filtering by category, driver-status and set-names when selecting eligible sets for the demo</li>
+ 	<li>new: image-checker: <i>bad</i> image files (subset of the <i>missing</i> ones) can now be filtered and removed by means of the GUI (so searching for bad image files in the log and manually removing them is no longer required)</li>
+ 	<li>new: made a complete rewrite of the sample-checker which wasn't working correctly for ages -- see also <a href="http://tracker.batcom-it.net/view.php?id=31" target="_blank">bug tracker ID #31</a></li>
+ 	<li>new: MiniWebBrowser: added a search widget to find arbitrary text in web-pages</li>
+ 	<li>new: MiniWebBrowser: added support for persistent cookies (stored in / retrieved from an SQLite database)</li>
+ 	<li>new: added <a href="http://wiki.mozilla.org/PDF.js" target="_blank">PDF.js</a> -- a JavaScript / HTML5 PDF rendering library</li>
+ 	<li>new: added support for HTML5 'localStorage' to the MiniWebBrowser and notes-templates (this allows templates to store and retrieve local settings)</li>
+ 	<li>new: system- and software-notes templates: exposing the notes-editor object to JavaScript allowing templates to call editor slots directly (!) -- right now, there are four slots you can use: 'qmc2NotesEditorObject.loadCurrentTemplate()' will reload the template itself (for example to react on changed settings), 'qmc2NotesEditorObject.getIconData()' will return the base64-encoded icon data which you can use in &lt;img&gt; tags, 'qmc2NotesEditorObject.getColor()' will open a color-dialog and returns a named color, and finally 'qmc2NotesEditorObject.getImage()' will open a file-dialog to select an image file (see data/gmn/template.html for an example)</li>
+ 	<li>new: MESS device configurator: allow in-place renaming of stored device configurations (see context menu)</li>
+ 	<li>new: added support for a 'software info DB' using MAME history.dat's new (MAME &amp; MESS) software infos, available in all variants -- thanks to <a href="http://www.arcade-history.com" target="_blank">Alexis Bousiges</a> for his efforts and kind cooperation on this matter</li>
+ 	<li>new: added ability to reset, revert and/or store <i>individual</i> emulator options by adding a column with respective action tool-buttons that are enabled/disabled according to the option's current ini-state</li>
+ 	<li>new: file-chooser: folders can now be included in the file-list and are opened/followed when double-clicked or Enter/Return is pressed on them (there's also a new context-menu item for this); the <i>folder-mode</i> itself can be switched through a new menu-button in the widget's tool-bar (folders are hidden by default, select 'Show folders' to display them or 'Show folders first' to show them on top of the file-list, before any regular files)</li>
+ 	<li>new: added a new QML based implementation of the long-awaited 'arcade mode' as a stand-alone application (<i>QMC2 Arcade</i>, see arcade/ folder)</li>
+ 	<li>new: added support for Qt 5.0, however, the <b>recommended Qt version remains 4.8</b> (when Qt 5 is used, the build rules will automatically disable embedder functionality on X11 platforms as well as all Phonon features on all platforms -- this is due to dropped Qt modules, add-on modules may cover this later perhaps)</li>
+ 	<li>new: added alternative system- and software-notes templates contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
+ 	<li>new: added MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a></li>
+ 	<li>inf: the SVN repository has been moved to a new location -- use one of these URLs now: svn://svn.code.sf.net/p/qmc2/code/trunk or http://svn.code.sf.net/p/qmc2/code/trunk</li>
 </ul>
 <p><b>v0.37, 17-SEP-2012:</b></p>
 <ul>
-  <li>fix: changes made to multi-value floats as used in HLSL options weren't updated correctly</li>
-  <li>fix: demo-mode: don't select device-sets</li>
-  <li>fix: non-Windows: avoid a rare crash when exiting QMC2 while a running emulator is producing output on the notifier FIFO</li>
-  <li>fix: don't allow tagging/untagging of parent-items in category- and version-views</li>
-  <li>fix: file-browsers in emulator configuration dialogs used the wrong standard file-dialog so non-existing file names weren't accepted</li>
-  <li>fix: ZIP-archived image files weren't correctly opened initially</li>
-  <li>fix: full-screen switching on Ubuntu 12.04 (<i>Unity</i> desktop) didn't work correctly -- see <a href="http://tracker.batcom-it.net/view.php?id=26" target="_blank">bug tracker ID #26</a></li>
-  <li>fix: don't pass <i>empty</i> arguments when launching foreign emulators</li>
-  <li>fix: non-Windows: the optional memory indicator wasn't updated because the corresponding timer didn't fire</li>
-  <li>fix: MESS device configurator: when a configuration made with the file-chooser was saved, the current slot setup wasn't stored together with it -- rendering the stored item useless when slot customizations were required</li>
-  <li>fix: corrected ROM status determination for sets containing only CHDs (but no ROMs)</li>
-  <li>fix: the current emulator selection made on the game/machine-specific configuration tab wasn't saved upon reload</li>
-  <li>fix: minor: corrected progress-text updates when certain operations are running 'in parallel' (i.e. loading the software-list while a full ROM audit is active)</li>
-  <li>fix: avoid crash when no game/machine is selected and a 'play' action is triggered</li>
-  <li>fix: MiniWebBrowser: corrected document history handling with regard to the availability of back- and forward-actions</li>
-  <li>fix: set locale- and c-string-encoding to UTF-8 globally and handle XML data specifically on Windows to cleanly support international character sets</li>
-  <li>fix: emulator wasn't launched under certain circumstances when the game/machine was filtered out due to its ROM status</li>
-  <li>fix: use UTF-8 character encoding when reading game-/machine- and/or emulator-info DB dat-sources</li>
-  <li>imp: adjusted the ghost-image used for videos (wrong text removed)</li>
-  <li>imp: depending on the installed codecs, an unused YouTube widget may still cause load on the system, so it's now already destroyed when it's no longer required</li>
-  <li>imp: updated redistributed Qt translations from Qt 4.8.3</li>
-  <li>imp: unified the image processing to remove code duplication for different image types</li>
-  <li>imp: check for the existence of the emulator's executable file before trying to actually run a null process (which may cause issues on Mac OS X)</li>
-  <li>imp: Mac OS X build: added build option <i>XCODE3</i> which (if set to 1) will disable the special handling when Qt 4.8+ is detected</li>
-  <li>imp: MAME/MESS/UME emulator templates updated to 0.147 (added new core options <i>ui_mouse</i> and <i>ui_active</i>, removed option <i>hide_cursor</i>)</li>
-  <li>imp: added an option to allow for setting QMC2's working directory to be the same as the executable's path (for <u>special</u> use cases, not commonly used)</li>
-  <li>imp: replaced all QMC2 variant logos and splash-screens with improved versions from JacKc</li>
-  <li>imp: Qt messages that are sent before the GUI is ready are now printed to the console (stdout) instead of eating them</li>
-  <li>imp: emulator configuration widgets: all drop-down lists for 'bios' / 'ramsize' selections or options with pre-defined choices are now sorted, possible duplicates are removed and the number of visible items has been increased to 20</li>
-  <li>imp: the file-chooser's folder selector is now also sorted / sortable</li>
-  <li>imp: foreign emulator IDs can now contain arguments with white-space characters when they are enclosed in double-quotes</li>
-  <li>imp: changed the file-chooser's sorting (by file name) to be case-insensitive</li>
-  <li>imp: updated template format to v0.2.6 which adds support to ignore complete sections (globally or per target OS)</li>
-  <li>imp: Mac OS X build: don't compile <i>runonce</i> as it's not used on Mac OS X (and has an X11 requirement)</li>
-  <li>imp: integrated zlib updated to version 1.2.7 (see <a href="http://zlib.net/ChangeLog.txt" target="_blank">zlib's change-log</a> for details)</li>
-  <li>imp: Win32 MinGW build: added OS auto-detection for Windows so specification of MINGW=1 is no longer required (however, if MINGW is set, its value will be used regardless)</li>
-  <li>imp: when a non-default (= foreign) emulator is selected for the current game/machine, the device-mapper and software-list tabs are disabled now</li>
-  <li>imp: sets with <i>empty</i> names are now ignored, logging corresponding warnings when the game/machine list cache is recreated (this is a driver bug which also '-validate' will warn about)</li>
-  <li>imp: Win32 VC++ build: added x64 support to the project generation script</li>
-  <li>imp: added an advanced line-edit containing an icon to symbolize its function (used in certain search widgets)</li>
-  <li>imp: changed the default short-cuts for adding games/machines to the favorites list (now Ctrl+J and Ctrl+Shift+J) to free the Ctrl+F short-cut for another/better use (i.e. for finding arbitrary text)</li>
-  <li>imp: changed the default short-cut for 'About QMC2' (now Ctrl+B) to free the Ctrl+A short-cut which is commonly used for 'select all'</li>
-  <li>imp: file-chooser: opened ZIP contents are sorted as well</li>
-  <li>imp: completely revised the image cache internals, now also storing the file path the cached image was loaded from, which can be retrieved via the image's context-menu (the file path is not available in case of zipped images, though)</li>
-  <li>imp: much better GUI response while recreating the XML cache and checking all ROMs (full audit)</li>
-  <li>imp: animate searching for game/machine XML data when the user expands an item in the primary (full-detail) view</li>
-  <li>imp: the menu-bar on Mac OS X is no longer 'native' because this misbehaves with <i>multiple</i> menu-bars that we have now</li>
-  <li>imp: emulator configuration widgets are now initially hidden and shown after all options were loaded, which speeds up this process a little bit (you won't see a <i>visual</i> difference, though)</li>
-  <li>imp: added OS detection for Windows 8 and Mac OS X 10.8 to the about dialog when Qt 4.8.3 or higher is used</li>
-  <li>new: added support for <a href="http://mamedev.emulab.it/haze/" target="_blank">David Haywood's (Haze)</a> <i>Universal Machine Emulator</i> (MAME/MESS unification project) in the form of an additional variant called 'qmc2-ume' or 'qmc2-sdlume' -- see <a href="http://tracker.batcom-it.net/view.php?id=22" target="_blank">bug tracker ID #22</a></li>
-  <li>new: the YouTube video-player now supports local movie files as well</li>
-  <li>new: added support for tool-bar customization</li>
-  <li>new: allow the specification of semicolon-separated lists of folders for ALL image types</li>
-  <li>new: added support for system- and manufacturer-logo images (i. e. <a href="http://www.progettosnaps.net/mess/" target="_blank">AntoPISA's new <i>MESS marquees</i></a>)</li>
-  <li>new: added support for the new MESS category.ini from <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> (UME targets merge the info with data from catver.ini, if applicable)</li>
-  <li>new: added a check for the ROM path setting (a warning message will pop up when the ROM path hasn't been set or isn't available) -- see <a href="http://tracker.batcom-it.net/view.php?id=28" target="_blank">bug tracker ID #28</a></li>
-  <li>new: made a complete rewrite of the image-checker dialog, which now allows checks of ALL image types in a multi-threaded way -- this also fixes a long-standing bug on Windows, BTW (see <a href="http://tracker.batcom-it.net/view.php?id=5" target="_blank">bug tracker ID #5</a>)</li>
-  <li>new: MESS device configurator: added support for <i>nested</i> slots, including real slot recursion</li>
-  <li>new: software-lists: available mount-devices are dynamically updated whenever the device/slot setup changes</li>
-  <li>new: added 3 new actions to tag / untag / invert tags of all <i>visible</i> sets (according to the current ROM state filter)</li>
-  <li>new: game/machine detail tabs can now also be reordered directly in the GUI by dragging them with the mouse</li>
-  <li>new: added a tool action to open a new empty browser window on demand</li>
-  <li>new: &lt;info&gt; elements contained in a number of software-list entries are now displayed as well (requires very recent MAME/MESS/UME versions after 0.146u5, otherwise &lt;info&gt; elements are not contained in the -listsoftware output)</li>
-  <li>new: items in all game/machine list views can now be tagged/untagged while the 'cursor' is moved, using the new (customizable) short-cuts Shift+Up and Shift+Down (works much like in 'Total Commander' when tagging/untagging files or folders)</li>
-  <li>new: the file-chooser now offers an additional context-menu item to open regular files (<b>not</b> ZIP content yet!) externally by launching the default application that's associated with the file's MIME type (or extension)</li>
-  <li>new: added a 'personal rich-text notes' detail for games/machines (same as the software-notes feature, but for systems this time)</li>
-  <li>new: added command line option '-cc' which clears (removes) all emulator caches prior to starting up</li>
-  <li>new: HTML editor: added document preview in built-in browser as well as 'new-from-template' and 'revert-from-saved-file' functionality</li>
-  <li>new: MESS device configurator: added support for selecting the BIOS used in slot-devices (if applicable)</li>
-  <li>new: software-lists: optional automatic adjustment of the emulator's <i>-snapname</i> parameter for easier creation of software-snapshots</li>
-  <li>doc: use a common image directory instead of sym-links</li>
-  <li>inf: the configuration template for MAMEUIFX32 has been dropped (unmaintained)</li>
-  <li>inf: long project name changed to <i>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II</i></li>
+ 	<li>fix: changes made to multi-value floats as used in HLSL options weren't updated correctly</li>
+ 	<li>fix: demo-mode: don't select device-sets</li>
+ 	<li>fix: non-Windows: avoid a rare crash when exiting QMC2 while a running emulator is producing output on the notifier FIFO</li>
+ 	<li>fix: don't allow tagging/untagging of parent-items in category- and version-views</li>
+ 	<li>fix: file-browsers in emulator configuration dialogs used the wrong standard file-dialog so non-existing file names weren't accepted</li>
+ 	<li>fix: ZIP-archived image files weren't correctly opened initially</li>
+ 	<li>fix: full-screen switching on Ubuntu 12.04 (<i>Unity</i> desktop) didn't work correctly -- see <a href="http://tracker.batcom-it.net/view.php?id=26" target="_blank">bug tracker ID #26</a></li>
+ 	<li>fix: don't pass <i>empty</i> arguments when launching foreign emulators</li>
+ 	<li>fix: non-Windows: the optional memory indicator wasn't updated because the corresponding timer didn't fire</li>
+ 	<li>fix: MESS device configurator: when a configuration made with the file-chooser was saved, the current slot setup wasn't stored together with it -- rendering the stored item useless when slot customizations were required</li>
+ 	<li>fix: corrected ROM status determination for sets containing only CHDs (but no ROMs)</li>
+ 	<li>fix: the current emulator selection made on the game/machine-specific configuration tab wasn't saved upon reload</li>
+ 	<li>fix: minor: corrected progress-text updates when certain operations are running 'in parallel' (i.e. loading the software-list while a full ROM audit is active)</li>
+ 	<li>fix: avoid crash when no game/machine is selected and a 'play' action is triggered</li>
+ 	<li>fix: MiniWebBrowser: corrected document history handling with regard to the availability of back- and forward-actions</li>
+ 	<li>fix: set locale- and c-string-encoding to UTF-8 globally and handle XML data specifically on Windows to cleanly support international character sets</li>
+ 	<li>fix: emulator wasn't launched under certain circumstances when the game/machine was filtered out due to its ROM status</li>
+ 	<li>fix: use UTF-8 character encoding when reading game-/machine- and/or emulator-info DB dat-sources</li>
+ 	<li>imp: adjusted the ghost-image used for videos (wrong text removed)</li>
+ 	<li>imp: depending on the installed codecs, an unused YouTube widget may still cause load on the system, so it's now already destroyed when it's no longer required</li>
+ 	<li>imp: updated redistributed Qt translations from Qt 4.8.3</li>
+ 	<li>imp: unified the image processing to remove code duplication for different image types</li>
+ 	<li>imp: check for the existence of the emulator's executable file before trying to actually run a null process (which may cause issues on Mac OS X)</li>
+ 	<li>imp: Mac OS X build: added build option <i>XCODE3</i> which (if set to 1) will disable the special handling when Qt 4.8+ is detected</li>
+ 	<li>imp: MAME/MESS/UME emulator templates updated to 0.147 (added new core options <i>ui_mouse</i> and <i>ui_active</i>, removed option <i>hide_cursor</i>)</li>
+ 	<li>imp: added an option to allow for setting QMC2's working directory to be the same as the executable's path (for <u>special</u> use cases, not commonly used)</li>
+ 	<li>imp: replaced all QMC2 variant logos and splash-screens with improved versions from JacKc</li>
+ 	<li>imp: Qt messages that are sent before the GUI is ready are now printed to the console (stdout) instead of eating them</li>
+ 	<li>imp: emulator configuration widgets: all drop-down lists for 'bios' / 'ramsize' selections or options with pre-defined choices are now sorted, possible duplicates are removed and the number of visible items has been increased to 20</li>
+ 	<li>imp: the file-chooser's folder selector is now also sorted / sortable</li>
+ 	<li>imp: foreign emulator IDs can now contain arguments with white-space characters when they are enclosed in double-quotes</li>
+ 	<li>imp: changed the file-chooser's sorting (by file name) to be case-insensitive</li>
+ 	<li>imp: updated template format to v0.2.6 which adds support to ignore complete sections (globally or per target OS)</li>
+ 	<li>imp: Mac OS X build: don't compile <i>runonce</i> as it's not used on Mac OS X (and has an X11 requirement)</li>
+ 	<li>imp: integrated zlib updated to version 1.2.7 (see <a href="http://zlib.net/ChangeLog.txt" target="_blank">zlib's change-log</a> for details)</li>
+ 	<li>imp: Win32 MinGW build: added OS auto-detection for Windows so specification of MINGW=1 is no longer required (however, if MINGW is set, its value will be used regardless)</li>
+ 	<li>imp: when a non-default (= foreign) emulator is selected for the current game/machine, the device-mapper and software-list tabs are disabled now</li>
+ 	<li>imp: sets with <i>empty</i> names are now ignored, logging corresponding warnings when the game/machine list cache is recreated (this is a driver bug which also '-validate' will warn about)</li>
+ 	<li>imp: Win32 VC++ build: added x64 support to the project generation script</li>
+ 	<li>imp: added an advanced line-edit containing an icon to symbolize its function (used in certain search widgets)</li>
+ 	<li>imp: changed the default short-cuts for adding games/machines to the favorites list (now Ctrl+J and Ctrl+Shift+J) to free the Ctrl+F short-cut for another/better use (i.e. for finding arbitrary text)</li>
+ 	<li>imp: changed the default short-cut for 'About QMC2' (now Ctrl+B) to free the Ctrl+A short-cut which is commonly used for 'select all'</li>
+ 	<li>imp: file-chooser: opened ZIP contents are sorted as well</li>
+ 	<li>imp: completely revised the image cache internals, now also storing the file path the cached image was loaded from, which can be retrieved via the image's context-menu (the file path is not available in case of zipped images, though)</li>
+ 	<li>imp: much better GUI response while recreating the XML cache and checking all ROMs (full audit)</li>
+ 	<li>imp: animate searching for game/machine XML data when the user expands an item in the primary (full-detail) view</li>
+ 	<li>imp: the menu-bar on Mac OS X is no longer 'native' because this misbehaves with <i>multiple</i> menu-bars that we have now</li>
+ 	<li>imp: emulator configuration widgets are now initially hidden and shown after all options were loaded, which speeds up this process a little bit (you won't see a <i>visual</i> difference, though)</li>
+ 	<li>imp: added OS detection for Windows 8 and Mac OS X 10.8 to the about dialog when Qt 4.8.3 or higher is used</li>
+ 	<li>new: added support for <a href="http://mamedev.emulab.it/haze/" target="_blank">David Haywood's (Haze)</a> <i>Universal Machine Emulator</i> (MAME/MESS unification project) in the form of an additional variant called 'qmc2-ume' or 'qmc2-sdlume' -- see <a href="http://tracker.batcom-it.net/view.php?id=22" target="_blank">bug tracker ID #22</a></li>
+ 	<li>new: the YouTube video-player now supports local movie files as well</li>
+ 	<li>new: added support for tool-bar customization</li>
+ 	<li>new: allow the specification of semicolon-separated lists of folders for ALL image types</li>
+ 	<li>new: added support for system- and manufacturer-logo images (i. e. <a href="http://www.progettosnaps.net/mess/" target="_blank">AntoPISA's new <i>MESS marquees</i></a>)</li>
+ 	<li>new: added support for the new MESS category.ini from <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> (UME targets merge the info with data from catver.ini, if applicable)</li>
+ 	<li>new: added a check for the ROM path setting (a warning message will pop up when the ROM path hasn't been set or isn't available) -- see <a href="http://tracker.batcom-it.net/view.php?id=28" target="_blank">bug tracker ID #28</a></li>
+ 	<li>new: made a complete rewrite of the image-checker dialog, which now allows checks of ALL image types in a multi-threaded way -- this also fixes a long-standing bug on Windows, BTW (see <a href="http://tracker.batcom-it.net/view.php?id=5" target="_blank">bug tracker ID #5</a>)</li>
+ 	<li>new: MESS device configurator: added support for <i>nested</i> slots, including real slot recursion</li>
+ 	<li>new: software-lists: available mount-devices are dynamically updated whenever the device/slot setup changes</li>
+ 	<li>new: added 3 new actions to tag / untag / invert tags of all <i>visible</i> sets (according to the current ROM state filter)</li>
+ 	<li>new: game/machine detail tabs can now also be reordered directly in the GUI by dragging them with the mouse</li>
+ 	<li>new: added a tool action to open a new empty browser window on demand</li>
+ 	<li>new: &lt;info&gt; elements contained in a number of software-list entries are now displayed as well (requires very recent MAME/MESS/UME versions after 0.146u5, otherwise &lt;info&gt; elements are not contained in the -listsoftware output)</li>
+ 	<li>new: items in all game/machine list views can now be tagged/untagged while the 'cursor' is moved, using the new (customizable) short-cuts Shift+Up and Shift+Down (works much like in 'Total Commander' when tagging/untagging files or folders)</li>
+ 	<li>new: the file-chooser now offers an additional context-menu item to open regular files (<b>not</b> ZIP content yet!) externally by launching the default application that's associated with the file's MIME type (or extension)</li>
+ 	<li>new: added a 'personal rich-text notes' detail for games/machines (same as the software-notes feature, but for systems this time)</li>
+ 	<li>new: added command line option '-cc' which clears (removes) all emulator caches prior to starting up</li>
+ 	<li>new: HTML editor: added document preview in built-in browser as well as 'new-from-template' and 'revert-from-saved-file' functionality</li>
+ 	<li>new: MESS device configurator: added support for selecting the BIOS used in slot-devices (if applicable)</li>
+ 	<li>new: software-lists: optional automatic adjustment of the emulator's <i>-snapname</i> parameter for easier creation of software-snapshots</li>
+ 	<li>doc: use a common image directory instead of sym-links</li>
+ 	<li>inf: the configuration template for MAMEUIFX32 has been dropped (unmaintained)</li>
+ 	<li>inf: long project name changed to <i>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II</i></li>
 </ul>
 <p><b>v0.36, 21-MAY-2012:</b></p>
 <ul>
-  <li>fix: ROMAlyzer: don't stop searching for CHDs at the first ROM path (when there are multiple ROM paths)</li>
-  <li>fix: allow embedding of (MAME/MESS-like) foreign emulators again -- changes made in 0.35 prevented this completely</li>
-  <li>fix: changed the default short-cut for the <i>check template map</i> action to 'Ctrl+Shift+C' -- the previous default of 'Ctrl+C' was awkward since it's usually used as short-cut for <i>copy to clipboard</i></li>
-  <li>fix: avoid crashes in the game list parser and the ROMAlyzer's checksum wizard due to unexpected nameless entries (first appeared in MESS 0.145u1+)</li>
-  <li>fix: build: corrected a new set of compile-time bugs related to builds with PHONON=0</li>
-  <li>fix: ROMAlyzer: after updating CHDs to the latest format, update the CHD header information from the replaced file before comparing the SHA1 checksums</li>
-  <li>fix: minor: corrected a few texts with regard to the current variant's emulator type (MAME vs. MESS)</li>
-  <li>fix: file-chooser: expand/collapse ZIP-contents on any type of 'activation' (i.e. not only on mouse double-clicks but also when enter or return are pressed, includes navigation via cursor-keys)</li>
-  <li>fix: re-enable 'locked' widgets when the emulator can't be started for reading the game/machine data</li>
-  <li>fix: MESS device configurator: corrected display of file-editor's data when there's only one available device instance (by synchronizing delegate/model updates)</li>
-  <li>fix: don't start a verification process when the ROM state cache can't be opened for writing</li>
-  <li>fix: file-chooser: the machine-dependent software-folder was not correctly pre-selected when existing device configurations were loaded in parallel</li>
-  <li>fix: MESS device configurator: avoid a rare crash when systems are hovered very quickly (asynchronous updates may otherwise work on meanwhile invalid data)</li>
-  <li>fix: clear favorites and play-history upon reload and make sure the last selected game/machine is correctly re-selected (if applicable)</li>
-  <li>fix: ROMAlyzer: when repairing a set and the wanted CRC or name (header-)entry already exists in the target ZIP, recreate the complete ZIP file in order to replace the 'bad' file</li>
-  <li>fix: ROMAlyzer: don't rewrite sets that are analyzed on behalf of the checksum-wizard (even if 'rewrite while analyzing' has been activated)</li>
-  <li>fix: corrected some additional MESS-specific phrases and removed WIP-only stuff from key- &amp; joystick-mappers</li>
-  <li>fix: adjusted the behavior of the two main search combo-boxes and tied them more closely</li>
-  <li>fix: software-lists: support <u>multiple</u> allowed device-interface types</li>
-  <li>fix: MiniWebBrowser: don't raise main-widget / lower browser window(s) when selecting the path to save a downloadable resource</li>
-  <li>fix: corrected character conversion when compressing HTML data stored in in-memory and on-disk web-caches (using QString::toLocal8Bit() instead of QString::toLatin1() now)</li>
-  <li>imp: ROMAlyzer: LRU-caching XML data positions in order to speed up merge-processing</li>
-  <li>imp: updated the MAME variant's logo with an improved version from JacKc</li>
-  <li>imp: MESS device configurator: log a warning when '-listslots' crashes</li>
-  <li>imp: MAME/MESS emulator templates updated to 0.146 (fixed duplication of option 'natural' in MESS templates)</li>
-  <li>imp: interpret the new 'has no roms' status as 'good' (a.k.a. correct)</li>
-  <li>imp: foreign emulator support: added $DESCRIPTION$ as an optional argument placeholder for the set's description</li>
-  <li>imp: ROMAlyzer: interpret emu- and file-states of sets that have no ROMs as 'good' also in case of MAME (new since 0.145u2)</li>
-  <li>imp: ROM status check: circumvent the corner case of sets without ROMs also in case of MAME (new since 0.145u2, see 'ide_baseboard' and 'hdd' devices)</li>
-  <li>imp: ROMAlyzer: log possible driver XML bugs where a merge-name is given without a parent set to take it from (other than this, these cases are ignored and treated as 'good' merge-states)</li>
-  <li>imp: when registering foreign emulators, the existence of the <i>$ID$</i> placeholder on the supplied command line is now indicated through a green/yellow colored label (when $ID$ is missing, the configuration will most likely not work)</li>
-  <li>imp: allow the specification of the emulator's working directory already in the welcome dialog</li>
-  <li>imp: updated redistributed Qt translations from Qt 4.8.1</li>
-  <li>imp: honor 'players' value for device sets where applicable (i.e. some input devices)</li>
-  <li>imp: MESS device configurator: sort slot-options alphanumerically, add a separator between 'not used' and available options, allow disabling of <i>default</i> slot-options and indicate them as such</li>
-  <li>imp: main widget: revised all auto-connected menu actions to use QAction::triggered(bool) (instead of a meanwhile deprecated signal)</li>
-  <li>imp: slightly better responsiveness while loading cached XML data</li>
-  <li>imp: Mac OS X build: avoid using xcodebuild for Qt 4.8+</li>
-  <li>imp: replaced the 'MESS wiki driver look-up' with a ProjectMESS-based search since most data in the MESS wiki was lost, and ProjectMESS is the new de-facto '#1 web-resource for all things MESS' :)</li>
-  <li>imp: the MiniWebBrowser's zoom-factor can now also be specified through a (mouse) wheel-event when the Ctrl-key is pressed at the same time (like most standalone browsers)</li>
-  <li>new: ROMAlyzer: added support for CHD v5 (new since MAME/MESS 0.145u1) -- built-in analysis will work for CHD v3, v4 and v5; however, note that all 'CHD manager' functionality <b>requires chdman from MAME/MESS 0.145u1+ now</b></li>
-  <li>new: ROMAlyzer: added a function to store the current log contents to a file</li>
-  <li>new: added tear-off capability to all menus within menu-bars</li>
-  <li>new: added freely customizable lists of game/machine IDs (and descriptions) that can be attached to foreign emulators and be presented / launched through the menu</li>
-  <li>new: both the MAWS (off-line) and the ProjectMESS driver look-up features save/restore their zoom-factors now</li>
-  <li>new: experimental support for Qt 5, which is in alpha-stage right now (there will be no embedder support on X11 platforms in the first place, since they dropped some X11-specific classes like the QX11EmbedContainer -- an add-on for Qt 5 to revive this functionality is planned, but will probably not be available before Qt 5.1)</li>
-  <li>new: YouTube video-player: you can now also 'paste' a YouTube video URL into the video-player itself, which will then start playing the respective video without attaching it to the play list</li>
-  <li>new: about dialog: added output of run-time Qt library paths to the system-information page</li>
-  <li>new: integrated zlib 1.2.6 to remove the extra requirement</li>
-  <li>new: the MiniWebBrowser now supports and allows pop-up window requests when the build option BROWSER_JAVASCRIPT is enabled (which is the default)</li>
-  <li>new: build option BROWSER_EXTRAS is now enabled by default which also activates the use of QtWebKit's <i>Web Inspector</i> in the MiniWebBrowser for everyone</li>
-  <li>new: added a Spanish translation -- thanks to <a href="credits.html#Daniel">Daniel Barrado</a></li>
-  <li>wip: adding a set rename tool to the ROMAlyzer which uses the -listxml outputs from both the old and the current emulator to gather the changes automagically</li>
-  <li>wip: adding a Romanian translation (mostly done) -- thanks to <a href="credits.html#Mihai">Mihai Boisteanu</a></li>
-  <li>wip: adding an Italian translation -- thanks to <a href="credits.html#Stefano">Stefano Cereda</a></li>
-  <li>wip: adding a stand-alone CHDMAN GUI (see tools/qchdman/)</li>
-  <li>wip: adding a Greek translation -- thanks to <a href="credits.html#Kostas">Kostas Albanidis</a></li>
-  <li>wip: adding a Swedish translation -- thanks to <a href="credits.html#DanielNylander">Daniel Nylander</a></li>
+ 	<li>fix: ROMAlyzer: don't stop searching for CHDs at the first ROM path (when there are multiple ROM paths)</li>
+ 	<li>fix: allow embedding of (MAME/MESS-like) foreign emulators again -- changes made in 0.35 prevented this completely</li>
+ 	<li>fix: changed the default short-cut for the <i>check template map</i> action to 'Ctrl+Shift+C' -- the previous default of 'Ctrl+C' was awkward since it's usually used as short-cut for <i>copy to clipboard</i></li>
+ 	<li>fix: avoid crashes in the game list parser and the ROMAlyzer's checksum wizard due to unexpected nameless entries (first appeared in MESS 0.145u1+)</li>
+ 	<li>fix: build: corrected a new set of compile-time bugs related to builds with PHONON=0</li>
+ 	<li>fix: ROMAlyzer: after updating CHDs to the latest format, update the CHD header information from the replaced file before comparing the SHA1 checksums</li>
+ 	<li>fix: minor: corrected a few texts with regard to the current variant's emulator type (MAME vs. MESS)</li>
+ 	<li>fix: file-chooser: expand/collapse ZIP-contents on any type of 'activation' (i.e. not only on mouse double-clicks but also when enter or return are pressed, includes navigation via cursor-keys)</li>
+ 	<li>fix: re-enable 'locked' widgets when the emulator can't be started for reading the game/machine data</li>
+ 	<li>fix: MESS device configurator: corrected display of file-editor's data when there's only one available device instance (by synchronizing delegate/model updates)</li>
+ 	<li>fix: don't start a verification process when the ROM state cache can't be opened for writing</li>
+ 	<li>fix: file-chooser: the machine-dependent software-folder was not correctly pre-selected when existing device configurations were loaded in parallel</li>
+ 	<li>fix: MESS device configurator: avoid a rare crash when systems are hovered very quickly (asynchronous updates may otherwise work on meanwhile invalid data)</li>
+ 	<li>fix: clear favorites and play-history upon reload and make sure the last selected game/machine is correctly re-selected (if applicable)</li>
+ 	<li>fix: ROMAlyzer: when repairing a set and the wanted CRC or name (header-)entry already exists in the target ZIP, recreate the complete ZIP file in order to replace the 'bad' file</li>
+ 	<li>fix: ROMAlyzer: don't rewrite sets that are analyzed on behalf of the checksum-wizard (even if 'rewrite while analyzing' has been activated)</li>
+ 	<li>fix: corrected some additional MESS-specific phrases and removed WIP-only stuff from key- &amp; joystick-mappers</li>
+ 	<li>fix: adjusted the behavior of the two main search combo-boxes and tied them more closely</li>
+ 	<li>fix: software-lists: support <u>multiple</u> allowed device-interface types</li>
+ 	<li>fix: MiniWebBrowser: don't raise main-widget / lower browser window(s) when selecting the path to save a downloadable resource</li>
+ 	<li>fix: corrected character conversion when compressing HTML data stored in in-memory and on-disk web-caches (using QString::toLocal8Bit() instead of QString::toLatin1() now)</li>
+ 	<li>imp: ROMAlyzer: LRU-caching XML data positions in order to speed up merge-processing</li>
+ 	<li>imp: updated the MAME variant's logo with an improved version from JacKc</li>
+ 	<li>imp: MESS device configurator: log a warning when '-listslots' crashes</li>
+ 	<li>imp: MAME/MESS emulator templates updated to 0.146 (fixed duplication of option 'natural' in MESS templates)</li>
+ 	<li>imp: interpret the new 'has no roms' status as 'good' (a.k.a. correct)</li>
+ 	<li>imp: foreign emulator support: added $DESCRIPTION$ as an optional argument placeholder for the set's description</li>
+ 	<li>imp: ROMAlyzer: interpret emu- and file-states of sets that have no ROMs as 'good' also in case of MAME (new since 0.145u2)</li>
+ 	<li>imp: ROM status check: circumvent the corner case of sets without ROMs also in case of MAME (new since 0.145u2, see 'ide_baseboard' and 'hdd' devices)</li>
+ 	<li>imp: ROMAlyzer: log possible driver XML bugs where a merge-name is given without a parent set to take it from (other than this, these cases are ignored and treated as 'good' merge-states)</li>
+ 	<li>imp: when registering foreign emulators, the existence of the <i>$ID$</i> placeholder on the supplied command line is now indicated through a green/yellow colored label (when $ID$ is missing, the configuration will most likely not work)</li>
+ 	<li>imp: allow the specification of the emulator's working directory already in the welcome dialog</li>
+ 	<li>imp: updated redistributed Qt translations from Qt 4.8.1</li>
+ 	<li>imp: honor 'players' value for device sets where applicable (i.e. some input devices)</li>
+ 	<li>imp: MESS device configurator: sort slot-options alphanumerically, add a separator between 'not used' and available options, allow disabling of <i>default</i> slot-options and indicate them as such</li>
+ 	<li>imp: main widget: revised all auto-connected menu actions to use QAction::triggered(bool) (instead of a meanwhile deprecated signal)</li>
+ 	<li>imp: slightly better responsiveness while loading cached XML data</li>
+ 	<li>imp: Mac OS X build: avoid using xcodebuild for Qt 4.8+</li>
+ 	<li>imp: replaced the 'MESS wiki driver look-up' with a ProjectMESS-based search since most data in the MESS wiki was lost, and ProjectMESS is the new de-facto '#1 web-resource for all things MESS' :)</li>
+ 	<li>imp: the MiniWebBrowser's zoom-factor can now also be specified through a (mouse) wheel-event when the Ctrl-key is pressed at the same time (like most standalone browsers)</li>
+ 	<li>new: ROMAlyzer: added support for CHD v5 (new since MAME/MESS 0.145u1) -- built-in analysis will work for CHD v3, v4 and v5; however, note that all 'CHD manager' functionality <b>requires chdman from MAME/MESS 0.145u1+ now</b></li>
+ 	<li>new: ROMAlyzer: added a function to store the current log contents to a file</li>
+ 	<li>new: added tear-off capability to all menus within menu-bars</li>
+ 	<li>new: added freely customizable lists of game/machine IDs (and descriptions) that can be attached to foreign emulators and be presented / launched through the menu</li>
+ 	<li>new: both the MAWS (off-line) and the ProjectMESS driver look-up features save/restore their zoom-factors now</li>
+ 	<li>new: experimental support for Qt 5, which is in alpha-stage right now (there will be no embedder support on X11 platforms in the first place, since they dropped some X11-specific classes like the QX11EmbedContainer -- an add-on for Qt 5 to revive this functionality is planned, but will probably not be available before Qt 5.1)</li>
+ 	<li>new: YouTube video-player: you can now also 'paste' a YouTube video URL into the video-player itself, which will then start playing the respective video without attaching it to the play list</li>
+ 	<li>new: about dialog: added output of run-time Qt library paths to the system-information page</li>
+ 	<li>new: integrated zlib 1.2.6 to remove the extra requirement</li>
+ 	<li>new: the MiniWebBrowser now supports and allows pop-up window requests when the build option BROWSER_JAVASCRIPT is enabled (which is the default)</li>
+ 	<li>new: build option BROWSER_EXTRAS is now enabled by default which also activates the use of QtWebKit's <i>Web Inspector</i> in the MiniWebBrowser for everyone</li>
+ 	<li>new: added a Spanish translation -- thanks to <a href="credits.html#Daniel">Daniel Barrado</a></li>
+ 	<li>wip: adding a set rename tool to the ROMAlyzer which uses the -listxml outputs from both the old and the current emulator to gather the changes automagically</li>
+ 	<li>wip: adding a Romanian translation (mostly done) -- thanks to <a href="credits.html#Mihai">Mihai Boisteanu</a></li>
+ 	<li>wip: adding an Italian translation -- thanks to <a href="credits.html#Stefano">Stefano Cereda</a></li>
+ 	<li>wip: adding a stand-alone CHDMAN GUI (see tools/qchdman/)</li>
+ 	<li>wip: adding a Greek translation -- thanks to <a href="credits.html#Kostas">Kostas Albanidis</a></li>
+ 	<li>wip: adding a Swedish translation -- thanks to <a href="credits.html#DanielNylander">Daniel Nylander</a></li>
 </ul>
 <p><b>v0.35, 06-FEB-2012:</b></p>
 <ul>
-  <li>fix: minor: hide the software-list favorites column 'device configuration' for MAME targets as it's a MESS-only feature</li>
-  <li>fix: minor: corrected the main progress-bar's visual behavior when ROM status checking and software-list caching are running in parallel</li>
-  <li>fix: MAME targets: the software-list widget wasn't cleared upon reload</li>
-  <li>fix: the last active detail-tab's header wasn't always shown initially</li>
-  <li>fix: software-snapshots were positioned incorrectly under certain circumstances</li>
-  <li>fix: corrected a few minor log-scrolling issues</li>
-  <li>fix: individual ROM checks didn't work correctly when the ROM status was 'not found' since output is written to stderr in this case and not to stdout as otherwise</li>
-  <li>fix: YouTube video-player: avoid crashes on exit by waiting for all application threads to finish before returning to the OS</li>
-  <li>fix: YouTube video-player: attached videos could get lost when changing the current game/machine very quickly</li>
-  <li>fix: ROMAlyzer: correctly 'remove' the progress-bar item-widget before deleting it (worked w/o until Qt 4.7.x, crashed since Qt 4.8.0)</li>
-  <li>fix: corrected restoration of main-widget's layout when the front-end was showing a maximized embedded emulator during clean up on the previous run</li>
-  <li>fix: corrected Windows 64-bit builds with DEBUG=2 (see <a href="http://tracker.batcom-it.net/view.php?id=21" target="_blank">bug tracker ID #21</a>)</li>
-  <li>fix: file-chooser: the underlying item model now produces correct minimum widths for icon-less columns (size and modification date)</li>
-  <li>fix: embedder on X11: corrected initial input focus after launching a new embedded emulator</li>
-  <li>imp: ROM status exporter: additional output-format choice ('all formats') to export the ROM states to all three formats at once</li>
-  <li>imp: when a software-list can't be found (though it's expected to exist), leave the software-list widget disabled and don't try to parse the invalid XML (a warning will still be logged since this is actually an emulator bug, but probably also a wanted/known situation as told by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=1564" target="_blank">etabeta78</a>)</li>
-  <li>imp: MAME/MESS emulator templates updated to 0.145</li>
-  <li>imp: faster display of software-snapshots by using tool-tip like window attributes for the viewer widget (this also fixes bad-window errors on X11)</li>
-  <li>imp: slightly bigger icons in all game/machine list views</li>
-  <li>imp: updated template format to v0.2.5 which adds support for an optional 'part' attribute that can be used in file-type options to specify the extracted part of the file's path (currently only "basename" is supported, used by the effect-option)</li>
-  <li>imp: loading of software-lists can be interrupted now and is indicated accordingly for larger lists (i.e. cpc_cass/cpc_flop)</li>
-  <li>imp: Mac OS X build: moved macx/Info.plist.in to arch/Darwin/Info.plist.in where it belongs</li>
-  <li>imp: build: added a 'configure' make target to create platform dependent project file(s) and stop (i.e. to open it in XCode and build from there on Mac OS X, or to run MinGW make in job-server mode on Windows)</li>
-  <li>imp: MiniWebBrowser: browser-plugins are now enabled per default (see make option <i>BROWSER_PLUGINS</i>)</li>
-  <li>imp: build: removed make option <i>PRETTY</i> as it's no longer usable in the supported Qt versions</li>
-  <li>imp: Mac OS X build: provide application icons (.icns) to be associated with the apps</li>
-  <li>imp: created new logo images (thanks to JacKc)</li>
-  <li>imp: ROMAlyzer: checksum-wizard: when the user changes the checksum-type and the current checksum is available in the 'other' type as well, display it in the line-edit (not available when the checksum is edited manually)</li>
-  <li>new: the ROM state filtering mechanism can now be enabled/disabled on-the-fly (the default is 'enabled', just as before)</li>
-  <li>new: added support for multi-device software-list entries as well as automatic vs. manual mount-device selection (includes the ability to mix parts from different software-list entries)</li>
-  <li>new: added an alternative game/machine search entry box to the tool-bar</li>
-  <li>new: added a CSV and ASCII export tool for software-lists</li>
-  <li>new: added import/export functionality for software-list <i>favorites</i></li>
-  <li>new: changed the MESS device configurator so it offers available device-instances based on the slot-options specified, thus allowing to <i>mount</i> them as well (through the legacy device-mapper and the file-chooser)</li>
-  <li>new: added ZIP support for software-snapshots</li>
-  <li>new: X11 and Windows only: game/machine icons are now also shown on the tab headers of embedded emulators</li>
-  <li>new: all images have an additional context-menu item ('refresh') now to clear and reload their cached pendants</li>
-  <li>new: integrated the HTML editor from <a href="http://qt.gitorious.org/qt-labs/graphics-dojo" target="_blank">Qt Labs / graphics-dojo</a> for all kinds of (upcoming) rich-text editing purposes</li>
-  <li>new: added content-zoom to the MiniWebBrowser</li>
-  <li>new: top-level windows can now optionally be minimized upon emulation launch and automatically restored when the (last) emulator instance has ended</li>
-  <li>new: YouTube video-player: added a semi-transparent overlay widget to display status information at the bottom of the player's viewport</li>
-  <li>new: software-lists: added software-compatibility filtering</li>
-  <li>new: added a 'MESS wiki' detail to look up available driver information</li>
-  <li>new: added an option to suppress all messages sent through QDebug and related convenience functions</li>
-  <li>new: added an optional startup splash-screen utilizing the new logos</li>
-  <li>new: added support for emulator-embedding on Windows (!) -- note, however, that embedding of emulators running in <i>Direct 3D</i> mode ('-video d3d') has two known issues: full-screen switching will lead to a crash (of the emulator) and screen-shots aren't taken correctly from within the GUI (just a black image)</li>
-  <li>new: X11 and Windows only: added an option to select the <i>default launch-mode</i> used when starting emulation by <i>activating</i> (i.e. double-clicking) an entry in any list</li>
-  <li>new: X11 and Windows only: replaced the style-controlled embedder-release icons (usually a red 'X' which some users wrongly interpreted as 'exit emulator') with a more suitable / less irritating and style-independent icon by setting explicit style-sheets on the tab-bars of all embedders</li>
-  <li>new: added two options to allow for hiding of BIOS and/or device sets in all master-lists (see <i>Front end</i> -&gt; <i>Game/Machine list</i> in the main setup dialog) -- both will trigger an automatic reload when changed</li>
-  <li>new: added a dock-able/floating software-detail widget with a separate snapshot-browser, a <a href="http://www.progettoemma.net/mess/" target="_blank">ProjectMESS</a> software-lookup feature, and an HTML editor/viewer for personal rich-text software-notes</li>
-  <li>inf: <b>the new required minimum Qt version is 4.7.0</b>, support for older versions of Qt has been dropped</li>
+ 	<li>fix: minor: hide the software-list favorites column 'device configuration' for MAME targets as it's a MESS-only feature</li>
+ 	<li>fix: minor: corrected the main progress-bar's visual behavior when ROM status checking and software-list caching are running in parallel</li>
+ 	<li>fix: MAME targets: the software-list widget wasn't cleared upon reload</li>
+ 	<li>fix: the last active detail-tab's header wasn't always shown initially</li>
+ 	<li>fix: software-snapshots were positioned incorrectly under certain circumstances</li>
+ 	<li>fix: corrected a few minor log-scrolling issues</li>
+ 	<li>fix: individual ROM checks didn't work correctly when the ROM status was 'not found' since output is written to stderr in this case and not to stdout as otherwise</li>
+ 	<li>fix: YouTube video-player: avoid crashes on exit by waiting for all application threads to finish before returning to the OS</li>
+ 	<li>fix: YouTube video-player: attached videos could get lost when changing the current game/machine very quickly</li>
+ 	<li>fix: ROMAlyzer: correctly 'remove' the progress-bar item-widget before deleting it (worked w/o until Qt 4.7.x, crashed since Qt 4.8.0)</li>
+ 	<li>fix: corrected restoration of main-widget's layout when the front-end was showing a maximized embedded emulator during clean up on the previous run</li>
+ 	<li>fix: corrected Windows 64-bit builds with DEBUG=2 (see <a href="http://tracker.batcom-it.net/view.php?id=21" target="_blank">bug tracker ID #21</a>)</li>
+ 	<li>fix: file-chooser: the underlying item model now produces correct minimum widths for icon-less columns (size and modification date)</li>
+ 	<li>fix: embedder on X11: corrected initial input focus after launching a new embedded emulator</li>
+ 	<li>imp: ROM status exporter: additional output-format choice ('all formats') to export the ROM states to all three formats at once</li>
+ 	<li>imp: when a software-list can't be found (though it's expected to exist), leave the software-list widget disabled and don't try to parse the invalid XML (a warning will still be logged since this is actually an emulator bug, but probably also a wanted/known situation as told by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=1564" target="_blank">etabeta78</a>)</li>
+ 	<li>imp: MAME/MESS emulator templates updated to 0.145</li>
+ 	<li>imp: faster display of software-snapshots by using tool-tip like window attributes for the viewer widget (this also fixes bad-window errors on X11)</li>
+ 	<li>imp: slightly bigger icons in all game/machine list views</li>
+ 	<li>imp: updated template format to v0.2.5 which adds support for an optional 'part' attribute that can be used in file-type options to specify the extracted part of the file's path (currently only "basename" is supported, used by the effect-option)</li>
+ 	<li>imp: loading of software-lists can be interrupted now and is indicated accordingly for larger lists (i.e. cpc_cass/cpc_flop)</li>
+ 	<li>imp: Mac OS X build: moved macx/Info.plist.in to arch/Darwin/Info.plist.in where it belongs</li>
+ 	<li>imp: build: added a 'configure' make target to create platform dependent project file(s) and stop (i.e. to open it in XCode and build from there on Mac OS X, or to run MinGW make in job-server mode on Windows)</li>
+ 	<li>imp: MiniWebBrowser: browser-plugins are now enabled per default (see make option <i>BROWSER_PLUGINS</i>)</li>
+ 	<li>imp: build: removed make option <i>PRETTY</i> as it's no longer usable in the supported Qt versions</li>
+ 	<li>imp: Mac OS X build: provide application icons (.icns) to be associated with the apps</li>
+ 	<li>imp: created new logo images (thanks to JacKc)</li>
+ 	<li>imp: ROMAlyzer: checksum-wizard: when the user changes the checksum-type and the current checksum is available in the 'other' type as well, display it in the line-edit (not available when the checksum is edited manually)</li>
+ 	<li>new: the ROM state filtering mechanism can now be enabled/disabled on-the-fly (the default is 'enabled', just as before)</li>
+ 	<li>new: added support for multi-device software-list entries as well as automatic vs. manual mount-device selection (includes the ability to mix parts from different software-list entries)</li>
+ 	<li>new: added an alternative game/machine search entry box to the tool-bar</li>
+ 	<li>new: added a CSV and ASCII export tool for software-lists</li>
+ 	<li>new: added import/export functionality for software-list <i>favorites</i></li>
+ 	<li>new: changed the MESS device configurator so it offers available device-instances based on the slot-options specified, thus allowing to <i>mount</i> them as well (through the legacy device-mapper and the file-chooser)</li>
+ 	<li>new: added ZIP support for software-snapshots</li>
+ 	<li>new: X11 and Windows only: game/machine icons are now also shown on the tab headers of embedded emulators</li>
+ 	<li>new: all images have an additional context-menu item ('refresh') now to clear and reload their cached pendants</li>
+ 	<li>new: integrated the HTML editor from <a href="http://qt.gitorious.org/qt-labs/graphics-dojo" target="_blank">Qt Labs / graphics-dojo</a> for all kinds of (upcoming) rich-text editing purposes</li>
+ 	<li>new: added content-zoom to the MiniWebBrowser</li>
+ 	<li>new: top-level windows can now optionally be minimized upon emulation launch and automatically restored when the (last) emulator instance has ended</li>
+ 	<li>new: YouTube video-player: added a semi-transparent overlay widget to display status information at the bottom of the player's viewport</li>
+ 	<li>new: software-lists: added software-compatibility filtering</li>
+ 	<li>new: added a 'MESS wiki' detail to look up available driver information</li>
+ 	<li>new: added an option to suppress all messages sent through QDebug and related convenience functions</li>
+ 	<li>new: added an optional startup splash-screen utilizing the new logos</li>
+ 	<li>new: added support for emulator-embedding on Windows (!) -- note, however, that embedding of emulators running in <i>Direct 3D</i> mode ('-video d3d') has two known issues: full-screen switching will lead to a crash (of the emulator) and screen-shots aren't taken correctly from within the GUI (just a black image)</li>
+ 	<li>new: X11 and Windows only: added an option to select the <i>default launch-mode</i> used when starting emulation by <i>activating</i> (i.e. double-clicking) an entry in any list</li>
+ 	<li>new: X11 and Windows only: replaced the style-controlled embedder-release icons (usually a red 'X' which some users wrongly interpreted as 'exit emulator') with a more suitable / less irritating and style-independent icon by setting explicit style-sheets on the tab-bars of all embedders</li>
+ 	<li>new: added two options to allow for hiding of BIOS and/or device sets in all master-lists (see <i>Front end</i> -&gt; <i>Game/Machine list</i> in the main setup dialog) -- both will trigger an automatic reload when changed</li>
+ 	<li>new: added a dock-able/floating software-detail widget with a separate snapshot-browser, a <a href="http://www.progettoemma.net/mess/" target="_blank">ProjectMESS</a> software-lookup feature, and an HTML editor/viewer for personal rich-text software-notes</li>
+ 	<li>inf: <b>the new required minimum Qt version is 4.7.0</b>, support for older versions of Qt has been dropped</li>
 </ul>
 <p><b>v0.34, 15-NOV-2011:</b></p>
 <ul>
-  <li>fix: MAME targets: don't auto-resize the last column in the game/machine list views when toggling the use of catver.ini (it annoys more than it helps)</li>
-  <li>fix: build: corrected compile-time bugs related to builds with PHONON=0</li>
-  <li>fix: adjust icon sizes when showing the audio-effect dialog initially</li>
-  <li>fix: removed flicker on changing game-/machine-list views</li>
-  <li>fix: corrected a few MESS-specific phrases</li>
-  <li>fix: corrected delegate-sizing issues when there's only one device instance in the MESS device setup</li>
-  <li>fix: Mac OS X: set ROMAlyzer's parent widget in order to avoid context-menu displacement</li>
-  <li>fix: ROMAlyzer: the ROM set's context-menu should be available also when the set rewriter hasn't been enabled</li>
-  <li>fix: MAME targets: category- and version-views were not created initially when switched to via the view-selector combo-box</li>
-  <li>fix: MAME targets: demo-mode: avoid floating-point exception when no games were selected by the filter</li>
-  <li>imp: updated minizip to version 1.01h</li>
-  <li>imp: YouTube video player: decode (percent-)encoded error messages before logging them</li>
-  <li>imp: setup dialog: conflated all formerly split emulator- and game-info DB settings</li>
-  <li>imp: MAME/MESS emulator templates updated to 0.144</li>
-  <li>imp: ROMAlyzer: better 'no dump' indication</li>
-  <li>imp: enabled audio-effect widgets for MinGW builds (they work fine when the <b>official</b> Qt DLLs are being used, otherwise set the new <i>AUDIOEFFECTDIALOGS</i> make option to 0 in order to disable them)</li>
-  <li>imp: X11 only: minor embedder optimizations regarding widget resizing</li>
-  <li>imp: YouTube video player: added support for YouTube's new way of presenting video stream URLs</li>
-  <li>imp: general overhaul of the main-widget's layout parameters to allow for a somewhat more 'compact' design</li>
-  <li>imp: the working directory of the external ROM tool can be specified now</li>
-  <li>imp: build: added <i>EMU</i> as an alias for the <i>EMULATOR</i> make option</li>
-  <li>imp: locale-aware statistics in the ROM status exporter and the GUI's ROM status bar</li>
-  <li>imp: updated redistributed Qt translations from Qt 4.7.4</li>
-  <li>new: added a 'driver status' column to all game/machine lists (or views)</li>
-  <li>new: Windows only: the <i>other</i> variant's exe file can now be specified explicitly (the default is to search for it only in the directory where the calling variant was started from) -- this works also when you rename the exe files; you can additionally specify the command line arguments passed to the <i>other</i> variant (note that this is an independent setting and would also be used when the variant exe is not overwritten!)</li>
-  <li>new: support for MAME's/MESS's new device-referencing (new since 0.143u2+ SVN)</li>
-  <li>new: Mac OS X only: the tool-bar can now optionally be unified with the title-bar</li>
-  <li>new: MESS targets: support for machine-specific device slots / slot options, integrated with the MESS device configurator</li>
-  <li>new: the MESS variants now use their own logo, and all variants use new unified applications icons -- thanks to <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=3340" target="_blank">Anna Wu</a></li>
-  <li>new: added a new tool-function to allow for forced removal of ALL emulator related caches at once</li>
-  <li>new: added support for the new 'messinfo.dat' file from AntoPISA (see <a href="http://www.progettosnaps.net/messinfo/" target="_blank">http://www.progettosnaps.net/messinfo/</a>)</li>
-  <li>new: completed the support for software-lists in MAME and MESS (ZIP-support for software-snaps will be added later)</li>
-  <li>new: customizable columns in all game-/machine-list and software-list views</li>
-  <li>new: MESS targets: a new 'file chooser' dialog has been added to the MESS device configurator as an easy-to-use alternative to the manual setup</li>
-  <li>new: MESS targets: device type icons are now displayed to better symbolize MESS device instances</li>
-  <li>new: ROMAlyzer: you can specify an additional source ROM path for the set rewriter in order to allow for merging updates</li>
-  <li>new: added support for <i>item-tagging</i> and a number of related operations that can now also be performed for tagged games/machines</li>
-  <li>new: for ZIP-archived icons (actually the only practical way to store them) support for ICO format has been added -- this means that for instance <a href="http://icons.mameworld.info/" target="_blank">MAMU's icon</a> can now be used directly, w/o conversion to PNGs!</li>
-  <li>new: icons are now also supported for all MESS targets</li>
-  <li>wip: adding a Java (Eclipse/SWT) based editor/translator for emulator templates (see <i>tools/qmc2_options_editor_java</i>) -- thanks to <a href="credits.html#Marcelo">Marcelo Bossoni</a></li>
-  <li>inf: note that <b>the versioning pattern has changed</b>: we now just count the releases and follow the simple scheme '0.XX', where XX is the release number</li>
-  <li>inf: note that <b>the minimum required MESS revision now is SVN r12599</b> (or MESS 0.143u3)</li>
+ 	<li>fix: MAME targets: don't auto-resize the last column in the game/machine list views when toggling the use of catver.ini (it annoys more than it helps)</li>
+ 	<li>fix: build: corrected compile-time bugs related to builds with PHONON=0</li>
+ 	<li>fix: adjust icon sizes when showing the audio-effect dialog initially</li>
+ 	<li>fix: removed flicker on changing game-/machine-list views</li>
+ 	<li>fix: corrected a few MESS-specific phrases</li>
+ 	<li>fix: corrected delegate-sizing issues when there's only one device instance in the MESS device setup</li>
+ 	<li>fix: Mac OS X: set ROMAlyzer's parent widget in order to avoid context-menu displacement</li>
+ 	<li>fix: ROMAlyzer: the ROM set's context-menu should be available also when the set rewriter hasn't been enabled</li>
+ 	<li>fix: MAME targets: category- and version-views were not created initially when switched to via the view-selector combo-box</li>
+ 	<li>fix: MAME targets: demo-mode: avoid floating-point exception when no games were selected by the filter</li>
+ 	<li>imp: updated minizip to version 1.01h</li>
+ 	<li>imp: YouTube video player: decode (percent-)encoded error messages before logging them</li>
+ 	<li>imp: setup dialog: conflated all formerly split emulator- and game-info DB settings</li>
+ 	<li>imp: MAME/MESS emulator templates updated to 0.144</li>
+ 	<li>imp: ROMAlyzer: better 'no dump' indication</li>
+ 	<li>imp: enabled audio-effect widgets for MinGW builds (they work fine when the <b>official</b> Qt DLLs are being used, otherwise set the new <i>AUDIOEFFECTDIALOGS</i> make option to 0 in order to disable them)</li>
+ 	<li>imp: X11 only: minor embedder optimizations regarding widget resizing</li>
+ 	<li>imp: YouTube video player: added support for YouTube's new way of presenting video stream URLs</li>
+ 	<li>imp: general overhaul of the main-widget's layout parameters to allow for a somewhat more 'compact' design</li>
+ 	<li>imp: the working directory of the external ROM tool can be specified now</li>
+ 	<li>imp: build: added <i>EMU</i> as an alias for the <i>EMULATOR</i> make option</li>
+ 	<li>imp: locale-aware statistics in the ROM status exporter and the GUI's ROM status bar</li>
+ 	<li>imp: updated redistributed Qt translations from Qt 4.7.4</li>
+ 	<li>new: added a 'driver status' column to all game/machine lists (or views)</li>
+ 	<li>new: Windows only: the <i>other</i> variant's exe file can now be specified explicitly (the default is to search for it only in the directory where the calling variant was started from) -- this works also when you rename the exe files; you can additionally specify the command line arguments passed to the <i>other</i> variant (note that this is an independent setting and would also be used when the variant exe is not overwritten!)</li>
+ 	<li>new: support for MAME's/MESS's new device-referencing (new since 0.143u2+ SVN)</li>
+ 	<li>new: Mac OS X only: the tool-bar can now optionally be unified with the title-bar</li>
+ 	<li>new: MESS targets: support for machine-specific device slots / slot options, integrated with the MESS device configurator</li>
+ 	<li>new: the MESS variants now use their own logo, and all variants use new unified applications icons -- thanks to <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=3340" target="_blank">Anna Wu</a></li>
+ 	<li>new: added a new tool-function to allow for forced removal of ALL emulator related caches at once</li>
+ 	<li>new: added support for the new 'messinfo.dat' file from AntoPISA (see <a href="http://www.progettosnaps.net/messinfo/" target="_blank">http://www.progettosnaps.net/messinfo/</a>)</li>
+ 	<li>new: completed the support for software-lists in MAME and MESS (ZIP-support for software-snaps will be added later)</li>
+ 	<li>new: customizable columns in all game-/machine-list and software-list views</li>
+ 	<li>new: MESS targets: a new 'file chooser' dialog has been added to the MESS device configurator as an easy-to-use alternative to the manual setup</li>
+ 	<li>new: MESS targets: device type icons are now displayed to better symbolize MESS device instances</li>
+ 	<li>new: ROMAlyzer: you can specify an additional source ROM path for the set rewriter in order to allow for merging updates</li>
+ 	<li>new: added support for <i>item-tagging</i> and a number of related operations that can now also be performed for tagged games/machines</li>
+ 	<li>new: for ZIP-archived icons (actually the only practical way to store them) support for ICO format has been added -- this means that for instance <a href="http://icons.mameworld.info/" target="_blank">MAMU's icon</a> can now be used directly, w/o conversion to PNGs!</li>
+ 	<li>new: icons are now also supported for all MESS targets</li>
+ 	<li>wip: adding a Java (Eclipse/SWT) based editor/translator for emulator templates (see <i>tools/qmc2_options_editor_java</i>) -- thanks to <a href="credits.html#Marcelo">Marcelo Bossoni</a></li>
+ 	<li>inf: note that <b>the versioning pattern has changed</b>: we now just count the releases and follow the simple scheme '0.XX', where XX is the release number</li>
+ 	<li>inf: note that <b>the minimum required MESS revision now is SVN r12599</b> (or MESS 0.143u3)</li>
 </ul>
 
 <p><b>Ancient change-log entries prior to QMC2 v0.34 are no longer maintained in the SVN tree since v0.39!</b></p>
