@@ -10970,7 +10970,7 @@ void MainWindow::on_actionTagAll_triggered(bool)
 		progressBarGamelist->setFormat(tr("Tag - %p%"));
 	else
 		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+	progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
 	showLoadAnim(tr("Tagging, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
 	QTreeWidgetItem *item;
@@ -10981,6 +10981,8 @@ void MainWindow::on_actionTagAll_triggered(bool)
 		it.next();
 		id = it.key();
 		item = qmc2GamelistItemHash[id];
+		if ( !item )
+			continue;
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
 		item = qmc2HierarchyItemHash[id];
@@ -11001,12 +11003,12 @@ void MainWindow::on_actionTagAll_triggered(bool)
 			qApp->processEvents();
 		}
 	}
+	qmc2Gamelist->numTaggedSets = qmc2Gamelist->numGames;
+	progressBarGamelist->setValue(count);
 	labelGamelistStatus->setText(qmc2Gamelist->status());
 	hideLoadAnim();
-	progressBarGamelist->reset();
-	qmc2Gamelist->numTaggedSets = qmc2Gamelist->numGames;
-	labelGamelistStatus->setText(qmc2Gamelist->status());
 	progressBarGamelist->setFormat(oldFormat);
+	progressBarGamelist->reset();
 }
 
 void MainWindow::on_actionUntagAll_triggered(bool)
@@ -11024,7 +11026,7 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 		progressBarGamelist->setFormat(tr("Untag - %p%"));
 	else
 		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+	progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
 	showLoadAnim(tr("Untagging, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
 	QTreeWidgetItem *item;
@@ -11035,6 +11037,8 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 		it.next();
 		id = it.key();
 		item = qmc2GamelistItemHash[id];
+		if ( !item )
+			continue;
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
 		item = qmc2HierarchyItemHash[id];
@@ -11055,12 +11059,12 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 			qApp->processEvents();
 		}
 	}
+	qmc2Gamelist->numTaggedSets = 0;
+	progressBarGamelist->setValue(count);
 	labelGamelistStatus->setText(qmc2Gamelist->status());
 	hideLoadAnim();
-	progressBarGamelist->reset();
-	qmc2Gamelist->numTaggedSets = 0;
-	labelGamelistStatus->setText(qmc2Gamelist->status());
 	progressBarGamelist->setFormat(oldFormat);
+	progressBarGamelist->reset();
 }
 
 void MainWindow::on_actionInvertTags_triggered(bool)
@@ -11078,7 +11082,7 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 		progressBarGamelist->setFormat(tr("Invert tag - %p%"));
 	else
 		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+	progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
 	showLoadAnim(tr("Inverting tags, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
 	QTreeWidgetItem *item;
@@ -11089,6 +11093,8 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 		it.next();
 		id = it.key();
 		item = qmc2GamelistItemHash[id];
+		if ( !item )
+			continue;
 		Qt::CheckState cs = (item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
 		bool wasTagged = (cs != Qt::Checked);
 		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
@@ -11113,10 +11119,11 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 			qApp->processEvents();
 		}
 	}
+	progressBarGamelist->setValue(count);
 	labelGamelistStatus->setText(qmc2Gamelist->status());
 	hideLoadAnim();
-	progressBarGamelist->reset();
 	progressBarGamelist->setFormat(oldFormat);
+	progressBarGamelist->reset();
 }
 
 void MainWindow::on_actionTagVisible_triggered(bool)
@@ -11134,7 +11141,7 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 		progressBarGamelist->setFormat(tr("Tag - %p%"));
 	else
 		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+	progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
 	showLoadAnim(tr("Tagging, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
 	QTreeWidgetItem *item;
@@ -11145,10 +11152,11 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 		it.next();
 		id = it.key();
 		item = qmc2GamelistItemHash[id];
+		if ( !item )
+			continue;
 		if ( item->isHidden() )
 			continue;
-		if ( item )
-			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
+		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
 		item = qmc2HierarchyItemHash[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
@@ -11167,11 +11175,11 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 			qApp->processEvents();
 		}
 	}
+	progressBarGamelist->setValue(count);
 	labelGamelistStatus->setText(qmc2Gamelist->status());
 	hideLoadAnim();
-	progressBarGamelist->reset();
-	labelGamelistStatus->setText(qmc2Gamelist->status());
 	progressBarGamelist->setFormat(oldFormat);
+	progressBarGamelist->reset();
 }
 
 void MainWindow::on_actionUntagVisible_triggered(bool)
@@ -11189,7 +11197,7 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 		progressBarGamelist->setFormat(tr("Untag - %p%"));
 	else
 		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+	progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
 	showLoadAnim(tr("Untagging, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
 	QTreeWidgetItem *item;
@@ -11200,10 +11208,11 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 		it.next();
 		id = it.key();
 		item = qmc2GamelistItemHash[id];
+		if ( !item )
+			continue;
 		if ( item->isHidden() )
 			continue;
-		if ( item )
-			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
+		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
 		item = qmc2HierarchyItemHash[id];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
@@ -11222,11 +11231,11 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 			qApp->processEvents();
 		}
 	}
+	progressBarGamelist->setValue(count);
 	labelGamelistStatus->setText(qmc2Gamelist->status());
 	hideLoadAnim();
-	progressBarGamelist->reset();
-	labelGamelistStatus->setText(qmc2Gamelist->status());
 	progressBarGamelist->setFormat(oldFormat);
+	progressBarGamelist->reset();
 }
 
 void MainWindow::on_actionInvertVisibleTags_triggered(bool)
@@ -11244,7 +11253,7 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 		progressBarGamelist->setFormat(tr("Invert tag - %p%"));
 	else
 		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+	progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
 	showLoadAnim(tr("Inverting tags, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
 	QTreeWidgetItem *item;
@@ -11255,6 +11264,8 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 		it.next();
 		id = it.key();
 		item = qmc2GamelistItemHash[id];
+		if ( !item )
+			continue;
 		if ( item->isHidden() )
 			continue;
 		Qt::CheckState cs = (item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
@@ -11281,10 +11292,11 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 			qApp->processEvents();
 		}
 	}
+	progressBarGamelist->setValue(count);
 	labelGamelistStatus->setText(qmc2Gamelist->status());
 	hideLoadAnim();
-	progressBarGamelist->reset();
 	progressBarGamelist->setFormat(oldFormat);
+	progressBarGamelist->reset();
 }
 
 void MainWindow::commonWebSearch(QString baseUrl, QTreeWidgetItem *item)
