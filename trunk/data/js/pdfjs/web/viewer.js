@@ -19,7 +19,7 @@
            PDFHistory, Preferences, SidebarView, ViewHistory, Stats,
            PDFThumbnailViewer, URL, noContextMenuHandler, SecondaryToolbar,
            PasswordPrompt, PresentationMode, HandTool, Promise,
-           DocumentProperties, DocumentOutlineView, DocumentAttachmentsView,
+           DocumentProperties, PDFOutlineView, PDFAttachmentView,
            OverlayManager, PDFFindController, PDFFindBar, getVisibleElements,
            watchScroll, PDFViewer, PDFRenderingQueue, PresentationModeState,
            RenderingStates, DEFAULT_SCALE, UNKNOWN_SCALE,
@@ -3011,9 +3011,6 @@ var PDFPageView = (function PDFPageViewClosure() {
 
     this.annotationLayer = null;
 
-    var anchor = document.createElement('a');
-    anchor.name = '' + this.id;
-
     var div = document.createElement('div');
     div.id = 'pageContainer' + this.id;
     div.className = 'page';
@@ -3022,7 +3019,6 @@ var PDFPageView = (function PDFPageViewClosure() {
     this.el = div; // TODO replace 'el' property usage
     this.div = div;
 
-    container.appendChild(anchor);
     container.appendChild(div);
   }
 
@@ -3060,7 +3056,7 @@ var PDFPageView = (function PDFPageViewClosure() {
       var currentZoomLayer = this.zoomLayer || null;
       var currentAnnotationNode = (keepAnnotations && this.annotationLayer &&
                                    this.annotationLayer.div) || null;
-      for (var i = div.childNodes.length - 1; i >= 0; i--) {
+      for (var i = childNodes.length - 1; i >= 0; i--) {
         var node = childNodes[i];
         if (currentZoomLayer === node || currentAnnotationNode === node) {
           continue;
@@ -4771,6 +4767,634 @@ var SimpleLinkService = (function SimpleLinkServiceClosure() {
 })();
 
 
+var THUMBNAIL_SCROLL_MARGIN = -19;
+
+
+var THUMBNAIL_WIDTH = 98; // px
+var THUMBNAIL_CANVAS_BORDER_WIDTH = 1; // px
+
+/**
+ * @typedef {Object} PDFThumbnailViewOptions
+ * @property {HTMLDivElement} container - The viewer element.
+ * @property {number} id - The thumbnail's unique ID (normally its number).
+ * @property {PageViewport} defaultViewport - The page viewport.
+ * @property {IPDFLinkService} linkService - The navigation/linking service.
+ * @property {PDFRenderingQueue} renderingQueue - The rendering queue object.
+ */
+
+/**
+ * @class
+ * @implements {IRenderableView}
+ */
+var PDFThumbnailView = (function PDFThumbnailViewClosure() {
+  function getTempCanvas(width, height) {
+    var tempCanvas = PDFThumbnailView.tempImageCache;
+    if (!tempCanvas) {
+      tempCanvas = document.createElement('canvas');
+      PDFThumbnailView.tempImageCache = tempCanvas;
+    }
+    tempCanvas.width = width;
+    tempCanvas.height = height;
+
+    // Since this is a temporary canvas, we need to fill the canvas with a white
+    // background ourselves. |_getPageDrawContext| uses CSS rules for this.
+    var ctx = tempCanvas.getContext('2d');
+    ctx.save();
+    ctx.fillStyle = 'rgb(255, 255, 255)';
+    ctx.fillRect(0, 0, width, height);
+    ctx.restore();
+    return tempCanvas;
+  }
+
+  /**
+   * @constructs PDFThumbnailView
+   * @param {PDFThumbnailViewOptions} options
+   */
+  function PDFThumbnailView(options) {
+    var container = options.container;
+    var id = options.id;
+    var defaultViewport = options.defaultViewport;
+    var linkService = options.linkService;
+    var renderingQueue = options.renderingQueue;
+
+    this.id = id;
+    this.renderingId = 'thumbnail' + id;
+
+    this.pdfPage = null;
+    this.rotation = 0;
+    this.viewport = defaultViewport;
+    this.pdfPageRotate = defaultViewport.rotation;
+
+    this.linkService = linkService;
+    this.renderingQueue = renderingQueue;
+
+    this.hasImage = false;
+    this.resume = null;
+    this.renderingState = RenderingStates.INITIAL;
+
+    this.pageWidth = this.viewport.width;
+    this.pageHeight = this.viewport.height;
+    this.pageRatio = this.pageWidth / this.pageHeight;
+
+    this.canvasWidth = THUMBNAIL_WIDTH;
+    this.canvasHeight = (this.canvasWidth / this.pageRatio) | 0;
+    this.scale = this.canvasWidth / this.pageWidth;
+
+    var anchor = document.createElement('a');
+    anchor.href = linkService.getAnchorUrl('#page=' + id);
+    anchor.title = mozL10n.get('thumb_page_title', {page: id}, 'Page {{page}}');
+    anchor.onclick = function stopNavigation() {
+      linkService.page = id;
+      return false;
+    };
+
+    var div = document.createElement('div');
+    div.id = 'thumbnailContainer' + id;
+    div.className = 'thumbnail';
+    this.el = div; // TODO: replace 'el' property usage.
+    this.div = div;
+
+    if (id === 1) {
+      // Highlight the thumbnail of the first page when no page number is
+      // specified (or exists in cache) when the document is loaded.
+      div.classList.add('selected');
+    }
+
+    var ring = document.createElement('div');
+    ring.className = 'thumbnailSelectionRing';
+    var borderAdjustment = 2 * THUMBNAIL_CANVAS_BORDER_WIDTH;
+    ring.style.width = this.canvasWidth + borderAdjustment + 'px';
+    ring.style.height = this.canvasHeight + borderAdjustment + 'px';
+    this.ring = ring;
+
+    div.appendChild(ring);
+    anchor.appendChild(div);
+    container.appendChild(anchor);
+  }
+
+  PDFThumbnailView.prototype = {
+    setPdfPage: function PDFThumbnailView_setPdfPage(pdfPage) {
+      this.pdfPage = pdfPage;
+      this.pdfPageRotate = pdfPage.rotate;
+      var totalRotation = (this.rotation + this.pdfPageRotate) % 360;
+      this.viewport = pdfPage.getViewport(1, totalRotation);
+      this.reset();
+    },
+
+    reset: function PDFThumbnailView_reset() {
+      if (this.renderTask) {
+        this.renderTask.cancel();
+      }
+      this.hasImage = false;
+      this.resume = null;
+      this.renderingState = RenderingStates.INITIAL;
+
+      this.pageWidth = this.viewport.width;
+      this.pageHeight = this.viewport.height;
+      this.pageRatio = this.pageWidth / this.pageHeight;
+
+      this.canvasHeight = (this.canvasWidth / this.pageRatio) | 0;
+      this.scale = (this.canvasWidth / this.pageWidth);
+
+      this.div.removeAttribute('data-loaded');
+      var ring = this.ring;
+      var childNodes = ring.childNodes;
+      for (var i = childNodes.length - 1; i >= 0; i--) {
+        ring.removeChild(childNodes[i]);
+      }
+      var borderAdjustment = 2 * THUMBNAIL_CANVAS_BORDER_WIDTH;
+      ring.style.width = this.canvasWidth + borderAdjustment + 'px';
+      ring.style.height = this.canvasHeight + borderAdjustment + 'px';
+
+      if (this.canvas) {
+        // Zeroing the width and height causes Firefox to release graphics
+        // resources immediately, which can greatly reduce memory consumption.
+        this.canvas.width = 0;
+        this.canvas.height = 0;
+        delete this.canvas;
+      }
+    },
+
+    update: function PDFThumbnailView_update(rotation) {
+      if (typeof rotation !== 'undefined') {
+        this.rotation = rotation;
+      }
+      var totalRotation = (this.rotation + this.pdfPageRotate) % 360;
+      this.viewport = this.viewport.clone({
+        scale: 1,
+        rotation: totalRotation
+      });
+      this.reset();
+    },
+
+    /**
+     * @private
+     */
+    _getPageDrawContext: function PDFThumbnailView_getPageDrawContext() {
+      var canvas = document.createElement('canvas');
+      canvas.id = this.renderingId;
+
+      canvas.width = this.canvasWidth;
+      canvas.height = this.canvasHeight;
+      canvas.className = 'thumbnailImage';
+      canvas.setAttribute('aria-label', mozL10n.get('thumb_page_canvas',
+        {page: this.id}, 'Thumbnail of Page {{page}}'));
+
+      this.canvas = canvas;
+      this.div.setAttribute('data-loaded', true);
+      this.ring.appendChild(canvas);
+
+      return canvas.getContext('2d');
+    },
+
+    draw: function PDFThumbnailView_draw() {
+      if (this.renderingState !== RenderingStates.INITIAL) {
+        console.error('Must be in new state before drawing');
+      }
+      if (this.hasImage) {
+        return Promise.resolve(undefined);
+      }
+      this.hasImage = true;
+      this.renderingState = RenderingStates.RUNNING;
+
+      var resolveRenderPromise, rejectRenderPromise;
+      var promise = new Promise(function (resolve, reject) {
+        resolveRenderPromise = resolve;
+        rejectRenderPromise = reject;
+      });
+
+      var self = this;
+      function thumbnailDrawCallback(error) {
+        // The renderTask may have been replaced by a new one, so only remove
+        // the reference to the renderTask if it matches the one that is
+        // triggering this callback.
+        if (renderTask === self.renderTask) {
+          self.renderTask = null;
+        }
+        if (error === 'cancelled') {
+          rejectRenderPromise(error);
+          return;
+        }
+        self.renderingState = RenderingStates.FINISHED;
+
+        if (!error) {
+          resolveRenderPromise(undefined);
+        } else {
+          rejectRenderPromise(error);
+        }
+      }
+
+      var ctx = this._getPageDrawContext();
+      var drawViewport = this.viewport.clone({ scale: this.scale });
+      var renderContinueCallback = function renderContinueCallback(cont) {
+        if (!self.renderingQueue.isHighestPriority(self)) {
+          self.renderingState = RenderingStates.PAUSED;
+          self.resume = function resumeCallback() {
+            self.renderingState = RenderingStates.RUNNING;
+            cont();
+          };
+          return;
+        }
+        cont();
+      };
+
+      var renderContext = {
+        canvasContext: ctx,
+        viewport: drawViewport,
+        continueCallback: renderContinueCallback
+      };
+      var renderTask = this.renderTask = this.pdfPage.render(renderContext);
+
+      renderTask.promise.then(
+        function pdfPageRenderCallback() {
+          thumbnailDrawCallback(null);
+        },
+        function pdfPageRenderError(error) {
+          thumbnailDrawCallback(error);
+        }
+      );
+      return promise;
+    },
+
+    setImage: function PDFThumbnailView_setImage(pageView) {
+      var img = pageView.canvas;
+      if (this.hasImage || !img) {
+        return;
+      }
+      if (!this.pdfPage) {
+        this.setPdfPage(pageView.pdfPage);
+      }
+      this.hasImage = true;
+      this.renderingState = RenderingStates.FINISHED;
+
+      var ctx = this._getPageDrawContext();
+      var canvas = ctx.canvas;
+
+      if (img.width <= 2 * canvas.width) {
+        ctx.drawImage(img, 0, 0, img.width, img.height,
+                      0, 0, canvas.width, canvas.height);
+        return;
+      }
+      // drawImage does an awful job of rescaling the image, doing it gradually.
+      var MAX_NUM_SCALING_STEPS = 3;
+      var reducedWidth = canvas.width << MAX_NUM_SCALING_STEPS;
+      var reducedHeight = canvas.height << MAX_NUM_SCALING_STEPS;
+      var reducedImage = getTempCanvas(reducedWidth, reducedHeight);
+      var reducedImageCtx = reducedImage.getContext('2d');
+
+      while (reducedWidth > img.width || reducedHeight > img.height) {
+        reducedWidth >>= 1;
+        reducedHeight >>= 1;
+      }
+      reducedImageCtx.drawImage(img, 0, 0, img.width, img.height,
+                                0, 0, reducedWidth, reducedHeight);
+      while (reducedWidth > 2 * canvas.width) {
+        reducedImageCtx.drawImage(reducedImage,
+                                  0, 0, reducedWidth, reducedHeight,
+                                  0, 0, reducedWidth >> 1, reducedHeight >> 1);
+        reducedWidth >>= 1;
+        reducedHeight >>= 1;
+      }
+      ctx.drawImage(reducedImage, 0, 0, reducedWidth, reducedHeight,
+                    0, 0, canvas.width, canvas.height);
+    }
+  };
+
+  return PDFThumbnailView;
+})();
+
+PDFThumbnailView.tempImageCache = null;
+
+
+/**
+ * @typedef {Object} PDFThumbnailViewerOptions
+ * @property {HTMLDivElement} container - The container for the thumbnail
+ *   elements.
+ * @property {IPDFLinkService} linkService - The navigation/linking service.
+ * @property {PDFRenderingQueue} renderingQueue - The rendering queue object.
+ */
+
+/**
+ * Simple viewer control to display thumbnails for pages.
+ * @class
+ * @implements {IRenderableView}
+ */
+var PDFThumbnailViewer = (function PDFThumbnailViewerClosure() {
+  /**
+   * @constructs PDFThumbnailViewer
+   * @param {PDFThumbnailViewerOptions} options
+   */
+  function PDFThumbnailViewer(options) {
+    this.container = options.container;
+    this.renderingQueue = options.renderingQueue;
+    this.linkService = options.linkService;
+
+    this.scroll = watchScroll(this.container, this._scrollUpdated.bind(this));
+    this._resetView();
+  }
+
+  PDFThumbnailViewer.prototype = {
+    /**
+     * @private
+     */
+    _scrollUpdated: function PDFThumbnailViewer_scrollUpdated() {
+      this.renderingQueue.renderHighestPriority();
+    },
+
+    getThumbnail: function PDFThumbnailViewer_getThumbnail(index) {
+      return this.thumbnails[index];
+    },
+
+    /**
+     * @private
+     */
+    _getVisibleThumbs: function PDFThumbnailViewer_getVisibleThumbs() {
+      return getVisibleElements(this.container, this.thumbnails);
+    },
+
+    scrollThumbnailIntoView:
+        function PDFThumbnailViewer_scrollThumbnailIntoView(page) {
+      var selected = document.querySelector('.thumbnail.selected');
+      if (selected) {
+        selected.classList.remove('selected');
+      }
+      var thumbnail = document.getElementById('thumbnailContainer' + page);
+      thumbnail.classList.add('selected');
+      var visibleThumbs = this._getVisibleThumbs();
+      var numVisibleThumbs = visibleThumbs.views.length;
+
+      // If the thumbnail isn't currently visible, scroll it into view.
+      if (numVisibleThumbs > 0) {
+        var first = visibleThumbs.first.id;
+        // Account for only one thumbnail being visible.
+        var last = (numVisibleThumbs > 1 ? visibleThumbs.last.id : first);
+        if (page <= first || page >= last) {
+          scrollIntoView(thumbnail, { top: THUMBNAIL_SCROLL_MARGIN });
+        }
+      }
+    },
+
+    get pagesRotation() {
+      return this._pagesRotation;
+    },
+
+    set pagesRotation(rotation) {
+      this._pagesRotation = rotation;
+      for (var i = 0, l = this.thumbnails.length; i < l; i++) {
+        var thumb = this.thumbnails[i];
+        thumb.update(rotation);
+      }
+    },
+
+    cleanup: function PDFThumbnailViewer_cleanup() {
+      var tempCanvas = PDFThumbnailView.tempImageCache;
+      if (tempCanvas) {
+        // Zeroing the width and height causes Firefox to release graphics
+        // resources immediately, which can greatly reduce memory consumption.
+        tempCanvas.width = 0;
+        tempCanvas.height = 0;
+      }
+      PDFThumbnailView.tempImageCache = null;
+    },
+
+    /**
+     * @private
+     */
+    _resetView: function PDFThumbnailViewer_resetView() {
+      this.thumbnails = [];
+      this._pagesRotation = 0;
+      this._pagesRequests = [];
+    },
+
+    setDocument: function PDFThumbnailViewer_setDocument(pdfDocument) {
+      if (this.pdfDocument) {
+        // cleanup of the elements and views
+        var thumbsView = this.container;
+        while (thumbsView.hasChildNodes()) {
+          thumbsView.removeChild(thumbsView.lastChild);
+        }
+        this._resetView();
+      }
+
+      this.pdfDocument = pdfDocument;
+      if (!pdfDocument) {
+        return Promise.resolve();
+      }
+
+      return pdfDocument.getPage(1).then(function (firstPage) {
+        var pagesCount = pdfDocument.numPages;
+        var viewport = firstPage.getViewport(1.0);
+        for (var pageNum = 1; pageNum <= pagesCount; ++pageNum) {
+          var thumbnail = new PDFThumbnailView({
+            container: this.container,
+            id: pageNum,
+            defaultViewport: viewport.clone(),
+            linkService: this.linkService,
+            renderingQueue: this.renderingQueue
+          });
+          this.thumbnails.push(thumbnail);
+        }
+      }.bind(this));
+    },
+
+    /**
+     * @param {PDFPageView} pageView
+     * @returns {PDFPage}
+     * @private
+     */
+    _ensurePdfPageLoaded:
+        function PDFThumbnailViewer_ensurePdfPageLoaded(thumbView) {
+      if (thumbView.pdfPage) {
+        return Promise.resolve(thumbView.pdfPage);
+      }
+      var pageNumber = thumbView.id;
+      if (this._pagesRequests[pageNumber]) {
+        return this._pagesRequests[pageNumber];
+      }
+      var promise = this.pdfDocument.getPage(pageNumber).then(
+        function (pdfPage) {
+          thumbView.setPdfPage(pdfPage);
+          this._pagesRequests[pageNumber] = null;
+          return pdfPage;
+        }.bind(this));
+      this._pagesRequests[pageNumber] = promise;
+      return promise;
+    },
+
+    ensureThumbnailVisible:
+        function PDFThumbnailViewer_ensureThumbnailVisible(page) {
+      // Ensure that the thumbnail of the current page is visible
+      // when switching from another view.
+      scrollIntoView(document.getElementById('thumbnailContainer' + page));
+    },
+
+    forceRendering: function () {
+      var visibleThumbs = this._getVisibleThumbs();
+      var thumbView = this.renderingQueue.getHighestPriority(visibleThumbs,
+                                                             this.thumbnails,
+                                                             this.scroll.down);
+      if (thumbView) {
+        this._ensurePdfPageLoaded(thumbView).then(function () {
+          this.renderingQueue.renderView(thumbView);
+        }.bind(this));
+        return true;
+      }
+      return false;
+    }
+  };
+
+  return PDFThumbnailViewer;
+})();
+
+
+/**
+ * @typedef {Object} PDFOutlineViewOptions
+ * @property {HTMLDivElement} container - The viewer element.
+ * @property {Array} outline - An array of outline objects.
+ * @property {IPDFLinkService} linkService - The navigation/linking service.
+ */
+
+/**
+ * @class
+ */
+var PDFOutlineView = (function PDFOutlineViewClosure() {
+  /**
+   * @constructs PDFOutlineView
+   * @param {PDFOutlineViewOptions} options
+   */
+  function PDFOutlineView(options) {
+    this.container = options.container;
+    this.outline = options.outline;
+    this.linkService = options.linkService;
+  }
+
+  PDFOutlineView.prototype = {
+    reset: function PDFOutlineView_reset() {
+      var container = this.container;
+      while (container.firstChild) {
+        container.removeChild(container.firstChild);
+      }
+    },
+
+    /**
+     * @private
+     */
+    _bindLink: function PDFOutlineView_bindLink(element, item) {
+      var linkService = this.linkService;
+      element.href = linkService.getDestinationHash(item.dest);
+      element.onclick = function goToDestination(e) {
+        linkService.navigateTo(item.dest);
+        return false;
+      };
+    },
+
+    render: function PDFOutlineView_render() {
+      var outline = this.outline;
+
+      this.reset();
+
+      if (!outline) {
+        return;
+      }
+
+      var queue = [{ parent: this.container, items: this.outline }];
+      while (queue.length > 0) {
+        var levelData = queue.shift();
+        for (var i = 0, len = levelData.items.length; i < len; i++) {
+          var item = levelData.items[i];
+          var div = document.createElement('div');
+          div.className = 'outlineItem';
+          var element = document.createElement('a');
+          this._bindLink(element, item);
+          element.textContent = item.title;
+          div.appendChild(element);
+
+          if (item.items.length > 0) {
+            var itemsDiv = document.createElement('div');
+            itemsDiv.className = 'outlineItems';
+            div.appendChild(itemsDiv);
+            queue.push({ parent: itemsDiv, items: item.items });
+          }
+
+          levelData.parent.appendChild(div);
+        }
+      }
+    }
+  };
+
+  return PDFOutlineView;
+})();
+
+
+/**
+ * @typedef {Object} PDFAttachmentViewOptions
+ * @property {HTMLDivElement} container - The viewer element.
+ * @property {Array} attachments - An array of attachment objects.
+ * @property {DownloadManager} downloadManager - The download manager.
+ */
+
+/**
+ * @class
+ */
+var PDFAttachmentView = (function PDFAttachmentViewClosure() {
+  /**
+   * @constructs PDFAttachmentView
+   * @param {PDFAttachmentViewOptions} options
+   */
+  function PDFAttachmentView(options) {
+    this.container = options.container;
+    this.attachments = options.attachments;
+    this.downloadManager = options.downloadManager;
+  }
+
+  PDFAttachmentView.prototype = {
+    reset: function PDFAttachmentView_reset() {
+      var container = this.container;
+      while (container.firstChild) {
+        container.removeChild(container.firstChild);
+      }
+    },
+
+    /**
+     * @private
+     */
+    _bindLink: function PDFAttachmentView_bindLink(button, content, filename) {
+      button.onclick = function downloadFile(e) {
+        this.downloadManager.downloadData(content, filename, '');
+        return false;
+      }.bind(this);
+    },
+
+    render: function PDFAttachmentView_render() {
+      var attachments = this.attachments;
+
+      this.reset();
+
+      if (!attachments) {
+        return;
+      }
+
+      var names = Object.keys(attachments).sort(function(a, b) {
+        return a.toLowerCase().localeCompare(b.toLowerCase());
+      });
+      for (var i = 0, len = names.length; i < len; i++) {
+        var item = attachments[names[i]];
+        var filename = getFileName(item.filename);
+        var div = document.createElement('div');
+        div.className = 'attachmentsItem';
+        var button = document.createElement('button');
+        this._bindLink(button, item.content, filename);
+        button.textContent = filename;
+        div.appendChild(button);
+        this.container.appendChild(div);
+      }
+    }
+  };
+
+  return PDFAttachmentView;
+})();
+
+
 var PDFViewerApplication = {
   initialBookmark: document.location.hash.substring(1),
   initialized: false,
@@ -5536,15 +6160,16 @@ var PDFViewerApplication = {
     var promises = [pagesPromise, this.animationStartedPromise];
     Promise.all(promises).then(function() {
       pdfDocument.getOutline().then(function(outline) {
-        var outlineView = document.getElementById('outlineView');
-        self.outline = new DocumentOutlineView({
+        var container = document.getElementById('outlineView');
+        self.outline = new PDFOutlineView({
+          container: container,
           outline: outline,
-          outlineView: outlineView,
           linkService: self
         });
+        self.outline.render();
         document.getElementById('viewOutline').disabled = !outline;
 
-        if (!outline && !outlineView.classList.contains('hidden')) {
+        if (!outline && !container.classList.contains('hidden')) {
           self.switchSidebarView('thumbs');
         }
         if (outline &&
@@ -5553,14 +6178,16 @@ var PDFViewerApplication = {
         }
       });
       pdfDocument.getAttachments().then(function(attachments) {
-        var attachmentsView = document.getElementById('attachmentsView');
-        self.attachments = new DocumentAttachmentsView({
+        var container = document.getElementById('attachmentsView');
+        self.attachments = new PDFAttachmentView({
+          container: container,
           attachments: attachments,
-          attachmentsView: attachmentsView
+          downloadManager: new DownloadManager()
         });
+        self.attachments.render();
         document.getElementById('viewAttachments').disabled = !attachments;
 
-        if (!attachments && !attachmentsView.classList.contains('hidden')) {
+        if (!attachments && !container.classList.contains('hidden')) {
           self.switchSidebarView('thumbs');
         }
         if (attachments &&
@@ -5926,470 +6553,6 @@ var PDFViewerApplication = {
   }
 };
 window.PDFView = PDFViewerApplication; // obsolete name, using it as an alias
-
-
-var THUMBNAIL_SCROLL_MARGIN = -19;
-
-/**
- * @constructor
- * @param container
- * @param id
- * @param defaultViewport
- * @param linkService
- * @param renderingQueue
- *
- * @implements {IRenderableView}
- */
-var ThumbnailView = function thumbnailView(container, id, defaultViewport,
-                                           linkService, renderingQueue) {
-  var anchor = document.createElement('a');
-  anchor.href = linkService.getAnchorUrl('#page=' + id);
-  anchor.title = mozL10n.get('thumb_page_title', {page: id}, 'Page {{page}}');
-  anchor.onclick = function stopNavigation() {
-    linkService.page = id;
-    return false;
-  };
-
-  this.pdfPage = undefined;
-  this.viewport = defaultViewport;
-  this.pdfPageRotate = defaultViewport.rotation;
-
-  this.rotation = 0;
-  this.pageWidth = this.viewport.width;
-  this.pageHeight = this.viewport.height;
-  this.pageRatio = this.pageWidth / this.pageHeight;
-  this.id = id;
-  this.renderingId = 'thumbnail' + id;
-
-  this.canvasWidth = 98;
-  this.canvasHeight = this.canvasWidth / this.pageWidth * this.pageHeight;
-  this.scale = (this.canvasWidth / this.pageWidth);
-
-  var div = this.el = document.createElement('div');
-  div.id = 'thumbnailContainer' + id;
-  div.className = 'thumbnail';
-
-  if (id === 1) {
-    // Highlight the thumbnail of the first page when no page number is
-    // specified (or exists in cache) when the document is loaded.
-    div.classList.add('selected');
-  }
-
-  var ring = document.createElement('div');
-  ring.className = 'thumbnailSelectionRing';
-  ring.style.width = this.canvasWidth + 'px';
-  ring.style.height = this.canvasHeight + 'px';
-
-  div.appendChild(ring);
-  anchor.appendChild(div);
-  container.appendChild(anchor);
-
-  this.hasImage = false;
-  this.renderingState = RenderingStates.INITIAL;
-  this.renderingQueue = renderingQueue;
-
-  this.setPdfPage = function thumbnailViewSetPdfPage(pdfPage) {
-    this.pdfPage = pdfPage;
-    this.pdfPageRotate = pdfPage.rotate;
-    var totalRotation = (this.rotation + this.pdfPageRotate) % 360;
-    this.viewport = pdfPage.getViewport(1, totalRotation);
-    this.update();
-  };
-
-  this.update = function thumbnailViewUpdate(rotation) {
-    if (rotation !== undefined) {
-      this.rotation = rotation;
-    }
-    var totalRotation = (this.rotation + this.pdfPageRotate) % 360;
-    this.viewport = this.viewport.clone({
-      scale: 1,
-      rotation: totalRotation
-    });
-    this.pageWidth = this.viewport.width;
-    this.pageHeight = this.viewport.height;
-    this.pageRatio = this.pageWidth / this.pageHeight;
-
-    this.canvasHeight = this.canvasWidth / this.pageWidth * this.pageHeight;
-    this.scale = (this.canvasWidth / this.pageWidth);
-
-    div.removeAttribute('data-loaded');
-    ring.textContent = '';
-    ring.style.width = this.canvasWidth + 'px';
-    ring.style.height = this.canvasHeight + 'px';
-
-    this.hasImage = false;
-    this.renderingState = RenderingStates.INITIAL;
-    this.resume = null;
-  };
-
-  this.getPageDrawContext = function thumbnailViewGetPageDrawContext() {
-    var canvas = document.createElement('canvas');
-    canvas.id = 'thumbnail' + id;
-
-    canvas.width = this.canvasWidth;
-    canvas.height = this.canvasHeight;
-    canvas.className = 'thumbnailImage';
-    canvas.setAttribute('aria-label', mozL10n.get('thumb_page_canvas',
-      {page: id}, 'Thumbnail of Page {{page}}'));
-
-    div.setAttribute('data-loaded', true);
-
-    ring.appendChild(canvas);
-
-    var ctx = canvas.getContext('2d');
-    ctx.save();
-    ctx.fillStyle = 'rgb(255, 255, 255)';
-    ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
-    ctx.restore();
-    return ctx;
-  };
-
-  this.drawingRequired = function thumbnailViewDrawingRequired() {
-    return !this.hasImage;
-  };
-
-  this.draw = function thumbnailViewDraw() {
-    if (this.renderingState !== RenderingStates.INITIAL) {
-      console.error('Must be in new state before drawing');
-    }
-
-    this.renderingState = RenderingStates.RUNNING;
-    if (this.hasImage) {
-      return Promise.resolve(undefined);
-    }
-
-    var resolveRenderPromise, rejectRenderPromise;
-    var promise = new Promise(function (resolve, reject) {
-      resolveRenderPromise = resolve;
-      rejectRenderPromise = reject;
-    });
-
-    var self = this;
-    var ctx = this.getPageDrawContext();
-    var drawViewport = this.viewport.clone({ scale: this.scale });
-    var renderContext = {
-      canvasContext: ctx,
-      viewport: drawViewport,
-      continueCallback: function(cont) {
-        if (!self.renderingQueue.isHighestPriority(self)) {
-          self.renderingState = RenderingStates.PAUSED;
-          self.resume = function() {
-            self.renderingState = RenderingStates.RUNNING;
-            cont();
-          };
-          return;
-        }
-        cont();
-      }
-    };
-    this.pdfPage.render(renderContext).promise.then(
-      function pdfPageRenderCallback() {
-        self.renderingState = RenderingStates.FINISHED;
-        resolveRenderPromise(undefined);
-      },
-      function pdfPageRenderError(error) {
-        self.renderingState = RenderingStates.FINISHED;
-        rejectRenderPromise(error);
-      }
-    );
-    this.hasImage = true;
-    return promise;
-  };
-
-  function getTempCanvas(width, height) {
-    var tempCanvas = ThumbnailView.tempImageCache;
-    if (!tempCanvas) {
-      tempCanvas = document.createElement('canvas');
-      ThumbnailView.tempImageCache = tempCanvas;
-    }
-    tempCanvas.width = width;
-    tempCanvas.height = height;
-    return tempCanvas;
-  }
-
-  this.setImage = function thumbnailViewSetImage(pageView) {
-    var img = pageView.canvas;
-    if (this.hasImage || !img) {
-      return;
-    }
-    if (this.pdfPage) {
-      this.setPdfPage(pageView.pdfPage);
-    }
-    this.renderingState = RenderingStates.FINISHED;
-    var ctx = this.getPageDrawContext();
-
-    var reducedImage = img;
-    var reducedWidth = img.width;
-    var reducedHeight = img.height;
-
-    // drawImage does an awful job of rescaling the image, doing it gradually
-    var MAX_SCALE_FACTOR = 2.0;
-    if (Math.max(img.width / ctx.canvas.width,
-                 img.height / ctx.canvas.height) > MAX_SCALE_FACTOR) {
-      reducedWidth >>= 1;
-      reducedHeight >>= 1;
-      reducedImage = getTempCanvas(reducedWidth, reducedHeight);
-      var reducedImageCtx = reducedImage.getContext('2d');
-      reducedImageCtx.drawImage(img, 0, 0, img.width, img.height,
-                                0, 0, reducedWidth, reducedHeight);
-      while (Math.max(reducedWidth / ctx.canvas.width,
-                      reducedHeight / ctx.canvas.height) > MAX_SCALE_FACTOR) {
-        reducedImageCtx.drawImage(reducedImage,
-                                  0, 0, reducedWidth, reducedHeight,
-                                  0, 0, reducedWidth >> 1, reducedHeight >> 1);
-        reducedWidth >>= 1;
-        reducedHeight >>= 1;
-      }
-    }
-
-    ctx.drawImage(reducedImage, 0, 0, reducedWidth, reducedHeight,
-                  0, 0, ctx.canvas.width, ctx.canvas.height);
-
-    this.hasImage = true;
-  };
-};
-
-ThumbnailView.tempImageCache = null;
-
-/**
- * @typedef {Object} PDFThumbnailViewerOptions
- * @property {HTMLDivElement} container - The container for the thumbs elements.
- * @property {IPDFLinkService} linkService - The navigation/linking service.
- * @property {PDFRenderingQueue} renderingQueue - The rendering queue object.
- */
-
-/**
- * Simple viewer control to display thumbs for pages.
- * @class
- */
-var PDFThumbnailViewer = (function pdfThumbnailViewer() {
-  /**
-   * @constructs
-   * @param {PDFThumbnailViewerOptions} options
-   */
-  function PDFThumbnailViewer(options) {
-    this.container = options.container;
-    this.renderingQueue = options.renderingQueue;
-    this.linkService = options.linkService;
-
-    this.scroll = watchScroll(this.container, this._scrollUpdated.bind(this));
-    this._resetView();
-  }
-
-  PDFThumbnailViewer.prototype = {
-    _scrollUpdated: function PDFThumbnailViewer_scrollUpdated() {
-      this.renderingQueue.renderHighestPriority();
-    },
-
-    getThumbnail: function PDFThumbnailViewer_getThumbnail(index) {
-      return this.thumbnails[index];
-    },
-
-    _getVisibleThumbs: function PDFThumbnailViewer_getVisibleThumbs() {
-      return getVisibleElements(this.container, this.thumbnails);
-    },
-
-    scrollThumbnailIntoView: function (page) {
-      var selected = document.querySelector('.thumbnail.selected');
-      if (selected) {
-        selected.classList.remove('selected');
-      }
-      var thumbnail = document.getElementById('thumbnailContainer' + page);
-      thumbnail.classList.add('selected');
-      var visibleThumbs = this._getVisibleThumbs();
-      var numVisibleThumbs = visibleThumbs.views.length;
-
-      // If the thumbnail isn't currently visible, scroll it into view.
-      if (numVisibleThumbs > 0) {
-        var first = visibleThumbs.first.id;
-        // Account for only one thumbnail being visible.
-        var last = (numVisibleThumbs > 1 ? visibleThumbs.last.id : first);
-        if (page <= first || page >= last) {
-          scrollIntoView(thumbnail, { top: THUMBNAIL_SCROLL_MARGIN });
-        }
-      }
-    },
-
-    get pagesRotation() {
-      return this._pagesRotation;
-    },
-
-    set pagesRotation(rotation) {
-      this._pagesRotation = rotation;
-      for (var i = 0, l = this.thumbnails.length; i < l; i++) {
-        var thumb = this.thumbnails[i];
-        thumb.update(rotation);
-      }
-    },
-
-    cleanup: function PDFThumbnailViewer_cleanup() {
-      ThumbnailView.tempImageCache = null;
-    },
-
-    _resetView: function () {
-      this.thumbnails = [];
-      this._pagesRotation = 0;
-      this._pagesRequests = [];
-    },
-
-    setDocument: function (pdfDocument) {
-      if (this.pdfDocument) {
-        // cleanup of the elements and views
-        var thumbsView = this.container;
-        while (thumbsView.hasChildNodes()) {
-          thumbsView.removeChild(thumbsView.lastChild);
-        }
-        this._resetView();
-      }
-
-      this.pdfDocument = pdfDocument;
-      if (!pdfDocument) {
-        return Promise.resolve();
-      }
-
-      return pdfDocument.getPage(1).then(function (firstPage) {
-        var pagesCount = pdfDocument.numPages;
-        var viewport = firstPage.getViewport(1.0);
-        for (var pageNum = 1; pageNum <= pagesCount; ++pageNum) {
-          var thumbnail = new ThumbnailView(this.container, pageNum,
-                                            viewport.clone(), this.linkService,
-                                            this.renderingQueue);
-          this.thumbnails.push(thumbnail);
-        }
-      }.bind(this));
-    },
-
-    /**
-     * @param {PDFPageView} pageView
-     * @returns {PDFPage}
-     * @private
-     */
-    _ensurePdfPageLoaded: function (thumbView) {
-      if (thumbView.pdfPage) {
-        return Promise.resolve(thumbView.pdfPage);
-      }
-      var pageNumber = thumbView.id;
-      if (this._pagesRequests[pageNumber]) {
-        return this._pagesRequests[pageNumber];
-      }
-      var promise = this.pdfDocument.getPage(pageNumber).then(
-        function (pdfPage) {
-          thumbView.setPdfPage(pdfPage);
-          this._pagesRequests[pageNumber] = null;
-          return pdfPage;
-        }.bind(this));
-      this._pagesRequests[pageNumber] = promise;
-      return promise;
-    },
-
-    ensureThumbnailVisible:
-        function PDFThumbnailViewer_ensureThumbnailVisible(page) {
-      // Ensure that the thumbnail of the current page is visible
-      // when switching from another view.
-      scrollIntoView(document.getElementById('thumbnailContainer' + page));
-    },
-
-    forceRendering: function () {
-      var visibleThumbs = this._getVisibleThumbs();
-      var thumbView = this.renderingQueue.getHighestPriority(visibleThumbs,
-                                                             this.thumbnails,
-                                                             this.scroll.down);
-      if (thumbView) {
-        this._ensurePdfPageLoaded(thumbView).then(function () {
-          this.renderingQueue.renderView(thumbView);
-        }.bind(this));
-        return true;
-      }
-      return false;
-    }
-  };
-
-  return PDFThumbnailViewer;
-})();
-
-
-var DocumentOutlineView = function documentOutlineView(options) {
-  var outline = options.outline;
-  var outlineView = options.outlineView;
-  while (outlineView.firstChild) {
-    outlineView.removeChild(outlineView.firstChild);
-  }
-
-  if (!outline) {
-    return;
-  }
-
-  var linkService = options.linkService;
-
-  function bindItemLink(domObj, item) {
-    domObj.href = linkService.getDestinationHash(item.dest);
-    domObj.onclick = function documentOutlineViewOnclick(e) {
-      linkService.navigateTo(item.dest);
-      return false;
-    };
-  }
-
-  var queue = [{parent: outlineView, items: outline}];
-  while (queue.length > 0) {
-    var levelData = queue.shift();
-    var i, n = levelData.items.length;
-    for (i = 0; i < n; i++) {
-      var item = levelData.items[i];
-      var div = document.createElement('div');
-      div.className = 'outlineItem';
-      var a = document.createElement('a');
-      bindItemLink(a, item);
-      a.textContent = item.title;
-      div.appendChild(a);
-
-      if (item.items.length > 0) {
-        var itemsDiv = document.createElement('div');
-        itemsDiv.className = 'outlineItems';
-        div.appendChild(itemsDiv);
-        queue.push({parent: itemsDiv, items: item.items});
-      }
-
-      levelData.parent.appendChild(div);
-    }
-  }
-};
-
-
-var DocumentAttachmentsView = function documentAttachmentsView(options) {
-  var attachments = options.attachments;
-  var attachmentsView = options.attachmentsView;
-  while (attachmentsView.firstChild) {
-    attachmentsView.removeChild(attachmentsView.firstChild);
-  }
-
-  if (!attachments) {
-    return;
-  }
-
-  function bindItemLink(domObj, item) {
-    domObj.onclick = function documentAttachmentsViewOnclick(e) {
-      var downloadManager = new DownloadManager();
-      downloadManager.downloadData(item.content, getFileName(item.filename),
-                                   '');
-      return false;
-    };
-  }
-
-  var names = Object.keys(attachments).sort(function(a,b) {
-    return a.toLowerCase().localeCompare(b.toLowerCase());
-  });
-  for (var i = 0, ii = names.length; i < ii; i++) {
-    var item = attachments[names[i]];
-    var div = document.createElement('div');
-    div.className = 'attachmentsItem';
-    var button = document.createElement('button');
-    bindItemLink(button, item);
-    button.textContent = getFileName(item.filename);
-    div.appendChild(button);
-    attachmentsView.appendChild(div);
-  }
-};
-
 
 
 function webViewerLoad(evt) {
