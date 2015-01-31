@@ -3027,8 +3027,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 #endif
 						}
 					}
-				} else
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't find item map entry for '%1' - ROM state cannot be determined").arg(gameName));
+				}
 				if ( romItem == qmc2CurrentItem )
 					qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorBlue);
 			}
@@ -3164,12 +3163,6 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 						if ( romItem == qmc2CurrentItem )
 							qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorGreen);
 					}
-				} else {
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't find item map entry for '%1' - ROM state cannot be determined").arg(gameName));
-					if ( romCache.isOpen() )
-						tsRomCache << gameName << " U\n";
-					gameStatusHash[gameName] = 'U';
-					numUnknownGames++;
 				}
 			}
 			if ( !remainingGames.isEmpty() && !qmc2StopParser )
@@ -3580,11 +3573,6 @@ void Gamelist::verifyReadyReadStandardOutput()
 							if ( romItem == qmc2CurrentItem )
 								qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorBlue);
 						}
-					} else {
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't find item map entry for '%1' - ROM state cannot be determined").arg(romName));
-						romState = 'U';
-						romStateLong = QObject::tr("unknown");
-						numUnknownGames++;
 					}
 
 					gameStatusHash[romName] = romState;
