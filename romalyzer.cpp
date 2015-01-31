@@ -235,9 +235,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 			setEnabled(false);
 			connect(qmc2SoftwareList, SIGNAL(loadFinished(bool)), this, SLOT(softwareListLoadFinished(bool)));
 			QTimer::singleShot(0, qmc2SoftwareList, SLOT(load()));
-		} else {
-			setEnabled(false);
-			connect(qmc2SoftwareList, SIGNAL(loadFinished(bool)), this, SLOT(softwareListLoadFinished(bool)));
 		}
 	}
 
