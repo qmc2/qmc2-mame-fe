@@ -100,7 +100,6 @@ public slots:
     void fpsReady();
     void loadSettings();
     void saveSettings();
-    void goFullScreen();
     void switchToFullScreen(bool initially = false);
     void switchToWindowed(bool initially = false);
     QString romStateText(int);
