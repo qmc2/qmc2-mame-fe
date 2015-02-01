@@ -600,7 +600,7 @@ Rectangle {
                 border.width: 2
                 Image {
                     id: gamelistItemIcon
-                    cache: toxicWasteMain.iconsReady
+                    cache: viewer.isSevenZippedImageType("ico") ? toxicWasteMain.iconsReady : true
                     source: "image://qmc2/ico/" + model.modelData.id + "/" + model.modelData.parentId
                     anchors.left: gamelistItemBackground.left
                     anchors.verticalCenter: gamelistItemBackground.verticalCenter
