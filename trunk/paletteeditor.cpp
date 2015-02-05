@@ -228,7 +228,7 @@ void PaletteEditor::colorChanged(QPalette::ColorGroup cg, QPalette::ColorRole cr
 	pushButtonRestore->setEnabled(true);
 }
 
-void PaletteEditor::brushChanged(QPalette::ColorGroup cg, QPalette::ColorRole cr, QBrush b)
+void PaletteEditor::brushChanged(QPalette::ColorGroup /*cg*/, QPalette::ColorRole /*cr*/, QBrush /*b*/)
 {
 	// FIXME
 }

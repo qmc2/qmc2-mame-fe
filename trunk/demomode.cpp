@@ -310,7 +310,7 @@ void DemoModeDialog::emuStarted()
 
 }
 
-void DemoModeDialog::emuFinished(int exitCode, QProcess::ExitStatus exitStatus)
+void DemoModeDialog::emuFinished(int /*exitCode*/, QProcess::ExitStatus /*exitStatus*/)
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::emuFinished(int exitCode = ..., QProcess::ExitStatus exitStatus = ...)");

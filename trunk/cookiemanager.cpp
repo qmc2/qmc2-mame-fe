@@ -63,7 +63,7 @@ void CookieManager::adjustIconSizes()
 	pushButtonRemove->setIconSize(iconSize);
 }
 
-void CookieManager::tableViewCookies_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
+void CookieManager::tableViewCookies_selectionChanged(const QItemSelection &/*selected*/, const QItemSelection &/*deselected*/)
 {
 	pushButtonRemove->setEnabled(tableViewCookies->selectionModel()->selectedRows().count() > 0);
 }

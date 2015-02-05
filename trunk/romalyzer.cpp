@@ -2725,7 +2725,7 @@ void ROMAlyzer::chdManagerError(QProcess::ProcessError processError)
 	chdManagerRunning = false;
 }
 
-void ROMAlyzer::on_lineEditChecksumWizardHash_textChanged(const QString &text)
+void ROMAlyzer::on_lineEditChecksumWizardHash_textChanged(const QString &/*text*/)
 {
 	if ( groupBoxCheckSumDatabase->isChecked() )
 		QTimer::singleShot(0, this, SLOT(indicateCheckSumDbQueryStatusUnknown()));
@@ -3889,7 +3889,6 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 		QByteArray templateData;
 		QString fn;
 		if ( sourceType == tr("ROM") ) {
-  			char ioBuffer[QMC2_MAX(QMC2_ROMALYZER_ZIP_BUFFER_SIZE, QMC2_ROMALYZER_FILE_BUFFER_SIZE)];
 			// load ROM image
 			if ( sourcePath.indexOf(QRegExp("^.*\\.[zZ][iI][pP]$")) == 0 ) {
 				// file from a ZIP archive
@@ -4291,7 +4290,7 @@ void ROMAlyzer::on_pushButtonCheckSumDbPauseResumeScan_clicked()
 		QTimer::singleShot(0, checkSumScannerThread(), SLOT(pause()));
 }
 
-void ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_customContextMenuRequested(const QPoint &p)
+void ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_customContextMenuRequested(const QPoint &/*p*/)
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_customContextMenuRequested(const QPoint &p = ...)");
@@ -4505,7 +4504,7 @@ ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, b
 	greyBrush = QBrush(QColor(128, 128, 128));
 }
 
-bool ROMAlyzerXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
+bool ROMAlyzerXmlHandler::startElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName, const QXmlAttributes &attributes)
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::startElement(...)");
@@ -4584,7 +4583,7 @@ bool ROMAlyzerXmlHandler::startElement(const QString &namespaceURI, const QStrin
 	return true;
 }
 
-bool ROMAlyzerXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
+bool ROMAlyzerXmlHandler::endElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName)
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::endElement(...)");

@@ -1051,7 +1051,7 @@ bool CollectionRebuilderThread::rewriteSet(QString *setKey, QStringList *romName
 		return writeAllFileData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
 }
 
-bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List)
+bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList * /*diskNameList*/, QStringList * /*diskSha1List*/)
 {
 	// FIXME: no support for disks
 	bool success = true;
@@ -1110,7 +1110,7 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 	return success;
 }
 
-bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List)
+bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList * /*diskNameList*/, QStringList * /*diskSha1List*/)
 {
 	// FIXME: no support for disks
 	QDir d(QDir::cleanPath(baseDir));

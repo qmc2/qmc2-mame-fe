@@ -326,8 +326,8 @@ qint64 UserDataDatabaseManager::nextRowId(bool refreshRowIds)
 			return m_rowIdList[m_lastRowId];
 		else
 			return -1;
-	} else
-		return -1;
+	}
+	return -1;
 }
 
 QString UserDataDatabaseManager::id(int rowid)
@@ -339,10 +339,10 @@ QString UserDataDatabaseManager::id(int rowid)
 		if ( query.first() )
 			return query.value(0).toString();
 		else
-			return false;
+			return QString();
 	} else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(m_db.lastError().text()));
-		return false;
+		return QString();
 	}
 }
 
@@ -444,7 +444,7 @@ void UserDataDatabaseManager::setCacheSize(quint64 kiloBytes)
 void UserDataDatabaseManager::setSyncMode(uint syncMode)
 {
 	static QStringList dbSyncModes = QStringList() << "OFF" << "NORMAL" << "FULL";
-	if ( syncMode > dbSyncModes.count() - 1 )
+	if ( (int)syncMode > dbSyncModes.count() - 1 )
 		return;
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA synchronous = %1").arg(dbSyncModes[syncMode])) )
@@ -454,7 +454,7 @@ void UserDataDatabaseManager::setSyncMode(uint syncMode)
 void UserDataDatabaseManager::setJournalMode(uint journalMode)
 {
 	static QStringList dbJournalModes = QStringList() << "DELETE" << "TRUNCATE" << "PERSIST" << "MEMORY" << "WAL" << "OFF";
-	if ( journalMode > dbJournalModes.count() - 1 )
+	if ( (int)journalMode > dbJournalModes.count() - 1 )
 		return;
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA journal_mode = %1").arg(dbJournalModes[journalMode])) )

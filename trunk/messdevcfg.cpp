@@ -50,7 +50,7 @@ MESSDeviceFileDelegate::MESSDeviceFileDelegate(QObject *parent)
 	messFileEditWidgetList.clear();
 }
 
-QWidget *MESSDeviceFileDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+QWidget *MESSDeviceFileDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &/*option*/, const QModelIndex &index) const
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::createEditor(QWidget *parent = %1, const QStyleOptionViewItem &option, const QModelIndex &index)").arg((qulonglong)parent));
@@ -2278,7 +2278,7 @@ void MESSDeviceConfigurator::dirChooserDelayedInit()
 	treeViewDirChooser->setUpdatesEnabled(true);
 }
 
-void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
+void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSelection &selected, const QItemSelection &/*deselected*/)
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(constQItemSelection &selected = ..., const QItemSelection &deselected = ...)");
@@ -2294,7 +2294,7 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 	}
 }
 
-void MESSDeviceConfigurator::treeViewFileChooser_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
+void MESSDeviceConfigurator::treeViewFileChooser_selectionChanged(const QItemSelection &selected, const QItemSelection &/*deselected*/)
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::treeViewFileChooser_selectionChanged(constQItemSelection &selected = ..., const QItemSelection &deselected = ...)");
@@ -2825,7 +2825,7 @@ MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *
 	parentTreeWidget = parent;
 }
 
-bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
+bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName, const QXmlAttributes &attributes)
 {
 	if ( qName == "device" ) {
 		deviceType = attributes.value("type");
@@ -2864,7 +2864,7 @@ bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &namespaceURI,
 	return true;
 }
 
-bool MESSDeviceConfiguratorXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
+bool MESSDeviceConfiguratorXmlHandler::endElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName)
 {
 	if ( qName == "device" ) {
 		foreach (QString instance, deviceInstances) {

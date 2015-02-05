@@ -2542,7 +2542,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *ite
 	qmc2IgnoreItemActivation = false;
 }
 
-void SoftwareList::on_treeWidgetKnownSoftware_itemDoubleClicked(QTreeWidgetItem *item, int column)
+void SoftwareList::on_treeWidgetKnownSoftware_itemDoubleClicked(QTreeWidgetItem *item, int /*column*/)
 {
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() ) {
 		qmc2IgnoreItemActivation = true;
@@ -2573,7 +2573,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *
 	qmc2IgnoreItemActivation = false;
 }
 
-void SoftwareList::on_treeWidgetFavoriteSoftware_itemDoubleClicked(QTreeWidgetItem *item, int column)
+void SoftwareList::on_treeWidgetFavoriteSoftware_itemDoubleClicked(QTreeWidgetItem *item, int /*column*/)
 {
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() ) {
 		qmc2IgnoreItemActivation = true;
@@ -2604,7 +2604,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *ite
 	qmc2IgnoreItemActivation = false;
 }
 
-void SoftwareList::on_treeWidgetSearchResults_itemDoubleClicked(QTreeWidgetItem *item, int column)
+void SoftwareList::on_treeWidgetSearchResults_itemDoubleClicked(QTreeWidgetItem *item, int /*column*/)
 {
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() ) {
 		qmc2IgnoreItemActivation = true;
@@ -3412,9 +3412,7 @@ void SoftwareList::analyzeSoftwareLists()
 			treeWidget = treeWidgetSearchResults;
 			break;
 	}
-	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
-	if ( !selectedItems.isEmpty() ) {
-		QTreeWidgetItem *item = selectedItems[0];
+	if ( !treeWidget->selectedItems().isEmpty() ) {
 		if ( !qmc2SoftwareROMAlyzer )
 			qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
 		if ( !qmc2SoftwareROMAlyzer->active() ) {
@@ -3480,7 +3478,7 @@ void SoftwareListXmlHandler::loadSoftwareStates(QString listName)
 	newSoftwareStates = true;
 }
 
-bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
+bool SoftwareListXmlHandler::startElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName, const QXmlAttributes &attributes)
 {
 	if ( qmc2SoftwareList->interruptLoad )
 		return false;
@@ -3609,7 +3607,7 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 	return true;
 }
 
-bool SoftwareListXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
+bool SoftwareListXmlHandler::endElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName)
 {
 	if ( qmc2SoftwareList->interruptLoad )
 		return false;
@@ -4431,7 +4429,7 @@ SoftwareEntryXmlHandler::~SoftwareEntryXmlHandler()
 
 }
 
-bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
+bool SoftwareEntryXmlHandler::startElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName, const QXmlAttributes &attributes)
 {
 #ifdef QMC2_DEBUG
 //	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareEntryXmlHandler::startElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2, const QXmlAttributes &attributes = ...)").arg(localName).arg(qName));
@@ -4587,7 +4585,7 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 	return true;
 }
 
-bool SoftwareEntryXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
+bool SoftwareEntryXmlHandler::endElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName)
 {
 #ifdef QMC2_DEBUG
 //	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareEntryXmlHandler::endElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2)").arg(localName).arg(qName));

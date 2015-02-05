@@ -3765,7 +3765,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	searchActive = false;
 }
 
-void MainWindow::on_comboBoxSearch_activated(const QString &pattern)
+void MainWindow::on_comboBoxSearch_activated(const QString &/*pattern*/)
 {
 	if ( tabWidgetGamelist->currentWidget() != tabSearch ) {
 		tabWidgetGamelist->blockSignals(true);
@@ -5518,7 +5518,7 @@ void MainWindow::on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *item, int
 	qmc2IgnoreItemActivation = false;
 }
 
-void MainWindow::on_treeWidgetForeignIDs_itemActivated(QTreeWidgetItem *item, int column)
+void MainWindow::on_treeWidgetForeignIDs_itemActivated(QTreeWidgetItem *item, int /*column*/)
 {
 	if ( qmc2DemoModeDialog )
 		if ( qmc2DemoModeDialog->demoModeRunning )
@@ -5553,19 +5553,19 @@ void MainWindow::on_treeWidgetForeignIDs_itemActivated(QTreeWidgetItem *item, in
 	qmc2IgnoreItemActivation = false;
 }
 
-void MainWindow::on_treeWidgetGamelist_itemDoubleClicked(QTreeWidgetItem *item, int column)
+void MainWindow::on_treeWidgetGamelist_itemDoubleClicked(QTreeWidgetItem * /*item*/, int /*column*/)
 {
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
 		qmc2IgnoreItemActivation = true;
 }
 
-void MainWindow::on_treeWidgetHierarchy_itemDoubleClicked(QTreeWidgetItem *item, int column)
+void MainWindow::on_treeWidgetHierarchy_itemDoubleClicked(QTreeWidgetItem * /*item*/, int /*column*/)
 {
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
 		qmc2IgnoreItemActivation = true;
 }
 
-void MainWindow::on_treeWidgetForeignIDs_itemDoubleClicked(QTreeWidgetItem *item, int column)
+void MainWindow::on_treeWidgetForeignIDs_itemDoubleClicked(QTreeWidgetItem * /*item*/, int /*column*/)
 {
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
 		qmc2IgnoreItemActivation = true;
@@ -7786,7 +7786,7 @@ void MainWindow::loadSoftwareInfoDB()
 }
 
 #if QMC2_USE_PHONON_API
-void MainWindow::on_actionAudioPreviousTrack_triggered(bool checked)
+void MainWindow::on_actionAudioPreviousTrack_triggered(bool /*checked*/)
 {
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioPreviousTrack_triggered(bool checked = ...)");
@@ -7835,7 +7835,7 @@ void MainWindow::toolButtonAudioPreviousTrack_resetButton()
 	toolButtonAudioPreviousTrack->setDown(false);
 }
 
-void MainWindow::on_actionAudioNextTrack_triggered(bool checked)
+void MainWindow::on_actionAudioNextTrack_triggered(bool /*checked*/)
 {
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioNextTrack_triggered(bool checked = ...)");
@@ -7896,7 +7896,7 @@ void MainWindow::on_actionAudioFastBackward_triggered(bool checked)
 	on_toolButtonAudioFastBackward_clicked(checked);
 }
 
-void MainWindow::on_toolButtonAudioFastBackward_clicked(bool checked)
+void MainWindow::on_toolButtonAudioFastBackward_clicked(bool /*checked*/)
 {
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioFastBackward_clicked(bool checked = ...)");
@@ -7933,7 +7933,7 @@ void MainWindow::on_actionAudioFastForward_triggered(bool checked)
 	on_toolButtonAudioFastForward_clicked(checked);
 }
 
-void MainWindow::on_toolButtonAudioFastForward_clicked(bool checked)
+void MainWindow::on_toolButtonAudioFastForward_clicked(bool /*checked*/)
 {
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonFastForward_clicked(bool checked = ...)");
@@ -7958,7 +7958,7 @@ void MainWindow::toolButtonAudioFastForward_resetButton()
 	audioFastForwarding = false;
 }
 
-void MainWindow::on_actionAudioStopTrack_triggered(bool checked)
+void MainWindow::on_actionAudioStopTrack_triggered(bool /*checked*/)
 {
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioStopTrack_triggered(bool checked = ...)");
@@ -7974,7 +7974,7 @@ void MainWindow::on_actionAudioStopTrack_triggered(bool checked)
 	audioState = Phonon::StoppedState;
 }
 
-void MainWindow::on_actionAudioPauseTrack_triggered(bool checked)
+void MainWindow::on_actionAudioPauseTrack_triggered(bool /*checked*/)
 {
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioPauseTrack_triggered(bool checked = ...)");
@@ -7991,7 +7991,7 @@ void MainWindow::on_actionAudioPauseTrack_triggered(bool checked)
 	audioState = Phonon::PausedState;
 }
 
-void MainWindow::on_actionAudioPlayTrack_triggered(bool checked)
+void MainWindow::on_actionAudioPlayTrack_triggered(bool /*checked*/)
 {
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioPlayTrack_triggered(bool checked = ...)");
@@ -8151,7 +8151,7 @@ void MainWindow::audioScrollToCurrentItem()
 	}
 }
 
-void MainWindow::on_actionAudioRaiseVolume_triggered(bool checked)
+void MainWindow::on_actionAudioRaiseVolume_triggered(bool /*checked*/)
 {
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioRaiseVolume_triggered(bool checked = ...)");
@@ -8160,7 +8160,7 @@ void MainWindow::on_actionAudioRaiseVolume_triggered(bool checked)
 	dialAudioVolume->setValue(dialAudioVolume->value() + dialAudioVolume->pageStep());
 }
 
-void MainWindow::on_actionAudioLowerVolume_triggered(bool checked)
+void MainWindow::on_actionAudioLowerVolume_triggered(bool /*checked*/)
 {
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioLowerVolume_triggered(bool checked = ...)");
@@ -8369,7 +8369,7 @@ void MainWindow::audioBufferStatus(int) {}
 void MainWindow::audioScrollToCurrentItem() {}
 #endif
 
-void MainWindow::on_checkBoxRemoveFinishedDownloads_stateChanged(int state)
+void MainWindow::on_checkBoxRemoveFinishedDownloads_stateChanged(int /*state*/)
 {
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_checkBoxRemoveFinishedDownloads_stateChanged(int state = ...)");
@@ -11735,7 +11735,7 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
 	}
 }
 
-void MainWindow::on_treeWidgetHierarchy_itemExpanded(QTreeWidgetItem *item)
+void MainWindow::on_treeWidgetHierarchy_itemExpanded(QTreeWidgetItem * /*item*/)
 {
 	treeWidgetHierarchy_verticalScrollChanged();
 }
@@ -11807,7 +11807,7 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
 	}
 }
 
-void MainWindow::on_treeWidgetCategoryView_itemExpanded(QTreeWidgetItem *item)
+void MainWindow::on_treeWidgetCategoryView_itemExpanded(QTreeWidgetItem * /*item*/)
 {
 	treeWidgetCategoryView_verticalScrollChanged();
 }
