@@ -217,7 +217,7 @@ void ProcessManager::readyReadStandardOutput()
 	QStringList sl = s.split("\n");
 	int i;
 	for (i = 0; i < sl.count(); i++) {
-		s = sl[i].simplified();
+		s = sl[i];
 		if ( !s.isEmpty() )
 			qmc2MainWindow->log(QMC2_LOG_EMULATOR, tr("stdout[#%1]:").arg(procMap[proc]) + " " + s);
 	}
@@ -235,7 +235,7 @@ void ProcessManager::readyReadStandardError()
 	QStringList sl = s.split("\n");
 	int i;
 	for (i = 0; i < sl.count(); i++) {
-		s = sl[i].simplified();
+		s = sl[i];
 		if ( !s.isEmpty() )
 			qmc2MainWindow->log(QMC2_LOG_EMULATOR, tr("stderr[#%1]:").arg(procMap[proc]) + " " + s);
 	}
