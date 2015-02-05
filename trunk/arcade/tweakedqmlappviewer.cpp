@@ -165,6 +165,16 @@ int TweakedQmlApplicationViewer::themeIndex()
     return arcadeThemes.indexOf(globalConfig->arcadeTheme);
 }
 
+void TweakedQmlApplicationViewer::displayInit()
+{
+    if ( globalConfig->fullScreen() )
+        switchToFullScreen(true);
+    else
+        switchToWindowed(true);
+    if ( rootObject() )
+        frameCheckTimer.start(QMC2_ARCADE_FPS_UPDATE_INTERVAL);
+}
+
 void TweakedQmlApplicationViewer::fpsReady()
 {
     rootObject()->setProperty("fps", numFrames);

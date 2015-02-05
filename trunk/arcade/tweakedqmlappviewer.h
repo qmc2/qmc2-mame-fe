@@ -97,6 +97,7 @@ signals:
     void imageDataUpdated(QString cachePrefix);
 
 public slots:
+    void displayInit();
     void fpsReady();
     void loadSettings();
     void saveSettings();
