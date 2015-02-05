@@ -1,6 +1,7 @@
 #include <QTranslator>
 #include <QIcon>
 #include <QStyleFactory>
+#include <QTimer>
 #include <QUrl>
 #if QT_VERSION < 0x050000
 #include <QApplication>
@@ -428,15 +429,8 @@ int main(int argc, char *argv[])
         viewer->setSource(QUrl(QString("qrc:/qml/%1/2.0/%1.qml").arg(theme)));
 #endif
 
-        // set up display mode initially
-        if ( globalConfig->fullScreen() )
-            viewer->switchToFullScreen(true);
-        else
-            viewer->switchToWindowed(true);
-
-        // start counting frames per second
-        if ( viewer->rootObject() )
-            viewer->frameCheckTimer.start(QMC2_ARCADE_FPS_UPDATE_INTERVAL);
+        // delayed setup of the initial display mode
+        QTimer::singleShot(100, viewer, SLOT(displayInit()));
 
         // run the event loop
         returnCode = app->exec();
