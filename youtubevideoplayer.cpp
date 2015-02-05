@@ -2091,25 +2091,20 @@ YouTubeXmlHandler::YouTubeXmlHandler(QListWidget *lw, YouTubeVideoPlayer *vp)
 	isEntry = false;
 }
 
-bool YouTubeXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
+bool YouTubeXmlHandler::startElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName, const QXmlAttributes &/*attributes*/)
 {
-	if ( qName == "entry" ) {
-#ifdef QMC2_DEBUG
-		printf("start of entry\n");
-#endif
+	if ( qName == "entry" )
 		isEntry = true;
-	} else if (qName == "id" ) {
+	else if (qName == "id" )
 		currentText.clear();
-	} else if ( qName == "title" ) {
+	else if ( qName == "title" )
 		currentText.clear();
-	} else if ( qName == "author" ) {
+	else if ( qName == "author" )
 		currentText.clear();
-	}
-
 	return true;
 }
 
-bool YouTubeXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
+bool YouTubeXmlHandler::endElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName)
 {
 	if ( !isEntry )
 		return true;

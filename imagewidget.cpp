@@ -276,7 +276,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 	if ( useZip() ) {
 		// try loading image from (semicolon-separated) ZIP archive(s)
 		QByteArray imageData;
-		int len, i;
+		int len;
 
 		foreach (int format, activeFormats) {
 			QString formatName = formatNames[format];
@@ -556,7 +556,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 	if ( useZip() ) {
 		// try loading image from (semicolon-separated) ZIP archive(s)
 		QByteArray imageData;
-		int len, i;
+		int len;
 
 		foreach (int format, activeFormats) {
 			QString formatName = formatNames[format];

@@ -191,8 +191,8 @@ qint64 CheckSumDatabaseManager::nextRowId(bool refreshRowIds)
 			return m_rowIdList[m_lastRowId];
 		else
 			return -1;
-	} else
-		return -1;
+	}
+	return -1;
 }
 
 quint64 CheckSumDatabaseManager::databaseSize()
@@ -226,7 +226,7 @@ void CheckSumDatabaseManager::setCacheSize(quint64 kiloBytes)
 void CheckSumDatabaseManager::setSyncMode(uint syncMode)
 {
 	static QStringList dbSyncModes = QStringList() << "OFF" << "NORMAL" << "FULL";
-	if ( syncMode > dbSyncModes.count() - 1 )
+	if ( (int)syncMode > dbSyncModes.count() - 1 )
 		return;
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA synchronous = %1").arg(dbSyncModes[syncMode])) )
@@ -236,7 +236,7 @@ void CheckSumDatabaseManager::setSyncMode(uint syncMode)
 void CheckSumDatabaseManager::setJournalMode(uint journalMode)
 {
 	static QStringList dbJournalModes = QStringList() << "DELETE" << "TRUNCATE" << "PERSIST" << "MEMORY" << "WAL" << "OFF";
-	if ( journalMode > dbJournalModes.count() - 1 )
+	if ( (int)journalMode > dbJournalModes.count() - 1 )
 		return;
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA journal_mode = %1").arg(dbJournalModes[journalMode])) )

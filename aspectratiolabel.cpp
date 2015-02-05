@@ -67,7 +67,6 @@ void AspectRatioLabel::paintEvent(QPaintEvent *e)
 		int adjustment = fm.height() / 2;
 		QRect r = rect();
 		r = r.adjusted(+adjustment, +adjustment, -adjustment, -adjustment);
-		QRect outerRect = m_painter.boundingRect(r, Qt::AlignCenter | Qt::TextWordWrap, m_labelText);
 		r = m_painter.boundingRect(r, Qt::AlignCenter | Qt::TextWordWrap, m_labelText);
 		r = r.adjusted(-adjustment, -adjustment, +adjustment, +adjustment);
 		QPainterPath pp;

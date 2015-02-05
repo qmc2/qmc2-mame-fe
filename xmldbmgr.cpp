@@ -318,7 +318,7 @@ void XmlDatabaseManager::setCacheSize(quint64 kiloBytes)
 void XmlDatabaseManager::setSyncMode(uint syncMode)
 {
 	static QStringList dbSyncModes = QStringList() << "OFF" << "NORMAL" << "FULL";
-	if ( syncMode > dbSyncModes.count() - 1 )
+	if ( (int)syncMode > dbSyncModes.count() - 1 )
 		return;
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA synchronous = %1").arg(dbSyncModes[syncMode])) )
@@ -328,7 +328,7 @@ void XmlDatabaseManager::setSyncMode(uint syncMode)
 void XmlDatabaseManager::setJournalMode(uint journalMode)
 {
 	static QStringList dbJournalModes = QStringList() << "DELETE" << "TRUNCATE" << "PERSIST" << "MEMORY" << "WAL" << "OFF";
-	if ( journalMode > dbJournalModes.count() - 1 )
+	if ( (int)journalMode > dbJournalModes.count() - 1 )
 		return;
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA journal_mode = %1").arg(dbJournalModes[journalMode])) )

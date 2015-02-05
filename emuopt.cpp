@@ -80,7 +80,7 @@ void EmulatorOptionDelegate::dataChanged()
 	}
 }
 
-QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &/*option*/, const QModelIndex &/*index*/) const
 {
 	switch ( optionType ) {
 		case QMC2_EMUOPT_TYPE_BOOL: {

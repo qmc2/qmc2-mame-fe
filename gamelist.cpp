@@ -3633,7 +3633,7 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 	if ( qmc2UseIconFile ) {
 		// use icon file
 		QByteArray imageData;
-		int len, i;
+		int len;
 		if ( !qmc2IconsPreloaded ) {
 			QTime preloadTimer, elapsedTime(0, 0, 0, 0);
 			int iconCount = 0;

@@ -114,27 +114,27 @@ void SoftwareStateFilter::on_checkBoxStateFilter_toggled(bool checked)
 	filter();
 }
 
-void SoftwareStateFilter::on_toolButtonCorrect_toggled(bool checked)
+void SoftwareStateFilter::on_toolButtonCorrect_toggled(bool /*checked*/)
 {
 	filter();
 }
 
-void SoftwareStateFilter::on_toolButtonMostlyCorrect_toggled(bool checked)
+void SoftwareStateFilter::on_toolButtonMostlyCorrect_toggled(bool /*checked*/)
 {
 	filter();
 }
 
-void SoftwareStateFilter::on_toolButtonIncorrect_toggled(bool checked)
+void SoftwareStateFilter::on_toolButtonIncorrect_toggled(bool /*checked*/)
 {
 	filter();
 }
 
-void SoftwareStateFilter::on_toolButtonNotFound_toggled(bool checked)
+void SoftwareStateFilter::on_toolButtonNotFound_toggled(bool /*checked*/)
 {
 	filter();
 }
 
-void SoftwareStateFilter::on_toolButtonUnknown_toggled(bool checked)
+void SoftwareStateFilter::on_toolButtonUnknown_toggled(bool /*checked*/)
 {
 	filter();
 }
