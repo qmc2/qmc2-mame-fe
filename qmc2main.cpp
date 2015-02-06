@@ -738,8 +738,6 @@ MainWindow::MainWindow(QWidget *parent)
 	comboBoxViewSelect->setStatusTip(tr("Select between detailed machine list and parent / clone hierarchy"));
 	labelGameStatus->setToolTip(tr("Machine status indicator"));
 	labelGameStatus->setStatusTip(tr("Machine status indicator"));
-	actionCheckSamples->setEnabled(false);
-	actionCheckSamples->setVisible(false);
 	progressBarGamelist->setToolTip(tr("Progress indicator for machine list processing"));
 	progressBarGamelist->setStatusTip(tr("Progress indicator for machine list processing"));
 	qmc2Options->checkBoxGameStatusIndicator->setText(tr("Machine status indicator"));
@@ -12328,9 +12326,7 @@ void prepareShortcuts()
 {
 	// shortcuts
 	qmc2ShortcutHash["Ctrl+1"].second = qmc2MainWindow->actionCheckROMs;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2ShortcutHash["Ctrl+2"].second = qmc2MainWindow->actionCheckSamples;
-#endif
 	qmc2ShortcutHash["Ctrl+3"].second = qmc2MainWindow->actionCheckImagesAndIcons;
 	qmc2ShortcutHash["Ctrl+B"].second = qmc2MainWindow->actionAbout;
 	qmc2ShortcutHash["Ctrl+D"].second = qmc2MainWindow->actionAnalyseCurrentROM;

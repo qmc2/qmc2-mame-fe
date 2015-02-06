@@ -394,9 +394,7 @@ Options::Options(QWidget *parent)
 
 	// shortcuts
 	qmc2ShortcutHash["Ctrl+1"] = QPair<QString, QAction *>(tr("Check all ROM states"), NULL);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2ShortcutHash["Ctrl+2"] = QPair<QString, QAction *>(tr("Check all sample sets"), NULL);
-#endif
 	qmc2ShortcutHash["Ctrl+3"] = QPair<QString, QAction *>(tr("Check images and icons"), NULL);
 	qmc2ShortcutHash["Ctrl+B"] = QPair<QString, QAction *>(tr("About QMC2"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)

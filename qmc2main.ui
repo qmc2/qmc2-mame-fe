@@ -2904,10 +2904,10 @@
     <string>Check &amp;samples...</string>
    </property>
    <property name="toolTip">
-    <string>Check sample set</string>
+    <string>Check samples</string>
    </property>
    <property name="statusTip">
-    <string>Check sample set</string>
+    <string>Check samples</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+2</string>
