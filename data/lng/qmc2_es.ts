@@ -2823,13 +2823,29 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="649"/>
         <location filename="../../datinfodbmgr.cpp" line="653"/>
         <location filename="../../datinfodbmgr.cpp" line="658"/>
+        <location filename="../../datinfodbmgr.cpp" line="662"/>
         <location filename="../../datinfodbmgr.cpp" line="725"/>
+        <location filename="../../datinfodbmgr.cpp" line="793"/>
+        <location filename="../../datinfodbmgr.cpp" line="795"/>
+        <location filename="../../datinfodbmgr.cpp" line="797"/>
         <location filename="../../datinfodbmgr.cpp" line="802"/>
         <location filename="../../datinfodbmgr.cpp" line="806"/>
+        <location filename="../../datinfodbmgr.cpp" line="812"/>
+        <location filename="../../datinfodbmgr.cpp" line="816"/>
         <location filename="../../datinfodbmgr.cpp" line="881"/>
+        <location filename="../../datinfodbmgr.cpp" line="963"/>
+        <location filename="../../datinfodbmgr.cpp" line="965"/>
+        <location filename="../../datinfodbmgr.cpp" line="970"/>
+        <location filename="../../datinfodbmgr.cpp" line="972"/>
+        <location filename="../../datinfodbmgr.cpp" line="977"/>
+        <location filename="../../datinfodbmgr.cpp" line="979"/>
         <location filename="../../datinfodbmgr.cpp" line="987"/>
         <location filename="../../datinfodbmgr.cpp" line="989"/>
         <location filename="../../datinfodbmgr.cpp" line="994"/>
+        <location filename="../../datinfodbmgr.cpp" line="1000"/>
+        <location filename="../../datinfodbmgr.cpp" line="1002"/>
+        <location filename="../../datinfodbmgr.cpp" line="1009"/>
+        <location filename="../../datinfodbmgr.cpp" line="1012"/>
         <source>DAT-info database</source>
         <translation type="unfinished"></translation>
     </message>

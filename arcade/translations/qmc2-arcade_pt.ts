@@ -27,162 +27,178 @@
 <context>
     <name>DatInfoDatabaseManager</name>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="38"/>
+        <location filename="../datinfodbmgr.cpp" line="44"/>
         <source>WARNING: failed to open DAT-info database &apos;%1&apos;: error = &apos;%2&apos;</source>
         <translation>AVISO: falha ao abrir base de dados de informação DAT &apos;%1&apos; erro = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="57"/>
-        <location filename="../datinfodbmgr.cpp" line="81"/>
-        <location filename="../datinfodbmgr.cpp" line="94"/>
-        <location filename="../datinfodbmgr.cpp" line="118"/>
-        <location filename="../datinfodbmgr.cpp" line="133"/>
-        <location filename="../datinfodbmgr.cpp" line="163"/>
-        <location filename="../datinfodbmgr.cpp" line="178"/>
-        <location filename="../datinfodbmgr.cpp" line="207"/>
-        <location filename="../datinfodbmgr.cpp" line="234"/>
-        <location filename="../datinfodbmgr.cpp" line="248"/>
-        <location filename="../datinfodbmgr.cpp" line="277"/>
-        <location filename="../datinfodbmgr.cpp" line="292"/>
-        <location filename="../datinfodbmgr.cpp" line="321"/>
-        <location filename="../datinfodbmgr.cpp" line="335"/>
+        <location filename="../datinfodbmgr.cpp" line="64"/>
+        <location filename="../datinfodbmgr.cpp" line="91"/>
+        <location filename="../datinfodbmgr.cpp" line="105"/>
+        <location filename="../datinfodbmgr.cpp" line="132"/>
+        <location filename="../datinfodbmgr.cpp" line="148"/>
+        <location filename="../datinfodbmgr.cpp" line="181"/>
+        <location filename="../datinfodbmgr.cpp" line="197"/>
+        <location filename="../datinfodbmgr.cpp" line="227"/>
+        <location filename="../datinfodbmgr.cpp" line="257"/>
+        <location filename="../datinfodbmgr.cpp" line="272"/>
+        <location filename="../datinfodbmgr.cpp" line="302"/>
+        <location filename="../datinfodbmgr.cpp" line="318"/>
+        <location filename="../datinfodbmgr.cpp" line="350"/>
+        <location filename="../datinfodbmgr.cpp" line="365"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>AVISO: falha ao carregar &apos;%1&apos; da base de dados de informação DAT: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="71"/>
-        <location filename="../datinfodbmgr.cpp" line="108"/>
-        <location filename="../datinfodbmgr.cpp" line="151"/>
-        <location filename="../datinfodbmgr.cpp" line="223"/>
-        <location filename="../datinfodbmgr.cpp" line="309"/>
+        <location filename="../datinfodbmgr.cpp" line="79"/>
+        <location filename="../datinfodbmgr.cpp" line="120"/>
+        <location filename="../datinfodbmgr.cpp" line="167"/>
+        <location filename="../datinfodbmgr.cpp" line="244"/>
+        <location filename="../datinfodbmgr.cpp" line="336"/>
         <source>WARNING: failed to add &apos;%1&apos; to DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>AVISO: falha ao adicionar &apos;%1&apos; na base de dados de informação DAT: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="77"/>
-        <location filename="../datinfodbmgr.cpp" line="114"/>
-        <location filename="../datinfodbmgr.cpp" line="159"/>
-        <location filename="../datinfodbmgr.cpp" line="230"/>
-        <location filename="../datinfodbmgr.cpp" line="317"/>
+        <location filename="../datinfodbmgr.cpp" line="86"/>
+        <location filename="../datinfodbmgr.cpp" line="127"/>
+        <location filename="../datinfodbmgr.cpp" line="176"/>
+        <location filename="../datinfodbmgr.cpp" line="252"/>
+        <location filename="../datinfodbmgr.cpp" line="345"/>
         <source>WARNING: failed to update &apos;%1&apos; in DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>AVISO: falha ao atualizar &apos;%1&apos; na base de dados de informação DAT: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="192"/>
-        <location filename="../datinfodbmgr.cpp" line="262"/>
-        <location filename="../datinfodbmgr.cpp" line="349"/>
+        <location filename="../datinfodbmgr.cpp" line="211"/>
+        <location filename="../datinfodbmgr.cpp" line="286"/>
+        <location filename="../datinfodbmgr.cpp" line="379"/>
         <source>WARNING: failed to fetch row count from DAT-info database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>AVISO: falha ao carregar o número de linhas da base de dados de informação DAT: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="378"/>
-        <location filename="../datinfodbmgr.cpp" line="388"/>
-        <location filename="../datinfodbmgr.cpp" line="398"/>
+        <location filename="../datinfodbmgr.cpp" line="409"/>
+        <location filename="../datinfodbmgr.cpp" line="420"/>
+        <location filename="../datinfodbmgr.cpp" line="431"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>AVISO: falha ao alterar a configuração &apos;%1&apos; na base de dados de informação DAT: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="405"/>
-        <location filename="../datinfodbmgr.cpp" line="410"/>
-        <location filename="../datinfodbmgr.cpp" line="429"/>
-        <location filename="../datinfodbmgr.cpp" line="434"/>
-        <location filename="../datinfodbmgr.cpp" line="454"/>
-        <location filename="../datinfodbmgr.cpp" line="456"/>
-        <location filename="../datinfodbmgr.cpp" line="463"/>
-        <location filename="../datinfodbmgr.cpp" line="465"/>
-        <location filename="../datinfodbmgr.cpp" line="493"/>
+        <location filename="../datinfodbmgr.cpp" line="439"/>
+        <location filename="../datinfodbmgr.cpp" line="444"/>
+        <location filename="../datinfodbmgr.cpp" line="464"/>
+        <location filename="../datinfodbmgr.cpp" line="469"/>
+        <location filename="../datinfodbmgr.cpp" line="490"/>
+        <location filename="../datinfodbmgr.cpp" line="492"/>
+        <location filename="../datinfodbmgr.cpp" line="499"/>
+        <location filename="../datinfodbmgr.cpp" line="501"/>
+        <location filename="../datinfodbmgr.cpp" line="530"/>
         <source>WARNING: failed to remove %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>AVISO: falha ao remover tabela &apos;%1&apos;: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="405"/>
-        <location filename="../datinfodbmgr.cpp" line="410"/>
-        <location filename="../datinfodbmgr.cpp" line="417"/>
-        <location filename="../datinfodbmgr.cpp" line="422"/>
+        <location filename="../datinfodbmgr.cpp" line="439"/>
+        <location filename="../datinfodbmgr.cpp" line="444"/>
+        <location filename="../datinfodbmgr.cpp" line="451"/>
+        <location filename="../datinfodbmgr.cpp" line="456"/>
         <source>software-info</source>
         <translation>informação de software</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="417"/>
-        <location filename="../datinfodbmgr.cpp" line="422"/>
-        <location filename="../datinfodbmgr.cpp" line="441"/>
-        <location filename="../datinfodbmgr.cpp" line="446"/>
-        <location filename="../datinfodbmgr.cpp" line="474"/>
+        <location filename="../datinfodbmgr.cpp" line="451"/>
+        <location filename="../datinfodbmgr.cpp" line="456"/>
         <location filename="../datinfodbmgr.cpp" line="476"/>
-        <location filename="../datinfodbmgr.cpp" line="483"/>
-        <location filename="../datinfodbmgr.cpp" line="485"/>
-        <location filename="../datinfodbmgr.cpp" line="500"/>
+        <location filename="../datinfodbmgr.cpp" line="481"/>
+        <location filename="../datinfodbmgr.cpp" line="510"/>
+        <location filename="../datinfodbmgr.cpp" line="512"/>
+        <location filename="../datinfodbmgr.cpp" line="519"/>
+        <location filename="../datinfodbmgr.cpp" line="521"/>
+        <location filename="../datinfodbmgr.cpp" line="537"/>
         <source>WARNING: failed to create %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>AVISO: falha ao criar tabela &apos;%1&apos;: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="429"/>
-        <location filename="../datinfodbmgr.cpp" line="434"/>
-        <location filename="../datinfodbmgr.cpp" line="441"/>
-        <location filename="../datinfodbmgr.cpp" line="446"/>
+        <location filename="../datinfodbmgr.cpp" line="464"/>
+        <location filename="../datinfodbmgr.cpp" line="469"/>
+        <location filename="../datinfodbmgr.cpp" line="476"/>
+        <location filename="../datinfodbmgr.cpp" line="481"/>
         <source>emu-info</source>
         <translation>informação de emulador</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="454"/>
-        <location filename="../datinfodbmgr.cpp" line="463"/>
-        <location filename="../datinfodbmgr.cpp" line="474"/>
-        <location filename="../datinfodbmgr.cpp" line="483"/>
+        <location filename="../datinfodbmgr.cpp" line="490"/>
+        <location filename="../datinfodbmgr.cpp" line="499"/>
+        <location filename="../datinfodbmgr.cpp" line="510"/>
+        <location filename="../datinfodbmgr.cpp" line="519"/>
         <source>machine-info</source>
         <translation>informação de máquina</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="456"/>
-        <location filename="../datinfodbmgr.cpp" line="465"/>
-        <location filename="../datinfodbmgr.cpp" line="476"/>
-        <location filename="../datinfodbmgr.cpp" line="485"/>
+        <location filename="../datinfodbmgr.cpp" line="492"/>
+        <location filename="../datinfodbmgr.cpp" line="501"/>
+        <location filename="../datinfodbmgr.cpp" line="512"/>
+        <location filename="../datinfodbmgr.cpp" line="521"/>
         <source>game-info</source>
         <translation>informação de jogo</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="493"/>
-        <location filename="../datinfodbmgr.cpp" line="500"/>
+        <location filename="../datinfodbmgr.cpp" line="530"/>
+        <location filename="../datinfodbmgr.cpp" line="537"/>
         <source>meta-data</source>
         <translation>meta dados</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="561"/>
-        <location filename="../datinfodbmgr.cpp" line="631"/>
-        <location filename="../datinfodbmgr.cpp" line="636"/>
-        <location filename="../datinfodbmgr.cpp" line="701"/>
-        <location filename="../datinfodbmgr.cpp" line="762"/>
-        <location filename="../datinfodbmgr.cpp" line="835"/>
-        <location filename="../datinfodbmgr.cpp" line="920"/>
+        <location filename="../datinfodbmgr.cpp" line="599"/>
+        <location filename="../datinfodbmgr.cpp" line="669"/>
+        <location filename="../datinfodbmgr.cpp" line="674"/>
+        <location filename="../datinfodbmgr.cpp" line="678"/>
+        <location filename="../datinfodbmgr.cpp" line="740"/>
+        <location filename="../datinfodbmgr.cpp" line="794"/>
+        <location filename="../datinfodbmgr.cpp" line="797"/>
+        <location filename="../datinfodbmgr.cpp" line="799"/>
+        <location filename="../datinfodbmgr.cpp" line="804"/>
+        <location filename="../datinfodbmgr.cpp" line="810"/>
+        <location filename="../datinfodbmgr.cpp" line="814"/>
+        <location filename="../datinfodbmgr.cpp" line="878"/>
+        <location filename="../datinfodbmgr.cpp" line="942"/>
+        <location filename="../datinfodbmgr.cpp" line="944"/>
+        <location filename="../datinfodbmgr.cpp" line="949"/>
+        <location filename="../datinfodbmgr.cpp" line="951"/>
+        <location filename="../datinfodbmgr.cpp" line="956"/>
+        <location filename="../datinfodbmgr.cpp" line="958"/>
+        <location filename="../datinfodbmgr.cpp" line="963"/>
+        <location filename="../datinfodbmgr.cpp" line="969"/>
+        <location filename="../datinfodbmgr.cpp" line="971"/>
+        <location filename="../datinfodbmgr.cpp" line="977"/>
+        <location filename="../datinfodbmgr.cpp" line="979"/>
         <source>DAT-info database</source>
         <translation>base de dados de informação DAT</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="561"/>
-        <location filename="../datinfodbmgr.cpp" line="701"/>
-        <location filename="../datinfodbmgr.cpp" line="835"/>
+        <location filename="../datinfodbmgr.cpp" line="599"/>
+        <location filename="../datinfodbmgr.cpp" line="740"/>
+        <location filename="../datinfodbmgr.cpp" line="878"/>
         <source>importing %1 from &apos;%2&apos;</source>
         <translation>importando %1 de &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="561"/>
-        <location filename="../datinfodbmgr.cpp" line="631"/>
+        <location filename="../datinfodbmgr.cpp" line="599"/>
+        <location filename="../datinfodbmgr.cpp" line="669"/>
         <source>software info-texts</source>
         <translation>textos de informação de software</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="631"/>
-        <location filename="../datinfodbmgr.cpp" line="762"/>
-        <location filename="../datinfodbmgr.cpp" line="920"/>
+        <location filename="../datinfodbmgr.cpp" line="669"/>
+        <location filename="../datinfodbmgr.cpp" line="804"/>
+        <location filename="../datinfodbmgr.cpp" line="963"/>
         <source>done (importing %1 from &apos;%2&apos;)</source>
         <translation>feito (importando %1 de &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="636"/>
+        <location filename="../datinfodbmgr.cpp" line="674"/>
         <source>WARNING: can&apos;t open software info file &apos;%1&apos;</source>
         <translation>AVISO: não foi possível abrir arquivo de informação de software &apos;%1&apos;</translation>
     </message>
     <message numerus="yes">
-        <location filename="../datinfodbmgr.cpp" line="639"/>
+        <location filename="../datinfodbmgr.cpp" line="678"/>
         <source>%n software info record(s) imported</source>
         <translation>
             <numerusform>%n registro de informação de software importado</numerusform>
@@ -190,33 +206,33 @@
         </translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="701"/>
-        <location filename="../datinfodbmgr.cpp" line="762"/>
+        <location filename="../datinfodbmgr.cpp" line="740"/>
+        <location filename="../datinfodbmgr.cpp" line="804"/>
         <source>emulator info-texts</source>
         <translation>textos de informação de emulador</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="755"/>
+        <location filename="../datinfodbmgr.cpp" line="794"/>
         <source>WARNING: missing &apos;$end&apos; in emulator info file %1</source>
         <translation>AVISO: &apos;$end&apos; faltando no arquivo de informação de emulador %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="757"/>
+        <location filename="../datinfodbmgr.cpp" line="797"/>
         <source>WARNING: missing &apos;$mame&apos; in emulator info file %1</source>
         <translation>AVISO: &apos;$mame&apos; faltando no arquivo de informação de emulador %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="759"/>
+        <location filename="../datinfodbmgr.cpp" line="799"/>
         <source>WARNING: missing &apos;$info&apos; in emulator info file %1</source>
         <translation>AVISO: &apos;$info&apos; faltando no arquivo de informação de emulador %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="768"/>
+        <location filename="../datinfodbmgr.cpp" line="810"/>
         <source>WARNING: can&apos;t open emulator info file %1</source>
         <translation>AVISO: não foi possível abrir arquivo de informação de emulador %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../datinfodbmgr.cpp" line="771"/>
+        <location filename="../datinfodbmgr.cpp" line="814"/>
         <source>%n emulator info record(s) imported</source>
         <translation>
             <numerusform>%n registro de informação de emulador importado</numerusform>
@@ -224,53 +240,53 @@
         </translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="835"/>
-        <location filename="../datinfodbmgr.cpp" line="920"/>
+        <location filename="../datinfodbmgr.cpp" line="878"/>
+        <location filename="../datinfodbmgr.cpp" line="963"/>
         <source>system info-texts</source>
         <translation>textos de informação de sistema</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="899"/>
+        <location filename="../datinfodbmgr.cpp" line="942"/>
         <source>WARNING: missing &apos;$end&apos; in machine info file %1</source>
         <translation>AVISO: &apos;$end&apos; faltando no arquivo de informação de máquina %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="901"/>
+        <location filename="../datinfodbmgr.cpp" line="944"/>
         <source>WARNING: missing &apos;$end&apos; in game info file %1</source>
         <translation>AVISO: &apos;$end&apos; faltando no arquivo de informação de jogo %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="906"/>
+        <location filename="../datinfodbmgr.cpp" line="949"/>
         <source>WARNING: missing &apos;$bio&apos; in machine info file %1</source>
         <translation>AVISO: &apos;$bio&apos; faltando no arquivo de informação de máquina %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="908"/>
+        <location filename="../datinfodbmgr.cpp" line="951"/>
         <source>WARNING: missing &apos;$bio&apos; in game info file %1</source>
         <translation>AVISO: &apos;$bio&apos; faltando no arquivo de informação de jogo %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="913"/>
+        <location filename="../datinfodbmgr.cpp" line="956"/>
         <source>WARNING: missing &apos;$info&apos; in machine info file %1</source>
         <translation>AVISO: &apos;$info&apos; faltando no arquivo de informação de máquina %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="915"/>
+        <location filename="../datinfodbmgr.cpp" line="958"/>
         <source>WARNING: missing &apos;$info&apos; in game info file %1</source>
         <translation>AVISO: &apos;$info&apos; faltando no arquivo de informação de jogo %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="926"/>
+        <location filename="../datinfodbmgr.cpp" line="969"/>
         <source>WARNING: can&apos;t open machine info file %1</source>
         <translation>AVISO: não foi possível abrir arquivo de informação de máquina %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="928"/>
+        <location filename="../datinfodbmgr.cpp" line="971"/>
         <source>WARNING: can&apos;t open game info file %1</source>
         <translation>AVISO: não foi possível abrir arquivo de informação de jogo %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../datinfodbmgr.cpp" line="934"/>
+        <location filename="../datinfodbmgr.cpp" line="977"/>
         <source>%n machine info record(s) imported</source>
         <translation>
             <numerusform>%n registro de informação de máquina importado</numerusform>
@@ -278,7 +294,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../datinfodbmgr.cpp" line="936"/>
+        <location filename="../datinfodbmgr.cpp" line="979"/>
         <source>%n game info record(s) imported</source>
         <translation>
             <numerusform>%n registro de informação de jogo importado</numerusform>
@@ -289,8 +305,8 @@
 <context>
     <name>ImageProvider</name>
     <message>
-        <location filename="../imageprovider.cpp" line="96"/>
-        <location filename="../imageprovider.cpp" line="162"/>
+        <location filename="../imageprovider.cpp" line="102"/>
+        <location filename="../imageprovider.cpp" line="168"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Descomprimindo arquivo, por favor espere...</translation>
     </message>
@@ -321,7 +337,7 @@
 <context>
     <name>JoystickManager</name>
     <message>
-        <location filename="../joystickmanager.cpp" line="52"/>
+        <location filename="../joystickmanager.cpp" line="56"/>
         <source>joystick-function &apos;%1&apos; triggered - emulating event for mapped key-sequence &apos;%2&apos;</source>
         <translation>Função de joystick &apos;%1&apos; ativada - emulando evento para a sequência de teclas mapeada &apos;%2&apos;</translation>
     </message>
@@ -329,24 +345,24 @@
 <context>
     <name>KeyEventFilter</name>
     <message>
-        <location filename="../keyeventfilter.cpp" line="40"/>
+        <location filename="../keyeventfilter.cpp" line="46"/>
         <source>key-sequence &apos;%1&apos; %2 - emulating event for mapped key-sequence &apos;%3&apos;</source>
         <translation>sequência de teclas &apos;%1&apos; %2 - emulando evento para a sequência de teclas mapeada &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../keyeventfilter.cpp" line="40"/>
-        <location filename="../keyeventfilter.cpp" line="68"/>
+        <location filename="../keyeventfilter.cpp" line="46"/>
+        <location filename="../keyeventfilter.cpp" line="74"/>
         <source>pressed</source>
         <translation>pressionada</translation>
     </message>
     <message>
-        <location filename="../keyeventfilter.cpp" line="40"/>
-        <location filename="../keyeventfilter.cpp" line="68"/>
+        <location filename="../keyeventfilter.cpp" line="46"/>
+        <location filename="../keyeventfilter.cpp" line="74"/>
         <source>released</source>
         <translation>solta</translation>
     </message>
     <message>
-        <location filename="../keyeventfilter.cpp" line="68"/>
+        <location filename="../keyeventfilter.cpp" line="74"/>
         <source>key-sequence &apos;%1&apos; %2 - default event processing</source>
         <translation>sequência de teclas &apos;%1&apos; %2 - processamento de eventos padrão</translation>
     </message>
@@ -354,22 +370,22 @@
 <context>
     <name>ProcessManager</name>
     <message>
-        <location filename="../processmanager.cpp" line="106"/>
+        <location filename="../processmanager.cpp" line="112"/>
         <source>Loading configuration template from &apos;%1&apos;</source>
         <translation>Carregando modelo de configuração de &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="114"/>
+        <location filename="../processmanager.cpp" line="120"/>
         <source>FATAL: XML error reading template: &apos;%1&apos; in file &apos;%2&apos; at line %3, column %4</source>
         <translation>FATAL: erro de XML lendo o modelo: &apos;%1&apos; no arquivo &apos;%2&apos; na linha %3, coluna %4</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="145"/>
+        <location filename="../processmanager.cpp" line="151"/>
         <source>Done (loading configuration template from &apos;%1&apos;)</source>
         <translation>Feito (carregando modelo de configuração de &apos;%1&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../processmanager.cpp" line="145"/>
+        <location filename="../processmanager.cpp" line="151"/>
         <source>%n option(s) loaded</source>
         <translation>
             <numerusform>%n opção carregada</numerusform>
@@ -377,169 +393,169 @@
         </translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="147"/>
+        <location filename="../processmanager.cpp" line="153"/>
         <source>FATAL: Can&apos;t open the configuration template file: reason = %1</source>
         <translation>FATAL: Não foi possível abrir o arquivo do modelo de configuração: motivo = %1</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="154"/>
+        <location filename="../processmanager.cpp" line="160"/>
         <source>No error occurred</source>
         <translation>Nenhum erro ocorrido</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="156"/>
+        <location filename="../processmanager.cpp" line="162"/>
         <source>An error occurred when reading from the file</source>
         <translation>Ocorreu um erro durante a leitura do arquivo</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="158"/>
+        <location filename="../processmanager.cpp" line="164"/>
         <source>An error occurred when writing to the file</source>
         <translation>Ocorreu um erro durante a escrita para o arquivo</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="160"/>
+        <location filename="../processmanager.cpp" line="166"/>
         <source>A fatal error occurred</source>
         <translation>Ocorreu um erro fatal</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="162"/>
+        <location filename="../processmanager.cpp" line="168"/>
         <source>A resource error occurred</source>
         <translation>Ocorreu um erro de recurso</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="164"/>
+        <location filename="../processmanager.cpp" line="170"/>
         <source>The file could not be opened</source>
         <translation>O arquivo não pode ser aberto</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="166"/>
+        <location filename="../processmanager.cpp" line="172"/>
         <source>The operation was aborted</source>
         <translation>A operação foi abortada</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="168"/>
-        <location filename="../processmanager.cpp" line="196"/>
+        <location filename="../processmanager.cpp" line="174"/>
+        <location filename="../processmanager.cpp" line="202"/>
         <source>A timeout occurred</source>
         <translation>Ocorreu um estouro de tempo</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="170"/>
+        <location filename="../processmanager.cpp" line="176"/>
         <source>An unspecified error occurred</source>
         <translation>Ocorreu um erro não especificado</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="172"/>
+        <location filename="../processmanager.cpp" line="178"/>
         <source>The file could not be removed</source>
         <translation>O arquivo não pode ser removido</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="174"/>
+        <location filename="../processmanager.cpp" line="180"/>
         <source>The file could not be renamed</source>
         <translation>O arquivo não pode ser renomeado</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="176"/>
+        <location filename="../processmanager.cpp" line="182"/>
         <source>The position in the file could not be changed</source>
         <translation>A posição no arquivo não pode ser alterada</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="178"/>
+        <location filename="../processmanager.cpp" line="184"/>
         <source>The file could not be resized</source>
         <translation>O arquivo não pode ser redimensionado</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="180"/>
+        <location filename="../processmanager.cpp" line="186"/>
         <source>The file could not be accessed</source>
         <translation>O arquivo não pode ser acessado</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="182"/>
+        <location filename="../processmanager.cpp" line="188"/>
         <source>The file could not be copied</source>
         <translation>O arquivo não pode ser copiado</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="184"/>
-        <location filename="../processmanager.cpp" line="203"/>
+        <location filename="../processmanager.cpp" line="190"/>
+        <location filename="../processmanager.cpp" line="209"/>
         <source>An unknown error occurred</source>
         <translation>Ocorreu um erro desconhecido</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="192"/>
+        <location filename="../processmanager.cpp" line="198"/>
         <source>The process failed to start</source>
         <translation>O processo falhou ao iniciar</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="194"/>
+        <location filename="../processmanager.cpp" line="200"/>
         <source>The process crashed</source>
         <translation>O processo teve um erro catastrófico</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="198"/>
+        <location filename="../processmanager.cpp" line="204"/>
         <source>An error occurred when attempting to write to the process</source>
         <translation>Ocorreu um erro durante tentativa de escrever para o processo</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="200"/>
+        <location filename="../processmanager.cpp" line="206"/>
         <source>An error occurred when attempting to read from the process</source>
         <translation>Ocorreu um erro durante tentativa de ler do processo </translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="211"/>
+        <location filename="../processmanager.cpp" line="217"/>
         <source>Not running</source>
         <translation>Não executando</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="213"/>
+        <location filename="../processmanager.cpp" line="219"/>
         <source>Starting</source>
         <translation>Iniciando</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="215"/>
+        <location filename="../processmanager.cpp" line="221"/>
         <source>Running</source>
         <translation>Executando</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="217"/>
+        <location filename="../processmanager.cpp" line="223"/>
         <source>Unknown</source>
         <translation>Desconhecido</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="225"/>
+        <location filename="../processmanager.cpp" line="231"/>
         <source>Emulator #%1 error: reason = %2</source>
         <translation>Erro no emulador #%1: motivo = %2</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="232"/>
+        <location filename="../processmanager.cpp" line="238"/>
         <source>Emulator #%1 finished: exitCode = %2, exitStatus = %3</source>
         <translation>Emulador #%1 terminado: código de saída = %2, condição de saída = %3</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="232"/>
+        <location filename="../processmanager.cpp" line="238"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="232"/>
+        <location filename="../processmanager.cpp" line="238"/>
         <source>crashed</source>
         <translation>falha catastrófica</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="248"/>
+        <location filename="../processmanager.cpp" line="254"/>
         <source>Emulator #%1 stdout: %2</source>
         <translation>Saída padrão do Emulador #%1: %2</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="265"/>
+        <location filename="../processmanager.cpp" line="271"/>
         <source>Emulator #%1 stderr: %2</source>
         <translation>Saída de erro padrão do Emulador #%1: %2</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="274"/>
+        <location filename="../processmanager.cpp" line="280"/>
         <source>Emulator #%1 started</source>
         <translation>Emulator #%1 iniciado</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="282"/>
+        <location filename="../processmanager.cpp" line="288"/>
         <source>Emulator #%1 state changed: newState = %2</source>
         <translation>Estado do emulator #%1 alterado: novo estado = %2</translation>
     </message>
@@ -547,64 +563,64 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../imageprovider.cpp" line="249"/>
-        <location filename="../imageprovider.cpp" line="251"/>
+        <location filename="../imageprovider.cpp" line="255"/>
+        <location filename="../imageprovider.cpp" line="257"/>
         <source>WARNING: ImageProvider::loadImage(): invalid image ID &apos;%1&apos; requested</source>
         <translation>AVISO: ImageProvider::loadImage(): ID de imagem inválido &apos;%1&apos; requisitado</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="275"/>
-        <location filename="../imageprovider.cpp" line="359"/>
+        <location filename="../imageprovider.cpp" line="281"/>
+        <location filename="../imageprovider.cpp" line="365"/>
         <source>WARNING: ImageProvider::loadImage(): unable to load image file &apos;%1&apos; from ZIP</source>
         <translation>AVISO: ImageProvider::loadImage(): não foi possível carregar o arquivo de imagem &apos;%1&apos; do ZIP</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="493"/>
+        <location filename="../imageprovider.cpp" line="499"/>
         <source>preview</source>
         <translation>pré-visualização</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="495"/>
+        <location filename="../imageprovider.cpp" line="501"/>
         <source>flyer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="497"/>
+        <location filename="../imageprovider.cpp" line="503"/>
         <source>cabinet</source>
         <translation>gabinete</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="499"/>
+        <location filename="../imageprovider.cpp" line="505"/>
         <source>controller</source>
         <translation>controle</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="502"/>
+        <location filename="../imageprovider.cpp" line="508"/>
         <source>logo</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="504"/>
+        <location filename="../imageprovider.cpp" line="510"/>
         <source>marquee</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="506"/>
+        <location filename="../imageprovider.cpp" line="512"/>
         <source>title</source>
         <translation>título</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="508"/>
+        <location filename="../imageprovider.cpp" line="514"/>
         <source>PCB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="510"/>
+        <location filename="../imageprovider.cpp" line="516"/>
         <source>software snapshot</source>
         <translation>snapshot de software</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="512"/>
+        <location filename="../imageprovider.cpp" line="518"/>
         <source>icon</source>
         <translation>ícone</translation>
     </message>
@@ -614,71 +630,71 @@
         <translation>Arcade QMC2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="237"/>
+        <location filename="../main.cpp" line="238"/>
         <source>%1 is not a valid graphics-system - available graphics-systems: %2</source>
         <translation>%1 não é um sistema gráfico válido - sistemas gráficos disponíveis: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="257"/>
+        <location filename="../main.cpp" line="258"/>
         <source>%1 is not a valid emulator-mode - available emulator-modes: %2</source>
         <translation>%1 não é um modo de emulador válido - modos de emulador disponíveis: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="275"/>
+        <location filename="../main.cpp" line="276"/>
         <source>%1 is not a valid console-mode - available console-modes: %2</source>
         <translation>%1 não é um modo de console válido - modos de console disponíveis: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="298"/>
+        <location filename="../main.cpp" line="299"/>
         <source>%1 is not valid theme - available themes: %2</source>
         <translation>%1 não é um tema válido - temas disponíveis: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="312"/>
-        <location filename="../main.cpp" line="321"/>
-        <location filename="../main.cpp" line="330"/>
+        <location filename="../main.cpp" line="313"/>
+        <location filename="../main.cpp" line="322"/>
+        <location filename="../main.cpp" line="331"/>
         <source>%1 is not a valid %2 theme - available %2 themes: %3</source>
         <translation>%1 não é um tema de %2 válido - temas %2 disponíveis: %3</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="312"/>
-        <location filename="../main.cpp" line="321"/>
-        <location filename="../main.cpp" line="330"/>
+        <location filename="../main.cpp" line="313"/>
+        <location filename="../main.cpp" line="322"/>
+        <location filename="../main.cpp" line="331"/>
         <source>(none)</source>
         <translation>(nenhum)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="385"/>
+        <location filename="../main.cpp" line="386"/>
         <source>emulator-mode: %1</source>
         <translation>modo de emulador: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="390"/>
+        <location filename="../main.cpp" line="391"/>
         <source>language: %1</source>
         <translation>língua: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="391"/>
+        <location filename="../main.cpp" line="392"/>
         <source>theme: %1</source>
         <translation>tema: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="388"/>
+        <location filename="../main.cpp" line="389"/>
         <source>graphics-system: %1</source>
         <translation>sistema gráfico: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="386"/>
+        <location filename="../main.cpp" line="387"/>
         <source>console-mode: %1</source>
         <translation>modo de console: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="423"/>
+        <location filename="../main.cpp" line="424"/>
         <source>Starting QML viewer using theme &apos;%1&apos;</source>
         <translation>Iniciando visualizador QML usando o tema &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="451"/>
+        <location filename="../main.cpp" line="445"/>
         <source>QML viewer not started - please close the console window to exit</source>
         <translation>Visualizador QML não iniciado - por favor feche a janela do console para sair</translation>
     </message>
@@ -1246,125 +1262,125 @@ terem efeito, por favor reinicie o Arcade do QMC2!</translation>
 <context>
     <name>TweakedQmlApplicationViewer</name>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="94"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="98"/>
         <source>Theme</source>
         <translation>Tema</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="96"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="100"/>
         <source>Graphics system</source>
         <translation>Sistema gráfico</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="98"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="102"/>
         <source>Console mode</source>
         <translation>Modo de console</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="99"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="103"/>
         <source>Language</source>
         <translation>Língua</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="172"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="186"/>
         <source>Loading global and theme-specific settings</source>
         <translation>Carregando configurações globais e específicas do tema</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="228"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="242"/>
         <source>Saving global and theme-specific settings</source>
         <translation>Salvando configurações globais e específicas do tema</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="303"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="305"/>
         <source>Activating full-screen display</source>
         <translation>Ativando tela cheia</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="331"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="322"/>
         <source>Activating windowed display</source>
         <translation>Ativando modo janela</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="356"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="339"/>
         <source>correct</source>
         <translation>correto</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="358"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="341"/>
         <source>mostly correct</source>
         <translation>maioria correto</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="360"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="343"/>
         <source>incorrect</source>
         <translation>incorreto</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="362"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="345"/>
         <source>not found</source>
         <translation>não encontrado</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="365"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="348"/>
         <source>unknown</source>
         <translation>desconhecido</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="395"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="378"/>
         <source>WARNING: filtered list file &apos;%1&apos; doesn&apos;t exist or isn&apos;t accessible, falling back to the full %2</source>
         <translation>AVISO: arquivo de lista filtrado &apos;%1&apos; não existe ou não está acessível, revertendo para a %2 completa</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="397"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="406"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="448"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="450"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="459"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="380"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="389"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="431"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="433"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="442"/>
         <source>game list</source>
         <translation>lista de jogos</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="397"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="406"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="448"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="450"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="459"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="380"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="389"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="431"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="433"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="442"/>
         <source>machine list</source>
         <translation>lista de máquinas</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="405"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="388"/>
         <source>Loading %1 from &apos;%2&apos;</source>
         <translation>Carregando %1 de &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="425"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="408"/>
         <source>WARNING: Can&apos;t open ROM state cache file &apos;%1&apos;, please check permissions</source>
         <translation>AVISO: Não foi possível abrir o arquivo de cache de estados de ROM &apos;%1&apos;, por favor verifque as permissões</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="427"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="410"/>
         <source>WARNING: The ROM state cache file &apos;%1&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>AVISO: O arquivo de cache de estados de ROM &apos;%1&apos; não existe, por favor rode o executável do front-end principal para criá-lo</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="448"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="431"/>
         <source>FATAL: Can&apos;t open %1 cache file &apos;%2&apos;, please check permissions</source>
         <translation>FATAL: Não foi possível abrir o arquivo de cache de %1 &apos;%2&apos;, por favor verifique as permissões</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="450"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="433"/>
         <source>FATAL: The %1 cache file &apos;%2&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>AVISO: O arquivo de cache de %1 &apos;%2&apos; não existe, por favor rode o executável do front-end principal para criá-lo</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="459"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="442"/>
         <source>Done (loading %1 from &apos;%2&apos;)</source>
         <translation>Feito (carregando %1 de &apos;%2&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tweakedqmlappviewer.cpp" line="459"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="442"/>
         <source>%n non-device set(s) loaded</source>
         <translation>
             <numerusform>%n conjunto de não-dispositivo carregado</numerusform>
@@ -1372,40 +1388,40 @@ terem efeito, por favor reinicie o Arcade do QMC2!</translation>
         </translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="464"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="447"/>
         <source>Starting emulator #%1 for %2 ID &apos;%3&apos;</source>
         <translation>Iniciando emulador #%1 para %2 ID &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="464"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="447"/>
         <source>game</source>
         <translation>jogo</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="464"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="447"/>
         <source>machine</source>
         <translation>máquina</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="488"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="471"/>
         <source>WARNING: TweakedQmlApplicationViewer::requestInfo(): unsupported info class &apos;%1&apos;</source>
         <translation>AVISO:TweakedQmlApplicationViewer::requestInfo(): classe de informação não suportada &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="489"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="510"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="472"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="493"/>
         <source>no info available</source>
         <translation>informação não disponível</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="641"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="663"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="624"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="646"/>
         <source>Stopping QML viewer</source>
         <translation>Parando visualizador QML</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="644"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="666"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="627"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="649"/>
         <source>QML viewer stopped - please close the console window to exit</source>
         <translation>Visualizador QML parado - por favor feche a janela do console para sair</translation>
     </message>
