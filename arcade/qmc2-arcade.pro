@@ -156,7 +156,17 @@ greaterThan(QMC2_ARCADE_JOYSTICK, 0) {
 isEmpty(QMC2_ARCADE_QML_IMPORT_PATH): QMC2_ARCADE_QML_IMPORT_PATH = imports
 DEFINES += QMC2_ARCADE_QML_IMPORT_PATH=$$QMC2_ARCADE_QML_IMPORT_PATH
 
+QT += core gui svg sql
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT += quick qml testlib
+} else {
+    QT += declarative
+    CONFIG += qtestlib
+}
+
 macx {
+    QT += opengl
     OBJECTIVE_SOURCES += ../SDLMain_tmpl.m
     HEADERS += ../SDLMain_tmpl.h
     greaterThan(SDL, 1) {
@@ -169,7 +179,6 @@ macx {
     ICON = images/qmc2-arcade.icns
     contains(DEFINES, QMC2_ARCADE_MAC_UNIVERSAL): CONFIG += x86 ppc
     QMAKE_INFO_PLIST = Info.plist
-    QT += opengl
 } else {
     !win32 {
         greaterThan(SDL, 0) {
@@ -199,15 +208,6 @@ macx {
         }
         RC_FILE = qmc2-arcade.rc
     }
-}
-
-QT += core gui svg sql
-
-greaterThan(QT_MAJOR_VERSION, 4) {
-    QT += quick qml testlib
-} else {
-    QT += declarative
-    CONFIG += qtestlib
 }
 
 INCLUDEPATH += ../minizip ../zlib ../lzma
