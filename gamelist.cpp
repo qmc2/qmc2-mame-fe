@@ -2293,7 +2293,6 @@ void Gamelist::parse()
 	// final update of progress bar and game/machine list stats
 	qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->maximum());
 	qmc2MainWindow->labelGamelistStatus->setText(status());
-	qApp->processEvents();
 
 	// sort the master-list
 	qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
