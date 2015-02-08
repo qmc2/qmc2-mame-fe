@@ -659,7 +659,7 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 	}
 
 	if ( !qmc2StopParser )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n software info record(s) imported", "", softwareInfoRowCount()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("%n software info record(s) imported", "", softwareInfoRowCount()));
 
 	if ( !importPaths.isEmpty() ) {
 		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "DatInfoDatabase/SoftwareInfoImportFiles", importPaths);
@@ -790,11 +790,11 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 								beginTransaction();
 							}
 						} else
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in emulator info file %1").arg(QDir::toNativeSeparators(path)));
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in emulator info file %1").arg(QDir::toNativeSeparators(path)));
 					} else if ( !ts.atEnd() )
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$mame' in emulator info file %1").arg(QDir::toNativeSeparators(path)));
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$mame' in emulator info file %1").arg(QDir::toNativeSeparators(path)));
 				} else if ( !ts.atEnd() )
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in emulator info file %1").arg(QDir::toNativeSeparators(path)));
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in emulator info file %1").arg(QDir::toNativeSeparators(path)));
 			}
 			commitTransaction();
 			qmc2MainWindow->progressBarGamelist->setValue(emuInfoDB.pos());
@@ -809,11 +809,11 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 			emuInfoDB.close();
 
 		} else
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open emulator info file %1").arg(QDir::toNativeSeparators(path)));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: can't open emulator info file %1").arg(QDir::toNativeSeparators(path)));
 	}
 
 	if ( !qmc2StopParser )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n emulator info record(s) imported", "", emuInfoRowCount()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("%n emulator info record(s) imported", "", emuInfoRowCount()));
 
 	if ( !importPaths.isEmpty() ) {
 		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "DatInfoDatabase/EmuInfoImportFiles", importPaths);
@@ -960,23 +960,23 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 							}
 						} else {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in game info file %1").arg(QDir::toNativeSeparators(path)));
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in game info file %1").arg(QDir::toNativeSeparators(path)));
 #elif defined(QMC2_EMUTYPE_MESS)
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in machine info file %1").arg(QDir::toNativeSeparators(path)));
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in machine info file %1").arg(QDir::toNativeSeparators(path)));
 #endif
 						}
 					} else {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$bio' in game info file %1").arg(QDir::toNativeSeparators(path)));
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$bio' in game info file %1").arg(QDir::toNativeSeparators(path)));
 #elif defined(QMC2_EMUTYPE_MESS)
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$bio' in machine info file %1").arg(QDir::toNativeSeparators(path)));
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$bio' in machine info file %1").arg(QDir::toNativeSeparators(path)));
 #endif
 					}
 				} else if ( !ts.atEnd() ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in game info file %1").arg(QDir::toNativeSeparators(path)));
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in game info file %1").arg(QDir::toNativeSeparators(path)));
 #elif defined(QMC2_EMUTYPE_MESS)
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in machine info file %1").arg(QDir::toNativeSeparators(path)));
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in machine info file %1").arg(QDir::toNativeSeparators(path)));
 #endif
 				}
 			}
@@ -997,19 +997,19 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 			gameInfoDB.close();
 		} else {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open game info file %1").arg(QDir::toNativeSeparators(path)));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: can't open game info file %1").arg(QDir::toNativeSeparators(path)));
 #elif defined(QMC2_EMUTYPE_MESS)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open machine info file %1").arg(QDir::toNativeSeparators(path)));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: can't open machine info file %1").arg(QDir::toNativeSeparators(path)));
 #endif
 		}
 	}
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	if ( !qmc2StopParser )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n game info record(s) imported", "", gameInfoRowCount()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("%n game info record(s) imported", "", gameInfoRowCount()));
 #elif defined(QMC2_EMUTYPE_MESS)
 	if ( !qmc2StopParser )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n machine info record(s) imported", "", gameInfoRowCount()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("%n machine info record(s) imported", "", gameInfoRowCount()));
 #endif
 
 	if ( !importPaths.isEmpty() ) {

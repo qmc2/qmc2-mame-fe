@@ -544,14 +544,14 @@ void DatInfoDatabaseManager::recreateDatabase()
 	recreateSoftwareInfoTable();
 	recreateEmuInfoTable();
 	recreateGameInfoTable();
-    setQmc2Version(XSTR(QMC2_ARCADE_MAIN_UI_VERSION));
-    setDatInfoVersion(QMC2_ARCADE_DATINFO_VERSION);
+	setQmc2Version(XSTR(QMC2_ARCADE_MAIN_UI_VERSION));
+	setDatInfoVersion(QMC2_ARCADE_DATINFO_VERSION);
 }
 
 bool DatInfoDatabaseManager::softwareInfoImportRequired(QStringList pathList)
 {
-    QStringList importFiles = globalConfig->softwareInfoImportFiles();
-    QStringList importDates = globalConfig->softwareInfoImportDates();
+	QStringList importFiles = globalConfig->softwareInfoImportFiles();
+	QStringList importDates = globalConfig->softwareInfoImportDates();
 
 	if ( importFiles.isEmpty() || importDates.isEmpty() )
 		return true;
@@ -675,7 +675,7 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 		}
 	}
 
-	QMC2_ARCADE_LOG_STR(tr("%n software info record(s) imported", "", softwareInfoRowCount()));
+	QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("%n software info record(s) imported", "", softwareInfoRowCount())));
 
 	if ( !importPaths.isEmpty() ) {
 		globalConfig->setSoftwareInfoImportFiles(importPaths);
@@ -791,12 +791,12 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 								beginTransaction();
 							}
 						} else {
-							QMC2_ARCADE_LOG_STR(tr("WARNING: missing '$end' in emulator info file %1").arg(QDir::toNativeSeparators(path)));
+							QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in emulator info file %1").arg(QDir::toNativeSeparators(path))));
 						}
 					} else if ( !ts.atEnd() ) {
-						QMC2_ARCADE_LOG_STR(tr("WARNING: missing '$mame' in emulator info file %1").arg(QDir::toNativeSeparators(path)));
+						QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$mame' in emulator info file %1").arg(QDir::toNativeSeparators(path))));
 					} else if ( !ts.atEnd() ) {
-						QMC2_ARCADE_LOG_STR(tr("WARNING: missing '$info' in emulator info file %1").arg(QDir::toNativeSeparators(path)));
+						QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in emulator info file %1").arg(QDir::toNativeSeparators(path))));
 					}
 				}
 			}
@@ -807,11 +807,11 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 			emuInfoDB.close();
 
 		} else {
-			QMC2_ARCADE_LOG_STR(tr("WARNING: can't open emulator info file %1").arg(QDir::toNativeSeparators(path)));
+			QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: can't open emulator info file %1").arg(QDir::toNativeSeparators(path))));
 		}
 	}
 
-	QMC2_ARCADE_LOG_STR(tr("%n emulator info record(s) imported", "", emuInfoRowCount()));
+	QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("%n emulator info record(s) imported", "", emuInfoRowCount())));
 
 	if ( !importPaths.isEmpty() ) {
 		globalConfig->setEmuInfoImportFiles(importPaths);
@@ -939,23 +939,23 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 							}
 						} else {
 							if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS ) {
-								QMC2_ARCADE_LOG_STR(tr("WARNING: missing '$end' in machine info file %1").arg(QDir::toNativeSeparators(path)));
+								QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in machine info file %1").arg(QDir::toNativeSeparators(path))));
 							} else {
-								QMC2_ARCADE_LOG_STR(tr("WARNING: missing '$end' in game info file %1").arg(QDir::toNativeSeparators(path)));
+								QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in game info file %1").arg(QDir::toNativeSeparators(path))));
 							}
 						}
 					} else {
 						if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS ) {
-							QMC2_ARCADE_LOG_STR(tr("WARNING: missing '$bio' in machine info file %1").arg(QDir::toNativeSeparators(path)));
+							QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$bio' in machine info file %1").arg(QDir::toNativeSeparators(path))));
 						} else {
-							QMC2_ARCADE_LOG_STR(tr("WARNING: missing '$bio' in game info file %1").arg(QDir::toNativeSeparators(path)));
+							QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$bio' in game info file %1").arg(QDir::toNativeSeparators(path))));
 						}
 					}
 				} else if ( !ts.atEnd() ) {
 					if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS ) {
-						QMC2_ARCADE_LOG_STR(tr("WARNING: missing '$info' in machine info file %1").arg(QDir::toNativeSeparators(path)));
+						QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in machine info file %1").arg(QDir::toNativeSeparators(path))));
 					} else {
-						QMC2_ARCADE_LOG_STR(tr("WARNING: missing '$info' in game info file %1").arg(QDir::toNativeSeparators(path)));
+						QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in game info file %1").arg(QDir::toNativeSeparators(path))));
 					}
 				}
 			}
@@ -966,17 +966,17 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 			gameInfoDB.close();
 		} else {
 			if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS ) {
-				QMC2_ARCADE_LOG_STR(tr("WARNING: can't open machine info file %1").arg(QDir::toNativeSeparators(path)));
+				QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: can't open machine info file %1").arg(QDir::toNativeSeparators(path))));
 			} else {
-				QMC2_ARCADE_LOG_STR(tr("WARNING: can't open game info file %1").arg(QDir::toNativeSeparators(path)));
+				QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: can't open game info file %1").arg(QDir::toNativeSeparators(path))));
 			}
 		}
 	}
 
 	if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS ) {
-		QMC2_ARCADE_LOG_STR(tr("%n machine info record(s) imported", "", gameInfoRowCount()));
+		QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("%n machine info record(s) imported", "", gameInfoRowCount())));
 	} else {
-		QMC2_ARCADE_LOG_STR(tr("%n game info record(s) imported", "", gameInfoRowCount()));
+		QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("%n game info record(s) imported", "", gameInfoRowCount())));
 	}
 
 	if ( !importPaths.isEmpty() ) {
