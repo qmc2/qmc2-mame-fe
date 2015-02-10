@@ -10,7 +10,7 @@ void Syncer::syncTemplates()
 {
     qDebug() << ">>> Reading source template <<<";
     QFile f(sourceTemplate);
-    if ( f.open(QIODevice::ReadOnly	| QIODevice::Text) ) {
+    if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
         QTextStream ts(&f);
         QString section, option, description;
         int startIndex, endIndex;
@@ -126,13 +126,13 @@ void Syncer::syncTemplates()
                 if ( !section.isEmpty() ) {
                     if ( targetSectionDescriptions[section].isEmpty() ) {
                         if ( !sectionDescriptions[section].isEmpty() )
-                            std::cout << QString("    <description lang=\"%1\" text=\"%2\"/>\n").arg(language).arg(sectionDescriptions[section]).toLocal8Bit().constData();
+                            std::cout << QString("\t\t<description lang=\"%1\" text=\"%2\"/>\n").arg(language).arg(sectionDescriptions[section]).toLocal8Bit().constData();
                     }
                     section.clear();
                 } else if ( !option.isEmpty() ) {
                     if ( targetOptionDescriptions[option].isEmpty() ) {
                         if ( !optionDescriptions[option].isEmpty() )
-                            std::cout << QString("      <description lang=\"%1\" text=\"%2\"/>\n").arg(language).arg(optionDescriptions[option]).toLocal8Bit().constData();
+                            std::cout << QString("\t\t\t<description lang=\"%1\" text=\"%2\"/>\n").arg(language).arg(optionDescriptions[option]).toLocal8Bit().constData();
                     }
                     option.clear();
                 } else
