@@ -5842,10 +5842,10 @@ void MainWindow::action_embedEmulator_triggered()
 
 #if defined(QMC2_OS_UNIX)
 		if ( winIdList.count() > 1 )
-			log(QMC2_LOG_FRONTEND, tr("WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding").arg(gameID).arg(winIdList[0]));
+			log(QMC2_LOG_FRONTEND, tr("WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding").arg(gameID).arg("0x" + QString::number(winIdList[0], 16)));
 #elif defined(QMC2_OS_WIN)
 		if ( winIdList.count() > 1 )
-			log(QMC2_LOG_FRONTEND, tr("WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding").arg(gameID).arg((qulonglong)winIdList[0]));
+			log(QMC2_LOG_FRONTEND, tr("WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding").arg(gameID).arg("0x" + QString::number((qulonglong)winIdList[0], 16)));
 #endif
 
 		if ( !winIdList.isEmpty() ) {
