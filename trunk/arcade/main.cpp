@@ -186,8 +186,7 @@ int main(int argc, char *argv[])
     uint32_t exec_path_size = sizeof(exec_path);
     if ( _NSGetExecutablePath(exec_path, &exec_path_size) == 0 ) {
         QFileInfo fi(exec_path);
-        QString pluginPath = fi.absoluteDir().absolutePath() + "/../PlugIns";
-        QCoreApplication::addLibraryPath(pluginPath);
+        QCoreApplication::addLibraryPath(fi.absoluteDir().absolutePath() + "/../PlugIns");
     }
 #endif
 
