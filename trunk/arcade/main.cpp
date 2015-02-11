@@ -2,6 +2,7 @@
 #include <QIcon>
 #include <QStyleFactory>
 #include <QTimer>
+#include <QString>
 #include <QUrl>
 #if QT_VERSION < 0x050000
 #include <QApplication>
@@ -17,6 +18,11 @@
 #include "keyeventfilter.h"
 #if defined(QMC2_ARCADE_OS_WIN)
 #include "../windows_tools.h"
+#endif
+#if defined(QMC2_ARCADE_OS_MAC)
+#include <mach-o/dyld.h>
+#include <QFileInfo>
+#include <QDir>
 #endif
 
 ArcadeSettings *globalConfig = NULL;
@@ -174,6 +180,17 @@ int SDL_main(int argc, char *argv[]) {
 
 int main(int argc, char *argv[])
 {
+#if defined(QMC2_ARCADE_OS_MAC)
+    // this hack ensures that we're using the bundled plugins rather than the ones from a Qt SDK installation.
+    char exec_path[4096];
+    uint32_t exec_path_size = sizeof(exec_path);
+    if ( _NSGetExecutablePath(exec_path, &exec_path_size) == 0 ) {
+        QFileInfo fi(exec_path);
+        QString pluginPath = fi.absoluteDir().absolutePath() + "/../PlugIns";
+        QCoreApplication::addLibraryPath(pluginPath);
+    }
+#endif
+
     qsrand(QDateTime::currentDateTime().toTime_t());
 #if QT_VERSION < 0x050000
     qInstallMsgHandler(qtMessageHandler);
