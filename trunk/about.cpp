@@ -114,7 +114,7 @@ void About::showEvent(QShowEvent *e)
 #elif defined(QMC2_EMUTYPE_UME)
 		"<p><font size=\"+1\"><b>QMC2 - U.M.E. Catalog / Launcher II</b></font><br>" +
 #endif
-		tr("Qt 4 based multi-platform/multi-emulator front end") + "<br>" +
+		tr("Qt based multi-platform/multi-emulator front end") + "<br>" +
 		tr("Version ") + QString(XSTR(QMC2_VERSION)) +
 #if QMC2_SVN_REV > 0
 		" (" + tr("SVN r%1").arg(QMC2_SVN_REV) + ")" +
