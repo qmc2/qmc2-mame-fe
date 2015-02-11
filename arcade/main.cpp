@@ -181,7 +181,7 @@ int SDL_main(int argc, char *argv[]) {
 int main(int argc, char *argv[])
 {
 #if defined(QMC2_ARCADE_OS_MAC)
-    // this hack ensures that we're using the bundled plugins rather than the ones from a Qt SDK installation.
+    // this hack ensures that we're using the bundled plugins rather than the ones from a Qt SDK installation
     char exec_path[4096];
     uint32_t exec_path_size = sizeof(exec_path);
     if ( _NSGetExecutablePath(exec_path, &exec_path_size) == 0 ) {
