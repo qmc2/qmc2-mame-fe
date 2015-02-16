@@ -4246,8 +4246,8 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file://" + QDir::fromNativeSeparators(qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath);
 #endif
 
-				if ( qmc2Gamelist->datInfoDb()->existsSoftwareInfo(qmc2SoftwareList->systemName, entryName) ) {
-					QString swInfo = qmc2Gamelist->datInfoDb()->softwareInfo(qmc2SoftwareList->systemName, entryName);
+				if ( qmc2Gamelist->datInfoDb()->existsSoftwareInfo(listName, entryName) ) {
+					QString swInfo = qmc2Gamelist->datInfoDb()->softwareInfo(listName, entryName);
 					if ( !swInfo.isEmpty() ) {
 						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = swInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "OK";
@@ -4256,20 +4256,8 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "NO_DATA";
 					}
 				} else {
-					QString parentSystem = qmc2ParentHash[qmc2SoftwareList->systemName];
-					if ( !parentSystem.isEmpty() && qmc2Gamelist->datInfoDb()->existsSoftwareInfo(parentSystem, entryName) ) {
-						QString swInfo = qmc2Gamelist->datInfoDb()->softwareInfo(parentSystem, entryName);
-						if ( !swInfo.isEmpty() ) {
-							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = swInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "OK";
-						} else {
-							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = tr("No data available");
-							qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "NO_DATA";
-						}
-					} else {
-						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = tr("No data available");
-						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "NO_DATA";
-					}
+					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = tr("No data available");
+					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "NO_DATA";
 				}
 
 				qmc2SoftwareNotesEditor->setCurrentTemplateName(softwareNotesTemplate);
@@ -4291,24 +4279,16 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 
 		case QMC2_SWINFO_INFO_PAGE:
 			if ( qmc2SoftwareList->currentItem != qmc2LastSoftwareInfoItem ) {
+				QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
 				QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
-				if ( qmc2Gamelist->datInfoDb()->existsSoftwareInfo(qmc2SoftwareList->systemName, entryName) ) {
-					QString swInfo = qmc2Gamelist->datInfoDb()->softwareInfo(qmc2SoftwareList->systemName, entryName);
+				if ( qmc2Gamelist->datInfoDb()->existsSoftwareInfo(listName, entryName) ) {
+					QString swInfo = qmc2Gamelist->datInfoDb()->softwareInfo(listName, entryName);
 					if ( !swInfo.isEmpty() )
 						textBrowserSoftwareInfo->setHtml(swInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
 					else
 						textBrowserSoftwareInfo->setHtml("<p>" + tr("No data available") + "</p>");
-				} else {
-					QString parentSystem = qmc2ParentHash[qmc2SoftwareList->systemName];
-					if ( !parentSystem.isEmpty() && qmc2Gamelist->datInfoDb()->existsSoftwareInfo(parentSystem, entryName) ) {
-						QString swInfo = qmc2Gamelist->datInfoDb()->softwareInfo(parentSystem, entryName);
-						if ( !swInfo.isEmpty() )
-							textBrowserSoftwareInfo->setHtml(swInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
-						else
-							textBrowserSoftwareInfo->setHtml("<p>" + tr("No data available") + "</p>");
-					} else
-						textBrowserSoftwareInfo->setHtml("<p>" + tr("No data available") + "</p>");
-				}
+				} else
+					textBrowserSoftwareInfo->setHtml("<p>" + tr("No data available") + "</p>");
 				qmc2LastSoftwareInfoItem = qmc2SoftwareList->currentItem;
 			}
 			break;
