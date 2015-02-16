@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>588</width>
-    <height>594</height>
+    <width>721</width>
+    <height>721</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -343,9 +343,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-300</y>
-            <width>558</width>
-            <height>797</height>
+            <y>0</y>
+            <width>691</width>
+            <height>791</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayoutScrollAreeaSettings" rowstretch="0,0,0,1,0">
@@ -593,6 +593,16 @@
                    </widget>
                   </item>
                   <item>
+                   <widget class="QCheckBox" name="checkBoxSetRewriterIgnoreErrors">
+                    <property name="toolTip">
+                     <string>Ignore reproduction errors (not recommended)</string>
+                    </property>
+                    <property name="text">
+                     <string>Ignore errors</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <spacer name="verticalSpacer_4">
                     <property name="orientation">
                      <enum>Qt::Vertical</enum>
@@ -600,7 +610,7 @@
                     <property name="sizeHint" stdset="0">
                      <size>
                       <width>20</width>
-                      <height>40</height>
+                      <height>0</height>
                      </size>
                     </property>
                    </spacer>
@@ -1965,6 +1975,7 @@
   <tabstop>checkBoxSetRewriterWhileAnalyzing</tabstop>
   <tabstop>checkBoxSetRewriterGoodDumpsOnly</tabstop>
   <tabstop>checkBoxSetRewriterSelfContainedSets</tabstop>
+  <tabstop>checkBoxSetRewriterIgnoreErrors</tabstop>
   <tabstop>radioButtonSetRewriterZipArchives</tabstop>
   <tabstop>spinBoxSetRewriterZipLevel</tabstop>
   <tabstop>checkBoxSetRewriterUniqueCRCs</tabstop>

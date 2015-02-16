@@ -475,6 +475,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterWhileAnalyzing", checkBoxSetRewriterWhileAnalyzing->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterSelfContainedSets", checkBoxSetRewriterSelfContainedSets->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterGoodDumpsOnly", checkBoxSetRewriterGoodDumpsOnly->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterIgnoreErrors", checkBoxSetRewriterIgnoreErrors->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipArchives", radioButtonSetRewriterZipArchives->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipLevel", spinBoxSetRewriterZipLevel->value());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUniqueCRCs", checkBoxSetRewriterUniqueCRCs->isChecked());
@@ -567,6 +568,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	checkBoxSetRewriterWhileAnalyzing->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterWhileAnalyzing", false).toBool());
 	checkBoxSetRewriterSelfContainedSets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterSelfContainedSets", false).toBool());
 	checkBoxSetRewriterGoodDumpsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterGoodDumpsOnly", true).toBool());
+	checkBoxSetRewriterIgnoreErrors->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterIgnoreErrors", false).toBool());
 	radioButtonSetRewriterZipArchives->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipArchives", true).toBool());
 	spinBoxSetRewriterZipLevel->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipLevel", Z_DEFAULT_COMPRESSION).toInt());
 	checkBoxSetRewriterUniqueCRCs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUniqueCRCs", false).toBool());
@@ -3089,6 +3091,7 @@ void ROMAlyzer::runSetRewriter()
 	log(tr("set rewriter: rewriting %1 set '%2' to '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
 
 	bool loadOkay = true;
+	bool ignoreErrors = checkBoxSetRewriterIgnoreErrors->isChecked();
 	QMapIterator<QString, QStringList> it(setRewriterFileMap);
 	QMap<QString, QByteArray> outputDataMap;
 	int count = 0;
@@ -3122,7 +3125,7 @@ void ROMAlyzer::runSetRewriter()
 			} else {
 				if ( checkBoxSetRewriterGoodDumpsOnly->isChecked() ) {
 					log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2' from '%3', aborting").arg(fileName).arg(fileCRC).arg(filePath));
-					loadOkay = false;
+					loadOkay = ignoreErrors ? true : false;
 				} else
 					log(tr("set rewriter: WARNING: can't load '%1' with CRC '%2' from '%3', ignoring this file").arg(fileName).arg(fileCRC).arg(filePath));
 			}
@@ -3133,7 +3136,7 @@ void ROMAlyzer::runSetRewriter()
 			} else {
 				if ( checkBoxSetRewriterGoodDumpsOnly->isChecked() ) {
 					log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2' from '%3', aborting").arg(fileName).arg(fileCRC).arg(filePath));
-					loadOkay = false;
+					loadOkay = ignoreErrors ? true : false;
 				} else
 					log(tr("set rewriter: WARNING: can't load '%1' with CRC '%2' from '%3', ignoring this file").arg(fileName).arg(fileCRC).arg(filePath));
 			}
@@ -3144,7 +3147,7 @@ void ROMAlyzer::runSetRewriter()
 			} else {
 				if ( checkBoxSetRewriterGoodDumpsOnly->isChecked() ) {
 					log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2', aborting").arg(filePath).arg(fileCRC));
-					loadOkay = false;
+					loadOkay = ignoreErrors ? true : false;
 				} else
 					log(tr("set rewriter: WARNING: can't load '%1' with CRC '%2', ignoring this file").arg(filePath).arg(fileCRC));
 			}
@@ -3183,14 +3186,14 @@ void ROMAlyzer::runSetRewriter()
 					log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
 				else {
 					log(tr("set rewriter: FATAL: failed to create new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
-					loadOkay = false;
+					loadOkay = ignoreErrors ? true : false;
 				}
 			} else {
 				if ( writeAllFileData(outPath, &outputDataMap, true, progressBar) ) {
 					log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
 				} else {
 					log(tr("set rewriter: FATAL: failed to create new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
-					loadOkay = false;
+					loadOkay = ignoreErrors ? true : false;
 				}
 			}
 		} else {
