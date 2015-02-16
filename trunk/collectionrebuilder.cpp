@@ -1552,6 +1552,7 @@ void CollectionRebuilderThread::run()
 						if ( !dbStatusGood )
 							missingDisks++;
 					}
+					emit statusUpdated(setsProcessed, missingDumps, missingDisks);
 					bool rewriteOkay = true;
 					if ( !romNameList.isEmpty() )
 						rewriteOkay = rewriteSet(&setKey, &romNameList, &romSha1List, &romCrcList, &romSizeList, &diskNameList, &diskSha1List);
