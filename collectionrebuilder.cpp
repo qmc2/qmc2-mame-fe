@@ -1059,6 +1059,7 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 	if ( !d.exists() )
 		success = d.mkdir(QDir::cleanPath(baseDir + "/" + id));
 	int reproducedDumps = 0;
+	bool ignoreErrors = rebuilderDialog()->romAlyzer()->checkBoxSetRewriterIgnoreErrors->isChecked();
 	for (int i = 0; i < romNameList->count() && !exitThread && success; i++) {
 		QString fileName = d.absoluteFilePath(romNameList->at(i));
 		if ( !createBackup(fileName) ) {
@@ -1104,6 +1105,8 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 			emit log(tr("FATAL: failed opening '%1' for writing"));
 			success = false;
 		}
+		if ( ignoreErrors )
+			success = true;
 	}
 	if ( reproducedDumps == 0 )
 		d.rmdir(d.absolutePath());
@@ -1128,6 +1131,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 			return false;
 	bool success = true;
 	bool uniqueCRCs = rebuilderDialog()->romAlyzer()->checkBoxSetRewriterUniqueCRCs->isChecked();
+	bool ignoreErrors = rebuilderDialog()->romAlyzer()->checkBoxSetRewriterIgnoreErrors->isChecked();
 	int zipLevel = rebuilderDialog()->romAlyzer()->spinBoxSetRewriterZipLevel->value();
 	zipFile zip = zipOpen(fileName.toLocal8Bit().constData(), APPEND_STATUS_CREATE);
 	if ( zip ) {
@@ -1183,6 +1187,8 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 						reproducedDumps++;
 				}
 			}
+			if ( ignoreErrors )
+				success = true;
 		}
 		if ( rebuilderDialog()->romAlyzer()->checkBoxAddZipComment->isChecked() )
 			zipClose(zip, tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit().constData());
