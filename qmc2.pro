@@ -59,6 +59,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			rankitemwidget.ui \
 			checksumscannerlog.ui \
 			collectionrebuilder.ui \
+			missingdumpsviewer.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
 			htmleditor/tablepropertydialog.ui
@@ -132,6 +133,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			collectionrebuilder.cpp \
 			swldbmgr.cpp \
 			datinfodbmgr.cpp \
+			missingdumpsviewer.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -252,6 +254,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			collectionrebuilder.h \
 			swldbmgr.h \
 			datinfodbmgr.h \
+			missingdumpsviewer.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h

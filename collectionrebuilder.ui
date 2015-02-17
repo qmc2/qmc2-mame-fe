@@ -317,6 +317,23 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="1">
+       <widget class="QToolButton" name="toolButtonViewMissingList">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Show / hide list of missing dumps</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/detail.png</normaloff>:/data/img/detail.png</iconset>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -744,6 +761,7 @@
   <tabstop>lineEditRomEntity</tabstop>
   <tabstop>lineEditDiskEntity</tabstop>
   <tabstop>plainTextEditLog</tabstop>
+  <tabstop>toolButtonViewMissingList</tabstop>
   <tabstop>checkBoxEnableLog</tabstop>
   <tabstop>spinBoxMaxLogSize</tabstop>
   <tabstop>toolButtonClear</tabstop>
@@ -760,8 +778,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>450</x>
-     <y>484</y>
+     <x>532</x>
+     <y>455</y>
     </hint>
     <hint type="destinationlabel">
      <x>431</x>
@@ -776,8 +794,8 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>403</x>
-     <y>484</y>
+     <x>485</x>
+     <y>455</y>
     </hint>
     <hint type="destinationlabel">
      <x>350</x>
@@ -792,7 +810,7 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>450</x>
+     <x>532</x>
      <y>96</y>
     </hint>
     <hint type="destinationlabel">
@@ -808,7 +826,7 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>450</x>
+     <x>532</x>
      <y>67</y>
     </hint>
     <hint type="destinationlabel">
@@ -876,7 +894,7 @@
      <y>53</y>
     </hint>
     <hint type="destinationlabel">
-     <x>450</x>
+     <x>532</x>
      <y>67</y>
     </hint>
    </hints>
@@ -909,7 +927,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>285</x>
-     <y>96</y>
+     <y>94</y>
     </hint>
    </hints>
   </connection>
@@ -940,7 +958,7 @@
      <y>85</y>
     </hint>
     <hint type="destinationlabel">
-     <x>450</x>
+     <x>532</x>
      <y>96</y>
     </hint>
    </hints>
@@ -972,8 +990,8 @@
      <y>114</y>
     </hint>
     <hint type="destinationlabel">
-     <x>130</x>
-     <y>113</y>
+     <x>275</x>
+     <y>126</y>
     </hint>
    </hints>
   </connection>
@@ -988,8 +1006,8 @@
      <y>113</y>
     </hint>
     <hint type="destinationlabel">
-     <x>161</x>
-     <y>117</y>
+     <x>358</x>
+     <y>126</y>
     </hint>
    </hints>
   </connection>
@@ -1004,8 +1022,8 @@
      <y>116</y>
     </hint>
     <hint type="destinationlabel">
-     <x>189</x>
-     <y>113</y>
+     <x>445</x>
+     <y>126</y>
     </hint>
    </hints>
   </connection>
@@ -1020,8 +1038,8 @@
      <y>111</y>
     </hint>
     <hint type="destinationlabel">
-     <x>215</x>
-     <y>115</y>
+     <x>531</x>
+     <y>126</y>
     </hint>
    </hints>
   </connection>

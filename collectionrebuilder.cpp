@@ -109,7 +109,10 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 	connect(rebuilderThread(), SIGNAL(progressTextChanged(const QString &)), this, SLOT(rebuilderThread_progressTextChanged(const QString &)));
 	connect(rebuilderThread(), SIGNAL(progressRangeChanged(int, int)), this, SLOT(rebuilderThread_progressRangeChanged(int, int)));
 	connect(rebuilderThread(), SIGNAL(progressChanged(int)), this, SLOT(rebuilderThread_progressChanged(int)));
-	connect(rebuilderThread(), SIGNAL(statusUpdated(int, int, int)), this, SLOT(rebuilderThread_statusUpdated(int, int, int)));
+	connect(rebuilderThread(), SIGNAL(statusUpdated(quint64, quint64, quint64)), this, SLOT(rebuilderThread_statusUpdated(quint64, quint64, quint64)));
+	connect(rebuilderThread(), SIGNAL(newMissing(QString, QString, QString, QString, QString, QString, QString)), this, SLOT(rebuilderThread_newMissing(QString, QString, QString, QString, QString, QString, QString)));
+
+	m_missingDumpsViewer = NULL;
 
 	m_iconCheckpoint = QIcon(QString::fromUtf8(":/data/img/checkpoint.png"));
 	m_iconNoCheckpoint = QIcon(QString::fromUtf8(":/data/img/no_checkpoint.png"));
@@ -196,6 +199,8 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 
 CollectionRebuilder::~CollectionRebuilder()
 {
+	if ( missingDumpsViewer() )
+		delete missingDumpsViewer();
 	if ( rebuilderThread() )
 		delete rebuilderThread();
 }
@@ -229,6 +234,7 @@ void CollectionRebuilder::adjustIconSizes()
 	pushButtonPauseResume->setIconSize(iconSize);
 	comboBoxXmlSource->setIconSize(iconSize);
 	toolButtonRemoveXmlSource->setIconSize(iconSize);
+	toolButtonViewMissingList->setIconSize(iconSize);
 	toolButtonClearFilterExpression->setIconSize(iconSize);
 	toolButtonClearFilterExpressionSoftwareLists->setIconSize(iconSize);
 
@@ -250,31 +256,40 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 	if ( rebuilderThread()->isActive )
 		rebuilderThread()->stopRebuilding = true;
 	else if ( rebuilderThread()->isWaiting ) {
+		newMissingList().clear();
 		if ( comboBoxXmlSource->itemData(comboBoxXmlSource->currentIndex()).toBool() ) {
-			if ( QMessageBox::question(this, tr("Confirm checkpoint restart"), tr("Restart from stored checkpoint?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes ) {
-				qint64 cp = 0;
-				int index = comboBoxXmlSource->currentIndex();
-				if ( index == 0 )
-					cp = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/Checkpoint", -1).toLongLong();
-				else {
-					index -= 1;
-					QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
-					QStringList softwareCheckpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", QStringList()).toStringList();
-					if ( index >= 0 && index < checkpointList.count() ) {
-						cp = checkpointList[index].toLongLong();
-						if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
-							rebuilderThread()->setListCheckpoint(softwareCheckpointList[index], index);
-					} else {
-						cp = -1;
-						if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
-							rebuilderThread()->setListCheckpoint(QString(), index);
+			switch ( QMessageBox::question(this, tr("Confirm checkpoint restart"), tr("Restart from stored checkpoint?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::No) ) {
+				case QMessageBox::Yes: {
+						qint64 cp = 0;
+						int index = comboBoxXmlSource->currentIndex();
+						if ( index == 0 )
+							cp = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/Checkpoint", -1).toLongLong();
+						else {
+							index -= 1;
+							QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
+							QStringList softwareCheckpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", QStringList()).toStringList();
+							if ( index >= 0 && index < checkpointList.count() ) {
+								cp = checkpointList[index].toLongLong();
+								if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+									rebuilderThread()->setListCheckpoint(softwareCheckpointList[index], index);
+							} else {
+								cp = -1;
+								if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+									rebuilderThread()->setListCheckpoint(QString(), index);
+							}
+						}
+						rebuilderThread()->checkpointRestart(cp);
 					}
-				}
-				rebuilderThread()->checkpointRestart(cp);
-			} else {
-				rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
-				if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
-					rebuilderThread()->setListCheckpoint(QString(), comboBoxXmlSource->currentIndex());
+					break;
+				case QMessageBox::No:
+					rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
+					if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+						rebuilderThread()->setListCheckpoint(QString(), comboBoxXmlSource->currentIndex());
+					break;
+				case QMessageBox::Cancel:
+					pushButtonStartStop->setEnabled(true);
+					pushButtonPauseResume->setEnabled(true);
+					return;
 			}
 		} else {
 			rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
@@ -455,6 +470,21 @@ void CollectionRebuilder::on_toolButtonRemoveXmlSource_clicked()
 	comboBoxXmlSource->blockSignals(false);
 }
 
+void CollectionRebuilder::on_toolButtonViewMissingList_clicked()
+{
+	if ( missingDumpsViewer() ) {
+		if ( missingDumpsViewer()->isVisible() )
+			missingDumpsViewer()->hide();
+		else
+			missingDumpsViewer()->show();
+	} else {
+		m_missingDumpsViewer = new MissingDumpsViewer(0);
+		if ( !newMissingList().isEmpty() && missingDumpsViewer() )
+			QTimer::singleShot(0, this, SLOT(updateMissingList()));
+		missingDumpsViewer()->show();
+	}
+}
+
 void CollectionRebuilder::rebuilderThread_rebuildStarted()
 {
 	pushButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
@@ -597,7 +627,7 @@ void CollectionRebuilder::rebuilderThread_progressChanged(int progress)
 	progressBar->setValue(progress);
 }
 
-void CollectionRebuilder::rebuilderThread_statusUpdated(int setsProcessed, int missingDumps, int missingDisks)
+void CollectionRebuilder::rebuilderThread_statusUpdated(quint64 setsProcessed, quint64 missingDumps, quint64 missingDisks)
 {
 	QString statusString = "<center><table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>";
 	statusString += "<td nowrap width=\"16.5%\" align=\"left\"><b>" + tr("Sets processed") + ":</b></td><td nowrap width=\"16.5%\" align=\"right\">" + QString::number(setsProcessed) + "</td>";
@@ -605,8 +635,14 @@ void CollectionRebuilder::rebuilderThread_statusUpdated(int setsProcessed, int m
 	statusString += "<td nowrap width=\"16.5%\" align=\"left\"><b>" + tr("Missing ROMs") + ":</b></td><td nowrap width=\"16.5%\" align=\"right\">" + QString::number(missingDumps) + "</td>";
 	statusString += "<td nowrap align=\"center\">|</td>";
 	statusString += "<td nowrap width=\"16.5%\" align=\"left\"><b>" + tr("Missing disks") + ":</b></td><td nowrap width=\"16.5%\" align=\"right\">" + QString::number(missingDisks) + "</td>";
+	statusString += "<td nowrap align=\"right\">|</td>";
 	statusString += "</tr></table></center>";
 	labelRebuildStatus->setText(statusString);
+}
+
+void CollectionRebuilder::rebuilderThread_newMissing(QString id, QString type, QString name, QString size, QString crc, QString sha1, QString reason)
+{
+	newMissingList() << id + "|" + type + "|" + name + "|" + size + "|" + crc + "|" + sha1 + "|" + reason;
 }
 
 void CollectionRebuilder::animationTimer_timeout()
@@ -626,6 +662,29 @@ void CollectionRebuilder::animationTimer_timeout()
 	p.end();
 	romAlyzer()->pushButtonRomCollectionRebuilder->setIcon(QIcon(rotatedPixmap));
 	m_animationTimer.start(QMC2_ROMALYZER_REBUILD_ANIM_SPEED);
+	if ( !newMissingList().isEmpty() && missingDumpsViewer() )
+		QTimer::singleShot(0, this, SLOT(updateMissingList()));
+}
+
+void CollectionRebuilder::updateMissingList()
+{
+	QList<QTreeWidgetItem *> itemList;
+	foreach (QString newMissing, newMissingList()) {
+		QStringList missingWords = newMissing.split("|");
+		if ( missingWords.count() >= 7 ) {
+			QTreeWidgetItem *newItem = new QTreeWidgetItem(0);
+			newItem->setText(QMC2_MDV_COLUMN_ID, missingWords[0]);
+			newItem->setText(QMC2_MDV_COLUMN_TYPE, missingWords[1]);
+			newItem->setText(QMC2_MDV_COLUMN_NAME, missingWords[2]);
+			newItem->setText(QMC2_MDV_COLUMN_SIZE, missingWords[3]);
+			newItem->setText(QMC2_MDV_COLUMN_CRC, missingWords[4]);
+			newItem->setText(QMC2_MDV_COLUMN_SHA1, missingWords[5]);
+			newItem->setText(QMC2_MDV_COLUMN_REASON, missingWords[6]);
+			itemList << newItem;
+		}
+	}
+	missingDumpsViewer()->treeWidget->insertTopLevelItems(0, itemList);
+	newMissingList().clear();
 }
 
 void CollectionRebuilder::showEvent(QShowEvent *e)
@@ -641,6 +700,9 @@ void CollectionRebuilder::hideEvent(QHideEvent *e)
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("Layout/%1/Geometry").arg(m_settingsKey), saveGeometry());
 	if ( e )
 		QDialog::hideEvent(e);
+
+	if ( missingDumpsViewer() )
+		missingDumpsViewer()->hide();
 }
 
 void CollectionRebuilder::closeEvent(QCloseEvent *e)
@@ -674,6 +736,9 @@ void CollectionRebuilder::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateI", toolButtonStateI->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateN", toolButtonStateN->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateU", toolButtonStateU->isChecked());
+
+	if ( missingDumpsViewer() )
+		missingDumpsViewer()->close();
 }
 
 void CollectionRebuilder::keyPressEvent(QKeyEvent *e)
@@ -732,7 +797,7 @@ void CollectionRebuilderThread::reopenDatabase()
 	connect(checkSumDb(), SIGNAL(log(const QString &)), rebuilderDialog(), SLOT(log(const QString &)));
 }
 
-bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List)
+bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List, QStringList *diskSizeList)
 {
 	if ( xml.isEmpty() )
 		return false;
@@ -834,9 +899,18 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 								if ( endIndex >= 0 )
 									diskSha1 = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
+							QString diskSize;
+							startIndex = xmlLine.indexOf("size=\"");
+							if ( startIndex >= 0 ) {
+								startIndex += 6;
+								endIndex = xmlLine.indexOf("\"", startIndex);
+								if ( endIndex >= 0 )
+									diskSize = xmlLine.mid(startIndex, endIndex - startIndex);
+							}
 							if ( !diskSha1.isEmpty() ) {
 								*diskNameList << diskName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");;
 								*diskSha1List << diskSha1;
+								*diskSizeList << diskSize;
 							}
 						}
 					}
@@ -849,7 +923,7 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 		return false;
 }
 
-bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List)
+bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List, QStringList *diskSizeList)
 {
 	id->clear();
 	romNameList->clear();
@@ -858,6 +932,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 	romSizeList->clear();
 	diskNameList->clear();
 	diskSha1List->clear();
+	diskSizeList->clear();
 	if ( m_xmlIndex < 0 || m_xmlIndexCount < 0 ) {
 		if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
 			m_xmlIndex = 1;
@@ -898,7 +973,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 		if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
 			switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 				case QMC2_ROMALYZER_MODE_SOFTWARE:
-					if ( parseXml(swlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List) ) {
+					if ( parseXml(swlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List, diskSizeList) ) {
 						id->prepend(swlDb()->list(m_xmlIndex) + ":");
 						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex++;
@@ -911,7 +986,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 					}
 				case QMC2_ROMALYZER_MODE_SYSTEM:
 				default:
-					if ( parseXml(xmlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List) ) {
+					if ( parseXml(xmlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List, diskSizeList) ) {
 						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex++;
 						emit progressChanged(m_xmlIndex);
@@ -949,7 +1024,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 				}
 				if ( !m_xmlFile.atEnd() && !exitThread ) {
 					xmlString += line;
-					if ( parseXml(xmlString, id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List) ) {
+					if ( parseXml(xmlString, id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List, diskSizeList) ) {
 						if ( rebuilderDialog()->romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE && !m_currentListName.isEmpty() )
 							id->prepend(m_currentListName + ":");
 						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
@@ -1071,7 +1146,8 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 			success = false;
 		}
 		QFile f(fileName);
-		if ( f.open(QIODevice::WriteOnly) ) {
+		QString errorReason = tr("file error");
+		if ( success && f.open(QIODevice::WriteOnly) ) {
 			QByteArray data;
 			quint64 size = romSizeList->at(i).toULongLong();
 			QString path, member, type;
@@ -1082,8 +1158,10 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 					success = readSevenZipFileData(path, romCrcList->at(i), &data);
 				else if ( type == "FILE" )
 					success = readFileData(path, &data);
-				else
+				else {
 					success = false;
+					errorReason = tr("unknown file type '%1'").arg(type);
+				}
 				if ( success ) {
 					emit log(tr("writing '%1' (size: %2)").arg(fileName).arg(ROMAlyzer::humanReadable(data.length())));
 					quint64 bytesWritten = 0;
@@ -1108,6 +1186,10 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 		} else {
 			emit log(tr("FATAL: failed opening '%1' for writing"));
 			success = false;
+		}
+		if ( !success ) {
+			emit statusUpdated(setsProcessed, ++missingROMs, missingDisks);
+			emit newMissing(id, tr("ROM"), romNameList->at(i), romSizeList->at(i), romCrcList->at(i), romSha1List->at(i), errorReason);
 		}
 		if ( ignoreErrors )
 			success = true;
@@ -1160,6 +1242,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 			QByteArray data;
 			quint64 size = romSizeList->at(i).toULongLong();
 			QString path, member, type;
+			QString errorReason = tr("file error");
 			if ( checkSumDb()->getData(romSha1List->at(i), romCrcList->at(i), &size, &path, &member, &type) ) {
 				if ( type == "ZIP" )
 					success = readZipFileData(path, romCrcList->at(i), &data);
@@ -1167,8 +1250,10 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 					success = readSevenZipFileData(path, romCrcList->at(i), &data);
 				else if ( type == "FILE" )
 					success = readFileData(path, &data);
-				else
+				else {
 					success = false;
+					errorReason = tr("unknown file type '%1'").arg(type);
+				}
 				if ( success && zipOpenNewFileInZip(zip, file.toLocal8Bit().constData(), &zipInfo, (const void *)file.toLocal8Bit().constData(), file.length(), 0, 0, 0, Z_DEFLATED, zipLevel) == ZIP_OK ) {
 					emit log(tr("writing '%1' to ZIP archive '%2' (uncompressed size: %3)").arg(file).arg(fileName).arg(ROMAlyzer::humanReadable(data.length())));
 					quint64 bytesWritten = 0;
@@ -1190,6 +1275,10 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 					if ( success )
 						reproducedDumps++;
 				}
+			}
+			if ( !success ) {
+				emit statusUpdated(setsProcessed, ++missingROMs, missingDisks);
+				emit newMissing(id, tr("ROM"), romNameList->at(i), romSizeList->at(i), romCrcList->at(i), romSha1List->at(i), errorReason);
 			}
 			if ( ignoreErrors )
 				success = true;
@@ -1451,9 +1540,9 @@ void CollectionRebuilderThread::run()
 		isWaiting = false;
 		mutex.unlock();
 		if ( !exitThread && !stopRebuilding ) {
-			quint64 setsProcessed = 0, missingDumps = 0, missingDisks = 0;
+			setsProcessed = missingROMs = missingDisks = 0;
 			emit log(tr("rebuilding started"));
-			emit statusUpdated(setsProcessed, missingDumps, missingDisks);
+			emit statusUpdated(0, 0, 0);
 			emit rebuildStarted();
 			emit progressTextChanged(tr("Rebuilding"));
 			QTime rebuildTimer, elapsedTime(0, 0, 0, 0);
@@ -1461,8 +1550,8 @@ void CollectionRebuilderThread::run()
 			if ( checkpoint() < 0 )
 				m_xmlIndex = m_xmlIndexCount = -1;
 			QString setKey, list, set;
-			QStringList romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List;
-			while ( !exitThread && !stopRebuilding && nextId(&setKey, &romNameList, &romSha1List, &romCrcList, &romSizeList, &diskNameList, &diskSha1List) ) {
+			QStringList romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List, diskSizeList;
+			while ( !exitThread && !stopRebuilding && nextId(&setKey, &romNameList, &romSha1List, &romCrcList, &romSizeList, &diskNameList, &diskSha1List, &diskSizeList) ) {
 				bool pauseMessageLogged = false;
 				while ( (pauseRequested || isPaused) && !exitThread && !stopRebuilding ) {
 					if ( !pauseMessageLogged ) {
@@ -1547,16 +1636,20 @@ void CollectionRebuilderThread::run()
 					for (int i = 0; i < romNameList.count(); i++) {
 						bool dbStatusGood = checkSumDb()->exists(romSha1List[i], romCrcList[i], romSizeList[i].toULongLong());
 						emit log(tr("required ROM") + ": " + tr("name = '%1', crc = '%2', sha1 = '%3', database status = '%4'").arg(romNameList[i]).arg(romCrcList[i]).arg(romSha1List[i]).arg(dbStatusGood ? tr("available") : tr("not available")));
-						if ( !dbStatusGood )
-							missingDumps++;
+						if ( !dbStatusGood ) {
+							missingROMs++;
+							emit newMissing(setKey, tr("ROM"), romNameList[i], romSizeList[i], romCrcList[i], romSha1List[i], tr("check-sum not available in database"));
+						}
 					}
 					for (int i = 0; i < diskNameList.count(); i++) {
 						bool dbStatusGood = checkSumDb()->exists(diskSha1List[i], QString());
 						emit log(tr("required disk") + ": " + tr("name = '%1', sha1 = '%2', database status = '%3'").arg(diskNameList[i]).arg(diskSha1List[i]).arg(dbStatusGood ? tr("available") : tr("not available")));
-						if ( !dbStatusGood )
+						if ( !dbStatusGood ) {
 							missingDisks++;
+							emit newMissing(setKey, tr("DISK"), diskNameList[i], diskSizeList[i], QString(), diskSha1List[i], tr("check-sum not available in database"));
+						}
 					}
-					emit statusUpdated(setsProcessed, missingDumps, missingDisks);
+					emit statusUpdated(setsProcessed, missingROMs, missingDisks);
 					bool rewriteOkay = true;
 					if ( !romNameList.isEmpty() )
 						rewriteOkay = rewriteSet(&setKey, &romNameList, &romSha1List, &romCrcList, &romSizeList, &diskNameList, &diskSha1List);
@@ -1564,12 +1657,12 @@ void CollectionRebuilderThread::run()
 						emit log(tr("set rebuilding finished for '%1'").arg(setKey));
 					else
 						emit log(tr("set rebuilding failed for '%1'").arg(setKey));
-					emit statusUpdated(++setsProcessed, missingDumps, missingDisks);
+					emit statusUpdated(++setsProcessed, missingROMs, missingDisks);
 				}
 				QTest::qWait(0);
 			}
 			elapsedTime = elapsedTime.addMSecs(rebuildTimer.elapsed());
-			emit log(tr("rebuilding finished - total rebuild time = %1, sets processed = %2, missing ROMs = %3, missing disks = %4").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(setsProcessed).arg(missingDumps).arg(missingDisks));
+			emit log(tr("rebuilding finished - total rebuild time = %1, sets processed = %2, missing ROMs = %3, missing disks = %4").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(setsProcessed).arg(missingROMs).arg(missingDisks));
 			emit progressRangeChanged(0, 100);
 			emit progressChanged(0);
 			emit progressTextChanged(tr("Idle"));

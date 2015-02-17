@@ -9,11 +9,13 @@
 #include <QTimer>
 #include <QRegExp>
 #include <QString>
+#include <QStringList>
 #include <QPixmap>
 
 #include "checksumdbmgr.h"
 #include "xmldbmgr.h"
 #include "swldbmgr.h"
+#include "missingdumpsviewer.h"
 #include "ui_collectionrebuilder.h"
 
 class CollectionRebuilder;
@@ -40,6 +42,9 @@ class CollectionRebuilderThread : public QThread
 		bool includeStateI;
 		bool includeStateN;
 		bool includeStateU;
+		quint64 missingDisks;
+		quint64 missingROMs;
+		quint64 setsProcessed;
 		QRegExp filterRx;
 		QRegExp filterRxSoftware;
 		QMutex mutex;
@@ -57,8 +62,8 @@ class CollectionRebuilderThread : public QThread
 		void setCheckpoint(qint64 cp, int xmlSourceIndex);
 		void setListCheckpoint(QString list, int xmlSourceIndex);
 		void reopenDatabase();
-		bool parseXml(QString, QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
-		bool nextId(QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
+		bool parseXml(QString, QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
+		bool nextId(QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
 		void checkpointRestart(qint64 checkpoint);
 		bool rewriteSet(QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
 		bool writeAllFileData(QString, QString, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
@@ -89,7 +94,8 @@ class CollectionRebuilderThread : public QThread
 		void progressTextChanged(const QString &);
 		void progressRangeChanged(int, int);
 		void progressChanged(int);
-		void statusUpdated(int, int, int);
+		void statusUpdated(quint64, quint64, quint64);
+		void newMissing(QString, QString, QString, QString, QString, QString, QString);
 
 	protected:
 		void run();
@@ -115,6 +121,8 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		CollectionRebuilderThread *rebuilderThread() { return m_rebuilderThread; }
 		ROMAlyzer *romAlyzer() { return m_romAlyzer; }
 		QString settingsKey() { return m_settingsKey; }
+		QStringList &newMissingList() { return m_newMissingList; }
+		MissingDumpsViewer *missingDumpsViewer() { return m_missingDumpsViewer; }
 
 		void setStateFilterVisibility(bool visible);
 		void showStateFilter() { setStateFilterVisibility(true); }
@@ -130,6 +138,7 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		void on_pushButtonPauseResume_clicked();
 		void on_comboBoxXmlSource_currentIndexChanged(int);
 		void on_toolButtonRemoveXmlSource_clicked();
+		void on_toolButtonViewMissingList_clicked();
 		void rebuilderThread_rebuildStarted();
 		void rebuilderThread_rebuildFinished();
 		void rebuilderThread_rebuildPaused();
@@ -137,8 +146,10 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		void rebuilderThread_progressTextChanged(const QString &);
 		void rebuilderThread_progressRangeChanged(int, int);
 		void rebuilderThread_progressChanged(int);
-		void rebuilderThread_statusUpdated(int, int, int);
+		void rebuilderThread_statusUpdated(quint64, quint64, quint64);
+		void rebuilderThread_newMissing(QString, QString, QString, QString, QString, QString, QString);
 		void animationTimer_timeout();
+		void updateMissingList();
 
 	protected:
 		void showEvent(QShowEvent *);
@@ -159,6 +170,8 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		QPixmap m_incorrectIconPixmap;
 		QPixmap m_notFoundIconPixmap;
 		QPixmap m_unknownIconPixmap;
+		QStringList m_newMissingList;
+		MissingDumpsViewer *m_missingDumpsViewer;
 };
 
 #endif
