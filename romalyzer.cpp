@@ -475,7 +475,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterWhileAnalyzing", checkBoxSetRewriterWhileAnalyzing->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterSelfContainedSets", checkBoxSetRewriterSelfContainedSets->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterGoodDumpsOnly", checkBoxSetRewriterGoodDumpsOnly->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterIgnoreErrors", checkBoxSetRewriterIgnoreErrors->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAbortOnError", checkBoxSetRewriterAbortOnError->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipArchives", radioButtonSetRewriterZipArchives->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipLevel", spinBoxSetRewriterZipLevel->value());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUniqueCRCs", checkBoxSetRewriterUniqueCRCs->isChecked());
@@ -568,7 +568,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	checkBoxSetRewriterWhileAnalyzing->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterWhileAnalyzing", false).toBool());
 	checkBoxSetRewriterSelfContainedSets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterSelfContainedSets", false).toBool());
 	checkBoxSetRewriterGoodDumpsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterGoodDumpsOnly", true).toBool());
-	checkBoxSetRewriterIgnoreErrors->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterIgnoreErrors", false).toBool());
+	checkBoxSetRewriterAbortOnError->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAbortOnError", true).toBool());
 	radioButtonSetRewriterZipArchives->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipArchives", true).toBool());
 	spinBoxSetRewriterZipLevel->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipLevel", Z_DEFAULT_COMPRESSION).toInt());
 	checkBoxSetRewriterUniqueCRCs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUniqueCRCs", false).toBool());
@@ -3091,7 +3091,7 @@ void ROMAlyzer::runSetRewriter()
 	log(tr("set rewriter: rewriting %1 set '%2' to '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
 
 	bool loadOkay = true;
-	bool ignoreErrors = checkBoxSetRewriterIgnoreErrors->isChecked();
+	bool ignoreErrors = !checkBoxSetRewriterAbortOnError->isChecked();
 	QMapIterator<QString, QStringList> it(setRewriterFileMap);
 	QMap<QString, QByteArray> outputDataMap;
 	int count = 0;

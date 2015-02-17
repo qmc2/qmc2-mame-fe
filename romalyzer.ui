@@ -117,7 +117,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tabReport">
       <attribute name="title">
@@ -593,12 +593,15 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QCheckBox" name="checkBoxSetRewriterIgnoreErrors">
+                   <widget class="QCheckBox" name="checkBoxSetRewriterAbortOnError">
                     <property name="toolTip">
-                     <string>Ignore reproduction errors (not recommended)</string>
+                     <string>Abort reproduction when an error occurs (recommended)</string>
                     </property>
                     <property name="text">
-                     <string>Ignore errors</string>
+                     <string>Abort on error</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -1975,7 +1978,7 @@
   <tabstop>checkBoxSetRewriterWhileAnalyzing</tabstop>
   <tabstop>checkBoxSetRewriterGoodDumpsOnly</tabstop>
   <tabstop>checkBoxSetRewriterSelfContainedSets</tabstop>
-  <tabstop>checkBoxSetRewriterIgnoreErrors</tabstop>
+  <tabstop>checkBoxSetRewriterAbortOnError</tabstop>
   <tabstop>radioButtonSetRewriterZipArchives</tabstop>
   <tabstop>spinBoxSetRewriterZipLevel</tabstop>
   <tabstop>checkBoxSetRewriterUniqueCRCs</tabstop>
