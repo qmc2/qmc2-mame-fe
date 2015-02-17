@@ -257,6 +257,8 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 		rebuilderThread()->stopRebuilding = true;
 	else if ( rebuilderThread()->isWaiting ) {
 		newMissingList().clear();
+		if ( missingDumpsViewer() )
+			missingDumpsViewer()->treeWidget->clear();
 		if ( comboBoxXmlSource->itemData(comboBoxXmlSource->currentIndex()).toBool() ) {
 			switch ( QMessageBox::question(this, tr("Confirm checkpoint restart"), tr("Restart from stored checkpoint?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::No) ) {
 				case QMessageBox::Yes: {
