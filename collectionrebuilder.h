@@ -172,6 +172,7 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		QPixmap m_unknownIconPixmap;
 		QStringList m_newMissingList;
 		MissingDumpsViewer *m_missingDumpsViewer;
+		bool m_isDefaultEmulator;
 };
 
 #endif

@@ -3240,7 +3240,7 @@ void ROMAlyzer::importFromDataFile()
 #endif
 
 	QString storedPath;
-	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath") )
+	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath") )
 		storedPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath").toString();
 	QString dataFilePath = QFileDialog::getOpenFileName(this, tr("Choose data file to import from"), storedPath, tr("Data files (*.dat)") + ";;" + tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !dataFilePath.isNull() ) {
@@ -3272,7 +3272,7 @@ void ROMAlyzer::exportToDataFile()
 #endif
 
 	QString storedPath;
-	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath") )
+	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath") )
 		storedPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath").toString();
 	QString dataFilePath = QFileDialog::getSaveFileName(this, tr("Choose data file to export to"), storedPath, tr("Data files (*.dat)") + ";;" + tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !dataFilePath.isNull() ) {
@@ -3357,7 +3357,6 @@ void ROMAlyzer::exportToDataFile()
 					xmlQuery.evaluateTo(&manufacturer);
 					manufacturer = manufacturer.trimmed();
 					ts << "\t\t<manufacturer>" << manufacturer << "</manufacturer>\n";
-					// FIXME
 					for (int j = 0; j < item->childCount(); j++) {
 						QTreeWidgetItem *childItem = item->child(j);
 						QString filestatus = childItem->text(QMC2_ROMALYZER_COLUMN_FILESTATUS);
@@ -3369,23 +3368,23 @@ void ROMAlyzer::exportToDataFile()
 							QString sha1 = childItem->text(QMC2_ROMALYZER_COLUMN_SHA1);
 							QString merge = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
 							if ( type == "ROM" ) {
-								ts << "\t\t<rom name=\"" << filename;
+								ts << "\t\t<rom name=\"" << filename << "\"";
+								if ( !merge.isEmpty() )
+									ts << " merge=\"" << merge << "\"";
 							       	if ( !size.isEmpty() )
-									ts << "\" size=\"" << size;
+									ts << " size=\"" << size << "\"";
 								if ( !crc.isEmpty() )
-									ts << "\" crc=\"" << crc;
+									ts << " crc=\"" << crc << "\"";
 								if ( !sha1.isEmpty() )
-									ts << "\" sha1=\"" << sha1;
-								if ( !merge.isEmpty() )
-									ts << "\" merge=\"" << merge;
-								ts << "\"/>\n";
+									ts << " sha1=\"" << sha1 << "\"";
+								ts << "/>\n";
 							} else {
-								ts << "\t\t<disk name=\"" << filename;
-								if ( !sha1.isEmpty() )
-									ts << "\" sha1=\"" << sha1;
+								ts << "\t\t<disk name=\"" << filename << "\"";
 								if ( !merge.isEmpty() )
-									ts << "\" merge=\"" << merge;
-								ts << "\"/>\n";
+									ts << " merge=\"" << merge << "\"";
+								if ( !sha1.isEmpty() )
+									ts << " sha1=\"" << sha1 << "\"";
+								ts << "/>\n";
 							}
 						}
 					}

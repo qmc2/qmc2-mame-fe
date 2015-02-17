@@ -113,6 +113,7 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 	connect(rebuilderThread(), SIGNAL(newMissing(QString, QString, QString, QString, QString, QString, QString)), this, SLOT(rebuilderThread_newMissing(QString, QString, QString, QString, QString, QString, QString)));
 
 	m_missingDumpsViewer = NULL;
+	m_isDefaultEmulator = true;
 
 	m_iconCheckpoint = QIcon(QString::fromUtf8(":/data/img/checkpoint.png"));
 	m_iconNoCheckpoint = QIcon(QString::fromUtf8(":/data/img/no_checkpoint.png"));
@@ -257,6 +258,9 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 		rebuilderThread()->stopRebuilding = true;
 	else if ( rebuilderThread()->isWaiting ) {
 		newMissingList().clear();
+		m_isDefaultEmulator = (comboBoxXmlSource->currentIndex() == 0);
+		if ( missingDumpsViewer() )
+			missingDumpsViewer()->setDefaultEmulator(m_isDefaultEmulator);
 		if ( comboBoxXmlSource->itemData(comboBoxXmlSource->currentIndex()).toBool() ) {
 			switch ( QMessageBox::question(this, tr("Confirm checkpoint restart"), tr("Restart from stored checkpoint?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::No) ) {
 				case QMessageBox::Yes: {
@@ -306,7 +310,7 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 			rebuilderThread()->setFilterExpression(lineEditFilterExpression->text(), comboBoxFilterSyntax->currentIndex(), comboBoxFilterType->currentIndex());
 		else
 			rebuilderThread()->clearFilterExpression();
-		if ( checkBoxFilterStates->isChecked() )
+		if ( checkBoxFilterStates->isChecked() && comboBoxXmlSource->currentIndex() == 0 )
 			rebuilderThread()->setStateFilter(true, toolButtonStateC->isChecked(), toolButtonStateM->isChecked(), toolButtonStateI->isChecked(), toolButtonStateN->isChecked(), toolButtonStateU->isChecked());
 		else
 			rebuilderThread()->clearStateFilter();
@@ -479,6 +483,8 @@ void CollectionRebuilder::on_toolButtonViewMissingList_clicked()
 			missingDumpsViewer()->show();
 	} else {
 		m_missingDumpsViewer = new MissingDumpsViewer(romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? "SoftwareMissingDumpsViewer" : "MissingDumpsViewer", 0);
+		missingDumpsViewer()->frameExport->setVisible(romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? false : true);
+		missingDumpsViewer()->setDefaultEmulator(m_isDefaultEmulator);
 		if ( rebuilderThread()->isActive )
 			missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(false);
 		else
@@ -568,8 +574,10 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 		comboBoxXmlSource->setItemIcon(index, m_iconNoCheckpoint);
 		comboBoxXmlSource->setItemData(index, false);
 	}
-	if ( missingDumpsViewer() )
+	if ( missingDumpsViewer() ) {
 		missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(!newMissingList().isEmpty() || missingDumpsViewer()->treeWidget->topLevelItemCount() > 0);
+		missingDumpsViewer()->setDefaultEmulator(m_isDefaultEmulator);
+	}
 	pushButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
 	pushButtonStartStop->setText(tr("Start rebuilding"));
 	pushButtonPauseResume->hide();
