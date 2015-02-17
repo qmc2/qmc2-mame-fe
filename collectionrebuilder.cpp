@@ -257,8 +257,6 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 		rebuilderThread()->stopRebuilding = true;
 	else if ( rebuilderThread()->isWaiting ) {
 		newMissingList().clear();
-		if ( missingDumpsViewer() )
-			missingDumpsViewer()->treeWidget->clear();
 		if ( comboBoxXmlSource->itemData(comboBoxXmlSource->currentIndex()).toBool() ) {
 			switch ( QMessageBox::question(this, tr("Confirm checkpoint restart"), tr("Restart from stored checkpoint?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::No) ) {
 				case QMessageBox::Yes: {
@@ -480,8 +478,12 @@ void CollectionRebuilder::on_toolButtonViewMissingList_clicked()
 		else
 			missingDumpsViewer()->show();
 	} else {
-		m_missingDumpsViewer = new MissingDumpsViewer(0);
-		if ( !newMissingList().isEmpty() && missingDumpsViewer() )
+		m_missingDumpsViewer = new MissingDumpsViewer(romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? "SoftwareMissingDumpsViewer" : "MissingDumpsViewer", 0);
+		if ( rebuilderThread()->isActive )
+			missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(false);
+		else
+			missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(!newMissingList().isEmpty() || missingDumpsViewer()->treeWidget->topLevelItemCount() > 0);
+		if ( !newMissingList().isEmpty() )
 			QTimer::singleShot(0, this, SLOT(updateMissingList()));
 		missingDumpsViewer()->show();
 	}
@@ -489,6 +491,10 @@ void CollectionRebuilder::on_toolButtonViewMissingList_clicked()
 
 void CollectionRebuilder::rebuilderThread_rebuildStarted()
 {
+	if ( missingDumpsViewer() ) {
+		missingDumpsViewer()->treeWidget->clear();
+		missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(false);
+	}
 	pushButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
 	pushButtonStartStop->setText(tr("Stop rebuilding"));
 	pushButtonPauseResume->setText(tr("Pause"));
@@ -562,6 +568,8 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 		comboBoxXmlSource->setItemIcon(index, m_iconNoCheckpoint);
 		comboBoxXmlSource->setItemData(index, false);
 	}
+	if ( missingDumpsViewer() )
+		missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(!newMissingList().isEmpty() || missingDumpsViewer()->treeWidget->topLevelItemCount() > 0);
 	pushButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
 	pushButtonStartStop->setText(tr("Start rebuilding"));
 	pushButtonPauseResume->hide();
@@ -687,6 +695,10 @@ void CollectionRebuilder::updateMissingList()
 	}
 	missingDumpsViewer()->treeWidget->insertTopLevelItems(0, itemList);
 	newMissingList().clear();
+	if ( rebuilderThread()->isActive )
+		missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(false);
+	else
+		missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(missingDumpsViewer()->treeWidget->topLevelItemCount() > 0);
 }
 
 void CollectionRebuilder::showEvent(QShowEvent *e)
