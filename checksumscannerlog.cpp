@@ -11,7 +11,11 @@
 extern Settings *qmc2Config;
 
 CheckSumScannerLog::CheckSumScannerLog(QString settingsKey, QWidget *parent)
-	: QWidget(parent)
+#if defined(QMC2_OS_WIN)
+	: QDialog(parent, Qt::Dialog)
+#else
+	: QDialog(parent, Qt::Dialog | Qt::SubWindow)
+#endif
 {
 	hide();
 	m_progress = -1;

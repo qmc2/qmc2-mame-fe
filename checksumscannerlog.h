@@ -5,7 +5,7 @@
 
 #include "ui_checksumscannerlog.h"
 
-class CheckSumScannerLog : public QWidget, public Ui::CheckSumScannerLog
+class CheckSumScannerLog : public QDialog, public Ui::CheckSumScannerLog
 {
 	Q_OBJECT
 

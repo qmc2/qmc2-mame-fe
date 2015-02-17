@@ -25,7 +25,11 @@ extern Options *qmc2Options;
 extern Gamelist *qmc2Gamelist;
 
 CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent)
-	: QDialog(parent)
+#if defined(QMC2_OS_WIN)
+	: QDialog(parent, Qt::Dialog)
+#else
+	: QDialog(parent, Qt::Dialog | Qt::SubWindow)
+#endif
 {
 	m_romAlyzer = myROMAlyzer;
 
