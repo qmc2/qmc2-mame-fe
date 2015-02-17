@@ -1215,6 +1215,12 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 		}
 		if ( ignoreErrors )
 			success = true;
+		else if ( !success ) {
+			for (int j = i + 1; j < romNameList->count() && !exitThread; j++) {
+				emit statusUpdated(setsProcessed, ++missingROMs, missingDisks);
+				emit newMissing(id, tr("ROM"), romNameList->at(j), romSizeList->at(j), romCrcList->at(j), romSha1List->at(j), errorReason);
+			}
+		}
 	}
 	if ( reproducedDumps == 0 )
 		d.rmdir(d.absolutePath());
@@ -1304,6 +1310,12 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 			}
 			if ( ignoreErrors )
 				success = true;
+			else if ( !success ) {
+				for (int j = i + 1; j < romNameList->count() && !exitThread; j++) {
+					emit statusUpdated(setsProcessed, ++missingROMs, missingDisks);
+					emit newMissing(id, tr("ROM"), romNameList->at(j), romSizeList->at(j), romCrcList->at(j), romSha1List->at(j), errorReason);
+				}
+			}
 		}
 		if ( rebuilderDialog()->romAlyzer()->checkBoxAddZipComment->isChecked() )
 			zipClose(zip, tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit().constData());
