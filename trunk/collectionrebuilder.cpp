@@ -1059,7 +1059,7 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 	if ( !d.exists() )
 		success = d.mkdir(QDir::cleanPath(baseDir + "/" + id));
 	int reproducedDumps = 0;
-	bool ignoreErrors = rebuilderDialog()->romAlyzer()->checkBoxSetRewriterIgnoreErrors->isChecked();
+	bool ignoreErrors = !rebuilderDialog()->romAlyzer()->checkBoxSetRewriterAbortOnError->isChecked();
 	for (int i = 0; i < romNameList->count() && !exitThread && success; i++) {
 		QString fileName = d.absoluteFilePath(romNameList->at(i));
 		if ( !createBackup(fileName) ) {
@@ -1131,7 +1131,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 			return false;
 	bool success = true;
 	bool uniqueCRCs = rebuilderDialog()->romAlyzer()->checkBoxSetRewriterUniqueCRCs->isChecked();
-	bool ignoreErrors = rebuilderDialog()->romAlyzer()->checkBoxSetRewriterIgnoreErrors->isChecked();
+	bool ignoreErrors = !rebuilderDialog()->romAlyzer()->checkBoxSetRewriterAbortOnError->isChecked();
 	int zipLevel = rebuilderDialog()->romAlyzer()->spinBoxSetRewriterZipLevel->value();
 	zipFile zip = zipOpen(fileName.toLocal8Bit().constData(), APPEND_STATUS_CREATE);
 	if ( zip ) {

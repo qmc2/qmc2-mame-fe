@@ -298,118 +298,6 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList[1].toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 43, osr, 5640) ) {
-			// remove the old list-xml-cache file and the deprecated "FilesAndDirectories/ListXMLCache" settings key
-			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ListXMLCache") ) {
-				QFile f(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ListXMLCache").toString());
-				if ( f.exists() )
-					f.remove();
-				startupConfig->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ListXMLCache");
-			}
-		}
-		if ( QMC2_TEST_VERSION(omv, 43, osr, 5684) ) {
-			// separate and rename MAME/MESS emulator info DB keys (in order to be able to merge them for UME)
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB");
-
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameInfoDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB");
-
-			}
-			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/EmuInfoDB") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat", startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/EmuInfoDB").toString());
-				startupConfig->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/EmuInfoDB");
-			}
-#elif defined(QMC2_EMUTYPE_MESS)
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB");
-
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessInfoDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB");
-
-			}
-			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/EmuInfoDB") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat", startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/EmuInfoDB").toString());
-				startupConfig->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/EmuInfoDB");
-			}
-#endif
-		}
-		if ( QMC2_TEST_VERSION(omv, 43, osr, 5688) ) {
-			// separate and rename MAME/MESS game/machine info DB keys (in order to be able to merge them for UME)
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB");
-
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB");
-
-			}
-			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GameInfoDB") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat", startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GameInfoDB").toString());
-				startupConfig->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GameInfoDB");
-			}
-#elif defined(QMC2_EMUTYPE_MESS)
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB");
-
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB");
-
-			}
-			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GameInfoDB") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat", startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GameInfoDB").toString());
-				startupConfig->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GameInfoDB");
-			}
-#endif
-		}
-		if ( QMC2_TEST_VERSION(omv, 44, osr, 5837) ) {
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState") ||
-			     startupConfig->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState") ||
-			     startupConfig->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState") ||
-			     startupConfig->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState") ) {
-#if defined(QMC2_EMUTYPE_MESS)
-				QMessageBox::information(this,
-						tr("Important upgrade information"),
-						tr("<p>A new data column ('%1') has been added to all machine lists!</p>"
-						   "<p>Please check/adapt column visibility <a href=\"%2\">as shown in our wiki</a>!</p>"
-						   "<p>Note that you'll have to do this for the other QMC2 variants as well (this message will not be shown again).</p>").arg("Rank").arg("http://wiki.batcom-it.net/index.php?title=The_'ultimate'_guide_to_QMC2#Customizing_columns"));
-#else
-				QMessageBox::information(this,
-						tr("Important upgrade information"),
-						tr("<p>A new data column ('%1') has been added to all game lists!</p>"
-						   "<p>Please check/adapt column visibility <a href=\"%2\">as shown in our wiki</a>!</p>"
-						   "<p>Note that you'll have to do this for the other QMC2 variants as well (this message will not be shown again).</p>").arg("Rank").arg("http://wiki.batcom-it.net/index.php?title=The_'ultimate'_guide_to_QMC2#Customizing_columns"));
-#endif
-			}
-		}
-		if ( QMC2_TEST_VERSION(omv, 44, osr, 6024) ) {
-			// rename "Layout/MainWindow/NegateSearch" to "Layout/MainWidget/NegateSearch" (as it should)
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWindow/NegateSearch") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/NegateSearch", startupConfig->value(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWindow/NegateSearch").toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWindow/NegateSearch");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWindow/NegateSearch") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/NegateSearch", startupConfig->value(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWindow/NegateSearch").toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWindow/NegateSearch");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWindow/NegateSearch") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/NegateSearch", startupConfig->value(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWindow/NegateSearch").toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWindow/NegateSearch");
-			}
-		}
 		if ( QMC2_TEST_VERSION(omv, 45, osr, 6070) ) {
 			// rename "ROMAlyzer/SetRewriterGoodSetsOnly" to "ROMAlyzer/SetRewriterGoodDumpsOnly"
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/SetRewriterGoodSetsOnly") ) {
@@ -527,6 +415,14 @@ bool Welcome::checkConfig()
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/OptionsWidget/Visible");
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/ROMAlyzer/Visible");
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/SoftwareROMAlyzer/Visible");
+		}
+		if ( QMC2_TEST_VERSION(omv, 49, osr, 6467) ) {
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/SetRewriterIgnoreErrors");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/SetRewriterIgnoreErrors");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/SetRewriterIgnoreErrors");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "SoftwareROMAlyzer/SetRewriterIgnoreErrors");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "SoftwareROMAlyzer/SetRewriterIgnoreErrors");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "SoftwareROMAlyzer/SetRewriterIgnoreErrors");
 		}
 	}
 
