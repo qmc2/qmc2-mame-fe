@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QTreeWidget" name="treeWidget">
      <property name="toolTip">
-      <string>List of missing mumps</string>
+      <string>List of missing dumps</string>
      </property>
      <property name="selectionMode">
       <enum>QAbstractItemView::ExtendedSelection</enum>
