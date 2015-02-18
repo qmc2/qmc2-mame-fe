@@ -35,8 +35,7 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
 	adjustIconSizes();
 	clearStatus();
 
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() )
-		restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Geometry").toByteArray());
+	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Geometry").toByteArray());
 	toolButtonSelectC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectC", true).toBool());
 	toolButtonSelectM->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectM", true).toBool());
 	toolButtonSelectI->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectI", false).toBool());
@@ -108,8 +107,7 @@ void DemoModeDialog::closeEvent(QCloseEvent *e)
 		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "DemoMode/NameFilter");
 	else
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/NameFilter", lineEditNameFilter->text());
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Geometry", saveGeometry());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Geometry", saveGeometry());
 }
 
 void DemoModeDialog::saveCategoryFilter()

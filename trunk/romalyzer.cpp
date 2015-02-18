@@ -100,13 +100,10 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	m_checkSumDbQueryStatusPixmap = QPixmap(QString::fromUtf8(":/data/img/database.png"));
 
 	treeWidgetChecksums->header()->setSortIndicatorShown(false);
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
-		treeWidgetChecksums->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ReportHeaderState", QByteArray()).toByteArray());
-		tabWidgetAnalysis->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/AnalysisTab", 0).toInt());
-		treeWidgetChecksumWizardSearchResult->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ChecksumWizardHeaderState", QByteArray()).toByteArray());
-		move(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Position", QPoint(0, 0)).toPoint());
-		resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Size", QSize(600, 800)).toSize());
-	}
+	treeWidgetChecksums->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ReportHeaderState", QByteArray()).toByteArray());
+	treeWidgetChecksumWizardSearchResult->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ChecksumWizardHeaderState", QByteArray()).toByteArray());
+	move(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Position", QPoint(0, 0)).toPoint());
+	resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Size", QSize(600, 800)).toSize());
 
 	// compression types for CHD v3 and v4
 	chdCompressionTypes << tr("none") << tr("zlib") << tr("zlib+") << tr("A/V codec");
@@ -241,6 +238,8 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 #if defined(QMC2_OS_MAC)
 	setParent(qmc2MainWindow, Qt::Dialog);
 #endif
+
+	tabWidgetAnalysis->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/AnalysisTab", 0).toInt());
 }
 
 ROMAlyzer::~ROMAlyzer()
@@ -282,7 +281,9 @@ void ROMAlyzer::adjustIconSizes()
 	toolButtonBrowseSetRewriterOutputPath->setIconSize(iconSize);
 	toolButtonBrowseSetRewriterAdditionalRomPath->setIconSize(iconSize);
 	toolButtonBrowseBackupFolder->setIconSize(iconSize);
-	pushButtonRomCollectionRebuilder->setIconSize(iconSize);
+	QTabBar *tabBar = tabWidgetAnalysis->findChild<QTabBar *>();
+	if ( tabBar )
+		tabBar->setIconSize(iconSize);
 	toolButtonToolsMenu->setIconSize(iconSize);
 	pushButtonChecksumWizardAnalyzeSelectedSets->setIconSize(iconSize);
 	pushButtonChecksumWizardRepairBadSets->setIconSize(iconSize);
@@ -498,23 +499,15 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDatabasePath", lineEditCheckSumDbDatabasePath->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScanIncrementally", toolButtonCheckSumDbScanIncrementally->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDeepScan", toolButtonCheckSumDbDeepScan->isChecked());
-
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ReportHeaderState", treeWidgetChecksums->header()->saveState());
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/AnalysisTab", tabWidgetAnalysis->currentIndex());
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ChecksumWizardHeaderState", treeWidgetChecksumWizardSearchResult->header()->saveState());
-		if ( !qmc2CleaningUp ) {
-			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Position", pos());
-			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Size", size());
-		}
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ReportHeaderState", treeWidgetChecksums->header()->saveState());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/AnalysisTab", tabWidgetAnalysis->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ChecksumWizardHeaderState", treeWidgetChecksumWizardSearchResult->header()->saveState());
+	if ( !qmc2CleaningUp ) {
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Position", pos());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Size", size());
 	}
-
 	if ( checkSumScannerLog() )
 		checkSumScannerLog()->close();
-
-	if ( collectionRebuilder() )
-		collectionRebuilder()->close();
-
 	if ( e )
 		e->accept();
 }
@@ -579,9 +572,9 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	groupBoxCheckSumDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableCheckSumDb", false).toBool());
 	on_groupBoxCheckSumDatabase_toggled(groupBoxCheckSumDatabase->isChecked());
 	if ( initialCall || !checkSumScannerThread() )
-		pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked());
+		tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked());
 	else
-		pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked() && !checkSumScannerThread()->isActive);
+		tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked() && !checkSumScannerThread()->isActive);
 	listWidgetCheckSumDbScannedPaths->clear();
 	QStringList checkSumDbScannedPaths = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScannedPaths", QStringList()).toStringList();
 	QStringList checkSumDbScannedPathsEnabled = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScannedPathsEnabled", QStringList()).toStringList();
@@ -629,8 +622,7 @@ void ROMAlyzer::moveEvent(QMoveEvent *e)
 #endif
 
 	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Position", pos());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Position", pos());
 
 	if ( e )
 		e->accept();
@@ -643,8 +635,7 @@ void ROMAlyzer::resizeEvent(QResizeEvent *e)
 #endif
 
 	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey +"/Size", size());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey +"/Size", size());
 
 	if ( e )
 		e->accept();
@@ -2365,7 +2356,7 @@ void ROMAlyzer::setMode(int mode)
 		case QMC2_ROMALYZER_MODE_SOFTWARE:
 			m_currentMode = QMC2_ROMALYZER_MODE_SOFTWARE;
 			checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed software"));
-			pushButtonRomCollectionRebuilder->setText(tr("Rebuild software collection..."));
+			tabWidgetAnalysis->setTabText(QMC2_ROMALYZER_PAGE_RCR, tr("Software collection rebuilder"));
 			setWindowTitle(tr("ROMAlyzer") + " [" + tr("software mode") + "]");
 			m_settingsKey = "SoftwareROMAlyzer";
 			lineEditSoftwareLists->setVisible(true);
@@ -2384,7 +2375,7 @@ void ROMAlyzer::setMode(int mode)
 			checkBoxSelectGame->setToolTip(tr("Select game in game list if selected in analysis report?"));
 			checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed game"));
 #endif
-			pushButtonRomCollectionRebuilder->setText(tr("Rebuild ROM collection..."));
+			tabWidgetAnalysis->setTabText(QMC2_ROMALYZER_PAGE_RCR, tr("ROM collection rebuilder"));
 			setWindowTitle(tr("ROMAlyzer") + " [" + tr("system mode") + "]");
 			m_settingsKey = "ROMAlyzer";
 			lineEditSoftwareLists->setVisible(false);
@@ -2406,6 +2397,9 @@ void ROMAlyzer::on_tabWidgetAnalysis_currentChanged(int index)
 			break;
 		case QMC2_ROMALYZER_PAGE_CSWIZ:
 			on_groupBoxCheckSumDatabase_toggled(groupBoxCheckSumDatabase->isChecked());
+			break;
+		case QMC2_ROMALYZER_PAGE_RCR:
+			switchToCollectionRebuilder();
 			break;
 		default:
 			break;
@@ -2770,7 +2764,7 @@ void ROMAlyzer::lineEditChecksumWizardHash_textChanged_delayed()
 
 void ROMAlyzer::on_groupBoxSetRewriter_toggled(bool enable)
 {
-	pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && enable && !checkSumScannerThread()->isActive);
+	tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxCheckSumDatabase->isChecked() && enable && !checkSumScannerThread()->isActive);
 	if ( !enable ) {
 		if ( collectionRebuilder() ) {
 			delete collectionRebuilder();
@@ -2783,9 +2777,9 @@ void ROMAlyzer::on_groupBoxCheckSumDatabase_toggled(bool enable)
 {
 	widgetCheckSumDbQueryStatus->setVisible(enable);
 	if ( checkSumScannerThread() )
-		pushButtonRomCollectionRebuilder->setEnabled(groupBoxSetRewriter->isChecked() && enable && !checkSumScannerThread()->isActive);
+		tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxSetRewriter->isChecked() && enable && !checkSumScannerThread()->isActive);
 	else
-		pushButtonRomCollectionRebuilder->setEnabled(groupBoxSetRewriter->isChecked() && enable);
+		tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxSetRewriter->isChecked() && enable);
 	if ( enable )
 		QTimer::singleShot(0, this, SLOT(lineEditChecksumWizardHash_textChanged_delayed()));
 	else {
@@ -4346,7 +4340,7 @@ void ROMAlyzer::checkSumScannerThread_scanStarted()
 	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_SHORT);
 	pushButtonCheckSumDbScan->setEnabled(true);
 	pushButtonCheckSumDbPauseResumeScan->setEnabled(true);
-	pushButtonRomCollectionRebuilder->setEnabled(false);
+	tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, false);
 	qApp->processEvents();
 	QTimer::singleShot(0, this, SLOT(updateCheckSumDbStatus()));
 }
@@ -4364,7 +4358,7 @@ void ROMAlyzer::checkSumScannerThread_scanFinished()
 	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG);
 	pushButtonCheckSumDbScan->setEnabled(true);
 	pushButtonCheckSumDbPauseResumeScan->setEnabled(true);
-	pushButtonRomCollectionRebuilder->setEnabled(groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked());
+	tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked());
 	qApp->processEvents();
 	QTimer::singleShot(0, this, SLOT(updateCheckSumDbStatus()));
 }
@@ -4475,16 +4469,14 @@ void ROMAlyzer::softwareListLoadFinished(bool /* success */)
 	setEnabled(true);
 }
 
-void ROMAlyzer::on_pushButtonRomCollectionRebuilder_clicked()
+void ROMAlyzer::switchToCollectionRebuilder()
 {
-	if ( !collectionRebuilder() )
-		m_collectionRebuilder = new CollectionRebuilder(this, 0);
-	if ( collectionRebuilder()->isMinimized() )
-		collectionRebuilder()->showNormal();
-	else
-		collectionRebuilder()->show();
-	collectionRebuilder()->scrollToEnd();
-	collectionRebuilder()->raise();
+	if ( !collectionRebuilder() ) {
+		m_collectionRebuilder = new CollectionRebuilder(this, tabCollectionRebuilder);
+		gridLayoutCollectionRebuilder->addWidget(collectionRebuilder(), 0, 0);
+	}
+	tabWidgetAnalysis->setCurrentIndex(QMC2_ROMALYZER_PAGE_RCR);
+	QTimer::singleShot(0, collectionRebuilder(), SLOT(scrollToEnd()));
 }
 
 ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, bool scroll, int mode)
