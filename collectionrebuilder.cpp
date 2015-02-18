@@ -113,7 +113,7 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 	connect(rebuilderThread(), SIGNAL(newMissing(QString, QString, QString, QString, QString, QString, QString)), this, SLOT(rebuilderThread_newMissing(QString, QString, QString, QString, QString, QString, QString)));
 
 	m_missingDumpsViewer = NULL;
-	m_isDefaultEmulator = true;
+	setDefaultEmulator(true);
 
 	m_iconCheckpoint = QIcon(QString::fromUtf8(":/data/img/checkpoint.png"));
 	m_iconNoCheckpoint = QIcon(QString::fromUtf8(":/data/img/no_checkpoint.png"));
@@ -258,9 +258,9 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 		rebuilderThread()->stopRebuilding = true;
 	else if ( rebuilderThread()->isWaiting ) {
 		newMissingList().clear();
-		m_isDefaultEmulator = (comboBoxXmlSource->currentIndex() == 0);
+		setDefaultEmulator(comboBoxXmlSource->currentIndex() == 0);
 		if ( missingDumpsViewer() )
-			missingDumpsViewer()->setDefaultEmulator(m_isDefaultEmulator);
+			missingDumpsViewer()->setDefaultEmulator(defaultEmulator());
 		if ( comboBoxXmlSource->itemData(comboBoxXmlSource->currentIndex()).toBool() ) {
 			switch ( QMessageBox::question(this, tr("Confirm checkpoint restart"), tr("Restart from stored checkpoint?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::No) ) {
 				case QMessageBox::Yes: {
@@ -310,7 +310,7 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 			rebuilderThread()->setFilterExpression(lineEditFilterExpression->text(), comboBoxFilterSyntax->currentIndex(), comboBoxFilterType->currentIndex());
 		else
 			rebuilderThread()->clearFilterExpression();
-		if ( checkBoxFilterStates->isChecked() && comboBoxXmlSource->currentIndex() == 0 )
+		if ( checkBoxFilterStates->isChecked() && defaultEmulator() )
 			rebuilderThread()->setStateFilter(true, toolButtonStateC->isChecked(), toolButtonStateM->isChecked(), toolButtonStateI->isChecked(), toolButtonStateN->isChecked(), toolButtonStateU->isChecked());
 		else
 			rebuilderThread()->clearStateFilter();
@@ -484,7 +484,7 @@ void CollectionRebuilder::on_toolButtonViewMissingList_clicked()
 	} else {
 		m_missingDumpsViewer = new MissingDumpsViewer(romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? "SoftwareMissingDumpsViewer" : "MissingDumpsViewer", 0);
 		missingDumpsViewer()->frameExport->setVisible(romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? false : true);
-		missingDumpsViewer()->setDefaultEmulator(m_isDefaultEmulator);
+		missingDumpsViewer()->setDefaultEmulator(defaultEmulator());
 		if ( rebuilderThread()->isActive )
 			missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(false);
 		else
@@ -576,7 +576,7 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	}
 	if ( missingDumpsViewer() ) {
 		missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(!newMissingList().isEmpty() || missingDumpsViewer()->treeWidget->topLevelItemCount() > 0);
-		missingDumpsViewer()->setDefaultEmulator(m_isDefaultEmulator);
+		missingDumpsViewer()->setDefaultEmulator(defaultEmulator());
 	}
 	pushButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
 	pushButtonStartStop->setText(tr("Start rebuilding"));
@@ -947,6 +947,8 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 
 bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List, QStringList *diskSizeList)
 {
+	static QString listEntityStartPattern("<softwarelist name=\"");
+
 	id->clear();
 	romNameList->clear();
 	romSha1List->clear();
@@ -956,7 +958,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 	diskSha1List->clear();
 	diskSizeList->clear();
 	if ( m_xmlIndex < 0 || m_xmlIndexCount < 0 ) {
-		if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
+		if ( rebuilderDialog()->defaultEmulator() ) {
 			m_xmlIndex = 1;
 			switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 				case QMC2_ROMALYZER_MODE_SOFTWARE:
@@ -992,7 +994,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 			setCheckpoint(-1, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 			return false;
 		}
-		if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
+		if ( rebuilderDialog()->defaultEmulator() ) {
 			switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 				case QMC2_ROMALYZER_MODE_SOFTWARE:
 					if ( parseXml(swlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List, diskSizeList) ) {
@@ -1020,7 +1022,6 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 					}
 			}
 		} else {
-			QString listEntityStartPattern("<softwarelist name=\"");
 			QString setEntityStartPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
 			QByteArray line = m_xmlFile.readLine();
 			while ( !m_xmlFile.atEnd() && line.indexOf(setEntityStartPattern) < 0 && (rebuilderDialog()->romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? line.indexOf(listEntityStartPattern) < 0 : true) && !exitThread )
@@ -1102,7 +1103,7 @@ void CollectionRebuilderThread::checkpointRestart(qint64 cp)
 		return;
 	}
 	m_xmlIndex = cp;
-	if ( rebuilderDialog()->comboBoxXmlSource->currentIndex() == 0 ) {
+	if ( rebuilderDialog()->defaultEmulator() ) {
 		emit log(tr("restarting from checkpoint '%1'").arg(m_xmlIndex));
 		switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 			case QMC2_ROMALYZER_MODE_SOFTWARE:
@@ -1604,10 +1605,8 @@ void CollectionRebuilderThread::run()
 					emit rebuildResumed();
 					emit log(tr("rebuilding resumed"));
 				}
-
 				if ( setKey.isEmpty() )
 					continue;
-
 				switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 					case QMC2_ROMALYZER_MODE_SOFTWARE: {
 							QStringList setKeyTokens = setKey.split(":", QString::SkipEmptyParts);
