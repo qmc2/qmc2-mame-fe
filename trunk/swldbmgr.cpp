@@ -362,6 +362,50 @@ qint64 SoftwareListXmlDatabaseManager::swlRowCount()
 	}	return -1;
 }
 
+qint64 SoftwareListXmlDatabaseManager::nextRowId(bool refreshRowIds)
+{
+	if ( refreshRowIds ) {
+		m_rowIdList.clear();
+		m_lastRowId = -1;
+		QSqlQuery query(m_db);
+		if ( query.exec(QString("SELECT rowid FROM %1").arg(m_tableBasename)) ) {
+			if ( query.first() ) {
+				do {
+					m_rowIdList << query.value(0).toInt();
+				} while ( query.next() );
+				m_lastRowId = 0;
+				return m_rowIdList[0];
+			}
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row IDs from software-list XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+			return -1;
+		}
+	} else if ( m_lastRowId > -1 ) {
+		m_lastRowId++;
+		if ( m_lastRowId < m_rowIdList.count() )
+			return m_rowIdList[m_lastRowId];
+		else
+			return -1;
+	}
+	return -1;
+}
+
+QString SoftwareListXmlDatabaseManager::idOfRow(qint64 row)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT list, id FROM %1 WHERE rowid=:row").arg(m_tableBasename));
+	query.bindValue(":row", row);
+	if ( query.exec() ) {
+		if ( query.first() )
+			return query.value(0).toString() + ":" + query.value(1).toString();
+		else
+			return QString();
+	} else {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from software-list XML cache database: query = '%2', error = '%3'").arg("list, id").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return QString();
+	}
+}
+
 bool SoftwareListXmlDatabaseManager::exists(QString list, QString id)
 {
 	QSqlQuery query(m_db);

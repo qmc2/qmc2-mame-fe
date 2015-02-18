@@ -2,6 +2,7 @@
 #define _XMLDBMGR_H_
 
 #include <QObject>
+#include <QList>
 #include <QSqlDatabase>
 #include <QSqlDriver>
 
@@ -26,12 +27,11 @@ class XmlDatabaseManager : public QObject
 		void setXml(QString id, QString xml);
 		bool exists(QString id);
 		QString parentOf(QString id);
-
 		bool logActive() { return m_logActive; }
 		void setLogActive(bool enable) { m_logActive = enable; }
-
 		qint64 xmlRowCount();
-
+		qint64 nextRowId(bool refreshRowIds = false);
+		QString idOfRow(qint64 row);
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
 		quint64 databaseSize();
@@ -49,6 +49,8 @@ class XmlDatabaseManager : public QObject
 		QString m_tableBasename;
 		QString m_connectionName;
 		bool m_logActive;
+		QList<qint64> m_rowIdList;
+		qint64 m_lastRowId;
 };
 
 #endif

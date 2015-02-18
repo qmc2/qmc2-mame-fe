@@ -32,6 +32,8 @@ class SoftwareListXmlDatabaseManager : public QObject
 		void setXml(QString list, QString id, QString xml);
 		bool exists(QString list, QString id);
 		qint64 swlRowCount();
+		qint64 nextRowId(bool refreshRowIds = false);
+		QString idOfRow(qint64 row);
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
 		quint64 databaseSize();
@@ -49,6 +51,8 @@ class SoftwareListXmlDatabaseManager : public QObject
 		QString m_tableBasename;
 		QString m_connectionName;
 		QSqlQuery *m_listIterationQuery;
+		QList<qint64> m_rowIdList;
+		qint64 m_lastRowId;
 };
 
 #endif

@@ -124,6 +124,8 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		QStringList &newMissingList() { return m_newMissingList; }
 		MissingDumpsViewer *missingDumpsViewer() { return m_missingDumpsViewer; }
 
+		bool defaultEmulator() { return m_defaultEmulator; }
+		void setDefaultEmulator(bool enable) { m_defaultEmulator = enable; }
 		void setStateFilterVisibility(bool visible);
 		void showStateFilter() { setStateFilterVisibility(true); }
 		void hideStateFilter() { setStateFilterVisibility(false); }
@@ -172,7 +174,7 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		QPixmap m_unknownIconPixmap;
 		QStringList m_newMissingList;
 		MissingDumpsViewer *m_missingDumpsViewer;
-		bool m_isDefaultEmulator;
+		bool m_defaultEmulator;
 };
 
 #endif
