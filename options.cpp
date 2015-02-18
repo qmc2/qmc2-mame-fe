@@ -586,16 +586,14 @@ Options::~Options()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::~Options()");
 #endif
 
-	if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
-		config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/FrontendTab", tabWidgetFrontendSettings->currentIndex());
-		config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/MAMETab", tabWidgetGlobalMAMESetup->currentIndex());
-		config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/OptionsTab", tabWidgetOptions->currentIndex());
-		config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/ShortcutsHeaderState", treeWidgetShortcuts->header()->saveState());
+	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/FrontendTab", tabWidgetFrontendSettings->currentIndex());
+	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/MAMETab", tabWidgetGlobalMAMESetup->currentIndex());
+	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/OptionsTab", tabWidgetOptions->currentIndex());
+	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/ShortcutsHeaderState", treeWidgetShortcuts->header()->saveState());
 #if QMC2_JOYSTICK == 1
-		config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/JoyMapHeaderState", treeWidgetJoystickMappings->header()->saveState());
+	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/JoyMapHeaderState", treeWidgetJoystickMappings->header()->saveState());
 #endif
-		config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/RegisteredEmulatorsHeaderState", tableWidgetRegisteredEmulators->horizontalHeader()->saveState());
-	}
+	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/RegisteredEmulatorsHeaderState", tableWidgetRegisteredEmulators->horizontalHeader()->saveState());
 
 #if QMC2_JOYSTICK == 1
 	if ( joystick )
@@ -1026,8 +1024,6 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/UnifiedTitleAndToolBarOnMac", checkBoxUnifiedTitleAndToolBarOnMac->isChecked());
 	qmc2MainWindow->setUnifiedTitleAndToolBarOnMac(checkBoxUnifiedTitleAndToolBarOnMac->isChecked());
 #endif
-	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout", checkBoxSaveLayout->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout", checkBoxRestoreLayout->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection", checkBoxSaveGameSelection->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection", checkBoxRestoreGameSelection->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", checkBoxStatusbar->isChecked());
@@ -2384,8 +2380,6 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #if defined(QMC2_OS_MAC)
 	checkBoxUnifiedTitleAndToolBarOnMac->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/UnifiedTitleAndToolBarOnMac", false).toBool());
 #endif
-	checkBoxSaveLayout->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout", true).toBool());
-	checkBoxRestoreLayout->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout", true).toBool());
 	checkBoxSaveGameSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection", true).toBool());
 	checkBoxRestoreGameSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection", true).toBool());
 	checkBoxStatusbar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -3008,33 +3002,31 @@ void Options::applyDelayed()
 		setParent(qmc2MainWindow, Qt::Dialog | Qt::SubWindow);
 #endif
 		// restore layout
-		if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
-			tabWidgetFrontendSettings->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/FrontendTab", 0).toInt());
-			tabWidgetGlobalMAMESetup->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/MAMETab", 0).toInt());
-			tabWidgetOptions->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/OptionsTab", 0).toInt());
-			QStringList cl = config->allKeys();
-			if ( cl.contains(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Size") )
-				resize(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Size").toSize());
-			if ( cl.contains(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Position") )
-				move(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Position").toPoint());
-			treeWidgetShortcuts->header()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/ShortcutsHeaderState").toByteArray());
+		tabWidgetFrontendSettings->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/FrontendTab", 0).toInt());
+		tabWidgetGlobalMAMESetup->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/MAMETab", 0).toInt());
+		tabWidgetOptions->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/OptionsTab", 0).toInt());
+		QStringList cl = config->allKeys();
+		if ( cl.contains(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Size") )
+			resize(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Size").toSize());
+		if ( cl.contains(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Position") )
+			move(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Position").toPoint());
+		treeWidgetShortcuts->header()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/ShortcutsHeaderState").toByteArray());
 #if QT_VERSION < 0x050000
-			treeWidgetShortcuts->header()->setClickable(true);
+		treeWidgetShortcuts->header()->setClickable(true);
 #else
-			treeWidgetShortcuts->header()->setSectionsClickable(true);
+		treeWidgetShortcuts->header()->setSectionsClickable(true);
 #endif
-			treeWidgetShortcuts->header()->setSortIndicatorShown(true);
+		treeWidgetShortcuts->header()->setSortIndicatorShown(true);
 #if QMC2_JOYSTICK == 1
-			treeWidgetJoystickMappings->header()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/JoyMapHeaderState").toByteArray());
+		treeWidgetJoystickMappings->header()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/JoyMapHeaderState").toByteArray());
 #if QT_VERSION < 0x050000
-			treeWidgetJoystickMappings->header()->setClickable(true);
+		treeWidgetJoystickMappings->header()->setClickable(true);
 #else
-			treeWidgetJoystickMappings->header()->setSectionsClickable(true);
+		treeWidgetJoystickMappings->header()->setSectionsClickable(true);
 #endif
-			treeWidgetJoystickMappings->header()->setSortIndicatorShown(true);
+		treeWidgetJoystickMappings->header()->setSortIndicatorShown(true);
 #endif
-			tableWidgetRegisteredEmulators->horizontalHeader()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/RegisteredEmulatorsHeaderState").toByteArray());
-		}
+		tableWidgetRegisteredEmulators->horizontalHeader()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/RegisteredEmulatorsHeaderState").toByteArray());
 		firstTime = false;
 	}
 
@@ -4066,8 +4058,7 @@ void Options::moveEvent(QMoveEvent *e)
 #endif
 
 	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-		if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-			config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Position", pos());
+		config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Position", pos());
 
 	e->accept();
 }
@@ -4079,8 +4070,7 @@ void Options::resizeEvent(QResizeEvent *e)
 #endif
 
 	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-		if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-			config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Size", size());
+		config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Size", size());
 
 	e->accept();
 }

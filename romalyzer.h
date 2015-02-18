@@ -20,6 +20,7 @@
 #define QMC2_ROMALYZER_PAGE_LOG			1
 #define QMC2_ROMALYZER_PAGE_SETTINGS		2
 #define QMC2_ROMALYZER_PAGE_CSWIZ		3
+#define QMC2_ROMALYZER_PAGE_RCR			4
 
 #define QMC2_ROMALYZER_COLUMN_GAME		0
 #define QMC2_ROMALYZER_COLUMN_MERGE		1
@@ -349,7 +350,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void checkSumScannerThread_scanFinished();
 		void checkSumScannerThread_scanPaused();
 		void checkSumScannerThread_scanResumed();
-		void on_pushButtonRomCollectionRebuilder_clicked();
+		void switchToCollectionRebuilder();
 
 		// miscellaneous slots
 		void animationTimeout();

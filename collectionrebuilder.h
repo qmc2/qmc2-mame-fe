@@ -110,7 +110,7 @@ class CollectionRebuilderThread : public QThread
 		QString m_currentListName;
 };
 
-class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
+class CollectionRebuilder : public QWidget, public Ui::CollectionRebuilder
 {
 	Q_OBJECT
 
@@ -154,10 +154,7 @@ class CollectionRebuilder : public QDialog, public Ui::CollectionRebuilder
 		void updateMissingList();
 
 	protected:
-		void showEvent(QShowEvent *);
 		void hideEvent(QHideEvent *);
-		void closeEvent(QCloseEvent *);
-		void keyPressEvent(QKeyEvent *);
 
 	private:
 		CollectionRebuilderThread *m_rebuilderThread;

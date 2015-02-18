@@ -120,6 +120,10 @@
       <number>0</number>
      </property>
      <widget class="QWidget" name="tabReport">
+      <attribute name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/highlight.png</normaloff>:/data/img/highlight.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Report</string>
       </attribute>
@@ -194,6 +198,10 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tabLog">
+      <attribute name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/notes.png</normaloff>:/data/img/notes.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Log</string>
       </attribute>
@@ -321,6 +329,10 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tabSettings">
+      <attribute name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/configure.png</normaloff>:/data/img/configure.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Settings</string>
       </attribute>
@@ -345,7 +357,7 @@
             <x>0</x>
             <y>0</y>
             <width>691</width>
-            <height>791</height>
+            <height>782</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayoutScrollAreeaSettings" rowstretch="0,0,0,1,0">
@@ -497,7 +509,7 @@
                   </property>
                  </widget>
                 </item>
-                <item row="0" column="1" rowspan="8">
+                <item row="0" column="1" rowspan="6">
                  <widget class="Line" name="line_14">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
@@ -511,47 +523,14 @@
                   </property>
                  </widget>
                 </item>
-                <item row="0" column="3" rowspan="8">
+                <item row="0" column="3" rowspan="6">
                  <widget class="Line" name="line_15">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
                   </property>
                  </widget>
                 </item>
-                <item row="7" column="4" colspan="3">
-                 <widget class="QPushButton" name="pushButtonRomCollectionRebuilder">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="toolTip">
-                   <string>Opens the 'ROM Collection Rebuilder' dialog (requires the check-sum database)</string>
-                  </property>
-                  <property name="text">
-                   <string>Rebuild ROM collection...</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="qmc2.qrc">
-                    <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
-                  </property>
-                  <property name="autoDefault">
-                   <bool>false</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item row="6" column="4" colspan="3">
-                 <widget class="Line" name="lineAboveRomCollectionRebuilder">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="0" rowspan="6">
+                <item row="2" column="0" rowspan="4">
                  <layout class="QVBoxLayout" name="verticalLayout">
                   <item>
                    <widget class="QCheckBox" name="checkBoxSetRewriterWhileAnalyzing">
@@ -620,7 +599,7 @@
                   </item>
                  </layout>
                 </item>
-                <item row="2" column="2" rowspan="6">
+                <item row="2" column="2" rowspan="4">
                  <layout class="QVBoxLayout" name="verticalLayout_2">
                   <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -701,13 +680,6 @@
                    </widget>
                   </item>
                  </layout>
-                </item>
-                <item row="5" column="4" colspan="3">
-                 <widget class="QLabel" name="labelSetRewriterCollectionRebuilder">
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Collection rebuilder&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
                 </item>
                </layout>
               </item>
@@ -1610,6 +1582,10 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tabChecksumWizard">
+      <attribute name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/hash.png</normaloff>:/data/img/hash.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Check-sum wizard</string>
       </attribute>
@@ -1841,6 +1817,20 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tabCollectionRebuilder">
+      <attribute name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
+      </attribute>
+      <attribute name="title">
+       <string>ROM collection rebuilder</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayoutCollectionRebuilder">
+       <property name="margin">
+        <number>0</number>
+       </property>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item row="2" column="0">
@@ -1989,7 +1979,6 @@
   <tabstop>checkBoxSetRewriterUseAdditionalRomPath</tabstop>
   <tabstop>lineEditSetRewriterAdditionalRomPath</tabstop>
   <tabstop>toolButtonBrowseSetRewriterAdditionalRomPath</tabstop>
-  <tabstop>pushButtonRomCollectionRebuilder</tabstop>
   <tabstop>groupBoxCheckSumDatabase</tabstop>
   <tabstop>toolButtonCheckSumDbScanIncrementally</tabstop>
   <tabstop>toolButtonCheckSumDbDeepScan</tabstop>

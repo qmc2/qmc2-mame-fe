@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>CollectionRebuilder</class>
- <widget class="QDialog" name="CollectionRebuilder">
+ <widget class="QWidget" name="CollectionRebuilder">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -128,7 +128,7 @@
     </widget>
    </item>
    <item row="6" column="0" colspan="3">
-    <layout class="QHBoxLayout" name="horizontalLayout_1">
+    <layout class="QHBoxLayout" name="horizontalLayout2">
      <item>
       <widget class="QCheckBox" name="checkBoxEnableLog">
        <property name="toolTip">
@@ -210,26 +210,10 @@
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QToolButton" name="toolButtonClose">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Close this window</string>
-       </property>
-       <property name="text">
-        <string>Close</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
    <item row="0" column="2">
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout1">
      <item>
       <widget class="QToolButton" name="toolButtonRemoveXmlSource">
        <property name="sizePolicy">
@@ -569,7 +553,7 @@
       </widget>
      </item>
      <item row="2" column="1" colspan="4">
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <layout class="QHBoxLayout" name="horizontalLayout3">
        <item>
         <widget class="QToolButton" name="toolButtonStateC">
          <property name="enabled">
@@ -765,28 +749,11 @@
   <tabstop>checkBoxEnableLog</tabstop>
   <tabstop>spinBoxMaxLogSize</tabstop>
   <tabstop>toolButtonClear</tabstop>
-  <tabstop>toolButtonClose</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
  </resources>
  <connections>
-  <connection>
-   <sender>toolButtonClose</sender>
-   <signal>clicked()</signal>
-   <receiver>CollectionRebuilder</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>532</x>
-     <y>455</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>431</x>
-     <y>472</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>toolButtonClear</sender>
    <signal>clicked()</signal>
@@ -794,7 +761,7 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>485</x>
+     <x>532</x>
      <y>455</y>
     </hint>
     <hint type="destinationlabel">

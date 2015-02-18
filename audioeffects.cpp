@@ -227,10 +227,8 @@ void AudioEffectDialog::showEvent(QShowEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: AudioEffectDialog::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
-		restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/Geometry").toByteArray());
-		treeWidgetAudioEffects->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EffectListHeaderState").toByteArray());
-	}
+	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/Geometry").toByteArray());
+	treeWidgetAudioEffects->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EffectListHeaderState").toByteArray());
 
 #if defined(QMC2_NOEFFECTDIALOGS)
 	treeWidgetAudioEffects->setColumnHidden(QMC2_AUDIOEFFECT_COLUMN_SETUP, true);
@@ -254,10 +252,8 @@ void AudioEffectDialog::hideEvent(QHideEvent *e)
 		if ( widget )
 			widget->hide();
 
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/Geometry", saveGeometry());
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EffectListHeaderState", treeWidgetAudioEffects->header()->saveState());
-	}
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/Geometry", saveGeometry());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EffectListHeaderState", treeWidgetAudioEffects->header()->saveState());
 
 	e->accept();
 }

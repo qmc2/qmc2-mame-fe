@@ -25,11 +25,7 @@ extern Options *qmc2Options;
 extern Gamelist *qmc2Gamelist;
 
 CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent)
-#if defined(QMC2_OS_WIN)
-	: QDialog(parent, Qt::Dialog)
-#else
-	: QDialog(parent, Qt::Dialog | Qt::SubWindow)
-#endif
+	: QWidget(parent)
 {
 	m_romAlyzer = myROMAlyzer;
 
@@ -37,7 +33,6 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 
 	switch ( romAlyzer()->mode() ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE:
-			setWindowTitle(tr("Software Collection Rebuilder"));
 			m_settingsKey = "SoftwareCollectionRebuilder";
 			m_defaultSetEntity = "software";
 			m_defaultRomEntity = "rom";
@@ -59,7 +54,6 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
-			setWindowTitle(tr("ROM Collection Rebuilder"));
 			m_settingsKey = "CollectionRebuilder";
 #if defined(QMC2_EMUTYPE_MESS)
 			m_defaultSetEntity = "machine";
@@ -530,15 +524,7 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	toolButtonStateU->setEnabled(false);
 	frameEntities->setEnabled(false);
 	romAlyzer()->groupBoxCheckSumDatabase->setEnabled(false);
-	switch ( romAlyzer()->mode() ) {
-		case QMC2_ROMALYZER_MODE_SOFTWARE:
-			romAlyzer()->pushButtonRomCollectionRebuilder->setText(tr("Rebuilding software collection..."));
-			break;
-		case QMC2_ROMALYZER_MODE_SYSTEM:
-		default:
-			romAlyzer()->pushButtonRomCollectionRebuilder->setText(tr("Rebuilding ROM collection..."));
-			break;
-	}
+	romAlyzer()->groupBoxSetRewriter->setEnabled(false);
 	m_animationSequence = 0;
 	m_animationTimer.start(QMC2_ROMALYZER_REBUILD_ANIM_SPEED);
 	qApp->processEvents();
@@ -604,17 +590,9 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	toolButtonStateU->setEnabled(checkBoxFilterStates->isChecked());
 	frameEntities->setEnabled(true);
 	romAlyzer()->groupBoxCheckSumDatabase->setEnabled(true);
+	romAlyzer()->groupBoxSetRewriter->setEnabled(true);
 	m_animationTimer.stop();
-	romAlyzer()->pushButtonRomCollectionRebuilder->setIcon(QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
-	switch ( romAlyzer()->mode() ) {
-		case QMC2_ROMALYZER_MODE_SOFTWARE:
-			romAlyzer()->pushButtonRomCollectionRebuilder->setText(tr("Rebuild software collection..."));
-			break;
-		case QMC2_ROMALYZER_MODE_SYSTEM:
-		default:
-			romAlyzer()->pushButtonRomCollectionRebuilder->setText(tr("Rebuild ROM collection..."));
-			break;
-	}
+	romAlyzer()->tabWidgetAnalysis->setTabIcon(QMC2_ROMALYZER_PAGE_RCR, QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
 	qApp->processEvents();
 }
 
@@ -678,7 +656,7 @@ void CollectionRebuilder::animationTimer_timeout()
 	p.translate(-size.height()/2,-size.height()/2);
 	p.drawPixmap(0, 0, pixmap);
 	p.end();
-	romAlyzer()->pushButtonRomCollectionRebuilder->setIcon(QIcon(rotatedPixmap));
+	romAlyzer()->tabWidgetAnalysis->setTabIcon(QMC2_ROMALYZER_PAGE_RCR, QIcon(rotatedPixmap));
 	m_animationTimer.start(QMC2_ROMALYZER_REBUILD_ANIM_SPEED);
 	if ( !newMissingList().isEmpty() && missingDumpsViewer() )
 		QTimer::singleShot(0, this, SLOT(updateMissingList()));
@@ -709,29 +687,8 @@ void CollectionRebuilder::updateMissingList()
 		missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(missingDumpsViewer()->treeWidget->topLevelItemCount() > 0);
 }
 
-void CollectionRebuilder::showEvent(QShowEvent *e)
-{
-	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("Layout/%1/Geometry").arg(m_settingsKey), QByteArray()).toByteArray());
-	if ( e )
-		QDialog::showEvent(e);
-}
-
 void CollectionRebuilder::hideEvent(QHideEvent *e)
 {
-	if ( isVisible() )
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("Layout/%1/Geometry").arg(m_settingsKey), saveGeometry());
-	if ( e )
-		QDialog::hideEvent(e);
-
-	if ( missingDumpsViewer() )
-		missingDumpsViewer()->hide();
-}
-
-void CollectionRebuilder::closeEvent(QCloseEvent *e)
-{
-	hideEvent(0);
-	QDialog::closeEvent(e);
-
 	switch ( romAlyzer()->mode() ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE:
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpressionSoftwareLists", checkBoxFilterExpressionSoftwareLists->isChecked());
@@ -761,14 +718,9 @@ void CollectionRebuilder::closeEvent(QCloseEvent *e)
 
 	if ( missingDumpsViewer() )
 		missingDumpsViewer()->close();
-}
 
-void CollectionRebuilder::keyPressEvent(QKeyEvent *e)
-{
-	if ( e->key() == Qt::Key_Escape )
-		close();
-	else
-		QDialog::keyPressEvent(e);
+	//setVisible(true);
+	e->ignore();
 }
 
 CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)

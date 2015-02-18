@@ -298,43 +298,6 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList[1].toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 45, osr, 6070) ) {
-			// rename "ROMAlyzer/SetRewriterGoodSetsOnly" to "ROMAlyzer/SetRewriterGoodDumpsOnly"
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/SetRewriterGoodSetsOnly") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/SetRewriterGoodDumpsOnly", startupConfig->value(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/SetRewriterGoodSetsOnly").toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/SetRewriterGoodSetsOnly");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/SetRewriterGoodSetsOnly") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/SetRewriterGoodDumpsOnly", startupConfig->value(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/SetRewriterGoodSetsOnly").toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/SetRewriterGoodSetsOnly");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/SetRewriterGoodSetsOnly") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/SetRewriterGoodDumpsOnly", startupConfig->value(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/SetRewriterGoodSetsOnly").toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/SetRewriterGoodSetsOnly");
-			}
-		}
-		if ( QMC2_TEST_VERSION(omv, 45, osr, 6071) ) {
-			// remove all unused "ROMAlyzer/Database*" keys
-			foreach (QString dbKey, QStringList() << "DatabaseDownload" << "DatabaseDriver" << "DatabaseName" << "DatabaseOutputPath" << "DatabaseOverwrite" << "DatabasePassword" << "DatabasePort" << "DatabaseServer" << "DatabaseUpload" << "DatabaseUser" << "EnableDatabase") {
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/" + dbKey) )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/" + dbKey);
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/" + dbKey) )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/" + dbKey);
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/" + dbKey) )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/" + dbKey);
-			}
-		}
-		if ( QMC2_TEST_VERSION(omv, 45, osr, 6123) ) {
-			// remove deprecated "*ROMAlyzer/SetRenamer*" keys
-			foreach (QString dbKey, QStringList() << "Layout/ROMAlyzer/SetRenamerHeaderState" << "ROMAlyzer/SetRenamerAutomationLevel" << "ROMAlyzer/SetRenamerOldXmlFile") {
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + dbKey) )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + dbKey);
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + dbKey) )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + dbKey);
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + dbKey) )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + dbKey);
-			}
-		}
 		if ( QMC2_TEST_VERSION(omv, 46, osr, 6280) ) {
 			// remove the old software-list xml-cache file and the deprecated "FilesAndDirectories/SoftwareListCache" settings keys
 			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_MAME + "FilesAndDirectories/SoftwareListCache") ) {
@@ -418,11 +381,25 @@ bool Welcome::checkConfig()
 		}
 		if ( QMC2_TEST_VERSION(omv, 49, osr, 6467) ) {
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/SetRewriterIgnoreErrors");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/SetRewriterIgnoreErrors");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/SetRewriterIgnoreErrors");
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "SoftwareROMAlyzer/SetRewriterIgnoreErrors");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/SetRewriterIgnoreErrors");
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "SoftwareROMAlyzer/SetRewriterIgnoreErrors");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/SetRewriterIgnoreErrors");
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "SoftwareROMAlyzer/SetRewriterIgnoreErrors");
+		}
+		if ( QMC2_TEST_VERSION(omv, 49, osr, 6479) ) {
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/CollectionRebuilder/Geometry");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/SoftwareCollectionRebuilder/Geometry");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "GUI/SaveLayout");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "GUI/RestoreLayout");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/CollectionRebuilder/Geometry");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/SoftwareCollectionRebuilder/Geometry");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "GUI/SaveLayout");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "GUI/RestoreLayout");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/CollectionRebuilder/Geometry");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/SoftwareCollectionRebuilder/Geometry");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "GUI/SaveLayout");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "GUI/RestoreLayout");
 		}
 	}
 
