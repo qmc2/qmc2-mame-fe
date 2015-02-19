@@ -6,6 +6,7 @@
 #include <QWaitCondition>
 #include <QFile>
 #include <QIcon>
+#include <QHash>
 #include <QTimer>
 #include <QRegExp>
 #include <QString>
@@ -80,6 +81,19 @@ class CollectionRebuilderThread : public QThread
 			doFilterState = enableFilter; includeStateC = stateC; includeStateM = stateM; includeStateI = stateI; includeStateN = stateN; includeStateU = stateU;
 		}
 		void clearStateFilter() { setStateFilter(false); }
+		void setSetEntityPattern(QString pattern) { m_setEntityPattern = pattern; }
+		QString &setEntityPattern() { return m_setEntityPattern; }
+		void setRomEntityPattern(QString pattern) { m_romEntityPattern = pattern; }
+		QString &romEntityPattern() { return m_romEntityPattern; }
+		void setDiskEntityPattern(QString pattern) { m_diskEntityPattern = pattern; }
+		QString &diskEntityPattern() { return m_diskEntityPattern; }
+		void setSetEntityStartPattern(QString pattern) { m_setEntityStartPattern = pattern; }
+		QString &setEntityStartPattern() { return m_setEntityStartPattern; }
+		void setListEntityStartPattern(QString pattern) { m_listEntityStartPattern = pattern; }
+		QString &listEntityStartPattern() { return m_listEntityStartPattern; }
+		void setMerge(bool merge) { m_merge = merge; }
+		bool merge() { return m_merge; }
+		QString &toHumanReadable(QString &text);
 
 	public slots:
 		void pause();
@@ -108,6 +122,13 @@ class CollectionRebuilderThread : public QThread
 		qint64 m_xmlIndex, m_xmlIndexCount, m_checkpoint;
 		QFile m_xmlFile;
 		QString m_currentListName;
+		QString m_setEntityPattern;
+		QString m_romEntityPattern;
+		QString m_diskEntityPattern;
+		QString m_setEntityStartPattern;
+		QString m_listEntityStartPattern;
+		QHash<QString, QString> m_replacementHash;
+		bool m_merge;
 };
 
 class CollectionRebuilder : public QWidget, public Ui::CollectionRebuilder
