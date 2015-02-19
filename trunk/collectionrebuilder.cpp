@@ -24,6 +24,8 @@ extern Settings *qmc2Config;
 extern Options *qmc2Options;
 extern Gamelist *qmc2Gamelist;
 
+QHash<QString, QString> CollectionRebuilderThread::m_replacementHash;
+
 CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent)
 	: QWidget(parent)
 {
@@ -728,11 +730,13 @@ CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
 	m_checkSumDb = NULL;
 	m_xmlIndex = m_xmlIndexCount = m_checkpoint = -1;
 	setListEntityStartPattern("<softwarelist name=\"");
-	m_replacementHash["&amp;"] = "&";
-	m_replacementHash["&lt;"] = "<";
-	m_replacementHash["&gt;"] = ">";
-	m_replacementHash["&quot;"] = "\"";
-	m_replacementHash["&apos;"] = "'";
+	if ( m_replacementHash.isEmpty() ) {
+		m_replacementHash.insert("&amp;", "&");
+		m_replacementHash.insert("&lt;", "<");
+		m_replacementHash.insert("&gt;", ">");
+		m_replacementHash.insert("&quot;", "\"");
+		m_replacementHash.insert("&apos;", "'");
+	}
 	reopenCheckSumDb();
 	switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE:
@@ -771,13 +775,6 @@ void CollectionRebuilderThread::reopenCheckSumDb()
 	}
 	m_checkSumDb = new CheckSumDatabaseManager(this, rebuilderDialog()->romAlyzer()->settingsKey());
 	connect(checkSumDb(), SIGNAL(log(const QString &)), rebuilderDialog(), SLOT(log(const QString &)));
-}
-
-QString &CollectionRebuilderThread::toHumanReadable(QString &text)
-{
-	foreach (QString old, m_replacementHash.keys())
-		text.replace(old, m_replacementHash[old]);
-	return text;
 }
 
 bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List, QStringList *diskSizeList)

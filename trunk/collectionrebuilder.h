@@ -78,7 +78,12 @@ class CollectionRebuilderThread : public QThread
 		void clearFilterExpression() { setFilterExpression(QString(), 0, 0); }
 		void clearFilterExpressionSoftware() { setFilterExpressionSoftware(QString(), 0, 0); }
 		void setStateFilter(bool enableFilter, bool stateC = true, bool stateM = true, bool stateI = true, bool stateN = true, bool stateU = true) {
-			doFilterState = enableFilter; includeStateC = stateC; includeStateM = stateM; includeStateI = stateI; includeStateN = stateN; includeStateU = stateU;
+			doFilterState = enableFilter;
+			includeStateC = stateC;
+			includeStateM = stateM;
+			includeStateI = stateI;
+			includeStateN = stateN;
+			includeStateU = stateU;
 		}
 		void clearStateFilter() { setStateFilter(false); }
 		void setSetEntityPattern(QString pattern) { m_setEntityPattern = pattern; }
@@ -93,7 +98,13 @@ class CollectionRebuilderThread : public QThread
 		QString &listEntityStartPattern() { return m_listEntityStartPattern; }
 		void setMerge(bool merge) { m_merge = merge; }
 		bool merge() { return m_merge; }
-		QString &toHumanReadable(QString &text);
+
+		static QString &toHumanReadable(QString &text) {
+			foreach (QString old, m_replacementHash.keys())
+				text.replace(old, m_replacementHash[old]);
+			return text;
+		}
+
 
 	public slots:
 		void pause();
@@ -127,8 +138,8 @@ class CollectionRebuilderThread : public QThread
 		QString m_diskEntityPattern;
 		QString m_setEntityStartPattern;
 		QString m_listEntityStartPattern;
-		QHash<QString, QString> m_replacementHash;
 		bool m_merge;
+		static QHash<QString, QString> m_replacementHash;
 };
 
 class CollectionRebuilder : public QWidget, public Ui::CollectionRebuilder
