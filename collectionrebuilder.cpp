@@ -727,6 +727,12 @@ CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
 	m_rebuilderDialog = (CollectionRebuilder *)parent;
 	m_checkSumDb = NULL;
 	m_xmlIndex = m_xmlIndexCount = m_checkpoint = -1;
+	setListEntityStartPattern("<softwarelist name=\"");
+	m_replacementHash["&amp;"] = "&";
+	m_replacementHash["&lt;"] = "<";
+	m_replacementHash["&gt;"] = ">";
+	m_replacementHash["&quot;"] = "\"";
+	m_replacementHash["&apos;"] = "'";
 	reopenDatabase();
 	switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE:
@@ -767,76 +773,86 @@ void CollectionRebuilderThread::reopenDatabase()
 	connect(checkSumDb(), SIGNAL(log(const QString &)), rebuilderDialog(), SLOT(log(const QString &)));
 }
 
+QString &CollectionRebuilderThread::toHumanReadable(QString &text)
+{
+	foreach (QString old, m_replacementHash.keys())
+		text.replace(old, m_replacementHash[old]);
+	return text;
+}
+
 bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List, QStringList *diskSizeList)
 {
+	static const QString statusString("status=\"");
+	static const QString mergeString("merge=\"");
+	static const QString sha1String("sha1=\"");
+	static const QString crcString("crc=\"");
+	static const QString sizeString("size=\"");
+
 	if ( xml.isEmpty() )
 		return false;
 
-	QString setEntityPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
-	QString romEntityPattern("<" + rebuilderDialog()->lineEditRomEntity->text() + " name=\"");
-	QString diskEntityPattern("<" + rebuilderDialog()->lineEditDiskEntity->text() + " name=\"");
-	bool merge = !rebuilderDialog()->romAlyzer()->checkBoxSetRewriterSelfContainedSets->isChecked();
 	int startIndex = -1;
 	int endIndex = -1;
 	QStringList xmlLines = xml.split("\n");
 	QString xmlLine = xmlLines[0];
-	startIndex = xmlLine.indexOf(setEntityPattern);
+	startIndex = xmlLine.indexOf(setEntityPattern());
 	if ( startIndex >= 0 ) {
-		startIndex += setEntityPattern.length();
+		startIndex += setEntityPattern().length();
 		endIndex = xmlLine.indexOf("\"", startIndex);
 		if ( endIndex >= 0 ) {
 			*id = xmlLine.mid(startIndex, endIndex - startIndex);
+			QString mergeName, romName, status, romSha1, romCrc, romSize, diskName, diskSha1, diskSize;
 			for (int i = 1; i < xmlLines.count(); i++) {
 				xmlLine = xmlLines[i];
 				bool romFound = false;
-				startIndex = xmlLine.indexOf(romEntityPattern);
+				startIndex = xmlLine.indexOf(romEntityPattern());
 				if ( startIndex >= 0 ) {
-					startIndex += romEntityPattern.length();
+					startIndex += romEntityPattern().length();
 					endIndex = xmlLine.indexOf("\"", startIndex);
 					if ( endIndex >= 0 ) {
 						romFound = true;
-						QString romName = xmlLine.mid(startIndex, endIndex - startIndex);
-						QString mergeName;
-						QString status;
-						startIndex = xmlLine.indexOf("status=\"");
+						romName = xmlLine.mid(startIndex, endIndex - startIndex);
+						mergeName.clear();
+						status.clear();
+						startIndex = xmlLine.indexOf(statusString);
 						if ( startIndex >= 0 ) {
-							startIndex += 8;
+							startIndex += statusString.length();
 							endIndex = xmlLine.indexOf("\"", startIndex);
 							if ( endIndex >= 0 )
 								status = xmlLine.mid(startIndex, endIndex - startIndex);
 						}
-						startIndex = xmlLine.indexOf("merge=\"");
+						startIndex = xmlLine.indexOf(mergeString);
 						if ( startIndex >= 0 ) {
-							startIndex += 7;
+							startIndex += mergeString.length();
 							endIndex = xmlLine.indexOf("\"", startIndex);
 							if ( endIndex >= 0 )
 								mergeName = xmlLine.mid(startIndex, endIndex - startIndex);
 						}
-						if ( status != "nodump" && (!merge || mergeName.isEmpty()) ) {
-							QString romSha1, romCrc, romSize;
-							startIndex = xmlLine.indexOf("sha1=\"");
+						if ( status != "nodump" && (!merge() || mergeName.isEmpty()) ) {
+							romSha1.clear(); romCrc.clear(); romSize.clear();
+							startIndex = xmlLine.indexOf(sha1String);
 							if ( startIndex >= 0 ) {
-								startIndex += 6;
+								startIndex += sha1String.length();
 								endIndex = xmlLine.indexOf("\"", startIndex);
 								if ( endIndex >= 0 )
 									romSha1 = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
-							startIndex = xmlLine.indexOf("crc=\"");
+							startIndex = xmlLine.indexOf(crcString);
 							if ( startIndex >= 0 ) {
-								startIndex += 5;
+								startIndex += crcString.length();
 								endIndex = xmlLine.indexOf("\"", startIndex);
 								if ( endIndex >= 0 )
 									romCrc = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
-							startIndex = xmlLine.indexOf("size=\"");
+							startIndex = xmlLine.indexOf(sizeString);
 							if ( startIndex >= 0 ) {
-								startIndex += 6;
+								startIndex += sizeString.length();
 								endIndex = xmlLine.indexOf("\"", startIndex);
 								if ( endIndex >= 0 )
 									romSize = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
 							if ( !romSha1.isEmpty() || !romCrc.isEmpty() ) {
-								*romNameList << romName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
+								*romNameList << toHumanReadable(romName);
 								*romSha1List << romSha1;
 								*romCrcList << romCrc;
 								*romSizeList << romSize;
@@ -846,39 +862,39 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 				}
 				if ( romFound )
 					continue;
-				startIndex = xmlLine.indexOf(diskEntityPattern);
+				startIndex = xmlLine.indexOf(diskEntityPattern());
 				if ( startIndex >= 0 ) {
-					startIndex += diskEntityPattern.length();
+					startIndex += diskEntityPattern().length();
 					endIndex = xmlLine.indexOf("\"", startIndex);
 					if ( endIndex >= 0 ) {
-						QString diskName = xmlLine.mid(startIndex, endIndex - startIndex);
-						QString mergeName;
-						startIndex = xmlLine.indexOf("merge=\"");
+						diskName = xmlLine.mid(startIndex, endIndex - startIndex);
+						mergeName.clear();
+						startIndex = xmlLine.indexOf(mergeString);
 						if ( startIndex >= 0 ) {
-							startIndex += 7;
+							startIndex += mergeString.length();
 							endIndex = xmlLine.indexOf("\"", startIndex);
 							if ( endIndex >= 0 )
 								mergeName = xmlLine.mid(startIndex, endIndex - startIndex);
 						}
-						if ( !merge || mergeName.isEmpty() ) {
-							QString diskSha1;
-							startIndex = xmlLine.indexOf("sha1=\"");
+						if ( !merge() || mergeName.isEmpty() ) {
+							diskSha1.clear();
+							startIndex = xmlLine.indexOf(sha1String);
 							if ( startIndex >= 0 ) {
-								startIndex += 6;
+								startIndex += sha1String.length();
 								endIndex = xmlLine.indexOf("\"", startIndex);
 								if ( endIndex >= 0 )
 									diskSha1 = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
-							QString diskSize;
-							startIndex = xmlLine.indexOf("size=\"");
+							diskSize.clear();
+							startIndex = xmlLine.indexOf(sizeString);
 							if ( startIndex >= 0 ) {
-								startIndex += 6;
+								startIndex += sizeString.length();
 								endIndex = xmlLine.indexOf("\"", startIndex);
 								if ( endIndex >= 0 )
 									diskSize = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
 							if ( !diskSha1.isEmpty() ) {
-								*diskNameList << diskName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");;
+								*diskNameList << toHumanReadable(diskName);
 								*diskSha1List << diskSha1;
 								*diskSizeList << diskSize;
 							}
@@ -895,8 +911,6 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 
 bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList *diskNameList, QStringList *diskSha1List, QStringList *diskSizeList)
 {
-	static QString listEntityStartPattern("<softwarelist name=\"");
-
 	id->clear();
 	romNameList->clear();
 	romSha1List->clear();
@@ -970,9 +984,8 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 					}
 			}
 		} else {
-			QString setEntityStartPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
 			QByteArray line = m_xmlFile.readLine();
-			while ( !m_xmlFile.atEnd() && line.indexOf(setEntityStartPattern) < 0 && (rebuilderDialog()->romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? line.indexOf(listEntityStartPattern) < 0 : true) && !exitThread )
+			while ( !m_xmlFile.atEnd() && line.indexOf(setEntityStartPattern()) < 0 && (rebuilderDialog()->romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? line.indexOf(listEntityStartPattern()) < 0 : true) && !exitThread )
 				line = m_xmlFile.readLine();
 			if ( m_xmlFile.atEnd() ) {
 				emit progressChanged(m_xmlIndexCount);
@@ -981,9 +994,9 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 			} else if ( !exitThread ) {
 				QString xmlString;
 				if ( rebuilderDialog()->romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
-					int startIndex = line.indexOf(listEntityStartPattern);
+					int startIndex = line.indexOf(listEntityStartPattern());
 					if ( startIndex >= 0 ) {
-						startIndex += listEntityStartPattern.length();
+						startIndex += listEntityStartPattern().length();
 						setListCheckpoint(line.mid(startIndex, line.indexOf("\"", startIndex) - startIndex), rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						return true;
 					}
@@ -1524,6 +1537,11 @@ void CollectionRebuilderThread::run()
 		mutex.unlock();
 		if ( !exitThread && !stopRebuilding ) {
 			setsProcessed = missingROMs = missingDisks = 0;
+			setSetEntityPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
+			setRomEntityPattern("<" + rebuilderDialog()->lineEditRomEntity->text() + " name=\"");
+			setDiskEntityPattern("<" + rebuilderDialog()->lineEditDiskEntity->text() + " name=\"");
+			setSetEntityStartPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
+			setMerge(!rebuilderDialog()->romAlyzer()->checkBoxSetRewriterSelfContainedSets->isChecked());
 			emit log(tr("rebuilding started"));
 			emit statusUpdated(0, 0, 0);
 			emit rebuildStarted();
