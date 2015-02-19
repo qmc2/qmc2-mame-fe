@@ -733,7 +733,7 @@ CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
 	m_replacementHash["&gt;"] = ">";
 	m_replacementHash["&quot;"] = "\"";
 	m_replacementHash["&apos;"] = "'";
-	reopenDatabase();
+	reopenCheckSumDb();
 	switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE:
 			m_swlDb = new SoftwareListXmlDatabaseManager(this);
@@ -763,7 +763,7 @@ CollectionRebuilderThread::~CollectionRebuilderThread()
 		delete swlDb();
 }
 
-void CollectionRebuilderThread::reopenDatabase()
+void CollectionRebuilderThread::reopenCheckSumDb()
 {
 	if ( checkSumDb() ) {
 		checkSumDb()->disconnect(rebuilderDialog());
@@ -787,6 +787,7 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 	static const QString sha1String("sha1=\"");
 	static const QString crcString("crc=\"");
 	static const QString sizeString("size=\"");
+	static const QChar quoteChar('\"');
 
 	if ( xml.isEmpty() )
 		return false;
@@ -798,7 +799,7 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 	startIndex = xmlLine.indexOf(setEntityPattern());
 	if ( startIndex >= 0 ) {
 		startIndex += setEntityPattern().length();
-		endIndex = xmlLine.indexOf("\"", startIndex);
+		endIndex = xmlLine.indexOf(quoteChar, startIndex);
 		if ( endIndex >= 0 ) {
 			*id = xmlLine.mid(startIndex, endIndex - startIndex);
 			QString mergeName, romName, status, romSha1, romCrc, romSize, diskName, diskSha1, diskSize;
@@ -808,7 +809,7 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 				startIndex = xmlLine.indexOf(romEntityPattern());
 				if ( startIndex >= 0 ) {
 					startIndex += romEntityPattern().length();
-					endIndex = xmlLine.indexOf("\"", startIndex);
+					endIndex = xmlLine.indexOf(quoteChar, startIndex);
 					if ( endIndex >= 0 ) {
 						romFound = true;
 						romName = xmlLine.mid(startIndex, endIndex - startIndex);
@@ -817,14 +818,14 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 						startIndex = xmlLine.indexOf(statusString);
 						if ( startIndex >= 0 ) {
 							startIndex += statusString.length();
-							endIndex = xmlLine.indexOf("\"", startIndex);
+							endIndex = xmlLine.indexOf(quoteChar, startIndex);
 							if ( endIndex >= 0 )
 								status = xmlLine.mid(startIndex, endIndex - startIndex);
 						}
 						startIndex = xmlLine.indexOf(mergeString);
 						if ( startIndex >= 0 ) {
 							startIndex += mergeString.length();
-							endIndex = xmlLine.indexOf("\"", startIndex);
+							endIndex = xmlLine.indexOf(quoteChar, startIndex);
 							if ( endIndex >= 0 )
 								mergeName = xmlLine.mid(startIndex, endIndex - startIndex);
 						}
@@ -833,29 +834,29 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 							startIndex = xmlLine.indexOf(sha1String);
 							if ( startIndex >= 0 ) {
 								startIndex += sha1String.length();
-								endIndex = xmlLine.indexOf("\"", startIndex);
+								endIndex = xmlLine.indexOf(quoteChar, startIndex);
 								if ( endIndex >= 0 )
 									romSha1 = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
 							startIndex = xmlLine.indexOf(crcString);
 							if ( startIndex >= 0 ) {
 								startIndex += crcString.length();
-								endIndex = xmlLine.indexOf("\"", startIndex);
+								endIndex = xmlLine.indexOf(quoteChar, startIndex);
 								if ( endIndex >= 0 )
 									romCrc = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
 							startIndex = xmlLine.indexOf(sizeString);
 							if ( startIndex >= 0 ) {
 								startIndex += sizeString.length();
-								endIndex = xmlLine.indexOf("\"", startIndex);
+								endIndex = xmlLine.indexOf(quoteChar, startIndex);
 								if ( endIndex >= 0 )
 									romSize = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
 							if ( !romSha1.isEmpty() || !romCrc.isEmpty() ) {
-								*romNameList << toHumanReadable(romName);
-								*romSha1List << romSha1;
-								*romCrcList << romCrc;
-								*romSizeList << romSize;
+								romNameList->append(toHumanReadable(romName));
+								romSha1List->append(romSha1);
+								romCrcList->append(romCrc);
+								romSizeList->append(romSize);
 							}
 						}
 					}
@@ -865,14 +866,14 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 				startIndex = xmlLine.indexOf(diskEntityPattern());
 				if ( startIndex >= 0 ) {
 					startIndex += diskEntityPattern().length();
-					endIndex = xmlLine.indexOf("\"", startIndex);
+					endIndex = xmlLine.indexOf(quoteChar, startIndex);
 					if ( endIndex >= 0 ) {
 						diskName = xmlLine.mid(startIndex, endIndex - startIndex);
 						mergeName.clear();
 						startIndex = xmlLine.indexOf(mergeString);
 						if ( startIndex >= 0 ) {
 							startIndex += mergeString.length();
-							endIndex = xmlLine.indexOf("\"", startIndex);
+							endIndex = xmlLine.indexOf(quoteChar, startIndex);
 							if ( endIndex >= 0 )
 								mergeName = xmlLine.mid(startIndex, endIndex - startIndex);
 						}
@@ -881,7 +882,7 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 							startIndex = xmlLine.indexOf(sha1String);
 							if ( startIndex >= 0 ) {
 								startIndex += sha1String.length();
-								endIndex = xmlLine.indexOf("\"", startIndex);
+								endIndex = xmlLine.indexOf(quoteChar, startIndex);
 								if ( endIndex >= 0 )
 									diskSha1 = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
@@ -889,14 +890,14 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 							startIndex = xmlLine.indexOf(sizeString);
 							if ( startIndex >= 0 ) {
 								startIndex += sizeString.length();
-								endIndex = xmlLine.indexOf("\"", startIndex);
+								endIndex = xmlLine.indexOf(quoteChar, startIndex);
 								if ( endIndex >= 0 )
 									diskSize = xmlLine.mid(startIndex, endIndex - startIndex);
 							}
 							if ( !diskSha1.isEmpty() ) {
-								*diskNameList << toHumanReadable(diskName);
-								*diskSha1List << diskSha1;
-								*diskSizeList << diskSize;
+								diskNameList->append(toHumanReadable(diskName));
+								diskSha1List->append(diskSha1);
+								diskSizeList->append(diskSize);
 							}
 						}
 					}

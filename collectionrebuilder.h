@@ -62,7 +62,7 @@ class CollectionRebuilderThread : public QThread
 		QString currentListName() { return m_currentListName; }
 		void setCheckpoint(qint64 cp, int xmlSourceIndex);
 		void setListCheckpoint(QString list, int xmlSourceIndex);
-		void reopenDatabase();
+		void reopenCheckSumDb();
 		bool parseXml(QString, QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
 		bool nextId(QString *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
 		void checkpointRestart(qint64 checkpoint);
