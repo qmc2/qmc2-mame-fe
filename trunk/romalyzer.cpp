@@ -4261,7 +4261,7 @@ void ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()
 		delete checkSumDb();
 		m_checkSumDb = new CheckSumDatabaseManager(this, m_settingsKey);
 		connect(checkSumDb(), SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
-		checkSumScannerThread()->reopenDatabase();
+		checkSumScannerThread()->reopenCheckSumDb();
 		checkSumScannerThread()->scannedPaths.clear();
 		for (int i = 0; i < listWidgetCheckSumDbScannedPaths->count(); i++)
 			if ( listWidgetCheckSumDbScannedPaths->item(i)->checkState() == Qt::Checked )
@@ -4658,7 +4658,7 @@ CheckSumScannerThread::CheckSumScannerThread(CheckSumScannerLog *scannerLog, QSt
 	m_scannerLog = scannerLog;
 	m_settingsKey = settingsKey;
 	m_pendingUpdates = 0;
-	reopenDatabase();
+	reopenCheckSumDb();
 	start();
 }
 
@@ -4775,7 +4775,7 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 	m_preparingIncrementalScan = false;
 }
 
-void CheckSumScannerThread::reopenDatabase()
+void CheckSumScannerThread::reopenCheckSumDb()
 {
 	if ( checkSumDb() ) {
 		checkSumDb()->disconnect(m_scannerLog);
