@@ -708,18 +708,14 @@ void CollectionRebuilder::hideEvent(QHideEvent *e)
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", lineEditFilterExpression->text());
 			break;
 	}
-
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseStateFilter", checkBoxFilterStates->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateC", toolButtonStateC->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateM", toolButtonStateM->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateI", toolButtonStateI->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateN", toolButtonStateN->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateU", toolButtonStateU->isChecked());
-
 	if ( missingDumpsViewer() )
 		missingDumpsViewer()->close();
-
-	//setVisible(true);
 	e->ignore();
 }
 
