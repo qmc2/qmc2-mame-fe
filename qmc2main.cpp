@@ -2882,6 +2882,8 @@ void MainWindow::actionRebuildRom_triggered(bool)
 
 	CollectionRebuilder *cr = qmc2SystemROMAlyzer->collectionRebuilder();
 	if ( cr ) {
+		cr->comboBoxXmlSource->setCurrentIndex(0);
+		cr->setIgnoreCheckpoint(true);
 		cr->checkBoxFilterExpression->setChecked(true);
 		cr->comboBoxFilterSyntax->setCurrentIndex(4);
 		cr->comboBoxFilterType->setCurrentIndex(0);
@@ -11467,6 +11469,8 @@ void MainWindow::on_actionRebuildROMTagged_triggered(bool)
 
 	CollectionRebuilder *cr = qmc2SystemROMAlyzer->collectionRebuilder();
 	if ( cr ) {
+		cr->comboBoxXmlSource->setCurrentIndex(0);
+		cr->setIgnoreCheckpoint(true);
 		cr->checkBoxFilterExpression->setChecked(true);
 		cr->comboBoxFilterSyntax->setCurrentIndex(0);
 		cr->comboBoxFilterType->setCurrentIndex(0);

@@ -165,6 +165,8 @@ class CollectionRebuilder : public QWidget, public Ui::CollectionRebuilder
 		void showStateFilter() { setStateFilterVisibility(true); }
 		void hideStateFilter() { setStateFilterVisibility(false); }
 		bool active() { return rebuilderThread() ? rebuilderThread()->isActive : false; }
+		void setIgnoreCheckpoint(bool ignore) { m_ignoreCheckpoint = ignore; }
+		bool ignoreCheckpoint() { return m_ignoreCheckpoint; }
 
 	public slots:
 		void on_spinBoxMaxLogSize_valueChanged(int);
@@ -208,6 +210,7 @@ class CollectionRebuilder : public QWidget, public Ui::CollectionRebuilder
 		QStringList m_newMissingList;
 		MissingDumpsViewer *m_missingDumpsViewer;
 		bool m_defaultEmulator;
+		bool m_ignoreCheckpoint;
 };
 
 #endif
