@@ -43,6 +43,8 @@ class CollectionRebuilderThread : public QThread
 		bool includeStateI;
 		bool includeStateN;
 		bool includeStateU;
+		bool exactMatch;
+		bool exactMatchSoftware;
 		quint64 missingDisks;
 		quint64 missingROMs;
 		quint64 setsProcessed;
@@ -73,10 +75,10 @@ class CollectionRebuilderThread : public QThread
 		bool readSevenZipFileData(QString, QString, QByteArray *);
 		bool readZipFileData(QString, QString, QByteArray *);
 		bool createBackup(QString filePath);
-		void setFilterExpression(QString, int, int);
-		void setFilterExpressionSoftware(QString, int, int);
-		void clearFilterExpression() { setFilterExpression(QString(), 0, 0); }
-		void clearFilterExpressionSoftware() { setFilterExpressionSoftware(QString(), 0, 0); }
+		void setFilterExpression(QString, int, int, bool);
+		void setFilterExpressionSoftware(QString, int, int, bool);
+		void clearFilterExpression() { setFilterExpression(QString(), 0, 0, false); }
+		void clearFilterExpressionSoftware() { setFilterExpressionSoftware(QString(), 0, 0, false); }
 		void setStateFilter(bool enableFilter, bool stateC = true, bool stateM = true, bool stateI = true, bool stateN = true, bool stateU = true) {
 			doFilterState = enableFilter;
 			includeStateC = stateC;
@@ -98,6 +100,7 @@ class CollectionRebuilderThread : public QThread
 		QString &listEntityStartPattern() { return m_listEntityStartPattern; }
 		void setMerge(bool merge) { m_merge = merge; }
 		bool merge() { return m_merge; }
+		bool evaluateFilters(QString &setKey);
 
 		static QString &toHumanReadable(QString &text) {
 			foreach (QString old, m_replacementHash.keys())

@@ -2,6 +2,7 @@
 #define _SWLDBMGR_H_
 
 #include <QObject>
+#include <QList>
 #include <QSqlDatabase>
 #include <QSqlDriver>
 #include <QSqlQuery>
@@ -25,6 +26,7 @@ class SoftwareListXmlDatabaseManager : public QObject
 		QStringList uniqueSoftwareLists();
 		QStringList uniqueSoftwareSets(QString list);
 		QString xml(QString list, QString id);
+		QString xml(QString setKey);
 		QString xml(int rowid);
 		QString list(int rowid);
 		QString nextXml(QString list, QString *id, bool start = false);
@@ -33,7 +35,9 @@ class SoftwareListXmlDatabaseManager : public QObject
 		bool exists(QString list, QString id);
 		qint64 swlRowCount();
 		qint64 nextRowId(bool refreshRowIds = false);
-		QString idOfRow(qint64 row);
+		QString idAtIndex(int index);
+		void initIdAtIndexCache() { idAtIndex(-1); }
+		void clearIdAtIndexCache() { m_idAtIndexCache.clear(); }
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
 		quint64 databaseSize();
@@ -53,6 +57,7 @@ class SoftwareListXmlDatabaseManager : public QObject
 		QSqlQuery *m_listIterationQuery;
 		QList<qint64> m_rowIdList;
 		qint64 m_lastRowId;
+		QList<QString> m_idAtIndexCache;
 };
 
 #endif

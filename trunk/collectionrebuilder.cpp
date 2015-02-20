@@ -42,10 +42,12 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 			checkBoxFilterExpressionSoftwareLists->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpressionSoftwareLists", false).toBool());
 			comboBoxFilterSyntaxSoftwareLists->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntaxSoftwareLists", 0).toInt());
 			comboBoxFilterTypeSoftwareLists->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterTypeSoftwareLists", 0).toInt());
+			toolButtonExactMatchSoftwareLists->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ExactMatchSoftwareLists", false).toBool());
 			lineEditFilterExpressionSoftwareLists->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpressionSoftwareLists", QString()).toString());
 			checkBoxFilterExpression->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpression", false).toBool());
 			comboBoxFilterSyntax->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntax", 0).toInt());
 			comboBoxFilterType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterType", 0).toInt());
+			toolButtonExactMatch->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ExactMatch", false).toBool());
 			lineEditFilterExpression->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", QString()).toString());
 			m_correctIconPixmap = QPixmap(QString::fromUtf8(":/data/img/software_correct.png"));
 			m_mostlyCorrectIconPixmap = QPixmap(QString::fromUtf8(":/data/img/software_mostlycorrect.png"));
@@ -69,9 +71,11 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 			comboBoxFilterTypeSoftwareLists->setVisible(false);
 			lineEditFilterExpressionSoftwareLists->setVisible(false);
 			toolButtonClearFilterExpressionSoftwareLists->setVisible(false);
+			toolButtonExactMatchSoftwareLists->setVisible(false);
 			checkBoxFilterExpression->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpression", false).toBool());
 			comboBoxFilterSyntax->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntax", 0).toInt());
 			comboBoxFilterType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterType", 0).toInt());
+			toolButtonExactMatch->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ExactMatch", false).toBool());
 			lineEditFilterExpression->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", QString()).toString());
 			m_correctIconPixmap = QPixmap(QString::fromUtf8(":/data/img/sphere_green.png"));
 			m_mostlyCorrectIconPixmap = QPixmap(QString::fromUtf8(":/data/img/sphere_yellowgreen.png"));
@@ -232,7 +236,9 @@ void CollectionRebuilder::adjustIconSizes()
 	comboBoxXmlSource->setIconSize(iconSize);
 	toolButtonRemoveXmlSource->setIconSize(iconSize);
 	toolButtonViewMissingList->setIconSize(iconSize);
+	toolButtonExactMatch->setIconSize(iconSize);
 	toolButtonClearFilterExpression->setIconSize(iconSize);
+	toolButtonExactMatchSoftwareLists->setIconSize(iconSize);
 	toolButtonClearFilterExpressionSoftwareLists->setIconSize(iconSize);
 
 	QSize iconSizeMiddle = QSize(fm.height(), fm.height());
@@ -298,12 +304,12 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 		}
 		if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
 			if ( checkBoxFilterExpressionSoftwareLists->isChecked() && !lineEditFilterExpressionSoftwareLists->text().isEmpty() )
-				rebuilderThread()->setFilterExpressionSoftware(lineEditFilterExpressionSoftwareLists->text(), comboBoxFilterSyntaxSoftwareLists->currentIndex(), comboBoxFilterTypeSoftwareLists->currentIndex());
+				rebuilderThread()->setFilterExpressionSoftware(lineEditFilterExpressionSoftwareLists->text(), comboBoxFilterSyntaxSoftwareLists->currentIndex(), comboBoxFilterTypeSoftwareLists->currentIndex(), toolButtonExactMatchSoftwareLists->isChecked());
 			else
 				rebuilderThread()->clearFilterExpressionSoftware();
 		}
 		if ( checkBoxFilterExpression->isChecked() && !lineEditFilterExpression->text().isEmpty() )
-			rebuilderThread()->setFilterExpression(lineEditFilterExpression->text(), comboBoxFilterSyntax->currentIndex(), comboBoxFilterType->currentIndex());
+			rebuilderThread()->setFilterExpression(lineEditFilterExpression->text(), comboBoxFilterSyntax->currentIndex(), comboBoxFilterType->currentIndex(), toolButtonExactMatch->isChecked());
 		else
 			rebuilderThread()->clearFilterExpression();
 		if ( checkBoxFilterStates->isChecked() && defaultEmulator() )
@@ -516,7 +522,9 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	comboBoxFilterTypeSoftwareLists->setEnabled(false);
 	lineEditFilterExpression->setEnabled(false);
 	lineEditFilterExpressionSoftwareLists->setEnabled(false);
+	toolButtonExactMatch->setEnabled(false);
 	toolButtonClearFilterExpression->setEnabled(false);
+	toolButtonExactMatchSoftwareLists->setEnabled(false);
 	toolButtonClearFilterExpressionSoftwareLists->setEnabled(false);
 	checkBoxFilterStates->setEnabled(false);
 	toolButtonStateC->setEnabled(false);
@@ -582,7 +590,9 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	comboBoxFilterTypeSoftwareLists->setEnabled(checkBoxFilterExpressionSoftwareLists->isChecked());
 	lineEditFilterExpression->setEnabled(checkBoxFilterExpression->isChecked());
 	lineEditFilterExpressionSoftwareLists->setEnabled(checkBoxFilterExpressionSoftwareLists->isChecked());
+	toolButtonExactMatch->setEnabled(checkBoxFilterExpression->isChecked());
 	toolButtonClearFilterExpression->setEnabled(checkBoxFilterExpression->isChecked());
+	toolButtonExactMatchSoftwareLists->setEnabled(checkBoxFilterExpressionSoftwareLists->isChecked());
 	toolButtonClearFilterExpressionSoftwareLists->setEnabled(checkBoxFilterExpressionSoftwareLists->isChecked());
 	checkBoxFilterStates->setEnabled(true);
 	toolButtonStateC->setEnabled(checkBoxFilterStates->isChecked());
@@ -696,10 +706,12 @@ void CollectionRebuilder::hideEvent(QHideEvent *e)
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpressionSoftwareLists", checkBoxFilterExpressionSoftwareLists->isChecked());
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntaxSoftwareLists", comboBoxFilterSyntaxSoftwareLists->currentIndex());
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterTypeSoftwareLists", comboBoxFilterTypeSoftwareLists->currentIndex());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ExactMatchSoftwareLists", toolButtonExactMatchSoftwareLists->isChecked());
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpressionSoftwareLists", lineEditFilterExpressionSoftwareLists->text());
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpression", checkBoxFilterExpression->isChecked());
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntax", comboBoxFilterSyntax->currentIndex());
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterType", comboBoxFilterType->currentIndex());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ExactMatch", toolButtonExactMatch->isChecked());
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", lineEditFilterExpression->text());
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
@@ -707,6 +719,7 @@ void CollectionRebuilder::hideEvent(QHideEvent *e)
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseFilterExpression", checkBoxFilterExpression->isChecked());
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterSyntax", comboBoxFilterSyntax->currentIndex());
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterType", comboBoxFilterType->currentIndex());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ExactMatch", toolButtonExactMatch->isChecked());
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/FilterExpression", lineEditFilterExpression->text());
 			break;
 	}
@@ -726,6 +739,7 @@ CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
 {
 	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopRebuilding = doFilter = doFilterSoftware = isIncludeFilter = isIncludeFilterSoftware = doFilterState = false;
 	includeStateC = includeStateM = includeStateI = includeStateN = includeStateU = true;
+	exactMatch = exactMatchSoftware = false;
 	m_rebuilderDialog = (CollectionRebuilder *)parent;
 	m_checkSumDb = NULL;
 	m_xmlIndex = m_xmlIndexCount = m_checkpoint = -1;
@@ -923,10 +937,12 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 			switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 				case QMC2_ROMALYZER_MODE_SOFTWARE:
 					m_xmlIndexCount = swlDb()->swlRowCount();
+					swlDb()->initIdAtIndexCache();
 					break;
 				case QMC2_ROMALYZER_MODE_SYSTEM:
 				default:
 					m_xmlIndexCount = xmlDb()->xmlRowCount();
+					xmlDb()->initIdAtIndexCache();
 					break;
 			}
 			emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
@@ -955,10 +971,18 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 			return false;
 		}
 		if ( rebuilderDialog()->defaultEmulator() ) {
+			QString setKey;
 			switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 				case QMC2_ROMALYZER_MODE_SOFTWARE:
-					if ( parseXml(swlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List, diskSizeList) ) {
-						id->prepend(swlDb()->list(m_xmlIndex) + ":");
+					setKey = swlDb()->idAtIndex(m_xmlIndex);
+					if ( !evaluateFilters(setKey) ) {
+						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
+						m_xmlIndex++;
+						emit progressChanged(m_xmlIndex);
+						return true;
+					}
+					if ( parseXml(swlDb()->xml(setKey), id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List, diskSizeList) ) {
+						*id = setKey;
 						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex++;
 						emit progressChanged(m_xmlIndex);
@@ -970,7 +994,14 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 					}
 				case QMC2_ROMALYZER_MODE_SYSTEM:
 				default:
-					if ( parseXml(xmlDb()->xml(m_xmlIndex), id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List, diskSizeList) ) {
+					setKey = xmlDb()->idAtIndex(m_xmlIndex);
+					if ( !evaluateFilters(setKey) ) {
+						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
+						m_xmlIndex++;
+						emit progressChanged(m_xmlIndex);
+						return true;
+					}
+					if ( parseXml(xmlDb()->xml(setKey), id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List, diskSizeList) ) {
 						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex++;
 						emit progressChanged(m_xmlIndex);
@@ -1445,9 +1476,10 @@ bool CollectionRebuilderThread::createBackup(QString filePath)
 	}
 }
 
-void CollectionRebuilderThread::setFilterExpression(QString expression, int syntax, int type)
+void CollectionRebuilderThread::setFilterExpression(QString expression, int syntax, int type, bool exact)
 {
 	doFilter = !expression.isEmpty();
+	exactMatch = exact;
 	isIncludeFilter = (type == 0);
 	QRegExp::PatternSyntax ps;
 	switch ( syntax ) {
@@ -1478,9 +1510,10 @@ void CollectionRebuilderThread::setFilterExpression(QString expression, int synt
 	}
 }
 
-void CollectionRebuilderThread::setFilterExpressionSoftware(QString expression, int syntax, int type)
+void CollectionRebuilderThread::setFilterExpressionSoftware(QString expression, int syntax, int type, bool exact)
 {
 	doFilterSoftware = !expression.isEmpty();
+	exactMatchSoftware = exact;
 	isIncludeFilterSoftware = (type == 0);
 	QRegExp::PatternSyntax ps;
 	switch ( syntax ) {
@@ -1521,6 +1554,80 @@ void CollectionRebuilderThread::resume()
 	isPaused = false;
 }
 
+bool CollectionRebuilderThread::evaluateFilters(QString &setKey)
+{
+	QString list, set;
+	switch ( rebuilderDialog()->romAlyzer()->mode() ) {
+		case QMC2_ROMALYZER_MODE_SOFTWARE:
+			if ( doFilterSoftware ) {
+				QStringList setKeyTokens = setKey.split(":", QString::SkipEmptyParts);
+				if ( setKeyTokens.count() < 2 )
+					return false;
+				list = setKeyTokens[0];
+				set = setKeyTokens[1];
+				if ( isIncludeFilterSoftware ) {
+					if ( exactMatchSoftware ) {
+						if ( !filterRxSoftware.exactMatch(list) )
+							return false;
+					} else if ( filterRxSoftware.indexIn(list) < 0 )
+						return false;
+				} else {
+					if ( exactMatchSoftware ) {
+						if ( filterRxSoftware.exactMatch(list) )
+							return false;
+					} else if ( filterRxSoftware.indexIn(list) >= 0 )
+						return false;
+				}
+			}
+			break;
+		case QMC2_ROMALYZER_MODE_SYSTEM:
+		default:
+			set = setKey;
+			if ( doFilterState ) {
+				switch ( qmc2Gamelist->romState(set) ) {
+					case 'C':
+						if ( !includeStateC )
+							return false;
+						break;
+					case 'M':
+						if ( !includeStateM )
+							return false;
+						break;
+					case 'I':
+						if ( !includeStateI )
+							return false;
+						break;
+					case 'N':
+						if ( !includeStateN )
+							return false;
+						break;
+					case 'U':
+					default:
+						if ( !includeStateU )
+							return false;
+						break;
+				}
+			}
+			break;
+	}
+	if ( doFilter ) {
+		if ( isIncludeFilter ) {
+			if ( exactMatch ) {
+				if ( !filterRx.exactMatch(set) )
+					return false;
+			} else if ( filterRx.indexIn(set) < 0 )
+				return false;
+		} else {
+			if ( exactMatch ) {
+				if ( filterRx.exactMatch(set) )
+					return false;
+			} else if ( filterRx.indexIn(set) >= 0 )
+				return false;
+		}
+	}
+	return true;
+}
+
 void CollectionRebuilderThread::run()
 {
 	emit log(tr("rebuilder thread started"));
@@ -1548,7 +1655,7 @@ void CollectionRebuilderThread::run()
 			rebuildTimer.start();
 			if ( checkpoint() < 0 )
 				m_xmlIndex = m_xmlIndexCount = -1;
-			QString setKey, list, set;
+			QString setKey;
 			QStringList romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List, diskSizeList;
 			while ( !exitThread && !stopRebuilding && nextId(&setKey, &romNameList, &romSha1List, &romCrcList, &romSizeList, &diskNameList, &diskSha1List, &diskSizeList) ) {
 				bool pauseMessageLogged = false;
@@ -1571,63 +1678,6 @@ void CollectionRebuilderThread::run()
 				}
 				if ( setKey.isEmpty() )
 					continue;
-				switch ( rebuilderDialog()->romAlyzer()->mode() ) {
-					case QMC2_ROMALYZER_MODE_SOFTWARE: {
-							QStringList setKeyTokens = setKey.split(":", QString::SkipEmptyParts);
-							if ( setKeyTokens.count() < 2 )
-								continue;
-							list = setKeyTokens[0];
-							set = setKeyTokens[1];
-							if ( doFilterSoftware ) {
-								if ( isIncludeFilterSoftware ) {
-									if ( filterRxSoftware.indexIn(list) < 0 )
-										continue;
-								} else {
-									if ( filterRxSoftware.indexIn(list) >= 0 )
-										continue;
-								}
-							}
-						}
-						break;
-					case QMC2_ROMALYZER_MODE_SYSTEM:
-					default:
-						set = setKey;
-						if ( doFilterState ) {
-							switch ( qmc2Gamelist->romState(set) ) {
-								case 'C':
-									if ( !includeStateC )
-										continue;
-									break;
-								case 'M':
-									if ( !includeStateM )
-										continue;
-									break;
-								case 'I':
-									if ( !includeStateI )
-										continue;
-									break;
-								case 'N':
-									if ( !includeStateN )
-										continue;
-									break;
-								case 'U':
-								default:
-									if ( !includeStateU )
-										continue;
-									break;
-							}
-						}
-						break;
-				}
-				if ( doFilter ) {
-					if ( isIncludeFilter ) {
-						if ( filterRx.indexIn(set) < 0 )
-							continue;
-					} else {
-						if ( filterRx.indexIn(set) >= 0 )
-							continue;
-					}
-				}
 				if ( !exitThread && !stopRebuilding && (!romNameList.isEmpty() || !diskNameList.isEmpty()) ) {
 					emit log(tr("set rebuilding started for '%1'").arg(setKey));
 					for (int i = 0; i < romNameList.count(); i++) {
@@ -1657,6 +1707,12 @@ void CollectionRebuilderThread::run()
 					emit statusUpdated(++setsProcessed, missingROMs, missingDisks);
 				}
 				QTest::qWait(0);
+			}
+			if ( rebuilderDialog()->defaultEmulator() ) {
+				if ( xmlDb() )
+					xmlDb()->clearIdAtIndexCache();
+				if ( swlDb() )
+					swlDb()->clearIdAtIndexCache();
 			}
 			elapsedTime = elapsedTime.addMSecs(rebuildTimer.elapsed());
 			emit log(tr("rebuilding finished - total rebuild time = %1, sets processed = %2, missing ROMs = %3, missing disks = %4").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(setsProcessed).arg(missingROMs).arg(missingDisks));
