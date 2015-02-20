@@ -1042,6 +1042,8 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 					if ( parseXml(xmlString, id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List, diskSizeList) ) {
 						if ( rebuilderDialog()->romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE && !m_currentListName.isEmpty() )
 							id->prepend(m_currentListName + ":");
+						if ( !evaluateFilters(*id) )
+							id->clear();
 						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex = m_xmlFile.pos();
 						emit progressChanged(m_xmlIndex);
