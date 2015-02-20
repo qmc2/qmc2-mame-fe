@@ -292,13 +292,13 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 					rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
 					if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
 						rebuilderThread()->setListCheckpoint(QString(), comboBoxXmlSource->currentIndex());
+					setIgnoreCheckpoint(false);
 					break;
 				case QMessageBox::Cancel:
 					pushButtonStartStop->setEnabled(true);
 					pushButtonPauseResume->setEnabled(true);
 					return;
 			}
-			setIgnoreCheckpoint(false);
 		} else {
 			rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
 			if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
@@ -1100,10 +1100,12 @@ void CollectionRebuilderThread::checkpointRestart(qint64 cp)
 		switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 			case QMC2_ROMALYZER_MODE_SOFTWARE:
 				m_xmlIndexCount = swlDb()->swlRowCount();
+				swlDb()->initIdAtIndexCache();
 				break;
 			case QMC2_ROMALYZER_MODE_SYSTEM:
 			default:
 				m_xmlIndexCount = xmlDb()->xmlRowCount();
+				xmlDb()->initIdAtIndexCache();
 				break;
 		}
 		emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
