@@ -135,6 +135,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QAction *actionRomStatusFilterI;
 		QAction *actionRomStatusFilterN;
 		QAction *actionRomStatusFilterU;
+		QList<QAction *> rebuildRomActions;
 		QList<QAction *> contextMenuPlayActions;
 #if QMC2_JOYSTICK == 1
 		int joyIndex;
@@ -247,6 +248,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_actionSearchWikipedia_triggered(bool checked = false);
 		void on_actionSearchYandex_triggered(bool checked = false);
 		void on_actionSearchInternalBrowser_triggered(bool checked = false);
+		void on_actionRebuildROM_triggered(bool checked = false) { actionRebuildRom_triggered(); }
+		void on_actionRebuildROMTagged_triggered(bool checked = false);
 
 		// arcade menu
 		void on_actionLaunchArcade_triggered(bool checked = false);
@@ -535,6 +538,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void viewHtml(QString filePath = QString());
 		void showLoadAnim(QString text, bool enable = true);
 		void hideLoadAnim() { showLoadAnim(QString(), false); }
+		void actionRebuildRom_triggered(bool checked = false);
+		void update_rebuildRomActions_visibility();
 
 		// float toggle button callbacks for 'special' widgets
 		void floatToggleButtonSoftwareDetail_toggled(bool);

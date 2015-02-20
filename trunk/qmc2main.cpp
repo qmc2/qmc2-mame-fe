@@ -426,8 +426,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 	if ( qmc2TemplateCheck )
 		setVisible(false);
+
 	qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "InstanceRunning"), true);
- 
+
 	qmc2StartupDefaultFont = new QFont(qApp->font());
 	desktopGeometry = qApp->desktop()->geometry();
 	isActiveState = launchForeignID = negatedMatch = isCreatingSoftList = searchActive = stopSearch = false;
@@ -449,6 +450,9 @@ MainWindow::MainWindow(QWidget *parent)
 	setUpdatesEnabled(false);
 
 	setupUi(this);
+
+	criticalActions << actionRebuildROM << actionRebuildROMTagged;
+	rebuildRomActions << actionRebuildROM << actionRebuildROMTagged;
 
 	// palette-editor related
 	PaletteEditor::colorNames << "Window" << "WindowText" << "Base" << "AlternateBase" << "Text" << "BrightText" << "Button"
@@ -732,6 +736,8 @@ MainWindow::MainWindow(QWidget *parent)
 	actionCheckCurrentROM->setStatusTip(tr("Check current machine's ROM state"));
 	actionAnalyseCurrentROM->setToolTip(tr("Analyse current machine with ROMAlyzer"));
 	actionAnalyseCurrentROM->setStatusTip(tr("Analyse current machine with ROMAlyzer"));
+	actionRebuildROM->setToolTip(tr("Rebuild current machine with ROMAlyzer"));
+	actionRebuildROM->setStatusTip(tr("Rebuild current machine with ROMAlyzer"));
 	menuGame->setTitle(tr("M&achine"));
 	comboBoxViewSelect->setItemText(QMC2_VIEW_DETAIL_INDEX, tr("Machine list with full detail (filtered)"));
 	comboBoxViewSelect->setToolTip(tr("Select between detailed machine list and parent / clone hierarchy"));
@@ -902,6 +908,7 @@ MainWindow::MainWindow(QWidget *parent)
 	signalPaletteSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString());
 
 	on_actionFullscreenToggle_triggered();
+	update_rebuildRomActions_visibility();
 
 	actionSearchInternalBrowser->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebSearch/InternalBrowser", true).toBool());
 	on_actionSearchInternalBrowser_triggered(actionSearchInternalBrowser->isChecked());
@@ -1012,6 +1019,17 @@ MainWindow::MainWindow(QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	s = tr("Rebuild current game's ROM set with ROMAlyzer");
+#elif defined(QMC2_EMUTYPE_MESS)
+	s = tr("Rebuild current machine's ROM set with ROMAlyzer");
+#endif
+	action = qmc2GameMenu->addAction(tr("&Rebuild ROM..."));
+	criticalActions << action;
+	rebuildRomActions << action;
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(actionRebuildRom_triggered()));
 	qmc2GameMenu->addSeparator();
 	qmc2GameMenu->addMenu(menuRank);
 	qmc2GameMenu->addMenu(menuSearchWeb);
@@ -1068,6 +1086,18 @@ MainWindow::MainWindow(QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	s = tr("Rebuild current game's ROM set with ROMAlyzer");
+#elif defined(QMC2_EMUTYPE_MESS)
+	s = tr("Rebuild current machine's ROM set with ROMAlyzer");
+#endif
+	action = qmc2SearchMenu->addAction(tr("&Rebuild ROM..."));
+	criticalActions << action;
+	rebuildRomActions << action;
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(actionRebuildRom_triggered()));
+
 	qmc2SearchMenu->addSeparator();
 	qmc2SearchMenu->addMenu(menuRank);
 	qmc2SearchMenu->addMenu(menuSearchWeb);
@@ -1115,6 +1145,17 @@ MainWindow::MainWindow(QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	s = tr("Rebuild current game's ROM set with ROMAlyzer");
+#elif defined(QMC2_EMUTYPE_MESS)
+	s = tr("Rebuild current machine's ROM set with ROMAlyzer");
+#endif
+	action = qmc2FavoritesMenu->addAction(tr("&Rebuild ROM..."));
+	criticalActions << action;
+	rebuildRomActions << action;
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(actionRebuildRom_triggered()));
 	qmc2FavoritesMenu->addSeparator();
 	qmc2FavoritesMenu->addMenu(menuRank);
 	qmc2FavoritesMenu->addMenu(menuSearchWeb);
@@ -1187,6 +1228,17 @@ MainWindow::MainWindow(QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	s = tr("Rebuild current game's ROM set with ROMAlyzer");
+#elif defined(QMC2_EMUTYPE_MESS)
+	s = tr("Rebuild current machine's ROM set with ROMAlyzer");
+#endif
+	action = qmc2PlayedMenu->addAction(tr("&Rebuild ROM..."));
+	criticalActions << action;
+	rebuildRomActions << action;
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(actionRebuildRom_triggered()));
 	qmc2PlayedMenu->addSeparator();
 	qmc2PlayedMenu->addMenu(menuRank);
 	qmc2PlayedMenu->addMenu(menuSearchWeb);
@@ -2797,6 +2849,60 @@ void MainWindow::on_actionAnalyseCurrentROM_triggered(bool)
 
 	QTimer::singleShot(0, qmc2SystemROMAlyzer, SLOT(raise()));
 	QTimer::singleShot(0, qmc2SystemROMAlyzer->pushButtonAnalyze, SLOT(click()));
+}
+
+void MainWindow::actionRebuildRom_triggered(bool)
+{
+	if ( !qmc2CurrentItem )
+		return;
+
+	if ( qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+		return;
+
+	if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->rebuilderActive() ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current rebuild and try again"));
+		return;
+	}
+
+	bool initial = false;
+	if ( !qmc2SystemROMAlyzer ) {
+		qmc2SystemROMAlyzer = new ROMAlyzer(0);
+		initial = true;
+	}
+
+	if ( qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabCollectionRebuilder )
+		qmc2SystemROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SystemROMAlyzer->tabCollectionRebuilder);
+
+	if ( qmc2SystemROMAlyzer->isHidden() )
+		qmc2SystemROMAlyzer->show();
+	else if ( qmc2SystemROMAlyzer->isMinimized() )
+		qmc2SystemROMAlyzer->showNormal();
+
+	QTimer::singleShot(0, qmc2SystemROMAlyzer, SLOT(raise()));
+
+	CollectionRebuilder *cr = qmc2SystemROMAlyzer->collectionRebuilder();
+	if ( cr ) {
+		cr->checkBoxFilterExpression->setChecked(true);
+		cr->comboBoxFilterSyntax->setCurrentIndex(4);
+		cr->comboBoxFilterType->setCurrentIndex(0);
+		cr->toolButtonExactMatch->setChecked(true);
+		cr->checkBoxFilterStates->setChecked(false);
+		cr->lineEditFilterExpression->setText(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME));
+		if ( !initial )
+			cr->plainTextEditLog->clear();
+		QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(click()));
+	}
+}
+
+void MainWindow::update_rebuildRomActions_visibility()
+{
+	bool enable = false;
+	if ( qmc2SystemROMAlyzer )
+		enable = (qmc2SystemROMAlyzer->groupBoxCheckSumDatabase->isChecked() && qmc2SystemROMAlyzer->groupBoxSetRewriter->isChecked());
+	else
+		enable = (qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCheckSumDb", false).toBool() && qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableSetRewriter", false).toBool());
+	foreach (QAction *a, rebuildRomActions)
+		a->setVisible(enable);
 }
 
 void MainWindow::on_actionClearImageCache_triggered(bool)
@@ -11317,6 +11423,62 @@ void MainWindow::on_actionSearchInternalBrowser_triggered(bool checked)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "WebSearch/InternalBrowser", checked);
 }
 
+void MainWindow::on_actionRebuildROMTagged_triggered(bool)
+{
+	if ( qmc2Gamelist->numTaggedSets <= 0 )
+		return;
+
+	if ( isActiveState ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)"));
+		return;
+	}
+
+	if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->rebuilderActive() ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current rebuild and try again"));
+		return;
+	}
+
+	QStringList setsToRebuild;
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QTreeWidgetItem *item;
+	while ( it.hasNext() ) {
+		it.next();
+		item = qmc2GamelistItemHash[it.key()];
+		if ( item )
+			if ( item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked )
+				setsToRebuild << item->text(QMC2_GAMELIST_COLUMN_NAME);
+	}
+
+	bool initial = false;
+	if ( !qmc2SystemROMAlyzer ) {
+		qmc2SystemROMAlyzer = new ROMAlyzer(0);
+		initial = true;
+	}
+
+	if ( qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabCollectionRebuilder )
+		qmc2SystemROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SystemROMAlyzer->tabCollectionRebuilder);
+
+	if ( qmc2SystemROMAlyzer->isHidden() )
+		qmc2SystemROMAlyzer->show();
+	else if ( qmc2SystemROMAlyzer->isMinimized() )
+		qmc2SystemROMAlyzer->showNormal();
+
+	QTimer::singleShot(0, qmc2SystemROMAlyzer, SLOT(raise()));
+
+	CollectionRebuilder *cr = qmc2SystemROMAlyzer->collectionRebuilder();
+	if ( cr ) {
+		cr->checkBoxFilterExpression->setChecked(true);
+		cr->comboBoxFilterSyntax->setCurrentIndex(0);
+		cr->comboBoxFilterType->setCurrentIndex(0);
+		cr->toolButtonExactMatch->setChecked(true);
+		cr->checkBoxFilterStates->setChecked(false);
+		cr->lineEditFilterExpression->setText(setsToRebuild.join("|"));
+		if ( !initial )
+			cr->plainTextEditLog->clear();
+		QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(click()));
+	}
+}
+
 // note: - this routine is far from "elegant" but basically works (there may be minor conversion "bugs", though, depending on the quality of the wiki source data)
 //       - if someone knows a CLEAN wiki2html converter that's not "bloated" and written in C/C++ (and legally redistributable open source code), please let us know!
 QString &MainWindow::messWikiToHtml(QString &wikiText)
@@ -12337,6 +12499,8 @@ void prepareShortcuts()
 	qmc2ShortcutHash["Ctrl+Shift+X"].second = qmc2MainWindow->actionTagVisible;
 	qmc2ShortcutHash["Ctrl+Shift+Y"].second = qmc2MainWindow->actionUntagVisible;
 	qmc2ShortcutHash["Ctrl+Shift+Z"].second = qmc2MainWindow->actionInvertVisibleTags;
+	qmc2ShortcutHash["F2"].second = qmc2MainWindow->actionRebuildROM;
+	qmc2ShortcutHash["Ctrl+Shift+F2"].second = qmc2MainWindow->actionRebuildROMTagged;
 	qmc2ShortcutHash["F5"].second = qmc2MainWindow->actionViewFullDetail;
 	qmc2ShortcutHash["F6"].second = qmc2MainWindow->actionViewParentClones;
 	qmc2ShortcutHash["F7"].second = qmc2MainWindow->actionViewByCategory;

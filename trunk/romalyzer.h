@@ -305,6 +305,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		bool paused() { return m_paused; }
 		void setPaused(bool paused) { m_paused = paused; }
 		QString settingsKey() { return m_settingsKey; }
+		bool rebuilderActive() { return collectionRebuilder() ? collectionRebuilder()->active() : false; }
 
 	public slots:
 		// callback functions
