@@ -31,7 +31,9 @@ class XmlDatabaseManager : public QObject
 		void setLogActive(bool enable) { m_logActive = enable; }
 		qint64 xmlRowCount();
 		qint64 nextRowId(bool refreshRowIds = false);
-		QString idOfRow(qint64 row);
+		QString idAtIndex(int index);
+		void initIdAtIndexCache() { idAtIndex(-1); }
+		void clearIdAtIndexCache() { m_idAtIndexCache.clear(); }
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
 		quint64 databaseSize();
@@ -51,6 +53,7 @@ class XmlDatabaseManager : public QObject
 		bool m_logActive;
 		QList<qint64> m_rowIdList;
 		qint64 m_lastRowId;
+		QList<QString> m_idAtIndexCache;
 };
 
 #endif

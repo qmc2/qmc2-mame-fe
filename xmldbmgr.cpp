@@ -281,19 +281,27 @@ qint64 XmlDatabaseManager::nextRowId(bool refreshRowIds)
 	return -1;
 }
 
-QString XmlDatabaseManager::idOfRow(qint64 row)
+QString XmlDatabaseManager::idAtIndex(int index)
 {
-	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT id FROM %1 WHERE rowid=:row").arg(m_tableBasename));
-	query.bindValue(":row", row);
-	if ( query.exec() ) {
-		if ( query.first() )
-			return query.value(0).toString();
+	if ( index < 0 ) {
+		m_idAtIndexCache.clear();
+		QSqlQuery query(m_db);
+		if ( query.exec(QString("SELECT id FROM %1 ORDER BY rowid").arg(m_tableBasename)) ) {
+			if ( query.first() ) {
+				do {
+					m_idAtIndexCache << query.value(0).toString();
+				} while ( query.next() );
+				return m_idAtIndexCache[0];
+			}
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(m_db.lastError().text()));
+			return QString();
+		}
+	} else {
+		if ( index < m_idAtIndexCache.count() )
+			return m_idAtIndexCache[index];
 		else
 			return QString();
-	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(m_db.lastError().text()));
-		return QString();
 	}
 }
 

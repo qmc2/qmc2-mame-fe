@@ -400,7 +400,7 @@
        </item>
       </widget>
      </item>
-     <item row="0" column="3">
+     <item row="0" column="4">
       <widget class="QLineEdit" name="lineEditFilterExpressionSoftwareLists">
        <property name="enabled">
         <bool>false</bool>
@@ -416,7 +416,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="4">
+     <item row="0" column="5">
       <widget class="QToolButton" name="toolButtonClearFilterExpressionSoftwareLists">
        <property name="enabled">
         <bool>false</bool>
@@ -506,7 +506,7 @@
        </item>
       </widget>
      </item>
-     <item row="1" column="3">
+     <item row="1" column="4">
       <widget class="QLineEdit" name="lineEditFilterExpression">
        <property name="enabled">
         <bool>false</bool>
@@ -522,7 +522,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="4">
+     <item row="1" column="5">
       <widget class="QToolButton" name="toolButtonClearFilterExpression">
        <property name="enabled">
         <bool>false</bool>
@@ -552,7 +552,7 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1" colspan="4">
+     <item row="2" column="1" colspan="5">
       <layout class="QHBoxLayout" name="horizontalLayout3">
        <item>
         <widget class="QToolButton" name="toolButtonStateC">
@@ -716,6 +716,46 @@
        </item>
       </layout>
      </item>
+     <item row="0" column="3">
+      <widget class="QToolButton" name="toolButtonExactMatchSoftwareLists">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Exact match</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QToolButton" name="toolButtonExactMatch">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Exact match</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
   </layout>
@@ -728,11 +768,13 @@
   <tabstop>checkBoxFilterExpressionSoftwareLists</tabstop>
   <tabstop>comboBoxFilterSyntaxSoftwareLists</tabstop>
   <tabstop>comboBoxFilterTypeSoftwareLists</tabstop>
+  <tabstop>toolButtonExactMatchSoftwareLists</tabstop>
   <tabstop>lineEditFilterExpressionSoftwareLists</tabstop>
   <tabstop>toolButtonClearFilterExpressionSoftwareLists</tabstop>
   <tabstop>checkBoxFilterExpression</tabstop>
   <tabstop>comboBoxFilterSyntax</tabstop>
   <tabstop>comboBoxFilterType</tabstop>
+  <tabstop>toolButtonExactMatch</tabstop>
   <tabstop>lineEditFilterExpression</tabstop>
   <tabstop>toolButtonClearFilterExpression</tabstop>
   <tabstop>checkBoxFilterStates</tabstop>
@@ -845,8 +887,8 @@
      <y>55</y>
     </hint>
     <hint type="destinationlabel">
-     <x>299</x>
-     <y>51</y>
+     <x>502</x>
+     <y>67</y>
     </hint>
    </hints>
   </connection>
@@ -1007,6 +1049,38 @@
     <hint type="destinationlabel">
      <x>531</x>
      <y>126</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFilterExpressionSoftwareLists</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonExactMatchSoftwareLists</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>14</x>
+     <y>51</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>298</x>
+     <y>54</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFilterExpression</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonExactMatch</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>61</x>
+     <y>78</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>300</x>
+     <y>83</y>
     </hint>
    </hints>
   </connection>

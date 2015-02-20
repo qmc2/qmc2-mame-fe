@@ -237,6 +237,14 @@ QString SoftwareListXmlDatabaseManager::xml(QString list, QString id)
 	return xml;
 }
 
+QString SoftwareListXmlDatabaseManager::xml(QString setKey)
+{
+	QStringList setKeyTokens = setKey.split(":", QString::SkipEmptyParts);
+	if ( setKeyTokens.count() < 2 )
+		return QString();
+	return xml(setKeyTokens[0], setKeyTokens[1]);
+}
+
 QString SoftwareListXmlDatabaseManager::xml(int rowid)
 {
 	QString xml;
@@ -390,19 +398,27 @@ qint64 SoftwareListXmlDatabaseManager::nextRowId(bool refreshRowIds)
 	return -1;
 }
 
-QString SoftwareListXmlDatabaseManager::idOfRow(qint64 row)
+QString SoftwareListXmlDatabaseManager::idAtIndex(int index)
 {
-	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT list, id FROM %1 WHERE rowid=:row").arg(m_tableBasename));
-	query.bindValue(":row", row);
-	if ( query.exec() ) {
-		if ( query.first() )
-			return query.value(0).toString() + ":" + query.value(1).toString();
+	if ( index < 0 ) {
+		m_idAtIndexCache.clear();
+		QSqlQuery query(m_db);
+		if ( query.exec(QString("SELECT list, id FROM %1 ORDER BY rowid").arg(m_tableBasename)) ) {
+			if ( query.first() ) {
+				do {
+					m_idAtIndexCache << query.value(0).toString() + ":" + query.value(1).toString();
+				} while ( query.next() );
+				return m_idAtIndexCache[0];
+			}
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from software-list XML cache database: query = '%2', error = '%3'").arg("list, id").arg(query.lastQuery()).arg(m_db.lastError().text()));
+			return QString();
+		}
+	} else {
+		if ( index < m_idAtIndexCache.count() )
+			return m_idAtIndexCache[index];
 		else
 			return QString();
-	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from software-list XML cache database: query = '%2', error = '%3'").arg("list, id").arg(query.lastQuery()).arg(m_db.lastError().text()));
-		return QString();
 	}
 }
 
