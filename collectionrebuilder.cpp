@@ -261,9 +261,6 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 		rebuilderThread()->stopRebuilding = true;
 	else if ( rebuilderThread()->isWaiting ) {
 		newMissingList().clear();
-		setDefaultEmulator(comboBoxXmlSource->currentIndex() == 0);
-		if ( missingDumpsViewer() )
-			missingDumpsViewer()->setDefaultEmulator(defaultEmulator());
 		if ( comboBoxXmlSource->itemData(comboBoxXmlSource->currentIndex()).toBool() ) {
 			switch ( ignoreCheckpoint() ? QMessageBox::No : QMessageBox::question(this, tr("Confirm checkpoint restart"), tr("Restart from stored checkpoint?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::No) ) {
 				case QMessageBox::Yes: {
@@ -285,6 +282,7 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 									rebuilderThread()->setListCheckpoint(QString(), index);
 							}
 						}
+						setDefaultEmulator(comboBoxXmlSource->currentIndex() == 0);
 						rebuilderThread()->checkpointRestart(cp);
 					}
 					break;
@@ -292,6 +290,7 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 					rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
 					if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
 						rebuilderThread()->setListCheckpoint(QString(), comboBoxXmlSource->currentIndex());
+					setDefaultEmulator(comboBoxXmlSource->currentIndex() == 0);
 					setIgnoreCheckpoint(false);
 					break;
 				case QMessageBox::Cancel:
@@ -303,6 +302,12 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 			rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
 			if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
 				rebuilderThread()->setListCheckpoint(QString(), comboBoxXmlSource->currentIndex());
+		}
+		if ( missingDumpsViewer() ) {
+			missingDumpsViewer()->setDefaultEmulator(defaultEmulator());
+			// FIXME "non-default emulator"
+			//missingDumpsViewer()->frameExport->setVisible(romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? false : true);
+			missingDumpsViewer()->frameExport->setVisible(romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? false : defaultEmulator());
 		}
 		if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
 			if ( checkBoxFilterExpressionSoftwareLists->isChecked() && !lineEditFilterExpressionSoftwareLists->text().isEmpty() )
@@ -487,8 +492,10 @@ void CollectionRebuilder::on_toolButtonViewMissingList_clicked()
 			missingDumpsViewer()->show();
 	} else {
 		m_missingDumpsViewer = new MissingDumpsViewer(romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? "SoftwareMissingDumpsViewer" : "MissingDumpsViewer", 0);
-		missingDumpsViewer()->frameExport->setVisible(romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? false : true);
+		// FIXME "non-default emulator"
+		//missingDumpsViewer()->frameExport->setVisible(romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? false : true);
 		missingDumpsViewer()->setDefaultEmulator(defaultEmulator());
+		missingDumpsViewer()->frameExport->setVisible(romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? false : defaultEmulator());
 		if ( rebuilderThread()->isActive )
 			missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(false);
 		else
@@ -1562,7 +1569,11 @@ void CollectionRebuilderThread::resume()
 
 bool CollectionRebuilderThread::evaluateFilters(QString &setKey)
 {
-	QString list, set;
+	static QString list, set;
+
+	if ( setKey.isEmpty() )
+		return false;
+
 	switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE:
 			if ( doFilterSoftware ) {
