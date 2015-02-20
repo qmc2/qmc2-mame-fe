@@ -481,6 +481,13 @@ Options::Options(QWidget *parent)
 	qmc2ShortcutHash["Ctrl+Shift+Y"] = QPair<QString, QAction *>(tr("Untag visible sets"), NULL);
 	qmc2ShortcutHash["Ctrl+Shift+Z"] = QPair<QString, QAction *>(tr("Invert visible tags"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	qmc2ShortcutHash["F2"] = QPair<QString, QAction *>(tr("Rebuild current game"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+F2"] = QPair<QString, QAction *>(tr("Rebuild tagged games"), NULL);
+#elif defined(QMC2_EMUTYPE_MESS)
+	qmc2ShortcutHash["F2"] = QPair<QString, QAction *>(tr("Rebuild current machine"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+F2"] = QPair<QString, QAction *>(tr("Rebuild tagged machines"), NULL);
+#endif
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2ShortcutHash["F5"] = QPair<QString, QAction *>(tr("Game list with full detail"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
 	qmc2ShortcutHash["F5"] = QPair<QString, QAction *>(tr("Machine list with full detail"), NULL);

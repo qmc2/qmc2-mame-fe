@@ -164,6 +164,7 @@ class CollectionRebuilder : public QWidget, public Ui::CollectionRebuilder
 		void setStateFilterVisibility(bool visible);
 		void showStateFilter() { setStateFilterVisibility(true); }
 		void hideStateFilter() { setStateFilterVisibility(false); }
+		bool active() { return rebuilderThread() ? rebuilderThread()->isActive : false; }
 
 	public slots:
 		void on_spinBoxMaxLogSize_valueChanged(int);

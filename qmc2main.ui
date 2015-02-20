@@ -2797,6 +2797,9 @@
      <addaction name="actionAnalyseCurrentROM"/>
      <addaction name="actionAnalyseROMTagged"/>
      <addaction name="separator"/>
+     <addaction name="actionRebuildROM"/>
+     <addaction name="actionRebuildROMTagged"/>
+     <addaction name="separator"/>
      <addaction name="actionRunRomTool"/>
      <addaction name="actionRunRomToolTagged"/>
     </widget>
@@ -4717,6 +4720,48 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+W</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionRebuildROM">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rebuild ROM...</string>
+   </property>
+   <property name="toolTip">
+    <string>Rebuild current game with ROMAlyzer</string>
+   </property>
+   <property name="statusTip">
+    <string>Rebuild current game with ROMAlyzer</string>
+   </property>
+   <property name="shortcut">
+    <string>F2</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionRebuildROMTagged">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/rebuild_multiple.png</normaloff>:/data/img/rebuild_multiple.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rebuild ROM (tagged)</string>
+   </property>
+   <property name="toolTip">
+    <string>Rebuild all tagged sets with ROMAlyzer</string>
+   </property>
+   <property name="statusTip">
+    <string>Rebuild all tagged sets with ROMAlyzer</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+F2</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
