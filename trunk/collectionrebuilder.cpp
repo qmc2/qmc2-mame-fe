@@ -93,6 +93,7 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 	toolButtonStateU->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateU", true).toBool());
 
 	pushButtonPauseResume->setVisible(false);
+	setIgnoreCheckpoint(false);
 
 	QFont logFont;
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
@@ -264,7 +265,7 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 		if ( missingDumpsViewer() )
 			missingDumpsViewer()->setDefaultEmulator(defaultEmulator());
 		if ( comboBoxXmlSource->itemData(comboBoxXmlSource->currentIndex()).toBool() ) {
-			switch ( QMessageBox::question(this, tr("Confirm checkpoint restart"), tr("Restart from stored checkpoint?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::No) ) {
+			switch ( ignoreCheckpoint() ? QMessageBox::No : QMessageBox::question(this, tr("Confirm checkpoint restart"), tr("Restart from stored checkpoint?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::No) ) {
 				case QMessageBox::Yes: {
 						qint64 cp = 0;
 						int index = comboBoxXmlSource->currentIndex();
@@ -297,6 +298,7 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 					pushButtonPauseResume->setEnabled(true);
 					return;
 			}
+			setIgnoreCheckpoint(false);
 		} else {
 			rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
 			if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
