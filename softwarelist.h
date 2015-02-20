@@ -216,6 +216,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QAction *actionNegateSearch;
 		QAction *actionCheckSoftwareStates;
 		QAction *actionAnalyzeSoftware;
+		QAction *actionAnalyzeSoftwareList;
 		QAction *actionAnalyzeSoftwareLists;
 		QFile softwareStateFile;
 		QList<QTreeWidgetItem *> softwareListItems, favoritesListItems, searchListItems;
@@ -328,6 +329,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void addToFavorites() { on_toolButtonAddToFavorites_clicked(false); }
 		void removeFromFavorites() { on_toolButtonRemoveFromFavorites_clicked(false); }
 		void analyzeSoftware();
+		void analyzeSoftwareList();
 		void analyzeSoftwareLists();
 		void playActivated() { on_toolButtonPlay_clicked(false); }
 		void playEmbeddedActivated() { on_toolButtonPlayEmbedded_clicked(false); }

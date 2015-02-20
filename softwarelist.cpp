@@ -177,6 +177,11 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	actionAnalyzeSoftware->setToolTip(s); actionAnalyzeSoftware->setStatusTip(s);
 	actionAnalyzeSoftware->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer_sw.png")));
 	connect(actionAnalyzeSoftware, SIGNAL(triggered()), this, SLOT(analyzeSoftware()));
+	s = tr("Analyze the currently selected software's list with the ROMAlyzer");
+	actionAnalyzeSoftwareList = softwareListMenu->addAction(tr("Analyze software-lis&t..."));
+	actionAnalyzeSoftwareList->setToolTip(s); actionAnalyzeSoftwareList->setStatusTip(s);
+	actionAnalyzeSoftwareList->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer_sw.png")));
+	connect(actionAnalyzeSoftwareList, SIGNAL(triggered()), this, SLOT(analyzeSoftwareList()));
 	s = tr("Analyze all relevant software-lists for the current system with the ROMAlyzer");
 	actionAnalyzeSoftwareLists = softwareListMenu->addAction(tr("Analyze software-&lists..."));
 	actionAnalyzeSoftwareLists->setToolTip(s); actionAnalyzeSoftwareLists->setStatusTip(s);
@@ -2391,6 +2396,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_customContextMenuRequested(const Q
 	treeWidgetKnownSoftware->setItemSelected(item, true);
 	actionAddToFavorites->setVisible(true);
 	actionRemoveFromFavorites->setVisible(false);
+	actionAnalyzeSoftwareLists->setVisible(systemSoftwareListHash[systemName].count() > 1);
 	softwareListMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetKnownSoftware->viewport()->mapToGlobal(p), softwareListMenu));
 	softwareListMenu->show();
 }
@@ -2410,6 +2416,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_customContextMenuRequested(cons
 	treeWidgetFavoriteSoftware->setItemSelected(item, true);
 	actionAddToFavorites->setVisible(false);
 	actionRemoveFromFavorites->setVisible(true);
+	actionAnalyzeSoftwareLists->setVisible(systemSoftwareListHash[systemName].count() > 1);
 	softwareListMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetFavoriteSoftware->viewport()->mapToGlobal(p), softwareListMenu));
 	softwareListMenu->show();
 }
@@ -2429,6 +2436,7 @@ void SoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const Q
 	treeWidgetSearchResults->setItemSelected(item, true);
 	actionAddToFavorites->setVisible(true);
 	actionRemoveFromFavorites->setVisible(false);
+	actionAnalyzeSoftwareLists->setVisible(systemSoftwareListHash[systemName].count() > 1);
 	softwareListMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetSearchResults->viewport()->mapToGlobal(p), softwareListMenu));
 	softwareListMenu->show();
 }
@@ -3386,6 +3394,40 @@ void SoftwareList::analyzeSoftware()
 		if ( !qmc2SoftwareROMAlyzer->active() ) {
 			qmc2SoftwareROMAlyzer->lineEditSoftwareLists->setText(item->text(QMC2_SWLIST_COLUMN_LIST));
 			qmc2SoftwareROMAlyzer->lineEditSets->setText(item->text(QMC2_SWLIST_COLUMN_NAME));
+		}
+		if ( qmc2SoftwareROMAlyzer->isHidden() )
+			qmc2SoftwareROMAlyzer->show();
+		else if ( qmc2SoftwareROMAlyzer->isMinimized() )
+			qmc2SoftwareROMAlyzer->showNormal();
+		if ( qmc2SoftwareROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SoftwareROMAlyzer->tabReport && qmc2SoftwareROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SoftwareROMAlyzer->tabLog )
+			qmc2SoftwareROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SoftwareROMAlyzer->tabReport);
+		QTimer::singleShot(0, qmc2SoftwareROMAlyzer, SLOT(raise()));
+		QTimer::singleShot(0, qmc2SoftwareROMAlyzer->pushButtonAnalyze, SLOT(animateClick()));
+	}
+}
+
+void SoftwareList::analyzeSoftwareList()
+{
+	QTreeWidget *treeWidget;
+	switch ( toolBoxSoftwareList->currentIndex() ) {
+		case QMC2_SWLIST_KNOWN_SW_PAGE:
+			treeWidget = treeWidgetKnownSoftware;
+			break;
+		case QMC2_SWLIST_FAVORITES_PAGE:
+			treeWidget = treeWidgetFavoriteSoftware;
+			break;
+		case QMC2_SWLIST_SEARCH_PAGE:
+			treeWidget = treeWidgetSearchResults;
+			break;
+	}
+	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
+	if ( !selectedItems.isEmpty() ) {
+		QTreeWidgetItem *item = selectedItems[0];
+		if ( !qmc2SoftwareROMAlyzer )
+			qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
+		if ( !qmc2SoftwareROMAlyzer->active() ) {
+			qmc2SoftwareROMAlyzer->lineEditSoftwareLists->setText(item->text(QMC2_SWLIST_COLUMN_LIST));
+			qmc2SoftwareROMAlyzer->lineEditSets->setText("*");
 		}
 		if ( qmc2SoftwareROMAlyzer->isHidden() )
 			qmc2SoftwareROMAlyzer->show();
