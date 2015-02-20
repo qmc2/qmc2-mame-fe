@@ -159,7 +159,7 @@ qint64 CheckSumDatabaseManager::checkSumRowCount()
 	QSqlQuery query(m_db);
 	if ( query.exec(QString("SELECT COUNT(*) FROM %1").arg(m_tableBasename)) ) {
 		if ( query.first() )
-			return query.value(0).toInt();
+			return query.value(0).toLongLong();
 		else
 			return -1;
 	} else {
@@ -176,7 +176,7 @@ qint64 CheckSumDatabaseManager::nextRowId(bool refreshRowIds)
 		if ( query.exec(QString("SELECT rowid FROM %1").arg(m_tableBasename)) ) {
 			if ( query.first() ) {
 				do {
-					m_rowIdList << query.value(0).toInt();
+					m_rowIdList << query.value(0).toLongLong();
 				} while ( query.next() );
 				m_lastRowId = 0;
 				return m_rowIdList[0];

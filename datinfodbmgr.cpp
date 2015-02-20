@@ -187,7 +187,7 @@ qint64 DatInfoDatabaseManager::softwareInfoRowCount()
 	QSqlQuery query(m_db);
 	if ( query.exec(QString("SELECT COUNT(*) FROM %1").arg(m_softwareInfoTableName)) ) {
 		if ( query.first() )
-			return query.value(0).toInt();
+			return query.value(0).toLongLong();
 		else
 			return -1;
 	} else {
@@ -257,7 +257,7 @@ qint64 DatInfoDatabaseManager::emuInfoRowCount()
 	QSqlQuery query(m_db);
 	if ( query.exec(QString("SELECT COUNT(*) FROM %1").arg(m_emuInfoTableName)) ) {
 		if ( query.first() )
-			return query.value(0).toInt();
+			return query.value(0).toLongLong();
 		else
 			return -1;
 	} else {
@@ -344,7 +344,7 @@ qint64 DatInfoDatabaseManager::gameInfoRowCount()
 	QSqlQuery query(m_db);
 	if ( query.exec(QString("SELECT COUNT(*) FROM %1").arg(m_gameInfoTableName)) ) {
 		if ( query.first() )
-			return query.value(0).toInt();
+			return query.value(0).toLongLong();
 		else
 			return -1;
 	} else {
