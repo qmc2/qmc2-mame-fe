@@ -11451,6 +11451,8 @@ void MainWindow::on_actionRebuildROMTagged_triggered(bool)
 				setsToRebuild << item->text(QMC2_GAMELIST_COLUMN_NAME);
 	}
 
+	qSort(setsToRebuild);
+
 	bool initial = false;
 	if ( !qmc2SystemROMAlyzer ) {
 		qmc2SystemROMAlyzer = new ROMAlyzer(0);
