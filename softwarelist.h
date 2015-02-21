@@ -353,6 +353,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void rebuildSoftwareList();
 		void rebuildSoftwareLists();
 		void updateRebuildSoftwareMenuVisibility();
+		void analyzeSoftwareMenu_aboutToShow();
+		void rebuildSoftwareMenu_aboutToShow();
 
 		// callbacks for software-list header context menu requests
 		void treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &);

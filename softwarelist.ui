@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>597</width>
-    <height>359</height>
+    <width>648</width>
+    <height>346</height>
    </rect>
   </property>
   <property name="mouseTracking">
@@ -136,6 +136,46 @@
       </widget>
      </item>
      <item>
+      <widget class="QToolButton" name="toolButtonAnalyzeSoftware">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Analyze software menu</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/romalyzer_sw.png</normaloff>:/data/img/romalyzer_sw.png</iconset>
+       </property>
+       <property name="popupMode">
+        <enum>QToolButton::InstantPopup</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonRebuildSoftware">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Rebuild software menu</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
+       </property>
+       <property name="popupMode">
+        <enum>QToolButton::InstantPopup</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QComboBox" name="comboBoxSnapnameDevice">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
@@ -179,8 +219,8 @@
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>13</width>
-         <height>13</height>
+         <width>0</width>
+         <height>20</height>
         </size>
        </property>
       </spacer>
@@ -323,7 +363,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>587</width>
+        <width>638</width>
         <height>192</height>
        </rect>
       </property>
@@ -416,8 +456,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>86</width>
-        <height>67</height>
+        <width>634</width>
+        <height>192</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -514,8 +554,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>587</width>
-        <height>205</height>
+        <width>634</width>
+        <height>192</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -709,6 +749,8 @@
   <tabstop>toolButtonToggleSoftwareInfo</tabstop>
   <tabstop>toolButtonToggleSnapnameAdjustment</tabstop>
   <tabstop>toolButtonSoftwareStates</tabstop>
+  <tabstop>toolButtonAnalyzeSoftware</tabstop>
+  <tabstop>toolButtonRebuildSoftware</tabstop>
   <tabstop>comboBoxSnapnameDevice</tabstop>
   <tabstop>comboBoxDeviceConfiguration</tabstop>
   <tabstop>toolButtonExport</tabstop>

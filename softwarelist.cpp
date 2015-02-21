@@ -124,6 +124,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonCompatFilterToggle->setIconSize(iconSize);
 	toolButtonToggleSnapnameAdjustment->setIconSize(iconSize);
 	toolButtonSoftwareStates->setIconSize(iconSize);
+	toolButtonAnalyzeSoftware->setIconSize(iconSize);
+	toolButtonRebuildSoftware->setIconSize(iconSize);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	toolButtonPlayEmbedded->setIconSize(iconSize);
 #else
@@ -193,6 +195,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	actionAnalyzeSoftwareLists->setToolTip(s); actionAnalyzeSoftwareLists->setStatusTip(s);
 	actionAnalyzeSoftwareLists->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer_sw.png")));
 	connect(actionAnalyzeSoftwareLists, SIGNAL(triggered()), this, SLOT(analyzeSoftwareLists()));
+	toolButtonAnalyzeSoftware->setMenu(analyzeMenu);
+	connect(analyzeMenu, SIGNAL(aboutToShow()), this, SLOT(analyzeSoftwareMenu_aboutToShow()));
 
 	// rebuild sub-menu
 	QMenu *rebuildMenu = new QMenu(this);
@@ -214,7 +218,12 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	actionRebuildSoftwareLists->setToolTip(s); actionRebuildSoftwareLists->setStatusTip(s);
 	actionRebuildSoftwareLists->setIcon(QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
 	connect(actionRebuildSoftwareLists, SIGNAL(triggered()), this, SLOT(rebuildSoftwareLists()));
+	toolButtonRebuildSoftware->setMenu(rebuildMenu);
+	connect(rebuildMenu, SIGNAL(aboutToShow()), this, SLOT(rebuildSoftwareMenu_aboutToShow()));
 
+	updateRebuildSoftwareMenuVisibility();
+
+	// clear selection item
 	softwareListMenu->addSeparator();
 	s = tr("Clear software selection");
 	actionClearSelection = softwareListMenu->addAction(tr("&Clear selection"));
@@ -629,6 +638,45 @@ void SoftwareList::updateRebuildSoftwareMenuVisibility()
 	else
 		enable = (qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareROMAlyzer/EnableCheckSumDb", false).toBool() && qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareROMAlyzer/EnableSetRewriter", false).toBool());
 	rebuildMenuAction->setVisible(enable);
+	toolButtonRebuildSoftware->setVisible(enable);
+}
+
+void SoftwareList::analyzeSoftwareMenu_aboutToShow()
+{
+	QTreeWidget *treeWidget = 0;
+	switch ( toolBoxSoftwareList->currentIndex() ) {
+		case QMC2_SWLIST_FAVORITES_PAGE:
+			treeWidget = treeWidgetFavoriteSoftware;
+			break;
+		case QMC2_SWLIST_SEARCH_PAGE:
+			treeWidget = treeWidgetSearchResults;
+			break;
+		case QMC2_SWLIST_KNOWN_SW_PAGE:
+		default:
+			treeWidget = treeWidgetKnownSoftware;
+			break;
+	}
+	actionAnalyzeSoftware->setVisible(!treeWidget->selectedItems().isEmpty());
+	actionAnalyzeSoftwareLists->setVisible(systemSoftwareListHash[systemName].count() > 1);
+}
+
+void SoftwareList::rebuildSoftwareMenu_aboutToShow()
+{
+	QTreeWidget *treeWidget = 0;
+	switch ( toolBoxSoftwareList->currentIndex() ) {
+		case QMC2_SWLIST_FAVORITES_PAGE:
+			treeWidget = treeWidgetFavoriteSoftware;
+			break;
+		case QMC2_SWLIST_SEARCH_PAGE:
+			treeWidget = treeWidgetSearchResults;
+			break;
+		case QMC2_SWLIST_KNOWN_SW_PAGE:
+		default:
+			treeWidget = treeWidgetKnownSoftware;
+			break;
+	}
+	actionRebuildSoftware->setVisible(!treeWidget->selectedItems().isEmpty());
+	actionRebuildSoftwareLists->setVisible(systemSoftwareListHash[systemName].count() > 1);
 }
 
 QString &SoftwareList::getSoftwareListXmlData(QString listName)
@@ -2596,9 +2644,6 @@ void SoftwareList::on_treeWidgetKnownSoftware_customContextMenuRequested(const Q
 	treeWidgetKnownSoftware->setItemSelected(item, true);
 	actionAddToFavorites->setVisible(true);
 	actionRemoveFromFavorites->setVisible(false);
-	bool hasMultipleLists = (systemSoftwareListHash[systemName].count() > 1);
-	actionAnalyzeSoftwareLists->setVisible(hasMultipleLists);
-	actionRebuildSoftwareLists->setVisible(hasMultipleLists);
 	updateRebuildSoftwareMenuVisibility();
 	softwareListMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetKnownSoftware->viewport()->mapToGlobal(p), softwareListMenu));
 	softwareListMenu->show();
@@ -2619,9 +2664,6 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_customContextMenuRequested(cons
 	treeWidgetFavoriteSoftware->setItemSelected(item, true);
 	actionAddToFavorites->setVisible(false);
 	actionRemoveFromFavorites->setVisible(true);
-	bool hasMultipleLists = (systemSoftwareListHash[systemName].count() > 1);
-	actionAnalyzeSoftwareLists->setVisible(hasMultipleLists);
-	actionRebuildSoftwareLists->setVisible(hasMultipleLists);
 	updateRebuildSoftwareMenuVisibility();
 	softwareListMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetFavoriteSoftware->viewport()->mapToGlobal(p), softwareListMenu));
 	softwareListMenu->show();
@@ -2642,9 +2684,6 @@ void SoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const Q
 	treeWidgetSearchResults->setItemSelected(item, true);
 	actionAddToFavorites->setVisible(true);
 	actionRemoveFromFavorites->setVisible(false);
-	bool hasMultipleLists = (systemSoftwareListHash[systemName].count() > 1);
-	actionAnalyzeSoftwareLists->setVisible(hasMultipleLists);
-	actionRebuildSoftwareLists->setVisible(hasMultipleLists);
 	updateRebuildSoftwareMenuVisibility();
 	softwareListMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetSearchResults->viewport()->mapToGlobal(p), softwareListMenu));
 	softwareListMenu->show();
