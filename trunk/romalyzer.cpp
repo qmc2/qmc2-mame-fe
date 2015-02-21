@@ -2767,6 +2767,8 @@ void ROMAlyzer::on_groupBoxSetRewriter_toggled(bool enable)
 	tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxCheckSumDatabase->isChecked() && enable && !checkSumScannerThread()->isActive);
 	if ( mode() == QMC2_ROMALYZER_MODE_SYSTEM )
 		qmc2MainWindow->update_rebuildRomActions_visibility();
+	else if ( qmc2SoftwareList )
+		qmc2SoftwareList->updateRebuildSoftwareMenuVisibility();
 	if ( !enable ) {
 		if ( collectionRebuilder() ) {
 			delete collectionRebuilder();
@@ -2784,6 +2786,8 @@ void ROMAlyzer::on_groupBoxCheckSumDatabase_toggled(bool enable)
 		tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxSetRewriter->isChecked() && enable);
 	if ( mode() == QMC2_ROMALYZER_MODE_SYSTEM )
 		qmc2MainWindow->update_rebuildRomActions_visibility();
+	else if ( qmc2SoftwareList )
+		qmc2SoftwareList->updateRebuildSoftwareMenuVisibility();
 	if ( enable )
 		QTimer::singleShot(0, this, SLOT(lineEditChecksumWizardHash_textChanged_delayed()));
 	else {
