@@ -2835,7 +2835,7 @@ void MainWindow::on_actionAnalyseCurrentROM_triggered(bool)
 	}
 
 	if ( !qmc2SystemROMAlyzer )
-		qmc2SystemROMAlyzer = new ROMAlyzer(0);
+		qmc2SystemROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SYSTEM);
 
 	qmc2SystemROMAlyzer->lineEditSets->setText(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME));
 
@@ -2866,7 +2866,7 @@ void MainWindow::actionRebuildRom_triggered(bool)
 
 	bool initial = false;
 	if ( !qmc2SystemROMAlyzer ) {
-		qmc2SystemROMAlyzer = new ROMAlyzer(0);
+		qmc2SystemROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SYSTEM);
 		initial = true;
 	}
 
@@ -10733,7 +10733,7 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 	qSort(setsToAnalyze);
 
 	if ( !qmc2SystemROMAlyzer )
-		qmc2SystemROMAlyzer = new ROMAlyzer(0);
+		qmc2SystemROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SYSTEM);
 
 	qmc2SystemROMAlyzer->quickSearch = true;
 	qmc2SystemROMAlyzer->lineEditSets->setText(setsToAnalyze.join(" "));
@@ -11457,7 +11457,7 @@ void MainWindow::on_actionRebuildROMTagged_triggered(bool)
 
 	bool initial = false;
 	if ( !qmc2SystemROMAlyzer ) {
-		qmc2SystemROMAlyzer = new ROMAlyzer(0);
+		qmc2SystemROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SYSTEM);
 		initial = true;
 	}
 

@@ -461,20 +461,158 @@ void SoftwareList::negateSearchTriggered(bool negate)
 
 void SoftwareList::rebuildSoftware()
 {
-	// FIXME
-	QMC2_PRINT_TXT(FIXME: SoftwareList::rebuildSoftware());
+	if ( qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->rebuilderActive() ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current rebuild and try again"));
+		return;
+	}
+
+	bool initial = false;
+	if ( !qmc2SoftwareROMAlyzer ) {
+		qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
+		initial = true;
+	}
+
+	if ( qmc2SoftwareROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SoftwareROMAlyzer->tabCollectionRebuilder )
+		qmc2SoftwareROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SoftwareROMAlyzer->tabCollectionRebuilder);
+
+	if ( qmc2SoftwareROMAlyzer->isHidden() )
+		qmc2SoftwareROMAlyzer->show();
+	else if ( qmc2SoftwareROMAlyzer->isMinimized() )
+		qmc2SoftwareROMAlyzer->showNormal();
+
+	QTimer::singleShot(0, qmc2SoftwareROMAlyzer, SLOT(raise()));
+
+	CollectionRebuilder *cr = qmc2SoftwareROMAlyzer->collectionRebuilder();
+	if ( cr ) {
+		QTreeWidget *treeWidget = 0;
+		switch ( toolBoxSoftwareList->currentIndex() ) {
+			case QMC2_SWLIST_KNOWN_SW_PAGE:
+				treeWidget = treeWidgetKnownSoftware;
+				break;
+			case QMC2_SWLIST_FAVORITES_PAGE:
+				treeWidget = treeWidgetFavoriteSoftware;
+				break;
+			case QMC2_SWLIST_SEARCH_PAGE:
+				treeWidget = treeWidgetSearchResults;
+				break;
+		}
+		if ( treeWidget ) {
+			QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
+			if ( !selectedItems.isEmpty() ) {
+				cr->comboBoxXmlSource->setCurrentIndex(0);
+				cr->setIgnoreCheckpoint(true);
+				cr->checkBoxFilterExpression->setChecked(true);
+				cr->comboBoxFilterSyntax->setCurrentIndex(4);
+				cr->comboBoxFilterType->setCurrentIndex(0);
+				cr->toolButtonExactMatch->setChecked(true);
+				cr->checkBoxFilterStates->setChecked(false);
+				cr->lineEditFilterExpression->setText(selectedItems[0]->text(QMC2_SWLIST_COLUMN_NAME));
+				cr->checkBoxFilterExpressionSoftwareLists->setChecked(true);
+				cr->comboBoxFilterSyntaxSoftwareLists->setCurrentIndex(4);
+				cr->comboBoxFilterTypeSoftwareLists->setCurrentIndex(0);
+				cr->toolButtonExactMatchSoftwareLists->setChecked(true);
+				cr->lineEditFilterExpressionSoftwareLists->setText(selectedItems[0]->text(QMC2_SWLIST_COLUMN_LIST));
+				if ( !initial )
+					cr->plainTextEditLog->clear();
+				QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(click()));
+			}
+		}
+	}
 }
 
 void SoftwareList::rebuildSoftwareList()
 {
-	// FIXME
-	QMC2_PRINT_TXT(FIXME: SoftwareList::rebuildSoftwareList());
+	if ( qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->rebuilderActive() ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current rebuild and try again"));
+		return;
+	}
+
+	bool initial = false;
+	if ( !qmc2SoftwareROMAlyzer ) {
+		qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
+		initial = true;
+	}
+
+	if ( qmc2SoftwareROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SoftwareROMAlyzer->tabCollectionRebuilder )
+		qmc2SoftwareROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SoftwareROMAlyzer->tabCollectionRebuilder);
+
+	if ( qmc2SoftwareROMAlyzer->isHidden() )
+		qmc2SoftwareROMAlyzer->show();
+	else if ( qmc2SoftwareROMAlyzer->isMinimized() )
+		qmc2SoftwareROMAlyzer->showNormal();
+
+	QTimer::singleShot(0, qmc2SoftwareROMAlyzer, SLOT(raise()));
+
+	CollectionRebuilder *cr = qmc2SoftwareROMAlyzer->collectionRebuilder();
+	if ( cr ) {
+		QTreeWidget *treeWidget = 0;
+		switch ( toolBoxSoftwareList->currentIndex() ) {
+			case QMC2_SWLIST_KNOWN_SW_PAGE:
+				treeWidget = treeWidgetKnownSoftware;
+				break;
+			case QMC2_SWLIST_FAVORITES_PAGE:
+				treeWidget = treeWidgetFavoriteSoftware;
+				break;
+			case QMC2_SWLIST_SEARCH_PAGE:
+				treeWidget = treeWidgetSearchResults;
+				break;
+		}
+		if ( treeWidget ) {
+			QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
+			if ( !selectedItems.isEmpty() ) {
+				cr->comboBoxXmlSource->setCurrentIndex(0);
+				cr->setIgnoreCheckpoint(true);
+				cr->checkBoxFilterExpression->setChecked(false);
+				cr->checkBoxFilterExpressionSoftwareLists->setChecked(true);
+				cr->comboBoxFilterSyntaxSoftwareLists->setCurrentIndex(4);
+				cr->comboBoxFilterTypeSoftwareLists->setCurrentIndex(0);
+				cr->toolButtonExactMatchSoftwareLists->setChecked(true);
+				cr->lineEditFilterExpressionSoftwareLists->setText(selectedItems[0]->text(QMC2_SWLIST_COLUMN_LIST));
+				if ( !initial )
+					cr->plainTextEditLog->clear();
+				QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(click()));
+			}
+		}
+	}
 }
 
 void SoftwareList::rebuildSoftwareLists()
 {
-	// FIXME
-	QMC2_PRINT_TXT(FIXME: SoftwareList::rebuildSoftwareLists());
+	if ( qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->rebuilderActive() ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current rebuild and try again"));
+		return;
+	}
+
+	bool initial = false;
+	if ( !qmc2SoftwareROMAlyzer ) {
+		qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
+		initial = true;
+	}
+
+	if ( qmc2SoftwareROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SoftwareROMAlyzer->tabCollectionRebuilder )
+		qmc2SoftwareROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SoftwareROMAlyzer->tabCollectionRebuilder);
+
+	if ( qmc2SoftwareROMAlyzer->isHidden() )
+		qmc2SoftwareROMAlyzer->show();
+	else if ( qmc2SoftwareROMAlyzer->isMinimized() )
+		qmc2SoftwareROMAlyzer->showNormal();
+
+	QTimer::singleShot(0, qmc2SoftwareROMAlyzer, SLOT(raise()));
+
+	CollectionRebuilder *cr = qmc2SoftwareROMAlyzer->collectionRebuilder();
+	if ( cr ) {
+		cr->comboBoxXmlSource->setCurrentIndex(0);
+		cr->setIgnoreCheckpoint(true);
+		cr->checkBoxFilterExpression->setChecked(false);
+		cr->checkBoxFilterExpressionSoftwareLists->setChecked(true);
+		cr->comboBoxFilterSyntaxSoftwareLists->setCurrentIndex(0);
+		cr->comboBoxFilterTypeSoftwareLists->setCurrentIndex(0);
+		cr->toolButtonExactMatchSoftwareLists->setChecked(true);
+		cr->lineEditFilterExpressionSoftwareLists->setText(systemSoftwareListHash[systemName].join("|"));
+		if ( !initial )
+			cr->plainTextEditLog->clear();
+		QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(click()));
+	}
 }
 
 void SoftwareList::updateRebuildSoftwareMenuVisibility()
