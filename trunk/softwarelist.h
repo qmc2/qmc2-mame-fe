@@ -5,6 +5,7 @@
 #include <QTime>
 #include <QTimer>
 #include <QFile>
+#include <QList>
 #include <QAction>
 #include <QTextStream>
 #include <QXmlDefaultHandler>
@@ -218,6 +219,11 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QAction *actionAnalyzeSoftware;
 		QAction *actionAnalyzeSoftwareList;
 		QAction *actionAnalyzeSoftwareLists;
+		QAction *actionRebuildSoftware;
+		QAction *actionRebuildSoftwareList;
+		QAction *actionRebuildSoftwareLists;
+		QAction *analyzeMenuAction;
+		QAction *rebuildMenuAction;
 		QFile softwareStateFile;
 		QList<QTreeWidgetItem *> softwareListItems, favoritesListItems, searchListItems;
 		QMenu *softwareListMenu;
@@ -343,6 +349,10 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void adjustSnapnamePattern();
 		void clearSoftwareSelection();
 		void negateSearchTriggered(bool);
+		void rebuildSoftware();
+		void rebuildSoftwareList();
+		void rebuildSoftwareLists();
+		void updateRebuildSoftwareMenuVisibility();
 
 		// callbacks for software-list header context menu requests
 		void treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &);
