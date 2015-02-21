@@ -4772,6 +4772,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 				}
 			}
 			if ( qmc2CurrentItem != qmc2LastSoftwareListItem && !isCreatingSoftList ) {
+				tabWidgetGameDetail->setMovable(false);
 				QTreeWidgetItem *ci = qmc2CurrentItem;
 				isCreatingSoftList = true;
 				tabSoftwareList->setUpdatesEnabled(false);
@@ -4795,6 +4796,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 				isCreatingSoftList = false;
 				qmc2SoftwareList->load();
 				qmc2LastSoftwareListItem = ci;
+				tabWidgetGameDetail->setMovable(true);
 			}
 			break;
 
