@@ -499,6 +499,9 @@ void SoftwareList::rebuildSoftware()
 		if ( treeWidget ) {
 			QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
 			if ( !selectedItems.isEmpty() ) {
+				QTreeWidgetItem *item = selectedItems[0];
+				while ( item->parent() )
+					item = item->parent();
 				cr->comboBoxXmlSource->setCurrentIndex(0);
 				cr->setIgnoreCheckpoint(true);
 				cr->checkBoxFilterExpression->setChecked(true);
@@ -506,12 +509,12 @@ void SoftwareList::rebuildSoftware()
 				cr->comboBoxFilterType->setCurrentIndex(0);
 				cr->toolButtonExactMatch->setChecked(true);
 				cr->checkBoxFilterStates->setChecked(false);
-				cr->lineEditFilterExpression->setText(selectedItems[0]->text(QMC2_SWLIST_COLUMN_NAME));
+				cr->lineEditFilterExpression->setText(item->text(QMC2_SWLIST_COLUMN_NAME));
 				cr->checkBoxFilterExpressionSoftwareLists->setChecked(true);
 				cr->comboBoxFilterSyntaxSoftwareLists->setCurrentIndex(4);
 				cr->comboBoxFilterTypeSoftwareLists->setCurrentIndex(0);
 				cr->toolButtonExactMatchSoftwareLists->setChecked(true);
-				cr->lineEditFilterExpressionSoftwareLists->setText(selectedItems[0]->text(QMC2_SWLIST_COLUMN_LIST));
+				cr->lineEditFilterExpressionSoftwareLists->setText(item->text(QMC2_SWLIST_COLUMN_LIST));
 				if ( !initial )
 					cr->plainTextEditLog->clear();
 				QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(click()));
@@ -560,6 +563,9 @@ void SoftwareList::rebuildSoftwareList()
 		if ( treeWidget ) {
 			QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
 			if ( !selectedItems.isEmpty() ) {
+				QTreeWidgetItem *item = selectedItems[0];
+				while ( item->parent() )
+					item = item->parent();
 				cr->comboBoxXmlSource->setCurrentIndex(0);
 				cr->setIgnoreCheckpoint(true);
 				cr->checkBoxFilterExpression->setChecked(false);
@@ -567,7 +573,7 @@ void SoftwareList::rebuildSoftwareList()
 				cr->comboBoxFilterSyntaxSoftwareLists->setCurrentIndex(4);
 				cr->comboBoxFilterTypeSoftwareLists->setCurrentIndex(0);
 				cr->toolButtonExactMatchSoftwareLists->setChecked(true);
-				cr->lineEditFilterExpressionSoftwareLists->setText(selectedItems[0]->text(QMC2_SWLIST_COLUMN_LIST));
+				cr->lineEditFilterExpressionSoftwareLists->setText(item->text(QMC2_SWLIST_COLUMN_LIST));
 				if ( !initial )
 					cr->plainTextEditLog->clear();
 				QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(click()));
@@ -3592,6 +3598,8 @@ void SoftwareList::analyzeSoftware()
 	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
 	if ( !selectedItems.isEmpty() ) {
 		QTreeWidgetItem *item = selectedItems[0];
+		while ( item->parent() )
+			item = item->parent();
 		if ( !qmc2SoftwareROMAlyzer )
 			qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
 		if ( !qmc2SoftwareROMAlyzer->active() ) {
@@ -3626,6 +3634,8 @@ void SoftwareList::analyzeSoftwareList()
 	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
 	if ( !selectedItems.isEmpty() ) {
 		QTreeWidgetItem *item = selectedItems[0];
+		while ( item->parent() )
+			item = item->parent();
 		if ( !qmc2SoftwareROMAlyzer )
 			qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
 		if ( !qmc2SoftwareROMAlyzer->active() ) {
