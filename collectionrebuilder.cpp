@@ -942,7 +942,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 	diskSizeList->clear();
 	if ( m_xmlIndex < 0 || m_xmlIndexCount < 0 ) {
 		if ( rebuilderDialog()->defaultEmulator() ) {
-			m_xmlIndex = 1;
+			m_xmlIndex = 0;
 			switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 				case QMC2_ROMALYZER_MODE_SOFTWARE:
 					m_xmlIndexCount = swlDb()->swlRowCount();
