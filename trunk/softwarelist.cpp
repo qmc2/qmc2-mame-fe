@@ -146,6 +146,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonCompatFilterToggle->setEnabled(false);
 	toolButtonToggleSnapnameAdjustment->setEnabled(false);
 	toolButtonSoftwareStates->setEnabled(false);
+	toolButtonAnalyzeSoftware->setEnabled(false);
+	toolButtonRebuildSoftware->setEnabled(false);
 	comboBoxDeviceConfiguration->setEnabled(false);
 
 	// software list context menu
@@ -526,7 +528,7 @@ void SoftwareList::rebuildSoftware()
 				cr->lineEditFilterExpressionSoftwareLists->setText(item->text(QMC2_SWLIST_COLUMN_LIST));
 				if ( !initial )
 					cr->plainTextEditLog->clear();
-				QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(click()));
+				QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(animateClick()));
 			}
 		}
 	}
@@ -585,7 +587,7 @@ void SoftwareList::rebuildSoftwareList()
 				cr->lineEditFilterExpressionSoftwareLists->setText(item->text(QMC2_SWLIST_COLUMN_LIST));
 				if ( !initial )
 					cr->plainTextEditLog->clear();
-				QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(click()));
+				QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(animateClick()));
 			}
 		}
 	}
@@ -626,7 +628,7 @@ void SoftwareList::rebuildSoftwareLists()
 		cr->lineEditFilterExpressionSoftwareLists->setText(systemSoftwareListHash[systemName].join("|"));
 		if ( !initial )
 			cr->plainTextEditLog->clear();
-		QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(click()));
+		QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(animateClick()));
 	}
 }
 
@@ -657,7 +659,8 @@ void SoftwareList::analyzeSoftwareMenu_aboutToShow()
 			break;
 	}
 	actionAnalyzeSoftware->setVisible(!treeWidget->selectedItems().isEmpty());
-	actionAnalyzeSoftwareLists->setVisible(systemSoftwareListHash[systemName].count() > 1);
+	actionAnalyzeSoftwareList->setVisible(!treeWidget->selectedItems().isEmpty());
+	actionAnalyzeSoftwareLists->setVisible(actionAnalyzeSoftwareList->isVisible() ? (systemSoftwareListHash[systemName].count() > 1) : true);
 }
 
 void SoftwareList::rebuildSoftwareMenu_aboutToShow()
@@ -676,7 +679,8 @@ void SoftwareList::rebuildSoftwareMenu_aboutToShow()
 			break;
 	}
 	actionRebuildSoftware->setVisible(!treeWidget->selectedItems().isEmpty());
-	actionRebuildSoftwareLists->setVisible(systemSoftwareListHash[systemName].count() > 1);
+	actionRebuildSoftwareList->setVisible(!treeWidget->selectedItems().isEmpty());
+	actionRebuildSoftwareLists->setVisible(actionRebuildSoftwareList->isVisible() ? (systemSoftwareListHash[systemName].count() > 1) : true);
 }
 
 QString &SoftwareList::getSoftwareListXmlData(QString listName)
@@ -1326,6 +1330,8 @@ bool SoftwareList::load()
 	toolButtonCompatFilterToggle->setEnabled(true);
 	toolButtonToggleSnapnameAdjustment->setEnabled(true);
 	toolButtonSoftwareStates->setEnabled(true);
+	toolButtonAnalyzeSoftware->setEnabled(true);
+	toolButtonRebuildSoftware->setEnabled(true);
 
 	isLoading = false;
 	fullyLoaded = !interruptLoad;
@@ -2207,6 +2213,8 @@ void SoftwareList::on_toolButtonReload_clicked(bool checked)
 	toolButtonCompatFilterToggle->setEnabled(false);
 	toolButtonToggleSnapnameAdjustment->setEnabled(false);
 	toolButtonSoftwareStates->setEnabled(false);
+	toolButtonAnalyzeSoftware->setEnabled(false);
+	toolButtonRebuildSoftware->setEnabled(false);
 	comboBoxDeviceConfiguration->setEnabled(false);
 	comboBoxDeviceConfiguration->clear();
 	comboBoxDeviceConfiguration->insertItem(0, tr("Default configuration"));
@@ -3694,34 +3702,20 @@ void SoftwareList::analyzeSoftwareList()
 
 void SoftwareList::analyzeSoftwareLists()
 {
-	QTreeWidget *treeWidget;
-	switch ( toolBoxSoftwareList->currentIndex() ) {
-		case QMC2_SWLIST_KNOWN_SW_PAGE:
-			treeWidget = treeWidgetKnownSoftware;
-			break;
-		case QMC2_SWLIST_FAVORITES_PAGE:
-			treeWidget = treeWidgetFavoriteSoftware;
-			break;
-		case QMC2_SWLIST_SEARCH_PAGE:
-			treeWidget = treeWidgetSearchResults;
-			break;
+	if ( !qmc2SoftwareROMAlyzer )
+		qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
+	if ( !qmc2SoftwareROMAlyzer->active() ) {
+		qmc2SoftwareROMAlyzer->lineEditSoftwareLists->setText(systemSoftwareListHash[systemName].join(" "));
+		qmc2SoftwareROMAlyzer->lineEditSets->setText("*");
 	}
-	if ( !treeWidget->selectedItems().isEmpty() ) {
-		if ( !qmc2SoftwareROMAlyzer )
-			qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
-		if ( !qmc2SoftwareROMAlyzer->active() ) {
-			qmc2SoftwareROMAlyzer->lineEditSoftwareLists->setText(systemSoftwareListHash[systemName].join(" "));
-			qmc2SoftwareROMAlyzer->lineEditSets->setText("*");
-		}
-		if ( qmc2SoftwareROMAlyzer->isHidden() )
-			qmc2SoftwareROMAlyzer->show();
-		else if ( qmc2SoftwareROMAlyzer->isMinimized() )
-			qmc2SoftwareROMAlyzer->showNormal();
-		if ( qmc2SoftwareROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SoftwareROMAlyzer->tabReport && qmc2SoftwareROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SoftwareROMAlyzer->tabLog )
-			qmc2SoftwareROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SoftwareROMAlyzer->tabReport);
-		QTimer::singleShot(0, qmc2SoftwareROMAlyzer, SLOT(raise()));
-		QTimer::singleShot(0, qmc2SoftwareROMAlyzer->pushButtonAnalyze, SLOT(animateClick()));
-	}
+	if ( qmc2SoftwareROMAlyzer->isHidden() )
+		qmc2SoftwareROMAlyzer->show();
+	else if ( qmc2SoftwareROMAlyzer->isMinimized() )
+		qmc2SoftwareROMAlyzer->showNormal();
+	if ( qmc2SoftwareROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SoftwareROMAlyzer->tabReport && qmc2SoftwareROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SoftwareROMAlyzer->tabLog )
+		qmc2SoftwareROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SoftwareROMAlyzer->tabReport);
+	QTimer::singleShot(0, qmc2SoftwareROMAlyzer, SLOT(raise()));
+	QTimer::singleShot(0, qmc2SoftwareROMAlyzer->pushButtonAnalyze, SLOT(animateClick()));
 }
 
 SoftwareListXmlHandler::SoftwareListXmlHandler(QTreeWidget *parent)
