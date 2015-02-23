@@ -4794,9 +4794,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 				qmc2SoftwareList->show();
 				tabSoftwareList->setUpdatesEnabled(true);
 				isCreatingSoftList = false;
+				tabWidgetGameDetail->setMovable(true);
 				qmc2SoftwareList->load();
 				qmc2LastSoftwareListItem = ci;
-				tabWidgetGameDetail->setMovable(true);
 			}
 			break;
 
