@@ -266,18 +266,13 @@ qint64 XmlDatabaseManager::nextRowId(bool refreshRowIds)
 				} while ( query.next() );
 				m_lastRowId = 0;
 				return m_rowIdList[0];
-			} else
-				return -1;
-		} else {
+			}
+		} else
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row IDs from XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			return -1;
-		}
 	} else if ( m_lastRowId > -1 ) {
 		m_lastRowId++;
 		if ( m_lastRowId < m_rowIdList.count() )
 			return m_rowIdList[m_lastRowId];
-		else
-			return -1;
 	}
 	return -1;
 }

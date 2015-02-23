@@ -19,10 +19,12 @@
 #include "sevenzipfile.h"
 #include "gamelist.h"
 #include "macros.h"
+#include "softwarelist.h"
 
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
 extern Gamelist *qmc2Gamelist;
+extern SoftwareList *qmc2SoftwareList;
 
 QHash<QString, QString> CollectionRebuilderThread::m_replacementHash;
 
@@ -558,6 +560,13 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	romAlyzer()->groupBoxSetRewriter->setEnabled(false);
 	m_animationSequence = 0;
 	m_animationTimer.start(QMC2_ROMALYZER_REBUILD_ANIM_SPEED);
+	if ( qmc2SoftwareList ) {
+		qmc2SoftwareList->rebuildMenuAction->setEnabled(false);
+		qmc2SoftwareList->actionRebuildSoftware->setEnabled(false);
+		qmc2SoftwareList->actionRebuildSoftwareList->setEnabled(false);
+		qmc2SoftwareList->actionRebuildSoftwareLists->setEnabled(false);
+		qmc2SoftwareList->toolButtonRebuildSoftware->setEnabled(false);
+	}
 	qApp->processEvents();
 }
 
@@ -626,6 +635,13 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	romAlyzer()->groupBoxSetRewriter->setEnabled(true);
 	m_animationTimer.stop();
 	romAlyzer()->tabWidgetAnalysis->setTabIcon(QMC2_ROMALYZER_PAGE_RCR, QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
+	if ( qmc2SoftwareList ) {
+		qmc2SoftwareList->rebuildMenuAction->setEnabled(true);
+		qmc2SoftwareList->actionRebuildSoftware->setEnabled(true);
+		qmc2SoftwareList->actionRebuildSoftwareList->setEnabled(true);
+		qmc2SoftwareList->actionRebuildSoftwareLists->setEnabled(true);
+		qmc2SoftwareList->toolButtonRebuildSoftware->setEnabled(true);
+	}
 	qApp->processEvents();
 }
 

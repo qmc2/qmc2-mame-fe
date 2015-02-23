@@ -672,6 +672,14 @@ void ROMAlyzer::analyze()
 		analyzerBadSets.clear();
 	}
 
+	if ( mode() == QMC2_ROMALYZER_MODE_SOFTWARE && qmc2SoftwareList ) {
+		qmc2SoftwareList->analyzeMenuAction->setEnabled(false);
+		qmc2SoftwareList->actionAnalyzeSoftware->setEnabled(false);
+		qmc2SoftwareList->actionAnalyzeSoftwareList->setEnabled(false);
+		qmc2SoftwareList->actionAnalyzeSoftwareLists->setEnabled(false);
+		qmc2SoftwareList->toolButtonAnalyzeSoftware->setEnabled(false);
+	}
+
 	setPaused(false);
 	animSeq = -1;
 	animationTimeout();
@@ -1429,6 +1437,14 @@ void ROMAlyzer::analyze()
 
 	setActive(false);
 	wizardSearch = false;
+
+	if ( mode() == QMC2_ROMALYZER_MODE_SOFTWARE && qmc2SoftwareList ) {
+		qmc2SoftwareList->analyzeMenuAction->setEnabled(true);
+		qmc2SoftwareList->actionAnalyzeSoftware->setEnabled(true);
+		qmc2SoftwareList->actionAnalyzeSoftwareList->setEnabled(true);
+		qmc2SoftwareList->actionAnalyzeSoftwareLists->setEnabled(true);
+		qmc2SoftwareList->toolButtonAnalyzeSoftware->setEnabled(true);
+	}
 }
 
 QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
