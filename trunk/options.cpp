@@ -129,6 +129,7 @@ extern SoftwareSnap *qmc2SoftwareSnap;
 extern Gamelist *qmc2Gamelist;
 extern ImageChecker *qmc2ImageChecker;
 extern ROMAlyzer *qmc2SystemROMAlyzer;
+extern ROMAlyzer *qmc2SoftwareROMAlyzer;
 extern ROMStatusExporter *qmc2ROMStatusExporter;
 extern DocBrowser *qmc2DocBrowser;
 extern int qmc2SortCriteria;
@@ -807,6 +808,16 @@ void Options::apply()
 		if ( qmc2SystemROMAlyzer->collectionRebuilder() ) {
 			qmc2SystemROMAlyzer->collectionRebuilder()->plainTextEditLog->setFont(logFont);
 			QTimer::singleShot(0, qmc2SystemROMAlyzer->collectionRebuilder(), SLOT(adjustIconSizes()));
+		}
+	}
+	if ( qmc2SoftwareROMAlyzer ) {
+		qmc2SoftwareROMAlyzer->textBrowserLog->setFont(logFont);
+		QTimer::singleShot(0, qmc2SoftwareROMAlyzer, SLOT(adjustIconSizes()));
+		if ( qmc2SoftwareROMAlyzer->checkSumScannerLog() )
+			qmc2SoftwareROMAlyzer->checkSumScannerLog()->plainTextEditLog->setFont(logFont);
+		if ( qmc2SoftwareROMAlyzer->collectionRebuilder() ) {
+			qmc2SoftwareROMAlyzer->collectionRebuilder()->plainTextEditLog->setFont(logFont);
+			QTimer::singleShot(0, qmc2SoftwareROMAlyzer->collectionRebuilder(), SLOT(adjustIconSizes()));
 		}
 	}
 	if ( qmc2ImageChecker )

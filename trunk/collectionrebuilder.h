@@ -108,7 +108,6 @@ class CollectionRebuilderThread : public QThread
 			return text;
 		}
 
-
 	public slots:
 		void pause();
 		void resume();
