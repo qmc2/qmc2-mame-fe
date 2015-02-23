@@ -387,7 +387,7 @@ void BrushEditor::gradientStopAction_downRequested(QTreeWidgetItem *item)
 	}
 }
 
-void BrushEditor::on_comboBoxPatternType_currentIndexChanged(int index)
+void BrushEditor::on_comboBoxPatternType_currentIndexChanged(int /*index*/)
 {
 	QPalette pal = framePatternPreview->palette();
 	pal.setBrush(framePatternPreview->backgroundRole(), QBrush(framePatternColor->palette().color(framePatternColor->backgroundRole()), patternNameToStyle(comboBoxPatternType->currentText())));

@@ -383,7 +383,8 @@ qint64 SoftwareListXmlDatabaseManager::nextRowId(bool refreshRowIds)
 				} while ( query.next() );
 				m_lastRowId = 0;
 				return m_rowIdList[0];
-			}
+			} else
+				return -1;
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row IDs from software-list XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 			return -1;
@@ -409,7 +410,8 @@ QString SoftwareListXmlDatabaseManager::idAtIndex(int index)
 					m_idAtIndexCache << query.value(0).toString() + ":" + query.value(1).toString();
 				} while ( query.next() );
 				return m_idAtIndexCache[0];
-			}
+			} else
+				return QString();
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from software-list XML cache database: query = '%2', error = '%3'").arg("list, id").arg(query.lastQuery()).arg(m_db.lastError().text()));
 			return QString();
