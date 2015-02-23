@@ -560,7 +560,7 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	romAlyzer()->groupBoxSetRewriter->setEnabled(false);
 	m_animationSequence = 0;
 	m_animationTimer.start(QMC2_ROMALYZER_REBUILD_ANIM_SPEED);
-	if ( qmc2SoftwareList ) {
+	if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE && qmc2SoftwareList ) {
 		qmc2SoftwareList->rebuildMenuAction->setEnabled(false);
 		qmc2SoftwareList->actionRebuildSoftware->setEnabled(false);
 		qmc2SoftwareList->actionRebuildSoftwareList->setEnabled(false);
@@ -635,7 +635,7 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	romAlyzer()->groupBoxSetRewriter->setEnabled(true);
 	m_animationTimer.stop();
 	romAlyzer()->tabWidgetAnalysis->setTabIcon(QMC2_ROMALYZER_PAGE_RCR, QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
-	if ( qmc2SoftwareList ) {
+	if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE && qmc2SoftwareList ) {
 		qmc2SoftwareList->rebuildMenuAction->setEnabled(true);
 		qmc2SoftwareList->actionRebuildSoftware->setEnabled(true);
 		qmc2SoftwareList->actionRebuildSoftwareList->setEnabled(true);
