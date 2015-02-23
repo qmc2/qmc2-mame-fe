@@ -1013,7 +1013,6 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 				case QMC2_ROMALYZER_MODE_SOFTWARE:
 					setKey = swlDb()->idAtIndex(m_xmlIndex);
 					if ( !evaluateFilters(setKey) ) {
-						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex++;
 						emit progressChanged(m_xmlIndex);
 						return true;
@@ -1033,7 +1032,6 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 				default:
 					setKey = xmlDb()->idAtIndex(m_xmlIndex);
 					if ( !evaluateFilters(setKey) ) {
-						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex++;
 						emit progressChanged(m_xmlIndex);
 						return true;
@@ -1751,8 +1749,9 @@ void CollectionRebuilderThread::run()
 					else
 						emit log(tr("set rebuilding failed for '%1'").arg(setKey));
 					emit statusUpdated(++setsProcessed, missingROMs, missingDisks);
+					setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
+					QTest::qWait(0);
 				}
-				QTest::qWait(0);
 			}
 			if ( rebuilderDialog()->defaultEmulator() ) {
 				if ( xmlDb() )
