@@ -1349,7 +1349,7 @@ void HtmlEditor::setCurrentTemplateName(const QString &templateName)
 	this->templateName = templateName;
 }
 
-void HtmlEditor::linkHovered(const QString &link, const QString &title, const QString &textContent)
+void HtmlEditor::linkHovered(const QString &link, const QString & /*title*/, const QString & /*textContent*/)
 {
 	// FIXME: doesn't work as expected (hides too early)
 	QToolTip::showText(QCursor::pos(), link);

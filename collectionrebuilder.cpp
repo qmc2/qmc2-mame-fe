@@ -262,42 +262,51 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 	else if ( rebuilderThread()->isWaiting ) {
 		newMissingList().clear();
 		if ( comboBoxXmlSource->itemData(comboBoxXmlSource->currentIndex()).toBool() ) {
-			switch ( ignoreCheckpoint() ? QMessageBox::No : QMessageBox::question(this, tr("Confirm checkpoint restart"), tr("Restart from stored checkpoint?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::No) ) {
-				case QMessageBox::Yes: {
-						qint64 cp = 0;
-						int index = comboBoxXmlSource->currentIndex();
-						if ( index == 0 )
-							cp = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/Checkpoint", -1).toLongLong();
-						else {
-							index -= 1;
-							QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
-							QStringList softwareCheckpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", QStringList()).toStringList();
-							if ( index >= 0 && index < checkpointList.count() ) {
-								cp = checkpointList[index].toLongLong();
-								if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
-									rebuilderThread()->setListCheckpoint(softwareCheckpointList[index], index);
-							} else {
-								cp = -1;
-								if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
-									rebuilderThread()->setListCheckpoint(QString(), index);
+			if ( !ignoreCheckpoint() ) {
+				switch ( QMessageBox::question(this, tr("Confirm checkpoint restart"), tr("Restart from stored checkpoint?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::No) ) {
+					case QMessageBox::Yes: {
+							qint64 cp = 0;
+							int index = comboBoxXmlSource->currentIndex();
+							if ( index == 0 )
+								cp = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/Checkpoint", -1).toLongLong();
+							else {
+								index -= 1;
+								QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
+								QStringList softwareCheckpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", QStringList()).toStringList();
+								if ( index >= 0 && index < checkpointList.count() ) {
+									cp = checkpointList[index].toLongLong();
+									if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+										rebuilderThread()->setListCheckpoint(softwareCheckpointList[index], index);
+								} else {
+									cp = -1;
+									if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+										rebuilderThread()->setListCheckpoint(QString(), index);
+								}
 							}
+							setDefaultEmulator(comboBoxXmlSource->currentIndex() == 0);
+							setIgnoreCheckpoint(false);
+							rebuilderThread()->checkpointRestart(cp);
 						}
+						break;
+					case QMessageBox::No:
+						rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
+						if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+							rebuilderThread()->setListCheckpoint(QString(), comboBoxXmlSource->currentIndex());
 						setDefaultEmulator(comboBoxXmlSource->currentIndex() == 0);
 						setIgnoreCheckpoint(false);
-						rebuilderThread()->checkpointRestart(cp);
-					}
-					break;
-				case QMessageBox::No:
-					rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
-					if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
-						rebuilderThread()->setListCheckpoint(QString(), comboBoxXmlSource->currentIndex());
-					setDefaultEmulator(comboBoxXmlSource->currentIndex() == 0);
-					setIgnoreCheckpoint(false);
-					break;
-				case QMessageBox::Cancel:
-					pushButtonStartStop->setEnabled(true);
-					pushButtonPauseResume->setEnabled(true);
-					return;
+						break;
+					case QMessageBox::Cancel:
+					default:
+						pushButtonStartStop->setEnabled(true);
+						pushButtonPauseResume->setEnabled(true);
+						return;
+				}
+			} else {
+				rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
+				if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
+					rebuilderThread()->setListCheckpoint(QString(), comboBoxXmlSource->currentIndex());
+				setDefaultEmulator(comboBoxXmlSource->currentIndex() == 0);
+				setIgnoreCheckpoint(false);
 			}
 		} else {
 			rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
