@@ -1077,7 +1077,6 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 							id->prepend(m_currentListName + ":");
 						if ( !evaluateFilters(*id) )
 							id->clear();
-						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex = m_xmlFile.pos();
 						emit progressChanged(m_xmlIndex);
 						return true;
