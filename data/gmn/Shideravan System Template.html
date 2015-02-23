@@ -1,13 +1,14 @@
-<!--
+﻿<!--
 SHIDERAVAN SYSTEM TEMPLATE
-LAST MODIFICATION: 10/January/2015
+LAST MODIFICATION: 23/February/2015
 
 Whatsnew:
--Implemented Rank System
+23/Feb/2015 -Changed the way which the system is shown if it's a device or bios.
+            -Now the source code link was updated to go to GitHub page.
+10/Jan/2015 -Implemented Rank System.
 
-This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.44 by Shideravan. Enjoy!
+This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.49 by Shideravan. Enjoy!
 
-This file is an example HTML template created by José Marcio Rezende Franco for use in QMC2 frontend (0.43 and far)
 
 --------------------------------------------
 status of the languages supported: 
@@ -314,7 +315,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Unsupported'] = 'Não suportado';
       trMap['XML query error!'] = 'Erro de query XML!';
       trMap['BIOS set'] = 'set de BIOS';
-      trMap['device set'] = 'set de dispositivo';
+      trMap['Device set'] = 'Set de dispositivo';
                                     
       /*PT:options*/
       trMap['SHOW OPTIONS'] = 'MOSTRAR OPÇÕES';
@@ -407,7 +408,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['XML query error!'] = 'Fehler bei XML Abfrage';
 
       trMap['BIOS set'] = 'BIOS';
-      trMap['device set'] = 'Gerät';      
+      trMap['Device set'] = 'Gerät';      
       
       /*DE:options*/
       trMap['SHOW OPTIONS'] = 'Optionen anzeigen';
@@ -500,7 +501,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['XML query error!'] = '???'; 
            
       trMap['BIOS set'] = '???';
-      trMap['device set'] = '???';               
+      trMap['Device set'] = '???';               
       
       /*FR :options*/
       trMap['SHOW OPTIONS'] = '???';
@@ -593,7 +594,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['XML query error!'] = 'Error en consulta XML'; 
            
       trMap['BIOS set'] = 'conjunto de BIOS';
-      trMap['device set'] = 'conjunto de dispositivos';  
+      trMap['Device set'] = 'conjunto de dispositivos';  
 
       /*ES :options*/
       trMap['SHOW OPTIONS'] = 'MOSTRAR OPCIONES';
@@ -686,7 +687,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['XML query error!'] = '???';  
           
       trMap['BIOS set'] = '???';
-      trMap['device set'] = '???';  
+      trMap['Device set'] = '???';  
       
       /*SV :options*/
       trMap['SHOW OPTIONS'] = '???';
@@ -779,7 +780,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['XML query error!'] = '???';  
       
       trMap['BIOS set'] = '???';
-      trMap['device set'] = '???';      
+      trMap['Device set'] = '???';      
       
       /*IT:options*/
       trMap['SHOW OPTIONS'] = '???';
@@ -872,7 +873,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['XML query error!'] = '???';  
       
       trMap['BIOS set'] = '???';
-      trMap['device set'] = '???';          
+      trMap['Device set'] = '???';          
       
       /*PL:options*/
       trMap['SHOW OPTIONS'] = '???';
@@ -965,7 +966,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['XML query error!'] = '???';    
       
       trMap['BIOS set'] = '???';
-      trMap['device set'] = '???';    
+      trMap['Device set'] = '???';    
       
       /*RO:options*/
       trMap['SHOW OPTIONS'] = '???';
@@ -1057,7 +1058,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['XML query error!'] = '???'; 
       
       trMap['BIOS set'] = '???';
-      trMap['device set'] = '???';       
+      trMap['Device set'] = '???';       
       
       /*EL:options*/
       trMap['SHOW OPTIONS'] = '???';
@@ -1436,6 +1437,13 @@ function mostraImagem(url, ttl, dom, type)
 }
 
 <!--Global variables declaration-->
+var device;
+
+if (qmc2NEO.isDevice("$ID$"))
+   device="1";
+else
+   device="0";
+      
 var bc, ei, mi;
 
 if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ShowBlackColumn'] == 'true')
@@ -1562,7 +1570,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
 
 else
 {
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BottomInfo'] == 'true')
+   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BottomInfo'] == 'true') 
       document.write("<div id=\"contentno\">");
       
    else   
@@ -1571,49 +1579,68 @@ else
 
 if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SoftlistXML'] == 'true')
 {
-   document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>"); 
-   
-   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/@sampleof/string()", false, "system") ) 
+   document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>");
+   if (device=="1")
    {
-      var result = qmc2NEO.getXmlResult();
-      var len = result.length;
-           
-      if (len > 0) 
+      document.write("<td width=\"100%\" align=\"center\" bgcolor=\"#007095\"><font color=\"white\">");
+      <!--Only will show 'device set' if don't have the searchXML line don't was choosen in options to avoid duplicate 'device set' information in both lines.-->
+      if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SearchXML'] == 'false')
       {
-         document.write("<td bgcolor=\"#700000\" width=\"50%\" align=\"left\"><font color=\"white\"><b>"+tr('Samples')+": ");
-         
-         for (var i = 0; i < len; i++)
-            document.write((i > 0 ? ", " : " ") + result[i]);   
-      } 
-      
+         tr('Device set');
+      }   
       else
-         document.write("<td bgcolor=\"#005000\" width=\"50%\" align=\"left\"><font color=\"white\"><b>"+tr('Samples')+": "+tr('Not necessary')); 
-   } 
+      {
+         document.write("___________");
+      }
+   }
    
    else
-      document.write(tr('XML query error!'));
-   
-   document.write("</font></td>");
-           
-   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/softwarelist/@name/string()", false, "system") ) 
    {
-      var result = qmc2NEO.getXmlResult();
-      var len = result.length;
+      document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>"); 
+   
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/@sampleof/string()", false, "system") ) 
+      {
+         var result = qmc2NEO.getXmlResult();
+         var len = result.length;
+           
+         if (len > 0) 
+         {
+            document.write("<td bgcolor=\"#700000\" width=\"50%\" align=\"left\"><font color=\"white\"><b>"+tr('Samples')+": ");
+         
+            for (var i = 0; i < len; i++)
+               document.write((i > 0 ? ", " : " ") + result[i]);   
+         } 
+      
+         else
+            document.write("<td bgcolor=\"#005000\" width=\"50%\" align=\"left\"><font color=\"white\"><b>"+tr('Samples')+": "+tr('Not necessary')); 
+      } 
+   
+      else
+         document.write(tr('XML query error!'));
+   
+      document.write("</font></td>");
+   
+
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/softwarelist/@name/string()", false, "system") ) 
+      {
+         var result = qmc2NEO.getXmlResult();
+         var len = result.length;
             
-      if (len > 0) 
-      {
-         document.write("<td bgcolor=\"#005000\" width=\"50%\" align=\"right\"><font color=\"white\"><b>"+tr('Software List')+": ");
+         if (len > 0) 
+         {
+            document.write("<td bgcolor=\"#005000\" width=\"50%\" align=\"right\"><font color=\"white\"><b>"+tr('Software List')+": ");
          
-         for (var i = 0; i < len; i++)
+            for (var i = 0; i < len; i++)
             document.write((i > 0 ? ", " : " ") + result[i]);   
-      } 
+         } 
       
-      else
-         document.write("<td bgcolor=\"#356035\" width=\"50%\" align=\"right\"><font color=\"white\"><b>"+tr('Software List')+": "+tr('Unsupported'));      
-   } 
+         else
+            document.write("<td bgcolor=\"#356035\" width=\"50%\" align=\"right\"><font color=\"white\"><b>"+tr('Software List')+": "+tr('Unsupported'));      
+      } 
    
-   else
-      document.write(tr('XML query error!'));
+      else
+         document.write(tr('XML query error!'));
+   }   
    
    document.write("</b></font></td></tr></tbody></table>");            
 }  
@@ -1622,50 +1649,52 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SoftlistXML'
 if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SearchXML'] == 'true')
 {  
    document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>");
-   
-   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@emulation/string()", false, "system") ) 
+   if (device=="1")
    {
-      tdCor("Emulation", qmc2NEO.getXmlResult());         
-   } 
+      document.write("<td width=\"100%\" align=\"center\" bgcolor=\"#007095\"><font color=\"white\">"+tr('Device set'));
+   }
    
    else
-      document.write(tr('XML query error!'));     
-   
-   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@graphic/string()", false, "system") ) 
    {
-      tdCor("Graphics", qmc2NEO.getXmlResult());            
-   } 
    
-   else
-      document.write(tr('XML query error!'));
-   
-   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@color/string()", false, "system") ) 
-   {
-      tdCor("Color", qmc2NEO.getXmlResult());            
-   } 
-   
-   else
-      document.write(tr('XML query error!'));
-   
-   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@sound/string()", false, "system") ) 
-   {
-      tdCor("Sound", qmc2NEO.getXmlResult());            
-   } 
-   
-   else
-      document.write(tr('XML query error!'));
-   
-   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@savestate/string()", false, "system") ) 
-   {
-      if (qmc2NEO.getXmlResult()=="supported")
-            document.write("</font></td><td width=\"20%\" align=\"center\" bgcolor=\"#005000\"><font color=\"white\">"+tr('S.State')+": "+tr('Supported'));
-      
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@emulation/string()", false, "system") ) 
+      {
+         tdCor("Emulation", qmc2NEO.getXmlResult());         
+      } 
       else
-         document.write("</font></td><td width=\"20%\" align=\"center\" bgcolor=\"#7f7f7f\"><font color=\"white\">"+tr('S.State')+": "+tr('Unsupported'));         
-   } 
+         document.write(tr('XML query error!'));     
    
-   else
-      document.write(tr('XML query error!'));                
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@graphic/string()", false, "system") ) 
+      {
+         tdCor("Graphics", qmc2NEO.getXmlResult());            
+      } 
+      else
+         document.write(tr('XML query error!'));
+   
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@color/string()", false, "system") ) 
+      {
+         tdCor("Color", qmc2NEO.getXmlResult());            
+      }  
+      else
+         document.write(tr('XML query error!'));
+   
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@sound/string()", false, "system") ) 
+      {
+         tdCor("Sound", qmc2NEO.getXmlResult());            
+      } 
+      else
+         document.write(tr('XML query error!'));
+   
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@savestate/string()", false, "system") ) 
+      {
+         if (qmc2NEO.getXmlResult()=="supported")
+            document.write("</font></td><td width=\"20%\" align=\"center\" bgcolor=\"#005000\"><font color=\"white\">"+tr('S.State')+": "+tr('Supported'));
+         else
+            document.write("</font></td><td width=\"20%\" align=\"center\" bgcolor=\"#7f7f7f\"><font color=\"white\">"+tr('S.State')+": "+tr('Unsupported'));         
+      } 
+      else
+         document.write(tr('XML query error!'));   
+   }                
    document.write("</font></td></tr></table>");        
 }
 </script>
@@ -1825,25 +1854,27 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleInfo']
                     
    else
    {        
-      document.write("<font size=\"5\"><u>");
+      document.write("<font size=\"6\">");
    }
                                          
-   document.write("<br><b>$DESCRIPTION$</b></u></font>");                            
+   document.write("<br><b>$DESCRIPTION$</b></font>");                            
 
 
 if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/InfoXML'] == 'true')
 {
-
-   document.write("<font size=\"3\"><br><i>$MANUFACTURER$, $YEAR$</i><br>");
-   document.write("<br><b>"+tr('Driver'));   
-          
-   
+   if (device=="0")
+   {
+      document.write("<font size=\"3\"><br><i>$MANUFACTURER$, $YEAR$</i>");
+   }   
+        
    /*Driver and source*/ 
+   
+   document.write("<br><br><b>"+tr('Driver'));
    switch ("$EMULATOR_TYPE$")
    {
       case "UME":
       {  
-         document.write("(MESS): </b><a href=http://mamedev.org/source/src/mess/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a><br><b>"+tr('Driver')+"(MAME): </b><a href=http://mamedev.org/source/src/mame/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>");              
+         document.write("(MESS): </b><a href=http://github.com/mamedev/mame/tree/master/src/mame/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in GitHub\">$SOURCE_FILE$</a><br><b>"+tr('Driver')+"(MAME): </b><a href=http://github.com/mamedev/mame/tree/master/src/mess/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in GitHub\">$SOURCE_FILE$</a>");              
          break;
       }   
       
@@ -1931,9 +1962,13 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/InfoXML'] ==
 
 else
 {
-   document.write("<br><br><b>"+tr('Manufacturer')+": </b>$MANUFACTURER$<br><b>"+tr('Release Date')+": </b>$YEAR$"); 
+   document.write("<br><br>");
+   if (device=="0")
+   {
+      document.write("<b>"+tr('Manufacturer')+": </b>$MANUFACTURER$<br><b>"+tr('Release Date')+": </b>$YEAR$"); 
+   }   
 }
-   if ("$PLAYERS$"!=0)
+   if ("$PLAYERS$">0)
       document.write("<br><b>"+tr('Players')+": </b></b>$PLAYERS$");
                            
    if ("$VERSION$" != "?") 
@@ -1952,7 +1987,8 @@ else
    }                                
 }  
 
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ProcXML'] == 'true')
+
+if ((localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ProcXML'] == 'true') && (device=="0"))
 {
    /*CPU*/   
    if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/chip/@name/string()", false, "system")) 
@@ -2179,6 +2215,11 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMod
 <!--Divisor de aguas-->
 <table cellspacing="0" valign="middle" height="34" width="100%"> 
    <script language="JavaScript">
+   if (device=="1")
+   {
+      document.write("<tbody bgcolor=\"#007095\">");
+   }
+   else
       barraCor();
    </script>
 <tr>
@@ -2187,7 +2228,6 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMod
    <b valign="middle">$ID$</b> 
    <script language="JavaScript">
        if (qmc2NEO.isBios("$ID$")) document.write("<font size=\"4\">("+tr('BIOS set')+")</font>");
-       if (qmc2NEO.isDevice("$ID$")) document.write("<font size=\"4\">("+tr('device set')+")</font>");
        rank=qmc2NEO.rank("$ID$");
        document.write("   <font size=\"6\"><b>");
   
@@ -2200,7 +2240,17 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMod
    </script>
    </font></td>
    <td width="33%" align="center" valign="middle"><font size="5" color="white">
-   <b>Driver: $DRIVER_STATUS$</b></font></td>
+   <script language="JavaScript">
+   if (device=="1")
+   {
+      document.write("<b>"+tr('Device set')+"</b>");
+   }
+   else
+   {
+      document.write("<b>Driver: $DRIVER_STATUS$</b>");
+   }
+   </script>
+   </font></td>
    
    <td width="33%" align="right" valign="middle"><font size="5" style="color:white"><i>$CATEGORY$</i></font>
    <td width="32" align="right" valign="middle">
