@@ -283,6 +283,7 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 							}
 						}
 						setDefaultEmulator(comboBoxXmlSource->currentIndex() == 0);
+						setIgnoreCheckpoint(false);
 						rebuilderThread()->checkpointRestart(cp);
 					}
 					break;
@@ -302,6 +303,8 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 			rebuilderThread()->setCheckpoint(-1, comboBoxXmlSource->currentIndex());
 			if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
 				rebuilderThread()->setListCheckpoint(QString(), comboBoxXmlSource->currentIndex());
+			setDefaultEmulator(comboBoxXmlSource->currentIndex() == 0);
+			setIgnoreCheckpoint(false);
 		}
 		if ( missingDumpsViewer() ) {
 			missingDumpsViewer()->setDefaultEmulator(defaultEmulator());
@@ -532,8 +535,8 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	lineEditFilterExpression->setEnabled(false);
 	lineEditFilterExpressionSoftwareLists->setEnabled(false);
 	toolButtonExactMatch->setEnabled(false);
-	toolButtonClearFilterExpression->setEnabled(false);
 	toolButtonExactMatchSoftwareLists->setEnabled(false);
+	toolButtonClearFilterExpression->setEnabled(false);
 	toolButtonClearFilterExpressionSoftwareLists->setEnabled(false);
 	checkBoxFilterStates->setEnabled(false);
 	toolButtonStateC->setEnabled(false);
@@ -600,8 +603,8 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	lineEditFilterExpression->setEnabled(checkBoxFilterExpression->isChecked());
 	lineEditFilterExpressionSoftwareLists->setEnabled(checkBoxFilterExpressionSoftwareLists->isChecked());
 	toolButtonExactMatch->setEnabled(checkBoxFilterExpression->isChecked());
-	toolButtonClearFilterExpression->setEnabled(checkBoxFilterExpression->isChecked());
 	toolButtonExactMatchSoftwareLists->setEnabled(checkBoxFilterExpressionSoftwareLists->isChecked());
+	toolButtonClearFilterExpression->setEnabled(checkBoxFilterExpression->isChecked());
 	toolButtonClearFilterExpressionSoftwareLists->setEnabled(checkBoxFilterExpressionSoftwareLists->isChecked());
 	checkBoxFilterStates->setEnabled(true);
 	toolButtonStateC->setEnabled(checkBoxFilterStates->isChecked());
@@ -945,13 +948,13 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 			m_xmlIndex = 0;
 			switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 				case QMC2_ROMALYZER_MODE_SOFTWARE:
-					m_xmlIndexCount = swlDb()->swlRowCount();
 					swlDb()->initIdAtIndexCache();
+					m_xmlIndexCount = swlDb()->idAtIndexCacheSize();
 					break;
 				case QMC2_ROMALYZER_MODE_SYSTEM:
 				default:
-					m_xmlIndexCount = xmlDb()->xmlRowCount();
 					xmlDb()->initIdAtIndexCache();
+					m_xmlIndexCount = xmlDb()->idAtIndexCacheSize();
 					break;
 			}
 			emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
@@ -1108,13 +1111,13 @@ void CollectionRebuilderThread::checkpointRestart(qint64 cp)
 		emit log(tr("restarting from checkpoint '%1'").arg(m_xmlIndex));
 		switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 			case QMC2_ROMALYZER_MODE_SOFTWARE:
-				m_xmlIndexCount = swlDb()->swlRowCount();
 				swlDb()->initIdAtIndexCache();
+				m_xmlIndexCount = swlDb()->idAtIndexCacheSize();
 				break;
 			case QMC2_ROMALYZER_MODE_SYSTEM:
 			default:
-				m_xmlIndexCount = xmlDb()->xmlRowCount();
 				xmlDb()->initIdAtIndexCache();
+				m_xmlIndexCount = xmlDb()->idAtIndexCacheSize();
 				break;
 		}
 		emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
@@ -1575,28 +1578,29 @@ bool CollectionRebuilderThread::evaluateFilters(QString &setKey)
 		return false;
 
 	switch ( rebuilderDialog()->romAlyzer()->mode() ) {
-		case QMC2_ROMALYZER_MODE_SOFTWARE:
-			if ( doFilterSoftware ) {
+		case QMC2_ROMALYZER_MODE_SOFTWARE: {
 				QStringList setKeyTokens = setKey.split(":", QString::SkipEmptyParts);
 				if ( setKeyTokens.count() < 2 )
 					return false;
 				list = setKeyTokens[0];
-				set = setKeyTokens[1];
-				if ( isIncludeFilterSoftware ) {
-					if ( exactMatchSoftware ) {
-						if ( !filterRxSoftware.exactMatch(list) )
+				if ( doFilterSoftware ) {
+					if ( isIncludeFilterSoftware ) {
+						if ( exactMatchSoftware ) {
+							if ( !filterRxSoftware.exactMatch(list) )
+								return false;
+						} else if ( filterRxSoftware.indexIn(list) < 0 )
 							return false;
-					} else if ( filterRxSoftware.indexIn(list) < 0 )
-						return false;
-				} else {
-					if ( exactMatchSoftware ) {
-						if ( filterRxSoftware.exactMatch(list) )
+					} else {
+						if ( exactMatchSoftware ) {
+							if ( filterRxSoftware.exactMatch(list) )
+								return false;
+						} else if ( filterRxSoftware.indexIn(list) >= 0 )
 							return false;
-					} else if ( filterRxSoftware.indexIn(list) >= 0 )
-						return false;
+					}
 				}
+				set = setKeyTokens[1];
+				break;
 			}
-			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
 			set = setKey;

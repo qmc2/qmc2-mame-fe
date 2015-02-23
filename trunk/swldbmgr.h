@@ -38,6 +38,7 @@ class SoftwareListXmlDatabaseManager : public QObject
 		QString idAtIndex(int index);
 		void initIdAtIndexCache() { idAtIndex(-1); }
 		void clearIdAtIndexCache() { m_idAtIndexCache.clear(); }
+		int idAtIndexCacheSize() { return m_idAtIndexCache.count(); }
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
 		quint64 databaseSize();
