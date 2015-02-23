@@ -1019,7 +1019,6 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 					}
 					if ( parseXml(swlDb()->xml(setKey), id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List, diskSizeList) ) {
 						*id = setKey;
-						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex++;
 						emit progressChanged(m_xmlIndex);
 						return true;
@@ -1037,7 +1036,6 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 						return true;
 					}
 					if ( parseXml(xmlDb()->xml(setKey), id, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List, diskSizeList) ) {
-						setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
 						m_xmlIndex++;
 						emit progressChanged(m_xmlIndex);
 						return true;
