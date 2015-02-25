@@ -1,3 +1,21 @@
 #!/bin/sh
 
-java -cp org.eclipse.core.commands_3.6.0.I20110111-0800.jar:org.eclipse.equinox.common_3.6.0.v20110523.jar:org.eclipse.jface_3.7.0.I20110522-1430.jar:org.eclipse.osgi_3.7.0.v20110613.jar:org.eclipse.swt.gtk.linux.x86_64_3.7.0.v3735b.jar:bin sourceforge.org.qmc2.options.editor.QMC2EditorApplication
+DEPS=( org.eclipse.core.commands_3.6.100.v20140528-1422.jar \
+org.eclipse.equinox.common_3.6.200.v20130402-1505.jar \
+org.eclipse.jface_3.10.1.v20140813-1009.jar \
+org.eclipse.osgi_3.10.1.v20140909-1633.jar \
+org.eclipse.swt.gtk.linux.x86_64_3.103.1.v20140903-1947.jar )
+       
+DEPS_DOWNLOAD_URL="http://download.eclipse.org/releases/luna/201501121000/plugins"
+
+CLASSPATH=""
+
+for i in ${DEPS[@]}
+do
+    wget -c $DEPS_DOWNLOAD_URL/$i
+    CLASSPATH=$CLASSPATH:$i
+done
+
+CLASSPATH=${CLASSPATH:1}
+
+java -cp $CLASSPATH:bin sourceforge.org.qmc2.options.editor.QMC2EditorApplication
