@@ -40,6 +40,17 @@ public class Section extends DescriptableItem {
 		return options;
 	}
 
+	public static String parseSectionName(Node sectionNode) {
+		String name = null;
+		for (int i = 0; i < sectionNode.getAttributes().getLength(); i++) {
+			Node item = sectionNode.getAttributes().item(i);
+			if (ATTRIBUTE_NAME.equals(item.getNodeName())) {
+				name = item.getNodeValue();
+			}
+		}
+		return name;
+	}
+	
 	public static Section parseSection(Node sectionNode) {
 
 		String name = null;
@@ -54,9 +65,7 @@ public class Section extends DescriptableItem {
 				unmappedAttributes.put(item.getNodeName(), item.getNodeValue());
 			}
 		}
-		
-		
-		
+
 		Section section = new Section(name);
 
 		section.parseDescriptions(sectionNode);

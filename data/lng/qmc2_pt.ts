@@ -2009,7 +2009,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../collectionrebuilder.ui" line="728"/>
         <location filename="../../collectionrebuilder.ui" line="748"/>
         <source>Exact match</source>
-        <translation type="unfinished"></translation>
+        <translation>Correspondência exata</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="349"/>
@@ -2020,7 +2020,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.ui" line="313"/>
         <source>Show / hide list of missing dumps</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostar / esconder lista dos dumps faltantes</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="389"/>
@@ -2149,13 +2149,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../collectionrebuilder.cpp" line="1201"/>
         <location filename="../../collectionrebuilder.cpp" line="1303"/>
         <source>file error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro de arquivo</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1215"/>
         <location filename="../../collectionrebuilder.cpp" line="1313"/>
         <source>unknown file type &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>tipo de arquivo &apos;%1&apos; desconhecido</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1218"/>
@@ -2179,7 +2179,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../collectionrebuilder.cpp" line="1346"/>
         <location filename="../../collectionrebuilder.cpp" line="1732"/>
         <source>ROM</source>
-        <translation type="unfinished">ROM</translation>
+        <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1282"/>
@@ -2394,7 +2394,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../collectionrebuilder.cpp" line="1732"/>
         <location filename="../../collectionrebuilder.cpp" line="1740"/>
         <source>check-sum not available in database</source>
-        <translation type="unfinished"></translation>
+        <translation>soma de verificação não disponível na base de dados</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1737"/>
@@ -2409,7 +2409,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1740"/>
         <source>DISK</source>
-        <translation type="unfinished"></translation>
+        <translation>DISCO</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1748"/>
@@ -9838,7 +9838,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="739"/>
         <location filename="../../qmc2main.cpp" line="740"/>
         <source>Rebuild current machine with ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir máquina atual com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1023"/>
@@ -9846,7 +9846,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="1149"/>
         <location filename="../../qmc2main.cpp" line="1232"/>
         <source>Rebuild current game&apos;s ROM set with ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir ROM do jogo atual com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1025"/>
@@ -9854,7 +9854,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="1151"/>
         <location filename="../../qmc2main.cpp" line="1234"/>
         <source>Rebuild current machine&apos;s ROM set with ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir ROM da máquina atual com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1027"/>
@@ -9862,7 +9862,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="1153"/>
         <location filename="../../qmc2main.cpp" line="1236"/>
         <source>&amp;Rebuild ROM...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Reconstruir ROM...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1572"/>
@@ -9898,7 +9898,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="2863"/>
         <location filename="../../qmc2main.cpp" line="11441"/>
         <source>please wait for ROMAlyzer to finish the current rebuild and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espere o ROMAlyzer terminar a reconstrução atual e tente novamente</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3029"/>
@@ -12255,34 +12255,34 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
     <message>
         <location filename="../../qmc2main.ui" line="4734"/>
         <source>Rebuild ROM...</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir ROM...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4737"/>
         <location filename="../../qmc2main.ui" line="4740"/>
         <source>Rebuild current game with ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir jogo atual com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4743"/>
         <source>F2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4755"/>
         <source>Rebuild ROM (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir ROM (etiquetadas)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4758"/>
         <location filename="../../qmc2main.ui" line="4761"/>
         <source>Rebuild all tagged sets with ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir todos os conjuntos etiquetados com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4764"/>
         <source>Ctrl+Shift+F2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4170"/>
@@ -13036,97 +13036,97 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="14"/>
         <source>Missing dumps</source>
-        <translation type="unfinished"></translation>
+        <translation>Dumps faltantes</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="64"/>
         <source>Close this window</source>
-        <translation type="unfinished">Fechar esta janela</translation>
+        <translation>Fechar esta janela</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="77"/>
         <source>List of missing dumps</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista dos dumps faltantes</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="96"/>
         <source>Set / ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Conjunto / ID</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="101"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="106"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="111"/>
         <source>Size</source>
-        <translation type="unfinished">Tamanho</translation>
+        <translation>Tamanho</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="116"/>
         <source>CRC</source>
-        <translation type="unfinished">CRC</translation>
+        <translation>CRC</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="121"/>
         <source>SHA1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="126"/>
         <source>Reason</source>
-        <translation type="unfinished"></translation>
+        <translation>Razão</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="35"/>
         <source>Export missing dumps to a data file</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar dumps faltantes para um arquivo de dados</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="38"/>
         <source>Export to data file</source>
-        <translation type="unfinished">Exportar para arquivo de dados</translation>
+        <translation>Exportar para arquivo de dados</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="48"/>
         <source>Export only dumps that are selected in the above list (or all)</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar somente dumps que estão selecionados na lista acima (ou todos)</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="51"/>
         <source>Selected dumps only</source>
-        <translation type="unfinished"></translation>
+        <translation>Apenas dumps selecionados</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.ui" line="67"/>
         <source>Close</source>
-        <translation type="unfinished">Fechar</translation>
+        <translation>Fechar</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.cpp" line="39"/>
         <source>Choose data file to export to</source>
-        <translation type="unfinished">Escolhar arquivo de dados para exportar</translation>
+        <translation>Escolhar arquivo de dados para exportar</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.cpp" line="39"/>
         <source>Data files (*.dat)</source>
-        <translation type="unfinished">Arquivos de dados (*.dat)</translation>
+        <translation>Arquivos de dados (*.dat)</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.cpp" line="39"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos os arquivos (*)</translation>
+        <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
         <location filename="../../missingdumpsviewer.cpp" line="58"/>
         <source>Created by QMC2 v%1</source>
-        <translation type="unfinished">Criado por QMC2 v%1</translation>
+        <translation>Criado por QMC2 v%1</translation>
     </message>
 </context>
 <context>
@@ -13512,22 +13512,22 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="485"/>
         <source>Rebuild current game</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir jogo atual</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="486"/>
         <source>Rebuild tagged games</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir jogos etiquetados</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="488"/>
         <source>Rebuild current machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir máquina atual</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="489"/>
         <source>Rebuild tagged machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir máquinas etiquetadas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="496"/>
@@ -18145,7 +18145,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="2375"/>
         <source>Software collection rebuilder</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstrutor de Coleção de software</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2376"/>
@@ -20178,7 +20178,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romalyzer.ui" line="1826"/>
         <location filename="../../romalyzer.cpp" line="2394"/>
         <source>ROM collection rebuilder</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstrutor de coleção de sfotware</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1704"/>
@@ -20260,12 +20260,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="577"/>
         <source>Abort reproduction when an error occurs (recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>Abortar reprodução quando ocorrer um erro (recomendado)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="580"/>
         <source>Abort on error</source>
-        <translation type="unfinished"></translation>
+        <translation>Abortar com erros</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1523"/>
@@ -21593,12 +21593,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.ui" line="147"/>
         <source>Analyze software menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Menu de análise de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="167"/>
         <source>Rebuild software menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Menu de reconstrução de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="210"/>
@@ -21829,7 +21829,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="190"/>
         <source>Analyze the currently selected software&apos;s list with the ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Analizar lista de software selecionado atualmente com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="195"/>
@@ -21895,7 +21895,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="540"/>
         <location filename="../../softwarelist.cpp" line="599"/>
         <source>please wait for ROMAlyzer to finish the current rebuild and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espere o ROMAlyzer terminar a reconstrução atual e tente novamente</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="760"/>
@@ -22105,45 +22105,45 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="183"/>
         <source>Analy&amp;ze</source>
-        <translation type="unfinished"></translation>
+        <translation>Anali&amp;zar</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="186"/>
         <location filename="../../softwarelist.cpp" line="209"/>
         <source>Current &amp;software...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Software atual...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="191"/>
         <location filename="../../softwarelist.cpp" line="214"/>
         <source>Current software-lis&amp;t...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lis&amp;ta de software atual...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="196"/>
         <location filename="../../softwarelist.cpp" line="219"/>
         <source>All supported software-&amp;lists...</source>
-        <translation type="unfinished"></translation>
+        <translation>Todas as &amp;listas de software suportadas...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="206"/>
         <source>&amp;Rebuild</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Reconstruir</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="208"/>
         <source>Rebuild the currently selected software with the ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir o software selecionado atualmente com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="213"/>
         <source>Rebuild the currently selected software&apos;s list with the ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir a lista de software selecionada atualmente com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="218"/>
         <source>Rebuild all relevant software-lists for the current system with the ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir todas as listas de software relevantes para o sistema atual com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1165"/>
@@ -22664,7 +22664,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../swldbmgr.cpp" line="388"/>
         <source>WARNING: failed to fetch row IDs from software-list XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao ler IDs das linhas da base de dados de cache XML das listas de software: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="464"/>
@@ -23514,7 +23514,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../xmldbmgr.cpp" line="271"/>
         <source>WARNING: failed to fetch row IDs from XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">AVISO: falha ao ler IDs das linhas da base de dados do cache XML: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="364"/>
