@@ -1313,6 +1313,7 @@ ifeq '$(QUIET)' '0'
 ifneq '$(ARCH)' 'Windows'
 	@$(RM) data/opt/template.xml error.log exclude.list
 	@$(RM) -Rf tools/qmc2_options_editor_java/bin
+	@$(RM) -f tools/qmc2_options_editor_java/*.jar
 endif
 ifeq '$(ARCH)' 'Darwin'
 ifneq '$(QT_LIB48PLUS)' 'true'
@@ -1349,6 +1350,7 @@ else
 ifneq '$(ARCH)' 'Windows'
 	@$(RM) data/opt/template.xml error.log exclude.list > /dev/null
 	@$(RM) -Rf tools/qmc2_options_editor_java/bin > /dev/null
+	@$(RM) -f tools/qmc2_options_editor_java/*.jar > /dev/null
 endif
 ifeq '$(ARCH)' 'Darwin'
 ifneq '$(QT_LIB48PLUS)' 'true'
