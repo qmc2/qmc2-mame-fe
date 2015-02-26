@@ -897,7 +897,10 @@ void Options::apply()
 		qmc2SoftwareList->treeWidgetKnownSoftware->setIconSize(iconSizeMiddle);
 		qmc2SoftwareList->treeWidgetFavoriteSoftware->setIconSize(iconSizeMiddle);
 		qmc2SoftwareList->treeWidgetSearchResults->setIconSize(iconSizeMiddle);
-		qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/flat.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+		if ( qmc2SoftwareList->viewTree() )
+			qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/view_tree.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+		else
+			qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/view_detail.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 		qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_FAVORITES_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/favorites.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 		qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_SEARCH_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/hint.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 		((IconLineEdit *)qmc2SoftwareList->comboBoxSearch->lineEdit())->setIconSize(iconSizeMiddle);

@@ -56,13 +56,14 @@ class SoftwareListXmlHandler : public QXmlDefaultHandler
 		QString softwareYear;
 		QString softwarePart;
 		QString softwareInterface;
+		QString softwareParentName;
 		QString currentText;
 		QStringList compatFilters;
 		int elementCounter;
 		bool newSoftwareStates;
 		quint64 numTotal, numCorrect, numMostlyCorrect, numIncorrect, numNotFound, numUnknown;
 
-		SoftwareListXmlHandler(QTreeWidget *);
+		SoftwareListXmlHandler(QTreeWidget *, bool viewTree = false);
 		~SoftwareListXmlHandler();
 		
 		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
@@ -70,6 +71,14 @@ class SoftwareListXmlHandler : public QXmlDefaultHandler
 		bool characters(const QString &);
 
 		void loadSoftwareStates(QString);
+
+		QList<QTreeWidgetItem *> &itemList() { return m_itemList; }
+		bool viewTree() { return m_viewTree; }
+		void setViewTree(bool viewTree) { m_viewTree = viewTree; }
+
+	private:
+		bool m_viewTree;
+		QList<QTreeWidgetItem *> m_itemList;
 };
 
 class SoftwareEntryXmlHandler : public QXmlDefaultHandler
@@ -224,6 +233,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QAction *actionRebuildSoftwareLists;
 		QAction *analyzeMenuAction;
 		QAction *rebuildMenuAction;
+		QAction *viewFlatAction;
+		QAction *viewTreeAction;
 		QFile softwareStateFile;
 		QList<QTreeWidgetItem *> softwareListItems, favoritesListItems, searchListItems;
 		QMenu *softwareListMenu;
@@ -253,6 +264,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		quint64 numSoftwareTotal, numSoftwareCorrect, numSoftwareIncorrect, numSoftwareMostlyCorrect, numSoftwareNotFound, numSoftwareUnknown;
 		SoftwareListExporter *exporter;
 		SoftwareStateFilter *stateFilter;
+		QToolButton *toolBoxButtonKnownSoftware;
 
 		static bool isInitialLoad;
 		static bool swlSupported;
@@ -268,6 +280,9 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QStringList &arguments(QStringList *softwareLists = NULL, QStringList *softwareNames = NULL);
 		QString softwareStatus(QString, QString, bool translated = false);
 
+		bool viewTree() { return m_viewTree; }
+		void setViewTree(bool viewTree) { m_viewTree = viewTree; }
+
 	signals:
 		void loadFinished(bool);
 
@@ -278,6 +293,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void checkSoftwareStates();
 		QString status(SoftwareListXmlHandler *handler = NULL);
 		void updateStats(SoftwareListXmlHandler *handler = NULL);
+		void loadTree();
 
 		// auto-connected callback functions
 		void on_toolButtonReload_clicked(bool);
@@ -315,6 +331,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_comboBoxDeviceConfiguration_currentIndexChanged(int);
 		void on_toolBoxSoftwareList_currentChanged(int);
 		void on_toolButtonSoftwareStates_toggled(bool);
+		void on_stackedWidgetKnownSoftware_currentChanged(int);
 
 		// process management
 		void loadStarted();
@@ -355,6 +372,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void updateRebuildSoftwareMenuVisibility();
 		void analyzeSoftwareMenu_aboutToShow();
 		void rebuildSoftwareMenu_aboutToShow();
+		void actionViewFlat_triggered();
+		void actionViewTree_triggered();
 
 		// callbacks for software-list header context menu requests
 		void treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &);
@@ -371,6 +390,9 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void mouseMoveEvent(QMouseEvent *);
 		void leaveEvent(QEvent *);
 		void resizeEvent(QResizeEvent *);
+
+	private:
+		bool m_viewTree;
 };
 
 #endif
