@@ -233,6 +233,10 @@
 #define QMC2_SWLIST_FAVORITES_PAGE		1
 #define QMC2_SWLIST_SEARCH_PAGE			2
 
+// sub-pages of the "known software" page
+#define QMC2_SWLIST_KNOWN_SW_PAGE_FLAT		0
+#define QMC2_SWLIST_KNOWN_SW_PAGE_TREE		1
+
 // page indexes for the 'special' stacked-widget
 #define QMC2_SPECIAL_DEFAULT_PAGE		0
 #define QMC2_SPECIAL_SOFTWARE_PAGE		1
@@ -799,6 +803,7 @@
 // when loading software-lists, be 'responsive' on every n'th start of an XML element
 #define QMC2_SWLIST_LOAD_RESPONSE		1000
 #define QMC2_SWLIST_LOAD_RESPONSE_LONG		2500
+#define QMC2_SWLIST_LOAD_RESPONSE_ULTRALONG	5000
 #define QMC2_SWLIST_LOAD_ANIM_DELAY		5000
 
 // responsiveness in sofware-state checks

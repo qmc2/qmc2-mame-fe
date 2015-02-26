@@ -369,7 +369,7 @@
       </property>
       <attribute name="icon">
        <iconset resource="qmc2.qrc">
-        <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
+        <normaloff>:/data/img/view_detail.png</normaloff>:/data/img/view_detail.png</iconset>
       </attribute>
       <attribute name="label">
        <string>Known software</string>
@@ -382,71 +382,160 @@
         <number>0</number>
        </property>
        <item row="0" column="0">
-        <widget class="QTreeWidget" name="treeWidgetKnownSoftware">
-         <property name="mouseTracking">
-          <bool>true</bool>
+        <widget class="QStackedWidget" name="stackedWidgetKnownSoftware">
+         <property name="currentIndex">
+          <number>0</number>
          </property>
-         <property name="contextMenuPolicy">
-          <enum>Qt::CustomContextMenu</enum>
-         </property>
-         <property name="toolTip">
-          <string>List of known software</string>
-         </property>
-         <property name="statusTip">
-          <string>List of known software</string>
-         </property>
-         <property name="uniformRowHeights">
-          <bool>true</bool>
-         </property>
-         <property name="sortingEnabled">
-          <bool>true</bool>
-         </property>
-         <property name="allColumnsShowFocus">
-          <bool>true</bool>
-         </property>
-         <property name="expandsOnDoubleClick">
-          <bool>false</bool>
-         </property>
-         <column>
-          <property name="text">
-           <string>Title</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Name</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Publisher</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Year</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Part</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Interface</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>List</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Supported</string>
-          </property>
-         </column>
+         <widget class="QWidget" name="pageViewFlat">
+          <layout class="QGridLayout" name="gridLayoutPageViewFlat">
+           <property name="margin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QTreeWidget" name="treeWidgetKnownSoftware">
+             <property name="mouseTracking">
+              <bool>true</bool>
+             </property>
+             <property name="contextMenuPolicy">
+              <enum>Qt::CustomContextMenu</enum>
+             </property>
+             <property name="toolTip">
+              <string>List of known software</string>
+             </property>
+             <property name="statusTip">
+              <string>List of known software</string>
+             </property>
+             <property name="uniformRowHeights">
+              <bool>true</bool>
+             </property>
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+             <property name="allColumnsShowFocus">
+              <bool>true</bool>
+             </property>
+             <property name="expandsOnDoubleClick">
+              <bool>false</bool>
+             </property>
+             <column>
+              <property name="text">
+               <string>Title</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Name</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Publisher</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Year</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Part</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Interface</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>List</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Supported</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="pageViewTree">
+          <layout class="QGridLayout" name="gridLayoutPageViewTree">
+           <property name="margin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QTreeWidget" name="treeWidgetKnownSoftwareTree">
+             <property name="mouseTracking">
+              <bool>true</bool>
+             </property>
+             <property name="contextMenuPolicy">
+              <enum>Qt::CustomContextMenu</enum>
+             </property>
+             <property name="toolTip">
+              <string>List of known software</string>
+             </property>
+             <property name="statusTip">
+              <string>List of known software</string>
+             </property>
+             <property name="uniformRowHeights">
+              <bool>true</bool>
+             </property>
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+             <property name="allColumnsShowFocus">
+              <bool>true</bool>
+             </property>
+             <property name="expandsOnDoubleClick">
+              <bool>false</bool>
+             </property>
+             <column>
+              <property name="text">
+               <string>Title</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Name</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Publisher</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Year</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Part</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Interface</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>List</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Supported</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
       </layout>
@@ -456,7 +545,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>634</width>
+        <width>638</width>
         <height>192</height>
        </rect>
       </property>
@@ -554,7 +643,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>634</width>
+        <width>638</width>
         <height>192</height>
        </rect>
       </property>
@@ -702,7 +791,7 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout2">
      <item>
       <widget class="QLabel" name="labelSoftwareListStats">
        <property name="sizePolicy">
@@ -760,6 +849,7 @@
   <tabstop>toolButtonPlay</tabstop>
   <tabstop>toolButtonPlayEmbedded</tabstop>
   <tabstop>treeWidgetKnownSoftware</tabstop>
+  <tabstop>treeWidgetKnownSoftwareTree</tabstop>
   <tabstop>treeWidgetFavoriteSoftware</tabstop>
   <tabstop>comboBoxSearch</tabstop>
   <tabstop>treeWidgetSearchResults</tabstop>
