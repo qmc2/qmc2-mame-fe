@@ -312,6 +312,13 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_treeWidgetKnownSoftware_itemDoubleClicked(QTreeWidgetItem *item, int column);
 		void on_treeWidgetKnownSoftware_itemExpanded(QTreeWidgetItem *);
 		void on_treeWidgetKnownSoftware_itemClicked(QTreeWidgetItem *, int) { on_treeWidgetKnownSoftware_itemSelectionChanged(); }
+		void on_treeWidgetKnownSoftwareTree_itemSelectionChanged();
+		void on_treeWidgetKnownSoftwareTree_customContextMenuRequested(const QPoint &);
+		void on_treeWidgetKnownSoftwareTree_itemEntered(QTreeWidgetItem *, int);
+		void on_treeWidgetKnownSoftwareTree_itemActivated(QTreeWidgetItem *, int);
+		void on_treeWidgetKnownSoftwareTree_itemDoubleClicked(QTreeWidgetItem *item, int column);
+		void on_treeWidgetKnownSoftwareTree_itemExpanded(QTreeWidgetItem *);
+		void on_treeWidgetKnownSoftwareTree_itemClicked(QTreeWidgetItem *, int) { on_treeWidgetKnownSoftwareTree_itemSelectionChanged(); }
 		void on_treeWidgetFavoriteSoftware_itemSelectionChanged();
 		void on_treeWidgetFavoriteSoftware_customContextMenuRequested(const QPoint &);
 		void on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *, int);
@@ -378,6 +385,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 
 		// callbacks for software-list header context menu requests
 		void treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &);
+		void treeWidgetKnownSoftwareTreeHeader_customContextMenuRequested(const QPoint &);
 		void actionKnownSoftwareHeader_triggered();
 		void treeWidgetFavoriteSoftwareHeader_customContextMenuRequested(const QPoint &);
 		void actionFavoriteSoftwareHeader_triggered();

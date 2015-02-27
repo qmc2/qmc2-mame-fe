@@ -63,10 +63,6 @@ QString SoftwareList::swStatesLastLine;
 SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	: QWidget(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::SoftwareList(QString sysName = %1, QWidget *parent = %2)").arg(sysName).arg((qulonglong)parent));
-#endif
-
 	if ( !swlDb ) {
 		swlDb = new SoftwareListXmlDatabaseManager(qmc2MainWindow);
 		swlDb->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
@@ -342,6 +338,9 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action = menuKnownSoftwareHeader->addAction(QIcon(":data/img/reset.png"), tr("Reset"), this, SLOT(actionKnownSoftwareHeader_triggered())); action->setData(QMC2_SWLIST_RESET);
 	header->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &)));
+	header = treeWidgetKnownSoftwareTree->header();
+	header->setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetKnownSoftwareTreeHeader_customContextMenuRequested(const QPoint &)));
 
 	menuFavoriteSoftwareHeader = new QMenu(this);
 	header = treeWidgetFavoriteSoftware->header();
@@ -453,10 +452,6 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 SoftwareList::~SoftwareList()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::~SoftwareList()");
-#endif
-
 	if ( exporter )
 		exporter->close();
 
@@ -476,10 +471,6 @@ SoftwareList::~SoftwareList()
 
 void SoftwareList::adjustSnapnamePattern()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::adjustSnapnamePattern()");
-#endif
-
 	bool ok;
 	QStringList items;
 	items << "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$" << "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$/%i";
@@ -499,10 +490,6 @@ void SoftwareList::adjustSnapnamePattern()
 
 void SoftwareList::clearSoftwareSelection()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::clearSoftwareSelection()");
-#endif
-
 	switch ( toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
 			treeWidgetKnownSoftware->clearSelection();
@@ -519,10 +506,6 @@ void SoftwareList::clearSoftwareSelection()
 
 void SoftwareList::negateSearchTriggered(bool negate)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::negateSearchTriggered(bool negate = %1)").arg(negate));
-#endif
-
 	IconLineEdit *ile = ((IconLineEdit *)comboBoxSearch->lineEdit());
 	if ( negate )
 		ile->button()->setIcon(QIcon(QString::fromUtf8(":/data/img/find_negate.png")));
@@ -559,7 +542,10 @@ void SoftwareList::rebuildSoftware()
 		QTreeWidget *treeWidget = 0;
 		switch ( toolBoxSoftwareList->currentIndex() ) {
 			case QMC2_SWLIST_KNOWN_SW_PAGE:
-				treeWidget = treeWidgetKnownSoftware;
+				if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
+					treeWidget = treeWidgetKnownSoftware;
+				else
+					treeWidget = treeWidgetKnownSoftwareTree;
 				break;
 			case QMC2_SWLIST_FAVORITES_PAGE:
 				treeWidget = treeWidgetFavoriteSoftware;
@@ -572,8 +558,13 @@ void SoftwareList::rebuildSoftware()
 			QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
 			if ( !selectedItems.isEmpty() ) {
 				QTreeWidgetItem *item = selectedItems[0];
-				while ( item->parent() )
-					item = item->parent();
+				if ( viewTree() ) {
+					while ( item->whatsThis(QMC2_SWLIST_COLUMN_NAME).isEmpty() && item->parent() )
+						item = item->parent();
+				} else {
+					while ( item->parent() )
+						item = item->parent();
+				}
 				cr->comboBoxXmlSource->setCurrentIndex(0);
 				cr->setIgnoreCheckpoint(true);
 				cr->checkBoxFilterExpression->setChecked(true);
@@ -623,7 +614,10 @@ void SoftwareList::rebuildSoftwareList()
 		QTreeWidget *treeWidget = 0;
 		switch ( toolBoxSoftwareList->currentIndex() ) {
 			case QMC2_SWLIST_KNOWN_SW_PAGE:
-				treeWidget = treeWidgetKnownSoftware;
+				if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
+					treeWidget = treeWidgetKnownSoftware;
+				else
+					treeWidget = treeWidgetKnownSoftwareTree;
 				break;
 			case QMC2_SWLIST_FAVORITES_PAGE:
 				treeWidget = treeWidgetFavoriteSoftware;
@@ -636,8 +630,13 @@ void SoftwareList::rebuildSoftwareList()
 			QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
 			if ( !selectedItems.isEmpty() ) {
 				QTreeWidgetItem *item = selectedItems[0];
-				while ( item->parent() )
-					item = item->parent();
+				if ( viewTree() ) {
+					while ( item->whatsThis(QMC2_SWLIST_COLUMN_NAME).isEmpty() && item->parent() )
+						item = item->parent();
+				} else {
+					while ( item->parent() )
+						item = item->parent();
+				}
 				cr->comboBoxXmlSource->setCurrentIndex(0);
 				cr->setIgnoreCheckpoint(true);
 				cr->checkBoxFilterExpression->setChecked(false);
@@ -718,7 +717,10 @@ void SoftwareList::analyzeSoftwareMenu_aboutToShow()
 			break;
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
 		default:
-			treeWidget = treeWidgetKnownSoftware;
+			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
+				treeWidget = treeWidgetKnownSoftware;
+			else
+				treeWidget = treeWidgetKnownSoftwareTree;
 			break;
 	}
 	bool enable = qmc2SoftwareROMAlyzer ? !qmc2SoftwareROMAlyzer->active() : true;
@@ -742,7 +744,10 @@ void SoftwareList::rebuildSoftwareMenu_aboutToShow()
 			break;
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
 		default:
-			treeWidget = treeWidgetKnownSoftware;
+			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
+				treeWidget = treeWidgetKnownSoftware;
+			else
+				treeWidget = treeWidgetKnownSoftwareTree;
 			break;
 	}
 	bool enable = qmc2SoftwareROMAlyzer ? !qmc2SoftwareROMAlyzer->rebuilderActive() : true;
@@ -778,10 +783,6 @@ void SoftwareList::actionViewTree_triggered()
 
 QString &SoftwareList::getSoftwareListXmlData(QString listName)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::getSoftwareListXmlData(QString listName = %1)").arg(listName));
-#endif
-
 	static QString softwareListBuffer;
 	softwareListBuffer = swlDb->allXml(listName);
 	return softwareListBuffer;
@@ -789,10 +790,6 @@ QString &SoftwareList::getSoftwareListXmlData(QString listName)
 
 QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs = ..."));
-#endif
-
 	static QString xmlBuffer;
 
 	xmlBuffer.clear();
@@ -915,10 +912,6 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 
 void SoftwareList::on_comboBoxDeviceConfiguration_currentIndexChanged(int index)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_comboBoxDeviceConfiguration_currentIndexChanged(int index = %1)").arg(index));
-#endif
-
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	QTimer::singleShot(0, this, SLOT(updateMountDevices()));
 #endif
@@ -926,10 +919,6 @@ void SoftwareList::on_comboBoxDeviceConfiguration_currentIndexChanged(int index)
 
 QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface, QStringList *mountList)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::lookupMountDevice(QString device = %1, QString deviceInterface = %2, QStringList *mountList = %3)").arg(device).arg(deviceInterface).arg((qulonglong)mountList));
-#endif
-
 	static QString softwareListDeviceName;
 
 	QMap<QString, QStringList> deviceInstanceMap;
@@ -1059,10 +1048,6 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 
 void SoftwareList::getXmlData()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::getXmlData()");
-#endif
-
 	QStringList softwareList = systemSoftwareListHash[systemName];
 	if ( softwareList.isEmpty() || softwareList.contains("NO_SOFTWARE_LIST") ) {
 		softwareList.clear();
@@ -1148,10 +1133,6 @@ void SoftwareList::getXmlData()
 
 void SoftwareList::updateMountDevices()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::updateMountDevices()");
-#endif
-
 	if ( updatingMountDevices )
 		return;
 
@@ -1161,6 +1142,12 @@ void SoftwareList::updateMountDevices()
 	QTreeWidget *treeWidget = NULL;
 	switch ( toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
+			/* FIXME
+			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
+				treeWidget = treeWidgetKnownSoftware;
+			else
+				treeWidget = treeWidgetKnownSoftwareTree;
+			*/
 			treeWidget = treeWidgetKnownSoftware;
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
@@ -1206,10 +1193,6 @@ void SoftwareList::updateMountDevices()
 
 bool SoftwareList::load()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::load()");
-#endif
-
 	setEnabled(qmc2UseDefaultEmulator);
 
 	autoMounted = true;
@@ -1231,6 +1214,8 @@ bool SoftwareList::load()
 
 	treeWidgetKnownSoftware->setSortingEnabled(false);
 	treeWidgetKnownSoftware->header()->setSortIndicatorShown(false);
+	treeWidgetKnownSoftwareTree->setSortingEnabled(false);
+	treeWidgetKnownSoftwareTree->header()->setSortIndicatorShown(false);
 	treeWidgetFavoriteSoftware->setSortingEnabled(false);
 	treeWidgetFavoriteSoftware->header()->setSortIndicatorShown(false);
 	treeWidgetSearchResults->setSortingEnabled(false);
@@ -1421,6 +1406,8 @@ bool SoftwareList::load()
 
 	treeWidgetKnownSoftware->setSortingEnabled(true);
 	treeWidgetKnownSoftware->header()->setSortIndicatorShown(true);
+	treeWidgetKnownSoftwareTree->setSortingEnabled(true);
+	treeWidgetKnownSoftwareTree->header()->setSortIndicatorShown(true);
 	treeWidgetFavoriteSoftware->setSortingEnabled(true);
 	treeWidgetFavoriteSoftware->header()->setSortIndicatorShown(true);
 	treeWidgetSearchResults->setSortingEnabled(true);
@@ -1517,10 +1504,6 @@ void SoftwareList::loadTree()
 
 bool SoftwareList::save()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::save()");
-#endif
-
 	if ( !fullyLoaded )
 		return false;
 
@@ -1560,28 +1543,16 @@ bool SoftwareList::save()
 
 void SoftwareList::closeEvent(QCloseEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	QWidget::closeEvent(e);
 }
 
 void SoftwareList::hideEvent(QHideEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	QWidget::hideEvent(e);
 }
 
 void SoftwareList::leaveEvent(QEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::leaveEvent(QEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	snapForced = false;
 
 	if ( qmc2SoftwareSnap )
@@ -1600,10 +1571,6 @@ void SoftwareList::leaveEvent(QEvent *e)
 
 void SoftwareList::checkSoftwareSnap()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::checkSoftwareSnap()");
-#endif
-
 	if ( qmc2SoftwareSnap && qmc2SoftwareSnap->isVisible() ) {
 		if ( !qmc2SoftwareSnap->geometry().contains(QCursor::pos()) && !qmc2SoftwareSnap->ctxMenuRequested )
 			cancelSoftwareSnap();
@@ -1616,28 +1583,16 @@ void SoftwareList::checkSoftwareSnap()
 
 void SoftwareList::updateDetail()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::updateDetail()");
-#endif
-
 	qmc2MainWindow->tabWidgetSoftwareDetail_updateCurrent();
 }
 
 void SoftwareList::resizeEvent(QResizeEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	QWidget::resizeEvent(e);
 }
 
 void SoftwareList::mouseMoveEvent(QMouseEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::mouseMoveEvent(QMouseEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	cancelSoftwareSnap();
 
 	QWidget::mouseMoveEvent(e);
@@ -1645,19 +1600,11 @@ void SoftwareList::mouseMoveEvent(QMouseEvent *e)
 
 void SoftwareList::showEvent(QShowEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	QWidget::showEvent(e);
 }
 
 void SoftwareList::loadStarted()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadStarted()"));
-#endif
-
 	// we don't know how many items there are...
 	loadFinishedFlag = false;
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -1670,10 +1617,6 @@ void SoftwareList::loadStarted()
 
 void SoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2)").arg(exitCode).arg(exitStatus));
-#endif
-
 	if ( exitStatus == QProcess::NormalExit && exitCode == 0 ) {
 		validData = true;
 	} else {
@@ -1817,10 +1760,6 @@ void SoftwareList::loadReadyReadStandardError()
 
 void SoftwareList::loadError(QProcess::ProcessError processError)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadError(QProcess::ProcessError processError = %1)").arg(processError));
-#endif
-
 #if defined(QMC2_EMUTYPE_MAME)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the MAME software lists caused an error -- processError = %1").arg(processError));
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -1837,10 +1776,6 @@ void SoftwareList::loadError(QProcess::ProcessError processError)
 
 void SoftwareList::checkSoftwareStates()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::checkSoftwareStates()"));
-#endif
-
 	QStringList softwareLists = systemSoftwareListHash[systemName];
 	progressBar->setFormat(tr("Checking software-states - %p%"));
 	progressBar->setRange(0, treeWidgetKnownSoftware->topLevelItemCount());
@@ -1941,19 +1876,11 @@ void SoftwareList::checkSoftwareStates()
 
 void SoftwareList::verifyStarted()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyStarted()"));
-#endif
-
 	progressBar->setVisible(true);
 }
 
 void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2)").arg(exitCode).arg(exitStatus));
-#endif
-
 	while ( verifyReadingStdout ) {
 		QTest::qWait(10);
 		qApp->processEvents();
@@ -2058,10 +1985,6 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 void SoftwareList::verifyReadyReadStandardOutput()
 {
 	verifyReadingStdout = true;
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyReadyReadStandardOutput()"));
-#endif
 
 	QString s = swStatesLastLine + verifyProc->readAllStandardOutput();
 	QStringList lines = s.split("\n");
@@ -2222,10 +2145,6 @@ void SoftwareList::verifyReadyReadStandardError()
 
 void SoftwareList::verifyError(QProcess::ProcessError processError)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyError(QProcess::ProcessError processError = %1)").arg(processError));
-#endif
-
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to verify software-states caused an error -- processError = %1").arg(processError));
 
 	progressBar->setVisible(false);
@@ -2233,10 +2152,6 @@ void SoftwareList::verifyError(QProcess::ProcessError processError)
 
 void SoftwareList::on_toolButtonToggleSnapnameAdjustment_clicked(bool checked)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonToggleSnapnameAdjustment_clicked(bool checked = %1)").arg(checked));
-#endif
-
 	if ( checked && mountedSoftware.count() > 1 )
 		comboBoxSnapnameDevice->show();
 	else
@@ -2245,10 +2160,6 @@ void SoftwareList::on_toolButtonToggleSnapnameAdjustment_clicked(bool checked)
 
 void SoftwareList::on_toolButtonSoftwareStates_toggled(bool checked)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonSoftwareStates_toggled(bool checked = %1)").arg(checked));
-#endif
-
 	QString itemText = toolBoxSoftwareList->itemText(QMC2_SWLIST_KNOWN_SW_PAGE);
 	itemText.remove(QRegExp(" - " + tr("filtered") + "$"));
 
@@ -2324,15 +2235,13 @@ void SoftwareList::on_stackedWidgetKnownSoftware_currentChanged(int index)
 
 void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked = %1)").arg(checked));
-#endif
-
-	QTreeWidget *treeWidget = NULL;
-
+	QTreeWidget *treeWidget = 0;
 	switch ( toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
-			treeWidget = treeWidgetKnownSoftware;
+			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
+				treeWidget = treeWidgetKnownSoftware;
+			else
+				treeWidget = treeWidgetKnownSoftwareTree;
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
 			treeWidget = treeWidgetFavoriteSoftware;
@@ -2365,10 +2274,6 @@ void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
 
 void SoftwareList::on_toolButtonCompatFilterToggle_clicked(bool checked)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonCompatFilterToggle_clicked(bool checked = %1)").arg(checked));
-#endif
-
 	QStringList compatFilters = systemSoftwareFilterHash[qmc2SoftwareList->systemName];
 	for (int count = 0; count < treeWidgetKnownSoftware->topLevelItemCount(); count++) {
 		QTreeWidgetItem *item = treeWidgetKnownSoftware->topLevelItem(count);
@@ -2446,12 +2351,8 @@ void SoftwareList::on_toolButtonCompatFilterToggle_clicked(bool checked)
 	}
 }
 
-void SoftwareList::on_toolButtonReload_clicked(bool checked)
+void SoftwareList::on_toolButtonReload_clicked(bool)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonReload_clicked(bool checked = %1)").arg(checked));
-#endif
-
 	save();
 
 	numSoftwareTotal = numSoftwareCorrect = numSoftwareIncorrect = numSoftwareMostlyCorrect = numSoftwareNotFound = numSoftwareUnknown = 0;
@@ -2482,29 +2383,24 @@ void SoftwareList::on_toolButtonReload_clicked(bool checked)
 	QTimer::singleShot(0, this, SLOT(load()));
 }
 
-void SoftwareList::on_toolButtonExport_clicked(bool checked)
+void SoftwareList::on_toolButtonExport_clicked(bool)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonExport_clicked(bool checked = %1)").arg(checked));
-#endif
-
 	if ( !exporter )
 		exporter = new SoftwareListExporter(this);
 
 	exporter->show();
 }
 
-void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
+void SoftwareList::on_toolButtonAddToFavorites_clicked(bool)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked = %1)").arg(checked));
-#endif
-
 	QList<QTreeWidgetItem *> selectedItems;
 
 	switch ( toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
-			selectedItems = treeWidgetKnownSoftware->selectedItems();
+			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
+				selectedItems = treeWidgetKnownSoftware->selectedItems();
+			else
+				selectedItems = treeWidgetKnownSoftwareTree->selectedItems();
 			break;
 		case QMC2_SWLIST_SEARCH_PAGE:
 			selectedItems = treeWidgetSearchResults->selectedItems();
@@ -2564,12 +2460,8 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 	actionSaveFavoritesToFile->setEnabled(treeWidgetFavoriteSoftware->topLevelItemCount() > 0);
 }
 
-void SoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked)
+void SoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked = %1)").arg(checked));
-#endif
-
 	if ( toolBoxSoftwareList->currentIndex() != QMC2_SWLIST_FAVORITES_PAGE )
 		return;
 
@@ -2590,46 +2482,38 @@ void SoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked)
 	actionSaveFavoritesToFile->setEnabled(treeWidgetFavoriteSoftware->topLevelItemCount() > 0);
 }
 
-void SoftwareList::on_toolButtonPlay_clicked(bool checked)
+void SoftwareList::on_toolButtonPlay_clicked(bool)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonPlay_clicked(bool checked = %1)").arg(checked));
-#endif
-
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_triggered()));
 }
 
-void SoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked)
+void SoftwareList::on_toolButtonPlayEmbedded_clicked(bool)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked = %1)").arg(checked));
-#endif
-
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 }
 
-void SoftwareList::treeWidgetKnownSoftware_headerSectionClicked(int index)
+void SoftwareList::treeWidgetKnownSoftware_headerSectionClicked(int)
 {
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftware->selectedItems();
 	if ( !selectedItems.isEmpty() )
 		treeWidgetKnownSoftware->scrollToItem(selectedItems.first(), qmc2CursorPositioningMode);
 }
 
-void SoftwareList::treeWidgetKnownSoftwareTree_headerSectionClicked(int index)
+void SoftwareList::treeWidgetKnownSoftwareTree_headerSectionClicked(int)
 {
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftwareTree->selectedItems();
 	if ( !selectedItems.isEmpty() )
 		treeWidgetKnownSoftwareTree->scrollToItem(selectedItems.first(), qmc2CursorPositioningMode);
 }
 
-void SoftwareList::treeWidgetFavoriteSoftware_headerSectionClicked(int index)
+void SoftwareList::treeWidgetFavoriteSoftware_headerSectionClicked(int)
 {
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetFavoriteSoftware->selectedItems();
 	if ( !selectedItems.isEmpty() )
 		treeWidgetFavoriteSoftware->scrollToItem(selectedItems.first(), qmc2CursorPositioningMode);
 }
 
-void SoftwareList::treeWidgetSearchResults_headerSectionClicked(int index)
+void SoftwareList::treeWidgetSearchResults_headerSectionClicked(int)
 {
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetSearchResults->selectedItems();
 	if ( !selectedItems.isEmpty() )
@@ -2638,10 +2522,6 @@ void SoftwareList::treeWidgetSearchResults_headerSectionClicked(int index)
 
 void SoftwareList::on_treeWidgetKnownSoftware_itemExpanded(QTreeWidgetItem *item)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetKnownSoftware_itemExpanded(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
-#endif
-
 	if ( item->childCount() < 1 )
 		return;
 
@@ -2669,12 +2549,13 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemExpanded(QTreeWidgetItem *item
 	}
 }
 
+void SoftwareList::on_treeWidgetKnownSoftwareTree_itemExpanded(QTreeWidgetItem *item)
+{
+	// FIXME
+}
+
 void SoftwareList::on_treeWidgetFavoriteSoftware_itemExpanded(QTreeWidgetItem *item)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_itemExpanded(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
-#endif
-
 	if ( item->childCount() < 1 )
 		return;
 
@@ -2704,10 +2585,6 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemExpanded(QTreeWidgetItem *i
 
 void SoftwareList::on_treeWidgetSearchResults_itemExpanded(QTreeWidgetItem *item)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetSearchResults_itemExpanded(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
-#endif
-
 	if ( item->childCount() < 1 )
 		return;
 
@@ -2737,10 +2614,6 @@ void SoftwareList::on_treeWidgetSearchResults_itemExpanded(QTreeWidgetItem *item
 
 void SoftwareList::on_toolBoxSoftwareList_currentChanged(int index)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolBoxSoftwareList_currentChanged(int index = %1)").arg(index));
-#endif
-
 	comboBoxDeviceConfiguration->setCurrentIndex(0);
 	switch ( index ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
@@ -2761,12 +2634,8 @@ void SoftwareList::on_toolBoxSoftwareList_currentChanged(int index)
 
 void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()");
-#endif
-
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftware->selectedItems();
-	bool enable = (selectedItems.count() > 0);
+	bool enable = !selectedItems.isEmpty();
 	toolButtonPlay->setEnabled(enable);
 	toolButtonPlayEmbedded->setEnabled(enable);
 	toolButtonAddToFavorites->setEnabled(enable);
@@ -2786,7 +2655,44 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 			qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizes);
 		}
 		currentItem = item;
-		while ( currentItem->parent() ) currentItem = currentItem->parent();
+		while ( currentItem->parent() )
+			currentItem = currentItem->parent();
+		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE )
+			detailUpdateTimer.start(qmc2UpdateDelay);
+	} else {
+		qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
+		qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizes);
+		cancelSoftwareSnap();
+		currentItem = NULL;
+	}
+}
+
+void SoftwareList::on_treeWidgetKnownSoftwareTree_itemSelectionChanged()
+{
+	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftwareTree->selectedItems();
+	bool enable = !selectedItems.isEmpty();
+	toolButtonPlay->setEnabled(enable);
+	toolButtonPlayEmbedded->setEnabled(enable);
+	toolButtonAddToFavorites->setEnabled(enable);
+	if ( enable && qmc2SoftwareSnap ) {
+		SoftwareItem *item = (SoftwareItem *)selectedItems[0];
+		qmc2SoftwareSnap->snapForcedResetTimer.stop();
+		snapForced = true;
+		qmc2SoftwareSnap->myItem = item;
+		snapTimer.start(QMC2_SWSNAP_DELAY);
+		if ( toolButtonToggleSoftwareInfo->isChecked() ) {
+			qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
+			if ( qmc2MainWindow->floatToggleButtonSoftwareDetail->isChecked() )
+				qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizesSoftwareDetail);
+		} else {
+			qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+			qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
+			qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizes);
+		}
+		currentItem = item;
+		while ( currentItem->whatsThis(QMC2_SWLIST_COLUMN_NAME).isEmpty() && currentItem->parent() )
+			currentItem = currentItem->parent();
 		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE )
 			detailUpdateTimer.start(qmc2UpdateDelay);
 	} else {
@@ -2800,10 +2706,6 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 
 void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()");
-#endif
-
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetFavoriteSoftware->selectedItems();
 	bool enable = (selectedItems.count() > 0);
 	toolButtonPlay->setEnabled(enable);
@@ -2826,7 +2728,8 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 			qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizes);
 		}
 		currentItem = item;
-		while ( currentItem->parent() ) currentItem = currentItem->parent();
+		while ( currentItem->parent() )
+			currentItem = currentItem->parent();
 		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE )
 			detailUpdateTimer.start(qmc2UpdateDelay);
 	} else {
@@ -2853,10 +2756,6 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 
 void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()");
-#endif
-
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetSearchResults->selectedItems();
 	bool enable = (selectedItems.count() > 0);
 	toolButtonPlay->setEnabled(enable);
@@ -2879,7 +2778,8 @@ void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 			qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizes);
 		}
 		currentItem = item;
-		while ( currentItem->parent() ) currentItem = currentItem->parent();
+		while ( currentItem->parent() )
+			currentItem = currentItem->parent();
 		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE )
 			detailUpdateTimer.start(qmc2UpdateDelay);
 	} else {
@@ -2893,10 +2793,6 @@ void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 
 void SoftwareList::on_treeWidgetKnownSoftware_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetKnownSoftware_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	cancelSoftwareSnap();
 
 	QTreeWidgetItem *item = treeWidgetKnownSoftware->itemAt(p);
@@ -2911,12 +2807,24 @@ void SoftwareList::on_treeWidgetKnownSoftware_customContextMenuRequested(const Q
 	softwareListMenu->show();
 }
 
+void SoftwareList::on_treeWidgetKnownSoftwareTree_customContextMenuRequested(const QPoint &p)
+{
+	cancelSoftwareSnap();
+
+	QTreeWidgetItem *item = treeWidgetKnownSoftwareTree->itemAt(p);
+	if ( !item )
+		return;
+
+	treeWidgetKnownSoftwareTree->setItemSelected(item, true);
+	actionAddToFavorites->setVisible(true);
+	actionRemoveFromFavorites->setVisible(false);
+	updateRebuildSoftwareMenuVisibility();
+	softwareListMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetKnownSoftwareTree->viewport()->mapToGlobal(p), softwareListMenu));
+	softwareListMenu->show();
+}
+
 void SoftwareList::on_treeWidgetFavoriteSoftware_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	cancelSoftwareSnap();
 
 	QTreeWidgetItem *item = treeWidgetFavoriteSoftware->itemAt(p);
@@ -2933,10 +2841,6 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_customContextMenuRequested(cons
 
 void SoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	cancelSoftwareSnap();
 
 	QTreeWidgetItem *item = treeWidgetSearchResults->itemAt(p);
@@ -2953,10 +2857,6 @@ void SoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const Q
 
 void SoftwareList::cancelSoftwareSnap()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::cancelSoftwareSnap()");
-#endif
-
 	snapForced = false;
 	snapTimer.stop();
 	if ( qmc2SoftwareSnap ) {
@@ -2965,12 +2865,8 @@ void SoftwareList::cancelSoftwareSnap()
 	}
 }
 
-void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item, int column)
+void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item, int)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
-#endif
-
 	if ( item == enteredItem )
 		return;
 
@@ -2989,12 +2885,8 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item,
 	}
 }
 
-void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *item, int column)
+void SoftwareList::on_treeWidgetKnownSoftwareTree_itemEntered(QTreeWidgetItem *item, int)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
-#endif
-
 	if ( item == enteredItem )
 		return;
 
@@ -3013,12 +2905,8 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *it
 	}
 }
 
-void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item, int column)
+void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *item, int)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
-#endif
-
 	if ( item == enteredItem )
 		return;
 
@@ -3037,12 +2925,28 @@ void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item,
 	}
 }
 
-void SoftwareList::on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *item, int column)
+void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item, int)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
-#endif
+	if ( item == enteredItem )
+		return;
 
+	enteredItem = item;
+
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapOnMouseHover", false).toBool() )
+		return;
+
+	if ( !snapForced ) {
+		if ( qmc2SoftwareSnap ) {
+			if ( qmc2SoftwareSnap->myItem != item ) {
+				qmc2SoftwareSnap->myItem = (SoftwareItem *)item;
+				snapTimer.start(QMC2_SWSNAP_DELAY);
+			}
+		}
+	}
+}
+
+void SoftwareList::on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *item, int)
+{
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
 		switch ( qmc2DefaultLaunchMode ) {
@@ -3060,7 +2964,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *ite
 	qmc2IgnoreItemActivation = false;
 }
 
-void SoftwareList::on_treeWidgetKnownSoftware_itemDoubleClicked(QTreeWidgetItem *item, int /*column*/)
+void SoftwareList::on_treeWidgetKnownSoftware_itemDoubleClicked(QTreeWidgetItem *item, int)
 {
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() ) {
 		qmc2IgnoreItemActivation = true;
@@ -3068,12 +2972,8 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemDoubleClicked(QTreeWidgetItem 
 	}
 }
 
-void SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *item, int column)
+void SoftwareList::on_treeWidgetKnownSoftwareTree_itemActivated(QTreeWidgetItem *, int)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
-#endif
-
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
 		switch ( qmc2DefaultLaunchMode ) {
@@ -3091,7 +2991,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *
 	qmc2IgnoreItemActivation = false;
 }
 
-void SoftwareList::on_treeWidgetFavoriteSoftware_itemDoubleClicked(QTreeWidgetItem *item, int /*column*/)
+void SoftwareList::on_treeWidgetKnownSoftwareTree_itemDoubleClicked(QTreeWidgetItem *item, int)
 {
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() ) {
 		qmc2IgnoreItemActivation = true;
@@ -3099,12 +2999,8 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemDoubleClicked(QTreeWidgetIt
 	}
 }
 
-void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *item, int column)
+void SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *item, int)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
-#endif
-
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
 		switch ( qmc2DefaultLaunchMode ) {
@@ -3122,7 +3018,34 @@ void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *ite
 	qmc2IgnoreItemActivation = false;
 }
 
-void SoftwareList::on_treeWidgetSearchResults_itemDoubleClicked(QTreeWidgetItem *item, int /*column*/)
+void SoftwareList::on_treeWidgetFavoriteSoftware_itemDoubleClicked(QTreeWidgetItem *item, int)
+{
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() ) {
+		qmc2IgnoreItemActivation = true;
+		item->setExpanded(!item->isExpanded());
+	}
+}
+
+void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *item, int)
+{
+	if ( !qmc2IgnoreItemActivation ) {
+		cancelSoftwareSnap();
+		switch ( qmc2DefaultLaunchMode ) {
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+			case QMC2_LAUNCH_MODE_EMBEDDED:
+				QTimer::singleShot(0, this, SLOT(playEmbeddedActivated()));
+				break;
+#endif
+			case QMC2_LAUNCH_MODE_INDEPENDENT:
+			default:
+				QTimer::singleShot(0, this, SLOT(playActivated()));
+				break;
+		}
+	}
+	qmc2IgnoreItemActivation = false;
+}
+
+void SoftwareList::on_treeWidgetSearchResults_itemDoubleClicked(QTreeWidgetItem *item, int)
 {
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() ) {
 		qmc2IgnoreItemActivation = true;
@@ -3132,10 +3055,6 @@ void SoftwareList::on_treeWidgetSearchResults_itemDoubleClicked(QTreeWidgetItem 
 
 void SoftwareList::on_comboBoxSearch_editTextChanged(const QString &)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_comboBoxSearch_editTextChanged(const QString &)");
-#endif
-
 	if ( searchActive )
 		stopSearch = true;
 
@@ -3144,10 +3063,6 @@ void SoftwareList::on_comboBoxSearch_editTextChanged(const QString &)
 
 void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::comboBoxSearch_editTextChanged_delayed()");
-#endif
-
 	static QString lastSearchText;
 	static bool lastNegatedMatch = false;
 
@@ -3306,10 +3221,6 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 
 void SoftwareList::on_comboBoxSearch_activated(const QString &pattern)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_comboBoxSearch_activated(const QString &pattern = %1)").arg(pattern));
-#endif
-
 	autoSelectSearchItem = true;
 	comboBoxSearch_editTextChanged_delayed();
 }
@@ -3331,7 +3242,10 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 			break;
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
 		default:
-			treeWidget = treeWidgetKnownSoftware;
+			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
+				treeWidget = treeWidgetKnownSoftware;
+			else
+				treeWidget = treeWidgetKnownSoftwareTree;
 			break;
 	}
 
@@ -3370,6 +3284,10 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 	if ( selectedItems.count() > 0 ) {
 		QTreeWidgetItemIterator it(treeWidget);
 		QStringList manualMounts;
+		// FIXME
+		if ( qmc2SoftwareList->viewTree() )
+			autoMounted = true;
+		// FIXME
 		if ( !autoMounted ) {
 			// manually mounted
 			while ( *it ) {
@@ -3403,7 +3321,13 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 		} else {
 			// automatically mounted
 			QTreeWidgetItem *item = selectedItems[0];
-			while ( item->parent() ) item = item->parent();
+			if ( qmc2SoftwareList->viewTree() ) {
+				while ( item->whatsThis(QMC2_SWLIST_COLUMN_NAME).isEmpty() && item->parent() )
+					item = item->parent();
+			} else {
+				while ( item->parent() )
+					item = item->parent();
+			}
 			snapnameList = item->text(QMC2_SWLIST_COLUMN_LIST);
 			snapnameSoftware = item->text(QMC2_SWLIST_COLUMN_NAME);
 			QStringList interfaces = item->text(QMC2_SWLIST_COLUMN_INTERFACE).split(",");
@@ -3435,27 +3359,31 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 
 void SoftwareList::treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	menuKnownSoftwareHeader->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetKnownSoftware->header()->viewport()->mapToGlobal(p), menuKnownSoftwareHeader));
+	menuKnownSoftwareHeader->show();
+}
+
+void SoftwareList::treeWidgetKnownSoftwareTreeHeader_customContextMenuRequested(const QPoint &p)
+{
+	menuKnownSoftwareHeader->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetKnownSoftwareTree->header()->viewport()->mapToGlobal(p), menuKnownSoftwareHeader));
 	menuKnownSoftwareHeader->show();
 }
 
 void SoftwareList::actionKnownSoftwareHeader_triggered()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::actionKnownSoftwareHeader_triggered()");
-#endif
-
 	QAction *action = (QAction *)sender();
 	int visibleColumns = 0;
-	for (int i = 0; i < treeWidgetKnownSoftware->columnCount(); i++) if ( !treeWidgetKnownSoftware->isColumnHidden(i) ) visibleColumns++;
+	for (int i = 0; i < treeWidgetKnownSoftware->columnCount(); i++)
+		if ( !treeWidgetKnownSoftware->isColumnHidden(i) )
+			visibleColumns++;
 	if ( action ) {
 		if ( action->data().toInt() == QMC2_SWLIST_RESET ) {
-			for (int i = 0; i < treeWidgetKnownSoftware->columnCount(); i++) treeWidgetKnownSoftware->setColumnHidden(i, false);
+			for (int i = 0; i < treeWidgetKnownSoftware->columnCount(); i++) {
+				treeWidgetKnownSoftware->setColumnHidden(i, false);
+				treeWidgetKnownSoftwareTree->setColumnHidden(i, false);
+			}
 			treeWidgetKnownSoftware->header()->resizeSections(QHeaderView::Stretch);
+			treeWidgetKnownSoftwareTree->header()->resizeSections(QHeaderView::Stretch);
 			foreach (QAction *a, menuKnownSoftwareHeader->actions())
 				if ( a->isCheckable() ) {
 					a->blockSignals(true);
@@ -3465,10 +3393,13 @@ void SoftwareList::actionKnownSoftwareHeader_triggered()
 			return;
 		}
 		bool visibility = true;
-		if ( action->isChecked() )
+		if ( action->isChecked() ) {
 			treeWidgetKnownSoftware->setColumnHidden(action->data().toInt(), false);
+			treeWidgetKnownSoftwareTree->setColumnHidden(action->data().toInt(), false);
+		}
 		else if ( visibleColumns > 1 ) {
 			treeWidgetKnownSoftware->setColumnHidden(action->data().toInt(), true);
+			treeWidgetKnownSoftwareTree->setColumnHidden(action->data().toInt(), true);
 			visibility = false;
 		}
 		action->blockSignals(true);
@@ -3479,20 +3410,12 @@ void SoftwareList::actionKnownSoftwareHeader_triggered()
 
 void SoftwareList::treeWidgetFavoriteSoftwareHeader_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::treeWidgetFavoriteSoftwareHeader_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	menuFavoriteSoftwareHeader->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetFavoriteSoftware->header()->viewport()->mapToGlobal(p), menuFavoriteSoftwareHeader));
 	menuFavoriteSoftwareHeader->show();
 }
 
 void SoftwareList::actionFavoriteSoftwareHeader_triggered()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::actionFavoriteSoftwareHeader_triggered()");
-#endif
-
 	QAction *action = (QAction *)sender();
 	int visibleColumns = 0;
 	for (int i = 0; i < treeWidgetFavoriteSoftware->columnCount(); i++) if ( !treeWidgetFavoriteSoftware->isColumnHidden(i) ) visibleColumns++;
@@ -3523,20 +3446,12 @@ void SoftwareList::actionFavoriteSoftwareHeader_triggered()
 
 void SoftwareList::treeWidgetSearchResultsHeader_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::treeWidgetSearchResultsHeader_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	menuSearchResultsHeader->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetSearchResults->header()->viewport()->mapToGlobal(p), menuSearchResultsHeader));
 	menuSearchResultsHeader->show();
 }
 
 void SoftwareList::actionSearchResultsHeader_triggered()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::actionSearchResultsHeader_triggered()");
-#endif
-
 	QAction *action = (QAction *)sender();
 	int visibleColumns = 0;
 	for (int i = 0; i < treeWidgetSearchResults->columnCount(); i++) if ( !treeWidgetSearchResults->isColumnHidden(i) ) visibleColumns++;
@@ -3568,10 +3483,6 @@ void SoftwareList::actionSearchResultsHeader_triggered()
 void SoftwareList::checkMountDeviceSelection()
 {
 	QComboBox *comboBoxSender = (QComboBox *)sender();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::checkMountDeviceSelection()");
-#endif
 
 	QTreeWidget *treeWidget;
 	switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
@@ -3667,10 +3578,6 @@ void SoftwareList::checkMountDeviceSelection()
 
 void SoftwareList::loadFavoritesFromFile()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::loadFavoritesFromFile()");
-#endif
-
 	QString proposedName = systemName + ".fav";
 
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "SoftwareList/LastFavoritesStoragePath") )
@@ -3748,10 +3655,6 @@ void SoftwareList::loadFavoritesFromFile()
 
 void SoftwareList::saveFavoritesToFile()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::saveFavoritesToFile()");
-#endif
-
 	QString proposedName = systemName + ".fav";
 
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "SoftwareList/LastFavoritesStoragePath") )
@@ -4216,10 +4119,6 @@ bool SoftwareListXmlHandler::characters(const QString &str)
 SoftwareSnap::SoftwareSnap(QWidget *parent)
 	: QWidget(parent, Qt::ToolTip)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::SoftwareSnap(QWidget *parent = %1)").arg((qulonglong)parent));
-#endif
-
 	setAttribute(Qt::WA_TranslucentBackground);
 	setFocusPolicy(Qt::NoFocus);
 	snapForcedResetTimer.setSingleShot(true);
@@ -4300,10 +4199,6 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 
 SoftwareSnap::~SoftwareSnap()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::~SoftwareSnap()");
-#endif
-
 	if ( qmc2UseSoftwareSnapFile ) {
 		foreach (unzFile snapFile, snapFileMap)
 			unzClose(snapFile);
@@ -4394,10 +4289,6 @@ void SoftwareSnap::resetZoom()
 
 void SoftwareSnap::mousePressEvent(QMouseEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::mousePressEvent(QMouseEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	if ( e->button() != Qt::RightButton)
 		hide();
 	else
@@ -4406,10 +4297,6 @@ void SoftwareSnap::mousePressEvent(QMouseEvent *e)
 
 void SoftwareSnap::enterEvent(QEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::enterEvent(QEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	if ( contextMenu->isVisible() )
 		QTimer::singleShot(0, contextMenu, SLOT(hide()));
 	ctxMenuRequested = false;
@@ -4419,10 +4306,6 @@ void SoftwareSnap::enterEvent(QEvent *e)
 
 void SoftwareSnap::leaveEvent(QEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::leaveEvent(QEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	if ( !qmc2SoftwareList->snapForced && !ctxMenuRequested ) {
 		myItem = NULL;
 		hide();
@@ -4444,10 +4327,6 @@ void SoftwareSnap::paintEvent(QPaintEvent *)
 
 void SoftwareSnap::loadSnapshot()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::loadSnapshot()");
-#endif
-
 	ctxMenuRequested = false;
 
 	if ( !qmc2SoftwareList || qmc2SoftwareSnapPosition == QMC2_SWSNAP_POS_DISABLE_SNAPS ) {
@@ -4487,7 +4366,10 @@ void SoftwareSnap::loadSnapshot()
 					position = qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.bottomLeft());
 				}
 			}
-			treeWidget = qmc2SoftwareList->treeWidgetKnownSoftware;
+			if ( qmc2SoftwareList->viewTree() )
+				treeWidget = qmc2SoftwareList->treeWidgetKnownSoftwareTree;
+			else
+				treeWidget = qmc2SoftwareList->treeWidgetKnownSoftware;
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
 			if ( qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->underMouse() ) {
@@ -4523,12 +4405,21 @@ void SoftwareSnap::loadSnapshot()
 			item = myItem;
 			switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
 				case QMC2_SWLIST_KNOWN_SW_PAGE:
-					rect = qmc2SoftwareList->treeWidgetKnownSoftware->visualItemRect(item);
-					rect.setWidth(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->width());
-					rect.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->x());
-					rect.translate(0, 4);
-					position = qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.bottomLeft());
-					treeWidget = qmc2SoftwareList->treeWidgetKnownSoftware;
+					if ( qmc2SoftwareList->viewTree() ) {
+						rect = qmc2SoftwareList->treeWidgetKnownSoftwareTree->visualItemRect(item);
+						rect.setWidth(qmc2SoftwareList->treeWidgetKnownSoftwareTree->viewport()->width());
+						rect.setX(qmc2SoftwareList->treeWidgetKnownSoftwareTree->viewport()->x());
+						rect.translate(0, 4);
+						position = qmc2SoftwareList->treeWidgetKnownSoftwareTree->viewport()->mapToGlobal(rect.bottomLeft());
+						treeWidget = qmc2SoftwareList->treeWidgetKnownSoftwareTree;
+					} else {
+						rect = qmc2SoftwareList->treeWidgetKnownSoftware->visualItemRect(item);
+						rect.setWidth(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->width());
+						rect.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->x());
+						rect.translate(0, 4);
+						position = qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.bottomLeft());
+						treeWidget = qmc2SoftwareList->treeWidgetKnownSoftware;
+					}
 					break;
 				case QMC2_SWLIST_FAVORITES_PAGE:
 					rect = qmc2SoftwareList->treeWidgetFavoriteSoftware->visualItemRect(item);
@@ -4750,8 +4641,13 @@ void SoftwareSnap::loadSnapshot()
 				rect.translate(0, -4);
 				switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
 					case QMC2_SWLIST_KNOWN_SW_PAGE:
-						position.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->rect().center()).x() - width() / 2);
-						position.setY(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.topLeft()).y() - height() - 4);
+						if ( qmc2SoftwareList->viewTree() ) {
+							position.setX(qmc2SoftwareList->treeWidgetKnownSoftwareTree->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetKnownSoftwareTree->viewport()->rect().center()).x() - width() / 2);
+							position.setY(qmc2SoftwareList->treeWidgetKnownSoftwareTree->viewport()->mapToGlobal(rect.topLeft()).y() - height() - 4);
+						} else {
+							position.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->rect().center()).x() - width() / 2);
+							position.setY(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.topLeft()).y() - height() - 4);
+						}
 						break;
 					case QMC2_SWLIST_FAVORITES_PAGE:
 						position.setX(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->rect().center()).x() - width() / 2);
@@ -4768,8 +4664,13 @@ void SoftwareSnap::loadSnapshot()
 				rect.translate(0, -4);
 				switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
 					case QMC2_SWLIST_KNOWN_SW_PAGE:
-						position.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->rect().bottomRight()).x() - width());
-						position.setY(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.topLeft()).y() - height() - 4);
+						if ( qmc2SoftwareList->viewTree() ) {
+							position.setX(qmc2SoftwareList->treeWidgetKnownSoftwareTree->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetKnownSoftwareTree->viewport()->rect().bottomRight()).x() - width());
+							position.setY(qmc2SoftwareList->treeWidgetKnownSoftwareTree->viewport()->mapToGlobal(rect.topLeft()).y() - height() - 4);
+						} else {
+							position.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->rect().bottomRight()).x() - width());
+							position.setY(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.topLeft()).y() - height() - 4);
+						}
 						break;
 					case QMC2_SWLIST_FAVORITES_PAGE:
 						position.setX(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->rect().bottomRight()).x() - width());
@@ -4786,7 +4687,10 @@ void SoftwareSnap::loadSnapshot()
 				rect.translate(0, -4);
 				switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
 					case QMC2_SWLIST_KNOWN_SW_PAGE:
-						position.setY(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.topLeft()).y() - height() - 4);
+						if ( qmc2SoftwareList->viewTree() )
+							position.setY(qmc2SoftwareList->treeWidgetKnownSoftwareTree->viewport()->mapToGlobal(rect.topLeft()).y() - height() - 4);
+						else
+							position.setY(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.topLeft()).y() - height() - 4);
 						break;
 					case QMC2_SWLIST_FAVORITES_PAGE:
 						position.setY(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(rect.topLeft()).y() - height() - 4);
@@ -4800,7 +4704,10 @@ void SoftwareSnap::loadSnapshot()
 			case QMC2_SWSNAP_POS_BELOW_RIGHT:
 				switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
 					case QMC2_SWLIST_KNOWN_SW_PAGE:
-						position.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->rect().bottomRight()).x() - width());
+						if ( qmc2SoftwareList->viewTree() )
+							position.setX(qmc2SoftwareList->treeWidgetKnownSoftwareTree->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetKnownSoftwareTree->viewport()->rect().bottomRight()).x() - width());
+						else
+							position.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->rect().bottomRight()).x() - width());
 						break;
 					case QMC2_SWLIST_FAVORITES_PAGE:
 						position.setX(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->rect().bottomRight()).x() - width());
@@ -4814,7 +4721,10 @@ void SoftwareSnap::loadSnapshot()
 			case QMC2_SWSNAP_POS_BELOW_CENTER:
 				switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
 					case QMC2_SWLIST_KNOWN_SW_PAGE:
-						position.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->rect().center()).x() - width() / 2);
+						if ( qmc2SoftwareList->viewTree() )
+							position.setX(qmc2SoftwareList->treeWidgetKnownSoftwareTree->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetKnownSoftwareTree->viewport()->rect().center()).x() - width() / 2);
+						else
+							position.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->rect().center()).x() - width() / 2);
 						break;
 					case QMC2_SWLIST_FAVORITES_PAGE:
 						position.setX(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->rect().center()).x() - width() / 2);
@@ -4864,10 +4774,6 @@ void SoftwareSnap::refresh()
 
 void SoftwareSnap::sevenZipDataReady()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::sevenZipDataReady()");
-#endif
-
 	update();
 	enableWidgets(true);
 }
@@ -4882,10 +4788,6 @@ void SoftwareSnap::enableWidgets(bool enable)
 
 void SoftwareSnap::resetSnapForced()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::resetSnapForced()");
-#endif
-
 	if ( qmc2SoftwareList ) {
 		QTreeWidgetItem *item = NULL;
 		if ( !qmc2SoftwareList->snapForced ) {
@@ -4928,10 +4830,6 @@ void SoftwareSnap::resetSnapForced()
 
 void SoftwareSnap::contextMenuEvent(QContextMenuEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::contextMenuEvent(QContextMenuEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	ctxMenuRequested = true;
 	if ( !myCacheKey.isEmpty() ) {
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(myCacheKey);
@@ -4947,10 +4845,6 @@ void SoftwareSnap::contextMenuEvent(QContextMenuEvent *e)
 
 void SoftwareSnap::copyToClipboard()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::copyToClipboard()");
-#endif
-
 	QPixmap pm(size());
 	render(&pm);
 	qApp->clipboard()->setPixmap(pm);
@@ -4958,10 +4852,6 @@ void SoftwareSnap::copyToClipboard()
 
 void SoftwareSnap::copyPathToClipboard()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::copyPathToClipboard()");
-#endif
-
 	if ( !myCacheKey.isEmpty() ) {
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(myCacheKey);
 		if ( cpm )
@@ -4991,10 +4881,6 @@ bool SoftwareSnap::useSevenZip()
 
 SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item)
 {
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
-#endif
-
 	parentTreeWidgetItem = (SoftwareItem *)item;
 	softwareName = parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_NAME);
 	softwareValid = success = false;
@@ -5004,18 +4890,11 @@ SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item)
 
 SoftwareEntryXmlHandler::~SoftwareEntryXmlHandler()
 {
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareEntryXmlHandler::~SoftwareEntryXmlHandler()");
-#endif
-
+	// NOP
 }
 
 bool SoftwareEntryXmlHandler::startElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName, const QXmlAttributes &attributes)
 {
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareEntryXmlHandler::startElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2, const QXmlAttributes &attributes = ...)").arg(localName).arg(qName));
-#endif
-
 	if ( ++elementCounter % QMC2_SWLIST_LOAD_RESPONSE_LONG == 0 ) {
 		QTreeWidgetItem *item = parentTreeWidgetItem->child(0);
 		if ( elementCounter % QMC2_SWLIST_LOAD_ANIM_DELAY == 0 ) {
@@ -5168,10 +5047,6 @@ bool SoftwareEntryXmlHandler::startElement(const QString &/*namespaceURI*/, cons
 
 bool SoftwareEntryXmlHandler::endElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName)
 {
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareEntryXmlHandler::endElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2)").arg(localName).arg(qName));
-#endif
-
 	if ( !softwareValid )
 		return true;
 
@@ -5221,10 +5096,6 @@ SoftwareSnapshot::SoftwareSnapshot(QWidget *parent)
 	: QWidget(parent)
 #endif
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnapshot::SoftwareSnapshot(QWidget *parent = %1)").arg((qulonglong)parent));
-#endif
-
 	contextMenu = new QMenu(this);
 	contextMenu->hide();
 
@@ -5257,10 +5128,6 @@ SoftwareSnapshot::SoftwareSnapshot(QWidget *parent)
 
 SoftwareSnapshot::~SoftwareSnapshot()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnapshot::~SoftwareSnapshot()");
-#endif
-
 	if ( qmc2UseSoftwareSnapFile ) {
 		foreach (unzFile snapFile, qmc2SoftwareSnap->snapFileMap)
 			unzClose(snapFile);
@@ -5275,10 +5142,6 @@ SoftwareSnapshot::~SoftwareSnapshot()
 
 void SoftwareSnapshot::paintEvent(QPaintEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnapshot::paintEvent(QPaintEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	QPainter p(this);
 
 	if ( !qmc2SoftwareList->currentItem ) {
@@ -5325,10 +5188,6 @@ void SoftwareSnapshot::refresh()
 
 void SoftwareSnapshot::sevenZipDataReady()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnapshot::sevenZipDataReady()");
-#endif
-
 	update();
 	enableWidgets(true);
 }
@@ -5344,10 +5203,6 @@ void SoftwareSnapshot::enableWidgets(bool enable)
 
 bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnapshot::loadSnapshot(QString listName = %1, QString entryName = %2)").arg(listName).arg(entryName));
-#endif
-
 	ImagePixmap pm;
 	bool fileOk = true;
 
