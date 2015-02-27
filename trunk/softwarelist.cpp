@@ -3794,7 +3794,10 @@ void SoftwareList::analyzeSoftware()
 	QTreeWidget *treeWidget;
 	switch ( toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
-			treeWidget = treeWidgetKnownSoftware;
+			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
+				treeWidget = treeWidgetKnownSoftware;
+			else
+				treeWidget = treeWidgetKnownSoftwareTree;
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
 			treeWidget = treeWidgetFavoriteSoftware;
@@ -3806,8 +3809,13 @@ void SoftwareList::analyzeSoftware()
 	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
 	if ( !selectedItems.isEmpty() ) {
 		QTreeWidgetItem *item = selectedItems[0];
-		while ( item->parent() )
-			item = item->parent();
+		if ( viewTree() ) {
+			while ( item->whatsThis(QMC2_SWLIST_COLUMN_NAME).isEmpty() && item->parent() )
+				item = item->parent();
+		} else {
+			while ( item->parent() )
+				item = item->parent();
+		}
 		if ( !qmc2SoftwareROMAlyzer )
 			qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
 		if ( !qmc2SoftwareROMAlyzer->active() ) {
@@ -3830,7 +3838,10 @@ void SoftwareList::analyzeSoftwareList()
 	QTreeWidget *treeWidget;
 	switch ( toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
-			treeWidget = treeWidgetKnownSoftware;
+			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
+				treeWidget = treeWidgetKnownSoftware;
+			else
+				treeWidget = treeWidgetKnownSoftwareTree;
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
 			treeWidget = treeWidgetFavoriteSoftware;
@@ -3842,8 +3853,13 @@ void SoftwareList::analyzeSoftwareList()
 	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
 	if ( !selectedItems.isEmpty() ) {
 		QTreeWidgetItem *item = selectedItems[0];
-		while ( item->parent() )
-			item = item->parent();
+		if ( viewTree() ) {
+			while ( item->whatsThis(QMC2_SWLIST_COLUMN_NAME).isEmpty() && item->parent() )
+				item = item->parent();
+		} else {
+			while ( item->parent() )
+				item = item->parent();
+		}
 		if ( !qmc2SoftwareROMAlyzer )
 			qmc2SoftwareROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SOFTWARE);
 		if ( !qmc2SoftwareROMAlyzer->active() ) {
