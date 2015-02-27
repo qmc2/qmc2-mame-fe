@@ -46,11 +46,13 @@ extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 extern QHash<QString, QPair<QString, QAction *> > qmc2ShortcutHash;
 extern QHash<QString, QString> qmc2CustomShortcutHash;
 extern ROMAlyzer *qmc2SoftwareROMAlyzer;
+extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 QHash<QString, QStringList> systemSoftwareListHash;
 QHash<QString, QStringList> systemSoftwareFilterHash;
 QHash<QString, QHash<QString, char> > softwareListStateHash;
 QHash<QString, SoftwareItem *> softwareItemHash;
+QHash<QString, SoftwareItem *> softwareHierarchyItemHash;
 QHash<QString, QString> softwareParentHash;
 bool SoftwareList::isInitialLoad = true;
 bool SoftwareList::swlSupported = true;
@@ -1222,6 +1224,7 @@ bool SoftwareList::load()
 	treeWidgetFavoriteSoftware->clear();
 	treeWidgetSearchResults->clear();
 	softwareItemHash.clear();
+	softwareHierarchyItemHash.clear();
 	softwareParentHash.clear();
 
 	treeWidgetKnownSoftware->setSortingEnabled(false);
@@ -1358,7 +1361,7 @@ bool SoftwareList::load()
 		}
 
 		if ( viewTree() )
-			loadTree();
+			QTimer::singleShot(0, this, SLOT(loadTree()));
 
 		QTimer::singleShot(0, labelLoadingSoftwareLists, SLOT(hide()));
 		QTimer::singleShot(0, toolBoxSoftwareList, SLOT(show()));
@@ -1459,7 +1462,9 @@ void SoftwareList::loadTree()
 				parentItem->setText(QMC2_SWLIST_COLUMN_INTERFACE, baseItem->text(QMC2_SWLIST_COLUMN_INTERFACE));
 				parentItem->setText(QMC2_SWLIST_COLUMN_LIST, baseItem->text(QMC2_SWLIST_COLUMN_LIST));
 				parentItem->setText(QMC2_SWLIST_COLUMN_SUPPORTED, baseItem->text(QMC2_SWLIST_COLUMN_SUPPORTED));
+				parentItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "p");
 				parentItemHash[setKey] = parentItem;
+				softwareHierarchyItemHash[setKey] = parentItem;
 				itemList << parentItem;
 			}
 		} else {
@@ -1479,7 +1484,9 @@ void SoftwareList::loadTree()
 					parentItem->setText(QMC2_SWLIST_COLUMN_INTERFACE, baseItem->text(QMC2_SWLIST_COLUMN_INTERFACE));
 					parentItem->setText(QMC2_SWLIST_COLUMN_LIST, baseItem->text(QMC2_SWLIST_COLUMN_LIST));
 					parentItem->setText(QMC2_SWLIST_COLUMN_SUPPORTED, baseItem->text(QMC2_SWLIST_COLUMN_SUPPORTED));
+					parentItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "p");
 					parentItemHash[parentSetKey] = parentItem;
+					softwareHierarchyItemHash[parentSetKey] = parentItem;
 					itemList << parentItem;
 				}
 			}
@@ -1496,6 +1503,8 @@ void SoftwareList::loadTree()
 					childItem->setText(QMC2_SWLIST_COLUMN_INTERFACE, baseItem->text(QMC2_SWLIST_COLUMN_INTERFACE));
 					childItem->setText(QMC2_SWLIST_COLUMN_LIST, baseItem->text(QMC2_SWLIST_COLUMN_LIST));
 					childItem->setText(QMC2_SWLIST_COLUMN_SUPPORTED, baseItem->text(QMC2_SWLIST_COLUMN_SUPPORTED));
+					childItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "c");
+					softwareHierarchyItemHash[setKey] = childItem;
 				}
 			}
 		}
@@ -2230,13 +2239,44 @@ void SoftwareList::on_toolButtonSoftwareStates_toggled(bool checked)
 
 void SoftwareList::on_stackedWidgetKnownSoftware_currentChanged(int index)
 {
+	QList<QTreeWidgetItem *> selectedItems;
 	switch ( index ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE_TREE:
 			if ( fullyLoaded && treeWidgetKnownSoftwareTree->topLevelItemCount() == 0 )
 				loadTree();
+			selectedItems = treeWidgetKnownSoftware->selectedItems();
+			if ( !selectedItems.isEmpty() ) {
+				QTreeWidgetItem *flatItem = selectedItems.first();
+				while ( flatItem->parent() )
+					flatItem = flatItem->parent();
+				QString setKey(flatItem->text(QMC2_SWLIST_COLUMN_LIST) + ":" + flatItem->text(QMC2_SWLIST_COLUMN_NAME));
+				if ( softwareHierarchyItemHash.contains(setKey) ) {
+					SoftwareItem *treeItem = softwareHierarchyItemHash[setKey];
+					selectedItems = treeWidgetKnownSoftwareTree->selectedItems();
+					if ( !selectedItems.isEmpty() )
+						selectedItems.first()->setSelected(false);
+					treeItem->setSelected(true);
+					treeWidgetKnownSoftwareTree->scrollToItem(treeItem, qmc2CursorPositioningMode);
+				}
+			}
 			break;
 		case QMC2_SWLIST_KNOWN_SW_PAGE_FLAT:
 		default:
+			selectedItems = treeWidgetKnownSoftwareTree->selectedItems();
+			if ( !selectedItems.isEmpty() ) {
+				QTreeWidgetItem *treeItem = selectedItems.first();
+				while ( treeItem->whatsThis(QMC2_SWLIST_COLUMN_NAME).isEmpty() && treeItem->parent() )
+					treeItem = treeItem->parent();
+				QString setKey(treeItem->text(QMC2_SWLIST_COLUMN_LIST) + ":" + treeItem->text(QMC2_SWLIST_COLUMN_NAME));
+				if ( softwareItemHash.contains(setKey) ) {
+					SoftwareItem *flatItem = softwareItemHash[setKey];
+					selectedItems = treeWidgetKnownSoftware->selectedItems();
+					if ( !selectedItems.isEmpty() )
+						selectedItems.first()->setSelected(false);
+					flatItem->setSelected(true);
+					treeWidgetKnownSoftware->scrollToItem(flatItem, qmc2CursorPositioningMode);
+				}
+			}
 			break;
 	}
 }
@@ -2535,7 +2575,7 @@ void SoftwareList::treeWidgetKnownSoftware_headerSectionClicked(int index)
 
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftware->selectedItems();
 	if ( selectedItems.count() > 0 )
-		treeWidgetKnownSoftware->scrollToItem(selectedItems[0]);
+		treeWidgetKnownSoftware->scrollToItem(selectedItems.first(), qmc2CursorPositioningMode);
 }
 
 void SoftwareList::treeWidgetFavoriteSoftware_headerSectionClicked(int index)
@@ -2546,7 +2586,7 @@ void SoftwareList::treeWidgetFavoriteSoftware_headerSectionClicked(int index)
 
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetFavoriteSoftware->selectedItems();
 	if ( selectedItems.count() > 0 )
-		treeWidgetFavoriteSoftware->scrollToItem(selectedItems[0]);
+		treeWidgetFavoriteSoftware->scrollToItem(selectedItems.first(), qmc2CursorPositioningMode);
 }
 
 void SoftwareList::treeWidgetSearchResults_headerSectionClicked(int index)
@@ -2557,7 +2597,7 @@ void SoftwareList::treeWidgetSearchResults_headerSectionClicked(int index)
 
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetSearchResults->selectedItems();
 	if ( selectedItems.count() > 0 )
-		treeWidgetSearchResults->scrollToItem(selectedItems[0]);
+		treeWidgetSearchResults->scrollToItem(selectedItems.first(), qmc2CursorPositioningMode);
 }
 
 void SoftwareList::on_treeWidgetKnownSoftware_itemExpanded(QTreeWidgetItem *item)
