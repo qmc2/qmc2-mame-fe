@@ -312,6 +312,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 		toolButtonSoftwareStates->setMenu(menuSoftwareStates);
 
 	connect(treeWidgetKnownSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetKnownSoftware_headerSectionClicked(int)));
+	connect(treeWidgetKnownSoftwareTree->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetKnownSoftwareTree_headerSectionClicked(int)));
 	connect(treeWidgetFavoriteSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetFavoriteSoftware_headerSectionClicked(int)));
 	connect(treeWidgetSearchResults->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetSearchResults_headerSectionClicked(int)));
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxSearch_editTextChanged_delayed()));
@@ -505,6 +506,7 @@ void SoftwareList::clearSoftwareSelection()
 	switch ( toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
 			treeWidgetKnownSoftware->clearSelection();
+			treeWidgetKnownSoftwareTree->clearSelection();
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
 			treeWidgetFavoriteSoftware->clearSelection();
@@ -1987,6 +1989,8 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		QString listName = softwareItem->text(QMC2_SWLIST_COLUMN_LIST);
 		if ( !softwareListStateHash[listName].contains(softwareName) ) {
 			progressBar->setValue(progressBar->value() + 1);
+			SoftwareItem *hierarchyItem = 0;
+			QString setKey(listName + ":" + softwareName);
 			if ( notFoundState ) {
 				softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
 				softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "N");
@@ -1994,6 +1998,12 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					softwareItem->setHidden(!stateFilter->toolButtonNotFound->isChecked());
 				else
 					softwareItem->setHidden(false);
+				if ( softwareHierarchyItemHash.contains(setKey) )
+					hierarchyItem = softwareHierarchyItemHash[setKey];
+				if ( hierarchyItem ) {
+					hierarchyItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
+					hierarchyItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "N");
+				}
 				if ( favoriteItem )
 					favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
 				if ( searchItem )
@@ -2009,6 +2019,12 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					softwareItem->setHidden(!stateFilter->toolButtonUnknown->isChecked());
 				else
 					softwareItem->setHidden(false);
+				if ( softwareHierarchyItemHash.contains(setKey) )
+					hierarchyItem = softwareHierarchyItemHash[setKey];
+				if ( hierarchyItem ) {
+					hierarchyItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+					hierarchyItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "U");
+				}
 				if ( favoriteItem )
 					favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
 				if ( searchItem )
@@ -2103,6 +2119,10 @@ void SoftwareList::verifyReadyReadStandardOutput()
 					charStatus = 'M';
 
 				softwareListStateHash[listName][softwareName] = charStatus;
+				SoftwareItem *hierarchyItem = 0;
+				QString setKey(listName + ":" + softwareName);
+				if ( softwareHierarchyItemHash.contains(setKey) )
+					hierarchyItem = softwareHierarchyItemHash[setKey];
 
 				switch ( charStatus ) {
 					case 'C':
@@ -2112,6 +2132,10 @@ void SoftwareList::verifyReadyReadStandardOutput()
 							softwareItem->setHidden(!stateFilter->toolButtonCorrect->isChecked());
 						else
 							softwareItem->setHidden(false);
+						if ( hierarchyItem ) {
+							hierarchyItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_correct.png")));
+							hierarchyItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "C");
+						}
 						if ( favoriteItem )
 							favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_correct.png")));
 						if ( searchItem )
@@ -2127,6 +2151,10 @@ void SoftwareList::verifyReadyReadStandardOutput()
 							softwareItem->setHidden(!stateFilter->toolButtonMostlyCorrect->isChecked());
 						else
 							softwareItem->setHidden(false);
+						if ( hierarchyItem ) {
+							hierarchyItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_mostlycorrect.png")));
+							hierarchyItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "M");
+						}
 						if ( favoriteItem )
 							favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_mostlycorrect.png")));
 						if ( searchItem )
@@ -2142,6 +2170,10 @@ void SoftwareList::verifyReadyReadStandardOutput()
 							softwareItem->setHidden(!stateFilter->toolButtonIncorrect->isChecked());
 						else
 							softwareItem->setHidden(false);
+						if ( hierarchyItem ) {
+							hierarchyItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_incorrect.png")));
+							hierarchyItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "I");
+						}
 						if ( favoriteItem )
 							favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_incorrect.png")));
 						if ( searchItem )
@@ -2157,6 +2189,10 @@ void SoftwareList::verifyReadyReadStandardOutput()
 							softwareItem->setHidden(!stateFilter->toolButtonUnknown->isChecked());
 						else
 							softwareItem->setHidden(false);
+						if ( hierarchyItem ) {
+							hierarchyItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+							hierarchyItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "U");
+						}
 						if ( favoriteItem )
 							favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
 						if ( searchItem )
@@ -2242,6 +2278,7 @@ void SoftwareList::on_stackedWidgetKnownSoftware_currentChanged(int index)
 	QList<QTreeWidgetItem *> selectedItems;
 	switch ( index ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE_TREE:
+			treeWidgetKnownSoftwareTree->header()->restoreState(treeWidgetKnownSoftware->header()->saveState());
 			if ( fullyLoaded && treeWidgetKnownSoftwareTree->topLevelItemCount() == 0 )
 				loadTree();
 			selectedItems = treeWidgetKnownSoftware->selectedItems();
@@ -2256,12 +2293,13 @@ void SoftwareList::on_stackedWidgetKnownSoftware_currentChanged(int index)
 					if ( !selectedItems.isEmpty() )
 						selectedItems.first()->setSelected(false);
 					treeItem->setSelected(true);
+					treeWidgetKnownSoftwareTree->setCurrentItem(treeItem);
 					treeWidgetKnownSoftwareTree->scrollToItem(treeItem, qmc2CursorPositioningMode);
 				}
 			}
 			break;
 		case QMC2_SWLIST_KNOWN_SW_PAGE_FLAT:
-		default:
+			treeWidgetKnownSoftware->header()->restoreState(treeWidgetKnownSoftwareTree->header()->saveState());
 			selectedItems = treeWidgetKnownSoftwareTree->selectedItems();
 			if ( !selectedItems.isEmpty() ) {
 				QTreeWidgetItem *treeItem = selectedItems.first();
@@ -2274,9 +2312,12 @@ void SoftwareList::on_stackedWidgetKnownSoftware_currentChanged(int index)
 					if ( !selectedItems.isEmpty() )
 						selectedItems.first()->setSelected(false);
 					flatItem->setSelected(true);
+					treeWidgetKnownSoftware->setCurrentItem(flatItem);
 					treeWidgetKnownSoftware->scrollToItem(flatItem, qmc2CursorPositioningMode);
 				}
 			}
+			break;
+		default:
 			break;
 	}
 }
@@ -2569,34 +2610,29 @@ void SoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked)
 
 void SoftwareList::treeWidgetKnownSoftware_headerSectionClicked(int index)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetKnownSoftware_headerSectionClicked(int index = %1)").arg(index));
-#endif
-
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftware->selectedItems();
-	if ( selectedItems.count() > 0 )
+	if ( !selectedItems.isEmpty() )
 		treeWidgetKnownSoftware->scrollToItem(selectedItems.first(), qmc2CursorPositioningMode);
+}
+
+void SoftwareList::treeWidgetKnownSoftwareTree_headerSectionClicked(int index)
+{
+	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftwareTree->selectedItems();
+	if ( !selectedItems.isEmpty() )
+		treeWidgetKnownSoftwareTree->scrollToItem(selectedItems.first(), qmc2CursorPositioningMode);
 }
 
 void SoftwareList::treeWidgetFavoriteSoftware_headerSectionClicked(int index)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_headerSectionClicked(int index = %1)").arg(index));
-#endif
-
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetFavoriteSoftware->selectedItems();
-	if ( selectedItems.count() > 0 )
+	if ( !selectedItems.isEmpty() )
 		treeWidgetFavoriteSoftware->scrollToItem(selectedItems.first(), qmc2CursorPositioningMode);
 }
 
 void SoftwareList::treeWidgetSearchResults_headerSectionClicked(int index)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetSearchResults_headerSectionClicked(int index = %1)").arg(index));
-#endif
-
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetSearchResults->selectedItems();
-	if ( selectedItems.count() > 0 )
+	if ( !selectedItems.isEmpty() )
 		treeWidgetSearchResults->scrollToItem(selectedItems.first(), qmc2CursorPositioningMode);
 }
 

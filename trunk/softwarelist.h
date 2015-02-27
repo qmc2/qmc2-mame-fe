@@ -347,6 +347,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
  
 		// other
 		void treeWidgetKnownSoftware_headerSectionClicked(int);
+		void treeWidgetKnownSoftwareTree_headerSectionClicked(int);
 		void treeWidgetFavoriteSoftware_headerSectionClicked(int);
 		void treeWidgetSearchResults_headerSectionClicked(int);
 		void addToFavorites() { on_toolButtonAddToFavorites_clicked(false); }
