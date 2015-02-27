@@ -766,6 +766,8 @@ void SoftwareList::actionViewFlat_triggered()
 	toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/view_detail.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 	viewFlatAction->setChecked(true);
 	viewTreeAction->setChecked(false);
+	toolButtonCompatFilterToggle->setEnabled(true);
+	stateFilter->setEnabled(true);
 	setViewTree(false);
 	stackedWidgetKnownSoftware->setCurrentIndex(QMC2_SWLIST_KNOWN_SW_PAGE_FLAT);
 }
@@ -777,6 +779,8 @@ void SoftwareList::actionViewTree_triggered()
 	toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/view_tree.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 	viewFlatAction->setChecked(false);
 	viewTreeAction->setChecked(true);
+	toolButtonCompatFilterToggle->setEnabled(false);
+	stateFilter->setEnabled(false);
 	setViewTree(true);
 	stackedWidgetKnownSoftware->setCurrentIndex(QMC2_SWLIST_KNOWN_SW_PAGE_TREE);
 }
@@ -1415,7 +1419,7 @@ bool SoftwareList::load()
 
 	toolButtonReload->setEnabled(true);
 	toolButtonToggleSoftwareInfo->setEnabled(true);
-	toolButtonCompatFilterToggle->setEnabled(true);
+	toolButtonCompatFilterToggle->setEnabled(!viewTree());
 	toolButtonToggleSnapnameAdjustment->setEnabled(true);
 	toolButtonSoftwareStates->setEnabled(true);
 	toolButtonAnalyzeSoftware->setEnabled(true);
