@@ -1210,8 +1210,10 @@ bool SoftwareList::load()
 	toolButtonReload->setEnabled(false);
 
 	treeWidgetKnownSoftware->clear();
+	treeWidgetKnownSoftwareTree->clear();
 	treeWidgetFavoriteSoftware->clear();
 	treeWidgetSearchResults->clear();
+
 	softwareItemHash.clear();
 	softwareHierarchyItemHash.clear();
 	softwareParentHash.clear();
@@ -2359,13 +2361,6 @@ void SoftwareList::on_toolButtonReload_clicked(bool)
 {
 	save();
 
-	numSoftwareTotal = numSoftwareCorrect = numSoftwareIncorrect = numSoftwareMostlyCorrect = numSoftwareNotFound = numSoftwareUnknown = 0;
-	updateStats();
-
-	treeWidgetKnownSoftware->clear();
-	treeWidgetKnownSoftwareTree->clear();
-	treeWidgetFavoriteSoftware->clear();
-	treeWidgetSearchResults->clear();
 	toolBoxSoftwareList->setEnabled(false);
 	toolButtonAddToFavorites->setEnabled(false);
 	toolButtonRemoveFromFavorites->setEnabled(false);
@@ -2382,9 +2377,8 @@ void SoftwareList::on_toolButtonReload_clicked(bool)
 	comboBoxDeviceConfiguration->setEnabled(false);
 	comboBoxDeviceConfiguration->clear();
 	comboBoxDeviceConfiguration->insertItem(0, tr("Default configuration"));
-	qApp->processEvents();
 
-	QTimer::singleShot(0, this, SLOT(load()));
+	load();
 }
 
 void SoftwareList::on_toolButtonExport_clicked(bool)
