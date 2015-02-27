@@ -3935,11 +3935,6 @@ bool SoftwareListXmlHandler::startElement(const QString &/*namespaceURI*/, const
 	if ( qmc2SoftwareList->interruptLoad )
 		return false;
 
-	if ( elementCounter % QMC2_SWLIST_LOAD_RESPONSE_ULTRALONG == 0 ) {
-		parentTreeWidget->insertTopLevelItems(0, itemList());
-		itemList().clear();
-	}
-
 	if ( ++elementCounter % QMC2_SWLIST_LOAD_RESPONSE_LONG == 0 ) {
 		qmc2SoftwareList->updateStats(this);
 		qApp->processEvents();
