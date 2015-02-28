@@ -5134,7 +5134,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 						textBrowserGameInfo->setHtml("<h2>" + qmc2GamelistItemHash[gameName]->text(QMC2_GAMELIST_COLUMN_GAME) + "</h2>" + tr("<p>No data available</p>"));
 				} else
 					textBrowserGameInfo->setHtml("<h2>" + qmc2GamelistItemHash[gameName]->text(QMC2_GAMELIST_COLUMN_GAME) + "</h2>" + tr("<p>No data available</p>"));
-				qmc2LastEmuInfoItem = qmc2CurrentItem;
+				qmc2LastGameInfoItem = qmc2CurrentItem;
 				tabGameInfo->setUpdatesEnabled(true);
 			}
 			break;
@@ -7779,7 +7779,11 @@ void MainWindow::loadGameInfoDB()
 	QStringList emulatorList = QStringList() << "MAME";
 #elif defined(QMC2_EMUTYPE_MESS)
 	QStringList pathList = QStringList() << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
-	QStringList emulatorList = QStringList() << "MESS";
+	QStringList emulatorList;
+	if ( !pathList.last().toLower().endsWith("sysinfo.dat") )
+		emulatorList << "MAME";
+	else
+		emulatorList << "MESS";
 #elif defined(QMC2_EMUTYPE_UME)
 	QStringList pathList;
 	QStringList emulatorList;
@@ -7789,7 +7793,10 @@ void MainWindow::loadGameInfoDB()
 	}
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() ) {
 		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
-		emulatorList << "MESS";
+		if ( !pathList.last().toLower().endsWith("sysinfo.dat") )
+			emulatorList << "MAME";
+		else
+			emulatorList << "MESS";
 	}
 #endif
 
