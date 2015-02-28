@@ -773,7 +773,6 @@ void SoftwareList::actionViewFlat_triggered()
 	toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/view_detail.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 	viewFlatAction->setChecked(true);
 	viewTreeAction->setChecked(false);
-	toolButtonCompatFilterToggle->setEnabled(true);
 	stateFilter->setEnabled(true);
 	setViewTree(false);
 	stackedWidgetKnownSoftware->setCurrentIndex(QMC2_SWLIST_KNOWN_SW_PAGE_FLAT);
@@ -786,7 +785,6 @@ void SoftwareList::actionViewTree_triggered()
 	toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/view_tree.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 	viewFlatAction->setChecked(false);
 	viewTreeAction->setChecked(true);
-	toolButtonCompatFilterToggle->setEnabled(false);
 	stateFilter->setEnabled(false);
 	setViewTree(true);
 	stackedWidgetKnownSoftware->setCurrentIndex(QMC2_SWLIST_KNOWN_SW_PAGE_TREE);
@@ -1428,7 +1426,7 @@ bool SoftwareList::load()
 
 	toolButtonReload->setEnabled(true);
 	toolButtonToggleSoftwareInfo->setEnabled(true);
-	toolButtonCompatFilterToggle->setEnabled(!viewTree());
+	toolButtonCompatFilterToggle->setEnabled(toolBoxSoftwareList->currentIndex() != QMC2_SWLIST_KNOWN_SW_PAGE || !viewTree());
 	toolButtonToggleSnapnameAdjustment->setEnabled(true);
 	toolButtonSoftwareStates->setEnabled(true);
 	toolButtonAnalyzeSoftware->setEnabled(true);
@@ -2214,13 +2212,18 @@ void SoftwareList::on_stackedWidgetKnownSoftware_currentChanged(int index)
 				if ( softwareHierarchyItemHash.contains(setKey) ) {
 					SoftwareItem *treeItem = softwareHierarchyItemHash[setKey];
 					selectedItems = treeWidgetKnownSoftwareTree->selectedItems();
+					if ( toolBoxSoftwareList->currentIndex() != QMC2_SWLIST_KNOWN_SW_PAGE )
+						treeWidgetKnownSoftwareTree->blockSignals(true);
 					if ( !selectedItems.isEmpty() )
 						selectedItems.first()->setSelected(false);
 					treeItem->setSelected(true);
 					treeWidgetKnownSoftwareTree->setCurrentItem(treeItem);
 					treeWidgetKnownSoftwareTree->scrollToItem(treeItem, qmc2CursorPositioningMode);
+					treeWidgetKnownSoftwareTree->blockSignals(false);
 				}
 			}
+			if ( toolBoxSoftwareList->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE )
+				toolButtonCompatFilterToggle->setEnabled(false);
 			break;
 		case QMC2_SWLIST_KNOWN_SW_PAGE_FLAT:
 			treeWidgetKnownSoftware->header()->restoreState(treeWidgetKnownSoftwareTree->header()->saveState());
@@ -2233,13 +2236,17 @@ void SoftwareList::on_stackedWidgetKnownSoftware_currentChanged(int index)
 				if ( softwareItemHash.contains(setKey) ) {
 					SoftwareItem *flatItem = softwareItemHash[setKey];
 					selectedItems = treeWidgetKnownSoftware->selectedItems();
+					if ( toolBoxSoftwareList->currentIndex() != QMC2_SWLIST_KNOWN_SW_PAGE )
+						treeWidgetKnownSoftware->blockSignals(true);
 					if ( !selectedItems.isEmpty() )
 						selectedItems.first()->setSelected(false);
 					flatItem->setSelected(true);
 					treeWidgetKnownSoftware->setCurrentItem(flatItem);
 					treeWidgetKnownSoftware->scrollToItem(flatItem, qmc2CursorPositioningMode);
+					treeWidgetKnownSoftware->blockSignals(false);
 				}
 			}
+			toolButtonCompatFilterToggle->setEnabled(true);
 			break;
 		default:
 			break;
@@ -2624,13 +2631,16 @@ void SoftwareList::on_toolBoxSoftwareList_currentChanged(int index)
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
 			updateMountDevices();
 			on_treeWidgetKnownSoftware_itemSelectionChanged();
+			toolButtonCompatFilterToggle->setEnabled(!viewTree());
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
 			on_treeWidgetFavoriteSoftware_itemSelectionChanged();
+			toolButtonCompatFilterToggle->setEnabled(true);
 			break;
 		case QMC2_SWLIST_SEARCH_PAGE:
 			updateMountDevices();
 			on_treeWidgetSearchResults_itemSelectionChanged();
+			toolButtonCompatFilterToggle->setEnabled(true);
 			break;
 		default:
 			break;
