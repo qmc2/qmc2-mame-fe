@@ -3560,8 +3560,13 @@ void SoftwareList::checkMountDeviceSelection()
 
 	if ( mountDevice == QObject::tr("Auto mount") ) {
 		while ( *it ) {
-			if ( !(*it)->parent() )
-				successfulLookups.clear();
+			if ( viewTree() ) {
+				if ( !(*it)->whatsThis(QMC2_SWLIST_COLUMN_NAME).isEmpty() )
+					successfulLookups.clear();
+			} else {
+				if ( !(*it)->parent() )
+					successfulLookups.clear();
+			}
 			QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
 			if ( comboBox ) {
 				comboBox->blockSignals(true);
