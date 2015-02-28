@@ -42,6 +42,7 @@ extern bool qmc2CriticalSection;
 extern bool qmc2UseDefaultEmulator;
 extern bool qmc2TemplateCheck;
 extern bool qmc2VerifyActive;
+extern bool qmc2ParentImageFallback;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 extern QHash<QString, QPair<QString, QAction *> > qmc2ShortcutHash;
 extern QHash<QString, QString> qmc2CustomShortcutHash;
@@ -4334,7 +4335,7 @@ void SoftwareSnap::paintEvent(QPaintEvent *)
 	p.end();
 }
 
-void SoftwareSnap::loadSnapshot()
+void SoftwareSnap::loadSnapshot(bool fromParent)
 {
 	ctxMenuRequested = false;
 
@@ -4476,6 +4477,15 @@ void SoftwareSnap::loadSnapshot()
 	entryName = item->text(QMC2_SWLIST_COLUMN_NAME);
 	myItem = (SoftwareItem *)item;
 	myCacheKey = "sws_" + listName + "_" + entryName;
+	QString onBehalfOf(myCacheKey);
+
+	if ( fromParent ) {
+		QString parentKey = softwareParentHash[listName + ":" + entryName];
+		if ( !parentKey.isEmpty() && parentKey != "<no_parent>" ) {
+			QString parentName = parentKey.split(":", QString::SkipEmptyParts)[1];
+			myCacheKey = "sws_" + listName + "_" + parentName;
+		}
+	}
 
 	ImagePixmap pm;
 	bool pmLoaded = false;
@@ -4521,7 +4531,7 @@ void SoftwareSnap::loadSnapshot()
 								if ( fileOk ) {
 									if ( pm.loadFromData(imageData, formatName.toLocal8Bit().constData()) ) {
 										pmLoaded = true;
-										qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
+										qmc2ImagePixmapCache.insert(onBehalfOf, new ImagePixmap(pm), pm.toImage().byteCount());
 										break;
 									}
 								}
@@ -4563,7 +4573,7 @@ void SoftwareSnap::loadSnapshot()
 									m_async = true;
 									quint64 readLength = snapFile->read(index, &imageData, &m_async);
 									if ( readLength == 0 && m_async ) {
-										qmc2ImagePixmapCache.remove(myCacheKey);
+										qmc2ImagePixmapCache.remove(onBehalfOf);
 										isFillingDictionary = true;
 										fileOk = true;
 									} else
@@ -4597,7 +4607,7 @@ void SoftwareSnap::loadSnapshot()
 										enableWidgets(false);
 									} else if ( pm.loadFromData(imageData, formatName.toLocal8Bit().constData()) ) {
 										pmLoaded = true;
-										qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
+										qmc2ImagePixmapCache.insert(onBehalfOf, new ImagePixmap(pm), pm.toImage().byteCount());
 										break;
 									}
 								}
@@ -4625,7 +4635,7 @@ void SoftwareSnap::loadSnapshot()
 							if ( pm.load(filePath) ) {
 								pmLoaded = true;
 								pm.imagePath = filePath;
-								qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount()); 
+								qmc2ImagePixmapCache.insert(onBehalfOf, new ImagePixmap(pm), pm.toImage().byteCount()); 
 							}
 						}
 						if ( pmLoaded )
@@ -4638,6 +4648,11 @@ void SoftwareSnap::loadSnapshot()
 					break;
 			}
 		}
+	}
+
+	if ( !pmLoaded && qmc2ParentImageFallback && !fromParent ) {
+		loadSnapshot(true);
+		return;
 	}
 
 	if ( pmLoaded && !pm.isGhost ) {
@@ -5210,13 +5225,21 @@ void SoftwareSnapshot::enableWidgets(bool enable)
 }
 
 
-bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
+bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName, bool fromParent)
 {
 	ImagePixmap pm;
 	bool fileOk = true;
 
-	myCacheKey = "sws_" + listName + "_" + entryName;
 	currentSnapshotPixmap.imagePath.clear();
+	myCacheKey = "sws_" + listName + "_" + entryName;
+
+	if ( fromParent ) {
+		QString parentKey = softwareParentHash[listName + ":" + entryName];
+		if ( !parentKey.isEmpty() && parentKey != "<no_parent>" ) {
+			QString parentName = parentKey.split(":", QString::SkipEmptyParts)[1];
+			entryName = parentName;
+		}
+	}
 
 	if ( qmc2UseSoftwareSnapFile ) {
 		if ( qmc2SoftwareSnap->useZip() ) {
@@ -5374,6 +5397,8 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 	}
 
 	if ( !fileOk ) {
+		if ( qmc2ParentImageFallback && !fromParent )
+			return loadSnapshot(listName, entryName, true);
 		currentSnapshotPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
 		if ( !qmc2RetryLoadingImages )
 			qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(currentSnapshotPixmap), currentSnapshotPixmap.toImage().byteCount());

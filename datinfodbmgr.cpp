@@ -10,6 +10,7 @@
 #include <QRegExp>
 #include <QDir>
 #include <QUuid>
+#include <QHash>
 
 #include "macros.h"
 #include "qmc2main.h"
@@ -20,6 +21,7 @@
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern bool qmc2StopParser;
+extern QHash<QString, QString> softwareParentHash;
 
 DatInfoDatabaseManager::DatInfoDatabaseManager(QObject *parent)
 	: QObject(parent)
@@ -120,8 +122,13 @@ void DatInfoDatabaseManager::setDatInfoVersion(int datinfo_version)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("datinfo_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
-QString DatInfoDatabaseManager::softwareInfo(QString list, QString id)
+QString DatInfoDatabaseManager::softwareInfo(QString list, QString id, bool fromParent)
 {
+	if ( fromParent ) {
+		QString parentKey = softwareParentHash[list + ":" + id];
+		if ( !parentKey.isEmpty() && parentKey != "<no_parent>" )
+			id = parentKey.split(":", QString::SkipEmptyParts)[1];
+	}
 	QString infotext;
 	QSqlQuery query(m_db);
 	query.prepare(QString("SELECT infotext FROM %1 WHERE list=:list AND id=:id").arg(m_softwareInfoTableName));
@@ -133,6 +140,8 @@ QString DatInfoDatabaseManager::softwareInfo(QString list, QString id)
 		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
+	if ( infotext.isEmpty() && !fromParent )
+		return softwareInfo(list, id, true);
 	return infotext;
 }
 
