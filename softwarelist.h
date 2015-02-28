@@ -98,11 +98,17 @@ class SoftwareEntryXmlHandler : public QXmlDefaultHandler
 		QList<QTreeWidgetItem *> infoItems;
 		QMap<QTreeWidgetItem *, QComboBox *> comboBoxes;
 
-		SoftwareEntryXmlHandler(QTreeWidgetItem *);
+		SoftwareEntryXmlHandler(QTreeWidgetItem *, bool viewTree = false);
 		~SoftwareEntryXmlHandler();
 		
 		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
 		bool endElement(const QString &, const QString &, const QString &);
+
+		bool viewTree() { return m_viewTree; }
+		void setViewTree(bool viewTree) { m_viewTree = viewTree; }
+
+	private:
+		bool m_viewTree;
 };
 
 // 'floating' snapshot-viewer
