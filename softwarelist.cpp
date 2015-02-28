@@ -437,10 +437,16 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 		s = tr("View known software as a flat list");
 		viewFlatAction->setToolTip(s); viewFlatAction->setStatusTip(s);
 		viewFlatAction->setCheckable(true);
+		viewFlatAction->setShortcut(QKeySequence(qmc2CustomShortcutHash["Shift+F5"]));
+		viewFlatAction->setShortcutContext(Qt::ApplicationShortcut);
+		qmc2ShortcutHash["Shift+F5"].second = viewFlatAction;
 		viewTreeAction = knownSoftwareMenu->addAction(QIcon(":data/img/view_tree.png"), tr("View tree"), this, SLOT(actionViewTree_triggered()));
 		s = tr("View known software as a parent/clone tree");
 		viewTreeAction->setToolTip(s); viewTreeAction->setStatusTip(s);
 		viewTreeAction->setCheckable(true);
+		viewTreeAction->setShortcut(QKeySequence(qmc2CustomShortcutHash["Shift+F6"]));
+		viewTreeAction->setShortcutContext(Qt::ApplicationShortcut);
+		qmc2ShortcutHash["Shift+F6"].second = viewTreeAction;
 		toolBoxButtonKnownSoftware->setMenu(knownSoftwareMenu);
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ViewTree", false).toBool() )
 			actionViewTree_triggered();

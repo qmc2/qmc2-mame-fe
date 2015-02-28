@@ -12514,6 +12514,8 @@ void prepareShortcuts()
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME) // FIXME: we have no MESS arcade theme yet!
 	qmc2ShortcutHash["F12"].second = qmc2MainWindow->actionLaunchArcade;
 #endif
+	qmc2ShortcutHash["Shift+F5"].second = NULL; // for "software-list view flat"
+	qmc2ShortcutHash["Shift+F6"].second = NULL; // for "software-list view tree"
 #if QMC2_USE_PHONON_API
 	qmc2ShortcutHash["Ctrl+Alt+Left"].second = qmc2MainWindow->actionAudioPreviousTrack;
 	qmc2ShortcutHash["Ctrl+Alt+Right"].second = qmc2MainWindow->actionAudioNextTrack;

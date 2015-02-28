@@ -507,6 +507,8 @@ Options::Options(QWidget *parent)
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME) // FIXME: we have no MESS arcade theme yet!
 	qmc2ShortcutHash["F12"] = QPair<QString, QAction *>(tr("Launch arcade mode"), NULL);
 #endif
+	qmc2ShortcutHash["Shift+F5"] = QPair<QString, QAction *>(tr("Software-list view-mode flat"), NULL);
+	qmc2ShortcutHash["Shift+F6"] = QPair<QString, QAction *>(tr("Software-list view-mode tree"), NULL);
 #if QMC2_USE_PHONON_API
 	qmc2ShortcutHash["Ctrl+Alt+Left"] = QPair<QString, QAction *>(tr("Previous track (audio player)"), NULL);
 	qmc2ShortcutHash["Ctrl+Alt+Right"] = QPair<QString, QAction *>(tr("Next track (audio player)"), NULL);
