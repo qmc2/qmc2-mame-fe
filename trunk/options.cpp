@@ -3245,7 +3245,10 @@ void Options::on_toolButtonImportGameInfo_clicked()
 	}
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() ) {
 		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
-		emulatorList << "MESS";
+		if ( !pathList.last().toLower().endsWith("sysinfo.dat") )
+			emulatorList << "MAME";
+		else
+			emulatorList << "MESS";
 	}
 #endif
 
@@ -3269,7 +3272,11 @@ void Options::on_toolButtonImportMachineInfo_clicked()
 
 #if defined(QMC2_EMUTYPE_MESS)
 	QStringList pathList = QStringList() << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
-	QStringList emulatorList = QStringList() << "MESS";
+	QStringList emulatorList;
+	if ( !pathList.last().toLower().endsWith("sysinfo.dat") )
+		emulatorList << "MAME";
+	else
+		emulatorList << "MESS";
 #elif defined(QMC2_EMUTYPE_UME)
 	QStringList pathList;
 	QStringList emulatorList;
@@ -3279,7 +3286,10 @@ void Options::on_toolButtonImportMachineInfo_clicked()
 	}
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() ) {
 		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
-		emulatorList << "MESS";
+		if ( !pathList.last().toLower().endsWith("sysinfo.dat") )
+			emulatorList << "MAME";
+		else
+			emulatorList << "MESS";
 	}
 #endif
 
