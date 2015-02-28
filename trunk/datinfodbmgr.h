@@ -19,7 +19,7 @@ class DatInfoDatabaseManager : public QObject
 		int datInfoVersion();
 		void setDatInfoVersion(int datinfo_version);
 
-		QString softwareInfo(QString list, QString id);
+		QString softwareInfo(QString list, QString id, bool fromParent = false);
 		void setSoftwareInfo(QString list, QString id, QString infotext);
 		bool existsSoftwareInfo(QString list, QString id);
 		qint64 softwareInfoRowCount();
