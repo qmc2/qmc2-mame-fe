@@ -1151,13 +1151,10 @@ void SoftwareList::updateMountDevices()
 	QTreeWidget *treeWidget = NULL;
 	switch ( toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
-			/* FIXME
 			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
 				treeWidget = treeWidgetKnownSoftware;
 			else
 				treeWidget = treeWidgetKnownSoftwareTree;
-			*/
-			treeWidget = treeWidgetKnownSoftware;
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
 			treeWidget = treeWidgetFavoriteSoftware;
@@ -3340,10 +3337,6 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 	if ( selectedItems.count() > 0 ) {
 		QTreeWidgetItemIterator it(treeWidget);
 		QStringList manualMounts;
-		// FIXME
-		if ( qmc2SoftwareList->viewTree() )
-			autoMounted = true;
-		// FIXME
 		if ( !autoMounted ) {
 			// manually mounted
 			while ( *it ) {
@@ -3364,7 +3357,7 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 						}
 						swlArgs << QString("-%1").arg(comboBox->currentText());
 						QTreeWidgetItem *item = *it;
-						if ( qmc2SoftwareList->viewTree() ) {
+						if ( viewTree() ) {
 							while ( item->whatsThis(QMC2_SWLIST_COLUMN_NAME).isEmpty() && item->parent() )
 								item = item->parent();
 						} else {
@@ -3383,7 +3376,7 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 		} else {
 			// automatically mounted
 			QTreeWidgetItem *item = selectedItems[0];
-			if ( qmc2SoftwareList->viewTree() ) {
+			if ( viewTree() ) {
 				while ( item->whatsThis(QMC2_SWLIST_COLUMN_NAME).isEmpty() && item->parent() )
 					item = item->parent();
 			} else {
