@@ -251,6 +251,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QMenu *menuSnapnameAdjustment;
 		QMenu *menuSoftwareStates;
 		QMenu *menuSearchOptions;
+		QMenu *knownSoftwareMenu;
+		QMenu *toggleListMenu;
 		QProcess *loadProc;
 		QProcess *verifyProc;
 		QString systemName;
@@ -388,6 +390,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void rebuildSoftwareMenu_aboutToShow();
 		void actionViewFlat_triggered();
 		void actionViewTree_triggered();
+		void toggleSoftwareList();
 
 		// callbacks for software-list header context menu requests
 		void treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &);

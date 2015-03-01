@@ -431,8 +431,10 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 			}
 		}
 	}
+
+	knownSoftwareMenu = toggleListMenu = 0;
 	if ( toolBoxButtonKnownSoftware ) {
-		QMenu *knownSoftwareMenu = new QMenu(this);
+		knownSoftwareMenu = new QMenu(this);
 		viewFlatAction = knownSoftwareMenu->addAction(QIcon(":data/img/view_detail.png"), tr("View flat"), this, SLOT(actionViewFlat_triggered()));
 		s = tr("View known software as a flat list");
 		viewFlatAction->setToolTip(s); viewFlatAction->setStatusTip(s);
@@ -788,6 +790,14 @@ void SoftwareList::actionViewTree_triggered()
 	stateFilter->setEnabled(false);
 	setViewTree(true);
 	stackedWidgetKnownSoftware->setCurrentIndex(QMC2_SWLIST_KNOWN_SW_PAGE_TREE);
+}
+
+void SoftwareList::toggleSoftwareList()
+{
+	QAction *a = (QAction *)sender();
+	QMC2_PRINT_TXT(FIXME: SoftwareList::toggleSoftwareList());
+	QMC2_PRINT_STR(a->text());
+	QMC2_PRINT_BOOL(a->isChecked());
 }
 
 QString &SoftwareList::getSoftwareListXmlData(QString listName)
@@ -1216,6 +1226,10 @@ bool SoftwareList::load()
 	treeWidgetFavoriteSoftware->clear();
 	treeWidgetSearchResults->clear();
 
+	if ( knownSoftwareMenu )
+		if ( toggleListMenu )
+			toggleListMenu->clear();
+
 	softwareItemHash.clear();
 	softwareHierarchyItemHash.clear();
 	softwareParentHash.clear();
@@ -1428,6 +1442,28 @@ bool SoftwareList::load()
 	toolButtonSoftwareStates->setEnabled(true);
 	toolButtonAnalyzeSoftware->setEnabled(true);
 	toolButtonRebuildSoftware->setEnabled(true);
+
+#if defined(QMC2_WIP_ENABLED)
+	if ( knownSoftwareMenu ) {
+		if ( !toggleListMenu ) {
+			toggleListMenu = new QMenu(0);
+			knownSoftwareMenu->addSeparator();
+			QAction *a = knownSoftwareMenu->addMenu(toggleListMenu);
+			a->setText(tr("Visible software lists"));
+			a->setIcon(QIcon(QString::fromUtf8(":/data/img/find_softlist.png")));
+			QString s(tr("Select software lists to be shown / hidden"));
+			a->setToolTip(s); a->setStatusTip(s);
+		}
+		foreach (QString list, systemSoftwareListHash[systemName]) {
+			QAction *a = toggleListMenu->addAction(list);
+			a->setCheckable(true);
+			a->setChecked(true);
+			QString s(tr("Toggle visibility of software list '%1'").arg(list));
+			a->setToolTip(s); a->setStatusTip(s);
+			connect(a, SIGNAL(triggered()), this, SLOT(toggleSoftwareList()));
+		}
+	}
+#endif
 
 	isLoading = false;
 	fullyLoaded = !interruptLoad;
