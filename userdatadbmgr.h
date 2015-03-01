@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QSqlDatabase>
 #include <QSqlDriver>
+#include <QString>
+#include <QStringList>
 #include <QList>
 #include <QHash>
 
@@ -32,6 +34,10 @@ class UserDataDatabaseManager : public QObject
 		void cleanUp();
 		void remove(QString id);
 
+		void setHiddenLists(QString id, QStringList lists);
+		QStringList hiddenLists(QString id);
+		void removeHiddenLists(QString id);
+
 		bool logActive() { return m_logActive; }
 		void setLogActive(bool enable) { m_logActive = enable; }
 
@@ -56,10 +62,12 @@ class UserDataDatabaseManager : public QObject
 		void commitTransaction() { m_db.driver()->commitTransaction(); }
 		void clearRankCache() { m_rankCache.clear(); }
 		void clearCommentCache() { m_commentCache.clear(); }
+		void recreateSoftListVisibilityTable();
 
 	private:
 		mutable QSqlDatabase m_db;
 		QString m_tableBasename;
+		QString m_tableBasenameSLV;
 		QString m_connectionName;
 		bool m_logActive;
 		QList<qint64> m_rowIdList;

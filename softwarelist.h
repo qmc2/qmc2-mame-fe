@@ -61,9 +61,10 @@ class SoftwareListXmlHandler : public QXmlDefaultHandler
 		QStringList compatFilters;
 		int elementCounter;
 		bool newSoftwareStates;
+		bool softwareListHidden;
 		quint64 numTotal, numCorrect, numMostlyCorrect, numIncorrect, numNotFound, numUnknown;
 
-		SoftwareListXmlHandler(QTreeWidget *, bool viewTree = false);
+		SoftwareListXmlHandler(QTreeWidget *, QStringList *hiddenLists, bool viewTree = false);
 		~SoftwareListXmlHandler();
 		
 		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
@@ -73,12 +74,17 @@ class SoftwareListXmlHandler : public QXmlDefaultHandler
 		void loadSoftwareStates(QString);
 
 		QList<QTreeWidgetItem *> &itemList() { return m_itemList; }
+		QList<QTreeWidgetItem *> &hideList() { return m_hideList; }
 		bool viewTree() { return m_viewTree; }
 		void setViewTree(bool viewTree) { m_viewTree = viewTree; }
+		void setHiddenLists(QStringList *hiddenLists) { m_hiddenLists = hiddenLists; }
+		QStringList *hiddenLists() { return m_hiddenLists; }
 
 	private:
 		bool m_viewTree;
 		QList<QTreeWidgetItem *> m_itemList;
+		QList<QTreeWidgetItem *> m_hideList;
+		QStringList *m_hiddenLists;
 };
 
 class SoftwareEntryXmlHandler : public QXmlDefaultHandler
