@@ -549,10 +549,10 @@ void SoftwareList::rebuildSoftware()
 		QTreeWidget *treeWidget = 0;
 		switch ( toolBoxSoftwareList->currentIndex() ) {
 			case QMC2_SWLIST_KNOWN_SW_PAGE:
-				if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
-					treeWidget = treeWidgetKnownSoftware;
-				else
+				if ( viewTree() )
 					treeWidget = treeWidgetKnownSoftwareTree;
+				else
+					treeWidget = treeWidgetKnownSoftware;
 				break;
 			case QMC2_SWLIST_FAVORITES_PAGE:
 				treeWidget = treeWidgetFavoriteSoftware;
@@ -621,10 +621,10 @@ void SoftwareList::rebuildSoftwareList()
 		QTreeWidget *treeWidget = 0;
 		switch ( toolBoxSoftwareList->currentIndex() ) {
 			case QMC2_SWLIST_KNOWN_SW_PAGE:
-				if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
-					treeWidget = treeWidgetKnownSoftware;
-				else
+				if ( viewTree() )
 					treeWidget = treeWidgetKnownSoftwareTree;
+				else
+					treeWidget = treeWidgetKnownSoftware;
 				break;
 			case QMC2_SWLIST_FAVORITES_PAGE:
 				treeWidget = treeWidgetFavoriteSoftware;
@@ -724,10 +724,10 @@ void SoftwareList::analyzeSoftwareMenu_aboutToShow()
 			break;
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
 		default:
-			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
-				treeWidget = treeWidgetKnownSoftware;
-			else
+			if ( viewTree() )
 				treeWidget = treeWidgetKnownSoftwareTree;
+			else
+				treeWidget = treeWidgetKnownSoftware;
 			break;
 	}
 	bool enable = qmc2SoftwareROMAlyzer ? !qmc2SoftwareROMAlyzer->active() : true;
@@ -751,10 +751,10 @@ void SoftwareList::rebuildSoftwareMenu_aboutToShow()
 			break;
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
 		default:
-			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
-				treeWidget = treeWidgetKnownSoftware;
-			else
+			if ( viewTree() )
 				treeWidget = treeWidgetKnownSoftwareTree;
+			else
+				treeWidget = treeWidgetKnownSoftware;
 			break;
 	}
 	bool enable = qmc2SoftwareROMAlyzer ? !qmc2SoftwareROMAlyzer->rebuilderActive() : true;
@@ -1151,10 +1151,10 @@ void SoftwareList::updateMountDevices()
 	QTreeWidget *treeWidget = NULL;
 	switch ( toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
-			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
-				treeWidget = treeWidgetKnownSoftware;
-			else
+			if ( viewTree() )
 				treeWidget = treeWidgetKnownSoftwareTree;
+			else
+				treeWidget = treeWidgetKnownSoftware;
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
 			treeWidget = treeWidgetFavoriteSoftware;
@@ -2266,10 +2266,10 @@ void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
 	QTreeWidget *treeWidget = 0;
 	switch ( toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
-			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
-				treeWidget = treeWidgetKnownSoftware;
-			else
+			if ( viewTree() )
 				treeWidget = treeWidgetKnownSoftwareTree;
+			else
+				treeWidget = treeWidgetKnownSoftware;
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
 			treeWidget = treeWidgetFavoriteSoftware;
@@ -2417,10 +2417,10 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool)
 
 	switch ( toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
-			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
-				selectedItems = treeWidgetKnownSoftware->selectedItems();
-			else
+			if ( viewTree() )
 				selectedItems = treeWidgetKnownSoftwareTree->selectedItems();
+			else
+				selectedItems = treeWidgetKnownSoftware->selectedItems();
 			break;
 		case QMC2_SWLIST_SEARCH_PAGE:
 			selectedItems = treeWidgetSearchResults->selectedItems();
@@ -3295,10 +3295,10 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 			break;
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
 		default:
-			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
-				treeWidget = treeWidgetKnownSoftware;
-			else
+			if ( viewTree() )
 				treeWidget = treeWidgetKnownSoftwareTree;
+			else
+				treeWidget = treeWidgetKnownSoftware;
 			break;
 	}
 
@@ -3866,10 +3866,10 @@ void SoftwareList::analyzeSoftware()
 	QTreeWidget *treeWidget;
 	switch ( toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
-			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
-				treeWidget = treeWidgetKnownSoftware;
-			else
+			if ( viewTree() )
 				treeWidget = treeWidgetKnownSoftwareTree;
+			else
+				treeWidget = treeWidgetKnownSoftware;
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
 			treeWidget = treeWidgetFavoriteSoftware;
@@ -3910,10 +3910,10 @@ void SoftwareList::analyzeSoftwareList()
 	QTreeWidget *treeWidget;
 	switch ( toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
-			if ( stackedWidgetKnownSoftware->currentIndex() == QMC2_SWLIST_KNOWN_SW_PAGE_FLAT )
-				treeWidget = treeWidgetKnownSoftware;
-			else
+			if ( viewTree() )
 				treeWidget = treeWidgetKnownSoftwareTree;
+			else
+				treeWidget = treeWidgetKnownSoftware;
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
 			treeWidget = treeWidgetFavoriteSoftware;
