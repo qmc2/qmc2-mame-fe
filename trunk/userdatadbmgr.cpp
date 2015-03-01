@@ -33,10 +33,13 @@ UserDataDatabaseManager::UserDataDatabaseManager(QObject *parent)
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
 	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UserDataDatabase", QString(userScopePath + "/%1-user-data.db").arg(QMC2_EMU_NAME.toLower())).toString());
 	m_tableBasename = QString("%1_user_data").arg(QMC2_EMU_NAME.toLower());
+	m_tableBasenameSLV = QString("%1_software_list_visibility").arg(QMC2_EMU_NAME.toLower());
 	if ( m_db.open() ) {
 		QStringList tables = m_db.driver()->tables(QSql::Tables);
-		if ( tables.count() != 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) )
+		if ( tables.count() < 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) )
 			recreateDatabase();
+		if ( tables.count() < 3 || !tables.contains(m_tableBasenameSLV))
+			recreateSoftListVisibilityTable();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to open user data database '%1': error = '%2'").arg(m_db.databaseName()).arg(m_db.lastError().text()));
 	m_lastRowId = -1;
@@ -496,6 +499,7 @@ void UserDataDatabaseManager::recreateDatabase()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
+	recreateSoftListVisibilityTable();
 	if ( logActive() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("user data database '%1' initialized").arg(m_db.databaseName()));
 }
@@ -535,4 +539,86 @@ void UserDataDatabaseManager::fillUpRankCache()
 void UserDataDatabaseManager::fillUpCommentCache()
 {
 	// FIXME
+}
+
+void UserDataDatabaseManager::setHiddenLists(QString id, QStringList hidden_lists)
+{
+	if ( hidden_lists.isEmpty() ) {
+		removeHiddenLists(id);
+		return;
+	}
+
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT hidden_lists FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		if ( !query.next() ) {
+			query.finish();
+			query.prepare(QString("INSERT INTO %1 (id, hidden_lists) VALUES (:id, :hidden_lists)").arg(m_tableBasenameSLV));
+			query.bindValue(":id", id);
+			query.bindValue(":hidden_lists", hidden_lists.join(","));
+			if ( !query.exec() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		} else {
+			query.finish();
+			query.prepare(QString("UPDATE %1 SET hidden_lists=:hidden_lists WHERE id=:id").arg(m_tableBasenameSLV));
+			query.bindValue(":id", id);
+			query.bindValue(":hidden_lists", hidden_lists.join(","));
+			if ( !query.exec() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		}
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(m_db.lastError().text()));
+}
+
+void UserDataDatabaseManager::removeHiddenLists(QString id)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("DELETE FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
+	query.bindValue(":id", id);
+	if ( !query.exec() )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
+}
+
+QStringList UserDataDatabaseManager::hiddenLists(QString id)
+{
+	QStringList hidden_lists;
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT hidden_lists FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		if ( query.first() )
+			hidden_lists = query.value(0).toString().split(",", QString::SkipEmptyParts);
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(m_db.lastError().text()));
+	return hidden_lists;
+}
+
+void UserDataDatabaseManager::recreateSoftListVisibilityTable()
+{
+	QSqlQuery query(m_db);
+	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_tableBasenameSLV)) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return;
+	}
+	query.finish();
+	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_tableBasenameSLV)) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return;
+	}
+	query.finish();
+	// vaccum'ing the database frees all disk-space previously used
+	query.exec("VACUUM");
+	query.finish();
+	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT PRIMARY KEY, hidden_lists TEXT, CONSTRAINT %1_unique_id UNIQUE (id))").arg(m_tableBasenameSLV)) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return;
+	}
+	query.finish();
+	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_tableBasenameSLV)) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return;
+	}
 }
