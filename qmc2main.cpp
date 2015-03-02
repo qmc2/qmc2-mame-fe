@@ -417,6 +417,20 @@ void MainWindow::log(char logTarget, QString message)
 		qmc2LogEmulatorMutex.unlock();
 }
 
+void MainWindow::logScrollToEnd(char logTarget)
+{
+	switch ( logTarget ) {
+		case QMC2_LOG_FRONTEND:
+			textBrowserFrontendLog->horizontalScrollBar()->setValue(textBrowserFrontendLog->horizontalScrollBar()->minimum());
+		        textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
+			break;
+		case QMC2_LOG_EMULATOR:
+			textBrowserEmulatorLog->horizontalScrollBar()->setValue(textBrowserEmulatorLog->horizontalScrollBar()->minimum());
+		        textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
+			break;
+	}
+}
+
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent, qmc2TemplateCheck ? Qt::Tool | Qt::FramelessWindowHint : (Qt::WindowFlags)0)
 {
@@ -431,7 +445,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 	qmc2StartupDefaultFont = new QFont(qApp->font());
 	desktopGeometry = qApp->desktop()->geometry();
-	isActiveState = launchForeignID = negatedMatch = isCreatingSoftList = searchActive = stopSearch = false;
+	isActiveState = launchForeignID = negatedMatch = isCreatingSoftList = searchActive = stopSearch = lastPageSoftware = false;
 	comboBoxEmuSelector = NULL;
 	proxyStyle = NULL;
 	swlDb = NULL;
@@ -11641,10 +11655,6 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 
 void MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked = %1)").arg(checked));
-#endif
-
 	if ( qmc2EarlyStartup )
 		return;
 
@@ -11654,6 +11664,7 @@ void MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked)
 			stackedWidgetSpecial->insertWidget(QMC2_SPECIAL_SOFTWARE_PAGE, tabWidgetSoftwareDetail);
 			stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
 			vSplitter->setSizes(vSplitterSizesSoftwareDetail);
+			lastPageSoftware = true;
 		}
 	} else {
 		stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
@@ -11670,15 +11681,22 @@ void MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked)
 			tabWidgetSoftwareDetail->raise();
 		}
 		vSplitter->setSizes(vSplitterSizes);
+		if ( lastPageSoftware ) {
+			switch ( tabWidgetLogsAndEmulators->currentIndex() ) {
+				case QMC2_FRONTENDLOG_INDEX:
+					logScrollToEnd(QMC2_LOG_FRONTEND);
+					break;
+				case QMC2_EMULATORLOG_INDEX:
+					logScrollToEnd(QMC2_LOG_EMULATOR);
+					break;
+			}
+		}
+		lastPageSoftware = false;
 	}
 }
 
 void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::stackedWidgetSpecial_setCurrentIndex(int index = %1)").arg(index));
-#endif
-
 	switch ( index ) {
 		case QMC2_SPECIAL_DEFAULT_PAGE:
 			stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
@@ -11687,6 +11705,17 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 			if ( qmc2SoftwareNotesEditor )
 				qmc2SoftwareNotesEditor->hideTearOffMenus();
 			vSplitter->setSizes(vSplitterSizes);
+			if ( lastPageSoftware ) {
+				switch ( tabWidgetLogsAndEmulators->currentIndex() ) {
+					case QMC2_FRONTENDLOG_INDEX:
+						logScrollToEnd(QMC2_LOG_FRONTEND);
+						break;
+					case QMC2_EMULATORLOG_INDEX:
+						logScrollToEnd(QMC2_LOG_EMULATOR);
+						break;
+				}
+			}
+			lastPageSoftware = false;
 			break;
 
 		case QMC2_SPECIAL_SOFTWARE_PAGE:
@@ -11697,19 +11726,23 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 					qmc2SoftwareList->detailUpdateTimer.start(qmc2UpdateDelay);
 					tabWidgetSoftwareDetail->showNormal();
 					tabWidgetSoftwareDetail->raise();
+					lastPageSoftware = false;
 				} else {
 					stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
 					vSplitter->setSizes(vSplitterSizesSoftwareDetail);
+					lastPageSoftware = true;
 				}
 			} else {
 				stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
 				vSplitter->setSizes(vSplitterSizesSoftwareDetail);
+				lastPageSoftware = true;
 			}
 			break;
 
 		default:
 			stackedWidgetSpecial->setCurrentIndex(index);
 			vSplitter->setSizes(vSplitterSizes);
+			lastPageSoftware = false;
 			break;
 	}
 }
