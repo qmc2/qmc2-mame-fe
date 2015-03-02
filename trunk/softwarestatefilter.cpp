@@ -1,16 +1,19 @@
 #include <QFont>
 #include <QFontMetrics>
+#include <QStringList>
 #include <QApplication>
 
 #include "settings.h"
 #include "softwarestatefilter.h"
 #include "softwarelist.h"
 #include "qmc2main.h"
+#include "gamelist.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern SoftwareList *qmc2SoftwareList;
+extern Gamelist *qmc2Gamelist;
 
 SoftwareStateFilter::SoftwareStateFilter(QWidget *parent)
 	: QWidget(parent)
@@ -64,10 +67,13 @@ void SoftwareStateFilter::filter()
 	qmc2SoftwareList->progressBar->setValue(0);
 	qmc2SoftwareList->progressBar->setVisible(true);
 	qmc2SoftwareList->treeWidgetKnownSoftware->setUpdatesEnabled(false);
+	QStringList hiddenLists = qmc2Gamelist->userDataDb()->hiddenLists(qmc2SoftwareList->systemName);
 	if ( checkBoxStateFilter->isChecked() ) {
 		for (int i = 0; i < qmc2SoftwareList->treeWidgetKnownSoftware->topLevelItemCount(); i++) {
 			QTreeWidgetItem *item = qmc2SoftwareList->treeWidgetKnownSoftware->topLevelItem(i);
-			switch ( item->whatsThis(QMC2_SWLIST_COLUMN_NAME).at(0).toLatin1() ) {
+			if ( hiddenLists.contains(item->text(QMC2_SWLIST_COLUMN_LIST)) )
+				item->setHidden(true);
+			else switch ( item->whatsThis(QMC2_SWLIST_COLUMN_NAME).at(0).toLatin1() ) {
 				case 'C':
 					item->setHidden(!toolButtonCorrect->isChecked());
 					break;
@@ -105,9 +111,9 @@ void SoftwareStateFilter::on_checkBoxStateFilter_toggled(bool checked)
 		return;
 
 	QString itemText = qmc2SoftwareList->toolBoxSoftwareList->itemText(QMC2_SWLIST_KNOWN_SW_PAGE);
-	itemText.remove(QRegExp(" - " + tr("filtered") + "$"));
+	itemText.remove(QRegExp(" \\| " + tr("filtered") + "$"));
 	if ( checked )
-		qmc2SoftwareList->toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, itemText + " - " + tr("filtered"));
+		qmc2SoftwareList->toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, itemText + " | " + tr("filtered"));
 	else
 		qmc2SoftwareList->toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, itemText);
 
