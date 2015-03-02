@@ -1378,8 +1378,14 @@ bool SoftwareList::load()
 		QTimer::singleShot(0, labelLoadingSoftwareLists, SLOT(hide()));
 		QTimer::singleShot(0, toolBoxSoftwareList, SLOT(show()));
 
-		// load favorites
-		QStringList softwareNames = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/SoftwareNames").arg(systemName)).toStringList();
+		// load favorites / migrate from qmc2.ini to user data database if required
+		QStringList softwareNames;
+		QString oldSettingsKey = QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/SoftwareNames").arg(systemName);
+		if ( qmc2Config->contains(oldSettingsKey) ) {
+			softwareNames = qmc2Config->value(oldSettingsKey).toStringList();
+			qmc2Config->remove(oldSettingsKey);
+		} else
+			softwareNames = qmc2Gamelist->userDataDb()->listFavorites(systemName);
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		QStringList configNames = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName)).toStringList();
 #endif
@@ -1608,7 +1614,7 @@ bool SoftwareList::save()
 	}
 
 	if ( !softwareNames.isEmpty() ) {
-		qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/SoftwareNames").arg(systemName), softwareNames);
+		qmc2Gamelist->userDataDb()->setListFavorites(systemName, softwareNames);
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		if ( onlyEmptyConfigNames )
 			qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName));

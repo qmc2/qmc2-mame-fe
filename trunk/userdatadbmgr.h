@@ -38,6 +38,10 @@ class UserDataDatabaseManager : public QObject
 		QStringList hiddenLists(QString id);
 		void removeHiddenLists(QString id);
 
+		void setListFavorites(QString id, QStringList favorites);
+		QStringList listFavorites(QString id);
+		void removeListFavorites(QString id);
+
 		bool logActive() { return m_logActive; }
 		void setLogActive(bool enable) { m_logActive = enable; }
 
@@ -56,6 +60,8 @@ class UserDataDatabaseManager : public QObject
 		void setSyncMode(uint syncMode);
 		void setJournalMode(uint journalMode);
 
+		QStringList columnNames(QString tableName);
+
 	public slots:
 		void recreateDatabase();
 		void beginTransaction() { m_db.driver()->beginTransaction(); }
@@ -63,6 +69,7 @@ class UserDataDatabaseManager : public QObject
 		void clearRankCache() { m_rankCache.clear(); }
 		void clearCommentCache() { m_commentCache.clear(); }
 		void recreateSoftListVisibilityTable();
+		void addSoftListFavoritesColumn();
 
 	private:
 		mutable QSqlDatabase m_db;

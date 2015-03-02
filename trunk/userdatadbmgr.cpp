@@ -40,6 +40,9 @@ UserDataDatabaseManager::UserDataDatabaseManager(QObject *parent)
 			recreateDatabase();
 		if ( tables.count() < 3 || !tables.contains(m_tableBasenameSLV))
 			recreateSoftListVisibilityTable();
+		QStringList columns = columnNames(m_tableBasenameSLV);
+		if ( columns.count() < 3 || !columns.contains("favorites") )
+			addSoftListFavoritesColumn();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to open user data database '%1': error = '%2'").arg(m_db.databaseName()).arg(m_db.lastError().text()));
 	m_lastRowId = -1;
@@ -543,11 +546,6 @@ void UserDataDatabaseManager::fillUpCommentCache()
 
 void UserDataDatabaseManager::setHiddenLists(QString id, QStringList hidden_lists)
 {
-	if ( hidden_lists.isEmpty() ) {
-		removeHiddenLists(id);
-		return;
-	}
-
 	QSqlQuery query(m_db);
 	query.prepare(QString("SELECT hidden_lists FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
 	query.bindValue(":id", id);
@@ -570,15 +568,9 @@ void UserDataDatabaseManager::setHiddenLists(QString id, QStringList hidden_list
 		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(m_db.lastError().text()));
-}
 
-void UserDataDatabaseManager::removeHiddenLists(QString id)
-{
-	QSqlQuery query(m_db);
-	query.prepare(QString("DELETE FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
-	query.bindValue(":id", id);
-	if ( !query.exec() )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
+	if ( hidden_lists.isEmpty() )
+		removeHiddenLists(id);
 }
 
 QStringList UserDataDatabaseManager::hiddenLists(QString id)
@@ -594,6 +586,68 @@ QStringList UserDataDatabaseManager::hiddenLists(QString id)
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(m_db.lastError().text()));
 	return hidden_lists;
+}
+
+void UserDataDatabaseManager::removeHiddenLists(QString id)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (favorites IS NULL OR favorites = '')").arg(m_tableBasenameSLV));
+	query.bindValue(":id", id);
+	if ( !query.exec() )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
+}
+
+void UserDataDatabaseManager::setListFavorites(QString id, QStringList favorites)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT favorites FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		if ( !query.next() ) {
+			query.finish();
+			query.prepare(QString("INSERT INTO %1 (id, favorites) VALUES (:id, :favorites)").arg(m_tableBasenameSLV));
+			query.bindValue(":id", id);
+			query.bindValue(":favorites", favorites.join(","));
+			if ( !query.exec() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("favorites").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		} else {
+			query.finish();
+			query.prepare(QString("UPDATE %1 SET favorites=:favorites WHERE id=:id").arg(m_tableBasenameSLV));
+			query.bindValue(":id", id);
+			query.bindValue(":favorites", favorites.join(","));
+			if ( !query.exec() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("favorites").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		}
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("favorites").arg(query.lastQuery()).arg(m_db.lastError().text()));
+
+	if ( favorites.isEmpty() )
+		removeListFavorites(id);
+}
+
+QStringList UserDataDatabaseManager::listFavorites(QString id)
+{
+	QStringList favorites;
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT favorites FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		if ( query.first() )
+			favorites = query.value(0).toString().split(",", QString::SkipEmptyParts);
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("favorites").arg(query.lastQuery()).arg(m_db.lastError().text()));
+	return favorites;
+}
+
+void UserDataDatabaseManager::removeListFavorites(QString id)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='')").arg(m_tableBasenameSLV));
+	query.bindValue(":id", id);
+	if ( !query.exec() )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
 void UserDataDatabaseManager::recreateSoftListVisibilityTable()
@@ -612,7 +666,7 @@ void UserDataDatabaseManager::recreateSoftListVisibilityTable()
 	// vaccum'ing the database frees all disk-space previously used
 	query.exec("VACUUM");
 	query.finish();
-	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT PRIMARY KEY, hidden_lists TEXT, CONSTRAINT %1_unique_id UNIQUE (id))").arg(m_tableBasenameSLV)) ) {
+	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT PRIMARY KEY, hidden_lists TEXT, favorites TEXT, CONSTRAINT %1_unique_id UNIQUE (id))").arg(m_tableBasenameSLV)) ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
@@ -621,4 +675,28 @@ void UserDataDatabaseManager::recreateSoftListVisibilityTable()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
+}
+
+void UserDataDatabaseManager::addSoftListFavoritesColumn()
+{
+	QSqlQuery query(m_db);
+	if ( !query.exec(QString("ALTER TABLE %1 ADD COLUMN favorites TEXT").arg(m_tableBasenameSLV)) )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+}
+
+QStringList UserDataDatabaseManager::columnNames(QString tableName)
+{
+	QStringList column_names;
+	QSqlQuery query(m_db);
+	query.prepare(QString("PRAGMA table_info(%1)").arg(tableName));
+	if ( query.exec() ) {
+		if ( query.first() ) {
+			do {
+				column_names << query.value(1).toString();
+			} while ( query.next() );
+		}
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg(QString("table_info(%1)").arg(tableName)).arg(query.lastQuery()).arg(m_db.lastError().text()));
+	return column_names;
 }
