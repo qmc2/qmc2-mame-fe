@@ -4080,7 +4080,7 @@ void SoftwareListXmlHandler::loadSoftwareStates(QString listName)
 		numTotal = numCorrect = numMostlyCorrect = numIncorrect = numNotFound = numUnknown = 0;
 		QTextStream ts(&stateCacheFile);
 		ts.readLine(); // comment line
-		while ( !ts.atEnd() ) {
+		while ( !ts.atEnd() && !qmc2SoftwareList->interruptLoad ) {
 			QStringList words = ts.readLine().trimmed().split(" ", QString::SkipEmptyParts);
 			if ( words.count() > 1 ) {
 				switch ( words[1][0].toLatin1() ) {
@@ -4104,8 +4104,11 @@ void SoftwareListXmlHandler::loadSoftwareStates(QString listName)
 			}
 		}
 		stateCacheFile.close();
+		if ( !qmc2SoftwareList->interruptLoad )
+			newSoftwareStates = true;
+		else
+			softwareListStateHash[listName].clear();
 	}
-	newSoftwareStates = true;
 }
 
 bool SoftwareListXmlHandler::startElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName, const QXmlAttributes &attributes)
