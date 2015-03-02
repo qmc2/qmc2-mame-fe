@@ -1478,9 +1478,10 @@ bool SoftwareList::load()
 				connect(a, SIGNAL(triggered()), this, SLOT(toggleSoftwareList()));
 			}
 			swlString = swlString.simplified();
+			QString filterString;
 			if ( toolButtonSoftwareStates->isChecked() && stateFilter->checkBoxStateFilter->isChecked() )
-				swlString += " | " + tr("filtered");
-			toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software") + " | " + swlString);
+				filterString = " | " + tr("filtered");
+			toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software") + " | " + swlString + filterString);
 			toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites") + " | " + swlString);
 			toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search") + " | " + swlString);
 		}
