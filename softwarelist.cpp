@@ -1127,15 +1127,7 @@ void SoftwareList::getXmlData()
 #endif
 
 	if ( !softwareList.isEmpty() && !softwareList.contains("NO_SOFTWARE_LIST") ) {
-		QString swlString = softwareList.join(", ");
-		if ( toolButtonSoftwareStates->isChecked() && stateFilter->checkBoxStateFilter->isChecked() )
-			toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (%1)").arg(swlString) + " - " + tr("filtered"));
-		else
-			toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (%1)").arg(swlString));
-		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (%1)").arg(swlString));
-		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(swlString));
 		toolBoxSoftwareList->setEnabled(true);
-
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		// load stored device configurations, if any...
 		qmc2Config->beginGroup(QString(QMC2_EMULATOR_PREFIX + "Configuration/Devices/%1").arg(systemName));
@@ -1486,6 +1478,8 @@ bool SoftwareList::load()
 				connect(a, SIGNAL(triggered()), this, SLOT(toggleSoftwareList()));
 			}
 			swlString = swlString.simplified();
+			if ( toolButtonSoftwareStates->isChecked() && stateFilter->checkBoxStateFilter->isChecked() )
+				swlString += " | " + tr("filtered");
 			toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software") + " | " + swlString);
 			toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites") + " | " + swlString);
 			toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search") + " | " + swlString);
@@ -1504,6 +1498,7 @@ void SoftwareList::loadTree()
 	QHash<QString, SoftwareItem *> parentItemHash;
 	QList<QTreeWidgetItem *> itemList;
 	QList<QTreeWidgetItem *> hideList;
+	QStringList hiddenLists = qmc2Gamelist->userDataDb()->hiddenLists(systemName);
 	foreach (QString setKey, softwareParentHash.keys()) {
 		if ( interruptLoad )
 			break;
@@ -1529,7 +1524,7 @@ void SoftwareList::loadTree()
 				itemList << parentItem;
 				SoftwareItem *subItem = new SoftwareItem(parentItem);
 				subItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Waiting for data..."));
-				if ( baseItem->isHidden() )
+				if ( hiddenLists.contains(parentItem->text(QMC2_SWLIST_COLUMN_LIST)) )
 					hideList << parentItem;
 			}
 		} else {
@@ -1555,7 +1550,7 @@ void SoftwareList::loadTree()
 					itemList << parentItem;
 					SoftwareItem *subItem = new SoftwareItem(parentItem);
 					subItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Waiting for data..."));
-					if ( baseItem->isHidden() )
+					if ( hiddenLists.contains(parentItem->text(QMC2_SWLIST_COLUMN_LIST)) )
 						hideList << parentItem;
 				}
 			}
@@ -1576,7 +1571,7 @@ void SoftwareList::loadTree()
 					softwareHierarchyItemHash[setKey] = childItem;
 					SoftwareItem *subItem = new SoftwareItem(childItem);
 					subItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Waiting for data..."));
-					if ( baseItem->isHidden() )
+					if ( hiddenLists.contains(childItem->text(QMC2_SWLIST_COLUMN_LIST)) )
 						hideList << childItem;
 				}
 			}
@@ -2246,13 +2241,13 @@ void SoftwareList::on_toolButtonToggleSnapnameAdjustment_clicked(bool checked)
 void SoftwareList::on_toolButtonSoftwareStates_toggled(bool checked)
 {
 	QString itemText = toolBoxSoftwareList->itemText(QMC2_SWLIST_KNOWN_SW_PAGE);
-	itemText.remove(QRegExp(" - " + tr("filtered") + "$"));
+	itemText.remove(QRegExp(" \\| " + tr("filtered") + "$"));
 
 	if ( checked ) {
 		toolButtonSoftwareStates->setMenu(menuSoftwareStates);
 		if ( isReady ) {
 			if ( stateFilter->checkBoxStateFilter->isChecked() )
-				qmc2SoftwareList->toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, itemText + " - " + tr("filtered"));
+				qmc2SoftwareList->toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, itemText + " | " + tr("filtered"));
 			else
 				qmc2SoftwareList->toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, itemText);
 		}
