@@ -196,6 +196,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		bool launchForeignID;
 		bool searchActive;
 		bool stopSearch;
+		bool lastPageSoftware;
 
 		static QColor qmc2StatusColorGreen;
 		static QColor qmc2StatusColorYellowGreen;
@@ -457,6 +458,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void checkCurrentFavoritesSelection();
 		void checkCurrentPlayedSelection();
 		void log(char, QString);
+		void logScrollToEnd(char);
 		void init();
 		void setupStyle(QString);
 		void setupStyleSheet(QString);

@@ -60,8 +60,8 @@
 #define XSTR(s)					STR(s)
 
 // logger positions
-#define QMC2_LOG_FRONTEND			1
-#define QMC2_LOG_EMULATOR			2
+#define QMC2_LOG_FRONTEND			0
+#define QMC2_LOG_EMULATOR			1
 
 // index positions of game list tabs (left)
 #define QMC2_GAMELIST_INDEX			0
