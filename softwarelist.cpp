@@ -1379,10 +1379,8 @@ bool SoftwareList::load()
 		QTimer::singleShot(0, toolBoxSoftwareList, SLOT(show()));
 
 		// load favorites
-#if defined(QMC2_EMUTYPE_MAME)
 		QStringList softwareNames = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/SoftwareNames").arg(systemName)).toStringList();
-#elif defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
-		QStringList softwareNames = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/SoftwareNames").arg(systemName)).toStringList();
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		QStringList configNames = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName)).toStringList();
 #endif
 
@@ -1391,16 +1389,24 @@ bool SoftwareList::load()
 			if ( interruptLoad )
 				break;
 			QString software = softwareNames[i];
-			QList<QTreeWidgetItem *> matchedSoftware = treeWidgetKnownSoftware->findItems(software, Qt::MatchExactly | Qt::MatchCaseSensitive, QMC2_SWLIST_COLUMN_NAME);
-			QTreeWidgetItem *swItem = NULL;
-			if ( matchedSoftware.count() > 0 )
-				swItem = matchedSoftware.at(0);
+			QTreeWidgetItem *swItem = 0;
+			if ( softwareItemHash.contains(software) )
+				swItem = softwareItemHash[software];
+			if ( !swItem ) {
+				// try fallback to legacy method
+				QList<QTreeWidgetItem *> matchedSoftware = treeWidgetKnownSoftware->findItems(software, Qt::MatchExactly | Qt::MatchCaseSensitive, QMC2_SWLIST_COLUMN_NAME);
+				if ( !matchedSoftware.isEmpty() )
+					swItem = matchedSoftware.first();
+			}
 			if ( swItem ) {
 				SoftwareItem *item = new SoftwareItem(treeWidgetFavoriteSoftware);
 				item->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, swItem->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
 				item->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, swItem->whatsThis(QMC2_SWLIST_COLUMN_NAME));
+				bool softwareListHidden = hiddenLists.contains(swItem->text(QMC2_SWLIST_COLUMN_LIST));
 				bool showItem = true;
-				if ( toolButtonCompatFilterToggle->isChecked() ) {
+				if ( softwareListHidden )
+					showItem = false;
+				else if ( toolButtonCompatFilterToggle->isChecked() ) {
 					QStringList compatList = item->whatsThis(QMC2_SWLIST_COLUMN_TITLE).split(",", QString::SkipEmptyParts);
 					showItem = compatList.isEmpty() || compatFilters.isEmpty();
 					for (int i = 0; i < compatList.count() && !showItem; i++)
@@ -1592,7 +1598,7 @@ bool SoftwareList::save()
 
 	for (int i = 0; i < treeWidgetFavoriteSoftware->topLevelItemCount(); i++) {
 		QTreeWidgetItem *item = treeWidgetFavoriteSoftware->topLevelItem(i);
-		softwareNames << item->text(QMC2_SWLIST_COLUMN_NAME);
+		softwareNames << item->text(QMC2_SWLIST_COLUMN_LIST) + ":" + item->text(QMC2_SWLIST_COLUMN_NAME);
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		QString s = item->text(QMC2_SWLIST_COLUMN_DEVICECFG);
 		if ( !s.isEmpty() )
@@ -1602,10 +1608,8 @@ bool SoftwareList::save()
 	}
 
 	if ( !softwareNames.isEmpty() ) {
-#if defined(QMC2_EMUTYPE_MAME)
 		qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/SoftwareNames").arg(systemName), softwareNames);
-#elif defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
-		qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/SoftwareNames").arg(systemName), softwareNames);
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		if ( onlyEmptyConfigNames )
 			qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName));
 		else
