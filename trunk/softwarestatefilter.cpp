@@ -95,7 +95,8 @@ void SoftwareStateFilter::filter()
 		}
 	} else {
 		for (int i = 0; i < qmc2SoftwareList->treeWidgetKnownSoftware->topLevelItemCount(); i++) {
-			qmc2SoftwareList->treeWidgetKnownSoftware->topLevelItem(i)->setHidden(false);
+			QTreeWidgetItem *item = qmc2SoftwareList->treeWidgetKnownSoftware->topLevelItem(i);
+			qmc2SoftwareList->treeWidgetKnownSoftware->topLevelItem(i)->setHidden(hiddenLists.contains(item->text(QMC2_SWLIST_COLUMN_LIST)));
 			qmc2SoftwareList->progressBar->setValue(i + 1);
 		}
 	}
