@@ -4109,16 +4109,18 @@ void Gamelist::loadCatverIni()
 			} else {
 				QStringList tokens = catverLine.split("=");
 				if ( tokens.count() >= 2 ) {
+					QString token0 = tokens[0].trimmed();
+					QString token1 = tokens[1].trimmed();
 					if ( isCategory ) {
-						if ( !categoryNames.contains(tokens[1]) )
-							categoryNames[tokens[1]] = new QString(tokens[1]);
-						categoryMap.insert(tokens[0], categoryNames[tokens[1]]);
+						if ( !categoryNames.contains(token1) )
+							categoryNames[token1] = new QString(token1);
+						categoryMap.insert(token0, categoryNames[token1]);
 					} else if ( isVersion ) {
-						QString verStr = tokens[1];
+						QString verStr = token1;
 						if ( verStr.startsWith(".") ) verStr.prepend("0");
 						if ( !versionNames.contains(verStr) )
 							versionNames[verStr] = new QString(verStr);
-						versionMap.insert(tokens[0], versionNames[verStr]);
+						versionMap.insert(token0, versionNames[verStr]);
 					}
 				}
 			}
