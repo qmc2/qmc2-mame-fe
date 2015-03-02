@@ -1609,15 +1609,13 @@ bool SoftwareList::save()
 #endif
 	}
 
-	if ( !softwareNames.isEmpty() ) {
-		qmc2Gamelist->userDataDb()->setListFavorites(systemName, softwareNames);
+	qmc2Gamelist->userDataDb()->setListFavorites(systemName, softwareNames);
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
-		if ( onlyEmptyConfigNames )
-			qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName));
-		else
-			qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName), configNames);
+	if ( onlyEmptyConfigNames )
+		qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName));
+	else
+		qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName), configNames);
 #endif
-	}
 
 	return true;
 }
