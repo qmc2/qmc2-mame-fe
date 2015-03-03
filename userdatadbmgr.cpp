@@ -43,6 +43,8 @@ UserDataDatabaseManager::UserDataDatabaseManager(QObject *parent)
 		QStringList columns = columnNames(m_tableBasenameSLV);
 		if ( columns.count() < 3 || !columns.contains("favorites") )
 			addSoftListFavoritesColumn();
+		if ( columns.count() < 4 || !columns.contains("device_configs") )
+			addSoftListDeviceConfigsColumn();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to open user data database '%1': error = '%2'").arg(m_db.databaseName()).arg(m_db.lastError().text()));
 	m_lastRowId = -1;
@@ -591,7 +593,7 @@ QStringList UserDataDatabaseManager::hiddenLists(QString id)
 void UserDataDatabaseManager::removeHiddenLists(QString id)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (favorites IS NULL OR favorites = '')").arg(m_tableBasenameSLV));
+	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (favorites IS NULL OR favorites = '') AND (device_configs IS NULL OR device_configs='')").arg(m_tableBasenameSLV));
 	query.bindValue(":id", id);
 	if ( !query.exec() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
@@ -644,7 +646,60 @@ QStringList UserDataDatabaseManager::listFavorites(QString id)
 void UserDataDatabaseManager::removeListFavorites(QString id)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='')").arg(m_tableBasenameSLV));
+	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='') AND (device_configs IS NULL OR device_configs='')").arg(m_tableBasenameSLV));
+	query.bindValue(":id", id);
+	if ( !query.exec() )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
+}
+
+void UserDataDatabaseManager::setDeviceConfigs(QString id, QStringList device_configs)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT device_configs FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		if ( !query.next() ) {
+			query.finish();
+			query.prepare(QString("INSERT INTO %1 (id, device_configs) VALUES (:id, :device_configs)").arg(m_tableBasenameSLV));
+			query.bindValue(":id", id);
+			query.bindValue(":device_configs", device_configs.join(","));
+			if ( !query.exec() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		} else {
+			query.finish();
+			query.prepare(QString("UPDATE %1 SET device_configs=:device_configs WHERE id=:id").arg(m_tableBasenameSLV));
+			query.bindValue(":id", id);
+			query.bindValue(":device_configs", device_configs.join(","));
+			if ( !query.exec() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		}
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(m_db.lastError().text()));
+
+	if ( device_configs.isEmpty() )
+		removeDeviceConfigs(id);
+}
+
+QStringList UserDataDatabaseManager::deviceConfigs(QString id)
+{
+	QStringList device_configs;
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT device_configs FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		if ( query.first() )
+			device_configs = query.value(0).toString().split(",");
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(m_db.lastError().text()));
+	return device_configs;
+}
+
+void UserDataDatabaseManager::removeDeviceConfigs(QString id)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='') AND (favorites IS NULL OR favorites='')").arg(m_tableBasenameSLV));
 	query.bindValue(":id", id);
 	if ( !query.exec() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
@@ -666,7 +721,7 @@ void UserDataDatabaseManager::recreateSoftListVisibilityTable()
 	// vaccum'ing the database frees all disk-space previously used
 	query.exec("VACUUM");
 	query.finish();
-	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT PRIMARY KEY, hidden_lists TEXT, favorites TEXT, CONSTRAINT %1_unique_id UNIQUE (id))").arg(m_tableBasenameSLV)) ) {
+	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT PRIMARY KEY, hidden_lists TEXT, favorites TEXT, device_configs TEXT, CONSTRAINT %1_unique_id UNIQUE (id))").arg(m_tableBasenameSLV)) ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
@@ -681,6 +736,13 @@ void UserDataDatabaseManager::addSoftListFavoritesColumn()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("ALTER TABLE %1 ADD COLUMN favorites TEXT").arg(m_tableBasenameSLV)) )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+}
+
+void UserDataDatabaseManager::addSoftListDeviceConfigsColumn()
+{
+	QSqlQuery query(m_db);
+	if ( !query.exec(QString("ALTER TABLE %1 ADD COLUMN device_configs TEXT").arg(m_tableBasenameSLV)) )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 

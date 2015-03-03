@@ -1379,7 +1379,13 @@ bool SoftwareList::load()
 		} else
 			softwareNames = qmc2Gamelist->userDataDb()->listFavorites(systemName);
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
-		QStringList configNames = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName)).toStringList();
+		QStringList configNames;
+		oldSettingsKey = QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName);
+		if ( qmc2Config->contains(oldSettingsKey) ) {
+			configNames = qmc2Config->value(oldSettingsKey).toStringList();
+			qmc2Config->remove(oldSettingsKey);
+		} else
+			configNames = qmc2Gamelist->userDataDb()->deviceConfigs(systemName);
 #endif
 
 		QStringList compatFilters = systemSoftwareFilterHash[systemName];
@@ -1590,31 +1596,29 @@ bool SoftwareList::save()
 	if ( !fullyLoaded )
 		return false;
 
-	qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1").arg(systemName));
-
 	QStringList softwareNames;
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+	bool allConfigsEmpty = true;
 	QStringList configNames;
-	bool onlyEmptyConfigNames = true;
 #endif
 
 	for (int i = 0; i < treeWidgetFavoriteSoftware->topLevelItemCount(); i++) {
 		QTreeWidgetItem *item = treeWidgetFavoriteSoftware->topLevelItem(i);
 		softwareNames << item->text(QMC2_SWLIST_COLUMN_LIST) + ":" + item->text(QMC2_SWLIST_COLUMN_NAME);
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
-		QString s = item->text(QMC2_SWLIST_COLUMN_DEVICECFG);
-		if ( !s.isEmpty() )
-			onlyEmptyConfigNames = false;
-		configNames << s;
+		QString configName = item->text(QMC2_SWLIST_COLUMN_DEVICECFG);
+		if ( !configName.isEmpty() )
+			allConfigsEmpty = false;
+		configNames << configName;
 #endif
 	}
 
 	qmc2Gamelist->userDataDb()->setListFavorites(systemName, softwareNames);
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
-	if ( onlyEmptyConfigNames )
-		qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName));
+	if ( allConfigsEmpty )
+		qmc2Gamelist->userDataDb()->setDeviceConfigs(systemName, QStringList());
 	else
-		qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName), configNames);
+		qmc2Gamelist->userDataDb()->setDeviceConfigs(systemName, configNames);
 #endif
 
 	return true;

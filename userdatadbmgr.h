@@ -42,6 +42,10 @@ class UserDataDatabaseManager : public QObject
 		QStringList listFavorites(QString id);
 		void removeListFavorites(QString id);
 
+		void setDeviceConfigs(QString id, QStringList device_configs);
+		QStringList deviceConfigs(QString id);
+		void removeDeviceConfigs(QString id);
+
 		bool logActive() { return m_logActive; }
 		void setLogActive(bool enable) { m_logActive = enable; }
 
@@ -70,6 +74,7 @@ class UserDataDatabaseManager : public QObject
 		void clearCommentCache() { m_commentCache.clear(); }
 		void recreateSoftListVisibilityTable();
 		void addSoftListFavoritesColumn();
+		void addSoftListDeviceConfigsColumn();
 
 	private:
 		mutable QSqlDatabase m_db;
