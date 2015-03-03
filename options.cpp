@@ -2801,8 +2801,10 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 			item->setText(2, customSC);
 		}
 	}
+	if ( !qmc2EarlyStartup )
+		checkShortcuts();
 
-  // Joystick
+	// Joystick
 #if QMC2_JOYSTICK == 1
 	checkBoxEnableJoystickControl->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Joystick/EnableJoystickControl", false).toBool());
 	checkBoxJoystickAutoRepeat->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Joystick/AutoRepeat", true).toBool());
@@ -2826,6 +2828,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 			item->setText(1, joyMapFunction);
 		}
 	}
+	if ( !qmc2EarlyStartup )
+		checkJoystickMappings();
 #endif
 
 	// Network / Tools
@@ -4621,10 +4625,6 @@ void Options::on_pushButtonEditPalette_clicked()
 
 void Options::checkShortcuts()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::checkShortcuts()");
-#endif
-
 	static char lastShortcutsState = -1;
 
 	char shortcutsState = 1;
@@ -5363,10 +5363,6 @@ void Options::on_pushButtonRemoveJoystickMapping_clicked()
 
 void Options::checkJoystickMappings()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::checkJoystickMappings()");
-#endif
-
 	static char lastJoystickMappingsState = -1;
 
 	char joystickMappingsState = 1;
