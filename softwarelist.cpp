@@ -10,6 +10,8 @@
 #include <QPainterPath>
 #include <QAbstractButton>
 #include <QHash>
+#include <QWidgetAction>
+#include <QLabel>
 
 #include "softwarelist.h"
 #include "gamelist.h"
@@ -794,11 +796,43 @@ void SoftwareList::actionViewTree_triggered()
 
 void SoftwareList::toggleSoftwareList()
 {
-	QAction *a = (QAction *)sender();
 	QStringList newHiddenList;
-	foreach (QAction *a, toggleListMenu->actions())
-		if ( !a->isChecked() )
-			newHiddenList << a->text();
+	foreach (QAction *a, toggleListMenu->actions()) {
+		if ( a->isCheckable() ) {
+			if ( !a->isChecked() )
+				newHiddenList << a->text();
+		}
+	}
+	qmc2Gamelist->userDataDb()->setHiddenLists(systemName, newHiddenList);
+	QTimer::singleShot(0, toolButtonReload, SLOT(animateClick()));
+}
+
+void SoftwareList::showOnlyThisSoftwareList()
+{
+	QAction *action = (QAction *)sender();
+	QStringList newHiddenList;
+	foreach (QAction *a, toggleListMenu->actions()) {
+		if ( a->isCheckable() ) {
+			if ( a->text() != action->text() )
+				newHiddenList << a->text();
+		}
+	}
+	qmc2Gamelist->userDataDb()->setHiddenLists(systemName, newHiddenList);
+	QTimer::singleShot(0, toolButtonReload, SLOT(animateClick()));
+}
+
+void SoftwareList::showAllExceptThisSoftwareList()
+{
+	QAction *action = (QAction *)sender();
+	QStringList newHiddenList;
+	foreach (QAction *a, toggleListMenu->actions()) {
+		if ( a->isCheckable() ) {
+			if ( a->text() == action->text() ) {
+				newHiddenList << a->text();
+				break;
+			}
+		}
+	}
 	qmc2Gamelist->userDataDb()->setHiddenLists(systemName, newHiddenList);
 	QTimer::singleShot(0, toolButtonReload, SLOT(animateClick()));
 }
@@ -1468,8 +1502,10 @@ bool SoftwareList::load()
 				QString s(tr("Select software lists to be shown / hidden"));
 				a->setToolTip(s); a->setStatusTip(s);
 			}
+			QStringList softwareLists = systemSoftwareListHash[systemName];
+			addMenuSectionHeader(toggleListMenu, tr("Individual"));
 			QString swlString;
-			foreach (QString list, systemSoftwareListHash[systemName]) {
+			foreach (QString list, softwareLists) {
 				QAction *a = toggleListMenu->addAction(list);
 				a->setCheckable(true);
 				if ( hiddenLists.contains(list) ) {
@@ -1482,6 +1518,22 @@ bool SoftwareList::load()
 				QString s(tr("Toggle visibility of software list '%1'").arg(list));
 				a->setToolTip(s); a->setStatusTip(s);
 				connect(a, SIGNAL(triggered()), this, SLOT(toggleSoftwareList()));
+			}
+			if ( softwareLists.count() > 2 ) {
+				addMenuSectionHeader(toggleListMenu, tr("Only"));
+				foreach (QString list, softwareLists) {
+					QAction *a = toggleListMenu->addAction(list);
+					QString s(tr("Show only software list '%1'").arg(list));
+					a->setToolTip(s); a->setStatusTip(s);
+					connect(a, SIGNAL(triggered()), this, SLOT(showOnlyThisSoftwareList()));
+				}
+				addMenuSectionHeader(toggleListMenu, tr("Except"));
+				foreach (QString list, softwareLists) {
+					QAction *a = toggleListMenu->addAction(list);
+					QString s(tr("Show all software lists except '%1'").arg(list));
+					a->setToolTip(s); a->setStatusTip(s);
+					connect(a, SIGNAL(triggered()), this, SLOT(showAllExceptThisSoftwareList()));
+				}
 			}
 			swlString = swlString.simplified();
 			QString filterString;
@@ -1498,6 +1550,18 @@ bool SoftwareList::load()
 	isInitialLoad = false;
 	emit loadFinished(true);
 	return true;
+}
+
+void SoftwareList::addMenuSectionHeader(QMenu *menu, QString text)
+{
+	menu->addSeparator();
+	QWidgetAction *wa = new QWidgetAction(menu);
+	QLabel *sectionLabel = new QLabel("<b>&nbsp;" + text + "&nbsp;</b>", menu);
+	sectionLabel->setFixedHeight(sectionLabel->height() - 4);
+	sectionLabel->setAlignment(Qt::AlignCenter);
+	wa->setDefaultWidget(sectionLabel);
+	menu->addAction(wa);
+	menu->addSeparator();
 }
 
 void SoftwareList::loadTree()

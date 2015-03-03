@@ -297,6 +297,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool viewTree() { return m_viewTree; }
 		void setViewTree(bool viewTree) { m_viewTree = viewTree; }
 
+		void addMenuSectionHeader(QMenu *menu, QString text);
+
 	signals:
 		void loadFinished(bool);
 
@@ -397,6 +399,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void actionViewFlat_triggered();
 		void actionViewTree_triggered();
 		void toggleSoftwareList();
+		void showOnlyThisSoftwareList();
+		void showAllExceptThisSoftwareList();
 
 		// callbacks for software-list header context menu requests
 		void treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &);
