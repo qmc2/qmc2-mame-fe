@@ -2802,7 +2802,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 		}
 	}
 	if ( !qmc2EarlyStartup )
-		checkShortcuts();
+		QTimer::singleShot(0, this, SLOT(checkShortcuts()));
 
 	// Joystick
 #if QMC2_JOYSTICK == 1
@@ -2829,7 +2829,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 		}
 	}
 	if ( !qmc2EarlyStartup )
-		checkJoystickMappings();
+		QTimer::singleShot(0, this, SLOT(checkJoystickMappings()));
 #endif
 
 	// Network / Tools
