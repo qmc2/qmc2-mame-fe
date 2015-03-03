@@ -1495,8 +1495,8 @@ bool SoftwareList::load()
 		if ( knownSoftwareMenu ) {
 			if ( !toggleListMenu ) {
 				toggleListMenu = new QMenu(0);
-				knownSoftwareMenu->addSeparator();
-				QAction *a = knownSoftwareMenu->addMenu(toggleListMenu);
+				QAction *a = knownSoftwareMenu->insertMenu(viewFlatAction, toggleListMenu);
+				knownSoftwareMenu->insertSeparator(viewFlatAction);
 				a->setText(tr("Visible software lists"));
 				a->setIcon(QIcon(QString::fromUtf8(":/data/img/find_softlist.png")));
 				QString s(tr("Select software lists to be shown / hidden"));
