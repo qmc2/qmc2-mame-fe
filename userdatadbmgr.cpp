@@ -33,14 +33,17 @@ UserDataDatabaseManager::UserDataDatabaseManager(QObject *parent)
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
 	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UserDataDatabase", QString(userScopePath + "/%1-user-data.db").arg(QMC2_EMU_NAME.toLower())).toString());
 	m_tableBasename = QString("%1_user_data").arg(QMC2_EMU_NAME.toLower());
-	m_tableBasenameSLV = QString("%1_software_list_visibility").arg(QMC2_EMU_NAME.toLower());
+	m_oldTableBasenameSL = QString("%1_software_list_visibility").arg(QMC2_EMU_NAME.toLower());
+	m_tableBasenameSL = QString("%1_softlist_user_data").arg(QMC2_EMU_NAME.toLower());
 	if ( m_db.open() ) {
 		QStringList tables = m_db.driver()->tables(QSql::Tables);
 		if ( tables.count() < 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) )
 			recreateDatabase();
-		if ( tables.count() < 3 || !tables.contains(m_tableBasenameSLV))
+		if ( tables.contains(m_oldTableBasenameSL) )
+			renameSoftListTable();
+		if ( tables.count() < 3 || !tables.contains(m_tableBasenameSL))
 			recreateSoftListVisibilityTable();
-		QStringList columns = columnNames(m_tableBasenameSLV);
+		QStringList columns = columnNames(m_tableBasenameSL);
 		if ( columns.count() < 3 || !columns.contains("favorites") )
 			addSoftListFavoritesColumn();
 		if ( columns.count() < 4 || !columns.contains("device_configs") )
@@ -549,19 +552,19 @@ void UserDataDatabaseManager::fillUpCommentCache()
 void UserDataDatabaseManager::setHiddenLists(QString id, QStringList hidden_lists)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT hidden_lists FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
+	query.prepare(QString("SELECT hidden_lists FROM %1 WHERE id=:id").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( query.exec() ) {
 		if ( !query.next() ) {
 			query.finish();
-			query.prepare(QString("INSERT INTO %1 (id, hidden_lists) VALUES (:id, :hidden_lists)").arg(m_tableBasenameSLV));
+			query.prepare(QString("INSERT INTO %1 (id, hidden_lists) VALUES (:id, :hidden_lists)").arg(m_tableBasenameSL));
 			query.bindValue(":id", id);
 			query.bindValue(":hidden_lists", hidden_lists.join(","));
 			if ( !query.exec() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		} else {
 			query.finish();
-			query.prepare(QString("UPDATE %1 SET hidden_lists=:hidden_lists WHERE id=:id").arg(m_tableBasenameSLV));
+			query.prepare(QString("UPDATE %1 SET hidden_lists=:hidden_lists WHERE id=:id").arg(m_tableBasenameSL));
 			query.bindValue(":id", id);
 			query.bindValue(":hidden_lists", hidden_lists.join(","));
 			if ( !query.exec() )
@@ -579,7 +582,7 @@ QStringList UserDataDatabaseManager::hiddenLists(QString id)
 {
 	QStringList hidden_lists;
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT hidden_lists FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
+	query.prepare(QString("SELECT hidden_lists FROM %1 WHERE id=:id").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( query.exec() ) {
 		if ( query.first() )
@@ -593,7 +596,7 @@ QStringList UserDataDatabaseManager::hiddenLists(QString id)
 void UserDataDatabaseManager::removeHiddenLists(QString id)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (favorites IS NULL OR favorites = '') AND (device_configs IS NULL OR device_configs='')").arg(m_tableBasenameSLV));
+	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (favorites IS NULL OR favorites = '') AND (device_configs IS NULL OR device_configs='')").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( !query.exec() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
@@ -602,19 +605,19 @@ void UserDataDatabaseManager::removeHiddenLists(QString id)
 void UserDataDatabaseManager::setListFavorites(QString id, QStringList favorites)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT favorites FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
+	query.prepare(QString("SELECT favorites FROM %1 WHERE id=:id").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( query.exec() ) {
 		if ( !query.next() ) {
 			query.finish();
-			query.prepare(QString("INSERT INTO %1 (id, favorites) VALUES (:id, :favorites)").arg(m_tableBasenameSLV));
+			query.prepare(QString("INSERT INTO %1 (id, favorites) VALUES (:id, :favorites)").arg(m_tableBasenameSL));
 			query.bindValue(":id", id);
 			query.bindValue(":favorites", favorites.join(","));
 			if ( !query.exec() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("favorites").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		} else {
 			query.finish();
-			query.prepare(QString("UPDATE %1 SET favorites=:favorites WHERE id=:id").arg(m_tableBasenameSLV));
+			query.prepare(QString("UPDATE %1 SET favorites=:favorites WHERE id=:id").arg(m_tableBasenameSL));
 			query.bindValue(":id", id);
 			query.bindValue(":favorites", favorites.join(","));
 			if ( !query.exec() )
@@ -632,7 +635,7 @@ QStringList UserDataDatabaseManager::listFavorites(QString id)
 {
 	QStringList favorites;
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT favorites FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
+	query.prepare(QString("SELECT favorites FROM %1 WHERE id=:id").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( query.exec() ) {
 		if ( query.first() )
@@ -646,7 +649,7 @@ QStringList UserDataDatabaseManager::listFavorites(QString id)
 void UserDataDatabaseManager::removeListFavorites(QString id)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='') AND (device_configs IS NULL OR device_configs='')").arg(m_tableBasenameSLV));
+	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='') AND (device_configs IS NULL OR device_configs='')").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( !query.exec() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
@@ -655,19 +658,19 @@ void UserDataDatabaseManager::removeListFavorites(QString id)
 void UserDataDatabaseManager::setDeviceConfigs(QString id, QStringList device_configs)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT device_configs FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
+	query.prepare(QString("SELECT device_configs FROM %1 WHERE id=:id").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( query.exec() ) {
 		if ( !query.next() ) {
 			query.finish();
-			query.prepare(QString("INSERT INTO %1 (id, device_configs) VALUES (:id, :device_configs)").arg(m_tableBasenameSLV));
+			query.prepare(QString("INSERT INTO %1 (id, device_configs) VALUES (:id, :device_configs)").arg(m_tableBasenameSL));
 			query.bindValue(":id", id);
 			query.bindValue(":device_configs", device_configs.join(","));
 			if ( !query.exec() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		} else {
 			query.finish();
-			query.prepare(QString("UPDATE %1 SET device_configs=:device_configs WHERE id=:id").arg(m_tableBasenameSLV));
+			query.prepare(QString("UPDATE %1 SET device_configs=:device_configs WHERE id=:id").arg(m_tableBasenameSL));
 			query.bindValue(":id", id);
 			query.bindValue(":device_configs", device_configs.join(","));
 			if ( !query.exec() )
@@ -685,7 +688,7 @@ QStringList UserDataDatabaseManager::deviceConfigs(QString id)
 {
 	QStringList device_configs;
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT device_configs FROM %1 WHERE id=:id").arg(m_tableBasenameSLV));
+	query.prepare(QString("SELECT device_configs FROM %1 WHERE id=:id").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( query.exec() ) {
 		if ( query.first() )
@@ -699,7 +702,7 @@ QStringList UserDataDatabaseManager::deviceConfigs(QString id)
 void UserDataDatabaseManager::removeDeviceConfigs(QString id)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='') AND (favorites IS NULL OR favorites='')").arg(m_tableBasenameSLV));
+	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='') AND (favorites IS NULL OR favorites='')").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( !query.exec() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
@@ -708,12 +711,12 @@ void UserDataDatabaseManager::removeDeviceConfigs(QString id)
 void UserDataDatabaseManager::recreateSoftListVisibilityTable()
 {
 	QSqlQuery query(m_db);
-	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_tableBasenameSLV)) ) {
+	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_tableBasenameSL)) ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
 	query.finish();
-	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_tableBasenameSLV)) ) {
+	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_tableBasenameSL)) ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
@@ -721,12 +724,12 @@ void UserDataDatabaseManager::recreateSoftListVisibilityTable()
 	// vaccum'ing the database frees all disk-space previously used
 	query.exec("VACUUM");
 	query.finish();
-	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT PRIMARY KEY, hidden_lists TEXT, favorites TEXT, device_configs TEXT, CONSTRAINT %1_unique_id UNIQUE (id))").arg(m_tableBasenameSLV)) ) {
+	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT PRIMARY KEY, hidden_lists TEXT, favorites TEXT, device_configs TEXT, CONSTRAINT %1_unique_id UNIQUE (id))").arg(m_tableBasenameSL)) ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
 	query.finish();
-	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_tableBasenameSLV)) ) {
+	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_tableBasenameSL)) ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
@@ -735,14 +738,21 @@ void UserDataDatabaseManager::recreateSoftListVisibilityTable()
 void UserDataDatabaseManager::addSoftListFavoritesColumn()
 {
 	QSqlQuery query(m_db);
-	if ( !query.exec(QString("ALTER TABLE %1 ADD COLUMN favorites TEXT").arg(m_tableBasenameSLV)) )
+	if ( !query.exec(QString("ALTER TABLE %1 ADD COLUMN favorites TEXT").arg(m_tableBasenameSL)) )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
 void UserDataDatabaseManager::addSoftListDeviceConfigsColumn()
 {
 	QSqlQuery query(m_db);
-	if ( !query.exec(QString("ALTER TABLE %1 ADD COLUMN device_configs TEXT").arg(m_tableBasenameSLV)) )
+	if ( !query.exec(QString("ALTER TABLE %1 ADD COLUMN device_configs TEXT").arg(m_tableBasenameSL)) )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+}
+
+void UserDataDatabaseManager::renameSoftListTable()
+{
+	QSqlQuery query(m_db);
+	if ( !query.exec(QString("ALTER TABLE %1 RENAME TO %2").arg(m_oldTableBasenameSL).arg(m_tableBasenameSL)) )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
