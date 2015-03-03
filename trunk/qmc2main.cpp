@@ -7399,10 +7399,13 @@ void MainWindow::init()
 	progressBarMemory->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", false).toBool());
 
 	// make sure the logs are scrolled to their maxima
-	textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
-	textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
+	logScrollToEnd(QMC2_LOG_FRONTEND);
+	logScrollToEnd(QMC2_LOG_EMULATOR);
 
-	setUpdatesEnabled(true);
+	if ( !qmc2TemplateCheck ) {
+		setUpdatesEnabled(true);
+		qApp->processEvents();
+	}
 
 	createFifo();
 
