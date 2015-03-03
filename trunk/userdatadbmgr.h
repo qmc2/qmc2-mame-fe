@@ -75,11 +75,13 @@ class UserDataDatabaseManager : public QObject
 		void recreateSoftListVisibilityTable();
 		void addSoftListFavoritesColumn();
 		void addSoftListDeviceConfigsColumn();
+		void renameSoftListTable();
 
 	private:
 		mutable QSqlDatabase m_db;
 		QString m_tableBasename;
-		QString m_tableBasenameSLV;
+		QString m_tableBasenameSL;
+		QString m_oldTableBasenameSL;
 		QString m_connectionName;
 		bool m_logActive;
 		QList<qint64> m_rowIdList;
