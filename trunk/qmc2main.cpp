@@ -671,6 +671,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 	floatToggleButtonSoftwareDetail = new QToolButton(tabWidgetSoftwareDetail);
 	floatToggleButtonSoftwareDetail->setCheckable(true);
+	floatToggleButtonSoftwareDetail->setChecked(true);
 	floatToggleButtonSoftwareDetail->setToolTip(tr("Dock / undock this widget"));
 	floatToggleButtonSoftwareDetail->setIcon(QIcon(QString::fromUtf8(":/data/img/dock.png")));
 	tabWidgetSoftwareDetail->setCornerWidget(floatToggleButtonSoftwareDetail, Qt::TopRightCorner);
@@ -11734,8 +11735,19 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 		case QMC2_SPECIAL_SOFTWARE_PAGE:
 			if ( qmc2SoftwareList ) {
 				if ( !floatToggleButtonSoftwareDetail->isChecked() ) {
-					vSplitter->setSizes(vSplitterSizes);
 					stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+					if ( tabWidgetSoftwareDetail->parent() != this ) {
+						stackedWidgetSpecial->removeWidget(tabWidgetSoftwareDetail);
+						tabWidgetSoftwareDetail->setParent(this);
+						tabWidgetSoftwareDetail->setAttribute(Qt::WA_ShowWithoutActivating);
+						tabWidgetSoftwareDetail->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+						tabWidgetSoftwareDetail->setWindowIcon(qApp->windowIcon());
+						tabWidgetSoftwareDetail->setWindowTitle(tr("Software detail"));
+						if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailGeometry") )
+							tabWidgetSoftwareDetail->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailGeometry").toByteArray());
+
+					}
+					vSplitter->setSizes(vSplitterSizes);
 					qmc2SoftwareList->detailUpdateTimer.start(qmc2UpdateDelay);
 					tabWidgetSoftwareDetail->showNormal();
 					tabWidgetSoftwareDetail->raise();
