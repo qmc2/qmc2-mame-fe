@@ -22,8 +22,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '1.0.1130';
-PDFJS.build = 'e4f0ae2';
+PDFJS.version = '1.0.1175';
+PDFJS.build = 'fa0f09b';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -356,6 +356,7 @@ function shadow(obj, prop, value) {
                                      writable: false });
   return value;
 }
+PDFJS.shadow = shadow;
 
 var PasswordResponses = PDFJS.PasswordResponses = {
   NEED_PASSWORD: 1,
@@ -1000,10 +1001,6 @@ function isNum(v) {
 
 function isString(v) {
   return typeof v === 'string';
-}
-
-function isNull(v) {
-  return v === null;
 }
 
 function isName(v) {
@@ -1744,12 +1741,21 @@ PDFJS.verbosity = (PDFJS.verbosity === undefined ?
                    PDFJS.VERBOSITY_LEVELS.warnings : PDFJS.verbosity);
 
 /**
- * The maximum supported canvas size in total pixels e.g. width * height. 
+ * The maximum supported canvas size in total pixels e.g. width * height.
  * The default value is 4096 * 4096. Use -1 for no limit.
  * @var {number}
  */
 PDFJS.maxCanvasPixels = (PDFJS.maxCanvasPixels === undefined ?
                          16777216 : PDFJS.maxCanvasPixels);
+
+/**
+ * Opens external links in a new window if enabled. The default behavior opens
+ * external links in the PDF.js window.
+ * @var {boolean}
+ */
+PDFJS.openExternalLinksInNewWindow = (
+  PDFJS.openExternalLinksInNewWindow === undefined ?
+    false : PDFJS.openExternalLinksInNewWindow);
 
 /**
  * Document initialization / loading parameters object.
@@ -2190,7 +2196,7 @@ var PDFDocumentProxy = (function PDFDocumentProxyClosure() {
  *                      rendering call the function that is the first argument
  *                      to the callback.
  */
- 
+
 /**
  * PDF page operator list.
  *
@@ -5429,7 +5435,6 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 })();
 
 
-
 var WebGLUtils = (function WebGLUtilsClosure() {
   function loadShader(gl, code, shaderType) {
     var shader = gl.createShader(shaderType);
@@ -6787,6 +6792,9 @@ var AnnotationUtils = (function AnnotationUtilsClosure() {
 
     var link = document.createElement('a');
     link.href = link.title = item.url || '';
+    if (item.url && PDFJS.openExternalLinksInNewWindow) {
+      link.target = '_blank';
+    }
 
     container.appendChild(link);
 
@@ -7045,7 +7053,7 @@ var SVGExtraState = (function SVGExtraStateClosure() {
     this.lineJoin = '';
     this.lineCap = '';
     this.miterLimit = 0;
-    
+
     this.dashArray = [];
     this.dashPhase = 0;
 
@@ -7272,7 +7280,7 @@ var SVGGraphics = (function SVGGraphicsClosure() {
       }
       return opListToTree(opList);
     },
-    
+
     executeOpTree: function SVGGraphics_executeOpTree(opTree) {
       var opTreeLen = opTree.length;
       for(var x = 0; x < opTreeLen; x++) {
