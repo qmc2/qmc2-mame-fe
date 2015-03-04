@@ -8057,9 +8057,11 @@ void MainWindow::on_actionAudioStopTrack_triggered(bool /*checked*/)
 	actionAudioPlayTrack->setChecked(false);
 	audioFastForwarding = audioFastBackwarding = audioSkippingTracks = false;
 	phononAudioPlayer->stop();
-	progressBarAudioProgress->setRange(0, 100);
-	progressBarAudioProgress->reset();
 	audioState = Phonon::StoppedState;
+	progressBarAudioProgress->setFormat(QString());
+	progressBarAudioProgress->setRange(0, 100);
+	progressBarAudioProgress->setValue(0);
+	progressBarAudioProgress->reset();
 }
 
 void MainWindow::on_actionAudioPauseTrack_triggered(bool /*checked*/)
@@ -8299,8 +8301,10 @@ void MainWindow::audioTick(qint64 newTime)
 	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::audioTick(qint64 newTime = %1)").arg(newTime));
 #endif
 
-	progressBarAudioProgress->setFormat(tr("%vs (%ms total)"));
-	progressBarAudioProgress->setValue(newTime/1000);
+	if ( audioState != Phonon::StoppedState ) {
+		progressBarAudioProgress->setFormat(tr("%vs (%ms total)"));
+		progressBarAudioProgress->setValue(newTime/1000);
+	}
 }
 
 void MainWindow::audioTotalTimeChanged(qint64 newTotalTime)
@@ -8309,9 +8313,15 @@ void MainWindow::audioTotalTimeChanged(qint64 newTotalTime)
 	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::audioTotalTimeChanged(qint64 newTotalTime = %1)").arg(newTotalTime));
 #endif
 
-	progressBarAudioProgress->setFormat(tr("%vs (%ms total)"));
-	progressBarAudioProgress->setRange(0, newTotalTime/1000);
-	progressBarAudioProgress->setValue(phononAudioPlayer->currentTime()/1000);
+	if ( newTotalTime > 0 ) {
+		progressBarAudioProgress->setFormat(tr("%vs (%ms total)"));
+		progressBarAudioProgress->setRange(0, newTotalTime/1000);
+		progressBarAudioProgress->setValue(phononAudioPlayer->currentTime()/1000);
+	} else {
+		progressBarAudioProgress->setRange(0, 100);
+		progressBarAudioProgress->setValue(0);
+		progressBarAudioProgress->reset();
+	}
 }
 
 void MainWindow::audioFade(int faderFunction)
