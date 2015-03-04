@@ -25,10 +25,6 @@ extern bool qmc2StopParser;
 ROMStatusExporter::ROMStatusExporter(QWidget *parent)
 	: QDialog(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMStatusExporter::ROMStatusExporter(QWidget *parent = %1)").arg((qulonglong) parent));
-#endif
-
 	setupUi(this);
 
 	exportListAutoCorrected = false;
@@ -72,18 +68,11 @@ ROMStatusExporter::ROMStatusExporter(QWidget *parent)
 
 ROMStatusExporter::~ROMStatusExporter()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMStatusExporter::~ROMStatusExporter()");
-#endif
-
+	// NOP
 }
 
 void ROMStatusExporter::adjustIconSizes()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMStatusExporter::adjustIconSizes()");
-#endif
-
 	QFontMetrics fm(qApp->font());
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
 
@@ -102,10 +91,6 @@ void ROMStatusExporter::adjustIconSizes()
 
 void ROMStatusExporter::closeEvent(QCloseEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMStatusExporter::closeEvent(QCloseEvent *e = %1)").arg((qulonglong) e));
-#endif
-
 	// save settings
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/OutputFormat", comboBoxOutputFormat->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/ExportC", toolButtonExportC->isChecked());
@@ -132,10 +117,6 @@ void ROMStatusExporter::closeEvent(QCloseEvent *e)
 
 void ROMStatusExporter::exportToASCII()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMStatusExporter::exportToASCII()"));
-#endif
-
 	QFile exportFile(lineEditASCIIFile->text());
 	QString clipboardBuffer;
 	QTextStream ts;
@@ -428,10 +409,6 @@ void ROMStatusExporter::exportToASCII()
 
 void ROMStatusExporter::exportToCSV()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMStatusExporter::exportToCSV()"));
-#endif
-
 	QFile exportFile(lineEditCSVFile->text());
 	QString clipboardBuffer;
 	QTextStream ts;
@@ -647,10 +624,6 @@ void ROMStatusExporter::exportToCSV()
 
 void ROMStatusExporter::exportToHTML()
 {
-#ifdef QMC2_DEBUG
-      	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMStatusExporter::exportToHTML()"));
-#endif
-
       	QFile exportFile(lineEditHTMLFile->text());
       	QString clipboardBuffer;
       	QTextStream ts;
@@ -897,11 +870,7 @@ void ROMStatusExporter::exportToHTML()
 
 void ROMStatusExporter::on_toolButtonBrowseASCIIFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMStatusExporter::on_toolButtonBrowseASCIIFile_clicked()");
-#endif
-
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose ASCII export file"), lineEditASCIIFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QString s = QFileDialog::getSaveFileName(this, tr("Choose ASCII export file"), lineEditASCIIFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditASCIIFile->setText(s);
 	raise();
@@ -909,11 +878,7 @@ void ROMStatusExporter::on_toolButtonBrowseASCIIFile_clicked()
 
 void ROMStatusExporter::on_toolButtonBrowseCSVFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMStatusExporter::on_toolButtonBrowseCSVFile_clicked()");
-#endif
-
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose CSV export file"), lineEditCSVFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QString s = QFileDialog::getSaveFileName(this, tr("Choose CSV export file"), lineEditCSVFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditCSVFile->setText(s);
 	raise();
@@ -921,11 +886,7 @@ void ROMStatusExporter::on_toolButtonBrowseCSVFile_clicked()
 
 void ROMStatusExporter::on_toolButtonBrowseHTMLFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMStatusExporter::on_toolButtonBrowseHTMLFile_clicked()");
-#endif
-
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose HTML export file"), lineEditHTMLFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QString s = QFileDialog::getSaveFileName(this, tr("Choose HTML export file"), lineEditHTMLFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditHTMLFile->setText(s);
 	raise();
@@ -933,10 +894,6 @@ void ROMStatusExporter::on_toolButtonBrowseHTMLFile_clicked()
 
 void ROMStatusExporter::on_pushButtonExport_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMStatusExporter::on_pushButtonExport_clicked()");
-#endif
-
 	if ( !qmc2Gamelist ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("gamelist is not ready, please wait"));
 		return;
@@ -968,10 +925,6 @@ void ROMStatusExporter::on_pushButtonExport_clicked()
 
 void ROMStatusExporter::on_comboBoxOutputFormat_currentIndexChanged(int index)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMStatusExporter::on_comboBoxOutputFormat_currentIndexChanged(int index = %1)").arg(index));
-#endif
-
 	stackedWidgetOutputParams->setCurrentIndex(index);
 
 	if ( index > QMC2_ROMSTATUSEXPORT_FORMAT_HTML_INDEX ) {
@@ -984,10 +937,6 @@ void ROMStatusExporter::on_comboBoxOutputFormat_currentIndexChanged(int index)
 
 void ROMStatusExporter::on_checkBoxExportToClipboard_toggled(bool enable)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMStatusExporter::on_checkBoxExportToClipboard_toggled(bool enable = %1)").arg(enable));
-#endif
-
 	if ( enable ) {
 		if ( comboBoxOutputFormat->currentIndex() > QMC2_ROMSTATUSEXPORT_FORMAT_HTML_INDEX && !exportListAutoCorrected ) {
 			exportListAutoCorrected = true;
