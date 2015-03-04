@@ -1,8 +1,6 @@
 #include <QtGui>
-#if QT_VERSION >= 0x050000
 #include <QMessageBox>
 #include <QFileDialog>
-#endif
 
 #include "swlistexport.h"
 #include "macros.h"
@@ -17,10 +15,6 @@ extern Settings *qmc2Config;
 SoftwareListExporter::SoftwareListExporter(QWidget *parent)
 	: QDialog(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListExporter::SoftwareListExporter(QWidget *parent = %1)").arg((qulonglong) parent));
-#endif
-
 	setupUi(this);
 
 	softwareList = (SoftwareList *)parent;
@@ -71,18 +65,11 @@ SoftwareListExporter::SoftwareListExporter(QWidget *parent)
 
 SoftwareListExporter::~SoftwareListExporter()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareListExporter::~SoftwareListExporter()");
-#endif
-
+	// NOP
 }
 
 void SoftwareListExporter::adjustIconSizes()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareListExporter::adjustIconSizes()");
-#endif
-
 	QFontMetrics fm(qApp->font());
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
 
@@ -94,10 +81,6 @@ void SoftwareListExporter::adjustIconSizes()
 
 void SoftwareListExporter::showEvent(QShowEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListExporter::showEvent(QShowEvent *e = %1)").arg((qulonglong) e));
-#endif
-
 	adjustIconSizes();
 	adjustSize();
 
@@ -107,10 +90,6 @@ void SoftwareListExporter::showEvent(QShowEvent *e)
 
 void SoftwareListExporter::hideEvent(QHideEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListExporter::hideEvent(QHideEvent *e = %1)").arg((qulonglong) e));
-#endif
-
 	saveSettings();
 
 	if ( e )
@@ -119,10 +98,6 @@ void SoftwareListExporter::hideEvent(QHideEvent *e)
 
 void SoftwareListExporter::closeEvent(QCloseEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListExporter::closeEvent(QCloseEvent *e = %1)").arg((qulonglong) e));
-#endif
-
 	// save settings
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/OutputFormat", comboBoxOutputFormat->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/SortCriteria", comboBoxSortCriteria->currentIndex());
@@ -155,10 +130,6 @@ void SoftwareListExporter::closeEvent(QCloseEvent *e)
 
 void SoftwareListExporter::exportToASCII()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListExporter::exportToASCII()"));
-#endif
-
 	QTreeWidget *treeWidget = NULL;
 	switch ( softwareList->toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
@@ -290,10 +261,6 @@ void SoftwareListExporter::exportToASCII()
 
 void SoftwareListExporter::exportToCSV()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListExporter::exportToCSV()"));
-#endif
-
 	QTreeWidget *treeWidget = NULL;
 	switch ( softwareList->toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
@@ -408,25 +375,15 @@ void SoftwareListExporter::exportToCSV()
 
 void SoftwareListExporter::on_toolButtonBrowseASCIIFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareListExporter::on_toolButtonBrowseASCIIFile_clicked()");
-#endif
-
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose ASCII export file"), lineEditASCIIFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-
+	QString s = QFileDialog::getSaveFileName(this, tr("Choose ASCII export file"), lineEditASCIIFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditASCIIFile->setText(s);
-
 	raise();
 }
 
 void SoftwareListExporter::on_toolButtonBrowseCSVFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareListExporter::on_toolButtonBrowseCSVFile_clicked()");
-#endif
-
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose CSV export file"), lineEditCSVFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QString s = QFileDialog::getSaveFileName(this, tr("Choose CSV export file"), lineEditCSVFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 
 	if ( !s.isNull() )
 		lineEditCSVFile->setText(s);
@@ -436,10 +393,6 @@ void SoftwareListExporter::on_toolButtonBrowseCSVFile_clicked()
 
 void SoftwareListExporter::on_pushButtonExport_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareListExporter::on_pushButtonExport_clicked()");
-#endif
-
 	saveSettings();
 
 	switch ( comboBoxOutputFormat->currentIndex() ) {
@@ -463,10 +416,6 @@ void SoftwareListExporter::on_pushButtonExport_clicked()
 
 void SoftwareListExporter::on_comboBoxOutputFormat_currentIndexChanged(int index)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListExporter::on_comboBoxOutputFormat_currentIndexChanged(int index = %1)").arg(index));
-#endif
-
 	stackedWidgetOutputParams->setCurrentIndex(index);
 
 	if ( index > QMC2_SWLISTEXPORT_FORMAT_CSV_INDEX && !exportListAutoCorrected ) {
@@ -478,10 +427,6 @@ void SoftwareListExporter::on_comboBoxOutputFormat_currentIndexChanged(int index
 
 void SoftwareListExporter::on_checkBoxExportToClipboard_toggled(bool enable)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListExporter::on_checkBoxExportToClipboard_toggled(bool enable = %1)").arg(enable));
-#endif
-
 	if ( enable ) {
 		if ( comboBoxOutputFormat->currentIndex() > QMC2_SWLISTEXPORT_FORMAT_CSV_INDEX && !exportListAutoCorrected ) {
 			exportListAutoCorrected = true;
