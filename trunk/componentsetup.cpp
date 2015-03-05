@@ -27,7 +27,7 @@ ComponentSetup::ComponentSetup(QWidget *parent)
 
 	// FIXME
 	comboBoxComponents->setCurrentIndex(1);
-	//comboBoxComponents->setEnabled(false);
+	comboBoxComponents->setEnabled(false);
 }
 
 ComponentSetup::~ComponentSetup()
