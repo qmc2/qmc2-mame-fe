@@ -773,11 +773,20 @@ MainWindow::MainWindow(QWidget *parent)
 	comboBoxSearch->setToolTip(comboBoxSearch->toolTip() + " - " + tr("note: the special characters $, (, ), *, +, ., ?, [, ], ^, {, |, } and \\ must be escaped when they are meant literally!"));
 	setWindowTitle(windowTitle() + " [Qt " + qVersion() + "]");
 
-	// detail tabs are movable
+	// tabs are movable
+	QTabBar *tabBar;
+	tabWidgetGamelist->setMovable(true);
+	tabBar = tabWidgetGamelist->findChild<QTabBar *>();
+	if ( tabBar )
+		connect(tabBar, SIGNAL(tabMoved(int, int)), this, SLOT(tabWidgetGamelist_tabMoved(int, int)));
 	tabWidgetGameDetail->setMovable(true);
-	QTabBar *tabBar = tabWidgetGameDetail->findChild<QTabBar *>();
+	tabBar = tabWidgetGameDetail->findChild<QTabBar *>();
 	if ( tabBar )
 		connect(tabBar, SIGNAL(tabMoved(int, int)), this, SLOT(tabWidgetGameDetail_tabMoved(int, int)));
+	tabWidgetLogsAndEmulators->setMovable(true);
+	tabBar = tabWidgetLogsAndEmulators->findChild<QTabBar *>();
+	if ( tabBar )
+		connect(tabBar, SIGNAL(tabMoved(int, int)), this, SLOT(tabWidgetLogsAndEmulators_tabMoved(int, int)));
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2Options->checkBoxShowGameName->setText(tr("Show game/software titles"));
@@ -1805,6 +1814,35 @@ MainWindow::~MainWindow()
 		delete qmc2StartupDefaultFont;
 }
 
+void MainWindow::tabWidgetGamelist_tabMoved(int from, int to)
+{
+	QMC2_PRINT_TXT(FIXME: MainWindow::tabWidgetGamelist_tabMoved());
+	/*
+	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(0);
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+
+	if ( !componentInfo )
+		return;
+
+	int fromFeature = componentInfo->appliedFeatureList()[from];
+	componentInfo->appliedFeatureList().removeAt(from);
+	componentInfo->appliedFeatureList().insert(to, fromFeature);
+	fromFeature = componentInfo->activeFeatureList()[from];
+	componentInfo->activeFeatureList().removeAt(from);
+	componentInfo->activeFeatureList().insert(to, fromFeature);
+
+	QListWidgetItem *takenItem = qmc2ComponentSetup->listWidgetActiveFeatures->takeItem(from);
+	if ( takenItem )
+		qmc2ComponentSetup->listWidgetActiveFeatures->insertItem(to, takenItem);
+
+	QStringList activeIndexList;
+	for (int i = 0; i < componentInfo->appliedFeatureList().count(); i++)
+		activeIndexList << QString::number(componentInfo->appliedFeatureList()[i]);
+
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Component1/ActiveFeatures", activeIndexList);
+	*/
+}
+
 void MainWindow::tabWidgetGameDetail_tabMoved(int from, int to)
 {
 	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(1);
@@ -1829,6 +1867,32 @@ void MainWindow::tabWidgetGameDetail_tabMoved(int from, int to)
 		activeIndexList << QString::number(componentInfo->appliedFeatureList()[i]);
 
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Component2/ActiveFeatures", activeIndexList);
+}
+
+void MainWindow::tabWidgetLogsAndEmulators_tabMoved(int from, int to)
+{
+	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(2);
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component3"];
+
+	if ( !componentInfo )
+		return;
+
+	int fromFeature = componentInfo->appliedFeatureList()[from];
+	componentInfo->appliedFeatureList().removeAt(from);
+	componentInfo->appliedFeatureList().insert(to, fromFeature);
+	fromFeature = componentInfo->activeFeatureList()[from];
+	componentInfo->activeFeatureList().removeAt(from);
+	componentInfo->activeFeatureList().insert(to, fromFeature);
+
+	QListWidgetItem *takenItem = qmc2ComponentSetup->listWidgetActiveFeatures->takeItem(from);
+	if ( takenItem )
+		qmc2ComponentSetup->listWidgetActiveFeatures->insertItem(to, takenItem);
+
+	QStringList activeIndexList;
+	for (int i = 0; i < componentInfo->appliedFeatureList().count(); i++)
+		activeIndexList << QString::number(componentInfo->appliedFeatureList()[i]);
+
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Component3/ActiveFeatures", activeIndexList);
 }
 
 void MainWindow::on_actionPlayEmbedded_triggered(bool)
@@ -7398,10 +7462,6 @@ void MainWindow::init()
 	qmc2GhostImagePixmap.isGhost = true;
 	progressBarMemory->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", false).toBool());
 
-	// make sure the logs are scrolled to their maxima
-	logScrollToEnd(QMC2_LOG_FRONTEND);
-	logScrollToEnd(QMC2_LOG_EMULATOR);
-
 	if ( !qmc2TemplateCheck ) {
 		setUpdatesEnabled(true);
 		qApp->processEvents();
@@ -7435,6 +7495,10 @@ void MainWindow::init()
 	QTimer::singleShot(0, this, SLOT(on_actionReload_triggered()));
 
 	activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
+
+	// make sure the logs are scrolled to their maxima
+	logScrollToEnd(QMC2_LOG_FRONTEND);
+	logScrollToEnd(QMC2_LOG_EMULATOR);
 }
 
 void MainWindow::setupStyle(QString styleName)
@@ -11678,7 +11742,7 @@ void MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked)
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailGeometry", tabWidgetSoftwareDetail->saveGeometry());
 			stackedWidgetSpecial->insertWidget(QMC2_SPECIAL_SOFTWARE_PAGE, tabWidgetSoftwareDetail);
 			stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
-			vSplitter->setSizes(vSplitterSizesSoftwareDetail);
+			adjustSplitter(vSplitter, tabWidgetLogsAndEmulators, vSplitterSizesSoftwareDetail, true);
 			lastPageSoftware = true;
 		}
 	} else {
@@ -11695,7 +11759,7 @@ void MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked)
 			tabWidgetSoftwareDetail->showNormal();
 			tabWidgetSoftwareDetail->raise();
 		}
-		vSplitter->setSizes(vSplitterSizes);
+		adjustSplitter(vSplitter, tabWidgetLogsAndEmulators, vSplitterSizes, false);
 		if ( lastPageSoftware ) {
 			switch ( tabWidgetLogsAndEmulators->currentIndex() ) {
 				case QMC2_FRONTENDLOG_INDEX:
@@ -11710,6 +11774,27 @@ void MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked)
 	}
 }
 
+void MainWindow::adjustSplitter(QSplitter *splitter, QTabWidget *tabWidget, QList<int> &sizes, bool enable)
+{
+	if ( tabWidget->count() > 0 || enable ) {
+		splitter->handle(1)->setEnabled(true);
+		if ( splitter->orientation() == Qt::Horizontal )
+			splitter->handle(1)->setFixedWidth(4);
+		else
+			splitter->handle(1)->setFixedHeight(4);
+		splitter->setSizes(sizes);
+		splitter->setHandleWidth(4);
+	} else {
+		splitter->handle(1)->setEnabled(false);
+		if ( splitter->orientation() == Qt::Horizontal )
+			splitter->handle(1)->setFixedWidth(0);
+		else
+			splitter->handle(1)->setFixedHeight(0);
+		splitter->setSizes(sizes);
+		splitter->setHandleWidth(1);
+	}
+}
+
 void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 {
 	switch ( index ) {
@@ -11719,7 +11804,7 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 				tabWidgetSoftwareDetail->hide();
 			if ( qmc2SoftwareNotesEditor )
 				qmc2SoftwareNotesEditor->hideTearOffMenus();
-			vSplitter->setSizes(vSplitterSizes);
+			adjustSplitter(vSplitter, tabWidgetLogsAndEmulators, vSplitterSizes, false);
 			if ( lastPageSoftware ) {
 				switch ( tabWidgetLogsAndEmulators->currentIndex() ) {
 					case QMC2_FRONTENDLOG_INDEX:
@@ -11748,26 +11833,26 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 							tabWidgetSoftwareDetail->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailGeometry").toByteArray());
 
 					}
-					vSplitter->setSizes(vSplitterSizes);
+					adjustSplitter(vSplitter, tabWidgetLogsAndEmulators, vSplitterSizes, false);
 					qmc2SoftwareList->detailUpdateTimer.start(qmc2UpdateDelay);
 					tabWidgetSoftwareDetail->showNormal();
 					tabWidgetSoftwareDetail->raise();
 					lastPageSoftware = false;
 				} else {
 					stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
-					vSplitter->setSizes(vSplitterSizesSoftwareDetail);
+					adjustSplitter(vSplitter, tabWidgetLogsAndEmulators, vSplitterSizesSoftwareDetail, true);
 					lastPageSoftware = true;
 				}
 			} else {
 				stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
-				vSplitter->setSizes(vSplitterSizesSoftwareDetail);
+				adjustSplitter(vSplitter, tabWidgetLogsAndEmulators, vSplitterSizesSoftwareDetail, true);
 				lastPageSoftware = true;
 			}
 			break;
 
 		default:
 			stackedWidgetSpecial->setCurrentIndex(index);
-			vSplitter->setSizes(vSplitterSizes);
+			adjustSplitter(vSplitter, tabWidgetLogsAndEmulators, vSplitterSizes, false);
 			lastPageSoftware = false;
 			break;
 	}
