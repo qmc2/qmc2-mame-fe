@@ -30,7 +30,6 @@
 #include "zip.h"
 #include "sevenzipfile.h"
 #include "softwarelist.h"
-#include "detailsetup.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -41,7 +40,6 @@ extern bool qmc2ReloadActive;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
 extern bool qmc2StopParser;
-extern DetailSetup *qmc2DetailSetup;
 extern SoftwareList *qmc2SoftwareList;
 extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;

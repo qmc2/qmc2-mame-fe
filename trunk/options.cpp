@@ -40,7 +40,7 @@
 #include "romalyzer.h"
 #include "romstatusexport.h"
 #include "docbrowser.h"
-#include "detailsetup.h"
+#include "componentsetup.h"
 #include "toolbarcustomizer.h"
 #include "paletteeditor.h"
 #include "iconlineedit.h"
@@ -145,10 +145,10 @@ extern QHash<QString, QKeySequence> qmc2QtKeyHash;
 extern QHash<QString, QByteArray *> qmc2GameInfoDB;
 extern MiniWebBrowser *qmc2MAWSLookup;
 extern MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup;
-extern DetailSetup *qmc2DetailSetup;
+extern ComponentSetup *qmc2ComponentSetup;
 extern ToolBarCustomizer *qmc2ToolBarCustomizer;
 extern PaletteEditor *qmc2PaletteEditor;
-extern QWidget *qmc2DetailSetupParent;
+extern QWidget *qmc2ComponentSetupParent;
 #if QMC2_JOYSTICK == 1
 extern QHash<QString, QString> qmc2JoystickFunctionHash;
 extern bool qmc2JoystickIsCalibrating;
@@ -948,9 +948,9 @@ void Options::apply()
 #endif
 #endif
 
-	if ( qmc2DetailSetup )
-		if ( qmc2DetailSetup->isVisible() )
-			QTimer::singleShot(0, qmc2DetailSetup, SLOT(adjustIconSizes()));
+	if ( qmc2ComponentSetup )
+		if ( qmc2ComponentSetup->isVisible() )
+			QTimer::singleShot(0, qmc2ComponentSetup, SLOT(adjustIconSizes()));
 
 	if ( qmc2ToolBarCustomizer )
 		if ( qmc2ToolBarCustomizer->isVisible() )
@@ -4563,22 +4563,14 @@ void Options::on_pushButtonResetShortcut_clicked()
 	}
 }
 
-void Options::on_pushButtonDetailSetup_clicked()
+void Options::on_pushButtonComponentSetup_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonDetailSetup_clicked()");
-#endif
-
-	qmc2DetailSetupParent = this;
+	qmc2ComponentSetupParent = this;
 	qmc2MainWindow->menuTabWidgetGameDetail_Setup_activated();
 }
 
 void Options::on_pushButtonCustomizeToolBar_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonCustomizeToolBar_clicked()");
-#endif
-
 	if ( !qmc2ToolBarCustomizer )
 		qmc2ToolBarCustomizer = new ToolBarCustomizer(this);
 
