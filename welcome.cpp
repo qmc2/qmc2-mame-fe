@@ -300,7 +300,6 @@ bool Welcome::checkConfig()
 		int osr = startupConfig->value("SVN_Revision").toInt();
 #if defined(QMC2_OS_MAC)
 		if ( QMC2_TEST_VERSION(omv, 47, osr, 6350) ) {
-			// changed meaning of Command+Q / Command+X no longer used
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Shortcuts/Ctrl+Q");
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Shortcuts/Ctrl+X");
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Shortcuts/Ctrl+Q");
@@ -344,6 +343,20 @@ bool Welcome::checkConfig()
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/SoftwareCollectionRebuilder/Geometry");
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "GUI/SaveLayout");
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "GUI/RestoreLayout");
+		}
+		if ( QMC2_TEST_VERSION(omv, 50, osr, 6566) ) {
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/ActiveDetails") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MAME + "Layout/Component2/ActiveFeatures", startupConfig->value(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/ActiveDetails").toStringList());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/ActiveDetails");
+			}
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/ActiveDetails") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "Layout/Component2/ActiveFeatures", startupConfig->value(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/ActiveDetails").toStringList());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/ActiveDetails");
+			}
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/ActiveDetails") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX_UME + "Layout/Component2/ActiveFeatures", startupConfig->value(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/ActiveDetails").toStringList());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/ActiveDetails");
+			}
 		}
 	}
 

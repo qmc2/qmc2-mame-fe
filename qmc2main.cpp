@@ -53,7 +53,7 @@
 #include "samplechecker.h"
 #include "romalyzer.h"
 #include "romstatusexport.h"
-#include "detailsetup.h"
+#include "componentsetup.h"
 #include "miniwebbrowser.h"
 #include "unzip.h"
 #include "sevenzipfile.h"
@@ -125,10 +125,10 @@ SampleChecker *qmc2SampleChecker = NULL;
 ROMAlyzer *qmc2SystemROMAlyzer = NULL;
 ROMAlyzer *qmc2SoftwareROMAlyzer = NULL;
 ROMStatusExporter *qmc2ROMStatusExporter = NULL;
-DetailSetup *qmc2DetailSetup = NULL;
+ComponentSetup *qmc2ComponentSetup = NULL;
 ToolBarCustomizer *qmc2ToolBarCustomizer = NULL;
 PaletteEditor *qmc2PaletteEditor = NULL;
-QWidget *qmc2DetailSetupParent = NULL;
+QWidget *qmc2ComponentSetupParent = NULL;
 SoftwareList *qmc2SoftwareList = NULL;
 SoftwareSnap *qmc2SoftwareSnap = NULL;
 SoftwareSnapshot *qmc2SoftwareSnapshot = NULL;
@@ -1807,46 +1807,38 @@ MainWindow::~MainWindow()
 
 void MainWindow::tabWidgetGameDetail_tabMoved(int from, int to)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::tabWidgetGameDetail_tabMoved(int from = %1, int to = %2)").arg(from).arg(to));
-#endif
+	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(1);
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component2"];
 
-	qmc2DetailSetup->loadDetail();
+	if ( !componentInfo )
+		return;
 
-	int fromDetail = qmc2DetailSetup->appliedDetailList[from];
-	qmc2DetailSetup->appliedDetailList.removeAt(from);
-	qmc2DetailSetup->appliedDetailList.insert(to, fromDetail);
-	fromDetail = qmc2DetailSetup->activeDetailList[from];
-	qmc2DetailSetup->activeDetailList.removeAt(from);
-	qmc2DetailSetup->activeDetailList.insert(to, fromDetail);
+	int fromFeature = componentInfo->appliedFeatureList()[from];
+	componentInfo->appliedFeatureList().removeAt(from);
+	componentInfo->appliedFeatureList().insert(to, fromFeature);
+	fromFeature = componentInfo->activeFeatureList()[from];
+	componentInfo->activeFeatureList().removeAt(from);
+	componentInfo->activeFeatureList().insert(to, fromFeature);
 
-	QListWidgetItem *takenItem = qmc2DetailSetup->listWidgetActiveDetails->takeItem(from);
+	QListWidgetItem *takenItem = qmc2ComponentSetup->listWidgetActiveFeatures->takeItem(from);
 	if ( takenItem )
-		qmc2DetailSetup->listWidgetActiveDetails->insertItem(to, takenItem);
+		qmc2ComponentSetup->listWidgetActiveFeatures->insertItem(to, takenItem);
 
 	QStringList activeIndexList;
-	for (int i = 0; i < qmc2DetailSetup->appliedDetailList.count(); i++)
-		activeIndexList << QString::number(qmc2DetailSetup->appliedDetailList[i]);
+	for (int i = 0; i < componentInfo->appliedFeatureList().count(); i++)
+		activeIndexList << QString::number(componentInfo->appliedFeatureList()[i]);
 
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ActiveDetails", activeIndexList);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Component2/ActiveFeatures", activeIndexList);
 }
 
 void MainWindow::on_actionPlayEmbedded_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlayEmbedded_triggered(bool)");
-#endif
-
 	qmc2StartEmbedded = true;
 	on_actionPlay_triggered();
 }
 
 void MainWindow::on_actionPlay_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlay_triggered(bool)");
-#endif
-
 	if ( qmc2EarlyReloadActive )
 		return;
 
@@ -1878,11 +1870,15 @@ void MainWindow::on_actionPlay_triggered(bool)
 	gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
 #endif
 
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component2"];
+	if ( !componentInfo )
+		return;
+
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	if ( qmc2DemoGame.isEmpty() ) {
 #endif
 		qmc2LastConfigItem = NULL;
-		on_tabWidgetGameDetail_currentChanged(qmc2DetailSetup->appliedDetailList.indexOf(QMC2_CONFIG_INDEX));
+		on_tabWidgetGameDetail_currentChanged(componentInfo->appliedFeatureList().indexOf(QMC2_CONFIG_INDEX));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	}
 #endif
@@ -2096,7 +2092,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 
 	QStringList softwareLists, softwareNames;
 
-	if ( qmc2SoftwareList && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_SOFTWARE_LIST_INDEX) ) {
+	if ( qmc2SoftwareList && tabWidgetGameDetail->currentIndex() == componentInfo->appliedFeatureList().indexOf(QMC2_SOFTWARE_LIST_INDEX) ) {
 		QStringList swlArgs = qmc2SoftwareList->arguments(&softwareLists, &softwareNames);
 		if ( swlArgs.count() > 1 ) { 
 			if ( swlArgs[0] == "-snapname" ) {
@@ -2111,7 +2107,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 			args << swlArgs;
 	}
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
-	else if ( qmc2MESSDeviceConfigurator && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_DEVICE_INDEX) ) {
+	else if ( qmc2MESSDeviceConfigurator && tabWidgetGameDetail->currentIndex() == componentInfo->appliedFeatureList().indexOf(QMC2_DEVICE_INDEX) ) {
 		switch ( qmc2MESSDeviceConfigurator->tabWidgetDeviceSetup->currentIndex() ) {
 			case QMC2_DEVSETUP_TAB_FILECHOOSER: {
 				QString instance = qmc2MESSDeviceConfigurator->comboBoxDeviceInstanceChooser->currentText();
@@ -4546,7 +4542,8 @@ void MainWindow::checkCurrentPlayedSelection()
 
 void MainWindow::softwareLoadInterrupted()
 {
-	on_tabWidgetGameDetail_currentChanged(qmc2DetailSetup->appliedDetailList.indexOf(QMC2_SOFTWARE_LIST_INDEX));
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component2"];
+	on_tabWidgetGameDetail_currentChanged(componentInfo->appliedFeatureList().indexOf(QMC2_SOFTWARE_LIST_INDEX));
 }
 
 void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
@@ -4558,7 +4555,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		return;
 	}
 
-	if ( qmc2CleaningUp || qmc2DetailSetup->appliedDetailList.isEmpty() || currentIndex == -1 )
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component2"];
+
+	if ( qmc2CleaningUp || componentInfo->appliedFeatureList().isEmpty() || currentIndex == -1 )
 		return;
 
 #ifdef QMC2_DEBUG
@@ -4573,7 +4572,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 #if QMC2_OPENGL == 1
 		// images painted through OpenGL need extra "clear()'s", otherwise garbage is displayed
-		switch ( qmc2DetailSetup->appliedDetailList[currentIndex] ) {
+		switch ( componentInfo->appliedFeatureList()[currentIndex] ) {
 			case QMC2_PREVIEW_INDEX: {
 				QPainter pPreview(qmc2Preview);
 				qmc2Preview->drawCenteredImage(0, &pPreview);
@@ -4682,7 +4681,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	}
 
 	// 'special widgets': switch back to the default page if applicable
-	switch ( qmc2DetailSetup->appliedDetailList[tabWidgetGameDetail->currentIndex()] )
+	switch ( componentInfo->appliedFeatureList()[tabWidgetGameDetail->currentIndex()] )
 	{
 		case QMC2_SOFTWARE_LIST_INDEX:
 			if ( qmc2SoftwareList && qmc2CurrentItem == qmc2LastSoftwareListItem )
@@ -4698,7 +4697,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 
 #if defined(QMC2_YOUTUBE_ENABLED)
 	// depending on the codec, an unused YT widget may still cause load on the system, so we destroy it when it's no longer required...
-	if ( qmc2DetailSetup->appliedDetailList[tabWidgetGameDetail->currentIndex()] != QMC2_YOUTUBE_INDEX ) {
+	if ( componentInfo->appliedFeatureList()[tabWidgetGameDetail->currentIndex()] != QMC2_YOUTUBE_INDEX ) {
 		if ( qmc2YouTubeWidget && qmc2CurrentItem != qmc2LastYouTubeItem ) {
 			qmc2YouTubeWidget->saveSettings();
 			qmc2YouTubeWidget->forcedExit = true;
@@ -4715,7 +4714,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	}
 #endif
 
-	if ( qmc2DetailSetup->appliedDetailList[tabWidgetGameDetail->currentIndex()] != QMC2_SYSTEM_NOTES_INDEX ) {
+	if ( componentInfo->appliedFeatureList()[tabWidgetGameDetail->currentIndex()] != QMC2_SYSTEM_NOTES_INDEX ) {
 		if ( qmc2SystemNotesEditor ) {
 			qmc2SystemNotesEditor->hideTearOffMenus();
 			qmc2SystemNotesEditor->hide();
@@ -4728,7 +4727,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	qmc2UseDefaultEmulator = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(gameName), tr("Default")).toString() == tr("Default");
 
 	int left, top, right, bottom;
-	switch ( qmc2DetailSetup->appliedDetailList[currentIndex] ) {
+	switch ( componentInfo->appliedFeatureList()[currentIndex] ) {
 #if defined(QMC2_YOUTUBE_ENABLED)
 		case QMC2_YOUTUBE_INDEX:
 			if ( qmc2YouTubeVideoInfoHash.isEmpty() )
@@ -4974,7 +4973,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 				qmc2YouTubeWidget->clearMessage();
 #endif
 			if ( qmc2CurrentItem != qmc2LastConfigItem ) {
-				QWidget *configWidget = qmc2DetailSetup->tabWidgetsMap[QMC2_CONFIG_INDEX];
+				QWidget *configWidget = componentInfo->widget(QMC2_CONFIG_INDEX);
 
 				configWidget->setUpdatesEnabled(false);
 
@@ -5188,7 +5187,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 			if ( qmc2CurrentItem != qmc2LastSystemNotesItem ) {
 				qmc2LastSystemNotesItem = qmc2CurrentItem;
 				if ( !qmc2SystemNotesEditor ) {
-					int tabIndex = tabWidgetGameDetail->indexOf(qmc2DetailSetup->tabWidgetsMap[QMC2_SYSTEM_NOTES_INDEX]);
+					int tabIndex = tabWidgetGameDetail->indexOf(componentInfo->widget(QMC2_SYSTEM_NOTES_INDEX));
 					tabWidgetGameDetail->setUpdatesEnabled(false);
 					tabWidgetGameDetail->removeTab(tabIndex);
 					qmc2SystemNotesEditor = new HtmlEditor("SystemNotes", true);
@@ -5421,7 +5420,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 			// if local emulator options exits and they are no longer needed, close & destroy them...
 			if ( qmc2EmulatorOptions ) {
-				QWidget *configWidget = qmc2DetailSetup->tabWidgetsMap[QMC2_CONFIG_INDEX];
+				QWidget *configWidget = componentInfo->widget(QMC2_CONFIG_INDEX);
 				QString selectedEmulator = comboBoxEmuSelector->currentText();
 				if ( selectedEmulator == tr("Default") || selectedEmulator.isEmpty() )
 					qmc2Config->remove(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator");
@@ -7213,10 +7212,10 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		qmc2ROMStatusExporter->close();
 		delete qmc2ROMStatusExporter;
 	}
-	if ( qmc2DetailSetup ) {
+	if ( qmc2ComponentSetup ) {
 		log(QMC2_LOG_FRONTEND, tr("destroying detail setup"));
-		qmc2DetailSetup->close();
-		delete qmc2DetailSetup;
+		qmc2ComponentSetup->close();
+		delete qmc2ComponentSetup;
 	}
 	if ( qmc2ToolBarCustomizer ) {
 		log(QMC2_LOG_FRONTEND, tr("destroying tool-bar customization"));
@@ -7425,7 +7424,9 @@ void MainWindow::init()
 	qmc2EarlyStartup = false;
 
 	// make sure the current detail's tab header is shown
-	QTimer::singleShot(0, qmc2DetailSetup, SLOT(saveDetail()));
+	qmc2ComponentSetup->saveComponent("Component1");
+	qmc2ComponentSetup->saveComponent("Component2");
+	qmc2ComponentSetup->saveComponent("Component3");
 
 	// same for all other tab widgets
 	QTimer::singleShot(0, this, SLOT(updateTabWidgets()));
@@ -9045,22 +9046,22 @@ void MainWindow::menuTabWidgetGameDetail_Setup_activated()
 	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGameDetail_Setup_activated()"));
 #endif
 
-	if ( !qmc2DetailSetup )
+	if ( !qmc2ComponentSetup )
 		return;
  
-	qmc2DetailSetup->adjustIconSizes();
+	qmc2ComponentSetup->adjustIconSizes();
 
 	// reparent detail setup dialog to the widget it was called from
-	qmc2DetailSetup->setParent(qmc2DetailSetupParent ? qmc2DetailSetupParent : this);
-	qmc2DetailSetup->setWindowFlags(Qt::Dialog);
-	qmc2DetailSetupParent = NULL;
+	qmc2ComponentSetup->setParent(qmc2ComponentSetupParent ? qmc2ComponentSetupParent : this);
+	qmc2ComponentSetup->setWindowFlags(Qt::Dialog);
+	qmc2ComponentSetupParent = NULL;
 
-	if ( qmc2DetailSetup->isHidden() )
-		qmc2DetailSetup->show();
-	else if ( qmc2DetailSetup->isMinimized() )
-		qmc2DetailSetup->showNormal();
+	if ( qmc2ComponentSetup->isHidden() )
+		qmc2ComponentSetup->show();
+	else if ( qmc2ComponentSetup->isMinimized() )
+		qmc2ComponentSetup->showNormal();
 
-	QTimer::singleShot(0, qmc2DetailSetup, SLOT(raise()));
+	QTimer::singleShot(0, qmc2ComponentSetup, SLOT(raise()));
 }
 
 void MainWindow::on_tabWidgetGameDetail_customContextMenuRequested(const QPoint &p)
@@ -12723,8 +12724,10 @@ int main(int argc, char *argv[])
 	qmc2MainWindow = new MainWindow(0);
 
 	// prepare & restore game/machine detail setup
-	qmc2DetailSetup = new DetailSetup(qmc2MainWindow);
-	qmc2DetailSetup->saveDetail();
+	qmc2ComponentSetup = new ComponentSetup(qmc2MainWindow);
+	qmc2ComponentSetup->saveComponent("Component1");
+	qmc2ComponentSetup->saveComponent("Component2");
+	qmc2ComponentSetup->saveComponent("Component3");
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2MainWindow->tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
 #elif defined(QMC2_EMUTYPE_MESS)

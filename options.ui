@@ -183,12 +183,12 @@
                  <item row="5" column="3" colspan="4">
                   <layout class="QHBoxLayout" name="horizontalLayout_4">
                    <item>
-                    <widget class="QPushButton" name="pushButtonDetailSetup">
+                    <widget class="QPushButton" name="pushButtonComponentSetup">
                      <property name="toolTip">
-                      <string>Open the detail setup dialog</string>
+                      <string>Open the component setup dialog</string>
                      </property>
                      <property name="text">
-                      <string>Detail setup...</string>
+                      <string>Component setup...</string>
                      </property>
                      <property name="autoDefault">
                       <bool>false</bool>
@@ -872,7 +872,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>348</width>
-                <height>810</height>
+                <height>813</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
@@ -2936,7 +2936,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>499</width>
-                <height>245</height>
+                <height>248</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
@@ -4712,7 +4712,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>429</width>
-                <height>518</height>
+                <height>521</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_23">
@@ -5912,7 +5912,7 @@
   <tabstop>spinBoxFrontendLogSize</tabstop>
   <tabstop>spinBoxEmulatorLogSize</tabstop>
   <tabstop>spinBoxPixmapCacheSize</tabstop>
-  <tabstop>pushButtonDetailSetup</tabstop>
+  <tabstop>pushButtonComponentSetup</tabstop>
   <tabstop>pushButtonCustomizeToolBar</tabstop>
   <tabstop>checkBoxSaveGameSelection</tabstop>
   <tabstop>checkBoxRestoreGameSelection</tabstop>
