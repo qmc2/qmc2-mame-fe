@@ -573,7 +573,7 @@ void ComponentSetup::on_pushButtonFeatureDown_clicked()
 	}
 }
 
-void ComponentSetup::on_comboBoxComponents_currentChanged(int index)
+void ComponentSetup::on_comboBoxComponents_currentIndexChanged(int index)
 {
 	switch ( index ) {
 		case 0:
