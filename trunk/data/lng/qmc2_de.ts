@@ -2864,43 +2864,93 @@ p, li { white-space: pre-wrap; }
         <translation>Logo Bild</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="490"/>
+        <location filename="../../componentsetup.cpp" line="323"/>
+        <source>&amp;Front end log</source>
+        <translation>&amp;Frontend Log</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="324"/>
+        <source>Front end log</source>
+        <translation>Frontend Log</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="327"/>
+        <source>Emulator &amp;log</source>
+        <translation>Emulator &amp;Log</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="328"/>
+        <source>Emulator log</source>
+        <translation>Emulator Log</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="331"/>
+        <source>E&amp;mulator control</source>
+        <translation>E&amp;mulator Kontrolle</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="332"/>
+        <source>Emulator control panel</source>
+        <translation>Emulator Kontrolle</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="336"/>
+        <source>&amp;Audio player</source>
+        <translation>&amp;Audio Player</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="337"/>
+        <source>Audio player</source>
+        <translation>Audio Player</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="341"/>
+        <source>Do&amp;wnloads</source>
+        <translation>Dow&amp;nloads</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="342"/>
+        <source>Downloads</source>
+        <translation>Downloads</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="517"/>
         <source>MAWS configuration (1/2)</source>
         <translation>MAWS Konfiguration (1/2)</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="491"/>
+        <location filename="../../componentsetup.cpp" line="518"/>
         <source>MAWS URL pattern (use %1 as placeholder for game ID):</source>
         <translation>MAWS URL Schablone (%1 als Platzhalter für Spiele-ID verwenden):</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="500"/>
-        <location filename="../../componentsetup.cpp" line="504"/>
+        <location filename="../../componentsetup.cpp" line="527"/>
+        <location filename="../../componentsetup.cpp" line="531"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="500"/>
+        <location filename="../../componentsetup.cpp" line="527"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="502"/>
+        <location filename="../../componentsetup.cpp" line="529"/>
         <source>MAWS configuration (2/2)</source>
         <translation>MAWS Konfiguration (2/2)</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="502"/>
+        <location filename="../../componentsetup.cpp" line="529"/>
         <source>Enable MAWS quick download?</source>
         <translation>MAWS Schnell-Download aktivieren?</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="522"/>
+        <location filename="../../componentsetup.cpp" line="549"/>
         <source>Choose the YouTube cache directory</source>
         <translation>YouTube Cache Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="532"/>
+        <location filename="../../componentsetup.cpp" line="559"/>
         <source>FATAL: can&apos;t create new YouTube cache directory, path = %1</source>
         <translation>FATAL: kann neues YouTube Cache Verzeichnis nicht anlegen, Pfad = %1</translation>
     </message>

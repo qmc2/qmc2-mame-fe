@@ -2883,43 +2883,93 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Imagen de logo</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="490"/>
+        <location filename="../../componentsetup.cpp" line="323"/>
+        <source>&amp;Front end log</source>
+        <translation type="unfinished">Log inter&amp;faz</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="324"/>
+        <source>Front end log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="327"/>
+        <source>Emulator &amp;log</source>
+        <translation type="unfinished">&amp;Log emulador</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="328"/>
+        <source>Emulator log</source>
+        <translation type="unfinished">Log del emulador</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="331"/>
+        <source>E&amp;mulator control</source>
+        <translation type="unfinished">Control e&amp;mulador</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="332"/>
+        <source>Emulator control panel</source>
+        <translation type="unfinished">Panel de control del emulador</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="336"/>
+        <source>&amp;Audio player</source>
+        <translation type="unfinished">&amp;Reproductor de sonido</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="337"/>
+        <source>Audio player</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="341"/>
+        <source>Do&amp;wnloads</source>
+        <translation type="unfinished">Desca&amp;rgas</translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="342"/>
+        <source>Downloads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../componentsetup.cpp" line="517"/>
         <source>MAWS configuration (1/2)</source>
         <translation type="unfinished">Configuración MAWS (1/2)</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="491"/>
+        <location filename="../../componentsetup.cpp" line="518"/>
         <source>MAWS URL pattern (use %1 as placeholder for game ID):</source>
         <translation type="unfinished">Formato de la URL de MAWS (utiliza %1 de comodin para la ID del juego):</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="500"/>
-        <location filename="../../componentsetup.cpp" line="504"/>
+        <location filename="../../componentsetup.cpp" line="527"/>
+        <location filename="../../componentsetup.cpp" line="531"/>
         <source>Yes</source>
         <translation type="unfinished">Sí</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="500"/>
+        <location filename="../../componentsetup.cpp" line="527"/>
         <source>No</source>
         <translation type="unfinished">No</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="502"/>
+        <location filename="../../componentsetup.cpp" line="529"/>
         <source>MAWS configuration (2/2)</source>
         <translation type="unfinished">Configuración MAWS (2/2)</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="502"/>
+        <location filename="../../componentsetup.cpp" line="529"/>
         <source>Enable MAWS quick download?</source>
         <translation type="unfinished">¿Activar la descarga rápida de MAWS?</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="522"/>
+        <location filename="../../componentsetup.cpp" line="549"/>
         <source>Choose the YouTube cache directory</source>
         <translation type="unfinished">Seleccionar el directorio de cache de YouTube</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="532"/>
+        <location filename="../../componentsetup.cpp" line="559"/>
         <source>FATAL: can&apos;t create new YouTube cache directory, path = %1</source>
         <translation type="unfinished">ERROR: no se puede crear el nuevo directorio de cache de YouTube, ruta = %1</translation>
     </message>

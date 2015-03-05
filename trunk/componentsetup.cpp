@@ -27,7 +27,7 @@ ComponentSetup::ComponentSetup(QWidget *parent)
 
 	// FIXME
 	comboBoxComponents->setCurrentIndex(1);
-	comboBoxComponents->setEnabled(false);
+	//comboBoxComponents->setEnabled(false);
 }
 
 ComponentSetup::~ComponentSetup()
@@ -318,10 +318,37 @@ ComponentInfo *ComponentSetup::initComponent2()
 
 ComponentInfo *ComponentSetup::initComponent3()
 {
-	// FIXME
-	m_componentToWidgetHash["Component3"] = qmc2MainWindow->tabWidgetLogsAndEmulators;
+	ComponentInfo *componentInfo = new ComponentInfo();
 
-	return 0;
+	componentInfo->setShortTitle(QMC2_FRONTENDLOG_INDEX, tr("&Front end log"));
+	componentInfo->setLongTitle(QMC2_FRONTENDLOG_INDEX, tr("Front end log"));
+	componentInfo->setIcon(QMC2_FRONTENDLOG_INDEX, QIcon(QString::fromUtf8(":/data/img/notes.png")));
+	componentInfo->setWidget(QMC2_FRONTENDLOG_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_FRONTENDLOG_INDEX));
+	componentInfo->setShortTitle(QMC2_EMULATORLOG_INDEX, tr("Emulator &log"));
+	componentInfo->setLongTitle(QMC2_EMULATORLOG_INDEX, tr("Emulator log"));
+	componentInfo->setIcon(QMC2_EMULATORLOG_INDEX, QIcon(QString::fromUtf8(":/data/img/notes.png")));
+	componentInfo->setWidget(QMC2_EMULATORLOG_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_EMULATORLOG_INDEX));
+	componentInfo->setShortTitle(QMC2_EMULATORCONTROL_INDEX, tr("E&mulator control"));
+	componentInfo->setLongTitle(QMC2_EMULATORCONTROL_INDEX, tr("Emulator control panel"));
+	componentInfo->setIcon(QMC2_EMULATORCONTROL_INDEX, QIcon(QString::fromUtf8(":/data/img/process.png")));
+	componentInfo->setWidget(QMC2_EMULATORCONTROL_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_EMULATORCONTROL_INDEX));
+#if QMC2_USE_PHONON_API
+	componentInfo->setShortTitle(QMC2_AUDIOPLAYER_INDEX, tr("&Audio player"));
+	componentInfo->setLongTitle(QMC2_AUDIOPLAYER_INDEX, tr("Audio player"));
+	componentInfo->setIcon(QMC2_AUDIOPLAYER_INDEX, QIcon(QString::fromUtf8(":/data/img/music.png")));
+	componentInfo->setWidget(QMC2_AUDIOPLAYER_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_AUDIOPLAYER_INDEX));
+#endif
+	componentInfo->setShortTitle(QMC2_DOWNLOADS_INDEX, tr("Do&wnloads"));
+	componentInfo->setLongTitle(QMC2_DOWNLOADS_INDEX, tr("Downloads"));
+	componentInfo->setIcon(QMC2_DOWNLOADS_INDEX, QIcon(QString::fromUtf8(":/data/img/download.png")));
+	componentInfo->setWidget(QMC2_DOWNLOADS_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_DOWNLOADS_INDEX));
+#if QMC2_USE_PHONON_API
+	componentInfo->availableFeatureList() << QMC2_FRONTENDLOG_INDEX << QMC2_EMULATORLOG_INDEX << QMC2_EMULATORCONTROL_INDEX << QMC2_AUDIOPLAYER_INDEX << QMC2_DOWNLOADS_INDEX;
+#else
+	componentInfo->availableFeatureList() << QMC2_FRONTENDLOG_INDEX << QMC2_EMULATORLOG_INDEX << QMC2_EMULATORCONTROL_INDEX << QMC2_DOWNLOADS_INDEX;
+#endif
+	m_componentToWidgetHash["Component3"] = qmc2MainWindow->tabWidgetLogsAndEmulators;
+	return componentInfo;
 }
 
 void ComponentSetup::loadComponent(QString name)
