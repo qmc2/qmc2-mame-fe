@@ -80,7 +80,7 @@ class ComponentSetup : public QDialog, public Ui::ComponentSetup
 		void on_pushButtonOk_clicked() { saveComponent(); }
 		void on_pushButtonApply_clicked() { saveComponent(); }
 		void on_pushButtonCancel_clicked() { loadComponent(); }
-		void on_comboBoxComponents_currentChanged(int index);
+		void on_comboBoxComponents_currentIndexChanged(int index);
 
 	protected:
 		void showEvent(QShowEvent *);
