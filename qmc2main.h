@@ -405,7 +405,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		// other
 		void on_tabWidgetGameDetail_currentChanged(int);
 		void retry_tabWidgetGameDetail_currentChanged() { on_tabWidgetGameDetail_currentChanged(retry_tabWidgetGameDetail_currentIndex); };
+		void tabWidgetGamelist_tabMoved(int, int);
 		void tabWidgetGameDetail_tabMoved(int, int);
+		void tabWidgetLogsAndEmulators_tabMoved(int, int);
 		void on_tabWidgetGamelist_currentChanged(int);
 		void on_tabWidgetLogsAndEmulators_currentChanged(int);
 		void tabWidgetLogsAndEmulators_updateCurrent() { on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex()); };
@@ -545,6 +547,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
 		// float toggle button callbacks for 'special' widgets
 		void floatToggleButtonSoftwareDetail_toggled(bool);
+		void adjustSplitter(QSplitter *, QTabWidget *, QList<int> &, bool);
 		void stackedWidgetSpecial_setCurrentIndex(int);
 
 		// callbacks for list view header context menu requests

@@ -25,9 +25,11 @@ ComponentSetup::ComponentSetup(QWidget *parent)
 	hide();
 	adjustSize();
 
-	// FIXME
+	// FIXME (this disables item 0)
 	comboBoxComponents->setCurrentIndex(1);
-	comboBoxComponents->setEnabled(false);
+	const QStandardItemModel *model = qobject_cast<const QStandardItemModel*>(comboBoxComponents->model());
+	QStandardItem *item = model->item(0);
+	item->setFlags(item->flags() & ~(Qt::ItemIsSelectable|Qt::ItemIsEnabled));
 }
 
 ComponentSetup::~ComponentSetup()
@@ -80,6 +82,8 @@ ComponentInfo *ComponentSetup::initComponent1()
 		}
 	}
 	m_componentToWidgetHash["Component1"] = qmc2MainWindow->tabWidgetGamelist;
+	m_componentToSplitterHash["Component1"] = qmc2MainWindow->hSplitter;
+	m_componentToSplitterIndexHash["Component1"] = 0;
 	return componentInfo;
 }
 
@@ -313,6 +317,8 @@ ComponentInfo *ComponentSetup::initComponent2()
 		}
 	}
 	m_componentToWidgetHash["Component2"] = qmc2MainWindow->tabWidgetGameDetail;
+	m_componentToSplitterHash["Component2"] = qmc2MainWindow->vSplitter;
+	m_componentToSplitterIndexHash["Component2"] = 0;
 	return componentInfo;
 }
 
@@ -323,31 +329,44 @@ ComponentInfo *ComponentSetup::initComponent3()
 	componentInfo->setShortTitle(QMC2_FRONTENDLOG_INDEX, tr("&Front end log"));
 	componentInfo->setLongTitle(QMC2_FRONTENDLOG_INDEX, tr("Front end log"));
 	componentInfo->setIcon(QMC2_FRONTENDLOG_INDEX, QIcon(QString::fromUtf8(":/data/img/notes.png")));
-	componentInfo->setWidget(QMC2_FRONTENDLOG_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_FRONTENDLOG_INDEX));
+	componentInfo->setWidget(QMC2_FRONTENDLOG_INDEX, qmc2MainWindow->tabWidgetLogsAndEmulators->widget(QMC2_FRONTENDLOG_INDEX));
 	componentInfo->setShortTitle(QMC2_EMULATORLOG_INDEX, tr("Emulator &log"));
 	componentInfo->setLongTitle(QMC2_EMULATORLOG_INDEX, tr("Emulator log"));
 	componentInfo->setIcon(QMC2_EMULATORLOG_INDEX, QIcon(QString::fromUtf8(":/data/img/notes.png")));
-	componentInfo->setWidget(QMC2_EMULATORLOG_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_EMULATORLOG_INDEX));
+	componentInfo->setWidget(QMC2_EMULATORLOG_INDEX, qmc2MainWindow->tabWidgetLogsAndEmulators->widget(QMC2_EMULATORLOG_INDEX));
 	componentInfo->setShortTitle(QMC2_EMULATORCONTROL_INDEX, tr("E&mulator control"));
 	componentInfo->setLongTitle(QMC2_EMULATORCONTROL_INDEX, tr("Emulator control panel"));
 	componentInfo->setIcon(QMC2_EMULATORCONTROL_INDEX, QIcon(QString::fromUtf8(":/data/img/process.png")));
-	componentInfo->setWidget(QMC2_EMULATORCONTROL_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_EMULATORCONTROL_INDEX));
+	componentInfo->setWidget(QMC2_EMULATORCONTROL_INDEX, qmc2MainWindow->tabWidgetLogsAndEmulators->widget(QMC2_EMULATORCONTROL_INDEX));
 #if QMC2_USE_PHONON_API
 	componentInfo->setShortTitle(QMC2_AUDIOPLAYER_INDEX, tr("&Audio player"));
 	componentInfo->setLongTitle(QMC2_AUDIOPLAYER_INDEX, tr("Audio player"));
 	componentInfo->setIcon(QMC2_AUDIOPLAYER_INDEX, QIcon(QString::fromUtf8(":/data/img/music.png")));
-	componentInfo->setWidget(QMC2_AUDIOPLAYER_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_AUDIOPLAYER_INDEX));
+	componentInfo->setWidget(QMC2_AUDIOPLAYER_INDEX, qmc2MainWindow->tabWidgetLogsAndEmulators->widget(QMC2_AUDIOPLAYER_INDEX));
 #endif
 	componentInfo->setShortTitle(QMC2_DOWNLOADS_INDEX, tr("Do&wnloads"));
 	componentInfo->setLongTitle(QMC2_DOWNLOADS_INDEX, tr("Downloads"));
 	componentInfo->setIcon(QMC2_DOWNLOADS_INDEX, QIcon(QString::fromUtf8(":/data/img/download.png")));
-	componentInfo->setWidget(QMC2_DOWNLOADS_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_DOWNLOADS_INDEX));
+	componentInfo->setWidget(QMC2_DOWNLOADS_INDEX, qmc2MainWindow->tabWidgetLogsAndEmulators->widget(QMC2_DOWNLOADS_INDEX));
 #if QMC2_USE_PHONON_API
 	componentInfo->availableFeatureList() << QMC2_FRONTENDLOG_INDEX << QMC2_EMULATORLOG_INDEX << QMC2_EMULATORCONTROL_INDEX << QMC2_AUDIOPLAYER_INDEX << QMC2_DOWNLOADS_INDEX;
 #else
 	componentInfo->availableFeatureList() << QMC2_FRONTENDLOG_INDEX << QMC2_EMULATORLOG_INDEX << QMC2_EMULATORCONTROL_INDEX << QMC2_DOWNLOADS_INDEX;
 #endif
+	if ( !qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/Component3/ActiveFeatures") ) {
+		foreach (int index, componentInfo->availableFeatureList())
+			componentInfo->activeFeatureList() << index;
+	} else {
+		QStringList activeIndexList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Component3/ActiveFeatures").toStringList();
+		foreach (QString sIndex, activeIndexList) {
+			int index = sIndex.toInt();
+			if ( componentInfo->availableFeatureList().contains(index) )
+				componentInfo->activeFeatureList() << index;
+		}
+	}
 	m_componentToWidgetHash["Component3"] = qmc2MainWindow->tabWidgetLogsAndEmulators;
+	m_componentToSplitterHash["Component3"] = qmc2MainWindow->vSplitter;
+	m_componentToSplitterIndexHash["Component3"] = 1;
 	return componentInfo;
 }
 
@@ -355,21 +374,16 @@ void ComponentSetup::loadComponent(QString name)
 {
 	listWidgetAvailableFeatures->clear();
 	listWidgetActiveFeatures->clear();
-
 	if ( name.isEmpty() )
 		name = m_components[comboBoxComponents->currentIndex()];
-
 	ComponentInfo *componentInfo = componentInfoHash()[name];
-
 	if ( !componentInfo )
 		return;
-
 	foreach (int index, componentInfo->availableFeatureList()) {
 		QListWidgetItem *item = new QListWidgetItem(componentInfo->icon(index), componentInfo->longTitle(index));
 		item->setData(Qt::UserRole, index);
 		listWidgetAvailableFeatures->addItem(item);
 	}
-
 	foreach (int index, componentInfo->activeFeatureList()) {
 		QListWidgetItem *item = new QListWidgetItem(componentInfo->icon(index), componentInfo->longTitle(index));
 		item->setData(Qt::UserRole, index);
@@ -381,21 +395,17 @@ void ComponentSetup::saveComponent(QString name)
 {
 	if ( name.isEmpty() )
 		name = m_components[comboBoxComponents->currentIndex()];
-
 	ComponentInfo *componentInfo = componentInfoHash()[name];
-
-	if ( !componentInfo )
-		return;
-
 	QTabWidget *tabWidget = m_componentToWidgetHash[name];
-
-	if ( !tabWidget )
-		return;
-
-	int oldIndex = componentInfo->appliedFeatureList()[tabWidget->currentIndex()];
+	QSplitter *splitter = m_componentToSplitterHash[name];
+	int widgetIndex = m_componentToSplitterIndexHash[name];
+	int oldIndex;
+	if ( tabWidget->count() > 0 )
+		oldIndex = componentInfo->appliedFeatureList()[tabWidget->currentIndex()];
+	else
+		oldIndex = 0;
 	tabWidget->clear();
 	componentInfo->appliedFeatureList().clear();
-
 	QStringList activeIndexList;
 	foreach (int index, componentInfo->activeFeatureList()) {
 		if ( componentInfo->availableFeatureList().contains(index) ) {
@@ -404,9 +414,35 @@ void ComponentSetup::saveComponent(QString name)
 			tabWidget->addTab(componentInfo->widget(index), componentInfo->icon(index), componentInfo->shortTitle(index));
 		}
 	}
-
+	if ( tabWidget->count() > 0 ) {
+		splitter->handle(1)->setEnabled(true);
+		if ( splitter->orientation() == Qt::Horizontal )
+			splitter->handle(1)->setFixedWidth(4);
+		else
+			splitter->handle(1)->setFixedHeight(4);
+		splitter->setHandleWidth(4);
+	} else {
+		splitter->handle(1)->setEnabled(false);
+		QList<int> maximizedSizes;
+		if ( splitter->orientation() == Qt::Horizontal ) {
+			if ( widgetIndex == 0 )
+				maximizedSizes << 0 << qmc2MainWindow->desktopGeometry.width();
+			else
+				maximizedSizes << qmc2MainWindow->desktopGeometry.width() << 0;
+			qmc2MainWindow->hSplitterSizes = maximizedSizes;
+			splitter->handle(1)->setFixedWidth(0);
+		} else {
+			if ( widgetIndex == 0 )
+				maximizedSizes << 0 << qmc2MainWindow->desktopGeometry.height();
+			else
+				maximizedSizes << qmc2MainWindow->desktopGeometry.height() << 0;
+			qmc2MainWindow->vSplitterSizes = maximizedSizes;
+			splitter->handle(1)->setFixedHeight(0);
+		}
+		splitter->setSizes(maximizedSizes);
+		splitter->setHandleWidth(1);
+	}
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + name + "/ActiveFeatures", activeIndexList);
-
 	if ( componentInfo->appliedFeatureList().contains(oldIndex) )
 		tabWidget->setCurrentIndex(componentInfo->appliedFeatureList().indexOf(oldIndex));
 }
@@ -415,7 +451,6 @@ void ComponentSetup::adjustIconSizes()
 {
 	QFontMetrics fm(qApp->font());
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
-
 	pushButtonConfigureFeature->setIconSize(iconSize);
 	pushButtonActivateFeatures->setIconSize(iconSize);
 	pushButtonDeactivateFeatures->setIconSize(iconSize);
@@ -431,10 +466,8 @@ void ComponentSetup::adjustIconSizes()
 void ComponentSetup::on_listWidgetAvailableFeatures_itemSelectionChanged()
 {
 	ComponentInfo *componentInfo = componentInfoHash()[m_components[comboBoxComponents->currentIndex()]];
-
 	if ( !componentInfo )
 		return;
-
 	if ( listWidgetAvailableFeatures->selectedItems().count() > 0 ) {
 		pushButtonActivateFeatures->setEnabled(true);
 		if ( listWidgetAvailableFeatures->selectedItems().count() == 1 ) {
@@ -469,10 +502,8 @@ void ComponentSetup::on_listWidgetActiveFeatures_itemSelectionChanged()
 void ComponentSetup::on_pushButtonActivateFeatures_clicked()
 {
 	ComponentInfo *componentInfo = componentInfoHash()[m_components[comboBoxComponents->currentIndex()]];
-
 	if ( !componentInfo )
 		return;
-
 	foreach (QListWidgetItem *item, listWidgetAvailableFeatures->selectedItems()) {
 		if ( item ) {
 			QList<QListWidgetItem *> il = listWidgetActiveFeatures->findItems(item->text(), Qt::MatchExactly); 
@@ -492,10 +523,8 @@ void ComponentSetup::on_pushButtonActivateFeatures_clicked()
 void ComponentSetup::on_pushButtonConfigureFeature_clicked()
 {
 	ComponentInfo *componentInfo = componentInfoHash()[m_components[comboBoxComponents->currentIndex()]];
-
 	if ( !componentInfo )
 		return;
-
 	// FIXME (supports only component 2 ATM)
 	if ( listWidgetAvailableFeatures->selectedItems().count() == 1 ) {
 		int pageIndex = componentInfo->longTitleHash().key(listWidgetAvailableFeatures->selectedItems()[0]->text());
@@ -573,10 +602,8 @@ void ComponentSetup::on_pushButtonConfigureFeature_clicked()
 void ComponentSetup::on_pushButtonDeactivateFeatures_clicked()
 {
 	ComponentInfo *componentInfo = componentInfoHash()[m_components[comboBoxComponents->currentIndex()]];
-
 	if ( !componentInfo )
 		return;
-
 	foreach (QListWidgetItem *item, listWidgetActiveFeatures->selectedItems()) {
 		if ( item ) {
 			if ( !componentInfo->removable(item->data(Qt::UserRole).toInt()) )
@@ -594,10 +621,8 @@ void ComponentSetup::on_pushButtonDeactivateFeatures_clicked()
 void ComponentSetup::on_pushButtonFeatureUp_clicked()
 {
 	ComponentInfo *componentInfo = componentInfoHash()[m_components[comboBoxComponents->currentIndex()]];
-
 	if ( !componentInfo )
 		return;
-
 	foreach (QListWidgetItem *item, listWidgetActiveFeatures->selectedItems()) {
 		if ( item ) {
 			int row = listWidgetActiveFeatures->row(item);
@@ -616,10 +641,8 @@ void ComponentSetup::on_pushButtonFeatureUp_clicked()
 void ComponentSetup::on_pushButtonFeatureDown_clicked()
 {
 	ComponentInfo *componentInfo = componentInfoHash()[m_components[comboBoxComponents->currentIndex()]];
-
 	if ( !componentInfo )
 		return;
-
 	foreach (QListWidgetItem *item, listWidgetActiveFeatures->selectedItems()) {
 		if ( item ) {
 			int row = listWidgetActiveFeatures->row(item);

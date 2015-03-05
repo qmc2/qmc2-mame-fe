@@ -7,6 +7,8 @@
 #include <QIcon>
 #include <QString>
 #include <QStringList>
+#include <QSplitter>
+
 #include "ui_componentsetup.h"
 
 class ComponentInfo
@@ -16,22 +18,18 @@ class ComponentInfo
 
 		void setShortTitle(int index, QString title) { m_shortTitleHash[index] = title; }
 		QString shortTitle(int index) { return m_shortTitleHash[index]; }
-		int shortTitleCount() { return m_shortTitleHash.count(); }
 		QHash<int, QString> &shortTitleHash() { return m_shortTitleHash; }
 
 		void setLongTitle(int index, QString title) { m_longTitleHash[index] = title; }
 		QString longTitle(int index) { return m_longTitleHash[index]; }
-		int longTitleCount() { return m_longTitleHash.count(); }
 		QHash<int, QString> &longTitleHash() { return m_longTitleHash; }
 
 		void setIcon(int index, QIcon icon) { m_iconHash[index] = icon; }
 		QIcon icon(int index) { return m_iconHash[index]; }
-		int iconCount() { return m_iconHash.count(); }
 		QHash<int, QIcon> &iconHash() { return m_iconHash; }
 
 		void setWidget(int index, QWidget *widget) { m_widgetHash[index] = widget; }
 		QWidget *widget(int index) { return m_widgetHash[index]; }
-		int widgetCount() { return m_widgetHash.count(); }
 		QHash<int, QWidget *> &widgetHash() { return m_widgetHash; }
 
 		void setRemovable(int index, bool removable) { m_removableHash[index] = removable; }
@@ -88,6 +86,8 @@ class ComponentSetup : public QDialog, public Ui::ComponentSetup
 	private:
 		QHash<QString, ComponentInfo *> m_componentInfoHash;
 		QHash<QString, QTabWidget *> m_componentToWidgetHash;
+		QHash<QString, QSplitter *> m_componentToSplitterHash;
+		QHash<QString, int> m_componentToSplitterIndexHash;
 		QStringList m_components;
 
 		ComponentInfo *initComponent1();
