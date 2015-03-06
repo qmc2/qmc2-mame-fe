@@ -609,7 +609,7 @@ void Gamelist::load()
 	}
 	qmc2MainWindow->labelGamelistStatus->setText(status());
 
-	if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_GAMELIST_INDEX ) {
+	if ( qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabGamelist) == qmc2MainWindow->tabWidgetGamelist->currentIndex() ) {
 		switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 			case QMC2_VIEW_CATEGORY_INDEX:
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(viewByCategory()));
@@ -915,7 +915,7 @@ void Gamelist::load()
 		qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
 		qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
 
-		if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_GAMELIST_INDEX ) {
+		if ( qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabGamelist) == qmc2MainWindow->tabWidgetGamelist->currentIndex() ) {
 			if ( qApp->focusWidget() != qmc2MainWindow->comboBoxToolbarSearch ) {
 				switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 					case QMC2_VIEW_DETAIL_INDEX:
@@ -2562,7 +2562,7 @@ void Gamelist::loadFavorites()
 
 	qmc2MainWindow->listWidgetFavorites->sortItems();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading favorites)"));
-	if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_FAVORITES_INDEX )
+	if ( qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabFavorites) == qmc2MainWindow->tabWidgetGamelist->currentIndex() )
 		QTimer::singleShot(50, qmc2MainWindow, SLOT(checkCurrentFavoritesSelection()));
 	else
 		qmc2MainWindow->listWidgetFavorites->setCurrentIndex(QModelIndex());
@@ -2617,7 +2617,7 @@ void Gamelist::loadPlayHistory()
 	}
 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading play history)"));
-	if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_PLAYED_INDEX )
+	if ( qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabPlayed) == qmc2MainWindow->tabWidgetGamelist->currentIndex() )
 		QTimer::singleShot(50, qmc2MainWindow, SLOT(checkCurrentPlayedSelection()));
 	else
 		qmc2MainWindow->listWidgetPlayed->setCurrentIndex(QModelIndex());
@@ -2718,7 +2718,7 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
 	qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
 
-	if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_GAMELIST_INDEX ) {
+	if ( qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabGamelist) == qmc2MainWindow->tabWidgetGamelist->currentIndex() ) {
 		if ( qApp->focusWidget() != qmc2MainWindow->comboBoxToolbarSearch ) {
 			switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 				case QMC2_VIEW_DETAIL_INDEX:

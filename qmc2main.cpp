@@ -128,7 +128,6 @@ ROMStatusExporter *qmc2ROMStatusExporter = NULL;
 ComponentSetup *qmc2ComponentSetup = NULL;
 ToolBarCustomizer *qmc2ToolBarCustomizer = NULL;
 PaletteEditor *qmc2PaletteEditor = NULL;
-QWidget *qmc2ComponentSetupParent = NULL;
 SoftwareList *qmc2SoftwareList = NULL;
 SoftwareSnap *qmc2SoftwareSnap = NULL;
 SoftwareSnapshot *qmc2SoftwareSnapshot = NULL;
@@ -7459,30 +7458,24 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 	}
 
 	if ( refreshViews ) {
-		ComponentInfo *componentInfo = 0;
-		if ( qmc2ComponentSetup )
-			componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
-		int index = componentInfo ? componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] : tabWidgetGamelist->currentIndex();
-		switch ( index ) {
-			case QMC2_GAMELIST_INDEX:
-				switch ( stackedWidgetView->currentIndex() ) {
-					case QMC2_VIEW_TREE_INDEX:
-						QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetHierarchy_verticalScrollChanged()));
-						break;
-					case QMC2_VIEW_CATEGORY_INDEX:
-						QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
-						break;
+		if ( tabWidgetGamelist->indexOf(tabGamelist) == tabWidgetGamelist->currentIndex() ) {
+			switch ( stackedWidgetView->currentIndex() ) {
+				case QMC2_VIEW_TREE_INDEX:
+					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetHierarchy_verticalScrollChanged()));
+					break;
+				case QMC2_VIEW_CATEGORY_INDEX:
+					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
+					break;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-					case QMC2_VIEW_VERSION_INDEX:
-						QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
-						break;
+				case QMC2_VIEW_VERSION_INDEX:
+					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
+					break;
 #endif
-					case QMC2_VIEW_DETAIL_INDEX:
-					default:
-						QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetGamelist_verticalScrollChanged()));
-						break;
-				}
-				break;
+				case QMC2_VIEW_DETAIL_INDEX:
+				default:
+					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetGamelist_verticalScrollChanged()));
+					break;
+			}
 		}
 	}
 
@@ -7525,11 +7518,6 @@ void MainWindow::init()
 	qmc2GhostImagePixmap.isGhost = true;
 	progressBarMemory->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", false).toBool());
 
-	if ( !qmc2TemplateCheck ) {
-		setUpdatesEnabled(true);
-		qApp->processEvents();
-	}
-
 	createFifo();
 
 	tabWidgetGamelist->setCurrentIndex(qmc2LastListIndex);
@@ -7549,6 +7537,11 @@ void MainWindow::init()
 	qmc2ComponentSetup->saveComponent("Component1");
 	qmc2ComponentSetup->saveComponent("Component2");
 	qmc2ComponentSetup->saveComponent("Component3");
+
+	if ( !qmc2TemplateCheck ) {
+		setUpdatesEnabled(true);
+		qApp->processEvents();
+	}
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
@@ -9144,10 +9137,9 @@ void MainWindow::menuTabWidgetGamelist_Setup_activated()
 	qmc2ComponentSetup->adjustIconSizes();
 
 	// reparent detail setup dialog to the widget it was called from
-	qmc2ComponentSetup->setParent(qmc2ComponentSetupParent ? qmc2ComponentSetupParent : this);
+	qmc2ComponentSetup->setParent(this);
 	qmc2ComponentSetup->setWindowFlags(Qt::Dialog);
 	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(0);
-	qmc2ComponentSetupParent = NULL;
 
 	if ( qmc2ComponentSetup->isHidden() )
 		qmc2ComponentSetup->show();
@@ -9198,10 +9190,9 @@ void MainWindow::menuTabWidgetGameDetail_Setup_activated()
 	qmc2ComponentSetup->adjustIconSizes();
 
 	// reparent detail setup dialog to the widget it was called from
-	qmc2ComponentSetup->setParent(qmc2ComponentSetupParent ? qmc2ComponentSetupParent : this);
+	qmc2ComponentSetup->setParent(this);
 	qmc2ComponentSetup->setWindowFlags(Qt::Dialog);
 	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(1);
-	qmc2ComponentSetupParent = NULL;
 
 	if ( qmc2ComponentSetup->isHidden() )
 		qmc2ComponentSetup->show();
@@ -9256,10 +9247,9 @@ void MainWindow::menuTabWidgetLogsAndEmulators_Setup_activated()
 	qmc2ComponentSetup->adjustIconSizes();
 
 	// reparent detail setup dialog to the widget it was called from
-	qmc2ComponentSetup->setParent(qmc2ComponentSetupParent ? qmc2ComponentSetupParent : this);
+	qmc2ComponentSetup->setParent(this);
 	qmc2ComponentSetup->setWindowFlags(Qt::Dialog);
 	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(2);
-	qmc2ComponentSetupParent = NULL;
 
 	if ( qmc2ComponentSetup->isHidden() )
 		qmc2ComponentSetup->show();
