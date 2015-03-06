@@ -149,7 +149,6 @@ extern MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup;
 extern ComponentSetup *qmc2ComponentSetup;
 extern ToolBarCustomizer *qmc2ToolBarCustomizer;
 extern PaletteEditor *qmc2PaletteEditor;
-extern QWidget *qmc2ComponentSetupParent;
 #if QMC2_JOYSTICK == 1
 extern QHash<QString, QString> qmc2JoystickFunctionHash;
 extern bool qmc2JoystickIsCalibrating;
@@ -4581,7 +4580,6 @@ void Options::on_pushButtonComponentSetup_clicked()
 	qmc2ComponentSetup->adjustIconSizes();
 	qmc2ComponentSetup->setParent(this);
 	qmc2ComponentSetup->setWindowFlags(Qt::Dialog);
-	qmc2ComponentSetupParent = NULL;
 	if ( qmc2ComponentSetup->isHidden() )
 		qmc2ComponentSetup->show();
 	else if ( qmc2ComponentSetup->isMinimized() )
