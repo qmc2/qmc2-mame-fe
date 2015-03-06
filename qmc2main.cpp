@@ -1305,6 +1305,12 @@ MainWindow::MainWindow(QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGamelist_East_activated()));
+	menuTabWidgetGamelist->addSeparator();
+	s = tr("Feature setup");
+	action = menuTabWidgetGamelist->addAction(tr("&Setup..."));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGamelist_Setup_activated()));
 
 	menuTabWidgetGameDetail = new QMenu(0);
 	s = tr("Set tab position north");
@@ -1328,7 +1334,7 @@ MainWindow::MainWindow(QWidget *parent)
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGameDetail_East_activated()));
 	menuTabWidgetGameDetail->addSeparator();
-	s = tr("Detail setup");
+	s = tr("Feature setup");
 	action = menuTabWidgetGameDetail->addAction(tr("&Setup..."));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
@@ -1355,6 +1361,12 @@ MainWindow::MainWindow(QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetLogsAndEmulators_East_activated()));
+	menuTabWidgetLogsAndEmulators->addSeparator();
+	s = tr("Feature setup");
+	action = menuTabWidgetLogsAndEmulators->addAction(tr("&Setup..."));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetLogsAndEmulators_Setup_activated()));
 
 	menuTabWidgetSoftwareDetail = new QMenu(0);
 	s = tr("Set tab position north");
@@ -1816,31 +1828,51 @@ MainWindow::~MainWindow()
 
 void MainWindow::tabWidgetGamelist_tabMoved(int from, int to)
 {
-	QMC2_PRINT_TXT(FIXME: MainWindow::tabWidgetGamelist_tabMoved());
-	/*
 	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(0);
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
 
 	if ( !componentInfo )
 		return;
 
-	int fromFeature = componentInfo->appliedFeatureList()[from];
-	componentInfo->appliedFeatureList().removeAt(from);
-	componentInfo->appliedFeatureList().insert(to, fromFeature);
-	fromFeature = componentInfo->activeFeatureList()[from];
-	componentInfo->activeFeatureList().removeAt(from);
-	componentInfo->activeFeatureList().insert(to, fromFeature);
+	int adjustedFrom = from;
+	int adjustedTo = to;
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
+	if ( embedIndex >= 0 ) {
+		if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) < 0 ) {
+			if ( embedIndex <= adjustedFrom )
+				adjustedFrom++;
+			if ( embedIndex <= adjustedTo )
+				adjustedTo++;
+		}
+	}
+#endif
+	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
+	if ( foreignIndex >= 0 ) {
+		if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 ) {
+			if ( foreignIndex <= adjustedFrom )
+				adjustedFrom++;
+			if ( foreignIndex <= adjustedTo )
+				adjustedTo++;
+		}
+	}
 
-	QListWidgetItem *takenItem = qmc2ComponentSetup->listWidgetActiveFeatures->takeItem(from);
+	int fromFeature = componentInfo->appliedFeatureList()[adjustedFrom];
+	componentInfo->appliedFeatureList().removeAt(adjustedFrom);
+	componentInfo->appliedFeatureList().insert(adjustedTo, fromFeature);
+	fromFeature = componentInfo->activeFeatureList()[adjustedFrom];
+	componentInfo->activeFeatureList().removeAt(adjustedFrom);
+	componentInfo->activeFeatureList().insert(adjustedTo, fromFeature);
+
+	QListWidgetItem *takenItem = qmc2ComponentSetup->listWidgetActiveFeatures->takeItem(adjustedFrom);
 	if ( takenItem )
-		qmc2ComponentSetup->listWidgetActiveFeatures->insertItem(to, takenItem);
+		qmc2ComponentSetup->listWidgetActiveFeatures->insertItem(adjustedTo, takenItem);
 
 	QStringList activeIndexList;
 	for (int i = 0; i < componentInfo->appliedFeatureList().count(); i++)
 		activeIndexList << QString::number(componentInfo->appliedFeatureList()[i]);
 
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Component1/ActiveFeatures", activeIndexList);
-	*/
 }
 
 void MainWindow::tabWidgetGameDetail_tabMoved(int from, int to)
@@ -2436,9 +2468,10 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
 #endif
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-	if ( tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || (tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX && !toolButtonEmbedderMaximizeToggle->isChecked()) ) {
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	if ( componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] != QMC2_EMBED_INDEX || (componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] == QMC2_EMBED_INDEX && !toolButtonEmbedderMaximizeToggle->isChecked()) ) {
 		hSplitterSizes = hSplitter->sizes();
-	} else if ( tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX && toolButtonEmbedderMaximizeToggle->isChecked() ) {
+	} else if ( componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] == QMC2_EMBED_INDEX && toolButtonEmbedderMaximizeToggle->isChecked() ) {
 		toolButtonEmbedderMaximizeToggle->setChecked(false);
 		menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 		statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -4026,7 +4059,7 @@ void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
 					break;
 			}
 		} else {
-			tabWidgetGamelist->setCurrentIndex(0);
+			tabWidgetGamelist->setCurrentWidget(tabGamelist);
 			if ( !qmc2ReloadActive )
 				treeWidgetGamelist->expandItem(matchItem);
 		}
@@ -4093,17 +4126,29 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 #endif
 	}
 
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-	if ( hSplitterSizes.count() > 1 && currentIndex != QMC2_EMBED_INDEX )
+	if ( hSplitterSizes.count() > 1 && componentInfo->appliedFeatureList()[currentIndex] != QMC2_EMBED_INDEX )
 		hSplitter->setSizes(hSplitterSizes);
 #endif
 
-	switch ( currentIndex ) {
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
+	if ( embedIndex >= 0 && embedIndex <= currentIndex )
+		if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) < 0 )
+			currentIndex++;
+#endif
+	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
+	if ( foreignIndex >= 0 && foreignIndex <= currentIndex )
+		if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
+			currentIndex++;
+	switch ( componentInfo->appliedFeatureList()[currentIndex] ) {
 		case QMC2_GAMELIST_INDEX:
 			actionToggleTagCursorDown->setVisible(true);
 			actionToggleTagCursorUp->setVisible(true);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-			if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
+			if ( componentInfo->appliedFeatureList()[lastTabWidgetGamelistIndex] != QMC2_EMBED_INDEX )
 				QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -4143,7 +4188,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 			actionToggleTagCursorDown->setVisible(false);
 			actionToggleTagCursorUp->setVisible(false);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-			if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
+			if ( componentInfo->appliedFeatureList()[lastTabWidgetGamelistIndex] != QMC2_EMBED_INDEX )
 				QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -4165,7 +4210,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 			actionToggleTagCursorDown->setVisible(false);
 			actionToggleTagCursorUp->setVisible(false);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-			if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
+			if ( componentInfo->appliedFeatureList()[lastTabWidgetGamelistIndex] != QMC2_EMBED_INDEX )
 				QTimer::singleShot(0, this, SLOT(checkCurrentFavoritesSelection()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -4184,7 +4229,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 			actionToggleTagCursorDown->setVisible(false);
 			actionToggleTagCursorUp->setVisible(false);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-			if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
+			if ( componentInfo->appliedFeatureList()[lastTabWidgetGamelistIndex] != QMC2_EMBED_INDEX )
 				QTimer::singleShot(0, this, SLOT(checkCurrentPlayedSelection()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -4254,7 +4299,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 	// show / hide game status indicator
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired").toBool() ) {
-			if ( currentIndex != QMC2_GAMELIST_INDEX )
+			if ( componentInfo->appliedFeatureList()[currentIndex] != QMC2_GAMELIST_INDEX )
 				labelGameStatus->setVisible(true);
 			else
 				labelGameStatus->setVisible(false);
@@ -4270,17 +4315,14 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 
 void MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int currentIndex)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int i = " + QString::number(currentIndex) + ")");
-#endif
-
-	switch ( currentIndex ) {
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component3"];
+	switch ( componentInfo->appliedFeatureList()[currentIndex] ) {
 		case QMC2_FRONTENDLOG_INDEX:
-			textBrowserFrontendLog->horizontalScrollBar()->setValue(0);
+			logScrollToEnd(QMC2_LOG_FRONTEND);
 			break;
 
 		case QMC2_EMULATORLOG_INDEX:
-			textBrowserEmulatorLog->horizontalScrollBar()->setValue(0);
+			logScrollToEnd(QMC2_LOG_EMULATOR);
 			break;
 
 		default:
@@ -4709,7 +4751,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	// show / hide game status indicator
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired").toBool() ) {
-			if ( hSplitter->sizes()[0] == 0 || tabWidgetGamelist->currentIndex() != QMC2_GAMELIST_INDEX)
+			if ( hSplitter->sizes()[0] == 0 || componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] != QMC2_GAMELIST_INDEX )
 				labelGameStatus->setVisible(true);
 			else
 				labelGameStatus->setVisible(false);
@@ -5907,6 +5949,8 @@ void MainWindow::action_embedEmulator_triggered()
 	QStringList statusList;
 #endif
 
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+
 	QList<QTreeWidgetItem *> sl = treeWidgetEmulators->selectedItems();
 	for (int i = 0; i < sl.count(); i++) {
 		QTreeWidgetItem *item = sl[i];
@@ -6006,8 +6050,14 @@ void MainWindow::action_embedEmulator_triggered()
 			int embeddedEmusIndex = tabWidgetGamelist->indexOf(widgetEmbeddedEmus);
 			if ( tabWidgetGamelist->currentIndex() != embeddedEmusIndex )
 				qmc2LastListIndex = tabWidgetGamelist->currentIndex();
-			if ( embeddedEmusIndex < 0 )
-				tabWidgetGamelist->addTab(widgetEmbeddedEmus, QIcon(QString::fromUtf8(":/data/img/embed.png")), tr("Embedded emulators"));
+			if ( embeddedEmusIndex < 0 ) {
+				int insertIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
+				int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
+				if ( foreignIndex >= 0 && foreignIndex <= insertIndex )
+					if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
+						insertIndex--;
+				tabWidgetGamelist->insertTab(insertIndex, widgetEmbeddedEmus, QIcon(QString::fromUtf8(":/data/img/embed.png")), tr("Embedded emulators"));
+			}
 			tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
 #if defined(QMC2_OS_UNIX)
 			qApp->syncX();
@@ -6160,12 +6210,10 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
 	qApp->processEvents();
 
 	if ( tabWidgetEmbeddedEmulators->count() < 1 ) {
-		if ( tabWidgetGamelist->currentIndex() == tabWidgetGamelist->indexOf(tabEmbeddedEmus) ) {
-			tabWidgetGamelist->setCurrentIndex(qmc2LastListIndex);
-			if ( toolButtonEmbedderMaximizeToggle->isChecked() )
-				hSplitter->setSizes(hSplitterSizes);
-		}
 		tabWidgetGamelist->removeTab(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
+		tabWidgetGamelist->setCurrentIndex(qmc2LastListIndex);
+		if ( toolButtonEmbedderMaximizeToggle->isChecked() )
+			hSplitter->setSizes(hSplitterSizes);
 		menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 		statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 		toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
@@ -7030,8 +7078,19 @@ void MainWindow::closeEvent(QCloseEvent *e)
 			}
 		}
 
+		ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-		if ( toolButtonEmbedderMaximizeToggle->isChecked() && tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
+		int currentIndex = tabWidgetGamelist->currentIndex();
+		int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
+		if ( embedIndex >= 0 && embedIndex <= currentIndex )
+			if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) < 0 )
+				currentIndex++;
+		int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
+		if ( foreignIndex >= 0 && foreignIndex <= currentIndex )
+			if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
+				currentIndex++;
+		if ( toolButtonEmbedderMaximizeToggle->isChecked() && componentInfo->appliedFeatureList()[currentIndex] == QMC2_EMBED_INDEX )
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitterSizes[0], hSplitterSizes[1]));
 		else
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitter->sizes().at(0), hSplitter->sizes().at(1)));
@@ -7049,7 +7108,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterFlipped", vSplitter->orientation() != Qt::Vertical);
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSwapped", vSplitter->widget(0) != vSplitterWidget0);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-		if ( tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
+		if ( componentInfo->appliedFeatureList()[currentIndex] == QMC2_EMBED_INDEX )
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", qmc2LastListIndex);
 		else
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", tabWidgetGamelist->currentIndex());
@@ -7400,7 +7459,11 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 	}
 
 	if ( refreshViews ) {
-		switch ( tabWidgetGamelist->currentIndex() ) {
+		ComponentInfo *componentInfo = 0;
+		if ( qmc2ComponentSetup )
+			componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+		int index = componentInfo ? componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] : tabWidgetGamelist->currentIndex();
+		switch ( index ) {
 			case QMC2_GAMELIST_INDEX:
 				switch ( stackedWidgetView->currentIndex() ) {
 					case QMC2_VIEW_TREE_INDEX:
@@ -7469,13 +7532,6 @@ void MainWindow::init()
 
 	createFifo();
 
-	qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt();
-
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-	if ( qmc2LastListIndex == QMC2_EMBED_INDEX )
-		qmc2LastListIndex = 0;
-#endif
-
 	tabWidgetGamelist->setCurrentIndex(qmc2LastListIndex);
 	on_tabWidgetGamelist_currentChanged(qmc2LastListIndex);
 	floatToggleButtonSoftwareDetail_toggled(floatToggleButtonSoftwareDetail->isChecked());
@@ -7483,10 +7539,22 @@ void MainWindow::init()
 
 	qmc2EarlyStartup = false;
 
+	qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt();
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+	if ( qmc2LastListIndex == QMC2_EMBED_INDEX )
+		qmc2LastListIndex = 0;
+#endif
+
 	// make sure the current detail's tab header is shown
 	qmc2ComponentSetup->saveComponent("Component1");
 	qmc2ComponentSetup->saveComponent("Component2");
 	qmc2ComponentSetup->saveComponent("Component3");
+
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
+#elif defined(QMC2_EMUTYPE_MESS)
+	tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineDetailTab", 0).toInt());
+#endif
 
 	// same for all other tab widgets
 	QTimer::singleShot(0, this, SLOT(updateTabWidgets()));
@@ -7586,13 +7654,21 @@ void MainWindow::setupPalette(QString styleName)
 
 void MainWindow::viewFullDetail()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewFullDetail()");
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	int index = componentInfo->appliedFeatureList().indexOf(QMC2_GAMELIST_INDEX);
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
+	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
+		if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) < 0 )
+			index--;
 #endif
-
+	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
+	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
+		if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
+			index--;
 	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWGAMELIST_INDEX);
-	tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
-	tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
+	tabWidgetGamelist->setCurrentIndex(index);
+	tabWidgetGamelist->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/flat.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/flat.png")));
 	treeWidgetGamelist->setFocus();
 	stackedWidgetView->update();
@@ -7601,13 +7677,21 @@ void MainWindow::viewFullDetail()
 
 void MainWindow::viewParentClones()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewParentClones()");
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	int index = componentInfo->appliedFeatureList().indexOf(QMC2_GAMELIST_INDEX);
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
+	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
+		if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) < 0 )
+			index--;
 #endif
-
+	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
+	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
+		if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
+			index--;
 	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWHIERARCHY_INDEX);
-	tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
-	tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
+	tabWidgetGamelist->setCurrentIndex(index);
+	tabWidgetGamelist->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/clone.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/clone.png")));
 	treeWidgetHierarchy->setFocus();
 	stackedWidgetView->update();
@@ -7616,13 +7700,21 @@ void MainWindow::viewParentClones()
 
 void MainWindow::viewByCategory()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewByCategory()");
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	int index = componentInfo->appliedFeatureList().indexOf(QMC2_GAMELIST_INDEX);
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
+	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
+		if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) < 0 )
+			index--;
 #endif
-
+	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
+	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
+		if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
+			index--;
 	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWCATEGORY_INDEX);
-	tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
-	tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
+	tabWidgetGamelist->setCurrentIndex(index);
+	tabWidgetGamelist->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/category.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/category.png")));
 	QTreeWidgetItem *item = treeWidgetCategoryView->topLevelItem(0);
 	if ( item ) {
@@ -7640,13 +7732,21 @@ void MainWindow::viewByCategory()
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 void MainWindow::viewByVersion()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewByVersion()");
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	int index = componentInfo->appliedFeatureList().indexOf(QMC2_GAMELIST_INDEX);
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
+	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
+		if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) < 0 )
+			index--;
 #endif
-
+	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
+	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
+		if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
+			index--;
 	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWVERSION_INDEX);
-	tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
-	tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
+	tabWidgetGamelist->setCurrentIndex(index);
+	tabWidgetGamelist->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/version.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/version.png")));
 	QTreeWidgetItem *item = treeWidgetVersionView->topLevelItem(0);
 	if ( item ) {
@@ -9014,102 +9114,30 @@ void MainWindow::treeWidgetGamelist_headerSectionClicked(int logicalIndex)
 
 void MainWindow::menuTabWidgetGamelist_North_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGamelist_North_activated()"));
-#endif
-
 	tabWidgetGamelist->setTabPosition(QTabWidget::North);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::North);
 }
 
 void MainWindow::menuTabWidgetGamelist_South_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGamelist_South_activated()"));
-#endif
-
 	tabWidgetGamelist->setTabPosition(QTabWidget::South);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::South);
 }
 
 void MainWindow::menuTabWidgetGamelist_West_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGamelist_West_activated()"));
-#endif
-
 	tabWidgetGamelist->setTabPosition(QTabWidget::West);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::West);
 }
 
 void MainWindow::menuTabWidgetGamelist_East_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGamelist_East_activated()"));
-#endif
-
 	tabWidgetGamelist->setTabPosition(QTabWidget::East);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::East);
 }
 
-void MainWindow::on_tabWidgetGamelist_customContextMenuRequested(const QPoint &p)
+void MainWindow::menuTabWidgetGamelist_Setup_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetGamelist_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
-	if ( !tabWidgetGamelist->currentWidget()->childrenRect().contains(p, true) ) {
-		menuTabWidgetGamelist->move(adjustedWidgetPosition(tabWidgetGamelist->mapToGlobal(p), menuTabWidgetGamelist));
-		menuTabWidgetGamelist->show();
-	}
-}
-
-void MainWindow::menuTabWidgetGameDetail_North_activated()
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGameDetail_North_activated()"));
-#endif
-
-	tabWidgetGameDetail->setTabPosition(QTabWidget::North);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::North);
-}
-
-void MainWindow::menuTabWidgetGameDetail_South_activated()
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGameDetail_South_activated()"));
-#endif
-
-	tabWidgetGameDetail->setTabPosition(QTabWidget::South);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::South);
-}
-
-void MainWindow::menuTabWidgetGameDetail_West_activated()
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGameDetail_West_activated()"));
-#endif
-
-	tabWidgetGameDetail->setTabPosition(QTabWidget::West);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::West);
-}
-
-void MainWindow::menuTabWidgetGameDetail_East_activated()
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGameDetail_East_activated()"));
-#endif
-
-	tabWidgetGameDetail->setTabPosition(QTabWidget::East);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::East);
-}
-
-void MainWindow::menuTabWidgetGameDetail_Setup_activated()
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGameDetail_Setup_activated()"));
-#endif
-
 	if ( !qmc2ComponentSetup )
 		return;
  
@@ -9118,6 +9146,61 @@ void MainWindow::menuTabWidgetGameDetail_Setup_activated()
 	// reparent detail setup dialog to the widget it was called from
 	qmc2ComponentSetup->setParent(qmc2ComponentSetupParent ? qmc2ComponentSetupParent : this);
 	qmc2ComponentSetup->setWindowFlags(Qt::Dialog);
+	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(0);
+	qmc2ComponentSetupParent = NULL;
+
+	if ( qmc2ComponentSetup->isHidden() )
+		qmc2ComponentSetup->show();
+	else if ( qmc2ComponentSetup->isMinimized() )
+		qmc2ComponentSetup->showNormal();
+
+	QTimer::singleShot(0, qmc2ComponentSetup, SLOT(raise()));
+}
+
+
+void MainWindow::on_tabWidgetGamelist_customContextMenuRequested(const QPoint &p)
+{
+	if ( !tabWidgetGamelist->currentWidget()->childrenRect().contains(p, true) ) {
+		menuTabWidgetGamelist->move(adjustedWidgetPosition(tabWidgetGamelist->mapToGlobal(p), menuTabWidgetGamelist));
+		menuTabWidgetGamelist->show();
+	}
+}
+
+void MainWindow::menuTabWidgetGameDetail_North_activated()
+{
+	tabWidgetGameDetail->setTabPosition(QTabWidget::North);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::North);
+}
+
+void MainWindow::menuTabWidgetGameDetail_South_activated()
+{
+	tabWidgetGameDetail->setTabPosition(QTabWidget::South);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::South);
+}
+
+void MainWindow::menuTabWidgetGameDetail_West_activated()
+{
+	tabWidgetGameDetail->setTabPosition(QTabWidget::West);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::West);
+}
+
+void MainWindow::menuTabWidgetGameDetail_East_activated()
+{
+	tabWidgetGameDetail->setTabPosition(QTabWidget::East);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::East);
+}
+
+void MainWindow::menuTabWidgetGameDetail_Setup_activated()
+{
+	if ( !qmc2ComponentSetup )
+		return;
+ 
+	qmc2ComponentSetup->adjustIconSizes();
+
+	// reparent detail setup dialog to the widget it was called from
+	qmc2ComponentSetup->setParent(qmc2ComponentSetupParent ? qmc2ComponentSetupParent : this);
+	qmc2ComponentSetup->setWindowFlags(Qt::Dialog);
+	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(1);
 	qmc2ComponentSetupParent = NULL;
 
 	if ( qmc2ComponentSetup->isHidden() )
@@ -9130,10 +9213,6 @@ void MainWindow::menuTabWidgetGameDetail_Setup_activated()
 
 void MainWindow::on_tabWidgetGameDetail_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetGameDetail_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	if ( tabWidgetGameDetail->currentWidget() ) {
 		if ( !tabWidgetGameDetail->currentWidget()->childrenRect().contains(p, true) ) {
 			menuTabWidgetGameDetail->move(adjustedWidgetPosition(tabWidgetGameDetail->mapToGlobal(p), menuTabWidgetGameDetail));
@@ -9147,50 +9226,51 @@ void MainWindow::on_tabWidgetGameDetail_customContextMenuRequested(const QPoint 
 
 void MainWindow::menuTabWidgetLogsAndEmulators_North_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetLogsAndEmulators_North_activated()"));
-#endif
-
 	tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::North);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::North);
 }
 
 void MainWindow::menuTabWidgetLogsAndEmulators_South_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetLogsAndEmulators_South_activated()"));
-#endif
-
 	tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::South);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::South);
 }
 
 void MainWindow::menuTabWidgetLogsAndEmulators_West_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetLogsAndEmulators_West_activated()"));
-#endif
-
 	tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::West);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::West);
 }
 
 void MainWindow::menuTabWidgetLogsAndEmulators_East_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetLogsAndEmulators_East_activated()"));
-#endif
-
 	tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::East);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::East);
 }
 
+void MainWindow::menuTabWidgetLogsAndEmulators_Setup_activated()
+{
+	if ( !qmc2ComponentSetup )
+		return;
+ 
+	qmc2ComponentSetup->adjustIconSizes();
+
+	// reparent detail setup dialog to the widget it was called from
+	qmc2ComponentSetup->setParent(qmc2ComponentSetupParent ? qmc2ComponentSetupParent : this);
+	qmc2ComponentSetup->setWindowFlags(Qt::Dialog);
+	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(2);
+	qmc2ComponentSetupParent = NULL;
+
+	if ( qmc2ComponentSetup->isHidden() )
+		qmc2ComponentSetup->show();
+	else if ( qmc2ComponentSetup->isMinimized() )
+		qmc2ComponentSetup->showNormal();
+
+	QTimer::singleShot(0, qmc2ComponentSetup, SLOT(raise()));
+}
+
 void MainWindow::on_tabWidgetLogsAndEmulators_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetLogsAndEmulators_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	if ( !tabWidgetLogsAndEmulators->currentWidget()->childrenRect().contains(p, true) ) {
 		menuTabWidgetLogsAndEmulators->move(adjustedWidgetPosition(tabWidgetLogsAndEmulators->mapToGlobal(p), menuTabWidgetLogsAndEmulators));
 		menuTabWidgetLogsAndEmulators->show();
@@ -9199,40 +9279,24 @@ void MainWindow::on_tabWidgetLogsAndEmulators_customContextMenuRequested(const Q
 
 void MainWindow::menuTabWidgetSoftwareDetail_North_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetSoftwareDetail_North_activated()"));
-#endif
-
 	tabWidgetSoftwareDetail->setTabPosition(QTabWidget::North);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareDetail/TabPosition", QTabWidget::North);
 }
 
 void MainWindow::menuTabWidgetSoftwareDetail_South_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetSoftwareDetail_South_activated()"));
-#endif
-
 	tabWidgetSoftwareDetail->setTabPosition(QTabWidget::South);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareDetail/TabPosition", QTabWidget::South);
 }
 
 void MainWindow::menuTabWidgetSoftwareDetail_West_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetSoftwareDetail_West_activated()"));
-#endif
-
 	tabWidgetSoftwareDetail->setTabPosition(QTabWidget::West);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareDetail/TabPosition", QTabWidget::West);
 }
 
 void MainWindow::menuTabWidgetSoftwareDetail_East_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetSoftwareDetail_East_activated()"));
-#endif
-
 	tabWidgetSoftwareDetail->setTabPosition(QTabWidget::East);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareDetail/TabPosition", QTabWidget::East);
 }
@@ -9539,7 +9603,8 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index = %1)").arg(index));
 #endif
 
-	if ( tabWidgetGamelist->currentIndex() != QMC2_GAMELIST_INDEX )
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	if ( componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] != QMC2_GAMELIST_INDEX )
 		return;
 
 	switch ( index ) {
@@ -11761,7 +11826,8 @@ void MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked)
 		}
 		adjustSplitter(vSplitter, tabWidgetLogsAndEmulators, vSplitterSizes, false);
 		if ( lastPageSoftware ) {
-			switch ( tabWidgetLogsAndEmulators->currentIndex() ) {
+			ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component2"];
+			switch ( componentInfo->appliedFeatureList()[tabWidgetLogsAndEmulators->currentIndex()] ) {
 				case QMC2_FRONTENDLOG_INDEX:
 					logScrollToEnd(QMC2_LOG_FRONTEND);
 					break;
@@ -11806,7 +11872,8 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 				qmc2SoftwareNotesEditor->hideTearOffMenus();
 			adjustSplitter(vSplitter, tabWidgetLogsAndEmulators, vSplitterSizes, false);
 			if ( lastPageSoftware ) {
-				switch ( tabWidgetLogsAndEmulators->currentIndex() ) {
+				ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component2"];
+				switch ( componentInfo->appliedFeatureList()[tabWidgetLogsAndEmulators->currentIndex()] ) {
 					case QMC2_FRONTENDLOG_INDEX:
 						logScrollToEnd(QMC2_LOG_FRONTEND);
 						break;
@@ -11872,7 +11939,8 @@ void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
 
 void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
 {
-	if ( tabWidgetGamelist->currentIndex() == QMC2_SEARCH_INDEX )
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	if ( componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] == QMC2_SEARCH_INDEX )
 		comboBoxSearch->lineEdit()->setText(text);
 }
 
@@ -12813,11 +12881,6 @@ int main(int argc, char *argv[])
 	qmc2ComponentSetup->saveComponent("Component1");
 	qmc2ComponentSetup->saveComponent("Component2");
 	qmc2ComponentSetup->saveComponent("Component3");
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	qmc2MainWindow->tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
-#elif defined(QMC2_EMUTYPE_MESS)
-	qmc2MainWindow->tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineDetailTab", 0).toInt());
-#endif
 
 	// finalize initial setup
 	qmc2Options->apply();

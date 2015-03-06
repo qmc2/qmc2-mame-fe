@@ -63,7 +63,7 @@ class ComponentSetup : public QDialog, public Ui::ComponentSetup
 		QHash<QString, ComponentInfo *> &componentInfoHash() { return m_componentInfoHash; }
 
 	public slots:
-		void loadComponent(QString name = QString());
+		void loadComponent(QString name = QString(), bool fromSettings = true);
 		void saveComponent(QString name = QString());
 		void adjustIconSizes();
 
