@@ -73,6 +73,7 @@
 #include "customidsetup.h"
 #include "samplechecker.h"
 #include "rankitemwidget.h"
+#include "componentsetup.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -3137,10 +3138,20 @@ void Options::applyDelayed()
 				}
 			}
 			qmc2MainWindow->treeWidgetForeignIDs->insertTopLevelItems(0, itemList);
-			int index = qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabForeignEmulators);
-			if ( index == -1 ) {
-				qmc2MainWindow->tabWidgetGamelist->insertTab(QMC2_FOREIGN_INDEX, qmc2MainWindow->tabForeignEmulators, tr("Foreign IDs"));
-				qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_FOREIGN_INDEX, QIcon(QString::fromUtf8(":/data/img/alien.png")));
+			ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+			if ( componentInfo->appliedFeatureList().contains(QMC2_FOREIGN_INDEX) ) {
+				int index = qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabForeignEmulators);
+				int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+				int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
+				if ( embedIndex >= 0 && embedIndex < foreignIndex )
+					if ( qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabEmbeddedEmus) < 0 )
+						foreignIndex--;
+#endif
+				if ( index == -1 ) {
+					qmc2MainWindow->tabWidgetGamelist->insertTab(foreignIndex, qmc2MainWindow->tabForeignEmulators, tr("&Foreign emulators"));
+					qmc2MainWindow->tabWidgetGamelist->setTabIcon(foreignIndex, QIcon(QString::fromUtf8(":/data/img/alien.png")));
+				}
 			}
 		} else {
 			int index = qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabForeignEmulators);
@@ -4565,8 +4576,17 @@ void Options::on_pushButtonResetShortcut_clicked()
 
 void Options::on_pushButtonComponentSetup_clicked()
 {
-	qmc2ComponentSetupParent = this;
-	qmc2MainWindow->menuTabWidgetGameDetail_Setup_activated();
+	if ( !qmc2ComponentSetup )
+		return;
+	qmc2ComponentSetup->adjustIconSizes();
+	qmc2ComponentSetup->setParent(this);
+	qmc2ComponentSetup->setWindowFlags(Qt::Dialog);
+	qmc2ComponentSetupParent = NULL;
+	if ( qmc2ComponentSetup->isHidden() )
+		qmc2ComponentSetup->show();
+	else if ( qmc2ComponentSetup->isMinimized() )
+		qmc2ComponentSetup->showNormal();
+	QTimer::singleShot(0, qmc2ComponentSetup, SLOT(raise()));
 }
 
 void Options::on_pushButtonCustomizeToolBar_clicked()

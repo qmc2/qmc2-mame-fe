@@ -385,6 +385,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void menuTabWidgetGamelist_South_activated();
 		void menuTabWidgetGamelist_West_activated();
 		void menuTabWidgetGamelist_East_activated();
+		void menuTabWidgetGamelist_Setup_activated();
 		void menuTabWidgetGameDetail_North_activated();
 		void menuTabWidgetGameDetail_South_activated();
 		void menuTabWidgetGameDetail_West_activated();
@@ -394,6 +395,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void menuTabWidgetLogsAndEmulators_South_activated();
 		void menuTabWidgetLogsAndEmulators_West_activated();
 		void menuTabWidgetLogsAndEmulators_East_activated();
+		void menuTabWidgetLogsAndEmulators_Setup_activated();
 		void menuTabWidgetSoftwareDetail_North_activated();
 		void menuTabWidgetSoftwareDetail_South_activated();
 		void menuTabWidgetSoftwareDetail_West_activated();
