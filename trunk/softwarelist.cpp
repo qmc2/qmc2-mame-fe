@@ -2815,7 +2815,10 @@ void SoftwareList::on_toolBoxSoftwareList_currentChanged(int index)
 	switch ( index ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
 			updateMountDevices();
-			on_treeWidgetKnownSoftware_itemSelectionChanged();
+			if ( viewTree() )
+				on_treeWidgetKnownSoftwareTree_itemSelectionChanged();
+			else
+				on_treeWidgetKnownSoftware_itemSelectionChanged();
 			toolButtonCompatFilterToggle->setEnabled(!viewTree());
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
