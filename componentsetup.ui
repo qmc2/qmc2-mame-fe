@@ -50,6 +50,11 @@
          <string>Component 3: Logs and special widgets</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Component 4: Software-detail widget</string>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>

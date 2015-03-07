@@ -17,10 +17,10 @@ ComponentSetup::ComponentSetup(QWidget *parent)
 	: QDialog(parent)
 {
 	// init components / hashes
-	m_components << "Component1" << "Component2" << "Component3";
 	componentInfoHash().insert("Component1", initComponent1());
 	componentInfoHash().insert("Component2", initComponent2());
 	componentInfoHash().insert("Component3", initComponent3());
+	componentInfoHash().insert("Component4", initComponent4());
 
 	setupUi(this);
 	hide();
@@ -69,20 +69,21 @@ ComponentInfo *ComponentSetup::initComponent1()
 #else
 	componentInfo->availableFeatureList() << QMC2_GAMELIST_INDEX << QMC2_SEARCH_INDEX << QMC2_FAVORITES_INDEX << QMC2_PLAYED_INDEX << QMC2_FOREIGN_INDEX;
 #endif
-	if ( !qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/Component1/ActiveFeatures") ) {
+	components() << "Component1";
+	if ( !qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/" + components().last() + "/ActiveFeatures") ) {
 		foreach (int index, componentInfo->availableFeatureList())
 			componentInfo->activeFeatureList() << index;
 	} else {
-		QStringList activeIndexList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Component1/ActiveFeatures").toStringList();
+		QStringList activeIndexList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + components().last() + "/ActiveFeatures").toStringList();
 		foreach (QString sIndex, activeIndexList) {
 			int index = sIndex.toInt();
 			if ( componentInfo->availableFeatureList().contains(index) )
 				componentInfo->activeFeatureList() << index;
 		}
 	}
-	m_componentToWidgetHash["Component1"] = qmc2MainWindow->tabWidgetGamelist;
-	m_componentToSplitterHash["Component1"] = qmc2MainWindow->hSplitter;
-	m_componentToSplitterIndexHash["Component1"] = 0;
+	m_componentToWidgetHash[components().last()] = qmc2MainWindow->tabWidgetGamelist;
+	m_componentToSplitterHash[components().last()] = qmc2MainWindow->hSplitter;
+	m_componentToSplitterIndexHash[components().last()] = 0;
 	return componentInfo;
 }
 
@@ -304,20 +305,21 @@ ComponentInfo *ComponentSetup::initComponent2()
 #endif
 	componentInfo->setWidget(QMC2_SYSTEM_NOTES_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SYSTEM_NOTES_INDEX));
 #endif
-	if ( !qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/Component2/ActiveFeatures") ) {
+	components() << "Component2";
+	if ( !qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/" + components().last() + "/ActiveFeatures") ) {
 		foreach (int index, componentInfo->availableFeatureList())
 			componentInfo->activeFeatureList() << index;
 	} else {
-		QStringList activeIndexList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Component2/ActiveFeatures").toStringList();
+		QStringList activeIndexList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + components().last() + "/ActiveFeatures").toStringList();
 		foreach (QString sIndex, activeIndexList) {
 			int index = sIndex.toInt();
 			if ( componentInfo->availableFeatureList().contains(index) )
 				componentInfo->activeFeatureList() << index;
 		}
 	}
-	m_componentToWidgetHash["Component2"] = qmc2MainWindow->tabWidgetGameDetail;
-	m_componentToSplitterHash["Component2"] = qmc2MainWindow->vSplitter;
-	m_componentToSplitterIndexHash["Component2"] = 0;
+	m_componentToWidgetHash[components().last()] = qmc2MainWindow->tabWidgetGameDetail;
+	m_componentToSplitterHash[components().last()] = qmc2MainWindow->vSplitter;
+	m_componentToSplitterIndexHash[components().last()] = 0;
 	return componentInfo;
 }
 
@@ -352,20 +354,70 @@ ComponentInfo *ComponentSetup::initComponent3()
 #else
 	componentInfo->availableFeatureList() << QMC2_FRONTENDLOG_INDEX << QMC2_EMULATORLOG_INDEX << QMC2_EMULATORCONTROL_INDEX << QMC2_DOWNLOADS_INDEX;
 #endif
-	if ( !qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/Component3/ActiveFeatures") ) {
+	components() << "Component3";
+	if ( !qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/" + components().last() + "/ActiveFeatures") ) {
 		foreach (int index, componentInfo->availableFeatureList())
 			componentInfo->activeFeatureList() << index;
 	} else {
-		QStringList activeIndexList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Component3/ActiveFeatures").toStringList();
+		QStringList activeIndexList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + components().last() + "/ActiveFeatures").toStringList();
 		foreach (QString sIndex, activeIndexList) {
 			int index = sIndex.toInt();
 			if ( componentInfo->availableFeatureList().contains(index) )
 				componentInfo->activeFeatureList() << index;
 		}
 	}
-	m_componentToWidgetHash["Component3"] = qmc2MainWindow->tabWidgetLogsAndEmulators;
-	m_componentToSplitterHash["Component3"] = qmc2MainWindow->vSplitter;
-	m_componentToSplitterIndexHash["Component3"] = 1;
+	m_componentToWidgetHash[components().last()] = qmc2MainWindow->tabWidgetLogsAndEmulators;
+	m_componentToSplitterHash[components().last()] = qmc2MainWindow->vSplitter;
+	m_componentToSplitterIndexHash[components().last()] = 1;
+	return componentInfo;
+}
+
+ComponentInfo *ComponentSetup::initComponent4()
+{
+	ComponentInfo *componentInfo = new ComponentInfo();
+
+	componentInfo->setShortTitle(QMC2_SWINFO_SNAPSHOT_PAGE, tr("Snapsh&ot"));
+	componentInfo->setLongTitle(QMC2_SWINFO_SNAPSHOT_PAGE, tr("Software snapshot"));
+	componentInfo->setIcon(QMC2_SWINFO_SNAPSHOT_PAGE, QIcon(QString::fromUtf8(":/data/img/camera.png")));
+	componentInfo->setWidget(QMC2_SWINFO_SNAPSHOT_PAGE, qmc2MainWindow->tabWidgetSoftwareDetail->widget(QMC2_SWINFO_SNAPSHOT_PAGE));
+
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+	componentInfo->setShortTitle(QMC2_SWINFO_PROJECTMESS_PAGE, tr("Project&MESS"));
+	componentInfo->setLongTitle(QMC2_SWINFO_PROJECTMESS_PAGE, tr("ProjectMESS web lookup"));
+	componentInfo->setIcon(QMC2_SWINFO_PROJECTMESS_PAGE, QIcon(QString::fromUtf8(":/data/img/project_mess.png")));
+	componentInfo->setWidget(QMC2_SWINFO_PROJECTMESS_PAGE, qmc2MainWindow->tabWidgetSoftwareDetail->widget(QMC2_SWINFO_PROJECTMESS_PAGE));
+#endif
+
+	componentInfo->setShortTitle(QMC2_SWINFO_NOTES_PAGE, tr("&Notes"));
+	componentInfo->setLongTitle(QMC2_SWINFO_NOTES_PAGE, tr("Software notes"));
+	componentInfo->setIcon(QMC2_SWINFO_NOTES_PAGE, QIcon(QString::fromUtf8(":/data/img/notes.png")));
+	componentInfo->setWidget(QMC2_SWINFO_NOTES_PAGE, qmc2MainWindow->tabWidgetSoftwareDetail->widget(QMC2_SWINFO_NOTES_PAGE));
+
+	componentInfo->setShortTitle(QMC2_SWINFO_INFO_PAGE, tr("Software info"));
+	componentInfo->setLongTitle(QMC2_SWINFO_INFO_PAGE, tr("Software info entry"));
+	componentInfo->setIcon(QMC2_SWINFO_INFO_PAGE, QIcon(QString::fromUtf8(":/data/img/info.png")));
+	componentInfo->setWidget(QMC2_SWINFO_INFO_PAGE, qmc2MainWindow->tabWidgetSoftwareDetail->widget(QMC2_SWINFO_INFO_PAGE));
+
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+	componentInfo->availableFeatureList() << QMC2_SWINFO_SNAPSHOT_PAGE << QMC2_SWINFO_PROJECTMESS_PAGE << QMC2_SWINFO_NOTES_PAGE << QMC2_SWINFO_INFO_PAGE;
+#else
+	componentInfo->availableFeatureList() << QMC2_SWINFO_SNAPSHOT_PAGE << QMC2_SWINFO_NOTES_PAGE << QMC2_SWINFO_INFO_PAGE;
+#endif
+	components() << "Component4";
+	if ( !qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/" + components().last() + "/ActiveFeatures") ) {
+		foreach (int index, componentInfo->availableFeatureList())
+			componentInfo->activeFeatureList() << index;
+	} else {
+		QStringList activeIndexList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + components().last() + "/ActiveFeatures").toStringList();
+		foreach (QString sIndex, activeIndexList) {
+			int index = sIndex.toInt();
+			if ( componentInfo->availableFeatureList().contains(index) )
+				componentInfo->activeFeatureList() << index;
+		}
+	}
+	m_componentToWidgetHash[components().last()] = qmc2MainWindow->tabWidgetSoftwareDetail;
+	m_componentToSplitterHash[components().last()] = qmc2MainWindow->vSplitter;
+	m_componentToSplitterIndexHash[components().last()] = 1;
 	return componentInfo;
 }
 
@@ -744,6 +796,9 @@ void ComponentSetup::on_comboBoxComponents_currentIndexChanged(int index)
 			break;
 		case 2:
 			loadComponent("Component3");
+			break;
+		case 3:
+			loadComponent("Component4");
 			break;
 		default:
 			break;

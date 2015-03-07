@@ -400,6 +400,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void menuTabWidgetSoftwareDetail_South_activated();
 		void menuTabWidgetSoftwareDetail_West_activated();
 		void menuTabWidgetSoftwareDetail_East_activated();
+		void menuTabWidgetSoftwareDetail_Setup_activated();
 
 		// memory indicator
 		void memoryUpdateTimer_timeout();
@@ -410,6 +411,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void tabWidgetGamelist_tabMoved(int, int);
 		void tabWidgetGameDetail_tabMoved(int, int);
 		void tabWidgetLogsAndEmulators_tabMoved(int, int);
+		void tabWidgetSoftwareDetail_tabMoved(int, int);
 		void on_tabWidgetGamelist_currentChanged(int);
 		void on_tabWidgetLogsAndEmulators_currentChanged(int);
 		void tabWidgetLogsAndEmulators_updateCurrent() { on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex()); };

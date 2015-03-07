@@ -61,6 +61,7 @@ class ComponentSetup : public QDialog, public Ui::ComponentSetup
 		~ComponentSetup();
 
 		QHash<QString, ComponentInfo *> &componentInfoHash() { return m_componentInfoHash; }
+		QStringList &components() { return m_components; }
 
 	public slots:
 		void loadComponent(QString name = QString(), bool fromSettings = true);
@@ -93,6 +94,7 @@ class ComponentSetup : public QDialog, public Ui::ComponentSetup
 		ComponentInfo *initComponent1();
 		ComponentInfo *initComponent2();
 		ComponentInfo *initComponent3();
+		ComponentInfo *initComponent4();
 };
 
 #endif
