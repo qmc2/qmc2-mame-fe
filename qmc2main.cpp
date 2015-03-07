@@ -7538,16 +7538,16 @@ void MainWindow::init()
 	qmc2ComponentSetup->saveComponent("Component2");
 	qmc2ComponentSetup->saveComponent("Component3");
 
-	if ( !qmc2TemplateCheck ) {
-		setUpdatesEnabled(true);
-		qApp->processEvents();
-	}
-
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
 #elif defined(QMC2_EMUTYPE_MESS)
 	tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineDetailTab", 0).toInt());
 #endif
+
+	if ( !qmc2TemplateCheck ) {
+		setUpdatesEnabled(true);
+		qApp->processEvents();
+	}
 
 	// same for all other tab widgets
 	QTimer::singleShot(0, this, SLOT(updateTabWidgets()));
