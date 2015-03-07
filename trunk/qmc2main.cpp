@@ -786,6 +786,10 @@ MainWindow::MainWindow(QWidget *parent)
 	tabBar = tabWidgetLogsAndEmulators->findChild<QTabBar *>();
 	if ( tabBar )
 		connect(tabBar, SIGNAL(tabMoved(int, int)), this, SLOT(tabWidgetLogsAndEmulators_tabMoved(int, int)));
+	tabWidgetSoftwareDetail->setMovable(true);
+	tabBar = tabWidgetSoftwareDetail->findChild<QTabBar *>();
+	if ( tabBar )
+		connect(tabBar, SIGNAL(tabMoved(int, int)), this, SLOT(tabWidgetSoftwareDetail_tabMoved(int, int)));
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2Options->checkBoxShowGameName->setText(tr("Show game/software titles"));
@@ -1306,7 +1310,7 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGamelist_East_activated()));
 	menuTabWidgetGamelist->addSeparator();
 	s = tr("Feature setup");
-	action = menuTabWidgetGamelist->addAction(tr("&Setup..."));
+	action = menuTabWidgetGamelist->addAction(tr("Set&up..."));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGamelist_Setup_activated()));
@@ -1334,7 +1338,7 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGameDetail_East_activated()));
 	menuTabWidgetGameDetail->addSeparator();
 	s = tr("Feature setup");
-	action = menuTabWidgetGameDetail->addAction(tr("&Setup..."));
+	action = menuTabWidgetGameDetail->addAction(tr("Set&up..."));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGameDetail_Setup_activated()));
@@ -1362,7 +1366,7 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetLogsAndEmulators_East_activated()));
 	menuTabWidgetLogsAndEmulators->addSeparator();
 	s = tr("Feature setup");
-	action = menuTabWidgetLogsAndEmulators->addAction(tr("&Setup..."));
+	action = menuTabWidgetLogsAndEmulators->addAction(tr("Set&up..."));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetLogsAndEmulators_Setup_activated()));
@@ -1388,6 +1392,12 @@ MainWindow::MainWindow(QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetSoftwareDetail_East_activated()));
+	menuTabWidgetSoftwareDetail->addSeparator();
+	s = tr("Feature setup");
+	action = menuTabWidgetSoftwareDetail->addAction(tr("Set&up..."));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetSoftwareDetail_Setup_activated()));
 
 	// splitter context menus
 	menuHorizontalSplitter = new QMenu(0);
@@ -1924,6 +1934,32 @@ void MainWindow::tabWidgetLogsAndEmulators_tabMoved(int from, int to)
 		activeIndexList << QString::number(componentInfo->appliedFeatureList()[i]);
 
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Component3/ActiveFeatures", activeIndexList);
+}
+
+void MainWindow::tabWidgetSoftwareDetail_tabMoved(int from, int to)
+{
+	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(3);
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component4"];
+
+	if ( !componentInfo )
+		return;
+
+	int fromFeature = componentInfo->appliedFeatureList()[from];
+	componentInfo->appliedFeatureList().removeAt(from);
+	componentInfo->appliedFeatureList().insert(to, fromFeature);
+	fromFeature = componentInfo->activeFeatureList()[from];
+	componentInfo->activeFeatureList().removeAt(from);
+	componentInfo->activeFeatureList().insert(to, fromFeature);
+
+	QListWidgetItem *takenItem = qmc2ComponentSetup->listWidgetActiveFeatures->takeItem(from);
+	if ( takenItem )
+		qmc2ComponentSetup->listWidgetActiveFeatures->insertItem(to, takenItem);
+
+	QStringList activeIndexList;
+	for (int i = 0; i < componentInfo->appliedFeatureList().count(); i++)
+		activeIndexList << QString::number(componentInfo->appliedFeatureList()[i]);
+
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Component4/ActiveFeatures", activeIndexList);
 }
 
 void MainWindow::on_actionPlayEmbedded_triggered(bool)
@@ -4331,20 +4367,16 @@ void MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int currentIndex)
 
 void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 {
-#ifdef QMC2_DEBUG
-       	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int i = " + QString::number(currentIndex) + ")");
-#endif
-
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component4"];
 	if ( !qmc2SoftwareList )
 		return;
-
 	if ( !qmc2SoftwareList->currentItem )
 		return;
-
+	if ( !tabWidgetSoftwareDetail->isVisible() )
+		return;
 	int left, top, right, bottom;
 	gridLayout->getContentsMargins(&left, &top, &right, &bottom);
-
-	switch ( currentIndex ) {
+	switch ( componentInfo->appliedFeatureList()[currentIndex] ) {
 		case QMC2_SWINFO_SNAPSHOT_PAGE:
 			if ( qmc2SoftwareNotesEditor )
 				qmc2SoftwareNotesEditor->hideTearOffMenus();
@@ -4357,7 +4389,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 			}
 			qmc2SoftwareSnapshot->update();
 			break;
-
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_SWINFO_PROJECTMESS_PAGE:
 			if ( qmc2SoftwareNotesEditor )
@@ -4395,7 +4426,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 			}
 			break;
 #endif
-
 		case QMC2_SWINFO_NOTES_PAGE:
 			if ( qmc2SoftwareList->currentItem != qmc2LastSoftwareNotesItem ) {
 				if ( !qmc2SoftwareNotesEditor ) {
@@ -4489,7 +4519,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2LastSoftwareNotesItem = qmc2SoftwareList->currentItem;
 			}
 			break;
-
 		case QMC2_SWINFO_INFO_PAGE:
 			if ( qmc2SoftwareList->currentItem != qmc2LastSoftwareInfoItem ) {
 				QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
@@ -4502,7 +4531,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2LastSoftwareInfoItem = qmc2SoftwareList->currentItem;
 			}
 			break;
-
 		default:
 			break;
 	}
@@ -7533,10 +7561,9 @@ void MainWindow::init()
 		qmc2LastListIndex = 0;
 #endif
 
-	// make sure the current detail's tab header is shown
-	qmc2ComponentSetup->saveComponent("Component1");
-	qmc2ComponentSetup->saveComponent("Component2");
-	qmc2ComponentSetup->saveComponent("Component3");
+	// recreate all components
+	foreach (QString component, qmc2ComponentSetup->components())
+		qmc2ComponentSetup->saveComponent(component);
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
@@ -9136,7 +9163,6 @@ void MainWindow::menuTabWidgetGamelist_Setup_activated()
  
 	qmc2ComponentSetup->adjustIconSizes();
 
-	// reparent detail setup dialog to the widget it was called from
 	qmc2ComponentSetup->setParent(this);
 	qmc2ComponentSetup->setWindowFlags(Qt::Dialog);
 	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(0);
@@ -9189,7 +9215,6 @@ void MainWindow::menuTabWidgetGameDetail_Setup_activated()
  
 	qmc2ComponentSetup->adjustIconSizes();
 
-	// reparent detail setup dialog to the widget it was called from
 	qmc2ComponentSetup->setParent(this);
 	qmc2ComponentSetup->setWindowFlags(Qt::Dialog);
 	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(1);
@@ -9291,12 +9316,27 @@ void MainWindow::menuTabWidgetSoftwareDetail_East_activated()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareDetail/TabPosition", QTabWidget::East);
 }
 
+void MainWindow::menuTabWidgetSoftwareDetail_Setup_activated()
+{
+	if ( !qmc2ComponentSetup )
+		return;
+ 
+	qmc2ComponentSetup->adjustIconSizes();
+
+	qmc2ComponentSetup->setParent(this);
+	qmc2ComponentSetup->setWindowFlags(Qt::Dialog);
+	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(3);
+
+	if ( qmc2ComponentSetup->isHidden() )
+		qmc2ComponentSetup->show();
+	else if ( qmc2ComponentSetup->isMinimized() )
+		qmc2ComponentSetup->showNormal();
+
+	QTimer::singleShot(0, qmc2ComponentSetup, SLOT(raise()));
+}
+
 void MainWindow::on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	if ( !tabWidgetSoftwareDetail->currentWidget()->childrenRect().contains(p, true) ) {
 		menuTabWidgetSoftwareDetail->move(adjustedWidgetPosition(tabWidgetSoftwareDetail->mapToGlobal(p), menuTabWidgetSoftwareDetail));
 		menuTabWidgetSoftwareDetail->show();
@@ -9305,30 +9345,18 @@ void MainWindow::on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPo
 
 void MainWindow::on_hSplitter_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_hSplitter_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	menuHorizontalSplitter->move(adjustedWidgetPosition(hSplitter->mapToGlobal(p), menuHorizontalSplitter));
 	menuHorizontalSplitter->show();
 }
 
 void MainWindow::on_vSplitter_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_vSplitter_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	menuVerticalSplitter->move(adjustedWidgetPosition(vSplitter->mapToGlobal(p), menuVerticalSplitter));
 	menuVerticalSplitter->show();
 }
 
 void MainWindow::menuHorizontalSplitter_FlipOrientation_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::menuHorizontalSplitter_FlipOrientation_activated()");
-#endif
-
 	if ( hSplitter->orientation() == Qt::Horizontal )
 		hSplitter->setOrientation(Qt::Vertical);
 	else
@@ -9337,19 +9365,11 @@ void MainWindow::menuHorizontalSplitter_FlipOrientation_activated()
 
 void MainWindow::menuHorizontalSplitter_SwapLayouts_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::menuHorizontalSplitter_SwapLayouts_activated()");
-#endif
-
 	hSplitter->insertWidget(0, hSplitter->widget(1));
 }
 
 void MainWindow::menuVerticalSplitter_FlipOrientation_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::menuVerticalSplitter_FlipOrientation_activated()");
-#endif
-
 	if ( vSplitter->orientation() == Qt::Horizontal )
 		vSplitter->setOrientation(Qt::Vertical);
 	else
@@ -9358,37 +9378,21 @@ void MainWindow::menuVerticalSplitter_FlipOrientation_activated()
 
 void MainWindow::menuVerticalSplitter_SwapWidgets_activated()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::menuVerticalSplitter_SwapWidgets_activated()");
-#endif
-
 	vSplitter->insertWidget(0, vSplitter->widget(1));
 }
 
 void MainWindow::treeWidgetHierarchy_headerSectionClicked(int logicalIndex)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::treeWidgetHierarchy_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
-#endif
-
 	treeWidgetGamelist_headerSectionClicked(logicalIndex);
 }
 
 void MainWindow::treeWidgetCategoryView_headerSectionClicked(int logicalIndex)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::treeWidgetCategoryView_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
-#endif
-
 	treeWidgetGamelist_headerSectionClicked(logicalIndex);
 }
 
 void MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item, int column)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
-#endif
-
 	if ( qmc2DemoModeDialog )
 		if ( qmc2DemoModeDialog->demoModeRunning )
 			return;
@@ -9415,10 +9419,6 @@ void MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item, 
 
 void MainWindow::on_treeWidgetCategoryView_itemDoubleClicked(QTreeWidgetItem *item, int column)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_itemDoubleClicked(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
-#endif
-
 	if ( !item )
 		return;
 	if ( item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
@@ -9432,10 +9432,6 @@ void MainWindow::on_treeWidgetCategoryView_itemDoubleClicked(QTreeWidgetItem *it
 
 void MainWindow::on_treeWidgetCategoryView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_currentItemChanged(QTreeWidgetItem *current = %1, QTreeWidgetItem *previous = %2)").arg((qulonglong)current).arg((qulonglong)previous));
-#endif
-
 	if ( !current )
 		return;
 	if ( current->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
@@ -9449,10 +9445,6 @@ void MainWindow::on_treeWidgetCategoryView_currentItemChanged(QTreeWidgetItem *c
 
 void MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()"));
-#endif
-
 	qmc2CategoryViewSelectedItem = NULL;
 	QList<QTreeWidgetItem *>selected = treeWidgetCategoryView->selectedItems();
 	if ( selected.count() > 0 ) {
@@ -9467,10 +9459,6 @@ void MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()
 
 void MainWindow::on_treeWidgetCategoryView_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetCategoryView_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	QTreeWidgetItem *item = treeWidgetCategoryView->itemAt(p);
 	if ( !item )
 		return;
@@ -9484,19 +9472,11 @@ void MainWindow::on_treeWidgetCategoryView_customContextMenuRequested(const QPoi
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 void MainWindow::treeWidgetVersionView_headerSectionClicked(int logicalIndex)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::treeWidgetVersionView_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
-#endif
-
 	treeWidgetGamelist_headerSectionClicked(logicalIndex);
 }
 
 void MainWindow::on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *item, int column)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
-#endif
-
 	if ( qmc2DemoModeDialog )
 		if ( qmc2DemoModeDialog->demoModeRunning )
 			return;
@@ -9523,10 +9503,6 @@ void MainWindow::on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *item, i
 
 void MainWindow::on_treeWidgetVersionView_itemDoubleClicked(QTreeWidgetItem *item, int column)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetVersionView_itemDoubleClicked(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
-#endif
-
 	if ( !item )
 		return;
 	if ( item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
@@ -9537,10 +9513,6 @@ void MainWindow::on_treeWidgetVersionView_itemDoubleClicked(QTreeWidgetItem *ite
 
 void MainWindow::on_treeWidgetVersionView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetVersionView_currentItemChanged(QTreeWidgetItem *current = %1, QTreeWidgetItem *previous = %2)").arg((qulonglong)current).arg((qulonglong)previous));
-#endif
-
 	if ( !current )
 		return;
 	if ( current->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
@@ -9554,10 +9526,6 @@ void MainWindow::on_treeWidgetVersionView_currentItemChanged(QTreeWidgetItem *cu
 
 void MainWindow::on_treeWidgetVersionView_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetVersionView_itemSelectionChanged()"));
-#endif
-
 	qmc2VersionViewSelectedItem = NULL;
 	QList<QTreeWidgetItem *>selected = treeWidgetVersionView->selectedItems();
 	if ( selected.count() > 0 ) {
@@ -9572,10 +9540,6 @@ void MainWindow::on_treeWidgetVersionView_itemSelectionChanged()
 
 void MainWindow::on_treeWidgetVersionView_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetVersionView_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	QTreeWidgetItem *item = treeWidgetVersionView->itemAt(p);
 	if ( !item )
 		return;
@@ -9589,10 +9553,6 @@ void MainWindow::on_treeWidgetVersionView_customContextMenuRequested(const QPoin
 
 void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index = %1)").arg(index));
-#endif
-
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
 	if ( componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] != QMC2_GAMELIST_INDEX )
 		return;
@@ -9641,18 +9601,10 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 void MainWindow::projectMessLoadStarted()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::projectMessLoadStarted()");
-#endif
-
 }
 
 void MainWindow::projectMessLoadFinished(bool ok)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::projectMessLoadFinished(bool ok = %1)").arg(ok));
-#endif
-
 	if ( qmc2SoftwareList->currentItem && qmc2ProjectMESS && ok ) {
 		// store compressed page to in-memory cache
 		QString cacheKey = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST) + "_" + qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
@@ -9669,10 +9621,6 @@ void MainWindow::projectMessLoadFinished(bool ok)
 #if defined(QMC2_EMUTYPE_MAME)
 void MainWindow::mawsLoadStarted()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::mawsLoadStarted()");
-#endif
-
 	if ( menuMAWSQuickLinks )
 		delete menuMAWSQuickLinks;
 	if ( toolButtonMAWSQuickLinks )
@@ -9683,10 +9631,6 @@ void MainWindow::mawsLoadStarted()
 
 void MainWindow::mawsLoadFinished(bool ok)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::mawsLoadFinished(bool ok = %1)").arg(ok));
-#endif
-
 	if ( qmc2CurrentItem && qmc2MAWSLookup && ok ) {
 		QString gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
 		// only cache the ROM set page, don't cache followed pages
@@ -9754,10 +9698,6 @@ void MainWindow::mawsLoadFinished(bool ok)
 
 void MainWindow::createMawsQuickLinksMenu()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::createMawsQuickLinksMenu()");
-#endif
-
 	if ( !qmc2MAWSLookup )
 		return;
 
@@ -9943,10 +9883,6 @@ void MainWindow::createMawsQuickLinksMenu()
 
 void MainWindow::setupMawsQuickLinks()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::setupMawsQuickLinks()");
-#endif
-
 	if ( !qmc2MawsQuickDownloadSetup )
 		qmc2MawsQuickDownloadSetup = new MawsQuickDownloadSetup(this);
 
@@ -9956,10 +9892,6 @@ void MainWindow::setupMawsQuickLinks()
 
 void MainWindow::mawsQuickLinksSetVisible(bool visible)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::mawsQuickLinksSetVisible(bool visible = %1)").arg(visible));
-#endif
-
 	if ( !qmc2MAWSLookup )
 		return;
 
@@ -9973,10 +9905,6 @@ void MainWindow::mawsQuickLinksSetVisible(bool visible)
 
 void MainWindow::mawsQuickLinksMenuHidden()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::mawsQuickLinksMenuHidden()");
-#endif
-
 	if ( !qmc2MAWSLookup )
 		return;
 
@@ -12866,11 +12794,10 @@ int main(int argc, char *argv[])
 	qmc2ProcessManager = new ProcessManager(0);
 	qmc2MainWindow = new MainWindow(0);
 
-	// prepare & restore game/machine detail setup
+	// prepare & restore component setup
 	qmc2ComponentSetup = new ComponentSetup(qmc2MainWindow);
-	qmc2ComponentSetup->saveComponent("Component1");
-	qmc2ComponentSetup->saveComponent("Component2");
-	qmc2ComponentSetup->saveComponent("Component3");
+	foreach (QString component, qmc2ComponentSetup->components())
+		qmc2ComponentSetup->saveComponent(component);
 
 	// finalize initial setup
 	qmc2Options->apply();
