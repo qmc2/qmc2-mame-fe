@@ -718,6 +718,9 @@
      </item>
      <item row="0" column="3">
       <widget class="QToolButton" name="toolButtonExactMatchSoftwareLists">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
          <horstretch>0</horstretch>
@@ -738,6 +741,9 @@
      </item>
      <item row="1" column="3">
       <widget class="QToolButton" name="toolButtonExactMatch">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
          <horstretch>0</horstretch>
