@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/" >
+        <file>data/img/1.png</file>
+        <file>data/img/2.png</file>
+        <file>data/img/3.png</file>
+        <file>data/img/4.png</file>
         <file>data/img/7z-compressed.png</file>
         <file>data/img/activity_green.png</file>
         <file>data/img/activity_red.png</file>
@@ -22,6 +26,20 @@
         <file>data/img/clone.png</file>
         <file>data/img/colors.png</file>
         <file>data/img/compressed.png</file>
+        <file>data/img/component_arrangement_00.png</file>
+        <file>data/img/component_arrangement_01.png</file>
+        <file>data/img/component_arrangement_02.png</file>
+        <file>data/img/component_arrangement_03.png</file>
+        <file>data/img/component_arrangement_04.png</file>
+        <file>data/img/component_arrangement_05.png</file>
+        <file>data/img/component_arrangement_06.png</file>
+        <file>data/img/component_arrangement_07.png</file>
+        <file>data/img/component_arrangement_08.png</file>
+        <file>data/img/component_arrangement_09.png</file>
+        <file>data/img/component_arrangement_10.png</file>
+        <file>data/img/component_arrangement_11.png</file>
+        <file>data/img/component_arrangement_12.png</file>
+        <file>data/img/component_arrangement_13.png</file>
         <file>data/img/configure.png</file>
         <file>data/img/controller.png</file>
         <file>data/img/database.png</file>

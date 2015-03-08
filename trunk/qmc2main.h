@@ -322,14 +322,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_tabWidgetGameDetail_customContextMenuRequested(const QPoint &);
 		void on_tabWidgetLogsAndEmulators_customContextMenuRequested(const QPoint &);
 		void on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPoint &p);
-		void on_hSplitter_customContextMenuRequested(const QPoint &);
-		void on_vSplitter_customContextMenuRequested(const QPoint &);
-
-		// splitter flip/swap callbacks
-		void menuHorizontalSplitter_FlipOrientation_activated();
-		void menuHorizontalSplitter_SwapLayouts_activated();
-		void menuVerticalSplitter_FlipOrientation_activated();
-		void menuVerticalSplitter_SwapWidgets_activated();
 
 		// joystick functions
 #if QMC2_JOYSTICK == 1

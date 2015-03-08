@@ -22,9 +22,22 @@ ComponentSetup::ComponentSetup(QWidget *parent)
 	componentInfoHash().insert("Component3", initComponent3());
 	componentInfoHash().insert("Component4", initComponent4());
 
+	// prepare component arrangement
+	splitter0 = qmc2MainWindow->hSplitter;
+	splitter1 = qmc2MainWindow->vSplitter;
+	widget00 = splitter0->widget(0);
+	widget01 = splitter0->widget(1);
+	widget10 = splitter1->widget(0);
+	widget11 = splitter1->widget(1);
+
+	// init UI
 	setupUi(this);
 	hide();
 	adjustSize();
+	connect(this, SIGNAL(rejected()), this, SLOT(on_pushButtonCancel_clicked()));
+
+	// load current component arrangement
+	loadArrangement();
 }
 
 ComponentSetup::~ComponentSetup()
@@ -551,6 +564,140 @@ void ComponentSetup::saveComponent(QString name)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + name + "/ActiveFeatures", activeIndexList);
 }
 
+void ComponentSetup::loadArrangement()
+{
+	int index = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ComponentArrangement", 0).toInt();
+	if ( index < 0 || index > 13 )
+		index = 0;
+	comboBoxArrangements->setCurrentIndex(index);
+}
+
+void ComponentSetup::saveArrangement()
+{
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ComponentArrangement", comboBoxArrangements->currentIndex());
+	setArrangement(comboBoxArrangements->currentIndex());
+}
+
+void ComponentSetup::setArrangement(int index)
+{
+	switch ( index ) {
+		case 0:
+			splitter0->setOrientation(Qt::Horizontal);
+			splitter1->setOrientation(Qt::Vertical);
+			splitter0->insertWidget(0, widget00);
+			splitter0->insertWidget(1, widget01);
+			splitter1->insertWidget(0, widget10);
+			splitter1->insertWidget(1, widget11);
+			break;
+		case 1:
+			splitter0->setOrientation(Qt::Horizontal);
+			splitter1->setOrientation(Qt::Vertical);
+			splitter0->insertWidget(0, widget00);
+			splitter0->insertWidget(1, widget01);
+			splitter1->insertWidget(0, widget11);
+			splitter1->insertWidget(1, widget10);
+			break;
+		case 2:
+			splitter0->setOrientation(Qt::Horizontal);
+			splitter1->setOrientation(Qt::Vertical);
+			splitter0->insertWidget(0, widget01);
+			splitter0->insertWidget(1, widget00);
+			splitter1->insertWidget(0, widget10);
+			splitter1->insertWidget(1, widget11);
+			break;
+		case 3:
+			splitter0->setOrientation(Qt::Horizontal);
+			splitter1->setOrientation(Qt::Vertical);
+			splitter0->insertWidget(0, widget01);
+			splitter0->insertWidget(1, widget00);
+			splitter1->insertWidget(0, widget11);
+			splitter1->insertWidget(1, widget10);
+			break;
+		case 4:
+			splitter0->setOrientation(Qt::Vertical);
+			splitter1->setOrientation(Qt::Horizontal);
+			splitter0->insertWidget(0, widget00);
+			splitter0->insertWidget(1, widget01);
+			splitter1->insertWidget(0, widget10);
+			splitter1->insertWidget(1, widget11);
+			break;
+		case 5:
+			splitter0->setOrientation(Qt::Vertical);
+			splitter1->setOrientation(Qt::Horizontal);
+			splitter0->insertWidget(0, widget00);
+			splitter0->insertWidget(1, widget01);
+			splitter1->insertWidget(0, widget11);
+			splitter1->insertWidget(1, widget10);
+			break;
+		case 6:
+			splitter0->setOrientation(Qt::Vertical);
+			splitter1->setOrientation(Qt::Horizontal);
+			splitter0->insertWidget(0, widget01);
+			splitter0->insertWidget(1, widget00);
+			splitter1->insertWidget(0, widget10);
+			splitter1->insertWidget(1, widget11);
+			break;
+		case 7:
+			splitter0->setOrientation(Qt::Vertical);
+			splitter1->setOrientation(Qt::Horizontal);
+			splitter0->insertWidget(0, widget01);
+			splitter0->insertWidget(1, widget00);
+			splitter1->insertWidget(0, widget11);
+			splitter1->insertWidget(1, widget10);
+			break;
+		case 8:
+			splitter0->setOrientation(Qt::Vertical);
+			splitter1->setOrientation(Qt::Vertical);
+			splitter0->insertWidget(0, widget00);
+			splitter0->insertWidget(1, widget01);
+			splitter1->insertWidget(0, widget10);
+			splitter1->insertWidget(1, widget11);
+			break;
+		case 9:
+			splitter0->setOrientation(Qt::Horizontal);
+			splitter1->setOrientation(Qt::Horizontal);
+			splitter0->insertWidget(0, widget00);
+			splitter0->insertWidget(1, widget01);
+			splitter1->insertWidget(0, widget10);
+			splitter1->insertWidget(1, widget11);
+			break;
+		case 10:
+			splitter0->setOrientation(Qt::Vertical);
+			splitter1->setOrientation(Qt::Vertical);
+			splitter0->insertWidget(0, widget01);
+			splitter0->insertWidget(1, widget00);
+			splitter1->insertWidget(0, widget10);
+			splitter1->insertWidget(1, widget11);
+			break;
+		case 11:
+			splitter0->setOrientation(Qt::Horizontal);
+			splitter1->setOrientation(Qt::Horizontal);
+			splitter0->insertWidget(0, widget01);
+			splitter0->insertWidget(1, widget00);
+			splitter1->insertWidget(0, widget10);
+			splitter1->insertWidget(1, widget11);
+			break;
+		case 12:
+			splitter0->setOrientation(Qt::Vertical);
+			splitter1->setOrientation(Qt::Vertical);
+			splitter0->insertWidget(0, widget01);
+			splitter0->insertWidget(1, widget00);
+			splitter1->insertWidget(0, widget11);
+			splitter1->insertWidget(1, widget10);
+			break;
+		case 13:
+			splitter0->setOrientation(Qt::Horizontal);
+			splitter1->setOrientation(Qt::Horizontal);
+			splitter0->insertWidget(0, widget01);
+			splitter0->insertWidget(1, widget00);
+			splitter1->insertWidget(0, widget11);
+			splitter1->insertWidget(1, widget10);
+			break;
+		default:
+			break;
+	}
+}
+
 void ComponentSetup::adjustIconSizes()
 {
 	QFontMetrics fm(qApp->font());
@@ -804,9 +951,4 @@ void ComponentSetup::on_comboBoxComponents_currentIndexChanged(int index)
 			break;
 	}
 	lastIndex = index;
-}
-
-void ComponentSetup::showEvent(QShowEvent *)
-{
-	loadComponent();
 }

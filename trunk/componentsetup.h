@@ -66,6 +66,9 @@ class ComponentSetup : public QDialog, public Ui::ComponentSetup
 	public slots:
 		void loadComponent(QString name = QString(), bool fromSettings = true);
 		void saveComponent(QString name = QString());
+		void loadArrangement();
+		void saveArrangement();
+		void setArrangement(int index);
 		void adjustIconSizes();
 
 		// automatically connected slots
@@ -76,13 +79,14 @@ class ComponentSetup : public QDialog, public Ui::ComponentSetup
 		void on_pushButtonDeactivateFeatures_clicked();
 		void on_pushButtonFeatureUp_clicked();
 		void on_pushButtonFeatureDown_clicked();
-		void on_pushButtonOk_clicked() { saveComponent(); }
-		void on_pushButtonApply_clicked() { saveComponent(); }
-		void on_pushButtonCancel_clicked() { loadComponent(); }
+		void on_pushButtonOk_clicked() { saveArrangement(); saveComponent(); }
+		void on_pushButtonApply_clicked() { saveArrangement(); saveComponent(); }
+		void on_pushButtonCancel_clicked() { loadArrangement(); loadComponent(); }
 		void on_comboBoxComponents_currentIndexChanged(int index);
+		void on_comboBoxArrangements_currentIndexChanged(int index) { setArrangement(index); }
 
 	protected:
-		void showEvent(QShowEvent *);
+		void showEvent(QShowEvent *) { loadArrangement(); loadComponent(); }
 
 	private:
 		QHash<QString, ComponentInfo *> m_componentInfoHash;
@@ -90,6 +94,8 @@ class ComponentSetup : public QDialog, public Ui::ComponentSetup
 		QHash<QString, QSplitter *> m_componentToSplitterHash;
 		QHash<QString, int> m_componentToSplitterIndexHash;
 		QStringList m_components;
+		QSplitter *splitter0, *splitter1;
+		QWidget *widget00, *widget01, *widget10, *widget11;
 
 		ComponentInfo *initComponent1();
 		ComponentInfo *initComponent2();
