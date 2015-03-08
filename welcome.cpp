@@ -358,8 +358,21 @@ bool Welcome::checkConfig()
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/ActiveDetails");
 			}
 		}
+		if ( QMC2_TEST_VERSION(omv, 50, osr, 6579) ) {
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/hSplitterFlipped");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/hSplitterSwapped");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/vSplitterFlipped");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/vSplitterSwapped");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/hSplitterFlipped");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/hSplitterSwapped");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/vSplitterFlipped");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/vSplitterSwapped");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/hSplitterFlipped");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/hSplitterSwapped");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/vSplitterFlipped");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/vSplitterSwapped");
+		}
 	}
-
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();
 	return configOkay;
 }

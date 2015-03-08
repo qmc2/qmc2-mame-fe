@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>548</width>
-    <height>324</height>
+    <height>343</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,41 +18,198 @@
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout1">
      <item>
-      <widget class="QLabel" name="labelGuiComponent">
-       <property name="text">
-        <string>GUI component</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QComboBox" name="comboBoxComponents">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="toolTip">
         <string>Select GUI component to set up</string>
        </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
        <item>
         <property name="text">
-         <string>Component 1: Master system list views</string>
+         <string>Master system list views</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/1.png</normaloff>:/data/img/1.png</iconset>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Component 2: System-specific detail tabs</string>
+         <string>System-specific detail tabs</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/2.png</normaloff>:/data/img/2.png</iconset>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Component 3: Logs and special widgets</string>
+         <string>Logs and special widgets</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/3.png</normaloff>:/data/img/3.png</iconset>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Component 4: Software-detail widget</string>
+         <string>Software-detail widget</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/4.png</normaloff>:/data/img/4.png</iconset>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBoxArrangements">
+       <property name="toolTip">
+        <string>Select component arrangement / order</string>
+       </property>
+       <property name="maxVisibleItems">
+        <number>14</number>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <item>
+        <property name="text">
+         <string>Component arrangement I</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/component_arrangement_00.png</normaloff>:/data/img/component_arrangement_00.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Component arrangement II</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/component_arrangement_01.png</normaloff>:/data/img/component_arrangement_01.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Component arrangement III</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/component_arrangement_02.png</normaloff>:/data/img/component_arrangement_02.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Component arrangement IV</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/component_arrangement_03.png</normaloff>:/data/img/component_arrangement_03.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Component arrangement V</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/component_arrangement_04.png</normaloff>:/data/img/component_arrangement_04.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Component arrangement VI</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/component_arrangement_05.png</normaloff>:/data/img/component_arrangement_05.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Component arrangement VII</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/component_arrangement_06.png</normaloff>:/data/img/component_arrangement_06.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Component arrangement VIII</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/component_arrangement_07.png</normaloff>:/data/img/component_arrangement_07.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Component arrangement IX</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/component_arrangement_08.png</normaloff>:/data/img/component_arrangement_08.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Component arrangement X</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/component_arrangement_09.png</normaloff>:/data/img/component_arrangement_09.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Component arrangement XI</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/component_arrangement_10.png</normaloff>:/data/img/component_arrangement_10.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Component arrangement XII</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/component_arrangement_11.png</normaloff>:/data/img/component_arrangement_11.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Component arrangement XIII</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/component_arrangement_12.png</normaloff>:/data/img/component_arrangement_12.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Component arrangement XIV</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/component_arrangement_13.png</normaloff>:/data/img/component_arrangement_13.png</iconset>
         </property>
        </item>
       </widget>
@@ -68,12 +225,24 @@
       <bool>false</bool>
      </property>
      <widget class="QGroupBox" name="groupBoxAvailableFeatures">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="title">
        <string>Available features</string>
       </property>
       <layout class="QGridLayout" name="gridLayoutAvailableFeatures">
        <item row="0" column="0">
         <widget class="QListWidget" name="listWidgetAvailableFeatures">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>List of available features</string>
          </property>
@@ -135,12 +304,24 @@
       </layout>
      </widget>
      <widget class="QGroupBox" name="groupBoxActiveFeatures">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="title">
        <string>Active features</string>
       </property>
       <layout class="QGridLayout" name="gridLayoutActiveFeatures">
        <item row="0" column="0">
         <widget class="QListWidget" name="listWidgetActiveFeatures">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>List of active features and their order</string>
          </property>
@@ -300,6 +481,7 @@
  <layoutdefault spacing="6" margin="6"/>
  <tabstops>
   <tabstop>comboBoxComponents</tabstop>
+  <tabstop>comboBoxArrangements</tabstop>
   <tabstop>listWidgetAvailableFeatures</tabstop>
   <tabstop>listWidgetActiveFeatures</tabstop>
   <tabstop>pushButtonConfigureFeature</tabstop>
