@@ -532,10 +532,15 @@ void ComponentSetup::saveComponent(QString name)
 	}
 	if ( tabWidget->count() > 0 ) {
 		splitter->handle(1)->setEnabled(true);
-		if ( splitter->orientation() == Qt::Horizontal )
+		if ( splitter->orientation() == Qt::Horizontal ) {
 			splitter->handle(1)->setFixedWidth(4);
-		else
+			splitter->handle(1)->setMinimumHeight(0);
+			splitter->handle(1)->setMaximumHeight(QWIDGETSIZE_MAX);
+		} else {
+			splitter->handle(1)->setMinimumWidth(0);
+			splitter->handle(1)->setMaximumWidth(QWIDGETSIZE_MAX);
 			splitter->handle(1)->setFixedHeight(4);
+		}
 		splitter->setHandleWidth(4);
 		int index = tabWidget->indexOf(oldWidget);
 		if ( index >= 0 )
@@ -695,6 +700,24 @@ void ComponentSetup::setArrangement(int index)
 			break;
 		default:
 			break;
+	}
+	if ( splitter0->orientation() == Qt::Horizontal ) {
+		splitter0->handle(1)->setFixedWidth(4);
+		splitter0->handle(1)->setMinimumHeight(0);
+		splitter0->handle(1)->setMaximumHeight(QWIDGETSIZE_MAX);
+	} else {
+		splitter0->handle(1)->setMinimumWidth(0);
+		splitter0->handle(1)->setMaximumWidth(QWIDGETSIZE_MAX);
+		splitter0->handle(1)->setFixedHeight(4);
+	}
+	if ( splitter1->orientation() == Qt::Horizontal ) {
+		splitter1->handle(1)->setFixedWidth(4);
+		splitter1->handle(1)->setMinimumHeight(0);
+		splitter1->handle(1)->setMaximumHeight(QWIDGETSIZE_MAX);
+	} else {
+		splitter1->handle(1)->setMinimumWidth(0);
+		splitter1->handle(1)->setMaximumWidth(QWIDGETSIZE_MAX);
+		splitter1->handle(1)->setFixedHeight(4);
 	}
 }
 
