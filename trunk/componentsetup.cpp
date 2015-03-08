@@ -725,6 +725,7 @@ void ComponentSetup::adjustIconSizes()
 {
 	QFontMetrics fm(qApp->font());
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
+	QSize iconSizeBig(QMC2_MAX(fm.height() + 2, 28), QMC2_MAX(fm.height() + 2, 28));
 	pushButtonConfigureFeature->setIconSize(iconSize);
 	pushButtonActivateFeatures->setIconSize(iconSize);
 	pushButtonDeactivateFeatures->setIconSize(iconSize);
@@ -735,6 +736,8 @@ void ComponentSetup::adjustIconSizes()
 	pushButtonCancel->setIconSize(iconSize);
 	listWidgetAvailableFeatures->setIconSize(iconSize);
 	listWidgetActiveFeatures->setIconSize(iconSize);
+	comboBoxComponents->setIconSize(iconSizeBig);
+	comboBoxArrangements->setIconSize(iconSizeBig);
 }
 
 void ComponentSetup::on_listWidgetAvailableFeatures_itemSelectionChanged()

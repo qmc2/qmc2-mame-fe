@@ -86,7 +86,7 @@ class ComponentSetup : public QDialog, public Ui::ComponentSetup
 		void on_comboBoxArrangements_currentIndexChanged(int index) { setArrangement(index); }
 
 	protected:
-		void showEvent(QShowEvent *) { loadArrangement(); loadComponent(); }
+		void showEvent(QShowEvent *) { adjustIconSizes(); loadArrangement(); loadComponent(); }
 
 	private:
 		QHash<QString, ComponentInfo *> m_componentInfoHash;
