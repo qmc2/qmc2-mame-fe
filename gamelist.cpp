@@ -4034,8 +4034,7 @@ void Gamelist::createCategoryView()
 	qmc2MainWindow->labelCreatingCategoryView->setVisible(false);
 	qmc2MainWindow->treeWidgetCategoryView->setVisible(true);
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
-	if ( creatingCatView )
-		qmc2MainWindow->treeWidgetCategoryView->setFocus();
+	qmc2MainWindow->treeWidgetCategoryView->setFocus();
 	creatingCatView = false;
 }
 
@@ -4276,9 +4275,8 @@ void Gamelist::createVersionView()
 	qmc2MainWindow->labelCreatingVersionView->setVisible(false);
 	qmc2MainWindow->treeWidgetVersionView->setVisible(true);
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
-	if ( creatingVerView )
-		qmc2MainWindow->treeWidgetVersionView->setFocus();
-	creatingVerView = true;
+	qmc2MainWindow->treeWidgetVersionView->setFocus();
+	creatingVerView = false;
 }
 #endif
 
