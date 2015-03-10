@@ -185,7 +185,7 @@
          </column>
          <column>
           <property name="text">
-           <string>SHA1</string>
+           <string>SHA-1</string>
           </property>
          </column>
          <column>

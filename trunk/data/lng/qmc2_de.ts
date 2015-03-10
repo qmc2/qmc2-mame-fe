@@ -1987,8 +1987,8 @@ p, li { white-space: pre-wrap; }
         <translation>Unbekannt</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="728"/>
-        <location filename="../../collectionrebuilder.ui" line="748"/>
+        <location filename="../../collectionrebuilder.ui" line="731"/>
+        <location filename="../../collectionrebuilder.ui" line="754"/>
         <source>Exact match</source>
         <translation>Exakter Treffer</translation>
     </message>
@@ -3045,53 +3045,53 @@ p, li { white-space: pre-wrap; }
         <translation>Software Info Eintrag</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="797"/>
+        <location filename="../../componentsetup.cpp" line="823"/>
         <source>MAWS configuration (1/2)</source>
         <translation>MAWS Konfiguration (1/2)</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="798"/>
+        <location filename="../../componentsetup.cpp" line="824"/>
         <source>MAWS URL pattern (use %1 as placeholder for game ID):</source>
         <translation>MAWS URL Schablone (%1 als Platzhalter für Spiele-ID verwenden):</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="807"/>
-        <location filename="../../componentsetup.cpp" line="811"/>
+        <location filename="../../componentsetup.cpp" line="833"/>
+        <location filename="../../componentsetup.cpp" line="837"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="807"/>
+        <location filename="../../componentsetup.cpp" line="833"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="809"/>
+        <location filename="../../componentsetup.cpp" line="835"/>
         <source>MAWS configuration (2/2)</source>
         <translation>MAWS Konfiguration (2/2)</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="809"/>
+        <location filename="../../componentsetup.cpp" line="835"/>
         <source>Enable MAWS quick download?</source>
         <translation>MAWS Schnell-Download aktivieren?</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="829"/>
+        <location filename="../../componentsetup.cpp" line="855"/>
         <source>Choose the YouTube cache directory</source>
         <translation>YouTube Cache Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="839"/>
+        <location filename="../../componentsetup.cpp" line="865"/>
         <source>FATAL: can&apos;t create new YouTube cache directory, path = %1</source>
         <translation>FATAL: kann neues YouTube Cache Verzeichnis nicht anlegen, Pfad = %1</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="921"/>
+        <location filename="../../componentsetup.cpp" line="947"/>
         <source>Question</source>
         <translation>Frage</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="921"/>
+        <location filename="../../componentsetup.cpp" line="947"/>
         <source>The current component&apos;s setup hasn&apos;t been applied yet. Apply it now?</source>
         <translation>Die Änderungen an der aktuellen Komponente wurde noch nicht angewendet. Jetzt anwenden?</translation>
     </message>
@@ -5623,7 +5623,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../gamelist.cpp" line="771"/>
         <location filename="../../gamelist.cpp" line="772"/>
         <location filename="../../gamelist.cpp" line="840"/>
-        <location filename="../../gamelist.cpp" line="4315"/>
+        <location filename="../../gamelist.cpp" line="4317"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
@@ -5938,7 +5938,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../gamelist.cpp" line="898"/>
         <location filename="../../gamelist.cpp" line="901"/>
         <location filename="../../gamelist.cpp" line="3887"/>
-        <location filename="../../gamelist.cpp" line="4127"/>
+        <location filename="../../gamelist.cpp" line="4128"/>
         <source>Loading, please wait...</source>
         <translation>Lade, bitte warten...</translation>
     </message>
@@ -6169,22 +6169,22 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Fertig (Prüfe ROM Status aller Sets, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4290"/>
+        <location filename="../../gamelist.cpp" line="4292"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4296"/>
+        <location filename="../../gamelist.cpp" line="4298"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4302"/>
+        <location filename="../../gamelist.cpp" line="4304"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4308"/>
+        <location filename="../../gamelist.cpp" line="4310"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
@@ -6216,7 +6216,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../gamelist.cpp" line="3271"/>
         <location filename="../../gamelist.cpp" line="3272"/>
         <location filename="../../gamelist.cpp" line="3945"/>
-        <location filename="../../gamelist.cpp" line="4185"/>
+        <location filename="../../gamelist.cpp" line="4186"/>
         <source>?</source>
         <translation>?</translation>
     </message>
@@ -6402,27 +6402,27 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Fertig (Lade category.ini, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4054"/>
+        <location filename="../../gamelist.cpp" line="4055"/>
         <source>loading catver.ini</source>
         <translation>Lade catver.ini</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4060"/>
+        <location filename="../../gamelist.cpp" line="4061"/>
         <source>Catver.ini - %p%</source>
         <translation>Catver.ini - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4103"/>
+        <location filename="../../gamelist.cpp" line="4104"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation>FEHLER: kann &apos;%1&apos; nicht zum Lesen öffnen -- keine catver.ini Daten verfügbar</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4112"/>
+        <location filename="../../gamelist.cpp" line="4113"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation>Fertig (Lade catver.ini, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4113"/>
+        <location filename="../../gamelist.cpp" line="4114"/>
         <source>%1 category / %2 version records loaded</source>
         <translation>%1 Kategorie- / %2 Versions-Datensätze geladen</translation>
     </message>
@@ -6440,7 +6440,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4155"/>
+        <location filename="../../gamelist.cpp" line="4156"/>
         <source>Version view - %p%</source>
         <translation>Versionsansicht - %p%</translation>
     </message>
@@ -19053,9 +19053,8 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Analyse-Bericht</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="188"/>
         <source>SHA1</source>
-        <translation>SHA1</translation>
+        <translation type="obsolete">SHA1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="193"/>
@@ -19278,6 +19277,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>SHA-1 Prüfsumme berechnen</translation>
     </message>
     <message>
+        <location filename="../../romalyzer.ui" line="188"/>
         <location filename="../../romalyzer.ui" line="868"/>
         <location filename="../../romalyzer.ui" line="1608"/>
         <location filename="../../romalyzer.cpp" line="1160"/>
