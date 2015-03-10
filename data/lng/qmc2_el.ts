@@ -1982,8 +1982,8 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="728"/>
-        <location filename="../../collectionrebuilder.ui" line="748"/>
+        <location filename="../../collectionrebuilder.ui" line="731"/>
+        <location filename="../../collectionrebuilder.ui" line="754"/>
         <source>Exact match</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3020,53 +3020,53 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="797"/>
+        <location filename="../../componentsetup.cpp" line="823"/>
         <source>MAWS configuration (1/2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="798"/>
+        <location filename="../../componentsetup.cpp" line="824"/>
         <source>MAWS URL pattern (use %1 as placeholder for game ID):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="807"/>
-        <location filename="../../componentsetup.cpp" line="811"/>
+        <location filename="../../componentsetup.cpp" line="833"/>
+        <location filename="../../componentsetup.cpp" line="837"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="807"/>
+        <location filename="../../componentsetup.cpp" line="833"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="809"/>
+        <location filename="../../componentsetup.cpp" line="835"/>
         <source>MAWS configuration (2/2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="809"/>
+        <location filename="../../componentsetup.cpp" line="835"/>
         <source>Enable MAWS quick download?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="829"/>
+        <location filename="../../componentsetup.cpp" line="855"/>
         <source>Choose the YouTube cache directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="839"/>
+        <location filename="../../componentsetup.cpp" line="865"/>
         <source>FATAL: can&apos;t create new YouTube cache directory, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="921"/>
+        <location filename="../../componentsetup.cpp" line="947"/>
         <source>Question</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="921"/>
+        <location filename="../../componentsetup.cpp" line="947"/>
         <source>The current component&apos;s setup hasn&apos;t been applied yet. Apply it now?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4721,7 +4721,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../gamelist.cpp" line="771"/>
         <location filename="../../gamelist.cpp" line="772"/>
         <location filename="../../gamelist.cpp" line="840"/>
-        <location filename="../../gamelist.cpp" line="4315"/>
+        <location filename="../../gamelist.cpp" line="4317"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5056,7 +5056,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../gamelist.cpp" line="898"/>
         <location filename="../../gamelist.cpp" line="901"/>
         <location filename="../../gamelist.cpp" line="3887"/>
-        <location filename="../../gamelist.cpp" line="4127"/>
+        <location filename="../../gamelist.cpp" line="4128"/>
         <source>Loading, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5431,22 +5431,22 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4290"/>
+        <location filename="../../gamelist.cpp" line="4292"/>
         <source>correct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4296"/>
+        <location filename="../../gamelist.cpp" line="4298"/>
         <source>mostly correct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4302"/>
+        <location filename="../../gamelist.cpp" line="4304"/>
         <source>incorrect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4308"/>
+        <location filename="../../gamelist.cpp" line="4310"/>
         <source>not found</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5745,7 +5745,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../gamelist.cpp" line="3271"/>
         <location filename="../../gamelist.cpp" line="3272"/>
         <location filename="../../gamelist.cpp" line="3945"/>
-        <location filename="../../gamelist.cpp" line="4185"/>
+        <location filename="../../gamelist.cpp" line="4186"/>
         <source>?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6141,27 +6141,27 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4054"/>
+        <location filename="../../gamelist.cpp" line="4055"/>
         <source>loading catver.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4060"/>
+        <location filename="../../gamelist.cpp" line="4061"/>
         <source>Catver.ini - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4103"/>
+        <location filename="../../gamelist.cpp" line="4104"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4112"/>
+        <location filename="../../gamelist.cpp" line="4113"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4113"/>
+        <location filename="../../gamelist.cpp" line="4114"/>
         <source>%1 category / %2 version records loaded</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6178,7 +6178,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4155"/>
+        <location filename="../../gamelist.cpp" line="4156"/>
         <source>Version view - %p%</source>
         <translation type="unfinished"></translation>
     </message>
@@ -18316,11 +18316,6 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="188"/>
-        <source>SHA1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../romalyzer.ui" line="193"/>
         <location filename="../../romalyzer.ui" line="750"/>
         <location filename="../../romalyzer.cpp" line="1198"/>
@@ -18912,6 +18907,7 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../romalyzer.ui" line="188"/>
         <location filename="../../romalyzer.ui" line="868"/>
         <location filename="../../romalyzer.ui" line="1608"/>
         <location filename="../../romalyzer.cpp" line="1160"/>
