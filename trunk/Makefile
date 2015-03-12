@@ -1449,27 +1449,30 @@ help:
 	@$(ECHO) "Usage: $(MAKE) [<targets>] [<configuration_options>]"
 	@$(ECHO) ""
 	@$(ECHO) "### Target ###   ### Description ###"
-	@$(ECHO) "all (default)    Build QMC2, aliases: $(PROJECT), bin, $(PROJECT)-bin"
-	@$(ECHO) "clean            Clean up compilation & linkage binaries from source tree"
+	@$(ECHO) "all (default)    Build the QMC2 main GUI, alias: $(PROJECT)"
+	@$(ECHO) "clean            Clean up the build tree (QMC2 main GUI)"
 	@$(ECHO) "config           Show build configuration options and their current values"
 	@$(ECHO) "configure        Create qmake output and stop, alias: qmake"
 ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) "dist             Create source distribution archives (tar.gz and tar.bz2)"
+endif
+	@$(ECHO) "distclean        Clean up the complete source tree for 'distribution'"
+ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) "doc              Convert man-pages to troff/nroff format, alias: man"
 	@$(ECHO) "doc-clean        Clean up converted man-pages, alias: man-clean"
 	@$(ECHO) "doc-install      Install man-pages system-wide, alias: man-install"
 endif
 	@$(ECHO) "help | ?         Show this help"
 ifneq '$(ARCH)' 'Windows'
-	@$(ECHO) "install          Install QMC2 binaries and data files for system-wide use"
+	@$(ECHO) "install          Install QMC2 main GUI binaries and data files for system-wide use"
 endif
-	@$(ECHO) "lang             Recreate binary translation files only (if not up to date)"
+	@$(ECHO) "lang             Recreate QMC2 main GUI translation files only (if not up to date)"
 ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) "os-detect        Detect host OS and distribution / version"
 	@$(ECHO) "snap             Create source distribution archives with date and time stamp"
 endif
-	@$(ECHO) "arcade           Build QMC2 Arcade binary (qmc2-arcade)"
-	@$(ECHO) "arcade-clean     Clean up QMC2 Arcade build"
+	@$(ECHO) "arcade           Build the QMC2 Arcade binary (qmc2-arcade)"
+	@$(ECHO) "arcade-clean     Clean up the QMC2 Arcade build"
 ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) "arcade-install   Install QMC2 Arcade"
 endif
