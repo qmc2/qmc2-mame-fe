@@ -252,6 +252,10 @@
 			<description lang="fr" text="Créer des snapshots pour chaque écran"/>
 			<description lang="pt" text="Criar snapshots para cada tela"/>
 		</option>
+		<option default="false" name="dummywrite" type="bool">
+			<description lang="us" text="Indicates if a snapshot should be created on each frame"/>
+			<description lang="de" text="Bestimmt ob ein Snapshot von jedem Frame erzeugt werden soll"/>
+		</option>
 	</section>
 	<section name="performance">
 		<description lang="es" text="Rendimiento"/>
