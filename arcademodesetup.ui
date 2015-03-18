@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>309</width>
-    <height>406</height>
+    <width>391</width>
+    <height>407</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -64,40 +64,7 @@
        <string>General settings</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="7" column="0" colspan="3">
-        <widget class="QCheckBox" name="checkBoxNoJoy">
-         <property name="toolTip">
-          <string>Disable joystick function mapping</string>
-         </property>
-         <property name="text">
-          <string>Disable joystick function mapping</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="lineEditConfigurationPath">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Configuration path for QMC2 Arcade</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0" colspan="3">
-        <widget class="QCheckBox" name="checkBoxDebugKeys">
-         <property name="toolTip">
-          <string>Log debug messages of key-sequence mapping events to the console</string>
-         </property>
-         <property name="text">
-          <string>Debug key-sequence mapping</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1" colspan="2">
+       <item row="5" column="1" colspan="3">
         <widget class="QComboBox" name="comboBoxArcadeTheme">
          <property name="toolTip">
           <string>Select arcade theme</string>
@@ -114,7 +81,79 @@
          </item>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="1" column="3">
+        <widget class="QToolButton" name="toolButtonBrowseWorkingDirectory">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Browse working directory used when executing QMC2 Arcade</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="2">
+        <widget class="QLineEdit" name="lineEditWorkingDirectory">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Working directory used when executing QMC2 Arcade</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1" colspan="3">
+        <widget class="QComboBox" name="comboBoxConsoleType">
+         <property name="toolTip">
+          <string>Select type of console</string>
+         </property>
+         <item>
+          <property name="text">
+           <string notr="true">terminal</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">window</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">window-minimized</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkBoxDebugKeys">
+         <property name="toolTip">
+          <string>Log debug messages of key-sequence mapping events to the console</string>
+         </property>
+         <property name="text">
+          <string>Debug key-sequence mapping</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkBoxDebugJoy">
+         <property name="toolTip">
+          <string>Log debug messages of joystick function mapping events to the console</string>
+         </property>
+         <property name="text">
+          <string>Debug joystick function mapping</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
         <widget class="QLabel" name="labelGraphicsSystem">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -127,7 +166,132 @@
          </property>
         </widget>
        </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelWorkingDirectory">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Working directory</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="labelArcadeTheme">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Arcade theme</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="labelConsoleType">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Console type</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelExecutableFile">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Executable file</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="labelConfigurationPath">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Configuration path</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QLineEdit" name="lineEditExecutableFile">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>QMC2 Arcade executable file</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QToolButton" name="toolButtonBrowseExecutableFile">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Browse QMC2 Arcade executable file</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QToolButton" name="toolButtonBrowseConfigurationPath">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Browse configuration path for QMC2 Arcade</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
        <item row="3" column="1" colspan="2">
+        <widget class="QLineEdit" name="lineEditConfigurationPath">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Configuration path for QMC2 Arcade</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1" colspan="3">
         <widget class="QComboBox" name="comboBoxGraphicsSystem">
          <property name="toolTip">
           <string>Select the graphics system used to render the scene (when available, OpenGL is strongly recommended!)</string>
@@ -159,85 +323,7 @@
          </item>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="labelWorkingDirectory">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Working directory</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="labelArcadeTheme">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Arcade theme</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEditWorkingDirectory">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Working directory used when executing QMC2 Arcade</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1" colspan="2">
-        <widget class="QComboBox" name="comboBoxConsoleType">
-         <property name="toolTip">
-          <string>Select type of console</string>
-         </property>
-         <item>
-          <property name="text">
-           <string notr="true">terminal</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">window</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">window-minimized</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QToolButton" name="toolButtonBrowseWorkingDirectory">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Browse working directory used when executing QMC2 Arcade</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="0" colspan="3">
+       <item row="11" column="0" colspan="4">
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -250,116 +336,42 @@
          </property>
         </spacer>
        </item>
-       <item row="0" column="2">
-        <widget class="QToolButton" name="toolButtonBrowseExecutableFile">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
+       <item row="7" column="2" colspan="2">
+        <widget class="QCheckBox" name="checkBoxNoJoy">
          <property name="toolTip">
-          <string>Browse QMC2 Arcade executable file</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="labelConsoleType">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+          <string>Disable joystick function mapping</string>
          </property>
          <property name="text">
-          <string>Console type</string>
+          <string>Disable joystick function mapping</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEditExecutableFile">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>QMC2 Arcade executable file</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelExecutableFile">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Executable file</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="labelConfigurationPath">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Configuration path</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QToolButton" name="toolButtonBrowseConfigurationPath">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Browse configuration path for QMC2 Arcade</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="0" colspan="3">
-        <widget class="QCheckBox" name="checkBoxDebugJoy">
-         <property name="toolTip">
-          <string>Log debug messages of joystick function mapping events to the console</string>
-         </property>
-         <property name="text">
-          <string>Debug joystick function mapping</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="0" colspan="3">
+       <item row="9" column="2" colspan="2">
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
           <widget class="QCheckBox" name="checkBoxJoy">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="toolTip">
             <string>Force use of joystick at specified index</string>
            </property>
            <property name="text">
-            <string>Force use of joystick at specified index</string>
+            <string>Specify joystick index</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QSpinBox" name="spinBoxJoyIndex">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="toolTip">
             <string>Joystick index</string>
            </property>
@@ -857,7 +869,7 @@
         </widget>
        </item>
        <item row="4" column="0" colspan="4">
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1,0,0">
          <item>
           <widget class="QCheckBox" name="checkBoxFavoriteSetsOnly">
            <property name="sizePolicy">
@@ -870,7 +882,7 @@
             <string>Use only sets included in the favorites list?</string>
            </property>
            <property name="text">
-            <string>Use only favorite sets</string>
+            <string>Only favorite sets</string>
            </property>
           </widget>
          </item>
@@ -886,7 +898,24 @@
             <string>Use only sets that are tagged?</string>
            </property>
            <property name="text">
-            <string>Use only tagged sets</string>
+            <string>Only tagged sets</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="line">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBoxParentSetsOnly">
+           <property name="toolTip">
+            <string>Use only parent sets (no clones)?</string>
+           </property>
+           <property name="text">
+            <string>Only parent sets</string>
            </property>
           </widget>
          </item>
@@ -1037,11 +1066,8 @@
  <tabstops>
   <tabstop>tabWidget</tabstop>
   <tabstop>lineEditExecutableFile</tabstop>
-  <tabstop>toolButtonBrowseExecutableFile</tabstop>
   <tabstop>lineEditWorkingDirectory</tabstop>
-  <tabstop>toolButtonBrowseWorkingDirectory</tabstop>
   <tabstop>lineEditConfigurationPath</tabstop>
-  <tabstop>toolButtonBrowseConfigurationPath</tabstop>
   <tabstop>comboBoxGraphicsSystem</tabstop>
   <tabstop>comboBoxArcadeTheme</tabstop>
   <tabstop>comboBoxConsoleType</tabstop>
@@ -1056,6 +1082,7 @@
   <tabstop>pushButtonExport</tabstop>
   <tabstop>checkBoxFavoriteSetsOnly</tabstop>
   <tabstop>checkBoxTaggedSetsOnly</tabstop>
+  <tabstop>checkBoxParentSetsOnly</tabstop>
   <tabstop>toolButtonSelectC</tabstop>
   <tabstop>toolButtonSelectM</tabstop>
   <tabstop>toolButtonSelectI</tabstop>
@@ -1077,6 +1104,9 @@
   <tabstop>treeWidgetJoyMapDarkone</tabstop>
   <tabstop>pushButtonOk</tabstop>
   <tabstop>pushButtonCancel</tabstop>
+  <tabstop>toolButtonBrowseWorkingDirectory</tabstop>
+  <tabstop>toolButtonBrowseExecutableFile</tabstop>
+  <tabstop>toolButtonBrowseConfigurationPath</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
@@ -1089,8 +1119,8 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>290</x>
-     <y>242</y>
+     <x>382</x>
+     <y>265</y>
     </hint>
     <hint type="destinationlabel">
      <x>155</x>
@@ -1105,8 +1135,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>142</x>
-     <y>401</y>
+     <x>185</x>
+     <y>402</y>
     </hint>
     <hint type="destinationlabel">
      <x>86</x>
@@ -1137,12 +1167,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>95</x>
-     <y>231</y>
+     <x>239</x>
+     <y>215</y>
     </hint>
     <hint type="destinationlabel">
-     <x>101</x>
-     <y>255</y>
+     <x>109</x>
+     <y>241</y>
     </hint>
    </hints>
   </connection>
@@ -1153,12 +1183,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>169</x>
-     <y>234</y>
+     <x>313</x>
+     <y>215</y>
     </hint>
     <hint type="destinationlabel">
-     <x>158</x>
-     <y>276</y>
+     <x>303</x>
+     <y>241</y>
     </hint>
    </hints>
   </connection>
@@ -1169,12 +1199,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>250</x>
-     <y>232</y>
+     <x>382</x>
+     <y>215</y>
     </hint>
     <hint type="destinationlabel">
-     <x>265</x>
-     <y>279</y>
+     <x>381</x>
+     <y>242</y>
     </hint>
    </hints>
   </connection>

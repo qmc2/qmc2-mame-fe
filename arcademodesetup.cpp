@@ -3,6 +3,7 @@
 #include <QFile>
 #include <QApplication>
 #include <QMultiMap>
+#include <QHash>
 #include <QMap>
 #include <QTreeWidgetItem>
 #include <QTreeWidgetItemIterator>
@@ -124,6 +125,7 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	// game list filter
 	checkBoxFavoriteSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/FavoriteSetsOnly", false).toBool());
 	checkBoxTaggedSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/TaggedSetsOnly", false).toBool());
+	checkBoxParentSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ParentSetsOnly", false).toBool());
 	checkBoxUseFilteredList->setChecked(qmc2Config->value(QMC2_ARCADE_PREFIX + "UseFilteredList", false).toBool());
 	lineEditFilteredListFile->setText(QMC2_QSETTINGS_CAST(qmc2Config)->value(QMC2_ARCADE_PREFIX + "FilteredListFile", qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GamelistCacheFile", QString()).toString() + ".filtered").toString());
 	toolButtonSelectC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SelectC", true).toBool());
@@ -441,6 +443,7 @@ void ArcadeModeSetup::saveSettings()
 	qmc2Config->setValue(QMC2_ARCADE_PREFIX + "FilteredListFile", lineEditFilteredListFile->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/FavoriteSetsOnly", checkBoxFavoriteSetsOnly->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/TaggedSetsOnly", checkBoxTaggedSetsOnly->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/ParentSetsOnly", checkBoxParentSetsOnly->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SelectC", toolButtonSelectC->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SelectM", toolButtonSelectM->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SelectI", toolButtonSelectI->isChecked());
@@ -558,6 +561,7 @@ void ArcadeModeSetup::on_checkBoxUseFilteredList_toggled(bool enable)
 
 	enable &= !checkBoxFavoriteSetsOnly->isChecked() && !checkBoxTaggedSetsOnly->isChecked();
 
+	checkBoxParentSetsOnly->setEnabled(enable);
 	toolButtonSelectC->setEnabled(enable);
 	toolButtonSelectM->setEnabled(enable);
 	toolButtonSelectI->setEnabled(enable);
@@ -656,7 +660,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		if ( qmc2Gamelist->isDevice(game) )
 			continue;
 
-		// tagged
+		// tagged sets only?
 		if ( checkBoxTaggedSetsOnly->isChecked() ) {
 			GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemHash[game];
 			if ( gameItem && gameItem->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked )
@@ -664,7 +668,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 			continue;
 		}
 
-		// favorites
+		// favorite sets only?
 		if ( checkBoxFavoriteSetsOnly->isChecked() ) {
 			GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemHash[game];
 			if ( gameItem ) {
@@ -674,6 +678,11 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 			}
 			continue;
 		}
+
+		// parent sets only?
+		if ( checkBoxParentSetsOnly->isChecked() )
+			if ( !qmc2ParentHash[game].isEmpty() )
+				continue;
 
 		// name filter
 		if ( !nameFilter.isEmpty() )
