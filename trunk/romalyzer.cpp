@@ -1106,10 +1106,9 @@ void ROMAlyzer::analyze()
 							QString sizeItemStr;
 							if ( fromCheckSumDb )
 								sizeItemStr = sizeStr;
-							else {
+							else
 								sizeItemStr = QString::number(data.size());
-							}
-							fileItem->setText(QMC2_ROMALYZER_COLUMN_SIZE, QString::number(data.size()));
+							fileItem->setText(QMC2_ROMALYZER_COLUMN_SIZE, sizeItemStr);
 							if ( !fileStatus.isEmpty() )
 								fileStatus += " ";
 							if ( sizeItemStr == sizeStr )
