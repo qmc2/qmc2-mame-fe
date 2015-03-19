@@ -17,6 +17,7 @@ extern bool qmc2ReloadActive;
 extern bool qmc2VerifyActive;
 extern Settings *qmc2Config;
 extern Gamelist *qmc2Gamelist;
+extern QHash<QString, QString> qmc2ParentHash;
 
 DemoModeDialog::DemoModeDialog(QWidget *parent)
 	: QDialog(parent)
@@ -48,6 +49,7 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
 #endif
 	checkBoxTagged->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Tagged", false).toBool());
 	checkBoxFavorites->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Favorites", false).toBool());
+	checkBoxParents->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Parents", false).toBool());
 	checkBoxSequential->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Sequential", false).toBool());
 	spinBoxSecondsToRun->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SecondsToRun", 60).toInt());
 	spinBoxPauseSeconds->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", 2).toInt());
@@ -99,6 +101,7 @@ void DemoModeDialog::closeEvent(QCloseEvent *e)
 #endif
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Tagged", checkBoxTagged->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Favorites", checkBoxFavorites->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Parents", checkBoxParents->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Sequential", checkBoxSequential->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/SecondsToRun", spinBoxSecondsToRun->value());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", spinBoxPauseSeconds->value());
@@ -230,6 +233,9 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 			if ( !nameFilter.isEmpty() && !nameFilterRegExp.isValid() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: demo mode: the name filter regular expression is invalid"));
 			foreach (QString game, qmc2GamelistItemHash.keys()) {
+				if ( checkBoxParents->isChecked() )
+					if ( !qmc2ParentHash[game].isEmpty() )
+						continue;
 				if ( !nameFilter.isEmpty() )
 					if ( game.indexOf(nameFilterRegExp) < 0 )
 						continue;
@@ -421,6 +427,7 @@ void DemoModeDialog::on_toolButtonDeselectAll_clicked()
 
 void DemoModeDialog::enableFilters(bool enable)
 {
+	checkBoxParents->setEnabled(enable);
 	toolButtonSelectC->setEnabled(enable);
 	toolButtonSelectM->setEnabled(enable);
 	toolButtonSelectI->setEnabled(enable);
