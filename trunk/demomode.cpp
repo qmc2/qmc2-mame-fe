@@ -291,6 +291,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode cannot start -- no games selected by filter"));
 			return;
 		}
+		qSort(selectedGames.begin(), selectedGames.end(), MainWindow::qStringListLessThan);
 		demoModeRunning = true;
 		seqNum = -1;
 		pushButtonRunDemo->setText(tr("Stop &demo"));

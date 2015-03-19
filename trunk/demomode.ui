@@ -27,119 +27,6 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="1" colspan="2">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <property name="spacing">
-      <number>0</number>
-     </property>
-     <item>
-      <widget class="QToolButton" name="toolButtonSelectC">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Select ROM state C (correct)?</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/sphere_green.png</normaloff>:/data/img/sphere_green.png</iconset>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="toolButtonSelectM">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Select ROM state M (mostly correct)?</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/sphere_yellowgreen.png</normaloff>:/data/img/sphere_yellowgreen.png</iconset>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="toolButtonSelectI">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Select ROM state I (incorrect)?</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/sphere_red.png</normaloff>:/data/img/sphere_red.png</iconset>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="toolButtonSelectN">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Select ROM state N (not found)?</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/sphere_grey.png</normaloff>:/data/img/sphere_grey.png</iconset>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="toolButtonSelectU">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Select ROM state U (unknown)?</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/sphere_blue.png</normaloff>:/data/img/sphere_blue.png</iconset>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
    <item row="0" column="4" rowspan="14">
     <widget class="Line" name="line">
      <property name="orientation">
@@ -455,6 +342,119 @@
       <bool>true</bool>
      </property>
     </widget>
+   </item>
+   <item row="0" column="1" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QToolButton" name="toolButtonSelectC">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Select ROM state C (correct)?</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/sphere_green.png</normaloff>:/data/img/sphere_green.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonSelectM">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Select ROM state M (mostly correct)?</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/sphere_yellowgreen.png</normaloff>:/data/img/sphere_yellowgreen.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonSelectI">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Select ROM state I (incorrect)?</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/sphere_red.png</normaloff>:/data/img/sphere_red.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonSelectN">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Select ROM state N (not found)?</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/sphere_grey.png</normaloff>:/data/img/sphere_grey.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonSelectU">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Select ROM state U (unknown)?</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/sphere_blue.png</normaloff>:/data/img/sphere_blue.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
