@@ -985,6 +985,7 @@
 			<choice name="gdi"/>
 			<choice name="ddraw"/>
 			<choice name="d3d"/>
+			<choice name="opengl"/>
 		</option>
 		<option default="1" name="numscreens" type="int">
 			<description lang="us" text="Number of screens to create; usually, you want just one"/>
