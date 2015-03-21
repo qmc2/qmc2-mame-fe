@@ -790,7 +790,7 @@
 			<description lang="pt" text="Especificar a fonte a ser usada"/>
 			<choice name="default"/>
 		</option>
-		<option default="auto" ignore.Windows="true" ignore.Darwin="true" name="uifontprovider" type="combo">
+		<option default="auto" name="uifontprovider" type="combo">
 			<description lang="us" text="Provider for ui font: 'auto', 'sdl' or 'none'"/>
 			<description lang="de" text="Provider für UI Schriftart: 'auto', 'sdl' oder 'none'"/>
 			<choice name="auto"/>
