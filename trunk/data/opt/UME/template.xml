@@ -802,6 +802,13 @@
 			<description lang="es" text="Especificar tipografía a utilizar"/>
 			<choice name="default"/>
 		</option>
+		<option default="auto" name="uifontprovider" type="combo">
+			<description lang="us" text="Provider for ui font: 'auto', 'win' or 'none'"/>
+			<description lang="de" text="Provider für UI Schriftart: 'auto', 'win' oder 'none'"/>
+			<choice name="auto"/>
+			<choice name="win"/>
+			<choice name="none"/>
+		</option>
 		<option default="" name="ramsize" type="combo">
 			<description lang="us" text="Size of RAM (if supported by driver)"/>
 			<description lang="de" text="RAM Größe (falls vom Treiber unterstützt)"/>
@@ -1850,6 +1857,242 @@
 		<option default="0.09" name="bloom_lvl10_weight" type="float">
 			<description lang="us" text="Bloom level 10 (1x1 target) weight"/>
 			<description lang="de" text="Glanz-Level 10 Gewichtung"/>
+		</option>
+	</section>
+	<section name="opengl">
+		<description lang="us" text="OpenGL"/>
+		<description lang="de" text="OpenGL"/>
+		<description lang="pl" text="OpenGL"/>
+		<description lang="fr" text="OpenGL"/>
+		<description lang="pt" text="OpenGL"/>
+		<description lang="es" text="OpenGL"/>
+		<option default="false" name="gl_forcepow2texture" type="bool">
+			<description lang="us" text="Force power of two textures (default off)"/>
+			<description lang="de" text="'Power of 2' Texturen forcieren (Standard: aus)"/>
+			<description lang="pl" text="Wymuś tekstury będące potęgo liczby dwa (domyślnie wyłączone)"/>
+			<description lang="fr" text="Force le rendu de textures 'power of two' (défaut non)"/>
+			<description lang="pt" text="Forçar texturas em potência de 2 (padrão desligado)"/>
+			<description lang="es" text="Forzar texturas a poder de dos (desactivado por defecto)"/>
+		</option>
+		<option default="false" name="gl_notexturerect" type="bool">
+			<description lang="us" text="Don't use OpenGL GL_ARB_texture_rectangle (default on)"/>
+			<description lang="de" text="OpenGL GL_ARB_texture_rectangle nicht benutzen (Standard: an)"/>
+			<description lang="pl" text="Nie używaj GL_ARB_texture_rectangle (domyślnie włączone)"/>
+			<description lang="fr" text="Ne pas utiliser GL_ARB_texture_rectangle (défaut oui)"/>
+			<description lang="pt" text="Não usar GL_ARB_texture_rectangle (padrão ligado)"/>
+			<description lang="es" text="No utilizar OpenGL GL_ARB_texture_rectangle (activado por defecto)"/>
+		</option>
+		<option default="true" name="gl_vbo" type="bool">
+			<description lang="us" text="Enable OpenGL VBO, if available (default on)"/>
+			<description lang="de" text="OpenGL VBO aktivieren, falls verfügbar (Standard: an)"/>
+			<description lang="pl" text="Włącz OpenGL VBO, jeśli dostępne (domyślnie włączone)"/>
+			<description lang="fr" text="Active OpenGL VBO, si disponible (défaut oui)"/>
+			<description lang="pt" text="Ativar VBO do OpenGL, se disponível (padrão ligado)"/>
+			<description lang="es" text="Activar OpenGL VBO si está disponible (activado por defecto)"/>
+		</option>
+		<option default="true" name="gl_pbo" type="bool">
+			<description lang="us" text="Enable OpenGL PBO, if available (default on)"/>
+			<description lang="de" text="OpenGL PBO aktivieren, falls verfügbar (Standard: an)"/>
+			<description lang="pl" text="Włącz OpenGL PBO, jeśli dostępne (domyślnie włączone)"/>
+			<description lang="fr" text="Active OpenGL PBO, si disponible (défaut oui)"/>
+			<description lang="pt" text="Ativar PBO do OpenGL, se disponível (padrão ligado)"/>
+			<description lang="es" text="Activar OpenGL PBO si está disponible (activado por defecto)"/>
+		</option>
+		<option default="false" name="gl_glsl" type="bool">
+			<description lang="us" text="Enable OpenGL GLSL, if available (default off)"/>
+			<description lang="de" text="OpenGL GLSL aktivieren, falls verfügbar (Standard: aus)"/>
+			<description lang="pl" text="Włącz OpenGL GLSL, jeśli dostępne (domyślnie wyłączone)"/>
+			<description lang="fr" text="Active OpenGL GLSL, si disponible (défaut oui)"/>
+			<description lang="pt" text="Ativar GLSL do OpenGL, se disponível (padrão ligado)"/>
+			<description lang="es" text="Activar OpenGL GLSL si está disponible (desactivado por defecto)"/>
+		</option>
+		<option default="1" name="gl_glsl_filter" type="int">
+			<description lang="us" text="Enable OpenGL GLSL filtering instead of FF filtering: 0-plain, 1-bilinear (default 1)"/>
+			<description lang="de" text="OpenGL GLSL Filterung anstelle der FF Filterung aktivieren: 0-plain, 1-bilinear (Standard: 1)"/>
+			<description lang="pl" text="Włącz filtrowanie OpenGL GLSL zamiast filtrowania FF: 0-proste, 1-dwuliniowe (domyślne: 1)"/>
+			<description lang="fr" text="Active OpenGL GLSL plutôt que filtrage FF: 0-normal 1-bi-linéaire (défaut: 1)"/>
+			<description lang="pt" text="Habilitar filtro GLSL do OpenGL ao invés do filtro FF: 0-plano, 1-bilinear (padrão 1)"/>
+			<description lang="es" text="Activar filtrado OpenGL GLSL en vez de filtrado FF: 0-plano, 1-bilineal (1 por defecto)"/>
+		</option>
+		<option default="none" name="glsl_shader_mame0" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 0"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 0"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 0"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 0"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 0 do MAME"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 0 de MAME"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_mame1" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 1"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 1"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 1"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 1"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 1 do MAME"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 1 de MAME"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_mame2" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 2"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 2"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 2"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 2"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 2 do MAME"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 2 de MAME"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_mame3" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 3"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 3"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 3"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 3"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 3 do MAME"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 3 de MAME"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_mame4" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 4"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 4"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 4"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 4"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 4 do MAME"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 4 de MAME"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_mame5" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 5"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 5"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 5"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 5"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 5 do MAME"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 5 de MAME"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_mame6" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 6"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 6"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 6"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 6"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 6 do MAME"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 6 de MAME"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_mame7" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 7"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 7"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 7"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 7"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 7 do MAME"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 7 de MAME"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_mame8" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 8"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 8"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 8"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 8"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 8 do MAME"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 8 de MAME"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_mame9" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 9"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 9"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 9"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 9"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 9 do MAME"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 9 de MAME"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_screen0" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader screen bitmap 0"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 0"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 0"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 0"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 0 da tela"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 0 de la pantalla"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_screen1" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader screen bitmap 1"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 1"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 1"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 1"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 1 da tela"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 1 de la pantalla"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_screen2" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader screen bitmap 2"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 2"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 2"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 2"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 2 da tela"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 2 de la pantalla"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_screen3" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader screen bitmap 3"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 3"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 3"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 3"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 3 da tela"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 3 de la pantalla"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_screen4" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader screen bitmap 4"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 4"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 4"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 4"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 4 da tela"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 4 de la pantalla"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_screen5" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader screen bitmap 5"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 5"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 5"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 5"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 5 da tela"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 5 de la pantalla"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_screen6" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader screen bitmap 6"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 6"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 6"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 6"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 6 da tela"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 6 de la pantalla"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_screen7" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader screen bitmap 7"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 7"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 7"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 7"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 7 da tela"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 7 de la pantalla"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_screen8" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader screen bitmap 8"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 8"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 8"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 8"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 8 da tela"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 8 de la pantalla"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="glsl_shader_screen9" type="combo">
+			<description lang="us" text="Custom OpenGL GLSL shader screen bitmap 9"/>
+			<description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 9"/>
+			<description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 9"/>
+			<description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 9"/>
+			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 9 da tela"/>
+			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 9 de la pantalla"/>
+			<choice name="none"/>
 		</option>
 	</section>
 </template>
