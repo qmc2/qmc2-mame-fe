@@ -45,6 +45,10 @@ FILES
 
   CONFIG_PATH/mame-dat-info.db, CONFIG_PATH/mess-dat-info.db, CONFIG_PATH/ume-dat-info.db  DAT-info database (SQLite 3), a combined data store for all supported DAT-info sources (emu-info, game/machine-info and software-info)
 
+  CONFIG_PATH/mame.fav, CONFIG_PATH/mess.fav, CONFIG_PATH/ume.fav  List of favorite games / machines
+
+  CONFIG_PATH/mame.hst, CONFIG_PATH/mess.hst, CONFIG_PATH/ume.hst  List of games / machines last played (play history)
+
   CONFIG_PATH/mess.sic, CONFIG_PATH/ume.sic  Slot-info cache (MESS/UME only)
 
   CONFIG_PATH/sw-state-cache/*.ssc  Software-state cache (shared by all variants)
