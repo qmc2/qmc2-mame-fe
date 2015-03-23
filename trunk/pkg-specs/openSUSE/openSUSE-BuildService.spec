@@ -239,15 +239,3 @@ rm -rf $RPM_BUILD_ROOT
 
 * Wed Jun 29 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.34-1
 - updated spec to QMC2 0.34
-
-* Thu Mar 03 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b20-1
-- updated spec to QMC2 0.2.b20
-
-* Sun Jan 02 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b19-1
-- updated spec to QMC2 0.2.b19
-
-* Fri Oct 22 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b18-1
-- updated spec to QMC2 0.2.b18
-
-* Tue Sep 07 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b17-1
-- initial version using openSUSE's build service
