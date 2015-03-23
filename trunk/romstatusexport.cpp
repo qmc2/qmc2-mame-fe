@@ -133,7 +133,6 @@ void ROMStatusExporter::exportToASCII()
 					return;
 			}
 		}
-
 		if ( exportFile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
 			qmc2ExportingROMStatus = true;
 			ts.setDevice(&exportFile);
@@ -335,7 +334,7 @@ void ROMStatusExporter::exportToASCII()
 		<< QString("-").leftJustified(maxManufacturerColumnWidth, '-', true) << "  "
 		<< QString("-").leftJustified(maxRomTypesColumnWidth, '-', true) << "  "
 		<< QString("-").leftJustified(maxPlayersColumnWidth, '-', true) << "  "
-		<< QString("-").leftJustified(maxPlayersColumnWidth, '-', true)
+		<< QString("-").leftJustified(maxDriverStatusColumnWidth, '-', true)
 		<< "\n";
 
 	QMapIterator<QString, QTreeWidgetItem *> itExport(exportMap);
@@ -684,7 +683,6 @@ void ROMStatusExporter::exportToHTML()
 			      		return;
 		  	}
 	    	}
-
 	    	if ( exportFile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
 		  	qmc2ExportingROMStatus = true;
 		  	ts.setDevice(&exportFile);
