@@ -27,6 +27,7 @@ extern Gamelist *qmc2Gamelist;
 extern SoftwareList *qmc2SoftwareList;
 
 QHash<QString, QString> CollectionRebuilderThread::m_replacementHash;
+QStringList CollectionRebuilderThread::m_fileTypes;
 
 CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent)
 	: QWidget(parent)
@@ -788,6 +789,8 @@ CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
 		m_replacementHash.insert("&quot;", "\"");
 		m_replacementHash.insert("&apos;", "'");
 	}
+	if ( m_fileTypes.isEmpty() )
+		m_fileTypes << "ZIP" << "7Z" << "CHD" << "FILE";
 	reopenCheckSumDb();
 	switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE:
@@ -1201,15 +1204,22 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 			quint64 size = romSizeList->at(i).toULongLong();
 			QString path, member, type;
 			if ( checkSumDb()->getData(romSha1List->at(i), romCrcList->at(i), &size, &path, &member, &type) ) {
-				if ( type == "ZIP" )
-					success = readZipFileData(path, romCrcList->at(i), &data);
-				else if ( type == "7Z" )
-					success = readSevenZipFileData(path, romCrcList->at(i), &data);
-				else if ( type == "FILE" )
-					success = readFileData(path, &data);
-				else {
-					success = false;
-					errorReason = tr("unknown file type '%1'").arg(type);
+				switch ( m_fileTypes.indexOf(type) ) {
+					case QMC2_COLLECTIONREBUILDER_FILETYPE_ZIP:
+						success = readZipFileData(path, romCrcList->at(i), &data);
+						break;
+					case QMC2_COLLECTIONREBUILDER_FILETYPE_7Z:
+						success = readSevenZipFileData(path, romCrcList->at(i), &data);
+						break;
+					case QMC2_COLLECTIONREBUILDER_FILETYPE_FILE:
+						success = readFileData(path, &data);
+						break;
+					case QMC2_COLLECTIONREBUILDER_FILETYPE_CHD:
+						break;
+					default:
+						success = false;
+						errorReason = tr("unknown file type '%1'").arg(type);
+						break;
 				}
 				if ( success ) {
 					emit log(tr("writing '%1' (size: %2)").arg(fileName).arg(ROMAlyzer::humanReadable(data.length())));
@@ -1299,15 +1309,22 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 			QString path, member, type;
 			QString errorReason = tr("file error");
 			if ( checkSumDb()->getData(romSha1List->at(i), romCrcList->at(i), &size, &path, &member, &type) ) {
-				if ( type == "ZIP" )
-					success = readZipFileData(path, romCrcList->at(i), &data);
-				else if ( type == "7Z" )
-					success = readSevenZipFileData(path, romCrcList->at(i), &data);
-				else if ( type == "FILE" )
-					success = readFileData(path, &data);
-				else {
-					success = false;
-					errorReason = tr("unknown file type '%1'").arg(type);
+				switch ( m_fileTypes.indexOf(type) ) {
+					case QMC2_COLLECTIONREBUILDER_FILETYPE_ZIP:
+						success = readZipFileData(path, romCrcList->at(i), &data);
+						break;
+					case QMC2_COLLECTIONREBUILDER_FILETYPE_7Z:
+						success = readSevenZipFileData(path, romCrcList->at(i), &data);
+						break;
+					case QMC2_COLLECTIONREBUILDER_FILETYPE_FILE:
+						success = readFileData(path, &data);
+						break;
+					case QMC2_COLLECTIONREBUILDER_FILETYPE_CHD:
+						break;
+					default:
+						success = false;
+						errorReason = tr("unknown file type '%1'").arg(type);
+						break;
 				}
 				if ( success && zipOpenNewFileInZip(zip, file.toLocal8Bit().constData(), &zipInfo, (const void *)file.toLocal8Bit().constData(), file.length(), 0, 0, 0, Z_DEFLATED, zipLevel) == ZIP_OK ) {
 					emit log(tr("writing '%1' to ZIP archive '%2' (uncompressed size: %3)").arg(file).arg(fileName).arg(ROMAlyzer::humanReadable(data.length())));

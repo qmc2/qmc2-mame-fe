@@ -22,6 +22,11 @@
 class CollectionRebuilder;
 class ROMAlyzer;
 
+#define QMC2_COLLECTIONREBUILDER_FILETYPE_ZIP	0
+#define QMC2_COLLECTIONREBUILDER_FILETYPE_7Z	1
+#define QMC2_COLLECTIONREBUILDER_FILETYPE_CHD	2
+#define QMC2_COLLECTIONREBUILDER_FILETYPE_FILE	3
+
 class CollectionRebuilderThread : public QThread
 {
 	Q_OBJECT
@@ -142,6 +147,7 @@ class CollectionRebuilderThread : public QThread
 		QString m_listEntityStartPattern;
 		bool m_merge;
 		static QHash<QString, QString> m_replacementHash;
+		static QStringList m_fileTypes;
 };
 
 class CollectionRebuilder : public QWidget, public Ui::CollectionRebuilder
