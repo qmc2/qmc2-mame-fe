@@ -3698,13 +3698,13 @@ p, li { white-space: pre-wrap; }
         <translation>tryb demonstracyjny zatrzymany</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="403"/>
+        <location filename="../../demomode.ui" line="290"/>
         <location filename="../../demomode.cpp" line="179"/>
         <source>Run &amp;demo</source>
         <translation>Uruchom &amp;demonstrację</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="400"/>
+        <location filename="../../demomode.ui" line="287"/>
         <location filename="../../demomode.cpp" line="180"/>
         <source>Run demo now</source>
         <translation>Uruchom demonstrację teraz</translation>
@@ -3752,17 +3752,17 @@ p, li { white-space: pre-wrap; }
         <translation>tryb demonstracyjny nie może zostać uruchomiony -- żadna gra nie została wybrana przez filtr</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="296"/>
+        <location filename="../../demomode.cpp" line="297"/>
         <source>Stop &amp;demo</source>
         <translation>Zatrzymaj &amp;demonstrację</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="297"/>
+        <location filename="../../demomode.cpp" line="298"/>
         <source>Stop demo now</source>
         <translation>Zatrzymaj demonstrację teraz</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="365"/>
+        <location filename="../../demomode.cpp" line="366"/>
         <source>starting emulation in demo mode for &apos;%1&apos;</source>
         <translation>uruchamianie emulacji w trybie demonstracyjnym dla &apos;%1&apos;</translation>
     </message>
@@ -3772,7 +3772,7 @@ p, li { white-space: pre-wrap; }
         <translation>Tryb demonstracyjny</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="215"/>
+        <location filename="../../demomode.ui" line="102"/>
         <source>Clear name filter</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3782,195 +3782,195 @@ p, li { white-space: pre-wrap; }
         <translation>Filtr stanu ROM-ów</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="192"/>
+        <location filename="../../demomode.ui" line="79"/>
         <source>Use only sets included in the favorites list?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="195"/>
+        <location filename="../../demomode.ui" line="82"/>
         <source>Favorites</source>
         <translation type="unfinished">Ulubione</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="179"/>
+        <location filename="../../demomode.ui" line="66"/>
         <source>good + imperfect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="184"/>
+        <location filename="../../demomode.ui" line="71"/>
         <source>good + imperfect + preliminary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="44"/>
+        <location filename="../../demomode.ui" line="360"/>
         <source>Select ROM state C (correct)?</source>
         <translation>Wybrać stan ROM-ów P (poprawny)?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="67"/>
+        <location filename="../../demomode.ui" line="383"/>
         <source>Select ROM state M (mostly correct)?</source>
         <translation>Wybrać stan ROM-ów Wp (w większości poprawny)?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="90"/>
+        <location filename="../../demomode.ui" line="406"/>
         <source>Select ROM state I (incorrect)?</source>
         <translation>Wybrać stan ROM-ów Np (niepoprawny)?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="110"/>
+        <location filename="../../demomode.ui" line="426"/>
         <source>Select ROM state N (not found)?</source>
         <translation>Wybrać stan ROM-ów Nz (nieznaleziony)?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="130"/>
+        <location filename="../../demomode.ui" line="446"/>
         <source>Select ROM state U (unknown)?</source>
         <translation>Wybrać stan ROM-ów Nn (nieznany)?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="226"/>
+        <location filename="../../demomode.ui" line="113"/>
         <source>Use only parent sets (no clones)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="229"/>
+        <location filename="../../demomode.ui" line="116"/>
         <source>Parents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="339"/>
+        <location filename="../../demomode.ui" line="226"/>
         <source>Seconds to run</source>
         <translation>Sekundy uruchomienia</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="346"/>
+        <location filename="../../demomode.ui" line="233"/>
         <source>Number of seconds to run an emulator in demo mode</source>
         <translation>Liczba sekund, przez którą emulator ma być uruchomiony w trybie demonstracyjnym</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="156"/>
+        <location filename="../../demomode.ui" line="43"/>
         <source>Tagged</source>
         <translation>Zaznaczone</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="368"/>
+        <location filename="../../demomode.ui" line="255"/>
         <source>Pause (seconds)</source>
         <translation>Pauza (sekundy)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="375"/>
+        <location filename="../../demomode.ui" line="262"/>
         <source>Number of seconds to pause between emulator runs</source>
         <translation>Liczba sekund oczekiwania pomiędzy kolejnymi uruchomieniami emulatora</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="436"/>
+        <location filename="../../demomode.ui" line="319"/>
         <source>Category filter</source>
         <translation>Filtr kategorii</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="163"/>
+        <location filename="../../demomode.ui" line="50"/>
         <source>Driver status</source>
         <translation type="unfinished">Stan sterownika</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="202"/>
+        <location filename="../../demomode.ui" line="89"/>
         <source>Name filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="170"/>
+        <location filename="../../demomode.ui" line="57"/>
         <source>Choose the driver maturity states for sets to be included in the demo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="174"/>
+        <location filename="../../demomode.ui" line="61"/>
         <location filename="../../demomode.cpp" line="256"/>
         <location filename="../../demomode.cpp" line="259"/>
         <source>good</source>
         <translation type="unfinished">dobry</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="284"/>
+        <location filename="../../demomode.ui" line="171"/>
         <source>Start emulators in full screen mode (otherwise use windowed mode)</source>
         <translation>Uruchamiaj emulatory w trybie pełnoekranowym (w przeciwnym wypadku używaj okna)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="287"/>
+        <location filename="../../demomode.ui" line="174"/>
         <source>Full screen</source>
         <translation>Pełny ekran</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="323"/>
+        <location filename="../../demomode.ui" line="210"/>
         <source>Launch sets sequentially rather than randomly</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="326"/>
+        <location filename="../../demomode.ui" line="213"/>
         <source>Sequential</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="153"/>
+        <location filename="../../demomode.ui" line="40"/>
         <source>Use only sets that are tagged?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="247"/>
+        <location filename="../../demomode.ui" line="134"/>
         <source>Deselect all categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="236"/>
+        <location filename="../../demomode.ui" line="123"/>
         <source>Select all categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="449"/>
+        <location filename="../../demomode.ui" line="332"/>
         <source>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="277"/>
+        <location filename="../../demomode.ui" line="164"/>
         <source>Select / deselect the categories you want to include / exclude</source>
         <translation>Wybierz kategorie które mają być uwzględnione</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="300"/>
+        <location filename="../../demomode.ui" line="187"/>
         <source>Maximize emulators when in windowed mode</source>
         <translation>Maksymalizuj okna emulatora</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="303"/>
+        <location filename="../../demomode.ui" line="190"/>
         <source>Maximized</source>
         <translation>Maksymalizacja</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="313"/>
+        <location filename="../../demomode.ui" line="200"/>
         <source>Embed windowed emulators</source>
         <translation>Osadzaj okna emulatora</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="316"/>
+        <location filename="../../demomode.ui" line="203"/>
         <source>Embedded</source>
         <translation>Osadzone</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="349"/>
-        <location filename="../../demomode.ui" line="378"/>
+        <location filename="../../demomode.ui" line="236"/>
+        <location filename="../../demomode.ui" line="265"/>
         <source> s</source>
         <translation> s</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="264"/>
+        <location filename="../../demomode.ui" line="151"/>
         <source>Options</source>
         <translation>Opcje</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="410"/>
+        <location filename="../../demomode.ui" line="303"/>
         <source>Close this dialog (and stop running demo)</source>
         <translation>Zamknij to okno dialogowe (i zakończ pokazywanie demonstracji)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="413"/>
+        <location filename="../../demomode.ui" line="306"/>
         <source>&amp;Close</source>
         <translation>&amp;Zamknij</translation>
     </message>
@@ -9089,8 +9089,8 @@ Czy wybrać inną nazwę?</translation>
     <name>MainWindow</name>
     <message>
         <location filename="../../qmc2main.ui" line="15"/>
-        <location filename="../../macros.h" line="591"/>
-        <location filename="../../macros.h" line="600"/>
+        <location filename="../../macros.h" line="593"/>
+        <location filename="../../macros.h" line="602"/>
         <source>M.A.M.E. Catalog / Launcher II</source>
         <translation>M.A.M.E. Catalog / Launcher II</translation>
     </message>
@@ -12337,15 +12337,15 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>Przełącz poszczególne stany ROM-ów</translation>
     </message>
     <message>
-        <location filename="../../macros.h" line="594"/>
-        <location filename="../../macros.h" line="603"/>
+        <location filename="../../macros.h" line="596"/>
+        <location filename="../../macros.h" line="605"/>
         <location filename="../../qmc2main.cpp" line="701"/>
         <source>M.E.S.S. Catalog / Launcher II</source>
         <translation>M.E.S.S. Catalog / Launcher II</translation>
     </message>
     <message>
-        <location filename="../../macros.h" line="597"/>
-        <location filename="../../macros.h" line="606"/>
+        <location filename="../../macros.h" line="599"/>
+        <location filename="../../macros.h" line="608"/>
         <location filename="../../qmc2main.cpp" line="687"/>
         <source>U.M.E. Catalog / Launcher II</source>
         <translation>U.M.E. Catalog / Launcher II</translation>
@@ -20983,77 +20983,104 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>CSV</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="339"/>
+        <location filename="../../romstatusexport.ui" line="203"/>
+        <location filename="../../romstatusexport.cpp" line="207"/>
+        <location filename="../../romstatusexport.cpp" line="323"/>
+        <location filename="../../romstatusexport.cpp" line="563"/>
+        <location filename="../../romstatusexport.cpp" line="825"/>
+        <source>ROM status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romstatusexport.ui" line="228"/>
+        <location filename="../../romstatusexport.cpp" line="211"/>
+        <location filename="../../romstatusexport.cpp" line="328"/>
+        <location filename="../../romstatusexport.cpp" line="568"/>
+        <location filename="../../romstatusexport.cpp" line="825"/>
+        <source>Players</source>
+        <translation type="unfinished">Gracze</translation>
+    </message>
+    <message>
+        <location filename="../../romstatusexport.ui" line="233"/>
+        <location filename="../../romstatusexport.cpp" line="212"/>
+        <location filename="../../romstatusexport.cpp" line="329"/>
+        <location filename="../../romstatusexport.cpp" line="569"/>
+        <location filename="../../romstatusexport.cpp" line="825"/>
+        <source>Driver status</source>
+        <translation type="unfinished">Stan sterownika</translation>
+    </message>
+    <message>
+        <location filename="../../romstatusexport.ui" line="349"/>
         <source>Browse ASCII export file</source>
         <translation>Wskaż plik ASCII eksportu</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="342"/>
+        <location filename="../../romstatusexport.ui" line="352"/>
         <source>ASCII file</source>
         <translation>Plik ASCII</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="362"/>
+        <location filename="../../romstatusexport.ui" line="372"/>
         <source>ASCII export file</source>
         <translation>Plik ASCII eksportu</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="369"/>
+        <location filename="../../romstatusexport.ui" line="379"/>
         <source>Column width</source>
         <translation>Szerokość kolumny</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="400"/>
+        <location filename="../../romstatusexport.ui" line="410"/>
         <source>Maximum column width for ASCII export (0 = unlimited)</source>
         <translation>Maksymalna szerokość kolumny dla eksportu ASCII (0 = nieograniczona)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="403"/>
+        <location filename="../../romstatusexport.ui" line="413"/>
         <source>unlimited</source>
         <translation>nieograniczona</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="448"/>
+        <location filename="../../romstatusexport.ui" line="458"/>
         <source>Browse CSV export file</source>
         <translation>Wskaż plik CSV eksportu</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="451"/>
+        <location filename="../../romstatusexport.ui" line="461"/>
         <source>CSV file</source>
         <translation>Plik CSV</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="471"/>
+        <location filename="../../romstatusexport.ui" line="481"/>
         <source>CSV export file</source>
         <translation>Plik CSV eksportu</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="478"/>
+        <location filename="../../romstatusexport.ui" line="488"/>
         <source>Separator</source>
         <translation>Separator pola</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="519"/>
+        <location filename="../../romstatusexport.ui" line="529"/>
         <source>Field separator for CSV export</source>
         <translation>Separator pola dla eksportu do CSV</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="522"/>
+        <location filename="../../romstatusexport.ui" line="532"/>
         <source>;</source>
         <translation>;</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="535"/>
+        <location filename="../../romstatusexport.ui" line="545"/>
         <source>Delimiter</source>
         <translation>Separator tekstu</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="563"/>
+        <location filename="../../romstatusexport.ui" line="573"/>
         <source>Text delimiter for CSV export</source>
         <translation>Separator tekstu dla eksportu do CSV</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="566"/>
+        <location filename="../../romstatusexport.ui" line="576"/>
         <source>&quot;</source>
         <translation>&quot;</translation>
     </message>
@@ -21083,52 +21110,52 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Eksportować stan ROM-ów Nn (nieznany)?</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="269"/>
+        <location filename="../../romstatusexport.ui" line="279"/>
         <source>Include some header information in export</source>
         <translation>Zawrzyj pewne infomacje nagłówkowe w eksporcie</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="272"/>
+        <location filename="../../romstatusexport.ui" line="282"/>
         <source>Include header</source>
         <translation>Zawrzyj nagłówek</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="282"/>
+        <location filename="../../romstatusexport.ui" line="292"/>
         <source>Include statistical overview of the ROM state in export</source>
         <translation>Zawrzyj przegląd statystyczny stanu ROM-ów w eksporcie</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="285"/>
+        <location filename="../../romstatusexport.ui" line="295"/>
         <source>Include ROM statistics</source>
         <translation>Zawrzyj statystyki ROM-ów</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="736"/>
+        <location filename="../../romstatusexport.ui" line="746"/>
         <source>Close ROM status export</source>
         <translation>Zamknij eksport stanu ROM-ów</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="739"/>
+        <location filename="../../romstatusexport.ui" line="749"/>
         <source>&amp;Close</source>
         <translation>&amp;Zamknij</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="722"/>
+        <location filename="../../romstatusexport.ui" line="732"/>
         <source>Export now!</source>
         <translation>Eksportuj teraz!</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="750"/>
+        <location filename="../../romstatusexport.ui" line="760"/>
         <source>Export progress indicator</source>
         <translation>Wskaźnik postępu eksportu</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="756"/>
+        <location filename="../../romstatusexport.ui" line="766"/>
         <source>%p%</source>
         <translation>%p%</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="725"/>
+        <location filename="../../romstatusexport.ui" line="735"/>
         <source>&amp;Export</source>
         <translation>&amp;Eksportuj</translation>
     </message>
@@ -21143,37 +21170,37 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>HTML</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="295"/>
+        <location filename="../../romstatusexport.ui" line="305"/>
         <source>Export to the system clipboard instead of a file</source>
         <translation>Eksportuj do schowka systemowego zamiast do pliku</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="298"/>
+        <location filename="../../romstatusexport.ui" line="308"/>
         <source>Export to clipboard</source>
         <translation>Eksportuj do schowka</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="308"/>
+        <location filename="../../romstatusexport.ui" line="318"/>
         <source>Overwrite existing files without asking what to do</source>
         <translation>Nadpisywanie istniejących plików bez pytania co robić</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="311"/>
+        <location filename="../../romstatusexport.ui" line="321"/>
         <source>Overwrite blindly</source>
         <translation>Nadpisuj na ślepo</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="622"/>
+        <location filename="../../romstatusexport.ui" line="632"/>
         <source>Browse HTML export file</source>
         <translation>Wskaż plik HTML eksportu</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="625"/>
+        <location filename="../../romstatusexport.ui" line="635"/>
         <source>HTML file</source>
         <translation>Plik HTML</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="645"/>
+        <location filename="../../romstatusexport.ui" line="655"/>
         <source>HTML export file</source>
         <translation>Plik HTML eksportu</translation>
     </message>
@@ -21193,25 +21220,24 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Opis gry</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="203"/>
         <source>ROM state</source>
-        <translation>Stan ROM-u</translation>
+        <translation type="obsolete">Stan ROM-u</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="208"/>
         <location filename="../../romstatusexport.cpp" line="209"/>
-        <location filename="../../romstatusexport.cpp" line="315"/>
-        <location filename="../../romstatusexport.cpp" line="533"/>
-        <location filename="../../romstatusexport.cpp" line="773"/>
+        <location filename="../../romstatusexport.cpp" line="325"/>
+        <location filename="../../romstatusexport.cpp" line="565"/>
+        <location filename="../../romstatusexport.cpp" line="825"/>
         <source>Year</source>
         <translation>Rok</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="213"/>
         <location filename="../../romstatusexport.cpp" line="208"/>
-        <location filename="../../romstatusexport.cpp" line="316"/>
-        <location filename="../../romstatusexport.cpp" line="534"/>
-        <location filename="../../romstatusexport.cpp" line="773"/>
+        <location filename="../../romstatusexport.cpp" line="326"/>
+        <location filename="../../romstatusexport.cpp" line="566"/>
+        <location filename="../../romstatusexport.cpp" line="825"/>
         <source>Manufacturer</source>
         <translation>Producent</translation>
     </message>
@@ -21221,58 +21247,58 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Nazwa gry</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="231"/>
+        <location filename="../../romstatusexport.ui" line="241"/>
         <source>Sort order</source>
         <translation>Porządek sortowania</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="244"/>
+        <location filename="../../romstatusexport.ui" line="254"/>
         <source>Select sort order</source>
         <translation>Wybór porządku sortowania</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="248"/>
+        <location filename="../../romstatusexport.ui" line="258"/>
         <source>Ascending</source>
         <translation>Rosnący</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="257"/>
+        <location filename="../../romstatusexport.ui" line="267"/>
         <source>Descending</source>
         <translation>Malejący</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="873"/>
+        <location filename="../../romstatusexport.cpp" line="935"/>
         <source>Choose ASCII export file</source>
         <translation>Wybierz plik ASCII eksportu</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="873"/>
-        <location filename="../../romstatusexport.cpp" line="881"/>
-        <location filename="../../romstatusexport.cpp" line="889"/>
+        <location filename="../../romstatusexport.cpp" line="935"/>
+        <location filename="../../romstatusexport.cpp" line="943"/>
+        <location filename="../../romstatusexport.cpp" line="951"/>
         <source>All files (*)</source>
         <translation>Wszystkie pliki (*)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="881"/>
+        <location filename="../../romstatusexport.cpp" line="943"/>
         <source>Choose CSV export file</source>
         <translation>Wybierz plik CSV eksportu</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="889"/>
+        <location filename="../../romstatusexport.cpp" line="951"/>
         <source>Choose HTML export file</source>
         <translation>Wybierz plik HTML eksportu</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="125"/>
-        <location filename="../../romstatusexport.cpp" line="417"/>
-        <location filename="../../romstatusexport.cpp" line="632"/>
+        <location filename="../../romstatusexport.cpp" line="441"/>
+        <location filename="../../romstatusexport.cpp" line="676"/>
         <source>Confirm</source>
         <translation>Potwierdź</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="126"/>
-        <location filename="../../romstatusexport.cpp" line="418"/>
-        <location filename="../../romstatusexport.cpp" line="633"/>
+        <location filename="../../romstatusexport.cpp" line="442"/>
+        <location filename="../../romstatusexport.cpp" line="677"/>
         <source>Overwrite existing file?</source>
         <translation>Nadpisać istniejący plik?</translation>
     </message>
@@ -21293,20 +21319,20 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="182"/>
-        <location filename="../../romstatusexport.cpp" line="252"/>
-        <location filename="../../romstatusexport.cpp" line="366"/>
-        <location filename="../../romstatusexport.cpp" line="469"/>
-        <location filename="../../romstatusexport.cpp" line="600"/>
-        <location filename="../../romstatusexport.cpp" line="689"/>
-        <location filename="../../romstatusexport.cpp" line="843"/>
+        <location filename="../../romstatusexport.cpp" line="254"/>
+        <location filename="../../romstatusexport.cpp" line="380"/>
+        <location filename="../../romstatusexport.cpp" line="493"/>
+        <location filename="../../romstatusexport.cpp" line="642"/>
+        <location filename="../../romstatusexport.cpp" line="733"/>
+        <location filename="../../romstatusexport.cpp" line="903"/>
         <source>unknown</source>
         <translation>nieznany</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="160"/>
         <location filename="../../romstatusexport.cpp" line="184"/>
-        <location filename="../../romstatusexport.cpp" line="471"/>
-        <location filename="../../romstatusexport.cpp" line="695"/>
+        <location filename="../../romstatusexport.cpp" line="495"/>
+        <location filename="../../romstatusexport.cpp" line="739"/>
         <source>Emulator</source>
         <translation>Emulator</translation>
     </message>
@@ -21318,171 +21344,167 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romstatusexport.cpp" line="160"/>
         <location filename="../../romstatusexport.cpp" line="185"/>
-        <location filename="../../romstatusexport.cpp" line="472"/>
-        <location filename="../../romstatusexport.cpp" line="697"/>
+        <location filename="../../romstatusexport.cpp" line="496"/>
+        <location filename="../../romstatusexport.cpp" line="741"/>
         <source>Date</source>
         <translation>Data</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="160"/>
         <location filename="../../romstatusexport.cpp" line="186"/>
-        <location filename="../../romstatusexport.cpp" line="473"/>
-        <location filename="../../romstatusexport.cpp" line="699"/>
+        <location filename="../../romstatusexport.cpp" line="497"/>
+        <location filename="../../romstatusexport.cpp" line="743"/>
         <source>Time</source>
         <translation>Godzina</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="160"/>
         <location filename="../../romstatusexport.cpp" line="193"/>
-        <location filename="../../romstatusexport.cpp" line="480"/>
-        <location filename="../../romstatusexport.cpp" line="713"/>
+        <location filename="../../romstatusexport.cpp" line="504"/>
+        <location filename="../../romstatusexport.cpp" line="757"/>
         <source>Correct</source>
         <translation>Poprawnych</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="160"/>
         <location filename="../../romstatusexport.cpp" line="194"/>
-        <location filename="../../romstatusexport.cpp" line="481"/>
-        <location filename="../../romstatusexport.cpp" line="715"/>
+        <location filename="../../romstatusexport.cpp" line="505"/>
+        <location filename="../../romstatusexport.cpp" line="759"/>
         <source>Mostly correct</source>
         <translation>W większości poprawnych</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="160"/>
         <location filename="../../romstatusexport.cpp" line="195"/>
-        <location filename="../../romstatusexport.cpp" line="482"/>
-        <location filename="../../romstatusexport.cpp" line="717"/>
+        <location filename="../../romstatusexport.cpp" line="506"/>
+        <location filename="../../romstatusexport.cpp" line="761"/>
         <source>Incorrect</source>
         <translation>Niepoprawnych</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="160"/>
         <location filename="../../romstatusexport.cpp" line="196"/>
-        <location filename="../../romstatusexport.cpp" line="483"/>
-        <location filename="../../romstatusexport.cpp" line="719"/>
+        <location filename="../../romstatusexport.cpp" line="507"/>
+        <location filename="../../romstatusexport.cpp" line="763"/>
         <source>Not found</source>
         <translation>Nieznalezionych</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="160"/>
         <location filename="../../romstatusexport.cpp" line="197"/>
-        <location filename="../../romstatusexport.cpp" line="484"/>
-        <location filename="../../romstatusexport.cpp" line="721"/>
+        <location filename="../../romstatusexport.cpp" line="508"/>
+        <location filename="../../romstatusexport.cpp" line="765"/>
         <source>Unknown</source>
         <translation>Nieznanych</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="170"/>
-        <location filename="../../romstatusexport.cpp" line="457"/>
-        <location filename="../../romstatusexport.cpp" line="677"/>
+        <location filename="../../romstatusexport.cpp" line="481"/>
+        <location filename="../../romstatusexport.cpp" line="721"/>
         <source>SDLMAME</source>
         <translation>SDLMAME</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="172"/>
-        <location filename="../../romstatusexport.cpp" line="459"/>
-        <location filename="../../romstatusexport.cpp" line="679"/>
+        <location filename="../../romstatusexport.cpp" line="483"/>
+        <location filename="../../romstatusexport.cpp" line="723"/>
         <source>SDLMESS</source>
         <translation>SDLMESS</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="174"/>
-        <location filename="../../romstatusexport.cpp" line="461"/>
-        <location filename="../../romstatusexport.cpp" line="681"/>
+        <location filename="../../romstatusexport.cpp" line="485"/>
+        <location filename="../../romstatusexport.cpp" line="725"/>
         <source>SDLUME</source>
         <translation>SDLUME</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="176"/>
-        <location filename="../../romstatusexport.cpp" line="463"/>
-        <location filename="../../romstatusexport.cpp" line="683"/>
+        <location filename="../../romstatusexport.cpp" line="487"/>
+        <location filename="../../romstatusexport.cpp" line="727"/>
         <source>MAME</source>
         <translation>MAME</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="178"/>
-        <location filename="../../romstatusexport.cpp" line="465"/>
-        <location filename="../../romstatusexport.cpp" line="685"/>
+        <location filename="../../romstatusexport.cpp" line="489"/>
+        <location filename="../../romstatusexport.cpp" line="729"/>
         <source>MESS</source>
         <translation>MESS</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="223"/>
         <location filename="../../romstatusexport.cpp" line="210"/>
-        <location filename="../../romstatusexport.cpp" line="317"/>
-        <location filename="../../romstatusexport.cpp" line="535"/>
-        <location filename="../../romstatusexport.cpp" line="773"/>
+        <location filename="../../romstatusexport.cpp" line="327"/>
+        <location filename="../../romstatusexport.cpp" line="567"/>
+        <location filename="../../romstatusexport.cpp" line="825"/>
         <source>ROM types</source>
         <translation>Rodzaje ROM-ów</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="400"/>
+        <location filename="../../romstatusexport.cpp" line="424"/>
         <source>done (exporting ROM status in ASCII format to clipboard)</source>
         <translation>ukończono (eksportowanie stanów ROM-ów w formacie ASCII do schowka)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="403"/>
+        <location filename="../../romstatusexport.cpp" line="427"/>
         <source>done (exporting ROM status in ASCII format to &apos;%1&apos;)</source>
         <translation>ukończono (eksportowanie stanów ROM-ów w formacie ASCII do &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="898"/>
+        <location filename="../../romstatusexport.cpp" line="960"/>
         <source>gamelist is not ready, please wait</source>
         <translation>lista gier nie jest gotowa, proszę czekać</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="206"/>
-        <location filename="../../romstatusexport.cpp" line="312"/>
-        <location filename="../../romstatusexport.cpp" line="530"/>
-        <location filename="../../romstatusexport.cpp" line="773"/>
+        <location filename="../../romstatusexport.cpp" line="322"/>
+        <location filename="../../romstatusexport.cpp" line="562"/>
+        <location filename="../../romstatusexport.cpp" line="825"/>
         <source>Name</source>
         <translation>Nazwa</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="207"/>
-        <location filename="../../romstatusexport.cpp" line="313"/>
-        <location filename="../../romstatusexport.cpp" line="531"/>
-        <location filename="../../romstatusexport.cpp" line="773"/>
         <source>Status</source>
-        <translation>Stan</translation>
+        <translation type="obsolete">Stan</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="205"/>
-        <location filename="../../romstatusexport.cpp" line="314"/>
-        <location filename="../../romstatusexport.cpp" line="532"/>
-        <location filename="../../romstatusexport.cpp" line="773"/>
+        <location filename="../../romstatusexport.cpp" line="324"/>
+        <location filename="../../romstatusexport.cpp" line="564"/>
+        <location filename="../../romstatusexport.cpp" line="825"/>
         <source>Description</source>
         <translation>Opis</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="223"/>
-        <location filename="../../romstatusexport.cpp" line="349"/>
-        <location filename="../../romstatusexport.cpp" line="555"/>
-        <location filename="../../romstatusexport.cpp" line="794"/>
+        <location filename="../../romstatusexport.cpp" line="225"/>
+        <location filename="../../romstatusexport.cpp" line="363"/>
+        <location filename="../../romstatusexport.cpp" line="589"/>
+        <location filename="../../romstatusexport.cpp" line="846"/>
         <source>correct</source>
         <translation>poprawny</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="230"/>
-        <location filename="../../romstatusexport.cpp" line="353"/>
-        <location filename="../../romstatusexport.cpp" line="566"/>
-        <location filename="../../romstatusexport.cpp" line="806"/>
+        <location filename="../../romstatusexport.cpp" line="232"/>
+        <location filename="../../romstatusexport.cpp" line="367"/>
+        <location filename="../../romstatusexport.cpp" line="602"/>
+        <location filename="../../romstatusexport.cpp" line="860"/>
         <source>mostly correct</source>
         <translation>w większości poprawny</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="237"/>
-        <location filename="../../romstatusexport.cpp" line="357"/>
-        <location filename="../../romstatusexport.cpp" line="577"/>
-        <location filename="../../romstatusexport.cpp" line="818"/>
+        <location filename="../../romstatusexport.cpp" line="239"/>
+        <location filename="../../romstatusexport.cpp" line="371"/>
+        <location filename="../../romstatusexport.cpp" line="615"/>
+        <location filename="../../romstatusexport.cpp" line="874"/>
         <source>incorrect</source>
         <translation>niepoprawny</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="244"/>
-        <location filename="../../romstatusexport.cpp" line="361"/>
-        <location filename="../../romstatusexport.cpp" line="588"/>
-        <location filename="../../romstatusexport.cpp" line="830"/>
+        <location filename="../../romstatusexport.cpp" line="246"/>
+        <location filename="../../romstatusexport.cpp" line="375"/>
+        <location filename="../../romstatusexport.cpp" line="628"/>
+        <location filename="../../romstatusexport.cpp" line="888"/>
         <source>not found</source>
         <translation>nieznaleziony</translation>
     </message>
@@ -21494,128 +21516,128 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romstatusexport.cpp" line="160"/>
         <location filename="../../romstatusexport.cpp" line="192"/>
-        <location filename="../../romstatusexport.cpp" line="479"/>
-        <location filename="../../romstatusexport.cpp" line="711"/>
+        <location filename="../../romstatusexport.cpp" line="503"/>
+        <location filename="../../romstatusexport.cpp" line="755"/>
         <source>Total sets</source>
         <translation>Wszystkich zestawów</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="180"/>
-        <location filename="../../romstatusexport.cpp" line="467"/>
-        <location filename="../../romstatusexport.cpp" line="687"/>
+        <location filename="../../romstatusexport.cpp" line="491"/>
+        <location filename="../../romstatusexport.cpp" line="731"/>
         <source>UME</source>
         <translation>UME</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="309"/>
+        <location filename="../../romstatusexport.cpp" line="319"/>
         <source>done (sorting, filtering and analyzing export data)</source>
         <translation>ukończono (sortowanie, filtrowanie i analizowanie eksportowanych danych)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="310"/>
-        <location filename="../../romstatusexport.cpp" line="528"/>
-        <location filename="../../romstatusexport.cpp" line="769"/>
+        <location filename="../../romstatusexport.cpp" line="320"/>
+        <location filename="../../romstatusexport.cpp" line="560"/>
+        <location filename="../../romstatusexport.cpp" line="821"/>
         <source>writing export data</source>
         <translation>zapisywanie eksportowanych danych</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="396"/>
-        <location filename="../../romstatusexport.cpp" line="611"/>
-        <location filename="../../romstatusexport.cpp" line="857"/>
+        <location filename="../../romstatusexport.cpp" line="420"/>
+        <location filename="../../romstatusexport.cpp" line="655"/>
+        <location filename="../../romstatusexport.cpp" line="919"/>
         <source>done (writing export data)</source>
         <translation>ukończono (zapisywanie eksportowanych danych)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="433"/>
+        <location filename="../../romstatusexport.cpp" line="457"/>
         <source>exporting ROM status in CSV format to &apos;%1&apos;</source>
         <translation>eksportowanie stanów ROM-ów w formacie CSV do &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="435"/>
+        <location filename="../../romstatusexport.cpp" line="459"/>
         <source>WARNING: can&apos;t open CSV export file &apos;%1&apos; for writing, please check permissions</source>
         <translation>UWAGA: nie można otworzyć pliku CSV eksportu &apos;%1&apos; do zapisu, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="441"/>
+        <location filename="../../romstatusexport.cpp" line="465"/>
         <source>exporting ROM status in CSV format to clipboard</source>
         <translation>eksportowanie stanów ROM-ów w formacie CSV do schowka</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="490"/>
-        <location filename="../../romstatusexport.cpp" line="731"/>
+        <location filename="../../romstatusexport.cpp" line="514"/>
+        <location filename="../../romstatusexport.cpp" line="775"/>
         <source>sorting and filtering export data</source>
         <translation>sortowanie i filtrowanie eksportowanych danych</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="615"/>
+        <location filename="../../romstatusexport.cpp" line="659"/>
         <source>done (exporting ROM status in CSV format to clipboard)</source>
         <translation>ukończono (eksportowanie stanów ROM-ów w formacie CSV do schowka)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="618"/>
+        <location filename="../../romstatusexport.cpp" line="662"/>
         <source>done (exporting ROM status in CSV format to &apos;%1&apos;)</source>
         <translation>ukończono (eksportowanie stanów ROM-ów w formacie CSV do &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="168"/>
-        <location filename="../../romstatusexport.cpp" line="455"/>
-        <location filename="../../romstatusexport.cpp" line="671"/>
-        <location filename="../../romstatusexport.cpp" line="691"/>
+        <location filename="../../romstatusexport.cpp" line="479"/>
+        <location filename="../../romstatusexport.cpp" line="715"/>
+        <location filename="../../romstatusexport.cpp" line="735"/>
         <source>ROM Status Export - created by QMC2 %1</source>
         <translation>Eksport stanu ROM-ów - utworzony przez QMC2 %1</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="191"/>
-        <location filename="../../romstatusexport.cpp" line="478"/>
-        <location filename="../../romstatusexport.cpp" line="707"/>
+        <location filename="../../romstatusexport.cpp" line="502"/>
+        <location filename="../../romstatusexport.cpp" line="751"/>
         <source>Overall ROM Status</source>
         <translation>Ogólny stan ROM-ów</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="200"/>
-        <location filename="../../romstatusexport.cpp" line="487"/>
-        <location filename="../../romstatusexport.cpp" line="727"/>
+        <location filename="../../romstatusexport.cpp" line="511"/>
+        <location filename="../../romstatusexport.cpp" line="771"/>
         <source>Detailed ROM Status</source>
         <translation>Szczegółowy stan ROM-ów</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="648"/>
+        <location filename="../../romstatusexport.cpp" line="692"/>
         <source>exporting ROM status in HTML format to &apos;%1&apos;</source>
         <translation>eksportowanie stanów ROM-ów w formacie HTML do &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="650"/>
+        <location filename="../../romstatusexport.cpp" line="694"/>
         <source>WARNING: can&apos;t open HTML export file &apos;%1&apos; for writing, please check permissions</source>
         <translation>UWAGA: nie można otworzyć pliku HTML eksportu &apos;%1&apos; do zapisu, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="656"/>
+        <location filename="../../romstatusexport.cpp" line="700"/>
         <source>exporting ROM status in HTML format to clipboard</source>
         <translation>eksportowanie stanów ROM-ów w formacie HTML do schowka</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="861"/>
+        <location filename="../../romstatusexport.cpp" line="923"/>
         <source>done (exporting ROM status in HTML format to clipboard)</source>
         <translation>ukończono (eksportowanie stanów ROM-ów w formacie HTML do schowka)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="864"/>
+        <location filename="../../romstatusexport.cpp" line="926"/>
         <source>done (exporting ROM status in HTML format to &apos;%1&apos;)</source>
         <translation>ukończono (eksportowanie stanów ROM-ów w formacie HTML do &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="652"/>
+        <location filename="../../romstatusexport.ui" line="662"/>
         <source>Border width</source>
         <translation>Szerokość granicy</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.ui" line="683"/>
+        <location filename="../../romstatusexport.ui" line="693"/>
         <source>Border line width for tables (0 = no border)</source>
         <translation>Szerokość linii granicznej dla tabel (0 = bez granicy)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="527"/>
-        <location filename="../../romstatusexport.cpp" line="768"/>
+        <location filename="../../romstatusexport.cpp" line="559"/>
+        <location filename="../../romstatusexport.cpp" line="820"/>
         <source>done (sorting and filtering export data)</source>
         <translation>ukończono (sortowanie i filtrowanie eksportowanych danych)</translation>
     </message>
