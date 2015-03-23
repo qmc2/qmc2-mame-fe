@@ -407,6 +407,8 @@
 #define QMC2_RSE_SORT_BY_MANUFACTURER		3
 #define QMC2_RSE_SORT_BY_NAME			4
 #define QMC2_RSE_SORT_BY_ROMTYPES		5
+#define QMC2_RSE_SORT_BY_PLAYERS		6
+#define QMC2_RSE_SORT_BY_DRVSTAT		7
 
 // gamelist cursor positioning mode
 #define QMC2_CURSOR_POS_VISIBLE			0

@@ -200,7 +200,7 @@
         </item>
         <item>
          <property name="text">
-          <string>ROM state</string>
+          <string>ROM status</string>
          </property>
         </item>
         <item>
@@ -221,6 +221,16 @@
         <item>
          <property name="text">
           <string>ROM types</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Players</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Driver status</string>
          </property>
         </item>
        </widget>
