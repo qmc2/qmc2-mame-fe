@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt_BR">
+<TS version="2.1" language="pt_BR">
 <context>
     <name>About</name>
     <message>
@@ -275,7 +275,7 @@
         <source>Project details</source>
         <translation>Detalhes do projeto</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -656,22 +656,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="885"/>
         <source>Only favorite sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Somente conjuntos favoritos</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="901"/>
         <source>Only tagged sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Somente conjuntos etiquetados</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="915"/>
         <source>Use only parent sets (no clones)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar somente conjuntos pais (sem clones)?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="918"/>
         <source>Only parent sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Apenas conjuntos pais</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="1012"/>
@@ -882,7 +882,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="363"/>
         <source>Specify joystick index</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique o índice do joystick</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="376"/>
@@ -1293,7 +1293,7 @@ p, li { white-space: pre-wrap; }
         <source>Angle</source>
         <translation>Ângulo</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation></translation>
@@ -2489,422 +2489,422 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../componentsetup.ui" line="15"/>
         <source>Component setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração de componente</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="23"/>
         <source>Select GUI component to set up</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o componente da UI para configurar</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="36"/>
         <source>Master system list views</source>
-        <translation type="unfinished"></translation>
+        <translation>Listas do sistema principal</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="45"/>
         <source>System-specific detail tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Abas de detalhes específicas de sistema</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="54"/>
         <source>Logs and special widgets</source>
-        <translation type="unfinished"></translation>
+        <translation>Logs e widgets especiais</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="63"/>
         <source>Software-detail widget</source>
-        <translation type="unfinished"></translation>
+        <translation>Widget de detalhe de software</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="75"/>
         <source>Select component arrangement / order</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar arranjo do componente / ordem</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="91"/>
         <source>Component arrangement I</source>
-        <translation type="unfinished"></translation>
+        <translation>Arranjo de componente I</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="100"/>
         <source>Component arrangement II</source>
-        <translation type="unfinished"></translation>
+        <translation>Arranjo de componente II</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="109"/>
         <source>Component arrangement III</source>
-        <translation type="unfinished"></translation>
+        <translation>Arranjo de componente III</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="118"/>
         <source>Component arrangement IV</source>
-        <translation type="unfinished"></translation>
+        <translation>Arranjo de componente IV</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="127"/>
         <source>Component arrangement V</source>
-        <translation type="unfinished"></translation>
+        <translation>Arranjo de componente V</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="136"/>
         <source>Component arrangement VI</source>
-        <translation type="unfinished"></translation>
+        <translation>Arranjo de componente VI</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="145"/>
         <source>Component arrangement VII</source>
-        <translation type="unfinished"></translation>
+        <translation>Arranjo de componente VII</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="154"/>
         <source>Component arrangement VIII</source>
-        <translation type="unfinished"></translation>
+        <translation>Arranjo de componente VIII</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="163"/>
         <source>Component arrangement IX</source>
-        <translation type="unfinished"></translation>
+        <translation>Arranjo de componente IX</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="172"/>
         <source>Component arrangement X</source>
-        <translation type="unfinished"></translation>
+        <translation>Arranjo de componente X</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="181"/>
         <source>Component arrangement XI</source>
-        <translation type="unfinished"></translation>
+        <translation>Arranjo de componente XI</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="190"/>
         <source>Component arrangement XII</source>
-        <translation type="unfinished"></translation>
+        <translation>Arranjo de componente XII</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="199"/>
         <source>Component arrangement XIII</source>
-        <translation type="unfinished"></translation>
+        <translation>Arranjo de componente XIII</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="208"/>
         <source>Component arrangement XIV</source>
-        <translation type="unfinished"></translation>
+        <translation>Arranjo de componente XIV</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="235"/>
         <source>Available features</source>
-        <translation type="unfinished"></translation>
+        <translation>Funcionalidades disponíveis</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="247"/>
         <source>List of available features</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista das funcionalidades disponíveis</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="268"/>
         <source>Configure current feature</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar funcionalidade atual</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="271"/>
         <source>Configure...</source>
-        <translation type="unfinished">Configurar...</translation>
+        <translation>Configurar...</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="291"/>
         <source>Activate selected features</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar funcionalidades selecionadas</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="314"/>
         <source>Active features</source>
-        <translation type="unfinished"></translation>
+        <translation>Funcionalidades ativas</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="326"/>
         <source>List of active features and their order</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista das funcionalidades ativas e sua ordem</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="347"/>
         <source>Deactivate selected features</source>
-        <translation type="unfinished"></translation>
+        <translation>Desativar funcionalidades selecionadas</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="367"/>
         <source>Move selected feature up</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover funcionalidade selecionada para cima</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="390"/>
         <source>Move selected feature down</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover funcionalidade selecionada para baixo</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="425"/>
         <source>Apply component setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar configuração de componentes de fechar janela</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="428"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="439"/>
         <source>Apply component setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar configuração de componentes</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="442"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished">&amp;Aplicar</translation>
+        <translation>&amp;Aplicar</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="453"/>
         <source>Cancel component setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar configuração de componentes de fechar janela</translation>
     </message>
     <message>
         <location filename="../../componentsetup.ui" line="456"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="52"/>
         <source>M&amp;achine list</source>
-        <translation type="unfinished">Lista de &amp;Máquinas</translation>
+        <translation>Lista de &amp;Máquinas</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="53"/>
         <source>Machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="55"/>
         <source>&amp;Game list</source>
-        <translation type="unfinished">Lista de &amp;Jogos</translation>
+        <translation>Lista de &amp;Jogos</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="56"/>
         <source>Game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de jogos</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="60"/>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Buscar</translation>
+        <translation>&amp;Buscar</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="61"/>
         <source>Search systems</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar sistemas</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="64"/>
         <source>Favo&amp;rites</source>
-        <translation type="unfinished">Favo&amp;ritos</translation>
+        <translation>Favo&amp;ritos</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="65"/>
         <source>Favorite list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de favoritos</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="68"/>
         <source>Pl&amp;ayed</source>
-        <translation type="unfinished">J&amp;ogados</translation>
+        <translation>J&amp;ogados</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="69"/>
         <source>Played list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de jogados</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="72"/>
         <source>&amp;Foreign emulators</source>
-        <translation type="unfinished">&amp;Emuladores estrangeiros</translation>
+        <translation>&amp;Emuladores estrangeiros</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="73"/>
         <source>Foreign emulator list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de emuladores estrangeiros</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="77"/>
         <location filename="../../componentsetup.cpp" line="78"/>
         <source>Embedded emulators</source>
-        <translation type="unfinished">Emuladores embutidos</translation>
+        <translation>Emuladores embutidos</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="107"/>
         <location filename="../../componentsetup.cpp" line="179"/>
         <location filename="../../componentsetup.cpp" line="248"/>
         <source>Pre&amp;view</source>
-        <translation type="unfinished">Pre&amp;visualização</translation>
+        <translation>Pre&amp;visualização</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="108"/>
         <location filename="../../componentsetup.cpp" line="249"/>
         <source>Game preview image</source>
-        <translation type="unfinished">Imagem de preview do jogo</translation>
+        <translation>Imagem de preview do jogo</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="110"/>
         <location filename="../../componentsetup.cpp" line="182"/>
         <location filename="../../componentsetup.cpp" line="251"/>
         <source>Fl&amp;yer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="111"/>
         <location filename="../../componentsetup.cpp" line="252"/>
         <source>Game flyer image</source>
-        <translation type="unfinished">Imagem do flyer do jogo</translation>
+        <translation>Imagem do flyer do jogo</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="113"/>
         <location filename="../../componentsetup.cpp" line="254"/>
         <source>Game &amp;info</source>
-        <translation type="unfinished">&amp;Informação do jogo</translation>
+        <translation>&amp;Informação do jogo</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="114"/>
         <location filename="../../componentsetup.cpp" line="255"/>
         <source>Game information</source>
-        <translation type="unfinished">Informação do jogo</translation>
+        <translation>Informação do jogo</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="116"/>
         <location filename="../../componentsetup.cpp" line="188"/>
         <location filename="../../componentsetup.cpp" line="257"/>
         <source>Em&amp;ulator info</source>
-        <translation type="unfinished">Informação do Em&amp;ulador</translation>
+        <translation>Informação do Em&amp;ulador</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="117"/>
         <location filename="../../componentsetup.cpp" line="189"/>
         <location filename="../../componentsetup.cpp" line="258"/>
         <source>Emulator information</source>
-        <translation type="unfinished">Informação do emulador</translation>
+        <translation>Informação do emulador</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="119"/>
         <location filename="../../componentsetup.cpp" line="191"/>
         <location filename="../../componentsetup.cpp" line="260"/>
         <source>&amp;Configuration</source>
-        <translation type="unfinished">&amp;Configuração</translation>
+        <translation>&amp;Configuração</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="120"/>
         <location filename="../../componentsetup.cpp" line="192"/>
         <location filename="../../componentsetup.cpp" line="261"/>
         <source>Emulator configuration</source>
-        <translation type="unfinished">Configuração do emulador</translation>
+        <translation>Configuração do emulador</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="123"/>
         <location filename="../../componentsetup.cpp" line="204"/>
         <location filename="../../componentsetup.cpp" line="270"/>
         <source>Ca&amp;binet</source>
-        <translation type="unfinished">Ga&amp;binete</translation>
+        <translation>Ga&amp;binete</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="124"/>
         <location filename="../../componentsetup.cpp" line="271"/>
         <source>Arcade cabinet image</source>
-        <translation type="unfinished">Imagem de gabinete do arcade</translation>
+        <translation>Imagem de gabinete do arcade</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="126"/>
         <location filename="../../componentsetup.cpp" line="207"/>
         <location filename="../../componentsetup.cpp" line="273"/>
         <source>C&amp;ontroller</source>
-        <translation type="unfinished">C&amp;ontrole</translation>
+        <translation>C&amp;ontrole</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="127"/>
         <location filename="../../componentsetup.cpp" line="208"/>
         <location filename="../../componentsetup.cpp" line="274"/>
         <source>Control panel image</source>
-        <translation type="unfinished">Imagem do painel de controle</translation>
+        <translation>Imagem do painel de controle</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="129"/>
         <location filename="../../componentsetup.cpp" line="276"/>
         <source>Mar&amp;quee</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="130"/>
         <location filename="../../componentsetup.cpp" line="277"/>
         <source>Marquee image</source>
-        <translation type="unfinished">Imagem de Marquee</translation>
+        <translation>Imagem de Marquee</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="132"/>
         <location filename="../../componentsetup.cpp" line="279"/>
         <source>Titl&amp;e</source>
-        <translation type="unfinished">Títul&amp;o</translation>
+        <translation>Títul&amp;o</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="133"/>
         <location filename="../../componentsetup.cpp" line="280"/>
         <source>Title screen image</source>
-        <translation type="unfinished">Imagem da tela de título</translation>
+        <translation>Imagem da tela de título</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="135"/>
         <source>MA&amp;WS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="136"/>
         <source>MAWS page (web lookup)</source>
-        <translation type="unfinished">Página do MAWS (acesso web)</translation>
+        <translation>Página do MAWS (acesso web)</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="138"/>
         <location filename="../../componentsetup.cpp" line="201"/>
         <location filename="../../componentsetup.cpp" line="282"/>
         <source>&amp;PCB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="139"/>
         <location filename="../../componentsetup.cpp" line="202"/>
         <location filename="../../componentsetup.cpp" line="283"/>
         <source>PCB image</source>
-        <translation type="unfinished">Imagem de PCB</translation>
+        <translation>Imagem de PCB</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="141"/>
         <location filename="../../componentsetup.cpp" line="213"/>
         <location filename="../../componentsetup.cpp" line="285"/>
         <source>Softwar&amp;e list</source>
-        <translation type="unfinished">Lista de Softwar&amp;e</translation>
+        <translation>Lista de Softwar&amp;e</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="142"/>
         <location filename="../../componentsetup.cpp" line="214"/>
         <location filename="../../componentsetup.cpp" line="286"/>
         <source>Software list</source>
-        <translation type="unfinished">Lista de Software</translation>
+        <translation>Lista de Software</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="145"/>
         <location filename="../../componentsetup.cpp" line="217"/>
         <location filename="../../componentsetup.cpp" line="289"/>
         <source>&amp;YouTube</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="146"/>
         <location filename="../../componentsetup.cpp" line="218"/>
         <location filename="../../componentsetup.cpp" line="290"/>
         <source>YouTube videos</source>
-        <translation type="unfinished">Vídeos do YouTube</translation>
+        <translation>Vídeos do YouTube</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="149"/>
@@ -2912,209 +2912,209 @@ p, li { white-space: pre-wrap; }
         <location filename="../../componentsetup.cpp" line="293"/>
         <location filename="../../componentsetup.cpp" line="404"/>
         <source>&amp;Notes</source>
-        <translation type="unfinished">&amp;Notas</translation>
+        <translation>&amp;Notas</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="150"/>
         <location filename="../../componentsetup.cpp" line="222"/>
         <location filename="../../componentsetup.cpp" line="294"/>
         <source>System notes</source>
-        <translation type="unfinished">Notas de sistema</translation>
+        <translation>Notas de sistema</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="180"/>
         <source>Machine preview image</source>
-        <translation type="unfinished">Imagem de preview da máquina</translation>
+        <translation>Imagem de preview da máquina</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="183"/>
         <source>Machine flyer image</source>
-        <translation type="unfinished">Imagem do flyer da máquina</translation>
+        <translation>Imagem do flyer da máquina</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="185"/>
         <source>Machine &amp;info</source>
-        <translation type="unfinished">&amp;Informação da máquina</translation>
+        <translation>&amp;Informação da máquina</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="186"/>
         <source>Machine information</source>
-        <translation type="unfinished">Informação da máquina</translation>
+        <translation>Informação da máquina</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="195"/>
         <location filename="../../componentsetup.cpp" line="264"/>
         <source>De&amp;vices</source>
-        <translation type="unfinished">Dispositi&amp;vos</translation>
+        <translation>Dispositi&amp;vos</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="196"/>
         <location filename="../../componentsetup.cpp" line="265"/>
         <source>Device configuration</source>
-        <translation type="unfinished">Configurações de dispositivo</translation>
+        <translation>Configurações de dispositivo</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="198"/>
         <location filename="../../componentsetup.cpp" line="267"/>
         <source>Pr&amp;ojectMESS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="199"/>
         <location filename="../../componentsetup.cpp" line="268"/>
         <source>ProjectMESS (web lookup)</source>
-        <translation type="unfinished">ProjectMESS (acesso web)</translation>
+        <translation>ProjectMESS (acesso web)</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="205"/>
         <source>Machine cabinet image</source>
-        <translation type="unfinished">Imagem de gabinete da máquina</translation>
+        <translation>Imagem de gabinete da máquina</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="210"/>
         <source>Lo&amp;go</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="211"/>
         <source>Logo image</source>
-        <translation type="unfinished">Imagem logo</translation>
+        <translation>Imagem logo</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="343"/>
         <source>&amp;Front end log</source>
-        <translation type="unfinished">Log do &amp;Front end</translation>
+        <translation>Log do &amp;Front end</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="344"/>
         <source>Front end log</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="347"/>
         <source>Emulator &amp;log</source>
-        <translation type="unfinished">&amp;Log do Emulador</translation>
+        <translation>&amp;Log do Emulador</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="348"/>
         <source>Emulator log</source>
-        <translation type="unfinished">Log do Emulador</translation>
+        <translation>Log do Emulador</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="351"/>
         <source>E&amp;mulator control</source>
-        <translation type="unfinished">Controle do E&amp;mulador</translation>
+        <translation>Controle do E&amp;mulador</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="352"/>
         <source>Emulator control panel</source>
-        <translation type="unfinished">Painel de controle do emulador</translation>
+        <translation>Painel de controle do emulador</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="356"/>
         <source>&amp;Audio player</source>
-        <translation type="unfinished">&amp;Reprodutor de música</translation>
+        <translation>&amp;Reprodutor de música</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="357"/>
         <source>Audio player</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="361"/>
         <source>Do&amp;wnloads</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="362"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="392"/>
         <source>Snapsh&amp;ot</source>
-        <translation type="unfinished">Capt&amp;ura de tela</translation>
+        <translation>Capt&amp;ura de tela</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="393"/>
         <source>Software snapshot</source>
-        <translation type="unfinished">Snapshot de software</translation>
+        <translation>Snapshot de software</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="398"/>
         <source>Project&amp;MESS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="399"/>
         <source>ProjectMESS web lookup</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="405"/>
         <source>Software notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Notas de software</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="409"/>
         <source>Software info</source>
-        <translation type="unfinished">Informação de software</translation>
+        <translation>Informação de software</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="410"/>
         <source>Software info entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrada de informação de software</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="823"/>
         <source>MAWS configuration (1/2)</source>
-        <translation type="unfinished">Configuração do MAWS (1/2)</translation>
+        <translation>Configuração do MAWS (1/2)</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="824"/>
         <source>MAWS URL pattern (use %1 as placeholder for game ID):</source>
-        <translation type="unfinished">Padrão da URL do MAWS (use %1 como placeholder para o ID do jogo):</translation>
+        <translation>Padrão da URL do MAWS (use %1 como placeholder para o ID do jogo):</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="833"/>
         <location filename="../../componentsetup.cpp" line="837"/>
         <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
+        <translation>Sim</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="833"/>
         <source>No</source>
-        <translation type="unfinished">Não</translation>
+        <translation>Não</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="835"/>
         <source>MAWS configuration (2/2)</source>
-        <translation type="unfinished">Configuração do MAWS (2/2)</translation>
+        <translation>Configuração do MAWS (2/2)</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="835"/>
         <source>Enable MAWS quick download?</source>
-        <translation type="unfinished">Habilitar download rápido do MAWS?</translation>
+        <translation>Habilitar download rápido do MAWS?</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="855"/>
         <source>Choose the YouTube cache directory</source>
-        <translation type="unfinished">Escolha o diretório de cache do YouTube</translation>
+        <translation>Escolha o diretório de cache do YouTube</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="865"/>
         <source>FATAL: can&apos;t create new YouTube cache directory, path = %1</source>
-        <translation type="unfinished">FATAL: impossível criar o novo diretório de cache do YouTube, caminho = %1</translation>
+        <translation>FATAL: impossível criar o novo diretório de cache do YouTube, caminho = %1</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="947"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Questão</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="947"/>
         <source>The current component&apos;s setup hasn&apos;t been applied yet. Apply it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>A configuração de componentes atual não foi aplicada ainda. Aplicar agora?</translation>
     </message>
 </context>
 <context>
@@ -3827,12 +3827,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="113"/>
         <source>Use only parent sets (no clones)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar somente conjuntos pais (sem clones)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="116"/>
         <source>Parents</source>
-        <translation type="unfinished"></translation>
+        <translation>Pais</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="226"/>
@@ -10378,7 +10378,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="1352"/>
         <location filename="../../qmc2main.cpp" line="1380"/>
         <source>Feature setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração de features</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1297"/>
@@ -10386,7 +10386,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="1353"/>
         <location filename="../../qmc2main.cpp" line="1381"/>
         <source>Set&amp;up...</source>
-        <translation type="unfinished"></translation>
+        <translation>Config&amp;urar...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1576"/>
@@ -14097,12 +14097,12 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="510"/>
         <source>Software-list view-mode flat</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo plano da visualização da lista de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="511"/>
         <source>Software-list view-mode tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo árvore da visualização da lista de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="513"/>
@@ -14229,7 +14229,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="3151"/>
         <source>&amp;Foreign emulators</source>
-        <translation type="unfinished">&amp;Emuladores estrangeiros</translation>
+        <translation>&amp;Emuladores estrangeiros</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5644"/>
@@ -16717,12 +16717,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="188"/>
         <source>Open the component setup dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir janela de configuração de componente</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="191"/>
         <source>Component setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração de componente...</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1639"/>
@@ -21376,7 +21376,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romstatusexport.cpp" line="563"/>
         <location filename="../../romstatusexport.cpp" line="825"/>
         <source>ROM status</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado da ROM</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="218"/>
@@ -21390,7 +21390,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romstatusexport.cpp" line="568"/>
         <location filename="../../romstatusexport.cpp" line="825"/>
         <source>Players</source>
-        <translation type="unfinished">Jogadores</translation>
+        <translation>Jogadores</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="233"/>
@@ -21399,7 +21399,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romstatusexport.cpp" line="569"/>
         <location filename="../../romstatusexport.cpp" line="825"/>
         <source>Driver status</source>
-        <translation type="unfinished">Estado do driver</translation>
+        <translation>Estado do driver</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="241"/>
@@ -22469,27 +22469,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="431"/>
         <source>Click to open the view menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Clique para abrir o menu de visualização</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="440"/>
         <source>View flat</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver plano</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="441"/>
         <source>View known software as a flat list</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver software conhecido como uma lista plana</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="447"/>
         <source>View tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver em árvore</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="448"/>
         <source>View known software as a parent/clone tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver software conhecido como uma árvore de pai/clones</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="500"/>
@@ -22561,17 +22561,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="1505"/>
         <source>Visible software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>Listas de software visíveis</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1507"/>
         <source>Select software lists to be shown / hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver listas de software a serem mostradas / escondidas</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1523"/>
         <source>Toggle visibility of software list &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar visibilidade da lista de software &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1776"/>
@@ -22749,7 +22749,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="1348"/>
         <location filename="../../softwarelist.cpp" line="1349"/>
         <source>no data available</source>
-        <translation type="unfinished"></translation>
+        <translation>nenhum dado disponível</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1296"/>
@@ -22759,27 +22759,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="1511"/>
         <source>Individual</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1528"/>
         <source>Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Somente</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1531"/>
         <source>Show only software list &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar apenas lista de software &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1535"/>
         <source>Except</source>
-        <translation type="unfinished"></translation>
+        <translation>Exceto</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1538"/>
         <source>Show all software lists except &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar todas as listas de software exceto &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1786"/>
@@ -24170,7 +24170,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../xmldbmgr.cpp" line="271"/>
         <source>WARNING: failed to fetch row IDs from XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished">AVISO: falha ao ler IDs das linhas da base de dados do cache XML: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
+        <translation>AVISO: falha ao ler IDs das linhas da base de dados do cache XML: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="364"/>
