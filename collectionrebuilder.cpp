@@ -1215,6 +1215,7 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 						success = readFileData(path, &data);
 						break;
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_CHD:
+						// FIXME: add support for disks
 						break;
 					default:
 						success = false;
@@ -1320,6 +1321,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 						success = readFileData(path, &data);
 						break;
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_CHD:
+						// FIXME: add support for disks
 						break;
 					default:
 						success = false;
