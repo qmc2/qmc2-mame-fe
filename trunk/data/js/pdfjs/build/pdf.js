@@ -22,8 +22,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '1.0.1175';
-PDFJS.build = 'fa0f09b';
+PDFJS.version = '1.1.18';
+PDFJS.build = '64d49e1';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -1632,7 +1632,7 @@ PDFJS.cMapUrl = (PDFJS.cMapUrl === undefined ? null : PDFJS.cMapUrl);
  */
 PDFJS.cMapPacked = PDFJS.cMapPacked === undefined ? false : PDFJS.cMapPacked;
 
-/*
+/**
  * By default fonts are converted to OpenType fonts and loaded via font face
  * rules. If disabled, the font will be rendered using a built in font renderer
  * that constructs the glyphs with primitive path commands.
@@ -1721,6 +1721,14 @@ PDFJS.disableCreateObjectURL = (PDFJS.disableCreateObjectURL === undefined ?
  */
 PDFJS.disableWebGL = (PDFJS.disableWebGL === undefined ?
                       true : PDFJS.disableWebGL);
+
+/**
+ * Disables fullscreen support, and by extension Presentation Mode,
+ * in browsers which support the fullscreen API.
+ * @var {boolean}
+ */
+PDFJS.disableFullscreen = (PDFJS.disableFullscreen === undefined ?
+                           false : PDFJS.disableFullscreen);
 
 /**
  * Enables CSS only zooming.
@@ -6342,7 +6350,8 @@ var FontLoader = {
 
   nativeFontFaces: [],
 
-  isFontLoadingAPISupported: !isWorker && !!document.fonts,
+  isFontLoadingAPISupported: (!isWorker && typeof document !== 'undefined' &&
+                              !!document.fonts),
 
   addNativeFontFace: function fontLoader_addNativeFontFace(nativeFontFace) {
     this.nativeFontFaces.push(nativeFontFace);
@@ -7318,6 +7327,9 @@ var SVGGraphics = (function SVGGraphicsClosure() {
             break;
           case OPS.setWordSpacing:
             this.setWordSpacing(args[0]);
+            break;
+          case OPS.setHScale:
+            this.setHScale(args[0]);
             break;
           case OPS.setTextMatrix:
             this.setTextMatrix(args[0], args[1], args[2],
