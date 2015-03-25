@@ -335,6 +335,14 @@ http://sourceforge.net/adobe/cmap/wiki/License/
     </div> <!-- outerContainer -->
     <div id="printContainer"></div>
 <div id="mozPrintCallback-shim" hidden>
+  <style>
+@media print {
+  #printContainer div {
+    page-break-after: always;
+    page-break-inside: avoid;
+  }
+}
+  </style>
   <style scoped>
 #mozPrintCallback-shim {
   position: fixed;

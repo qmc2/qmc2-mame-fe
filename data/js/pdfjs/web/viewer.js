@@ -189,13 +189,10 @@ function watchScroll(viewAreaElement, callback) {
 
       var currentY = viewAreaElement.scrollTop;
       var lastY = state.lastY;
-      if (currentY > lastY) {
-        state.down = true;
-      } else if (currentY < lastY) {
-        state.down = false;
+      if (currentY !== lastY) {
+        state.down = currentY > lastY;
       }
       state.lastY = currentY;
-      // else do nothing and use previous value
       callback(state);
     });
   };
@@ -212,36 +209,83 @@ function watchScroll(viewAreaElement, callback) {
 }
 
 /**
+ * Use binary search to find the index of the first item in a given array which
+ * passes a given condition. The items are expected to be sorted in the sense
+ * that if the condition is true for one item in the array, then it is also true
+ * for all following items.
+ *
+ * @returns {Number} Index of the first array element to pass the test,
+ *                   or |items.length| if no such element exists.
+ */
+function binarySearchFirstItem(items, condition) {
+  var minIndex = 0;
+  var maxIndex = items.length - 1;
+
+  if (items.length === 0 || !condition(items[maxIndex])) {
+    return items.length;
+  }
+  if (condition(items[minIndex])) {
+    return minIndex;
+  }
+
+  while (minIndex < maxIndex) {
+    var currentIndex = (minIndex + maxIndex) >> 1;
+    var currentItem = items[currentIndex];
+    if (condition(currentItem)) {
+      maxIndex = currentIndex;
+    } else {
+      minIndex = currentIndex + 1;
+    }
+  }
+  return minIndex; /* === maxIndex */
+}
+
+/**
  * Generic helper to find out what elements are visible within a scroll pane.
  */
 function getVisibleElements(scrollEl, views, sortByVisibility) {
   var top = scrollEl.scrollTop, bottom = top + scrollEl.clientHeight;
   var left = scrollEl.scrollLeft, right = left + scrollEl.clientWidth;
 
-  var visible = [], view;
+  function isElementBottomBelowViewTop(view) {
+    var element = view.div;
+    var elementBottom =
+      element.offsetTop + element.clientTop + element.clientHeight;
+    return elementBottom > top;
+  }
+
+  var visible = [], view, element;
   var currentHeight, viewHeight, hiddenHeight, percentHeight;
   var currentWidth, viewWidth;
-  for (var i = 0, ii = views.length; i < ii; ++i) {
+  var firstVisibleElementInd = (views.length === 0) ? 0 :
+    binarySearchFirstItem(views, isElementBottomBelowViewTop);
+
+  for (var i = firstVisibleElementInd, ii = views.length; i < ii; i++) {
     view = views[i];
-    currentHeight = view.div.offsetTop + view.div.clientTop;
-    viewHeight = view.div.clientHeight;
-    if ((currentHeight + viewHeight) < top) {
-      continue;
-    }
+    element = view.div;
+    currentHeight = element.offsetTop + element.clientTop;
+    viewHeight = element.clientHeight;
+
     if (currentHeight > bottom) {
       break;
     }
-    currentWidth = view.div.offsetLeft + view.div.clientLeft;
-    viewWidth = view.div.clientWidth;
-    if ((currentWidth + viewWidth) < left || currentWidth > right) {
+
+    currentWidth = element.offsetLeft + element.clientLeft;
+    viewWidth = element.clientWidth;
+    if (currentWidth + viewWidth < left || currentWidth > right) {
       continue;
     }
     hiddenHeight = Math.max(0, top - currentHeight) +
       Math.max(0, currentHeight + viewHeight - bottom);
     percentHeight = ((viewHeight - hiddenHeight) * 100 / viewHeight) | 0;
 
-    visible.push({ id: view.id, x: currentWidth, y: currentHeight,
-      view: view, percent: percentHeight });
+    visible.push({
+      id: view.id,
+      x: currentWidth,
+      y: currentHeight,
+      view: view,
+      percent: percentHeight
+    });
   }
 
   var first = visible[0];
@@ -1968,8 +2012,8 @@ var PresentationMode = {
       this.container.requestFullscreen();
     } else if (this.container.mozRequestFullScreen) {
       this.container.mozRequestFullScreen();
-    } else if (this.container.webkitRequestFullScreen) {
-      this.container.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+    } else if (this.container.webkitRequestFullscreen) {
+      this.container.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
     } else if (this.container.msRequestFullscreen) {
       this.container.msRequestFullscreen();
     } else {
@@ -4046,6 +4090,8 @@ DefaultAnnotationsLayerFactory.prototype = {
  * @property {IPDFLinkService} linkService - The navigation/linking service.
  * @property {PDFRenderingQueue} renderingQueue - (optional) The rendering
  *   queue object.
+ * @property {boolean} removePageBorders - (optional) Removes the border shadow
+ *   around the pages. The default is false.
  */
 
 /**
@@ -4082,6 +4128,7 @@ var PDFViewer = (function pdfViewer() {
     this.container = options.container;
     this.viewer = options.viewer || options.container.firstElementChild;
     this.linkService = options.linkService || new SimpleLinkService(this);
+    this.removePageBorders = options.removePageBorders || false;
 
     this.defaultRenderingQueue = !options.renderingQueue;
     if (this.defaultRenderingQueue) {
@@ -4096,6 +4143,10 @@ var PDFViewer = (function pdfViewer() {
     this.updateInProgress = false;
     this.presentationModeState = PresentationModeState.UNKNOWN;
     this._resetView();
+
+    if (this.removePageBorders) {
+      this.viewer.classList.add('removePageBorders');
+    }
   }
 
   PDFViewer.prototype = /** @lends PDFViewer.prototype */{
@@ -4399,8 +4450,10 @@ var PDFViewer = (function pdfViewer() {
         }
         var inPresentationMode =
           this.presentationModeState === PresentationModeState.FULLSCREEN;
-        var hPadding = inPresentationMode ? 0 : SCROLLBAR_PADDING;
-        var vPadding = inPresentationMode ? 0 : VERTICAL_PADDING;
+        var hPadding = (inPresentationMode || this.removePageBorders) ?
+          0 : SCROLLBAR_PADDING;
+        var vPadding = (inPresentationMode || this.removePageBorders) ?
+          0 : VERTICAL_PADDING;
         var pageWidthScale = (this.container.clientWidth - hPadding) /
                              currentPage.width * currentPage.scale;
         var pageHeightScale = (this.container.clientHeight - vPadding) /
@@ -4503,9 +4556,12 @@ var PDFViewer = (function pdfViewer() {
           width = dest[4] - x;
           height = dest[5] - y;
           var viewerContainer = this.container;
-          widthScale = (viewerContainer.clientWidth - SCROLLBAR_PADDING) /
+          var hPadding = this.removePageBorders ? 0 : SCROLLBAR_PADDING;
+          var vPadding = this.removePageBorders ? 0 : VERTICAL_PADDING;
+
+          widthScale = (viewerContainer.clientWidth - hPadding) /
             width / CSS_UNITS;
-          heightScale = (viewerContainer.clientHeight - SCROLLBAR_PADDING) /
+          heightScale = (viewerContainer.clientHeight - vPadding) /
             height / CSS_UNITS;
           scale = Math.min(Math.abs(widthScale), Math.abs(heightScale));
           break;
@@ -5640,6 +5696,9 @@ var PDFViewerApplication = {
         document.msFullscreenEnabled === false) {
       support = false;
     }
+    if (support && PDFJS.disableFullscreen === true) {
+      support = false;
+    }
 
     return PDFJS.shadow(this, 'supportsFullscreen', support);
   },
@@ -5681,6 +5740,10 @@ var PDFViewerApplication = {
   },
 
   setTitle: function pdfViewSetTitle(title) {
+    if (this.isViewerEmbedded) {
+      // Embedded PDF viewers should not be changing their parent page's title.
+      return;
+    }
     document.title = title;
   },
 
@@ -6281,10 +6344,6 @@ var PDFViewerApplication = {
       this.initialBookmark = hash;
       return;
     }
-
-    var validFitZoomValues = ['Fit','FitB','FitH','FitBH',
-      'FitV','FitBV','FitR'];
-
     if (!hash) {
       return;
     }
@@ -6302,23 +6361,39 @@ var PDFViewerApplication = {
         pageNumber = (params.page | 0) || 1;
       }
       if ('zoom' in params) {
+        // Build the destination array.
         var zoomArgs = params.zoom.split(','); // scale,left,top
-        // building destination array
-
-        // If the zoom value, it has to get divided by 100. If it is a string,
-        // it should stay as it is.
         var zoomArg = zoomArgs[0];
         var zoomArgNumber = parseFloat(zoomArg);
-        var destName = 'XYZ';
-        if (zoomArgNumber) {
-          zoomArg = zoomArgNumber / 100;
-        } else if (validFitZoomValues.indexOf(zoomArg) >= 0) {
-          destName = zoomArg;
+
+        if (zoomArg.indexOf('Fit') === -1) {
+          // If the zoomArg is a number, it has to get divided by 100. If it's
+          // a string, it should stay as it is.
+          dest = [null, { name: 'XYZ' },
+                  zoomArgs.length > 1 ? (zoomArgs[1] | 0) : null,
+                  zoomArgs.length > 2 ? (zoomArgs[2] | 0) : null,
+                  (zoomArgNumber ? zoomArgNumber / 100 : zoomArg)];
+        } else {
+          if (zoomArg === 'Fit' || zoomArg === 'FitB') {
+            dest = [null, { name: zoomArg }];
+          } else if ((zoomArg === 'FitH' || zoomArg === 'FitBH') ||
+                     (zoomArg === 'FitV' || zoomArg === 'FitBV')) {
+            dest = [null, { name: zoomArg },
+                    zoomArgs.length > 1 ? (zoomArgs[1] | 0) : null];
+          } else if (zoomArg === 'FitR') {
+            if (zoomArgs.length !== 5) {
+              console.error('pdfViewSetHash: ' +
+                            'Not enough parameters for \'FitR\'.');
+            } else {
+              dest = [null, { name: zoomArg },
+                      (zoomArgs[1] | 0), (zoomArgs[2] | 0),
+                      (zoomArgs[3] | 0), (zoomArgs[4] | 0)];
+            }
+          } else {
+            console.error('pdfViewSetHash: \'' + zoomArg +
+                          '\' is not a valid zoom value.');
+          }
         }
-        dest = [null, { name: destName },
-                zoomArgs.length > 1 ? (zoomArgs[1] | 0) : null,
-                zoomArgs.length > 2 ? (zoomArgs[2] | 0) : null,
-                zoomArg];
       }
       if (dest) {
         this.pdfViewer.scrollPageIntoView(pageNumber || this.page, dest);
@@ -6882,9 +6957,10 @@ window.addEventListener('updateviewarea', function () {
 
 window.addEventListener('resize', function webViewerResize(evt) {
   if (PDFViewerApplication.initialized &&
-      (document.getElementById('pageWidthOption').selected ||
+      (document.getElementById('pageAutoOption').selected ||
+       /* Note: the scale is constant for |pageActualOption|. */
        document.getElementById('pageFitOption').selected ||
-       document.getElementById('pageAutoOption').selected)) {
+       document.getElementById('pageWidthOption').selected)) {
     var selectedScale = document.getElementById('scaleSelect').value;
     PDFViewerApplication.setScale(selectedScale, false);
   }
@@ -6980,9 +7056,10 @@ window.addEventListener('scalechange', function scalechange(evt) {
   customScaleOption.selected = false;
 
   if (!PDFViewerApplication.updateScaleControls &&
-      (document.getElementById('pageWidthOption').selected ||
+      (document.getElementById('pageAutoOption').selected ||
+       document.getElementById('pageActualOption').selected ||
        document.getElementById('pageFitOption').selected ||
-       document.getElementById('pageAutoOption').selected)) {
+       document.getElementById('pageWidthOption').selected)) {
     updateViewarea();
     return;
   }

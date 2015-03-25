@@ -22,8 +22,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '1.0.1175';
-PDFJS.build = 'fa0f09b';
+PDFJS.version = '1.1.18';
+PDFJS.build = '64d49e1';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -11414,7 +11414,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         styles: Object.create(null)
       };
       var bidiTexts = textContent.items;
-      var SPACE_FACTOR = 0.35;
+      var SPACE_FACTOR = 0.3;
       var MULTI_SPACE_FACTOR = 1.5;
 
       var self = this;
@@ -16654,8 +16654,6 @@ var Font = (function FontClosure() {
     if (subtype === 'CIDFontType0C' && type !== 'CIDFontType0') {
       type = 'CIDFontType0';
     }
-    // XXX: Temporarily change the type for open type so we trigger a warning.
-    // This should be removed when we add support for open type.
     if (subtype === 'OpenType') {
       type = 'OpenType';
     }
@@ -16782,6 +16780,7 @@ var Font = (function FontClosure() {
            fontCharCode === 0x7F || // Control char
            fontCharCode === 0xAD || // Soft hyphen
            fontCharCode === 0xA0 || // Non breaking space
+           fontCharCode === 0x25CC || // Dotted circle (combining mark)
            (fontCharCode >= 0x80 && fontCharCode <= 0x9F) || // Control chars
            // Prevent drawing characters in the specials unicode block.
            (fontCharCode >= 0xFFF0 && fontCharCode <= 0xFFFF) ||
@@ -18062,7 +18061,8 @@ var Font = (function FontClosure() {
       var isTrueType = !tables['CFF '];
       if (!isTrueType) {
         // OpenType font
-        if (!tables.head || !tables.hhea || !tables.maxp || !tables.post) {
+        if (header.version === 'OTTO' ||
+            !tables.head || !tables.hhea || !tables.maxp || !tables.post) {
           // no major tables: throwing everything at CFFFont
           cffFile = new Stream(tables['CFF '].data);
           cff = new CFFFont(cffFile, properties);
@@ -35012,9 +35012,9 @@ var JpegImage = (function jpegImage() {
             if (fileMarker === 0xFFEE) {
               if (appData[0] === 0x41 && appData[1] === 0x64 &&
                   appData[2] === 0x6F && appData[3] === 0x62 &&
-                  appData[4] === 0x65 && appData[5] === 0) { // 'Adobe\x00'
+                  appData[4] === 0x65) { // 'Adobe'
                 adobe = {
-                  version: appData[6],
+                  version: (appData[5] << 8) | appData[6],
                   flags0: (appData[7] << 8) | appData[8],
                   flags1: (appData[9] << 8) | appData[10],
                   transformCode: appData[11]
