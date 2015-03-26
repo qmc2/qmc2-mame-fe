@@ -21,15 +21,9 @@ extern EmulatorOptions *qmc2EmulatorOptions;
 FileEditWidget::FileEditWidget(QString filePath, QString filter, QString part, QWidget *parent, bool showClearButton, QString relativeTo, QTreeWidget *treeWidget)
 	: QWidget(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: FileEditWidget::FileEditWidget(QString filePath = %1, QString filter = %2, QString part = %3, QWidget *parent = %4, bool showClearButton = %5, QString relativeTo = %6, QTreeWidget *treeWidget = %7)").arg(filePath).arg(filter).arg(part).arg((qulonglong)parent).arg(showClearButton).arg(relativeTo).arg((qulonglong)treeWidget));
-#endif
-
 	setupUi(this);
-
 	if ( !showClearButton )
 		toolButtonClear->hide();
-
 	relativeToFolderOption = relativeTo;
 	lineEditFile->setText(filePath);
 	browserFilter = filter;
@@ -43,20 +37,12 @@ FileEditWidget::FileEditWidget(QString filePath, QString filter, QString part, Q
 
 FileEditWidget::~FileEditWidget()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: FileEditWidget::~FileEditWidget()");
-#endif
-
+	// NOP
 }
 
 void FileEditWidget::on_toolButtonBrowse_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: FileEditWidget::on_toolButtonBrowse_clicked()");
-#endif
-
 	QString startPath = lineEditFile->text();
-
 	if ( returnRelativePath() ) {
 		QDir relativeToDir(relativeToPath());
 		QString relToPath = relativeToDir.path();
@@ -72,19 +58,16 @@ void FileEditWidget::on_toolButtonBrowse_clicked()
 		} else
 			startPath = QDir::cleanPath(relativeToPath() + "/" + startPath);
 	}
-
 	if ( startPath.isEmpty() )
 		startPath = qmc2FileEditStartPath;
 
 	if ( startPath.isEmpty() )
 		startPath = QDir::currentPath();
-
 	QString s;
 	if ( toolButtonClear->isVisible() )
 		s = QFileDialog::getOpenFileName(this, tr("Choose file"), startPath, browserFilter, 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	else
 		s = QFileDialog::getSaveFileName(this, tr("Choose file"), startPath, browserFilter, 0, QFileDialog::DontConfirmOverwrite | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
-
 	if ( !s.isEmpty() ) {
 		if ( returnRelativePath() ) {
 			QDir relativeToDir(relativeToPath());
