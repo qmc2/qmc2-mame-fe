@@ -4410,19 +4410,26 @@ void ROMAlyzer::updateCheckSumDbStatus()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::updateCheckSumDbStatus()");
 #endif
 
-	static quint64 lastRowCount = 0;
+	static qint64 lastRowCount = -1;
 
 	bool isScanning = checkSumScannerThread()->status() == tr("scanning");
 
 	QDateTime now = QDateTime::currentDateTime();
 	QString statusString = "<center><table border=\"0\" cellpadding=\"2\" cellspacing=\"2\">";
 	if ( isScanning ) {
-		quint64 currentRowCount = checkSumDb()->checkSumRowCount();
-		if ( lastRowCount > 0 && currentRowCount >= lastRowCount )
-			statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(currentRowCount) + " | &Delta; " + QString::number(currentRowCount - lastRowCount) + "</td></tr>";
-		else
-			statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(currentRowCount) + "</td></tr>";
-		lastRowCount = currentRowCount;
+		qint64 currentRowCount = checkSumDb()->checkSumRowCount();
+		if ( currentRowCount >= 0 ) {
+			if ( lastRowCount > 0 && currentRowCount >= lastRowCount )
+				statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(currentRowCount) + " | &Delta; " + QString::number(currentRowCount - lastRowCount) + "</td></tr>";
+			else
+				statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(currentRowCount) + "</td></tr>";
+			lastRowCount = currentRowCount;
+		} else {
+			if ( lastRowCount >= 0 )
+				statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(lastRowCount) + "</td></tr>";
+			else
+				statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">?</td></tr>";
+		}
 	} else {
 		statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Objects in database") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(checkSumDb()->checkSumRowCount()) + "</td></tr>";
 		lastRowCount = 0;
