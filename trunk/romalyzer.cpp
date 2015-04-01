@@ -4914,6 +4914,14 @@ void CheckSumScannerThread::run()
 									m_pendingUpdates++;
 								} else
 									emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1List[i]).arg(crcList[i]) + ", " + tr("member '%1' from archive '%2' ignored").arg(memberList[i]).arg(filePath));
+								if ( m_pendingUpdates >= QMC2_CHECKSUM_DB_MAX_TRANSACTIONS ) {
+									emit log(tr("committing database transaction"));
+									checkSumDb()->setScanTime(QDateTime::currentDateTime().toTime_t());
+									checkSumDb()->commitTransaction();
+									m_pendingUpdates = 0;
+									emit log(tr("starting database transaction"));
+									checkSumDb()->beginTransaction();
+								}
 							}
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_CHD:
