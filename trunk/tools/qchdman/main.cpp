@@ -7,8 +7,8 @@
 
 quint64 runningProjects = 0;
 quint64 runningScripts = 0;
-MainWindow *mainWindow = NULL;
-QtChdmanGuiSettings *globalConfig = NULL;
+MainWindow *mainWindow = 0;
+QtChdmanGuiSettings *globalConfig = 0;
 
 int main(int argc, char *argv[])
 {
@@ -34,10 +34,11 @@ int main(int argc, char *argv[])
     if ( qtTranslator.load(QString("qt_%1").arg(language), ":/translations") )
         qchdmanApplication.installTranslator(&qtTranslator);
 
-    // setup main window and run..
+    // setup main window and run
     MainWindow w;
     mainWindow = &w;
     mainWindow->show();
-
-    return qchdmanApplication.exec();
+    int result = qchdmanApplication.exec();
+    globalConfig->deleteLater();
+    return result;
 }
