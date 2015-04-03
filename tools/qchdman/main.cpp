@@ -39,6 +39,5 @@ int main(int argc, char *argv[])
     mainWindow = &w;
     mainWindow->show();
     int result = qchdmanApplication.exec();
-    globalConfig->deleteLater();
     return result;
 }
