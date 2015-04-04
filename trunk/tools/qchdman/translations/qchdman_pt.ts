@@ -575,6 +575,11 @@ Deseja continuar?</translation>
         <translation>Interface Gráfica</translation>
     </message>
     <message>
+        <location filename="../preferencesdialog.ui" line="81"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../preferencesdialog.ui" line="154"/>
         <source>Style</source>
         <translation>Estilo</translation>
@@ -731,11 +736,6 @@ Deseja continuar?</translation>
         <location filename="../preferencesdialog.ui" line="140"/>
         <source>English (us)</source>
         <translation>Inglês (us)</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="81"/>
-        <source>Lanuage</source>
-        <translation>Língua</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="273"/>

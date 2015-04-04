@@ -562,11 +562,6 @@ Proceed?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="81"/>
-        <source>Lanuage</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../preferencesdialog.ui" line="88"/>
         <source>Select the GUI language (requires a restart to take effect!)</source>
         <translation type="unfinished"></translation>
@@ -728,6 +723,11 @@ Proceed?</source>
     <message>
         <location filename="../preferencesdialog.ui" line="352"/>
         <source>CHDMAN binary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="81"/>
+        <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

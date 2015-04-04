@@ -564,6 +564,11 @@ Proceed?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../preferencesdialog.ui" line="81"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../preferencesdialog.ui" line="154"/>
         <source>Style</source>
         <translation type="unfinished"></translation>
@@ -719,11 +724,6 @@ Proceed?</source>
     <message>
         <location filename="../preferencesdialog.ui" line="140"/>
         <source>English (us)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="81"/>
-        <source>Lanuage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

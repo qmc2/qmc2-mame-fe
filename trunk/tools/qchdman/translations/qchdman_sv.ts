@@ -571,11 +571,6 @@ Fortsätta?</translation>
         <translation>Gränssnitt</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="81"/>
-        <source>Lanuage</source>
-        <translation>Språk</translation>
-    </message>
-    <message>
         <location filename="../preferencesdialog.ui" line="88"/>
         <source>Select the GUI language (requires a restart to take effect!)</source>
         <translation>Välj språk för gränssnittet (kräver en omstart för att bli aktiv)</translation>
@@ -738,6 +733,11 @@ Fortsätta?</translation>
         <location filename="../preferencesdialog.ui" line="352"/>
         <source>CHDMAN binary</source>
         <translation>CHDMAN-binärfil</translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="81"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="365"/>
