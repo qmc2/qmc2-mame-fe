@@ -575,9 +575,14 @@ Fortfahren?</translation>
         <translation>GUI</translation>
     </message>
     <message>
+        <location filename="../preferencesdialog.ui" line="81"/>
+        <source>Language</source>
+        <translation>Sprache</translation>
+    </message>
+    <message>
         <location filename="../preferencesdialog.ui" line="154"/>
         <source>Style</source>
-        <translation>Stil</translation>
+        <translation>Style</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="174"/>
@@ -675,7 +680,7 @@ Fortfahren?</translation>
     <message>
         <location filename="../preferencesdialog.ui" line="161"/>
         <source>Select the GUI style</source>
-        <translation>GUI Stil auswählen</translation>
+        <translation>GUI Style auswählen</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="88"/>
@@ -731,11 +736,6 @@ Fortfahren?</translation>
         <location filename="../preferencesdialog.ui" line="140"/>
         <source>English (us)</source>
         <translation>Englisch (us)</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="81"/>
-        <source>Lanuage</source>
-        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="273"/>

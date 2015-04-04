@@ -567,6 +567,11 @@ Proceed?</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../preferencesdialog.ui" line="81"/>
+        <source>Language</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../preferencesdialog.ui" line="154"/>
         <source>Style</source>
         <translation></translation>
@@ -722,11 +727,6 @@ Proceed?</source>
     <message>
         <location filename="../preferencesdialog.ui" line="140"/>
         <source>English (us)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="81"/>
-        <source>Lanuage</source>
         <translation></translation>
     </message>
     <message>
