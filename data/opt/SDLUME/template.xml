@@ -1776,6 +1776,50 @@
 			<description lang="es" text="libGL.so alternativa a utilizar; 'auto' para predeterminado de sistema"/>
 		</option>
 	</section>
+	<section ignore.Linux="true" ignore.Windows="true" name="core_audio">
+		<description lang="us" text="CoreAudio options"/>
+		<description lang="de" text="CoreAudio Optionen"/>
+		<option default="none" ignore.Linux="true" ignore.Windows="true" name="audio_effect0" type="file">
+			<description lang="us" text="AudioUnit effect file 0"/>
+			<description lang="de" text="AudioUnit Effekt Datei 0"/>
+		</option>
+		<option default="none" ignore.Linux="true" ignore.Windows="true" name="audio_effect1" type="file">
+			<description lang="us" text="AudioUnit effect file 1"/>
+			<description lang="de" text="AudioUnit Effekt Datei 1"/>
+		</option>
+		<option default="none" ignore.Linux="true" ignore.Windows="true" name="audio_effect2" type="file">
+			<description lang="us" text="AudioUnit effect file 2"/>
+			<description lang="de" text="AudioUnit Effekt Datei 2"/>
+		</option>
+		<option default="none" ignore.Linux="true" ignore.Windows="true" name="audio_effect3" type="file">
+			<description lang="us" text="AudioUnit effect file 3"/>
+			<description lang="de" text="AudioUnit Effekt Datei 3"/>
+		</option>
+		<option default="none" ignore.Linux="true" ignore.Windows="true" name="audio_effect4" type="file">
+			<description lang="us" text="AudioUnit effect file 4"/>
+			<description lang="de" text="AudioUnit Effekt Datei 4"/>
+		</option>
+		<option default="none" ignore.Linux="true" ignore.Windows="true" name="audio_effect5" type="file">
+			<description lang="us" text="AudioUnit effect file 5"/>
+			<description lang="de" text="AudioUnit Effekt Datei 5"/>
+		</option>
+		<option default="none" ignore.Linux="true" ignore.Windows="true" name="audio_effect6" type="file">
+			<description lang="us" text="AudioUnit effect file 6"/>
+			<description lang="de" text="AudioUnit Effekt Datei 6"/>
+		</option>
+		<option default="none" ignore.Linux="true" ignore.Windows="true" name="audio_effect7" type="file">
+			<description lang="us" text="AudioUnit effect file 7"/>
+			<description lang="de" text="AudioUnit Effekt Datei 7"/>
+		</option>
+		<option default="none" ignore.Linux="true" ignore.Windows="true" name="audio_effect8" type="file">
+			<description lang="us" text="AudioUnit effect file 8"/>
+			<description lang="de" text="AudioUnit Effekt Datei 8"/>
+		</option>
+		<option default="none" ignore.Linux="true" ignore.Windows="true" name="audio_effect9" type="file">
+			<description lang="us" text="AudioUnit effect file 0"/>
+			<description lang="de" text="AudioUnit Effekt Datei 9"/>
+		</option>
+	</section>
 	<!--
 			 This section is completely ignored for now because it's a compile-time-optional feature at the moment...
 			 If you enable it in the emulator, remove all ignore="true" attributes from the <section> and <option> nodes!
