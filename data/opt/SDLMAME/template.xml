@@ -1779,6 +1779,11 @@
 	<section ignore.Linux="true" ignore.Windows="true" name="core_audio">
 		<description lang="us" text="CoreAudio options"/>
 		<description lang="de" text="CoreAudio Optionen"/>
+		<option default="auto" ignore.Linux="true" ignore.Windows="true" name="audio_output" type="combo">
+			<description lang="us" text="Audio output device"/>
+			<description lang="de" text="Audio Ausgabe Gerät"/>
+			<choice name="auto"/>
+		</option>
 		<option default="none" ignore.Linux="true" ignore.Windows="true" name="audio_effect0" type="file">
 			<description lang="us" text="AudioUnit effect file 0"/>
 			<description lang="de" text="AudioUnit Effekt Datei 0"/>

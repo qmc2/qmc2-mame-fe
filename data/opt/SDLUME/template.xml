@@ -1830,6 +1830,11 @@
 		<description lang="de" text="SDL Lichtpistolen-Zuweisungen"/>
 		<description lang="pt" text="Mapeamento da lightgun do SDL"/>
 		<description lang="es" text="Mapeado SDL de pistola óptica"/>
+		<option default="auto" ignore.Linux="true" ignore.Windows="true" name="audio_output" type="combo">
+			<description lang="us" text="Audio output device"/>
+			<description lang="de" text="Audio Ausgabe Gerät"/>
+			<choice name="auto"/>
+		</option>
 		<option default="auto" ignore="true" ignore.Darwin="true" name="lightgun_index1" type="combo">
 			<description lang="pl" text="Nazwa pistoletu, który będzie mapowany jako pistolet #1"/>
 			<description lang="us" text="Name of lightgun mapped to lightgun #1"/>
