@@ -943,20 +943,20 @@
 			<description lang="pt" text="Script para o debugger"/>
 		</option>
 		<option default="Lucida Console" name="debugger_font" type="string">
-			<description lang="es" text="Especifica la tipografía a utilizar por el depurador; predeterminado 'Lucida Console'"/>
 			<description lang="us" text="Specifies the font to use for debugging; defaults to 'Lucida Console'"/>
 			<description lang="de" text="Legt die Schriftart für den Debugger fest; Standard-Schriftart: 'Lucida Console'"/>
 			<description lang="pl" text="Ustala czcionkę dla debuggera, standard to 'Lucida Console'"/>
 			<description lang="fr" text="Specifier la police à utiliser pour le débogage; par défaut 'Lucida Console'"/>
 			<description lang="pt" text="Especificar a fonte para usar para debugging; padrão é 'Lucida Console'"/>
+			<description lang="es" text="Especifica la tipografía a utilizar por el depurador; predeterminado 'Lucida Console'"/>
 		</option>
 		<option default="9" name="debugger_font_size" type="int">
-			<description lang="es" text="Especifica el tamaño de tipografía a utilizar por el depurador; predeterminado 9 pt"/>
 			<description lang="us" text="Specifies the font size to use for debugging; defaults to 9 pt"/>
 			<description lang="de" text="Legt die Größe der Schriftart für den Debugger fest; Standard-Größe: 9 Pixel"/>
 			<description lang="pl" text="Ustala rozmiar czcionki dla debuggera, standard to 9 punktów"/>
 			<description lang="fr" text="Specifier la taille de police à utiliser pour le débogage; par défaut 9 pt"/>
 			<description lang="pt" text="Especificar o tamanho da fonte para uso em debugging; padrão para 9 pt"/>
+			<description lang="es" text="Especifica el tamaño de tipografía a utilizar por el depurador; predeterminado 9 pt"/>
 		</option>
 		<option default="0" name="watchdog" type="int">
 			<description lang="es" text="Fuerza el programa a terminar si no se actualiza en un número concreto de segundos"/>
