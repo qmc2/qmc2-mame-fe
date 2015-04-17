@@ -33,6 +33,8 @@
 #include <QtWebKitWidgets/QWebFrame>
 #endif
 
+#include <algorithm> // std::sort()
+
 #include "macros.h"
 #include "qmc2main.h"
 #include "options.h"
@@ -5140,7 +5142,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 				qmc2EmulatorOptions->addChoices("bios", biosSets, biosDescriptions, defaultChoice);
 
 				QStringList ramSizes = getXmlChoices(gameName, "ramoption", QString(), &defaultChoice);
-				qSort(ramSizes.begin(), ramSizes.end(), MainWindow::qStringListLessThan);
+				std::sort(ramSizes.begin(), ramSizes.end(), MainWindow::qStringListLessThan);
 				QStringList humanReadableRamSizes;
 				for (int i = 0; i < ramSizes.count(); i++) {
 					if ( ramSizes[i] == defaultChoice )
@@ -10722,7 +10724,7 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 				setsToAnalyze << item->text(QMC2_GAMELIST_COLUMN_NAME);
 	}
 
-	qSort(setsToAnalyze);
+	std::sort(setsToAnalyze.begin(), setsToAnalyze.end());
 
 	if ( !qmc2SystemROMAlyzer )
 		qmc2SystemROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SYSTEM);
@@ -11445,7 +11447,7 @@ void MainWindow::on_actionRebuildROMTagged_triggered(bool)
 				setsToRebuild << item->text(QMC2_GAMELIST_COLUMN_NAME);
 	}
 
-	qSort(setsToRebuild);
+	std::sort(setsToRebuild.begin(), setsToRebuild.end());
 
 	bool initial = false;
 	if ( !qmc2SystemROMAlyzer ) {

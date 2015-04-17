@@ -19,6 +19,8 @@
 #include <QHash>
 #include <QMap>
 
+#include <algorithm> // std::sort()
+
 #include "tweakedqmlappviewer.h"
 #include "arcadesettings.h"
 #include "gameobject.h"
@@ -433,7 +435,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
         QMC2_ARCADE_LOG_STR(tr("FATAL: The %1 cache file '%2' doesn't exist, please run main front-end executable to create it").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).arg(QDir::toNativeSeparators(gameListCachePath)));
 
     if ( globalConfig->sortByName() )
-        qSort(gameList.begin(), gameList.end(), GameObject::lessThan);
+        std::sort(gameList.begin(), gameList.end(), GameObject::lessThan);
 
     // propagate gameList to QML
     rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));

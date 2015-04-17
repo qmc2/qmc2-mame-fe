@@ -9,6 +9,8 @@
 #include <QTreeWidgetItemIterator>
 #include <QTextStream>
 
+#include <algorithm> // std::sort()
+
 #include "settings.h"
 #include "arcademodesetup.h"
 #include "qmc2main.h"
@@ -487,7 +489,7 @@ void ArcadeModeSetup::updateCategoryFilter()
 		if ( category )
 			categoryNames << *category;
 	categoryNames.removeDuplicates();
-	qSort(categoryNames.begin(), categoryNames.end(), MainWindow::qStringListLessThan);
+	std::sort(categoryNames.begin(), categoryNames.end(), MainWindow::qStringListLessThan);
 	QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExcludedCategories", QStringList()).toStringList();
 	listWidgetCategoryFilter->setUpdatesEnabled(false);
 	listWidgetCategoryFilter->clear();
@@ -748,7 +750,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 	qApp->processEvents();
 	qmc2ArcadeModeSortCriteria = comboBoxSortCriteria->currentIndex();
 	qmc2ArcadeModeSortOrder = comboBoxSortOrder->currentIndex();
-	qSort(selectedGames.begin(), selectedGames.end(), ArcadeModeSetup::lessThan);
+	std::sort(selectedGames.begin(), selectedGames.end(), ArcadeModeSetup::lessThan);
 
 	progressBarFilter->setValue(0);
 	progressBarFilter->setFormat(tr("Exporting"));

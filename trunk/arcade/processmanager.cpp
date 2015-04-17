@@ -8,6 +8,8 @@
 #include <QXmlStreamReader>
 #include <QFileInfo>
 
+#include <algorithm> // std::sort()
+
 #include "processmanager.h"
 #include "arcadesettings.h"
 #include "consolewindow.h"
@@ -147,7 +149,7 @@ void ProcessManager::createTemplateList()
             }
         }
         templateFile.close();
-        qSort(mTemplateList.begin(), mTemplateList.end(), EmulatorOption::lessThan);
+	std::sort(mTemplateList.begin(), mTemplateList.end(), EmulatorOption::lessThan);
         QMC2_ARCADE_LOG_STR(QString(tr("Done (loading configuration template from '%1')").arg(QDir::toNativeSeparators(templateFilePath)) + " - " + tr("%n option(s) loaded", "", mTemplateList.count())));
     } else
         QMC2_ARCADE_LOG_STR(tr("FATAL: Can't open the configuration template file: reason = %1").arg(fileErrorToString(templateFile.error())));
