@@ -45,6 +45,8 @@
 #include <QtWebKitWidgets/QWebFrame>
 #endif
 
+#include <algorithm> // std::sort()
+
 #include "macros.h"
 #include "miniwebbrowser.h"
 #include "htmleditor.h"
@@ -1214,7 +1216,7 @@ bool HtmlEditor::queryLocalXml(QString id, QString queryString, bool sort, QStri
 	xmlQuery.setQuery(queryString);
 	if ( xmlQuery.evaluateTo(&xmlResult) ) {
 		if ( sort )
-			qSort(xmlResult.begin(), xmlResult.end(), MainWindow::qStringListLessThan);
+			std::sort(xmlResult.begin(), xmlResult.end(), MainWindow::qStringListLessThan);
 		return true;
 	} else
 		return false;

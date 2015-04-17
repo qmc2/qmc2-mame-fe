@@ -7,6 +7,8 @@
 #include <QMap>
 #include <QHash>
 
+#include <algorithm> // std::sort()
+
 #include "messdevcfg.h"
 #include "gamelist.h"
 #include "macros.h"
@@ -1116,7 +1118,7 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 	comboBoxDeviceInstanceChooser->clear();
 
 	if ( instances.count() > 0 ) {
-		qSort(instances);
+		std::sort(instances.begin(), instances.end());
 		foreach (QString instance, instances) {
 			QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems(instance, Qt::MatchExactly);
 			if ( items.count() > 0 ) {
@@ -1377,7 +1379,7 @@ bool MESSDeviceConfigurator::load()
 	}
 
 	if ( instances.count() > 0 ) {
-		qSort(instances);
+		std::sort(instances.begin(), instances.end());
 		foreach (QString instance, instances) {
 			QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems(instance, Qt::MatchExactly);
 			if ( items.count() > 0 ) {

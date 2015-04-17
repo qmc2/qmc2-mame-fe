@@ -3,6 +3,8 @@
 #include <QTreeWidgetItem>
 #include <QStringList>
 
+#include <algorithm> // std::sort()
+
 #include "settings.h"
 #include "demomode.h"
 #include "qmc2main.h"
@@ -150,7 +152,7 @@ void DemoModeDialog::updateCategoryFilter()
 		if ( category )
 			categoryNames << *category;
 	categoryNames.removeDuplicates();
-	qSort(categoryNames.begin(), categoryNames.end(), MainWindow::qStringListLessThan);
+	std::sort(categoryNames.begin(), categoryNames.end(), MainWindow::qStringListLessThan);
 	QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/ExcludedCategories", QStringList()).toStringList();
 	listWidgetCategoryFilter->setUpdatesEnabled(false);
 	listWidgetCategoryFilter->clear();
@@ -291,7 +293,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode cannot start -- no games selected by filter"));
 			return;
 		}
-		qSort(selectedGames.begin(), selectedGames.end(), MainWindow::qStringListLessThan);
+		std::sort(selectedGames.begin(), selectedGames.end(), MainWindow::qStringListLessThan);
 		demoModeRunning = true;
 		seqNum = -1;
 		pushButtonRunDemo->setText(tr("Stop &demo"));

@@ -13,6 +13,8 @@
 #include <QWidgetAction>
 #include <QLabel>
 
+#include <algorithm> // std::sort()
+
 #include "softwarelist.h"
 #include "gamelist.h"
 #include "qmc2main.h"
@@ -3801,7 +3803,7 @@ void SoftwareList::checkMountDeviceSelection()
 		if ( !autoMounted && mountedSoftware.count() > 1 ) {
 			comboBoxSnapnameDevice->setUpdatesEnabled(false);
 			comboBoxSnapnameDevice->clear();
-			qSort(mountedSoftware);
+			std::sort(mountedSoftware.begin(), mountedSoftware.end());
 			comboBoxSnapnameDevice->addItems(mountedSoftware);
 			comboBoxSnapnameDevice->setUpdatesEnabled(true);
 			comboBoxSnapnameDevice->show();

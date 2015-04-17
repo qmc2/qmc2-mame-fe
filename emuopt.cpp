@@ -11,6 +11,8 @@
 #include <QScrollBar>
 
 #include <stdlib.h>
+#include <algorithm> // std::sort()
+
 #include "emuopt.h"
 #include "options.h"
 #include "gamelist.h"
@@ -1114,7 +1116,7 @@ QStringList EmulatorOptions::readChoices(QXmlStreamReader *xmlReader)
 
 	if ( !validChoices.isEmpty() ) {
 		validChoices.removeDuplicates();
-		qSort(validChoices.begin(), validChoices.end(), MainWindow::qStringListLessThan);
+		std::sort(validChoices.begin(), validChoices.end(), MainWindow::qStringListLessThan);
 	}
 
 	return validChoices;
