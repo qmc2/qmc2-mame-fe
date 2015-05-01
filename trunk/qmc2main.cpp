@@ -2465,9 +2465,9 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
-	if ( componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] != QMC2_EMBED_INDEX || (componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] == QMC2_EMBED_INDEX && !toolButtonEmbedderMaximizeToggle->isChecked()) ) {
+	if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) != tabWidgetGamelist->currentIndex() || (tabWidgetGamelist->indexOf(tabEmbeddedEmus) == tabWidgetGamelist->currentIndex() && !toolButtonEmbedderMaximizeToggle->isChecked()) ) {
 		hSplitterSizes = hSplitter->sizes();
-	} else if ( componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] == QMC2_EMBED_INDEX && toolButtonEmbedderMaximizeToggle->isChecked() ) {
+	} else if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) == tabWidgetGamelist->currentIndex() && toolButtonEmbedderMaximizeToggle->isChecked() ) {
 		toolButtonEmbedderMaximizeToggle->setChecked(false);
 		menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 		statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -4739,7 +4739,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	// show / hide game status indicator
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired").toBool() ) {
-			if ( hSplitter->sizes()[0] == 0 || componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] != QMC2_GAMELIST_INDEX )
+			if ( hSplitter->sizes()[0] == 0 || tabWidgetGamelist->indexOf(tabGamelist) != tabWidgetGamelist->currentIndex() )
 				labelGameStatus->setVisible(true);
 			else
 				labelGameStatus->setVisible(false);
