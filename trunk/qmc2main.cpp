@@ -9473,7 +9473,7 @@ void MainWindow::on_treeWidgetVersionView_customContextMenuRequested(const QPoin
 void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 {
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
-	if ( componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] != QMC2_GAMELIST_INDEX )
+	if ( tabWidgetGamelist->indexOf(tabGamelist) != tabWidgetGamelist->currentIndex() )
 		return;
 
 	switch ( index ) {
@@ -11777,7 +11777,7 @@ void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
 void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
 {
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
-	if ( componentInfo->appliedFeatureList()[tabWidgetGamelist->currentIndex()] == QMC2_SEARCH_INDEX )
+	if ( tabWidgetGamelist->indexOf(tabSearch) == tabWidgetGamelist->currentIndex() )
 		comboBoxSearch->lineEdit()->setText(text);
 }
 
