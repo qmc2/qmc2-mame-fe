@@ -38,8 +38,6 @@ extern int emulatorMode;
 extern int consoleMode;
 extern QStringList emulatorModeNames;
 extern QStringList mameThemes;
-extern QStringList messThemes;
-extern QStringList umeThemes;
 extern QStringList arcadeThemes;
 extern QStringList consoleModes;
 #if QT_VERSION < 0x050000
@@ -83,13 +81,8 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
 #endif
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
+    default:
         cliAllowedParameterValues["theme"] = mameThemes;
-        break;
-    case QMC2_ARCADE_EMUMODE_MESS:
-        cliAllowedParameterValues["theme"] = messThemes;
-        break;
-    case QMC2_ARCADE_EMUMODE_UME:
-        cliAllowedParameterValues["theme"] = umeThemes;
         break;
     }
 #if QT_VERSION < 0x050000
@@ -377,9 +370,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
     if ( globalConfig->useFilteredList() ) {
         gameListCachePath = QFileInfo(globalConfig->filteredListFile()).absoluteFilePath();
         if ( !QFileInfo(gameListCachePath).exists() || !QFileInfo(gameListCachePath).isReadable() ) {
-            QMC2_ARCADE_LOG_STR(tr("WARNING: filtered list file '%1' doesn't exist or isn't accessible, falling back to the full %2").
-                                arg(gameListCachePath).
-                                arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")));
+            QMC2_ARCADE_LOG_STR(tr("WARNING: filtered list file '%1' doesn't exist or isn't accessible, falling back to the full %2").arg(gameListCachePath).arg(tr("game list")));
             gameListCachePath = QFileInfo(globalConfig->gameListCacheFile()).absoluteFilePath();
         } 
     } else
@@ -387,9 +378,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
 
     QHash<QString, char> rscHash;
 
-    QMC2_ARCADE_LOG_STR(tr("Loading %1 from '%2'").
-                        arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
-                        arg(QDir::toNativeSeparators(gameListCachePath)));
+    QMC2_ARCADE_LOG_STR(tr("Loading %1 from '%2'").arg(tr("game list")).arg(QDir::toNativeSeparators(gameListCachePath)));
 
     QString romStateCachePath = QFileInfo(globalConfig->romStateCacheFile()).absoluteFilePath();
     QFile romStateCache(romStateCachePath);
@@ -430,9 +419,9 @@ void TweakedQmlApplicationViewer::loadGamelist()
                     qApp->processEvents();
             }
         } else
-            QMC2_ARCADE_LOG_STR(tr("FATAL: Can't open %1 cache file '%2', please check permissions").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).arg(QDir::toNativeSeparators(gameListCachePath)));
+            QMC2_ARCADE_LOG_STR(tr("FATAL: Can't open %1 cache file '%2', please check permissions").arg(tr("game list")).arg(QDir::toNativeSeparators(gameListCachePath)));
     } else
-        QMC2_ARCADE_LOG_STR(tr("FATAL: The %1 cache file '%2' doesn't exist, please run main front-end executable to create it").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).arg(QDir::toNativeSeparators(gameListCachePath)));
+        QMC2_ARCADE_LOG_STR(tr("FATAL: The %1 cache file '%2' doesn't exist, please run main front-end executable to create it").arg(tr("game list")).arg(QDir::toNativeSeparators(gameListCachePath)));
 
     if ( globalConfig->sortByName() )
         std::sort(gameList.begin(), gameList.end(), GameObject::lessThan);
@@ -441,12 +430,12 @@ void TweakedQmlApplicationViewer::loadGamelist()
     rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
     rootContext()->setContextProperty("gameListModelCount", gameList.count());
 
-    QMC2_ARCADE_LOG_STR(QString(tr("Done (loading %1 from '%2')").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())).arg(QDir::toNativeSeparators(gameListCachePath)));
+    QMC2_ARCADE_LOG_STR(QString(tr("Done (loading %1 from '%2')").arg(tr("game list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())).arg(QDir::toNativeSeparators(gameListCachePath)));
 }
 
 void TweakedQmlApplicationViewer::launchEmulator(QString id)
 {
-    QMC2_ARCADE_LOG_STR(tr("Starting emulator #%1 for %2 ID '%3'").arg(processManager->highestProcessID()).arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game") : tr("machine")).arg(id));
+    QMC2_ARCADE_LOG_STR(tr("Starting emulator #%1 for %2 ID '%3'").arg(processManager->highestProcessID()).arg(tr("game")).arg(id));
     processManager->startEmulator(id);
 }
 
@@ -602,13 +591,8 @@ QString TweakedQmlApplicationViewer::emuMode()
 {
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
-        return "mame";
-    case QMC2_ARCADE_EMUMODE_MESS:
-        return "mess";
-    case QMC2_ARCADE_EMUMODE_UME:
-        return "ume";
     default:
-        return "unknown";
+        return "mame";
     }
 }
 

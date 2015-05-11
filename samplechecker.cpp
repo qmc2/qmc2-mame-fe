@@ -149,18 +149,10 @@ void SampleChecker::verify()
 			qApp->processEvents();
 		for (int gameListPos = 0; gameListPos < xmlLinesCount && !qmc2StopParser; gameListPos++) {
 			QString line = xmlLines[gameListPos];
-#if defined(QMC2_EMUTYPE_MESS)
-			int startIndex = line.indexOf("<machine name=\"");
-#else
 			int startIndex = line.indexOf("<game name=\"");
-#endif
 			int endIndex = -1;
 			if ( startIndex >= 0 ) {
-#if defined(QMC2_EMUTYPE_MESS)
-				startIndex += 15;
-#else
 				startIndex += 12;
-#endif
 				endIndex = line.indexOf("\"", startIndex);
 				if ( endIndex >= 0 )
 					currentGameName = line.mid(startIndex, endIndex - startIndex);
@@ -181,11 +173,7 @@ void SampleChecker::verify()
 				hasSamples |= true;
 				sampleCount++;
 			} else {
-#if defined(QMC2_EMUTYPE_MESS)
-				startIndex = line.indexOf("</machine>");
-#else
 				startIndex = line.indexOf("</game>");
-#endif
 				if ( startIndex >= 0 ) {
 					if ( !currentGameName.isEmpty() && hasSamples ) {
 						if ( currentSampleOf.isEmpty() ) {
@@ -196,11 +184,7 @@ void SampleChecker::verify()
 								sampleMap[currentGameName] = currentSampleOf;
 								sampleCountMap[currentGameName] = sampleCount;
 							} else
-#if defined(QMC2_EMUTYPE_MESS)
-								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the machine '%1' is referencing a non-existing sample-set (sampleof=\"%2\") -- please inform MESS developers").arg(currentGameName).arg(currentSampleOf));
-#else
 								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the game '%1' is referencing a non-existing sample-set (sampleof=\"%2\") -- please inform MAME developers").arg(currentGameName).arg(currentSampleOf));
-#endif
 						}
 					}
 					currentGameName.clear();
@@ -233,17 +217,10 @@ void SampleChecker::verify()
 		if ( sampleCountMap[currentSample] == 0 ) {
 			QStringList refList = sampleMap.keys(currentSample);
 			if ( refList.count() > 0 ) {
-#if defined(QMC2_EMUTYPE_MESS)
-				if ( refList.count() > 1 )
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the following machines are referencing a sample-set which isn't required (sampleof=\"%1\"): %2 -- please inform MESS developers").arg(currentSample).arg(refList.join(", ")));
-				else
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the following machine is referencing a sample-set which isn't required (sampleof=\"%1\"): %2 -- please inform MESS developers").arg(currentSample).arg(refList.join(", ")));
-#else
 				if ( refList.count() > 1 )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the following games are referencing a sample-set which isn't required (sampleof=\"%1\"): %2 -- please inform MAME developers").arg(currentSample).arg(refList.join(", ")));
 				else
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the following game is referencing a sample-set which isn't required (sampleof=\"%1\"): %2 -- please inform MAME developers").arg(currentSample).arg(refList.join(", ")));
-#endif
 				sampleSets.removeAll(currentSample);
 			}
 		}
@@ -262,24 +239,12 @@ void SampleChecker::verify()
 		progressBar->setValue(i + 1);
 		QString sampleSet = sampleSets[i];
 		QProcess commandProc;
-#if defined(QMC2_SDLMESS)
-		commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
-		commandProc.setStandardErrorFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
-#elif defined(QMC2_MESS)
-		commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
-		commandProc.setStandardErrorFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
-#elif defined(QMC2_SDLMAME)
+#if defined(QMC2_SDLMAME)
 		commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 		commandProc.setStandardErrorFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)
 		commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
 		commandProc.setStandardErrorFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#elif defined(QMC2_SDLUME)
-		commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
-		commandProc.setStandardErrorFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
-#elif defined(QMC2_UME)
-		commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
-		commandProc.setStandardErrorFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
 
 		if ( !emuWorkDir.isEmpty() )
@@ -311,18 +276,10 @@ void SampleChecker::verify()
 			break;
 		}
 
-#if defined(QMC2_SDLMESS)
-		QFile sampleTemp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
-#elif defined(QMC2_MESS)
-		QFile sampleTemp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
-#elif defined(QMC2_SDLMAME)
+#if defined(QMC2_SDLMAME)
 		QFile sampleTemp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)
 		QFile sampleTemp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#elif defined(QMC2_SDLUME)
-		QFile sampleTemp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
-#elif defined(QMC2_UME)
-		QFile sampleTemp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
 
 		if ( commandProcStarted && sampleTemp.open(QFile::ReadOnly) ) {

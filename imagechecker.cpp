@@ -26,9 +26,7 @@ extern MainWindow *qmc2MainWindow;
 extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
-#endif
 extern QHash<QString, QIcon> qmc2IconHash;
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
@@ -43,9 +41,7 @@ extern Flyer *qmc2Flyer;
 extern Cabinet *qmc2Cabinet;
 extern Controller *qmc2Controller;
 extern Marquee *qmc2Marquee;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern Title *qmc2Title;
-#endif
 extern PCB *qmc2PCB;
 extern QMap<QString, unzFile> qmc2IconFileMap;
 extern QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
@@ -340,16 +336,6 @@ ImageChecker::ImageChecker(QWidget *parent)
 	connect(&listWidgetMissingSelectionTimer, SIGNAL(timeout()), this, SLOT(listWidgetMissing_itemSelectionChanged_delayed()));
 
 	comboBoxImageType->clear();
-#if defined(QMC2_EMUTYPE_MESS)
-	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_PREVIEW, QIcon(QString::fromUtf8(":/data/img/camera.png")), tr("Previews"));
-	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_FLYER, QIcon(QString::fromUtf8(":/data/img/thumbnail.png")), tr("Flyers"));
-	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_CABINET, QIcon(QString::fromUtf8(":/data/img/arcadecabinet.png")), tr("Cabinets"));
-	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_CONTROLLER, QIcon(QString::fromUtf8(":/data/img/joystick.png")), tr("Controllers"));
-	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_LOGO, QIcon(QString::fromUtf8(":/data/img/marquee.png")), tr("Logos"));
-	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_PCB, QIcon(QString::fromUtf8(":/data/img/circuit.png")), tr("PCBs"));
-	comboBoxImageType->insertSeparator(QMC2_IMGCHK_INDEX_SEPARATOR);
-	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_ICON, QIcon(QString::fromUtf8(":/data/img/icon.png")), tr("Icons"));
-#else
 	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_PREVIEW, QIcon(QString::fromUtf8(":/data/img/camera.png")), tr("Previews"));
 	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_FLYER, QIcon(QString::fromUtf8(":/data/img/thumbnail.png")), tr("Flyers"));
 	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_CABINET, QIcon(QString::fromUtf8(":/data/img/arcadecabinet.png")), tr("Cabinets"));
@@ -359,7 +345,6 @@ ImageChecker::ImageChecker(QWidget *parent)
 	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_PCB, QIcon(QString::fromUtf8(":/data/img/circuit.png")), tr("PCBs"));
 	comboBoxImageType->insertSeparator(QMC2_IMGCHK_INDEX_SEPARATOR);
 	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_ICON, QIcon(QString::fromUtf8(":/data/img/icon.png")), tr("Icons"));
-#endif
 }
 
 ImageChecker::~ImageChecker()
@@ -545,22 +530,16 @@ void ImageChecker::startStop()
 				break;
 			case QMC2_IMGCHK_INDEX_MARQUEE:
 				imageWidget = qmc2Marquee;
-#if defined(QMC2_EMUTYPE_MESS)
-				imageType = tr("logo");
-#else
 				imageType = tr("marquee");
-#endif
 				break;
 			case QMC2_IMGCHK_INDEX_CONTROLLER:
 				imageWidget = qmc2Controller;
 				imageType = tr("controller");
 				break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			case QMC2_IMGCHK_INDEX_TITLE:
 				imageWidget = qmc2Title;
 				imageType = tr("title");
 				break;
-#endif
 			case QMC2_IMGCHK_INDEX_PCB:
 				imageWidget = qmc2PCB;
 				imageType = tr("PCB");
@@ -650,12 +629,10 @@ void ImageChecker::enableWidgets(bool enable)
 			qmc2Options->stackedWidgetController->setEnabled(enable);
 			qmc2Options->radioButtonControllerSelect->setEnabled(enable);
 			break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGCHK_INDEX_TITLE:
 			qmc2Options->stackedWidgetTitle->setEnabled(enable);
 			qmc2Options->radioButtonTitleSelect->setEnabled(enable);
 			break;
-#endif
 		case QMC2_IMGCHK_INDEX_PCB:
 			qmc2Options->stackedWidgetPCB->setEnabled(enable);
 			qmc2Options->radioButtonPCBSelect->setEnabled(enable);
@@ -702,20 +679,14 @@ void ImageChecker::feedWorkerThreads()
 			imageType = tr("cabinet");
 			break;
 		case QMC2_IMGCHK_INDEX_MARQUEE:
-#if defined(QMC2_EMUTYPE_MESS)
-			imageType = tr("logo");
-#else
 			imageType = tr("marquee");
-#endif
 			break;
 		case QMC2_IMGCHK_INDEX_CONTROLLER:
 			imageType = tr("controller");
 			break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGCHK_INDEX_TITLE:
 			imageType = tr("title");
 			break;
-#endif
 		case QMC2_IMGCHK_INDEX_PCB:
 			imageType = tr("PCB");
 			break;
@@ -905,11 +876,9 @@ void ImageChecker::on_toolButtonRemoveBad_clicked()
 		case QMC2_IMGCHK_INDEX_CONTROLLER:
 			imageWidget = qmc2Controller;
 			break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGCHK_INDEX_TITLE:
 			imageWidget = qmc2Title;
 			break;
-#endif
 		case QMC2_IMGCHK_INDEX_PCB:
 			imageWidget = qmc2PCB;
 			break;
@@ -1128,11 +1097,9 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 		case QMC2_IMGCHK_INDEX_CONTROLLER:
 			imageWidget = qmc2Controller;
 			break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGCHK_INDEX_TITLE:
 			imageWidget = qmc2Title;
 			break;
-#endif
 		case QMC2_IMGCHK_INDEX_PCB:
 			imageWidget = qmc2PCB;
 			break;
@@ -1536,11 +1503,9 @@ void ImageChecker::checkObsoleteFiles()
 		case QMC2_IMGCHK_INDEX_CONTROLLER:
 			imageWidget = qmc2Controller;
 			break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGCHK_INDEX_TITLE:
 			imageWidget = qmc2Title;
 			break;
-#endif
 		case QMC2_IMGCHK_INDEX_PCB:
 			imageWidget = qmc2PCB;
 			break;
@@ -1832,7 +1797,6 @@ void ImageChecker::selectItem(QString setName)
 			}
 			break;
 		}
-
 		case QMC2_VIEWHIERARCHY_INDEX: {
 			QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[setName];
 			if ( hierarchyItem ) {
@@ -1843,7 +1807,6 @@ void ImageChecker::selectItem(QString setName)
 			}
 			break;
 		}
-
 		case QMC2_VIEWCATEGORY_INDEX: {
 			QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[setName];
 			if ( categoryItem ) {
@@ -1854,8 +1817,6 @@ void ImageChecker::selectItem(QString setName)
 			}
 			break;
 		}
-
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_VIEWVERSION_INDEX: {
 			QTreeWidgetItem *versionItem = qmc2VersionItemHash[setName];
 			if ( versionItem ) {
@@ -1866,7 +1827,6 @@ void ImageChecker::selectItem(QString setName)
 			}
 			break;
 		}
-#endif
 	}
 }
 

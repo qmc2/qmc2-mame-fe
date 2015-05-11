@@ -72,10 +72,8 @@ class Gamelist : public QObject
 		QHash<QString, char> gameStatusHash;
 		QMap<QString, QString *> categoryNames;
 		QMap<QString, QString *> categoryMap;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		QMap<QString, QString *> versionNames;
 		QMap<QString, QString *> versionMap;
-#endif
 		QTreeWidgetItem *checkedItem;
 		QStringList biosSets;
 		QStringList deviceSets;
@@ -93,9 +91,7 @@ class Gamelist : public QObject
 		QString comment(QString systemName) { return userDataDb()->comment(systemName); }
 
 		void clearCategoryNames();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		void clearVersionNames();
-#endif
 		XmlDatabaseManager *xmlDb() { return m_xmlDb; }
 		UserDataDatabaseManager *userDataDb() { return m_userDataDb; }
 		DatInfoDatabaseManager *datInfoDb() { return m_datInfoDb; }
@@ -106,13 +102,9 @@ class Gamelist : public QObject
 	public slots:
 		void load();
 		void verify(bool currentOnly = false);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		void loadCatverIni();
 		void createVersionView();
-#endif
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		void loadCategoryIni();
-#endif
 		void createCategoryView();
 		void loadFavorites();
 		void saveFavorites();

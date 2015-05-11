@@ -98,14 +98,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	searchActive = stopSearch = false;
 	uncommittedSwlDbRows = 0;
 
-#if defined(QMC2_EMUTYPE_MAME)
-	comboBoxDeviceConfiguration->setVisible(false);
-	QString altText = tr("Add the currently selected software to the favorites list");
-	toolButtonAddToFavorites->setToolTip(altText); toolButtonAddToFavorites->setStatusTip(altText);
-	treeWidgetFavoriteSoftware->setColumnCount(QMC2_SWLIST_COLUMN_DEVICECFG);
-#elif defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	horizontalLayout->removeItem(horizontalSpacer);
-#endif
 
 	oldMin = 0;
 	oldMax = 1;
@@ -365,10 +358,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action->setChecked(!treeWidgetFavoriteSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_LIST));
 	action = menuFavoriteSoftwareHeader->addAction(tr("Supported"), this, SLOT(actionFavoriteSoftwareHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_SUPPORTED);
 	action->setChecked(!treeWidgetFavoriteSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_LIST));
-#if defined(QMC2_EMUTYPE_MESS) | defined(QMC2_EMUTYPE_UME)
 	action = menuFavoriteSoftwareHeader->addAction(tr("Device configuration"), this, SLOT(actionFavoriteSoftwareHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_DEVICECFG);
 	action->setChecked(!treeWidgetFavoriteSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_DEVICECFG));
-#endif
 	menuFavoriteSoftwareHeader->addSeparator();
 	action = menuFavoriteSoftwareHeader->addAction(QIcon(":data/img/reset.png"), tr("Reset"), this, SLOT(actionFavoriteSoftwareHeader_triggered())); action->setData(QMC2_SWLIST_RESET);
 	header->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -861,18 +852,11 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 	QProcess commandProc;
-#if defined(QMC2_SDLMESS)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
-#elif defined(QMC2_MESS)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
-#elif defined(QMC2_SDLMAME)
+#if defined(QMC2_SDLMAME)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#elif defined(QMC2_SDLUME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
-#elif defined(QMC2_UME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
 #if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
@@ -907,18 +891,10 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 		return xmlBuffer;
 	}
 
-#if defined(QMC2_SDLMESS)
-	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
-#elif defined(QMC2_MESS)
-	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
-#elif defined(QMC2_SDLMAME)
+#if defined(QMC2_SDLMAME)
 	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)
 	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#elif defined(QMC2_SDLUME)
-	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
-#elif defined(QMC2_UME)
-	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
 
 	if ( commandProcStarted && qmc2TempXml.open(QFile::ReadOnly) ) {
@@ -936,23 +912,10 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 			xmlBuffer.clear();
 			if ( !xmlLines.isEmpty() ) {
 				int i = 0;
-#if defined(QMC2_EMUTYPE_MESS)
-				QString s = "<machine name=\"" + systemName + "\"";
-#elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				QString s = "<game name=\"" + systemName + "\"";
-#endif
 				while ( i < xmlLines.count() && !xmlLines[i].contains(s) ) i++;
 				xmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 				if ( i < xmlLines.count() ) {
-#if defined(QMC2_EMUTYPE_MESS)
-					while ( i < xmlLines.count() && !xmlLines[i].contains("</machine>") )
-						xmlBuffer += xmlLines[i++].simplified() + "\n";
-					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</machine>") ) {
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(systemName));
-						xmlBuffer.clear();
-					} else
-						xmlBuffer += "</machine>\n";
-#elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 					while ( i < xmlLines.count() && !xmlLines[i].contains("</game>") )
 						xmlBuffer += xmlLines[i++].simplified() + "\n";
 					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</game>") ) {
@@ -960,7 +923,6 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 						xmlBuffer.clear();
 					} else
 						xmlBuffer += "</game>\n";
-#endif
 				} else {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(systemName));
 					xmlBuffer.clear();
@@ -975,9 +937,7 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 
 void SoftwareList::on_comboBoxDeviceConfiguration_currentIndexChanged(int index)
 {
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	QTimer::singleShot(0, this, SLOT(updateMountDevices()));
-#endif
 }
 
 QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface, QStringList *mountList)
@@ -1026,7 +986,6 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 	}
 
 	int i = 0;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	QString s = "<game name=\"" + systemName + "\"";
 	while ( i < xmlData->count() && !(*xmlData)[i].contains(s) ) i++;
 	while ( i < xmlData->count() && !(*xmlData)[i].contains("</game>") ) {
@@ -1055,36 +1014,6 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 			}
 		}
 	}
-#elif defined(QMC2_EMUTYPE_MESS)
-	QString s = "<machine name=\"" + systemName + "\"";
-	while ( i < xmlData->count() && !(*xmlData)[i].contains(s) ) i++;
-	while ( i < xmlData->count() && !(*xmlData)[i].contains("</machine>") ) {
-		QString line = (*xmlData)[i++].simplified();
-		if ( line.startsWith("<device type=\"") ) {
-			int startIndex = line.indexOf("interface=\"");
-			int endIndex;
-			if ( startIndex >= 0 ) {
-				startIndex += 11;
-				int endIndex = line.indexOf("\"", startIndex);
-				QStringList devInterfaces = line.mid(startIndex, endIndex - startIndex).split(",", QString::SkipEmptyParts);
-				line = (*xmlData)[i++].simplified();
-				startIndex = line.indexOf("briefname=\"") + 11;
-				endIndex = line.indexOf("\"", startIndex);
-				QString devName = line.mid(startIndex, endIndex - startIndex);
-				if ( !devName.isEmpty() )
-					foreach (QString devIf, devInterfaces)
-						deviceInstanceMap[devIf] << devName;
-			} else {
-				line = (*xmlData)[i++].simplified();
-				startIndex = line.indexOf("briefname=\"") + 11;
-				endIndex = line.indexOf("\"", startIndex);
-				QString devName = line.mid(startIndex, endIndex - startIndex);
-				if ( !devName.isEmpty() )
-					deviceInstanceMap[devName] << devName;
-			}
-		}
-	}
-#endif
 
 	QStringList briefNames = deviceInstanceMap[deviceInterface];
 	briefNames.sort();
@@ -1117,7 +1046,6 @@ void SoftwareList::getXmlData()
 		int i = 0;
 		QString filter;
 		QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(systemName).split("\n", QString::SkipEmptyParts);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		while ( !interruptLoad && i < xmlLines.count() && !xmlLines[i].contains("</game>") ) {
 			QString line = xmlLines[i++];
 			if ( line.startsWith("<softwarelist name=\"") ) {
@@ -1132,22 +1060,6 @@ void SoftwareList::getXmlData()
 				}
 			}
 		}
-#elif defined(QMC2_EMUTYPE_MESS)
-		while ( !interruptLoad && i < xmlLines.count() && !xmlLines[i].contains("</machine>") ) {
-			QString line = xmlLines[i++];
-			if ( line.startsWith("<softwarelist name=\"") ) {
-				int startIndex = line.indexOf("\"") + 1;
-				int endIndex = line.indexOf("\"", startIndex);
-				softwareList << line.mid(startIndex, endIndex - startIndex); 
-				startIndex = line.indexOf(" filter=\"");
-				if ( startIndex >= 0 ) {
-					startIndex += 9;
-					endIndex = line.indexOf("\"", startIndex);
-					filter = line.mid(startIndex, endIndex - startIndex);
-				}
-			}
-		}
-#endif
 
 		if ( softwareList.isEmpty() )
 			softwareList << "NO_SOFTWARE_LIST";
@@ -1169,7 +1081,6 @@ void SoftwareList::getXmlData()
 
 	if ( !softwareList.isEmpty() && !softwareList.contains("NO_SOFTWARE_LIST") ) {
 		toolBoxSoftwareList->setEnabled(true);
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		// load stored device configurations, if any...
 		qmc2Config->beginGroup(QString(QMC2_EMULATOR_PREFIX + "Configuration/Devices/%1").arg(systemName));
 		QStringList configurationList = qmc2Config->childGroups();
@@ -1178,7 +1089,6 @@ void SoftwareList::getXmlData()
 			comboBoxDeviceConfiguration->insertItems(1, configurationList);
 			comboBoxDeviceConfiguration->setEnabled(true);
 		}
-#endif
 	} else {
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software") + " | " + tr("no data available"));
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites") + " | " + tr("no data available"));
@@ -1419,7 +1329,6 @@ bool SoftwareList::load()
 			qmc2Config->remove(oldSettingsKey);
 		} else
 			softwareNames = qmc2Gamelist->userDataDb()->listFavorites(systemName);
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		QStringList configNames;
 		oldSettingsKey = QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName);
 		if ( qmc2Config->contains(oldSettingsKey) ) {
@@ -1427,7 +1336,6 @@ bool SoftwareList::load()
 			qmc2Config->remove(oldSettingsKey);
 		} else
 			configNames = qmc2Gamelist->userDataDb()->deviceConfigs(systemName);
-#endif
 
 		QStringList compatFilters = systemSoftwareFilterHash[systemName];
 		for (int i = 0; i < softwareNames.count() && !interruptLoad; i++) {
@@ -1470,10 +1378,8 @@ bool SoftwareList::load()
 				item->setText(QMC2_SWLIST_COLUMN_SUPPORTED, swItem->text(QMC2_SWLIST_COLUMN_SUPPORTED));
 				SoftwareItem *subItem = new SoftwareItem(item);
 				subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 				if ( configNames.count() > i )
 					item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, configNames[i]);
-#endif
 			}
 		}
 		actionSaveFavoritesToFile->setEnabled(softwareNames.count() > 0);
@@ -1668,29 +1574,23 @@ bool SoftwareList::save()
 		return false;
 
 	QStringList softwareNames;
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	bool allConfigsEmpty = true;
 	QStringList configNames;
-#endif
 
 	for (int i = 0; i < treeWidgetFavoriteSoftware->topLevelItemCount(); i++) {
 		QTreeWidgetItem *item = treeWidgetFavoriteSoftware->topLevelItem(i);
 		softwareNames << item->text(QMC2_SWLIST_COLUMN_LIST) + ":" + item->text(QMC2_SWLIST_COLUMN_NAME);
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		QString configName = item->text(QMC2_SWLIST_COLUMN_DEVICECFG);
 		if ( !configName.isEmpty() )
 			allConfigsEmpty = false;
 		configNames << configName;
-#endif
 	}
 
 	qmc2Gamelist->userDataDb()->setListFavorites(systemName, softwareNames);
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	if ( allConfigsEmpty )
 		qmc2Gamelist->userDataDb()->setDeviceConfigs(systemName, QStringList());
 	else
 		qmc2Gamelist->userDataDb()->setDeviceConfigs(systemName, configNames);
-#endif
 
 	return true;
 }
@@ -1774,13 +1674,7 @@ void SoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( exitStatus == QProcess::NormalExit && exitCode == 0 ) {
 		validData = true;
 	} else {
-#if defined(QMC2_EMUTYPE_MAME)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the MAME software lists didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
-#elif defined(QMC2_EMUTYPE_MESS)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the MESS software lists didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
-#elif defined(QMC2_EMUTYPE_UME)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the UME software lists didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
-#endif
 		validData = false;
 	}
 	QTime elapsedTime(0, 0, 0, 0);
@@ -1901,26 +1795,14 @@ void SoftwareList::loadReadyReadStandardError()
 #endif
 
 	if ( data.contains("unknown option: -listsoftware") || data.contains("Unknown command 'listsoftware' specified") ) {
-#if defined(QMC2_EMUTYPE_MAME)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the currently selected MAME emulator doesn't support software lists"));
-#elif defined(QMC2_EMUTYPE_MESS)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the currently selected MESS emulator doesn't support software lists"));
-#elif defined(QMC2_EMUTYPE_UME)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the currently selected UME emulator doesn't support software lists"));
-#endif
 		swlSupported = false;
 	}
 }
 
 void SoftwareList::loadError(QProcess::ProcessError processError)
 {
-#if defined(QMC2_EMUTYPE_MAME)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the MAME software lists caused an error -- processError = %1").arg(processError));
-#elif defined(QMC2_EMUTYPE_MESS)
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the MESS software lists caused an error -- processError = %1").arg(processError));
-#elif defined(QMC2_EMUTYPE_MESS)
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the UME software lists caused an error -- processError = %1").arg(processError));
-#endif
 	validData = false;
 	loadFinishedFlag = true;
 
@@ -2628,12 +2510,10 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool)
 			item->setText(QMC2_SWLIST_COLUMN_INTERFACE, si->text(QMC2_SWLIST_COLUMN_INTERFACE));
 			item->setText(QMC2_SWLIST_COLUMN_LIST, si->text(QMC2_SWLIST_COLUMN_LIST));
 			item->setText(QMC2_SWLIST_COLUMN_SUPPORTED, si->text(QMC2_SWLIST_COLUMN_SUPPORTED));
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 			if ( comboBoxDeviceConfiguration->currentIndex() > 0 )
 				item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, comboBoxDeviceConfiguration->currentText());
 			else
 				item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, QString());
-#endif
 		}
 	}
 
@@ -3463,7 +3343,6 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 			break;
 	}
 
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	// optionally add arguments for the selected device configuration
 	QString devConfigName = comboBoxDeviceConfiguration->currentText();
 	if ( devConfigName != tr("Default configuration") ) {
@@ -3490,7 +3369,6 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 #endif
 		}
 	}
-#endif
 
 	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
 
@@ -3874,10 +3752,8 @@ void SoftwareList::loadFavoritesFromFile()
 								item->setText(QMC2_SWLIST_COLUMN_INTERFACE, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_INTERFACE));
 								item->setText(QMC2_SWLIST_COLUMN_LIST, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_LIST));
 								item->setText(QMC2_SWLIST_COLUMN_SUPPORTED, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_SUPPORTED));
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 								if ( words.count() > 2 )
 									item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, words[2]);
-#endif
 								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("entry '%1:%2' successfully imported").arg(listName).arg(entryName));
 							} else
 								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: entry '%1:%2' cannot be associated with any known software for this system (line %3 ignored)").arg(listName).arg(entryName).arg(lineCounter));
@@ -3914,24 +3790,14 @@ void SoftwareList::saveFavoritesToFile()
 		if ( favoritesFile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("saving software-favorites for '%1' to '%2'").arg(systemName).arg(filePath));
 			QTextStream ts(&favoritesFile);
-#if defined(QMC2_EMUTYPE_MESS)
-			ts << QString("# MESS software-list favorites export for driver '%1'\n").arg(systemName);
-			ts << QString("# Format: <list-name><TAB><entry-name>[<TAB><additional-device-configuration>]\n");
-#elif defined(QMC2_EMUTYPE_MAME)
 			ts << QString("# MAME software-list favorites export for driver '%1'\n").arg(systemName);
 			ts << QString("# Format: <list-name><TAB><entry-name>\n");
-#elif defined(QMC2_EMUTYPE_UME)
-			ts << QString("# UME software-list favorites export for driver '%1'\n").arg(systemName);
-			ts << QString("# Format: <list-name><TAB><entry-name>[<TAB><additional-device-configuration>]\n");
-#endif
 			for (int i = 0; i < treeWidgetFavoriteSoftware->topLevelItemCount(); i++) {
 				QTreeWidgetItem *item = treeWidgetFavoriteSoftware->topLevelItem(i);
 				if ( item ) {
 					ts << item->text(QMC2_SWLIST_COLUMN_LIST) << "\t" << item->text(QMC2_SWLIST_COLUMN_NAME);
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 					if ( !item->text(QMC2_SWLIST_COLUMN_DEVICECFG).isEmpty() )
 						ts << "\t" << item->text(QMC2_SWLIST_COLUMN_DEVICECFG);
-#endif
 					ts << "\n";
 				}
 

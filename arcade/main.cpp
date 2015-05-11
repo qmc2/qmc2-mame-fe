@@ -32,8 +32,6 @@ int consoleMode = QMC2_ARCADE_CONSOLE_TERM;
 QStringList emulatorModes;
 QStringList arcadeThemes;
 QStringList mameThemes;
-QStringList messThemes;
-QStringList umeThemes;
 QStringList consoleModes;
 #if QT_VERSION < 0x050000
 QStringList graphicsSystems;
@@ -198,11 +196,9 @@ int main(int argc, char *argv[])
 #endif
 
     // available emulator-modes, themes, console-modes and graphics-systems
-    emulatorModes << "mame" << "mess" << "ume";
+    emulatorModes << "mame";
     arcadeThemes << "ToxicWaste" << "darkone";
     mameThemes << "ToxicWaste" << "darkone";
-    // messThemes << "..."
-    umeThemes << "ToxicWaste" << "darkone";
     consoleModes << "terminal" << "window" << "window-minimized";
 #if QT_VERSION < 0x050000
     graphicsSystems << "raster" << "native" << "opengl" << "opengl1" << "openvg";
@@ -227,7 +223,6 @@ int main(int argc, char *argv[])
     }
     if ( styleIndex >= 0 )
         QApplication::setStyle(availableStyles[styleIndex]);
-
     QApplication *tempApp = new QApplication(argc, argv);
 #endif
 
@@ -265,11 +260,7 @@ int main(int argc, char *argv[])
 #endif
 
     if ( !QMC2_ARCADE_CLI_EMU_UNK ) {
-        emulatorMode = QMC2_ARCADE_CLI_EMU_MAME ? QMC2_ARCADE_EMUMODE_MAME : QMC2_ARCADE_CLI_EMU_MESS ? QMC2_ARCADE_EMUMODE_MESS : QMC2_ARCADE_CLI_EMU_UME ? QMC2_ARCADE_EMUMODE_UME : QMC2_ARCADE_EMUMODE_UNK;
-        if ( emulatorMode == QMC2_ARCADE_EMUMODE_UNK ) {
-            showHelp();
-            return 1;
-        }
+        emulatorMode = QMC2_ARCADE_EMUMODE_MAME;
     } else if ( !emulatorModes.contains(QMC2_ARCADE_CLI_EMU) ) {
         QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid emulator-mode - available emulator-modes: %2").arg(QMC2_ARCADE_CLI_EMU).arg(emulatorModes.join(", ")));
         return 1;
@@ -325,26 +316,9 @@ int main(int argc, char *argv[])
 
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
+    default:
         if ( !mameThemes.contains(theme) && runApp ) {
             QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModes[QMC2_ARCADE_EMUMODE_MAME]).arg(mameThemes.isEmpty() ? QObject::tr("(none)") : mameThemes.join(", ")));
-            if ( !consoleWindow )
-                return 1;
-            else
-                runApp = false;
-        }
-        break;
-    case QMC2_ARCADE_EMUMODE_MESS:
-        if ( !messThemes.contains(theme) && runApp ) {
-            QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModes[QMC2_ARCADE_EMUMODE_MESS]).arg(messThemes.isEmpty() ? QObject::tr("(none)") : messThemes.join(", ")));
-            if ( !consoleWindow )
-                return 1;
-            else
-                runApp = false;
-        }
-        break;
-    case QMC2_ARCADE_EMUMODE_UME:
-        if ( !umeThemes.contains(theme) && runApp ) {
-            QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModes[QMC2_ARCADE_EMUMODE_UME]).arg(umeThemes.isEmpty() ? QObject::tr("(none)") : umeThemes.join(", ")));
             if ( !consoleWindow )
                 return 1;
             else

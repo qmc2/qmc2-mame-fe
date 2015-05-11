@@ -27,9 +27,7 @@ extern Flyer *qmc2Flyer;
 extern Cabinet *qmc2Cabinet;
 extern Controller *qmc2Controller;
 extern Marquee *qmc2Marquee;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern Title *qmc2Title;
-#endif
 extern PCB *qmc2PCB;
 extern SoftwareSnap *qmc2SoftwareSnap;
 extern bool qmc2UseSoftwareSnapFile;
@@ -261,17 +259,10 @@ SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
 	connect(action, SIGNAL(triggered()), this, SLOT(saveAs()));
 
 	QList<int> separatorIndizes;
-#if defined(QMC2_EMUTYPE_MESS)
-	separatorIndizes << 0 << 1;
-	imageTypeNames << tr("Preview") << tr("Software snapshot") << tr("Flyer") << tr("Cabinet") << tr("Controller") << tr("Logo") << tr("PCB");
-	imageTypeIcons << "camera" << "pacman" << "thumbnail" << "arcadecabinet" << "joystick" << "marquee" << "circuit";
-	cachePrefixes << "prv" << "sws" << "fly" << "cab" << "ctl" << "mrq" << "pcb";
-#else
 	separatorIndizes << 1 << 2;
 	imageTypeNames << tr("Preview") << tr("Title") << tr("Software snapshot") << tr("Flyer") << tr("Cabinet") << tr("Controller") << tr("Marquee") << tr("PCB");
 	imageTypeIcons << "camera" << "arcademode" << "pacman" << "thumbnail" << "arcadecabinet" << "joystick" << "marquee" << "circuit";
 	cachePrefixes << "prv" << "ttl" << "sws" << "fly" << "cab" << "ctl" << "mrq" << "pcb";
-#endif
 
 	useAsMenu = contextMenu->addMenu(QIcon(QString::fromUtf8(":/data/img/filesaveas_and_apply.png")), tr("Use as"));
 
@@ -375,12 +366,10 @@ void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
 				iw = qmc2Preview;
 				actionText = tr("Preview");
 				break;
-#if !defined(QMC2_EMUTYPE_MESS)
 			case QMC2_EMBEDDER_SNAP_IMGTYPE_TITLE:
 				iw = qmc2Title;
 				actionText = tr("Title");
 				break;
-#endif
 			case QMC2_EMBEDDER_SNAP_IMGTYPE_SWS:
 				sws = qmc2SoftwareSnap;
 				actionText = tr("Software snapshot");
@@ -399,11 +388,7 @@ void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
 				break;
 			case QMC2_EMBEDDER_SNAP_IMGTYPE_MARQUEE:
 				iw = qmc2Marquee;
-#if defined(QMC2_EMUTYPE_MESS)
-				actionText = tr("Logo");
-#else
 				actionText = tr("Marquee");
-#endif
 				break;
 			case QMC2_EMBEDDER_SNAP_IMGTYPE_PCB:
 				iw = qmc2PCB;
@@ -473,12 +458,10 @@ void SnapshotViewer::useAsImage()
 			if ( qmc2Preview )
 				qmc2Preview->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
 			break;
-#if !defined(QMC2_EMUTYPE_MESS)
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_TITLE:
 			if ( qmc2Title )
 				qmc2Title->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
 			break;
-#endif
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_SWS:
 			if ( qmc2SoftwareSnap ) {
 				QProcess *proc = qmc2ProcessManager->process(embedder->gameID.toInt());

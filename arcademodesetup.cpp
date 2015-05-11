@@ -68,10 +68,8 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	// category and version maps
 	if ( !qmc2Gamelist->categoryMap.isEmpty() )
 		comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	if ( !qmc2Gamelist->versionMap.isEmpty() )
 		comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
-#endif
 
 	QString defaultPath, tmpString;
 	int index;
@@ -634,13 +632,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 
 	QTextStream ts(&filteredListFile);
 	ts << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
-#if defined(QMC2_EMUTYPE_MAME)
 	ts << "MAME_VERSION\t" + qmc2Gamelist->emulatorVersion + "\tGLC_VERSION\t" + QString::number(QMC2_GLC_VERSION) + "\n";
-#elif defined(QMC2_EMUTYPE_MESS)
-	ts << "MESS_VERSION\t" + qmc2Gamelist->emulatorVersion + "\tGLC_VERSION\t" + QString::number(QMC2_GLC_VERSION) + "\n";
-#elif defined(QMC2_EMUTYPE_UME)
-	ts << "UME_VERSION\t" + qmc2Gamelist->emulatorVersion + "\tGLC_VERSION\t" + QString::number(QMC2_GLC_VERSION) + "\n";
-#endif
 
 	QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExcludedCategories", QStringList()).toStringList();
 	int minDrvStatus = comboBoxDriverStatus->currentIndex();
@@ -863,13 +855,11 @@ bool ArcadeModeSetup::lessThan(const GamelistItem *item1, const GamelistItem *it
 				return (item1->text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper() > item2->text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper());
 			else
 				return (item1->text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper() < item2->text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper());
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_SORT_BY_VERSION:
 			if ( qmc2ArcadeModeSortOrder )
 				return (item1->text(QMC2_GAMELIST_COLUMN_VERSION).toUpper() > item2->text(QMC2_GAMELIST_COLUMN_VERSION).toUpper());
 			else
 				return (item1->text(QMC2_GAMELIST_COLUMN_VERSION).toUpper() < item2->text(QMC2_GAMELIST_COLUMN_VERSION).toUpper());
-#endif
 		default:
 			return qmc2ArcadeModeSortOrder == 1;
 	}

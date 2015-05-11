@@ -146,14 +146,6 @@ class Options : public QDialog, public Ui::Options
 		void on_toolButtonBrowseSystemNotesTemplate_clicked();
 		void on_toolButtonBrowseExecutableFile_clicked();
 		void on_toolButtonBrowseCookieDatabase_clicked();
-#if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
-		void on_toolButtonBrowseMAMEVariantExe_clicked();
-		void on_toolButtonBrowseMESSVariantExe_clicked();
-		void on_toolButtonBrowseUMEVariantExe_clicked();
-		void mameVariantSpecifyArguments();
-		void messVariantSpecifyArguments();
-		void umeVariantSpecifyArguments();
-#endif
 		void on_toolButtonBrowseDataDirectory_clicked();
 		void on_toolButtonBrowseDatInfoDatabase_clicked();
 		void on_toolButtonBrowseMameHistoryDat_clicked();
@@ -161,12 +153,8 @@ class Options : public QDialog, public Ui::Options
 		void on_toolButtonBrowseMameInfoDat_clicked();
 		void on_toolButtonBrowseMessInfoDat_clicked();
 		void on_toolButtonBrowseSoftwareInfoDB_clicked();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		void on_toolButtonBrowseCatverIniFile_clicked();
-#endif
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		void on_toolButtonBrowseCategoryIniFile_clicked();
-#endif
 		void on_toolButtonBrowseWorkingDirectory_clicked();
 		void on_toolButtonBrowseOptionsTemplateFile_clicked();
 		void on_toolButtonBrowseXmlCacheDatabase_clicked();

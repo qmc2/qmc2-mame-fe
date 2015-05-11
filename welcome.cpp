@@ -31,24 +31,10 @@ Welcome::Welcome(QWidget *parent)
 	if ( !checkConfig() ) {
 		setupUi(this);
 
-#if defined(QMC2_EMUTYPE_MESS)
-		labelLogoPixmap->setPixmap(QString::fromUtf8(":/data/img/qmc2_mess_logo_big.png"));
-#elif defined(QMC2_EMUTYPE_UME)
-		labelLogoPixmap->setPixmap(QString::fromUtf8(":/data/img/qmc2_ume_logo_big.png"));
-#endif
-
 #if defined(QMC2_SDLMAME)
 		QString emulatorName = tr("SDLMAME");
-#elif defined(QMC2_SDLUME)
-		QString emulatorName = tr("SDLUME");
-#elif defined(QMC2_SDLMESS)
-		QString emulatorName = tr("SDLMESS");
 #elif defined(QMC2_MAME)
 		QString emulatorName = tr("MAME");
-#elif defined(QMC2_UME)
-		QString emulatorName = tr("UME");
-#elif defined(QMC2_MESS)
-		QString emulatorName = tr("MESS");
 #else
 		QString emulatorName = tr("Unsupported emulator");
 #endif
@@ -253,16 +239,8 @@ bool Welcome::checkConfig()
 
 #if defined(QMC2_SDLMAME)
 	variant = "qmc2-sdlmame";
-#elif defined(QMC2_SDLMESS)
-	variant = "qmc2-sdlmess";
-#elif defined(QMC2_SDLUME)
-	variant = "qmc2-sdlume";
 #elif defined(QMC2_MAME)
 	variant = "qmc2-mame";
-#elif defined(QMC2_MESS)
-	variant = "qmc2-mess";
-#elif defined(QMC2_UME)
-	variant = "qmc2-ume";
 #else
 	variant = "qmc2-???";
 #endif
@@ -298,30 +276,6 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList[1].toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-#if defined(QMC2_OS_MAC)
-		if ( QMC2_TEST_VERSION(omv, 47, osr, 6350) ) {
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Shortcuts/Ctrl+Q");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Shortcuts/Ctrl+X");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Shortcuts/Ctrl+Q");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Shortcuts/Ctrl+X");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Shortcuts/Ctrl+Q");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Shortcuts/Ctrl+X");
-		}
-#endif
-		if ( QMC2_TEST_VERSION(omv, 47, osr, 6367) ) {
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/SampleChecker/Visible");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/OptionsWidget/Visible");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/ROMAlyzer/Visible");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/SoftwareROMAlyzer/Visible");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/SampleChecker/Visible");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/OptionsWidget/Visible");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/ROMAlyzer/Visible");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/SoftwareROMAlyzer/Visible");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/SampleChecker/Visible");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/OptionsWidget/Visible");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/ROMAlyzer/Visible");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/SoftwareROMAlyzer/Visible");
-		}
 		if ( QMC2_TEST_VERSION(omv, 49, osr, 6467) ) {
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/SetRewriterIgnoreErrors");
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "SoftwareROMAlyzer/SetRewriterIgnoreErrors");
@@ -371,6 +325,12 @@ bool Welcome::checkConfig()
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/hSplitterSwapped");
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/vSplitterFlipped");
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/vSplitterSwapped");
+		}
+		if ( QMC2_TEST_VERSION(omv, 52, osr, 6646) ) {
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS);
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME);
+			startupConfig->remove(QMC2_EMULATOR_PREFIX_MESS);
+			startupConfig->remove(QMC2_EMULATOR_PREFIX_UME);
 		}
 	}
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

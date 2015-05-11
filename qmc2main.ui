@@ -2841,10 +2841,6 @@
     <addaction name="actionFullscreenToggle"/>
     <addaction name="separator"/>
     <addaction name="menuArcade"/>
-    <addaction name="separator"/>
-    <addaction name="actionLaunchQMC2MAME"/>
-    <addaction name="actionLaunchQMC2MESS"/>
-    <addaction name="actionLaunchQMC2UME"/>
    </widget>
    <addaction name="menuGame"/>
    <addaction name="menuTools"/>
@@ -3593,7 +3589,7 @@
   </action>
   <action name="actionLaunchQMC2MESS">
    <property name="icon">
-    <iconset resource="qmc2.qrc">
+    <iconset>
      <normaloff>:/data/img/mess.png</normaloff>:/data/img/mess.png</iconset>
    </property>
    <property name="text">
@@ -3614,7 +3610,7 @@
   </action>
   <action name="actionLaunchQMC2UME">
    <property name="icon">
-    <iconset resource="qmc2.qrc">
+    <iconset>
      <normaloff>:/data/img/ume.png</normaloff>:/data/img/ume.png</iconset>
    </property>
    <property name="text">

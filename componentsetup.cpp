@@ -48,13 +48,8 @@ ComponentSetup::~ComponentSetup()
 ComponentInfo *ComponentSetup::initComponent1()
 {
 	ComponentInfo *componentInfo = new ComponentInfo();
-#if defined(QMC2_EMUTYPE_MESS)
-	componentInfo->setShortTitle(QMC2_GAMELIST_INDEX, tr("M&achine list"));
-	componentInfo->setLongTitle(QMC2_GAMELIST_INDEX, tr("Machine list"));
-#else
 	componentInfo->setShortTitle(QMC2_GAMELIST_INDEX, tr("&Game list"));
 	componentInfo->setLongTitle(QMC2_GAMELIST_INDEX, tr("Game list"));
-#endif
 	componentInfo->setIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
 	componentInfo->setWidget(QMC2_GAMELIST_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_GAMELIST_INDEX));
 	componentInfo->setShortTitle(QMC2_SEARCH_INDEX, tr("&Search"));
@@ -103,148 +98,6 @@ ComponentInfo *ComponentSetup::initComponent1()
 ComponentInfo *ComponentSetup::initComponent2()
 {
 	ComponentInfo *componentInfo = new ComponentInfo();
-#if defined(QMC2_EMUTYPE_MAME)
-	componentInfo->setShortTitle(QMC2_PREVIEW_INDEX, tr("Pre&view"));
-	componentInfo->setLongTitle(QMC2_PREVIEW_INDEX, tr("Game preview image"));
-	componentInfo->setIcon(QMC2_PREVIEW_INDEX, QIcon(QString::fromUtf8(":/data/img/camera.png")));
-	componentInfo->setShortTitle(QMC2_FLYER_INDEX, tr("Fl&yer"));
-	componentInfo->setLongTitle(QMC2_FLYER_INDEX, tr("Game flyer image"));
-	componentInfo->setIcon(QMC2_FLYER_INDEX, QIcon(QString::fromUtf8(":/data/img/thumbnail.png")));
-	componentInfo->setShortTitle(QMC2_GAMEINFO_INDEX, tr("Game &info"));
-	componentInfo->setLongTitle(QMC2_GAMEINFO_INDEX, tr("Game information"));
-	componentInfo->setIcon(QMC2_GAMEINFO_INDEX, QIcon(QString::fromUtf8(":/data/img/info.png")));
-	componentInfo->setShortTitle(QMC2_EMUINFO_INDEX, tr("Em&ulator info"));
-	componentInfo->setLongTitle(QMC2_EMUINFO_INDEX, tr("Emulator information"));
-	componentInfo->setIcon(QMC2_EMUINFO_INDEX, QIcon(QString::fromUtf8(":/data/img/info.png")));
-	componentInfo->setShortTitle(QMC2_CONFIG_INDEX, tr("&Configuration"));
-	componentInfo->setLongTitle(QMC2_CONFIG_INDEX, tr("Emulator configuration"));
-	componentInfo->setIcon(QMC2_CONFIG_INDEX, QIcon(QString::fromUtf8(":/data/img/work.png")));
-	componentInfo->setRemovable(QMC2_CONFIG_INDEX, false);
-	componentInfo->setShortTitle(QMC2_CABINET_INDEX, tr("Ca&binet"));
-	componentInfo->setLongTitle(QMC2_CABINET_INDEX, tr("Arcade cabinet image"));
-	componentInfo->setIcon(QMC2_CABINET_INDEX, QIcon(QString::fromUtf8(":/data/img/arcadecabinet.png")));
-	componentInfo->setShortTitle(QMC2_CONTROLLER_INDEX, tr("C&ontroller"));
-	componentInfo->setLongTitle(QMC2_CONTROLLER_INDEX, tr("Control panel image"));
-	componentInfo->setIcon(QMC2_CONTROLLER_INDEX, QIcon(QString::fromUtf8(":/data/img/joystick.png")));
-	componentInfo->setShortTitle(QMC2_MARQUEE_INDEX, tr("Mar&quee"));
-	componentInfo->setLongTitle(QMC2_MARQUEE_INDEX, tr("Marquee image"));
-	componentInfo->setIcon(QMC2_MARQUEE_INDEX, QIcon(QString::fromUtf8(":/data/img/marquee.png")));
-	componentInfo->setShortTitle(QMC2_TITLE_INDEX, tr("Titl&e"));
-	componentInfo->setLongTitle(QMC2_TITLE_INDEX, tr("Title screen image"));
-	componentInfo->setIcon(QMC2_TITLE_INDEX, QIcon(QString::fromUtf8(":/data/img/arcademode.png")));
-	componentInfo->setShortTitle(QMC2_MAWS_INDEX, tr("MA&WS"));
-	componentInfo->setLongTitle(QMC2_MAWS_INDEX, tr("MAWS page (web lookup)"));
-	componentInfo->setIcon(QMC2_MAWS_INDEX, QIcon(QString::fromUtf8(":/data/img/internet.png")));
-	componentInfo->setShortTitle(QMC2_PCB_INDEX, tr("&PCB"));
-	componentInfo->setLongTitle(QMC2_PCB_INDEX, tr("PCB image"));
-	componentInfo->setIcon(QMC2_PCB_INDEX, QIcon(QString::fromUtf8(":/data/img/circuit.png")));
-	componentInfo->setShortTitle(QMC2_SOFTWARE_LIST_INDEX, tr("Softwar&e list"));
-	componentInfo->setLongTitle(QMC2_SOFTWARE_LIST_INDEX, tr("Software list"));
-	componentInfo->setIcon(QMC2_SOFTWARE_LIST_INDEX, QIcon(QString::fromUtf8(":/data/img/pacman.png")));
-#if QMC2_YOUTUBE_ENABLED
-	componentInfo->setShortTitle(QMC2_YOUTUBE_INDEX, tr("&YouTube"));
-	componentInfo->setLongTitle(QMC2_YOUTUBE_INDEX, tr("YouTube videos"));
-	componentInfo->setIcon(QMC2_YOUTUBE_INDEX, QIcon(QString::fromUtf8(":/data/img/youtube.png")));
-#endif
-	componentInfo->setShortTitle(QMC2_SYSTEM_NOTES_INDEX, tr("&Notes"));
-	componentInfo->setLongTitle(QMC2_SYSTEM_NOTES_INDEX, tr("System notes"));
-	componentInfo->setIcon(QMC2_SYSTEM_NOTES_INDEX, QIcon(QString::fromUtf8(":/data/img/notes.png")));
-	componentInfo->availableFeatureList() << QMC2_PREVIEW_INDEX << QMC2_FLYER_INDEX << QMC2_GAMEINFO_INDEX << QMC2_EMUINFO_INDEX << QMC2_CONFIG_INDEX << QMC2_CABINET_INDEX << QMC2_CONTROLLER_INDEX << QMC2_MARQUEE_INDEX << QMC2_TITLE_INDEX << QMC2_MAWS_INDEX << QMC2_PCB_INDEX << QMC2_SOFTWARE_LIST_INDEX;
-#if QMC2_YOUTUBE_ENABLED
-	componentInfo->availableFeatureList() << QMC2_YOUTUBE_INDEX << QMC2_SYSTEM_NOTES_INDEX;
-#else
-	componentInfo->availableFeatureList() << QMC2_SYSTEM_NOTES_INDEX;
-#endif
-	componentInfo->setWidget(QMC2_PREVIEW_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX));
-	componentInfo->setWidget(QMC2_FLYER_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX));
-	componentInfo->setWidget(QMC2_GAMEINFO_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_GAMEINFO_INDEX));
-	componentInfo->setWidget(QMC2_EMUINFO_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_EMUINFO_INDEX));
-	componentInfo->setWidget(QMC2_CONFIG_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONFIG_INDEX));
-	componentInfo->setWidget(QMC2_CABINET_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CABINET_INDEX));
-	componentInfo->setWidget(QMC2_CONTROLLER_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONTROLLER_INDEX));
-	componentInfo->setWidget(QMC2_MARQUEE_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MARQUEE_INDEX));
-	componentInfo->setWidget(QMC2_TITLE_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_TITLE_INDEX));
-	componentInfo->setWidget(QMC2_MAWS_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MAWS_INDEX));
-	componentInfo->setWidget(QMC2_PCB_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX));
-	componentInfo->setWidget(QMC2_SOFTWARE_LIST_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SOFTWARE_LIST_INDEX));
-#if QMC2_YOUTUBE_ENABLED
-	componentInfo->setWidget(QMC2_YOUTUBE_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX));
-#endif
-	componentInfo->setWidget(QMC2_SYSTEM_NOTES_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SYSTEM_NOTES_INDEX));
-	componentInfo->configurableFeatureList() << QMC2_MAWS_INDEX;
-#if QMC2_YOUTUBE_ENABLED
-	componentInfo->configurableFeatureList() << QMC2_YOUTUBE_INDEX;
-#endif
-#elif defined(QMC2_EMUTYPE_MESS)
-	componentInfo->setShortTitle(QMC2_PREVIEW_INDEX, tr("Pre&view"));
-	componentInfo->setLongTitle(QMC2_PREVIEW_INDEX, tr("Machine preview image"));
-	componentInfo->setIcon(QMC2_PREVIEW_INDEX, QIcon(QString::fromUtf8(":/data/img/camera.png")));
-	componentInfo->setShortTitle(QMC2_FLYER_INDEX, tr("Fl&yer"));
-	componentInfo->setLongTitle(QMC2_FLYER_INDEX, tr("Machine flyer image"));
-	componentInfo->setIcon(QMC2_FLYER_INDEX, QIcon(QString::fromUtf8(":/data/img/thumbnail.png")));
-	componentInfo->setShortTitle(QMC2_MACHINEINFO_INDEX, tr("Machine &info"));
-	componentInfo->setLongTitle(QMC2_MACHINEINFO_INDEX, tr("Machine information"));
-	componentInfo->setIcon(QMC2_MACHINEINFO_INDEX, QIcon(QString::fromUtf8(":/data/img/info.png")));
-	componentInfo->setShortTitle(QMC2_EMUINFO_INDEX, tr("Em&ulator info"));
-	componentInfo->setLongTitle(QMC2_EMUINFO_INDEX, tr("Emulator information"));
-	componentInfo->setIcon(QMC2_EMUINFO_INDEX, QIcon(QString::fromUtf8(":/data/img/info.png")));
-	componentInfo->setShortTitle(QMC2_CONFIG_INDEX, tr("&Configuration"));
-	componentInfo->setLongTitle(QMC2_CONFIG_INDEX, tr("Emulator configuration"));
-	componentInfo->setIcon(QMC2_CONFIG_INDEX, QIcon(QString::fromUtf8(":/data/img/work.png")));
-	componentInfo->setRemovable(QMC2_CONFIG_INDEX, false);
-	componentInfo->setShortTitle(QMC2_DEVICE_INDEX, tr("De&vices"));
-	componentInfo->setLongTitle(QMC2_DEVICE_INDEX, tr("Device configuration"));
-	componentInfo->setIcon(QMC2_DEVICE_INDEX, QIcon(QString::fromUtf8(":/data/img/tape.png")));
-	componentInfo->setShortTitle(QMC2_PROJECTMESS_INDEX, tr("Pr&ojectMESS"));
-	componentInfo->setLongTitle(QMC2_PROJECTMESS_INDEX, tr("ProjectMESS (web lookup)"));
-	componentInfo->setIcon(QMC2_PROJECTMESS_INDEX, QIcon(QString::fromUtf8(":/data/img/project_mess.png")));
-	componentInfo->setShortTitle(QMC2_PCB_INDEX, tr("&PCB"));
-	componentInfo->setLongTitle(QMC2_PCB_INDEX, tr("PCB image"));
-	componentInfo->setIcon(QMC2_PCB_INDEX, QIcon(QString::fromUtf8(":/data/img/circuit.png")));
-	componentInfo->setShortTitle(QMC2_CABINET_INDEX, tr("Ca&binet"));
-	componentInfo->setLongTitle(QMC2_CABINET_INDEX, tr("Machine cabinet image"));
-	componentInfo->setIcon(QMC2_CABINET_INDEX, QIcon(QString::fromUtf8(":/data/img/arcadecabinet.png")));
-	componentInfo->setShortTitle(QMC2_CONTROLLER_INDEX, tr("C&ontroller"));
-	componentInfo->setLongTitle(QMC2_CONTROLLER_INDEX, tr("Control panel image"));
-	componentInfo->setIcon(QMC2_CONTROLLER_INDEX, QIcon(QString::fromUtf8(":/data/img/joystick.png")));
-	componentInfo->setShortTitle(QMC2_LOGO_INDEX, tr("Lo&go"));
-	componentInfo->setLongTitle(QMC2_LOGO_INDEX, tr("Logo image"));
-	componentInfo->setIcon(QMC2_LOGO_INDEX, QIcon(QString::fromUtf8(":/data/img/marquee.png")));
-	componentInfo->setShortTitle(QMC2_SOFTWARE_LIST_INDEX, tr("Softwar&e list"));
-	componentInfo->setLongTitle(QMC2_SOFTWARE_LIST_INDEX, tr("Software list"));
-	componentInfo->setIcon(QMC2_SOFTWARE_LIST_INDEX, QIcon(QString::fromUtf8(":/data/img/pacman.png")));
-#if QMC2_YOUTUBE_ENABLED
-	componentInfo->setShortTitle(QMC2_YOUTUBE_INDEX, tr("&YouTube"));
-	componentInfo->setLongTitle(QMC2_YOUTUBE_INDEX, tr("YouTube videos"));
-	componentInfo->setIcon(QMC2_YOUTUBE_INDEX, QIcon(QString::fromUtf8(":/data/img/youtube.png")));
-#endif
-	componentInfo->setShortTitle(QMC2_SYSTEM_NOTES_INDEX, tr("&Notes"));
-	componentInfo->setLongTitle(QMC2_SYSTEM_NOTES_INDEX, tr("System notes"));
-	componentInfo->setIcon(QMC2_SYSTEM_NOTES_INDEX, QIcon(QString::fromUtf8(":/data/img/notes.png")));
-	componentInfo->availableFeatureList() << QMC2_PREVIEW_INDEX << QMC2_FLYER_INDEX << QMC2_MACHINEINFO_INDEX << QMC2_EMUINFO_INDEX << QMC2_CONFIG_INDEX << QMC2_DEVICE_INDEX << QMC2_PROJECTMESS_INDEX << QMC2_PCB_INDEX << QMC2_CABINET_INDEX << QMC2_CONTROLLER_INDEX << QMC2_MARQUEE_INDEX << QMC2_SOFTWARE_LIST_INDEX;
-#if QMC2_YOUTUBE_ENABLED
-	componentInfo->availableFeatureList() << QMC2_YOUTUBE_INDEX << QMC2_SYSTEM_NOTES_INDEX;
-#else
-	componentInfo->availableFeatureList() << QMC2_SYSTEM_NOTES_INDEX;
-#endif
-	componentInfo->setWidget(QMC2_PREVIEW_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX));
-	componentInfo->setWidget(QMC2_FLYER_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX));
-	componentInfo->setWidget(QMC2_MACHINEINFO_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MACHINEINFO_INDEX));
-	componentInfo->setWidget(QMC2_EMUINFO_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_EMUINFO_INDEX));
-	componentInfo->setWidget(QMC2_CONFIG_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONFIG_INDEX));
-	componentInfo->setWidget(QMC2_DEVICE_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_DEVICE_INDEX));
-	componentInfo->setWidget(QMC2_PROJECTMESS_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PROJECTMESS_INDEX));
-	componentInfo->setWidget(QMC2_PCB_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX));
-	componentInfo->setWidget(QMC2_CABINET_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CABINET_INDEX));
-	componentInfo->setWidget(QMC2_CONTROLLER_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONTROLLER_INDEX));
-	componentInfo->setWidget(QMC2_MARQUEE_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MARQUEE_INDEX));
-	componentInfo->setWidget(QMC2_SOFTWARE_LIST_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SOFTWARE_LIST_INDEX));
-#if QMC2_YOUTUBE_ENABLED
-	componentInfo->setWidget(QMC2_YOUTUBE_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX));
-	componentInfo->configurableFeatureList() << QMC2_YOUTUBE_INDEX;
-#endif
-	componentInfo->setWidget(QMC2_SYSTEM_NOTES_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SYSTEM_NOTES_INDEX));
-#elif defined(QMC2_EMUTYPE_UME)
 	componentInfo->setShortTitle(QMC2_PREVIEW_INDEX, tr("Pre&view"));
 	componentInfo->setLongTitle(QMC2_PREVIEW_INDEX, tr("Game preview image"));
 	componentInfo->setIcon(QMC2_PREVIEW_INDEX, QIcon(QString::fromUtf8(":/data/img/camera.png")));
@@ -317,7 +170,6 @@ ComponentInfo *ComponentSetup::initComponent2()
 	componentInfo->configurableFeatureList() << QMC2_YOUTUBE_INDEX;
 #endif
 	componentInfo->setWidget(QMC2_SYSTEM_NOTES_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SYSTEM_NOTES_INDEX));
-#endif
 	components() << "Component2";
 	if ( !qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/" + components().last() + "/ActiveFeatures") ) {
 		foreach (int index, componentInfo->availableFeatureList())
@@ -394,12 +246,10 @@ ComponentInfo *ComponentSetup::initComponent4()
 	componentInfo->setIcon(QMC2_SWINFO_SNAPSHOT_PAGE, QIcon(QString::fromUtf8(":/data/img/camera.png")));
 	componentInfo->setWidget(QMC2_SWINFO_SNAPSHOT_PAGE, qmc2MainWindow->tabWidgetSoftwareDetail->widget(QMC2_SWINFO_SNAPSHOT_PAGE));
 
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	componentInfo->setShortTitle(QMC2_SWINFO_PROJECTMESS_PAGE, tr("Project&MESS"));
 	componentInfo->setLongTitle(QMC2_SWINFO_PROJECTMESS_PAGE, tr("ProjectMESS web lookup"));
 	componentInfo->setIcon(QMC2_SWINFO_PROJECTMESS_PAGE, QIcon(QString::fromUtf8(":/data/img/project_mess.png")));
 	componentInfo->setWidget(QMC2_SWINFO_PROJECTMESS_PAGE, qmc2MainWindow->tabWidgetSoftwareDetail->widget(QMC2_SWINFO_PROJECTMESS_PAGE));
-#endif
 
 	componentInfo->setShortTitle(QMC2_SWINFO_NOTES_PAGE, tr("&Notes"));
 	componentInfo->setLongTitle(QMC2_SWINFO_NOTES_PAGE, tr("Software notes"));
@@ -411,11 +261,7 @@ ComponentInfo *ComponentSetup::initComponent4()
 	componentInfo->setIcon(QMC2_SWINFO_INFO_PAGE, QIcon(QString::fromUtf8(":/data/img/info.png")));
 	componentInfo->setWidget(QMC2_SWINFO_INFO_PAGE, qmc2MainWindow->tabWidgetSoftwareDetail->widget(QMC2_SWINFO_INFO_PAGE));
 
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	componentInfo->availableFeatureList() << QMC2_SWINFO_SNAPSHOT_PAGE << QMC2_SWINFO_PROJECTMESS_PAGE << QMC2_SWINFO_NOTES_PAGE << QMC2_SWINFO_INFO_PAGE;
-#else
-	componentInfo->availableFeatureList() << QMC2_SWINFO_SNAPSHOT_PAGE << QMC2_SWINFO_NOTES_PAGE << QMC2_SWINFO_INFO_PAGE;
-#endif
 	components() << "Component4";
 	if ( !qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/" + components().last() + "/ActiveFeatures") ) {
 		foreach (int index, componentInfo->availableFeatureList())
@@ -807,47 +653,6 @@ void ComponentSetup::on_pushButtonConfigureFeature_clicked()
 		int pageIndex = componentInfo->longTitleHash().key(listWidgetAvailableFeatures->selectedItems()[0]->text());
 		if ( componentInfo->configurableFeatureList().contains(pageIndex) ) {
 			switch ( pageIndex ) {
-#if defined(QMC2_EMUTYPE_MAME)
-				case QMC2_MAWS_INDEX: {
-					bool ok;
-					QStringList suggestedUrls;
-					QString currentUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_DEFAULT_URL).toString();
-					suggestedUrls << QMC2_MAWS_DEFAULT_URL
-						<< "http://www.arcadehits.net/index.php?p=roms&jeu=%1"
-						<< "http://www.mamedb.com/game/%1"
-						<< QMC2_MAWS_BASE_URL
-						<< "http://maws.mameworld.info/minimaws/romset/%1";
-					if ( !suggestedUrls.contains(currentUrl) ) suggestedUrls << currentUrl;
-					int current = suggestedUrls.indexOf(currentUrl);
-					QString baseUrl = QInputDialog::getItem(this,
-								tr("MAWS configuration (1/2)"),
-								tr("MAWS URL pattern (use %1 as placeholder for game ID):").arg("%1"),
-								suggestedUrls,
-								current < 0 ? 0 : current,
-								true,
-								&ok);
-
-					if ( ok ) {
-						if ( baseUrl == QMC2_MAWS_BASE_URL ) {
-							QStringList items;
-							items << tr("Yes") << tr("No");
-							bool mawsQuickDownloadEnabled = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", false).toBool();
-							QString mawsQuickDownload = QInputDialog::getItem(this, tr("MAWS configuration (2/2)"), tr("Enable MAWS quick download?"), items, mawsQuickDownloadEnabled ? 0 : 1, false, &ok);
-							if ( ok && !mawsQuickDownload.isEmpty() )
-								qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", mawsQuickDownload == tr("Yes"));
-						} else
-							qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", false);
-
-						if ( ok && !baseUrl.isEmpty() ) {
-							qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", baseUrl);
-							if ( currentUrl != qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_DEFAULT_URL).toString() )
-								QTimer::singleShot(0, qmc2MainWindow->actionClearMAWSCache, SLOT(trigger()));
-						}
-					}
-				}
-				break;
-#endif
-
 #if QMC2_YOUTUBE_ENABLED
 				case QMC2_YOUTUBE_INDEX: {
 					QString userScopePath = QMC2_DYNAMIC_DOT_PATH;

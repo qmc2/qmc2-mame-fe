@@ -44,9 +44,7 @@ extern SoftwareList *qmc2SoftwareList;
 extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
-#endif
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 /*
@@ -1088,13 +1086,7 @@ void ROMAlyzer::analyze()
 										childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
 								} else {
 									// this is actually an XML bug in the driver, inform via log and ignore...
-#if defined(QMC2_EMUTYPE_MAME)
 									log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
-#elif defined(QMC2_EMUTYPE_MESS)
-									log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
-#elif defined(QMC2_EMUTYPE_UME)
-									log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the UME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
-#endif
 									childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
 								}
 							}
@@ -2379,15 +2371,9 @@ void ROMAlyzer::setMode(int mode)
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
 			m_currentMode = QMC2_ROMALYZER_MODE_SYSTEM;
-#if defined(QMC2_SDLMESS)
-			checkBoxSelectGame->setText(tr("Select machine"));
-			checkBoxSelectGame->setToolTip(tr("Select machine in machine list if selected in analysis report?"));
-			checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed machine"));
-#else
 			checkBoxSelectGame->setText(tr("Select game"));
 			checkBoxSelectGame->setToolTip(tr("Select game in game list if selected in analysis report?"));
 			checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed game"));
-#endif
 			tabWidgetAnalysis->setTabText(QMC2_ROMALYZER_PAGE_RCR, tr("ROM collection rebuilder"));
 			setWindowTitle(tr("ROMAlyzer") + " [" + tr("system mode") + "]");
 			m_settingsKey = "ROMAlyzer";
@@ -2474,7 +2460,6 @@ void ROMAlyzer::selectItem(QString gameName)
 			      }
 			      break;
 		      }
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_VIEWVERSION_INDEX: {
 			     QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
 			     if ( versionItem ) {
@@ -2485,7 +2470,6 @@ void ROMAlyzer::selectItem(QString gameName)
 			     }
 			     break;
 		     }
-#endif
 	}
 }
 
@@ -3313,11 +3297,7 @@ void ROMAlyzer::exportToDataFile()
 			ts << "\t\t<url></url>\n";
 			ts << "\t\t<comment>" << tr("Created by QMC2 v%1").arg(XSTR(QMC2_VERSION)) << "</comment>\n";
 			ts << "\t</header>\n";
-#if defined(QMC2_EMUTYPE_MESS)
-			QString mainEntityName = "machine";
-#else
 			QString mainEntityName = "game";
-#endif
 			for (int i = 0; i < treeWidgetChecksums->topLevelItemCount(); i++) {
 				if ( i % QMC2_ROMALYZER_EXPORT_RESPONSE ) {
 					progressBar->setValue(i);
@@ -4541,11 +4521,7 @@ bool ROMAlyzerXmlHandler::startElement(const QString &/*namespaceURI*/, const QS
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			mainEntityName = "game";
-#elif defined(QMC2_EMUTYPE_MESS)
-			mainEntityName = "machine";
-#endif
 			break;
 	}
 
@@ -4619,11 +4595,7 @@ bool ROMAlyzerXmlHandler::endElement(const QString &/*namespaceURI*/, const QStr
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			mainEntityName = "game";
-#elif defined(QMC2_EMUTYPE_MESS)
-			mainEntityName = "machine";
-#endif
 			break;
 	}
 

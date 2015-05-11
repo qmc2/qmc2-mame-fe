@@ -18,7 +18,6 @@
 
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
-extern int emulatorMode;
 
 #if QT_VERSION < 0x050000
 ImageProvider::ImageProvider(QDeclarativeImageProvider::ImageType type, QObject *parent)
@@ -504,10 +503,7 @@ QString ImageProvider::imageTypeToLongName(QString type)
     case QMC2_ARCADE_IMGTYPE_CONTROLLER:
         return QObject::tr("controller");
     case QMC2_ARCADE_IMGTYPE_MARQUEE:
-        if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS )
-            return QObject::tr("logo");
-        else
-            return QObject::tr("marquee");
+        return QObject::tr("marquee");
     case QMC2_ARCADE_IMGTYPE_TITLE:
         return QObject::tr("title");
     case QMC2_ARCADE_IMGTYPE_PCB:

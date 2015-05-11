@@ -297,8 +297,6 @@
 
 // SDLMAME output notifier FIFO
 #define QMC2_SDLMAME_OUTPUT_FIFO		"/tmp/sdlmame_out"
-#define QMC2_SDLMESS_OUTPUT_FIFO		QMC2_SDLMAME_OUTPUT_FIFO
-#define QMC2_SDLUME_OUTPUT_FIFO			QMC2_SDLMAME_OUTPUT_FIFO
 
 // index positions of the game/machine list view stack
 #define QMC2_VIEWGAMELIST_INDEX			0
@@ -591,26 +589,12 @@
 #define QMC2_VARIANT_SDLMAME_NAME		"qmc2-sdlmame"
 #define QMC2_VARIANT_SDLMAME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_SDLMAME_NAME
 #define QMC2_VARIANT_SDLMAME_TITLE		MainWindow::tr("M.A.M.E. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
-#define QMC2_VARIANT_SDLMESS_NAME		"qmc2-sdlmess"
-#define QMC2_VARIANT_SDLMESS_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_SDLMESS_NAME
-#define QMC2_VARIANT_SDLMESS_TITLE		MainWindow::tr("M.E.S.S. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
-#define QMC2_VARIANT_SDLUME_NAME		"qmc2-sdlume"
-#define QMC2_VARIANT_SDLUME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_SDLUME_NAME
-#define QMC2_VARIANT_SDLUME_TITLE		MainWindow::tr("U.M.E. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
 #define QMC2_VARIANT_MAME_NAME			"qmc2-mame.exe"
 #define QMC2_VARIANT_MAME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_MAME_NAME
 #define QMC2_VARIANT_MAME_TITLE			MainWindow::tr("M.A.M.E. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
-#define QMC2_VARIANT_MESS_NAME			"qmc2-mess.exe"
-#define QMC2_VARIANT_MESS_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_MESS_NAME
-#define QMC2_VARIANT_MESS_TITLE			MainWindow::tr("M.E.S.S. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
-#define QMC2_VARIANT_UME_NAME			"qmc2-ume.exe"
-#define QMC2_VARIANT_UME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_UME_NAME
-#define QMC2_VARIANT_UME_TITLE			MainWindow::tr("U.M.E. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
 
 // separation for QMC2 variants
 #define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/MAME/")
-#define QMC2_ARCADE_PREFIX_MESS			QString("Arcade/MESS/")
-#define QMC2_ARCADE_PREFIX_UME			QString("Arcade/UME/")
 #if defined(QMC2_SDLMAME)
 #define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-sdlmame/")
 #define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-sdlmess/")
@@ -624,35 +608,6 @@
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_SDLMAME_NAME)
 #define QMC2_EMU_NAME				QString("MAME")
 #define QMC2_EMU_NAME_VARIANT			QString("SDLMAME")
-#define QMC2_EMUTYPE_MAME
-#elif defined(QMC2_SDLMESS)
-#define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-sdlmame/")
-#define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-sdlmess/")
-#define QMC2_FRONTEND_PREFIX_UME		QString("Frontend/qmc2-sdlume/")
-#define QMC2_FRONTEND_PREFIX			QMC2_FRONTEND_PREFIX_MESS
-#define QMC2_EMULATOR_PREFIX_MAME		QString("MAME/")
-#define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
-#define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
-#define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_MESS
-#define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MESS
-#define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_SDLMESS_NAME)
-#define QMC2_EMU_NAME				QString("MESS")
-#define QMC2_EMU_NAME_VARIANT			QString("SDLMESS")
-#define QMC2_EMUTYPE_MESS
-#elif defined(QMC2_SDLUME)
-#define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-sdlmame/")
-#define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-sdlmess/")
-#define QMC2_FRONTEND_PREFIX_UME		QString("Frontend/qmc2-sdlume/")
-#define QMC2_FRONTEND_PREFIX			QMC2_FRONTEND_PREFIX_UME
-#define QMC2_EMULATOR_PREFIX_MAME		QString("MAME/")
-#define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
-#define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
-#define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_UME
-#define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_UME
-#define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_SDLUME_NAME)
-#define QMC2_EMU_NAME				QString("UME")
-#define QMC2_EMU_NAME_VARIANT			QString("SDLUME")
-#define QMC2_EMUTYPE_UME
 #elif defined(QMC2_MAME)
 #define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-mame/")
 #define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-mess/")
@@ -666,35 +621,6 @@
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_MAME_NAME)
 #define QMC2_EMU_NAME				QString("MAME")
 #define QMC2_EMU_NAME_VARIANT			QString("MAME")
-#define QMC2_EMUTYPE_MAME
-#elif defined(QMC2_MESS)
-#define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-mame/")
-#define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-mess/")
-#define QMC2_FRONTEND_PREFIX_UME		QString("Frontend/qmc2-ume/")
-#define QMC2_FRONTEND_PREFIX			QMC2_FRONTEND_PREFIX_MESS
-#define QMC2_EMULATOR_PREFIX_MAME		QString("MAME/")
-#define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
-#define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
-#define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_MESS
-#define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MESS
-#define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_MESS_NAME)
-#define QMC2_EMU_NAME				QString("MESS")
-#define QMC2_EMU_NAME_VARIANT			QString("MESS")
-#define QMC2_EMUTYPE_MESS
-#elif defined(QMC2_UME)
-#define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-mame/")
-#define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-mess/")
-#define QMC2_FRONTEND_PREFIX_UME		QString("Frontend/qmc2-ume/")
-#define QMC2_FRONTEND_PREFIX			QMC2_FRONTEND_PREFIX_UME
-#define QMC2_EMULATOR_PREFIX_MAME		QString("MAME/")
-#define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
-#define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
-#define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_UME
-#define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_UME
-#define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_UME_NAME)
-#define QMC2_EMU_NAME				QString("UME")
-#define QMC2_EMU_NAME_VARIANT			QString("UME")
-#define QMC2_EMUTYPE_UME
 #endif
 
 // Mac OS X uses "~/Library/Application Support/app" rather than "~/.app"
@@ -787,16 +713,10 @@
 #define QMC2_XKEYEVENT_TRANSITION_TIME		50
 
 // page indexes for the software detail widget
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 #define QMC2_SWINFO_SNAPSHOT_PAGE		0
 #define QMC2_SWINFO_PROJECTMESS_PAGE		1
 #define QMC2_SWINFO_NOTES_PAGE			2
 #define QMC2_SWINFO_INFO_PAGE			3
-#elif defined(QMC2_EMUTYPE_MAME)
-#define QMC2_SWINFO_SNAPSHOT_PAGE		0
-#define QMC2_SWINFO_NOTES_PAGE			1
-#define QMC2_SWINFO_INFO_PAGE			2
-#endif
 
 // size-/count-thresholds for displaying alternate label when loading or checking software-lists
 #define QMC2_SWLIST_SIZE_THRESHOLD		QMC2_1M
@@ -845,17 +765,6 @@
 
 // image checker image types
 #define QMC2_IMGCHK_INDEX_NONE			-1
-#if defined(QMC2_EMUTYPE_MESS)
-#define QMC2_IMGCHK_INDEX_PREVIEW		0
-#define QMC2_IMGCHK_INDEX_FLYER			1
-#define QMC2_IMGCHK_INDEX_CABINET		2
-#define QMC2_IMGCHK_INDEX_CONTROLLER		3
-#define QMC2_IMGCHK_INDEX_MARQUEE		4
-#define QMC2_IMGCHK_INDEX_LOGO			QMC2_IMGCHK_INDEX_MARQUEE
-#define QMC2_IMGCHK_INDEX_PCB			5
-#define QMC2_IMGCHK_INDEX_SEPARATOR		6
-#define QMC2_IMGCHK_INDEX_ICON			7
-#else
 #define QMC2_IMGCHK_INDEX_PREVIEW		0
 #define QMC2_IMGCHK_INDEX_FLYER			1
 #define QMC2_IMGCHK_INDEX_CABINET		2
@@ -865,7 +774,6 @@
 #define QMC2_IMGCHK_INDEX_PCB			6
 #define QMC2_IMGCHK_INDEX_SEPARATOR		7
 #define QMC2_IMGCHK_INDEX_ICON			8
-#endif
 
 // demo / arcade mode: driver maturity states
 #define QMC2_DEMO_MODE_DRV_STATUS_GOOD		0
@@ -901,11 +809,7 @@
 #define QMC2_ARCADE_JOYMAP_COLUMN_CUSTOM	QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM
 
 // update search result list every how many (searched) entries
-#if defined(QMC2_EMUTYPE_MESS)
-#define QMC2_SEARCH_RESULT_UPDATE		2500
-#else
 #define QMC2_SEARCH_RESULT_UPDATE		5000
-#endif
 
 // default size of the main-widget
 #define QMC2_DEFAULT_WINDOW_SIZE		QSize(1024, 768)

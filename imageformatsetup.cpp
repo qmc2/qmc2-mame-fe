@@ -28,19 +28,11 @@ ImageFormatSetup::ImageFormatSetup(QWidget *parent)
 	treeWidget->header()->setSectionsMovable(false);
 #endif
 
-#if defined(QMC2_EMUTYPE_MESS)
-	if ( artworkClassPrefixes.isEmpty() ) {
-		artworkClassPrefixes << "prv" << "fly" << "cab" << "ctl" << "mrq" << "pcb" << "sws";
-		artworkClassNames << tr("Previews") << tr("Flyers") << tr("Cabinets") << tr("Controllers") << tr("Logos") << tr("PCBs") << tr("Software snaps");
-		artworkClassIcons << ":/data/img/camera.png" << ":/data/img/thumbnail.png" << ":/data/img/arcadecabinet.png" << ":/data/img/joystick.png" << ":/data/img/marquee.png" << ":/data/img/circuit.png" << ":/data/img/pacman.png";
-	}
-#else
 	if ( artworkClassPrefixes.isEmpty() ) {
 		artworkClassPrefixes << "prv" << "fly" << "cab" << "ctl" << "mrq" << "ttl" << "pcb" << "sws";
 		artworkClassNames << tr("Previews") << tr("Flyers") << tr("Cabinets") << tr("Controllers") << tr("Marquees") << tr("Titles") << tr("PCBs") << tr("Software snaps");
 		artworkClassIcons << ":/data/img/camera.png" << ":/data/img/thumbnail.png" << ":/data/img/arcadecabinet.png" << ":/data/img/joystick.png" << ":/data/img/marquee.png" << ":/data/img/arcademode.png" << ":/data/img/circuit.png" << ":/data/img/pacman.png";
 	}
-#endif
 
 	restoreActiveFormats(true);
 	connect(treeWidget->model(), SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(rowsInserted(const QModelIndex &, int, int)));

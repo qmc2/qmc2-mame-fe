@@ -45,53 +45,6 @@ class KeyPressFilter : public QObject
 		bool eventFilter(QObject *, QEvent *);
 };
 
-#if defined(QMC2_EMUTYPE_MAME)
-class AutoPopupToolButton : public QToolButton
-{
-	Q_OBJECT
-
-	public:
-		QTimer menuTimer;
-
-		AutoPopupToolButton(QWidget *parent = 0) : QToolButton(parent)
-		{
-			connect(&menuTimer, SIGNAL(timeout()), this, SLOT(hideMenu()));
-		}
-
-	signals:
-		void paintFinished();
-		void menuHidden();
-
-	public slots:
-		void hideMenu()
-		{
-			if ( menu() )
-				if ( menu()->activeAction() == NULL ) {
-					QTimer::singleShot(0, menu(), SLOT(hide()));
-					emit menuHidden();
-				}
-		}
-
-	protected:
-		void enterEvent(QEvent *e)
-		{
-			QToolButton::enterEvent(e);
-			QTimer::singleShot(0, this, SLOT(showMenu()));
-			menuTimer.stop();
-		}
-		void leaveEvent(QEvent *e)
-		{
-			QToolButton::leaveEvent(e);
-			menuTimer.start(1000);
-		}
-		void paintEvent(QPaintEvent *e)
-		{
-			QToolButton::paintEvent(e);
-			emit paintFinished();
-		}
-};
-#endif
-
 class MainWindow : public QMainWindow, public Ui::MainWindow
 {
 	Q_OBJECT
@@ -125,11 +78,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QMenu *menuCategoryHeader;
 		QAction *actionMenuGamelistHeaderCategory;
 		QAction *actionMenuHierarchyHeaderCategory;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		QMenu *menuVersionHeader;
 		QAction *actionMenuGamelistHeaderVersion;
 		QAction *actionMenuHierarchyHeaderVersion;
-#endif
 		QAction *actionRomStatusFilterC;
 		QAction *actionRomStatusFilterM;
 		QAction *actionRomStatusFilterI;
@@ -149,11 +100,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		bool audioSkippingTracks;
 		Phonon::State audioState;
 #endif
-#if defined(QMC2_EMUTYPE_MAME)
-		AutoPopupToolButton *toolButtonMAWSQuickLinks;
-		QMenu *menuMAWSQuickLinks;
-		QMap<QString, QAction *> mawsQDLActions;
-#endif
 #if defined(QMC2_MEMORY_INFO_ENABLED)
 		QTimer memoryUpdateTimer;
 #endif
@@ -167,9 +113,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QToolButton *toolButtonEmbedderAutoPause;
 		QMenu *menuAutoPause;
 #endif
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		QTimer messDevCfgTimer;
-#endif
 		QList<int> hSplitterSizes;
 		QList<int> vSplitterSizes;
 		QList<int> vSplitterSizesSoftwareDetail;
@@ -284,9 +228,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
 		// display menu
 		void on_actionFullscreenToggle_triggered(bool checked = false);
-		void on_actionLaunchQMC2MAME_triggered(bool checked = false);
-		void on_actionLaunchQMC2MESS_triggered(bool checked = false);
-		void on_actionLaunchQMC2UME_triggered(bool checked = false);
 
 		// help menu
 		void on_actionDocumentation_triggered(bool checked = false);
@@ -482,7 +423,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_treeWidgetCategoryView_itemSelectionChanged();
 		void on_treeWidgetCategoryView_customContextMenuRequested(const QPoint &);
 		void viewByCategory();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		void on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *, int);
 		void on_treeWidgetVersionView_itemPressed(QTreeWidgetItem *, int);
 		void treeWidgetVersionView_headerSectionClicked(int);
@@ -492,24 +432,10 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_treeWidgetVersionView_itemSelectionChanged();
 		void on_treeWidgetVersionView_customContextMenuRequested(const QPoint &);
 		void viewByVersion();
-#endif
-#if defined(QMC2_EMUTYPE_MAME)
-		void mawsLoadStarted();
-		void mawsLoadFinished(bool);
-		void mawsQuickLinksSetVisible(bool);
-		void mawsQuickLinksMenuHidden();
-		void createMawsQuickLinksMenu();
-		void setupMawsQuickLinks();
-		void downloadMawsQuickLink();
-		void storeMawsIcon();
-		void startMawsAutoDownloads();
-#endif
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		void projectMessSystemLoadStarted();
 		void projectMessSystemLoadFinished(bool);
 		void projectMessLoadStarted();
 		void projectMessLoadFinished(bool);
-#endif
 		void createFifo(bool logFifoCreation = true);
 		void recreateFifo();
 		void processFifoData();
@@ -553,10 +479,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void actionHierarchyHeader_triggered();
 		void treeWidgetCategoryViewHeader_customContextMenuRequested(const QPoint &);
 		void actionCategoryHeader_triggered();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		void treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &);
 		void actionVersionHeader_triggered();
-#endif
 		void comboBoxToolbarSearch_editTextChanged(const QString &);
 		void comboBoxToolbarSearch_activated(const QString &);
 		void comboBoxToolbarSearch_activated() { comboBoxToolbarSearch_activated(comboBoxToolbarSearch->currentText()); }
@@ -574,11 +498,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void treeWidgetCategoryView_verticalScrollChanged(int value = -1);
 		void treeWidgetCategoryView_updateRanks();
 		void on_treeWidgetCategoryView_itemExpanded(QTreeWidgetItem *);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		void treeWidgetVersionView_verticalScrollChanged(int value = -1);
 		void treeWidgetVersionView_updateRanks();
 		void on_treeWidgetVersionView_itemExpanded(QTreeWidgetItem *);
-#endif
 		void updateUserData() { resizeEvent(0); }
 		void on_actionIncreaseRank_triggered(bool);
 		void on_actionDecreaseRank_triggered(bool);
@@ -625,9 +547,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QTimer m_glRankUpdateTimer;
 		QTimer m_hlRankUpdateTimer;
 		QTimer m_clRankUpdateTimer;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		QTimer m_vlRankUpdateTimer;
-#endif
 };
 
 #endif

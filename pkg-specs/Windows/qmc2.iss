@@ -6,7 +6,7 @@
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{DB53A3CB-C0CA-494E-AFD4-11C8B66A7B67}
-AppName=QMC2 - M.A.M.E./M.E.S.S./U.M.E. Catalog Launcher II
+AppName=QMC2 - M.A.M.E. Catalog Launcher II
 AppVerName=QMC2 0.52
 AppPublisher=The QMC2 Development Team
 AppPublisherURL=http://qmc2.arcadehits.net/wordpress
@@ -45,8 +45,6 @@ Name: "{app}"; Permissions: everyone-readexec
 Name: "{group}\{cm:ProgramOnTheWeb,QMC2}"; Filename: "http://qmc2.arcadehits.net/wordpress"
 Name: "{group}\{cm:UninstallProgram,QMC2}"; Filename: "{uninstallexe}"
 Name: "{group}\QMC2 (M.A.M.E.)"; Filename: "{app}\qmc2-mame.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\mame.ico"
-Name: "{group}\QMC2 (M.E.S.S.)"; Filename: "{app}\qmc2-mess.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\mess.ico"
-Name: "{group}\QMC2 (U.M.E.)"; Filename: "{app}\qmc2-ume.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\ume.ico"
 Name: "{group}\QMC2 Arcade"; Filename: "{app}\qmc2-arcade.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\qmc2-arcade.ico"
 Name: "{group}\Qt CHDMAN GUI"; Filename: "{app}\qchdman.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\qchdman.ico"
 

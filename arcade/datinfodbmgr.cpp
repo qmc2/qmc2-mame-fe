@@ -24,7 +24,6 @@
 
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
-extern int emulatorMode;
 
 DatInfoDatabaseManager::DatInfoDatabaseManager(QObject *parent)
 	: QObject(parent)
@@ -418,7 +417,7 @@ void DatInfoDatabaseManager::setSyncMode(uint syncMode)
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA synchronous = %1").arg(dbSyncModes[syncMode])) ) {
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to change the '%1' setting for the DAT-info database: query = '%2', error = '%3'").arg("synchronous").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
+    }
 }
 
 void DatInfoDatabaseManager::setJournalMode(uint journalMode)
@@ -427,7 +426,7 @@ void DatInfoDatabaseManager::setJournalMode(uint journalMode)
 	if ( (int)journalMode > dbJournalModes.count() - 1 )
 		return;
 	QSqlQuery query(m_db);
-	if ( !query.exec(QString("PRAGMA journal_mode = %1").arg(dbJournalModes[journalMode])) ) {
+    if ( !query.exec(QString("PRAGMA journal_mode = %1").arg(dbJournalModes[journalMode])) ) {
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to change the '%1' setting for the DAT-info database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(m_db.lastError().text()));
 	}
 }
@@ -477,7 +476,7 @@ void DatInfoDatabaseManager::recreateEmuInfoTable()
 		return;
 	}
 	query.finish();
-	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_emuInfoTableName)) ) {
+    if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_emuInfoTableName)) ) {
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("emu-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
 	}
 }
@@ -486,40 +485,24 @@ void DatInfoDatabaseManager::recreateGameInfoTable()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_gameInfoTableName)) ) {
-		if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS ) {
-			QMC2_ARCADE_LOG_STR(tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-		} else {
-			QMC2_ARCADE_LOG_STR(tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-		}
+        QMC2_ARCADE_LOG_STR(tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_gameInfoTableName)) ) {
-		if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS ) {
-			QMC2_ARCADE_LOG_STR(tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()))
-		} else {
-			QMC2_ARCADE_LOG_STR(tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-		}
+        QMC2_ARCADE_LOG_STR(tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
 	query.finish();
 	query.exec("VACUUM");
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT, infotext TEXT, emulator TEXT, PRIMARY KEY (id))").arg(m_gameInfoTableName)) ) {
-		if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS ) {
-			QMC2_ARCADE_LOG_STR(tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-		} else {
-			QMC2_ARCADE_LOG_STR(tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-		}
+        QMC2_ARCADE_LOG_STR(tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
 	query.finish();
-	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_gameInfoTableName)) ) {
-		if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS ) {
-			QMC2_ARCADE_LOG_STR(tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-		} else {
-			QMC2_ARCADE_LOG_STR(tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-		}
+    if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_gameInfoTableName)) ) {
+        QMC2_ARCADE_LOG_STR(tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
 	}
 }
 
@@ -938,25 +921,13 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 								beginTransaction();
 							}
 						} else {
-							if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS ) {
-								QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in machine info file %1").arg(QDir::toNativeSeparators(path))));
-							} else {
-								QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in game info file %1").arg(QDir::toNativeSeparators(path))));
-							}
+                            QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in game info file %1").arg(QDir::toNativeSeparators(path))));
 						}
 					} else {
-						if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS ) {
-							QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$bio' in machine info file %1").arg(QDir::toNativeSeparators(path))));
-						} else {
-							QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$bio' in game info file %1").arg(QDir::toNativeSeparators(path))));
-						}
+                        QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$bio' in game info file %1").arg(QDir::toNativeSeparators(path))));
 					}
 				} else if ( !ts.atEnd() ) {
-					if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS ) {
-						QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in machine info file %1").arg(QDir::toNativeSeparators(path))));
-					} else {
-						QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in game info file %1").arg(QDir::toNativeSeparators(path))));
-					}
+                    QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in game info file %1").arg(QDir::toNativeSeparators(path))));
 				}
 			}
 			commitTransaction();
@@ -965,19 +936,11 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 			importDates << QString::number(QFileInfo(path).lastModified().toTime_t());
 			gameInfoDB.close();
 		} else {
-			if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS ) {
-				QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: can't open machine info file %1").arg(QDir::toNativeSeparators(path))));
-			} else {
-				QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: can't open game info file %1").arg(QDir::toNativeSeparators(path))));
-			}
+            QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: can't open game info file %1").arg(QDir::toNativeSeparators(path))));
 		}
 	}
 
-	if ( emulatorMode == QMC2_ARCADE_EMUMODE_MESS ) {
-		QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("%n machine info record(s) imported", "", gameInfoRowCount())));
-	} else {
-		QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("%n game info record(s) imported", "", gameInfoRowCount())));
-	}
+    QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("%n game info record(s) imported", "", gameInfoRowCount())));
 
 	if ( !importPaths.isEmpty() ) {
 		globalConfig->setGameInfoImportFiles(importPaths);

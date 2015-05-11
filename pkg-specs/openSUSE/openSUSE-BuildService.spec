@@ -1,7 +1,7 @@
 Name:           qmc2
 Version:        0.52
-Release:        1
-Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II
+Release:        2
+Summary:        M.A.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
 License:        GPL-2.0
 URL:            http://qmc2.arcadehits.net/wordpress
@@ -26,10 +26,6 @@ QMC2 is a Qt 4 based multi-platform GUI front end for several MAME, MESS and UME
 tar -xjf %{SOURCE0}
 mv %{name} sdlmame
 tar -xjf %{SOURCE0}
-mv %{name} sdlmess
-tar -xjf %{SOURCE0}
-mv %{name} sdlume
-tar -xjf %{SOURCE0}
 mv %{name} arcade
 tar -xjf %{SOURCE0}
 mv %{name} qchdman
@@ -37,24 +33,10 @@ tar -xjf %{SOURCE0}
 mv %{name} manpages
 
 %build
-pushd sdlmess
-make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
-    CXX_FLAGS=-O3 CC_FLAGS=-O3
-popd
-
-pushd sdlume
-make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLUME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
-    CXX_FLAGS=-O3 CC_FLAGS=-O3
-popd
-
 pushd sdlmame
 make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
+    JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3
 popd
 
@@ -81,24 +63,6 @@ popd
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-pushd sdlmess
-make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
-    CXX_FLAGS=-O3 CC_FLAGS=-O3
-popd
-
-rm -f $RPM_BUILD_ROOT%{_sysconfdir}/qmc2/qmc2.ini
-
-pushd sdlume
-make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLUME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
-    CXX_FLAGS=-O3 CC_FLAGS=-O3
-popd
-
-rm -f $RPM_BUILD_ROOT%{_sysconfdir}/qmc2/qmc2.ini
 
 pushd sdlmame
 make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
@@ -137,15 +101,11 @@ cp -a sdlmame/data/doc/html/ $RPM_BUILD_ROOT%{_defaultdocdir}/%{name}/
 
 # update the desktop files
 %suse_update_desktop_file %{name}-sdlmame Game ArcadeGame
-%suse_update_desktop_file %{name}-sdlmess Game ArcadeGame
-%suse_update_desktop_file %{name}-sdlume Game ArcadeGame
 %suse_update_desktop_file %{name}-arcade Game ArcadeGame
 %suse_update_desktop_file qchdman Game ArcadeGame
 
 # make sure the executable permissions are set correctly
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmame
-chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmess
-chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlume
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-arcade
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/runonce
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qchdman
@@ -161,25 +121,22 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/qmc2
 %{_bindir}/qmc2
 %{_bindir}/qmc2-sdlmame
-%{_bindir}/qmc2-sdlmess
-%{_bindir}/qmc2-sdlume
 %{_bindir}/qmc2-arcade
 %{_bindir}/qchdman
 %{_datadir}/applications/qmc2-sdlmame.desktop
-%{_datadir}/applications/qmc2-sdlmess.desktop
-%{_datadir}/applications/qmc2-sdlume.desktop
 %{_datadir}/applications/qmc2-arcade.desktop
 %{_datadir}/applications/qchdman.desktop
 %{_mandir}/man6/qmc2-main-gui.6.gz
 %{_mandir}/man6/qmc2.6.gz
 %{_mandir}/man6/qmc2-sdlmame.6.gz
-%{_mandir}/man6/qmc2-sdlmess.6.gz
-%{_mandir}/man6/qmc2-sdlume.6.gz
 %{_mandir}/man6/qmc2-arcade.6.gz
 %{_mandir}/man6/qchdman.6.gz
 %{_mandir}/man6/runonce.6.gz
 
 %changelog
+* Mon May 11 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.52-2
+- removed qmc2-sdlmess and qmc2-sdlume
+
 * Thu Apr 30 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.52-1
 - updated spec to QMC2 0.52
 

@@ -36,12 +36,6 @@ About::About(QWidget *parent)
 	widgetPosValid = false;
 	ignoreResizeAndMove = true;
 
-#if defined(QMC2_EMUTYPE_MESS)
-	labelLogoPixmap->setPixmap(QString::fromUtf8(":/data/img/qmc2_mess_logo_big.png"));
-#elif defined(QMC2_EMUTYPE_UME)
-	labelLogoPixmap->setPixmap(QString::fromUtf8(":/data/img/qmc2_ume_logo_big.png"));
-#endif
-
 	adjustSize();
 
 #if defined(QMC2_OS_MAC)
@@ -106,14 +100,7 @@ void About::showEvent(QShowEvent *e)
 
 	int numLogicalCores = QThread::idealThreadCount();
 
-	QString titleString =
-#if defined(QMC2_EMUTYPE_MAME)
-		"<p><font size=\"+1\"><b>QMC2 - M.A.M.E. Catalog / Launcher II</b></font><br>" +
-#elif defined(QMC2_EMUTYPE_MESS)
-		"<p><font size=\"+1\"><b>QMC2 - M.E.S.S. Catalog / Launcher II</b></font><br>" +
-#elif defined(QMC2_EMUTYPE_UME)
-		"<p><font size=\"+1\"><b>QMC2 - U.M.E. Catalog / Launcher II</b></font><br>" +
-#endif
+	QString titleString = "<p><font size=\"+1\"><b>QMC2 - M.A.M.E. Catalog / Launcher II</b></font><br>" +
 		tr("Qt based multi-platform/multi-emulator front end") + "<br>" +
 		tr("Version ") + QString(XSTR(QMC2_VERSION)) +
 #if QMC2_SVN_REV > 0
