@@ -28,14 +28,7 @@ ROMStatusExporter::ROMStatusExporter(QWidget *parent)
 	setupUi(this);
 
 	exportListAutoCorrected = false;
-
-#if defined(QMC2_EMUTYPE_MESS)
-	comboBoxSortCriteria->setItemText(QMC2_RSE_SORT_BY_DESCRIPTION, tr("Machine description"));
-	comboBoxSortCriteria->setItemText(QMC2_RSE_SORT_BY_NAME, tr("Machine name"));
-#endif
-
 	pushButtonExport->setEnabled(qmc2WidgetsEnabled);
-
 	comboBoxOutputFormat->insertSeparator(QMC2_ROMSTATUSEXPORT_FORMAT_SEP_INDEX);
 	comboBoxOutputFormat->insertItem(QMC2_ROMSTATUSEXPORT_FORMAT_ALL_INDEX, tr("All formats"));
 
@@ -167,16 +160,8 @@ void ROMStatusExporter::exportToASCII()
 		ts << tr("ROM Status Export - created by QMC2 %1").arg(qmc2Version) << "\n" << QString().leftJustified(tr("ROM Status Export - created by QMC2 %1").arg(qmc2Version).length(), '-', true) << "\n\n";
 #if defined(QMC2_SDLMAME)
 		QString emulatorTarget = tr("SDLMAME");
-#elif defined(QMC2_SDLMESS)
-		QString emulatorTarget = tr("SDLMESS");
-#elif defined(QMC2_SDLUME)
-		QString emulatorTarget = tr("SDLUME");
 #elif defined(QMC2_MAME)
 		QString emulatorTarget = tr("MAME");
-#elif defined(QMC2_MESS)
-		QString emulatorTarget = tr("MESS");
-#elif defined(QMC2_UME)
-		QString emulatorTarget = tr("UME");
 #else
 		QString emulatorTarget = tr("unknown");
 #endif
@@ -478,16 +463,8 @@ void ROMStatusExporter::exportToCSV()
 		ts << del << tr("ROM Status Export - created by QMC2 %1").arg(qmc2Version) << del << "\n" << del << del << "\n";
 #if defined(QMC2_SDLMAME)
 		QString emulatorTarget = tr("SDLMAME");
-#elif defined(QMC2_SDLMESS)
-		QString emulatorTarget = tr("SDLMESS");
-#elif defined(QMC2_SDLUME)
-		QString emulatorTarget = tr("SDLUME");
 #elif defined(QMC2_MAME)
 		QString emulatorTarget = tr("MAME");
-#elif defined(QMC2_MESS)
-		QString emulatorTarget = tr("MESS");
-#elif defined(QMC2_UME)
-		QString emulatorTarget = tr("UME");
 #else
 		QString emulatorTarget = tr("unknown");
 #endif
@@ -717,16 +694,8 @@ void ROMStatusExporter::exportToHTML()
       	if ( checkBoxIncludeHeader->isChecked() ) {
 #if defined(QMC2_SDLMAME)
 	    	QString emulatorTarget = tr("SDLMAME");
-#elif defined(QMC2_SDLMESS)
-	    	QString emulatorTarget = tr("SDLMESS");
-#elif defined(QMC2_SDLUME)
-	    	QString emulatorTarget = tr("SDLUME");
 #elif defined(QMC2_MAME)
 	    	QString emulatorTarget = tr("MAME");
-#elif defined(QMC2_MESS)
-	    	QString emulatorTarget = tr("MESS");
-#elif defined(QMC2_UME)
-	    	QString emulatorTarget = tr("UME");
 #else
 	    	QString emulatorTarget = tr("unknown");
 #endif

@@ -28,9 +28,7 @@ extern QString qmc2FileEditStartPath;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 extern int qmc2DefaultLaunchMode;
 extern bool qmc2CriticalSection;
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
-#endif
 extern bool qmc2UseDefaultEmulator;
 extern bool qmc2TemplateCheck;
 extern Options *qmc2Options;
@@ -482,18 +480,10 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 	QProcess commandProc;
-#if defined(QMC2_SDLMESS)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
-#elif defined(QMC2_MESS)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
-#elif defined(QMC2_SDLMAME)
+#if defined(QMC2_SDLMAME)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#elif defined(QMC2_SDLUME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
-#elif defined(QMC2_UME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
 #if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
@@ -577,18 +567,10 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 		return slotXmlBuffer;
 	}
 
-#if defined(QMC2_SDLMESS)
-	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
-#elif defined(QMC2_MESS)
-	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
-#elif defined(QMC2_SDLMAME)
+#if defined(QMC2_SDLMAME)
 	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)
 	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#elif defined(QMC2_SDLUME)
-	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
-#elif defined(QMC2_UME)
-	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
 
 	if ( commandProcStarted && qmc2TempXml.open(QFile::ReadOnly) ) {
@@ -605,23 +587,10 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 			slotXmlBuffer.clear();
 			if ( !xmlLines.isEmpty() ) {
 				int i = 0;
-#if defined(QMC2_EMUTYPE_MESS)
-				QString s = "<machine name=\"" + machineName + "\"";
-#elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				QString s = "<game name=\"" + machineName + "\"";
-#endif
 				while ( i < xmlLines.count() && !xmlLines[i].contains(s) ) i++;
 				slotXmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 				if ( i < xmlLines.count() ) {
-#if defined(QMC2_EMUTYPE_MESS)
-					while ( i < xmlLines.count() && !xmlLines[i].contains("</machine>") )
-						slotXmlBuffer += xmlLines[i++].simplified() + "\n";
-					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</machine>") ) {
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(machineName));
-						slotXmlBuffer.clear();
-					} else
-						slotXmlBuffer += "</machine>\n";
-#elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 					while ( i < xmlLines.count() && !xmlLines[i].contains("</game>") )
 						slotXmlBuffer += xmlLines[i++].simplified() + "\n";
 					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</game>") ) {
@@ -629,7 +598,6 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 						slotXmlBuffer.clear();
 					} else
 						slotXmlBuffer += "</game>\n";
-#endif
 				} else {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(machineName));
 					slotXmlBuffer.clear();
@@ -664,11 +632,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 	QString slotInfoCachePath;
-#if defined(QMC2_EMUTYPE_MESS)
-	slotInfoCachePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mess.sic").toString();
-#elif defined(QMC2_EMUTYPE_UME)
-	slotInfoCachePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/ume.sic").toString();
-#endif
+	slotInfoCachePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString();
 
 	setEnabled(false);
 	lineEditConfigurationName->blockSignals(true);
@@ -688,11 +652,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 		if ( slotInfoFile.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text) ) {
 			QTextStream ts(&slotInfoFile);
 			ts << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
-#if defined(QMC2_EMUTYPE_MESS)
-			ts << "MESS_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
-#elif defined(QMC2_EMUTYPE_UME)
-			ts << "UME_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
-#endif
+			ts << "MAME_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
 			slotInfoFile.close();
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open slot info cache for writing, path = %1").arg(slotInfoCachePath));
@@ -727,11 +687,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 				commandProcRunning = (commandProc.state() == QProcess::Running);
 			}
 		} else {
-#if defined(QMC2_EMUTYPE_MESS)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame, giving up"));
-#elif defined(QMC2_EMUTYE_UME)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start UME executable within a reasonable time frame, giving up"));
-#endif
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up"));
 			lineEditConfigurationName->blockSignals(true);
 			lineEditConfigurationName->setText(tr("Failed to read slot info"));
 			lineEditConfigurationName->blockSignals(false);
@@ -753,13 +709,8 @@ bool MESSDeviceConfigurator::readSystemSlots()
 		bool sameVersion = false;
 
 		if ( versionWords.count() >= 2 ) {
-#if defined(QMC2_EMUTYPE_MESS)
-			if ( versionWords[0] == "MESS_VERSION" )
+			if ( versionWords[0] == "MAME_VERSION" )
 				sameVersion = (versionWords[1] == qmc2Gamelist->emulatorVersion);
-#elif defined(QMC2_EMUTYPE_UME)
-			if ( versionWords[0] == "UME_VERSION" )
-				sameVersion = (versionWords[1] == qmc2Gamelist->emulatorVersion);
-#endif
 		}
 
 		if ( !sameVersion ) {
@@ -2842,22 +2793,16 @@ bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &/*namespaceUR
 		deviceExtensions << attributes.value("name");
 	} else if ( qName == "slot" ) {
 		slotName = attributes.value("name");
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		if ( messSystemSlotHash[qmc2MESSDeviceConfigurator->messMachineName]["QMC2_UNUSED_SLOTS"].contains(slotName) )
 			return true;
-#endif
 		allSlots << slotName;
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		if ( !messSystemSlotHash[qmc2MESSDeviceConfigurator->messMachineName].contains(slotName) )
 			newSlots << slotName;
-#endif
 	} else if ( qName == "slotoption" ) {
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		if ( !messSystemSlotHash[qmc2MESSDeviceConfigurator->messMachineName].contains(slotName) ) {
 			newSlotOptions[slotName] << attributes.value("name");
 			newSlotDevices[attributes.value("name")] = attributes.value("devname");
 		}
-#endif
 		slotDeviceNames[attributes.value("name")] = attributes.value("devname");
 		if ( attributes.value("default") == "yes" )
 			defaultSlotOptions[slotName] = attributes.value("name");

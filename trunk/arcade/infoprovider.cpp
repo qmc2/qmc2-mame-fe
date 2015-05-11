@@ -47,17 +47,12 @@ QString InfoProvider::requestInfo(const QString &id, InfoClass infoClass)
             if ( !newGameInfo.isEmpty() ) {
                 switch ( emulatorMode ) {
                 case QMC2_ARCADE_EMUMODE_MAME:
-                    infoText = newGameInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-                    break;
-                case QMC2_ARCADE_EMUMODE_UME:
+                default:
                     infoText = newGameInfo;
                     if ( isMessGameInfo(id) )
                         infoText = messWikiToHtml(infoText);
                     else
                         infoText.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-                    break;
-                case QMC2_ARCADE_EMUMODE_MESS:
-                    infoText = messWikiToHtml(newGameInfo);
                     break;
                 }
             }
@@ -236,14 +231,7 @@ void InfoProvider::loadGameInfo()
 
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
-        pathList = QStringList() << globalConfig->mameHistoryDat();
-        emulatorList = QStringList() << "MAME";
-        break;
-    case QMC2_ARCADE_EMUMODE_MESS:
-        pathList = QStringList() << globalConfig->messSysinfoDat();
-        emulatorList = QStringList() << "MESS";
-        break;
-    case QMC2_ARCADE_EMUMODE_UME:
+    default:
         pathList << QStringList() << globalConfig->mameHistoryDat() << globalConfig->messSysinfoDat();
         emulatorList << QStringList() << "MAME" << "MESS";
         break;
@@ -259,12 +247,7 @@ void InfoProvider::loadEmuInfo()
 
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
-        pathList = QStringList() << globalConfig->mameInfoDat();
-        break;
-    case QMC2_ARCADE_EMUMODE_MESS:
-        pathList = QStringList() << globalConfig->messInfoDat();
-        break;
-    case QMC2_ARCADE_EMUMODE_UME:
+    default:
         pathList = QStringList() << globalConfig->mameInfoDat() << globalConfig->messInfoDat();
         break;
     }

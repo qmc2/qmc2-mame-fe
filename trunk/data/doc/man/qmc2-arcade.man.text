@@ -1,8 +1,8 @@
 NAME
-  qmc2-arcade - Arcade / non-desktop version of QMC2 - MAME/MESS/UME Catalog/Launcher II
+  qmc2-arcade - Arcade / non-desktop version of QMC2 - M.A.M.E. Catalog/Launcher II
 
 SYNOPSIS
-  qmc2-arcade [-emu emulator] [-theme qml_theme] [-console type] [-graphicssystem engine] [-language lang] [-config_path path] [-debugkeys] [-nojoy] [-joy index] [-debugjoy] [-h|-?|-help]
+  qmc2-arcade [-theme qml_theme] [-console type] [-graphicssystem engine] [-language lang] [-config_path path] [-debugkeys] [-nojoy] [-joy index] [-debugjoy] [-h|-?|-help]
 
 DESCRIPTION
   For those who want to 'go straight into the games' there's QMC2 Arcade, a QML / QtQuick based approach to presenting an optionally filtered
@@ -23,18 +23,12 @@ DESCRIPTION
   the current defaults temporarily, but will not change their stored default values. Note that the -language back-end default option is a shared
   setting for both QMC2 Arcade and the (respective variant's) main GUI.
 
-  The -emu parameter's value corresponds to the main GUI's three variants qmc2-sdlmame(6), qmc2-sdlmess(6) and qmc2-sdlume(6). As in case of
-  the main GUI counterparts, selecting a certain emulator will make QMC2 Arcade use the settings specific to the chosen variant. Note that the
-  -language back-end default option is shared between both QMC2 Arcade's current mode and the respective variant's main GUI!
-
   Theme-specific settings are shared between all modes. That is, when a theme supports multiple emulators, it will usually look the same in
   each mode.
 
 OPTIONS
-  -emu emulator  Set the emulator mode QMC2 Arcade runs in. Available values for emulator are 'mame' (default), 'mess' and 'ume'.
-
   -theme qml_theme  Select the QML theme used for scene graphics, animations and/or shader effects. Available values for qml_theme are 'ToxicWaste'
-                    (default) and 'darkone'. Note that there are currently no themes available for MESS.
+                    (default) and 'darkone'.
 
   -console type  Choose the type of console to use. Available values for type are 'terminal' (default), 'window' and 'window-minimized'.
 

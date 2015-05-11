@@ -10,28 +10,13 @@ ArcadeSettings::ArcadeSettings(QString theme)
     arcadeTheme = theme;
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
+    default:
 #if defined(QMC2_ARCADE_OS_WIN)
         frontEndPrefix = "Frontend/qmc2-mame";
 #else
         frontEndPrefix = "Frontend/qmc2-sdlmame";
 #endif
         emulatorPrefix = "MAME";
-        break;
-    case QMC2_ARCADE_EMUMODE_MESS:
-#if defined(QMC2_ARCADE_OS_WIN)
-        frontEndPrefix = "Frontend/qmc2-mess";
-#else
-        frontEndPrefix = "Frontend/qmc2-sdlmess";
-#endif
-        emulatorPrefix = "MESS";
-        break;
-    case QMC2_ARCADE_EMUMODE_UME:
-#if defined(QMC2_ARCADE_OS_WIN)
-        frontEndPrefix = "Frontend/qmc2-ume";
-#else
-        frontEndPrefix = "Frontend/qmc2-sdlume";
-#endif
-        emulatorPrefix = "UME";
         break;
     }
     languageMap["de"] = QLocale::German;
@@ -87,13 +72,8 @@ QString ArcadeSettings::emulatorName()
 {
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
-        return QString("MAME");
-    case QMC2_ARCADE_EMUMODE_MESS:
-        return QString("MESS");
-    case QMC2_ARCADE_EMUMODE_UME:
-        return QString("UME");
     default:
-        return QString();
+        return QString("MAME");
     }
 }
 

@@ -1,15 +1,11 @@
 NAME
-  qmc2-sdlmame, qmc2-sdlmess, qmc2-sdlume - QMC2 - MAME/MESS/UME Catalog/Launcher II
+  qmc2-sdlmame - QMC2 - M.A.M.E. Catalog/Launcher II
 
 SYNOPSIS
   qmc2-sdlmame [-config_path path] [-cc] [-tc] [-h|-?|-help] [qt_arguments]
 
-  qmc2-sdlmess [-config_path path] [-cc] [-tc] [-h|-?|-help] [qt_arguments]
-
-  qmc2-sdlume [-config_path path] [-cc] [-tc] [-h|-?|-help] [qt_arguments]
-
 DESCRIPTION
-  QMC2 is a graphical front-end based on Qt to drive the great MAME and MESS emulators - including UME, a unified version of both. Individual front-end binaries exist for each of the three emulator variants (qmc2-sdlmame, qmc2-sdlmess and qmc2-sdlume) and are configured independently, sharing just a few project-global settings.
+  QMC2 is a graphical front-end based on Qt which drives the great M.A.M.E. emulator.
 
 OPTIONS
   -config_path path  Specify this argument to use the directory path instead of the default folder (CONFIG_PATH) to store QMC2's configuration, logs and cache-files / cache-folders.
@@ -27,43 +23,41 @@ FILES
 
   CONFIG_PATH/qmc2.ini  Individual user's configuration (system-wide settings will be copied initially, if any)
 
-  CONFIG_PATH/qmc2-sdlmame.log, CONFIG_PATH/qmc2-sdlmess.log, CONFIG_PATH/qmc2-sdlume.log  Front-end log from the last run of a given QMC2 variant
+  CONFIG_PATH/qmc2-sdlmame.log  Front-end log from the last run of QMC2
 
-  CONFIG_PATH/mame.log, CONFIG_PATH/mess.log, CONFIG_PATH/ume.log  Emulator-log containing the output from emulator instances launched by the corresponding QMC2 variant (cleared whenever the 'first' emulator instance is launched)
+  CONFIG_PATH/mame.log  Emulator-log containing the output from emulator instances launched by QMC2 (cleared whenever the 'first' emulator instance is launched)
 
-  CONFIG_PATH/mame.rsc, CONFIG_PATH/mess.rsc, CONFIG_PATH/ume.rsc  ROM state cache
+  CONFIG_PATH/mame.rsc  ROM state cache
 
-  CONFIG_PATH/mame-xml-cache.db, CONFIG_PATH/mess-xml-cache.db, CONFIG_PATH/ume-xml-cache.db  XML cache database (SQLite 3)
+  CONFIG_PATH/mame-xml-cache.db  XML cache database (SQLite 3)
 
-  CONFIG_PATH/mame-user-data.db, CONFIG_PATH/mess-user-data.db, CONFIG_PATH/ume-user-data.db  User data database (SQLite 3) containing rank information and personal comments per game/machine
+  CONFIG_PATH/mame-user-data.db  User data database (SQLite 3) containing rank information and personal comments per game
 
-  CONFIG_PATH/mame.glc, CONFIG_PATH/mess.glc, CONFIG_PATH/ume.glc  Game/machine list cache
+  CONFIG_PATH/mame.glc  Game list cache
 
-  CONFIG_PATH/mame.glc.filtered, CONFIG_PATH/mess.glc.filtered, CONFIG_PATH/ume.glc.filtered  Filtered version of the game/machine list cache used by qmc2-arcade(6) (optional)
+  CONFIG_PATH/mame.glc.filtered  Filtered version of the game list cache used by qmc2-arcade(6) (optional)
 
-  CONFIG_PATH/mame-swl-cache.db, CONFIG_PATH/mess-swl-cache.db, CONFIG_PATH/ume-swl-cache.db  Software-list XML cache database (SQLite 3)
+  CONFIG_PATH/mame-swl-cache.db  Software-list XML cache database (SQLite 3)
 
-  CONFIG_PATH/mame-dat-info.db, CONFIG_PATH/mess-dat-info.db, CONFIG_PATH/ume-dat-info.db  DAT-info database (SQLite 3), a combined data store for all supported DAT-info sources (emu-info, game/machine-info and software-info)
+  CONFIG_PATH/mame-dat-info.db  DAT-info database (SQLite 3), a combined data store for all supported DAT-info sources (emu-info, game-info and software-info)
 
-  CONFIG_PATH/mame.fav, CONFIG_PATH/mess.fav, CONFIG_PATH/ume.fav  List of favorite games / machines
+  CONFIG_PATH/mame.fav  List of favorite games
 
-  CONFIG_PATH/mame.hst, CONFIG_PATH/mess.hst, CONFIG_PATH/ume.hst  List of games / machines last played (play history)
+  CONFIG_PATH/mame.hst  List of games last played (play history)
 
-  CONFIG_PATH/mess.sic, CONFIG_PATH/ume.sic  Slot-info cache (MESS/UME only)
+  CONFIG_PATH/mame.sic  Slot-info cache
 
-  CONFIG_PATH/sw-state-cache/*.ssc  Software-state cache (shared by all variants)
+  CONFIG_PATH/sw-state-cache/*.ssc  Software-state cache
 
-  CONFIG_PATH/youtube/*.yti, CONFIG_PATH/youtube/*.png  YouTube video info/image cache (shared by all variants, but each one has its own qmc2-<variant>.yti index file for video meta data)
-
-  CONFIG_PATH/maws/*.wc  MAWS web-cache (MAME only)
+  CONFIG_PATH/youtube/qmc2-sdlmame.yti, CONFIG_PATH/youtube/*.png  YouTube video info/image cache
 
   CONFIG_PATH/LocalStorage/*.localstorage  Folder used by the built-in web-browser to create small database files for 'HTML5 localStorage' support
 
-  CONFIG_PATH/qmc2-sdlmame-cookies.db, CONFIG_PATH/qmc2-sdlmess-cookies.db, CONFIG_PATH/qmc2-sdlume-cookies.db  Permanent web-page cookie database (SQLite 3)
+  CONFIG_PATH/qmc2-sdlmame-cookies.db  Permanent web-page cookie database (SQLite 3)
 
-  CONFIG_PATH/qmc2-sdlmame-checksum.db, CONFIG_PATH/qmc2-sdlmess-checksum.db, CONFIG_PATH/qmc2-sdlume-checksum.db  ROMAlyzer's system-mode check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (SQLite 3)
+  CONFIG_PATH/qmc2-sdlmame-checksum.db  ROMAlyzer's system-mode check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (SQLite 3)
 
-  CONFIG_PATH/qmc2-sdlmame-software-checksum.db, CONFIG_PATH/qmc2-sdlmess-software-checksum.db, CONFIG_PATH/qmc2-sdlume-software-checksum.db  ROMAlyzer's software-mode check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (SQLite 3)
+  CONFIG_PATH/qmc2-sdlmame-software-checksum.db  ROMAlyzer's software-mode check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (SQLite 3)
 
   CONFIG_PATH/WebpageIcons.db  Web-page icon database (SQLite 3)
 

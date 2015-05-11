@@ -472,13 +472,7 @@ void Embedder::checkWindow()
 		int retries = 0;
 		Q_PID gamePid = qmc2ProcessManager->getPid(gameID.toInt());
 		while ( gamePid && !hwnd && retries++ < QMC2_MAX_WININFO_RETRIES ) {
-#if defined(QMC2_EMUTYPE_MAME)
 			hwnd = winFindWindowHandleOfProcess(gamePid, "MAME:");
-#elif defined(QMC2_EMUTYPE_MESS)
-			hwnd = winFindWindowHandleOfProcess(gamePid, "MESS:");
-#elif defined(QMC2_EMUTYPE_UME)
-			hwnd = winFindWindowHandleOfProcess(gamePid, "UME:");
-#endif
 			if ( !hwnd )
 				QTest::qWait(QMC2_WININFO_DELAY);
 		}

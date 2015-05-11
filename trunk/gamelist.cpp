@@ -38,12 +38,8 @@
 #include "macros.h"
 #include "unzip.h"
 #include "sevenzipfile.h"
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 #include "messdevcfg.h"
-#endif
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 #include "demomode.h"
-#endif
 #include "softwarelist.h"
 #if defined(QMC2_YOUTUBE_ENABLED)
 #include "youtubevideoplayer.h"
@@ -77,21 +73,17 @@ extern Flyer *qmc2Flyer;
 extern Cabinet *qmc2Cabinet;
 extern Controller *qmc2Controller;
 extern Marquee *qmc2Marquee;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern Title *qmc2Title;
-#endif
 extern PCB *qmc2PCB;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern QTreeWidgetItem *qmc2LastGameInfoItem;
 extern QTreeWidgetItem *qmc2LastEmuInfoItem;
 extern QTreeWidgetItem *qmc2LastSoftwareListItem;
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
 extern QHash<QString, QHash<QString, QStringList> > messSystemSlotHash;
 extern QHash<QString, QString> messSlotNameHash;
 extern bool messSystemSlotsSupported;
-#endif
 extern SoftwareList *qmc2SoftwareList;
 extern QHash<QString, QStringList> systemSoftwareListHash;
 extern QHash<QString, QStringList> systemSoftwareFilterHash;
@@ -107,10 +99,8 @@ extern QHash<QString, QIcon> qmc2IconHash;
 extern QTreeWidgetItem *qmc2LastMAWSItem;
 extern MiniWebBrowser *qmc2MAWSLookup;
 extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
 extern DemoModeDialog *qmc2DemoModeDialog;
-#endif
 #if defined(QMC2_YOUTUBE_ENABLED)
 extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 extern QTreeWidgetItem *qmc2LastYouTubeItem;
@@ -184,13 +174,7 @@ Gamelist::Gamelist(QObject *parent)
 	if ( romTypeNames.isEmpty() )
 		romTypeNames << "--" << tr("ROM") << tr("CHD") << tr("ROM, CHD");
 
-#if defined(QMC2_EMUTYPE_MAME)
-	emulatorIdentifiers << "MAME" << "M.A.M.E." << "HB.M.A.M.E.";
-#elif defined(QMC2_EMUTYPE_MESS)
-	emulatorIdentifiers << "MESS" << "M.E.S.S.";
-#elif defined(QMC2_EMUTYPE_UME)
-	emulatorIdentifiers << "UME" << "U.M.E.";
-#endif
+	emulatorIdentifiers << "MAME" << "M.A.M.E." << "HB.M.A.M.E." << "MESS" << "M.E.S.S.";
 
 	if ( QMC2_ICON_FILETYPE_ZIP ) {
 		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
@@ -236,10 +220,8 @@ Gamelist::~Gamelist()
 
 	clearCategoryNames();
 	categoryMap.clear();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	clearVersionNames();
 	versionMap.clear();
-#endif
 
 	foreach (unzFile iconFile, qmc2IconFileMap)
 		unzClose(iconFile);
@@ -294,32 +276,18 @@ void Gamelist::enableWidgets(bool enable)
 	qmc2Options->toolButtonImportMameInfo->setEnabled(enable);
 	qmc2Options->toolButtonImportMessInfo->setEnabled(enable);
 	qmc2Options->toolButtonImportSoftwareInfo->setEnabled(enable);
-#if defined(QMC2_EMUTYPE_MAME)
-	qmc2Options->toolButtonBrowseMAWSCacheDirectory->setEnabled(enable);
-#endif
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2Options->toolButtonBrowseCatverIniFile->setEnabled(enable);
 	qmc2Options->checkBoxUseCatverIni->setEnabled(enable);
-#endif
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	qmc2Options->toolButtonBrowseCategoryIniFile->setEnabled(enable);
 	qmc2Options->checkBoxUseCategoryIni->setEnabled(enable);
-#endif
 	qmc2Options->checkBoxShowROMStatusIcons->setEnabled(enable);
 	qmc2Options->checkBoxRomStateFilter->setEnabled(enable);
 	qmc2Options->checkBoxShowBiosSets->setEnabled(enable);
 	qmc2Options->checkBoxShowDeviceSets->setEnabled(enable);
 	qmc2Options->toolButtonBrowseSoftwareListCacheDb->setEnabled(enable);
 	qmc2Options->toolButtonBrowseSoftwareStateCache->setEnabled(enable);
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	qmc2Options->toolButtonBrowseGeneralSoftwareFolder->setEnabled(enable);
-#endif
 	qmc2Options->toolButtonBrowseExecutableFile->setEnabled(enable);
-#if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
-	qmc2Options->toolButtonBrowseMAMEVariantExe->setEnabled(enable);
-	qmc2Options->toolButtonBrowseMESSVariantExe->setEnabled(enable);
-	qmc2Options->toolButtonBrowseUMEVariantExe->setEnabled(enable);
-#endif
 	qmc2Options->lineEditExecutableFile->setEnabled(enable);
 	qmc2Options->toolButtonBrowseWorkingDirectory->setEnabled(enable);
 	qmc2Options->toolButtonBrowseEmulatorLogFile->setEnabled(enable);
@@ -458,10 +426,8 @@ void Gamelist::load()
 	if ( qmc2CurrentItem && qmc2CurrentItem->child(0) )
 		gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	if ( qmc2DemoModeDialog )
 		qmc2DemoModeDialog->saveCategoryFilter();
-#endif
 
 	qmc2ReloadActive = qmc2EarlyReloadActive = true;
 	qmc2StopParser = false;
@@ -484,10 +450,8 @@ void Gamelist::load()
 	qmc2MainWindow->treeWidgetHierarchy->clear();
 	qmc2CategoryItemHash.clear();
 	qmc2MainWindow->treeWidgetCategoryView->clear();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2VersionItemHash.clear();
 	qmc2MainWindow->treeWidgetVersionView->clear();
-#endif
 	qmc2MainWindow->listWidgetSearch->clear();
 	qmc2MainWindow->listWidgetFavorites->clear();
 	qmc2MainWindow->listWidgetPlayed->clear();
@@ -495,7 +459,6 @@ void Gamelist::load()
 	qmc2MainWindow->textBrowserEmuInfo->clear();
 	qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorBlue);
 	qmc2CurrentItem = NULL;
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	if ( qmc2MESSDeviceConfigurator ) {
 		qmc2MESSDeviceConfigurator->save();
 		qmc2MESSDeviceConfigurator->setVisible(false);
@@ -509,7 +472,6 @@ void Gamelist::load()
 	messSystemSlotsSupported = true;
 	messSystemSlotHash.clear();
 	messSlotNameHash.clear();
-#endif
 	if ( qmc2SystemNotesEditor ) {
 		qmc2SystemNotesEditor->save();
 		qmc2SystemNotesEditor->closeXmlBuffer();
@@ -570,9 +532,7 @@ void Gamelist::load()
 	qmc2Cabinet->update();
 	qmc2Controller->update();
 	qmc2Marquee->update();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2Title->update();
-#endif
 	qmc2PCB->update();
 
 	qApp->processEvents();
@@ -583,10 +543,8 @@ void Gamelist::load()
 	dummyItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
 	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetCategoryView);
 	dummyItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetVersionView);
 	dummyItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
-#endif
 	if ( qmc2EmulatorOptions ) {
 		qmc2EmulatorOptions->save();
 		QLayout *vbl = qmc2MainWindow->tabConfiguration->layout();
@@ -614,11 +572,9 @@ void Gamelist::load()
 			case QMC2_VIEW_CATEGORY_INDEX:
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(viewByCategory()));
 				break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			case QMC2_VIEW_VERSION_INDEX:
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(viewByVersion()));
 				break;
-#endif
 			default:
 				break;
 		}
@@ -638,14 +594,6 @@ void Gamelist::load()
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#elif defined(QMC2_SDLMESS)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
-#elif defined(QMC2_MESS)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
-#elif defined(QMC2_SDLUME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
-#elif defined(QMC2_UME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #else
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
 #endif
@@ -674,13 +622,7 @@ void Gamelist::load()
 				commandProcRunning = (commandProc.state() == QProcess::Running);
 			}
 		} else {
-#if defined(QMC2_EMUTYPE_MAME)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up"));
-#elif defined(QMC2_EMUTYPE_MESS)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame, giving up"));
-#elif defined(QMC2_EMUTYPE_UME)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start UME executable within a reasonable time frame, giving up"));
-#endif
 			qmc2ReloadActive = qmc2EarlyReloadActive = false;
 			qmc2StopParser = true;
 			enableWidgets(true);
@@ -698,14 +640,6 @@ void Gamelist::load()
 	QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)
 	QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#elif defined(QMC2_SDLMESS)
-	QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
-#elif defined(QMC2_MESS)
-	QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
-#elif defined(QMC2_SDLUME)
-	QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
-#elif defined(QMC2_UME)
-	QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #else
 	QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
 #endif
@@ -720,7 +654,6 @@ void Gamelist::load()
 		s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
 		QStringList versionLines = s.split("\n");
-#if defined(QMC2_EMUTYPE_MAME)
 		QStringList versionWords = versionLines.first().split(" ");
 		if ( versionWords.count() > 1 ) {
 			if ( emulatorIdentifiers.contains(versionWords[0]) ) {
@@ -735,37 +668,6 @@ void Gamelist::load()
 			emulatorVersion = tr("unknown");
 			emulatorType = tr("unknown");
 		}
-#elif defined(QMC2_EMUTYPE_MESS)
-		QStringList versionWords = versionLines.first().split(" ");
-		if ( versionWords.count() > 1 ) {
-			if ( emulatorIdentifiers.contains(versionWords[0]) ) {
-				emulatorVersion = versionWords[1].remove("v");
-				emulatorType = "MESS";
-			} else {
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: selected executable file is not MESS"));
-				emulatorVersion = tr("unknown");
-				emulatorType = versionWords[0];
-			}
-		} else {
-			emulatorVersion = tr("unknown");
-			emulatorType = tr("unknown");
-		}
-#elif defined(QMC2_EMUTYPE_UME)
-		QStringList versionWords = versionLines.first().split(" ");
-		if ( versionWords.count() > 1 ) {
-			if ( emulatorIdentifiers.contains(versionWords[0]) ) {
-				emulatorVersion = versionWords[1].remove("v");
-				emulatorType = "UME";
-			} else {
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: selected executable file is not UME"));
-				emulatorVersion = tr("unknown");
-				emulatorType = versionWords[0];
-			}
-		} else {
-			emulatorVersion = tr("unknown");
-			emulatorType = tr("unknown");
-		}
-#endif
 	} else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create temporary file, please check emulator executable and permissions"));
 		emulatorVersion = tr("unknown");
@@ -792,13 +694,7 @@ void Gamelist::load()
 			commandProcRunning = (commandProc.state() == QProcess::Running);
 		}
 	} else {
-#if defined(QMC2_EMUTYPE_MAME)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up"));
-#elif defined(QMC2_EMUTYPE_MESS)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame, giving up"));
-#elif defined(QMC2_EMUTYPE_UME)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start UME executable within a reasonable time frame, giving up"));
-#endif
 		qmc2ReloadActive = qmc2EarlyReloadActive = false;
 		qmc2StopParser = true;
 		return;
@@ -808,14 +704,6 @@ void Gamelist::load()
 	QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)
 	QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#elif defined(QMC2_SDLMESS)
-	QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
-#elif defined(QMC2_MESS)
-	QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
-#elif defined(QMC2_SDLUME)
-	QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
-#elif defined(QMC2_UME)
-	QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #else
 	QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
 #endif
@@ -866,23 +754,17 @@ void Gamelist::load()
 	qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "ListfullSha1", listfullSha1);
 
 	categoryMap.clear();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	versionMap.clear();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool() ) {
 		loadCatverIni();
 		mergeCategories = true;
 	}
-#endif
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool() )
 		loadCategoryIni();
-#endif
 	mergeCategories = false;
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	if ( qmc2DemoModeDialog )
 		QTimer::singleShot(0, qmc2DemoModeDialog, SLOT(updateCategoryFilter()));
-#endif
 
 	qmc2EarlyReloadActive = false;
 
@@ -927,11 +809,9 @@ void Gamelist::load()
 					case QMC2_VIEW_CATEGORY_INDEX:
 						qmc2MainWindow->treeWidgetCategoryView->setFocus();
 						break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 					case QMC2_VIEW_VERSION_INDEX:
 						qmc2MainWindow->treeWidgetVersionView->setFocus();
 						break;
-#endif
 					default:
 						qmc2MainWindow->treeWidgetGamelist->setFocus();
 						break;
@@ -947,11 +827,9 @@ void Gamelist::load()
 				case QMC2_VIEW_CATEGORY_INDEX:
 					qmc2MainWindow->treeWidgetCategoryView_verticalScrollChanged();
 					break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				case QMC2_VIEW_VERSION_INDEX:
 					qmc2MainWindow->treeWidgetVersionView_verticalScrollChanged();
 					break;
-#endif
 			}
 		}
 
@@ -1152,11 +1030,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
 	QString gameName = item->text(QMC2_GAMELIST_COLUMN_NAME);
 	QStringList xmlLines = xmlDb()->xml(gameName).split("\n", QString::SkipEmptyParts);
 	if ( xmlLines.count() < 2 ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't find game information for '%1'").arg(gameName));
-#elif defined(QMC2_EMUTYPE_MESS)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't find machine information for '%1'").arg(gameName));
-#endif
 		return;
 	}
 
@@ -1176,13 +1050,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
 	element = xmlLines.at(gamePos - 1).simplified();
 	insertAttributeItems(&itemList, element, attributes, descriptions, true);
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	QString endMark = "</game>";
-#elif defined(QMC2_EMUTYPE_MESS)
-	QString endMark = "</machine>";
-#else
-	QString endMark = "</undefined>";
-#endif
 
 	while ( !xmlLines[gamePos].contains(endMark) ) {
 		childItem = NULL;
@@ -1499,11 +1367,7 @@ void Gamelist::parse()
 
 	QTime processGamelistElapsedTimer(0, 0, 0, 0);
 	parseTimer.start();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("processing game list"));
-#elif defined(QMC2_EMUTYPE_MESS)
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("processing machine list"));
-#endif
 	qmc2MainWindow->treeWidgetGamelist->clear();
 	qmc2HierarchyHash.clear();
 	qmc2ParentHash.clear();
@@ -1526,62 +1390,30 @@ void Gamelist::parse()
 				line = tsGamelistCache.readLine();
 			QStringList words = line.split("\t");
 			if ( words.count() >= 2 ) {
-#if defined(QMC2_EMUTYPE_MAME)
 				if ( words[0] == "MAME_VERSION" )
-#elif defined(QMC2_EMUTYPE_MESS)
-				if ( words[0] == "MESS_VERSION" )
-#elif defined(QMC2_EMUTYPE_UME)
-				if ( words[0] == "UME_VERSION" )
-#endif
 					romStateCacheUpdate = reparseGamelist = (words[1] != emulatorVersion);
-				} else {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+				else
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't determine emulator version of game list cache"));
-#elif defined(QMC2_EMUTYPE_MESS)
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't determine emulator version of machine list cache"));
-#endif
-				}
-			if ( words.count() < 4 ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFORMATION: the game list cache will now be updated due to a new format"));
-#elif defined(QMC2_EMUTYPE_MESS)
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFORMATION: the machine list cache will now be updated due to a new format"));
-#endif
-				reparseGamelist = true;
-			} else {
-				int cacheGlcVersion = words[3].toInt();
-				if ( cacheGlcVersion < QMC2_GLC_VERSION ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+				if ( words.count() < 4 ) {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFORMATION: the game list cache will now be updated due to a new format"));
-#elif defined(QMC2_EMUTYPE_MESS)
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFORMATION: the machine list cache will now be updated due to a new format"));
-#endif
 					reparseGamelist = true;
+				} else {
+					int cacheGlcVersion = words[3].toInt();
+					if ( cacheGlcVersion < QMC2_GLC_VERSION ) {
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFORMATION: the game list cache will now be updated due to a new format"));
+						reparseGamelist = true;
+					}
 				}
 			}
 		}
 
-#if defined(QMC2_EMUTYPE_MAME)
-		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
-		bool useCategoryIni = false;
-#elif defined(QMC2_EMUTYPE_UME)
 		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
 		bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
-#elif defined(QMC2_EMUTYPE_MESS)
-		bool useCatverIni = false;
-		bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
-#endif
 
 		if ( !reparseGamelist && !qmc2StopParser ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading game data from game list cache"));
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 				qmc2MainWindow->progressBarGamelist->setFormat(tr("Game data - %p%"));
-#elif defined(QMC2_EMUTYPE_MESS)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading machine data from machine list cache"));
-			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-				qmc2MainWindow->progressBarGamelist->setFormat(tr("Machine data - %p%"));
-#endif
 			else
 				qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 			QTime gameDataCacheElapsedTime(0, 0, 0, 0);
@@ -1613,12 +1445,10 @@ void Gamelist::parse()
 						QString gameStatus = words[9];
 						bool isDevice = (words[10] == "1");
 						QString gameSource = words[11];
-
 #ifdef QMC2_DEBUG
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::parse(): gameName = %1, gameDescription = %2, gameManufacturer = %3, gameYear = %4, gameCloneOf = %5, isBIOS = %6, hasROMs = %7, hasCHDs = %8, gamePlayers = %9, gameStatus = %10, isDevice = %11, gameSource = %12").
 								arg(gameName).arg(gameDescription).arg(gameManufacturer).arg(gameYear).arg(gameCloneOf).arg(isBIOS).arg(hasROMs).arg(hasCHDs).arg(gamePlayers).arg(gameStatus).arg(isDevice).arg(gameSource));
 #endif
-
 						GamelistItem *gameDescriptionItem = new GamelistItem();
 						gameDescriptionItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
 						gameDescriptionItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
@@ -1650,10 +1480,8 @@ void Gamelist::parse()
 						if ( useCatverIni || useCategoryIni ) {
 							QString *categoryString = categoryMap[gameName];
 							gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("Unknown"));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 							QString *versionString = versionMap[gameName];
 							gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
-#endif
 						}
 						switch ( gameStatusHash[gameName] ) {
 							case 'C': 
@@ -1760,11 +1588,7 @@ void Gamelist::parse()
 			qApp->processEvents();
 
 			gameDataCacheElapsedTime = gameDataCacheElapsedTime.addMSecs(miscTimer.elapsed());
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading game data from game list cache, elapsed time = %1)").arg(gameDataCacheElapsedTime.toString("mm:ss.zzz")));
-#elif defined(QMC2_EMUTYPE_MESS)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading machine data from machine list cache, elapsed time = %1)").arg(gameDataCacheElapsedTime.toString("mm:ss.zzz")));
-#endif
 		}
 	} 
 
@@ -1772,48 +1596,24 @@ void Gamelist::parse()
 		gamelistCache.close();
 
 	if ( reparseGamelist && !qmc2StopParser ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing game data and recreating game list cache"));
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 			qmc2MainWindow->progressBarGamelist->setFormat(tr("Game data - %p%"));
-#elif defined(QMC2_EMUTYPE_MESS)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing machine data and recreating machine list cache"));
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-			qmc2MainWindow->progressBarGamelist->setFormat(tr("Machine data - %p%"));
-#endif
 		else
 			qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 		gamelistCache.open(QIODevice::WriteOnly | QIODevice::Text);
-		if ( !gamelistCache.isOpen() ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		if ( !gamelistCache.isOpen() )
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open game list cache for writing, path = %1").arg(gamelistCache.fileName()));
-#elif defined(QMC2_EMUTYPE_MESS)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open machine list cache for writing, path = %1").arg(gamelistCache.fileName()));
-#endif
-		} else {
+		else {
 			tsGamelistCache.setDevice(&gamelistCache);
 			tsGamelistCache.setCodec(QTextCodec::codecForName("UTF-8"));
 			tsGamelistCache.reset();
 			tsGamelistCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
-#if defined(QMC2_EMUTYPE_MAME)
 			tsGamelistCache << "MAME_VERSION\t" + emulatorVersion + "\tGLC_VERSION\t" + QString::number(QMC2_GLC_VERSION) + "\n";
-#elif defined(QMC2_EMUTYPE_MESS)
-			tsGamelistCache << "MESS_VERSION\t" + emulatorVersion + "\tGLC_VERSION\t" + QString::number(QMC2_GLC_VERSION) + "\n";
-#elif defined(QMC2_EMUTYPE_UME)
-			tsGamelistCache << "UME_VERSION\t" + emulatorVersion + "\tGLC_VERSION\t" + QString::number(QMC2_GLC_VERSION) + "\n";
-#endif
 		}
 
-#if defined(QMC2_EMUTYPE_MAME)
-		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
-		bool useCategoryIni = false;
-#elif defined(QMC2_EMUTYPE_UME)
 		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
 		bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
-#elif defined(QMC2_EMUTYPE_MESS)
-		bool useCatverIni = false;
-		bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
-#endif
 
 		// parse XML data
 		numGames = numUnknownGames = numDevices = 0;
@@ -1837,11 +1637,7 @@ void Gamelist::parse()
 					QString gameName = value(gameElement, "name");
 					QString gameSource = value(gameElement, "sourcefile");
 					if ( gameName.isEmpty() ) {
-#if defined(QMC2_EMUTYPE_MAME)
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml").arg(lineCounter + 2));
-#else
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MESS developers and include the offending output from -listxml").arg(lineCounter + 2));
-#endif
 						qApp->processEvents();
 						continue;
 					}
@@ -1859,13 +1655,7 @@ void Gamelist::parse()
 					int i = lineCounter;
 					QString gameYear = tr("?"), gameManufacturer = tr("?"), gamePlayers = tr("?"), gameStatus = tr("?");
 					bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false, statusFound = false;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 					QString endMark = "</game>";
-#elif defined(QMC2_EMUTYPE_MESS)
-					QString endMark = "</machine>";
-#else
-					QString endMark = "</undefined>";
-#endif
 					while ( !endGame ) {
 						QString xmlLine = xmlLines[i];
 						if ( xmlLine.contains("<year>") ) {
@@ -1919,10 +1709,8 @@ void Gamelist::parse()
 					if ( useCatverIni || useCategoryIni ) {
 						QString *categoryString = categoryMap[gameName];
 						gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("Unknown"));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 						QString *versionString = versionMap[gameName];
 						gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
-#endif
 					}
 					switch ( gameStatusHash[gameName] ) {
 						case 'C': 
@@ -2032,16 +1820,8 @@ void Gamelist::parse()
 	if ( gamelistCache.isOpen() )
 		gamelistCache.close();
 
-#if defined(QMC2_EMUTYPE_MAME)
-	bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
-	bool useCategoryIni = false;
-#elif defined(QMC2_EMUTYPE_UME)
 	bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
 	bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
-#elif defined(QMC2_EMUTYPE_MESS)
-	bool useCatverIni = false;
-	bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
-#endif
 
 	// create parent/clone hierarchy tree
 	qmc2MainWindow->treeWidgetHierarchy->clear();
@@ -2079,9 +1859,7 @@ void Gamelist::parse()
 		hierarchyItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
 		if ( useCatverIni || useCategoryIni ) {
 			hierarchyItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, baseItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			hierarchyItem->setText(QMC2_GAMELIST_COLUMN_VERSION, baseItem->text(QMC2_GAMELIST_COLUMN_VERSION));
-#endif
 		}
 		hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_ICON, baseItem->icon(QMC2_GAMELIST_COLUMN_ICON));
 		qmc2HierarchyItemHash[iValue] = hierarchyItem;
@@ -2158,9 +1936,7 @@ void Gamelist::parse()
 			hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
 			if ( useCatverIni || useCategoryIni ) {
 				hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, baseItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_VERSION, baseItem->text(QMC2_GAMELIST_COLUMN_VERSION));
-#endif
 			}
 			qmc2HierarchyItemHash[jValue] = hierarchySubItem;
 			qmc2ParentHash[jValue] = iValue;
@@ -2237,11 +2013,7 @@ void Gamelist::parse()
 	QString sortCriteria = tr("?");
 	switch ( qmc2SortCriteria ) {
 		case QMC2_SORT_BY_DESCRIPTION:
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			sortCriteria = QObject::tr("game description");
-#elif defined(QMC2_EMUTYPE_MESS)
-			sortCriteria = QObject::tr("machine description");
-#endif
 			break;
 		case QMC2_SORT_BY_ROM_STATE:
 			sortCriteria = QObject::tr("ROM state");
@@ -2256,11 +2028,7 @@ void Gamelist::parse()
 			sortCriteria = QObject::tr("manufacturer");
 			break;
 		case QMC2_SORT_BY_NAME:
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			sortCriteria = QObject::tr("game name");
-#elif defined(QMC2_EMUTYPE_MESS)
-			sortCriteria = QObject::tr("machine name");
-#endif
 		case QMC2_SORT_BY_ROMTYPES:
 			sortCriteria = QObject::tr("ROM types");
 			break;
@@ -2279,17 +2047,11 @@ void Gamelist::parse()
 		case QMC2_SORT_BY_CATEGORY:
 			sortCriteria = QObject::tr("category");
 			break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_SORT_BY_VERSION:
 			sortCriteria = QObject::tr("version");
 			break;
-#endif
 	}
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting game list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
-#elif defined(QMC2_EMUTYPE_MESS)
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
-#endif
 
 	// final update of progress bar and game/machine list stats
 	qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->maximum());
@@ -2311,11 +2073,7 @@ void Gamelist::parse()
 			if ( !selectedGame.isEmpty() ) {
 				QTreeWidgetItem *glItem = qmc2GamelistItemHash[selectedGame];
 				if ( glItem ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring game selection"));
-#elif defined(QMC2_EMUTYPE_MESS)
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
-#endif
 					qmc2MainWindow->treeWidgetGamelist->setCurrentItem(glItem);
 					QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 				}
@@ -2326,11 +2084,7 @@ void Gamelist::parse()
 		if ( !selectedGame.isEmpty() ) {
 			QTreeWidgetItem *glItem = qmc2GamelistItemHash[selectedGame];
 			if ( glItem ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring game selection"));
-#elif defined(QMC2_EMUTYPE_MESS)
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
-#endif
 				qmc2MainWindow->treeWidgetGamelist->setCurrentItem(glItem);
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 			}
@@ -2342,32 +2096,17 @@ void Gamelist::parse()
 	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
 
 	processGamelistElapsedTimer = processGamelistElapsedTimer.addMSecs(parseTimer.elapsed());
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (processing game list, elapsed time = %1)").arg(processGamelistElapsedTimer.toString("mm:ss.zzz")));
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n game(s)", "", numTotalGames - biosSets.count()) + tr(", %n BIOS set(s)", "", biosSets.count()) + tr(" and %n device(s) loaded", "", numDevices));
-#elif defined(QMC2_EMUTYPE_MESS)
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (processing machine list, elapsed time = %1)").arg(processGamelistElapsedTimer.toString("mm:ss.zzz")));
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n machine(s)", "", numTotalGames - biosSets.count()) + tr(", %n BIOS set(s)", "", biosSets.count()) + tr(" and %n device(s) loaded", "", numDevices));
-#endif
 
 	if ( numGames - numDevices != numTotalGames ) {
 		if ( reparseGamelist && qmc2StopParser ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: game list not fully parsed, invalidating game list cache"));
 			QFile f(qmc2Config->value("MAME/FilesAndDirectories/GamelistCacheFile").toString());
-#elif defined(QMC2_EMUTYPE_MESS)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: machine list not fully parsed, invalidating machine list cache"));
-			QFile f(qmc2Config->value("MESS/FilesAndDirectories/GamelistCacheFile").toString());
-#endif
 			f.remove();
 		} else if ( !qmc2StopParser) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: game list cache is out of date, invalidating game list cache"));
 			QFile f(qmc2Config->value("MAME/FilesAndDirectories/GamelistCacheFile").toString());
-#elif defined(QMC2_EMUTYPE_MESS)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: machine list cache is out of date, invalidating machine list cache"));
-			QFile f(qmc2Config->value("MESS/FilesAndDirectories/GamelistCacheFile").toString());
-#endif
 			f.remove();
 		}
 	}
@@ -2730,11 +2469,9 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				case QMC2_VIEW_CATEGORY_INDEX:
 					qmc2MainWindow->treeWidgetCategoryView->setFocus();
 					break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				case QMC2_VIEW_VERSION_INDEX:
 					qmc2MainWindow->treeWidgetVersionView->setFocus();
 					break;
-#endif
 				default:
 					qmc2MainWindow->treeWidgetGamelist->setFocus();
 					break;
@@ -2844,11 +2581,7 @@ void Gamelist::loadReadyReadStandardOutput()
 		xmlLineBuffer += singleXMLLine;
 		if ( xmlLineBuffer.endsWith("\n") ) {
 			if ( !dtdBufferReady ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				dtdBufferReady = xmlLineBuffer.startsWith("<mame build=");
-#elif defined(QMC2_EMUTYPE_MESS)
-				dtdBufferReady = xmlLineBuffer.startsWith("<mess build=");
-#endif
 				if ( !dtdBufferReady ) {
 					if ( !xmlLineBuffer.startsWith("<?xml version=") )
 						dtdBuffer += xmlLineBuffer;
@@ -2860,18 +2593,9 @@ void Gamelist::loadReadyReadStandardOutput()
 				}
 			} else {
 				if ( currentSetName.isEmpty() ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 					int startIndex = xmlLineBuffer.indexOf("<game name=\"");
-#elif defined(QMC2_EMUTYPE_MESS)
-					int startIndex = xmlLineBuffer.indexOf("<machine name=\"");
-#endif
-
 					if ( startIndex >= 0 ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 						startIndex += 12;
-#elif defined(QMC2_EMUTYPE_MESS)
-						startIndex += 15;
-#endif
 						int endIndex = xmlLineBuffer.indexOf("\"", startIndex);
 						if ( endIndex >= 0 ) {
 							currentSetName = xmlLineBuffer.mid(startIndex, endIndex - startIndex);
@@ -2880,25 +2604,12 @@ void Gamelist::loadReadyReadStandardOutput()
 					}
 				} else {
 					setXmlBuffer += xmlLineBuffer;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 					int index = xmlLineBuffer.indexOf("</game>");
-#elif defined(QMC2_EMUTYPE_MESS)
-					int index = xmlLineBuffer.indexOf("</machine>");
-#endif
 					if ( index >= 0 ) {
 						if ( setXmlBuffer.endsWith("\n") )
 							setXmlBuffer.remove(setXmlBuffer.length() - 1, 1);
-
-						if ( xmlDb()->exists(currentSetName) ) {
-#if defined(QMC2_EMUTYPE_MAME)
+						if ( xmlDb()->exists(currentSetName) )
 							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME developers").arg(currentSetName));
-#elif defined(QMC2_EMUTYPE_MESS)
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MESS developers").arg(currentSetName));
-#elif defined(QMC2_EMUTYPE_UME)
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME/MESS developers").arg(currentSetName));
-#endif
-						}
-
 						xmlDb()->setXml(currentSetName, setXmlBuffer);
 						uncommittedXmlDbRows++;
 						currentSetName.clear();
@@ -2915,11 +2626,7 @@ void Gamelist::loadReadyReadStandardOutput()
 		uncommittedXmlDbRows = 0;
 	}
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + readBuffer.count("<game name="));
-#elif defined(QMC2_EMUTYPE_MESS)
-	qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + readBuffer.count("<machine name="));
-#endif
 }
 
 void Gamelist::loadError(QProcess::ProcessError processError)
@@ -2986,9 +2693,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				QTreeWidgetItem *romItem = qmc2GamelistItemHash[gameName];
 				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[gameName];
 				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
-#endif
 				if ( romCache.isOpen() )
 					tsRomCache << gameName << " U\n";
 				numUnknownGames++;
@@ -2999,10 +2704,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 							hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
 							if ( categoryItem )
 								categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 							if ( versionItem )
 								versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
-#endif
 						}
 					} else if ( isDevice ) {
 						if ( showROMStatusIcons ) {
@@ -3010,10 +2713,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 							hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
 							if ( categoryItem )
 								categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 							if ( versionItem )
 								versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
-#endif
 						}
 					} else {
 						if ( showROMStatusIcons ) {
@@ -3021,10 +2722,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 							hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
 							if ( categoryItem )
 								categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 							if ( versionItem )
 								versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
-#endif
 						}
 					}
 				}
@@ -3047,9 +2746,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				QTreeWidgetItem *romItem = qmc2GamelistItemHash[gameName];
 				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[gameName];
 				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
-#endif
 				// there are quite a number of sets in MESS and MAME that don't require any ROMs... many/most device-sets in particular
 				bool romRequired = true;
 				int xmlCounter = 0;
@@ -3058,11 +2755,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					int romCounter = 0;
 					int chdCounter = 0;
 					bool endFound = false;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 					QString endMark = "</game>";
-#elif defined(QMC2_EMUTYPE_MESS)
-					QString endMark = "</machine>";
-#endif
 					while ( !endFound && xmlCounter < xmlLines.count() ) {
 						if ( xmlLines[xmlCounter].contains("<rom name=\"") ) {
 							romCounter++;
@@ -3096,19 +2789,15 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 								hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
 								if ( categoryItem )
 									categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 								if ( versionItem )
 									versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-#endif
 							} else {
 								romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
 								hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
 								if ( categoryItem )
 									categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 								if ( versionItem )
 									versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-#endif
 							}
 						}
 					} else if ( isDevice ) {
@@ -3117,19 +2806,15 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 							hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
 							if ( categoryItem )
 								categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 							if ( versionItem )
 								versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
-#endif
 						} else {
 							romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
 							hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
 							if ( categoryItem )
 								categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 							if ( versionItem )
 								versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
-#endif
 						}
 					} else {
 						if ( showROMStatusIcons ) {
@@ -3138,19 +2823,15 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 								hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
 								if ( categoryItem )
 									categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 								if ( versionItem )
 									versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-#endif
 							} else {
 								romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
 								hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
 								if ( categoryItem )
 									categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 								if ( versionItem )
 									versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
-#endif
 							}
 						}
 					}
@@ -3186,19 +2867,15 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				if ( checkedItem == qmc2CurrentItem )
 					qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorGreen);
 				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
-#endif
 				if ( isBios(gameName) ) {
 					if ( showROMStatusIcons ) {
 						checkedItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
 						hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
 						if ( categoryItem )
 							categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 						if ( versionItem )
 							versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-#endif
 					}
 				} else if ( isDevice(gameName) ) {
 					if ( showROMStatusIcons ) {
@@ -3206,10 +2883,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 						hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
 						if ( categoryItem )
 							categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 						if ( versionItem )
 							versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
-#endif
 					}
 				} else {
 					if ( showROMStatusIcons ) {
@@ -3217,10 +2892,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 						hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
 						if ( categoryItem )
 							categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 						if ( versionItem )
 							versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
-#endif
 					}
 				}
 			}
@@ -3284,11 +2957,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	}
 
 	if ( qmc2SortCriteria == QMC2_SORT_BY_ROM_STATE ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting game list by %1 in %2 order").arg(tr("ROM state")).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
-#elif defined(QMC2_EMUTYPE_MESS)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(tr("ROM state")).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
-#endif
 		qmc2SortingActive = true;
 		qApp->processEvents();
 		foreach (QTreeWidgetItem *ti, qmc2ExpandedGamelistItems) {
@@ -3304,9 +2973,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
 		qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
 		qmc2MainWindow->treeWidgetCategoryView->setUpdatesEnabled(false);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		qmc2MainWindow->treeWidgetVersionView->setUpdatesEnabled(false);
-#endif
 		qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		qApp->processEvents();
 		qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
@@ -3315,18 +2982,14 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 			qApp->processEvents();
 		}
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		if ( qmc2MainWindow->treeWidgetVersionView->topLevelItemCount() > 0 ) {
 			qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 			qApp->processEvents();
 		}
-#endif
 		qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
 		qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
 		qmc2MainWindow->treeWidgetCategoryView->setUpdatesEnabled(true);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		qmc2MainWindow->treeWidgetVersionView->setUpdatesEnabled(true);
-#endif
 		qmc2SortingActive = false;
 		QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 	}
@@ -3388,9 +3051,7 @@ void Gamelist::verifyReadyReadStandardOutput()
 					QTreeWidgetItem *romItem = qmc2GamelistItemHash[romName];
 					QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[romName];
 					QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[romName];
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 					QTreeWidgetItem *versionItem = qmc2VersionItemHash[romName];
-#endif
 					if ( romItem && hierarchyItem ) {
 						if ( words.last() == "good" || lines[i].endsWith("has no roms!") ) {
 							romState = 'C';
@@ -3402,28 +3063,22 @@ void Gamelist::verifyReadyReadStandardOutput()
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-#endif
 								} else if ( isDevice ) {
 									romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
-#endif
 								} else {
 									romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
-#endif
 								}
 							}
 							if ( romItem == qmc2CurrentItem )
@@ -3438,28 +3093,22 @@ void Gamelist::verifyReadyReadStandardOutput()
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
-#endif
 								} else if ( isDevice ) {
 									romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectDeviceImageIcon);
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectDeviceImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectDeviceImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectDeviceImageIcon);
-#endif
 								} else {
 									romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
-#endif
 								}
 							}
 							if ( romItem == qmc2CurrentItem )
@@ -3474,28 +3123,22 @@ void Gamelist::verifyReadyReadStandardOutput()
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
-#endif
 								} else if ( isDevice ) {
 									romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectDeviceImageIcon);
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectDeviceImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectDeviceImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectDeviceImageIcon);
-#endif
 								} else {
 									romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
-#endif
 								}
 							}
 							if ( romItem == qmc2CurrentItem )
@@ -3510,28 +3153,22 @@ void Gamelist::verifyReadyReadStandardOutput()
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-#endif
 								} else if ( isDevice ) {
 									romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
-#endif
 								} else {
 									romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-#endif
 								}
 							}
 							if ( romItem == qmc2CurrentItem )
@@ -3546,28 +3183,22 @@ void Gamelist::verifyReadyReadStandardOutput()
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
-#endif
 								} else if ( isDevice ) {
 									romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
-#endif
 								} else {
 									romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
 									hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
 									if ( categoryItem )
 										categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 									if ( versionItem )
 										versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
-#endif
 								}
 							}
 							if ( romItem == qmc2CurrentItem )
@@ -3792,7 +3423,6 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 	return false;
 }
 
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 void Gamelist::loadCategoryIni()
 {
 #ifdef QMC2_DEBUG
@@ -3871,7 +3501,6 @@ void Gamelist::loadCategoryIni()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading category.ini, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n category record(s) loaded", "", entryCounter));
 }
-#endif
 
 void Gamelist::createCategoryView()
 {
@@ -4038,7 +3667,6 @@ void Gamelist::createCategoryView()
 	creatingCatView = false;
 }
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 void Gamelist::loadCatverIni()
 {
 #ifdef QMC2_DEBUG
@@ -4278,7 +3906,6 @@ void Gamelist::createVersionView()
 	qmc2MainWindow->treeWidgetVersionView->setFocus();
 	creatingVerView = false;
 }
-#endif
 
 QString Gamelist::romStatus(QString systemName, bool translated)
 {
@@ -4360,7 +3987,6 @@ void Gamelist::clearCategoryNames()
 	categoryNames.clear();
 }
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 void Gamelist::clearVersionNames()
 {
 	foreach (QString *version, versionNames)
@@ -4368,7 +3994,6 @@ void Gamelist::clearVersionNames()
 			delete version;
 	versionNames.clear();
 }
-#endif
 
 bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
 {
@@ -4413,10 +4038,8 @@ bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
 		case QMC2_SORT_BY_CATEGORY:
 			return (text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper());
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_SORT_BY_VERSION:
 			return (text(QMC2_GAMELIST_COLUMN_VERSION).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_VERSION).toUpper());
-#endif
 
 		default:
 			return false;

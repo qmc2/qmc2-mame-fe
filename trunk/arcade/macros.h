@@ -116,12 +116,10 @@
 #define QMC2_ARCADE_INFO_CLASS_SOFT     2
 
 // additional command line arguments
-// -emu <emu> ([mame], mess, ume)
+// -emu <emu> ([mame])
 #define QMC2_ARCADE_CLI_EMU             (argumentList.indexOf("-emu") >= 0 && argumentList.count() > argumentList.indexOf("-emu") + 1 ? argumentList[argumentList.indexOf("-emu") + 1].toLower() : "mame")
 #define QMC2_ARCADE_CLI_EMU_MAME        (argumentList.indexOf("-emu") >= 0 && argumentList.count() > argumentList.indexOf("-emu") + 1 ? argumentList[argumentList.indexOf("-emu") + 1].toLower() == "mame" : false)
-#define QMC2_ARCADE_CLI_EMU_MESS        (argumentList.indexOf("-emu") >= 0 && argumentList.count() > argumentList.indexOf("-emu") + 1 ? argumentList[argumentList.indexOf("-emu") + 1].toLower() == "mess" : false)
-#define QMC2_ARCADE_CLI_EMU_UME         (argumentList.indexOf("-emu") >= 0 && argumentList.count() > argumentList.indexOf("-emu") + 1 ? argumentList[argumentList.indexOf("-emu") + 1].toLower() == "ume" : false)
-#define QMC2_ARCADE_CLI_EMU_UNK         (!QMC2_ARCADE_CLI_EMU_MAME && !QMC2_ARCADE_CLI_EMU_MESS && !QMC2_ARCADE_CLI_EMU_UME)
+#define QMC2_ARCADE_CLI_EMU_UNK         !QMC2_ARCADE_CLI_EMU_MAME
 #define QMC2_ARCADE_CLI_EMU_INV         (argumentList.indexOf("-emu") >= 0 && argumentList.count() == argumentList.indexOf("-emu") + 1)
 // -theme <theme> ([ToxicWaste], darkone)
 #define QMC2_ARCADE_CLI_THEME           (argumentList.indexOf("-theme") >= 0 && argumentList.count() > argumentList.indexOf("-theme") + 1 ? argumentList[argumentList.indexOf("-theme") + 1] : "ToxicWaste")

@@ -143,7 +143,6 @@
         <file>data/img/marquee.png</file>
         <file>data/img/maws.png</file>
         <file>data/img/maximize.png</file>
-        <file>data/img/mess.png</file>
         <file>data/img/media_back.png</file>
         <file>data/img/media_fastbackward.png</file>
         <file>data/img/media_fastforward.png</file>
@@ -189,12 +188,6 @@
         <file>data/img/qmc2_logo_big.png</file>
         <file>data/img/qmc2_logo_small.png</file>
         <file>data/img/qmc2_mame_splash.png</file>
-        <file>data/img/qmc2_mess_logo_big.png</file>
-        <file>data/img/qmc2_mess_logo_small.png</file>
-        <file>data/img/qmc2_mess_splash.png</file>
-        <file>data/img/qmc2_ume_logo_big.png</file>
-        <file>data/img/qmc2_ume_logo_small.png</file>
-        <file>data/img/qmc2_ume_splash.png</file>
         <file>data/img/qmc2-arcade.png</file>
         <file>data/img/qmc2-arcade-setup.png</file>
         <file>data/img/qt-logo.png</file>
@@ -265,7 +258,6 @@
         <file>data/img/trafficlight_off.png</file>
         <file>data/img/trafficlight_red.png</file>
         <file>data/img/trafficlight_yellow.png</file>
-        <file>data/img/ume.png</file>
         <file>data/img/undo.png</file>
         <file>data/img/unknown.png</file>
         <file>data/img/unlock.png</file>

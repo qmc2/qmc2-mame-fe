@@ -461,40 +461,24 @@ void DatInfoDatabaseManager::recreateGameInfoTable()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_gameInfoTableName)) ) {
-#if defined(QMC2_EMUTYPE_MESS)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-#else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-#endif
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_gameInfoTableName)) ) {
-#if defined(QMC2_EMUTYPE_MESS)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-#else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-#endif
 		return;
 	}
 	query.finish();
 	query.exec("VACUUM");
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT, infotext TEXT, emulator TEXT, PRIMARY KEY (id))").arg(m_gameInfoTableName)) ) {
-#if defined(QMC2_EMUTYPE_MESS)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-#else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-#endif
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_gameInfoTableName)) )
-#if defined(QMC2_EMUTYPE_MESS)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-#else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-#endif
 }
 
 void DatInfoDatabaseManager::recreateMetaDataTable()
@@ -892,11 +876,7 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 			qmc2StopParser = false;
 			beginTransaction();
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				qmc2MainWindow->progressBarGamelist->setFormat(tr("Game info - %p%"));
-#elif defined(QMC2_EMUTYPE_MESS)
-				qmc2MainWindow->progressBarGamelist->setFormat(tr("Machine info - %p%"));
-#endif
 			else
 				qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 			qmc2MainWindow->progressBarGamelist->setRange(0, gameInfoDB.size());
@@ -967,36 +947,17 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 								pendingUpdates = 0;
 								beginTransaction();
 							}
-						} else {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+						} else
 							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in game info file %1").arg(QDir::toNativeSeparators(path)));
-#elif defined(QMC2_EMUTYPE_MESS)
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in machine info file %1").arg(QDir::toNativeSeparators(path)));
-#endif
-						}
-					} else {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+					} else
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$bio' in game info file %1").arg(QDir::toNativeSeparators(path)));
-#elif defined(QMC2_EMUTYPE_MESS)
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$bio' in machine info file %1").arg(QDir::toNativeSeparators(path)));
-#endif
-					}
-				} else if ( !ts.atEnd() ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+				} else if ( !ts.atEnd() )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in game info file %1").arg(QDir::toNativeSeparators(path)));
-#elif defined(QMC2_EMUTYPE_MESS)
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in machine info file %1").arg(QDir::toNativeSeparators(path)));
-#endif
-				}
 			}
 			commitTransaction();
 			qmc2MainWindow->progressBarGamelist->setValue(gameInfoDB.pos());
 			if ( qmc2StopParser ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("import stopped, invalidating %1 table").arg(tr("game info")));
-#elif defined(QMC2_EMUTYPE_MESS)
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("import stopped, invalidating %1 table").arg(tr("machine info")));
-#endif
 				recreateGameInfoTable();
 				break;
 			} else
@@ -1004,22 +965,12 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 			importPaths << path;
 			importDates << QString::number(QFileInfo(path).lastModified().toTime_t());
 			gameInfoDB.close();
-		} else {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		} else
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: can't open game info file %1").arg(QDir::toNativeSeparators(path)));
-#elif defined(QMC2_EMUTYPE_MESS)
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: can't open machine info file %1").arg(QDir::toNativeSeparators(path)));
-#endif
-		}
 	}
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	if ( !qmc2StopParser )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("%n game info record(s) imported", "", gameInfoRowCount()));
-#elif defined(QMC2_EMUTYPE_MESS)
-	if ( !qmc2StopParser )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("%n machine info record(s) imported", "", gameInfoRowCount()));
-#endif
 
 	if ( !importPaths.isEmpty() ) {
 		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "DatInfoDatabase/GameInfoImportFiles", importPaths);

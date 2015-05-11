@@ -45,36 +45,6 @@ AUDIOEFFECTDIALOGS = 1
 endif
 endif
 
-# >>> EMULATOR / EMU <<<
-#
-# Specifies the target emulator to be used.
-#
-# IMPORTANT: you need to build QMC2 for each target emulator separately; do a
-# 'make clean' between the builds!
-#
-# Supported emulators:
-#
-# UNIX and Mac OS X .... SDLMAME (default), SDLMESS or SDLUME (you can can also
-#                        use EMU=MAME|MESS|UME and/or mixed-case letters)
-# Windows .............. MAME (default), MESS or UME (you can also use lower-
-#                        case letters, mixed-case won't work though)
-#
-ifndef EMULATOR
-ifeq '$(MINGW)' '1'
-ifdef EMU
-EMULATOR = $(EMU)
-else
-EMULATOR = MAME
-endif
-else
-ifdef EMU
-EMULATOR = $(EMU)
-else
-EMULATOR = SDLMAME
-endif
-endif
-endif
-
 # >>> PREFIX <<<
 #
 # The prefix directory used by the 'make install' target.
@@ -319,14 +289,6 @@ endif
 #
 ifndef QT_TRANSLATION
 QT_TRANSLATION = qmc2
-endif
-
-# >>> VARIANT_LAUNCHER <<<
-#
-# Enable (1) or disable (0) QMC2's 'variant launching'.
-#
-ifndef VARIANT_LAUNCHER
-VARIANT_LAUNCHER = 1
 endif
 
 # >>> BROWSER_EXTRAS <<<
@@ -595,54 +557,15 @@ else
 include arch/Windows.cfg
 endif
 
-# make sure the emulator target is in capital letters
-ifdef TR
-QMC2_EMULATOR = $(shell $(ECHO) $(EMULATOR) | $(TR) [a-z] [A-Z])
-else
-QMC2_EMULATOR = $(EMULATOR)
-ifeq '$(EMULATOR)' 'mame'
-QMC2_EMULATOR = MAME
-endif
-ifeq '$(EMULATOR)' 'mess'
-QMC2_EMULATOR = MESS
-endif
-ifeq '$(EMULATOR)' 'ume'
-QMC2_EMULATOR = UME
-endif
-ifeq '$(EMULATOR)' 'sdlmame'
-QMC2_EMULATOR = SDLMAME
-endif
-ifeq '$(EMULATOR)' 'sdlmess'
-QMC2_EMULATOR = SDLMESS
-endif
-ifeq '$(EMULATOR)' 'sdlume'
-QMC2_EMULATOR = SDLUME
-endif
-endif
-
 ifneq '$(ARCH)' 'Windows'
-ifeq '$(QMC2_EMULATOR)' 'MAME'
 QMC2_EMULATOR = SDLMAME
-endif
-ifeq '$(QMC2_EMULATOR)' 'MESS'
-QMC2_EMULATOR = SDLMESS
-endif
-ifeq '$(QMC2_EMULATOR)' 'UME'
-QMC2_EMULATOR = SDLUME
-endif
+else
+QMC2_EMULATOR = MAME
 endif
 
 # associate icon files
 ifeq '$(ARCH)' 'Darwin'
-ifeq '$(QMC2_EMULATOR)' 'SDLMAME'
 MYAPPICON = mame.icns
-endif
-ifeq '$(QMC2_EMULATOR)' 'SDLMESS'
-MYAPPICON = mess.icns
-endif
-ifeq '$(QMC2_EMULATOR)' 'SDLUME'
-MYAPPICON = ume.icns
-endif
 endif
 
 ifndef SVN_REV
@@ -714,7 +637,7 @@ blank =
 space = $(blank) $(blank)
 
 # pre-compiler definitions (passed to qmake)
-DEFINES = DEFINES+=QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED)
+DEFINES = DEFINES+=QMC2_$(QMC2_EMULATOR) QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED)
 
 # available translations
 QMC2_TRANSLATIONS = de es el fr it pl pt ro sv us
@@ -724,14 +647,10 @@ QT_TRANSLATIONS = de es fr pl pt sv
 ifeq '$(DEBUG)' '2'
 DEFINES += QMC2_DEBUG
 endif
-DEFINES += QMC2_$(QMC2_EMULATOR)
+
 
 ifeq '$(ARCH)' 'Darwin'
 DEFINES += QMC2_MAC_UNIVERSAL=$(MAC_UNIVERSAL)
-endif
-
-ifeq '$(VARIANT_LAUNCHER)' '1'
-DEFINES += QMC2_VARIANT_LAUNCHER
 endif
 
 ifeq '$(BROWSER_EXTRAS)' '1'
@@ -802,34 +721,18 @@ undef ARCADE_QMAKE_CONF
 endif
 
 # setup TARGET's application icon and generic name
-ifeq '$(QMC2_EMULATOR)' 'SDLMESS'
-EMUICO = mess.png
-GENERICNAME = M.E.S.S. Catalog / Launcher II
-endif
-ifeq '$(QMC2_EMULATOR)' 'SDLMAME'
 EMUICO = mame.png
 GENERICNAME = M.A.M.E. Catalog / Launcher II
-endif
-ifeq '$(QMC2_EMULATOR)' 'SDLUME'
-EMUICO = ume.png
-GENERICNAME = U.M.E. Catalog / Launcher II
-endif
 
 # target name (variant)
 ifneq '$(ARCH)' 'Windows'
-TARGET_NAME = $(PROJECT)-$(shell $(ECHO) $(QMC2_EMULATOR) | $(TR) [A-Z] [a-z])
+TARGET_NAME = $(PROJECT)-sdlmame
 else
-ifeq '$(QMC2_EMULATOR)' 'MAME'
 TARGET_NAME = $(PROJECT)-mame
 endif
-ifeq '$(QMC2_EMULATOR)' 'MESS'
-TARGET_NAME = $(PROJECT)-mess
-endif
-ifeq '$(QMC2_EMULATOR)' 'UME'
-TARGET_NAME = $(PROJECT)-ume
-endif
-endif
+
 QMAKE_CONF = TARGET=$(TARGET_NAME)
+
 ifeq '$(DEBUG)' '0'
 QMAKE_CONF += CONFIG+=warn_off CONFIG+=release
 else
@@ -1130,14 +1033,8 @@ endif
 ifneq '$(ARCH)' 'Windows'
 	@$(RM) data/opt/template.xml > /dev/null
 endif
-ifeq '$(QMC2_EMULATOR)' 'SDLMAME'
-	@$(LN) -s SDLMAME/template.xml data/opt/template.xml > /dev/null
-endif
-ifeq '$(QMC2_EMULATOR)' 'SDLMESS'
-	@$(LN) -s SDLMESS/template.xml data/opt/template.xml > /dev/null
-endif
+	@$(LN) -s SDLMAME/template-SDL2.xml data/opt/template.xml > /dev/null
 	@$(ECHO) "Build of QMC2 v$(VERSION) complete"
-	@$(ECHO) "Target emulator: $(QMC2_EMULATOR)"
 
 ifeq '$(ARCH)' 'Darwin'
 $(QMAKEFILE): $(PROJECT).pro arch/Darwin/Info.plist
@@ -1201,14 +1098,8 @@ endif
 ifneq '$(ARCH)' 'Windows'
 	@$(RM) data/opt/template.xml
 endif
-ifeq '$(QMC2_EMULATOR)' 'SDLMAME'
-	@$(LN) -s SDLMAME/template.xml data/opt/template.xml
-endif
-ifeq '$(QMC2_EMULATOR)' 'SDLMESS'
-	@$(LN) -s SDLMESS/template.xml data/opt/template.xml
-endif
+	@$(LN) -s SDLMAME/template-SDL2.xml data/opt/template.xml
 	@$(ECHO) "Build of QMC2 v$(VERSION) complete"
-	@$(ECHO) "Target emulator: $(QMC2_EMULATOR)"
 
 ifeq '$(ARCH)' 'Darwin'
 $(QMAKEFILE): $(PROJECT).pro arch/Darwin/Info.plist
@@ -1521,11 +1412,6 @@ config:
 	@$(ECHO) "DISTCC_CC              Command used for distributed cc               $(DISTCC_CC)"
 	@$(ECHO) "DISTCC_CXX             Command used for distributed c++              $(DISTCC_CXX)"
 	@$(ECHO) "DISTCFG                Use distribution-specific config (0, 1)       $(DISTCFG)"
-ifeq '$(ARCH)' 'Windows'
-	@$(ECHO) "EMULATOR, EMU          Target emulator (MAME, MESS or UME)           $(QMC2_EMULATOR)"
-else
-	@$(ECHO) "EMULATOR, EMU          Target emulator (SDLMAME, SDLMESS or SDLUME)  $(QMC2_EMULATOR)"
-endif
 	@$(ECHO) "FADER_SPEED            Audio fading speed (0: fastest, >0: slower)   $(FADER_SPEED)"
 	@$(ECHO) "FIND                   UNIX command find                             $(FIND)"
 	@$(ECHO) "GREP                   UNIX command grep                             $(GREP)"
@@ -1580,7 +1466,6 @@ endif
 	@$(ECHO) "TARGET                 Name of the QMC2 'target executable'          $(TARGET_NAME)"
 	@$(ECHO) "TR                     UNIX command tr                               $(TR)"
 	@$(ECHO) "TIME                   UNIX command time                             $(TIME)"
-	@$(ECHO) "VARIANT_LAUNCHER       Enable the QMC2 variant launcher (0, 1)       $(VARIANT_LAUNCHER)"
 	@$(ECHO) "WC_COMPRESSION         Compress MAWS web-cache data (0, 1)           $(WC_COMPRESSION)"
 	@$(ECHO) "WIP                    Enable unfinished code (0, 1)                 $(WIP)"
 	@$(ECHO) "YOUTUBE                Enable support for YouTube videos (0, 1)      $(YOUTUBE)"

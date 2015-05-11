@@ -20,9 +20,7 @@ extern Gamelist *qmc2Gamelist;
 extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
-#endif
 
 UserDataDatabaseManager::UserDataDatabaseManager(QObject *parent)
 	: QObject(parent)
@@ -531,11 +529,9 @@ void UserDataDatabaseManager::fillUpRankCache()
 			item = qmc2CategoryItemHash[idString];
 			if ( item )
 				item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, rankString);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			item = qmc2VersionItemHash[idString];
 			if ( item )
 				item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, rankString);
-#endif
 		}
 		if ( row % 25 == 0 )
 			qApp->processEvents();
