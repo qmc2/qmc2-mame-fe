@@ -4361,7 +4361,8 @@ void ROMAlyzer::checkSumScannerThread_scanFinished()
 	pushButtonCheckSumDbPauseResumeScan->setEnabled(true);
 	tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked());
 	qApp->processEvents();
-	QTimer::singleShot(0, this, SLOT(updateCheckSumDbStatus()));
+	updateCheckSumDbStatus();
+	QTimer::singleShot(50, this, SLOT(updateCheckSumDbStatus()));
 }
 
 void ROMAlyzer::checkSumScannerThread_scanPaused()
