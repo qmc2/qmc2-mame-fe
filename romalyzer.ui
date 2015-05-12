@@ -355,9 +355,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-221</y>
+            <y>-343</y>
             <width>617</width>
-            <height>788</height>
+            <height>768</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayoutScrollAreeaSettings" rowstretch="0,0,0,1,0">
@@ -1347,9 +1347,6 @@
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
-                  </property>
-                  <property name="margin">
-                   <number>10</number>
                   </property>
                  </widget>
                 </item>
