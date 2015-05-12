@@ -1008,9 +1008,9 @@ ifeq '$(ARCH)' 'Windows'
 	+@$(MAKESILENT) -f $(QMAKEFILE) > NUL
 else
 ifeq '$(CTIME)' '0'
-	+@$(MAKESILENT) -f $(QMAKEFILE) > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) runonce.pro > /dev/null && $(MAKESILENT) -f $(QMAKEFILE) > /dev/null
+	+@$(MAKESILENT) -f $(QMAKEFILE) > /dev/null
 else
-	+@$(TIME) ($(MAKESILENT) -f $(QMAKEFILE) > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) runonce.pro > /dev/null && $(MAKESILENT) -f $(QMAKEFILE) > /dev/null)
+	+@$(TIME) ($(MAKESILENT) -f $(QMAKEFILE) > /dev/null)
 endif
 endif
 endif
@@ -1073,9 +1073,9 @@ ifeq '$(ARCH)' 'Windows'
 	+@$(MAKE) -f $(QMAKEFILE)
 else
 ifeq '$(CTIME)' '0'
-	+@$(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) runonce.pro && $(MAKE) -f $(QMAKEFILE)
+	+@$(MAKE) -f $(QMAKEFILE)
 else
-	+@$(TIME) ($(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) runonce.pro && $(MAKE) -f $(QMAKEFILE))
+	+@$(TIME) ($(MAKE) -f $(QMAKEFILE))
 endif
 endif
 endif
@@ -1130,7 +1130,6 @@ ifeq '$(ARCH)' 'Darwin'
 else
 	@$(RM) -f "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
 	@$(RSYNC) --exclude '*svn*' "./$(TARGET_NAME)" "$(DESTDIR)/$(BINDIR)"
-	@$(RSYNC) --exclude '*svn*' "./runonce/runonce" "$(DESTDIR)/$(BINDIR)"
 	@(cd "$(DESTDIR)/$(BINDIR)" && $(LN) -s "$(TARGET_NAME)" "$(PROJECT)")
 endif
 	@$(RSYNC) --exclude '*svn*' ./data/lng/qmc2_*.qm "$(GLOBAL_DATADIR)/$(PROJECT)/lng/"
@@ -1206,8 +1205,6 @@ else
 endif
 else
 ifneq '$(ARCH)' 'Windows'
-	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE)
-	@$(RM) runonce/runonce
 	@$(MAKE) -f $(QMAKEFILE) distclean
 else
 	@$(MAKE) -f $(QMAKEFILE) distclean
@@ -1243,8 +1240,6 @@ else
 endif
 else
 ifneq '$(ARCH)' 'Windows'
-	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE) > /dev/null
-	@$(RM) runonce/runonce > /dev/null
 	@$(MAKE) -f $(QMAKEFILE) distclean > /dev/null
 else
 	@$(MAKE) -f $(QMAKEFILE) distclean > NUL
