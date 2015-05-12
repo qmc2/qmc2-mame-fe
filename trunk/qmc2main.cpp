@@ -7648,7 +7648,7 @@ void MainWindow::createFifo(bool logFifoCreation)
 	// FIXME: implement Windows specific notifier FIFO support
 #elif defined(QMC2_SDLMAME)
 	if ( !EXISTS(QMC2_SDLMAME_OUTPUT_FIFO) )
-		mkfifo(QMC2_SDLMAME_OUTPUT_FIFO, S_IRUSR | S_IWUSR | S_IRGRP);
+		::mkfifo(QMC2_SDLMAME_OUTPUT_FIFO, S_IRUSR | S_IWUSR | S_IRGRP);
 	if ( !EXISTS(QMC2_SDLMAME_OUTPUT_FIFO) ) {
 		log(QMC2_LOG_FRONTEND, tr("WARNING: can't create SDLMAME output notifier FIFO, path = %1").arg(QMC2_SDLMAME_OUTPUT_FIFO));
 	} else {
@@ -7681,27 +7681,6 @@ void MainWindow::createFifo(bool logFifoCreation)
 		qmc2FifoIsOpen = false;
 }
 
-void MainWindow::recreateFifo()
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::recreateFifo()");
-#endif
-
-#if defined(QMC2_OS_WIN)
-	// FIXME: implement Windows specific notifier FIFO support
-#elif defined(QMC2_SDLMAME)
-	disconnect(qmc2FifoNotifier);
-	delete qmc2FifoNotifier;
-	qmc2FifoNotifier = NULL;
-	if ( qmc2FifoFile->isOpen() )
-		qmc2FifoFile->close();
-	delete qmc2FifoFile;
-	// ::unlink(QMC2_SDLMAME_OUTPUT_FIFO);
-	qmc2FifoFile = NULL;
-	createFifo(false);
-#endif
-}
-
 void MainWindow::processFifoData()
 {
 #ifdef QMC2_DEBUG
@@ -7711,18 +7690,16 @@ void MainWindow::processFifoData()
 	if ( qmc2CleaningUp )
 		return;
 
+	if ( !qmc2FifoFile )
+		return;
+
 #if defined(QMC2_SDLMAME)
 	QTextStream ts(qmc2FifoFile);
 	QString data = ts.readAll();
 	int i;
 
-	if ( data.isEmpty() ) {
-		if ( qmc2ProcessManager->procMap.count() <= 0 ) {
-			// last emulator exited... recreate & reconnect FIFO to circumvent endless loops due to NULL data
-			recreateFifo();
-		}
+	if ( data.isEmpty() )
 		return;
-	}
 
 	QStringList sl = data.split("\n");
 
