@@ -139,7 +139,6 @@ extern QHash<QString, QString> qmc2CustomShortcutHash;
 extern KeyPressFilter *qmc2KeyPressFilter;
 extern QHash<QString, QKeySequence> qmc2QtKeyHash;
 extern QHash<QString, QByteArray *> qmc2GameInfoDB;
-extern MiniWebBrowser *qmc2MAWSLookup;
 extern ComponentSetup *qmc2ComponentSetup;
 extern ToolBarCustomizer *qmc2ToolBarCustomizer;
 extern PaletteEditor *qmc2PaletteEditor;
@@ -243,22 +242,6 @@ Options::Options(QWidget *parent)
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	checkBoxMinimizeOnEmuLaunch->setToolTip(tr("Minimize when launching (non-embedded) emulators?"));
 #endif
-
-	// FIXME: remove the variant and MAWS stuff completely!
-	checkBoxMinimizeOnVariantLaunch->setVisible(false);
-	checkBoxExitOnVariantLaunch->setVisible(false);
-	labelMAMEVariantExe->setVisible(false);
-	lineEditMAMEVariantExe->setVisible(false);
-	toolButtonBrowseMAMEVariantExe->setVisible(false);
-	labelMESSVariantExe->setVisible(false);
-	lineEditMESSVariantExe->setVisible(false);
-	toolButtonBrowseMESSVariantExe->setVisible(false);
-	labelUMEVariantExe->setVisible(false);
-	lineEditUMEVariantExe->setVisible(false);
-	toolButtonBrowseUMEVariantExe->setVisible(false);
-	labelMAWSCacheDirectory->setVisible(false);
-	lineEditMAWSCacheDirectory->setVisible(false);
-	toolButtonBrowseMAWSCacheDirectory->setVisible(false);
 
 	comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
 	comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
@@ -1379,7 +1362,6 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("MAME/FilesAndDirectories/SlotInfoCacheFile", lineEditSlotInfoCacheFile->text());
 	config->setValue("MAME/FilesAndDirectories/SoftwareListCacheDatabase", lineEditSoftwareListCacheDb->text());
 	config->setValue("MAME/FilesAndDirectories/SoftwareStateCache", lineEditSoftwareStateCache->text());
-	config->setValue("MAME/FilesAndDirectories/MAWSCacheDirectory", lineEditMAWSCacheDirectory->text());
 	s = lineEditOptionsTemplateFile->text();
 	needRecreateTemplateMap = needRecreateTemplateMap || (config->value("MAME/FilesAndDirectories/OptionsTemplateFile").toString() != s );
 	config->setValue("MAME/FilesAndDirectories/OptionsTemplateFile", s);
@@ -2204,12 +2186,6 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
 	lineEditSlotInfoCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString());
 	lineEditSoftwareListCacheDb->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareListCacheDatabase", userScopePath + "/mame-swl-cache.db").toString());
-	QString mawsCachePath = config->value("MAME/FilesAndDirectories/MAWSCacheDirectory", userScopePath + "/maws/").toString();
-	QDir mawsCacheDir(mawsCachePath);
-	mawsCachePath = mawsCacheDir.absolutePath();
-	if ( !mawsCacheDir.exists() )
-		mawsCacheDir.mkdir(mawsCachePath);
-	lineEditMAWSCacheDirectory->setText(mawsCachePath);
 #if defined(QMC2_SDLMAME)
 	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template-SDL2.xml").toString());
 #elif defined(QMC2_MAME)
@@ -3020,21 +2996,6 @@ void Options::on_toolButtonBrowseWorkingDirectory_clicked()
 		if ( !s.endsWith("/") )
 			s += "/";
 		lineEditWorkingDirectory->setText(s);
-	}
-	raise();
-}
-
-void Options::on_toolButtonBrowseMAWSCacheDirectory_clicked()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMAWSCacheDirectory_clicked()");
-#endif
-
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose MAWS cache directory"), lineEditMAWSCacheDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-	if ( !s.isNull() ) {
-		if ( !s.endsWith("/") )
-			s += "/";
-		lineEditMAWSCacheDirectory->setText(s);
 	}
 	raise();
 }

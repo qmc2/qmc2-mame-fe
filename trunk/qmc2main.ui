@@ -1661,7 +1661,7 @@
              <string>Titl&amp;e</string>
             </attribute>
            </widget>
-           <widget class="QWidget" name="tabMAWS">
+           <widget class="QWidget" name="tabProjectMESS">
             <attribute name="icon">
              <iconset resource="qmc2.qrc">
               <normaloff>:/data/img/internet.png</normaloff>:/data/img/internet.png</iconset>
@@ -2631,7 +2631,7 @@
      <addaction name="separator"/>
      <addaction name="actionClearImageCache"/>
      <addaction name="actionClearIconCache"/>
-     <addaction name="actionClearMAWSCache"/>
+     <addaction name="actionClearProjectMESSCache"/>
      <addaction name="actionClearYouTubeCache"/>
      <addaction name="separator"/>
      <addaction name="actionRecreateTemplateMap"/>
@@ -3629,12 +3629,12 @@
     <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
-  <action name="actionClearMAWSCache">
+  <action name="actionClearProjectMESSCache">
    <property name="text">
-    <string>Clear MAWS cache</string>
+    <string>Clear ProjectMESS cache</string>
    </property>
    <property name="statusTip">
-    <string>Clear MAWS cache</string>
+    <string>Clear ProjectMESS cache</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>

@@ -345,6 +345,12 @@ bool Welcome::checkConfig()
 			foreach (QString key, valueMap.uniqueKeys())
 				startupConfig->setValue(QMC2_FRONTEND_PREFIX + key, valueMap[key]);
 		}
+		if ( QMC2_TEST_VERSION(omv, 52, osr, 6660) ) {
+			startupConfig->remove("MAME/FilesAndDirectories/MAWSCacheDirectory");
+			startupConfig->remove("Frontend/MAWS/Zoom");
+			startupConfig->remove("Frontend/GUI/ExitOnVariantLaunch");
+			startupConfig->remove("Frontend/GUI/MinimizeOnVariantLaunch");
+		}
 	}
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();
 	return configOkay;

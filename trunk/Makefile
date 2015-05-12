@@ -344,8 +344,8 @@ endif
 # Enable (1) or disable (0) web-cache compression when storing HTML pages on
 # disk?
 #
-# This is used by the MAWS web-cache feature -- and has nothing to do with a
-# toilet :). It just saves some disk space.
+# This is used by the ProjectMESS web-cache feature -- and has nothing to do
+# with a toilet :). It just saves some disk space.
 #
 ifndef WC_COMPRESSION
 WC_COMPRESSION = 1

@@ -96,8 +96,8 @@ extern QBitArray qmc2Filter;
 extern QMap<QString, unzFile> qmc2IconFileMap;
 extern QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
 extern QHash<QString, QIcon> qmc2IconHash;
-extern QTreeWidgetItem *qmc2LastMAWSItem;
-extern MiniWebBrowser *qmc2MAWSLookup;
+extern QTreeWidgetItem *qmc2LastProjectMESSItem;
+extern MiniWebBrowser *qmc2ProjectMESSLookup;
 extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
 extern DemoModeDialog *qmc2DemoModeDialog;
@@ -505,15 +505,15 @@ void Gamelist::load()
 	systemSoftwareFilterHash.clear();
 	qmc2LastGameInfoItem = NULL;
 	qmc2LastEmuInfoItem = NULL;
-	if ( qmc2MAWSLookup ) {
-		qmc2MAWSLookup->setVisible(false);
-		QLayout *vbl = qmc2MainWindow->tabMAWS->layout();
+	if ( qmc2ProjectMESSLookup ) {
+		qmc2ProjectMESSLookup->setVisible(false);
+		QLayout *vbl = qmc2MainWindow->tabProjectMESS->layout();
 		if ( vbl )
 			delete vbl;
-		delete qmc2MAWSLookup;
-		qmc2MAWSLookup = NULL;
+		delete qmc2ProjectMESSLookup;
+		qmc2ProjectMESSLookup = NULL;
 	}
-	qmc2LastMAWSItem = NULL;
+	qmc2LastProjectMESSItem = NULL;
 
 #if defined(QMC2_YOUTUBE_ENABLED)
 	qmc2LastYouTubeItem = NULL;
