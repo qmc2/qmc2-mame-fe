@@ -60,7 +60,6 @@
 #include "unzip.h"
 #include "sevenzipfile.h"
 #include "downloaditem.h"
-#include "mawsqdlsetup.h"
 #include "embedder.h"
 #include "demomode.h"
 #include "softwarelist.h"

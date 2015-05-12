@@ -44,7 +44,6 @@
 #include "toolbarcustomizer.h"
 #include "paletteeditor.h"
 #include "iconlineedit.h"
-#include "mawsqdlsetup.h"
 #include "imagewidget.h"
 #include "cookiejar.h"
 #include "cookiemanager.h"
@@ -141,7 +140,6 @@ extern KeyPressFilter *qmc2KeyPressFilter;
 extern QHash<QString, QKeySequence> qmc2QtKeyHash;
 extern QHash<QString, QByteArray *> qmc2GameInfoDB;
 extern MiniWebBrowser *qmc2MAWSLookup;
-extern MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup;
 extern ComponentSetup *qmc2ComponentSetup;
 extern ToolBarCustomizer *qmc2ToolBarCustomizer;
 extern PaletteEditor *qmc2PaletteEditor;

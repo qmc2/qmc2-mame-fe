@@ -40,7 +40,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			miniwebbrowser.ui \
 			youtubevideoplayer.ui \
 			videoitemwidget.ui \
-			mawsqdlsetup.ui \
 			embedderopt.ui \
 			demomode.ui \
 			audioeffects.ui \
@@ -100,7 +99,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			youtubevideoplayer.cpp \
 			videoitemwidget.cpp \
 			downloaditem.cpp \
-			mawsqdlsetup.cpp \
 			embedder.cpp \
 			embedderopt.cpp \
 			demomode.cpp \
@@ -220,7 +218,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			youtubevideoplayer.h \
 			videoitemwidget.h \
 			downloaditem.h \
-			mawsqdlsetup.h \
 			embedder.h \
 			embedderopt.h \
 			demomode.h \
