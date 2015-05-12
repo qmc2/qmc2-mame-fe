@@ -871,7 +871,7 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 			continue;
 		QFile gameInfoDB(path);
 		if ( gameInfoDB.open(QIODevice::ReadOnly | QIODevice::Text) ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("importing %1 from '%2'").arg(tr("system info-texts")).arg(QDir::toNativeSeparators(path)));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("importing %1 from '%2'").arg(tr("game info-texts")).arg(QDir::toNativeSeparators(path)));
 			qApp->processEvents();
 			qmc2StopParser = false;
 			beginTransaction();
@@ -961,7 +961,7 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 				recreateGameInfoTable();
 				break;
 			} else
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("done (importing %1 from '%2')").arg(tr("system info-texts")).arg(QDir::toNativeSeparators(path)));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("done (importing %1 from '%2')").arg(tr("game info-texts")).arg(QDir::toNativeSeparators(path)));
 			importPaths << path;
 			importDates << QString::number(QFileInfo(path).lastModified().toTime_t());
 			gameInfoDB.close();
