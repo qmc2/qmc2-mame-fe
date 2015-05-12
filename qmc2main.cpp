@@ -203,16 +203,14 @@ bool qmc2LoadingEmuInfoDB = false;
 QTreeWidgetItem *qmc2LastEmuInfoItem = NULL;
 bool qmc2LoadingSoftwareInfoDB = false;
 QTreeWidgetItem *qmc2LastSoftwareInfoItem = NULL;
-MiniWebBrowser *qmc2MAWSLookup = NULL;
-QTreeWidgetItem *qmc2LastMAWSItem = NULL;
-QCache<QString, QByteArray> qmc2MAWSCache;
+MiniWebBrowser *qmc2ProjectMESSLookup = NULL;
+QTreeWidgetItem *qmc2LastProjectMESSItem = NULL;
+QCache<QString, QByteArray> qmc2ProjectMESSCache;
 QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
 QTreeWidgetItem *qmc2CategoryViewSelectedItem = NULL;
 QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
 QTreeWidgetItem *qmc2VersionViewSelectedItem = NULL;
 MiniWebBrowser *qmc2ProjectMESS = NULL;
-QTreeWidgetItem *qmc2LastProjectMESSItem = NULL;
-QCache<QString, QByteArray> qmc2ProjectMESSCache;
 QTreeWidgetItem *qmc2LastSoftwareNotesItem = NULL;
 QTreeWidgetItem *qmc2LastSystemNotesItem = NULL;
 HtmlEditor *qmc2SystemNotesEditor = NULL;
@@ -593,7 +591,7 @@ MainWindow::MainWindow(QWidget *parent)
 	actionClearYouTubeCache->setVisible(false);
 #endif
 
-	qmc2ProjectMESSCache.setMaxCost(QMC2_PROJECT_MESS_CACHE_SIZE);
+	qmc2ProjectMESSCache.setMaxCost(QMC2_PROJECTMESS_CACHE_SIZE);
 	messDevCfgTimer.setSingleShot(true);
 
 	floatToggleButtonSoftwareDetail = new QToolButton(tabWidgetSoftwareDetail);
@@ -603,11 +601,6 @@ MainWindow::MainWindow(QWidget *parent)
 	floatToggleButtonSoftwareDetail->setIcon(QIcon(QString::fromUtf8(":/data/img/dock.png")));
 	tabWidgetSoftwareDetail->setCornerWidget(floatToggleButtonSoftwareDetail, Qt::TopRightCorner);
 
-	qmc2MAWSCache.setMaxCost(QMC2_PROJECTMESS_CACHE_SIZE);
-	actionClearMAWSCache->setText(tr("Clear ProjectMESS cache"));
-	actionClearMAWSCache->setIconText(tr("Clear ProjectMESS cache"));
-	actionClearMAWSCache->setToolTip(tr("Clear ProjectMESS cache"));
-	actionClearMAWSCache->setStatusTip(tr("Clear ProjectMESS cache"));
 #if defined(QMC2_OS_WIN)
 	treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_GAME, tr("Game"));
 #endif
@@ -2671,14 +2664,14 @@ void MainWindow::on_actionClearIconCache_triggered(bool)
 	log(QMC2_LOG_FRONTEND, tr("icon cache cleared"));
 }
 
-void MainWindow::on_actionClearMAWSCache_triggered(bool)
+void MainWindow::on_actionClearProjectMESSCache_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearMAWSCache_triggered(bool)");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearProjectMESSCache_triggered(bool)");
 #endif
 
-	QString cacheStatus = tr("freed %n byte(s) in %1", "", qmc2MAWSCache.totalCost()).arg(tr("%n entry(s)", "", qmc2MAWSCache.count()));
-	qmc2MAWSCache.clear();
+	QString cacheStatus = tr("freed %n byte(s) in %1", "", qmc2ProjectMESSCache.totalCost()).arg(tr("%n entry(s)", "", qmc2ProjectMESSCache.count()));
+	qmc2ProjectMESSCache.clear();
 	log(QMC2_LOG_FRONTEND, tr("ProjectMESS in-memory cache cleared (%1)").arg(cacheStatus));
 }
 
@@ -4240,44 +4233,44 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 			if ( qmc2YouTubeWidget )
 				qmc2YouTubeWidget->clearMessage();
 #endif
-			if ( qmc2CurrentItem != qmc2LastMAWSItem ) {
-				tabMAWS->setUpdatesEnabled(false);
-				if ( qmc2MAWSLookup ) {
-					QLayout *vbl = tabMAWS->layout();
+			if ( qmc2CurrentItem != qmc2LastProjectMESSItem ) {
+				tabProjectMESS->setUpdatesEnabled(false);
+				if ( qmc2ProjectMESSLookup ) {
+					QLayout *vbl = tabProjectMESS->layout();
 					if ( vbl )
 						delete vbl;
-					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ProjectMESS/Zoom", qmc2MAWSLookup->spinBoxZoom->value());
-					delete qmc2MAWSLookup;
-					qmc2MAWSLookup = NULL;
+					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ProjectMESS/Zoom", qmc2ProjectMESSLookup->spinBoxZoom->value());
+					delete qmc2ProjectMESSLookup;
+					qmc2ProjectMESSLookup = NULL;
 				}
 				gridLayout->getContentsMargins(&left, &top, &right, &bottom);
 				QVBoxLayout *layout = new QVBoxLayout;
 				layout->setContentsMargins(left, top, right, bottom);
-				qmc2MAWSLookup = new MiniWebBrowser(tabMAWS);
-				qmc2MAWSLookup->spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ProjectMESS/Zoom", 100).toInt());
-				layout->addWidget(qmc2MAWSLookup);
-				tabMAWS->setLayout(layout);
+				qmc2ProjectMESSLookup = new MiniWebBrowser(tabProjectMESS);
+				qmc2ProjectMESSLookup->spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ProjectMESS/Zoom", 100).toInt());
+				layout->addWidget(qmc2ProjectMESSLookup);
+				tabProjectMESS->setLayout(layout);
 				QString projectMessUrl;
-				QColor color = qmc2MAWSLookup->webViewBrowser->palette().color(QPalette::WindowText);
+				QColor color = qmc2ProjectMESSLookup->webViewBrowser->palette().color(QPalette::WindowText);
 				QString machName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
-				qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("ProjectMESS page for system '%1'").arg(machName));
-				if ( !qmc2MAWSCache.contains(machName) ) {
+				qmc2ProjectMESSLookup->webViewBrowser->setStatusTip(tr("ProjectMESS page for system '%1'").arg(machName));
+				if ( !qmc2ProjectMESSCache.contains(machName) ) {
 					projectMessUrl = QString(QMC2_PROJECTMESS_PATTERN_URL).arg(machName);
-					qmc2MAWSLookup->webViewBrowser->setHtml(
+					qmc2ProjectMESSLookup->webViewBrowser->setHtml(
 							QString("<html><head></head><body><center><p><font color=\"#%1%2%3\"<b>").arg(color.red()).arg(color.green()).arg(color.blue()) +
 							tr("Fetching ProjectMESS page for system '%1', please wait...").arg(machName) +
 							"</font></b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(projectMessUrl) + "</p></center></body></html>",
 							QUrl(projectMessUrl));
-					qmc2MAWSLookup->webViewBrowser->load(QUrl(projectMessUrl));
+					qmc2ProjectMESSLookup->webViewBrowser->load(QUrl(projectMessUrl));
 				} else {
 					projectMessUrl = QString(QMC2_PROJECTMESS_PATTERN_URL).arg(machName);
-					qmc2MAWSLookup->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(*qmc2MAWSCache[machName])), QUrl(projectMessUrl));
-					qmc2MAWSLookup->webViewBrowser->load(QUrl(projectMessUrl));
+					qmc2ProjectMESSLookup->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(*qmc2ProjectMESSCache[machName])), QUrl(projectMessUrl));
+					qmc2ProjectMESSLookup->webViewBrowser->load(QUrl(projectMessUrl));
 				}
-				qmc2LastMAWSItem = qmc2CurrentItem;
-				connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(loadFinished(bool)), this, SLOT(projectMessSystemLoadFinished(bool)));
-				connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(loadStarted()), this, SLOT(projectMessSystemLoadStarted()));
-				tabMAWS->setUpdatesEnabled(true);
+				qmc2LastProjectMESSItem = qmc2CurrentItem;
+				connect(qmc2ProjectMESSLookup->webViewBrowser, SIGNAL(loadFinished(bool)), this, SLOT(projectMessSystemLoadFinished(bool)));
+				connect(qmc2ProjectMESSLookup->webViewBrowser, SIGNAL(loadStarted()), this, SLOT(projectMessSystemLoadStarted()));
+				tabProjectMESS->setUpdatesEnabled(true);
 			}
 			break;
 
@@ -6368,9 +6361,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Zoom", qmc2DocBrowser->browser->spinBoxZoom->value());
 		delete qmc2DocBrowser;
 	}
-	if ( qmc2MAWSLookup ) {
+	if ( qmc2ProjectMESSLookup ) {
 		log(QMC2_LOG_FRONTEND, tr("destroying ProjectMESS lookup"));
-		delete qmc2MAWSLookup;
+		delete qmc2ProjectMESSLookup;
 	}
 	if ( qmc2ImageChecker ) {
 		log(QMC2_LOG_FRONTEND, tr("destroying image checker"));
@@ -8497,11 +8490,11 @@ void MainWindow::projectMessSystemLoadFinished(bool ok)
 #endif
 
 	if ( ok ) {
-		QByteArray projectMessData = QMC2_COMPRESS(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLocal8Bit());
+		QByteArray projectMessData = QMC2_COMPRESS(qmc2ProjectMESSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLocal8Bit());
     		QString machName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
-		if ( qmc2MAWSCache.contains(machName) )
-			qmc2MAWSCache.remove(machName);
-		qmc2MAWSCache.insert(machName, new QByteArray(projectMessData), projectMessData.size());
+		if ( qmc2ProjectMESSCache.contains(machName) )
+			qmc2ProjectMESSCache.remove(machName);
+		qmc2ProjectMESSCache.insert(machName, new QByteArray(projectMessData), projectMessData.size());
 	}
 }
 
@@ -10973,7 +10966,7 @@ void prepareShortcuts()
 	qmc2ShortcutHash["Ctrl+H"].second = qmc2MainWindow->actionDocumentation;
 	qmc2ShortcutHash["Ctrl+I"].second = qmc2MainWindow->actionClearImageCache;
 	qmc2ShortcutHash["Ctrl+Shift+A"].second = qmc2MainWindow->actionArcadeSetup;
-	qmc2ShortcutHash["Ctrl+M"].second = qmc2MainWindow->actionClearMAWSCache;
+	qmc2ShortcutHash["Ctrl+M"].second = qmc2MainWindow->actionClearProjectMESSCache;
 	qmc2ShortcutHash["Ctrl+N"].second = qmc2MainWindow->actionClearIconCache;
 #if defined(QMC2_OS_MAC)
 	qmc2ShortcutHash["Ctrl+,"].second = qmc2MainWindow->actionOptions;

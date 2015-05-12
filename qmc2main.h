@@ -212,7 +212,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_actionNewPdfViewer_triggered(bool checked = false);
 		void on_actionClearImageCache_triggered(bool checked = false);
 		void on_actionClearIconCache_triggered(bool checked = false);
-		void on_actionClearMAWSCache_triggered(bool checked = false);
+		void on_actionClearProjectMESSCache_triggered(bool checked = false);
 #if defined(QMC2_YOUTUBE_ENABLED)
 		void on_actionClearYouTubeCache_triggered(bool checked = false);
 #endif

@@ -35,15 +35,6 @@ class BrowserWidget : public QWebView
 			parentBrowser = browserParent;
 		}
 
-	public slots:
-		void delayedUpdate()
-		{
-			if ( !bwuDelayTimer.isActive() ) {
-				QTimer::singleShot(QMC2_MAWS_BWU_DELAY, this, SLOT(update()));
-				bwuDelayTimer.start(QMC2_MAWS_BWU_DELAY);
-			}
-		}
-
 	signals:
 		void mouseOnView(bool);
 

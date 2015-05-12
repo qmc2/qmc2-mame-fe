@@ -85,8 +85,7 @@
 #define QMC2_MARQUEE_INDEX			8
 #define QMC2_LOGO_INDEX				QMC2_MARQUEE_INDEX
 #define QMC2_TITLE_INDEX			9
-#define QMC2_MAWS_INDEX				10
-#define QMC2_PROJECTMESS_INDEX			QMC2_MAWS_INDEX
+#define QMC2_PROJECTMESS_INDEX			10
 #define QMC2_PCB_INDEX				11
 #define QMC2_SOFTWARE_LIST_INDEX		12
 #if defined(QMC2_YOUTUBE_ENABLED)
@@ -508,40 +507,14 @@
 // how many milliseconds before automatically cleaning up finished downloads
 #define QMC2_DOWNLOAD_CLEANUP_DELAY		250
 
-// MAWS homepage URL (default)
-#define QMC2_MAWS_HOMEPAGE_URL			"http://maws.mameworld.info/"
-
-// MAWS ROM set base URL (default)
-#define QMC2_MAWS_BASE_URL			"http://maws.mameworld.info/maws/romset/%1"
-
-// MAWS default URL
-#define QMC2_MAWS_DEFAULT_URL			"http://www.progettoemma.net/gioco.php?game=%1&lang=en"
-
 // ProjectMESS driver look-up URL
 #define QMC2_PROJECTMESS_PATTERN_URL		"http://www.progettoemma.net/mess/system.php?machine=%1"
 
-// MAWS image links base URL (default)
-#define QMC2_MAWS_IMGLINKS_BASE_URL		"http://maws.mameworld.info/maws/"
-
-// MAWS / ProjectMESS web cache size (in-memory, 8 MB fixed for now)
-#define QMC2_MAWS_CACHE_SIZE			8 * QMC2_ONE_MEGABYTE
-#define QMC2_PROJECTMESS_CACHE_SIZE		QMC2_MAWS_CACHE_SIZE
-
-// delay creation of MAWS quick download menu for how many milliseconds
-// (use same delay to start auto downloads)
-#define QMC2_MAWS_QDL_DELAY			250
+// ProjectMESS web cache size (in-memory, 8 MB fixed for now)
+#define QMC2_PROJECTMESS_CACHE_SIZE		8 * QMC2_ONE_MEGABYTE
 
 // ProjectMESS base URL (default)
 #define QMC2_PROJECT_MESS_BASE_URL		"http://www.progettoemma.net/mess/gioco.php?game=%1&list=%2"
-
-// ProjectMESS cache size (in-memory, 8 MB fixed for now)
-#define QMC2_PROJECT_MESS_CACHE_SIZE		8 * QMC2_ONE_MEGABYTE
-
-// delay forced background widget updates for how many milliseconds
-#define QMC2_MAWS_BWU_DELAY			25
-
-// maximum age of an MAWS disk-cache entry in seconds (24h for now)
-#define QMC2_MAWS_MAX_CACHE_AGE			86400
 
 // maximum number of pages held in QtWebKit's page cache
 #define QMC2_BROWSER_CACHE_PAGES		100
