@@ -8466,7 +8466,8 @@ void MainWindow::projectMessLoadFinished(bool ok)
 	if ( qmc2SoftwareList->currentItem && qmc2ProjectMESS && ok ) {
 		// store compressed page to in-memory cache
 		QString cacheKey = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST) + "_" + qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
-		if ( qmc2ProjectMESSCache.contains(cacheKey) ) qmc2ProjectMESSCache.remove(cacheKey);
+		if ( qmc2ProjectMESSCache.contains(cacheKey) )
+			qmc2ProjectMESSCache.remove(cacheKey);
 		QByteArray data = QMC2_COMPRESS(qmc2ProjectMESS->webViewBrowser->page()->mainFrame()->toHtml().toLocal8Bit());
 		qmc2ProjectMESSCache.insert(cacheKey, new QByteArray(data), data.size());
 	}

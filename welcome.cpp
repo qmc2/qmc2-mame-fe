@@ -246,7 +246,7 @@ bool Welcome::checkConfig()
 	variant = "qmc2-???";
 #endif
 
-	startupConfig->beginGroup(QString("Frontend/%1").arg(variant));
+	startupConfig->beginGroup("Frontend/");
 
 	setupLanguage();
 

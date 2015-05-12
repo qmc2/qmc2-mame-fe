@@ -339,18 +339,6 @@ ifndef BROWSER_PREFETCH_DNS
 BROWSER_PREFETCH_DNS = 0
 endif
 
-# >>> WC_COMPRESSION <<<
-#
-# Enable (1) or disable (0) web-cache compression when storing HTML pages on
-# disk?
-#
-# This is used by the ProjectMESS web-cache feature -- and has nothing to do
-# with a toilet :). It just saves some disk space.
-#
-ifndef WC_COMPRESSION
-WC_COMPRESSION = 1
-endif
-
 # >>> FADER_SPEED <<<
 #
 # Select the audio fading speed of the MP3 player.
@@ -671,10 +659,6 @@ endif
 
 ifeq '$(BROWSER_PREFETCH_DNS)' '1'
 DEFINES += QMC2_BROWSER_PREFETCH_DNS_ENABLED
-endif
-
-ifeq '$(WC_COMPRESSION)' '1'
-DEFINES += QMC2_WC_COMPRESSION_ENABLED
 endif
 
 ifneq '$(QMAKEV)' '3'
@@ -1466,7 +1450,6 @@ endif
 	@$(ECHO) "TARGET                 Name of the QMC2 'target executable'          $(TARGET_NAME)"
 	@$(ECHO) "TR                     UNIX command tr                               $(TR)"
 	@$(ECHO) "TIME                   UNIX command time                             $(TIME)"
-	@$(ECHO) "WC_COMPRESSION         Compress MAWS web-cache data (0, 1)           $(WC_COMPRESSION)"
 	@$(ECHO) "WIP                    Enable unfinished code (0, 1)                 $(WIP)"
 	@$(ECHO) "YOUTUBE                Enable support for YouTube videos (0, 1)      $(YOUTUBE)"
 ifneq '$(SVN_REV)' ''
