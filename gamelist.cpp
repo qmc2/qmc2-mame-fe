@@ -656,15 +656,15 @@ void Gamelist::load()
 		QStringList versionLines = s.split("\n");
 		QStringList versionWords = versionLines.first().split(" ");
 		if ( versionWords.count() > 1 ) {
-			if ( emulatorIdentifiers.contains(versionWords[0]) ) {
-				emulatorVersion = versionWords[1].remove("v");
+			emulatorVersion = versionWords[1].remove("v");
+			if ( emulatorIdentifiers.contains(versionWords[0]) )
 				emulatorType = "MAME";
-			} else {
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: selected executable file is not MAME"));
-				emulatorVersion = tr("unknown");
+			else {
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the selected emulator executable cannot be identified as MAME"));
 				emulatorType = versionWords[0];
 			}
 		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the selected emulator executable cannot be identified as MAME"));
 			emulatorVersion = tr("unknown");
 			emulatorType = tr("unknown");
 		}
