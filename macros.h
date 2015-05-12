@@ -595,11 +595,11 @@
 
 // separation for QMC2 variants
 #define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/MAME/")
+#define QMC2_FRONTEND_PREFIX			QString("Frontend/")
 #if defined(QMC2_SDLMAME)
 #define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-sdlmame/")
 #define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-sdlmess/")
 #define QMC2_FRONTEND_PREFIX_UME		QString("Frontend/qmc2-sdlume/")
-#define QMC2_FRONTEND_PREFIX			QMC2_FRONTEND_PREFIX_MAME
 #define QMC2_EMULATOR_PREFIX_MAME		QString("MAME/")
 #define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
 #define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
@@ -612,7 +612,6 @@
 #define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-mame/")
 #define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-mess/")
 #define QMC2_FRONTEND_PREFIX_UME		QString("Frontend/qmc2-ume/")
-#define QMC2_FRONTEND_PREFIX			QMC2_FRONTEND_PREFIX_MAME
 #define QMC2_EMULATOR_PREFIX_MAME		QString("MAME/")
 #define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
 #define QMC2_EMULATOR_PREFIX_UME		QString("UME/")

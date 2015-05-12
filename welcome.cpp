@@ -6,6 +6,7 @@
 #include <QLocale>
 #include <QFile>
 #include <QDir>
+#include <QMap>
 
 #include "welcome.h"
 #include "macros.h"
@@ -331,6 +332,18 @@ bool Welcome::checkConfig()
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME);
 			startupConfig->remove(QMC2_EMULATOR_PREFIX_MESS);
 			startupConfig->remove(QMC2_EMULATOR_PREFIX_UME);
+		}
+		if ( QMC2_TEST_VERSION(omv, 52, osr, 6650) ) {
+			QMap<QString, QVariant> valueMap;
+			startupConfig->beginGroup(QMC2_FRONTEND_PREFIX_MAME);
+			foreach (QString key, startupConfig->allKeys()) {
+				valueMap[key] = startupConfig->value(key);
+				startupConfig->remove(key);
+			}
+			startupConfig->endGroup();
+			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME);
+			foreach (QString key, valueMap.uniqueKeys())
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX + key, valueMap[key]);
 		}
 	}
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();
