@@ -437,7 +437,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void projectMessLoadStarted();
 		void projectMessLoadFinished(bool);
 		void createFifo(bool logFifoCreation = true);
-		void recreateFifo();
 		void processFifoData();
 		void on_hSplitter_splitterMoved(int, int);
 		void on_vSplitter_splitterMoved(int, int);
