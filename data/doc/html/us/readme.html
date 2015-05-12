@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.52, 11-MAY-2015</h3>
+<h3>README - v0.52, 12-MAY-2015</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -47,7 +47,7 @@
 </ol>
 <h3><a name="1."></a>1. What is the M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II?</h3>
 <p>
-<i>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II</i> -- also referred to as <i>QMC2</i> --
+<i>M.A.M.E. Catalog / Launcher II</i> -- also referred to as <i>QMC2</i> --
 is the successor of one of the first UNIX MAME GUI front ends available on this planet
 called <i>QMamecat</i> (derived from <i>MAMECAT</i>, which was text-only).
 </p>
@@ -104,8 +104,6 @@ As a result of this flexible design, QMC2 can be used for multiple emulators tod
   <li>ROM status export to clipboard or file as ASCII, CSV or HTML</li>
   <li>Integrated device configuration with support for mapping of files to device instances &amp; machine slots, as well as an easy-to-use <i>file chooser</i> for simple file-to-device mapping</li>
   <li>Freely adjust the order and visibility of available game/machine details</li>
-  <li>MAWS web lookup for all MAME variants, including automatic caching of all successfully loaded MAWS ROM set pages</li>
-  <li>MAWS quick download: when visiting a game's MAWS page, automatically download available image data usable by QMC2</li>
   <li>ProjectMESS system search</li>
   <li>X11 and Windows platforms: optional / on-demand embedding of emulator windows</li>
   <li>Freely adjustable layout of the main widget's major sub-widgets</li>
@@ -641,8 +639,7 @@ the joystick movements, button presses etc... it will just not react on them whi
 <p>When external tools are started by QMC2, a simple tool-executor dialog will pop up to display the command and its output.</p>
 <h3><a name="8."></a>8. Multi-platform support</h3>
 <p>As the front end code has been designed with portability in mind, QMC2 should work on any UNIX or UNIX-like
-platform, on Mac OS X and meanwhile also on Windows, provided Qt 4 and (SDL)MAME (or whatever emulator may be used)
-are supported on this platform as well.</p>
+platform, on Mac OS X and meanwhile also on Windows, provided Qt 4 and (SDL)MAME are supported on this platform as well.</p>
 <p>
 However, you may have to create or adopt the corresponding OS-specific configuration file, which is
 <span style="font-style: italic;">arch/`uname`.cfg</span>. If it does not exist nor fit your local situation, the build
