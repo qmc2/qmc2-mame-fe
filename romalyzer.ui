@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>650</width>
-    <height>580</height>
+    <width>647</width>
+    <height>526</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -355,8 +355,8 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
-            <width>620</width>
+            <y>-221</y>
+            <width>617</width>
             <height>788</height>
            </rect>
           </property>
@@ -1225,7 +1225,7 @@
              </property>
              <layout class="QGridLayout" name="gridLayout_4">
               <item row="0" column="0">
-               <layout class="QGridLayout" name="gridLayoutCheckSumDatabase" columnstretch="2,0,0,0,0,0">
+               <layout class="QGridLayout" name="gridLayoutCheckSumDatabase" columnstretch="2,0,0,0,1,0">
                 <item row="0" column="3" rowspan="10">
                  <widget class="Line" name="line_18">
                   <property name="orientation">
