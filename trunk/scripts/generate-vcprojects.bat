@@ -86,36 +86,6 @@ set QMC2_MAME_DEFINES="DEFINES+=QMC2_VERSION=%VERSION% QMC2_SVN_REV=%SVN_REV% BU
 
 echo done
 
-REM ############################################
-REM # RC + VC PROJECT GENERATION FOR QMC2-MESS #
-REM ############################################
-
-echo Generating RC and VC++ project files for qmc2-mess, please wait...
-
-echo IDI_ICON1 ICON DISCARDABLE "data\img\mess.ico" > qmc2-mess.rc
-
-set QMC2_MESS_DEFINES="DEFINES+=QMC2_VERSION=%VERSION% QMC2_SVN_REV=%SVN_REV% BUILD_OS_NAME=Windows BUILD_OS_RELEASE=unknown BUILD_MACHINE=unknown QMC2_JOYSTICK=1 QMC2_OPENGL=0 QMC2_ARCADE_OPENGL=0 QMC2_PHONON=1 QMC2_FADER_SPEED=2000 QMC2_BROWSER_PLUGINS_ENABLED QMC2_BROWSER_JAVA_ENABLED QMC2_BROWSER_JAVASCRIPT_ENABLED QMC2_WC_COMPRESSION_ENABLED QMC2_YOUTUBE_ENABLED QMC2_MESS QMC2_VARIANT_LAUNCHER"
-
-%QT_PATH%\bin\qmake.exe -tp vc SDL=%SDL_VERSION% QT+=phonon CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH% LIBS+=%SDLMAIN_LIB_PATH% TARGET=qmc2-mess %QMC2_MESS_DEFINES% -o qmc2-mess.%VCPROJ_EXTENSION% qmc2.pro > NUL 2> NUL
-%QT_PATH_64%\bin\qmake.exe -tp vc SDL=%SDL_VERSION% QT+=phonon CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH_64% LIBS+=%SDLMAIN_LIB_PATH_64% LIBS+='"%PSAPI_LIB_PATH_64%"' LIBPATH+='"%LIB_PATH_64%"' TARGET=qmc2-mess %QMC2_MESS_DEFINES% -o qmc2-mess-x64.%VCPROJ_EXTENSION% qmc2.pro > NUL 2> NUL
-
-echo done
-
-REM ###########################################
-REM # RC + VC PROJECT GENERATION FOR QMC2-UME #
-REM ###########################################
-
-echo Generating RC and VC++ project files for qmc2-ume, please wait...
-
-echo IDI_ICON1 ICON DISCARDABLE "data\img\ume.ico" > qmc2-ume.rc
-
-set QMC2_UME_DEFINES="DEFINES+=QMC2_VERSION=%VERSION% QMC2_SVN_REV=%SVN_REV% BUILD_OS_NAME=Windows BUILD_OS_RELEASE=unknown BUILD_MACHINE=unknown QMC2_JOYSTICK=1 QMC2_OPENGL=0 QMC2_ARCADE_OPENGL=0 QMC2_PHONON=1 QMC2_FADER_SPEED=2000 QMC2_BROWSER_PLUGINS_ENABLED QMC2_BROWSER_JAVA_ENABLED QMC2_BROWSER_JAVASCRIPT_ENABLED QMC2_WC_COMPRESSION_ENABLED QMC2_YOUTUBE_ENABLED QMC2_UME QMC2_VARIANT_LAUNCHER"
-
-%QT_PATH%\bin\qmake.exe -tp vc SDL=%SDL_VERSION% QT+=phonon CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH% LIBS+=%SDLMAIN_LIB_PATH% TARGET=qmc2-ume %QMC2_UME_DEFINES% -o qmc2-ume.%VCPROJ_EXTENSION% qmc2.pro > NUL 2> NUL
-%QT_PATH_64%\bin\qmake.exe -tp vc SDL=%SDL_VERSION% QT+=phonon CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH_64% LIBS+=%SDLMAIN_LIB_PATH_64% LIBS+='"%PSAPI_LIB_PATH_64%"' LIBPATH+='"%LIB_PATH_64%"' TARGET=qmc2-ume %QMC2_UME_DEFINES% -o qmc2-ume-x64.%VCPROJ_EXTENSION% qmc2.pro > NUL 2> NUL
-
-echo done
-
 REM ##############################################
 REM # RC + VC PROJECT GENERATION FOR QMC2-ARCADE #
 REM ##############################################
@@ -218,86 +188,6 @@ goto :qmc2_mame_64_ready
 %SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
 
 :qmc2_mame_64_ready
-
-if exist %old_file% del %old_file%
-rename %new_file% %old_file%
-
-REM #################
-REM ### qmc2-mess ###
-REM #################
-
-set old_file=qmc2-mess.%VCPROJ_EXTENSION%
-set new_file=%old_file%.new
-
-if exist %new_file% del %new_file%
-
-if "%QMAKESPEC%" neq "win32-msvc2010" goto :qmc2_mess_vc2008
-%SED_COMMAND% -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" -e "s/%find3_vc10%/%repl3_vc10%/g" -e "s/%find4_vc10%/%repl4_vc10%/g" %old_file% > %new_file%
-goto :qmc2_mess_ready
-:qmc2_mess_vc2008
-%SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
-
-:qmc2_mess_ready
-
-if exist %old_file% del %old_file%
-rename %new_file% %old_file%
-
-REM #####################
-REM ### qmc2-mess-x64 ###
-REM #####################
-
-set old_file=qmc2-mess-x64.%VCPROJ_EXTENSION%
-set new_file=%old_file%.new
-
-if exist %new_file% del %new_file%
-
-if "%QMAKESPEC%" neq "win32-msvc2010" goto :qmc2_mess_64_vc2008
-%SED_COMMAND% -e "s/%find0_vc10_x64%/%repl0_vc10_x64%/g" -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" -e "s/%find3_vc10_x64%/%repl3_vc10_x64%/g" -e "s/%find4_vc10_x64%/%repl4_vc10_x64%/g" %old_file% > %new_file%
-goto :qmc2_mess_64_ready
-:qmc2_mess_64_vc2008
-%SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
-
-:qmc2_mess_64_ready
-
-if exist %old_file% del %old_file%
-rename %new_file% %old_file%
-
-REM ################
-REM ### qmc2-ume ###
-REM ################
-
-set old_file=qmc2-ume.%VCPROJ_EXTENSION%
-set new_file=%old_file%.new
-
-if exist %new_file% del %new_file%
-
-if "%QMAKESPEC%" neq "win32-msvc2010" goto :qmc2_ume_vc2008
-%SED_COMMAND% -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" -e "s/%find3_vc10%/%repl3_vc10%/g" -e "s/%find4_vc10%/%repl4_vc10%/g" %old_file% > %new_file%
-goto :qmc2_ume_ready
-:qmc2_ume_vc2008
-%SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
-
-:qmc2_ume_ready
-
-if exist %old_file% del %old_file%
-rename %new_file% %old_file%
-
-REM ####################
-REM ### qmc2-ume-x64 ###
-REM ####################
-
-set old_file=qmc2-ume-x64.%VCPROJ_EXTENSION%
-set new_file=%old_file%.new
-
-if exist %new_file% del %new_file%
-
-if "%QMAKESPEC%" neq "win32-msvc2010" goto :qmc2_ume_64_vc2008
-%SED_COMMAND% -e "s/%find0_vc10_x64%/%repl0_vc10_x64%/g" -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" -e "s/%find3_vc10_x64%/%repl3_vc10_x64%/g" -e "s/%find4_vc10_x64%/%repl4_vc10_x64%/g" %old_file% > %new_file%
-goto :qmc2_ume_64_ready
-:qmc2_ume_64_vc2008
-%SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
-
-:qmc2_ume_64_ready
 
 if exist %old_file% del %old_file%
 rename %new_file% %old_file%
