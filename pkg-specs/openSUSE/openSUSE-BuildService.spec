@@ -1,6 +1,6 @@
 Name:           qmc2
 Version:        0.52
-Release:        2
+Release:        3
 Summary:        M.A.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
 License:        GPL-2.0
@@ -107,7 +107,6 @@ cp -a sdlmame/data/doc/html/ $RPM_BUILD_ROOT%{_defaultdocdir}/%{name}/
 # make sure the executable permissions are set correctly
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmame
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-arcade
-chmod 755 $RPM_BUILD_ROOT%{_bindir}/runonce
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qchdman
 
 %clean
@@ -117,7 +116,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc %{_defaultdocdir}/%{name}/
 %config(noreplace) %{_sysconfdir}/qmc2
-%{_bindir}/runonce
 %{_datadir}/qmc2
 %{_bindir}/qmc2
 %{_bindir}/qmc2-sdlmame
@@ -131,9 +129,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/qmc2-sdlmame.6.gz
 %{_mandir}/man6/qmc2-arcade.6.gz
 %{_mandir}/man6/qchdman.6.gz
-%{_mandir}/man6/runonce.6.gz
 
 %changelog
+* Tue May 12 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.52-3
+- removed runonce
+
 * Mon May 11 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.52-2
 - removed qmc2-sdlmess and qmc2-sdlume
 

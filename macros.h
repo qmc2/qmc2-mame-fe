@@ -558,7 +558,6 @@
 #define QMC2_AUDIOPLAYER_FADER_PLAY		1
 
 // QMC2 variant launcher specific stuff
-#define QMC2_COMMAND_RUNONCE			"runonce"
 #define QMC2_VARIANT_SDLMAME_NAME		"qmc2-sdlmame"
 #define QMC2_VARIANT_SDLMAME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_SDLMAME_NAME
 #define QMC2_VARIANT_SDLMAME_TITLE		MainWindow::tr("M.A.M.E. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
