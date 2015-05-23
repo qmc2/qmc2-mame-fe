@@ -4508,7 +4508,7 @@ Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością global
         <location filename="../../gamelist.cpp" line="673"/>
         <location filename="../../gamelist.cpp" line="674"/>
         <location filename="../../gamelist.cpp" line="728"/>
-        <location filename="../../gamelist.cpp" line="3944"/>
+        <location filename="../../gamelist.cpp" line="3950"/>
         <source>unknown</source>
         <translation>nieznany</translation>
     </message>
@@ -4894,22 +4894,32 @@ Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością global
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3919"/>
+        <location filename="../../gamelist.cpp" line="3577"/>
+        <source>System / BIOS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../gamelist.cpp" line="3579"/>
+        <source>System / Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../gamelist.cpp" line="3925"/>
         <source>correct</source>
         <translation>poprawny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3925"/>
+        <location filename="../../gamelist.cpp" line="3931"/>
         <source>mostly correct</source>
         <translation>w większości poprawny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3931"/>
+        <location filename="../../gamelist.cpp" line="3937"/>
         <source>incorrect</source>
         <translation>niepoprawny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3937"/>
+        <location filename="../../gamelist.cpp" line="3943"/>
         <source>not found</source>
         <translation>nieznaleziony</translation>
     </message>
@@ -4934,7 +4944,7 @@ Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością global
         <location filename="../../gamelist.cpp" line="780"/>
         <location filename="../../gamelist.cpp" line="783"/>
         <location filename="../../gamelist.cpp" line="3516"/>
-        <location filename="../../gamelist.cpp" line="3756"/>
+        <location filename="../../gamelist.cpp" line="3762"/>
         <source>Loading, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5204,8 +5214,8 @@ Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością global
         <location filename="../../gamelist.cpp" line="2943"/>
         <location filename="../../gamelist.cpp" line="2944"/>
         <location filename="../../gamelist.cpp" line="2945"/>
-        <location filename="../../gamelist.cpp" line="3574"/>
-        <location filename="../../gamelist.cpp" line="3814"/>
+        <location filename="../../gamelist.cpp" line="3581"/>
+        <location filename="../../gamelist.cpp" line="3820"/>
         <source>?</source>
         <translation>?</translation>
     </message>
@@ -5417,27 +5427,27 @@ Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością global
         <translation>ukończono (wczytywanie category.ini, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3683"/>
+        <location filename="../../gamelist.cpp" line="3689"/>
         <source>loading catver.ini</source>
         <translation>wczytywanie catver.ini</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3689"/>
+        <location filename="../../gamelist.cpp" line="3695"/>
         <source>Catver.ini - %p%</source>
         <translation>Catver.ini - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3732"/>
+        <location filename="../../gamelist.cpp" line="3738"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation>UWAGA: nie można otworzyć &apos;%1&apos; do odczytu -- dane catver.ini niedostępne</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3741"/>
+        <location filename="../../gamelist.cpp" line="3747"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation>ukończono (wczytywanie catver.ini, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3742"/>
+        <location filename="../../gamelist.cpp" line="3748"/>
         <source>%1 category / %2 version records loaded</source>
         <translation>wczytano %1 rekordów kategorii / %2 wersji</translation>
     </message>
@@ -5456,7 +5466,7 @@ Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością global
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3784"/>
+        <location filename="../../gamelist.cpp" line="3790"/>
         <source>Version view - %p%</source>
         <translation>Widok wersji - %p%</translation>
     </message>
