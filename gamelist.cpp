@@ -3568,13 +3568,24 @@ void Gamelist::createCategoryView()
 			QTreeWidgetItem *baseItem = qmc2GamelistItemHash[gameName];
 			QString *categoryPtr = it.value();
 			QString category;
+			bool isBIOS = isBios(gameName);
+			bool isDevice = this->isDevice(gameName);
 			if ( categoryPtr )
 				category = *categoryPtr;
-			else
-				category = tr("?");
+			else {
+				if ( isBIOS )
+					category = tr("System / BIOS");
+				else if ( isDevice )
+					category = tr("System / Device");
+				else
+					category = tr("?");
+			}
 			QTreeWidgetItem *matchedItem = NULL;
 			for (int i = 0; i < itemList.count() && matchedItem == NULL; i++) {
-				if ( itemList[i]->text(QMC2_GAMELIST_COLUMN_GAME) == category )
+				QString categoryText = itemList[i]->text(QMC2_GAMELIST_COLUMN_GAME);
+				if ( categoryText == category )
+					matchedItem = itemList[i];
+				else if ( tr(categoryText.toLocal8Bit().constData()) == category )
 					matchedItem = itemList[i];
 			}
 			QTreeWidgetItem *categoryItem = NULL;
@@ -3586,8 +3597,6 @@ void Gamelist::createCategoryView()
 				itemList << categoryItem;
 			}
 			QTreeWidgetItem *gameItem = new GamelistItem(categoryItem);
-			bool isBIOS = isBios(gameName);
-			bool isDevice = this->isDevice(gameName);
 			if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
 				hideList << gameItem;
 			gameItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
