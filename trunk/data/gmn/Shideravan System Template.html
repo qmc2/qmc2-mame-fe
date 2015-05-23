@@ -1,17 +1,65 @@
 ﻿<!--
 SHIDERAVAN SYSTEM TEMPLATE
-LAST MODIFICATION: 23/February/2015
+LAST MODIFICATION: 22/May/2015
+
+Copyright (c) 2015 Jose Marcio Rezende Franco
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Whatsnew:
-23/Feb/2015 -Changed the way which the system is shown if it's a device or bios.
-            -Now the source code link was updated to go to GitHub page.
-10/Jan/2015 -Implemented Rank System.
+22/May/2015: -Updated the whatsnew, documentation and licensing.
+21/May/2015: -Now if "shadows" is checked, it won't drawn shadows for images in the black column. 
+18/May/2015: -Now the source code open http://git.redump.net/ pages, since the current version MiniWebBroser is not able of opening GitHub page. (I intend to change as soon as there is compatibility). 
+             -Removing some bugs and optimizing the code.
+17/May/2015: -Completely changed the way the extra images are shown. Now they are shown directly in the black column.
+16/May/2015: -Changed directory where template options are stored.
+15/May/2015: -More changes: 
+             *Now footerume was extincted and MAME shows "Related Bugs, P.MESS and EditSysinfo" in external system websites.
+             *Fixed a lot of bugs regarding black column.
+             *You have now the option to use Project MESS in QMC2-MAME when using online images.
+             *All things marked before as "WIP" are working now.
+             *Fixed link address to get source code (QMC2 MiniWebBrowser doesn't shows the github page yet).
+            
+12/May/2015: -A lot of changes to adapt the templates to new QMC2 and MAME era, so long all the code for UME and MESS are obsolete.
+23/Feb/2015: -Changed the way which the system is shown if it's a device.
+             -Now the source code link was updated to go to GitHub page.
+10/Jan/2015: -Implemented Rank System support.
+01/May/2014: -Some problems with extra images fixed.
+             -More optimizations.
+29/Apr/2014: -Now "preview" for MAME/UME will show borders in image too, the same way than "cabinets" for MESS variant.
+             -A lot of optimizations in code for speedups. 
+20/Apr/2014: -Version is shown in information if it's there and not more variant dependant.
+05/Apr/2014: -Support for BIOS sets and Devices sets.
+18/Sep/2012: -A lot of logical implementations.
+16/Sep/2012: -Now these templates come as part of QMC2 source code.
+15/Sep/2012: -First javascripts logic implemented
+             -Progetto EMMA support in online images.
+10/Sep/2012: -Support for online images (Arcadehits and Project MESS).
+             -First version of Softwarelist template.
+09/Sep/2012: -First beta version released.
+             -Portuguese support (as a different html file version at the time).
 
-This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.49 by Shideravan. Enjoy!
+This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.52 by Shideravan. Enjoy!
+This code are distributed with GPLv2 license.
+http://www.gnu.org/licenses/gpl-2.0.html
 
-
+Thanks:
+René Reucher - for all the help and for QMC2 itself 
+Friends from Emuversal foruns
+My girlfriend for all the support
 --------------------------------------------
-status of the languages supported: 
+Status of the languages supported: 
  us (English) = Full
  pt (Portuguese) = Full
  de (German) = Partial
@@ -22,7 +70,6 @@ status of the languages supported:
  pl (Polish) = Nothing 
  ro (Romanian) = Nothing
  el (Greek) = Nothing
-
 --------------------------------------------
   Macros used:
   $DESCRIPTION$    System's title/description
@@ -63,8 +110,10 @@ status of the languages supported:
   General macros:
 
   $GUI_LANGUAGE$    The GUI's current language setting (us, de, ...)
-  $EMULATOR_VARIANT$  The current emulator variant (MAME, MESS, UME, SDLMAME, SDLMESS, SDLUME)
-  $EMULATOR_TYPE$    The current emulator type (MAME, MESS, UME)
+  
+  Obsolete: 
+  $EMULATOR_TYPE$    Used to verify the current emulator type (MAME, MESS, UME).
+  $EMULATOR_VARIANT$  Used to verify the current emulator variant (MAME, MESS, UME, SDLMAME, SDLMESS, SDLUME)
   
 -->
 <html>
@@ -116,14 +165,7 @@ status of the languages supported:
       bottom: 0;
       height: 45;
       width: 100%;
-   }
-   #footerume 
-   {
-      position: absolute;
-      bottom: 0;
-      height: 56;
-      width: 100%;
-   }   
+   } 
    #footernolink 
    {
       position: absolute;
@@ -135,130 +177,130 @@ status of the languages supported:
 
 
 <script language="JavaScript">
-<!--Shideravan features-->
+<!--Options implementation-->
 function toggleUseZip(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseZip'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/UseZip'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleProcXML(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ProcXML'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/ProcXML'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleInfoXML(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/InfoXML'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/InfoXML'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleSoftlistXML(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SoftlistXML'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/SoftlistXML'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleSearchXML(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SearchXML'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/SearchXML'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleShadows(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/Shadows'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/Shadows'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleBottomInfo(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BottomInfo'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/BottomInfo'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleShowImageSource(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ShowImageSource'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/ShowImageSource'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleShowBlackColumn(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ShowBlackColumn'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/ShowBlackColumn'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleTitCab(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleTitCab'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/ToggleTitCab'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleInfo(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleInfo'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/ToggleInfo'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleEmuInfo(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleEmuInfo'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/ToggleEmuInfo'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleMacInfo(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleMacInfo'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/ToggleMacInfo'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleSearchExtraImages(enable)
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SearchExtraImages'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/SearchExtraImages'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function FancyImages(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/FancyImages'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/FancyImages'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleProjectMess(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProjectMess'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/UseProjectMess'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleProgettoEmma(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProgettoEmma'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/UseProgettoEmma'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleArcadeHits(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseArcadeHits'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/UseArcadeHits'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function toggleOptions(enable) 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOptions'] = enable ? 'true' : 'false';
+   localStorage['SystemNotesTemplate/ToggleOptions'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 function changeBackgroundMode(mode)
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundMode'] = mode;
+   localStorage['SystemNotesTemplate/BackgroundMode'] = mode;
    qmc2NEO.loadCurrentTemplate();
 }
 
 function changePrevImageMode(pvmode)
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMode'] = pvmode;
+   localStorage['SystemNotesTemplate/PrevImageMode'] = pvmode;
    qmc2NEO.loadCurrentTemplate();
 }
 
@@ -290,7 +332,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Clone of'] = 'Clone de';
       trMap['MAIN SYSTEM'] = 'SISTEMA PAI';  
       
-      /*W.I.P. Driver Information*/
+      /*Driver Information*/
       trMap['PROCESSORS'] = 'PROCESSADORES';
       trMap['Driver'] =  'Driver';
       trMap['Processors'] = 'Processadores';
@@ -298,7 +340,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Sound'] = 'Som';
       trMap['Control'] = 'Controle';
       
-      /*W.I.P. Emulation Status*/
+      /*Emulation Status*/
       trMap['Samples'] = 'Amostra de som';
       trMap['Software List'] = 'Lista de Software';
       trMap['Emulation'] = 'Emulação';
@@ -317,8 +359,14 @@ switch ("$GUI_LANGUAGE$")
       trMap['BIOS set'] = 'set de BIOS';
       trMap['Device set'] = 'Set de dispositivo';
                                     
+      /*Extra images*/
+      trMap['Activate P.EMMA for'] = 'Ative P.EMMA para';
+      trMap['Activate A.Hits for'] = 'Ative A.Hits para';     
+      trMap['Activate "EXTRA IMAGES" for more images'] = 'Ative "Buscar Imagens Extras" para mais imagens';                         
+                                    
       /*PT:options*/
       trMap['SHOW OPTIONS'] = 'MOSTRAR OPÇÕES';
+      trMap['+Images'] = '+Imagens';
       
       trMap['Structural Options'] = 'Opções Estruturais';
       trMap['Emulator Info'] = 'Informações do Emulador';
@@ -382,7 +430,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Clone of'] = 'Klon von';
       trMap['MAIN SYSTEM'] = 'Hauptsystem';      
       
-      /*W.I.P. Driver Information*/
+      /*Driver Information*/
       trMap['PROCESSORS'] = 'Prozessoren'; /* better don't use CAPITAL letters only :)!*/
       trMap['Driver'] = 'Treiber';
       trMap['Processors'] = 'CPU';
@@ -390,7 +438,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Sound'] = 'Sound';
       trMap['Control'] = 'Steuerung';    
       
-      /*W.I.P. Emulation Status*/
+      /*Emulation Status*/
       trMap['Samples'] = 'Samples';
       trMap['Software List'] = 'Software-Liste';   
       trMap['Emulation'] = 'Emulation';       
@@ -410,8 +458,14 @@ switch ("$GUI_LANGUAGE$")
       trMap['BIOS set'] = 'BIOS';
       trMap['Device set'] = 'Gerät';      
       
+      /*Extra images*/
+      trMap['Activate P.EMMA for'] = '???';
+      trMap['Activate A.Hits for'] = '???';      
+      trMap['Activate "EXTRA IMAGES" for more images'] = '???';  
+      
       /*DE:options*/
       trMap['SHOW OPTIONS'] = 'Optionen anzeigen';
+      trMap['+Images'] = '???';
       
       trMap['Structural Options'] = 'Strukturelle Optionen';
       trMap['Emulator Info'] = 'Emulator Info';
@@ -475,7 +529,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Clone of'] = 'Clone de';
       trMap['MAIN SYSTEM'] = '???';
 
-      /*W.I.P. Driver Information*/
+      /*Driver Information*/
       trMap['PROCESSORS'] = '???';
       trMap['Driver'] =  '???';
       trMap['Processors'] = '???';
@@ -483,7 +537,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Sound'] = '???';
       trMap['Control'] = '???';      
       
-      /*W.I.P. Emulation Status*/
+      /*Emulation Status*/
       trMap['Samples'] = '???';
       trMap['Software List'] = '???';  
       trMap['Emulation'] = '???';          
@@ -501,10 +555,16 @@ switch ("$GUI_LANGUAGE$")
       trMap['XML query error!'] = '???'; 
            
       trMap['BIOS set'] = '???';
-      trMap['Device set'] = '???';               
+      trMap['Device set'] = '???';      
+      
+      /*Extra images*/
+      trMap['Activate P.EMMA for'] = '???';
+      trMap['Activate A.Hits for'] = '???';      
+      trMap['Activate "EXTRA IMAGES" for more images'] = '???';               
       
       /*FR :options*/
       trMap['SHOW OPTIONS'] = '???';
+      trMap['+Images'] = '???';
       
       trMap['Structural Options'] = '???';
       trMap['Emulator Info'] = 'Info sur l\'emulateur';
@@ -568,7 +628,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Clone of'] = 'Clon de';
       trMap['MAIN SYSTEM'] = 'SISTEMA PRINCIPAL'; 
 
-      /*W.I.P. Driver Information*/
+      /*Driver Information*/
       trMap['PROCESSORS'] = 'PROCESADORES';
       trMap['Driver'] = 'Controlador'; /* Also 'Driver' */
       trMap['Processors'] = 'Procesadores';
@@ -576,7 +636,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Sound'] = 'Sonido';
       trMap['Control'] = 'Control'; 
 
-      /*W.I.P. Emulation Status*/
+      /*Emulation Status*/
       trMap['Samples'] = 'Samples';
       trMap['Software List'] = 'Lista de Software';
       trMap['Emulation'] = 'Emulación'; 
@@ -594,10 +654,16 @@ switch ("$GUI_LANGUAGE$")
       trMap['XML query error!'] = 'Error en consulta XML'; 
            
       trMap['BIOS set'] = 'conjunto de BIOS';
-      trMap['Device set'] = 'conjunto de dispositivos';  
+      trMap['Device set'] = 'conjunto de dispositivos';      
+      
+      /*Extra images*/
+      trMap['Activate P.EMMA for'] = 'Activa P.EMMA para';
+      trMap['Activate A.Hits for'] = 'Activa A.Hits para';      
+      trMap['Activate "EXTRA IMAGES" for more images'] = 'Activa "Buscar Imágenes Adicionales" para ver más imágenes';  
 
       /*ES :options*/
       trMap['SHOW OPTIONS'] = 'MOSTRAR OPCIONES';
+      trMap['+Images'] = '+Imágenes';
 
       trMap['Structural Options'] = 'Opciones Estructurales';
       trMap['Emulator Info'] = 'Información del Emulador';
@@ -661,7 +727,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Clone of'] = 'Klona av';
       trMap['MAIN SYSTEM'] = '???';    
       
-      /*W.I.P. Driver Information*/
+      /*Driver Information*/
       trMap['PROCESSORS'] = '???';
       trMap['Driver'] =  '???';
       trMap['Processors'] = '???';
@@ -669,7 +735,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Sound'] = '???';
       trMap['Control'] = '???';      
       
-      /*W.I.P. Emulation Status*/
+      /*Emulation Status*/
       trMap['Samples'] = '???';
       trMap['Software List'] = '???';
       trMap['Emulation'] = '???';      
@@ -687,10 +753,16 @@ switch ("$GUI_LANGUAGE$")
       trMap['XML query error!'] = '???';  
           
       trMap['BIOS set'] = '???';
-      trMap['Device set'] = '???';  
+      trMap['Device set'] = '???';      
+      
+      /*Extra images*/
+      trMap['Activate P.EMMA for'] = '???';
+      trMap['Activate A.Hits for'] = '???';      
+      trMap['Activate "EXTRA IMAGES" for more images'] = '???';  
       
       /*SV :options*/
       trMap['SHOW OPTIONS'] = '???';
+      trMap['+Images'] = '???';
       
       trMap['Structural Options'] = '???';
       trMap['Emulator Info'] = 'Emulatorinfo';
@@ -754,7 +826,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Clone of'] = 'Clone di';
       trMap['MAIN SYSTEM'] = '???';    
       
-      /*W.I.P. Driver Information*/
+      /*Driver Information*/
       trMap['PROCESSORS'] = '???';
       trMap['Driver'] =  '???';
       trMap['Processors'] = '???';
@@ -762,7 +834,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Sound'] = '???';
       trMap['Control'] = '???';      
       
-      /*W.I.P. Emulation Status*/
+      /*Emulation Status*/
       trMap['Samples'] = '???';
       trMap['Software List'] = '???';
       trMap['Emulation'] = '???';      
@@ -782,8 +854,14 @@ switch ("$GUI_LANGUAGE$")
       trMap['BIOS set'] = '???';
       trMap['Device set'] = '???';      
       
+      /*Extra images*/
+      trMap['Activate P.EMMA for'] = '???';
+      trMap['Activate A.Hits for'] = '???';      
+      trMap['Activate "EXTRA IMAGES" for more images'] = '???';      
+      
       /*IT:options*/
       trMap['SHOW OPTIONS'] = '???';
+      trMap['+Images'] = '???';
       
       trMap['Structural Options'] = '???';
       trMap['Emulator Info'] = 'Info Emulatore';
@@ -847,7 +925,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Clone of'] = '???';
       trMap['MAIN SYSTEM'] = '???';    
       
-      /*W.I.P. Driver Information*/
+      /*Driver Information*/
       trMap['PROCESSORS'] = '???';
       trMap['Driver'] =  '???';
       trMap['Processors'] = '???';
@@ -855,7 +933,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Sound'] = '???';
       trMap['Control'] = '???';      
       
-      /*W.I.P. Emulation Status*/
+      /*Emulation Status*/
       trMap['Samples'] = '???';
       trMap['Software List'] = '???';
       trMap['Emulation'] = '???';      
@@ -873,10 +951,16 @@ switch ("$GUI_LANGUAGE$")
       trMap['XML query error!'] = '???';  
       
       trMap['BIOS set'] = '???';
-      trMap['Device set'] = '???';          
+      trMap['Device set'] = '???';      
+      
+      /*Extra images*/
+      trMap['Activate P.EMMA for'] = '???';
+      trMap['Activate A.Hits for'] = '???';      
+      trMap['Activate "EXTRA IMAGES" for more images'] = '???';          
       
       /*PL:options*/
       trMap['SHOW OPTIONS'] = '???';
+      trMap['+Images'] = '???';
       
       trMap['Structural Options'] = '???';
       trMap['Emulator Info'] = '???';
@@ -940,7 +1024,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Clone of'] = '???';
       trMap['MAIN SYSTEM'] = '???';    
       
-      /*W.I.P. Driver Information*/
+      /*Driver Information*/
       trMap['PROCESSORS'] = '???';
       trMap['Driver'] =  '???';
       trMap['Processors'] = '???';
@@ -948,7 +1032,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Sound'] = '???';
       trMap['Control'] = '???';      
       
-      /*W.I.P. Emulation Status*/
+      /*Emulation Status*/
       trMap['Samples'] = '???';
       trMap['Software List'] = '???';
       trMap['Emulation'] = '???';      
@@ -966,10 +1050,16 @@ switch ("$GUI_LANGUAGE$")
       trMap['XML query error!'] = '???';    
       
       trMap['BIOS set'] = '???';
-      trMap['Device set'] = '???';    
+      trMap['Device set'] = '???';      
+      
+      /*Extra images*/
+      trMap['Activate P.EMMA for'] = '???';
+      trMap['Activate A.Hits for'] = '???';      
+      trMap['Activate "EXTRA IMAGES" for more images'] = '???';    
       
       /*RO:options*/
       trMap['SHOW OPTIONS'] = '???';
+      trMap['+Images'] = '???';
       
       trMap['Structural Options'] = '???';
       trMap['Emulator Info'] = '???';
@@ -1033,14 +1123,14 @@ switch ("$GUI_LANGUAGE$")
       trMap['Clone of'] = '???';
       trMap['MAIN SYSTEM'] = '???';    
       
-      /*W.I.P. Driver Information*/
+      /*Driver Information*/
       trMap['Driver'] =  '???';
       trMap['Processors'] = '???';
       trMap['Screen'] = '???';
       trMap['Sound'] = '???';
       trMap['Control'] = '???';      
       
-      /*W.I.P. Emulation Status*/
+      /*Emulation Status*/
       trMap['Samples'] = '???';
       trMap['Software List'] = '???';
       trMap['Emulation'] = '???';      
@@ -1058,10 +1148,16 @@ switch ("$GUI_LANGUAGE$")
       trMap['XML query error!'] = '???'; 
       
       trMap['BIOS set'] = '???';
-      trMap['Device set'] = '???';       
+      trMap['Device set'] = '???';      
+      
+      /*Extra images*/
+      trMap['Activate P.EMMA for'] = '???';
+      trMap['Activate A.Hits for'] = '???';      
+      trMap['Activate "EXTRA IMAGES" for more images'] = '???';       
       
       /*EL:options*/
       trMap['SHOW OPTIONS'] = '???';
+      trMap['+Images'] = '???';
       
       trMap['Structural Options'] = '???';
       trMap['Emulator Info'] = '???';
@@ -1126,20 +1222,20 @@ function iconTag()
 <!--Background selection-->
 function selectColor() 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundColor'] = qmc2NEO.getColor(localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundColor']);
+   localStorage['SystemNotesTemplate/BackgroundColor'] = qmc2NEO.getColor(localStorage['SystemNotesTemplate/BackgroundColor']);
    qmc2NEO.loadCurrentTemplate();
 }
 
 function selectTextCor() 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/TextCor'] = qmc2NEO.getColor(localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/TextCor']);
+   localStorage['SystemNotesTemplate/TextCor'] = qmc2NEO.getColor(localStorage['SystemNotesTemplate/TextCor']);
    qmc2NEO.loadCurrentTemplate();
 }
 
 function selectImage() 
 {
-   localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundImage'] = qmc2NEO.getImage(localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundImage']);
-   var mode = localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundMode'];
+   localStorage['SystemNotesTemplate/BackgroundImage'] = qmc2NEO.getImage(localStorage['SystemNotesTemplate/BackgroundImage']);
+   var mode = localStorage['SystemNotesTemplate/BackgroundMode'];
    if ( mode == 'image-tiled' || mode == 'image-scaled' )
       qmc2NEO.loadCurrentTemplate();
 }
@@ -1227,8 +1323,6 @@ if ("$ROM_TYPES$"=="--")
 }
 
 <!--Creates a color for every type of status-->
-<!--STRANGE BEHAVIOR: Why doesn't work if using SWITCH???????. Switch code and "if.elseif,else" code below.-->
-
 function tdCor(tipo, cor)
 {
         var cases = 
@@ -1245,61 +1339,10 @@ function tdCor(tipo, cor)
            document.write("<td width=\"20%\" align=\"center\" bgcolor=\"#000070\"><font color=\"white\">"+tr(tipo)+": "+tr('Unsupported')+"</font></td>");
 }
 
-<!--
-        if (cor=="good")
-        {
-           document.write("<td width=\"20%\" align=\"center\" bgcolor=\"#005000\"><font color=\"white\">"+tr(tipo)+": "+tr('Good')+"</font></td>");
-        }
-           
-        else if (cor=="imperfect")
-        {
-           document.write("<td width=\"20%\" align=\"center\" bgcolor=\"#777700\"><font color=\"white\">"+tr(tipo)+": "+tr('Imperfect')+"</font></td>");         
-        }
-           
-        else if (cor=="preliminary")
-        {
-           document.write("<td width=\"20%\" align=\"center\" bgcolor=\"#700000\"><font color=\"white\">"+tr(tipo)+": "+tr('Preliminary')+"</font></td>");        
-        }
-          
-        else
-        {
-           document.write("<td width=\"20%\" align=\"center\" bgcolor=\"#000070\"><font color=\"white\">"+tr(tipo)+": "+tr('Unsupported')+"</font></td>");     
-        }
-
-
-
-
-   switch (cor)
-   {
-        case "good":
-        {
-           document.write("<td width=\"20%\" align=\"center\" bgcolor=\"#005000\"><font color=\"white\">"+tr(tipo)+": "+tr('Good')+"</font></td>");
-           break;
-        }
-           
-        case "imperfect":
-        {
-           document.write("<td width=\"20%\" align=\"center\" bgcolor=\"#777700\"><font color=\"white\">"+tr(tipo)+": "+tr('Imperfect')+"</font></td>");        
-           break;    
-        }
-           
-        case "preliminary":
-        {
-           document.write("<td width=\"20%\" align=\"center\" bgcolor=\"#700000\"><font color=\"white\">"+tr(tipo)+": "+tr('Preliminary')+"</font></td>");          
-           break;
-        }
-          
-        default:
-        {
-           document.write("<td width=\"20%\" align=\"center\" bgcolor=\"#000070\"><font color=\"white\">"+tr(tipo)+": "+tr('Unsupported')+"</font></td>");          
-           break;
-        }  
-   }-->
-
 <!--Script: Shows the source of the image with info in language that's been using (Script: mostra a fonte da imagem na linguagem sendo usada)-->
 function mostraFonte(v, type, zip)
 {
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ShowImageSource'] == 'true')
+   if (localStorage['SystemNotesTemplate/ShowImageSource'] == 'true')
    {
       if(v!="miss")
          document.write("<br>");
@@ -1309,28 +1352,28 @@ function mostraFonte(v, type, zip)
          {
             document.write("<i>"+tr('Image source')+": "+tr('your default directory')+" ("+type); 
             if (zip==0)
-               document.write(") - "+tr('ZIP file')+".</i>");
+               document.write(") - "+tr('ZIP file')+"</i>");
                
             else
-               document.write(") - "+tr('file not zipped')+".</i>");
+               document.write(") - "+tr('file not zipped')+"</i>");
             break;   
          }                               
                     
          case "pmess":
          {
-            document.write("<i>"+tr('Image source')+": ProjectMESS ("+type+").</i>");  
+            document.write("<i>"+tr('Image source')+": ProjectMESS ("+type+")</i>");  
             break;   
          }      
                     
          case "pemma":
          {
-            document.write("<i>"+tr('Image source')+": ProgettoEMMA ("+type+").</i>");  
+            document.write("<i>"+tr('Image source')+": ProgettoEMMA ("+type+")</i>");  
             break;   
          }
                       
          case "ahits":
          {
-            document.write("<i>"+tr('Image source')+": ArcadeHits ("+type+").</i>");  
+            document.write("<i>"+tr('Image source')+": ArcadeHits ("+type+")</i>");  
             break;   
          }                                            
       } 
@@ -1340,11 +1383,11 @@ function mostraFonte(v, type, zip)
    
    if(v=="miss")
    {
-      document.write("<i>"+tr('No image availiable')+".</i><br>");
+      document.write("<i>"+tr('No image availiable')+"</i><br>");
    }                  
 }
 
-/*Maybe I could use Rene function to get a speedup*/
+<!--Create image style-->
 function estilImagem(type)
 {
    var stilo="style=\" border-color: #000;";
@@ -1359,7 +1402,7 @@ function estilImagem(type)
    
       case "prv":
       {              
-         switch (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMode'])
+         switch (localStorage['SystemNotesTemplate/PrevImageMode'])
          {
             case 'tvmode':
             {
@@ -1386,7 +1429,7 @@ function estilImagem(type)
       }
    }      
    
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/Shadows'] == 'true')
+   if ((localStorage['SystemNotesTemplate/Shadows'] == 'true') && ((type=="prv")||(type=="tit")))
    {
       stilo+="max-width: 98%; -webkit-box-shadow: 5px 5px 5px rgba(64, 64, 64, 64);";
    }
@@ -1398,7 +1441,7 @@ function estilImagem(type)
    
    stilo+="opacity: 0;";
    
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/FancyImages'] == 'true')
+   if (localStorage['SystemNotesTemplate/FancyImages'] == 'true')
    {
       stilo+=" -webkit-transition: opacity 1.0s;";
    }
@@ -1413,7 +1456,7 @@ function estilImagem(type)
 <!--Script: function to show images - ZIP support-->
 function mostraImagem(url, ttl, dom, type)
 { 
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseZip'] == 'true')
+   if (localStorage['SystemNotesTemplate/UseZip'] == 'true')
    {
       if (!qmc2NEO.isZippedImage(type)) 
       {      
@@ -1446,17 +1489,16 @@ else
       
 var bc, ei, mi;
 
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ShowBlackColumn'] == 'true')
+if (localStorage['SystemNotesTemplate/ShowBlackColumn'] == 'true')
 {
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleEmuInfo'] == 'false' || "$EMU_INFO_STATUS$"=="NO_DATA")
+   if (localStorage['SystemNotesTemplate/ToggleEmuInfo'] == 'false' || "$EMU_INFO_STATUS$"=="NO_DATA")
    {
       ei="0";
-      if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleMacInfo'] == 'true' && "$GAME_INFO_STATUS$"=="OK")
+      if (localStorage['SystemNotesTemplate/ToggleMacInfo'] == 'true' && "$GAME_INFO_STATUS$"=="OK")
       {
          mi="65";
-         bc="37"; 
+         bc="35"; 
       }   
-      
       else
       {
          mi="0";  
@@ -1466,18 +1508,17 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ShowBlackCol
    
    else
    {
-      if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleMacInfo'] == 'true' && "$GAME_INFO_STATUS$"=="OK")
+      if (localStorage['SystemNotesTemplate/ToggleMacInfo'] == 'true' && "$GAME_INFO_STATUS$"=="OK")
       {
-         mi="37";
-         ei="37";
-         bc="26"; 
+         mi="36";
+         ei="36";
+         bc="28"; 
       }   
-      
       else
       {
          mi="0";  
          ei="65";
-         bc="37";
+         bc="35";
       }    
    }               
 }   
@@ -1485,14 +1526,13 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ShowBlackCol
 else
 {
    bc="0";
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleEmuInfo'] == 'false' || "$EMU_INFO_STATUS$"=="NO_DATA")
+   if (localStorage['SystemNotesTemplate/ToggleEmuInfo'] == 'false' || "$EMU_INFO_STATUS$"=="NO_DATA")
    {
       ei="0";
-      if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleMacInfo'] == 'true' && "$GAME_INFO_STATUS$"=="OK")
+      if (localStorage['SystemNotesTemplate/ToggleMacInfo'] == 'true' && "$GAME_INFO_STATUS$"=="OK")
       {
          mi="100";
       }   
-      
       else
       {
          mi="0"; 
@@ -1501,12 +1541,11 @@ else
    
    else
    {
-      if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleMacInfo'] == 'true' && "$GAME_INFO_STATUS$"=="OK")
+      if (localStorage['SystemNotesTemplate/ToggleMacInfo'] == 'true' && "$GAME_INFO_STATUS$"=="OK")
       {
          mi="50";
          ei="50";
       }   
-      
       else
       {
          mi="0";  
@@ -1520,12 +1559,12 @@ else
 
 
 <script language="JavaScript">  
-var corFun;
+var corFun, x;
 
 if (corFun == undefined)
    corFun = "background-color: #ffffe2";  
    
-switch (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundMode'])
+switch (localStorage['SystemNotesTemplate/BackgroundMode'])
 {
    case 'default':
    {
@@ -1535,19 +1574,19 @@ switch (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/Backgrou
    
    case 'color':
    { 
-      corFun = "background-color:"+localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundColor'];
+      corFun = "background-color:"+localStorage['SystemNotesTemplate/BackgroundColor'];
       break;
    }   
    
    default:
    {
-      if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundImage']) 
+      if (localStorage['SystemNotesTemplate/BackgroundImage']) 
       {
-         if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundMode'] == 'image-tiled')
-            corFun = "background-image: url('"+localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundImage']+"'); background-repeat: repeat;";
+         if (localStorage['SystemNotesTemplate/BackgroundMode'] == 'image-tiled')
+            corFun = "background-image: url('"+localStorage['SystemNotesTemplate/BackgroundImage']+"'); background-repeat: repeat;";
          
          else
-            corFun = "background-image: url('"+localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundImage']+"'); background-repeat: none; background-size: 100% 100%;";
+            corFun = "background-image: url('"+localStorage['SystemNotesTemplate/BackgroundImage']+"'); background-repeat: none; background-size: 100% 100%;";
       }
    
       else
@@ -1555,7 +1594,7 @@ switch (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/Backgrou
    }   
 }      
 
-var textCor = localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/TextCor'];
+var textCor = localStorage['SystemNotesTemplate/TextCor'];
 
 if ( textCor == undefined )
    textcor = "background-color: #000000";
@@ -1563,28 +1602,28 @@ if ( textCor == undefined )
 document.write("<body style=\""+corFun+";color:"+textCor+";\">");                  
 
 <!--Create the top screen area-->
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOptions'] == 'true')
+if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
 {
    document.write("<div id=\"content\">");
 }
 
 else
 {
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BottomInfo'] == 'true') 
+   if (localStorage['SystemNotesTemplate/BottomInfo'] == 'true') 
       document.write("<div id=\"contentno\">");
       
    else   
       document.write("<div id=\"contentnolink\">");   
 }
 
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SoftlistXML'] == 'true')
+if (localStorage['SystemNotesTemplate/SoftlistXML'] == 'true')
 {
    document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>");
    if (device=="1")
    {
       document.write("<td width=\"100%\" align=\"center\" bgcolor=\"#007095\"><font color=\"white\">");
       <!--Only will show 'device set' if don't have the searchXML line don't was choosen in options to avoid duplicate 'device set' information in both lines.-->
-      if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SearchXML'] == 'false')
+      if (localStorage['SystemNotesTemplate/SearchXML'] == 'false')
       {
          tr('Device set');
       }   
@@ -1598,7 +1637,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SoftlistXML'
    {
       document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>"); 
    
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/@sampleof/string()", false, "system") ) 
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/@sampleof/string()", false, "game") ) 
       {
          var result = qmc2NEO.getXmlResult();
          var len = result.length;
@@ -1621,7 +1660,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SoftlistXML'
       document.write("</font></td>");
    
 
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/softwarelist/@name/string()", false, "system") ) 
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/softwarelist/@name/string()", false, "game") ) 
       {
          var result = qmc2NEO.getXmlResult();
          var len = result.length;
@@ -1646,7 +1685,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SoftlistXML'
 }  
    
 
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SearchXML'] == 'true')
+if (localStorage['SystemNotesTemplate/SearchXML'] == 'true')
 {  
    document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>");
    if (device=="1")
@@ -1657,35 +1696,35 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SearchXML'] 
    else
    {
    
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@emulation/string()", false, "system") ) 
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/driver/@emulation/string()", false, "game") ) 
       {
          tdCor("Emulation", qmc2NEO.getXmlResult());         
       } 
       else
          document.write(tr('XML query error!'));     
    
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@graphic/string()", false, "system") ) 
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/driver/@graphic/string()", false, "game") ) 
       {
          tdCor("Graphics", qmc2NEO.getXmlResult());            
       } 
       else
          document.write(tr('XML query error!'));
    
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@color/string()", false, "system") ) 
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/driver/@color/string()", false, "game") ) 
       {
          tdCor("Color", qmc2NEO.getXmlResult());            
       }  
       else
          document.write(tr('XML query error!'));
    
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@sound/string()", false, "system") ) 
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/driver/@sound/string()", false, "game") ) 
       {
          tdCor("Sound", qmc2NEO.getXmlResult());            
       } 
       else
          document.write(tr('XML query error!'));
    
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/driver/@savestate/string()", false, "system") ) 
+      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/driver/@savestate/string()", false, "game") ) 
       {
          if (qmc2NEO.getXmlResult()=="supported")
             document.write("</font></td><td width=\"20%\" align=\"center\" bgcolor=\"#005000\"><font color=\"white\">"+tr('S.State')+": "+tr('Supported'));
@@ -1704,146 +1743,92 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SearchXML'] 
 <table border="0" cellspacing="2" width="100%" height="200" valign="middle" align="right">
 <tbody><tr>
     
-<!-- Cabinet image-->   
+<!-- Title/DevTools(P.MESS Cabinet) image-->   
 <script language="JavaScript">
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleTitCab'] == 'true')
+if (localStorage['SystemNotesTemplate/ToggleTitCab'] == 'true')
 {
    document.write("<td width=\"300\" height=\"200\" align=\"center\">");
-   if ("$EMULATOR_TYPE$" == "MESS") 
-   {
-      switch (true)
-      {
-         case ("$CABINET_IMAGE$" != "$GHOST_IMAGE$"):
-         {
-            mostraImagem("$CABINET_IMAGE$", "CABINET", "local", "cab");      
-            break;        
-         }
-           
-         case (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProjectMess'] == 'true'):
-         {
-            switch (true)
-            {
-               case (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/pics/$ID$.png")):
-               { 
-                  mostraImagem("http://www.progettoemma.net/mess/snaps/mess/pics/$ID$.png", "CABINET", "pmess", "cab"); 
-                  break;
-               }
-              
-               case (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/pics/$PARENT_ID$.png")):
-               { 
-                  mostraImagem("http://www.progettoemma.net/mess/snaps/mess/pics/$PARENT_ID$.png", "PARENT CABINET", "pmess", "cab"); 
-                  break;
-               }  
-                 
-               default:
-               {
-                  document.write("<b>CABINET IMAGE:</b><BR>");
-                  mostraFonte("miss", "n","n");     
-                  break; 
-               }
-            }
-            break;            
-         }
-              
-         default:
-         {
-            document.write("<b>CABINET IMAGE:</b><BR>");
-            mostraFonte("miss", "n","n");     
-            break; 
-         }              
-      }
-   }
-       
-<!--Cabinet/title: if it's not MESS-->           
-   else
-   { 
-      var a=0;
-      
+   
+  
+      <!--Title Image-->   
+      x=0;
       switch(true)
       {
          case ("$TITLE_IMAGE$" != "$GHOST_IMAGE$"):
          {
-            mostraImagem("$TITLE_IMAGE$", "TITLE", "local", "tit");     
-            break;            
-         }  
-           
-         case (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProgettoEmma'] == 'true'):
-         {
-            switch (true)
-            {                                                     
-               case ( imagemExiste("http://www.progettoemma.net/snap/$ID$/title.png")):
-               {  
-                  mostraImagem("http://www.progettoemma.net/snap/$ID$/title.png", "TITLE", "pemma", "tit");  
-                  a=1;
-                  break;
-               }
-                                         
-               case ( imagemExiste("http://www.progettoemma.net/snap/$PARENT_ID$/title.png")):
-               { 
-                  mostraImagem("http://www.progettoemma.net/snap/$PARENT_ID$/title.png", "PARENT TITLE", "pemma", "tit"); 
-                  a=1;
-                  break;        
-               }
-                 
-               case ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseArcadeHits'] == 'true'):
-               {
-                  document.write("<b>TITLE IMAGE:</b><BR>");
-                  mostraFonte("miss", "n","n"); 
-                  a=1;
-                  break;     
-               }                 
-            }   
-         }    
-        
-         case ((localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseArcadeHits'] == 'true')):
-         {   
-            if (a==0)
-            {  
-               switch (true)
-               {          
-                  case ( imagemExiste("http://www.arcadehits.net/mmedia/titles/$ID$.png")):
-                  { 
-                     mostraImagem("http://www.arcadehits.net/mmedia/titles/$ID$.png", "TITLE", "ahits", "tit");  
-                     a=2;
-                     break;            
-                  }
-           
-                  case ( imagemExiste("http://www.arcadehits.net/mmedia/titles/$PARENT_ID$.png")):
-                  {  
-                     mostraImagem("http://www.arcadehits.net/mmedia/titles/$PARENT_ID$.png", "PARENT TITLE", "ahits", "tit");
-                     a=2;
-                     break;       
-                  }
-          
-                  default:
-                  {
-                     document.write("<b>TITLE IMAGE:</b><BR>");
-                     mostraFonte("miss", "n","n");      
-                     a=2;
-                  }
-               }
-            }
-         }       
-              
-         default:
-         {   
-            if (a==0)
+            mostraImagem("$TITLE_IMAGE$", "TITLE", "local", "tit"); 
+            x=1;    
+            break;   
+         }   
+         
+         case (localStorage['SystemNotesTemplate/UseArcadeHits'] == 'true'):
+         {        
+            if (imagemExiste("http://www.arcadehits.net/mmedia/titles/$ID$.png"))
             {
-               document.write("<b>TITLE IMAGE:</b><BR>");
-               mostraFonte("miss", "n","n");   
-               break;
-            }   
+               mostraImagem("http://www.arcadehits.net/mmedia/titles/$ID$.png", "TITLE", "ahits", "tit");
+               x=1;
+               break;            
+            } 
+
+            else if (imagemExiste("http://www.arcadehits.net/mmedia/titles/$PARENT_ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/titles/$PARENT_ID$.png", "PARENT TITLE", "ahits", "tit");
+               x=1;
+               break;            
+            }      
+            break;         
+         }   
+         
+         case (localStorage['SystemNotesTemplate/UseProgettoEmma'] == 'true'):
+         {        
+            if (imagemExiste("http://www.progettoemma.net/snap/$ID$/title.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/snap/$ID$/title.png", "TITLE", "pemma", "tit");
+               x=1;
+               break;              
+            }
+         
+            else if (imagemExiste("http://www.progettoemma.net/snap/$PARENT_ID$/title.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/snap/$PARENT_ID$/title.png", "PARENT TITLE", "pemma", "tit");
+               x=1;
+               break;              
+            }    
+            break;   
          }
-      }                  
-   }  
-   document.write("</td>");
-}    
+
+         case (localStorage['SystemNotesTemplate/UseProjectMess'] == 'true'):
+         {
+            if (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/pics/$ID$.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/mess/snaps/mess/pics/$ID$.png", "TITLE", "pmess", "tit");
+               x=1;
+               break;              
+            }
+         
+            else if (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/pics/$PARENT_ID$.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/mess/snaps/mess/pics/$PARENT_ID$.png", "PARENT TITLE", "pmess", "tit");
+               x=1;
+               break;              
+            }
+            break;   
+         }                         
+      }
+      
+      if (x==0)
+      {
+         document.write("<b>TITLE IMAGE:</b><br>");
+         mostraFonte("miss", "n","n"); 
+      }                   
+}  
+document.write("</td>"); 
 
 
 <!--Information column-->  
 
 <!--MARQUEE IMAGE-->
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleInfo'] == 'true')
+if (localStorage['SystemNotesTemplate/ToggleInfo'] == 'true')
 {
    document.write("<td align=\"center\">"); 
    if ("$MARQUEE_IMAGE$" != "$GHOST_IMAGE$")
@@ -1860,39 +1845,43 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleInfo']
    document.write("<br><b>$DESCRIPTION$</b></font>");                            
 
 
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/InfoXML'] == 'true')
+if (localStorage['SystemNotesTemplate/InfoXML'] == 'true')
 {
    if (device=="0")
    {
       document.write("<font size=\"3\"><br><i>$MANUFACTURER$, $YEAR$</i>");
    }   
         
-   /*Driver and source*/ 
+   /*Driver and source - MiniWebBrowser cannot open GitHub pages yet, then I'm using git.redump*/ 
+   document.write("<br><br><b>"+tr('Driver'));   
    
-   document.write("<br><br><b>"+tr('Driver'));
-   switch ("$EMULATOR_TYPE$")
+   if (device=="0")
    {
-      case "UME":
-      {  
-         document.write("(MESS): </b><a href=http://github.com/mamedev/mame/tree/master/src/mame/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in GitHub\">$SOURCE_FILE$</a><br><b>"+tr('Driver')+"(MAME): </b><a href=http://github.com/mamedev/mame/tree/master/src/mess/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in GitHub\">$SOURCE_FILE$</a>");              
-         break;
-      }   
-      
-      case "MESS":
-      {
-         document.write(": </b><a href=http://mamedev.org/source/src/mess/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>"); 
-         break;
-      }        
-         
-         
-      default:
-      {    
-         document.write(": </b><a href=http://mamedev.org/source/src/mame/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>"); 
-      }        
-   } 
+      document.write("(Arcade): </b><a href=http://git.redump.net/mame/tree/src/mame/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in git.redump.net\">$SOURCE_FILE$</a><br><b>"+tr('Driver')+"(Other): </b><a href=http://git.redump.net/mame/tree/src/mess/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in git.redump.net\">$SOURCE_FILE$</a>"); 
+   }
+   
+   /*For devices, all source are stored in same place*/
+   else
+   {   
+      document.write(": </b><a href=http://git.redump.net/mame/tree/$SOURCE_FILE$ title=\"Click here to see the source code in git.redump.net\">$SOURCE_FILE$</a>");   
+   }           
+     
+   /*So long MiniWebBroser have compatibility for GitHub, change this part for this code
+   
+      if (device=="0")
+   {
+      document.write("(Arcade): </b><a href=https://github.com/mamedev/mame/blob/master/src/mame/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in GitHub\">$SOURCE_FILE$</a><br><b>"+tr('Driver')+"(Other): </b><a href=https://github.com/mamedev/mame/blob/master/src/mess/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in GitHub\">$SOURCE_FILE$</a>"); 
+   }
+   
+   --For devices, all source are stored in same place--
+   else
+   {   
+      document.write(": </b><a href=https://github.com/mamedev/mame/blob/475e90ca8b6cc97c1d021fdeab23a05ba9b93a53/$SOURCE_FILE$ title=\"Click here to see the source code in GitHub\">$SOURCE_FILE$</a>");   
+   }  */
+     
      
    /*Screen*/  
-   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/display/@type/string()", false, "system")) 
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/display/@type/string()", false, "game")) 
    {
       var type = qmc2NEO.getXmlResult(); 
       var len = type.length;                
@@ -1903,12 +1892,12 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/InfoXML'] ==
          {
             document.write("<br><b>"+tr('Screen')+" "+(i+1)+": </b>"+type[i]);
             
-            qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/display/@width/string()", false, "system");
+            qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/display/@width/string()", false, "game");
             var width = qmc2NEO.getXmlResult(); 
             
             if (width[i])
             {             
-               qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/display/@height/string()", false, "system");
+               qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/display/@height/string()", false, "game");
                var height = qmc2NEO.getXmlResult();
                
                document.write(" ("+width[i]+"x"+height[i]+")");
@@ -1924,15 +1913,15 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/InfoXML'] ==
       document.write(tr('XML query error!'));
       
    /*Controls*/   
-   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/input/control/@type/string()", false, "system")) 
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/input/control/@type/string()", false, "game")) 
    {
       var result = qmc2NEO.getXmlResult();  
       var tam = result.length;
    
-      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/input/@buttons/string()", false, "system");
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/input/@buttons/string()", false, "game");
       var buttons = qmc2NEO.getXmlResult();   
       
-      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/input/control/@ways/string()", false, "system");
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/input/control/@ways/string()", false, "game");
       var ways = qmc2NEO.getXmlResult();              
 
       if (tam > 0) 
@@ -1988,21 +1977,21 @@ else
 }  
 
 
-if ((localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ProcXML'] == 'true') && (device=="0"))
+if ((localStorage['SystemNotesTemplate/ProcXML'] == 'true') && (device=="0"))
 {
    /*CPU*/   
-   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/chip/@name/string()", false, "system")) 
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/chip/@name/string()", false, "game")) 
    {
       var result = qmc2NEO.getXmlResult(); 
       var len = result.length;        
 
-      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/chip/@tag/string()", false, "system");  
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/chip/@tag/string()", false, "game");  
       var tag = qmc2NEO.getXmlResult();      
       
-      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/chip/@type/string()", false, "system");  
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/chip/@type/string()", false, "game");  
       var type = qmc2NEO.getXmlResult();
       
-      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//system/chip/@clock/string()", false, "system");
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/chip/@clock/string()", false, "game");
       var clock = qmc2NEO.getXmlResult(); 
       
       document.write("<td max-width=\"25%\" align=\"center\"><b><u>"+len+" "+tr('PROCESSORS')+" </u></b><br>"); 
@@ -2083,131 +2072,83 @@ if ((localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ProcXML'] =
 </td>  
 <script language="JavaScript">
 <!--Preview Image-->
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMode'] != 'no')
+if (localStorage['SystemNotesTemplate/PrevImageMode'] != 'no')
 {
    document.write("<td width=\"300\" height=\"200\" valign=\"middle\" align=\"center\">");
-   switch(true)
-   {
-      case ("$PREVIEW_IMAGE$" != "$GHOST_IMAGE$"):
+<!--Preview/Snap Image-->   
+      x=0;
+      switch(true)
       {
-         mostraImagem("$PREVIEW_IMAGE$", "PREVIEW", "local", "prv");                                                  
-         break;         
-      }          
-        
-      case ("$EMULATOR_TYPE$" == "MESS"):
-      {  
-         if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProjectMess'] == 'true')
+         case ("$PREVIEW_IMAGE$" != "$GHOST_IMAGE$"):
          {
-            switch (true)
-            {                          
-               case ( imagemExiste("http://www.progettoemma.net/mess/snaps/mess/snaps/$ID$.png") ):
-               {                      
-                  mostraImagem("http://www.progettoemma.net/mess/snaps/mess/snaps/$ID$.png", "PREVIEW", "pmess", "prv");                               
-                  break;  
-               } 
-              
-               case ( imagemExiste("http://www.progettoemma.net/mess/snaps/mess/snaps/$PARENT_ID$.png") ):
-               {     
-                  mostraImagem("http://www.progettoemma.net/mess/snaps/mess/snaps/$PARENT_ID$.png", "PREVIEW", "pmess", "prv");                                                
-                  break;  
-               }   
-                             
-               default:
-               {
-                  document.write("<b>PREVIEW IMAGE:</b><BR>");
-                  mostraFonte("miss", "n","n"); 
-                  break;    
-               }  
-            }   
-            break;
-         }
-           
-         else
-         {     
-            document.write("<b>PREVIEW IMAGE:</b><BR>");
-            mostraFonte("miss", "n","n"); 
-            break;    
-         }                                                
-      }  
-        
-      <!--Preview: MAME-->          
-      default:
-      {
-         var b=0;
-         switch (true)
-         {          
-            case (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProgettoEmma'] == 'true'):
+            mostraImagem("$PREVIEW_IMAGE$", "PREVIEW", "local", "prv"); 
+            x=1;    
+            break;   
+         }   
+         
+         case (localStorage['SystemNotesTemplate/UseArcadeHits'] == 'true'):
+         {        
+            if (imagemExiste("http://www.arcadehits.net/mmedia/snap/$ID$.png"))
             {
-               switch (true)
-               {                                                     
-                  case (imagemExiste("http://www.progettoemma.net/snap/$ID$/0000.png")):
-                  {
-                     mostraImagem("http://www.progettoemma.net/snap/$ID$/0000.png", "PREVIEW", "pemma", "prv");
-                     b=1;                                                         
-                     break;
-                  }                                
-           
-                  case (imagemExiste("http://www.progettoemma.net/snap/$PARENT_ID$/0000.png")):
-                  {
-                     mostraImagem("http://www.progettoemma.net/snap/$PARENT_ID$/0000.png", "PREVIEW", "pemma", "prv");  
-                     b=1;                
-                     break;
-                  }
-                 
-                  case (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseArcadeHits'] == 'true'):
-                  {
-                     document.write("<b>PREVIEW IMAGE:</b><BR>");
-                     mostraFonte("miss", "n","n"); 
-                     b=1;
-                     break;     
-                  }                 
-               }               
-            }  
-            
-            case (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseArcadeHits'] == 'true'):
-            {
-               if(b==0)
-               {
-                  switch (true)
-                  {                      
-                     case ( imagemExiste("http://www.arcadehits.net/mmedia/snap/$ID$.png")):
-                     {
-                        mostraImagem("http://www.arcadehits.net/mmedia/snap/$ID$.png", "PREVIEW", "ahits", "prv");                            
-                        b=2;                                          
-                        break;
-                     }
-                            
-                     case (imagemExiste("http://www.arcadehits.net/mmedia/snap/$PARENT_ID$.png")):
-                     {
-                        mostraImagem("http://www.arcadehits.net/mmedia/snap/$PARENT_ID$.png", "PREVIEW", "ahits", "prv");  
-                        b=2;   
-                        break;
-                     }
-                 
-                     default:
-                     {
-                        document.write("<b>PREVIEW IMAGE:</b><BR>");
-                        mostraFonte("miss", "n","n"); 
-                        b=2;
-                        break;     
-                     }                                                      
-                  }
-               } 
-            }                          
-           
-            default:
-            {
-               if (b==0)
-               {                 
-                  document.write("<b>PREVIEW IMAGE:</b><br>");
-                  mostraFonte("miss", "n","n");
-                  break; 
-               }        
+               mostraImagem("http://www.arcadehits.net/mmedia/snap/$ID$.png", "PREVIEW", "ahits", "prv");
+               x=1;
+               break;            
             } 
-         }    
+
+            else if (imagemExiste("http://www.arcadehits.net/mmedia/snap/$PARENT_ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/snap/$PARENT_ID$.png", "PARENT PREVIEW", "ahits", "prv");
+               x=1;
+               break;            
+            }      
+            break;         
+         }   
+         
+         case (localStorage['SystemNotesTemplate/UseProgettoEmma'] == 'true'):
+         {        
+            if (imagemExiste("http://www.progettoemma.net/snap/$ID$/snap.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/snap/$ID$/snap.png", "PREVIEW", "pemma", "prv");
+               x=1;
+               break;              
+            }
+         
+            else if (imagemExiste("http://www.progettoemma.net/snap/$PARENT_ID$/snap.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/snap/$PARENT_ID$/snap.png", "PARENT PREVIEW", "pemma", "prv");
+               x=1;
+               break;              
+            }    
+            break;   
+         }
+
+         case (localStorage['SystemNotesTemplate/UseProjectMess'] == 'true'):
+         {
+            if (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/snaps/$ID$.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/mess/snaps/mess/snaps/$ID$.png", "PREVIEW", "pmess", "prv");
+               x=1;
+               break;              
+            }
+         
+            else if (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/snaps/$PARENT_ID$.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/mess/snaps/mess/snaps/$PARENT_ID$.png", "PARENT PREVIEW", "pmess", "prv");
+               x=1;
+               break;              
+            }
+            break;   
+         }                         
       }
-   }
-}     
+      
+      if (x==0)
+      {
+         document.write("<b>PREVIEW IMAGE:</b><br>");
+         mostraFonte("miss", "n","n"); 
+      } 
+
+
+}   
 </script>  
 
 </td></tr></tbody></table>
@@ -2273,284 +2214,512 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMod
 
 <!--Black area-->
 <script language="JavaScript"> 
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ShowBlackColumn'] == 'true')
+   if (localStorage['SystemNotesTemplate/ShowBlackColumn'] == 'true')
    {
       document.write("
          <td bgcolor=\"#00000\" valign=\"top\" width=\""+bc+"%\" height=\"100%\"><div align=\"center\" style=\"width: 100%; overflow : auto\">                  
          <font size=\"3\" color=\"white\">"); 
 
-  
-<!--Black AREA: MESS Images--> 
-
-   <!--Verifies if it's MESS-->     
-   <!--Controller Image for MESS-->
-   if ("$EMULATOR_TYPE$" == "MESS")
-   {      
-      switch(true)
-      {
-         case ("$CONTROLLER_IMAGE$" != "$GHOST_IMAGE$"):
-         {            
-            mostraImagem("$CONTROLLER_IMAGE$", "CONTROLLER", "local", "ctl"); 
-            break;                           
-         }
-         
-         case ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProjectMess'] == 'true'):
-         { 
-            switch (true)
-            {
-               case ( imagemExiste("http://www.progettoemma.net/mess/snaps/mess/cpanel_amilo3438/$ID$.png")):
-               {         
-                  mostraImagem("http://www.progettoemma.net/mess/snaps/mess/cpanel_amilo3438/$ID$.png", "CONTROLLER", "pmess", "ctl"); 
-                  break;          
-               }
-               
-               case ( imagemExiste("http://www.progettoemma.net/mess/snaps/mess/cpanel_amilo3438/$PARENT_ID$.png")):
-               {         
-                  mostraImagem("http://www.progettoemma.net/mess/snaps/mess/cpanel_amilo3438/$PARENT_ID$.png", "PARENT CONTROLLER", "pmess", "ctl");   
-                  break;          
-               }  
-               
-               default:
-               {
-                  document.write("<b>CONTROLLER IMAGE:</b><br>");
-                  mostraFonte("miss", "n","n");
-                  break;  
-               }                                           
-            }
-            break;                                                              
-         }
-         
-         default:
-         {
-            document.write("<b>CONTROLLER IMAGE:</b><br>");
-            mostraFonte("miss", "n","n");
-            break;  
-         }
-      } 
-       
-         document.write("<br>");    
-           
-      <!--PCB Image for MESS-->
-      switch(true){
-         case ("$PCB_IMAGE$" != "$GHOST_IMAGE$"):
-         {
-            mostraImagem("$PCB_IMAGE$", "PCB", "local", "pcb");            
-            break;
-         }
-      
-         case ( imagemExiste("http://www.progettoemma.net/mess/snaps/mess/pcb_antopisa/$ID$.png") ):
-         { 
-            mostraImagem("http://www.progettoemma.net/mess/snaps/mess/pcb_antopisa/$ID$.png", "PCB", "pmess", "pcb");
-            break;              
-         }
-         
-         case ( imagemExiste("http://www.progettoemma.net/mess/snaps/mess/pcb_antopisa/$PARENT_ID$.png") ):
-         { 
-            mostraImagem("http://www.progettoemma.net/mess/snaps/mess/pcb_antopisa/$PARENT_ID$.png", "PARENT PCB", "pmess", "pcb");
-            break;              
-         }
-      
-         default:
-         {
-            document.write("<b>PCB IMAGE:</b><br>");
-            mostraFonte("miss", "n","n");      
-            break;
-         }   
-      }
-       
-      document.write("<br>");  
-      
-      <!--Flyer Image for MESS-->      
-      switch(true)
-      {
-         case ("$FLYER_IMAGE$" != "$GHOST_IMAGE$"):
-         {
-            mostraImagem("$FLYER_IMAGE$", "FLYER", "local", "fly");            
-            break;
-         }         
-      
-         default:
-         {
-            document.write("<b>FLYER IMAGE:</b><br>");
-            mostraFonte("miss", "n","n");      
-            break;
-         }   
-      }
-   }
-   
-<!--Black AREA: MAME Images-->    
-   else
-   {
-      <!--Cabinet Image for MAME--> 
+<!--Many sets in project MESS: amilo3438-->    
+      <!--Cabinet Image-->   
+      x=0;
       switch(true)
       {
          case ("$CABINET_IMAGE$" != "$GHOST_IMAGE$"):
          {
-            mostraImagem("$CABINET_IMAGE$", "CABINET", "local", "cab");    
-            break;     
-         }
+            mostraImagem("$CABINET_IMAGE$", "CABINET", "local", "cab"); 
+            x=1;    
+            break;   
+         }   
          
-         case (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseArcadeHits'] == 'true'):
-         {
-            switch(true)
+         case (localStorage['SystemNotesTemplate/UseArcadeHits'] == 'true'):
+         {        
+            if (imagemExiste("http://www.arcadehits.net/mmedia/cabinets/$ID$.png"))
             {
-               case ( imagemExiste("http://www.arcadehits.net/mmedia/cabinets/jpeg/$ID$.png.jpg")):
-               {
-                  mostraImagem("http://www.arcadehits.net/mmedia/cabinets/jpeg/$ID$.png.jpg", "CABINET", "ahits", "cab");
-                  break;                         
-               } 
-               
-               case (imagemExiste("http://www.arcadehits.net/mmedia/cabinets/jpeg/$PARENT_ID$.png.jpg")):
-               {
-                  mostraImagem("http://www.arcadehits.net/mmedia/cabinets/jpeg/$PARENT_ID$.png.jpg", "CABINET", "ahits", "cab");
-                  break;                         
-               } 
-      
-               default:
-               {
-                  document.write("<b>CABINET IMAGE:</b><br>");
-                  mostraFonte("miss", "n","n"); 
-                  break;     
-               }
-            }
-            break;           
-         }
+               mostraImagem("http://www.arcadehits.net/mmedia/cabinets/$ID$.png", "CABINET", "ahits", "cab");
+               x=1;
+               break;            
+            } 
+
+            else if (imagemExiste("http://www.arcadehits.net/mmedia/cabinets/$PARENT_ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/cabinets/$PARENT_ID$.png", "PARENT CABINET", "ahits", "cab");
+               x=1;
+               break;            
+            }      
+            break;         
+         }   
          
-         default:
-         {
-            document.write("<b>CABINET IMAGE:</b><br>");
-            mostraFonte("miss", "n","n"); 
-            break;     
+         case (localStorage['SystemNotesTemplate/UseProgettoEmma'] == 'true'):
+         {        
+            if (imagemExiste("http://www.progettoemma.net/snap/$ID$/cabinet.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/snap/$ID$/cabinet.png", "CABINET", "pemma", "cab");
+               x=1;
+               break;              
+            }
+         
+            else if (imagemExiste("http://www.progettoemma.net/snap/$PARENT_ID$/cabinet.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/snap/$PARENT_ID$/cabinet.png", "PARENT CABINET", "pemma", "cab");
+               x=1;
+               break;              
+            }    
+            break;   
          }
-      }   
+
+         case (localStorage['SystemNotesTemplate/UseProjectMess'] == 'true'):
+         {
+            if (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/cabinet_antopisa/$ID$.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/mess/snaps/mess/cabinet_antopisa/$ID$.png", "CABINET", "pmess", "cab");
+               x=1;
+               break;              
+            }
+         
+            else if (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/cabinet_antopisa/$PARENT_ID$.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/mess/snaps/mess/cabinet_antopisa/$PARENT_ID$.png", "PARENT CABINET", "pmess", "cab");
+               x=1;
+               break;              
+            }
+            break;   
+         }                         
+      }
+      
+      if (x==0)
+      {
+         document.write("<b>CABINET IMAGE:</b><br>");
+         mostraFonte("miss", "n","n"); 
+      } 
             
       document.write("<br>"); 
         
-      <!--Controller Image for MAME-->   
+      <!--Controller Image-->   
+      x=0;
       switch(true)
       {
          case ("$CONTROLLER_IMAGE$" != "$GHOST_IMAGE$"):
          {
-            mostraImagem("$CONTROLLER_IMAGE$", "CONTROLLER", "local", "ctl");     
+            mostraImagem("$CONTROLLER_IMAGE$", "CONTROLLER", "local", "ctl"); 
+            x=1;    
             break;   
          }   
          
-         case ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseArcadeHits'] == 'true'):
-         {
-            switch(true)
-            {           
-               case ( imagemExiste("http://www.arcadehits.net/mmedia/cpanel/jpeg/$ID$.png.jpg")):
-               {
-                  mostraImagem("http://www.arcadehits.net/mmedia/cpanel/jpeg/$ID$.png.jpg", "CONTROLLER", "ahits", "ctl");
-                  break;            
-               } 
+         case (localStorage['SystemNotesTemplate/UseArcadeHits'] == 'true'):
+         {        
+            if (imagemExiste("http://www.arcadehits.net/mmedia/cpanel/$ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/cpanel/$ID$.png", "CONTROLLER", "ahits", "ctl");
+               x=1;
+               break;            
+            } 
 
-               case ( imagemExiste("http://www.arcadehits.net/mmedia/cpanel/jpeg/$PARENT_ID$.png.jpg")):
-               {
-                  mostraImagem("http://www.arcadehits.net/mmedia/cpanel/jpeg/$PARENT_ID$.png.jpg", "PARENT CONTROLLER", "ahits", "ctl");
-                  break;            
-               } 
-                  
-               default:
-               {
-                  document.write("<b>CONTROLLER IMAGE:</b><br>");
-                  mostraFonte("miss", "n","n"); 
-                  break;     
-               }
-            }
-            break;  
-         }
-         
-         default:
-         {
-            document.write("<b>CONTROLLER IMAGE:</b><br>");
-            mostraFonte("miss", "n","n"); 
-            break;     
+            else if (imagemExiste("http://www.arcadehits.net/mmedia/cpanel/$PARENT_ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/cpanel/$PARENT_ID$.png", "PARENT CONTROLLER", "ahits", "ctl");
+               x=1;
+               break;            
+            }      
+            break;         
          }   
+         
+         case (localStorage['SystemNotesTemplate/UseProgettoEmma'] == 'true'):
+         {        
+            if (imagemExiste("http://www.progettoemma.net/snap/$ID$/cpanel.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/snap/$ID$/cpanel.png", "CONTROLLER", "pemma", "ctl");
+               x=1;
+               break;              
+            }
+         
+            else if (imagemExiste("http://www.progettoemma.net/snap/$PARENT_ID$/cpanel.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/snap/$PARENT_ID$/cpanel.png", "PARENT CONTROLLER", "pemma", "ctl");
+               x=1;
+               break;              
+            }    
+            break;   
+         }
+
+         case (localStorage['SystemNotesTemplate/UseProjectMess'] == 'true'):
+         {
+            if (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/cpanel_antopisa/$ID$.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/mess/snaps/mess/cpanel_antopisa/$ID$.png", "CONTROLLER", "pmess", "ctl");
+               x=1;
+               break;              
+            }
+         
+            else if (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/cpanel_antopisa/$PARENT_ID$.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/mess/snaps/mess/cpanel_antopisa/$PARENT_ID$.png", "PARENT CONTROLLER", "pmess", "ctl");
+               x=1;
+               break;              
+            }
+            break;   
+         }                         
       }
+      
+      if (x==0)
+      {
+         document.write("<b>CONTROLLER IMAGE:</b><br>");
+         mostraFonte("miss", "n","n"); 
+      } 
               
       document.write("<br>");  
       
-      <!--Flyer Image for MAME-->      
+      <!--Flyer Image-->   
+      x=0;
       switch(true)
       {
          case ("$FLYER_IMAGE$" != "$GHOST_IMAGE$"):
          {
-            mostraImagem("$FLYER_IMAGE$", "FLYER", "local", "fly");            
-            break;
-         }
-      
-         case ( imagemExiste("http://www.arcadehits.net/mmedia/flyers/jpeg/$ID$.png.jpg") ):
-         { 
-            mostraImagem("http://www.arcadehits.net/mmedia/flyers/jpeg/$ID$.png.jpg", "PARENT FLYER", "ahits", "fly");
-            break;              
-         }
-
-         case ( imagemExiste("http://www.arcadehits.net/mmedia/flyers/jpeg/$PARENT_ID$.png.jpg") ):
-         { 
-            mostraImagem("http://www.arcadehits.net/mmedia/flyers/jpeg/$PARENT_ID$.png.jpg", "FLYER", "ahits", "fly");
-            break;              
-         }         
-         
-         case ( imagemExiste("http://www.progettoemma.net/snap/$ID$/flyer.png") ):
-         { 
-            mostraImagem("http://www.progettoemma.net/snap/$ID$/flyer.png", "FLYER", "pemma", "fly");
-            break;              
-         }
-         
-         case ( imagemExiste("http://www.progettoemma.net/snap/$PARENT_ID$/flyer.png") ):
-         { 
-            mostraImagem("http://www.progettoemma.net/snap/$PARENT_ID$/flyer.png", "PARENT FLYER", "pemma", "fly");
-            break;              
-         }         
-      
-         default:
-         {
-            document.write("<b>FLYER IMAGE:</b><br>");
-            mostraFonte("miss", "n","n");      
-            break;
-         }   
-      }        
-
-      document.write("<br>"); 
-  
-      
-      <!--PCB Image for MAME-->   
-      switch(true){
-         case ("$PCB_IMAGE$" != "$GHOST_IMAGE$"):
-         {
-            mostraImagem("$PCB_IMAGE$", "PCB", "local", "pcb");     
+            mostraImagem("$FLYER_IMAGE$", "FLYER", "local", "fly"); 
+            x=1;    
             break;   
          }   
          
-         case (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseArcadeHits'] == 'true'):
-         {
-            switch(true)
-            {           
-               case ( imagemExiste("http://www.arcadehits.net/mmedia/pcb/jpeg/$ID$.png.jpg")):
-               {
-                  mostraImagem("http://www.arcadehits.net/mmedia/pcb/jpeg/$ID$.png.jpg", "PCB", "ahits", "pcb");
-                  break;            
-               } 
+         case (localStorage['SystemNotesTemplate/UseArcadeHits'] == 'true'):
+         {        
+            if (imagemExiste("http://www.arcadehits.net/mmedia/flyers/$ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/flyers/$ID$.png", "FLYER", "ahits", "fly");
+               x=1;
+               break;            
+            } 
 
-               case (imagemExiste("http://www.arcadehits.net/mmedia/pcb/jpeg/$PARENT_ID$.png.jpg")):
-               {
-                  mostraImagem("http://www.arcadehits.net/mmedia/pcb/jpeg/$PARENT_ID$.png.jpg", "PARENT PCB", "ahits", "pcb");
-                  break;            
-               } 
-                  
-               default:
-               {
-                  document.write("<b>PCB IMAGE:</b><br>");
-                  mostraFonte("miss", "n","n"); 
-                  break;     
-               }
+            else if (imagemExiste("http://www.arcadehits.net/mmedia/flyers/$PARENT_ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/flyers/$PARENT_ID$.png", "PARENT FLYER", "ahits", "fly");
+               x=1;
+               break;            
+            }      
+            break;         
+         }   
+         
+         case (localStorage['SystemNotesTemplate/UseProgettoEmma'] == 'true'):
+         {        
+            if (imagemExiste("http://www.progettoemma.net/snap/$ID$/flyer.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/snap/$ID$/flyer.png", "FLYER", "pemma", "fly");
+               x=1;
+               break;              
             }
-            break;  
-         }        
+         
+            else if (imagemExiste("http://www.progettoemma.net/snap/$PARENT_ID$/flyer.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/snap/$PARENT_ID$/flyer.png", "PARENT FLYER", "pemma", "fly");
+               x=1;
+               break;              
+            }    
+            break;   
+         }
+
+         case (localStorage['SystemNotesTemplate/UseProjectMess'] == 'true'):
+         {
+            if (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/flyer_antopisa/$ID$.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/mess/snaps/mess/flyer_antopisa/$ID$.png", "FLYER", "pmess", "fly");
+               x=1;
+               break;              
+            }
+         
+            else if (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/flyer_antopisa/$PARENT_ID$.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/mess/snaps/mess/flyer_antopisa/$PARENT_ID$.png", "PARENT FLYER", "pmess", "fly");
+               x=1;
+               break;              
+            }
+            break;   
+         }                         
+      }
+      
+      if (x==0)
+      {
+         document.write("<b>FLYER IMAGE:</b><br>");
+         mostraFonte("miss", "n","n"); 
       }         
-   } 
-}
+
+      document.write("<br>"); 
+  
+      <!--PCB Image-->   
+      x=0;
+      switch(true)
+      {
+         case ("$PCB_IMAGE$" != "$GHOST_IMAGE$"):
+         {
+            mostraImagem("$PCB_IMAGE$", "PCB", "local", "pcb"); 
+            x=1;    
+            break;   
+         }   
+         
+         case (localStorage['SystemNotesTemplate/UseArcadeHits'] == 'true'):
+         {        
+            if (imagemExiste("http://www.arcadehits.net/mmedia/pcb/$ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/pcb/$ID$.png", "PCB", "ahits", "pcb");
+               x=1;
+               break;            
+            } 
+
+            else if (imagemExiste("http://www.arcadehits.net/mmedia/pcb/$PARENT_ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/pcb/$PARENT_ID$.png", "PARENT PCB", "ahits", "pcb");
+               x=1;
+               break;            
+            }      
+            break;         
+         }   
+         
+         case (localStorage['SystemNotesTemplate/UseProgettoEmma'] == 'true'):
+         {        
+            if (imagemExiste("http://www.progettoemma.net/snap/$ID$/pcb.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/snap/$ID$/pcb.png", "PCB", "pemma", "pcb");
+               x=1;
+               break;              
+            }
+         
+            else if (imagemExiste("http://www.progettoemma.net/snap/$PARENT_ID$/pcb.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/snap/$PARENT_ID$/flyer.png", "PARENT PCB", "pemma", "pcb");
+               x=1;
+               break;              
+            }    
+            break;   
+         }
+
+         case (localStorage['SystemNotesTemplate/UseProjectMess'] == 'true'):
+         {
+            if (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/pcb_antopisa/$ID$.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/mess/snaps/mess/pcb_antopisa/$ID$.png", "PCB", "pmess", "pcb");
+               x=1;
+               break;              
+            }
+         
+            else if (imagemExiste("http://www.progettoemma.net/mess/snaps/mess/pcb_antopisa/$PARENT_ID$.png"))
+            { 
+               mostraImagem("http://www.progettoemma.net/mess/snaps/mess/pcb_antopisa/$PARENT_ID$.png", "PARENT PCB", "pmess", "pcb");
+               x=1;
+               break;              
+            }
+            break;   
+         }                         
+      }
+      
+      if (x==0)
+      {
+         document.write("<b>PCB IMAGE:</b><br>");
+         mostraFonte("miss","n","n"); 
+      }   
+      
+      document.write("<br>");
+      
+      <!--EXTRA IMAGES-->   
+
+      if (localStorage['SystemNotesTemplate/SearchExtraImages'] == 'true')
+      {      
+         <!--Project EMMA-->
+         if (localStorage['SystemNotesTemplate/UseProgettoEmma'] == 'true')
+         {
+         
+            <!--Game Over-->      
+            <!--Example: robby,thepit-->  
+            if (imagemExiste("http://www.progettoemma.net/snap/$ID$/gameover.png"))
+            {
+               mostraImagem("http://www.progettoemma.net/snap/$ID$/gameover.png", "GAME OVER", "pemma", "gameover");          
+            }
+            else if (imagemExiste("http://www.progettoemma.net/snap/$PARENT_ID$/gameover.png"))
+            {
+               mostraImagem("http://www.progettoemma.net/snap/$PARENT_ID$/gameover.png", "PARENT GAME OVER", "pemma", "gameover");          
+            }      
+            else
+            {
+               document.write("<b>GAME OVER IMAGE:</b><br>");
+               mostraFonte("miss","n","n");   
+            }         
+              
+            document.write("<br>");                      
+      
+            <!--Hi-Score-->      
+            <!--Example: sfa-->      
+            if (imagemExiste("http://www.progettoemma.net/snap/$ID$/score.png"))
+            {
+               mostraImagem("http://www.progettoemma.net/snap/$ID$/score.png", "HI-SCORE", "pemma", "hiscore");          
+            }
+            else if (imagemExiste("http://www.progettoemma.net/snap/$PARENT_ID$/score.png"))
+            {
+               mostraImagem("http://www.progettoemma.net/snap/$PARENT_ID$/score.png", "PARENT HI-SCORE", "pemma", "hiscore");          
+            }      
+            else
+            {
+               document.write("<b>HI-SCORE IMAGE:</b><br>");
+               mostraFonte("miss","n","n");   
+            }         
+            
+            document.write("<br>");
+         }
+         
+         else   
+            document.write("<b>"+tr('Activate P.EMMA for')+":</b> 'Game Over', 'Hi-Score'<br><br>");           
+        
+         <!--Arcade Hits-->        
+         if (localStorage['SystemNotesTemplate/UseArcadeHits'] == 'true')
+         {       
+         
+            <!--Select Screen-->
+            <!--Example: sfiii, winspike, kabukikl-->   
+            if (imagemExiste("http://www.arcadehits.net/mmedia/select/$ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/select/$ID$.png", "SELECT SCREEN", "ahits", "select screen");          
+            } 
+            else if (imagemExiste("http://www.arcadehits.net/mmedia/select/$PARENT_ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/select/$PARENT_ID$.png", "PARENT SELECT SCREEN", "ahits", "select screen");          
+            }      
+            else
+            {
+               document.write("<b>SELECT SCREEN IMAGE:</b><br>");
+               mostraFonte("miss","n","n");   
+            }            
+      
+            document.write("<br>");   
+
+            <!--Versus Screen-->
+            <!--Example: sf2,winspike, kabukikl-->      
+            if (imagemExiste("http://www.arcadehits.net/mmedia/versus/$ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/versus/$ID$.png", "VERSUS SCREEN", "ahits", "versus screen");          
+            } 
+            else if (imagemExiste("http://www.arcadehits.net/mmedia/versus/$PARENT_ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/versus/$PARENT_ID$.png", "PARENT VERSUS SCREEN", "ahits", "versus screen");          
+            }      
+            else
+            {
+               document.write("<b>VERSUS SCREEN IMAGE:</b><br>");
+               mostraFonte("miss","n","n");   
+            }            
+      
+            document.write("<br>"); 
+                     
+            <!--Bosses-->      
+            <!--Example: bombkick,sharrier-->       
+            if (imagemExiste("http://www.arcadehits.net/mmedia/bosses/$ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/bosses/$ID$.png", "BOSSES", "ahits", "bosses");          
+            } 
+            else if (imagemExiste("http://www.arcadehits.net/mmedia/bosses/$PARENT_ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/bosses/$PARENT_ID$.png", "PARENT BOSSES", "ahits", "bosses");          
+            }      
+            else
+            {
+               document.write("<b>BOSSES IMAGE:</b><br>");
+               mostraFonte("miss","n","n");   
+            }
+      
+            document.write("<br>");
+      
+            <!--Characters-->      
+            <!--Example: -->    
+            if (imagemExiste("http://www.arcadehits.net/mmedia/characters/$ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/characters/$ID$.png", "CHARACTERS", "ahits", "characters");          
+            } 
+            else if (imagemExiste("http://www.arcadehits.net/mmedia/characters/$PARENT_ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/characters/$PARENT_ID$.png", "PARENT CHARACTERS", "ahits", "characters");          
+            }      
+            else
+            {
+               document.write("<b>CHARACTERS IMAGE:</b><br>");
+               mostraFonte("miss","n","n");   
+            }                    
+      
+            document.write("<br>");
+      
+            <!--How To-->
+            <!--Example: aladmdb, winspike-->      
+            if (imagemExiste("http://www.arcadehits.net/mmedia/howto/$ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/howto/$ID$.png", "HOW TO", "ahits", "howto");          
+            }
+            else if (imagemExiste("http://www.arcadehits.net/mmedia/howto/$PARENT_ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/howto/$PARENT_ID$.png", "PARENT HOW TO", "ahits", "howto");          
+            }      
+            else
+            {
+               document.write("<b>HOW TO IMAGE:</b><br>");
+               mostraFonte("miss","n","n");   
+            }                  
+      
+            document.write("<br>");
+      
+            <!--Artwork Preview-->
+            <!--Example: pacman, ccboot--> 
+            if (imagemExiste("http://www.arcadehits.net/mmedia/artwork/$ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/artwork/$ID$.png", "ARTWORK PREVIEW", "ahits", "artwork preview");          
+            } 
+            else if (imagemExiste("http://www.arcadehits.net/mmedia/artwork/$PARENT_ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/artwork/$PARENT_ID$.png", "PARENT ARTWORK PREVIEW", "ahits", "artwork preview");          
+            }
+            else
+            {
+               document.write("<b>ARTWORK PREVIEW IMAGE:</b><br>");
+               mostraFonte("miss","n","n");   
+            }           
+      
+            document.write("<br>");
+      
+            <!--Manufacturer Logo-->
+            <!--Example: kabukikl,sfj-->      
+            if (imagemExiste("http://www.arcadehits.net/mmedia/logo/$ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/logo/$ID$.png", "MANUFACTURER LOGO", "ahits", "manufacturer logo");          
+            } 
+            else if (imagemExiste("http://www.arcadehits.net/mmedia/logo/$PARENT_ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/logo/$PARENT_ID$.png", "PARENT MANUFACTURER LOGO", "ahits", "manufaturer logo");          
+            }      
+            else
+            {
+               document.write("<b>MANUFACTURER LOGO IMAGE:</b><br>");
+               mostraFonte("miss","n","n");   
+            } 
+            
+            document.write("<br>");
+      
+            <!--Controller Layout-->
+            <!--http://www.arcadehits.net/mmedia/cplayouts/jpeg/$ID$.png.jpg-->
+     
+            if (imagemExiste("http://www.arcadehits.net/mmedia/cplayouts/$ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/cplayouts/$ID$.png", "CONTROLLER LAYOUT", "ahits", "controller layout");          
+            } 
+            else if (imagemExiste("http://www.arcadehits.net/mmedia/cplayouts/$PARENT_ID$.png"))
+            {
+               mostraImagem("http://www.arcadehits.net/mmedia/cplayouts/$PARENT_ID$.png", "PARENT CONTROLLER LAYOUT", "ahits", "controller layout");          
+            }      
+            else
+            {
+               document.write("<b>CONTROLLER LAYOUT IMAGE:</b><br>");
+               mostraFonte("miss","n","n");   
+            }      
+         }
+         
+         else   
+            document.write("<b>"+tr('Activate A.Hits for')+":</b> 'Select Screen', 'Versus Screen', 'Bosses', 'Characters', 'Manufacturer Logo', 'How To', 'Artwork Preview', 'Controller Layout'<br>");             
+       }
+
+       else
+           document.write("<b>"+tr('Activate "EXTRA IMAGES" for more images')+"</b><br>");           
+   }             
 
 else
 {
@@ -2582,20 +2751,16 @@ else
 
 <script language="JavaScript"> 
 <!--Ve a altura da barra de opções-->
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOptions'] == 'true')
+if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
 {
    document.write("<div id=\"footer\">");
 }
 
 else
 {
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BottomInfo'] == 'true')
+   if (localStorage['SystemNotesTemplate/BottomInfo'] == 'true')
    {
-      if ("$EMULATOR_TYPE$" != "UME")
          document.write("<div id=\"footerno\">");
-         
-      else
-         document.write("<div id=\"footerume\">");
    }      
    
    else   
@@ -2607,7 +2772,7 @@ document.write("<table border=\"0\" cellspacing=\"0\" valign=\"top\" width=\"100
 barraRom();
 document.write("<td align=\"left\"><font color=\"white\">");
 
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOptions'] == 'true')
+if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
 {
    document.write("<input name=\"copt\" type=\"checkbox\" id=\"copt\" checked=\"checked\" onclick=\"toggleOptions(this.checked);\" title=\"Show Options?\"/>");
 }   
@@ -2627,7 +2792,7 @@ else
    document.write("$ROM_TYPES$ Status: $ROM_STATUS$");
 document.write("</b></font></td><td align=\"right\"><font color=\"white\"><b>"+tr('SHOW OPTIONS')+"</b>");
 
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOptions'] == 'true')
+if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
    document.write("<input name=\"copt\" type=\"checkbox\" id=\"copt\" checked=\"checked\" onclick=\"toggleOptions(this.checked);\" title=\"Show Options?\"/>");
    
 else   
@@ -2635,14 +2800,14 @@ else
 
 document.write("</font></td></tbody></table>");  
   
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOptions'] == 'true')
+if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
 {   
    document.write("<table border=\"0\" cellspacing=\"0\" valign=\"middle\" width=\"100%\" bgcolor=\"#080808\"><tbody>");   
      
    document.write("<tr><td width=\"10%\"><font color=\"white\">"+tr('Structural Options'));
    document.write(":</td><td width=\"30%\ align=\"left\"><font color=\"white\">");
    
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleEmuInfo'] == 'true')
+   if (localStorage['SystemNotesTemplate/ToggleEmuInfo'] == 'true')
    {
       document.write("<input name=\"cemuinfo\" type=\"checkbox\" id=\"cemuinfo\" checked=\"checked\" onclick=\"toggleEmuInfo(this.checked);\" title=\"Toggle EmuInfo?\"/> <label>"+tr('Emulator Info')+"</label>");
    }  
@@ -2654,7 +2819,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
 
    document.write("</td><td width=\"30%\" align=\"left\"><font color=\"white\">");
    
-   if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ShowBlackColumn'] == 'true' )
+   if ( localStorage['SystemNotesTemplate/ShowBlackColumn'] == 'true' )
    {
       document.write("<input name=\"cblack\" type=\"checkbox\" id=\"cblack\" checked=\"checked\" onclick=\"toggleShowBlackColumn(this.checked);\" title=\"Show the black column or disable it?\"/> <label>"+tr('Black Column')+"</label>");
    }
@@ -2666,7 +2831,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
    
    document.write("</td><td width=\"30%\"align=\"right\"><font color=\"white\">");
 
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleMacInfo'] == 'true')
+   if (localStorage['SystemNotesTemplate/ToggleMacInfo'] == 'true')
    {        
       document.write(tr('System Info')+"<input name=\"cmacinfo\" type=\"checkbox\" id=\"cmacinfo\" checked=\"checked\" onclick=\"toggleMacInfo(this.checked);\" title=\"Toggle Machine Info?\"/><label></label>");
    }   
@@ -2679,7 +2844,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
    document.write("</td></tr><tr><td width=\"10%\"><font color=\"white\">"+tr('Header Options'));
    document.write(":</td><td width=\"30%\ align=\"left\"><font color=\"white\">");  
    
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleTitCab'] == 'true')
+   if (localStorage['SystemNotesTemplate/ToggleTitCab'] == 'true')
    {
       document.write("<input name=\"ctitcab\" type=\"checkbox\" id=\"ctitcab\" checked=\"checked\" onclick=\"toggleTitCab(this.checked);\" title=\"Toggle Title (MAME/UME)/Cabinet Image(MESS)?\"/> <label>Title/Cabinet Image</label><br>");
    }        
@@ -2691,7 +2856,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
    
    document.write("</td><td width=\"30%\" align=\"left\"><font color=\"white\">");  
    
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleInfo'] == 'true')
+   if (localStorage['SystemNotesTemplate/ToggleInfo'] == 'true')
    {
       document.write("<input name=\"cinfo\" type=\"checkbox\" id=\"cinfo\" checked=\"checked\" onclick=\"toggleInfo(this.checked);\" title=\"Toggle Info\"/> <label>"+tr('Toggle Info')+"</label><br>");
    }   
@@ -2704,7 +2869,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
    document.write("</td><td width=\"30%\" align=\"right\"><font color=\"white\">");  
 
 /*Selecting kind of image for preview*/
-   switch (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMode'])
+   switch (localStorage['SystemNotesTemplate/PrevImageMode'])
    {
       case  'no':
       {
@@ -2733,7 +2898,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
    document.write("</td></tr><tr><td width=\"10%\"><font color=\"white\">"+tr('Image Options'));
    document.write(":</td><td width=\"30%\ align=\"left\"><font color=\"white\">");
    
-   if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/FancyImages'] == 'true' )
+   if ( localStorage['SystemNotesTemplate/FancyImages'] == 'true' )
    {
       document.write("<input name=\"cfancy\" type=\"checkbox\" id=\"cfancy\" checked=\"checked\" onclick=\"FancyImages(this.checked);\" title=\"Show transition on load images?\"/> <label>"+tr('Image Transition')+"</label>");
    }
@@ -2745,7 +2910,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
                
    document.write("</td><td width=\"30%\" align=\"left\"><font color=\"white\">");               
                
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ShowImageSource'] == 'true')
+   if (localStorage['SystemNotesTemplate/ShowImageSource'] == 'true')
    {
       document.write("<input name=\"csource\" type=\"checkbox\" id=\"csource\" checked=\"checked\" onclick=\"toggleShowImageSource(this.checked);\" title=\"Show image sources?\"/> <label>"+tr('Show sources')+"</label>");
    }
@@ -2762,7 +2927,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
    document.write("</td></tr><tr><td width=\"10%\"><font color=\"white\">"+tr('General Options'));
    document.write(":</td><td align=\"left\"><font color=\"white\">");            
    
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BottomInfo'] == 'true')
+   if (localStorage['SystemNotesTemplate/BottomInfo'] == 'true')
    {
       document.write("<input name=\"cbinfo\" type=\"checkbox\" id=\"cbinfo\" checked=\"checked\" onclick=\"toggleBottomInfo(this.checked);\" title=\"Show Bottom Info (such Links and extra images)?\"/> <label>"+tr('Bottom Info')+"</label>");
    }
@@ -2774,7 +2939,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
 
    document.write("</td><td align=\"left\"><font color=\"white\">");  
          
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/Shadows'] == 'true')
+   if (localStorage['SystemNotesTemplate/Shadows'] == 'true')
    {
       document.write("<input name=\"cshadows\" type=\"checkbox\" id=\"cshadows\" checked=\"checked\" onclick=\"toggleShadows(this.checked);\" title=\"Show shadows under images?\"/> <label>"+tr('Shadows')+"</label>");
    }
@@ -2784,12 +2949,12 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
       document.write("<input name=\"cshadows\" type=\"checkbox\" id=\"cshadows\" onclick=\"toggleShadows(this.checked);\" title=\"Show shadows under images?\"/> <label>"+tr('Shadows')+"</label>");      
    }       
    
-   if ("$EMULATOR_TYPE$" == "MESS") 
+  /* if ("$EMULATOR_TYPE$" == "MESS") 
    {
       document.write("</td></tr><tr><td width=\"10%\"><font color=\"white\">"+tr('Internet Databases'));
       document.write(":</td><td align=\"left\"><font color=\"white\">");
       
-      if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProjectMess'] == 'true' )
+      if ( localStorage['SystemNotesTemplate/UseProjectMess'] == 'true' )
       {
          document.write("<input name=\"cpmess\" type=\"checkbox\" id=\"cpmess\" checked=\"checked\" onclick=\"toggleProjectMess(this.checked);\" title=\"Try to load images from P.MESS if not found on local disk?\"/> <label>P.MESS</label>");
       }
@@ -2801,9 +2966,9 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
    } 
    
    else  
-   {  
+   {  */
       document.write("</td><td align=\"right\"><font color=\"white\">");     
-      if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SearchExtraImages'] == 'true')
+      if (localStorage['SystemNotesTemplate/SearchExtraImages'] == 'true')
       {
          document.write(tr('Search Extra Images')+"<input name=\"csearch\" type=\"checkbox\" id=\"csearch\" checked=\"checked\" onclick=\"toggleSearchExtraImages(this.checked);\" title=\"Search extra images?\"/> <label></label>");
       } 
@@ -2816,7 +2981,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
       document.write("</td></tr><tr><td width=\"10%\"><font color=\"white\">"+tr('Internet Databases')+":");
       document.write("</td><td align=\"left\"><font color=\"white\">");
                     
-      if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProgettoEmma'] == 'true')
+      if (localStorage['SystemNotesTemplate/UseProgettoEmma'] == 'true')
       {
          document.write("<input name=\"cpemma\" type=\"checkbox\" id=\"cpemma\" checked=\"checked\" onclick=\"toggleProgettoEmma(this.checked);\" title=\"Try to load images from P.EMMA if not found on local disk?\"/> <label>P.EMMA</label>");
       }   
@@ -2826,11 +2991,11 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
          document.write("<input name=\"cpemma\" type=\"checkbox\" id=\"cpemma\" onclick=\"toggleProgettoEmma(this.checked);\" title=\"Try to load images from P.EMMA if not found on local disk?\"/> <label>P.EMMA</label>");
       }   
       
-      /* ***MAYBE ONE DAY... WHO KNOW's... Project MESS for UME (don't worked properly in my tests when active with A.Hits and P.MAME too... And could be confusing for normal users...)***
+      /* ***CHECK IF IT'S WORKING PROPERLY...*** */
       
       document.write("</td><td align=\"left\"><font color=\"white\">");        
       
-      if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseProjectMess'] == 'true' )
+      if ( localStorage['SystemNotesTemplate/UseProjectMess'] == 'true' )
       {
          document.write("<input name=\"cpmess\" type=\"checkbox\" id=\"cpmess\" checked=\"checked\" onclick=\"toggleProjectMess(this.checked);\" title=\"Try to load images from P.MESS if not found on local disk?\"/> <label>P.MESS</label>");
       }
@@ -2838,11 +3003,11 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
       else
       {
          document.write("<input name=\"cpmess\" type=\"checkbox\" id=\"cpmess\" onclick=\"toggleProjectMess(this.checked);\" title=\"Try to load images from P.MESS if not found on local disk?\"/> <label>P.MESS</label>");  
-      }     */          
+      }             
              
-      document.write("</td><td></td><td align=\"right\"><font color=\"white\">");             
+      document.write("</td><td align=\"right\"><font color=\"white\">");             
              
-      if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseArcadeHits'] == 'true' )
+      if ( localStorage['SystemNotesTemplate/UseArcadeHits'] == 'true' )
       {
          document.write("A.Hits<input name=\"cahits\" type=\"checkbox\" id=\"cahits\" checked=\"checked\" onclick=\"toggleArcadeHits(this.checked);\" title=\"Try to load images from A.Hits if not found on local disk?\"/> <label></label>");       
       }      
@@ -2851,12 +3016,12 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
       {
          document.write("A.Hits<input name=\"cahits\" type=\"checkbox\" id=\"cahits\" onclick=\"toggleArcadeHits(this.checked);\" title=\"Try to load images from A.Hits if not found on local disk?\"/> <label></label>");                
       }   
-   }
+   /*}*/
    
    document.write("</td></tr><tr><td width=\"10%\"><font color=\"white\">XML/Zip");
    document.write(":</td><td align=\"left\"><font color=\"white\">");               
              
-   if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/InfoXML'] == 'true' )
+   if ( localStorage['SystemNotesTemplate/InfoXML'] == 'true' )
    {
       document.write("<input name=\"cixml\" type=\"checkbox\" id=\"cixml\" checked=\"checked\" onclick=\"toggleInfoXML(this.checked);\" title=\"Show extra information from search from XML in information area(can be slow)\"/> <label>"+tr('Info XML')+"</label>");
    }     
@@ -2868,7 +3033,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
       
    document.write("</td><td align=\"left\"><font color=\"white\">");             
              
-   if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SearchXML'] == 'true' )
+   if ( localStorage['SystemNotesTemplate/SearchXML'] == 'true' )
    {
       document.write("<input name=\"csxml\" type=\"checkbox\" id=\"csxml\" checked=\"checked\" onclick=\"toggleSearchXML(this.checked);\" title=\"Show information from search from XML (can be slow)\"/> <label>"+tr('Status XML')+"</label>"); 
    }     
@@ -2880,7 +3045,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
 
    document.write("</td><td align=\"right\"><font color=\"white\">");             
              
-   if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SoftlistXML'] == 'true' )
+   if ( localStorage['SystemNotesTemplate/SoftlistXML'] == 'true' )
    {
       document.write(tr('Softwarelist/Samples XML')+"<input name=\"csfixml\" type=\"checkbox\" id=\"csfixml\" checked=\"checked\" onclick=\"toggleSoftlistXML(this.checked);\" title=\"Show information from softwarelist in search from XML (can be slow)\"/> <label></label>");
    }         
@@ -2893,7 +3058,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
    document.write("</td></tr><tr><td width=\"10%\"><font color=\"white\">");
    document.write("</td><td align=\"left\"><font color=\"white\">"); 
 
-   if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ProcXML'] == 'true' )
+   if ( localStorage['SystemNotesTemplate/ProcXML'] == 'true' )
    {
       document.write("<input name=\"cprocml\" type=\"checkbox\" id=\"cprocxml\" checked=\"checked\" onclick=\"toggleProcXML(this.checked);\" title=\"Show information from processors of the system in search from XML (can be slow)\"/> <label>"+tr('Processors info XML')+"</label>");
    }   
@@ -2905,7 +3070,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
 
    document.write("</td><td align=\"left\"><font color=\"white\">");
    
-   if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseZip'] == 'true')
+   if (localStorage['SystemNotesTemplate/UseZip'] == 'true')
    {
       document.write("<input name=\"cusezip\" type=\"checkbox\" id=\"cusezip\" checked=\"checked\" onclick=\"toggleUseZip(this.checked);\" title=\"Select this option if you want to use images from zip files (maybe slow)\"/> <label>"+tr('Use images from ZIP (may be slow)')+"</label>");
    }     
@@ -2925,7 +3090,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
     
    document.write("<input name=\"bimg\" type=\"button\" id=\"bimg\" onclick=\"selectImage();\" style=\"background-image: url('../img/camera.png');background-size: 100%; vertical-align: middle; width: 30; height: 30;\" title=\"Select Image for Background\"/></font></td>");    
 
-   switch (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BackgroundMode']) 
+   switch (localStorage['SystemNotesTemplate/BackgroundMode']) 
    {
       case 'image-tiled':
       {
@@ -2955,81 +3120,63 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
 
    document.write("<table border=\"0\" cellspacing=\"0\" valign=\"middle\" align=\"center\" width=\"100%\" style=\"table-layout: fixed;\"><tbody bgcolor=\"black\"><tr>");
 
-if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BottomInfo'] == 'true')
+if (localStorage['SystemNotesTemplate/BottomInfo'] == 'true')
 {
-   <!--Links for extra images - only for MAME/UME-->
-   if ("$EMULATOR_TYPE$" != "MESS")
-   {
-      document.write("<td align=\"left\" valign=\"top\"><font size=\"2\" color=\"white\"><b>");
-
-      switch("$GUI_LANGUAGE$")
-      {
-         case ("pt"):           
-         {
-            document.write("+Imagens</b>: ");
-            break;
-         }
-      
-         default:
-         {
-            document.write("+Images</b>: "); 
-            break;
-         }
-      }
-     
-      document.write("</b><font color=\"cyan\">P.EMMA</font>.<font color=\"red\">A.Hits</font></b><br>");
-      if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SearchExtraImages'] == 'true')
+   <!--Links for extra images->
+   <!--I have to change the language->
+      document.write("<td align=\"left\" valign=\"top\"><font size=\"2\" color=\"white\"><b>"+tr('+Images')+"</b>: ");     
+      document.write("<font color=\"cyan\">P.EMMA</font>.<font color=\"red\">A.Hits</font></b><br>");
+      if (localStorage['SystemNotesTemplate/SearchExtraImages'] == 'true')
       {
    
-<!--Layout controle-->
-         if ( imagemExiste("http://www.arcadehits.net/mmedia/cplayouts/$ID$.png"))
-            document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/mmedia/cplayouts/jpeg/$ID$.png title=\"Controller Layout image (ArcadeHits)\">C.Layout</a>."); 
+<!--Layout controle->
+        /* if (imagemExiste("http://www.arcadehits.net/mmedia/cplayouts/$ID$.png"))
+            document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/mmedia/cplayouts/jpeg/$ID$.png.jpg title=\"Controller Layout image (ArcadeHits)\">C.Layout</a>.");*/
       
-<!--**Bosses-->
-         if ( imagemExiste("http://www.arcadehits.net/mmedia/bosses/$ID$.png"))
+<!--**Bosses->
+<!--Example: bombkick->
+         if (imagemExiste("http://www.arcadehits.net/mmedia/bosses/$ID$.png"))
             document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/mmedia/bosses/$ID$.png title=\"Bosses image (ArcadeHits)\">Bosses</a>."); 
       
-<!--**Select Screen-->
-         if ( imagemExiste("http://www.arcadehits.net/mmedia/select/$ID$.png"))
+<!--**Select Screen->
+<!--Example: sfiii->
+         if (imagemExiste("http://www.arcadehits.net/mmedia/select/$ID$.png"))
             document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/mmedia/select/$ID$.png title=\"Select Screen image (ArcadeHits)\">SelectSc</a>."); 
              
-<!--**Versus Screen--> 
-         if ( imagemExiste("http://www.arcadehits.net/mmedia/versus/$ID$.png"))
+<!--**Versus Screen-> 
+<!--Example: sf2->
+         if (imagemExiste("http://www.arcadehits.net/mmedia/versus/$ID$.png"))
             document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/mmedia/versus/$ID$.png title=\"Versus Screen image (ArcadeHits)\">Vs.</a>.");       
             
-<!--Characters-->
-         if ( imagemExiste("http://www.arcadehits.net/mmedia/characters/$ID$.png"))
-            document.write("<a style=\"color: cyan;\" href=http://www.arcadehits.net/mmedia/characters/$ID$.png title=\"Game Over Screen image (ArcadeHits)\">G.Over</a>.");             
+<!--Characters->
+         /*if (imagemExiste("http://www.arcadehits.net/mmedia/characters/$ID$.png"))
+            document.write("<a style=\"color: cyan;\" href=http://www.arcadehits.net/mmedia/characters/$ID$.png title=\"Game Over Screen image (ArcadeHits)\">G.Over</a>.");*/          
            
-<!--GameOver-->
-         if ( imagemExiste("http://www.arcadehits.net/mmedia/gameover/$ID$.png"))
-            document.write("<a style=\"color: cyan;\" href=http://www.arcadehits.net/mmedia/gameover/$ID$.png title=\"Game Over Screen image (ArcadeHits)\">G.Over</a>."); 
+<!--GameOver->
+         /*if (imagemExiste("http://www.arcadehits.net/mmedia/gameover/$ID$.png"))
+            document.write("<a style=\"color: cyan;\" href=http://www.arcadehits.net/mmedia/gameover/$ID$.png title=\"Game Over Screen image (ArcadeHits)\">G.Over</a>."); */
        
 <!--**How To-->
-         if ( imagemExiste("http://www.progettoemma.net/snap/$ID$/how_to.png"))
-            document.write("<a style=\"color: cyan;\" href=http://www.progettoemma.net/snap/$ID$/how_to.png\ title=\"How To Screen image (ProgettoEMMA)\">HowTo </a>."); 
+<!--Example: aladmdb->
+        /* if (imagemExiste("http://www.arcadehits.net/mmedia/howto/$ID$.png"))*/
+            document.write("<a style=\"color: cyan;\" href=http://www.arcadehits.net/mmedia/howto/$ID$.png title=\"How To Screen image (ProgettoEMMA)\">HowTo </a>."); 
 
-<!--**Artwork preview-->
-         if ( imagemExiste("http://www.arcadehits.net/mmedia/artwork/$ID$.png"))
+<!--**Artwork preview->
+<!--Example: Pacman->
+         /*if (imagemExiste("http://www.arcadehits.net/mmedia/artwork/$ID$.png"))
             document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/mmedia/artwork/$ID$.png title=\"Artwork Preview image (ArcadeHits)\">Art.Prev.</a>."); 
          
-<!--**LOGO-->       
-         if ( imagemExiste("http://www.arcadehits.net/mmedia/logo/$ID$.png"))
-            document.write("<a style=\"color: cyan;\" href=http://www.arcadehits.net/mmedia/logo/$ID$.png title=\"Logo image (ProgettoEMMA)\">Logo</a>.");            
+<!--**LOGO->       
+         /*if (imagemExiste("http://www.arcadehits.net/mmedia/logo/$ID$.png"))
+            document.write("<a style=\"color: cyan;\" href=http://www.arcadehits.net/mmedia/logo/$ID$.png title=\"Logo image (ProgettoEMMA)\">Logo</a>."); */           
       }
    
       else
       {
          document.write("Click on \"Search ExIm?\" to see(web connection)");
-      } 
+      } -->
             
-      document.write("<td valign=\"top\" width=\"50%\" align=\"right\">");          
-   }
-
-   else
-   {
-      document.write("<td valign=\"top\" width=\"100%\" align=\"left\">");    
-   }  
+      document.write("<td valign=\"top\" width=\"100%\" align=\"right\">");          
 
    document.write("</font>");
 
@@ -3040,24 +3187,18 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/BottomInfo']
    document.write("</b><a style=\"color: lime;\" href=http://mametesters.org/search.php?sticky_issues=off&sortby=last_updated&dir=DESC&hide_status_id=-2&custom_field_4=$ID$ title=\"All related bugs with this system in MAME Testers\">Related Bugs</a>.");
     
 <!--If MESS or UME, will have the P. MESS, Edit Sysinfo links and preliminar link for MESS source code-->
-   if ("$EMULATOR_TYPE$" != "MAME")
-   {
       document.write("<a style=\"color: orange;\" href=http://www.progettoemma.net/mess/system.php?machine=$ID$ title=\"Project MESS Page for this system\">P.MESS</a>.");
-      document.write("<a style=\"color: grey;\" href=http://www.progettoemma.net/mess/edit.php?game=$ID$,&list=mess title=\"Click to edit sysinfo in the project website\">EditSysinfo</a><br>");
-   }
+      document.write("<a style=\"color: grey;\" href=http://www.progettoemma.net/mess/edit.php?game=$ID$,&list=mess title=\"Click to edit sysinfo in the project website\">EditSysinfo</a>");
    
-<!--If MAME/UME, will have Videos, P.EMMA, A.Hits, Commands and Manual links-->    
-   if ("$EMULATOR_TYPE$" != "MESS")
-   {  
+ <!--If MAME/UME, will have Videos, P.EMMA, A.Hits, Commands and Manual links-->   
       document.write("<a style=\"color: violet;\" href=http://www.progettoemma.net/stream/index.php?movie=$ID$ title=\"Play Video about this system\">Videos</a>.");    
       document.write("<a style=\"color: cyan;\" href=http://www.progettoemma.net/gioco.php?game=$ID$ title=\"ProgettoEMMA Page for this system\">P.EMMA</a>.");
       document.write("<a style=\"color: red;\" href=http://www.arcadehits.net/index.php?p=roms&jeu=$ID$ title=\"ArcadeHits Page for this system\">A.Hits</a>.");
       document.write("<a style=\"color: yellow;\" href=http://www.arcadehits.net/index.php?p=combos&jeu=$ID$ title=\"ArcadeHits Commands Page for this system\">Commands</a>.");
       document.write("<a style=\"color: green;\" href=http://www.progettoemma.net/dany69/manuals/$ID$.pdf title=\"ArcadeHits Commands Page for this system\">Manual</a>");         
-   } 
 }
 
-else if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOptions'] == 'true')
+else if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
 {
    document.write("</td><td><font size=\"2\" color=\"white\"><b>For external links and extra images:</b><br>Just check  the 'Bottom info' Checkbox");
 } 

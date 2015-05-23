@@ -287,6 +287,7 @@ extern QHash<QString, QStringList> systemSoftwareFilterHash;
 extern QMap<HWND, QString> winWindowMap;
 #endif
 extern QString qmc2CurrentStyleName;
+extern QHash<QString, QString> softwareParentHash;
 
 void MainWindow::log(char logTarget, QString message)
 {
@@ -3661,9 +3662,9 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				if ( !qmc2ProjectMESS ) {
 					QVBoxLayout *layout = new QVBoxLayout;
 					layout->setContentsMargins(left, top, right, bottom);
-					qmc2ProjectMESS = new MiniWebBrowser(tabProjectMESS);
+					qmc2ProjectMESS = new MiniWebBrowser(tabSoftwareProjectMESS);
 					layout->addWidget(qmc2ProjectMESS);
-					tabProjectMESS->setLayout(layout);
+					tabSoftwareProjectMESS->setLayout(layout);
 					connect(qmc2ProjectMESS->webViewBrowser, SIGNAL(loadStarted()), this, SLOT(projectMessLoadStarted()));
 				}
 				QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
@@ -3705,6 +3706,14 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 
 				QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
 				QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
+				QString softwareParent = softwareParentHash[listName + ":" + entryName];
+				if ( !softwareParent.isEmpty() ) {
+					QStringList softwareParentWords = softwareParent.split(":");
+					if ( softwareParentWords.count() > 1 )
+						softwareParent = softwareParentWords[1];
+					else
+						softwareParent.clear();
+				}
 
 				QString softwareNotesFolder = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareNotesFolder").toString();
 				QString softwareNotesTemplate = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareNotesTemplate").toString();
@@ -3725,6 +3734,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_YEAR$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_YEAR).toHtmlEscaped();
 #endif
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_NAME$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PARENT_ID$"] = softwareParent;
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_LIST$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SUPPORTED$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_SUPPORTED);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SUPPORTED_UT$"] = Gamelist::reverseTranslation[qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_SUPPORTED)];
