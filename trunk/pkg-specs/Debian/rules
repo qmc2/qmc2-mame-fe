@@ -128,8 +128,8 @@ qmc2-sdlmame:
 	gzip -9 $(CURDIR)/debian/qmc2-data/usr/share/doc/qmc2/changelog
 	
 	# Move runonce application to qmc2-runonce package
-	mkdir -p $(CURDIR)/debian/qmc2-runonce/usr/bin
-	mv $(CURDIR)/debian/qmc2-sdlmame/usr/bin/runonce $(CURDIR)/debian/qmc2-runonce/usr/bin/
+	#mkdir -p $(CURDIR)/debian/qmc2-runonce/usr/bin
+	#mv $(CURDIR)/debian/qmc2-sdlmame/usr/bin/runonce $(CURDIR)/debian/qmc2-runonce/usr/bin/
 	
 	# install manpage
 	mkdir -p $(CURDIR)/debian/qmc2-sdlmame/usr/share/man/man6
@@ -250,7 +250,7 @@ build-arch:
 
 binary-indep: qmc2-data
 
-binary-arch: qmc2-sdlmame qmc2-runonce qmc2-arcade qchdman
+binary-arch: qmc2-sdlmame qmc2-arcade qchdman
 
 binary: clean binary-arch binary-indep
 
