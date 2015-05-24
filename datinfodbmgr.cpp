@@ -528,8 +528,8 @@ bool DatInfoDatabaseManager::softwareInfoImportRequired(QStringList pathList)
 		bool datesChanged = false;
 		foreach (QString path, pathList) {
 			QFileInfo fi(path);
-			QDateTime dtImport = QDateTime::fromTime_t(importDates[importFiles.indexOf(path)].toULongLong());
-			if ( dtImport != fi.lastModified() )
+			uint dtImport = importDates[importFiles.indexOf(path)].toUInt();
+			if ( dtImport < fi.lastModified().toTime_t() )
 				datesChanged = true;
 			if ( datesChanged )
 				break;
@@ -690,8 +690,8 @@ bool DatInfoDatabaseManager::emuInfoImportRequired(QStringList pathList)
 		bool datesChanged = false;
 		foreach (QString path, pathList) {
 			QFileInfo fi(path);
-			QDateTime dtImport = QDateTime::fromTime_t(importDates[importFiles.indexOf(path)].toULongLong());
-			if ( dtImport != fi.lastModified() )
+			uint dtImport = importDates[importFiles.indexOf(path)].toUInt();
+			if ( dtImport < fi.lastModified().toTime_t() )
 				datesChanged = true;
 			if ( datesChanged )
 				break;
@@ -844,8 +844,8 @@ bool DatInfoDatabaseManager::gameInfoImportRequired(QStringList pathList)
 		bool datesChanged = false;
 		foreach (QString path, pathList) {
 			QFileInfo fi(path);
-			QDateTime dtImport = QDateTime::fromTime_t(importDates[importFiles.indexOf(path)].toULongLong());
-			if ( dtImport != fi.lastModified() )
+			uint dtImport = importDates[importFiles.indexOf(path)].toUInt();
+			if ( dtImport < fi.lastModified().toTime_t() )
 				datesChanged = true;
 			if ( datesChanged )
 				break;
