@@ -8,8 +8,8 @@ Homepage: http://qmc2.arcadehits.net
 
 Package: qmc2-sdlmame
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, qmc2-data, qmc2-runonce, libqtgui4 (>= 4.8.0), libphonon4, libqtwebkit4, libqt4-test, libqt4-sql-sqlite, sdlmame (>= 0.144) | mame (>= 0.144)
-Replaces: qmc2 (<= 0.34)
+Depends: ${shlibs:Depends}, ${misc:Depends}, qmc2-data, qmc2-runonce, libqtgui4 (>= 4.8.0), libphonon4, libqtwebkit4, libqt4-test, libqt4-sql-sqlite, sdlmame (>= 0.162) | mame (>= 0.162)
+Replaces: qmc2 (<= 0.34), qmc2-sdlmess (<= 0.51), qmc2-sdlume (<= 0.51)
 Description: M.A.M.E. Catalog / Launcher II
  QMC2 is a Qt 4 based multi-platform GUI front end for several MAME, MESS and
  UME variants. This package provides the MAME variant of QMC2.
