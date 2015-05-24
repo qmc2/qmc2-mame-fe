@@ -3403,7 +3403,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="874"/>
         <location filename="../../datinfodbmgr.cpp" line="964"/>
         <source>game info-texts</source>
-        <translation type="unfinished"></translation>
+        <translation>textos de informação de jogo</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="879"/>
@@ -4877,7 +4877,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../gamelist.cpp" line="663"/>
         <location filename="../../gamelist.cpp" line="667"/>
         <source>WARNING: the selected emulator executable cannot be identified as MAME</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o executável do emulador selecionado não pode ser identificado como MAME</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="748"/>
@@ -5137,12 +5137,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../gamelist.cpp" line="3577"/>
         <source>System / BIOS</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema / BIOS</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3579"/>
         <source>System / Device</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema / Dispositivo</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3925"/>
@@ -8028,7 +8028,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../messdevcfg.cpp" line="690"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">FATAL: impossível iniciar o executável do MAME dentro de um tempo razoável, desistindo</translation>
+        <translation>FATAL: impossível iniciar o executável do MAME dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="698"/>
