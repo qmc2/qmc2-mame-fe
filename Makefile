@@ -1014,10 +1014,6 @@ else
 endif
 endif
 endif
-ifneq '$(ARCH)' 'Windows'
-	@$(RM) data/opt/template.xml > /dev/null
-endif
-	@$(LN) -s SDLMAME/template-SDL2.xml data/opt/template.xml > /dev/null
 	@$(ECHO) "Build of QMC2 v$(VERSION) complete"
 
 ifeq '$(ARCH)' 'Darwin'
@@ -1079,10 +1075,6 @@ else
 endif
 endif
 endif
-ifneq '$(ARCH)' 'Windows'
-	@$(RM) data/opt/template.xml
-endif
-	@$(LN) -s SDLMAME/template-SDL2.xml data/opt/template.xml
 	@$(ECHO) "Build of QMC2 v$(VERSION) complete"
 
 ifeq '$(ARCH)' 'Darwin'
@@ -1185,7 +1177,7 @@ clean: $(QMAKEFILE)
 	@$(ECHO) "Cleaning up build of QMC2 v$(VERSION)"
 ifeq '$(QUIET)' '0'
 ifneq '$(ARCH)' 'Windows'
-	@$(RM) data/opt/template.xml error.log exclude.list
+	@$(RM) error.log exclude.list
 	@$(RM) -Rf tools/qmc2_options_editor_java/bin
 	@$(RM) -f tools/qmc2_options_editor_java/*.jar
 endif
@@ -1220,7 +1212,7 @@ else
 endif
 else
 ifneq '$(ARCH)' 'Windows'
-	@$(RM) data/opt/template.xml error.log exclude.list > /dev/null
+	@$(RM) error.log exclude.list > /dev/null
 	@$(RM) -Rf tools/qmc2_options_editor_java/bin > /dev/null
 	@$(RM) -f tools/qmc2_options_editor_java/*.jar > /dev/null
 endif
