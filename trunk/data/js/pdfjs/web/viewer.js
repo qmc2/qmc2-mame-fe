@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 /* globals PDFJS, PDFBug, FirefoxCom, Stats, Cache, ProgressBar,
-           DownloadManager, getFileName, scrollIntoView, getPDFFileNameFromURL,
+           DownloadManager, getFileName, getPDFFileNameFromURL,
            PDFHistory, Preferences, SidebarView, ViewHistory, Stats,
            PDFThumbnailViewer, URL, noContextMenuHandler, SecondaryToolbar,
-           PasswordPrompt, PresentationMode, HandTool, Promise,
-           DocumentProperties, PDFOutlineView, PDFAttachmentView,
+           PasswordPrompt, PDFPresentationMode, HandTool, Promise,
+           PDFDocumentProperties, PDFOutlineView, PDFAttachmentView,
            OverlayManager, PDFFindController, PDFFindBar, getVisibleElements,
            watchScroll, PDFViewer, PDFRenderingQueue, PresentationModeState,
            RenderingStates, DEFAULT_SCALE, UNKNOWN_SCALE,
@@ -1448,6 +1448,7 @@ var PDFHistory = {
     this.reInitialized = false;
     this.allowHashChange = true;
     this.historyUnlocked = true;
+    this.isViewerInPresentationMode = false;
 
     this.previousHash = window.location.hash.substring(1);
     this.currentBookmark = '';
@@ -1539,6 +1540,10 @@ var PDFHistory = {
       // the 'DOMContentLoaded' event is not fired on 'pageshow'.
       window.addEventListener('beforeunload', pdfHistoryBeforeUnload, false);
     }, false);
+
+    window.addEventListener('presentationmodechanged', function(e) {
+      self.isViewerInPresentationMode = !!e.detail.active;
+    });
   },
 
   _isStateObjectDefined: function pdfHistory_isStateObjectDefined(state) {
@@ -1690,7 +1695,7 @@ var PDFHistory = {
       return null;
     }
     var params = { hash: this.currentBookmark, page: this.currentPage };
-    if (PresentationMode.active) {
+    if (this.isViewerInPresentationMode) {
       params.hash = null;
     }
     return params;
@@ -1789,8 +1794,6 @@ var SecondaryToolbar = {
 
   initialize: function secondaryToolbarInitialize(options) {
     this.toolbar = options.toolbar;
-    this.presentationMode = options.presentationMode;
-    this.documentProperties = options.documentProperties;
     this.buttonContainer = this.toolbar.firstElementChild;
 
     // Define the toolbar buttons.
@@ -1836,7 +1839,7 @@ var SecondaryToolbar = {
 
   // Event handling functions.
   presentationModeClick: function secondaryToolbarPresentationModeClick(evt) {
-    this.presentationMode.request();
+    PDFViewerApplication.requestPresentationMode();
     this.close();
   },
 
@@ -1880,7 +1883,7 @@ var SecondaryToolbar = {
   },
 
   documentPropertiesClick: function secondaryToolbarDocumentPropsClick(evt) {
-    this.documentProperties.open();
+    PDFViewerApplication.pdfDocumentProperties.open();
     this.close();
   },
 
@@ -1928,249 +1931,380 @@ var SecondaryToolbar = {
 };
 
 
+var DELAY_BEFORE_RESETTING_SWITCH_IN_PROGRESS = 1500; // in ms
 var DELAY_BEFORE_HIDING_CONTROLS = 3000; // in ms
-var SELECTOR = 'presentationControls';
-var DELAY_BEFORE_RESETTING_SWITCH_IN_PROGRESS = 1000; // in ms
+var ACTIVE_SELECTOR = 'pdfPresentationMode';
+var CONTROLS_SELECTOR = 'pdfPresentationModeControls';
 
-var PresentationMode = {
-  active: false,
-  args: null,
-  contextMenuOpen: false,
-  prevCoords: { x: null, y: null },
+/**
+ * @typedef {Object} PDFPresentationModeOptions
+ * @property {HTMLDivElement} container - The container for the viewer element.
+ * @property {HTMLDivElement} viewer - (optional) The viewer element.
+ * @property {PDFThumbnailViewer} pdfThumbnailViewer - (optional) The thumbnail
+ *   viewer.
+ * @property {Array} contextMenuItems - (optional) The menuitems that are added
+ *   to the context menu in Presentation Mode.
+ */
 
-  initialize: function presentationModeInitialize(options) {
-    this.container = options.container;
-    this.secondaryToolbar = options.secondaryToolbar;
-
-    this.viewer = this.container.firstElementChild;
-
-    this.firstPage = options.firstPage;
-    this.lastPage = options.lastPage;
-    this.pageRotateCw = options.pageRotateCw;
-    this.pageRotateCcw = options.pageRotateCcw;
-
-    this.firstPage.addEventListener('click', function() {
-      this.contextMenuOpen = false;
-      this.secondaryToolbar.firstPageClick();
-    }.bind(this));
-    this.lastPage.addEventListener('click', function() {
-      this.contextMenuOpen = false;
-      this.secondaryToolbar.lastPageClick();
-    }.bind(this));
-
-    this.pageRotateCw.addEventListener('click', function() {
-      this.contextMenuOpen = false;
-      this.secondaryToolbar.pageRotateCwClick();
-    }.bind(this));
-    this.pageRotateCcw.addEventListener('click', function() {
-      this.contextMenuOpen = false;
-      this.secondaryToolbar.pageRotateCcwClick();
-    }.bind(this));
-  },
-
-  get isFullscreen() {
-    return (document.fullscreenElement ||
-            document.mozFullScreen ||
-            document.webkitIsFullScreen ||
-            document.msFullscreenElement);
-  },
-
+/**
+ * @class
+ */
+var PDFPresentationMode = (function PDFPresentationModeClosure() {
   /**
-   * Initialize a timeout that is used to specify switchInProgress when the
-   * browser transitions to fullscreen mode. Since resize events are triggered
-   * multiple times during the switch to fullscreen mode, this is necessary in
-   * order to prevent the page from being scrolled partially, or completely,
-   * out of view when Presentation Mode is enabled.
-   * Note: This is only an issue at certain zoom levels, e.g. 'page-width'.
+   * @constructs PDFPresentationMode
+   * @param {PDFPresentationModeOptions} options
    */
-  _setSwitchInProgress: function presentationMode_setSwitchInProgress() {
-    if (this.switchInProgress) {
-      clearTimeout(this.switchInProgress);
-    }
-    this.switchInProgress = setTimeout(function switchInProgressTimeout() {
-      delete this.switchInProgress;
-      this._notifyStateChange();
-    }.bind(this), DELAY_BEFORE_RESETTING_SWITCH_IN_PROGRESS);
-  },
+  function PDFPresentationMode(options) {
+    this.container = options.container;
+    this.viewer = options.viewer || options.container.firstElementChild;
+    this.pdfThumbnailViewer = options.pdfThumbnailViewer || null;
+    var contextMenuItems = options.contextMenuItems || null;
 
-  _resetSwitchInProgress: function presentationMode_resetSwitchInProgress() {
-    if (this.switchInProgress) {
-      clearTimeout(this.switchInProgress);
-      delete this.switchInProgress;
-    }
-  },
-
-  request: function presentationModeRequest() {
-    if (!PDFViewerApplication.supportsFullscreen || this.isFullscreen ||
-        !this.viewer.hasChildNodes()) {
-      return false;
-    }
-    this._setSwitchInProgress();
-    this._notifyStateChange();
-
-    if (this.container.requestFullscreen) {
-      this.container.requestFullscreen();
-    } else if (this.container.mozRequestFullScreen) {
-      this.container.mozRequestFullScreen();
-    } else if (this.container.webkitRequestFullscreen) {
-      this.container.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-    } else if (this.container.msRequestFullscreen) {
-      this.container.msRequestFullscreen();
-    } else {
-      return false;
-    }
-
-    this.args = {
-      page: PDFViewerApplication.page,
-      previousScale: PDFViewerApplication.currentScaleValue
-    };
-
-    return true;
-  },
-
-  _notifyStateChange: function presentationModeNotifyStateChange() {
-    var event = document.createEvent('CustomEvent');
-    event.initCustomEvent('presentationmodechanged', true, true, {
-      active: PresentationMode.active,
-      switchInProgress: !!PresentationMode.switchInProgress
-    });
-    window.dispatchEvent(event);
-  },
-
-  enter: function presentationModeEnter() {
-    this.active = true;
-    this._resetSwitchInProgress();
-    this._notifyStateChange();
-
-    // Ensure that the correct page is scrolled into view when entering
-    // Presentation Mode, by waiting until fullscreen mode in enabled.
-    // Note: This is only necessary in non-Mozilla browsers.
-    setTimeout(function enterPresentationModeTimeout() {
-      PDFViewerApplication.page = this.args.page;
-      PDFViewerApplication.setScale('page-fit', true);
-    }.bind(this), 0);
-
-    window.addEventListener('mousemove', this.mouseMove, false);
-    window.addEventListener('mousedown', this.mouseDown, false);
-    window.addEventListener('contextmenu', this.contextMenu, false);
-
-    this.showControls();
-    HandTool.enterPresentationMode();
+    this.active = false;
+    this.args = null;
     this.contextMenuOpen = false;
-    this.container.setAttribute('contextmenu', 'viewerContextMenu');
+    this.mouseScrollTimeStamp = 0;
+    this.mouseScrollDelta = 0;
 
-    // Text selection is disabled in Presentation Mode, thus it's not possible
-    // for the user to deselect text that is selected (e.g. with "Select all")
-    // when entering Presentation Mode, hence we remove any active selection.
-    window.getSelection().removeAllRanges();
-  },
-
-  exit: function presentationModeExit() {
-    var page = PDFViewerApplication.page;
-
-    // Ensure that the correct page is scrolled into view when exiting
-    // Presentation Mode, by waiting until fullscreen mode is disabled.
-    // Note: This is only necessary in non-Mozilla browsers.
-    setTimeout(function exitPresentationModeTimeout() {
-      this.active = false;
-      this._notifyStateChange();
-
-      PDFViewerApplication.setScale(this.args.previousScale, true);
-      PDFViewerApplication.page = page;
-      this.args = null;
-    }.bind(this), 0);
-
-    window.removeEventListener('mousemove', this.mouseMove, false);
-    window.removeEventListener('mousedown', this.mouseDown, false);
-    window.removeEventListener('contextmenu', this.contextMenu, false);
-
-    this.hideControls();
-    PDFViewerApplication.clearMouseScrollState();
-    HandTool.exitPresentationMode();
-    this.container.removeAttribute('contextmenu');
-    this.contextMenuOpen = false;
-
-    // Ensure that the thumbnail of the current page is visible
-    // when exiting presentation mode.
-    scrollIntoView(document.getElementById('thumbnailContainer' + page));
-  },
-
-  showControls: function presentationModeShowControls() {
-    if (this.controlsTimeout) {
-      clearTimeout(this.controlsTimeout);
-    } else {
-      this.container.classList.add(SELECTOR);
-    }
-    this.controlsTimeout = setTimeout(function hideControlsTimeout() {
-      this.container.classList.remove(SELECTOR);
-      delete this.controlsTimeout;
-    }.bind(this), DELAY_BEFORE_HIDING_CONTROLS);
-  },
-
-  hideControls: function presentationModeHideControls() {
-    if (!this.controlsTimeout) {
-      return;
-    }
-    this.container.classList.remove(SELECTOR);
-    clearTimeout(this.controlsTimeout);
-    delete this.controlsTimeout;
-  },
-
-  mouseMove: function presentationModeMouseMove(evt) {
-    // Workaround for a bug in WebKit browsers that causes the 'mousemove' event
-    // to be fired when the cursor is changed. For details, see:
-    // http://code.google.com/p/chromium/issues/detail?id=103041.
-
-    var currCoords = { x: evt.clientX, y: evt.clientY };
-    var prevCoords = PresentationMode.prevCoords;
-    PresentationMode.prevCoords = currCoords;
-
-    if (currCoords.x === prevCoords.x && currCoords.y === prevCoords.y) {
-      return;
-    }
-    PresentationMode.showControls();
-  },
-
-  mouseDown: function presentationModeMouseDown(evt) {
-    var self = PresentationMode;
-    if (self.contextMenuOpen) {
-      self.contextMenuOpen = false;
-      evt.preventDefault();
-      return;
-    }
-
-    if (evt.button === 0) {
-      // Enable clicking of links in presentation mode. Please note:
-      // Only links pointing to destinations in the current PDF document work.
-      var isInternalLink = (evt.target.href &&
-                            evt.target.classList.contains('internalLink'));
-      if (!isInternalLink) {
-        // Unless an internal link was clicked, advance one page.
-        evt.preventDefault();
-        PDFViewerApplication.page += (evt.shiftKey ? -1 : 1);
+    if (contextMenuItems) {
+      for (var i = 0, ii = contextMenuItems.length; i < ii; i++) {
+        var item = contextMenuItems[i];
+        item.element.addEventListener('click', function (handler) {
+          this.contextMenuOpen = false;
+          handler();
+        }.bind(this, item.handler));
       }
     }
-  },
-
-  contextMenu: function presentationModeContextMenu(evt) {
-    PresentationMode.contextMenuOpen = true;
   }
-};
 
-(function presentationModeClosure() {
-  function presentationModeChange(e) {
-    if (PresentationMode.isFullscreen) {
-      PresentationMode.enter();
-    } else {
-      PresentationMode.exit();
+  PDFPresentationMode.prototype = {
+    /**
+     * Request the browser to enter fullscreen mode.
+     * @returns {boolean} Indicating if the request was successful.
+     */
+    request: function PDFPresentationMode_request() {
+      if (this.switchInProgress || this.active ||
+          !this.viewer.hasChildNodes()) {
+        return false;
+      }
+      this._addFullscreenChangeListeners();
+      this._setSwitchInProgress();
+      this._notifyStateChange();
+
+      if (this.container.requestFullscreen) {
+        this.container.requestFullscreen();
+      } else if (this.container.mozRequestFullScreen) {
+        this.container.mozRequestFullScreen();
+      } else if (this.container.webkitRequestFullscreen) {
+        this.container.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+      } else if (this.container.msRequestFullscreen) {
+        this.container.msRequestFullscreen();
+      } else {
+        return false;
+      }
+
+      this.args = {
+        page: PDFViewerApplication.page,
+        previousScale: PDFViewerApplication.currentScaleValue
+      };
+
+      return true;
+    },
+
+    /**
+     * Switches page when the user scrolls (using a scroll wheel or a touchpad)
+     * with large enough motion, to prevent accidental page switches.
+     * @param {number} delta - The delta value from the mouse event.
+     */
+    mouseScroll: function PDFPresentationMode_mouseScroll(delta) {
+      if (!this.active) {
+        return;
+      }
+      var MOUSE_SCROLL_COOLDOWN_TIME = 50;
+      var PAGE_SWITCH_THRESHOLD = 120;
+      var PageSwitchDirection = {
+        UP: -1,
+        DOWN: 1
+      };
+
+      var currentTime = (new Date()).getTime();
+      var storedTime = this.mouseScrollTimeStamp;
+
+      // If we've already switched page, avoid accidentally switching again.
+      if (currentTime > storedTime &&
+          currentTime - storedTime < MOUSE_SCROLL_COOLDOWN_TIME) {
+        return;
+      }
+      // If the scroll direction changed, reset the accumulated scroll delta.
+      if ((this.mouseScrollDelta > 0 && delta < 0) ||
+          (this.mouseScrollDelta < 0 && delta > 0)) {
+        this._resetMouseScrollState();
+      }
+      this.mouseScrollDelta += delta;
+
+      if (Math.abs(this.mouseScrollDelta) >= PAGE_SWITCH_THRESHOLD) {
+        var pageSwitchDirection = (this.mouseScrollDelta > 0) ?
+          PageSwitchDirection.UP : PageSwitchDirection.DOWN;
+        var page = PDFViewerApplication.page;
+        this._resetMouseScrollState();
+
+        // If we're at the first/last page, we don't need to do anything.
+        if ((page === 1 && pageSwitchDirection === PageSwitchDirection.UP) ||
+            (page === PDFViewerApplication.pagesCount &&
+             pageSwitchDirection === PageSwitchDirection.DOWN)) {
+          return;
+        }
+        PDFViewerApplication.page = (page + pageSwitchDirection);
+        this.mouseScrollTimeStamp = currentTime;
+      }
+    },
+
+    get isFullscreen() {
+      return !!(document.fullscreenElement ||
+                document.mozFullScreen ||
+                document.webkitIsFullScreen ||
+                document.msFullscreenElement);
+    },
+
+    /**
+     * @private
+     */
+    _notifyStateChange: function PDFPresentationMode_notifyStateChange() {
+      var event = document.createEvent('CustomEvent');
+      event.initCustomEvent('presentationmodechanged', true, true, {
+        active: this.active,
+        switchInProgress: !!this.switchInProgress
+      });
+      window.dispatchEvent(event);
+    },
+
+    /**
+     * Used to initialize a timeout when requesting Presentation Mode,
+     * i.e. when the browser is requested to enter fullscreen mode.
+     * This timeout is used to prevent the current page from being scrolled
+     * partially, or completely, out of view when entering Presentation Mode.
+     * NOTE: This issue seems limited to certain zoom levels (e.g. page-width).
+     * @private
+     */
+    _setSwitchInProgress: function PDFPresentationMode_setSwitchInProgress() {
+      if (this.switchInProgress) {
+        clearTimeout(this.switchInProgress);
+      }
+      this.switchInProgress = setTimeout(function switchInProgressTimeout() {
+        this._removeFullscreenChangeListeners();
+        delete this.switchInProgress;
+        this._notifyStateChange();
+      }.bind(this), DELAY_BEFORE_RESETTING_SWITCH_IN_PROGRESS);
+    },
+
+    /**
+     * @private
+     */
+    _resetSwitchInProgress:
+        function PDFPresentationMode_resetSwitchInProgress() {
+      if (this.switchInProgress) {
+        clearTimeout(this.switchInProgress);
+        delete this.switchInProgress;
+      }
+    },
+
+    /**
+     * @private
+     */
+    _enter: function PDFPresentationMode_enter() {
+      this.active = true;
+      this._resetSwitchInProgress();
+      this._notifyStateChange();
+      this.container.classList.add(ACTIVE_SELECTOR);
+
+      // Ensure that the correct page is scrolled into view when entering
+      // Presentation Mode, by waiting until fullscreen mode in enabled.
+      setTimeout(function enterPresentationModeTimeout() {
+        PDFViewerApplication.page = this.args.page;
+        PDFViewerApplication.setScale('page-fit', true);
+      }.bind(this), 0);
+
+      this._addWindowListeners();
+      this._showControls();
+      this.contextMenuOpen = false;
+      this.container.setAttribute('contextmenu', 'viewerContextMenu');
+
+      // Text selection is disabled in Presentation Mode, thus it's not possible
+      // for the user to deselect text that is selected (e.g. with "Select all")
+      // when entering Presentation Mode, hence we remove any active selection.
+      window.getSelection().removeAllRanges();
+    },
+
+    /**
+     * @private
+     */
+    _exit: function PDFPresentationMode_exit() {
+      var page = PDFViewerApplication.page;
+      this.container.classList.remove(ACTIVE_SELECTOR);
+
+      // Ensure that the correct page is scrolled into view when exiting
+      // Presentation Mode, by waiting until fullscreen mode is disabled.
+      setTimeout(function exitPresentationModeTimeout() {
+        this.active = false;
+        this._removeFullscreenChangeListeners();
+        this._notifyStateChange();
+
+        PDFViewerApplication.setScale(this.args.previousScale, true);
+        PDFViewerApplication.page = page;
+        this.args = null;
+      }.bind(this), 0);
+
+      this._removeWindowListeners();
+      this._hideControls();
+      this._resetMouseScrollState();
+      this.container.removeAttribute('contextmenu');
+      this.contextMenuOpen = false;
+
+      if (this.pdfThumbnailViewer) {
+        this.pdfThumbnailViewer.ensureThumbnailVisible(page);
+      }
+    },
+
+    /**
+     * @private
+     */
+    _mouseDown: function PDFPresentationMode_mouseDown(evt) {
+      if (this.contextMenuOpen) {
+        this.contextMenuOpen = false;
+        evt.preventDefault();
+        return;
+      }
+      if (evt.button === 0) {
+        // Enable clicking of links in presentation mode. Please note:
+        // Only links pointing to destinations in the current PDF document work.
+        var isInternalLink = (evt.target.href &&
+                              evt.target.classList.contains('internalLink'));
+        if (!isInternalLink) {
+          // Unless an internal link was clicked, advance one page.
+          evt.preventDefault();
+          PDFViewerApplication.page += (evt.shiftKey ? -1 : 1);
+        }
+      }
+    },
+
+    /**
+     * @private
+     */
+    _contextMenu: function PDFPresentationMode_contextMenu() {
+      this.contextMenuOpen = true;
+    },
+
+    /**
+     * @private
+     */
+    _showControls: function PDFPresentationMode_showControls() {
+      if (this.controlsTimeout) {
+        clearTimeout(this.controlsTimeout);
+      } else {
+        this.container.classList.add(CONTROLS_SELECTOR);
+      }
+      this.controlsTimeout = setTimeout(function showControlsTimeout() {
+        this.container.classList.remove(CONTROLS_SELECTOR);
+        delete this.controlsTimeout;
+      }.bind(this), DELAY_BEFORE_HIDING_CONTROLS);
+    },
+
+    /**
+     * @private
+     */
+    _hideControls: function PDFPresentationMode_hideControls() {
+      if (!this.controlsTimeout) {
+        return;
+      }
+      clearTimeout(this.controlsTimeout);
+      this.container.classList.remove(CONTROLS_SELECTOR);
+      delete this.controlsTimeout;
+    },
+
+    /**
+     * Resets the properties used for tracking mouse scrolling events.
+     * @private
+     */
+    _resetMouseScrollState:
+        function PDFPresentationMode_resetMouseScrollState() {
+      this.mouseScrollTimeStamp = 0;
+      this.mouseScrollDelta = 0;
+    },
+
+    /**
+     * @private
+     */
+    _addWindowListeners: function PDFPresentationMode_addWindowListeners() {
+      this.showControlsBind = this._showControls.bind(this);
+      this.mouseDownBind = this._mouseDown.bind(this);
+      this.resetMouseScrollStateBind = this._resetMouseScrollState.bind(this);
+      this.contextMenuBind = this._contextMenu.bind(this);
+
+      window.addEventListener('mousemove', this.showControlsBind);
+      window.addEventListener('mousedown', this.mouseDownBind);
+      window.addEventListener('keydown', this.resetMouseScrollStateBind);
+      window.addEventListener('contextmenu', this.contextMenuBind);
+    },
+
+    /**
+     * @private
+     */
+    _removeWindowListeners:
+        function PDFPresentationMode_removeWindowListeners() {
+      window.removeEventListener('mousemove', this.showControlsBind);
+      window.removeEventListener('mousedown', this.mouseDownBind);
+      window.removeEventListener('keydown', this.resetMouseScrollStateBind);
+      window.removeEventListener('contextmenu', this.contextMenuBind);
+
+      delete this.showControlsBind;
+      delete this.mouseDownBind;
+      delete this.resetMouseScrollStateBind;
+      delete this.contextMenuBind;
+    },
+
+    /**
+     * @private
+     */
+    _fullscreenChange: function PDFPresentationMode_fullscreenChange() {
+      if (this.isFullscreen) {
+        this._enter();
+      } else {
+        this._exit();
+      }
+    },
+
+    /**
+     * @private
+     */
+    _addFullscreenChangeListeners:
+        function PDFPresentationMode_addFullscreenChangeListeners() {
+      this.fullscreenChangeBind = this._fullscreenChange.bind(this);
+
+      window.addEventListener('fullscreenchange', this.fullscreenChangeBind);
+      window.addEventListener('mozfullscreenchange', this.fullscreenChangeBind);
+      window.addEventListener('webkitfullscreenchange',
+                              this.fullscreenChangeBind);
+      window.addEventListener('MSFullscreenChange', this.fullscreenChangeBind);
+    },
+
+    /**
+     * @private
+     */
+    _removeFullscreenChangeListeners:
+        function PDFPresentationMode_removeFullscreenChangeListeners() {
+      window.removeEventListener('fullscreenchange', this.fullscreenChangeBind);
+      window.removeEventListener('mozfullscreenchange',
+                                 this.fullscreenChangeBind);
+      window.removeEventListener('webkitfullscreenchange',
+                              this.fullscreenChangeBind);
+      window.removeEventListener('MSFullscreenChange',
+                                 this.fullscreenChangeBind);
+
+      delete this.fullscreenChangeBind;
     }
-  }
+  };
 
-  window.addEventListener('fullscreenchange', presentationModeChange, false);
-  window.addEventListener('mozfullscreenchange', presentationModeChange, false);
-  window.addEventListener('webkitfullscreenchange', presentationModeChange,
-                          false);
-  window.addEventListener('MSFullscreenChange', presentationModeChange, false);
+  return PDFPresentationMode;
 })();
 
 
@@ -2428,6 +2562,17 @@ var HandTool = {
           }
         }.bind(this), function rejected(reason) {});
       }.bind(this));
+
+      window.addEventListener('presentationmodechanged', function (evt) {
+        if (evt.detail.switchInProgress) {
+          return;
+        }
+        if (evt.detail.active) {
+          this.enterPresentationMode();
+        } else {
+          this.exitPresentationMode();
+        }
+      }.bind(this));
     }
   },
 
@@ -2643,42 +2788,28 @@ var PasswordPrompt = {
 };
 
 
-var DocumentProperties = {
-  overlayName: null,
-  rawFileSize: 0,
+/**
+ * @typedef {Object} PDFDocumentPropertiesOptions
+ * @property {string} overlayName - Name/identifier for the overlay.
+ * @property {Object} fields - Names and elements of the overlay's fields.
+ * @property {HTMLButtonElement} closeButton - Button for closing the overlay.
+ */
 
-  // Document property fields (in the viewer).
-  fileNameField: null,
-  fileSizeField: null,
-  titleField: null,
-  authorField: null,
-  subjectField: null,
-  keywordsField: null,
-  creationDateField: null,
-  modificationDateField: null,
-  creatorField: null,
-  producerField: null,
-  versionField: null,
-  pageCountField: null,
-  url: null,
-  pdfDocument: null,
-
-  initialize: function documentPropertiesInitialize(options) {
+/**
+ * @class
+ */
+var PDFDocumentProperties = (function PDFDocumentPropertiesClosure() {
+  /**
+   * @constructs PDFDocumentProperties
+   * @param {PDFDocumentPropertiesOptions} options
+   */
+  function PDFDocumentProperties(options) {
+    this.fields = options.fields;
     this.overlayName = options.overlayName;
 
-    // Set the document property fields.
-    this.fileNameField = options.fileNameField;
-    this.fileSizeField = options.fileSizeField;
-    this.titleField = options.titleField;
-    this.authorField = options.authorField;
-    this.subjectField = options.subjectField;
-    this.keywordsField = options.keywordsField;
-    this.creationDateField = options.creationDateField;
-    this.modificationDateField = options.modificationDateField;
-    this.creatorField = options.creatorField;
-    this.producerField = options.producerField;
-    this.versionField = options.versionField;
-    this.pageCountField = options.pageCountField;
+    this.rawFileSize = 0;
+    this.url = null;
+    this.pdfDocument = null;
 
     // Bind the event listener for the Close button.
     if (options.closeButton) {
@@ -2690,139 +2821,179 @@ var DocumentProperties = {
     }.bind(this));
 
     OverlayManager.register(this.overlayName, this.close.bind(this));
-  },
+  }
 
-  getProperties: function documentPropertiesGetProperties() {
-    if (!OverlayManager.active) {
-      // If the dialog was closed before dataAvailablePromise was resolved,
-      // don't bother updating the properties.
-      return;
-    }
-    // Get the file size (if it hasn't already been set).
-    this.pdfDocument.getDownloadInfo().then(function(data) {
-      if (data.length === this.rawFileSize) {
+  PDFDocumentProperties.prototype = {
+    /**
+     * Open the document properties overlay.
+     */
+    open: function PDFDocumentProperties_open() {
+      Promise.all([OverlayManager.open(this.overlayName),
+                   this.dataAvailablePromise]).then(function () {
+        this._getProperties();
+      }.bind(this));
+    },
+
+    /**
+     * Close the document properties overlay.
+     */
+    close: function PDFDocumentProperties_close() {
+      OverlayManager.close(this.overlayName);
+    },
+
+    /**
+     * Set the file size of the PDF document. This method is used to
+     * update the file size in the document properties overlay once it
+     * is known so we do not have to wait until the entire file is loaded.
+     *
+     * @param {number} fileSize - The file size of the PDF document.
+     */
+    setFileSize: function PDFDocumentProperties_setFileSize(fileSize) {
+      if (fileSize > 0) {
+        this.rawFileSize = fileSize;
+      }
+    },
+
+    /**
+     * Set a reference to the PDF document and the URL in order
+     * to populate the overlay fields with the document properties.
+     * Note that the overlay will contain no information if this method
+     * is not called.
+     *
+     * @param {Object} pdfDocument - A reference to the PDF document.
+     * @param {string} url - The URL of the document.
+     */
+    setDocumentAndUrl:
+        function PDFDocumentProperties_setDocumentAndUrl(pdfDocument, url) {
+      this.pdfDocument = pdfDocument;
+      this.url = url;
+      this.resolveDataAvailable();
+    },
+
+    /**
+     * @private
+     */
+    _getProperties: function PDFDocumentProperties_getProperties() {
+      if (!OverlayManager.active) {
+        // If the dialog was closed before dataAvailablePromise was resolved,
+        // don't bother updating the properties.
         return;
       }
-      this.setFileSize(data.length);
-      this.updateUI(this.fileSizeField, this.parseFileSize());
-    }.bind(this));
+      // Get the file size (if it hasn't already been set).
+      this.pdfDocument.getDownloadInfo().then(function(data) {
+        if (data.length === this.rawFileSize) {
+          return;
+        }
+        this.setFileSize(data.length);
+        this._updateUI(this.fields['fileSize'], this._parseFileSize());
+      }.bind(this));
 
-    // Get the document properties.
-    this.pdfDocument.getMetadata().then(function(data) {
-      var fields = [
-        { field: this.fileNameField,
-          content: getPDFFileNameFromURL(this.url) },
-        { field: this.fileSizeField, content: this.parseFileSize() },
-        { field: this.titleField, content: data.info.Title },
-        { field: this.authorField, content: data.info.Author },
-        { field: this.subjectField, content: data.info.Subject },
-        { field: this.keywordsField, content: data.info.Keywords },
-        { field: this.creationDateField,
-          content: this.parseDate(data.info.CreationDate) },
-        { field: this.modificationDateField,
-          content: this.parseDate(data.info.ModDate) },
-        { field: this.creatorField, content: data.info.Creator },
-        { field: this.producerField, content: data.info.Producer },
-        { field: this.versionField, content: data.info.PDFFormatVersion },
-        { field: this.pageCountField, content: this.pdfDocument.numPages }
-      ];
+      // Get the document properties.
+      this.pdfDocument.getMetadata().then(function(data) {
+        var content = {
+          'fileName': getPDFFileNameFromURL(this.url),
+          'fileSize': this._parseFileSize(),
+          'title': data.info.Title,
+          'author': data.info.Author,
+          'subject': data.info.Subject,
+          'keywords': data.info.Keywords,
+          'creationDate': this._parseDate(data.info.CreationDate),
+          'modificationDate': this._parseDate(data.info.ModDate),
+          'creator': data.info.Creator,
+          'producer': data.info.Producer,
+          'version': data.info.PDFFormatVersion,
+          'pageCount': this.pdfDocument.numPages
+        };
 
-      // Show the properties in the dialog.
-      for (var item in fields) {
-        var element = fields[item];
-        this.updateUI(element.field, element.content);
+        // Show the properties in the dialog.
+        for (var identifier in content) {
+          this._updateUI(this.fields[identifier], content[identifier]);
+        }
+      }.bind(this));
+    },
+
+    /**
+     * @private
+     */
+    _updateUI: function PDFDocumentProperties_updateUI(field, content) {
+      if (field && content !== undefined && content !== '') {
+        field.textContent = content;
       }
-    }.bind(this));
-  },
+    },
 
-  updateUI: function documentPropertiesUpdateUI(field, content) {
-    if (field && content !== undefined && content !== '') {
-      field.textContent = content;
+    /**
+     * @private
+     */
+    _parseFileSize: function PDFDocumentProperties_parseFileSize() {
+      var fileSize = this.rawFileSize, kb = fileSize / 1024;
+      if (!kb) {
+        return;
+      } else if (kb < 1024) {
+        return mozL10n.get('document_properties_kb', {
+          size_kb: (+kb.toPrecision(3)).toLocaleString(),
+          size_b: fileSize.toLocaleString()
+        }, '{{size_kb}} KB ({{size_b}} bytes)');
+      } else {
+        return mozL10n.get('document_properties_mb', {
+          size_mb: (+(kb / 1024).toPrecision(3)).toLocaleString(),
+          size_b: fileSize.toLocaleString()
+        }, '{{size_mb}} MB ({{size_b}} bytes)');
+      }
+    },
+
+    /**
+     * @private
+     */
+    _parseDate: function PDFDocumentProperties_parseDate(inputDate) {
+      // This is implemented according to the PDF specification, but note that
+      // Adobe Reader doesn't handle changing the date to universal time
+      // and doesn't use the user's time zone (they're effectively ignoring
+      // the HH' and mm' parts of the date string).
+      var dateToParse = inputDate;
+      if (dateToParse === undefined) {
+        return '';
+      }
+
+      // Remove the D: prefix if it is available.
+      if (dateToParse.substring(0,2) === 'D:') {
+        dateToParse = dateToParse.substring(2);
+      }
+
+      // Get all elements from the PDF date string.
+      // JavaScript's Date object expects the month to be between
+      // 0 and 11 instead of 1 and 12, so we're correcting for this.
+      var year = parseInt(dateToParse.substring(0,4), 10);
+      var month = parseInt(dateToParse.substring(4,6), 10) - 1;
+      var day = parseInt(dateToParse.substring(6,8), 10);
+      var hours = parseInt(dateToParse.substring(8,10), 10);
+      var minutes = parseInt(dateToParse.substring(10,12), 10);
+      var seconds = parseInt(dateToParse.substring(12,14), 10);
+      var utRel = dateToParse.substring(14,15);
+      var offsetHours = parseInt(dateToParse.substring(15,17), 10);
+      var offsetMinutes = parseInt(dateToParse.substring(18,20), 10);
+
+      // As per spec, utRel = 'Z' means equal to universal time.
+      // The other cases ('-' and '+') have to be handled here.
+      if (utRel === '-') {
+        hours += offsetHours;
+        minutes += offsetMinutes;
+      } else if (utRel === '+') {
+        hours -= offsetHours;
+        minutes -= offsetMinutes;
+      }
+
+      // Return the new date format from the user's locale.
+      var date = new Date(Date.UTC(year, month, day, hours, minutes, seconds));
+      var dateString = date.toLocaleDateString();
+      var timeString = date.toLocaleTimeString();
+      return mozL10n.get('document_properties_date_string',
+                         {date: dateString, time: timeString},
+                         '{{date}}, {{time}}');
     }
-  },
+  };
 
-  setFileSize: function documentPropertiesSetFileSize(fileSize) {
-    if (fileSize > 0) {
-      this.rawFileSize = fileSize;
-    }
-  },
-
-  parseFileSize: function documentPropertiesParseFileSize() {
-    var fileSize = this.rawFileSize, kb = fileSize / 1024;
-    if (!kb) {
-      return;
-    } else if (kb < 1024) {
-      return mozL10n.get('document_properties_kb', {
-        size_kb: (+kb.toPrecision(3)).toLocaleString(),
-        size_b: fileSize.toLocaleString()
-      }, '{{size_kb}} KB ({{size_b}} bytes)');
-    } else {
-      return mozL10n.get('document_properties_mb', {
-        size_mb: (+(kb / 1024).toPrecision(3)).toLocaleString(),
-        size_b: fileSize.toLocaleString()
-      }, '{{size_mb}} MB ({{size_b}} bytes)');
-    }
-  },
-
-  open: function documentPropertiesOpen() {
-    Promise.all([OverlayManager.open(this.overlayName),
-                 this.dataAvailablePromise]).then(function () {
-      this.getProperties();
-    }.bind(this));
-  },
-
-  close: function documentPropertiesClose() {
-    OverlayManager.close(this.overlayName);
-  },
-
-  parseDate: function documentPropertiesParseDate(inputDate) {
-    // This is implemented according to the PDF specification (see
-    // http://www.gnupdf.org/Date for an overview), but note that
-    // Adobe Reader doesn't handle changing the date to universal time
-    // and doesn't use the user's time zone (they're effectively ignoring
-    // the HH' and mm' parts of the date string).
-    var dateToParse = inputDate;
-    if (dateToParse === undefined) {
-      return '';
-    }
-
-    // Remove the D: prefix if it is available.
-    if (dateToParse.substring(0,2) === 'D:') {
-      dateToParse = dateToParse.substring(2);
-    }
-
-    // Get all elements from the PDF date string.
-    // JavaScript's Date object expects the month to be between
-    // 0 and 11 instead of 1 and 12, so we're correcting for this.
-    var year = parseInt(dateToParse.substring(0,4), 10);
-    var month = parseInt(dateToParse.substring(4,6), 10) - 1;
-    var day = parseInt(dateToParse.substring(6,8), 10);
-    var hours = parseInt(dateToParse.substring(8,10), 10);
-    var minutes = parseInt(dateToParse.substring(10,12), 10);
-    var seconds = parseInt(dateToParse.substring(12,14), 10);
-    var utRel = dateToParse.substring(14,15);
-    var offsetHours = parseInt(dateToParse.substring(15,17), 10);
-    var offsetMinutes = parseInt(dateToParse.substring(18,20), 10);
-
-    // As per spec, utRel = 'Z' means equal to universal time.
-    // The other cases ('-' and '+') have to be handled here.
-    if (utRel === '-') {
-      hours += offsetHours;
-      minutes += offsetMinutes;
-    } else if (utRel === '+') {
-      hours -= offsetHours;
-      minutes -= offsetMinutes;
-    }
-
-    // Return the new date format from the user's locale.
-    var date = new Date(Date.UTC(year, month, day, hours, minutes, seconds));
-    var dateString = date.toLocaleDateString();
-    var timeString = date.toLocaleTimeString();
-    return mozL10n.get('document_properties_date_string',
-                       {date: dateString, time: timeString},
-                       '{{date}}, {{time}}');
-  }
-};
+  return PDFDocumentProperties;
+})();
 
 
 var PresentationModeState = {
@@ -3059,6 +3230,7 @@ var PDFPageView = (function PDFPageViewClosure() {
     div.className = 'page';
     div.style.width = Math.floor(this.viewport.width) + 'px';
     div.style.height = Math.floor(this.viewport.height) + 'px';
+    div.setAttribute('data-page-number', this.id);
     this.div = div;
 
     container.appendChild(div);
@@ -3341,10 +3513,9 @@ var PDFPageView = (function PDFPageViewClosure() {
       }
       this.textLayer = textLayer;
 
-      // TODO(mack): use data attributes to store these
-      ctx._scaleX = outputScale.sx;
-      ctx._scaleY = outputScale.sy;
       if (outputScale.scaled) {
+        // Used by the mozCurrentTransform polyfill in src/display/canvas.js.
+        ctx._transformMatrix = [outputScale.sx, 0, 0, outputScale.sy, 0, 0];
         ctx.scale(outputScale.sx, outputScale.sy);
       }
 
@@ -3470,10 +3641,15 @@ var PDFPageView = (function PDFPageViewClosure() {
       // better output until bug 811002 is fixed in FF.
       var PRINT_OUTPUT_SCALE = 2;
       var canvas = document.createElement('canvas');
+
+      // The logical size of the canvas.
       canvas.width = Math.floor(viewport.width) * PRINT_OUTPUT_SCALE;
       canvas.height = Math.floor(viewport.height) * PRINT_OUTPUT_SCALE;
-      canvas.style.width = (PRINT_OUTPUT_SCALE * viewport.width) + 'pt';
-      canvas.style.height = (PRINT_OUTPUT_SCALE * viewport.height) + 'pt';
+
+      // The rendered size of the canvas, relative to the size of canvasWrapper.
+      canvas.style.width = (PRINT_OUTPUT_SCALE * 100) + '%';
+      canvas.style.height = (PRINT_OUTPUT_SCALE * 100) + '%';
+
       var cssScale = 'scale(' + (1 / PRINT_OUTPUT_SCALE) + ', ' +
                                 (1 / PRINT_OUTPUT_SCALE) + ')';
       CustomStyle.setProp('transform' , canvas, cssScale);
@@ -3493,6 +3669,9 @@ var PDFPageView = (function PDFPageViewClosure() {
         ctx.fillStyle = 'rgb(255, 255, 255)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.restore();
+        // Used by the mozCurrentTransform polyfill in src/display/canvas.js.
+        ctx._transformMatrix =
+          [PRINT_OUTPUT_SCALE, 0, 0, PRINT_OUTPUT_SCALE, 0, 0];
         ctx.scale(PRINT_OUTPUT_SCALE, PRINT_OUTPUT_SCALE);
 
         var renderContext = {
@@ -4151,11 +4330,11 @@ var PDFViewer = (function pdfViewer() {
 
   PDFViewer.prototype = /** @lends PDFViewer.prototype */{
     get pagesCount() {
-      return this.pages.length;
+      return this._pages.length;
     },
 
     getPageView: function (index) {
-      return this.pages[index];
+      return this._pages[index];
     },
 
     get currentPageNumber() {
@@ -4239,9 +4418,9 @@ var PDFViewer = (function pdfViewer() {
     set pagesRotation(rotation) {
       this._pagesRotation = rotation;
 
-      for (var i = 0, l = this.pages.length; i < l; i++) {
-        var page = this.pages[i];
-        page.update(page.scale, rotation);
+      for (var i = 0, l = this._pages.length; i < l; i++) {
+        var pageView = this._pages[i];
+        pageView.update(pageView.scale, rotation);
       }
 
       this._setScale(this._currentScaleValue, true);
@@ -4323,7 +4502,7 @@ var PDFViewer = (function pdfViewer() {
             annotationsLayerFactory: this
           });
           bindOnAfterAndBeforeDraw(pageView);
-          this.pages.push(pageView);
+          this._pages.push(pageView);
         }
 
         // Fetch all the pages since the viewport is needed before printing
@@ -4334,7 +4513,7 @@ var PDFViewer = (function pdfViewer() {
             var getPagesLeft = pagesCount;
             for (var pageNum = 1; pageNum <= pagesCount; ++pageNum) {
               pdfDocument.getPage(pageNum).then(function (pageNum, pdfPage) {
-                var pageView = self.pages[pageNum - 1];
+                var pageView = self._pages[pageNum - 1];
                 if (!pageView.pdfPage) {
                   pageView.setPdfPage(pdfPage);
                 }
@@ -4367,12 +4546,12 @@ var PDFViewer = (function pdfViewer() {
     },
 
     _resetView: function () {
-      this.pages = [];
+      this._pages = [];
       this._currentPageNumber = 1;
       this._currentScale = UNKNOWN_SCALE;
       this._currentScaleValue = null;
       this._buffer = new PDFPageViewBuffer(DEFAULT_CACHE_SIZE);
-      this.location = null;
+      this._location = null;
       this._pagesRotation = 0;
       this._pagesRequests = [];
 
@@ -4387,8 +4566,8 @@ var PDFViewer = (function pdfViewer() {
         return;
       }
       this.update();
-      for (var i = 0, ii = this.pages.length; i < ii; i++) {
-        this.pages[i].updatePosition();
+      for (var i = 0, ii = this._pages.length; i < ii; i++) {
+        this._pages[i].updatePosition();
       }
     },
 
@@ -4413,21 +4592,18 @@ var PDFViewer = (function pdfViewer() {
         return;
       }
 
-      for (var i = 0, ii = this.pages.length; i < ii; i++) {
-        this.pages[i].update(newScale);
+      for (var i = 0, ii = this._pages.length; i < ii; i++) {
+        this._pages[i].update(newScale);
       }
       this._currentScale = newScale;
 
       if (!noScroll) {
         var page = this._currentPageNumber, dest;
-        var inPresentationMode =
-          this.presentationModeState === PresentationModeState.CHANGING ||
-          this.presentationModeState === PresentationModeState.FULLSCREEN;
-        if (this.location && !inPresentationMode &&
-            !IGNORE_CURRENT_POSITION_ON_ZOOM) {
-          page = this.location.pageNumber;
-          dest = [null, { name: 'XYZ' }, this.location.left,
-            this.location.top, null];
+        if (this._location && !IGNORE_CURRENT_POSITION_ON_ZOOM &&
+            !(this.isInPresentationMode || this.isChangingPresentationMode)) {
+          page = this._location.pageNumber;
+          dest = [null, { name: 'XYZ' }, this._location.left,
+                  this._location.top, null];
         }
         this.scrollPageIntoView(page, dest);
       }
@@ -4444,15 +4620,13 @@ var PDFViewer = (function pdfViewer() {
       if (scale > 0) {
         this._setScaleUpdatePages(scale, value, noScroll, false);
       } else {
-        var currentPage = this.pages[this._currentPageNumber - 1];
+        var currentPage = this._pages[this._currentPageNumber - 1];
         if (!currentPage) {
           return;
         }
-        var inPresentationMode =
-          this.presentationModeState === PresentationModeState.FULLSCREEN;
-        var hPadding = (inPresentationMode || this.removePageBorders) ?
+        var hPadding = (this.isInPresentationMode || this.removePageBorders) ?
           0 : SCROLLBAR_PADDING;
-        var vPadding = (inPresentationMode || this.removePageBorders) ?
+        var vPadding = (this.isInPresentationMode || this.removePageBorders) ?
           0 : VERTICAL_PADDING;
         var pageWidthScale = (this.container.clientWidth - hPadding) /
                              currentPage.width * currentPage.scale;
@@ -4496,10 +4670,9 @@ var PDFViewer = (function pdfViewer() {
      */
     scrollPageIntoView: function PDFViewer_scrollPageIntoView(pageNumber,
                                                               dest) {
-      var pageView = this.pages[pageNumber - 1];
+      var pageView = this._pages[pageNumber - 1];
 
-      if (this.presentationModeState ===
-        PresentationModeState.FULLSCREEN) {
+      if (this.isInPresentationMode) {
         if (this.linkService.page !== pageView.id) {
           // Avoid breaking getVisiblePages in presentation mode.
           this.linkService.page = pageView.id;
@@ -4600,7 +4773,7 @@ var PDFViewer = (function pdfViewer() {
       var pageNumber = firstPage.id;
       var pdfOpenParams = '#page=' + pageNumber;
       pdfOpenParams += '&zoom=' + normalizedScaleValue;
-      var currentPageView = this.pages[pageNumber - 1];
+      var currentPageView = this._pages[pageNumber - 1];
       var container = this.container;
       var topLeft = currentPageView.getPagePoint(
         (container.scrollLeft - firstPage.x),
@@ -4609,7 +4782,7 @@ var PDFViewer = (function pdfViewer() {
       var intTop = Math.round(topLeft[1]);
       pdfOpenParams += ',' + intLeft + ',' + intTop;
 
-      this.location = {
+      this._location = {
         pageNumber: pageNumber,
         scale: normalizedScaleValue,
         top: intTop,
@@ -4653,7 +4826,7 @@ var PDFViewer = (function pdfViewer() {
         currentId = visiblePages[0].id;
       }
 
-      if (this.presentationModeState !== PresentationModeState.FULLSCREEN) {
+      if (!this.isInPresentationMode) {
         this.currentPageNumber = currentId;
       }
 
@@ -4663,6 +4836,7 @@ var PDFViewer = (function pdfViewer() {
 
       var event = document.createEvent('UIEvents');
       event.initUIEvent('updateviewarea', true, true, window, 0);
+      event.location = this._location;
       this.container.dispatchEvent(event);
     },
 
@@ -4674,33 +4848,37 @@ var PDFViewer = (function pdfViewer() {
       this.container.focus();
     },
 
-    blur: function () {
-      this.container.blur();
+    get isInPresentationMode() {
+      return this.presentationModeState === PresentationModeState.FULLSCREEN;
+    },
+
+    get isChangingPresentationMode() {
+      return this.PresentationModeState === PresentationModeState.CHANGING;
     },
 
     get isHorizontalScrollbarEnabled() {
-      return (this.presentationModeState === PresentationModeState.FULLSCREEN ?
+      return (this.isInPresentationMode ?
         false : (this.container.scrollWidth > this.container.clientWidth));
     },
 
     _getVisiblePages: function () {
-      if (this.presentationModeState !== PresentationModeState.FULLSCREEN) {
-        return getVisibleElements(this.container, this.pages, true);
+      if (!this.isInPresentationMode) {
+        return getVisibleElements(this.container, this._pages, true);
       } else {
         // The algorithm in getVisibleElements doesn't work in all browsers and
         // configurations when presentation mode is active.
         var visible = [];
-        var currentPage = this.pages[this._currentPageNumber - 1];
+        var currentPage = this._pages[this._currentPageNumber - 1];
         visible.push({ id: currentPage.id, view: currentPage });
         return { first: currentPage, last: currentPage, views: visible };
       }
     },
 
     cleanup: function () {
-      for (var i = 0, ii = this.pages.length; i < ii; i++) {
-        if (this.pages[i] &&
-          this.pages[i].renderingState !== RenderingStates.FINISHED) {
-          this.pages[i].reset();
+      for (var i = 0, ii = this._pages.length; i < ii; i++) {
+        if (this._pages[i] &&
+            this._pages[i].renderingState !== RenderingStates.FINISHED) {
+          this._pages[i].reset();
         }
       }
     },
@@ -4731,7 +4909,7 @@ var PDFViewer = (function pdfViewer() {
     forceRendering: function (currentlyVisiblePages) {
       var visiblePages = currentlyVisiblePages || this._getVisiblePages();
       var pageView = this.renderingQueue.getHighestPriority(visiblePages,
-                                                            this.pages,
+                                                            this._pages,
                                                             this.scroll.down);
       if (pageView) {
         this._ensurePdfPageLoaded(pageView).then(function () {
@@ -4755,13 +4933,11 @@ var PDFViewer = (function pdfViewer() {
      * @returns {TextLayerBuilder}
      */
     createTextLayerBuilder: function (textLayerDiv, pageIndex, viewport) {
-      var isViewerInPresentationMode =
-        this.presentationModeState === PresentationModeState.FULLSCREEN;
       return new TextLayerBuilder({
         textLayerDiv: textLayerDiv,
         pageIndex: pageIndex,
         viewport: viewport,
-        findController: isViewerInPresentationMode ? null : this.findController
+        findController: this.isInPresentationMode ? null : this.findController
       });
     },
 
@@ -4996,12 +5172,11 @@ var PDFThumbnailView = (function PDFThumbnailViewClosure() {
     /**
      * @private
      */
-    _getPageDrawContext: function PDFThumbnailView_getPageDrawContext() {
+    _getPageDrawContext:
+        function PDFThumbnailView_getPageDrawContext(noCtxScale) {
       var canvas = document.createElement('canvas');
       canvas.id = this.renderingId;
 
-      canvas.width = this.canvasWidth;
-      canvas.height = this.canvasHeight;
       canvas.className = 'thumbnailImage';
       canvas.setAttribute('aria-label', mozL10n.get('thumb_page_canvas',
         {page: this.id}, 'Thumbnail of Page {{page}}'));
@@ -5010,7 +5185,16 @@ var PDFThumbnailView = (function PDFThumbnailViewClosure() {
       this.div.setAttribute('data-loaded', true);
       this.ring.appendChild(canvas);
 
-      return canvas.getContext('2d');
+      var ctx = canvas.getContext('2d');
+      var outputScale = getOutputScale(ctx);
+      canvas.width = (this.canvasWidth * outputScale.sx) | 0;
+      canvas.height = (this.canvasHeight * outputScale.sy) | 0;
+      canvas.style.width = this.canvasWidth + 'px';
+      canvas.style.height = this.canvasHeight + 'px';
+      if (!noCtxScale && outputScale.scaled) {
+        ctx.scale(outputScale.sx, outputScale.sy);
+      }
+      return ctx;
     },
 
     draw: function PDFThumbnailView_draw() {
@@ -5093,7 +5277,7 @@ var PDFThumbnailView = (function PDFThumbnailViewClosure() {
       this.hasImage = true;
       this.renderingState = RenderingStates.FINISHED;
 
-      var ctx = this._getPageDrawContext();
+      var ctx = this._getPageDrawContext(true);
       var canvas = ctx.canvas;
 
       if (img.width <= 2 * canvas.width) {
@@ -5347,6 +5531,17 @@ var PDFOutlineView = (function PDFOutlineViewClosure() {
     /**
      * @private
      */
+    _dispatchEvent: function PDFOutlineView_dispatchEvent(outlineCount) {
+      var event = document.createEvent('CustomEvent');
+      event.initCustomEvent('outlineloaded', true, true, {
+        outlineCount: outlineCount
+      });
+      this.container.dispatchEvent(event);
+    },
+
+    /**
+     * @private
+     */
     _bindLink: function PDFOutlineView_bindLink(element, item) {
       var linkService = this.linkService;
       element.href = linkService.getDestinationHash(item.dest);
@@ -5358,10 +5553,12 @@ var PDFOutlineView = (function PDFOutlineViewClosure() {
 
     render: function PDFOutlineView_render() {
       var outline = this.outline;
+      var outlineCount = 0;
 
       this.reset();
 
       if (!outline) {
+        this._dispatchEvent(outlineCount);
         return;
       }
 
@@ -5385,8 +5582,11 @@ var PDFOutlineView = (function PDFOutlineViewClosure() {
           }
 
           levelData.parent.appendChild(div);
+          outlineCount++;
         }
       }
+
+      this._dispatchEvent(outlineCount);
     }
   };
 
@@ -5426,6 +5626,17 @@ var PDFAttachmentView = (function PDFAttachmentViewClosure() {
     /**
      * @private
      */
+    _dispatchEvent: function PDFAttachmentView_dispatchEvent(attachmentsCount) {
+      var event = document.createEvent('CustomEvent');
+      event.initCustomEvent('attachmentsloaded', true, true, {
+        attachmentsCount: attachmentsCount
+      });
+      this.container.dispatchEvent(event);
+    },
+
+    /**
+     * @private
+     */
     _bindLink: function PDFAttachmentView_bindLink(button, content, filename) {
       button.onclick = function downloadFile(e) {
         this.downloadManager.downloadData(content, filename, '');
@@ -5435,17 +5646,21 @@ var PDFAttachmentView = (function PDFAttachmentViewClosure() {
 
     render: function PDFAttachmentView_render() {
       var attachments = this.attachments;
+      var attachmentsCount = 0;
 
       this.reset();
 
       if (!attachments) {
+        this._dispatchEvent(attachmentsCount);
         return;
       }
 
       var names = Object.keys(attachments).sort(function(a, b) {
         return a.toLowerCase().localeCompare(b.toLowerCase());
       });
-      for (var i = 0, len = names.length; i < len; i++) {
+      attachmentsCount = names.length;
+
+      for (var i = 0; i < attachmentsCount; i++) {
         var item = attachments[names[i]];
         var filename = getFileName(item.filename);
         var div = document.createElement('div');
@@ -5456,6 +5671,8 @@ var PDFAttachmentView = (function PDFAttachmentViewClosure() {
         div.appendChild(button);
         this.container.appendChild(div);
       }
+
+      this._dispatchEvent(attachmentsCount);
     }
   };
 
@@ -5476,15 +5693,18 @@ var PDFViewerApplication = {
   pdfThumbnailViewer: null,
   /** @type {PDFRenderingQueue} */
   pdfRenderingQueue: null,
+  /** @type {PDFPresentationMode} */
+  pdfPresentationMode: null,
+  /** @type {PDFDocumentProperties} */
+  pdfDocumentProperties: null,
   pageRotation: 0,
   updateScaleControls: true,
   isInitialViewSet: false,
   animationStartedPromise: null,
-  mouseScrollTimeStamp: 0,
-  mouseScrollDelta: 0,
   preferenceSidebarViewOnLoad: SidebarView.NONE,
   preferencePdfBugEnabled: false,
   preferenceShowPreviousViewOnLoad: true,
+  preferenceDefaultZoomValue: '',
   isViewerEmbedded: (window.parent !== window),
   url: '',
 
@@ -5540,9 +5760,27 @@ var PDFViewerApplication = {
       toggleHandTool: document.getElementById('toggleHandTool')
     });
 
+    this.pdfDocumentProperties = new PDFDocumentProperties({
+      overlayName: 'documentPropertiesOverlay',
+      closeButton: document.getElementById('documentPropertiesClose'),
+      fields: {
+        'fileName': document.getElementById('fileNameField'),
+        'fileSize': document.getElementById('fileSizeField'),
+        'title': document.getElementById('titleField'),
+        'author': document.getElementById('authorField'),
+        'subject': document.getElementById('subjectField'),
+        'keywords': document.getElementById('keywordsField'),
+        'creationDate': document.getElementById('creationDateField'),
+        'modificationDate': document.getElementById('modificationDateField'),
+        'creator': document.getElementById('creatorField'),
+        'producer': document.getElementById('producerField'),
+        'version': document.getElementById('versionField'),
+        'pageCount': document.getElementById('pageCountField')
+      }
+    });
+
     SecondaryToolbar.initialize({
       toolbar: document.getElementById('secondaryToolbar'),
-      presentationMode: PresentationMode,
       toggleButton: document.getElementById('secondaryToolbarToggle'),
       presentationModeButton:
         document.getElementById('secondaryPresentationMode'),
@@ -5554,18 +5792,27 @@ var PDFViewerApplication = {
       lastPage: document.getElementById('lastPage'),
       pageRotateCw: document.getElementById('pageRotateCw'),
       pageRotateCcw: document.getElementById('pageRotateCcw'),
-      documentProperties: DocumentProperties,
       documentPropertiesButton: document.getElementById('documentProperties')
     });
 
-    PresentationMode.initialize({
-      container: container,
-      secondaryToolbar: SecondaryToolbar,
-      firstPage: document.getElementById('contextFirstPage'),
-      lastPage: document.getElementById('contextLastPage'),
-      pageRotateCw: document.getElementById('contextPageRotateCw'),
-      pageRotateCcw: document.getElementById('contextPageRotateCcw')
-    });
+    if (this.supportsFullscreen) {
+      var toolbar = SecondaryToolbar;
+      this.pdfPresentationMode = new PDFPresentationMode({
+        container: container,
+        viewer: viewer,
+        pdfThumbnailViewer: this.pdfThumbnailViewer,
+        contextMenuItems: [
+          { element: document.getElementById('contextFirstPage'),
+            handler: toolbar.firstPageClick.bind(toolbar) },
+          { element: document.getElementById('contextLastPage'),
+            handler: toolbar.lastPageClick.bind(toolbar) },
+          { element: document.getElementById('contextPageRotateCw'),
+            handler: toolbar.pageRotateCwClick.bind(toolbar) },
+          { element: document.getElementById('contextPageRotateCcw'),
+            handler: toolbar.pageRotateCcwClick.bind(toolbar) }
+        ]
+      });
+    }
 
     PasswordPrompt.initialize({
       overlayName: 'passwordOverlay',
@@ -5573,23 +5820,6 @@ var PDFViewerApplication = {
       passwordText: document.getElementById('passwordText'),
       passwordSubmit: document.getElementById('passwordSubmit'),
       passwordCancel: document.getElementById('passwordCancel')
-    });
-
-    DocumentProperties.initialize({
-      overlayName: 'documentPropertiesOverlay',
-      closeButton: document.getElementById('documentPropertiesClose'),
-      fileNameField: document.getElementById('fileNameField'),
-      fileSizeField: document.getElementById('fileSizeField'),
-      titleField: document.getElementById('titleField'),
-      authorField: document.getElementById('authorField'),
-      subjectField: document.getElementById('subjectField'),
-      keywordsField: document.getElementById('keywordsField'),
-      creationDateField: document.getElementById('creationDateField'),
-      modificationDateField: document.getElementById('modificationDateField'),
-      creatorField: document.getElementById('creatorField'),
-      producerField: document.getElementById('producerField'),
-      versionField: document.getElementById('versionField'),
-      pageCountField: document.getElementById('pageCountField')
     });
 
     var self = this;
@@ -5605,9 +5835,9 @@ var PDFViewerApplication = {
       }),
       Preferences.get('showPreviousViewOnLoad').then(function resolved(value) {
         self.preferenceShowPreviousViewOnLoad = value;
-        if (!value && window.history.state) {
-          window.history.replaceState(null, '');
-        }
+      }),
+      Preferences.get('defaultZoomValue').then(function resolved(value) {
+        self.preferenceDefaultZoomValue = value;
       }),
       Preferences.get('disableTextLayer').then(function resolved(value) {
         if (PDFJS.disableTextLayer === true) {
@@ -5633,7 +5863,6 @@ var PDFViewerApplication = {
       Preferences.get('useOnlyCssZoom').then(function resolved(value) {
         PDFJS.useOnlyCssZoom = value;
       })
-
       // TODO move more preferences and other async stuff here
     ]).catch(function (reason) { });
 
@@ -5648,7 +5877,7 @@ var PDFViewerApplication = {
       newScale = (newScale * DEFAULT_SCALE_DELTA).toFixed(2);
       newScale = Math.ceil(newScale * 10) / 10;
       newScale = Math.min(MAX_SCALE, newScale);
-    } while (--ticks && newScale < MAX_SCALE);
+    } while (--ticks > 0 && newScale < MAX_SCALE);
     this.setScale(newScale, true);
   },
 
@@ -5658,7 +5887,7 @@ var PDFViewerApplication = {
       newScale = (newScale / DEFAULT_SCALE_DELTA).toFixed(2);
       newScale = Math.floor(newScale * 10) / 10;
       newScale = Math.max(MIN_SCALE, newScale);
-    } while (--ticks && newScale > MIN_SCALE);
+    } while (--ticks > 0 && newScale > MIN_SCALE);
     this.setScale(newScale, true);
   },
 
@@ -5687,8 +5916,8 @@ var PDFViewerApplication = {
 
   get supportsFullscreen() {
     var doc = document.documentElement;
-    var support = doc.requestFullscreen || doc.mozRequestFullScreen ||
-                  doc.webkitRequestFullScreen || doc.msRequestFullscreen;
+    var support = !!(doc.requestFullscreen || doc.mozRequestFullScreen ||
+                     doc.webkitRequestFullScreen || doc.msRequestFullscreen);
 
     if (document.fullscreenEnabled === false ||
         document.mozFullScreenEnabled === false ||
@@ -5838,7 +6067,7 @@ var PDFViewerApplication = {
     );
 
     if (args && args.length) {
-      DocumentProperties.setFileSize(args.length);
+      PDFViewerApplication.pdfDocumentProperties.setFileSize(args.length);
     }
   },
 
@@ -5876,7 +6105,6 @@ var PDFViewerApplication = {
   },
 
   fallback: function pdfViewFallback(featureId) {
-    return;
   },
 
   navigateTo: function pdfViewNavigateTo(dest) {
@@ -6106,9 +6334,7 @@ var PDFViewerApplication = {
 
     this.pdfDocument = pdfDocument;
 
-    DocumentProperties.url = this.url;
-    DocumentProperties.pdfDocument = pdfDocument;
-    DocumentProperties.resolveDataAvailable();
+    this.pdfDocumentProperties.setDocumentAndUrl(pdfDocument, this.url);
 
     var downloadedPromise = pdfDocument.getDownloadInfo().then(function() {
       self.downloadComplete = true;
@@ -6148,45 +6374,36 @@ var PDFViewerApplication = {
       if (!PDFJS.disableHistory && !self.isViewerEmbedded) {
         // The browsing history is only enabled when the viewer is standalone,
         // i.e. not when it is embedded in a web page.
+        if (!self.preferenceShowPreviousViewOnLoad && window.history.state) {
+          window.history.replaceState(null, '');
+        }
         PDFHistory.initialize(self.documentFingerprint, self);
       }
-    });
 
-    // Fetch the necessary preference values.
-    var defaultZoomValue;
-    var defaultZoomValuePromise =
-      Preferences.get('defaultZoomValue').then(function (prefValue) {
-        defaultZoomValue = prefValue;
-      });
+      store.initializedPromise.then(function resolved() {
+        var storedHash = null;
+        if (self.preferenceShowPreviousViewOnLoad &&
+            store.get('exists', false)) {
+          var pageNum = store.get('page', '1');
+          var zoom = self.preferenceDefaultZoomValue ||
+                     store.get('zoom', self.pdfViewer.currentScale);
+          var left = store.get('scrollLeft', '0');
+          var top = store.get('scrollTop', '0');
 
-    var storePromise = store.initializedPromise;
-    Promise.all([firstPagePromise, storePromise, defaultZoomValuePromise]).then(
-        function resolved() {
-      var storedHash = null;
-      if (PDFViewerApplication.preferenceShowPreviousViewOnLoad &&
-          store.get('exists', false)) {
-        var pageNum = store.get('page', '1');
-        var zoom = defaultZoomValue ||
-                   store.get('zoom', self.pdfViewer.currentScale);
-        var left = store.get('scrollLeft', '0');
-        var top = store.get('scrollTop', '0');
+          storedHash = 'page=' + pageNum + '&zoom=' + zoom + ',' +
+                       left + ',' + top;
+        } else if (self.preferenceDefaultZoomValue) {
+          storedHash = 'page=1&zoom=' + self.preferenceDefaultZoomValue;
+        }
+        self.setInitialView(storedHash, scale);
 
-        storedHash = 'page=' + pageNum + '&zoom=' + zoom + ',' +
-                     left + ',' + top;
-      } else if (defaultZoomValue) {
-        storedHash = 'page=1&zoom=' + defaultZoomValue;
-      }
-      self.setInitialView(storedHash, scale);
-
-      // Make all navigation keys work on document load,
-      // unless the viewer is embedded in a web page.
-      if (!self.isViewerEmbedded) {
-        self.pdfViewer.focus();
-      }
-    }, function rejected(reason) {
-      console.error(reason);
-
-      firstPagePromise.then(function () {
+        // Make all navigation keys work on document load,
+        // unless the viewer is embedded in a web page.
+        if (!self.isViewerEmbedded) {
+          self.pdfViewer.focus();
+        }
+      }, function rejected(reason) {
+        console.error(reason);
         self.setInitialView(null, scale);
       });
     });
@@ -6537,16 +6754,63 @@ var PDFViewerApplication = {
 
     var body = document.querySelector('body');
     body.setAttribute('data-mozPrintCallback', true);
+
+    if (!this.hasEqualPageSizes) {
+      console.warn('Not all pages have the same size. The printed result ' +
+          'may be incorrect!');
+    }
+
+    // Insert a @page + size rule to make sure that the page size is correctly
+    // set. Note that we assume that all pages have the same size, because
+    // variable-size pages are not supported yet (at least in Chrome & Firefox).
+    // TODO(robwu): Use named pages when size calculation bugs get resolved
+    // (e.g. https://crbug.com/355116) AND when support for named pages is
+    // added (http://www.w3.org/TR/css3-page/#using-named-pages).
+    // In browsers where @page + size is not supported (such as Firefox,
+    // https://bugzil.la/851441), the next stylesheet will be ignored and the
+    // user has to select the correct paper size in the UI if wanted.
+    this.pageStyleSheet = document.createElement('style');
+    var pageSize = this.pdfViewer.getPageView(0).pdfPage.getViewport(1);
+    this.pageStyleSheet.textContent =
+      // "size:<width> <height>" is what we need. But also add "A4" because
+      // Firefox incorrectly reports support for the other value.
+      '@supports ((size:A4) and (size:1pt 1pt)) {' +
+      '@page { size: ' + pageSize.width + 'pt ' + pageSize.height + 'pt;}' +
+      // The canvas and each ancestor node must have a height of 100% to make
+      // sure that each canvas is printed on exactly one page.
+      '#printContainer {height:100%}' +
+      '#printContainer > div {width:100% !important;height:100% !important;}' +
+      '}';
+    body.appendChild(this.pageStyleSheet);
+
     for (i = 0, ii = this.pagesCount; i < ii; ++i) {
       this.pdfViewer.getPageView(i).beforePrint();
     }
 
   },
 
+  // Whether all pages of the PDF have the same width and height.
+  get hasEqualPageSizes() {
+    var firstPage = this.pdfViewer.getPageView(0);
+    for (var i = 1, ii = this.pagesCount; i < ii; ++i) {
+      var pageView = this.pdfViewer.getPageView(i);
+      if (pageView.width !== firstPage.width ||
+          pageView.height !== firstPage.height) {
+        return false;
+      }
+    }
+    return true;
+  },
+
   afterPrint: function pdfViewSetupAfterPrint() {
     var div = document.getElementById('printContainer');
     while (div.hasChildNodes()) {
       div.removeChild(div.lastChild);
+    }
+
+    if (this.pageStyleSheet && this.pageStyleSheet.parentNode) {
+      this.pageStyleSheet.parentNode.removeChild(this.pageStyleSheet);
+      this.pageStyleSheet = null;
     }
 
     this.printing = false;
@@ -6570,72 +6834,21 @@ var PDFViewerApplication = {
     this.pdfViewer.scrollPageIntoView(pageNumber);
   },
 
-  /**
-   * This function flips the page in presentation mode if the user scrolls up
-   * or down with large enough motion and prevents page flipping too often.
-   *
-   * @this {PDFView}
-   * @param {number} mouseScrollDelta The delta value from the mouse event.
-   */
-  mouseScroll: function pdfViewMouseScroll(mouseScrollDelta) {
-    var MOUSE_SCROLL_COOLDOWN_TIME = 50;
-
-    var currentTime = (new Date()).getTime();
-    var storedTime = this.mouseScrollTimeStamp;
-
-    // In case one page has already been flipped there is a cooldown time
-    // which has to expire before next page can be scrolled on to.
-    if (currentTime > storedTime &&
-        currentTime - storedTime < MOUSE_SCROLL_COOLDOWN_TIME) {
+  requestPresentationMode: function pdfViewRequestPresentationMode() {
+    if (!this.pdfPresentationMode) {
       return;
     }
-
-    // In case the user decides to scroll to the opposite direction than before
-    // clear the accumulated delta.
-    if ((this.mouseScrollDelta > 0 && mouseScrollDelta < 0) ||
-        (this.mouseScrollDelta < 0 && mouseScrollDelta > 0)) {
-      this.clearMouseScrollState();
-    }
-
-    this.mouseScrollDelta += mouseScrollDelta;
-
-    var PAGE_FLIP_THRESHOLD = 120;
-    if (Math.abs(this.mouseScrollDelta) >= PAGE_FLIP_THRESHOLD) {
-
-      var PageFlipDirection = {
-        UP: -1,
-        DOWN: 1
-      };
-
-      // In presentation mode scroll one page at a time.
-      var pageFlipDirection = (this.mouseScrollDelta > 0) ?
-                                PageFlipDirection.UP :
-                                PageFlipDirection.DOWN;
-      this.clearMouseScrollState();
-      var currentPage = this.page;
-
-      // In case we are already on the first or the last page there is no need
-      // to do anything.
-      if ((currentPage === 1 && pageFlipDirection === PageFlipDirection.UP) ||
-          (currentPage === this.pagesCount &&
-           pageFlipDirection === PageFlipDirection.DOWN)) {
-        return;
-      }
-
-      this.page += pageFlipDirection;
-      this.mouseScrollTimeStamp = currentTime;
-    }
+    this.pdfPresentationMode.request();
   },
 
   /**
-   * This function clears the member attributes used with mouse scrolling in
-   * presentation mode.
-   *
-   * @this {PDFView}
+   * @param {number} delta - The delta value from the mouse event.
    */
-  clearMouseScrollState: function pdfViewClearMouseScrollState() {
-    this.mouseScrollTimeStamp = 0;
-    this.mouseScrollDelta = 0;
+  scrollPresentationMode: function pdfViewScrollPresentationMode(delta) {
+    if (!this.pdfPresentationMode) {
+      return;
+    }
+    this.pdfPresentationMode.mouseScroll(delta);
   }
 };
 window.PDFView = PDFViewerApplication; // obsolete name, using it as an alias
@@ -6888,13 +7101,13 @@ document.addEventListener('pagerendered', function (e) {
       'An error occurred while rendering the page.'), pageView.error);
   }
 
-
   // If the page is still visible when it has finished rendering,
   // ensure that the page number input loading indicator is hidden.
   if (pageNumber === PDFViewerApplication.page) {
     var pageNumberInput = document.getElementById('pageNumber');
     pageNumberInput.classList.remove(PAGE_NUMBER_LOADING_INDICATOR);
   }
+
 }, true);
 
 document.addEventListener('textlayerrendered', function (e) {
@@ -6918,12 +7131,11 @@ function updateViewarea() {
   PDFViewerApplication.pdfViewer.update();
 }
 
-window.addEventListener('updateviewarea', function () {
+window.addEventListener('updateviewarea', function (evt) {
   if (!PDFViewerApplication.initialized) {
     return;
   }
-
-  var location = PDFViewerApplication.pdfViewer.location;
+  var location = evt.location;
 
   PDFViewerApplication.store.initializedPromise.then(function() {
     PDFViewerApplication.store.setMultiple({
@@ -7121,10 +7333,12 @@ function handleMouseWheel(evt) {
               evt.wheelDelta / MOUSE_WHEEL_DELTA_FACTOR;
   var direction = (ticks < 0) ? 'zoomOut' : 'zoomIn';
 
-  if (PresentationMode.active) {
+  if (PDFViewerApplication.pdfViewer.isInPresentationMode) {
     evt.preventDefault();
-    PDFViewerApplication.mouseScroll(ticks * MOUSE_WHEEL_DELTA_FACTOR);
-  } else if (evt.ctrlKey) { // Only zoom the pages, not the entire viewer
+    PDFViewerApplication.scrollPresentationMode(ticks *
+                                                MOUSE_WHEEL_DELTA_FACTOR);
+  } else if (evt.ctrlKey || evt.metaKey) {
+    // Only zoom the pages, not the entire viewer.
     evt.preventDefault();
     PDFViewerApplication[direction](Math.abs(ticks));
   }
@@ -7134,15 +7348,9 @@ window.addEventListener('DOMMouseScroll', handleMouseWheel);
 window.addEventListener('mousewheel', handleMouseWheel);
 
 window.addEventListener('click', function click(evt) {
-  if (!PresentationMode.active) {
-    if (SecondaryToolbar.opened &&
+  if (SecondaryToolbar.opened &&
       PDFViewerApplication.pdfViewer.containsElement(evt.target)) {
-      SecondaryToolbar.close();
-    }
-  } else if (evt.button === 0) {
-    // Necessary since preventDefault() in 'mousedown' won't stop
-    // the event propagation in all circumstances in presentation mode.
-    evt.preventDefault();
+    SecondaryToolbar.close();
   }
 }, false);
 
@@ -7157,15 +7365,13 @@ window.addEventListener('keydown', function keydown(evt) {
             (evt.shiftKey ? 4 : 0) |
             (evt.metaKey ? 8 : 0);
 
+  var pdfViewer = PDFViewerApplication.pdfViewer;
+  var isViewerInPresentationMode = pdfViewer && pdfViewer.isInPresentationMode;
+
   // First, handle the key bindings that are independent whether an input
   // control is selected or not.
   if (cmd === 1 || cmd === 8 || cmd === 5 || cmd === 12) {
     // either CTRL or META key with optional SHIFT.
-    var pdfViewer = PDFViewerApplication.pdfViewer;
-    var inPresentationMode = pdfViewer &&
-      (pdfViewer.presentationModeState === PresentationModeState.CHANGING ||
-       pdfViewer.presentationModeState === PresentationModeState.FULLSCREEN);
-
     switch (evt.keyCode) {
       case 70: // f
         if (!PDFViewerApplication.supportsIntegratedFind) {
@@ -7184,7 +7390,7 @@ window.addEventListener('keydown', function keydown(evt) {
       case 107: // FF '+' and '='
       case 187: // Chrome '+'
       case 171: // FF with German keyboard
-        if (!inPresentationMode) {
+        if (!isViewerInPresentationMode) {
           PDFViewerApplication.zoomIn();
         }
         handled = true;
@@ -7192,14 +7398,14 @@ window.addEventListener('keydown', function keydown(evt) {
       case 173: // FF/Mac '-'
       case 109: // FF '-'
       case 189: // Chrome '-'
-        if (!inPresentationMode) {
+        if (!isViewerInPresentationMode) {
           PDFViewerApplication.zoomOut();
         }
         handled = true;
         break;
       case 48: // '0'
       case 96: // '0' on Numpad of Swedish keyboard
-        if (!inPresentationMode) {
+        if (!isViewerInPresentationMode) {
           // keeping it unhandled (to restore page zoom to 100%)
           setTimeout(function () {
             // ... and resetting the scale after browser adjusts its scale
@@ -7225,7 +7431,7 @@ window.addEventListener('keydown', function keydown(evt) {
   if (cmd === 3 || cmd === 10) {
     switch (evt.keyCode) {
       case 80: // p
-        SecondaryToolbar.presentationModeClick();
+        PDFViewerApplication.requestPresentationMode();
         handled = true;
         break;
       case 71: // g
@@ -7259,15 +7465,15 @@ window.addEventListener('keydown', function keydown(evt) {
       case 38: // up arrow
       case 33: // pg up
       case 8: // backspace
-        if (!PresentationMode.active &&
-          PDFViewerApplication.currentScaleValue !== 'page-fit') {
+        if (!isViewerInPresentationMode &&
+            PDFViewerApplication.currentScaleValue !== 'page-fit') {
           break;
         }
         /* in presentation mode */
         /* falls through */
       case 37: // left arrow
         // horizontal scrolling using arrow keys
-        if (PDFViewerApplication.pdfViewer.isHorizontalScrollbarEnabled) {
+        if (pdfViewer.isHorizontalScrollbarEnabled) {
           break;
         }
         /* falls through */
@@ -7290,14 +7496,14 @@ window.addEventListener('keydown', function keydown(evt) {
       case 40: // down arrow
       case 34: // pg down
       case 32: // spacebar
-        if (!PresentationMode.active &&
+        if (!isViewerInPresentationMode &&
             PDFViewerApplication.currentScaleValue !== 'page-fit') {
           break;
         }
         /* falls through */
       case 39: // right arrow
         // horizontal scrolling using arrow keys
-        if (PDFViewerApplication.pdfViewer.isHorizontalScrollbarEnabled) {
+        if (pdfViewer.isHorizontalScrollbarEnabled) {
           break;
         }
         /* falls through */
@@ -7308,13 +7514,13 @@ window.addEventListener('keydown', function keydown(evt) {
         break;
 
       case 36: // home
-        if (PresentationMode.active || PDFViewerApplication.page > 1) {
+        if (isViewerInPresentationMode || PDFViewerApplication.page > 1) {
           PDFViewerApplication.page = 1;
           handled = true;
         }
         break;
       case 35: // end
-        if (PresentationMode.active || (PDFViewerApplication.pdfDocument &&
+        if (isViewerInPresentationMode || (PDFViewerApplication.pdfDocument &&
             PDFViewerApplication.page < PDFViewerApplication.pagesCount)) {
           PDFViewerApplication.page = PDFViewerApplication.pagesCount;
           handled = true;
@@ -7322,7 +7528,7 @@ window.addEventListener('keydown', function keydown(evt) {
         break;
 
       case 72: // 'h'
-        if (!PresentationMode.active) {
+        if (!isViewerInPresentationMode) {
           HandTool.toggle();
         }
         break;
@@ -7335,7 +7541,7 @@ window.addEventListener('keydown', function keydown(evt) {
   if (cmd === 4) { // shift-key
     switch (evt.keyCode) {
       case 32: // spacebar
-        if (!PresentationMode.active &&
+        if (!isViewerInPresentationMode &&
             PDFViewerApplication.currentScaleValue !== 'page-fit') {
           break;
         }
@@ -7349,34 +7555,33 @@ window.addEventListener('keydown', function keydown(evt) {
     }
   }
 
-  if (!handled && !PresentationMode.active) {
+  if (!handled && !isViewerInPresentationMode) {
     // 33=Page Up  34=Page Down  35=End    36=Home
     // 37=Left     38=Up         39=Right  40=Down
     if (evt.keyCode >= 33 && evt.keyCode <= 40 &&
-        !PDFViewerApplication.pdfViewer.containsElement(curElement)) {
+        !pdfViewer.containsElement(curElement)) {
       // The page container is not focused, but a page navigation key has been
       // pressed. Change the focus to the viewer container to make sure that
       // navigation by keyboard works as expected.
-      PDFViewerApplication.pdfViewer.focus();
+      pdfViewer.focus();
     }
     // 32=Spacebar
-    if (evt.keyCode === 32 && curElementTagName !== 'BUTTON') {
-      if (!PDFViewerApplication.pdfViewer.containsElement(curElement)) {
-        PDFViewerApplication.pdfViewer.focus();
-      }
+    if (evt.keyCode === 32 && curElementTagName !== 'BUTTON' &&
+        !pdfViewer.containsElement(curElement)) {
+      pdfViewer.focus();
     }
   }
 
   if (cmd === 2) { // alt-key
     switch (evt.keyCode) {
       case 37: // left arrow
-        if (PresentationMode.active) {
+        if (isViewerInPresentationMode) {
           PDFHistory.back();
           handled = true;
         }
         break;
       case 39: // right arrow
-        if (PresentationMode.active) {
+        if (isViewerInPresentationMode) {
           PDFHistory.forward();
           handled = true;
         }
@@ -7386,7 +7591,6 @@ window.addEventListener('keydown', function keydown(evt) {
 
   if (handled) {
     evt.preventDefault();
-    PDFViewerApplication.clearMouseScrollState();
   }
 });
 
