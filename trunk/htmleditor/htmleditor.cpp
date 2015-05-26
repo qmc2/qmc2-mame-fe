@@ -34,6 +34,7 @@
 #include <QFileDialog>
 #include <QCache>
 #include <QRegExp>
+#include <QDesktopServices>
 #if QT_VERSION >= 0x050000
 #include <QDesktopWidget>
 #include <QToolButton>
@@ -1275,6 +1276,11 @@ QString HtmlEditor::softwareInfo(QString list, QString id)
 	else
 		softInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(qmc2MainWindow->urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 	return softInfo;
+}
+
+void HtmlEditor::openLinkInDefaultBrowser(QString linkUrl)
+{
+	QDesktopServices::openUrl(QUrl::fromUserInput(linkUrl));
 }
 
 void HtmlEditor::closeXmlBuffer()
