@@ -170,6 +170,7 @@ public slots:
     QString systemInfo(QString id);
     QString emuInfo(QString id);
     QString softwareInfo(QString list, QString id);
+    void openLinkInDefaultBrowser(QString linkUrl);
 
 private:
     Ui_HTMLEditorMainWindow *ui;
