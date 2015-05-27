@@ -149,10 +149,10 @@ void SampleChecker::verify()
 			qApp->processEvents();
 		for (int gameListPos = 0; gameListPos < xmlLinesCount && !qmc2StopParser; gameListPos++) {
 			QString line = xmlLines[gameListPos];
-			int startIndex = line.indexOf("<game name=\"");
+			int startIndex = line.indexOf("<machine name=\"");
 			int endIndex = -1;
 			if ( startIndex >= 0 ) {
-				startIndex += 12;
+				startIndex += 15;
 				endIndex = line.indexOf("\"", startIndex);
 				if ( endIndex >= 0 )
 					currentGameName = line.mid(startIndex, endIndex - startIndex);
@@ -173,7 +173,7 @@ void SampleChecker::verify()
 				hasSamples |= true;
 				sampleCount++;
 			} else {
-				startIndex = line.indexOf("</game>");
+				startIndex = line.indexOf("</machine>");
 				if ( startIndex >= 0 ) {
 					if ( !currentGameName.isEmpty() && hasSamples ) {
 						if ( currentSampleOf.isEmpty() ) {

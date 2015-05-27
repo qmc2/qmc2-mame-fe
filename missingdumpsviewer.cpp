@@ -96,7 +96,7 @@ void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 					xmlQuery.setQuery(QString("doc($xmlDocument)//%1/manufacturer/string()").arg(mainEntityName));
 					xmlQuery.evaluateTo(&manufacturer);
 					manufacturer = manufacturer.trimmed();
-					ts << "\t<game name=\"" << id << "\"";
+					ts << "\t<machine name=\"" << id << "\"";
 					if ( !sourcefile.isEmpty() )
 						ts << " sourcefile=\"" << sourcefile << "\"";
 					if ( !isbios.isEmpty() && isbios != "no" )
@@ -142,7 +142,7 @@ void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 						}
 						delete dr;
 					}
-					ts << "\t</game>\n";
+					ts << "\t</machine>\n";
 				} else {
 					// FIXME "non-default emulator"
 				}

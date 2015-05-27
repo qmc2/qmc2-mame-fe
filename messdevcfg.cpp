@@ -587,17 +587,17 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 			slotXmlBuffer.clear();
 			if ( !xmlLines.isEmpty() ) {
 				int i = 0;
-				QString s = "<game name=\"" + machineName + "\"";
+				QString s = "<machine name=\"" + machineName + "\"";
 				while ( i < xmlLines.count() && !xmlLines[i].contains(s) ) i++;
 				slotXmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 				if ( i < xmlLines.count() ) {
-					while ( i < xmlLines.count() && !xmlLines[i].contains("</game>") )
+					while ( i < xmlLines.count() && !xmlLines[i].contains("</machine>") )
 						slotXmlBuffer += xmlLines[i++].simplified() + "\n";
-					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</game>") ) {
+					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</machine>") ) {
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(machineName));
 						slotXmlBuffer.clear();
 					} else
-						slotXmlBuffer += "</game>\n";
+						slotXmlBuffer += "</machine>\n";
 				} else {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(machineName));
 					slotXmlBuffer.clear();

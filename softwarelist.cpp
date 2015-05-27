@@ -912,17 +912,17 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 			xmlBuffer.clear();
 			if ( !xmlLines.isEmpty() ) {
 				int i = 0;
-				QString s = "<game name=\"" + systemName + "\"";
+				QString s = "<machine name=\"" + systemName + "\"";
 				while ( i < xmlLines.count() && !xmlLines[i].contains(s) ) i++;
 				xmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 				if ( i < xmlLines.count() ) {
-					while ( i < xmlLines.count() && !xmlLines[i].contains("</game>") )
+					while ( i < xmlLines.count() && !xmlLines[i].contains("</machine>") )
 						xmlBuffer += xmlLines[i++].simplified() + "\n";
-					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</game>") ) {
+					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</machine>") ) {
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(systemName));
 						xmlBuffer.clear();
 					} else
-						xmlBuffer += "</game>\n";
+						xmlBuffer += "</machine>\n";
 				} else {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(systemName));
 					xmlBuffer.clear();
@@ -986,9 +986,9 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 	}
 
 	int i = 0;
-	QString s = "<game name=\"" + systemName + "\"";
+	QString s = "<machine name=\"" + systemName + "\"";
 	while ( i < xmlData->count() && !(*xmlData)[i].contains(s) ) i++;
-	while ( i < xmlData->count() && !(*xmlData)[i].contains("</game>") ) {
+	while ( i < xmlData->count() && !(*xmlData)[i].contains("</machine>") ) {
 		QString line = (*xmlData)[i++].simplified();
 		if ( line.startsWith("<device type=\"") ) {
 			int startIndex = line.indexOf("interface=\"");
@@ -1046,7 +1046,7 @@ void SoftwareList::getXmlData()
 		int i = 0;
 		QString filter;
 		QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(systemName).split("\n", QString::SkipEmptyParts);
-		while ( !interruptLoad && i < xmlLines.count() && !xmlLines[i].contains("</game>") ) {
+		while ( !interruptLoad && i < xmlLines.count() && !xmlLines[i].contains("</machine>") ) {
 			QString line = xmlLines[i++];
 			if ( line.startsWith("<softwarelist name=\"") ) {
 				int startIndex = line.indexOf("\"") + 1;
