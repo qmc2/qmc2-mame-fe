@@ -1050,7 +1050,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
 	element = xmlLines.at(gamePos - 1).simplified();
 	insertAttributeItems(&itemList, element, attributes, descriptions, true);
 
-	QString endMark = "</game>";
+	QString endMark = "</machine>";
 
 	while ( !xmlLines[gamePos].contains(endMark) ) {
 		childItem = NULL;
@@ -1655,7 +1655,7 @@ void Gamelist::parse()
 					int i = lineCounter;
 					QString gameYear = tr("?"), gameManufacturer = tr("?"), gamePlayers = tr("?"), gameStatus = tr("?");
 					bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false, statusFound = false;
-					QString endMark = "</game>";
+					QString endMark = "</machine>";
 					while ( !endGame ) {
 						QString xmlLine = xmlLines[i];
 						if ( xmlLine.contains("<year>") ) {
@@ -2593,9 +2593,9 @@ void Gamelist::loadReadyReadStandardOutput()
 				}
 			} else {
 				if ( currentSetName.isEmpty() ) {
-					int startIndex = xmlLineBuffer.indexOf("<game name=\"");
+					int startIndex = xmlLineBuffer.indexOf("<machine name=\"");
 					if ( startIndex >= 0 ) {
-						startIndex += 12;
+						startIndex += 15;
 						int endIndex = xmlLineBuffer.indexOf("\"", startIndex);
 						if ( endIndex >= 0 ) {
 							currentSetName = xmlLineBuffer.mid(startIndex, endIndex - startIndex);
@@ -2604,7 +2604,7 @@ void Gamelist::loadReadyReadStandardOutput()
 					}
 				} else {
 					setXmlBuffer += xmlLineBuffer;
-					int index = xmlLineBuffer.indexOf("</game>");
+					int index = xmlLineBuffer.indexOf("</machine>");
 					if ( index >= 0 ) {
 						if ( setXmlBuffer.endsWith("\n") )
 							setXmlBuffer.remove(setXmlBuffer.length() - 1, 1);
@@ -2626,7 +2626,7 @@ void Gamelist::loadReadyReadStandardOutput()
 		uncommittedXmlDbRows = 0;
 	}
 
-	qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + readBuffer.count("<game name="));
+	qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + readBuffer.count("<machine name="));
 }
 
 void Gamelist::loadError(QProcess::ProcessError processError)
@@ -2755,7 +2755,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					int romCounter = 0;
 					int chdCounter = 0;
 					bool endFound = false;
-					QString endMark = "</game>";
+					QString endMark = "</machine>";
 					while ( !endFound && xmlCounter < xmlLines.count() ) {
 						if ( xmlLines[xmlCounter].contains("<rom name=\"") ) {
 							romCounter++;

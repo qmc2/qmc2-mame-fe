@@ -64,11 +64,11 @@ extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
   <rompath> = <first_rompath>
   foreach <file> {
-    1) try <rompath>/<game>/<file> - if okay skip to 7)
-    2) try <file> from <rompath>/<game>.7z/.zip - if okay skip to 7)
+    1) try <rompath>/<machine>/<file> - if okay skip to 7)
+    2) try <file> from <rompath>/<machine>.7z/.zip - if okay skip to 7)
     3) if more <rompaths> exists, retry 1) and 2) for <rompath> = <next_rompath>
-    4a) if a <merge> exists, retry 1), 2) and 3) for <romof>/<merge> instead of <game>/<file>
-    4b) if <merge> is empty, retry 1), 2) and 3) for <romof>/<file> instead of <game>/<file>
+    4a) if a <merge> exists, retry 1), 2) and 3) for <romof>/<merge> instead of <machine>/<file>
+    4b) if <merge> is empty, retry 1), 2) and 3) for <romof>/<file> instead of <machine>/<file>
     6) <file> was not found - stop
     7) load <file> and check CRC
     8) ...
@@ -3248,7 +3248,7 @@ void ROMAlyzer::importFromDataFile()
 		if ( dataFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 			setActive(true);
 			QTextStream ts(&dataFile);
-			QString pattern = "<game name=\"";
+			QString pattern = "<machine name=\"";
 			while ( !ts.atEnd() ) {
 				QString line = ts.readLine().trimmed();
 				if ( line.startsWith(pattern) )
@@ -3297,7 +3297,7 @@ void ROMAlyzer::exportToDataFile()
 			ts << "\t\t<url></url>\n";
 			ts << "\t\t<comment>" << tr("Created by QMC2 v%1").arg(XSTR(QMC2_VERSION)) << "</comment>\n";
 			ts << "\t</header>\n";
-			QString mainEntityName = "game";
+			QString mainEntityName = "machine";
 			for (int i = 0; i < treeWidgetChecksums->topLevelItemCount(); i++) {
 				if ( i % QMC2_ROMALYZER_EXPORT_RESPONSE ) {
 					progressBar->setValue(i);
@@ -3327,7 +3327,7 @@ void ROMAlyzer::exportToDataFile()
 					xmlQuery.setQuery(QString("doc($xmlDocument)//%1/@sampleof/string()").arg(mainEntityName));
 					xmlQuery.evaluateTo(&sampleof);
 					sampleof = sampleof.trimmed();
-					ts << "\t<game name=\"" << name << "\"";
+					ts << "\t<machine name=\"" << name << "\"";
 					if ( !sourcefile.isEmpty() )
 						ts << " sourcefile=\"" << sourcefile << "\"";
 					if ( !isbios.isEmpty() && isbios != "no" )
@@ -3383,7 +3383,7 @@ void ROMAlyzer::exportToDataFile()
 							}
 						}
 					}
-					ts << "\t</game>\n";
+					ts << "\t</machine>\n";
 				}
 			}
 			ts << "</datafile>\n";
@@ -4522,7 +4522,7 @@ bool ROMAlyzerXmlHandler::startElement(const QString &/*namespaceURI*/, const QS
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
-			mainEntityName = "game";
+			mainEntityName = "machine";
 			break;
 	}
 
@@ -4596,7 +4596,7 @@ bool ROMAlyzerXmlHandler::endElement(const QString &/*namespaceURI*/, const QStr
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
-			mainEntityName = "game";
+			mainEntityName = "machine";
 			break;
 	}
 
