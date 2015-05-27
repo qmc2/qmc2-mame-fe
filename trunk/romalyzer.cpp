@@ -3252,8 +3252,10 @@ void ROMAlyzer::importFromDataFile()
 			QString pattern2 = "<game name=\"";
 			while ( !ts.atEnd() ) {
 				QString line = ts.readLine().trimmed();
-				if ( line.startsWith(pattern1) || line.startsWith(pattern2) )
-					nameList << line.mid(pattern.length(), line.indexOf("\"", pattern.length()) - pattern.length());
+				if ( line.startsWith(pattern1) )
+					nameList << line.mid(pattern1.length(), line.indexOf("\"", pattern1.length()) - pattern1.length());
+				else if ( line.startsWith(pattern2) )
+					nameList << line.mid(pattern2.length(), line.indexOf("\"", pattern2.length()) - pattern2.length());
 			}
 			dataFile.close();
 			if ( !nameList.isEmpty() )
