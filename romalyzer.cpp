@@ -3248,10 +3248,11 @@ void ROMAlyzer::importFromDataFile()
 		if ( dataFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 			setActive(true);
 			QTextStream ts(&dataFile);
-			QString pattern = "<machine name=\"";
+			QString pattern1 = "<machine name=\"";
+			QString pattern2 = "<game name=\"";
 			while ( !ts.atEnd() ) {
 				QString line = ts.readLine().trimmed();
-				if ( line.startsWith(pattern) )
+				if ( line.startsWith(pattern1) || line.startsWith(pattern2) )
 					nameList << line.mid(pattern.length(), line.indexOf("\"", pattern.length()) - pattern.length());
 			}
 			dataFile.close();
