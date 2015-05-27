@@ -5,12 +5,12 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.52, 11-MAY-2015</h3>
+<h3>TODO - v0.52, 27-MAY-2015</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
  	<li>The built-in joystick GUI control includes support for trackballs -- this is completely untested due to the lack of controllers with trackballs (it should basically work, but be prepared for bugs and unexpected behavior).</li>
  	<li>On X11 platforms, the QMC2 variant launcher will try to raise a probably already running <i>other</i> variant -- this feature is <b>very</b> dependent on the window manager which may decide to ignore XMapRaised().</li>
- 	<li>MAME/MESS output notifiers are not supported on Windows yet.</li>
+ 	<li>MAME output notifiers are not supported on Windows yet.</li>
  	<li>The built-in <i>MiniWebBrowser</i> has a fairly restrictive set of features which is tailored to the uses of QMC2. It's not even <i>meant</i> to be a full-featured browser, even though it meanwhile supports most of the typical browser-functions.</li>
  	<li>Depending on the complexity of a style / style sheet combination, it may slow down GUI operations (that's no bug, but you should note it).</li>
  	<li>The ROMAlyzer's <i>set rewriter</i> feature doesn't support reproduction of 7z archives (yet), only ZIPs or <i>regular files</i> in individual sub-directores can be created.</li> 
@@ -23,7 +23,7 @@
 <ul>
  	<li>Fulfill the accepted/open <a href="http://tracker.batcom-it.net/search.php?project_id=1&category=Feature%20requests&status_id=50&sticky_issues=off&sortby=last_updated&dir=DESC&hide_status_id=-2&match_type=0" target="_blank">feature requests from our bug-tracker</a> (see also our <a href="http://tracker.batcom-it.net/roadmap_page.php?project_id=1" target="_blank">current roadmap</a>)</li>
  	<li>Create a Qt 5 specific embedder (platform-independent with regard to embed handling, so will hopefully also work on Mac OS X)</li>
- 	<li>Add support for MAME's/MESS's new HTTP web-console &amp; JSON interface (note: Qt 4.8.x needs a newer QtWebKit to support <a href="http://tools.ietf.org/html/rfc6455" target="_blank">RFC 6455</a>, it only comes with support for the <a href="http://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76" target="_blank">hixie-76</a> draft version of the WebSocket protocol, so this might be no option - QtWebKit in Qt 5.1.x has support for this, though)</li>
+ 	<li>Add support for MAME's HTTP web-console &amp; JSON interface (note: Qt 4.8.x needs a newer QtWebKit to support <a href="http://tools.ietf.org/html/rfc6455" target="_blank">RFC 6455</a>, it only comes with support for the <a href="http://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76" target="_blank">hixie-76</a> draft version of the WebSocket protocol, so this might be no option - QtWebKit in Qt 5.1.x has support for this, though)</li>
  	<li>Add a nicer <i>quick-search</i> function (replacing the default keyboard-search implementation inherited from QAbstractItemView) to all 4 game/machine list views and the software-list view including a pop-up editor to display and customize the search string</li>
  	<li>Add an optional reg-exp filtered game/machine list view (as an advanced alternative to the search feature)</li>
  	<li>Add software-state info to the software-list export feature</li>
@@ -35,8 +35,8 @@
  	<li>Add a backup / restore tool for QMC2's configuration and caches (though it's a trivial task, see <a href="http://wiki.batcom-it.net/index.php?title=QMC2_FAQ#How_do_I_backup_.2F_restore_QMC2.27s_configuration.3F" target="_blank">this FAQ</a> and/or <a href="http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Configuration_backup_.2F_restore" target="_blank">this section in the wiki</a>)</li>
  	<li>Add export / import functionality for YouTube video attachments (to allow for merging of videos found by different people, or to backup / restore discovered videos)</li>
  	<li>Add a high-score database</li>
- 	<li>Add a joystick &amp; keyboard configurator for MAME and MESS</li>
- 	<li>Add support for MAME/MESS output notifications on Windows</li>
+ 	<li>Add a joystick &amp; keyboard configurator for MAME</li>
+ 	<li>Add support for MAME output notifications on Windows</li>
  	<li>Create an improved setup wizard with QWizard</li>
 </ul>
 </body>
