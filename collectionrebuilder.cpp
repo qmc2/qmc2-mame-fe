@@ -62,7 +62,7 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
 			m_settingsKey = "CollectionRebuilder";
-			m_defaultSetEntity = "game";
+			m_defaultSetEntity = "machine";
 			m_defaultRomEntity = "rom";
 			m_defaultDiskEntity = "disk";
 			checkBoxFilterExpressionSoftwareLists->setVisible(false);
