@@ -57,7 +57,7 @@ void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 			ts << "\t\t<url></url>\n";
 			ts << "\t\t<comment>" << tr("Created by QMC2 v%1").arg(XSTR(QMC2_VERSION)) << "</comment>\n";
 			ts << "\t</header>\n";
-			QString mainEntityName = "game";
+			QString mainEntityName = "machine";
 			QMultiMap<QString, DumpRecord *> dumpMap;
 			for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
 				QTreeWidgetItem *item = treeWidget->topLevelItem(i);
