@@ -1,6 +1,6 @@
 <!--
 SHIDERAVAN SOFTWARE TEMPLATE
-LAST MODIFICATION: 22/May/2015
+LAST MODIFICATION: 28/May/2015
 
 Copyright (c) 2015 Jose Marcio Rezende Franco
 
@@ -18,6 +18,7 @@ Copyright (c) 2015 Jose Marcio Rezende Franco
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
   
 Whatsnew:
+28/May/2015: -Add "SOFTWARE_PARENT_ID" macro compatibility (either for showing in the software info or for search images online).
 22/May/2015: -Updated the whatsnew, documentation and licensing.
 10/Jan/2015: -Updates and Cleanups  
 10/Sep/2012: -First version of Softwarelist template.  
@@ -46,6 +47,7 @@ status of the languages supported:
   Macros used:
   $SOFTWARE_TITLE$  Software's title
   $SOFTWARE_NAME$    Software's name / ID
+  $SOFTWARE_PARENT_ID$
   $SOFTWARE_LIST$    Software-list this software is from
   $SOFTWARE_PUBLISHER$  Publisher of this software
   $SOFTWARE_YEAR$    Year this software was published
@@ -134,7 +136,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Publisher'] = 'Fabricante';
       trMap['Release date'] = 'Lançamento';
       trMap['Clone of'] = 'Clone de';
-      trMap['MAIN SYSTEM'] = 'SISTEMA PAI';      
+      trMap['MAIN SOFTWARE'] = 'SISTEMA PAI';      
     
       /*PT:options*/
       trMap['SHOW OPTIONS'] = 'MOSTRAR OPÇÕES';
@@ -178,7 +180,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Publisher'] = 'Herausgeber';
       trMap['Release date'] = 'Erscheinungsdatum';
       trMap['Clone of'] = 'Klon von';
-      trMap['MAIN SYSTEM'] = 'Hauptsystem';  
+      trMap['MAIN SOFTWARE'] = 'Hauptsystem';  
     
       /*DE :options*/
       trMap['SHOW OPTIONS'] = 'OPTIONEN ANZEIGEN';
@@ -222,7 +224,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Publisher'] = 'Editeur';
       trMap['Release date'] = 'Année';
       trMap['Clone of'] = '???';
-      trMap['MAIN SYSTEM'] = '???';        
+      trMap['MAIN SOFTWARE'] = '???';        
             
       /*FR :options*/
       trMap['SHOW OPTIONS'] = '???';
@@ -266,7 +268,7 @@ switch ("$GUI_LANGUAGE$")
         trMap['Publisher'] = 'Fabricante';
         trMap['Release date'] = 'Año';
         trMap['Clone of'] = 'Clon de';
-        trMap['MAIN SYSTEM'] = 'SISTEMA PRINCIPAL';
+        trMap['MAIN SOFTWARE'] = 'SISTEMA PRINCIPAL';
 
         /*ES :options*/
         trMap['SHOW OPTIONS'] = 'MOSTRAR OPICIONES';
@@ -310,7 +312,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Publisher'] = 'Förlag';
       trMap['Release date'] = 'Årtal';   
       trMap['Clone of'] = '???';
-      trMap['MAIN SYSTEM'] = '???';
+      trMap['MAIN SOFTWARE'] = '???';
      
       /*SV :options*/
       trMap['SHOW OPTIONS'] = '???';
@@ -354,7 +356,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Publisher'] = 'Editore';
       trMap['Release date'] = 'Anno';   
       trMap['Clone of'] = '???';
-      trMap['MAIN SYSTEM'] = '???';  
+      trMap['MAIN SOFTWARE'] = '???';  
       
       /*IT:options*/
       trMap['SHOW OPTIONS'] = '???';
@@ -398,7 +400,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Publisher'] = '???';
       trMap['Release date'] = '???';   
       trMap['Clone of'] = '???';
-      trMap['MAIN SYSTEM'] = '???';  
+      trMap['MAIN SOFTWARE'] = '???';  
       
       /*options*/
       trMap['SHOW OPTIONS'] = '???';
@@ -442,7 +444,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Publisher'] = '???';
       trMap['Release date'] = '???';   
       trMap['Clone of'] = '???';
-      trMap['MAIN SYSTEM'] = '???';  
+      trMap['MAIN SOFTWARE'] = '???';  
       
       /*options*/
       trMap['SHOW OPTIONS'] = '???';
@@ -486,7 +488,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Publisher'] = '???';
       trMap['Release date'] = '???';   
       trMap['Clone of'] = '???';
-      trMap['MAIN SYSTEM'] = '???';  
+      trMap['MAIN SOFTWARE'] = '???';  
       
       /*options*/
       trMap['SHOW OPTIONS'] = '???';
@@ -932,46 +934,84 @@ if (localStorage['SoftwareNotesTemplate/ToggleSnap'] == 'true')
 
    else
    {
-      if ( localStorage['SoftwareNotesTemplate/UseProjectMess'] == 'true' )
+      if (localStorage['SoftwareNotesTemplate/UseProjectMess'] == 'true')
       {
          switch (true)
          {        
+            <!--Gioloi-->
             case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_NAME$.png")):
             {
                mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_NAME$.png", "pmess"); 
                break;
-            }
-           
+            }           
+        
+            <!--Tafoid-->   
             case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_NAME$.png")):
             {
                mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_NAME$.png", "pmess");         
                break;
-            }
+            }            
          
+            <!--Various For--> 
             case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_NAME$.png")):
             {
                mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_NAME$.png", "pmess"); 
                break;  
             }
-       
+                   
+            <!--Title Tafoid-->
             case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_NAME$.png")):
             {
                mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_NAME$.png", "pmess");    
                break;
-            }
-      
+            }     
+            
+            <!--Scoure-->
             case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scuore/$SOFTWARE_NAME$.png")):
             {
                mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scuore/$SOFTWARE_NAME$.png", "pmess");   
                break;
             }
-            
+                        
+            <!--Covers LusSpaceMine-->
             case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_NAME$.jpg")):
             {
                mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_NAME$.jpg", "pmess");  
                break;
             }              
-      
+            
+            <!--Clones-->
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_PARENT_ID$.png")):
+            {
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+               break;
+            }
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_PARENT_ID$.png")):
+            {
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+               break;
+            }
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_PARENT_ID$.png")):
+            {
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+               break;
+            }
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_PARENT_ID$.png")):
+            {
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+               break;
+            } 
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scoure/$SOFTWARE_PARENT_ID$.png")):
+            {
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scoure/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+               break;
+            }            
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_PARENT_ID$.png")):
+            {
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+               break;
+            }
+                                                                  
             default:
             {
                document.write("SOFTWARE SNAPSHOT:<BR>");
@@ -1001,7 +1041,7 @@ if (localStorage['SoftwareNotesTemplate/ToggleInfo'] == 'true')
    document.write("<br><b>"+ tr('Release date') +":</b> $SOFTWARE_YEAR$");
    document.write("<br><b>");  
    
-  /* if("$SOFTWARE_PARENT_ID$" != "")
+   if("$SOFTWARE_PARENT_ID$" != "")
    {
       document.write(tr('Clone of')+": </b>$SOFTWARE_PARENT_ID$");
    }
@@ -1009,7 +1049,7 @@ if (localStorage['SoftwareNotesTemplate/ToggleInfo'] == 'true')
    else
    {
       document.write(tr('MAIN SOFTWARE')+"!!!</b>");
-   }   */
+   }   
    
    document.write("</font></td>");
 }
@@ -1030,42 +1070,80 @@ if (localStorage['SoftwareNotesTemplate/Toggle2Snap'] == 'true')
       {
          switch (true)
          {        
+            <!--Gioloi-->
             case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_NAME$.png")):
             {
                mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_NAME$.png", "pmess"); 
                break;
-            }
-           
+            }           
+        
+            <!--Tafoid-->   
             case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_NAME$.png")):
             {
                mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_NAME$.png", "pmess");         
                break;
-            }
+            }            
          
+            <!--Various For--> 
             case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_NAME$.png")):
             {
                mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_NAME$.png", "pmess"); 
                break;  
             }
-       
+                   
+            <!--Title Tafoid-->
             case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_NAME$.png")):
             {
                mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_NAME$.png", "pmess");    
                break;
-            }
-      
+            }     
+            
+            <!--Scoure-->
             case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scuore/$SOFTWARE_NAME$.png")):
             {
                mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scuore/$SOFTWARE_NAME$.png", "pmess");   
                break;
             }
-            
+                        
+            <!--Covers LusSpaceMine-->
             case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_NAME$.jpg")):
             {
                mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_NAME$.jpg", "pmess");  
                break;
             }              
-      
+            
+            <!--Clones-->
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_PARENT_ID$.png")):
+            {
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+               break;
+            }
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_PARENT_ID$.png")):
+            {
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+               break;
+            }
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_PARENT_ID$.png")):
+            {
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+               break;
+            }
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_PARENT_ID$.png")):
+            {
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+               break;
+            } 
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scoure/$SOFTWARE_PARENT_ID$.png")):
+            {
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scoure/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+               break;
+            }            
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_PARENT_ID$.png")):
+            {
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+               break;
+            }
+                                                                  
             default:
             {
                document.write("SOFTWARE SNAPSHOT:<BR>");
@@ -1159,7 +1237,7 @@ if (localStorage['SoftwareNotesTemplate/ToggleOptions'] == 'true')
 
    document.write("</td><td></td><td width=\"30%\"align=\"right\"><font color=\"white\">");
 
-   if ( localStorage['SoftwareNotesTemplate/UseProjectMess'] == 'true' )
+   if (localStorage['SoftwareNotesTemplate/UseProjectMess'] == 'true')
    {
       document.write("P.MESS<input name=\"cpmess\" type=\"checkbox\" id=\"cpmess\" checked=\"checked\" onclick=\"toggleProjectMess(this.checked);\" title=\"Try to load images from P.MESS if not found on local disk?\"/> <label></label>");
    }
