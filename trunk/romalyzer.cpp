@@ -123,6 +123,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	checkBoxVerifyCHDs->setToolTip(tr("Verify CHDs through 'chdman verify'"));
 	checkBoxUpdateCHDs->setToolTip(tr("Try to update CHDs if their header indicates an older version ('chdman copy')"));
 #endif
+	lastRowCount = -1;
 
 	adjustIconSizes();
 
@@ -4393,8 +4394,6 @@ void ROMAlyzer::updateCheckSumDbStatus()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::updateCheckSumDbStatus()");
 #endif
-
-	static qint64 lastRowCount = -1;
 
 	bool isScanning = checkSumScannerThread()->status() == tr("scanning");
 

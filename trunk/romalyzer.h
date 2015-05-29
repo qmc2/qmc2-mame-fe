@@ -274,6 +274,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		int setRewriterSetCount;
 		bool wizardSearch;
 		bool quickSearch;
+		qint64 lastRowCount;
 
 		ROMAlyzer(QWidget *, int romalyzerMode = QMC2_ROMALYZER_MODE_SYSTEM);
 		~ROMAlyzer();
