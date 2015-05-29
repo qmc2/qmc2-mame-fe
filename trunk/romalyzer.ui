@@ -355,7 +355,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-343</y>
+            <y>-192</y>
             <width>617</width>
             <height>768</height>
            </rect>
@@ -564,7 +564,7 @@
                   <item>
                    <widget class="QCheckBox" name="checkBoxSetRewriterSelfContainedSets">
                     <property name="toolTip">
-                     <string>Create sets that do not need parent sets (otherwise create merged sets, which is recommended)</string>
+                     <string>Create sets that do not need parent sets (otherwise create space-efficient sets which are merged upon loading, recommended)</string>
                     </property>
                     <property name="text">
                      <string>Self-contained</string>
