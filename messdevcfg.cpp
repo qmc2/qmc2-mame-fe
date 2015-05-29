@@ -1463,7 +1463,7 @@ bool MESSDeviceConfigurator::load()
 
 	// use the 'general software folder' as fall-back, if applicable
 	if ( qmc2FileEditStartPath.isEmpty() ) {
-		qmc2FileEditStartPath = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
+		qmc2FileEditStartPath = qmc2Config->value("MAME/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
 		QDir machineSoftwareFolder(qmc2FileEditStartPath + "/" + messMachineName);
 		if ( machineSoftwareFolder.exists() )
 			qmc2FileEditStartPath = machineSoftwareFolder.canonicalPath();
@@ -2053,7 +2053,7 @@ void MESSDeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()
 	QString path = qmc2Config->value(group + "/DefaultDeviceDirectory", "").toString();
 
 	if ( path.isEmpty() ) {
-		path = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
+		path = qmc2Config->value("MAME/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
 		QDir machineSoftwareFolder(path + "/" + messMachineName);
 		if ( machineSoftwareFolder.exists() )
 			path = machineSoftwareFolder.canonicalPath();
@@ -2069,7 +2069,7 @@ void MESSDeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()
 	qmc2Config->endGroup();
 
 	if ( qmc2FileEditStartPath.isEmpty() ) {
-		qmc2FileEditStartPath = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
+		qmc2FileEditStartPath = qmc2Config->value("MAME/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
 		QDir machineSoftwareFolder(qmc2FileEditStartPath + "/" + messMachineName);
 		if ( machineSoftwareFolder.exists() )
 			qmc2FileEditStartPath = machineSoftwareFolder.canonicalPath();
@@ -2163,7 +2163,7 @@ void MESSDeviceConfigurator::setupFileChooser()
 	QString path = qmc2Config->value(group + "/DefaultDeviceDirectory", "").toString();
 
 	if ( path.isEmpty() ) {
-		path = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
+		path = qmc2Config->value("MAME/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
 		QDir machineSoftwareFolder(path + "/" + messMachineName);
 		if ( machineSoftwareFolder.exists() )
 			path = machineSoftwareFolder.canonicalPath();
