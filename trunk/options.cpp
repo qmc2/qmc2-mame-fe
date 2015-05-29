@@ -1362,6 +1362,7 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("MAME/FilesAndDirectories/SlotInfoCacheFile", lineEditSlotInfoCacheFile->text());
 	config->setValue("MAME/FilesAndDirectories/SoftwareListCacheDatabase", lineEditSoftwareListCacheDb->text());
 	config->setValue("MAME/FilesAndDirectories/SoftwareStateCache", lineEditSoftwareStateCache->text());
+	config->setValue("MAME/FilesAndDirectories/GeneralSoftwareFolder", lineEditGeneralSoftwareFolder->text());
 	s = lineEditOptionsTemplateFile->text();
 	needRecreateTemplateMap = needRecreateTemplateMap || (config->value("MAME/FilesAndDirectories/OptionsTemplateFile").toString() != s );
 	config->setValue("MAME/FilesAndDirectories/OptionsTemplateFile", s);
@@ -2197,6 +2198,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	if ( !swStateCacheDir.exists() )
 		swStateCacheDir.mkdir(swStateCacheDir.absolutePath());
 	lineEditSoftwareStateCache->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareStateCache", userScopePath + "/sw-state-cache/").toString());
+	lineEditGeneralSoftwareFolder->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GeneralSoftwareFolder", QString()).toString());
 	checkBoxAutoClearEmuCaches->setChecked(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "AutoClearEmuCaches", true).toBool());
 
 	// Additional emulators
