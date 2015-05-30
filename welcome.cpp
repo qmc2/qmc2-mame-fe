@@ -277,28 +277,6 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList[1].toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 49, osr, 6467) ) {
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "ROMAlyzer/SetRewriterIgnoreErrors");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "SoftwareROMAlyzer/SetRewriterIgnoreErrors");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "ROMAlyzer/SetRewriterIgnoreErrors");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "SoftwareROMAlyzer/SetRewriterIgnoreErrors");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "ROMAlyzer/SetRewriterIgnoreErrors");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "SoftwareROMAlyzer/SetRewriterIgnoreErrors");
-		}
-		if ( QMC2_TEST_VERSION(omv, 49, osr, 6479) ) {
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/CollectionRebuilder/Geometry");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/SoftwareCollectionRebuilder/Geometry");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "GUI/SaveLayout");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "GUI/RestoreLayout");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/CollectionRebuilder/Geometry");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/SoftwareCollectionRebuilder/Geometry");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "GUI/SaveLayout");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "GUI/RestoreLayout");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/CollectionRebuilder/Geometry");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/SoftwareCollectionRebuilder/Geometry");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "GUI/SaveLayout");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "GUI/RestoreLayout");
-		}
 		if ( QMC2_TEST_VERSION(omv, 50, osr, 6566) ) {
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/ActiveDetails") ) {
 				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MAME + "Layout/Component2/ActiveFeatures", startupConfig->value(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/ActiveDetails").toStringList());
