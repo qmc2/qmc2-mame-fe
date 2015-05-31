@@ -1063,16 +1063,20 @@ void Options::on_pushButtonApply_clicked()
 	qmc2VersionInfoUsed = catverUsed;
 
 	if ( catverUsed || categoryUsed ) {
-		qmc2MainWindow->treeWidgetGamelist->showColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
-		qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+		if ( !qmc2MainWindow->treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY) )
+			qmc2MainWindow->treeWidgetGamelist->showColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+		if ( !qmc2MainWindow->treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY) )
+			qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
 		qmc2MainWindow->actionViewByCategory->setVisible(true);
 		qmc2MainWindow->actionViewByCategory->setEnabled(true);
 		qmc2MainWindow->actionMenuGamelistHeaderCategory->setVisible(true);
 		qmc2MainWindow->actionMenuGamelistHeaderCategory->setEnabled(true);
 		qmc2MainWindow->actionMenuHierarchyHeaderCategory->setVisible(true);
 		qmc2MainWindow->actionMenuHierarchyHeaderCategory->setEnabled(true);
-		qmc2MainWindow->treeWidgetGamelist->showColumn(QMC2_GAMELIST_COLUMN_VERSION);
-		qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_GAMELIST_COLUMN_VERSION);
+		if ( !qmc2MainWindow->treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION) )
+			qmc2MainWindow->treeWidgetGamelist->showColumn(QMC2_GAMELIST_COLUMN_VERSION);
+		if ( !qmc2MainWindow->treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION) )
+			qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_GAMELIST_COLUMN_VERSION);
 		qmc2MainWindow->actionViewByVersion->setVisible(true);
 		qmc2MainWindow->actionViewByVersion->setEnabled(true);
 		qmc2MainWindow->actionMenuGamelistHeaderVersion->setVisible(true);

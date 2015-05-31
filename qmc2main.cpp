@@ -8718,7 +8718,9 @@ void MainWindow::actionGamelistHeader_triggered()
 
 	QAction *action = (QAction *)sender();
 	int visibleColumns = 0;
-	for (int i = 0; i < treeWidgetGamelist->columnCount(); i++) if ( !treeWidgetGamelist->isColumnHidden(i) ) visibleColumns++;
+	for (int i = 0; i < treeWidgetGamelist->columnCount(); i++)
+		if ( !treeWidgetGamelist->isColumnHidden(i) )
+			visibleColumns++;
 	if ( action ) {
 		if ( action->data().toInt() == QMC2_GAMELIST_RESET ) {
 			for (int i = 0; i < treeWidgetGamelist->columnCount(); i++) {
@@ -8772,7 +8774,9 @@ void MainWindow::actionHierarchyHeader_triggered()
 
 	QAction *action = (QAction *)sender();
 	int visibleColumns = 0;
-	for (int i = 0; i < treeWidgetHierarchy->columnCount(); i++) if ( !treeWidgetHierarchy->isColumnHidden(i) ) visibleColumns++;
+	for (int i = 0; i < treeWidgetHierarchy->columnCount(); i++)
+		if ( !treeWidgetHierarchy->isColumnHidden(i) )
+			visibleColumns++;
 	if ( action ) {
 		if ( action->data().toInt() == QMC2_GAMELIST_RESET ) {
 			for (int i = 0; i < treeWidgetHierarchy->columnCount(); i++) {
