@@ -47,7 +47,7 @@
                                                                              << QObject::tr("[global] Start emulation") \
                                                                              << QObject::tr("[global] Exit") \
                                                                              << QObject::tr("[global] Exit") \
-                                                                             << QObject::tr("[global] Flip cabinet / game-card")
+                                                                             << QObject::tr("[global] Flip cabinet / machine-card")
 // darkone-specific key-sequences
 #define QMC2_ARCADE_ADD_DARKONE_KEYSEQUENCES(stringList)        (stringList) << "Ctrl+Up" \
                                                                              << "Ctrl+Down" \
@@ -83,7 +83,7 @@
                                                                              << QObject::tr("[context] Show toolbar / List up / Info up / Previous widget") \
                                                                              << QObject::tr("[context] Hide toolbar / List down / Info down / Next widget") \
                                                                              << QObject::tr("[context] Select / Set / Toggle details / Start emulation") \
-                                                                             << QObject::tr("[context] Abort game launch / Hide preferences") \
+                                                                             << QObject::tr("[context] Abort machine launch / Hide preferences") \
                                                                              << QObject::tr("[context] Zoom in / List top") \
                                                                              << QObject::tr("[context] Zoom out / List bottom") \
                                                                              << QObject::tr("[context] List page up / Flick page up") \

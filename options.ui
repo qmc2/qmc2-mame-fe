@@ -130,10 +130,10 @@
                  <item row="18" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxShowGameName">
                    <property name="toolTip">
-                    <string>Show game's description at the bottom of any images</string>
+                    <string>Show machine's description at the bottom of any images</string>
                    </property>
                    <property name="text">
-                    <string>Show game name</string>
+                    <string>Show machine name</string>
                    </property>
                   </widget>
                  </item>
@@ -146,7 +146,7 @@
                     <bool>true</bool>
                    </property>
                    <property name="toolTip">
-                    <string>Show game's description only when the game list is not visible due to the current layout</string>
+                    <string>Show machine's description only when the machine list is not visible due to the current layout</string>
                    </property>
                    <property name="text">
                     <string>Only when required</string>
@@ -236,7 +236,7 @@
                     <bool>false</bool>
                    </property>
                    <property name="toolTip">
-                    <string>Show the game status indicator only when the game list is not visible due to the current layout</string>
+                    <string>Show the machine status indicator only when the machine list is not visible due to the current layout</string>
                    </property>
                    <property name="text">
                     <string>Only when required</string>
@@ -273,10 +273,10 @@
                  <item row="7" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxRestoreGameSelection">
                    <property name="toolTip">
-                    <string>Restore saved game selection at start and after reloading the game list</string>
+                    <string>Restore saved machine selection at start and after reloading the machine list</string>
                    </property>
                    <property name="text">
-                    <string>Restore game selection</string>
+                    <string>Restore machine selection</string>
                    </property>
                   </widget>
                  </item>
@@ -506,10 +506,10 @@
                  <item row="17" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxGameStatusIndicator">
                    <property name="toolTip">
-                    <string>Show vertical game status indicator in game details</string>
+                    <string>Show vertical machine status indicator in machine details</string>
                    </property>
                    <property name="text">
-                    <string>Game status indicator</string>
+                    <string>Machine status indicator</string>
                    </property>
                   </widget>
                  </item>
@@ -815,10 +815,10 @@
                  <item row="7" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxSaveGameSelection">
                    <property name="toolTip">
-                    <string>Save game selection on exit and before reloading the game list</string>
+                    <string>Save machine selection on exit and before reloading the machine list</string>
                    </property>
                    <property name="text">
-                    <string>Save game selection</string>
+                    <string>Save machine selection</string>
                    </property>
                   </widget>
                  </item>
@@ -999,7 +999,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Import MAME game information to DAT-info database</string>
+                    <string>Import MAME machine information to DAT-info database</string>
                    </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
@@ -1181,7 +1181,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Browse game favorites file</string>
+                    <string>Browse machine favorites file</string>
                    </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
@@ -1468,7 +1468,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>MAME game information database - history.dat (read)</string>
+                    <string>MAME machine information database - history.dat (read)</string>
                    </property>
                   </widget>
                  </item>
@@ -2300,7 +2300,7 @@
                       </sizepolicy>
                      </property>
                      <property name="toolTip">
-                      <string>Option requires a reload of the gamelist to take effect</string>
+                      <string>Option requires a reload of the machine list to take effect</string>
                      </property>
                      <property name="text">
                       <string/>
@@ -2316,7 +2316,7 @@
                    <item>
                     <widget class="QLabel" name="labelLegendFrontendFilesAndDirectories">
                      <property name="toolTip">
-                      <string>Option requires a reload of the entire game list to take effect</string>
+                      <string>Option requires a reload of the machine list to take effect</string>
                      </property>
                      <property name="text">
                       <string>reload required</string>
@@ -2744,7 +2744,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Game favorites file (write)</string>
+                    <string>Machine favorites file (write)</string>
                    </property>
                   </widget>
                  </item>
@@ -2805,10 +2805,10 @@
                  <item row="6" column="0">
                   <widget class="QCheckBox" name="checkBoxProcessMameHistoryDat">
                    <property name="toolTip">
-                    <string>Load MAME game information database (history.dat)</string>
+                    <string>Load MAME machine information database (history.dat)</string>
                    </property>
                    <property name="text">
-                    <string>Game info (MAME)</string>
+                    <string>Machine info (MAME)</string>
                    </property>
                   </widget>
                  </item>
@@ -2878,7 +2878,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Browse MAME game information database (history.dat)</string>
+                    <string>Browse MAME machine information database (history.dat)</string>
                    </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
@@ -2896,7 +2896,7 @@
          </widget>
          <widget class="QWidget" name="tabFrontendGamelist">
           <attribute name="title">
-           <string>Game &amp;list</string>
+           <string>Machine &amp;list</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_6">
            <property name="margin">
@@ -2960,7 +2960,7 @@
                       </sizepolicy>
                      </property>
                      <property name="toolTip">
-                      <string>Option requires a reload of the gamelist to take effect</string>
+                      <string>Option requires a reload of the machine list to take effect</string>
                      </property>
                      <property name="text">
                       <string/>
@@ -2976,7 +2976,7 @@
                    <item>
                     <widget class="QLabel" name="labelLegendFrontendGamelist">
                      <property name="toolTip">
-                      <string>Option requires a reload of the entire game list to take effect</string>
+                      <string>Option requires a reload of the machine list to take effect</string>
                      </property>
                      <property name="text">
                       <string>reload required</string>
@@ -3015,7 +3015,7 @@
                    </property>
                    <item>
                     <property name="text">
-                     <string>Game description</string>
+                     <string>Machine description</string>
                     </property>
                    </item>
                    <item>
@@ -3040,7 +3040,7 @@
                    </item>
                    <item>
                     <property name="text">
-                     <string>Game name</string>
+                     <string>Machine name</string>
                     </property>
                    </item>
                    <item>
@@ -3213,7 +3213,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Number of item insertions between game list updates during reload (higher means faster, but makes the GUI less responsive)</string>
+                    <string>Number of item insertions between machine list updates during reload (higher means faster, but makes the GUI less responsive)</string>
                    </property>
                    <property name="specialValueText">
                     <string>immediate</string>
@@ -3437,7 +3437,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Delay update of any game details (preview, flyer, info, configuration, ...) by how many milliseconds?</string>
+                    <string>Delay update of any machine details (preview, flyer, info, configuration, ...) by how many milliseconds?</string>
                    </property>
                    <property name="specialValueText">
                     <string>none</string>
@@ -4796,7 +4796,7 @@
                  <item row="6" column="0">
                   <widget class="QLabel" name="labelGamelistCacheFile">
                    <property name="text">
-                    <string>Game list cache</string>
+                    <string>Machine list cache</string>
                    </property>
                   </widget>
                  </item>
@@ -4822,7 +4822,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Browse game list cache file</string>
+                    <string>Browse machine list cache file</string>
                    </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
@@ -4865,7 +4865,7 @@
                       </sizepolicy>
                      </property>
                      <property name="toolTip">
-                      <string>Option requires a reload of the gamelist to take effect</string>
+                      <string>Option requires a reload of the machine list to take effect</string>
                      </property>
                      <property name="text">
                       <string/>
@@ -4881,7 +4881,7 @@
                    <item>
                     <widget class="QLabel" name="labelLegendEmulatorFilesAndDirectories">
                      <property name="toolTip">
-                      <string>Option requires a reload of the entire game list to take effect</string>
+                      <string>Option requires a reload of the machine list to take effect</string>
                      </property>
                      <property name="text">
                       <string>reload required</string>
@@ -5114,7 +5114,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Game list cache file (write)</string>
+                    <string>Machine list cache file (write)</string>
                    </property>
                   </widget>
                  </item>
@@ -5301,7 +5301,7 @@
                <item row="0" column="0" colspan="3">
                 <widget class="QTableWidget" name="tableWidgetRegisteredEmulators">
                  <property name="toolTip">
-                  <string>Registered emulators -- you may select one of these in the game-specific emulator configuration</string>
+                  <string>Registered emulators -- you may select one of these in the machine-specific emulator configuration</string>
                  </property>
                  <property name="editTriggers">
                   <set>QAbstractItemView::NoEditTriggers</set>

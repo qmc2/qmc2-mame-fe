@@ -386,7 +386,7 @@
      </widget>
      <widget class="QWidget" name="tabFilter">
       <attribute name="title">
-       <string>Game list filter</string>
+       <string>Machine list filter</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
        <item row="5" column="0" colspan="4">
@@ -463,7 +463,7 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Export a filtered version of the game list according to the filter / sort settings specified below</string>
+          <string>Export a filtered version of the machine list according to the filter / sort settings specified below</string>
          </property>
          <property name="text">
           <string>Export</string>
@@ -614,7 +614,7 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Browse the output file used as the filtered game list</string>
+          <string>Browse the output file used as the filtered machine list</string>
          </property>
          <property name="icon">
           <iconset resource="qmc2.qrc">
@@ -770,7 +770,7 @@
        <item row="0" column="0">
         <widget class="QCheckBox" name="checkBoxUseFilteredList">
          <property name="toolTip">
-          <string>Use a filtered version of the game list (otherwise use the full list)</string>
+          <string>Use a filtered version of the machine list (otherwise use the full list)</string>
          </property>
          <property name="text">
           <string>Use filtered list</string>
@@ -864,7 +864,7 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Output file used as the filtered game list</string>
+          <string>Output file used as the filtered machine list</string>
          </property>
         </widget>
        </item>

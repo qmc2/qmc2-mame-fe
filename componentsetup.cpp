@@ -48,10 +48,10 @@ ComponentSetup::~ComponentSetup()
 ComponentInfo *ComponentSetup::initComponent1()
 {
 	ComponentInfo *componentInfo = new ComponentInfo();
-	componentInfo->setShortTitle(QMC2_GAMELIST_INDEX, tr("&Game list"));
-	componentInfo->setLongTitle(QMC2_GAMELIST_INDEX, tr("Game list"));
-	componentInfo->setIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
-	componentInfo->setWidget(QMC2_GAMELIST_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_GAMELIST_INDEX));
+	componentInfo->setShortTitle(QMC2_MACHINELIST_INDEX, tr("&Machine list"));
+	componentInfo->setLongTitle(QMC2_MACHINELIST_INDEX, tr("Machine list"));
+	componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
+	componentInfo->setWidget(QMC2_MACHINELIST_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_MACHINELIST_INDEX));
 	componentInfo->setShortTitle(QMC2_SEARCH_INDEX, tr("&Search"));
 	componentInfo->setLongTitle(QMC2_SEARCH_INDEX, tr("Search systems"));
 	componentInfo->setIcon(QMC2_SEARCH_INDEX, QIcon(QString::fromUtf8(":/data/img/hint.png")));
@@ -73,9 +73,9 @@ ComponentInfo *ComponentSetup::initComponent1()
 	componentInfo->setLongTitle(QMC2_EMBED_INDEX, tr("Embedded emulators"));
 	componentInfo->setIcon(QMC2_EMBED_INDEX, QIcon(QString::fromUtf8(":/data/img/embed.png")));
 	componentInfo->setWidget(QMC2_EMBED_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_EMBED_INDEX));
-	componentInfo->availableFeatureList() << QMC2_GAMELIST_INDEX << QMC2_SEARCH_INDEX << QMC2_FAVORITES_INDEX << QMC2_PLAYED_INDEX << QMC2_FOREIGN_INDEX << QMC2_EMBED_INDEX;
+	componentInfo->availableFeatureList() << QMC2_MACHINELIST_INDEX << QMC2_SEARCH_INDEX << QMC2_FAVORITES_INDEX << QMC2_PLAYED_INDEX << QMC2_FOREIGN_INDEX << QMC2_EMBED_INDEX;
 #else
-	componentInfo->availableFeatureList() << QMC2_GAMELIST_INDEX << QMC2_SEARCH_INDEX << QMC2_FAVORITES_INDEX << QMC2_PLAYED_INDEX << QMC2_FOREIGN_INDEX;
+	componentInfo->availableFeatureList() << QMC2_MACHINELIST_INDEX << QMC2_SEARCH_INDEX << QMC2_FAVORITES_INDEX << QMC2_PLAYED_INDEX << QMC2_FOREIGN_INDEX;
 #endif
 	components() << "Component1";
 	if ( !qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/" + components().last() + "/ActiveFeatures") ) {
@@ -99,13 +99,13 @@ ComponentInfo *ComponentSetup::initComponent2()
 {
 	ComponentInfo *componentInfo = new ComponentInfo();
 	componentInfo->setShortTitle(QMC2_PREVIEW_INDEX, tr("Pre&view"));
-	componentInfo->setLongTitle(QMC2_PREVIEW_INDEX, tr("Game preview image"));
+	componentInfo->setLongTitle(QMC2_PREVIEW_INDEX, tr("Machine preview image"));
 	componentInfo->setIcon(QMC2_PREVIEW_INDEX, QIcon(QString::fromUtf8(":/data/img/camera.png")));
 	componentInfo->setShortTitle(QMC2_FLYER_INDEX, tr("Fl&yer"));
-	componentInfo->setLongTitle(QMC2_FLYER_INDEX, tr("Game flyer image"));
+	componentInfo->setLongTitle(QMC2_FLYER_INDEX, tr("Machine flyer image"));
 	componentInfo->setIcon(QMC2_FLYER_INDEX, QIcon(QString::fromUtf8(":/data/img/thumbnail.png")));
-	componentInfo->setShortTitle(QMC2_GAMEINFO_INDEX, tr("Game &info"));
-	componentInfo->setLongTitle(QMC2_GAMEINFO_INDEX, tr("Game information"));
+	componentInfo->setShortTitle(QMC2_GAMEINFO_INDEX, tr("Machine &info"));
+	componentInfo->setLongTitle(QMC2_GAMEINFO_INDEX, tr("Machine information"));
 	componentInfo->setIcon(QMC2_GAMEINFO_INDEX, QIcon(QString::fromUtf8(":/data/img/info.png")));
 	componentInfo->setShortTitle(QMC2_EMUINFO_INDEX, tr("Em&ulator info"));
 	componentInfo->setLongTitle(QMC2_EMUINFO_INDEX, tr("Emulator information"));
@@ -306,16 +306,16 @@ void ComponentSetup::loadComponent(QString name, bool fromSettings)
 	if ( name == "Component1" ) {
 		switch ( qmc2MainWindow->comboBoxViewSelect->currentIndex() ) {
 		       case QMC2_VIEWGAMELIST_INDEX:
-			       componentInfo->setIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
+			       componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
 			       break;
 		       case QMC2_VIEWHIERARCHY_INDEX:
-			       componentInfo->setIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
+			       componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
 			       break;
 		       case QMC2_VIEWCATEGORY_INDEX:
-			       componentInfo->setIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
+			       componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
 			       break;
 		       case QMC2_VIEWVERSION_INDEX:
-			       componentInfo->setIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
+			       componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
 			       break;
 	       }
 	}
@@ -349,7 +349,7 @@ void ComponentSetup::saveComponent(QString name)
 			bool doAddTab = true;
 			if ( name == "Component1" ) {
 				switch ( index ) {
-					case QMC2_GAMELIST_INDEX:
+					case QMC2_MACHINELIST_INDEX:
 						switch ( qmc2MainWindow->comboBoxViewSelect->currentIndex() ) {
 							case QMC2_VIEWGAMELIST_INDEX:
 								icon = QIcon(QString::fromUtf8(":/data/img/flat.png"));

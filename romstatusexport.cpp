@@ -201,7 +201,7 @@ void ROMStatusExporter::exportToASCII()
 		qApp->processEvents();
 		QTreeWidgetItem *item = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i);
 		QString translatedState;
-		switch ( qmc2Gamelist->romState(item->text(QMC2_GAMELIST_COLUMN_NAME)) ) {
+		switch ( qmc2Gamelist->romState(item->text(QMC2_MACHINELIST_COLUMN_NAME)) ) {
 			case 'C':
 				if ( !toolButtonExportC->isChecked() )
 					continue;
@@ -241,53 +241,53 @@ void ROMStatusExporter::exportToASCII()
 
 		switch ( comboBoxSortCriteria->currentIndex() ) {
 			case QMC2_RSE_SORT_BY_DESCRIPTION:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_GAME), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_MACHINE), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_ROM_STATE:
-				exportMap.insert(QString(qmc2Gamelist->romState(item->text(QMC2_GAMELIST_COLUMN_NAME))), item);
+				exportMap.insert(QString(qmc2Gamelist->romState(item->text(QMC2_MACHINELIST_COLUMN_NAME))), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_YEAR:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_YEAR), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_YEAR), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_MANUFACTURER:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_MANU), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_MANU), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_NAME:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_NAME), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_NAME), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_ROMTYPES:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_RTYPES), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_RTYPES), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_PLAYERS:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_PLAYERS), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_PLAYERS), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_DRVSTAT:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_DRVSTAT), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_DRVSTAT), item);
 				break;
 
 			default:
 				break;
 		}
 
-		if ( item->text(QMC2_GAMELIST_COLUMN_GAME).length() > maxDescriptionColumnWidth )
-			maxDescriptionColumnWidth = item->text(QMC2_GAMELIST_COLUMN_GAME).length();
-		if ( item->text(QMC2_GAMELIST_COLUMN_NAME).length() > maxNameColumnWidth )
-			maxNameColumnWidth = item->text(QMC2_GAMELIST_COLUMN_NAME).length();
-		if ( item->text(QMC2_GAMELIST_COLUMN_MANU).length() > maxManufacturerColumnWidth )
-			maxManufacturerColumnWidth = item->text(QMC2_GAMELIST_COLUMN_MANU).length();
-		if ( item->text(QMC2_GAMELIST_COLUMN_YEAR).length() > maxYearColumnWidth )
-			maxYearColumnWidth = item->text(QMC2_GAMELIST_COLUMN_YEAR).length();
+		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE).length() > maxDescriptionColumnWidth )
+			maxDescriptionColumnWidth = item->text(QMC2_MACHINELIST_COLUMN_MACHINE).length();
+		if ( item->text(QMC2_MACHINELIST_COLUMN_NAME).length() > maxNameColumnWidth )
+			maxNameColumnWidth = item->text(QMC2_MACHINELIST_COLUMN_NAME).length();
+		if ( item->text(QMC2_MACHINELIST_COLUMN_MANU).length() > maxManufacturerColumnWidth )
+			maxManufacturerColumnWidth = item->text(QMC2_MACHINELIST_COLUMN_MANU).length();
+		if ( item->text(QMC2_MACHINELIST_COLUMN_YEAR).length() > maxYearColumnWidth )
+			maxYearColumnWidth = item->text(QMC2_MACHINELIST_COLUMN_YEAR).length();
 		if ( translatedState.length() > maxStateColumnWidth )
 			maxStateColumnWidth = translatedState.length();
-		if ( item->text(QMC2_GAMELIST_COLUMN_RTYPES).length() > maxRomTypesColumnWidth )
-			maxRomTypesColumnWidth = item->text(QMC2_GAMELIST_COLUMN_RTYPES).length();
+		if ( item->text(QMC2_MACHINELIST_COLUMN_RTYPES).length() > maxRomTypesColumnWidth )
+			maxRomTypesColumnWidth = item->text(QMC2_MACHINELIST_COLUMN_RTYPES).length();
 	}
 
 	// truncate column widths if applicable...
@@ -337,7 +337,7 @@ void ROMStatusExporter::exportToASCII()
 		else
 			itExport.previous();
 
-		QString s = itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME);
+		QString s = itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME);
 		if ( showMoreChars && s.length() > maxNameColumnWidth )
 			ts << s.left(maxNameColumnWidth - 3).leftJustified(maxNameColumnWidth, '.', true) << "  ";
 		else
@@ -368,32 +368,32 @@ void ROMStatusExporter::exportToASCII()
 			ts << s.left(maxStateColumnWidth - 3).leftJustified(maxStateColumnWidth, '.', true) << "  ";
 		else
 			ts << s.leftJustified(maxStateColumnWidth, ' ', true) << "  ";
-		s = itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME);
+		s = itExport.value()->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 		if ( showMoreChars && s.length() > maxDescriptionColumnWidth )
 			ts << s.left(maxDescriptionColumnWidth - 3).leftJustified(maxDescriptionColumnWidth, '.', true) << "  ";
 		else
 			ts << s.leftJustified(maxDescriptionColumnWidth, ' ', true) << "  ";
-		s = itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR);
+		s = itExport.value()->text(QMC2_MACHINELIST_COLUMN_YEAR);
 		if ( showMoreChars && s.length() > maxYearColumnWidth )
 			ts << s.left(maxYearColumnWidth - 3).leftJustified(maxYearColumnWidth, '.', true) << "  ";
 		else
 			ts << s.leftJustified(maxYearColumnWidth, ' ', true) << "  ";
-		s = itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU);
+		s = itExport.value()->text(QMC2_MACHINELIST_COLUMN_MANU);
 		if ( showMoreChars && s.length() > maxManufacturerColumnWidth )
 			ts << s.left(maxManufacturerColumnWidth - 3).leftJustified(maxManufacturerColumnWidth, '.', true) << "  ";
 		else
 			ts << s.leftJustified(maxManufacturerColumnWidth, ' ', true) << "  ";
-		s = itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES);
+		s = itExport.value()->text(QMC2_MACHINELIST_COLUMN_RTYPES);
 		if ( showMoreChars && s.length() > maxRomTypesColumnWidth )
 			ts << s.left(maxRomTypesColumnWidth - 3).leftJustified(maxRomTypesColumnWidth, '.', true) << "  ";
 		else
 			ts << s.leftJustified(maxRomTypesColumnWidth, ' ', true) << "  ";
-		s = itExport.value()->text(QMC2_GAMELIST_COLUMN_PLAYERS);
+		s = itExport.value()->text(QMC2_MACHINELIST_COLUMN_PLAYERS);
 		if ( showMoreChars && s.length() > maxPlayersColumnWidth )
 			ts << s.left(maxPlayersColumnWidth - 3).leftJustified(maxPlayersColumnWidth, '.', true) << "  ";
 		else
 			ts << s.leftJustified(maxPlayersColumnWidth, ' ', true) << "  ";
-		s = itExport.value()->text(QMC2_GAMELIST_COLUMN_DRVSTAT);
+		s = itExport.value()->text(QMC2_MACHINELIST_COLUMN_DRVSTAT);
 		if ( showMoreChars && s.length() > maxDriverStatusColumnWidth )
 			ts << s.left(maxDriverStatusColumnWidth - 3).leftJustified(maxDriverStatusColumnWidth, '.', true) << "\n";
 		else
@@ -496,35 +496,35 @@ void ROMStatusExporter::exportToCSV()
 		QTreeWidgetItem *item = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i);
 		switch ( comboBoxSortCriteria->currentIndex() ) {
 			case QMC2_RSE_SORT_BY_DESCRIPTION:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_GAME), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_MACHINE), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_ROM_STATE:
-				exportMap.insert(QString(qmc2Gamelist->romState(item->text(QMC2_GAMELIST_COLUMN_NAME))), item);
+				exportMap.insert(QString(qmc2Gamelist->romState(item->text(QMC2_MACHINELIST_COLUMN_NAME))), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_YEAR:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_YEAR), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_YEAR), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_MANUFACTURER:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_MANU), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_MANU), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_NAME:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_NAME), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_NAME), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_ROMTYPES:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_RTYPES), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_RTYPES), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_PLAYERS:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_PLAYERS), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_PLAYERS), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_DRVSTAT:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_DRVSTAT), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_DRVSTAT), item);
 				break;
 
 			default:
@@ -558,70 +558,70 @@ void ROMStatusExporter::exportToCSV()
 		else
 			itExport.previous();
 
-		switch ( qmc2Gamelist->romState(itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME)) ) {
+		switch ( qmc2Gamelist->romState(itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME)) ) {
 			case 'C':
 				if ( toolButtonExportC->isChecked() ) {
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME) << del << sep;
 					ts << del << tr("correct") << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME).replace(del, del.repeated(2)) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_PLAYERS) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_DRVSTAT) << del << "\n";
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MACHINE).replace(del, del.repeated(2)) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_YEAR) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MANU) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_RTYPES) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_PLAYERS) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_DRVSTAT) << del << "\n";
 				}
 				break;
 
 			case 'M':
 				if ( toolButtonExportM->isChecked() ) {
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME) << del << sep;
 					ts << del << tr("mostly correct") << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME).replace(del, del.repeated(2)) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_PLAYERS) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_DRVSTAT) << del << "\n";
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MACHINE).replace(del, del.repeated(2)) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_YEAR) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MANU) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_RTYPES) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_PLAYERS) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_DRVSTAT) << del << "\n";
 				}
 				break;
 
 			case 'I':
 				if ( toolButtonExportI->isChecked() ) {
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME) << del << sep;
 					ts << del << tr("incorrect") << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME).replace(del, del.repeated(2)) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_PLAYERS) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_DRVSTAT) << del << "\n";
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MACHINE).replace(del, del.repeated(2)) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_YEAR) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MANU) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_RTYPES) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_PLAYERS) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_DRVSTAT) << del << "\n";
 				}
 				break;
 
 			case 'N':
 				if ( toolButtonExportN->isChecked() ) {
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME) << del << sep;
 					ts << del << tr("not found") << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME).replace(del, del.repeated(2)) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_PLAYERS) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_DRVSTAT) << del << "\n";
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MACHINE).replace(del, del.repeated(2)) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_YEAR) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MANU) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_RTYPES) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_PLAYERS) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_DRVSTAT) << del << "\n";
 				}
 				break;
 
 			case 'U':
 			default:
 				if ( toolButtonExportU->isChecked() ) {
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME) << del << sep;
 					ts << del << tr("unknown") << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME).replace(del, del.repeated(2)) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_PLAYERS) << del << sep;
-					ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_DRVSTAT) << del << "\n";
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MACHINE).replace(del, del.repeated(2)) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_YEAR) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MANU) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_RTYPES) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_PLAYERS) << del << sep;
+					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_DRVSTAT) << del << "\n";
 				}
 				break;
 		}
@@ -748,35 +748,35 @@ void ROMStatusExporter::exportToHTML()
 	    	QTreeWidgetItem *item = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i);
 	    	switch ( comboBoxSortCriteria->currentIndex() ) {
 		  	case QMC2_RSE_SORT_BY_DESCRIPTION:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_GAME), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_MACHINE), item);
 				break;
 
 		  	case QMC2_RSE_SORT_BY_ROM_STATE:
-				exportMap.insert(QString(qmc2Gamelist->romState(item->text(QMC2_GAMELIST_COLUMN_NAME))), item);
+				exportMap.insert(QString(qmc2Gamelist->romState(item->text(QMC2_MACHINELIST_COLUMN_NAME))), item);
 				break;
 
 		  	case QMC2_RSE_SORT_BY_YEAR:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_YEAR), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_YEAR), item);
 				break;
 
 		  	case QMC2_RSE_SORT_BY_MANUFACTURER:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_MANU), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_MANU), item);
 				break;
 
 		  	case QMC2_RSE_SORT_BY_NAME:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_NAME), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_NAME), item);
 				break;
 
 		  	case QMC2_RSE_SORT_BY_ROMTYPES:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_RTYPES), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_RTYPES), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_PLAYERS:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_PLAYERS), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_PLAYERS), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_DRVSTAT:
-				exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_DRVSTAT), item);
+				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_DRVSTAT), item);
 				break;
 
 		  	default:
@@ -806,59 +806,59 @@ void ROMStatusExporter::exportToHTML()
 	    	else
 		  	itExport.previous();
 
-	    	switch ( qmc2Gamelist->romState(itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME)) ) {
+	    	switch ( qmc2Gamelist->romState(itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME)) ) {
 		  	case 'C':
 				if ( toolButtonExportC->isChecked() ) {
-					ts << "<tr>\n<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME) << "</td>";
+					ts << "<tr>\n<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME) << "</td>";
 					ts << "<td valign=\"top\">" << tr("correct") << "</td>";
-					ts << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_PLAYERS) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_DRVSTAT) << "</td>\n"
+					ts << "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MACHINE).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_YEAR) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MANU).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_RTYPES) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_PLAYERS) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_DRVSTAT) << "</td>\n"
 						<< "</tr>\n";
 				}
 				break;
 
 			case 'M':
 				if ( toolButtonExportM->isChecked() ) {
-					ts << "<tr>\n<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME) << "</td>";
+					ts << "<tr>\n<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME) << "</td>";
 					ts << "<td valign=\"top\">" << tr("mostly correct") << "</td>";
-					ts << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_PLAYERS) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_DRVSTAT) << "</td>\n"
+					ts << "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MACHINE).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_YEAR) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MANU).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_RTYPES) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_PLAYERS) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_DRVSTAT) << "</td>\n"
 						<< "</tr>\n";
 				}
 				break;
 
 			case 'I':
 				if ( toolButtonExportI->isChecked() ) {
-					ts << "<tr>\n<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME) << "</td>";
+					ts << "<tr>\n<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME) << "</td>";
 					ts << "<td valign=\"top\">" << tr("incorrect") << "</td>";
-					ts << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_PLAYERS) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_DRVSTAT) << "</td>\n"
+					ts << "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MACHINE).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_YEAR) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MANU).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_RTYPES) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_PLAYERS) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_DRVSTAT) << "</td>\n"
 						<< "</tr>\n";
 				}
 				break;
 
 			case 'N':
 				if ( toolButtonExportN->isChecked() ) {
-					ts << "<tr>\n<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME) << "</td>";
+					ts << "<tr>\n<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME) << "</td>";
 					ts << "<td valign=\"top\">" << tr("not found") << "</td>";
-					ts << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_PLAYERS) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_DRVSTAT) << "</td>\n"
+					ts << "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MACHINE).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_YEAR) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MANU).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_RTYPES) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_PLAYERS) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_DRVSTAT) << "</td>\n"
 						<< "</tr>\n";
 				}
 				break;
@@ -866,14 +866,14 @@ void ROMStatusExporter::exportToHTML()
 			case 'U':
 			default:
 				if ( toolButtonExportU->isChecked() ) {
-					ts << "<tr>\n<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME) << "</td>";
+					ts << "<tr>\n<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME) << "</td>";
 					ts << "<td valign=\"top\">" << tr("unknown") << "</td>";
-					ts << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_PLAYERS) << "</td>"
-						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_DRVSTAT) << "</td>\n"
+					ts << "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MACHINE).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_YEAR) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_MANU).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;") << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_RTYPES) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_PLAYERS) << "</td>"
+						<< "<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_DRVSTAT) << "</td>\n"
 						<< "</tr>\n";
 				}
 				break;

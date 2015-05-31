@@ -163,7 +163,7 @@ void ImageWidget::paintEvent(QPaintEvent *e)
 		return;
 	}
 
-	if ( qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") ) {
+	if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") ) {
 		drawCenteredImage(0, &p); // clear image widget
 		return;
 	}
@@ -172,7 +172,7 @@ void ImageWidget::paintEvent(QPaintEvent *e)
 	while ( topLevelItem->parent() )
 		topLevelItem = topLevelItem->parent();
 
-	QString gameName = topLevelItem->text(QMC2_GAMELIST_COLUMN_NAME);
+	QString gameName = topLevelItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 	cacheKey = cachePrefix() + "_" + gameName;
 	ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 	if ( !cpm ) {
@@ -758,7 +758,7 @@ void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 	bool drawGameName = false;
 	if ( qmc2ShowGameName ) {
 		if ( qmc2ShowGameNameOnlyWhenRequired ) {
-			if ( qmc2MainWindow->hSplitter->sizes()[0] == 0 || qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_GAMELIST_INDEX ) {
+			if ( qmc2MainWindow->hSplitter->sizes()[0] == 0 || qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_MACHINELIST_INDEX ) {
 				drawGameName = true;
 			} else {
 				drawGameName = false;
@@ -771,7 +771,7 @@ void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 	if ( drawGameName ) {
 		// draw game/machine title
 		p->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
-		QString title = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
+		QString title = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 		QFont f(qApp->font());
 		f.setWeight(QFont::Bold);
 		p->setFont(f);

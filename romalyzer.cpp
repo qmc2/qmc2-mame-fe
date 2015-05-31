@@ -1496,7 +1496,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 	QProgressBar *progressWidget;
 	qint64 totalSize, myProgress, sizeLeft, len;
 
-	// search for file in ROM paths (first search for "game/file", then search for "file" in "game.7z", then in "game.zip"), load file data when found
+	// search for file in ROM paths (first search for "machine/file", then search for "file" in "machine.7z", then in "machine.zip"), load file data when found
 	int romPathCount = 0;
 	QStringList actualRomPaths;
 	foreach (QString romPath, romPaths) {
@@ -2372,9 +2372,9 @@ void ROMAlyzer::setMode(int mode)
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
 			m_currentMode = QMC2_ROMALYZER_MODE_SYSTEM;
-			checkBoxSelectGame->setText(tr("Select game"));
-			checkBoxSelectGame->setToolTip(tr("Select game in game list if selected in analysis report?"));
-			checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed game"));
+			checkBoxSelectGame->setText(tr("Select machine"));
+			checkBoxSelectGame->setToolTip(tr("Select machine in machine list if selected in analysis report?"));
+			checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed machine"));
 			tabWidgetAnalysis->setTabText(QMC2_ROMALYZER_PAGE_RCR, tr("ROM collection rebuilder"));
 			setWindowTitle(tr("ROMAlyzer") + " [" + tr("system mode") + "]");
 			m_settingsKey = "ROMAlyzer";
@@ -2909,7 +2909,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 					progressBar->setValue(i);
 					qApp->processEvents();
 				}
-				QString currentGame = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i)->text(QMC2_GAMELIST_COLUMN_NAME);
+				QString currentGame = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i)->text(QMC2_MACHINELIST_COLUMN_NAME);
 				QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(currentGame).split("\n", QString::SkipEmptyParts);
 				for (int j = 0; j < xmlLines.count(); j++) {
 					QString xmlLine = xmlLines[j];

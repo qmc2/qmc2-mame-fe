@@ -213,7 +213,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 				QTreeWidgetItem *gameItem = qmc2GamelistItemHash[game];
 				if ( !gameItem )
 					continue;
-				if ( gameItem->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked )
+				if ( gameItem->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
 					selectedGames << game;
 			}
 		} else if ( checkBoxFavorites->isChecked() ) {
@@ -222,7 +222,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 					continue;
 				QTreeWidgetItem *gameItem = qmc2GamelistItemHash[game];
 				if ( gameItem ) {
-					QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(gameItem->text(QMC2_GAMELIST_COLUMN_GAME), Qt::MatchExactly);
+					QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
 					if ( !favoritesMatches.isEmpty() )
 						selectedGames << game;
 				}
@@ -253,7 +253,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 				if ( !gameItem )
 					continue;
 				if ( minDrvStatus < QMC2_DEMO_MODE_DRV_STATUS_PRELIMINARY ) {
-					QString drvStatus = gameItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT);
+					QString drvStatus = gameItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT);
 					if ( minDrvStatus == QMC2_DEMO_MODE_DRV_STATUS_IMPERFECT ) {
 						if ( drvStatus != tr("good") && drvStatus != tr("imperfect") )
 							continue;
@@ -288,9 +288,9 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 			}
 		}
 		if ( selectedGames.count() > 0 )
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode started -- %n game(s) selected by filter", "", selectedGames.count()));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode started -- %n machine(s) selected by filter", "", selectedGames.count()));
 		else {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode cannot start -- no games selected by filter"));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode cannot start -- no machine selected by filter"));
 			return;
 		}
 		std::sort(selectedGames.begin(), selectedGames.end(), MainWindow::qStringListLessThan);
@@ -364,7 +364,7 @@ void DemoModeDialog::startNextEmu()
 		qmc2DemoGame = selectedGames[seqNum];
 	} else
 		qmc2DemoGame = selectedGames[qrand() % selectedGames.count()];
-	QString gameDescription = qmc2GamelistItemHash[qmc2DemoGame]->text(QMC2_GAMELIST_COLUMN_GAME);
+	QString gameDescription = qmc2GamelistItemHash[qmc2DemoGame]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulation in demo mode for '%1'").arg(gameDescription));
 	setStatus(gameDescription);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)

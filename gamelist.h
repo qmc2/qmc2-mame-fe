@@ -116,8 +116,6 @@ class Gamelist : public QObject
 		void loadStarted();
 		void loadFinished(int, QProcess::ExitStatus);
 		void loadReadyReadStandardOutput();
-		void loadError(QProcess::ProcessError);
-		void loadStateChanged(QProcess::ProcessState);
 		void verifyStarted();
 		void verifyFinished(int, QProcess::ExitStatus);
 		void verifyReadyReadStandardOutput();

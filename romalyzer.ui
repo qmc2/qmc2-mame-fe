@@ -824,7 +824,7 @@
                 <item row="4" column="0">
                  <widget class="QCheckBox" name="checkBoxSelectGame">
                   <property name="toolTip">
-                   <string>Select game in game list if selected in analysis report?</string>
+                   <string>Select machine in machine list if selected in analysis report?</string>
                   </property>
                   <property name="text">
                    <string>Select</string>
@@ -942,7 +942,7 @@
                 <item row="3" column="0">
                  <widget class="QCheckBox" name="checkBoxAutoScroll">
                   <property name="toolTip">
-                   <string>Automatically scroll to the currently analyzed game</string>
+                   <string>Automatically scroll to the currently analyzed machine</string>
                   </property>
                   <property name="text">
                    <string>Scroll</string>

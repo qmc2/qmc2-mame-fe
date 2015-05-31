@@ -370,7 +370,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
     if ( globalConfig->useFilteredList() ) {
         gameListCachePath = QFileInfo(globalConfig->filteredListFile()).absoluteFilePath();
         if ( !QFileInfo(gameListCachePath).exists() || !QFileInfo(gameListCachePath).isReadable() ) {
-            QMC2_ARCADE_LOG_STR(tr("WARNING: filtered list file '%1' doesn't exist or isn't accessible, falling back to the full %2").arg(gameListCachePath).arg(tr("game list")));
+            QMC2_ARCADE_LOG_STR(tr("WARNING: filtered list file '%1' doesn't exist or isn't accessible, falling back to the full %2").arg(gameListCachePath).arg(tr("machine list")));
             gameListCachePath = QFileInfo(globalConfig->gameListCacheFile()).absoluteFilePath();
         } 
     } else
@@ -378,7 +378,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
 
     QHash<QString, char> rscHash;
 
-    QMC2_ARCADE_LOG_STR(tr("Loading %1 from '%2'").arg(tr("game list")).arg(QDir::toNativeSeparators(gameListCachePath)));
+    QMC2_ARCADE_LOG_STR(tr("Loading %1 from '%2'").arg(tr("machine list")).arg(QDir::toNativeSeparators(gameListCachePath)));
 
     QString romStateCachePath = QFileInfo(globalConfig->romStateCacheFile()).absoluteFilePath();
     QFile romStateCache(romStateCachePath);
@@ -419,9 +419,9 @@ void TweakedQmlApplicationViewer::loadGamelist()
                     qApp->processEvents();
             }
         } else
-            QMC2_ARCADE_LOG_STR(tr("FATAL: Can't open %1 cache file '%2', please check permissions").arg(tr("game list")).arg(QDir::toNativeSeparators(gameListCachePath)));
+            QMC2_ARCADE_LOG_STR(tr("FATAL: Can't open %1 cache file '%2', please check permissions").arg(tr("machine list")).arg(QDir::toNativeSeparators(gameListCachePath)));
     } else
-        QMC2_ARCADE_LOG_STR(tr("FATAL: The %1 cache file '%2' doesn't exist, please run main front-end executable to create it").arg(tr("game list")).arg(QDir::toNativeSeparators(gameListCachePath)));
+        QMC2_ARCADE_LOG_STR(tr("FATAL: The %1 cache file '%2' doesn't exist, please run main front-end executable to create it").arg(tr("machine list")).arg(QDir::toNativeSeparators(gameListCachePath)));
 
     if ( globalConfig->sortByName() )
         std::sort(gameList.begin(), gameList.end(), GameObject::lessThan);
@@ -430,12 +430,12 @@ void TweakedQmlApplicationViewer::loadGamelist()
     rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
     rootContext()->setContextProperty("gameListModelCount", gameList.count());
 
-    QMC2_ARCADE_LOG_STR(QString(tr("Done (loading %1 from '%2')").arg(tr("game list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())).arg(QDir::toNativeSeparators(gameListCachePath)));
+    QMC2_ARCADE_LOG_STR(QString(tr("Done (loading %1 from '%2')").arg(tr("machine list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())).arg(QDir::toNativeSeparators(gameListCachePath)));
 }
 
 void TweakedQmlApplicationViewer::launchEmulator(QString id)
 {
-    QMC2_ARCADE_LOG_STR(tr("Starting emulator #%1 for %2 ID '%3'").arg(processManager->highestProcessID()).arg(tr("game")).arg(id));
+    QMC2_ARCADE_LOG_STR(tr("Starting emulator #%1 for %2 ID '%3'").arg(processManager->highestProcessID()).arg(tr("machine")).arg(id));
     processManager->startEmulator(id);
 }
 

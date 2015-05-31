@@ -162,7 +162,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void commonWebSearch(QString, QTreeWidgetItem *);
 
 	public slots:
-		// game menu
+		// machine menu
 		void on_actionPlay_triggered(bool checked = false);
 		void on_actionPlayEmbedded_triggered(bool checked = false);
 		void on_actionPlayTagged_triggered(bool checked = false);
