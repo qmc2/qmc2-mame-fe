@@ -461,24 +461,24 @@ void DatInfoDatabaseManager::recreateGameInfoTable()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_gameInfoTableName)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_gameInfoTableName)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
 	query.finish();
 	query.exec("VACUUM");
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT, infotext TEXT, emulator TEXT, PRIMARY KEY (id))").arg(m_gameInfoTableName)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_gameInfoTableName)) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("game-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
 void DatInfoDatabaseManager::recreateMetaDataTable()
@@ -871,12 +871,12 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 			continue;
 		QFile gameInfoDB(path);
 		if ( gameInfoDB.open(QIODevice::ReadOnly | QIODevice::Text) ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("importing %1 from '%2'").arg(tr("game info-texts")).arg(QDir::toNativeSeparators(path)));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("importing %1 from '%2'").arg(tr("machine info-texts")).arg(QDir::toNativeSeparators(path)));
 			qApp->processEvents();
 			qmc2StopParser = false;
 			beginTransaction();
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-				qmc2MainWindow->progressBarGamelist->setFormat(tr("Game info - %p%"));
+				qmc2MainWindow->progressBarGamelist->setFormat(tr("Machine info - %p%"));
 			else
 				qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 			qmc2MainWindow->progressBarGamelist->setRange(0, gameInfoDB.size());
@@ -948,29 +948,29 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 								beginTransaction();
 							}
 						} else
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in game info file %1").arg(QDir::toNativeSeparators(path)));
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in machine info file %1").arg(QDir::toNativeSeparators(path)));
 					} else
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$bio' in game info file %1").arg(QDir::toNativeSeparators(path)));
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$bio' in machine info file %1").arg(QDir::toNativeSeparators(path)));
 				} else if ( !ts.atEnd() )
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in game info file %1").arg(QDir::toNativeSeparators(path)));
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in machine info file %1").arg(QDir::toNativeSeparators(path)));
 			}
 			commitTransaction();
 			qmc2MainWindow->progressBarGamelist->setValue(gameInfoDB.pos());
 			if ( qmc2StopParser ) {
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("import stopped, invalidating %1 table").arg(tr("game info")));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("import stopped, invalidating %1 table").arg(tr("machine info")));
 				recreateGameInfoTable();
 				break;
 			} else
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("done (importing %1 from '%2')").arg(tr("game info-texts")).arg(QDir::toNativeSeparators(path)));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("done (importing %1 from '%2')").arg(tr("machine info-texts")).arg(QDir::toNativeSeparators(path)));
 			importPaths << path;
 			importDates << QString::number(QFileInfo(path).lastModified().toTime_t());
 			gameInfoDB.close();
 		} else
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: can't open game info file %1").arg(QDir::toNativeSeparators(path)));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: can't open machine info file %1").arg(QDir::toNativeSeparators(path)));
 	}
 
 	if ( !qmc2StopParser )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("%n game info record(s) imported", "", gameInfoRowCount()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("%n machine info record(s) imported", "", gameInfoRowCount()));
 
 	if ( !importPaths.isEmpty() ) {
 		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "DatInfoDatabase/GameInfoImportFiles", importPaths);

@@ -63,7 +63,7 @@
 #define QMC2_LOG_FRONTEND			0
 #define QMC2_LOG_EMULATOR			1
 
-// index positions of game list tabs (left)
+// index positions of machine list tabs (left)
 #define QMC2_GAMELIST_INDEX			0
 #define QMC2_MACHINELIST_INDEX			QMC2_GAMELIST_INDEX
 #define QMC2_SEARCH_INDEX			1
@@ -72,7 +72,7 @@
 #define QMC2_FOREIGN_INDEX			4
 #define QMC2_EMBED_INDEX			5
 
-// index positions of all game/machine details (upper right)
+// index positions of all machine details (upper right)
 #define QMC2_PREVIEW_INDEX			0
 #define QMC2_FLYER_INDEX			1
 #define QMC2_GAMEINFO_INDEX			2
@@ -102,7 +102,7 @@
 #define QMC2_AUDIOPLAYER_INDEX			3
 #define QMC2_DOWNLOADS_INDEX			4
 
-// current format version of the GLC (game list cache)
+// current format version of the GLC (machine list cache)
 #define QMC2_GLC_VERSION			6
 
 // current format version of the XML cache database schema
@@ -136,46 +136,30 @@
 // max. number of transactions between commits
 #define QMC2_CHECKSUM_DB_MAX_TRANSACTIONS	100
 
-// column used for the game/machine icon
+// column used for the machine icon
 #define QMC2_ICON_INDEX				2
 
-// index positions of game/machine list view selector
+// index positions of machine list view selector
 #define QMC2_VIEW_DETAIL_INDEX			0
 #define QMC2_VIEW_TREE_INDEX			1
 #define QMC2_VIEW_CATEGORY_INDEX		2
 #define QMC2_VIEW_VERSION_INDEX			3
 
-// logical column indexes in game/machine lists
-#define QMC2_GAMELIST_RESET			-1
-#define QMC2_GAMELIST_COLUMN_GAME		0
-#define QMC2_GAMELIST_COLUMN_TAG		1
-#define QMC2_GAMELIST_COLUMN_ICON		2
-#define QMC2_GAMELIST_COLUMN_YEAR		3
-#define QMC2_GAMELIST_COLUMN_MANU		4
-#define QMC2_GAMELIST_COLUMN_NAME		5
-#define QMC2_GAMELIST_COLUMN_RTYPES		6
-#define QMC2_GAMELIST_COLUMN_PLAYERS		7
-#define QMC2_GAMELIST_COLUMN_DRVSTAT		8
-#define QMC2_GAMELIST_COLUMN_SRCFILE		9
-#define QMC2_GAMELIST_COLUMN_RANK		10
-#define QMC2_GAMELIST_COLUMN_CATEGORY		11
-#define QMC2_GAMELIST_COLUMN_VERSION		12
-#define QMC2_MACHINELIST_RESET			QMC2_GAMELIST_RESET
-#define QMC2_MACHINELIST_COLUMN_GAME		QMC2_GAMELIST_COLUMN_GAME
-#define QMC2_MACHINELIST_COLUMN_TAG		QMC2_GAMELIST_COLUMN_TAG
-#define QMC2_MACHINELIST_COLUMN_ICON		QMC2_GAMELIST_COLUMN_ICON
-#define QMC2_MACHINELIST_COLUMN_YEAR		QMC2_GAMELIST_COLUMN_YEAR
-#define QMC2_MACHINELIST_COLUMN_MANU		QMC2_GAMELIST_COLUMN_MANU
-#define QMC2_MACHINELIST_COLUMN_NAME		QMC2_GAMELIST_COLUMN_NAME
-#define QMC2_MACHINELIST_COLUMN_RTYPES		QMC2_GAMELIST_COLUMN_RTYPES
-#define QMC2_MACHINELIST_COLUMN_PLAYERS		QMC2_GAMELIST_COLUMN_PLAYERS
-#define QMC2_MACHINELIST_COLUMN_DRVSTAT		QMC2_GAMELIST_COLUMN_DRVSTAT
-#define QMC2_MACHINELIST_COLUMN_SRCFILE		QMC2_GAMELIST_COLUMN_SRCFILE
-#define QMC2_MACHINELIST_COLUMN_RANK		QMC2_GAMELIST_COLUMN_RANK
-#define QMC2_MACHINELIST_COLUMN_CATEGORY	QMC2_GAMELIST_COLUMN_CATEGORY
-
-#define QMC2_GAMELIST_COLUMNS			13
-#define QMC2_MACHINELIST_COLUMNS		12
+// logical column indexes in machine lists
+#define QMC2_MACHINELIST_RESET			-1
+#define QMC2_MACHINELIST_COLUMN_MACHINE		0
+#define QMC2_MACHINELIST_COLUMN_TAG		1
+#define QMC2_MACHINELIST_COLUMN_ICON		2
+#define QMC2_MACHINELIST_COLUMN_YEAR		3
+#define QMC2_MACHINELIST_COLUMN_MANU		4
+#define QMC2_MACHINELIST_COLUMN_NAME		5
+#define QMC2_MACHINELIST_COLUMN_RTYPES		6
+#define QMC2_MACHINELIST_COLUMN_PLAYERS		7
+#define QMC2_MACHINELIST_COLUMN_DRVSTAT		8
+#define QMC2_MACHINELIST_COLUMN_SRCFILE		9
+#define QMC2_MACHINELIST_COLUMN_RANK		10
+#define QMC2_MACHINELIST_COLUMN_CATEGORY	11
+#define QMC2_MACHINELIST_COLUMN_VERSION		12
 
 // rank update delay in milliseconds (added to the general 'update delay')
 #define QMC2_RANK_UPDATE_DELAY			50
@@ -297,7 +281,7 @@
 // SDLMAME output notifier FIFO
 #define QMC2_SDLMAME_OUTPUT_FIFO		"/tmp/sdlmame_out"
 
-// index positions of the game/machine list view stack
+// index positions of the machine list view stack
 #define QMC2_VIEWGAMELIST_INDEX			0
 #define QMC2_VIEWMACHINELIST_INDEX		QMC2_VIEWGAMELIST_INDEX
 #define QMC2_VIEWHIERARCHY_INDEX		1
@@ -372,7 +356,7 @@
 // button animation timeout (similar to animateClick() w/o signal emission)
 #define QMC2_BUTTON_ANIMATION_TIMEOUT		50
 
-// general polling interval for operations that need to wait until game/machine list reload has finished
+// general polling interval for operations that need to wait until machine list reload has finished
 #define QMC2_RELOAD_POLL_INTERVAL		250
 #define QMC2_RELOAD_POLL_INTERVAL_LONG		500
 
@@ -382,7 +366,7 @@
 // time after which the 'forced snapshot' flag is unset automatically
 #define QMC2_SWSNAP_UNFORCE_DELAY		50
 
-// gamelist sort criteria
+// machine list sort criteria
 #define QMC2_SORT_BY_DESCRIPTION		0
 #define QMC2_SORT_BY_ROM_STATE			1
 #define QMC2_SORT_BY_TAG			2
@@ -407,7 +391,7 @@
 #define QMC2_RSE_SORT_BY_PLAYERS		6
 #define QMC2_RSE_SORT_BY_DRVSTAT		7
 
-// gamelist cursor positioning mode
+// machine list cursor positioning mode
 #define QMC2_CURSOR_POS_VISIBLE			0
 #define QMC2_CURSOR_POS_TOP			1
 #define QMC2_CURSOR_POS_BOTTOM			2
@@ -426,7 +410,7 @@
 #define QMC2_GENERAL_LOADING_UPDATES		100
 #define QMC2_TAGGING_UPDATES			200
 
-// responsiveness while reading the XML game/machine list cache
+// responsiveness while reading the XML machine list cache
 #define QMC2_XMLCACHE_RESPONSIVENESS		50
 
 // responsiveness while reading the ROM state cache
@@ -447,7 +431,7 @@
 // interval in milliseconds between activity checks
 #define QMC2_ACTIVITY_CHECK_INTERVAL		500
 
-// responsiveness when processing the set of "remaining games/machines" (sets remaining after an interrupted full audit / sets not mentioned during a full audit)
+// responsiveness when processing the set of "remaining machines" (sets remaining after an interrupted full audit / sets not mentioned during a full audit)
 #define QMC2_REMAINING_SETS_CHECK_RSP		250
 
 // emulator option types
@@ -666,7 +650,7 @@
 #define	QMC2_MAME_ERROR_MISSING_FILES		2	// missing files
 #define	QMC2_MAME_ERROR_FATALERROR		3	// some other fatal error
 #define	QMC2_MAME_ERROR_DEVICE			4	// device initialization error (MESS-specific)
-#define	QMC2_MAME_ERROR_NO_SUCH_GAME		5	// game was specified but doesn't exist
+#define	QMC2_MAME_ERROR_NO_SUCH_MACHINE		5	// machine was specified but doesn't exist
 #define	QMC2_MAME_ERROR_INVALID_CONFIG		6	// some sort of error in configuration
 #define	QMC2_MAME_ERROR_IDENT_NONROMS		7	// identified all non-ROM files
 #define	QMC2_MAME_ERROR_IDENT_PARTIAL		8	// identified some files but not all

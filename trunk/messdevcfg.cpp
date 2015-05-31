@@ -253,7 +253,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
 	// device configuration list context menu
 	deviceConfigurationListMenu = new QMenu(this);
-	s = tr("Play selected game");
+	s = tr("Play selected machine");
 	action = deviceConfigurationListMenu->addAction(tr("&Play"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
@@ -304,7 +304,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
 	// file chooser context menu
 	fileChooserContextMenu = new QMenu(this);
-	s = tr("Play selected game");
+	s = tr("Play selected machine");
 	action = fileChooserContextMenu->addAction(tr("&Play"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
@@ -1023,7 +1023,7 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 #endif
 			QStringList newSlotOptionDescriptions;
 			foreach (QString newSlotOption, xmlHandler.newSlotOptions[newSlot]) {
-				QString slotOptionDescription = qmc2GamelistItemHash[xmlHandler.newSlotDevices[newSlotOption]]->text(QMC2_GAMELIST_COLUMN_GAME);
+				QString slotOptionDescription = qmc2GamelistItemHash[xmlHandler.newSlotDevices[newSlotOption]]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 #ifdef QMC2_DEBUG
 				printf("MESSDeviceConfigurator::refreshDeviceMap():     newSlotOption = %s [%s], default = %s\n",
 				       newSlotOption.toLocal8Bit().constData(), slotOptionDescription.toLocal8Bit().constData(), xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no");

@@ -111,7 +111,7 @@ void EmulatorOptionActions::on_toolButtonStore_clicked()
 		if ( qmc2EmulatorOptions ) {
 			QList<QTreeWidgetItem *> il;
 			switch ( QMessageBox::question(this, tr("Confirm"), 
-						       tr("An open game-specific emulator configuration has been detected.\nUse local value for option '%1', overwrite with global value or don't apply?").arg(optionName),
+						       tr("An open machine-specific emulator configuration has been detected.\nUse local value for option '%1', overwrite with global value or don't apply?").arg(optionName),
 						       tr("&Local"), tr("&Overwrite"), tr("Do&n't apply"), 0, 2) ) {
 				case 0:
 					qmc2GlobalEmulatorOptions->save(optionName);

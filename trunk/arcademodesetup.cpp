@@ -122,7 +122,7 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	spinBoxJoyIndex->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/JoyIndex", 0).toInt());
 #endif
 
-	// game list filter
+	// machine list filter
 	checkBoxFavoriteSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/FavoriteSetsOnly", false).toBool());
 	checkBoxTaggedSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/TaggedSetsOnly", false).toBool());
 	checkBoxParentSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ParentSetsOnly", false).toBool());
@@ -438,7 +438,7 @@ void ArcadeModeSetup::saveSettings()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/JoyIndex", spinBoxJoyIndex->value());
 #endif
 
-	// game list filter
+	// machine list filter
 	qmc2Config->setValue(QMC2_ARCADE_PREFIX + "UseFilteredList", checkBoxUseFilteredList->isChecked());
 	qmc2Config->setValue(QMC2_ARCADE_PREFIX + "FilteredListFile", lineEditFilteredListFile->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/FavoriteSetsOnly", checkBoxFavoriteSetsOnly->isChecked());
@@ -657,7 +657,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		// tagged sets only?
 		if ( checkBoxTaggedSetsOnly->isChecked() ) {
 			GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemHash[game];
-			if ( gameItem && gameItem->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked )
+			if ( gameItem && gameItem->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
 				selectedGames << gameItem;
 			continue;
 		}
@@ -666,7 +666,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		if ( checkBoxFavoriteSetsOnly->isChecked() ) {
 			GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemHash[game];
 			if ( gameItem ) {
-				QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(gameItem->text(QMC2_GAMELIST_COLUMN_GAME), Qt::MatchExactly);
+				QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
 				if ( !favoritesMatches.isEmpty() )
 					selectedGames << gameItem;
 			}
@@ -700,7 +700,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 
 		// driver status
 		if ( minDrvStatus < QMC2_ARCADE_DRV_STATUS_PRELIMINARY ) {
-			QString drvStatus = gameItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT);
+			QString drvStatus = gameItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT);
 			if ( minDrvStatus == QMC2_ARCADE_DRV_STATUS_IMPERFECT ) {
 				if ( drvStatus != tr("good") && drvStatus != tr("imperfect") )
 					continue;
@@ -749,19 +749,19 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 	for (int i = 0; i < selectedGames.count(); i++) {
 		progressBarFilter->setValue(i + 1);
 		GamelistItem *gameItem = selectedGames[i];
-		QString gameName = gameItem->text(QMC2_GAMELIST_COLUMN_NAME);
+		QString gameName = gameItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 		ts << gameName << "\t"
-		   << gameItem->text(QMC2_GAMELIST_COLUMN_GAME) << "\t"
-		   << gameItem->text(QMC2_GAMELIST_COLUMN_MANU) << "\t"
-		   << gameItem->text(QMC2_GAMELIST_COLUMN_YEAR) << "\t"
+		   << gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) << "\t"
+		   << gameItem->text(QMC2_MACHINELIST_COLUMN_MANU) << "\t"
+		   << gameItem->text(QMC2_MACHINELIST_COLUMN_YEAR) << "\t"
 		   << qmc2ParentHash[gameName] << "\t"
 	   	   << (qmc2Gamelist->isBios(gameName) ? "1": "0") << "\t"
-		   << (gameItem->text(QMC2_GAMELIST_COLUMN_RTYPES).contains(tr("ROM")) ? "1" : "0") << "\t"
-		   << (gameItem->text(QMC2_GAMELIST_COLUMN_RTYPES).contains(tr("CHD")) ? "1": "0") << "\t"
-		   << gameItem->text(QMC2_GAMELIST_COLUMN_PLAYERS) << "\t"
-		   << gameItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT) << "\t"
+		   << (gameItem->text(QMC2_MACHINELIST_COLUMN_RTYPES).contains(tr("ROM")) ? "1" : "0") << "\t"
+		   << (gameItem->text(QMC2_MACHINELIST_COLUMN_RTYPES).contains(tr("CHD")) ? "1": "0") << "\t"
+		   << gameItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS) << "\t"
+		   << gameItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT) << "\t"
 		   << "0\t"
-		   << gameItem->text(QMC2_GAMELIST_COLUMN_SRCFILE) << "\n";
+		   << gameItem->text(QMC2_MACHINELIST_COLUMN_SRCFILE) << "\n";
 	}
 
 	progressBarFilter->setRange(0, 100);
@@ -797,69 +797,69 @@ bool ArcadeModeSetup::lessThan(const GamelistItem *item1, const GamelistItem *it
 	switch ( qmc2ArcadeModeSortCriteria ) {
 		case QMC2_SORT_BY_DESCRIPTION:
 			if ( qmc2ArcadeModeSortOrder )
-				return (item1->text(QMC2_GAMELIST_COLUMN_GAME).toUpper() > item2->text(QMC2_GAMELIST_COLUMN_GAME).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_MACHINE).toUpper() > item2->text(QMC2_MACHINELIST_COLUMN_MACHINE).toUpper());
 			else
-				return (item1->text(QMC2_GAMELIST_COLUMN_GAME).toUpper() < item2->text(QMC2_GAMELIST_COLUMN_GAME).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_MACHINE).toUpper() < item2->text(QMC2_MACHINELIST_COLUMN_MACHINE).toUpper());
 		case QMC2_SORT_BY_ROM_STATE:
 			if ( qmc2ArcadeModeSortOrder )
-				return (qmc2Gamelist->romState(item1->text(QMC2_GAMELIST_COLUMN_NAME)) > qmc2Gamelist->romState(item2->text(QMC2_GAMELIST_COLUMN_NAME)));
+				return (qmc2Gamelist->romState(item1->text(QMC2_MACHINELIST_COLUMN_NAME)) > qmc2Gamelist->romState(item2->text(QMC2_MACHINELIST_COLUMN_NAME)));
 			else
-				return (qmc2Gamelist->romState(item1->text(QMC2_GAMELIST_COLUMN_NAME)) < qmc2Gamelist->romState(item2->text(QMC2_GAMELIST_COLUMN_NAME)));
+				return (qmc2Gamelist->romState(item1->text(QMC2_MACHINELIST_COLUMN_NAME)) < qmc2Gamelist->romState(item2->text(QMC2_MACHINELIST_COLUMN_NAME)));
 		case QMC2_SORT_BY_TAG:
 			if ( qmc2ArcadeModeSortOrder )
-				return (int(item1->checkState(QMC2_GAMELIST_COLUMN_TAG)) > int(item2->checkState(QMC2_GAMELIST_COLUMN_TAG)));
+				return (int(item1->checkState(QMC2_MACHINELIST_COLUMN_TAG)) > int(item2->checkState(QMC2_MACHINELIST_COLUMN_TAG)));
 			else
-				return (int(item1->checkState(QMC2_GAMELIST_COLUMN_TAG)) < int(item2->checkState(QMC2_GAMELIST_COLUMN_TAG)));
+				return (int(item1->checkState(QMC2_MACHINELIST_COLUMN_TAG)) < int(item2->checkState(QMC2_MACHINELIST_COLUMN_TAG)));
 		case QMC2_SORT_BY_YEAR:
 			if ( qmc2ArcadeModeSortOrder )
-				return (item1->text(QMC2_GAMELIST_COLUMN_YEAR) > item2->text(QMC2_GAMELIST_COLUMN_YEAR));
+				return (item1->text(QMC2_MACHINELIST_COLUMN_YEAR) > item2->text(QMC2_MACHINELIST_COLUMN_YEAR));
 			else
-				return (item1->text(QMC2_GAMELIST_COLUMN_YEAR) < item2->text(QMC2_GAMELIST_COLUMN_YEAR));
+				return (item1->text(QMC2_MACHINELIST_COLUMN_YEAR) < item2->text(QMC2_MACHINELIST_COLUMN_YEAR));
 		case QMC2_SORT_BY_MANUFACTURER:
 			if ( qmc2ArcadeModeSortOrder )
-				return (item1->text(QMC2_GAMELIST_COLUMN_MANU).toUpper() > item2->text(QMC2_GAMELIST_COLUMN_MANU).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_MANU).toUpper() > item2->text(QMC2_MACHINELIST_COLUMN_MANU).toUpper());
 			else
-				return (item1->text(QMC2_GAMELIST_COLUMN_MANU).toUpper() < item2->text(QMC2_GAMELIST_COLUMN_MANU).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_MANU).toUpper() < item2->text(QMC2_MACHINELIST_COLUMN_MANU).toUpper());
 		case QMC2_SORT_BY_NAME:
 			if ( qmc2ArcadeModeSortOrder )
-				return (item1->text(QMC2_GAMELIST_COLUMN_NAME).toUpper() > item2->text(QMC2_GAMELIST_COLUMN_NAME).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_NAME).toUpper() > item2->text(QMC2_MACHINELIST_COLUMN_NAME).toUpper());
 			else
-				return (item1->text(QMC2_GAMELIST_COLUMN_NAME).toUpper() < item2->text(QMC2_GAMELIST_COLUMN_NAME).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_NAME).toUpper() < item2->text(QMC2_MACHINELIST_COLUMN_NAME).toUpper());
 		case QMC2_SORT_BY_ROMTYPES:
 			if ( qmc2ArcadeModeSortOrder )
-				return (item1->text(QMC2_GAMELIST_COLUMN_RTYPES).toUpper() > item2->text(QMC2_GAMELIST_COLUMN_RTYPES).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_RTYPES).toUpper() > item2->text(QMC2_MACHINELIST_COLUMN_RTYPES).toUpper());
 			else
-				return (item1->text(QMC2_GAMELIST_COLUMN_RTYPES).toUpper() < item2->text(QMC2_GAMELIST_COLUMN_RTYPES).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_RTYPES).toUpper() < item2->text(QMC2_MACHINELIST_COLUMN_RTYPES).toUpper());
 		case QMC2_SORT_BY_PLAYERS:
 			if ( qmc2ArcadeModeSortOrder )
-				return (item1->text(QMC2_GAMELIST_COLUMN_PLAYERS).toUpper() > item2->text(QMC2_GAMELIST_COLUMN_PLAYERS).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_PLAYERS).toUpper() > item2->text(QMC2_MACHINELIST_COLUMN_PLAYERS).toUpper());
 			else
-				return (item1->text(QMC2_GAMELIST_COLUMN_PLAYERS).toUpper() < item2->text(QMC2_GAMELIST_COLUMN_PLAYERS).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_PLAYERS).toUpper() < item2->text(QMC2_MACHINELIST_COLUMN_PLAYERS).toUpper());
 		case QMC2_SORT_BY_DRVSTAT:
 			if ( qmc2ArcadeModeSortOrder )
-				return (item1->text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper() > item2->text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_DRVSTAT).toUpper() > item2->text(QMC2_MACHINELIST_COLUMN_DRVSTAT).toUpper());
 			else
-				return (item1->text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper() < item2->text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_DRVSTAT).toUpper() < item2->text(QMC2_MACHINELIST_COLUMN_DRVSTAT).toUpper());
 		case QMC2_SORT_BY_SRCFILE:
 			if ( qmc2ArcadeModeSortOrder )
-				return (item1->text(QMC2_GAMELIST_COLUMN_SRCFILE).toUpper() > item2->text(QMC2_GAMELIST_COLUMN_SRCFILE).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_SRCFILE).toUpper() > item2->text(QMC2_MACHINELIST_COLUMN_SRCFILE).toUpper());
 			else
-				return (item1->text(QMC2_GAMELIST_COLUMN_SRCFILE).toUpper() < item2->text(QMC2_GAMELIST_COLUMN_SRCFILE).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_SRCFILE).toUpper() < item2->text(QMC2_MACHINELIST_COLUMN_SRCFILE).toUpper());
 		case QMC2_SORT_BY_RANK:
 			if ( qmc2ArcadeModeSortOrder )
-				return (item1->whatsThis(QMC2_GAMELIST_COLUMN_RANK).toInt() < item2->whatsThis(QMC2_GAMELIST_COLUMN_RANK).toInt());
+				return (item1->whatsThis(QMC2_MACHINELIST_COLUMN_RANK).toInt() < item2->whatsThis(QMC2_MACHINELIST_COLUMN_RANK).toInt());
 			else
-				return (item1->whatsThis(QMC2_GAMELIST_COLUMN_RANK).toInt() > item2->whatsThis(QMC2_GAMELIST_COLUMN_RANK).toInt());
+				return (item1->whatsThis(QMC2_MACHINELIST_COLUMN_RANK).toInt() > item2->whatsThis(QMC2_MACHINELIST_COLUMN_RANK).toInt());
 		case QMC2_SORT_BY_CATEGORY:
 			if ( qmc2ArcadeModeSortOrder )
-				return (item1->text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper() > item2->text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_CATEGORY).toUpper() > item2->text(QMC2_MACHINELIST_COLUMN_CATEGORY).toUpper());
 			else
-				return (item1->text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper() < item2->text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_CATEGORY).toUpper() < item2->text(QMC2_MACHINELIST_COLUMN_CATEGORY).toUpper());
 		case QMC2_SORT_BY_VERSION:
 			if ( qmc2ArcadeModeSortOrder )
-				return (item1->text(QMC2_GAMELIST_COLUMN_VERSION).toUpper() > item2->text(QMC2_GAMELIST_COLUMN_VERSION).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_VERSION).toUpper() > item2->text(QMC2_MACHINELIST_COLUMN_VERSION).toUpper());
 			else
-				return (item1->text(QMC2_GAMELIST_COLUMN_VERSION).toUpper() < item2->text(QMC2_GAMELIST_COLUMN_VERSION).toUpper());
+				return (item1->text(QMC2_MACHINELIST_COLUMN_VERSION).toUpper() < item2->text(QMC2_MACHINELIST_COLUMN_VERSION).toUpper());
 		default:
 			return qmc2ArcadeModeSortOrder == 1;
 	}

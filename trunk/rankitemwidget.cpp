@@ -85,7 +85,7 @@ void RankItemWidget::setRank(int rank)
 	p.begin(&pm);
 	p.setBrush(rankGradient);
 	m_rank = rank;
-	m_item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, QString::number(m_rank));
+	m_item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, QString::number(m_rank));
 	QPixmap pmRank = useFlatRankImage || useColorRankImage ? QPixmap::fromImage(rankSingleFlat) : QPixmap::fromImage(rankSingle);
 	QPainter pRank;
 	pRank.begin(&pmRank);
@@ -113,7 +113,7 @@ void RankItemWidget::setRankComplete(int rank)
 {
 	if ( rank != m_rank ) {
 		setRank(rank);
-		qmc2Gamelist->userDataDb()->setRank(m_item->text(QMC2_GAMELIST_COLUMN_NAME), m_rank);
+		qmc2Gamelist->userDataDb()->setRank(m_item->text(QMC2_MACHINELIST_COLUMN_NAME), m_rank);
 		updateForeignItems();
 	}
 }
@@ -134,7 +134,7 @@ void RankItemWidget::decreaseRank()
 
 void RankItemWidget::updateRankFromDb()
 {
-	setRank(qmc2Gamelist->userDataDb()->rank(m_item->text(QMC2_GAMELIST_COLUMN_NAME)));
+	setRank(qmc2Gamelist->userDataDb()->rank(m_item->text(QMC2_MACHINELIST_COLUMN_NAME)));
 }
 
 void RankItemWidget::updateRankFromMousePos(int mouseX)
@@ -164,28 +164,28 @@ void RankItemWidget::mouseMoveEvent(QMouseEvent *e)
 void RankItemWidget::updateForeignItems()
 {
 	RankItemWidget *foreignRiw;
-	QString myId = m_item->text(QMC2_GAMELIST_COLUMN_NAME);
+	QString myId = m_item->text(QMC2_MACHINELIST_COLUMN_NAME);
 	QTreeWidgetItem *item = qmc2GamelistItemHash[myId];
 	if ( item && item != m_item ) {
-		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
 		if ( foreignRiw )
 			foreignRiw->setRank(m_rank);
 	}
 	item = qmc2HierarchyItemHash[myId];
 	if ( item && item != m_item ) {
-		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
 		if ( foreignRiw )
 			foreignRiw->setRank(m_rank);
 	}
 	item = qmc2CategoryItemHash[myId];
 	if ( item && item != m_item ) {
-		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
 		if ( foreignRiw )
 			foreignRiw->setRank(m_rank);
 	}
 	item = qmc2VersionItemHash[myId];
 	if ( item && item != m_item ) {
-		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_GAMELIST_COLUMN_RANK);
+		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
 		if ( foreignRiw )
 			foreignRiw->setRank(m_rank);
 	}

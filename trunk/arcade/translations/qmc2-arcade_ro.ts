@@ -124,7 +124,7 @@
         <location filename="../datinfodbmgr.cpp" line="493"/>
         <location filename="../datinfodbmgr.cpp" line="500"/>
         <location filename="../datinfodbmgr.cpp" line="505"/>
-        <source>game-info</source>
+        <source>machine-info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -232,27 +232,27 @@
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="924"/>
-        <source>WARNING: missing &apos;$end&apos; in game info file %1</source>
+        <source>WARNING: missing &apos;$end&apos; in machine info file %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="927"/>
-        <source>WARNING: missing &apos;$bio&apos; in game info file %1</source>
+        <source>WARNING: missing &apos;$bio&apos; in machine info file %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="930"/>
-        <source>WARNING: missing &apos;$info&apos; in game info file %1</source>
+        <source>WARNING: missing &apos;$info&apos; in machine info file %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="939"/>
-        <source>WARNING: can&apos;t open game info file %1</source>
+        <source>WARNING: can&apos;t open machine info file %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location filename="../datinfodbmgr.cpp" line="943"/>
-        <source>%n game info record(s) imported</source>
+        <source>%n machine info record(s) imported</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
@@ -684,11 +684,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="86"/>
-        <source>[context] Abort game launch / Hide preferences</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../keysequences.h" line="87"/>
         <source>[context] Zoom in / List top</source>
         <translation type="unfinished"></translation>
@@ -743,6 +738,16 @@
         <location filename="../keysequences.h" line="46"/>
         <location filename="../keysequences.h" line="47"/>
         <source>[global] Start emulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="50"/>
+        <source>[global] Flip cabinet / machine-card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="86"/>
+        <source>[context] Abort machine launch / Hide preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -803,11 +808,6 @@
     <message>
         <location filename="../keysequences.h" line="45"/>
         <source>[global] Toggle menu-bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="50"/>
-        <source>[global] Flip cabinet / game-card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1286,7 +1286,12 @@ take effect, please restart QMC2 Arcade!</source>
         <location filename="../tweakedqmlappviewer.cpp" line="422"/>
         <location filename="../tweakedqmlappviewer.cpp" line="424"/>
         <location filename="../tweakedqmlappviewer.cpp" line="433"/>
-        <source>game list</source>
+        <source>machine list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tweakedqmlappviewer.cpp" line="438"/>
+        <source>machine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1331,11 +1336,6 @@ take effect, please restart QMC2 Arcade!</source>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="438"/>
         <source>Starting emulator #%1 for %2 ID &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="438"/>
-        <source>game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

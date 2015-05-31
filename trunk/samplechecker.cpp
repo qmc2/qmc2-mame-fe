@@ -184,7 +184,7 @@ void SampleChecker::verify()
 								sampleMap[currentGameName] = currentSampleOf;
 								sampleCountMap[currentGameName] = sampleCount;
 							} else
-								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the game '%1' is referencing a non-existing sample-set (sampleof=\"%2\") -- please inform MAME developers").arg(currentGameName).arg(currentSampleOf));
+								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the machine '%1' is referencing a non-existing sample-set (sampleof=\"%2\") -- please inform MAME developers").arg(currentGameName).arg(currentSampleOf));
 						}
 					}
 					currentGameName.clear();
@@ -218,9 +218,9 @@ void SampleChecker::verify()
 			QStringList refList = sampleMap.keys(currentSample);
 			if ( refList.count() > 0 ) {
 				if ( refList.count() > 1 )
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the following games are referencing a sample-set which isn't required (sampleof=\"%1\"): %2 -- please inform MAME developers").arg(currentSample).arg(refList.join(", ")));
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the following machines are referencing a sample-set which isn't required (sampleof=\"%1\"): %2 -- please inform MAME developers").arg(currentSample).arg(refList.join(", ")));
 				else
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the following game is referencing a sample-set which isn't required (sampleof=\"%1\"): %2 -- please inform MAME developers").arg(currentSample).arg(refList.join(", ")));
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the following machine is referencing a sample-set which isn't required (sampleof=\"%1\"): %2 -- please inform MAME developers").arg(currentSample).arg(refList.join(", ")));
 				sampleSets.removeAll(currentSample);
 			}
 		}

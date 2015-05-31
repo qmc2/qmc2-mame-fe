@@ -522,16 +522,16 @@ void UserDataDatabaseManager::fillUpRankCache()
 			QString rankString = QString::number(rankInt);
 			QTreeWidgetItem *item = qmc2GamelistItemHash[idString];
 			if ( item )
-				item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, rankString);
+				item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
 			item = qmc2HierarchyItemHash[idString];
 			if ( item)
-				item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, rankString);
+				item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
 			item = qmc2CategoryItemHash[idString];
 			if ( item )
-				item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, rankString);
+				item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
 			item = qmc2VersionItemHash[idString];
 			if ( item )
-				item->setWhatsThis(QMC2_GAMELIST_COLUMN_RANK, rankString);
+				item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
 		}
 		if ( row % 25 == 0 )
 			qApp->processEvents();

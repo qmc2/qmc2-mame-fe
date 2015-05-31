@@ -1101,7 +1101,7 @@ QString HtmlEditor::getIconData()
 {
 	QByteArray iconData;
 	if ( qmc2CurrentItem ) {
-		QPixmap pm = qmc2CurrentItem->icon(QMC2_GAMELIST_COLUMN_ICON).pixmap(64, 64);
+		QPixmap pm = qmc2CurrentItem->icon(QMC2_MACHINELIST_COLUMN_ICON).pixmap(64, 64);
 		QBuffer buffer(&iconData);
 		pm.save(&buffer, "PNG");
 	}
@@ -1167,7 +1167,7 @@ QString HtmlEditor::getImageData(QString imageType)
 	}
 
 	if ( imageWidget ) {
-		QString gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
+		QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 		QString cacheKey = imageType + "_" + gameName;
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 		if ( !cpm )

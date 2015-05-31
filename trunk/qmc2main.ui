@@ -52,7 +52,7 @@
              <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
            </attribute>
            <attribute name="title">
-            <string>&amp;Game list</string>
+            <string>&amp;Machine list</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_2">
             <property name="margin">
@@ -75,14 +75,14 @@
                  </sizepolicy>
                 </property>
                 <property name="toolTip">
-                 <string>Switch between detailed game list and parent / clone hierarchy</string>
+                 <string>Switch between detailed machine list and parent / clone hierarchy</string>
                 </property>
                 <property name="statusTip">
-                 <string>Switch between detailed game list and parent / clone hierarchy</string>
+                 <string>Switch between detailed machine list and parent / clone hierarchy</string>
                 </property>
                 <item>
                  <property name="text">
-                  <string>Game list with full detail (filtered)</string>
+                  <string>Machine list with full detail (filtered)</string>
                  </property>
                  <property name="icon">
                   <iconset resource="qmc2.qrc">
@@ -144,7 +144,7 @@
                    <enum>Qt::CustomContextMenu</enum>
                   </property>
                   <property name="statusTip">
-                   <string>List of all supported games</string>
+                   <string>List of all supported machines</string>
                   </property>
                   <property name="uniformRowHeights">
                    <bool>true</bool>
@@ -154,7 +154,7 @@
                   </property>
                   <column>
                    <property name="text">
-                    <string>Game / Attribute</string>
+                    <string>Machine / Attribute</string>
                    </property>
                   </column>
                   <column>
@@ -305,7 +305,7 @@
                   </property>
                   <column>
                    <property name="text">
-                    <string>Game / Clones</string>
+                    <string>Machine / Clones</string>
                    </property>
                   </column>
                   <column>
@@ -449,7 +449,7 @@
                    <enum>Qt::CustomContextMenu</enum>
                   </property>
                   <property name="statusTip">
-                   <string>List of games viewed by category</string>
+                   <string>List of machines viewed by category</string>
                   </property>
                   <property name="uniformRowHeights">
                    <bool>true</bool>
@@ -459,7 +459,7 @@
                   </property>
                   <column>
                    <property name="text">
-                    <string>Category / Game</string>
+                    <string>Category / Machine</string>
                    </property>
                   </column>
                   <column>
@@ -603,7 +603,7 @@
                    <enum>Qt::CustomContextMenu</enum>
                   </property>
                   <property name="statusTip">
-                   <string>List of games viewed by version they were added to the emulator</string>
+                   <string>List of machines viewed by version they were added to the emulator</string>
                   </property>
                   <property name="uniformRowHeights">
                    <bool>true</bool>
@@ -613,7 +613,7 @@
                   </property>
                   <column>
                    <property name="text">
-                    <string>Version / Game</string>
+                    <string>Version / Machine</string>
                    </property>
                   </column>
                   <column>
@@ -784,10 +784,10 @@
                </sizepolicy>
               </property>
               <property name="toolTip">
-               <string>Search for games (not case-sensitive)</string>
+               <string>Search for machines (not case-sensitive)</string>
               </property>
               <property name="statusTip">
-               <string>Search for games</string>
+               <string>Search for machines</string>
               </property>
               <property name="editable">
                <bool>true</bool>
@@ -830,10 +830,10 @@
                <enum>Qt::CustomContextMenu</enum>
               </property>
               <property name="toolTip">
-               <string>Favorite games</string>
+               <string>Favorite machines</string>
               </property>
               <property name="statusTip">
-               <string>Favorite games</string>
+               <string>Favorite machines</string>
               </property>
              </widget>
             </item>
@@ -860,10 +860,10 @@
                <enum>Qt::CustomContextMenu</enum>
               </property>
               <property name="toolTip">
-               <string>Games last played</string>
+               <string>Machines last played</string>
               </property>
               <property name="statusTip">
-               <string>Games last played</string>
+               <string>Machines last played</string>
               </property>
              </widget>
             </item>
@@ -990,10 +990,10 @@
               </sizepolicy>
              </property>
              <property name="toolTip">
-              <string>Progress indicator for game list processing</string>
+              <string>Progress indicator for machine list processing</string>
              </property>
              <property name="statusTip">
-              <string>Progress indicator for game list processing</string>
+              <string>Progress indicator for machine list processing</string>
              </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -1490,10 +1490,10 @@
             </palette>
            </property>
            <property name="toolTip">
-            <string>Game status indicator</string>
+            <string>Machine status indicator</string>
            </property>
            <property name="statusTip">
-            <string>Game status indicator</string>
+            <string>Machine status indicator</string>
            </property>
            <property name="autoFillBackground">
             <bool>true</bool>
@@ -1541,7 +1541,7 @@
               <normaloff>:/data/img/info.png</normaloff>:/data/img/info.png</iconset>
             </attribute>
             <attribute name="title">
-             <string>Game &amp;info</string>
+             <string>Machine &amp;info</string>
             </attribute>
             <layout class="QGridLayout" name="gridLayoutGameInfo">
              <property name="margin">
@@ -1556,10 +1556,10 @@
                 </sizepolicy>
                </property>
                <property name="toolTip">
-                <string>Detailed game information</string>
+                <string>Detailed machine information</string>
                </property>
                <property name="statusTip">
-                <string>Detailed game information</string>
+                <string>Detailed machine information</string>
                </property>
                <property name="textInteractionFlags">
                 <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -1865,7 +1865,7 @@
              </column>
              <column>
               <property name="text">
-               <string>Game / Notifier</string>
+               <string>Machine / Notifier</string>
               </property>
              </column>
              <column>
@@ -2676,7 +2676,7 @@
    </widget>
    <widget class="QMenu" name="menuGame">
     <property name="title">
-     <string>&amp;Game</string>
+     <string>&amp;Machine</string>
     </property>
     <widget class="QMenu" name="menuView">
      <property name="title">
@@ -2945,10 +2945,10 @@
     <string>&amp;Play</string>
    </property>
    <property name="toolTip">
-    <string>Play current game</string>
+    <string>Play current machine</string>
    </property>
    <property name="statusTip">
-    <string>Play current game</string>
+    <string>Play current machine</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -3071,10 +3071,10 @@
     <string>&amp;Reload</string>
    </property>
    <property name="toolTip">
-    <string>Reload entire game list</string>
+    <string>Reload entire machine list</string>
    </property>
    <property name="statusTip">
-    <string>Reload entire game list</string>
+    <string>Reload entire machine list</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
@@ -3126,10 +3126,10 @@
     <string>To &amp;favorites</string>
    </property>
    <property name="toolTip">
-    <string>Add current game to favorites</string>
+    <string>Add current machine to favorites</string>
    </property>
    <property name="statusTip">
-    <string>Add current game to favorites</string>
+    <string>Add current machine to favorites</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+J</string>
@@ -3147,10 +3147,10 @@
     <string>Full detail</string>
    </property>
    <property name="toolTip">
-    <string>View game list with full detail</string>
+    <string>View machine list with full detail</string>
    </property>
    <property name="statusTip">
-    <string>View game list with full detail</string>
+    <string>View machine list with full detail</string>
    </property>
    <property name="shortcut">
     <string>F5</string>
@@ -3206,10 +3206,10 @@
     <string>ROM state</string>
    </property>
    <property name="toolTip">
-    <string>Check current game's ROM state</string>
+    <string>Check current machine's ROM state</string>
    </property>
    <property name="statusTip">
-    <string>Check current game's ROM state</string>
+    <string>Check current machine's ROM state</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -3230,10 +3230,10 @@
     <string>Analyse ROM</string>
    </property>
    <property name="toolTip">
-    <string>Analyse current game with ROMAlyzer</string>
+    <string>Analyse current machine with the ROMAlyzer</string>
    </property>
    <property name="statusTip">
-    <string>Analyse current game with ROMAlyzer</string>
+    <string>Analyse current machine with the ROMAlyzer</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
@@ -3669,10 +3669,10 @@
     <string>Play &amp;embedded</string>
    </property>
    <property name="toolTip">
-    <string>Play current game (embedded)</string>
+    <string>Play current machine (embedded)</string>
    </property>
    <property name="statusTip">
-    <string>Play current game (embedded)</string>
+    <string>Play current machine (embedded)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+P</string>
@@ -3708,10 +3708,10 @@
     <string>By category</string>
    </property>
    <property name="toolTip">
-    <string>View games by category</string>
+    <string>View machines by category</string>
    </property>
    <property name="statusTip">
-    <string>View games by category</string>
+    <string>View machines by category</string>
    </property>
    <property name="shortcut">
     <string>F7</string>
@@ -3729,10 +3729,10 @@
     <string>By version</string>
    </property>
    <property name="toolTip">
-    <string>View games by version they were added to the emulator</string>
+    <string>View machines by version they were added to the emulator</string>
    </property>
    <property name="statusTip">
-    <string>View games by version they were added to the emulator</string>
+    <string>View machines by version they were added to the emulator</string>
    </property>
    <property name="shortcut">
     <string>F8</string>
@@ -3813,13 +3813,13 @@
   </action>
   <action name="actionClearGamelistCache">
    <property name="text">
-    <string>Clear game list cache</string>
+    <string>Clear machine list cache</string>
    </property>
    <property name="toolTip">
-    <string>Forcedly clear (remove) the game list cache</string>
+    <string>Forcedly clear (remove) the machine list cache</string>
    </property>
    <property name="statusTip">
-    <string>Forcedly clear (remove) the game list cache</string>
+    <string>Forcedly clear (remove) the machine list cache</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -3890,10 +3890,10 @@
     <string>Play (tagged)</string>
    </property>
    <property name="toolTip">
-    <string>Play all tagged games</string>
+    <string>Play all tagged machines</string>
    </property>
    <property name="statusTip">
-    <string>Play all tagged games</string>
+    <string>Play all tagged machines</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -3908,10 +3908,10 @@
     <string>Play embedded (tagged)</string>
    </property>
    <property name="toolTip">
-    <string>Play all tagged games (embedded)</string>
+    <string>Play all tagged machines (embedded)</string>
    </property>
    <property name="statusTip">
-    <string>Play all tagged games (embedded)</string>
+    <string>Play all tagged machines (embedded)</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -3926,10 +3926,10 @@
     <string>To favorites (tagged)</string>
    </property>
    <property name="toolTip">
-    <string>Add all tagged games to favorites</string>
+    <string>Add all tagged machines to favorites</string>
    </property>
    <property name="statusTip">
-    <string>Add all tagged games to favorites</string>
+    <string>Add all tagged machines to favorites</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+J</string>
@@ -4730,10 +4730,10 @@
     <string>Rebuild ROM...</string>
    </property>
    <property name="toolTip">
-    <string>Rebuild current game with ROMAlyzer</string>
+    <string>Rebuild current machine with the ROMAlyzer</string>
    </property>
    <property name="statusTip">
-    <string>Rebuild current game with ROMAlyzer</string>
+    <string>Rebuild current machine with the ROMAlyzer</string>
    </property>
    <property name="shortcut">
     <string>F2</string>

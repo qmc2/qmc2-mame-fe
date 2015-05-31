@@ -120,12 +120,16 @@
         <translation>Emu-Info</translation>
     </message>
     <message>
+        <source>game-info</source>
+        <translation type="obsolete">Spiel-Info</translation>
+    </message>
+    <message>
         <location filename="../datinfodbmgr.cpp" line="488"/>
         <location filename="../datinfodbmgr.cpp" line="493"/>
         <location filename="../datinfodbmgr.cpp" line="500"/>
         <location filename="../datinfodbmgr.cpp" line="505"/>
-        <source>game-info</source>
-        <translation>Spiel-Info</translation>
+        <source>machine-info</source>
+        <translation>Maschinen-Info</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="513"/>
@@ -230,28 +234,51 @@
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="924"/>
-        <source>WARNING: missing &apos;$end&apos; in game info file %1</source>
-        <translation>WARNUNG: &apos;$end&apos; fehlt in Spiel Info Datei %1</translation>
+        <source>WARNING: missing &apos;$end&apos; in machine info file %1</source>
+        <translation>WARNUNG: &apos;$end&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="927"/>
-        <source>WARNING: missing &apos;$bio&apos; in game info file %1</source>
-        <translation>WARNUNG: &apos;$bio&apos; fehlt in Spiel Info Datei %1</translation>
+        <source>WARNING: missing &apos;$bio&apos; in machine info file %1</source>
+        <translation>WARNUNG: &apos;$bio&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="930"/>
-        <source>WARNING: missing &apos;$info&apos; in game info file %1</source>
-        <translation>WARNUNG: &apos;$info&apos; fehlt in Spiel Info Datei %1</translation>
+        <source>WARNING: missing &apos;$info&apos; in machine info file %1</source>
+        <translation>WARNUNG: &apos;$info&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="939"/>
-        <source>WARNING: can&apos;t open game info file %1</source>
-        <translation>WARNUNG: kann Spiel Info Datei &apos;%1&apos; nicht öffnen</translation>
+        <source>WARNING: can&apos;t open machine info file %1</source>
+        <translation>WARNUNG: kann Maschinen Info Datei &apos;%1&apos; nicht öffnen</translation>
     </message>
     <message numerus="yes">
         <location filename="../datinfodbmgr.cpp" line="943"/>
-        <source>%n game info record(s) imported</source>
+        <source>%n machine info record(s) imported</source>
         <translation>
+            <numerusform>%n Maschinen Info Datensatz importiert</numerusform>
+            <numerusform>%n Maschinen Info Datensätze importiert</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>WARNING: missing &apos;$end&apos; in game info file %1</source>
+        <translation type="obsolete">WARNUNG: &apos;$end&apos; fehlt in Spiel Info Datei %1</translation>
+    </message>
+    <message>
+        <source>WARNING: missing &apos;$bio&apos; in game info file %1</source>
+        <translation type="obsolete">WARNUNG: &apos;$bio&apos; fehlt in Spiel Info Datei %1</translation>
+    </message>
+    <message>
+        <source>WARNING: missing &apos;$info&apos; in game info file %1</source>
+        <translation type="obsolete">WARNUNG: &apos;$info&apos; fehlt in Spiel Info Datei %1</translation>
+    </message>
+    <message>
+        <source>WARNING: can&apos;t open game info file %1</source>
+        <translation type="obsolete">WARNUNG: kann Spiel Info Datei &apos;%1&apos; nicht öffnen</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n game info record(s) imported</source>
+        <translation type="obsolete">
             <numerusform>%n Spiel Info Datensatz importiert</numerusform>
             <numerusform>%n Spiel Info Datensätze importiert</numerusform>
         </translation>
@@ -680,9 +707,8 @@
         <translation>[Kontext] Auswählen / Setzen / Umschalten von Details / Emulation starten</translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="86"/>
         <source>[context] Abort game launch / Hide preferences</source>
-        <translation>[Kontext] Spielstart abbrechen / Vorgaben verstecken</translation>
+        <translation type="obsolete">[Kontext] Spielstart abbrechen / Vorgaben verstecken</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="87"/>
@@ -740,6 +766,16 @@
         <location filename="../keysequences.h" line="47"/>
         <source>[global] Start emulation</source>
         <translation>[Global] Emulation starten</translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="50"/>
+        <source>[global] Flip cabinet / machine-card</source>
+        <translation>[Global] Gehäuse / Maschinen-Karte umdrehen</translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="86"/>
+        <source>[context] Abort machine launch / Hide preferences</source>
+        <translation>[Kontext] Maschinenstart abbrechen / Vorgaben verstecken</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="101"/>
@@ -802,9 +838,8 @@
         <translation>[Global] Menüleiste ein-/auschalten</translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="50"/>
         <source>[global] Flip cabinet / game-card</source>
-        <translation>[Global] Gehäuse / Spiel-Karte umdrehen</translation>
+        <translation type="obsolete">[Global] Gehäuse / Spiel-Karte umdrehen</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="95"/>
@@ -1284,8 +1319,17 @@ QMC2 Arcade neu starten!</translation>
         <location filename="../tweakedqmlappviewer.cpp" line="422"/>
         <location filename="../tweakedqmlappviewer.cpp" line="424"/>
         <location filename="../tweakedqmlappviewer.cpp" line="433"/>
+        <source>machine list</source>
+        <translation>Maschinenliste</translation>
+    </message>
+    <message>
+        <location filename="../tweakedqmlappviewer.cpp" line="438"/>
+        <source>machine</source>
+        <translation>Maschine</translation>
+    </message>
+    <message>
         <source>game list</source>
-        <translation>Spieleliste</translation>
+        <translation type="obsolete">Spieleliste</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="381"/>
@@ -1331,9 +1375,8 @@ QMC2 Arcade neu starten!</translation>
         <translation>Starte Emulator #%1 für %2 mit der ID &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="438"/>
         <source>game</source>
-        <translation>Spiel</translation>
+        <translation type="obsolete">Spiel</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="462"/>

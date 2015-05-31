@@ -390,7 +390,7 @@ QString &ProcessManager::exitCodeString(int exitCode, bool textOnly)
 		case QMC2_MAME_ERROR_MISSING_FILES: exitCodeText = tr("missing files"); break;
 		case QMC2_MAME_ERROR_FATALERROR: exitCodeText = tr("fatal error"); break;
 		case QMC2_MAME_ERROR_DEVICE: exitCodeText = tr("device initialization error"); break; // MESS-specific
-		case QMC2_MAME_ERROR_NO_SUCH_GAME: exitCodeText = tr("game doesn't exist"); break;
+		case QMC2_MAME_ERROR_NO_SUCH_MACHINE: exitCodeText = tr("machine doesn't exist"); break;
 		case QMC2_MAME_ERROR_INVALID_CONFIG: exitCodeText = tr("invalid configuration"); break;
 		case QMC2_MAME_ERROR_IDENT_NONROMS: exitCodeText = tr("identified all non-ROM files"); break;
 		case QMC2_MAME_ERROR_IDENT_PARTIAL: exitCodeText = tr("identified some files but not all"); break;

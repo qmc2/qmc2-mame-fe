@@ -410,7 +410,7 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
 	lineEditSearch = NULL;
 	if ( !group.contains("Global") ) {
 		isGlobal = false;
-		setStatusTip(tr("Game specific emulator configuration"));
+		setStatusTip(tr("Machine specific emulator configuration"));
 	} else {
 		isGlobal = true;
 		setStatusTip(tr("Global emulator configuration"));
@@ -1618,9 +1618,9 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
 		else {
 			if ( !qmc2CurrentItem )
 				return;
-			if ( qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+			if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
 				return;
-			fileName = "/" + qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME) + ".ini";
+			fileName = "/" + qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME) + ".ini";
 		}
 		for (int i = 0; i < iniPaths.count(); i++) {
 			QString fn(fileName);
@@ -1638,7 +1638,7 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
 		}
 		QTime elapsedTime(0, 0, 0, 0);
 		miscTimer.start();
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("exporting %1 MAME configuration to %2").arg(global ? tr("global") : tr("game-specific")).arg(fileName));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("exporting %1 MAME configuration to %2").arg(global ? tr("global") : tr("machine-specific")).arg(fileName));
 		QTextStream ts(&iniFile);
 		QString sectionTitle;
 		qmc2Config->beginGroup(settingsGroup);
@@ -1686,7 +1686,7 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
 		qmc2Config->endGroup();
 		iniFile.close();
 		elapsedTime = elapsedTime.addMSecs(miscTimer.elapsed());
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (exporting %1 MAME configuration to %2, elapsed time = %3)").arg(global ? tr("global") : tr("game-specific")).arg(fileName).arg(elapsedTime.toString("mm:ss.zzz")));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (exporting %1 MAME configuration to %2, elapsed time = %3)").arg(global ? tr("global") : tr("machine-specific")).arg(fileName).arg(elapsedTime.toString("mm:ss.zzz")));
 	}
 }
 
@@ -1755,9 +1755,9 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 		else {
 			if ( !qmc2CurrentItem )
 				return;
-			if ( qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+			if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
 				return;
-			fileName = "/" + qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME) + ".ini";
+			fileName = "/" + qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME) + ".ini";
 		}
 		for (int i = 0; i < iniPaths.count(); i++) {
 			QString fn(fileName);
@@ -1775,7 +1775,7 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 		}
 		QTime elapsedTime(0, 0, 0, 0);
 		miscTimer.start();
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("importing %1 MAME configuration from %2").arg(global ? tr("global") : tr("game-specific")). arg(fileName));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("importing %1 MAME configuration from %2").arg(global ? tr("global") : tr("machine-specific")). arg(fileName));
 		QTextStream ts(&iniFile);
 
 		// read ini-file and set corresponding emulator options to their values
@@ -1870,6 +1870,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 		}
 		iniFile.close();
 		elapsedTime = elapsedTime.addMSecs(miscTimer.elapsed());
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (importing %1 MAME configuration from %2, elapsed time = %3)").arg(global ? tr("global") : tr("game-specific")).arg(fileName).arg(elapsedTime.toString("mm:ss.zzz")));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (importing %1 MAME configuration from %2, elapsed time = %3)").arg(global ? tr("global") : tr("machine-specific")).arg(fileName).arg(elapsedTime.toString("mm:ss.zzz")));
 	}
 }

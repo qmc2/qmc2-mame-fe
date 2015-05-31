@@ -1766,7 +1766,7 @@ void YouTubeVideoPlayer::on_toolButtonSuggest_clicked()
 		suggestedSearchPattern.append(" " + suggestorAppendString);
 	QTreeWidgetItem *item = qmc2GamelistItemHash[mySetID];
 	if ( item )
-		suggestedSearchPattern.replace("$MANUFACTURER$", item->text(QMC2_GAMELIST_COLUMN_MANU)).replace("$YEAR$", item->text(QMC2_GAMELIST_COLUMN_YEAR));
+		suggestedSearchPattern.replace("$MANUFACTURER$", item->text(QMC2_MACHINELIST_COLUMN_MANU)).replace("$YEAR$", item->text(QMC2_MACHINELIST_COLUMN_YEAR));
 	lineEditSearchString->setText(suggestedSearchPattern);
 }
 

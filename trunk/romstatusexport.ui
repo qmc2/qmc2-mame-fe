@@ -195,7 +195,7 @@
         </property>
         <item>
          <property name="text">
-          <string>Game description</string>
+          <string>Machine description</string>
          </property>
         </item>
         <item>
@@ -215,7 +215,7 @@
         </item>
         <item>
          <property name="text">
-          <string>Game name</string>
+          <string>Machine name</string>
          </property>
         </item>
         <item>
