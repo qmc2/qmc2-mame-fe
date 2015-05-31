@@ -132,22 +132,21 @@ Gamelist::Gamelist(QObject *parent)
 	emulatorVersion = tr("unknown");
 	mergeCategories = autoRomCheck = verifyCurrentOnly = dtdBufferReady = false;
 
-	QString imgDir = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory", "data/").toString() + "img/";
-	qmc2UnknownImageIcon.addFile(imgDir + "sphere_blue.png");
-	qmc2UnknownBIOSImageIcon.addFile(imgDir + "sphere_blue_bios.png");
-	qmc2UnknownDeviceImageIcon.addFile(imgDir + "sphere_blue_device.png");
-	qmc2CorrectImageIcon.addFile(imgDir + "sphere_green.png");
-	qmc2CorrectBIOSImageIcon.addFile(imgDir + "sphere_green_bios.png");
-	qmc2CorrectDeviceImageIcon.addFile(imgDir + "sphere_green_device.png");
-	qmc2MostlyCorrectImageIcon.addFile(imgDir + "sphere_yellowgreen.png");
-	qmc2MostlyCorrectBIOSImageIcon.addFile(imgDir + "sphere_yellowgreen_bios.png");
-	qmc2MostlyCorrectDeviceImageIcon.addFile(imgDir + "sphere_yellowgreen_device.png");
-	qmc2IncorrectImageIcon.addFile(imgDir + "sphere_red.png");
-	qmc2IncorrectBIOSImageIcon.addFile(imgDir + "sphere_red_bios.png");
-	qmc2IncorrectDeviceImageIcon.addFile(imgDir + "sphere_red_device.png");
-	qmc2NotFoundImageIcon.addFile(imgDir + "sphere_grey.png");
-	qmc2NotFoundBIOSImageIcon.addFile(imgDir + "sphere_grey_bios.png");
-	qmc2NotFoundDeviceImageIcon.addFile(imgDir + "sphere_grey_device.png");
+	qmc2UnknownImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_blue.png"));
+	qmc2UnknownBIOSImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_blue_bios.png"));
+	qmc2UnknownDeviceImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_blue_device.png"));
+	qmc2CorrectImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_green.png"));
+	qmc2CorrectBIOSImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_green_bios.png"));
+	qmc2CorrectDeviceImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_green_device.png"));
+	qmc2MostlyCorrectImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_yellowgreen.png"));
+	qmc2MostlyCorrectBIOSImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_yellowgreen_bios.png"));
+	qmc2MostlyCorrectDeviceImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_yellowgreen_device.png"));
+	qmc2IncorrectImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_red.png"));
+	qmc2IncorrectBIOSImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_red_bios.png"));
+	qmc2IncorrectDeviceImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_red_device.png"));
+	qmc2NotFoundImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_grey.png"));
+	qmc2NotFoundBIOSImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_grey_bios.png"));
+	qmc2NotFoundDeviceImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_grey_device.png"));
 
 	if ( phraseTranslatorList.isEmpty() ) {
 		phraseTranslatorList << tr("good") << tr("bad") << tr("preliminary") << tr("supported") << tr("unsupported")
