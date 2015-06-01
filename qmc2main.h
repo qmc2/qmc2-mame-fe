@@ -67,19 +67,19 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QLabel *labelEmuSelector;
 		QComboBox *comboBoxEmuSelector;
 		QMenu *menuRomStatusFilter;
-		QMenu *menuTabWidgetGamelist;
+		QMenu *menuTabWidgetMachineList;
 		QMenu *menuTabWidgetGameDetail;
 		QMenu *menuTabWidgetLogsAndEmulators;
 		QMenu *menuTabWidgetSoftwareDetail;
 		QMenu *menuHorizontalSplitter;
 		QMenu *menuVerticalSplitter;
-		QMenu *menuGamelistHeader;
+		QMenu *menuMachineListHeader;
 		QMenu *menuHierarchyHeader;
 		QMenu *menuCategoryHeader;
-		QAction *actionMenuGamelistHeaderCategory;
+		QAction *actionMenuMachineListHeaderCategory;
 		QAction *actionMenuHierarchyHeaderCategory;
 		QMenu *menuVersionHeader;
-		QAction *actionMenuGamelistHeaderVersion;
+		QAction *actionMenuMachineListHeaderVersion;
 		QAction *actionMenuHierarchyHeaderVersion;
 		QAction *actionRomStatusFilterC;
 		QAction *actionRomStatusFilterM;
@@ -219,7 +219,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_actionRecreateTemplateMap_triggered(bool checked = false);
 		void on_actionCheckTemplateMap_triggered(bool checked = false);
 		void on_actionClearROMStateCache_triggered(bool checked = false);
-		void on_actionClearGamelistCache_triggered(bool checked = false);
+		void on_actionClearMachineListCache_triggered(bool checked = false);
 		void on_actionClearXMLCache_triggered(bool checked = false);
 		void on_actionClearSlotInfoCache_triggered(bool checked = false);
 		void on_actionClearSoftwareListCache_triggered(bool checked = false);
@@ -253,13 +253,13 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_listWidgetPlayed_itemActivated(QListWidgetItem *);
 
 		// context menus
-		void on_treeWidgetGamelist_customContextMenuRequested(const QPoint &);
+		void on_treeWidgetMachineList_customContextMenuRequested(const QPoint &);
 		void on_treeWidgetHierarchy_customContextMenuRequested(const QPoint &);
 		void on_listWidgetSearch_customContextMenuRequested(const QPoint &);
 		void on_listWidgetFavorites_customContextMenuRequested(const QPoint &);
 		void on_listWidgetPlayed_customContextMenuRequested(const QPoint &);
 		void on_treeWidgetEmulators_customContextMenuRequested(const QPoint &);
-		void on_tabWidgetGamelist_customContextMenuRequested(const QPoint &);
+		void on_tabWidgetMachineList_customContextMenuRequested(const QPoint &);
 		void on_tabWidgetGameDetail_customContextMenuRequested(const QPoint &);
 		void on_tabWidgetLogsAndEmulators_customContextMenuRequested(const QPoint &);
 		void on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPoint &p);
@@ -314,11 +314,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void romStateFilterU_toggled(bool);
 
 		// tab widget position callbacks
-		void menuTabWidgetGamelist_North_activated();
-		void menuTabWidgetGamelist_South_activated();
-		void menuTabWidgetGamelist_West_activated();
-		void menuTabWidgetGamelist_East_activated();
-		void menuTabWidgetGamelist_Setup_activated();
+		void menuTabWidgetMachineList_North_activated();
+		void menuTabWidgetMachineList_South_activated();
+		void menuTabWidgetMachineList_West_activated();
+		void menuTabWidgetMachineList_East_activated();
+		void menuTabWidgetMachineList_Setup_activated();
 		void menuTabWidgetGameDetail_North_activated();
 		void menuTabWidgetGameDetail_South_activated();
 		void menuTabWidgetGameDetail_West_activated();
@@ -341,21 +341,21 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		// other
 		void on_tabWidgetGameDetail_currentChanged(int);
 		void retry_tabWidgetGameDetail_currentChanged() { on_tabWidgetGameDetail_currentChanged(retry_tabWidgetGameDetail_currentIndex); };
-		void tabWidgetGamelist_tabMoved(int, int);
+		void tabWidgetMachineList_tabMoved(int, int);
 		void tabWidgetGameDetail_tabMoved(int, int);
 		void tabWidgetLogsAndEmulators_tabMoved(int, int);
 		void tabWidgetSoftwareDetail_tabMoved(int, int);
-		void on_tabWidgetGamelist_currentChanged(int);
+		void on_tabWidgetMachineList_currentChanged(int);
 		void on_tabWidgetLogsAndEmulators_currentChanged(int);
 		void tabWidgetLogsAndEmulators_updateCurrent() { on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex()); };
 		void on_tabWidgetSoftwareDetail_currentChanged(int);
 		void tabWidgetSoftwareDetail_updateCurrent() { on_tabWidgetSoftwareDetail_currentChanged(tabWidgetSoftwareDetail->currentIndex()); };
-		void on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *, int);
-		void on_treeWidgetGamelist_itemDoubleClicked(QTreeWidgetItem *, int); 
-		void on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *);
-		void on_treeWidgetGamelist_currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
-		void on_treeWidgetGamelist_itemSelectionChanged();
-		void treeWidgetGamelist_itemSelectionChanged_delayed();
+		void on_treeWidgetMachineList_itemActivated(QTreeWidgetItem *, int);
+		void on_treeWidgetMachineList_itemDoubleClicked(QTreeWidgetItem *, int); 
+		void on_treeWidgetMachineList_itemExpanded(QTreeWidgetItem *);
+		void on_treeWidgetMachineList_currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
+		void on_treeWidgetMachineList_itemSelectionChanged();
+		void treeWidgetMachineList_itemSelectionChanged_delayed();
 		void on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *, int);
 		void on_treeWidgetHierarchy_itemDoubleClicked(QTreeWidgetItem *, int);
 		void on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
@@ -410,8 +410,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(QMC2_YOUTUBE_ENABLED)
 		void loadYouTubeVideoInfoMap();
 #endif
-		void on_treeWidgetGamelist_itemEntered(QTreeWidgetItem *, int);
-		void on_treeWidgetGamelist_itemPressed(QTreeWidgetItem *, int);
+		void on_treeWidgetMachineList_itemEntered(QTreeWidgetItem *, int);
+		void on_treeWidgetMachineList_itemPressed(QTreeWidgetItem *, int);
 		void on_treeWidgetHierarchy_itemEntered(QTreeWidgetItem *, int);
 		void on_treeWidgetHierarchy_itemPressed(QTreeWidgetItem *, int);
 		void on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *, int);
@@ -442,7 +442,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_vSplitter_splitterMoved(int, int);
 		void on_comboBoxViewSelect_currentIndexChanged(int);
 		void processEvents() { qApp->processEvents(); }
-		void treeWidgetGamelist_headerSectionClicked(int);
+		void treeWidgetMachineList_headerSectionClicked(int);
 		void treeWidgetHierarchy_headerSectionClicked(int);
 		QString &messWikiToHtml(QString &);
 		void startDownload(QWidget *, QNetworkReply *, QString saveAsName = QString(), QString savePath = QString());
@@ -472,8 +472,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void stackedWidgetSpecial_setCurrentIndex(int);
 
 		// callbacks for list view header context menu requests
-		void treeWidgetGamelistHeader_customContextMenuRequested(const QPoint &);
-		void actionGamelistHeader_triggered();
+		void treeWidgetMachineListHeader_customContextMenuRequested(const QPoint &);
+		void actionMachineListHeader_triggered();
 		void treeWidgetHierarchyHeader_customContextMenuRequested(const QPoint &);
 		void actionHierarchyHeader_triggered();
 		void treeWidgetCategoryViewHeader_customContextMenuRequested(const QPoint &);
@@ -489,8 +489,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void signalPaletteSetupRequested(QString style) { emit paletteSetupRequested(style); }
 
 		// callbacks for dynamically updated list contents (ranks and comments)
-		void treeWidgetGamelist_verticalScrollChanged(int value = -1);
-		void treeWidgetGamelist_updateRanks();
+		void treeWidgetMachineList_verticalScrollChanged(int value = -1);
+		void treeWidgetMachineList_updateRanks();
 		void treeWidgetHierarchy_verticalScrollChanged(int value = -1);
 		void treeWidgetHierarchy_updateRanks();
 		void on_treeWidgetHierarchy_itemExpanded(QTreeWidgetItem *);

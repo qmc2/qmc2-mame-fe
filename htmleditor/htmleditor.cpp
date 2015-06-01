@@ -61,7 +61,7 @@
 #include "title.h"
 #include "pcb.h"
 #include "softwarelist.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "romalyzer.h"
 #include "qmc2main.h"
 #include "ui_htmleditor.h"
@@ -94,7 +94,7 @@ extern SoftwareSnapshot *qmc2SoftwareSnapshot;
 extern SoftwareList *qmc2SoftwareList;
 extern bool qmc2UseSoftwareSnapFile;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
-extern Gamelist *qmc2Gamelist;
+extern MachineList *qmc2MachineList;
 extern MainWindow *qmc2MainWindow;
 
 HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
@@ -1225,32 +1225,32 @@ bool HtmlEditor::queryLocalXml(QString id, QString queryString, bool sort, QStri
 
 bool HtmlEditor::isBios(QString id)
 {
-	return qmc2Gamelist->isBios(id);
+	return qmc2MachineList->isBios(id);
 }
 
 bool HtmlEditor::isDevice(QString id)
 {
-	return qmc2Gamelist->isDevice(id);
+	return qmc2MachineList->isDevice(id);
 }
 
 QString HtmlEditor::romStatus(QString id, bool translated)
 {
-	return qmc2Gamelist->romStatus(id, translated);
+	return qmc2MachineList->romStatus(id, translated);
 }
 
 int HtmlEditor::rank(QString id)
 {
-	return qmc2Gamelist->rank(id);
+	return qmc2MachineList->rank(id);
 }
 
 QString HtmlEditor::comment(QString id)
 {
-	return qmc2Gamelist->comment(id);
+	return qmc2MachineList->comment(id);
 }
 
 QString HtmlEditor::systemInfo(QString id)
 {
-	QString sysInfo = qmc2Gamelist->datInfoDb()->gameInfo(id);
+	QString sysInfo = qmc2MachineList->datInfoDb()->gameInfo(id);
 	if ( sysInfo.isEmpty() )
 		sysInfo = tr("No data available");
 	else
@@ -1260,7 +1260,7 @@ QString HtmlEditor::systemInfo(QString id)
 
 QString HtmlEditor::emuInfo(QString id)
 {
-	QString emulatorInfo = qmc2Gamelist->datInfoDb()->emuInfo(id);
+	QString emulatorInfo = qmc2MachineList->datInfoDb()->emuInfo(id);
 	if ( emulatorInfo.isEmpty() )
 		emulatorInfo = tr("No data available");
 	else
@@ -1270,7 +1270,7 @@ QString HtmlEditor::emuInfo(QString id)
 
 QString HtmlEditor::softwareInfo(QString list, QString id)
 {
-	QString softInfo = qmc2Gamelist->datInfoDb()->softwareInfo(list, id);
+	QString softInfo = qmc2MachineList->datInfoDb()->softwareInfo(list, id);
 	if ( softInfo.isEmpty() )
 		softInfo = tr("No data available");
 	else

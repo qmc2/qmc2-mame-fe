@@ -16,7 +16,7 @@
 #include <algorithm> // std::sort()
 
 #include "softwarelist.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "qmc2main.h"
 #include "options.h"
 #include "iconlineedit.h"
@@ -27,7 +27,7 @@
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
-extern Gamelist *qmc2Gamelist;
+extern MachineList *qmc2MachineList;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
 extern bool qmc2UseSoftwareSnapFile;
@@ -102,7 +102,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 	oldMin = 0;
 	oldMax = 1;
-	oldFmt = qmc2MainWindow->progressBarGamelist->format();
+	oldFmt = qmc2MainWindow->progressBarMachineList->format();
 
 	comboBoxSearch->setLineEdit(new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, comboBoxSearch));
 	comboBoxSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
@@ -801,7 +801,7 @@ void SoftwareList::toggleSoftwareList()
 				newHiddenList << a->text();
 		}
 	}
-	qmc2Gamelist->userDataDb()->setHiddenLists(systemName, newHiddenList);
+	qmc2MachineList->userDataDb()->setHiddenLists(systemName, newHiddenList);
 	QTimer::singleShot(0, toolButtonReload, SLOT(animateClick()));
 }
 
@@ -815,7 +815,7 @@ void SoftwareList::showOnlyThisSoftwareList()
 				newHiddenList << a->text();
 		}
 	}
-	qmc2Gamelist->userDataDb()->setHiddenLists(systemName, newHiddenList);
+	qmc2MachineList->userDataDb()->setHiddenLists(systemName, newHiddenList);
 	QTimer::singleShot(0, toolButtonReload, SLOT(animateClick()));
 }
 
@@ -831,7 +831,7 @@ void SoftwareList::showAllExceptThisSoftwareList()
 			}
 		}
 	}
-	qmc2Gamelist->userDataDb()->setHiddenLists(systemName, newHiddenList);
+	qmc2MachineList->userDataDb()->setHiddenLists(systemName, newHiddenList);
 	QTimer::singleShot(0, toolButtonReload, SLOT(animateClick()));
 }
 
@@ -947,7 +947,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 	QMap<QString, QStringList> deviceInstanceMap;
 	softwareListDeviceName.clear();
 
-	QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(systemName).split("\n", QString::SkipEmptyParts);
+	QStringList xmlLines = qmc2MachineList->xmlDb()->xml(systemName).split("\n", QString::SkipEmptyParts);
 	QStringList *xmlData = &xmlLines;
 	QStringList dynamicXmlData;
 	if ( comboBoxDeviceConfiguration->currentIndex() > 0 ) {
@@ -1045,7 +1045,7 @@ void SoftwareList::getXmlData()
 		softwareList.clear();
 		int i = 0;
 		QString filter;
-		QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(systemName).split("\n", QString::SkipEmptyParts);
+		QStringList xmlLines = qmc2MachineList->xmlDb()->xml(systemName).split("\n", QString::SkipEmptyParts);
 		while ( !interruptLoad && i < xmlLines.count() && !xmlLines[i].contains("</machine>") ) {
 			QString line = xmlLines[i++];
 			if ( line.startsWith("<softwarelist name=\"") ) {
@@ -1189,15 +1189,15 @@ bool SoftwareList::load()
 	treeWidgetSearchResults->setSortingEnabled(false);
 	treeWidgetSearchResults->header()->setSortIndicatorShown(false);
 
-	QStringList hiddenLists = qmc2Gamelist->userDataDb()->hiddenLists(systemName);
+	QStringList hiddenLists = qmc2MachineList->userDataDb()->hiddenLists(systemName);
 
-	bool swlCacheOkay = (swlDb->swlRowCount() > 0) && (qmc2Gamelist->emulatorVersion == swlDb->emulatorVersion());
+	bool swlCacheOkay = (swlDb->swlRowCount() > 0) && (qmc2MachineList->emulatorVersion == swlDb->emulatorVersion());
 
 	if ( swlSupported && !swlCacheOkay ) {
 		isInitialLoad = true;
-		oldMin = qmc2MainWindow->progressBarGamelist->minimum();
-		oldMax = qmc2MainWindow->progressBarGamelist->maximum();
-		oldFmt = qmc2MainWindow->progressBarGamelist->format();
+		oldMin = qmc2MainWindow->progressBarMachineList->minimum();
+		oldMax = qmc2MainWindow->progressBarMachineList->maximum();
+		oldFmt = qmc2MainWindow->progressBarMachineList->format();
           	qmc2MainWindow->tabSoftwareList->setUpdatesEnabled(true);
 		labelLoadingSoftwareLists->setText(tr("Loading software-lists, please wait..."));
 		labelLoadingSoftwareLists->setVisible(true);
@@ -1207,9 +1207,9 @@ bool SoftwareList::load()
 		loadTimer.start();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML software list data and recreating cache"));
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-			qmc2MainWindow->progressBarGamelist->setFormat(tr("SWL data - %p%"));
+			qmc2MainWindow->progressBarMachineList->setFormat(tr("SWL data - %p%"));
 		else
-			qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 		swlLastLine.clear();
 		swlDb->recreateDatabase(true);
 		uncommittedSwlDbRows = 0;
@@ -1328,14 +1328,14 @@ bool SoftwareList::load()
 			softwareNames = qmc2Config->value(oldSettingsKey).toStringList();
 			qmc2Config->remove(oldSettingsKey);
 		} else
-			softwareNames = qmc2Gamelist->userDataDb()->listFavorites(systemName);
+			softwareNames = qmc2MachineList->userDataDb()->listFavorites(systemName);
 		QStringList configNames;
 		oldSettingsKey = QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName);
 		if ( qmc2Config->contains(oldSettingsKey) ) {
 			configNames = qmc2Config->value(oldSettingsKey).toStringList();
 			qmc2Config->remove(oldSettingsKey);
 		} else
-			configNames = qmc2Gamelist->userDataDb()->deviceConfigs(systemName);
+			configNames = qmc2MachineList->userDataDb()->deviceConfigs(systemName);
 
 		QStringList compatFilters = systemSoftwareFilterHash[systemName];
 		for (int i = 0; i < softwareNames.count() && !interruptLoad; i++) {
@@ -1482,7 +1482,7 @@ void SoftwareList::loadTree()
 	QHash<QString, SoftwareItem *> parentItemHash;
 	QList<QTreeWidgetItem *> itemList;
 	QList<QTreeWidgetItem *> hideList;
-	QStringList hiddenLists = qmc2Gamelist->userDataDb()->hiddenLists(systemName);
+	QStringList hiddenLists = qmc2MachineList->userDataDb()->hiddenLists(systemName);
 	foreach (QString setKey, softwareParentHash.keys()) {
 		if ( interruptLoad )
 			break;
@@ -1586,11 +1586,11 @@ bool SoftwareList::save()
 		configNames << configName;
 	}
 
-	qmc2Gamelist->userDataDb()->setListFavorites(systemName, softwareNames);
+	qmc2MachineList->userDataDb()->setListFavorites(systemName, softwareNames);
 	if ( allConfigsEmpty )
-		qmc2Gamelist->userDataDb()->setDeviceConfigs(systemName, QStringList());
+		qmc2MachineList->userDataDb()->setDeviceConfigs(systemName, QStringList());
 	else
-		qmc2Gamelist->userDataDb()->setDeviceConfigs(systemName, configNames);
+		qmc2MachineList->userDataDb()->setDeviceConfigs(systemName, configNames);
 
 	return true;
 }
@@ -1662,11 +1662,11 @@ void SoftwareList::loadStarted()
 	// we don't know how many items there are...
 	loadFinishedFlag = false;
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		qmc2MainWindow->progressBarGamelist->setFormat(tr("SWL data - %p%"));
+		qmc2MainWindow->progressBarMachineList->setFormat(tr("SWL data - %p%"));
 	else
-		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-	qmc2MainWindow->progressBarGamelist->setRange(0, 0);
-	qmc2MainWindow->progressBarGamelist->reset();
+		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+	qmc2MainWindow->progressBarMachineList->setRange(0, 0);
+	qmc2MainWindow->progressBarMachineList->reset();
 }
 
 void SoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
@@ -1683,9 +1683,9 @@ void SoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	swlDb->commitTransaction();
 	uncommittedSwlDbRows = 0;
 	loadFinishedFlag = true;
-	qmc2MainWindow->progressBarGamelist->setRange(oldMin, oldMax);
-	qmc2MainWindow->progressBarGamelist->setFormat(oldFmt);
-	qmc2MainWindow->progressBarGamelist->reset();
+	qmc2MainWindow->progressBarMachineList->setRange(oldMin, oldMax);
+	qmc2MainWindow->progressBarMachineList->setFormat(oldFmt);
+	qmc2MainWindow->progressBarMachineList->reset();
 }
 
 void SoftwareList::loadReadyReadStandardOutput()
@@ -1698,9 +1698,9 @@ void SoftwareList::loadReadyReadStandardOutput()
 	static QString setXmlBuffer;
 	static bool dtdReady = false;
 
-	if ( qmc2MainWindow->progressBarGamelist->minimum() != 0 || qmc2MainWindow->progressBarGamelist->maximum() != 0 ) {
-		qmc2MainWindow->progressBarGamelist->setRange(0, 0);
-		qmc2MainWindow->progressBarGamelist->reset();
+	if ( qmc2MainWindow->progressBarMachineList->minimum() != 0 || qmc2MainWindow->progressBarMachineList->maximum() != 0 ) {
+		qmc2MainWindow->progressBarMachineList->setRange(0, 0);
+		qmc2MainWindow->progressBarMachineList->reset();
 	}
 
 	// this makes the GUI much more responsive, but is HAS to be called before proc->readAllStandardOutput()!
@@ -1806,8 +1806,8 @@ void SoftwareList::loadError(QProcess::ProcessError processError)
 	validData = false;
 	loadFinishedFlag = true;
 
-	qmc2MainWindow->progressBarGamelist->setRange(0, 1);
-	qmc2MainWindow->progressBarGamelist->reset();
+	qmc2MainWindow->progressBarMachineList->setRange(0, 1);
+	qmc2MainWindow->progressBarMachineList->reset();
 }
 
 void SoftwareList::checkSoftwareStates()
@@ -1818,7 +1818,7 @@ void SoftwareList::checkSoftwareStates()
 	progressBar->setValue(0);
 
 	QWidget *focusWidget = qApp->focusWidget();
-	qmc2MainWindow->tabWidgetGamelist->setEnabled(false);
+	qmc2MainWindow->tabWidgetMachineList->setEnabled(false);
 	qmc2MainWindow->menuBar()->setEnabled(false);
 	qmc2MainWindow->toolbar->setEnabled(false);
 	actionCheckSoftwareStates->setEnabled(false);
@@ -1900,7 +1900,7 @@ void SoftwareList::checkSoftwareStates()
 	labelLoadingSoftwareLists->setVisible(false);
 	toolBoxSoftwareList->setVisible(true);
 
-	qmc2MainWindow->tabWidgetGamelist->setEnabled(true);
+	qmc2MainWindow->tabWidgetMachineList->setEnabled(true);
 	qmc2MainWindow->menuBar()->setEnabled(true);
 	qmc2MainWindow->toolbar->setEnabled(true);
 	actionCheckSoftwareStates->setEnabled(true);
@@ -2325,7 +2325,7 @@ void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
 void SoftwareList::on_toolButtonCompatFilterToggle_clicked(bool checked)
 {
 	QStringList compatFilters = systemSoftwareFilterHash[systemName];
-	QStringList hiddenLists = qmc2Gamelist->userDataDb()->hiddenLists(systemName);
+	QStringList hiddenLists = qmc2MachineList->userDataDb()->hiddenLists(systemName);
 	for (int count = 0; count < treeWidgetKnownSoftware->topLevelItemCount(); count++) {
 		QTreeWidgetItem *item = treeWidgetKnownSoftware->topLevelItem(count);
 		QStringList compatList = item->whatsThis(QMC2_SWLIST_COLUMN_TITLE).split(",", QString::SkipEmptyParts);
@@ -2468,7 +2468,7 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool)
 		si = selectedItems.at(0);
 
 	QStringList compatFilters = systemSoftwareFilterHash[systemName];
-	QStringList hiddenLists = qmc2Gamelist->userDataDb()->hiddenLists(systemName);
+	QStringList hiddenLists = qmc2MachineList->userDataDb()->hiddenLists(systemName);
 	if ( si ) {
 		if ( viewTree() ) {
 			while ( si->whatsThis(QMC2_SWLIST_COLUMN_NAME).isEmpty() && si->parent() )
@@ -3056,7 +3056,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *ite
 
 void SoftwareList::on_treeWidgetKnownSoftware_itemDoubleClicked(QTreeWidgetItem *item, int)
 {
-	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() ) {
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/DoubleClickActivation").toBool() ) {
 		qmc2IgnoreItemActivation = true;
 		item->setExpanded(!item->isExpanded());
 	}
@@ -3083,7 +3083,7 @@ void SoftwareList::on_treeWidgetKnownSoftwareTree_itemActivated(QTreeWidgetItem 
 
 void SoftwareList::on_treeWidgetKnownSoftwareTree_itemDoubleClicked(QTreeWidgetItem *item, int)
 {
-	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() ) {
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/DoubleClickActivation").toBool() ) {
 		qmc2IgnoreItemActivation = true;
 		item->setExpanded(!item->isExpanded());
 	}
@@ -3110,7 +3110,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *
 
 void SoftwareList::on_treeWidgetFavoriteSoftware_itemDoubleClicked(QTreeWidgetItem *item, int)
 {
-	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() ) {
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/DoubleClickActivation").toBool() ) {
 		qmc2IgnoreItemActivation = true;
 		item->setExpanded(!item->isExpanded());
 	}
@@ -3137,7 +3137,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *ite
 
 void SoftwareList::on_treeWidgetSearchResults_itemDoubleClicked(QTreeWidgetItem *item, int)
 {
-	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() ) {
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/DoubleClickActivation").toBool() ) {
 		qmc2IgnoreItemActivation = true;
 		item->setExpanded(!item->isExpanded());
 	}
@@ -3231,7 +3231,7 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
         QList<SoftwareItem *> itemList;
 	QList<SoftwareItem *> hideList;
 	QStringList compatFilters = systemSoftwareFilterHash[systemName];
-	QStringList hiddenLists = qmc2Gamelist->userDataDb()->hiddenLists(systemName);
+	QStringList hiddenLists = qmc2MachineList->userDataDb()->hiddenLists(systemName);
 	for (int i = 0; i < treeWidgetKnownSoftware->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
 		QTreeWidgetItem *item = treeWidgetKnownSoftware->topLevelItem(i);
 		QString itemText = item->text(QMC2_SWLIST_COLUMN_TITLE);
@@ -3709,7 +3709,7 @@ void SoftwareList::loadFavoritesFromFile()
 		// import software-list favorites
 		QFile favoritesFile(filePath);
 		QStringList compatFilters = systemSoftwareFilterHash[systemName];
-		QStringList hiddenLists = qmc2Gamelist->userDataDb()->hiddenLists(systemName);
+		QStringList hiddenLists = qmc2MachineList->userDataDb()->hiddenLists(systemName);
 		if ( favoritesFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading software-favorites for '%1' from '%2'").arg(systemName).arg(filePath));
 			QTextStream ts(&favoritesFile);

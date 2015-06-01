@@ -10,14 +10,14 @@
 #include "macros.h"
 #include "qmc2main.h"
 #include "settings.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "userdatadbmgr.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
-extern Gamelist *qmc2Gamelist;
-extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+extern MachineList *qmc2MachineList;
+extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
@@ -380,7 +380,7 @@ void UserDataDatabaseManager::cleanUp()
 	while ( row > 0 ) {
 		QString idOfCurrentRow = id(row);
 		if ( !idOfCurrentRow.isEmpty() ) {
-			if ( !qmc2Gamelist->xmlDb()->exists(idOfCurrentRow) ) {
+			if ( !qmc2MachineList->xmlDb()->exists(idOfCurrentRow) ) {
 				QSqlQuery query(m_db);
 				query.prepare(QString("DELETE FROM %1 WHERE rowid=:row").arg(m_tableBasename));
 				query.bindValue(":row", row);
@@ -520,7 +520,7 @@ void UserDataDatabaseManager::fillUpRankCache()
 			int rankInt = rank(row);
 			m_rankCache[idString] = rankInt;
 			QString rankString = QString::number(rankInt);
-			QTreeWidgetItem *item = qmc2GamelistItemHash[idString];
+			QTreeWidgetItem *item = qmc2MachineListItemHash[idString];
 			if ( item )
 				item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
 			item = qmc2HierarchyItemHash[idString];

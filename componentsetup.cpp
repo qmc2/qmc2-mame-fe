@@ -48,31 +48,31 @@ ComponentSetup::~ComponentSetup()
 ComponentInfo *ComponentSetup::initComponent1()
 {
 	ComponentInfo *componentInfo = new ComponentInfo();
-	componentInfo->setShortTitle(QMC2_MACHINELIST_INDEX, tr("&Machine list"));
+	componentInfo->setShortTitle(QMC2_MACHINELIST_INDEX, tr("Machine &list"));
 	componentInfo->setLongTitle(QMC2_MACHINELIST_INDEX, tr("Machine list"));
 	componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
-	componentInfo->setWidget(QMC2_MACHINELIST_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_MACHINELIST_INDEX));
+	componentInfo->setWidget(QMC2_MACHINELIST_INDEX, qmc2MainWindow->tabWidgetMachineList->widget(QMC2_MACHINELIST_INDEX));
 	componentInfo->setShortTitle(QMC2_SEARCH_INDEX, tr("&Search"));
 	componentInfo->setLongTitle(QMC2_SEARCH_INDEX, tr("Search systems"));
 	componentInfo->setIcon(QMC2_SEARCH_INDEX, QIcon(QString::fromUtf8(":/data/img/hint.png")));
-	componentInfo->setWidget(QMC2_SEARCH_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_SEARCH_INDEX));
+	componentInfo->setWidget(QMC2_SEARCH_INDEX, qmc2MainWindow->tabWidgetMachineList->widget(QMC2_SEARCH_INDEX));
 	componentInfo->setShortTitle(QMC2_FAVORITES_INDEX, tr("Favo&rites"));
 	componentInfo->setLongTitle(QMC2_FAVORITES_INDEX, tr("Favorite list"));
 	componentInfo->setIcon(QMC2_FAVORITES_INDEX, QIcon(QString::fromUtf8(":/data/img/favorites.png")));
-	componentInfo->setWidget(QMC2_FAVORITES_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_FAVORITES_INDEX));
+	componentInfo->setWidget(QMC2_FAVORITES_INDEX, qmc2MainWindow->tabWidgetMachineList->widget(QMC2_FAVORITES_INDEX));
 	componentInfo->setShortTitle(QMC2_PLAYED_INDEX, tr("Pl&ayed"));
 	componentInfo->setLongTitle(QMC2_PLAYED_INDEX, tr("Played list"));
 	componentInfo->setIcon(QMC2_PLAYED_INDEX, QIcon(QString::fromUtf8(":/data/img/time.png")));
-	componentInfo->setWidget(QMC2_PLAYED_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_PLAYED_INDEX));
+	componentInfo->setWidget(QMC2_PLAYED_INDEX, qmc2MainWindow->tabWidgetMachineList->widget(QMC2_PLAYED_INDEX));
 	componentInfo->setShortTitle(QMC2_FOREIGN_INDEX, tr("&Foreign emulators"));
 	componentInfo->setLongTitle(QMC2_FOREIGN_INDEX, tr("Foreign emulator list"));
 	componentInfo->setIcon(QMC2_FOREIGN_INDEX, QIcon(QString::fromUtf8(":/data/img/alien.png")));
-	componentInfo->setWidget(QMC2_FOREIGN_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_FOREIGN_INDEX));
+	componentInfo->setWidget(QMC2_FOREIGN_INDEX, qmc2MainWindow->tabWidgetMachineList->widget(QMC2_FOREIGN_INDEX));
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	componentInfo->setShortTitle(QMC2_EMBED_INDEX, tr("Embedded emulators"));
 	componentInfo->setLongTitle(QMC2_EMBED_INDEX, tr("Embedded emulators"));
 	componentInfo->setIcon(QMC2_EMBED_INDEX, QIcon(QString::fromUtf8(":/data/img/embed.png")));
-	componentInfo->setWidget(QMC2_EMBED_INDEX, qmc2MainWindow->tabWidgetGamelist->widget(QMC2_EMBED_INDEX));
+	componentInfo->setWidget(QMC2_EMBED_INDEX, qmc2MainWindow->tabWidgetMachineList->widget(QMC2_EMBED_INDEX));
 	componentInfo->availableFeatureList() << QMC2_MACHINELIST_INDEX << QMC2_SEARCH_INDEX << QMC2_FAVORITES_INDEX << QMC2_PLAYED_INDEX << QMC2_FOREIGN_INDEX << QMC2_EMBED_INDEX;
 #else
 	componentInfo->availableFeatureList() << QMC2_MACHINELIST_INDEX << QMC2_SEARCH_INDEX << QMC2_FAVORITES_INDEX << QMC2_PLAYED_INDEX << QMC2_FOREIGN_INDEX;
@@ -89,7 +89,7 @@ ComponentInfo *ComponentSetup::initComponent1()
 				componentInfo->activeFeatureList() << index;
 		}
 	}
-	m_componentToWidgetHash[components().last()] = qmc2MainWindow->tabWidgetGamelist;
+	m_componentToWidgetHash[components().last()] = qmc2MainWindow->tabWidgetMachineList;
 	m_componentToSplitterHash[components().last()] = qmc2MainWindow->hSplitter;
 	m_componentToSplitterIndexHash[components().last()] = 0;
 	return componentInfo;
@@ -241,17 +241,17 @@ ComponentInfo *ComponentSetup::initComponent4()
 {
 	ComponentInfo *componentInfo = new ComponentInfo();
 
-	componentInfo->setShortTitle(QMC2_SWINFO_SNAPSHOT_PAGE, tr("Snapsh&ot"));
+	componentInfo->setShortTitle(QMC2_SWINFO_SNAPSHOT_PAGE, tr("Snapshot"));
 	componentInfo->setLongTitle(QMC2_SWINFO_SNAPSHOT_PAGE, tr("Software snapshot"));
 	componentInfo->setIcon(QMC2_SWINFO_SNAPSHOT_PAGE, QIcon(QString::fromUtf8(":/data/img/camera.png")));
 	componentInfo->setWidget(QMC2_SWINFO_SNAPSHOT_PAGE, qmc2MainWindow->tabWidgetSoftwareDetail->widget(QMC2_SWINFO_SNAPSHOT_PAGE));
 
-	componentInfo->setShortTitle(QMC2_SWINFO_PROJECTMESS_PAGE, tr("Project&MESS"));
+	componentInfo->setShortTitle(QMC2_SWINFO_PROJECTMESS_PAGE, tr("ProjectMESS"));
 	componentInfo->setLongTitle(QMC2_SWINFO_PROJECTMESS_PAGE, tr("ProjectMESS web lookup"));
 	componentInfo->setIcon(QMC2_SWINFO_PROJECTMESS_PAGE, QIcon(QString::fromUtf8(":/data/img/project_mess.png")));
 	componentInfo->setWidget(QMC2_SWINFO_PROJECTMESS_PAGE, qmc2MainWindow->tabWidgetSoftwareDetail->widget(QMC2_SWINFO_PROJECTMESS_PAGE));
 
-	componentInfo->setShortTitle(QMC2_SWINFO_NOTES_PAGE, tr("&Notes"));
+	componentInfo->setShortTitle(QMC2_SWINFO_NOTES_PAGE, tr("Notes"));
 	componentInfo->setLongTitle(QMC2_SWINFO_NOTES_PAGE, tr("Software notes"));
 	componentInfo->setIcon(QMC2_SWINFO_NOTES_PAGE, QIcon(QString::fromUtf8(":/data/img/notes.png")));
 	componentInfo->setWidget(QMC2_SWINFO_NOTES_PAGE, qmc2MainWindow->tabWidgetSoftwareDetail->widget(QMC2_SWINFO_NOTES_PAGE));

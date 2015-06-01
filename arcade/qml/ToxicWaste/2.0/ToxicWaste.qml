@@ -34,7 +34,7 @@ Rectangle {
     property real overlayOffsetY: 0
     property real overlayOpacity: 1
     property real backgroundOpacity: 0.7
-    property real gameListOpacity: 1
+    property real machineListOpacity: 1
     property bool autoStopAnimations: true
 
     // delayed init
@@ -399,7 +399,7 @@ Rectangle {
                             fontSize: 12 * ToxicWaste.scaleFactorX()
                             fontColor: "white"
                             arrowIcon: "images/down_arrow_white.png"
-                            displayText: viewer.requestInfo(gameListModel[gamelistView.currentIndex].id, "emuinfo");
+                            displayText: viewer.requestInfo(machineListModel[gamelistView.currentIndex].id, "emuinfo");
                         }
                     }
                     Rectangle {
@@ -420,7 +420,7 @@ Rectangle {
                             fontSize: 12 * ToxicWaste.scaleFactorX()
                             fontColor: "white"
                             arrowIcon: "images/down_arrow_white.png"
-                            displayText: viewer.requestInfo(gameListModel[gamelistView.currentIndex].id, "gameinfo");
+                            displayText: viewer.requestInfo(machineListModel[gamelistView.currentIndex].id, "gameinfo");
                         }
                     }
                 }
@@ -535,7 +535,7 @@ Rectangle {
                 onEntered: parent.opacity = 1.0
                 onExited: parent.opacity = 0.8
                 onClicked: {
-                    viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
+                    viewer.launchEmulator(machineListModel[gamelistView.currentIndex].id);
                     searchTextInput.focus = false;
                 }
             }
@@ -543,7 +543,7 @@ Rectangle {
     }
     ListView {
         id: gamelistView
-        opacity: toxicWasteMain.gameListOpacity
+        opacity: toxicWasteMain.machineListOpacity
         scale: ToxicWaste.scaleFactorX()
         flickDeceleration: 3500
         maximumFlickVelocity: 4000
@@ -650,7 +650,7 @@ Rectangle {
                         ToxicWaste.itemClicked(gamelistItemText, gamelistItemBackground, gamelistItemIcon);
                         searchTextInput.focus = false;
                         launchButton.opacity = 1.0;
-                        viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
+                        viewer.launchEmulator(machineListModel[gamelistView.currentIndex].id);
                         launchButtonFlashTimer.start();
                     }
                     onClicked: {
@@ -661,7 +661,7 @@ Rectangle {
                 }
             }
         }
-        model: gameListModel
+        model: machineListModel
         function firstVisibleItem() { return indexAt(contentX + 10, contentY + 10); }
         function lastVisibleItem() { return indexAt(contentX + width - 10, contentY + height - 10); }
         function itemsPerPage() { return Math.floor(height / 82); }
@@ -682,17 +682,17 @@ Rectangle {
                 event.accepted = true;
                 break;
             case Qt.Key_PageDown:
-                if ( currentIndex + itemsPerPage() < gameListModelCount - 1 ) {
+                if ( currentIndex + itemsPerPage() < machineListModelCount - 1 ) {
                     decrementCurrentIndex();
                     contentY = contentY + height - 70;
-                    if ( currentIndex < gameListModelCount - 1 )
+                    if ( currentIndex < machineListModelCount - 1 )
                         incrementCurrentIndex();
                     else {
                         contentY = contentHeight - 82;
-                        currentIndex = gameListModelCount - 1;
+                        currentIndex = machineListModelCount - 1;
                     }
                 } else
-                    currentIndex = gameListModelCount - 1;
+                    currentIndex = machineListModelCount - 1;
                 event.accepted = true;
                 break;
             case Qt.Key_End:
@@ -707,7 +707,7 @@ Rectangle {
             case Qt.Key_Return:
                 if ( !searchTextInput.focus && !(event.modifiers & Qt.AltModifier) && !toxicWasteMain.ignoreLaunch ) {
                     launchButton.opacity = 1.0;
-                    viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
+                    viewer.launchEmulator(machineListModel[gamelistView.currentIndex].id);
                     launchButtonFlashTimer.start();
                     event.accepted = true;
                 }
@@ -1152,7 +1152,7 @@ Rectangle {
                     onValueChanged: toxicWasteMain.backgroundOpacity = value
                 }
                 Slider {
-                    id: gameListOpacitySlider
+                    id: machineListOpacitySlider
                     anchors.top: backgroundOpacitySlider.bottom
                     anchors.left: parent.left
                     anchors.right: parent.right
@@ -1160,9 +1160,9 @@ Rectangle {
                     sliderText: qsTr("Game list opacity")
                     minimum: 0
                     maximum: 1
-                    value: toxicWasteMain.gameListOpacity
+                    value: toxicWasteMain.machineListOpacity
                     defaultValue: 1
-                    onValueChanged: toxicWasteMain.gameListOpacity = value
+                    onValueChanged: toxicWasteMain.machineListOpacity = value
                 }
             }
             Rectangle {
@@ -1690,7 +1690,7 @@ Rectangle {
                 case Qt.Key_P:
                     if ( !toxicWasteMain.ignoreLaunch ) {
                         launchButton.opacity = 1.0;
-                        viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
+                        viewer.launchEmulator(machineListModel[gamelistView.currentIndex].id);
                         launchButtonFlashTimer.start();
                     }
                     event.accepted = true;

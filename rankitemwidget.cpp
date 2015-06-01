@@ -5,13 +5,13 @@
 #include <QStyle>
 
 #include "rankitemwidget.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "settings.h"
 #include "macros.h"
 
-extern Gamelist *qmc2Gamelist;
+extern MachineList *qmc2MachineList;
 extern Settings *qmc2Config;
-extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
@@ -113,7 +113,7 @@ void RankItemWidget::setRankComplete(int rank)
 {
 	if ( rank != m_rank ) {
 		setRank(rank);
-		qmc2Gamelist->userDataDb()->setRank(m_item->text(QMC2_MACHINELIST_COLUMN_NAME), m_rank);
+		qmc2MachineList->userDataDb()->setRank(m_item->text(QMC2_MACHINELIST_COLUMN_NAME), m_rank);
 		updateForeignItems();
 	}
 }
@@ -134,7 +134,7 @@ void RankItemWidget::decreaseRank()
 
 void RankItemWidget::updateRankFromDb()
 {
-	setRank(qmc2Gamelist->userDataDb()->rank(m_item->text(QMC2_MACHINELIST_COLUMN_NAME)));
+	setRank(qmc2MachineList->userDataDb()->rank(m_item->text(QMC2_MACHINELIST_COLUMN_NAME)));
 }
 
 void RankItemWidget::updateRankFromMousePos(int mouseX)
@@ -165,7 +165,7 @@ void RankItemWidget::updateForeignItems()
 {
 	RankItemWidget *foreignRiw;
 	QString myId = m_item->text(QMC2_MACHINELIST_COLUMN_NAME);
-	QTreeWidgetItem *item = qmc2GamelistItemHash[myId];
+	QTreeWidgetItem *item = qmc2MachineListItemHash[myId];
 	if ( item && item != m_item ) {
 		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
 		if ( foreignRiw )

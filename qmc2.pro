@@ -73,7 +73,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			toolexec.cpp \
 			itemselect.cpp \
 			romalyzer.cpp \
-			gamelist.cpp \
+			machinelist.cpp \
 			procmgr.cpp \
 			imagewidget.cpp \
 			preview.cpp \
@@ -191,7 +191,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			toolexec.h \
 			itemselect.h \
 			romalyzer.h \
-			gamelist.h \
+			machinelist.h \
 			procmgr.h \
 			imagewidget.h \
 			preview.h \

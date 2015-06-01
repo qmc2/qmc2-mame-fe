@@ -17,13 +17,13 @@
 #include "unzip.h"
 #include "zip.h"
 #include "sevenzipfile.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "macros.h"
 #include "softwarelist.h"
 
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
-extern Gamelist *qmc2Gamelist;
+extern MachineList *qmc2MachineList;
 extern SoftwareList *qmc2SoftwareList;
 
 QHash<QString, QString> CollectionRebuilderThread::m_replacementHash;
@@ -1640,7 +1640,7 @@ bool CollectionRebuilderThread::evaluateFilters(QString &setKey)
 		default:
 			set = setKey;
 			if ( doFilterState ) {
-				switch ( qmc2Gamelist->romState(set) ) {
+				switch ( qmc2MachineList->romState(set) ) {
 					case 'C':
 						if ( !includeStateC )
 							return false;

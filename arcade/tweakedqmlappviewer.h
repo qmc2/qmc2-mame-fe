@@ -105,7 +105,7 @@ public slots:
     void switchToWindowed(bool initially = false);
     QString romStateText(int);
     int romStateCharToInt(char);
-    void loadGamelist();
+    void loadMachineList();
     void launchEmulator(QString);
     QString loadImage(const QString &);
     QString requestInfo(const QString&, const QString&);

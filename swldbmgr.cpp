@@ -6,14 +6,14 @@
 
 #include "macros.h"
 #include "qmc2main.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "settings.h"
 #include "swldbmgr.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
-extern Gamelist *qmc2Gamelist;
+extern MachineList *qmc2MachineList;
 
 SoftwareListXmlDatabaseManager::SoftwareListXmlDatabaseManager(QObject *parent)
 	: QObject(parent)
@@ -521,7 +521,7 @@ void SoftwareListXmlDatabaseManager::recreateDatabase(bool quiet)
 	}
 	setQmc2Version(XSTR(QMC2_VERSION));
 	setSwlCacheVersion(QMC2_SWLCACHE_VERSION);
-	setEmulatorVersion(qmc2Gamelist->emulatorVersion);
+	setEmulatorVersion(qmc2MachineList->emulatorVersion);
 	if ( !quiet )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("software-list XML cache database '%1' initialized").arg(m_db.databaseName()));
 }

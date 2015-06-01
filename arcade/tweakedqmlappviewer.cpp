@@ -23,7 +23,7 @@
 
 #include "tweakedqmlappviewer.h"
 #include "arcadesettings.h"
-#include "gameobject.h"
+#include "machineobject.h"
 #include "consolewindow.h"
 #include "macros.h"
 #if QT_VERSION < 0x050000
@@ -127,12 +127,12 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
     // theme-specific initialization
     switch ( themeIndex() ) {
     case QMC2_ARCADE_THEME_TOXICWASTE:
-        loadGamelist();
+        loadMachineList();
         break;
     case QMC2_ARCADE_THEME_DARKONE:
         // propagate empty gameList to QML
-        rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
-        rootContext()->setContextProperty("gameListModelCount", gameList.count());
+        rootContext()->setContextProperty("machineListModel", QVariant::fromValue(gameList));
+        rootContext()->setContextProperty("machineListModelCount", gameList.count());
         break;
     }
 
@@ -361,7 +361,7 @@ int TweakedQmlApplicationViewer::romStateCharToInt(char status)
     }
 }
 
-void TweakedQmlApplicationViewer::loadGamelist()
+void TweakedQmlApplicationViewer::loadMachineList()
 {
     QString gameListCachePath;
     gameList.clear();
@@ -412,7 +412,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
                 if ( words[QMC2_ARCADE_GLC_DEVICE] != "1" ) {
                     QString gameId = words[QMC2_ARCADE_GLC_ID];
                     QString parentId = words[QMC2_ARCADE_GLC_PARENT];
-                    gameList.append(new GameObject(gameId, parentId, words[QMC2_ARCADE_GLC_DESCRIPTION], romStateCharToInt(rscHash[gameId])));
+                    gameList.append(new MachineObject(gameId, parentId, words[QMC2_ARCADE_GLC_DESCRIPTION], romStateCharToInt(rscHash[gameId])));
                     m_parentHash.insert(gameId, parentId);
                 }
                 if ( lineCounter++ % QMC2_ARCADE_LOAD_RESPONSE == 0 )
@@ -424,11 +424,11 @@ void TweakedQmlApplicationViewer::loadGamelist()
         QMC2_ARCADE_LOG_STR(tr("FATAL: The %1 cache file '%2' doesn't exist, please run main front-end executable to create it").arg(tr("machine list")).arg(QDir::toNativeSeparators(gameListCachePath)));
 
     if ( globalConfig->sortByName() )
-        std::sort(gameList.begin(), gameList.end(), GameObject::lessThan);
+        std::sort(gameList.begin(), gameList.end(), MachineObject::lessThan);
 
     // propagate gameList to QML
-    rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
-    rootContext()->setContextProperty("gameListModelCount", gameList.count());
+    rootContext()->setContextProperty("machineListModel", QVariant::fromValue(gameList));
+    rootContext()->setContextProperty("machineListModelCount", gameList.count());
 
     QMC2_ARCADE_LOG_STR(QString(tr("Done (loading %1 from '%2')").arg(tr("machine list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())).arg(QDir::toNativeSeparators(gameListCachePath)));
 }
@@ -498,8 +498,8 @@ int TweakedQmlApplicationViewer::findIndex(QString pattern, int startIndex)
     QRegExp regexp(pattern, Qt::CaseInsensitive, QRegExp::RegExp);
 
     for (int i = startIndex + 1; i < gameList.count() && !indexFound; i++) {
-        QString description = ((GameObject *)gameList[i])->description();
-        QString id = ((GameObject *)gameList[i])->id();
+        QString description = ((MachineObject *)gameList[i])->description();
+        QString id = ((MachineObject *)gameList[i])->id();
         if ( description.indexOf(wildcard, 0) >= 0 || id.indexOf(wildcard, 0) >= 0 ) {
             foundIndex = i;
             indexFound = true;
@@ -510,8 +510,8 @@ int TweakedQmlApplicationViewer::findIndex(QString pattern, int startIndex)
     }
 
     for (int i = 0; i < startIndex && !indexFound; i++) {
-        QString description = ((GameObject *)gameList[i])->description();
-        QString id = ((GameObject *)gameList[i])->id();
+        QString description = ((MachineObject *)gameList[i])->description();
+        QString id = ((MachineObject *)gameList[i])->id();
         if ( description.indexOf(wildcard, 0) >= 0 || id.indexOf(wildcard, 0) >= 0 ) {
             foundIndex = i;
             indexFound = true;

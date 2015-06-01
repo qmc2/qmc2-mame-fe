@@ -32,7 +32,7 @@
 #include "title.h"
 #include "pcb.h"
 #include "qmc2main.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "imagechecker.h"
 #include "macros.h"
 #include "unzip.h"
@@ -108,7 +108,7 @@ extern bool qmc2ShowGameName;
 extern bool qmc2ShowGameNameOnlyWhenRequired;
 extern bool qmc2StatesTogglesEnabled;
 extern bool qmc2VariantSwitchReady;
-extern int qmc2GamelistResponsiveness;
+extern int qmc2MachineListResponsiveness;
 extern int qmc2UpdateDelay;
 extern QTranslator *qmc2Translator;
 extern QTranslator *qmc2QtTranslator;
@@ -122,7 +122,7 @@ extern Marquee *qmc2Marquee;
 extern Title *qmc2Title;
 extern PCB *qmc2PCB;
 extern SoftwareSnap *qmc2SoftwareSnap;
-extern Gamelist *qmc2Gamelist;
+extern MachineList *qmc2MachineList;
 extern ImageChecker *qmc2ImageChecker;
 extern ROMAlyzer *qmc2SystemROMAlyzer;
 extern ROMAlyzer *qmc2SoftwareROMAlyzer;
@@ -163,7 +163,7 @@ extern HtmlEditor *qmc2SystemNotesEditor;
 extern HtmlEditor *qmc2SoftwareNotesEditor;
 extern QSplashScreen *qmc2SplashScreen;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
-extern QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
+extern QList<QTreeWidgetItem *> qmc2ExpandedMachineListItems;
 extern bool qmc2SortingActive;
 extern SampleChecker *qmc2SampleChecker;
 extern NetworkAccessManager *qmc2NetworkAccessManager;
@@ -426,7 +426,7 @@ void Options::apply()
 #endif
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-	if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() ) {
+	if ( qmc2MainWindow->tabWidgetMachineList->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() ) {
 		qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 		qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
 	}
@@ -465,7 +465,7 @@ void Options::apply()
 	lineEditLogFont->setFont(logFont);
 	((IconLineEdit *)qmc2MainWindow->comboBoxSearch->lineEdit())->setIconSize(iconSizeMiddle);
 	((IconLineEdit *)qmc2MainWindow->comboBoxToolbarSearch->lineEdit())->setIconSize(iconSizeMiddle);
-	qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSizeMiddle);
+	qmc2MainWindow->treeWidgetMachineList->setIconSize(iconSizeMiddle);
 	qmc2MainWindow->treeWidgetHierarchy->setIconSize(iconSizeMiddle);
 	qmc2MainWindow->treeWidgetForeignIDs->setIconSize(iconSizeMiddle);
 	qmc2MainWindow->treeWidgetEmulators->setIconSize(iconSizeMiddle);
@@ -482,7 +482,7 @@ void Options::apply()
 	toolButtonBrowseFrontendLogFile->setIconSize(iconSize);
 	toolButtonBrowseFavoritesFile->setIconSize(iconSize);
 	toolButtonBrowseHistoryFile->setIconSize(iconSize);
-	toolButtonBrowseGamelistCacheFile->setIconSize(iconSize);
+	toolButtonBrowseMachineListCacheFile->setIconSize(iconSize);
 	toolButtonBrowseROMStateCacheFile->setIconSize(iconSize);
 	toolButtonBrowseSlotInfoCacheFile->setIconSize(iconSize);
 	toolButtonBrowseDataDirectory->setIconSize(iconSize);
@@ -701,7 +701,7 @@ void Options::apply()
 	qmc2MainWindow->pushButtonSelectRomFilter->setIconSize(iconSize);
 	qmc2MainWindow->comboBoxViewSelect->setIconSize(iconSize);
 
-	QTabBar *tabBar = qmc2MainWindow->tabWidgetGamelist->findChild<QTabBar *>();
+	QTabBar *tabBar = qmc2MainWindow->tabWidgetMachineList->findChild<QTabBar *>();
 	if ( tabBar )
 		tabBar->setIconSize(iconSizeMiddle);
 	tabBar = qmc2MainWindow->tabWidgetGameDetail->findChild<QTabBar *>();
@@ -919,7 +919,7 @@ void Options::on_pushButtonApply_clicked()
 	// show / hide game status indicator
 	if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
 		if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired").toBool() ) {
-			if ( qmc2MainWindow->hSplitter->sizes()[0] == 0 || qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_MACHINELIST_INDEX )
+			if ( qmc2MainWindow->hSplitter->sizes()[0] == 0 || qmc2MainWindow->tabWidgetMachineList->currentIndex() != QMC2_MACHINELIST_INDEX )
 				qmc2MainWindow->labelGameStatus->setVisible(true);
 			else
 				qmc2MainWindow->labelGameStatus->setVisible(false);
@@ -1053,34 +1053,34 @@ void Options::on_pushButtonApply_clicked()
 	}
 
 	bool catverUsed = checkBoxUseCatverIni->isChecked();
-	needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", false).toBool() != catverUsed );
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", catverUsed);
+	needReload |= (config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", false).toBool() != catverUsed );
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", catverUsed);
 	bool categoryUsed = checkBoxUseCategoryIni->isChecked();
-	needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni", false).toBool() != categoryUsed );
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni", categoryUsed);
+	needReload |= (config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni", false).toBool() != categoryUsed );
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni", categoryUsed);
 
 	qmc2CategoryInfoUsed = catverUsed | categoryUsed;
 	qmc2VersionInfoUsed = catverUsed;
 
 	if ( catverUsed || categoryUsed ) {
-		if ( !qmc2MainWindow->treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY) )
-			qmc2MainWindow->treeWidgetGamelist->showColumn(QMC2_MACHINELIST_COLUMN_CATEGORY);
+		if ( !qmc2MainWindow->treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY) )
+			qmc2MainWindow->treeWidgetMachineList->showColumn(QMC2_MACHINELIST_COLUMN_CATEGORY);
 		if ( !qmc2MainWindow->treeWidgetHierarchy->isColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY) )
 			qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_MACHINELIST_COLUMN_CATEGORY);
 		qmc2MainWindow->actionViewByCategory->setVisible(true);
 		qmc2MainWindow->actionViewByCategory->setEnabled(true);
-		qmc2MainWindow->actionMenuGamelistHeaderCategory->setVisible(true);
-		qmc2MainWindow->actionMenuGamelistHeaderCategory->setEnabled(true);
+		qmc2MainWindow->actionMenuMachineListHeaderCategory->setVisible(true);
+		qmc2MainWindow->actionMenuMachineListHeaderCategory->setEnabled(true);
 		qmc2MainWindow->actionMenuHierarchyHeaderCategory->setVisible(true);
 		qmc2MainWindow->actionMenuHierarchyHeaderCategory->setEnabled(true);
-		if ( !qmc2MainWindow->treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION) )
-			qmc2MainWindow->treeWidgetGamelist->showColumn(QMC2_MACHINELIST_COLUMN_VERSION);
+		if ( !qmc2MainWindow->treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION) )
+			qmc2MainWindow->treeWidgetMachineList->showColumn(QMC2_MACHINELIST_COLUMN_VERSION);
 		if ( !qmc2MainWindow->treeWidgetHierarchy->isColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION) )
 			qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_MACHINELIST_COLUMN_VERSION);
 		qmc2MainWindow->actionViewByVersion->setVisible(true);
 		qmc2MainWindow->actionViewByVersion->setEnabled(true);
-		qmc2MainWindow->actionMenuGamelistHeaderVersion->setVisible(true);
-		qmc2MainWindow->actionMenuGamelistHeaderVersion->setEnabled(true);
+		qmc2MainWindow->actionMenuMachineListHeaderVersion->setVisible(true);
+		qmc2MainWindow->actionMenuMachineListHeaderVersion->setEnabled(true);
 		qmc2MainWindow->actionMenuHierarchyHeaderVersion->setVisible(true);
 		qmc2MainWindow->actionMenuHierarchyHeaderVersion->setEnabled(true);
 		if ( comboBoxSortCriteria->count() - 1 < QMC2_SORTCRITERIA_CATEGORY ) {
@@ -1094,20 +1094,20 @@ void Options::on_pushButtonApply_clicked()
 			qmc2MainWindow->comboBoxViewSelect->setItemIcon(QMC2_VIEWVERSION_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
 		}
 	} else {
-		qmc2MainWindow->treeWidgetGamelist->hideColumn(QMC2_MACHINELIST_COLUMN_CATEGORY);
+		qmc2MainWindow->treeWidgetMachineList->hideColumn(QMC2_MACHINELIST_COLUMN_CATEGORY);
 		qmc2MainWindow->treeWidgetHierarchy->hideColumn(QMC2_MACHINELIST_COLUMN_CATEGORY);
 		qmc2MainWindow->actionViewByCategory->setVisible(false);
 		qmc2MainWindow->actionViewByCategory->setEnabled(false);
-		qmc2MainWindow->actionMenuGamelistHeaderCategory->setVisible(false);
-		qmc2MainWindow->actionMenuGamelistHeaderCategory->setEnabled(false);
+		qmc2MainWindow->actionMenuMachineListHeaderCategory->setVisible(false);
+		qmc2MainWindow->actionMenuMachineListHeaderCategory->setEnabled(false);
 		qmc2MainWindow->actionMenuHierarchyHeaderCategory->setVisible(false);
 		qmc2MainWindow->actionMenuHierarchyHeaderCategory->setEnabled(false);
-		qmc2MainWindow->treeWidgetGamelist->hideColumn(QMC2_MACHINELIST_COLUMN_VERSION);
+		qmc2MainWindow->treeWidgetMachineList->hideColumn(QMC2_MACHINELIST_COLUMN_VERSION);
 		qmc2MainWindow->treeWidgetHierarchy->hideColumn(QMC2_MACHINELIST_COLUMN_VERSION);
 		qmc2MainWindow->actionViewByVersion->setVisible(false);
 		qmc2MainWindow->actionViewByVersion->setEnabled(false);
-		qmc2MainWindow->actionMenuGamelistHeaderVersion->setVisible(false);
-		qmc2MainWindow->actionMenuGamelistHeaderVersion->setEnabled(false);
+		qmc2MainWindow->actionMenuMachineListHeaderVersion->setVisible(false);
+		qmc2MainWindow->actionMenuMachineListHeaderVersion->setEnabled(false);
 		qmc2MainWindow->actionMenuHierarchyHeaderVersion->setVisible(false);
 		qmc2MainWindow->actionMenuHierarchyHeaderVersion->setEnabled(false);
 		if ( comboBoxSortCriteria->count() > QMC2_SORTCRITERIA_CATEGORY ) {
@@ -1123,56 +1123,56 @@ void Options::on_pushButtonApply_clicked()
 	if ( qmc2ToolBarCustomizer )
 		QTimer::singleShot(0, qmc2ToolBarCustomizer, SLOT(refreshAvailableActions()));
 
-	// Gamelist
+	// MachineList
 	bool showROMStatusIcons = checkBoxShowROMStatusIcons->isChecked();
-	needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() != showROMStatusIcons );
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", showROMStatusIcons);
+	needReload |= (config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool() != showROMStatusIcons );
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", showROMStatusIcons);
 	bool showDeviceSets = checkBoxShowDeviceSets->isChecked();
-	needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool() != showDeviceSets );
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", showDeviceSets);
+	needReload |= (config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool() != showDeviceSets );
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", showDeviceSets);
 	bool showBiosSets = checkBoxShowBiosSets->isChecked();
-	needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool() != showBiosSets );
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", showBiosSets);
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck", checkBoxAutoTriggerROMCheck->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation", checkBoxDoubleClickActivation->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation", checkBoxPlayOnSublistActivation->isChecked());
+	needReload |= (config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool() != showBiosSets );
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", showBiosSets);
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/AutoTriggerROMCheck", checkBoxAutoTriggerROMCheck->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/DoubleClickActivation", checkBoxDoubleClickActivation->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/PlayOnSublistActivation", checkBoxPlayOnSublistActivation->isChecked());
 	qmc2CursorPositioningMode = (QAbstractItemView::ScrollHint)comboBoxCursorPosition->currentIndex();
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/CursorPosition", qmc2CursorPositioningMode);
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/CursorPosition", qmc2CursorPositioningMode);
 	qmc2DefaultLaunchMode = comboBoxDefaultLaunchMode->currentIndex();
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/DefaultLaunchMode", qmc2DefaultLaunchMode);
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/DefaultLaunchMode", qmc2DefaultLaunchMode);
 	qmc2SoftwareSnapPosition = comboBoxSoftwareSnapPosition->currentIndex();
 	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapPosition", qmc2SoftwareSnapPosition);
 	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapOnMouseHover", checkBoxSoftwareSnapOnMouseHover->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AutoDisableSoftwareSnap", checkBoxAutoDisableSoftwareSnap->isChecked());
-	qmc2GamelistResponsiveness = spinBoxResponsiveness->value();
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/Responsiveness", qmc2GamelistResponsiveness);
+	qmc2MachineListResponsiveness = spinBoxResponsiveness->value();
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/Responsiveness", qmc2MachineListResponsiveness);
 	qmc2UpdateDelay = spinBoxUpdateDelay->value();
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/UpdateDelay", qmc2UpdateDelay);
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/UpdateDelay", qmc2UpdateDelay);
 	i = comboBoxSortCriteria->currentIndex();
 	needResort = (i != qmc2SortCriteria);
 	int oldSortCriteria = qmc2SortCriteria;
 	qmc2SortCriteria = i;
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/SortCriteria", qmc2SortCriteria);
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/SortCriteria", qmc2SortCriteria);
 	i = comboBoxSortOrder->currentIndex();
 	needResort = needResort || (i == 0 ? qmc2SortOrder != Qt::AscendingOrder : qmc2SortOrder != Qt::DescendingOrder);
 	Qt::SortOrder oldSortOrder = qmc2SortOrder; 
 	qmc2SortOrder = (i == 0 ? Qt::AscendingOrder : Qt::DescendingOrder);
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/SortOrder", qmc2SortOrder);
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/SortOrder", qmc2SortOrder);
 	QBitArray newFilter(QMC2_ROMSTATE_COUNT);
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowC", toolButtonShowC->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowC", toolButtonShowC->isChecked());
 	newFilter.setBit(QMC2_ROMSTATE_INT_C, toolButtonShowC->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowM", toolButtonShowM->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowM", toolButtonShowM->isChecked());
 	newFilter.setBit(QMC2_ROMSTATE_INT_M, toolButtonShowM->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowI", toolButtonShowI->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowI", toolButtonShowI->isChecked());
 	newFilter.setBit(QMC2_ROMSTATE_INT_I, toolButtonShowI->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowN", toolButtonShowN->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowN", toolButtonShowN->isChecked());
 	newFilter.setBit(QMC2_ROMSTATE_INT_N, toolButtonShowN->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowU", toolButtonShowU->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowU", toolButtonShowU->isChecked());
 	newFilter.setBit(QMC2_ROMSTATE_INT_U, toolButtonShowU->isChecked());
 	needFilter = (qmc2Filter != newFilter);
 	qmc2Filter = newFilter;
 
-	bool oldRSF = config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool();
+	bool oldRSF = config->value(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true).toBool();
 	if ( checkBoxRomStateFilter->isChecked() ) {
 		if ( qmc2MainWindow->comboBoxViewSelect->currentIndex() == QMC2_VIEWMACHINELIST_INDEX ) {
 			qmc2MainWindow->pushButtonSelectRomFilter->setVisible(true);
@@ -1185,7 +1185,7 @@ void Options::on_pushButtonApply_clicked()
 		qmc2MainWindow->actionRomStatusFilterI->setEnabled(true);
 		qmc2MainWindow->actionRomStatusFilterN->setEnabled(true);
 		qmc2MainWindow->actionRomStatusFilterU->setEnabled(true);
-		config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true);
+		config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true);
 		if ( !oldRSF ) {
 			needReload = true;
 			needFilter = true;
@@ -1200,7 +1200,7 @@ void Options::on_pushButtonApply_clicked()
 		qmc2MainWindow->actionRomStatusFilterI->setEnabled(false);
 		qmc2MainWindow->actionRomStatusFilterN->setEnabled(false);
 		qmc2MainWindow->actionRomStatusFilterU->setEnabled(false);
-		config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", false);
+		config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", false);
 		if ( oldRSF ) {
 			needReload = true;
 			needFilter = false;
@@ -1296,22 +1296,22 @@ void Options::on_pushButtonApply_clicked()
 			qmc2NetworkAccessManager->setCookieJar(new QNetworkCookieJar(qmc2NetworkAccessManager));
 	}
 
-	if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/GamelistView").toInt() >= qmc2MainWindow->comboBoxViewSelect->count() )
-		config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", QMC2_VIEW_DETAIL_INDEX);
+	if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineListView").toInt() >= qmc2MainWindow->comboBoxViewSelect->count() )
+		config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", QMC2_VIEW_DETAIL_INDEX);
 
-	qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", QMC2_VIEW_DETAIL_INDEX).toInt());
+	qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", QMC2_VIEW_DETAIL_INDEX).toInt());
 	switch ( qmc2MainWindow->comboBoxViewSelect->currentIndex() ) {
 		case QMC2_VIEW_DETAIL_INDEX:
-			qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
+			qmc2MainWindow->tabWidgetMachineList->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
 			break;
 		case QMC2_VIEW_TREE_INDEX:
-			qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
+			qmc2MainWindow->tabWidgetMachineList->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
 			break;
 		case QMC2_VIEW_CATEGORY_INDEX:
-			qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
+			qmc2MainWindow->tabWidgetMachineList->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
 			break;
 		case QMC2_VIEW_VERSION_INDEX:
-			qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
+			qmc2MainWindow->tabWidgetMachineList->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
 			break;
 	}
 
@@ -1361,7 +1361,7 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("MAME/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
 	config->setValue("MAME/FilesAndDirectories/XmlCacheDatabase", lineEditXmlCacheDatabase->text());
 	config->setValue("MAME/FilesAndDirectories/UserDataDatabase", lineEditUserDataDatabase->text());
-	config->setValue("MAME/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
+	config->setValue("MAME/FilesAndDirectories/MachineListCacheFile", lineEditMachineListCacheFile->text());
 	config->setValue("MAME/FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
 	config->setValue("MAME/FilesAndDirectories/SlotInfoCacheFile", lineEditSlotInfoCacheFile->text());
 	config->setValue("MAME/FilesAndDirectories/SoftwareListCacheDatabase", lineEditSoftwareListCacheDb->text());
@@ -1413,13 +1413,13 @@ void Options::on_pushButtonApply_clicked()
 		apply();
 
 	if ( invalidateGameInfoDB )
-		qmc2Gamelist->datInfoDb()->recreateGameInfoTable();
+		qmc2MachineList->datInfoDb()->recreateGameInfoTable();
 
 	if ( invalidateEmuInfoDB )
-		qmc2Gamelist->datInfoDb()->recreateEmuInfoTable();
+		qmc2MachineList->datInfoDb()->recreateEmuInfoTable();
 
 	if ( invalidateSoftwareInfoDB )
-		qmc2Gamelist->datInfoDb()->recreateSoftwareInfoTable();
+		qmc2MachineList->datInfoDb()->recreateSoftwareInfoTable();
 
 	if ( needManualReload )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please reload machine list for some changes to take effect"));
@@ -1486,8 +1486,8 @@ void Options::on_pushButtonApply_clicked()
 				}
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 				qApp->processEvents();
-				foreach (QTreeWidgetItem *ti, qmc2ExpandedGamelistItems) {
-					qmc2MainWindow->treeWidgetGamelist->collapseItem(ti);
+				foreach (QTreeWidgetItem *ti, qmc2ExpandedMachineListItems) {
+					qmc2MainWindow->treeWidgetMachineList->collapseItem(ti);
 					QList<QTreeWidgetItem *> childrenList = ti->takeChildren();
 					foreach (QTreeWidgetItem *ci, ti->takeChildren())
 						delete ci;
@@ -1495,15 +1495,15 @@ void Options::on_pushButtonApply_clicked()
 					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
 					nameItem->setText(QMC2_MACHINELIST_COLUMN_ICON, ti->text(QMC2_MACHINELIST_COLUMN_NAME));
 				}
-				qmc2ExpandedGamelistItems.clear();
+				qmc2ExpandedMachineListItems.clear();
 				qApp->processEvents();
-				qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
+				qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
 				qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
 				qmc2MainWindow->treeWidgetCategoryView->setUpdatesEnabled(false);
 				qmc2MainWindow->treeWidgetVersionView->setUpdatesEnabled(false);
-				if ( qmc2SortCriteria == QMC2_SORT_BY_RANK && !qmc2Gamelist->userDataDb()->rankCacheComplete() )
-					qmc2Gamelist->userDataDb()->fillUpRankCache();
-				qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+				if ( qmc2SortCriteria == QMC2_SORT_BY_RANK && !qmc2MachineList->userDataDb()->rankCacheComplete() )
+					qmc2MachineList->userDataDb()->fillUpRankCache();
+				qmc2MainWindow->treeWidgetMachineList->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 				qApp->processEvents();
 				qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 				qApp->processEvents();
@@ -1515,7 +1515,7 @@ void Options::on_pushButtonApply_clicked()
 					qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 					qApp->processEvents();
 				}
-				qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+				qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 				qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
 				qmc2MainWindow->treeWidgetCategoryView->setUpdatesEnabled(true);
 				qmc2MainWindow->treeWidgetVersionView->setUpdatesEnabled(true);
@@ -1526,9 +1526,9 @@ void Options::on_pushButtonApply_clicked()
 
 		switch ( qmc2SortCriteria ) {
 			case QMC2_SORT_BY_DESCRIPTION:
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2SortOrder);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1537,9 +1537,9 @@ void Options::on_pushButtonApply_clicked()
 				break;
 
 			case QMC2_SORT_BY_TAG:
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_TAG, qmc2SortOrder);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_TAG, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_TAG, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_TAG, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1548,9 +1548,9 @@ void Options::on_pushButtonApply_clicked()
 				break;
 
 			case QMC2_SORT_BY_YEAR:
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_YEAR, qmc2SortOrder);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_YEAR, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_YEAR, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_YEAR, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1559,9 +1559,9 @@ void Options::on_pushButtonApply_clicked()
 				break;
 
 			case QMC2_SORT_BY_MANUFACTURER:
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MANU, qmc2SortOrder);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MANU, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MANU, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MANU, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1570,9 +1570,9 @@ void Options::on_pushButtonApply_clicked()
 				break;
 
 			case QMC2_SORT_BY_NAME:
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_NAME, qmc2SortOrder);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_NAME, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_NAME, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_NAME, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1581,9 +1581,9 @@ void Options::on_pushButtonApply_clicked()
 				break;
 
 			case QMC2_SORT_BY_ROMTYPES:
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RTYPES, qmc2SortOrder);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RTYPES, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RTYPES, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RTYPES, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1592,9 +1592,9 @@ void Options::on_pushButtonApply_clicked()
 				break;
 
 			case QMC2_SORT_BY_PLAYERS:
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_PLAYERS, qmc2SortOrder);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_PLAYERS, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_PLAYERS, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_PLAYERS, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1603,9 +1603,9 @@ void Options::on_pushButtonApply_clicked()
 				break;
 
 			case QMC2_SORT_BY_DRVSTAT:
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_DRVSTAT, qmc2SortOrder);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_DRVSTAT, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_DRVSTAT, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_DRVSTAT, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1614,9 +1614,9 @@ void Options::on_pushButtonApply_clicked()
 				break;
 
 			case QMC2_SORT_BY_SRCFILE:
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_SRCFILE, qmc2SortOrder);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_SRCFILE, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_SRCFILE, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_SRCFILE, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1625,9 +1625,9 @@ void Options::on_pushButtonApply_clicked()
 				break;
 
 			case QMC2_SORT_BY_RANK:
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RANK, qmc2SortOrder);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RANK, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RANK, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RANK, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1636,9 +1636,9 @@ void Options::on_pushButtonApply_clicked()
 				break;
 
 			case QMC2_SORT_BY_CATEGORY:
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_CATEGORY, qmc2SortOrder);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_CATEGORY, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_CATEGORY, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_CATEGORY, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_CATEGORY, qmc2SortOrder);
@@ -1647,9 +1647,9 @@ void Options::on_pushButtonApply_clicked()
 				break;
 
 			case QMC2_SORT_BY_VERSION:
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_VERSION, qmc2SortOrder);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_VERSION, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_VERSION, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_VERSION, qmc2SortOrder);
 				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_VERSION, qmc2SortOrder);
@@ -1658,7 +1658,7 @@ void Options::on_pushButtonApply_clicked()
 				break;
 
 			default:
-				qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(false);
+				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(false);
 				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(false);
 				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(false);
 				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(false);
@@ -1672,7 +1672,7 @@ void Options::on_pushButtonApply_clicked()
 			qmc2MainWindow->actionRomStatusFilterI->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
 			qmc2MainWindow->actionRomStatusFilterN->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
 			qmc2MainWindow->actionRomStatusFilterU->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
-			qmc2Gamelist->filter();
+			qmc2MachineList->filter();
 		}
 
 		QList<ImageWidget *> iwl;
@@ -2037,45 +2037,45 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	lineEditMameInfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
 	lineEditMessInfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/messinfo.dat").toString());
 	lineEditCatverIniFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CatverIni", QMC2_DEFAULT_DATA_PATH + "/cat/catver.ini").toString());
-	checkBoxUseCatverIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", false).toBool());
+	checkBoxUseCatverIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", false).toBool());
 	lineEditCategoryIniFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CategoryIni", QMC2_DEFAULT_DATA_PATH + "/cat/category.ini").toString());
-	checkBoxUseCategoryIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni", false).toBool());
+	checkBoxUseCategoryIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni", false).toBool());
 	lineEditSoftwareInfoDB->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
 
-	// Gamelist
-	checkBoxShowROMStatusIcons->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool());
-	checkBoxShowDeviceSets->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool());
-	checkBoxShowBiosSets->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool());
-	checkBoxAutoTriggerROMCheck->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck", false).toBool());
-	checkBoxDoubleClickActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation", true).toBool());
-	checkBoxPlayOnSublistActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation", false).toBool());
-	qmc2CursorPositioningMode = (QAbstractItemView::ScrollHint)config->value(QMC2_FRONTEND_PREFIX + "Gamelist/CursorPosition", QMC2_CURSOR_POS_TOP).toInt();
+	// MachineList
+	checkBoxShowROMStatusIcons->setChecked(config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool());
+	checkBoxShowDeviceSets->setChecked(config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool());
+	checkBoxShowBiosSets->setChecked(config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool());
+	checkBoxAutoTriggerROMCheck->setChecked(config->value(QMC2_FRONTEND_PREFIX + "MachineList/AutoTriggerROMCheck", false).toBool());
+	checkBoxDoubleClickActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "MachineList/DoubleClickActivation", true).toBool());
+	checkBoxPlayOnSublistActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "MachineList/PlayOnSublistActivation", false).toBool());
+	qmc2CursorPositioningMode = (QAbstractItemView::ScrollHint)config->value(QMC2_FRONTEND_PREFIX + "MachineList/CursorPosition", QMC2_CURSOR_POS_TOP).toInt();
 	comboBoxCursorPosition->setCurrentIndex((int)qmc2CursorPositioningMode);
-	qmc2DefaultLaunchMode = config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DefaultLaunchMode", QMC2_LAUNCH_MODE_INDEPENDENT).toInt();
+	qmc2DefaultLaunchMode = config->value(QMC2_FRONTEND_PREFIX + "MachineList/DefaultLaunchMode", QMC2_LAUNCH_MODE_INDEPENDENT).toInt();
 	comboBoxDefaultLaunchMode->setCurrentIndex(qmc2DefaultLaunchMode);
 	qmc2SoftwareSnapPosition = config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapPosition", QMC2_SWSNAP_POS_BELOW_LEFT).toInt();
 	comboBoxSoftwareSnapPosition->setCurrentIndex(qmc2SoftwareSnapPosition);
 	checkBoxSoftwareSnapOnMouseHover->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapOnMouseHover", false).toBool());
 	checkBoxAutoDisableSoftwareSnap->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AutoDisableSoftwareSnap", true).toBool());
-	spinBoxResponsiveness->setValue(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/Responsiveness", 100).toInt());
-	qmc2GamelistResponsiveness = spinBoxResponsiveness->value();
-	spinBoxUpdateDelay->setValue(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UpdateDelay", 10).toInt());
+	spinBoxResponsiveness->setValue(config->value(QMC2_FRONTEND_PREFIX + "MachineList/Responsiveness", 100).toInt());
+	qmc2MachineListResponsiveness = spinBoxResponsiveness->value();
+	spinBoxUpdateDelay->setValue(config->value(QMC2_FRONTEND_PREFIX + "MachineList/UpdateDelay", 10).toInt());
 	qmc2UpdateDelay = spinBoxUpdateDelay->value();
-	comboBoxSortCriteria->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/SortCriteria", 0).toInt());
+	comboBoxSortCriteria->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "MachineList/SortCriteria", 0).toInt());
 	qmc2SortCriteria = comboBoxSortCriteria->currentIndex();
-	comboBoxSortOrder->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/SortOrder", 0).toInt());
+	comboBoxSortOrder->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "MachineList/SortOrder", 0).toInt());
 	qmc2SortOrder = comboBoxSortOrder->currentIndex() == 0 ? Qt::AscendingOrder : Qt::DescendingOrder;
-	qmc2Filter.setBit(QMC2_ROMSTATE_INT_C, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowC", true).toBool());
+	qmc2Filter.setBit(QMC2_ROMSTATE_INT_C, config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowC", true).toBool());
 	toolButtonShowC->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);
-	qmc2Filter.setBit(QMC2_ROMSTATE_INT_M, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowM", true).toBool());
+	qmc2Filter.setBit(QMC2_ROMSTATE_INT_M, config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowM", true).toBool());
 	toolButtonShowM->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_M]);
-	qmc2Filter.setBit(QMC2_ROMSTATE_INT_I, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowI", true).toBool());
+	qmc2Filter.setBit(QMC2_ROMSTATE_INT_I, config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowI", true).toBool());
 	toolButtonShowI->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
-	qmc2Filter.setBit(QMC2_ROMSTATE_INT_N, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowN", true).toBool());
+	qmc2Filter.setBit(QMC2_ROMSTATE_INT_N, config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowN", true).toBool());
 	toolButtonShowN->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
-	qmc2Filter.setBit(QMC2_ROMSTATE_INT_U, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowU", true).toBool());
+	qmc2Filter.setBit(QMC2_ROMSTATE_INT_U, config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowU", true).toBool());
 	toolButtonShowU->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
-	bool rsf = config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool();
+	bool rsf = config->value(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true).toBool();
 	checkBoxRomStateFilter->setChecked(rsf);
 	if ( !qmc2EarlyStartup ) {
 		qmc2MainWindow->pushButtonSelectRomFilter->setVisible(rsf);
@@ -2187,7 +2187,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	lineEditEmulatorLogFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/LogFile", userScopePath + "/mame.log").toString());
 	lineEditXmlCacheDatabase->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/XmlCacheDatabase", userScopePath + "/mame-xml-cache.db").toString());
 	lineEditUserDataDatabase->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/UserDataDatabase", userScopePath + "/mame-user-data.db").toString());
-	lineEditGamelistCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mame.glc").toString());
+	lineEditMachineListCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MachineListCacheFile", userScopePath + "/mame.glc").toString());
 	lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
 	lineEditSlotInfoCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString());
 	lineEditSoftwareListCacheDb->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareListCacheDatabase", userScopePath + "/mame-swl-cache.db").toString());
@@ -2408,23 +2408,23 @@ void Options::applyDelayed()
 			qmc2MainWindow->treeWidgetForeignIDs->insertTopLevelItems(0, itemList);
 			ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
 			if ( componentInfo->appliedFeatureList().contains(QMC2_FOREIGN_INDEX) ) {
-				int index = qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabForeignEmulators);
+				int index = qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabForeignEmulators);
 				int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 				int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 				if ( embedIndex >= 0 && embedIndex < foreignIndex )
-					if ( qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabEmbeddedEmus) < 0 )
+					if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabEmbeddedEmus) < 0 )
 						foreignIndex--;
 #endif
 				if ( index == -1 ) {
-					qmc2MainWindow->tabWidgetGamelist->insertTab(foreignIndex, qmc2MainWindow->tabForeignEmulators, tr("&Foreign emulators"));
-					qmc2MainWindow->tabWidgetGamelist->setTabIcon(foreignIndex, QIcon(QString::fromUtf8(":/data/img/alien.png")));
+					qmc2MainWindow->tabWidgetMachineList->insertTab(foreignIndex, qmc2MainWindow->tabForeignEmulators, tr("&Foreign emulators"));
+					qmc2MainWindow->tabWidgetMachineList->setTabIcon(foreignIndex, QIcon(QString::fromUtf8(":/data/img/alien.png")));
 				}
 			}
 		} else {
-			int index = qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabForeignEmulators);
+			int index = qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabForeignEmulators);
 			if ( index >= 0 )
-				qmc2MainWindow->tabWidgetGamelist->removeTab(index);
+				qmc2MainWindow->tabWidgetMachineList->removeTab(index);
 		}
 
 		// restore foreign ID selection
@@ -2458,7 +2458,7 @@ void Options::applyDelayed()
   
 	// hide / show the menu bar
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-	if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
+	if ( qmc2MainWindow->tabWidgetMachineList->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
 		qmc2MainWindow->menuBar()->setVisible(checkBoxShowMenuBar->isChecked());
 #else
 	qmc2MainWindow->menuBar()->setVisible(checkBoxShowMenuBar->isChecked());
@@ -2534,7 +2534,7 @@ void Options::on_toolButtonImportGameInfo_clicked()
 	qmc2Options->toolButtonImportGameInfo->setEnabled(false);
 	qmc2Options->toolButtonImportMachineInfo->setEnabled(false);
 	qApp->processEvents();
-	qmc2Gamelist->datInfoDb()->importGameInfo(pathList, emulatorList);
+	qmc2MachineList->datInfoDb()->importGameInfo(pathList, emulatorList);
 	qmc2Options->toolButtonImportGameInfo->setEnabled(true);
 	qmc2Options->toolButtonImportMachineInfo->setEnabled(true);
 	qmc2LoadingGameInfoDB = false;
@@ -2564,7 +2564,7 @@ void Options::on_toolButtonImportMachineInfo_clicked()
 	qmc2Options->toolButtonImportGameInfo->setEnabled(false);
 	qmc2Options->toolButtonImportMachineInfo->setEnabled(false);
 	qApp->processEvents();
-	qmc2Gamelist->datInfoDb()->importGameInfo(pathList, emulatorList);
+	qmc2MachineList->datInfoDb()->importGameInfo(pathList, emulatorList);
 	qmc2Options->toolButtonImportGameInfo->setEnabled(true);
 	qmc2Options->toolButtonImportMachineInfo->setEnabled(true);
 	qmc2LoadingGameInfoDB = false;
@@ -2586,7 +2586,7 @@ void Options::on_toolButtonImportMameInfo_clicked()
 	toolButtonImportMameInfo->setEnabled(false);
 	toolButtonImportMessInfo->setEnabled(false);
 	qApp->processEvents();
-	qmc2Gamelist->datInfoDb()->importEmuInfo(pathList);
+	qmc2MachineList->datInfoDb()->importEmuInfo(pathList);
 	toolButtonImportMameInfo->setEnabled(true);
 	toolButtonImportMessInfo->setEnabled(true);
 	qmc2LoadingEmuInfoDB = false;
@@ -2608,7 +2608,7 @@ void Options::on_toolButtonImportMessInfo_clicked()
 	toolButtonImportMameInfo->setEnabled(false);
 	toolButtonImportMessInfo->setEnabled(false);
 	qApp->processEvents();
-	qmc2Gamelist->datInfoDb()->importEmuInfo(pathList);
+	qmc2MachineList->datInfoDb()->importEmuInfo(pathList);
 	toolButtonImportMameInfo->setEnabled(true);
 	toolButtonImportMessInfo->setEnabled(true);
 	qmc2LoadingEmuInfoDB = false;
@@ -2624,7 +2624,7 @@ void Options::on_toolButtonImportSoftwareInfo_clicked()
 	toolButtonImportSoftwareInfo->setEnabled(false);
 	qApp->processEvents();
 	QStringList pathList = QStringList() << QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB").toString();
-	qmc2Gamelist->datInfoDb()->importSoftwareInfo(pathList);
+	qmc2MachineList->datInfoDb()->importSoftwareInfo(pathList);
 	toolButtonImportSoftwareInfo->setEnabled(true);
 	qmc2LoadingSoftwareInfoDB = false;
 }
@@ -2827,7 +2827,7 @@ void Options::on_toolButtonClearUserDataDatabase_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonClearUserDataDatabase_clicked()");
 #endif
 
-	if ( qmc2Gamelist->userDataDb()->userDataRowCount() > 0 ) {
+	if ( qmc2MachineList->userDataDb()->userDataRowCount() > 0 ) {
 		switch ( QMessageBox::question(this, tr("Confirm"), tr("This will remove <b>all</b> existing user data and recreate the database.\nAre you sure you want to do this?"), tr("&Yes"), tr("&No"), QString(), 0, 1) ) {
 			case 0:
 				break;
@@ -2838,12 +2838,12 @@ void Options::on_toolButtonClearUserDataDatabase_clicked()
 		}
 	}
 
-	qmc2Gamelist->userDataDb()->clearRankCache();
-	qmc2Gamelist->userDataDb()->clearCommentCache();
-	qmc2Gamelist->userDataDb()->recreateDatabase();
-	qmc2Gamelist->userDataDb()->setEmulatorVersion(qmc2Gamelist->emulatorVersion);
-	qmc2Gamelist->userDataDb()->setQmc2Version(XSTR(QMC2_VERSION));
-	qmc2Gamelist->userDataDb()->setUserDataVersion(QMC2_USERDATA_VERSION);
+	qmc2MachineList->userDataDb()->clearRankCache();
+	qmc2MachineList->userDataDb()->clearCommentCache();
+	qmc2MachineList->userDataDb()->recreateDatabase();
+	qmc2MachineList->userDataDb()->setEmulatorVersion(qmc2MachineList->emulatorVersion);
+	qmc2MachineList->userDataDb()->setQmc2Version(XSTR(QMC2_VERSION));
+	qmc2MachineList->userDataDb()->setUserDataVersion(QMC2_USERDATA_VERSION);
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 }
 
@@ -2853,7 +2853,7 @@ void Options::on_toolButtonCleanupUserDataDatabase_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonCleanupUserDataDatabase_clicked()");
 #endif
 
-	qmc2Gamelist->userDataDb()->cleanUp();
+	qmc2MachineList->userDataDb()->cleanUp();
 }
 
 void Options::on_toolButtonBrowseUserDataDatabase_clicked()
@@ -2952,17 +2952,17 @@ void Options::on_toolButtonBrowseHistoryFile_clicked()
 	raise();
 }
 
-void Options::on_toolButtonBrowseGamelistCacheFile_clicked()
+void Options::on_toolButtonBrowseMachineListCacheFile_clicked()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseGamelistCacheFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMachineListCacheFile_clicked()");
 #endif
 
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose machine list cache file"), lineEditGamelistCacheFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose machine list cache file"), lineEditMachineListCacheFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
 			s += "/";
-		lineEditGamelistCacheFile->setText(s);
+		lineEditMachineListCacheFile->setText(s);
 	}
 	raise();
 }

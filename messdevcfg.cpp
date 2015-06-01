@@ -10,7 +10,7 @@
 #include <algorithm> // std::sort()
 
 #include "messdevcfg.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "macros.h"
 #include "qmc2main.h"
 #include "options.h"
@@ -21,7 +21,7 @@
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
-extern Gamelist *qmc2Gamelist;
+extern MachineList *qmc2MachineList;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
 extern QString qmc2FileEditStartPath;
@@ -32,7 +32,7 @@ extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
 extern bool qmc2UseDefaultEmulator;
 extern bool qmc2TemplateCheck;
 extern Options *qmc2Options;
-extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 
 QList<FileEditWidget *> messFileEditWidgetList;
 QHash<QString, QHash<QString, QStringList> > messSystemSlotHash;
@@ -617,7 +617,7 @@ QString &MESSDeviceConfigurator::getXmlData(QString machineName)
 #endif
 
 	normalXmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-	normalXmlBuffer += qmc2Gamelist->xmlDb()->xml(machineName);
+	normalXmlBuffer += qmc2MachineList->xmlDb()->xml(machineName);
 	return normalXmlBuffer;
 }
 
@@ -652,7 +652,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 		if ( slotInfoFile.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text) ) {
 			QTextStream ts(&slotInfoFile);
 			ts << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
-			ts << "MAME_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
+			ts << "MAME_VERSION\t" + qmc2MachineList->emulatorVersion + "\n";
 			slotInfoFile.close();
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open slot info cache for writing, path = %1").arg(slotInfoCachePath));
@@ -710,7 +710,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 
 		if ( versionWords.count() >= 2 ) {
 			if ( versionWords[0] == "MAME_VERSION" )
-				sameVersion = (versionWords[1] == qmc2Gamelist->emulatorVersion);
+				sameVersion = (versionWords[1] == qmc2MachineList->emulatorVersion);
 		}
 
 		if ( !sameVersion ) {
@@ -1023,7 +1023,7 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 #endif
 			QStringList newSlotOptionDescriptions;
 			foreach (QString newSlotOption, xmlHandler.newSlotOptions[newSlot]) {
-				QString slotOptionDescription = qmc2GamelistItemHash[xmlHandler.newSlotDevices[newSlotOption]]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
+				QString slotOptionDescription = qmc2MachineListItemHash[xmlHandler.newSlotDevices[newSlotOption]]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 #ifdef QMC2_DEBUG
 				printf("MESSDeviceConfigurator::refreshDeviceMap():     newSlotOption = %s [%s], default = %s\n",
 				       newSlotOption.toLocal8Bit().constData(), slotOptionDescription.toLocal8Bit().constData(), xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no");

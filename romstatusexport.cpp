@@ -10,7 +10,7 @@
 #include "romstatusexport.h"
 #include "macros.h"
 #include "options.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "qmc2main.h"
 
 // external global variables
@@ -18,7 +18,7 @@ extern MainWindow *qmc2MainWindow;
 extern Options *qmc2Options;
 extern Settings *qmc2Config;
 extern bool qmc2WidgetsEnabled;
-extern Gamelist *qmc2Gamelist;
+extern MachineList *qmc2MachineList;
 extern bool qmc2ExportingROMStatus;
 extern bool qmc2StopParser;
 
@@ -143,7 +143,7 @@ void ROMStatusExporter::exportToASCII()
 
 	frameExportParams->setEnabled(false);
 
-	progressBarExport->setRange(0, qmc2Gamelist->numGames);
+	progressBarExport->setRange(0, qmc2MachineList->numGames);
 	progressBarExport->reset();
 	progressBarExport->setValue(0);
 
@@ -165,7 +165,7 @@ void ROMStatusExporter::exportToASCII()
 #else
 		QString emulatorTarget = tr("unknown");
 #endif
-		ts << tr("Emulator") << " " << QString().leftJustified(maxLength - tr("Emulator").length(), '.', true) << " " << emulatorTarget << " " << qmc2Gamelist->emulatorVersion << "\n";
+		ts << tr("Emulator") << " " << QString().leftJustified(maxLength - tr("Emulator").length(), '.', true) << " " << emulatorTarget << " " << qmc2MachineList->emulatorVersion << "\n";
 		ts << tr("Date") << " " << QString().leftJustified(maxLength - tr("Date").length(), '.', true) << " " << QDate::currentDate().toString() << "\n";
 		ts << tr("Time") << " " << QString().leftJustified(maxLength - tr("Time").length(), '.', true) << " " << QTime::currentTime().toString() << "\n\n";
 	}
@@ -173,12 +173,12 @@ void ROMStatusExporter::exportToASCII()
 	QLocale locale;
 	if ( checkBoxIncludeStatistics->isChecked() ) {
 		ts << tr("Overall ROM Status") << "\n" << QString().leftJustified(tr("Overall ROM Status").length(), '-', true) << "\n\n";
-		ts << tr("Total sets") << " " << QString().leftJustified(maxLength - tr("Total sets").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numGames) << "\n";
-		ts << tr("Correct") << " " << QString().leftJustified(maxLength - tr("Correct").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numCorrectGames) << "\n";
-		ts << tr("Mostly correct") << " " << QString().leftJustified(maxLength - tr("Mostly correct").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numMostlyCorrectGames) << "\n";
-		ts << tr("Incorrect") << " " << QString().leftJustified(maxLength - tr("Incorrect").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numIncorrectGames) << "\n";
-		ts << tr("Not found") << " " << QString().leftJustified(maxLength - tr("Not found").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numNotFoundGames) << "\n";
-		ts << tr("Unknown") << " " << QString().leftJustified(maxLength - tr("Unknown").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numUnknownGames) << "\n\n";
+		ts << tr("Total sets") << " " << QString().leftJustified(maxLength - tr("Total sets").length(), '.', true) << " " << locale.toString(qmc2MachineList->numGames) << "\n";
+		ts << tr("Correct") << " " << QString().leftJustified(maxLength - tr("Correct").length(), '.', true) << " " << locale.toString(qmc2MachineList->numCorrectGames) << "\n";
+		ts << tr("Mostly correct") << " " << QString().leftJustified(maxLength - tr("Mostly correct").length(), '.', true) << " " << locale.toString(qmc2MachineList->numMostlyCorrectGames) << "\n";
+		ts << tr("Incorrect") << " " << QString().leftJustified(maxLength - tr("Incorrect").length(), '.', true) << " " << locale.toString(qmc2MachineList->numIncorrectGames) << "\n";
+		ts << tr("Not found") << " " << QString().leftJustified(maxLength - tr("Not found").length(), '.', true) << " " << locale.toString(qmc2MachineList->numNotFoundGames) << "\n";
+		ts << tr("Unknown") << " " << QString().leftJustified(maxLength - tr("Unknown").length(), '.', true) << " " << locale.toString(qmc2MachineList->numUnknownGames) << "\n\n";
 	}
 
 	ts << tr("Detailed ROM Status") << "\n" << QString().leftJustified(tr("Detailed ROM Status").length(), '-', true) << "\n\n";
@@ -196,12 +196,12 @@ void ROMStatusExporter::exportToASCII()
 	int maxDriverStatusColumnWidth = tr("Driver status").length();
 
 	QMultiMap<QString, QTreeWidgetItem *> exportMap;
-	for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount(); i++) {
+	for (int i = 0; i < qmc2MainWindow->treeWidgetMachineList->topLevelItemCount(); i++) {
 		progressBarExport->setValue(i + 1);
 		qApp->processEvents();
-		QTreeWidgetItem *item = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i);
+		QTreeWidgetItem *item = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
 		QString translatedState;
-		switch ( qmc2Gamelist->romState(item->text(QMC2_MACHINELIST_COLUMN_NAME)) ) {
+		switch ( qmc2MachineList->romState(item->text(QMC2_MACHINELIST_COLUMN_NAME)) ) {
 			case 'C':
 				if ( !toolButtonExportC->isChecked() )
 					continue;
@@ -245,7 +245,7 @@ void ROMStatusExporter::exportToASCII()
 				break;
 
 			case QMC2_RSE_SORT_BY_ROM_STATE:
-				exportMap.insert(QString(qmc2Gamelist->romState(item->text(QMC2_MACHINELIST_COLUMN_NAME))), item);
+				exportMap.insert(QString(qmc2MachineList->romState(item->text(QMC2_MACHINELIST_COLUMN_NAME))), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_YEAR:
@@ -342,7 +342,7 @@ void ROMStatusExporter::exportToASCII()
 			ts << s.left(maxNameColumnWidth - 3).leftJustified(maxNameColumnWidth, '.', true) << "  ";
 		else
 			ts << s.leftJustified(maxNameColumnWidth, ' ', true) << "  ";
-		switch ( qmc2Gamelist->romState(s) ) {
+		switch ( qmc2MachineList->romState(s) ) {
 			case 'C':
 				s = tr("correct");
 				break;
@@ -451,7 +451,7 @@ void ROMStatusExporter::exportToCSV()
 
 	frameExportParams->setEnabled(false);
 
-	progressBarExport->setRange(0, qmc2Gamelist->numGames);
+	progressBarExport->setRange(0, qmc2MachineList->numGames);
 	progressBarExport->reset();
 	progressBarExport->setValue(0);
 
@@ -468,7 +468,7 @@ void ROMStatusExporter::exportToCSV()
 #else
 		QString emulatorTarget = tr("unknown");
 #endif
-		ts << del << tr("Emulator") << del << sep << del << emulatorTarget << " " << qmc2Gamelist->emulatorVersion << del << "\n";
+		ts << del << tr("Emulator") << del << sep << del << emulatorTarget << " " << qmc2MachineList->emulatorVersion << del << "\n";
 		ts << del << tr("Date") << del << sep << del << QDate::currentDate().toString() << del << "\n";
 		ts << del << tr("Time") << del << sep << del << QTime::currentTime().toString() << del << "\n" << del << del << "\n";
 	}
@@ -476,12 +476,12 @@ void ROMStatusExporter::exportToCSV()
 	if ( checkBoxIncludeStatistics->isChecked() ) {
 		QLocale locale;
 		ts << del << tr("Overall ROM Status") << del << "\n" << del << del << "\n";
-		ts << del << tr("Total sets") << del << sep << del << locale.toString(qmc2Gamelist->numGames) << del << "\n";
-		ts << del << tr("Correct") << del << sep << del << locale.toString(qmc2Gamelist->numCorrectGames) << del << "\n";
-		ts << del << tr("Mostly correct") << del << sep << del << locale.toString(qmc2Gamelist->numMostlyCorrectGames) << del << "\n";
-		ts << del << tr("Incorrect") << del << sep << del << locale.toString(qmc2Gamelist->numIncorrectGames) << del << "\n";
-		ts << del << tr("Not found") << del << sep << del << locale.toString(qmc2Gamelist->numNotFoundGames) << del << "\n";
-		ts << del << tr("Unknown") << del << sep << del << locale.toString(qmc2Gamelist->numUnknownGames) << del << "\n" << del << del << "\n";
+		ts << del << tr("Total sets") << del << sep << del << locale.toString(qmc2MachineList->numGames) << del << "\n";
+		ts << del << tr("Correct") << del << sep << del << locale.toString(qmc2MachineList->numCorrectGames) << del << "\n";
+		ts << del << tr("Mostly correct") << del << sep << del << locale.toString(qmc2MachineList->numMostlyCorrectGames) << del << "\n";
+		ts << del << tr("Incorrect") << del << sep << del << locale.toString(qmc2MachineList->numIncorrectGames) << del << "\n";
+		ts << del << tr("Not found") << del << sep << del << locale.toString(qmc2MachineList->numNotFoundGames) << del << "\n";
+		ts << del << tr("Unknown") << del << sep << del << locale.toString(qmc2MachineList->numUnknownGames) << del << "\n" << del << del << "\n";
 	}
 
 	ts << del << tr("Detailed ROM Status") << del << "\n" << del << del << "\n";
@@ -490,17 +490,17 @@ void ROMStatusExporter::exportToCSV()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting and filtering export data"));
 
 	QMultiMap<QString, QTreeWidgetItem *> exportMap;
-	for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount(); i++) {
+	for (int i = 0; i < qmc2MainWindow->treeWidgetMachineList->topLevelItemCount(); i++) {
 		progressBarExport->setValue(i + 1);
 		qApp->processEvents();
-		QTreeWidgetItem *item = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i);
+		QTreeWidgetItem *item = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
 		switch ( comboBoxSortCriteria->currentIndex() ) {
 			case QMC2_RSE_SORT_BY_DESCRIPTION:
 				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_MACHINE), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_ROM_STATE:
-				exportMap.insert(QString(qmc2Gamelist->romState(item->text(QMC2_MACHINELIST_COLUMN_NAME))), item);
+				exportMap.insert(QString(qmc2MachineList->romState(item->text(QMC2_MACHINELIST_COLUMN_NAME))), item);
 				break;
 
 			case QMC2_RSE_SORT_BY_YEAR:
@@ -558,7 +558,7 @@ void ROMStatusExporter::exportToCSV()
 		else
 			itExport.previous();
 
-		switch ( qmc2Gamelist->romState(itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME)) ) {
+		switch ( qmc2MachineList->romState(itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME)) ) {
 			case 'C':
 				if ( toolButtonExportC->isChecked() ) {
 					ts << del << itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME) << del << sep;
@@ -677,7 +677,7 @@ void ROMStatusExporter::exportToHTML()
 
       	frameExportParams->setEnabled(false);
 
-      	progressBarExport->setRange(0, qmc2Gamelist->numGames);
+      	progressBarExport->setRange(0, qmc2MachineList->numGames);
       	progressBarExport->reset();
       	progressBarExport->setValue(0);
 
@@ -703,7 +703,7 @@ void ROMStatusExporter::exportToHTML()
 		 	<< "<p>\n"
 		 	<< "<table border=\"" << spinBoxHTMLBorderWidth->value() << "\">\n"
 		 	<< "<tr>\n"
-		 	<< "<td nowrap>" << tr("Emulator") << "</td><td nowrap>" << emulatorTarget << " " << qmc2Gamelist->emulatorVersion << "</td>\n"
+		 	<< "<td nowrap>" << tr("Emulator") << "</td><td nowrap>" << emulatorTarget << " " << qmc2MachineList->emulatorVersion << "</td>\n"
 		 	<< "</tr>\n<tr>\n"
 		 	<< "<td nowrap>" << tr("Date") << "</td><td nowrap>" << QDate::currentDate().toString() << "</td>\n"
 		 	<< "</tr>\n<tr>\n"
@@ -719,17 +719,17 @@ void ROMStatusExporter::exportToHTML()
 		 	<< "<p>\n"
 		 	<< "<table border=\"" << spinBoxHTMLBorderWidth->value() << "\">\n"
 		 	<< "<tr>\n"
-		 	<< "<td nowrap>" << tr("Total sets") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numGames) << "</td>\n"
+		 	<< "<td nowrap>" << tr("Total sets") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numGames) << "</td>\n"
 		 	<< "</tr>\n<tr>\n"
-		 	<< "<td nowrap>" << tr("Correct") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numCorrectGames) << "</td>\n"
+		 	<< "<td nowrap>" << tr("Correct") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numCorrectGames) << "</td>\n"
 		 	<< "</tr>\n<tr>\n"
-		 	<< "<td nowrap>" << tr("Mostly correct") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numMostlyCorrectGames) << "</td>\n"
+		 	<< "<td nowrap>" << tr("Mostly correct") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numMostlyCorrectGames) << "</td>\n"
 		 	<< "</tr>\n<tr>\n"
-		 	<< "<td nowrap>" << tr("Incorrect") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numIncorrectGames) << "</td>\n"
+		 	<< "<td nowrap>" << tr("Incorrect") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numIncorrectGames) << "</td>\n"
 		 	<< "</tr>\n<tr>\n"
-		 	<< "<td nowrap>" << tr("Not found") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numNotFoundGames) << "</td>\n"
+		 	<< "<td nowrap>" << tr("Not found") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numNotFoundGames) << "</td>\n"
 		 	<< "</tr>\n<tr>\n"
-		 	<< "<td nowrap>" << tr("Unknown") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numUnknownGames) << "</td>\n"
+		 	<< "<td nowrap>" << tr("Unknown") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numUnknownGames) << "</td>\n"
 		 	<< "</tr>\n"
 		 	<< "</table>\n"
 		 	<< "</p>\n";
@@ -742,17 +742,17 @@ void ROMStatusExporter::exportToHTML()
       	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting and filtering export data"));
 
       	QMultiMap<QString, QTreeWidgetItem *> exportMap;
-      	for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount(); i++) {
+      	for (int i = 0; i < qmc2MainWindow->treeWidgetMachineList->topLevelItemCount(); i++) {
 	    	progressBarExport->setValue(i + 1);
 	    	qApp->processEvents();
-	    	QTreeWidgetItem *item = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i);
+	    	QTreeWidgetItem *item = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
 	    	switch ( comboBoxSortCriteria->currentIndex() ) {
 		  	case QMC2_RSE_SORT_BY_DESCRIPTION:
 				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_MACHINE), item);
 				break;
 
 		  	case QMC2_RSE_SORT_BY_ROM_STATE:
-				exportMap.insert(QString(qmc2Gamelist->romState(item->text(QMC2_MACHINELIST_COLUMN_NAME))), item);
+				exportMap.insert(QString(qmc2MachineList->romState(item->text(QMC2_MACHINELIST_COLUMN_NAME))), item);
 				break;
 
 		  	case QMC2_RSE_SORT_BY_YEAR:
@@ -806,7 +806,7 @@ void ROMStatusExporter::exportToHTML()
 	    	else
 		  	itExport.previous();
 
-	    	switch ( qmc2Gamelist->romState(itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME)) ) {
+	    	switch ( qmc2MachineList->romState(itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME)) ) {
 		  	case 'C':
 				if ( toolButtonExportC->isChecked() ) {
 					ts << "<tr>\n<td valign=\"top\">" << itExport.value()->text(QMC2_MACHINELIST_COLUMN_NAME) << "</td>";
@@ -923,7 +923,7 @@ void ROMStatusExporter::on_toolButtonBrowseHTMLFile_clicked()
 
 void ROMStatusExporter::on_pushButtonExport_clicked()
 {
-	if ( !qmc2Gamelist ) {
+	if ( !qmc2MachineList ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("gamelist is not ready, please wait"));
 		return;
 	}

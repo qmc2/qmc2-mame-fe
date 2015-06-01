@@ -21,7 +21,7 @@
 #include <QByteArray>
 #include <QCryptographicHash>
 
-#include "gamelist.h"
+#include "machinelist.h"
 #include "emuopt.h"
 #include "qmc2main.h"
 #include "options.h"
@@ -67,7 +67,7 @@ extern bool qmc2WidgetsEnabled;
 extern bool qmc2StatesTogglesEnabled;
 extern bool qmc2ForceCacheRefresh;
 extern bool qmc2SortingActive;
-extern int qmc2GamelistResponsiveness;
+extern int qmc2MachineListResponsiveness;
 extern Preview *qmc2Preview;
 extern Flyer *qmc2Flyer;
 extern Cabinet *qmc2Cabinet;
@@ -87,7 +87,7 @@ extern bool messSystemSlotsSupported;
 extern SoftwareList *qmc2SoftwareList;
 extern QHash<QString, QStringList> systemSoftwareListHash;
 extern QHash<QString, QStringList> systemSoftwareFilterHash;
-extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
 extern QHash<QString, QString> qmc2ParentHash;
 extern int qmc2SortCriteria;
@@ -107,22 +107,22 @@ extern QTreeWidgetItem *qmc2LastYouTubeItem;
 #endif
 extern HtmlEditor *qmc2SystemNotesEditor;
 extern HtmlEditor *qmc2SoftwareNotesEditor;
-extern QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
-extern Gamelist *qmc2Gamelist;
+extern QList<QTreeWidgetItem *> qmc2ExpandedMachineListItems;
+extern MachineList *qmc2MachineList;
 extern bool qmc2TemplateCheck;
 extern bool qmc2ParentImageFallback;
 
 // local global variables
-QStringList Gamelist::phraseTranslatorList;
-QStringList Gamelist::romTypeNames;
-QMap<QString, QString> Gamelist::reverseTranslation;
+QStringList MachineList::phraseTranslatorList;
+QStringList MachineList::romTypeNames;
+QMap<QString, QString> MachineList::reverseTranslation;
 QHash<QString, QStringList> qmc2HierarchyHash;
 
-Gamelist::Gamelist(QObject *parent)
+MachineList::MachineList(QObject *parent)
 	: QObject(parent)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::Gamelist()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::MachineList()");
 #endif
 
 	numGames = numTotalGames = numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numUnknownGames = numNotFoundGames = numDevices = -1;
@@ -205,10 +205,10 @@ Gamelist::Gamelist(QObject *parent)
 	datInfoDb()->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
 }
 
-Gamelist::~Gamelist()
+MachineList::~MachineList()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::~Gamelist()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::~MachineList()");
 #endif
 
 	if ( loadProc )
@@ -242,10 +242,10 @@ Gamelist::~Gamelist()
 
 }
 
-void Gamelist::enableWidgets(bool enable)
+void MachineList::enableWidgets(bool enable)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::enableWidgets(bool enable = " + QString(enable ? "true" : "false") + ")");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::enableWidgets(bool enable = " + QString(enable ? "true" : "false") + ")");
 #endif
 
 	// store widget enablement flag for later dialog setups
@@ -297,7 +297,7 @@ void Gamelist::enableWidgets(bool enable)
 	qmc2Options->toolButtonClearUserDataDatabase->setEnabled(enable);
 	qmc2Options->toolButtonBrowseFavoritesFile->setEnabled(enable);
 	qmc2Options->toolButtonBrowseHistoryFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseGamelistCacheFile->setEnabled(enable);
+	qmc2Options->toolButtonBrowseMachineListCacheFile->setEnabled(enable);
 	qmc2Options->toolButtonBrowseROMStateCacheFile->setEnabled(enable);
 	qmc2Options->toolButtonBrowseSlotInfoCacheFile->setEnabled(enable);
 	qmc2Options->toolButtonBrowseFlyerDirectory->setEnabled(enable);
@@ -413,10 +413,10 @@ void Gamelist::enableWidgets(bool enable)
 	qmc2MainWindow->actionArcadeSetup->setEnabled(enable);
 }
 
-void Gamelist::load()
+void MachineList::load()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::load()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::load()");
 #endif
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
@@ -431,11 +431,11 @@ void Gamelist::load()
 	qmc2ReloadActive = qmc2EarlyReloadActive = true;
 	qmc2StopParser = false;
 	gameStatusHash.clear();
-	qmc2GamelistItemHash.clear();
+	qmc2MachineListItemHash.clear();
 	biosSets.clear();
 	deviceSets.clear();
 	qmc2HierarchyItemHash.clear();
-	qmc2ExpandedGamelistItems.clear();
+	qmc2ExpandedMachineListItems.clear();
 	userDataDb()->clearRankCache();
 	userDataDb()->clearCommentCache();
 
@@ -445,7 +445,7 @@ void Gamelist::load()
 
 	numGames = numTotalGames = numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numUnknownGames = numNotFoundGames = numDevices = -1;
 	numTaggedSets = numSearchGames = 0;
-	qmc2MainWindow->treeWidgetGamelist->clear();
+	qmc2MainWindow->treeWidgetMachineList->clear();
 	qmc2MainWindow->treeWidgetHierarchy->clear();
 	qmc2CategoryItemHash.clear();
 	qmc2MainWindow->treeWidgetCategoryView->clear();
@@ -536,7 +536,7 @@ void Gamelist::load()
 
 	qApp->processEvents();
 
-	QTreeWidgetItem *dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetGamelist);
+	QTreeWidgetItem *dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetMachineList);
 	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
 	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetHierarchy);
 	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
@@ -564,9 +564,9 @@ void Gamelist::load()
 		delete qmc2MainWindow->pushButtonCurrentEmulatorOptionsImportFromFile;
 		qmc2EmulatorOptions = NULL;
 	}
-	qmc2MainWindow->labelGamelistStatus->setText(status());
+	qmc2MainWindow->labelMachineListStatus->setText(status());
 
-	if ( qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabGamelist) == qmc2MainWindow->tabWidgetGamelist->currentIndex() ) {
+	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
 		switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 			case QMC2_VIEW_CATEGORY_INDEX:
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(viewByCategory()));
@@ -722,7 +722,7 @@ void Gamelist::load()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create temporary file, please check emulator executable and permissions"));
-	qmc2MainWindow->labelGamelistStatus->setText(status());
+	qmc2MainWindow->labelMachineListStatus->setText(status());
 
 	if ( emulatorVersion != tr("unknown") )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator info: type = %1, version = %2").arg(emulatorType).arg(emulatorVersion));
@@ -754,11 +754,11 @@ void Gamelist::load()
 
 	categoryMap.clear();
 	versionMap.clear();
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool() ) {
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool() ) {
 		loadCatverIni();
 		mergeCategories = true;
 	}
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool() )
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool() )
 		loadCategoryIni();
 	mergeCategories = false;
 
@@ -768,16 +768,16 @@ void Gamelist::load()
 	qmc2EarlyReloadActive = false;
 
 	if ( qmc2StopParser ) {
-		qmc2MainWindow->progressBarGamelist->reset();
+		qmc2MainWindow->progressBarMachineList->reset();
 		qmc2ReloadActive = false;
 		enableWidgets(true);
 		return;
 	}
 
 	// hide game list / show loading animation
-	qmc2MainWindow->treeWidgetGamelist->setVisible(false);
-	((AspectRatioLabel *)qmc2MainWindow->labelLoadingGamelist)->setLabelText(tr("Loading, please wait..."));
-	qmc2MainWindow->labelLoadingGamelist->setVisible(true);
+	qmc2MainWindow->treeWidgetMachineList->setVisible(false);
+	((AspectRatioLabel *)qmc2MainWindow->labelLoadingMachineList)->setLabelText(tr("Loading, please wait..."));
+	qmc2MainWindow->labelLoadingMachineList->setVisible(true);
 	qmc2MainWindow->treeWidgetHierarchy->setVisible(false);
 	((AspectRatioLabel *)qmc2MainWindow->labelLoadingHierarchy)->setLabelText(tr("Loading, please wait..."));
 	qmc2MainWindow->labelLoadingHierarchy->setVisible(true);
@@ -791,16 +791,16 @@ void Gamelist::load()
 
 		// show game list / hide loading animation
 		qmc2MainWindow->loadAnimMovie->setPaused(true);
-		qmc2MainWindow->labelLoadingGamelist->setVisible(false);
-		qmc2MainWindow->treeWidgetGamelist->setVisible(true);
+		qmc2MainWindow->labelLoadingMachineList->setVisible(false);
+		qmc2MainWindow->treeWidgetMachineList->setVisible(true);
 		qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
 		qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
 
-		if ( qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabGamelist) == qmc2MainWindow->tabWidgetGamelist->currentIndex() ) {
+		if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
 			if ( qApp->focusWidget() != qmc2MainWindow->comboBoxToolbarSearch ) {
 				switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 					case QMC2_VIEW_DETAIL_INDEX:
-						qmc2MainWindow->treeWidgetGamelist->setFocus();
+						qmc2MainWindow->treeWidgetMachineList->setFocus();
 						break;
 					case QMC2_VIEW_TREE_INDEX:
 						qmc2MainWindow->treeWidgetHierarchy->setFocus();
@@ -812,13 +812,13 @@ void Gamelist::load()
 						qmc2MainWindow->treeWidgetVersionView->setFocus();
 						break;
 					default:
-						qmc2MainWindow->treeWidgetGamelist->setFocus();
+						qmc2MainWindow->treeWidgetMachineList->setFocus();
 						break;
 				}
 			}
 			switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 				case QMC2_VIEW_DETAIL_INDEX:
-					qmc2MainWindow->treeWidgetGamelist_verticalScrollChanged();
+					qmc2MainWindow->treeWidgetMachineList_verticalScrollChanged();
 					break;
 				case QMC2_VIEW_TREE_INDEX:
 					qmc2MainWindow->treeWidgetHierarchy_verticalScrollChanged();
@@ -837,9 +837,9 @@ void Gamelist::load()
 		loadTimer.start();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML data and recreating cache"));
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-			qmc2MainWindow->progressBarGamelist->setFormat(tr("XML data - %p%"));
+			qmc2MainWindow->progressBarMachineList->setFormat(tr("XML data - %p%"));
 		else
-			qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 		command = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString();
 		args.clear();
 		args << "-listxml";
@@ -853,11 +853,9 @@ void Gamelist::load()
 		xmlDb()->setQmc2Version(XSTR(QMC2_VERSION));
 		xmlDb()->setXmlCacheVersion(QMC2_XMLCACHE_VERSION);
 		loadProc = new QProcess(this);
-		connect(loadProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(loadError(QProcess::ProcessError)));
 		connect(loadProc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(loadFinished(int, QProcess::ExitStatus)));
 		connect(loadProc, SIGNAL(readyReadStandardOutput()), this, SLOT(loadReadyReadStandardOutput()));
 		connect(loadProc, SIGNAL(started()), this, SLOT(loadStarted()));
-		connect(loadProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(loadStateChanged(QProcess::ProcessState)));
 		loadProc->setProcessChannelMode(QProcess::MergedChannels);
 		loadProc->start(command, args);
 	}
@@ -867,14 +865,14 @@ void Gamelist::load()
 	userDataDb()->setUserDataVersion(QMC2_USERDATA_VERSION);
 }
 
-void Gamelist::verify(bool currentOnly)
+void MachineList::verify(bool currentOnly)
 {
 	if ( currentOnly )
 		if ( !qmc2CurrentItem )
 			return;
 
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::verify(bool currentOnly = %1)").arg(currentOnly));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MachineList::verify(bool currentOnly = %1)").arg(currentOnly));
 #endif
 
 	verifyCurrentOnly = currentOnly;
@@ -945,13 +943,13 @@ void Gamelist::verify(bool currentOnly)
 		}
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying ROM status for all sets"));
 		numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numNotFoundGames = numUnknownGames = 0;
-		qmc2MainWindow->labelGamelistStatus->setText(status());
+		qmc2MainWindow->labelMachineListStatus->setText(status());
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-			qmc2MainWindow->progressBarGamelist->setFormat(tr("ROM check - %p%"));
+			qmc2MainWindow->progressBarMachineList->setFormat(tr("ROM check - %p%"));
 		else
-			qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-		qmc2MainWindow->progressBarGamelist->setRange(0, numTotalGames + numDevices);
-		qmc2MainWindow->progressBarGamelist->reset();
+			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+		qmc2MainWindow->progressBarMachineList->setRange(0, numTotalGames + numDevices);
+		qmc2MainWindow->progressBarMachineList->reset();
 	}
   
 	QStringList args;
@@ -972,10 +970,10 @@ void Gamelist::verify(bool currentOnly)
 	verifyProc->start(command, args);
 }
 
-QString Gamelist::value(QString element, QString attribute, bool translate)
+QString MachineList::value(QString element, QString attribute, bool translate)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::value(QString element = " + element + ", QString attribute = \"" + attribute + "\", translate = " + QString(translate ? "true" : "false") + ")");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::value(QString element = " + element + ", QString attribute = \"" + attribute + "\", translate = " + QString(translate ? "true" : "false") + ")");
 #endif
 
 	QString attributePattern = " " + attribute + "=\"";
@@ -992,7 +990,7 @@ QString Gamelist::value(QString element, QString attribute, bool translate)
 		return QString::null;
 }
 
-void Gamelist::insertAttributeItems(QTreeWidgetItem *parent, QString element, QStringList attributes, QStringList descriptions, bool translate)
+void MachineList::insertAttributeItems(QTreeWidgetItem *parent, QString element, QStringList attributes, QStringList descriptions, bool translate)
 {
 	QList<QTreeWidgetItem *> itemList;
 	for (int i = 0; i < attributes.count(); i++) {
@@ -1007,7 +1005,7 @@ void Gamelist::insertAttributeItems(QTreeWidgetItem *parent, QString element, QS
 	parent->addChildren(itemList);
 }
 
-void Gamelist::insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QString element, QStringList attributes, QStringList descriptions, bool translate)
+void MachineList::insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QString element, QStringList attributes, QStringList descriptions, bool translate)
 {
 	for (int i = 0; i < attributes.count(); i++) {
 		QString valueString = value(element, attributes.at(i), translate);
@@ -1020,10 +1018,10 @@ void Gamelist::insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QString 
 	}
 }
 
-void Gamelist::parseGameDetail(QTreeWidgetItem *item)
+void MachineList::parseGameDetail(QTreeWidgetItem *item)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::parseGameDetail(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MachineList::parseGameDetail(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
 	QString gameName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
@@ -1035,7 +1033,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
 
 	int gamePos = 1;
 	item->child(0)->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Updating"));
-	qmc2MainWindow->treeWidgetGamelist->viewport()->repaint();
+	qmc2MainWindow->treeWidgetMachineList->viewport()->repaint();
 	qApp->processEvents();
 
 	QString element, content;
@@ -1302,16 +1300,16 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
 			itemList << childItem;
 	}
 
-	qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
+	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
 	delete item->takeChild(0);
 	item->addChildren(itemList);
-	qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 }
 
-void Gamelist::parse()
+void MachineList::parse()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::parse()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::parse()");
 #endif
 
 	if ( qmc2StopParser ) {
@@ -1320,12 +1318,12 @@ void Gamelist::parse()
 		return;
 	}
 
-	bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool();
-	bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool();
-	bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool();
+	bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool();
+	bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
+	bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
 
 	QTime elapsedTime(0, 0, 0, 0);
-	qmc2MainWindow->progressBarGamelist->setRange(0, numTotalGames);
+	qmc2MainWindow->progressBarMachineList->setRange(0, numTotalGames);
 	romCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile").toString());
 	romCache.open(QIODevice::ReadOnly | QIODevice::Text);
 	if ( !romCache.isOpen() ) {
@@ -1335,10 +1333,10 @@ void Gamelist::parse()
 		parseTimer.start();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading ROM state from cache"));
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-			qmc2MainWindow->progressBarGamelist->setFormat(tr("ROM states - %p%"));
+			qmc2MainWindow->progressBarMachineList->setFormat(tr("ROM states - %p%"));
 		else
-			qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-		qmc2MainWindow->progressBarGamelist->reset();
+			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+		qmc2MainWindow->progressBarMachineList->reset();
 		qApp->processEvents();
 		tsRomCache.setDevice(&romCache);
 		tsRomCache.reset();
@@ -1351,7 +1349,7 @@ void Gamelist::parse()
 				cachedGamesCounter++;
 			}
 			if ( cachedGamesCounter % QMC2_ROMCACHE_RESPONSIVENESS == 0 ) {
-				qmc2MainWindow->progressBarGamelist->setValue(cachedGamesCounter);
+				qmc2MainWindow->progressBarMachineList->setValue(cachedGamesCounter);
 				qApp->processEvents();
 			}
 		}
@@ -1364,65 +1362,65 @@ void Gamelist::parse()
 		qApp->processEvents();
 	}
 
-	QTime processGamelistElapsedTimer(0, 0, 0, 0);
+	QTime processMachineListElapsedTimer(0, 0, 0, 0);
 	parseTimer.start();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("processing machine list"));
-	qmc2MainWindow->treeWidgetGamelist->clear();
+	qmc2MainWindow->treeWidgetMachineList->clear();
 	qmc2HierarchyHash.clear();
 	qmc2ParentHash.clear();
-	qmc2MainWindow->progressBarGamelist->reset();
+	qmc2MainWindow->progressBarMachineList->reset();
 
-	gamelistCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GamelistCacheFile").toString());
+	gamelistCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile").toString());
 	gamelistCache.open(QIODevice::ReadOnly | QIODevice::Text);
-	bool reparseGamelist = true;
+	bool reparseMachineList = true;
 	bool romStateCacheUpdate = false;
 
 	if ( gamelistCache.isOpen() ) {
 		QString line;
-		tsGamelistCache.setDevice(&gamelistCache);
-		tsGamelistCache.setCodec(QTextCodec::codecForName("UTF-8"));
-		tsGamelistCache.seek(0);
+		tsMachineListCache.setDevice(&gamelistCache);
+		tsMachineListCache.setCodec(QTextCodec::codecForName("UTF-8"));
+		tsMachineListCache.seek(0);
     
-		if ( !tsGamelistCache.atEnd() ) {
-			line = tsGamelistCache.readLine();
-			while ( line.startsWith("#") && !tsGamelistCache.atEnd() )
-				line = tsGamelistCache.readLine();
+		if ( !tsMachineListCache.atEnd() ) {
+			line = tsMachineListCache.readLine();
+			while ( line.startsWith("#") && !tsMachineListCache.atEnd() )
+				line = tsMachineListCache.readLine();
 			QStringList words = line.split("\t");
 			if ( words.count() >= 2 ) {
 				if ( words[0] == "MAME_VERSION" )
-					romStateCacheUpdate = reparseGamelist = (words[1] != emulatorVersion);
+					romStateCacheUpdate = reparseMachineList = (words[1] != emulatorVersion);
 				else
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't determine emulator version of machine list cache"));
 				if ( words.count() < 4 ) {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFORMATION: the machine list cache will now be updated due to a new format"));
-					reparseGamelist = true;
+					reparseMachineList = true;
 				} else {
 					int cacheGlcVersion = words[3].toInt();
 					if ( cacheGlcVersion < QMC2_GLC_VERSION ) {
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFORMATION: the machine list cache will now be updated due to a new format"));
-						reparseGamelist = true;
+						reparseMachineList = true;
 					}
 				}
 			}
 		}
 
-		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
-		bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
+		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool();
+		bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
 
-		if ( !reparseGamelist && !qmc2StopParser ) {
+		if ( !reparseMachineList && !qmc2StopParser ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading machine data from machine list cache"));
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-				qmc2MainWindow->progressBarGamelist->setFormat(tr("Machine data - %p%"));
+				qmc2MainWindow->progressBarMachineList->setFormat(tr("Machine data - %p%"));
 			else
-				qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+				qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 			QTime gameDataCacheElapsedTime(0, 0, 0, 0);
 			miscTimer.start();
 			numGames = numUnknownGames = numDevices = 0;
-			qmc2MainWindow->progressBarGamelist->setValue(0);
+			qmc2MainWindow->progressBarMachineList->setValue(0);
 			QString readBuffer;
 			QList<QTreeWidgetItem *> itemList, hideList;
-			while ( (!tsGamelistCache.atEnd() || !readBuffer.isEmpty() ) && !qmc2StopParser ) {
-				readBuffer += tsGamelistCache.read(QMC2_FILE_BUFFER_SIZE);
+			while ( (!tsMachineListCache.atEnd() || !readBuffer.isEmpty() ) && !qmc2StopParser ) {
+				readBuffer += tsMachineListCache.read(QMC2_FILE_BUFFER_SIZE);
 				bool endsWithNewLine = readBuffer.endsWith("\n");
 				QStringList lines = readBuffer.split("\n");
 				int lc = lines.count();
@@ -1445,10 +1443,10 @@ void Gamelist::parse()
 						bool isDevice = (words[10] == "1");
 						QString gameSource = words[11];
 #ifdef QMC2_DEBUG
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::parse(): gameName = %1, gameDescription = %2, gameManufacturer = %3, gameYear = %4, gameCloneOf = %5, isBIOS = %6, hasROMs = %7, hasCHDs = %8, gamePlayers = %9, gameStatus = %10, isDevice = %11, gameSource = %12").
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MachineList::parse(): gameName = %1, gameDescription = %2, gameManufacturer = %3, gameYear = %4, gameCloneOf = %5, isBIOS = %6, hasROMs = %7, hasCHDs = %8, gamePlayers = %9, gameStatus = %10, isDevice = %11, gameSource = %12").
 								arg(gameName).arg(gameDescription).arg(gameManufacturer).arg(gameYear).arg(gameCloneOf).arg(isBIOS).arg(hasROMs).arg(hasCHDs).arg(gamePlayers).arg(gameStatus).arg(isDevice).arg(gameSource));
 #endif
-						GamelistItem *gameDescriptionItem = new GamelistItem();
+						MachineListItem *gameDescriptionItem = new MachineListItem();
 						gameDescriptionItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
 						gameDescriptionItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 
@@ -1558,7 +1556,7 @@ void Gamelist::parse()
 						QTreeWidgetItem *nameItem = new QTreeWidgetItem(gameDescriptionItem);
 						nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
 						nameItem->setText(QMC2_MACHINELIST_COLUMN_ICON, gameName);
-						qmc2GamelistItemHash[gameName] = gameDescriptionItem;
+						qmc2MachineListItemHash[gameName] = gameDescriptionItem;
 						loadIcon(gameName, gameDescriptionItem);
 
 						numGames++;
@@ -1568,9 +1566,9 @@ void Gamelist::parse()
 						itemList << gameDescriptionItem;
 					}
 
-					if ( numGames % qmc2GamelistResponsiveness == 0 ) {
-						qmc2MainWindow->progressBarGamelist->setValue(numGames);
-						qmc2MainWindow->labelGamelistStatus->setText(status());
+					if ( numGames % qmc2MachineListResponsiveness == 0 ) {
+						qmc2MainWindow->progressBarMachineList->setValue(numGames);
+						qmc2MainWindow->labelMachineListStatus->setText(status());
 						qApp->processEvents();
 					}
 				}
@@ -1580,10 +1578,10 @@ void Gamelist::parse()
 				else
 					readBuffer = lines.last();
 			}
-			qmc2MainWindow->treeWidgetGamelist->addTopLevelItems(itemList);
+			qmc2MainWindow->treeWidgetMachineList->addTopLevelItems(itemList);
 			foreach (QTreeWidgetItem *hiddenItem, hideList)
 				hiddenItem->setHidden(true);
-			qmc2MainWindow->progressBarGamelist->setValue(numGames);
+			qmc2MainWindow->progressBarMachineList->setValue(numGames);
 			qApp->processEvents();
 
 			gameDataCacheElapsedTime = gameDataCacheElapsedTime.addMSecs(miscTimer.elapsed());
@@ -1594,29 +1592,29 @@ void Gamelist::parse()
 	if ( gamelistCache.isOpen() )
 		gamelistCache.close();
 
-	if ( reparseGamelist && !qmc2StopParser ) {
+	if ( reparseMachineList && !qmc2StopParser ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing machine data and recreating machine list cache"));
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-			qmc2MainWindow->progressBarGamelist->setFormat(tr("Machine data - %p%"));
+			qmc2MainWindow->progressBarMachineList->setFormat(tr("Machine data - %p%"));
 		else
-			qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 		gamelistCache.open(QIODevice::WriteOnly | QIODevice::Text);
 		if ( !gamelistCache.isOpen() )
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open machine list cache for writing, path = %1").arg(gamelistCache.fileName()));
 		else {
-			tsGamelistCache.setDevice(&gamelistCache);
-			tsGamelistCache.setCodec(QTextCodec::codecForName("UTF-8"));
-			tsGamelistCache.reset();
-			tsGamelistCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
-			tsGamelistCache << "MAME_VERSION\t" + emulatorVersion + "\tGLC_VERSION\t" + QString::number(QMC2_GLC_VERSION) + "\n";
+			tsMachineListCache.setDevice(&gamelistCache);
+			tsMachineListCache.setCodec(QTextCodec::codecForName("UTF-8"));
+			tsMachineListCache.reset();
+			tsMachineListCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
+			tsMachineListCache << "MAME_VERSION\t" + emulatorVersion + "\tGLC_VERSION\t" + QString::number(QMC2_GLC_VERSION) + "\n";
 		}
 
-		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
-		bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
+		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool();
+		bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
 
 		// parse XML data
 		numGames = numUnknownGames = numDevices = 0;
-		qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
+		qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
 
 		QList <QTreeWidgetItem *> itemList;
 		QList <QTreeWidgetItem *> hideList;
@@ -1642,7 +1640,7 @@ void Gamelist::parse()
 					}
 					QString gameCloneOf = value(gameElement, "cloneof");
 					QString gameDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
-					GamelistItem *gameDescriptionItem = new GamelistItem();
+					MachineListItem *gameDescriptionItem = new MachineListItem();
 					gameDescriptionItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
 					gameDescriptionItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 
@@ -1787,11 +1785,11 @@ void Gamelist::parse()
 					QTreeWidgetItem *nameItem = new QTreeWidgetItem(gameDescriptionItem);
 					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
 					nameItem->setText(QMC2_MACHINELIST_COLUMN_ICON, gameName);
-					qmc2GamelistItemHash[gameName] = gameDescriptionItem;
+					qmc2MachineListItemHash[gameName] = gameDescriptionItem;
 					loadIcon(gameName, gameDescriptionItem);
 
 					if ( gamelistCache.isOpen() )
-						tsGamelistCache << gameName << "\t" << gameDescription << "\t" << gameManufacturer << "\t"
+						tsMachineListCache << gameName << "\t" << gameDescription << "\t" << gameManufacturer << "\t"
 							<< gameYear << "\t" << gameCloneOf << "\t" << (isBIOS ? "1": "0") << "\t"
 							<< (hasROMs ? "1" : "0") << "\t" << (hasCHDs ? "1": "0") << "\t"
 							<< gamePlayers << "\t" << gameStatus << "\t" << (isDevice ? "1": "0") << "\t"
@@ -1804,14 +1802,14 @@ void Gamelist::parse()
 					itemList << gameDescriptionItem;
 				}
 
-				if ( numGames % qmc2GamelistResponsiveness == 0 ) {
-					qmc2MainWindow->progressBarGamelist->setValue(numGames);
-					qmc2MainWindow->labelGamelistStatus->setText(status());
+				if ( numGames % qmc2MachineListResponsiveness == 0 ) {
+					qmc2MainWindow->progressBarMachineList->setValue(numGames);
+					qmc2MainWindow->labelMachineListStatus->setText(status());
 					qApp->processEvents();
 				}
 			}
 		}
-		qmc2MainWindow->treeWidgetGamelist->addTopLevelItems(itemList);
+		qmc2MainWindow->treeWidgetMachineList->addTopLevelItems(itemList);
 		foreach (QTreeWidgetItem *hiddenItem, hideList)
 			hiddenItem->setHidden(true);
 	}
@@ -1819,8 +1817,8 @@ void Gamelist::parse()
 	if ( gamelistCache.isOpen() )
 		gamelistCache.close();
 
-	bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
-	bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
+	bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool();
+	bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
 
 	// create parent/clone hierarchy tree
 	qmc2MainWindow->treeWidgetHierarchy->clear();
@@ -1834,7 +1832,7 @@ void Gamelist::parse()
 			qApp->processEvents();
 		counter++;
 		QString iValue = i.key();
-		QTreeWidgetItem *listItem = qmc2GamelistItemHash.value(iValue);
+		QTreeWidgetItem *listItem = qmc2MachineListItemHash.value(iValue);
 		QString iDescription;
 		if ( listItem )
 			iDescription = listItem->text(QMC2_MACHINELIST_COLUMN_MACHINE);
@@ -1842,13 +1840,13 @@ void Gamelist::parse()
 			continue;
 		bool isBIOS = isBios(iValue);
 		bool isDevice = this->isDevice(iValue);
-		GamelistItem *hierarchyItem = new GamelistItem();
+		MachineListItem *hierarchyItem = new MachineListItem();
 		if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
 			hideList << hierarchyItem;
 		hierarchyItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
 		hierarchyItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 		hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, iDescription);
-		QTreeWidgetItem *baseItem = qmc2GamelistItemHash[iValue];
+		QTreeWidgetItem *baseItem = qmc2MachineListItemHash[iValue];
 		hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
 		hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_MANU, baseItem->text(QMC2_MACHINELIST_COLUMN_MANU));
 		hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_NAME, baseItem->text(QMC2_MACHINELIST_COLUMN_NAME));
@@ -1914,18 +1912,18 @@ void Gamelist::parse()
 
 		for (int j = 0; j < i.value().count(); j++) {
 			QString jValue = i.value().at(j);
-			QString jDescription = qmc2GamelistItemHash[jValue]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
+			QString jDescription = qmc2MachineListItemHash[jValue]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 			if ( jDescription.isEmpty() )
 				continue;
 			isBIOS = isBios(jValue);
 			isDevice = this->isDevice(jValue);
-			GamelistItem *hierarchySubItem = new GamelistItem(hierarchyItem);
+			MachineListItem *hierarchySubItem = new MachineListItem(hierarchyItem);
 			if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
 				hideList << hierarchySubItem;
 			hierarchySubItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
 			hierarchySubItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, jDescription);
-			baseItem = qmc2GamelistItemHash[jValue];
+			baseItem = qmc2MachineListItemHash[jValue];
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_MANU, baseItem->text(QMC2_MACHINELIST_COLUMN_MANU));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_NAME, baseItem->text(QMC2_MACHINELIST_COLUMN_NAME));
@@ -2053,27 +2051,27 @@ void Gamelist::parse()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 
 	// final update of progress bar and game/machine list stats
-	qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->maximum());
-	qmc2MainWindow->labelGamelistStatus->setText(status());
+	qmc2MainWindow->progressBarMachineList->setValue(qmc2MainWindow->progressBarMachineList->maximum());
+	qmc2MainWindow->labelMachineListStatus->setText(status());
 
 	// sort the master-list
-	qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
+	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
 	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
-	if ( !qmc2Gamelist->userDataDb()->rankCacheComplete() )
-		qmc2Gamelist->userDataDb()->fillUpRankCache();
-	qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+	if ( !qmc2MachineList->userDataDb()->rankCacheComplete() )
+		qmc2MachineList->userDataDb()->fillUpRankCache();
+	qmc2MainWindow->treeWidgetMachineList->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 	qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
-	QTreeWidgetItem *ci = qmc2MainWindow->treeWidgetGamelist->currentItem();
+	QTreeWidgetItem *ci = qmc2MainWindow->treeWidgetMachineList->currentItem();
 	if ( ci ) {
 		if ( ci->isSelected() ) {
 			QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 		} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
 			QString selectedGame = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
 			if ( !selectedGame.isEmpty() ) {
-				QTreeWidgetItem *glItem = qmc2GamelistItemHash[selectedGame];
+				QTreeWidgetItem *glItem = qmc2MachineListItemHash[selectedGame];
 				if ( glItem ) {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
-					qmc2MainWindow->treeWidgetGamelist->setCurrentItem(glItem);
+					qmc2MainWindow->treeWidgetMachineList->setCurrentItem(glItem);
 					QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 				}
 			}
@@ -2081,31 +2079,31 @@ void Gamelist::parse()
 	} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
 		QString selectedGame = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
 		if ( !selectedGame.isEmpty() ) {
-			QTreeWidgetItem *glItem = qmc2GamelistItemHash[selectedGame];
+			QTreeWidgetItem *glItem = qmc2MachineListItemHash[selectedGame];
 			if ( glItem ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
-				qmc2MainWindow->treeWidgetGamelist->setCurrentItem(glItem);
+				qmc2MainWindow->treeWidgetMachineList->setCurrentItem(glItem);
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 			}
 		}
 	}
-	qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
-	qmc2MainWindow->labelGamelistStatus->setText(status());
-	qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
+	qmc2MainWindow->labelMachineListStatus->setText(status());
+	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
 
-	processGamelistElapsedTimer = processGamelistElapsedTimer.addMSecs(parseTimer.elapsed());
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (processing machine list, elapsed time = %1)").arg(processGamelistElapsedTimer.toString("mm:ss.zzz")));
+	processMachineListElapsedTimer = processMachineListElapsedTimer.addMSecs(parseTimer.elapsed());
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (processing machine list, elapsed time = %1)").arg(processMachineListElapsedTimer.toString("mm:ss.zzz")));
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n machine(s)", "", numTotalGames - biosSets.count()) + tr(", %n BIOS set(s)", "", biosSets.count()) + tr(" and %n device(s) loaded", "", numDevices));
 
 	if ( numGames - numDevices != numTotalGames ) {
-		if ( reparseGamelist && qmc2StopParser ) {
+		if ( reparseMachineList && qmc2StopParser ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: machine list not fully parsed, invalidating machine list cache"));
-			QFile f(qmc2Config->value("MAME/FilesAndDirectories/GamelistCacheFile").toString());
+			QFile f(qmc2Config->value("MAME/FilesAndDirectories/MachineListCacheFile").toString());
 			f.remove();
 		} else if ( !qmc2StopParser) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: machine list cache is out of date, invalidating machine list cache"));
-			QFile f(qmc2Config->value("MAME/FilesAndDirectories/GamelistCacheFile").toString());
+			QFile f(qmc2Config->value("MAME/FilesAndDirectories/MachineListCacheFile").toString());
 			f.remove();
 		}
 	}
@@ -2116,7 +2114,7 @@ void Gamelist::parse()
 	QString sN = numNotFoundGames >= 0 ? QString::number(numNotFoundGames) : tr("?");
 	QString sU = numUnknownGames >= 0 ? QString::number(numUnknownGames) : tr("?");
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(sL).arg(sC).arg(sM).arg(sI).arg(sN).arg(sU));
-	qmc2MainWindow->progressBarGamelist->reset();
+	qmc2MainWindow->progressBarMachineList->reset();
 
 	qmc2ReloadActive = false;
 	qmc2StartingUp = false;
@@ -2127,7 +2125,7 @@ void Gamelist::parse()
 		autoRomCheck = false;
 	} else {
 		if ( romStateCacheUpdate || cachedGamesCounter - numDevices != numTotalGames ) {
-			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck").toBool() ) {
+			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/AutoTriggerROMCheck").toBool() ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ROM state cache is incomplete or not up to date, triggering an automatic ROM check"));
 				autoRomCheck = true;
 			} else
@@ -2139,16 +2137,16 @@ void Gamelist::parse()
 
 	if ( autoRomCheck )
 		QTimer::singleShot(QMC2_AUTOROMCHECK_DELAY, qmc2MainWindow->actionCheckROMs, SLOT(trigger()));
-	else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool() && !qmc2StopParser )
+	else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true).toBool() && !qmc2StopParser )
 		filter(true);
 
 	enableWidgets(true);
 }
 
-void Gamelist::filter(bool initial)
+void MachineList::filter(bool initial)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::filter(initial = %1)").arg(initial));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MachineList::filter(initial = %1)").arg(initial));
 #endif
 
 	if ( qmc2FilterActive ) {
@@ -2166,13 +2164,13 @@ void Gamelist::filter(bool initial)
 		return;
 	}
 
-	bool showC = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowC", true).toBool();
-	bool showM = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowM", true).toBool();
-	bool showI = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowI", true).toBool();
-	bool showN = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowN", true).toBool();
-	bool showU = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowU", true).toBool();
-	bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool();
-	bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool();
+	bool showC = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowC", true).toBool();
+	bool showM = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowM", true).toBool();
+	bool showI = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowI", true).toBool();
+	bool showN = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowN", true).toBool();
+	bool showU = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowU", true).toBool();
+	bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
+	bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
 
 	if ( initial && showC && showM && showI && showN && showU && showDeviceSets && showBiosSets ) {
 		qmc2StatesTogglesEnabled = true;
@@ -2185,13 +2183,13 @@ void Gamelist::filter(bool initial)
 	qmc2FilterActive = true;
 	enableWidgets(false);
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("applying ROM state filter"));
-	qmc2MainWindow->progressBarGamelist->reset();
+	qmc2MainWindow->progressBarMachineList->reset();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		qmc2MainWindow->progressBarGamelist->setFormat(tr("State filter - %p%"));
+		qmc2MainWindow->progressBarMachineList->setFormat(tr("State filter - %p%"));
 	else
-		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-	int itemCount = qmc2MainWindow->treeWidgetGamelist->topLevelItemCount();
-	qmc2MainWindow->progressBarGamelist->setRange(0, itemCount - 1);
+		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+	int itemCount = qmc2MainWindow->treeWidgetMachineList->topLevelItemCount();
+	qmc2MainWindow->progressBarMachineList->setRange(0, itemCount - 1);
 	qApp->processEvents();
 	if ( verifyCurrentOnly && checkedItem ) {
 		QString gameName = checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
@@ -2218,17 +2216,17 @@ void Gamelist::filter(bool initial)
 				break;
 		}
 	} else {
-		QTreeWidgetItem *curItem = qmc2MainWindow->treeWidgetGamelist->currentItem();
-		qmc2MainWindow->treeWidgetGamelist->setVisible(false);
+		QTreeWidgetItem *curItem = qmc2MainWindow->treeWidgetMachineList->currentItem();
+		qmc2MainWindow->treeWidgetMachineList->setVisible(false);
 		// note: reset()'ing the tree-widget is essential to avoid an apparent Qt bug that slows down filtering under certain circumstances
-		qmc2MainWindow->treeWidgetGamelist->reset();
-		((AspectRatioLabel *)qmc2MainWindow->labelLoadingGamelist)->setLabelText(tr("Filtering, please wait..."));
-		qmc2MainWindow->labelLoadingGamelist->setVisible(true);
+		qmc2MainWindow->treeWidgetMachineList->reset();
+		((AspectRatioLabel *)qmc2MainWindow->labelLoadingMachineList)->setLabelText(tr("Filtering, please wait..."));
+		qmc2MainWindow->labelLoadingMachineList->setVisible(true);
 		qmc2MainWindow->loadAnimMovie->start();
 		qApp->processEvents();
 		int filterResponse = itemCount / QMC2_STATEFILTER_UPDATES;
 		for (int i = 0; i < itemCount && !qmc2StopParser; i++) {
-			QTreeWidgetItem *item = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i);
+			QTreeWidgetItem *item = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
 			QString gameName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
 			if ( !showBiosSets && isBios(gameName) )
 				item->setHidden(true);
@@ -2253,30 +2251,30 @@ void Gamelist::filter(bool initial)
 					break;
 			}
 			if ( i % filterResponse == 0 ) {
-				qmc2MainWindow->progressBarGamelist->setValue(i);
+				qmc2MainWindow->progressBarMachineList->setValue(i);
 				qApp->processEvents();
 			}
 		}
 		qmc2MainWindow->loadAnimMovie->setPaused(true);
-		qmc2MainWindow->treeWidgetGamelist->setVisible(true);
-		qmc2MainWindow->labelLoadingGamelist->setVisible(false);
+		qmc2MainWindow->treeWidgetMachineList->setVisible(true);
+		qmc2MainWindow->labelLoadingMachineList->setVisible(false);
 		if ( curItem )
-			qmc2MainWindow->treeWidgetGamelist->setCurrentItem(curItem);
+			qmc2MainWindow->treeWidgetMachineList->setCurrentItem(curItem);
 	}
-	qmc2MainWindow->progressBarGamelist->setValue(itemCount - 1);
+	qmc2MainWindow->progressBarMachineList->setValue(itemCount - 1);
 	qmc2FilterActive = false;
 	elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (applying ROM state filter, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-	qmc2MainWindow->progressBarGamelist->reset();
+	qmc2MainWindow->progressBarMachineList->reset();
 	enableWidgets(true);
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 	qmc2StatesTogglesEnabled = true;
 }
 
-void Gamelist::loadFavorites()
+void MachineList::loadFavorites()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadFavorites()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::loadFavorites()");
 #endif
 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading favorites"));
@@ -2288,7 +2286,7 @@ void Gamelist::loadFavorites()
 		while ( !ts.atEnd() ) {
 			QString gameName = ts.readLine();
 			if ( !gameName.isEmpty() ) {
-				QTreeWidgetItem *gameItem = qmc2GamelistItemHash[gameName];
+				QTreeWidgetItem *gameItem = qmc2MachineListItemHash[gameName];
 				if ( gameItem ) {
 					QListWidgetItem *item = new QListWidgetItem(qmc2MainWindow->listWidgetFavorites);
 					item->setText(gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
@@ -2303,16 +2301,16 @@ void Gamelist::loadFavorites()
 
 	qmc2MainWindow->listWidgetFavorites->sortItems();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading favorites)"));
-	if ( qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabFavorites) == qmc2MainWindow->tabWidgetGamelist->currentIndex() )
+	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabFavorites) == qmc2MainWindow->tabWidgetMachineList->currentIndex() )
 		QTimer::singleShot(50, qmc2MainWindow, SLOT(checkCurrentFavoritesSelection()));
 	else
 		qmc2MainWindow->listWidgetFavorites->setCurrentIndex(QModelIndex());
 }
 
-void Gamelist::saveFavorites()
+void MachineList::saveFavorites()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::saveFavorites()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::saveFavorites()");
 #endif
 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("saving favorites"));
@@ -2329,10 +2327,10 @@ void Gamelist::saveFavorites()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (saving favorites)"));
 }
 
-void Gamelist::loadPlayHistory()
+void MachineList::loadPlayHistory()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadPlayHistory()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::loadPlayHistory()");
 #endif
 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading play history"));
@@ -2344,7 +2342,7 @@ void Gamelist::loadPlayHistory()
 		while ( !ts.atEnd() ) {
 			QString gameName = ts.readLine();
 			if ( !gameName.isEmpty() ) {
-				QTreeWidgetItem *gameItem = qmc2GamelistItemHash[gameName];
+				QTreeWidgetItem *gameItem = qmc2MachineListItemHash[gameName];
 				if ( gameItem ) {
 					QListWidgetItem *item = new QListWidgetItem(qmc2MainWindow->listWidgetPlayed);
 					item->setText(gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
@@ -2358,16 +2356,16 @@ void Gamelist::loadPlayHistory()
 	}
 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading play history)"));
-	if ( qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabPlayed) == qmc2MainWindow->tabWidgetGamelist->currentIndex() )
+	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabPlayed) == qmc2MainWindow->tabWidgetMachineList->currentIndex() )
 		QTimer::singleShot(50, qmc2MainWindow, SLOT(checkCurrentPlayedSelection()));
 	else
 		qmc2MainWindow->listWidgetPlayed->setCurrentIndex(QModelIndex());
 }
 
-void Gamelist::savePlayHistory()
+void MachineList::savePlayHistory()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::savePlayHistory()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::savePlayHistory()");
 #endif
 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("saving play history"));
@@ -2384,10 +2382,10 @@ void Gamelist::savePlayHistory()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (saving play history)"));
 }
 
-QString Gamelist::status()
+QString MachineList::status()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::status()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::status()");
 #endif
 
 	QLocale locale;
@@ -2405,20 +2403,20 @@ QString Gamelist::status()
 	return statusString;
 }
 
-void Gamelist::loadStarted()
+void MachineList::loadStarted()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadStarted()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::loadStarted()");
 #endif
 
-	qmc2MainWindow->progressBarGamelist->setRange(0, numTotalGames);
-	qmc2MainWindow->progressBarGamelist->reset();
+	qmc2MainWindow->progressBarMachineList->setRange(0, numTotalGames);
+	qmc2MainWindow->progressBarMachineList->reset();
 }
 
-void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
+void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2): proc = %3").arg(exitCode).arg(exitStatus).arg((qulonglong)loadProc));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MachineList::loadFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2): proc = %3").arg(exitCode).arg(exitStatus).arg((qulonglong)loadProc));
 #endif
 
 	bool invalidateListXmlCache = false;
@@ -2431,7 +2429,7 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	QTime elapsedTime(0, 0, 0, 0);
 	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML data and recreating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-	qmc2MainWindow->progressBarGamelist->reset();
+	qmc2MainWindow->progressBarMachineList->reset();
 	qmc2EarlyReloadActive = false;
 	if ( loadProc )
 		delete loadProc;
@@ -2454,16 +2452,16 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
 	// show game list / hide loading animation
 	qmc2MainWindow->loadAnimMovie->setPaused(true);
-	qmc2MainWindow->labelLoadingGamelist->setVisible(false);
-	qmc2MainWindow->treeWidgetGamelist->setVisible(true);
+	qmc2MainWindow->labelLoadingMachineList->setVisible(false);
+	qmc2MainWindow->treeWidgetMachineList->setVisible(true);
 	qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
 	qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
 
-	if ( qmc2MainWindow->tabWidgetGamelist->indexOf(qmc2MainWindow->tabGamelist) == qmc2MainWindow->tabWidgetGamelist->currentIndex() ) {
+	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
 		if ( qApp->focusWidget() != qmc2MainWindow->comboBoxToolbarSearch ) {
 			switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 				case QMC2_VIEW_DETAIL_INDEX:
-					qmc2MainWindow->treeWidgetGamelist->setFocus();
+					qmc2MainWindow->treeWidgetMachineList->setFocus();
 					break;
 				case QMC2_VIEW_TREE_INDEX:
 					qmc2MainWindow->treeWidgetHierarchy->setFocus();
@@ -2475,7 +2473,7 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					qmc2MainWindow->treeWidgetVersionView->setFocus();
 					break;
 				default:
-					qmc2MainWindow->treeWidgetGamelist->setFocus();
+					qmc2MainWindow->treeWidgetMachineList->setFocus();
 					break;
 			}
 		}
@@ -2484,10 +2482,10 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	qApp->processEvents();
 }
 
-void Gamelist::loadReadyReadStandardOutput()
+void MachineList::loadReadyReadStandardOutput()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadReadyReadStandardOutput(): proc = %1)").arg((qulonglong)loadProc));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MachineList::loadReadyReadStandardOutput(): proc = %1)").arg((qulonglong)loadProc));
 #endif
 
 	static bool lastCharacterWasSpace = false;
@@ -2628,23 +2626,23 @@ void Gamelist::loadReadyReadStandardOutput()
 		uncommittedXmlDbRows = 0;
 	}
 
-	qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + readBuffer.count("<machine name="));
+	qmc2MainWindow->progressBarMachineList->setValue(qmc2MainWindow->progressBarMachineList->value() + readBuffer.count("<machine name="));
 }
 
-void Gamelist::verifyStarted()
+void MachineList::verifyStarted()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::verifyStarted()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::verifyStarted()");
 #endif
 
 	if ( !verifyCurrentOnly )
-		qmc2MainWindow->progressBarGamelist->setValue(0);
+		qmc2MainWindow->progressBarMachineList->setValue(0);
 }
 
-void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
+void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::verifyFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2): proc = %3").arg(exitCode).arg(exitStatus).arg((qulonglong)verifyProc));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MachineList::verifyFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2): proc = %3").arg(exitCode).arg(exitStatus).arg((qulonglong)verifyProc));
 #endif
 
 	if ( !verifyProc->atEnd() )
@@ -2656,27 +2654,27 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		cleanExit = false;
 	}
 
-	bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool();
+	bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool();
 	if ( !verifyCurrentOnly ) {
 		// the progress text may have changed in the meantime...
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-			qmc2MainWindow->progressBarGamelist->setFormat(tr("ROM check - %p%"));
-		QSet<QString> gameSet = QSet<QString>::fromList(qmc2GamelistItemHash.uniqueKeys());
+			qmc2MainWindow->progressBarMachineList->setFormat(tr("ROM check - %p%"));
+		QSet<QString> gameSet = QSet<QString>::fromList(qmc2MachineListItemHash.uniqueKeys());
 		QList<QString> remainingGames = gameSet.subtract(QSet<QString>::fromList(verifiedList)).values();
-		int counter = qmc2MainWindow->progressBarGamelist->value();
+		int counter = qmc2MainWindow->progressBarMachineList->value();
 		if ( qmc2StopParser || !cleanExit ) {
 			for (int i = 0; i < remainingGames.count(); i++) {
 				counter++;
 				if ( i % QMC2_REMAINING_SETS_CHECK_RSP == 0 || i == remainingGames.count() - 1 ) {
-					qmc2MainWindow->progressBarGamelist->setValue(counter);
-					qmc2MainWindow->labelGamelistStatus->setText(status());
+					qmc2MainWindow->progressBarMachineList->setValue(counter);
+					qmc2MainWindow->labelMachineListStatus->setText(status());
 					qApp->processEvents();
 				}
 				QString gameName = remainingGames[i];
 				gameStatusHash[gameName] = 'U';
 				bool isBIOS = isBios(gameName);
 				bool isDevice = this->isDevice(gameName);
-				QTreeWidgetItem *romItem = qmc2GamelistItemHash[gameName];
+				QTreeWidgetItem *romItem = qmc2MachineListItemHash[gameName];
 				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[gameName];
 				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
 				QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
@@ -2722,14 +2720,14 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			for (int i = 0; i < remainingGames.count() && !qmc2StopParser; i++) {
 				counter++;
 				if ( i % QMC2_REMAINING_SETS_CHECK_RSP == 0 || i == remainingGames.count() - 1 ) {
-					qmc2MainWindow->progressBarGamelist->setValue(counter);
-					qmc2MainWindow->labelGamelistStatus->setText(status());
+					qmc2MainWindow->progressBarMachineList->setValue(counter);
+					qmc2MainWindow->labelMachineListStatus->setText(status());
 					qApp->processEvents();
 				}
 				QString gameName = remainingGames[i];
 				bool isBIOS = isBios(gameName);
 				bool isDevice = this->isDevice(gameName);
-				QTreeWidgetItem *romItem = qmc2GamelistItemHash[gameName];
+				QTreeWidgetItem *romItem = qmc2MachineListItemHash[gameName];
 				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[gameName];
 				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
 				QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
@@ -2835,7 +2833,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			if ( !remainingGames.isEmpty() && !qmc2StopParser )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (checking real status of %n set(s) not mentioned during full audit)", "", remainingGames.count()));
 		}
-		qmc2MainWindow->labelGamelistStatus->setText(status());
+		qmc2MainWindow->labelMachineListStatus->setText(status());
 	}
 
 	bool doFilter = true;
@@ -2883,7 +2881,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					}
 				}
 			}
-			qmc2MainWindow->labelGamelistStatus->setText(status());
+			qmc2MainWindow->labelMachineListStatus->setText(status());
 		}
 		if ( romCache.isOpen() ) {
 			QHashIterator<QString, char> it(gameStatusHash);
@@ -2930,7 +2928,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	QString sN = numNotFoundGames >= 0 ? QString::number(numNotFoundGames) : tr("?");
 	QString sU = numUnknownGames >= 0 ? QString::number(numUnknownGames) : tr("?");
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(sL).arg(sC).arg(sM).arg(sI).arg(sN).arg(sU));
-	qmc2MainWindow->progressBarGamelist->reset();
+	qmc2MainWindow->progressBarMachineList->reset();
 
 	if ( verifyProc )
 		delete verifyProc;
@@ -2946,8 +2944,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(tr("ROM state")).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 		qmc2SortingActive = true;
 		qApp->processEvents();
-		foreach (QTreeWidgetItem *ti, qmc2ExpandedGamelistItems) {
-			qmc2MainWindow->treeWidgetGamelist->collapseItem(ti);
+		foreach (QTreeWidgetItem *ti, qmc2ExpandedMachineListItems) {
+			qmc2MainWindow->treeWidgetMachineList->collapseItem(ti);
 			QList<QTreeWidgetItem *> childrenList = ti->takeChildren();
 			foreach (QTreeWidgetItem *ci, ti->takeChildren())
 				delete ci;
@@ -2955,12 +2953,12 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
 			nameItem->setText(QMC2_MACHINELIST_COLUMN_ICON, ti->text(QMC2_MACHINELIST_COLUMN_NAME));
 		}
-		qmc2ExpandedGamelistItems.clear();
-		qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
+		qmc2ExpandedMachineListItems.clear();
+		qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
 		qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
 		qmc2MainWindow->treeWidgetCategoryView->setUpdatesEnabled(false);
 		qmc2MainWindow->treeWidgetVersionView->setUpdatesEnabled(false);
-		qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+		qmc2MainWindow->treeWidgetMachineList->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		qApp->processEvents();
 		qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		qApp->processEvents();
@@ -2972,7 +2970,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 			qApp->processEvents();
 		}
-		qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+		qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 		qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
 		qmc2MainWindow->treeWidgetCategoryView->setUpdatesEnabled(true);
 		qmc2MainWindow->treeWidgetVersionView->setUpdatesEnabled(true);
@@ -2980,7 +2978,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 	}
 
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool() ){
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true).toBool() ){
 		if ( doFilter )
 			QTimer::singleShot(0, this, SLOT(filter()));
 		else {
@@ -2991,10 +2989,10 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		QTimer::singleShot(0, this, SLOT(enableWidgets()));
 }
 
-void Gamelist::verifyReadyReadStandardOutput()
+void MachineList::verifyReadyReadStandardOutput()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::verifyReadyReadStandardOutput(): proc = %1").arg((qulonglong) verifyProc));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MachineList::verifyReadyReadStandardOutput(): proc = %1").arg((qulonglong) verifyProc));
 #endif
 
 	// this makes the GUI much more responsive, but is HAS to be called before verifyProc->readAllStandardOutput()!
@@ -3021,10 +3019,10 @@ void Gamelist::verifyReadyReadStandardOutput()
 	if ( !verifyCurrentOnly ) {
 		// the progress text may have changed in the meantime...
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-			qmc2MainWindow->progressBarGamelist->setFormat(tr("ROM check - %p%"));
+			qmc2MainWindow->progressBarMachineList->setFormat(tr("ROM check - %p%"));
 	}
 
-	bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool();
+	bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool();
 	for (int i = 0; i < lines.count(); i++) {
 		if ( lines[i].startsWith("romset ") ) {
 			QStringList words = lines[i].split(" ");
@@ -3033,8 +3031,8 @@ void Gamelist::verifyReadyReadStandardOutput()
 				romName = words[1].remove("\"");
 				bool isBIOS = isBios(romName);
 				bool isDevice = this->isDevice(romName);
-				if ( qmc2GamelistItemHash.contains(romName) ) {
-					QTreeWidgetItem *romItem = qmc2GamelistItemHash[romName];
+				if ( qmc2MachineListItemHash.contains(romName) ) {
+					QTreeWidgetItem *romItem = qmc2MachineListItemHash[romName];
 					QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[romName];
 					QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[romName];
 					QTreeWidgetItem *versionItem = qmc2VersionItemHash[romName];
@@ -3213,12 +3211,12 @@ void Gamelist::verifyReadyReadStandardOutput()
 		verifyProc->kill();
 
 	if ( !verifyCurrentOnly )
-		qmc2MainWindow->progressBarGamelist->setValue(numVerifyRoms);
+		qmc2MainWindow->progressBarMachineList->setValue(numVerifyRoms);
 
-	qmc2MainWindow->labelGamelistStatus->setText(status());
+	qmc2MainWindow->labelMachineListStatus->setText(status());
 }
 
-bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly, QString *fileName)
+bool MachineList::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly, QString *fileName)
 {
 	if ( fileName )
 		*fileName = gameName;
@@ -3228,7 +3226,7 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 		if ( !checkOnly )
 			item->setIcon(QMC2_MACHINELIST_COLUMN_ICON, qmc2IconHash[gameName]);
 		else
-			qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 		return true;
 	} else if ( qmc2IconsPreloaded ) {
 		// icon wasn't found
@@ -3236,7 +3234,7 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 			qmc2IconHash[gameName] = QIcon();
 			item->setIcon(QMC2_MACHINELIST_COLUMN_ICON, QIcon());
 		} else
-			qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 		return false;
 	}
 
@@ -3253,14 +3251,14 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 				foreach (unzFile iconFile, qmc2IconFileMap) {
 					unz_global_info unzGlobalInfo;
 					if ( unzGetGlobalInfo(iconFile, &unzGlobalInfo) == UNZ_OK ) {
-						int currentMax = qmc2MainWindow->progressBarGamelist->maximum();
-						QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
+						int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
+						QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
 						if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-							qmc2MainWindow->progressBarGamelist->setFormat(tr("Icon cache - %p%"));
+							qmc2MainWindow->progressBarMachineList->setFormat(tr("Icon cache - %p%"));
 						else
-							qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-						qmc2MainWindow->progressBarGamelist->setRange(0, unzGlobalInfo.number_entry);
-						qmc2MainWindow->progressBarGamelist->reset();
+							qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+						qmc2MainWindow->progressBarMachineList->setRange(0, unzGlobalInfo.number_entry);
+						qmc2MainWindow->progressBarMachineList->reset();
 						qApp->processEvents();
 						char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
 						if ( unzGoToFirstFile(iconFile) == UNZ_OK ) {
@@ -3286,16 +3284,16 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 									}
 								}
 								if ( index++ % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
-									qmc2MainWindow->progressBarGamelist->setValue(index);
+									qmc2MainWindow->progressBarMachineList->setValue(index);
 									qApp->processEvents();
 								}
 							} while ( unzGoToNextFile(iconFile) != UNZ_END_OF_LIST_OF_FILE );
 						}
-						qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
+						qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
 						if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-							qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+							qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
 						else
-							qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+							qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 					}
 				}
 				elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
@@ -3305,14 +3303,14 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 			} else if ( QMC2_ICON_FILETYPE_7Z ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from 7z archive"));
 				foreach (SevenZipFile *sevenZipFile, qmc2IconFileMap7z) {
-					int currentMax = qmc2MainWindow->progressBarGamelist->maximum();
-					QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
+					int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
+					QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
 					if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-						qmc2MainWindow->progressBarGamelist->setFormat(tr("Icon cache - %p%"));
+						qmc2MainWindow->progressBarMachineList->setFormat(tr("Icon cache - %p%"));
 					else
-						qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-					qmc2MainWindow->progressBarGamelist->setRange(0, sevenZipFile->itemList().count());
-					qmc2MainWindow->progressBarGamelist->reset();
+						qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+					qmc2MainWindow->progressBarMachineList->setRange(0, sevenZipFile->itemList().count());
+					qmc2MainWindow->progressBarMachineList->reset();
 					qApp->processEvents();
 					QString gameFileName;
 					for (int index = 0; index < sevenZipFile->itemList().count(); index++) {
@@ -3329,15 +3327,15 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 							}
 						}
 						if ( index++ % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
-							qmc2MainWindow->progressBarGamelist->setValue(index);
+							qmc2MainWindow->progressBarMachineList->setValue(index);
 							qApp->processEvents();
 						}
 					}
-					qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
+					qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
 					if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-						qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+						qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
 					else
-						qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+						qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 				}
 				elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from 7z archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
@@ -3346,7 +3344,7 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 			}
 
 			if ( checkOnly )
-				qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+				qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 
 			return loadIcon(gameName, item, checkOnly);
 		}
@@ -3358,18 +3356,18 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 			preloadTimer.start();
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from directory"));
 			int iconCount = 0;
-			int currentMax = qmc2MainWindow->progressBarGamelist->maximum();
-			QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
+			int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
+			QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
 			foreach(QString icoDir, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconDirectory").toString().split(";", QString::SkipEmptyParts)) {
 				qApp->processEvents();
 				QDir iconDirectory(icoDir);
 				QFileInfoList iconFiles = iconDirectory.entryInfoList();
 				if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-					qmc2MainWindow->progressBarGamelist->setFormat(tr("Icon cache - %p%"));
+					qmc2MainWindow->progressBarMachineList->setFormat(tr("Icon cache - %p%"));
 				else
-					qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-				qmc2MainWindow->progressBarGamelist->setRange(0, iconFiles.count());
-				qmc2MainWindow->progressBarGamelist->reset();
+					qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+				qmc2MainWindow->progressBarMachineList->setRange(0, iconFiles.count());
+				qmc2MainWindow->progressBarMachineList->reset();
 				qApp->processEvents();
 				for (int fileCount = 0; fileCount < iconFiles.count(); fileCount++) {
 					QFileInfo fi = iconFiles[fileCount];
@@ -3381,38 +3379,38 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 						}
 					}
 					if ( fileCount % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
-						qmc2MainWindow->progressBarGamelist->setValue(fileCount);
+						qmc2MainWindow->progressBarMachineList->setValue(fileCount);
 						qApp->processEvents();
 					}
 				}
 			}
-			qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
+			qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-				qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+				qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
 			else
-				qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+				qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 			elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from directory, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n icon(s) loaded", "", iconCount));
 			qmc2IconsPreloaded = true;
 
 			if ( checkOnly )
-				qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+				qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 
 			return loadIcon(gameName, item, checkOnly);
 		}
 	}
 
 	if ( checkOnly )
-		qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+		qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 
 	return false;
 }
 
-void Gamelist::loadCategoryIni()
+void MachineList::loadCategoryIni()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadCategoryIni()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::loadCategoryIni()");
 #endif
 
 	if ( !mergeCategories ) {
@@ -3425,20 +3423,20 @@ void Gamelist::loadCategoryIni()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading category.ini"));
 	qApp->processEvents();
 
-	int currentMax = qmc2MainWindow->progressBarGamelist->maximum();
-	QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
+	int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
+	QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		qmc2MainWindow->progressBarGamelist->setFormat(tr("Category.ini - %p%"));
+		qmc2MainWindow->progressBarMachineList->setFormat(tr("Category.ini - %p%"));
 	else
-		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 
-	qmc2MainWindow->progressBarGamelist->reset();
+	qmc2MainWindow->progressBarMachineList->reset();
 	qApp->processEvents();
 
 	QFile categoryIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CategoryIni").toString());
 	int entryCounter = 0;
 	if ( categoryIniFile.open(QFile::ReadOnly) ) {
-		qmc2MainWindow->progressBarGamelist->setRange(0, categoryIniFile.size());
+		qmc2MainWindow->progressBarMachineList->setRange(0, categoryIniFile.size());
 		QTextStream tsCategoryIni(&categoryIniFile);
 		QString categoryName;
 		QRegExp rxCategoryName("^\\[.*\\]$");
@@ -3447,7 +3445,7 @@ void Gamelist::loadCategoryIni()
 		bool trFound = false;
 		while ( !tsCategoryIni.atEnd() ) {
 			QString categoryLine = tsCategoryIni.readLine().simplified().trimmed();
-			qmc2MainWindow->progressBarGamelist->setValue(categoryIniFile.pos());
+			qmc2MainWindow->progressBarMachineList->setValue(categoryIniFile.pos());
 			if ( categoryLine.isEmpty() )
 				continue;
 			if ( categoryLine.indexOf(rxCategoryName) == 0 ) {
@@ -3477,21 +3475,21 @@ void Gamelist::loadCategoryIni()
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open '%1' for reading -- no category.ini data available").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CategoryIni").toString()));
 
-	qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
+	qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+		qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
 	else
-		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 
 	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading category.ini, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n category record(s) loaded", "", entryCounter));
 }
 
-void Gamelist::createCategoryView()
+void MachineList::createCategoryView()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::createCategoryView()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::createCategoryView()");
 #endif
 
 	static bool creatingCatView = false;
@@ -3525,23 +3523,23 @@ void Gamelist::createCategoryView()
 	if ( !qmc2StopParser ) {
 		qmc2MainWindow->loadAnimMovie->start();
 		qmc2MainWindow->treeWidgetCategoryView->clear();
-		QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
+		QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-			qmc2MainWindow->progressBarGamelist->setFormat(tr("Category view - %p%"));
+			qmc2MainWindow->progressBarMachineList->setFormat(tr("Category view - %p%"));
 		else
-			qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-		qmc2MainWindow->progressBarGamelist->setRange(0, categoryMap.count());
-		qmc2MainWindow->progressBarGamelist->reset();
+			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+		qmc2MainWindow->progressBarMachineList->setRange(0, categoryMap.count());
+		qmc2MainWindow->progressBarMachineList->reset();
 		QMapIterator<QString, QString *> it(categoryMap);
 		int counter = 0;
-		bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool();
-		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool();
+		bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
+		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
 		QList<QTreeWidgetItem *> itemList;
 		QList<QTreeWidgetItem *> hideList;
 		int loadResponse = numGames / QMC2_GENERAL_LOADING_UPDATES;
 		while ( it.hasNext() ) {
 			if ( counter % loadResponse == 0 ) {
-				qmc2MainWindow->progressBarGamelist->setValue(counter);
+				qmc2MainWindow->progressBarMachineList->setValue(counter);
 				qApp->processEvents();
 			}
 			counter++;
@@ -3549,9 +3547,9 @@ void Gamelist::createCategoryView()
 			QString gameName = it.key();
 			if ( gameName.isEmpty() )
 				continue;
-			if ( !qmc2GamelistItemHash.contains(gameName) )
+			if ( !qmc2MachineListItemHash.contains(gameName) )
 				continue;
-			QTreeWidgetItem *baseItem = qmc2GamelistItemHash[gameName];
+			QTreeWidgetItem *baseItem = qmc2MachineListItemHash[gameName];
 			QString *categoryPtr = it.value();
 			QString category;
 			bool isBIOS = isBios(gameName);
@@ -3582,7 +3580,7 @@ void Gamelist::createCategoryView()
 				categoryItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, category);
 				itemList << categoryItem;
 			}
-			QTreeWidgetItem *gameItem = new GamelistItem(categoryItem);
+			QTreeWidgetItem *gameItem = new MachineListItem(categoryItem);
 			if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
 				hideList << gameItem;
 			gameItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
@@ -3598,7 +3596,7 @@ void Gamelist::createCategoryView()
 			gameItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, baseItem->text(QMC2_MACHINELIST_COLUMN_VERSION));
 			gameItem->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, baseItem->whatsThis(QMC2_MACHINELIST_COLUMN_RANK));
 			gameItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
-			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
+			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool() ) {
 				switch ( gameStatusHash[gameName] ) {
 					case 'C':
 						if ( isBIOS )
@@ -3649,8 +3647,8 @@ void Gamelist::createCategoryView()
 		foreach (QTreeWidgetItem *hiddenItem, hideList)
 			hiddenItem->setHidden(true);
 		qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
-		qmc2MainWindow->progressBarGamelist->reset();
-		qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+		qmc2MainWindow->progressBarMachineList->reset();
+		qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
 
 		QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
 	}
@@ -3662,10 +3660,10 @@ void Gamelist::createCategoryView()
 	creatingCatView = false;
 }
 
-void Gamelist::loadCatverIni()
+void MachineList::loadCatverIni()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadCatverIni()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::loadCatverIni()");
 #endif
 
 	clearCategoryNames();
@@ -3678,23 +3676,23 @@ void Gamelist::loadCatverIni()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading catver.ini"));
 	qApp->processEvents();
 
-	int currentMax = qmc2MainWindow->progressBarGamelist->maximum();
-	QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
+	int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
+	QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		qmc2MainWindow->progressBarGamelist->setFormat(tr("Catver.ini - %p%"));
+		qmc2MainWindow->progressBarMachineList->setFormat(tr("Catver.ini - %p%"));
 	else
-		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-	qmc2MainWindow->progressBarGamelist->reset();
+		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+	qmc2MainWindow->progressBarMachineList->reset();
 	qApp->processEvents();
 
 	QFile catverIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString());
 	if ( catverIniFile.open(QFile::ReadOnly) ) {
-		qmc2MainWindow->progressBarGamelist->setRange(0, catverIniFile.size());
+		qmc2MainWindow->progressBarMachineList->setRange(0, catverIniFile.size());
 		QTextStream tsCatverIni(&catverIniFile);
 		bool isVersion = false, isCategory = false;
 		while ( !tsCatverIni.atEnd() ) {
 			QString catverLine = tsCatverIni.readLine().simplified().trimmed();
-			qmc2MainWindow->progressBarGamelist->setValue(catverIniFile.pos());
+			qmc2MainWindow->progressBarMachineList->setValue(catverIniFile.pos());
 			if ( catverLine.isEmpty() )
 				continue;
 			if ( catverLine.contains("[Category]") ) {
@@ -3726,21 +3724,21 @@ void Gamelist::loadCatverIni()
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open '%1' for reading -- no catver.ini data available").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString()));
 
-	qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
+	qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+		qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
 	else
-		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 
 	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading catver.ini, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%1 category / %2 version records loaded").arg(categoryMap.count()).arg(versionMap.count()));
 }
 
-void Gamelist::createVersionView()
+void MachineList::createVersionView()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::createVersionView()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::createVersionView()");
 #endif
 
 	static bool creatingVerView = false;
@@ -3774,23 +3772,23 @@ void Gamelist::createVersionView()
 	if ( !qmc2StopParser ) {
 		qmc2MainWindow->loadAnimMovie->start();
 		qmc2MainWindow->treeWidgetVersionView->clear();
-		QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
+		QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-			qmc2MainWindow->progressBarGamelist->setFormat(tr("Version view - %p%"));
+			qmc2MainWindow->progressBarMachineList->setFormat(tr("Version view - %p%"));
 		else
-			qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-		qmc2MainWindow->progressBarGamelist->setRange(0, versionMap.count());
-		qmc2MainWindow->progressBarGamelist->reset();
+			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+		qmc2MainWindow->progressBarMachineList->setRange(0, versionMap.count());
+		qmc2MainWindow->progressBarMachineList->reset();
 		QMapIterator<QString, QString *> it(versionMap);
 		int counter = 0;
-		bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool();
-		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool();
+		bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
+		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
 		QList<QTreeWidgetItem *> itemList;
 		QList<QTreeWidgetItem *> hideList;
 		int loadResponse = numGames / QMC2_GENERAL_LOADING_UPDATES;
 		while ( it.hasNext() ) {
 			if ( counter % loadResponse == 0 ) {
-				qmc2MainWindow->progressBarGamelist->setValue(counter);
+				qmc2MainWindow->progressBarMachineList->setValue(counter);
 				qApp->processEvents();
 			}
 			counter++;
@@ -3798,9 +3796,9 @@ void Gamelist::createVersionView()
 			QString gameName = it.key();
 			if ( gameName.isEmpty() )
 				continue;
-			if ( !qmc2GamelistItemHash.contains(gameName) )
+			if ( !qmc2MachineListItemHash.contains(gameName) )
 				continue;
-			QTreeWidgetItem *baseItem = qmc2GamelistItemHash[gameName];
+			QTreeWidgetItem *baseItem = qmc2MachineListItemHash[gameName];
 			QString *versionPtr = it.value();
 			QString version;
 			if ( versionPtr )
@@ -3820,7 +3818,7 @@ void Gamelist::createVersionView()
 				versionItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, version);
 				itemList << versionItem;
 			}
-			QTreeWidgetItem *gameItem = new GamelistItem(versionItem);
+			QTreeWidgetItem *gameItem = new MachineListItem(versionItem);
 			bool isBIOS = isBios(gameName);
 			bool isDevice = this->isDevice(gameName);
 			if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
@@ -3838,7 +3836,7 @@ void Gamelist::createVersionView()
 			gameItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY));
 			gameItem->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, baseItem->whatsThis(QMC2_MACHINELIST_COLUMN_RANK));
 			gameItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
-			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
+			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool() ) {
 				switch ( gameStatusHash[gameName] ) {
 					case 'C':
 						if ( isBIOS )
@@ -3889,8 +3887,8 @@ void Gamelist::createVersionView()
 		foreach (QTreeWidgetItem *hiddenItem, hideList)
 			hiddenItem->setHidden(true);
 		qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
-		qmc2MainWindow->progressBarGamelist->reset();
-		qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+		qmc2MainWindow->progressBarMachineList->reset();
+		qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
 
 		QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetVersionView_verticalScrollChanged()));
 	}
@@ -3902,10 +3900,10 @@ void Gamelist::createVersionView()
 	creatingVerView = false;
 }
 
-QString Gamelist::romStatus(QString systemName, bool translated)
+QString MachineList::romStatus(QString systemName, bool translated)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::romStatus(QString systemName = %1, bool translated = %2)").arg(systemName).arg(translated));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MachineList::romStatus(QString systemName = %1, bool translated = %2)").arg(systemName).arg(translated));
 #endif
 
 	switch ( gameStatusHash[systemName] ) {
@@ -3944,16 +3942,16 @@ QString Gamelist::romStatus(QString systemName, bool translated)
 
 }
 
-char Gamelist::romState(QString systemName)
+char MachineList::romState(QString systemName)
 {
 	char state = gameStatusHash[systemName];
 	return (state == 0 ? 'U' : state);
 }
 
-QString Gamelist::lookupDriverName(QString systemName)
+QString MachineList::lookupDriverName(QString systemName)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::lookupDriverName(QString systemName = %1)").arg(systemName));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MachineList::lookupDriverName(QString systemName = %1)").arg(systemName));
 #endif
 
 	QString driverName = driverNameHash[systemName];
@@ -3974,7 +3972,7 @@ QString Gamelist::lookupDriverName(QString systemName)
 	return driverName;
 }
 
-void Gamelist::clearCategoryNames()
+void MachineList::clearCategoryNames()
 {
 	foreach (QString *category, categoryNames)
 		if ( category )
@@ -3982,7 +3980,7 @@ void Gamelist::clearCategoryNames()
 	categoryNames.clear();
 }
 
-void Gamelist::clearVersionNames()
+void MachineList::clearVersionNames()
 {
 	foreach (QString *version, versionNames)
 		if ( version )
@@ -3990,10 +3988,10 @@ void Gamelist::clearVersionNames()
 	versionNames.clear();
 }
 
-bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
+bool MachineListItem::operator<(const QTreeWidgetItem &otherItem) const
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: GamelistItem::operator<(const GamelistItem &otherItem = ...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineListItem::operator<(const QTreeWidgetItem &otherItem = ...)");
 #endif
   
 	switch ( qmc2SortCriteria ) {
@@ -4001,7 +3999,7 @@ bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
 			return (text(QMC2_MACHINELIST_COLUMN_MACHINE).toUpper() < otherItem.text(QMC2_MACHINELIST_COLUMN_MACHINE).toUpper());
 
 		case QMC2_SORT_BY_ROM_STATE:
-			return (qmc2Gamelist->gameStatusHash[text(QMC2_MACHINELIST_COLUMN_NAME)] < qmc2Gamelist->gameStatusHash[otherItem.text(QMC2_MACHINELIST_COLUMN_NAME)]);
+			return (qmc2MachineList->gameStatusHash[text(QMC2_MACHINELIST_COLUMN_NAME)] < qmc2MachineList->gameStatusHash[otherItem.text(QMC2_MACHINELIST_COLUMN_NAME)]);
 
 		case QMC2_SORT_BY_TAG:
 			return (int(checkState(QMC2_MACHINELIST_COLUMN_TAG)) < int(otherItem.checkState(QMC2_MACHINELIST_COLUMN_TAG)));

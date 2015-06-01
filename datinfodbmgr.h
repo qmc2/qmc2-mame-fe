@@ -32,11 +32,17 @@ class DatInfoDatabaseManager : public QObject
 		bool emuInfoImportRequired(QStringList pathList);
 
 		QString gameInfo(QString id);
+		QString machineInfo(QString id) { return gameInfo(id); }
 		QString gameInfoEmulator(QString id);
+		QString machineInfoEmulator(QString id) { return gameInfoEmulator(id); }
 		void setGameInfo(QString id, QString infotext, QString emulator);
+		void setMachineInfo(QString id, QString infotext, QString emulator) { setGameInfo(id, infotext, emulator); }
 		bool existsGameInfo(QString id);
+		bool existsMachineInfo(QString id) { return existsGameInfo(id); }
 		qint64 gameInfoRowCount();
+		qint64 machineInfoRowCount() { return gameInfoRowCount(); }
 		bool gameInfoImportRequired(QStringList pathList);
+		bool machineInfoImportRequired(QStringList pathList) { return gameInfoImportRequired(pathList); }
 
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }

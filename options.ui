@@ -2894,7 +2894,7 @@
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="tabFrontendGamelist">
+         <widget class="QWidget" name="tabFrontendMachineList">
           <attribute name="title">
            <string>Machine &amp;list</string>
           </attribute>
@@ -2903,7 +2903,7 @@
             <number>0</number>
            </property>
            <item row="0" column="0">
-            <widget class="QScrollArea" name="scrollAreaFrontendGamelist">
+            <widget class="QScrollArea" name="scrollAreaFrontendMachineList">
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -2974,7 +2974,7 @@
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLabel" name="labelLegendFrontendGamelist">
+                    <widget class="QLabel" name="labelLegendFrontendMachineList">
                      <property name="toolTip">
                       <string>Option requires a reload of the machine list to take effect</string>
                      </property>
@@ -4794,7 +4794,7 @@
                   </widget>
                  </item>
                  <item row="6" column="0">
-                  <widget class="QLabel" name="labelGamelistCacheFile">
+                  <widget class="QLabel" name="labelMachineListCacheFile">
                    <property name="text">
                     <string>Machine list cache</string>
                    </property>
@@ -4814,7 +4814,7 @@
                   </spacer>
                  </item>
                  <item row="6" column="4">
-                  <widget class="QToolButton" name="toolButtonBrowseGamelistCacheFile">
+                  <widget class="QToolButton" name="toolButtonBrowseMachineListCacheFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                      <horstretch>0</horstretch>
@@ -5106,7 +5106,7 @@
                   </widget>
                  </item>
                  <item row="6" column="1" colspan="3">
-                  <widget class="QLineEdit" name="lineEditGamelistCacheFile">
+                  <widget class="QLineEdit" name="lineEditMachineListCacheFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
                      <horstretch>0</horstretch>
@@ -5953,8 +5953,8 @@
   <tabstop>toolButtonClearUserDataDatabase</tabstop>
   <tabstop>toolButtonCleanupUserDataDatabase</tabstop>
   <tabstop>toolButtonBrowseUserDataDatabase</tabstop>
-  <tabstop>lineEditGamelistCacheFile</tabstop>
-  <tabstop>toolButtonBrowseGamelistCacheFile</tabstop>
+  <tabstop>lineEditMachineListCacheFile</tabstop>
+  <tabstop>toolButtonBrowseMachineListCacheFile</tabstop>
   <tabstop>lineEditROMStateCacheFile</tabstop>
   <tabstop>toolButtonBrowseROMStateCacheFile</tabstop>
   <tabstop>lineEditSlotInfoCacheFile</tabstop>
@@ -5989,7 +5989,7 @@
   <tabstop>scrollAreaEmulatorFilesAndDirectories</tabstop>
   <tabstop>scrollAreaAdditionalEmulators</tabstop>
   <tabstop>scrollAreaGUI</tabstop>
-  <tabstop>scrollAreaFrontendGamelist</tabstop>
+  <tabstop>scrollAreaFrontendMachineList</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>

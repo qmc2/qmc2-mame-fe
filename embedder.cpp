@@ -525,7 +525,7 @@ void Embedder::checkWindow()
 			fullScreen = true;
 		}
 	} else if ( GetFocus() != windowHandle ) {
-		if ( QApplication::activeWindow() == qmc2MainWindow && qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
+		if ( QApplication::activeWindow() == qmc2MainWindow && qmc2MainWindow->tabWidgetMachineList->currentIndex() == QMC2_EMBED_INDEX )
 			if ( qmc2MainWindow->tabWidgetEmbeddedEmulators->currentWidget() == this ) {
 				QTimer::singleShot(0, this, SLOT(updateWindow()));
 				checkingWindow = false;

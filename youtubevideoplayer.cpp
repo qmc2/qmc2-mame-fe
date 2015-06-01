@@ -17,7 +17,7 @@
 #include "macros.h"
 #include "qmc2main.h"
 #include "options.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "youtubevideoplayer.h"
 #include "videoitemwidget.h"
 
@@ -26,7 +26,7 @@ extern Settings *qmc2Config;
 extern Options *qmc2Options;
 extern QHash <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoHash;
 extern QHash<QString, QString> qmc2CustomShortcutHash;
-extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 extern bool qmc2YouTubeVideoInfoHashChanged;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
@@ -1764,7 +1764,7 @@ void YouTubeVideoPlayer::on_toolButtonSuggest_clicked()
 	suggestedSearchPattern = suggestedSearchPattern.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").simplified();
 	if ( !suggestorAppendString.isEmpty() )
 		suggestedSearchPattern.append(" " + suggestorAppendString);
-	QTreeWidgetItem *item = qmc2GamelistItemHash[mySetID];
+	QTreeWidgetItem *item = qmc2MachineListItemHash[mySetID];
 	if ( item )
 		suggestedSearchPattern.replace("$MANUFACTURER$", item->text(QMC2_MACHINELIST_COLUMN_MANU)).replace("$YEAR$", item->text(QMC2_MACHINELIST_COLUMN_YEAR));
 	lineEditSearchString->setText(suggestedSearchPattern);

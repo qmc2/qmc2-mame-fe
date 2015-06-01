@@ -25,7 +25,7 @@ SOURCES += main.cpp \
     imageprovider.cpp \
     infoprovider.cpp \
     arcadesettings.cpp \
-    gameobject.cpp \
+    machineobject.cpp \
     consolewindow.cpp \
     processmanager.cpp \
     joystick.cpp \
@@ -95,7 +95,7 @@ HEADERS += \
     infoprovider.h \
     arcadesettings.h \
     macros.h \
-    gameobject.h \
+    machineobject.h \
     consolewindow.h \
     processmanager.h \
     emulatoroption.h \

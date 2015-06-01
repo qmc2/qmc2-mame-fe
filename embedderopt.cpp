@@ -4,7 +4,7 @@
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 
 #include <QCache>
-#include "gamelist.h"
+#include "machinelist.h"
 #include "qmc2main.h"
 #include "preview.h"
 #include "flyer.h"
@@ -19,7 +19,7 @@
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
-extern Gamelist *qmc2Gamelist;
+extern MachineList *qmc2MachineList;
 extern Settings *qmc2Config;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 extern Preview *qmc2Preview;

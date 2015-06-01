@@ -558,11 +558,11 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 			qmc2StopParser = false;
 			beginTransaction();
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-				qmc2MainWindow->progressBarGamelist->setFormat(tr("Software info - %p%"));
+				qmc2MainWindow->progressBarMachineList->setFormat(tr("Software info - %p%"));
 			else
-				qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-			qmc2MainWindow->progressBarGamelist->setRange(0, swInfoDB.size());
-			qmc2MainWindow->progressBarGamelist->setValue(0);
+				qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+			qmc2MainWindow->progressBarMachineList->setRange(0, swInfoDB.size());
+			qmc2MainWindow->progressBarMachineList->setValue(0);
 			qApp->processEvents();
 			QTextStream ts(&swInfoDB);
 			ts.setCodec(QTextCodec::codecForName("UTF-8"));
@@ -575,7 +575,7 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 				while ( !containsMark && !ts.atEnd() ) {
 					singleLineSimplified = ts.readLine().simplified();
 					if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
-						qmc2MainWindow->progressBarGamelist->setValue(swInfoDB.pos());
+						qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
 						qApp->processEvents();
 					}
 					containsMark = singleLineSimplified.contains(markRegExp);
@@ -589,7 +589,7 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 						while ( !startsWithDollarBio && !ts.atEnd() ) {
 							singleLineSimplified = ts.readLine().simplified();
 							if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
-								qmc2MainWindow->progressBarGamelist->setValue(swInfoDB.pos());
+								qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
 								qApp->processEvents();
 							}
 							startsWithDollarBio = singleLineSimplified.startsWith("$bio");
@@ -611,7 +611,7 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 									}
 								}
 								if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
-									qmc2MainWindow->progressBarGamelist->setValue(swInfoDB.pos());
+									qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
 									qApp->processEvents();
 								}
 							}
@@ -637,7 +637,7 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 				}
 			}
 			commitTransaction();
-			qmc2MainWindow->progressBarGamelist->setValue(swInfoDB.pos());
+			qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
 			if ( qmc2StopParser ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("import stopped, invalidating %1 table").arg(tr("software info")));
 				recreateSoftwareInfoTable();
@@ -664,7 +664,7 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 
 	setQmc2Version(XSTR(QMC2_VERSION));
 	setDatInfoVersion(QMC2_DATINFO_VERSION);
-	qmc2MainWindow->progressBarGamelist->reset();
+	qmc2MainWindow->progressBarMachineList->reset();
 }
 
 bool DatInfoDatabaseManager::emuInfoImportRequired(QStringList pathList)
@@ -720,11 +720,11 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 			qmc2StopParser = false;
 			beginTransaction();
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-				qmc2MainWindow->progressBarGamelist->setFormat(tr("Emu info - %p%"));
+				qmc2MainWindow->progressBarMachineList->setFormat(tr("Emu info - %p%"));
 			else
-				qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-			qmc2MainWindow->progressBarGamelist->setRange(0, emuInfoDB.size());
-			qmc2MainWindow->progressBarGamelist->setValue(0);
+				qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+			qmc2MainWindow->progressBarMachineList->setRange(0, emuInfoDB.size());
+			qmc2MainWindow->progressBarMachineList->setValue(0);
 			qApp->processEvents();
 			QTextStream ts(&emuInfoDB);
 			ts.setCodec(QTextCodec::codecForName("UTF-8"));
@@ -736,7 +736,7 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 				while ( !startsWithDollarInfo && !ts.atEnd() ) {
 					singleLineSimplified = ts.readLine().simplified();
 					if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-						qmc2MainWindow->progressBarGamelist->setValue(emuInfoDB.pos());
+						qmc2MainWindow->progressBarMachineList->setValue(emuInfoDB.pos());
 						qApp->processEvents();
 					}
 					startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
@@ -747,7 +747,7 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 					while ( !startsWithDollarMame && !ts.atEnd() ) {
 						singleLineSimplified = ts.readLine().simplified();
 						if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-							qmc2MainWindow->progressBarGamelist->setValue(emuInfoDB.pos());
+							qmc2MainWindow->progressBarMachineList->setValue(emuInfoDB.pos());
 							qApp->processEvents();
 						}
 						startsWithDollarMame = singleLineSimplified.startsWith("$mame");
@@ -762,7 +762,7 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 							if ( !startsWithDollarEnd )
 								emuInfoString.append(singleLine + "<br>");
 							if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-								qmc2MainWindow->progressBarGamelist->setValue(emuInfoDB.pos());
+								qmc2MainWindow->progressBarMachineList->setValue(emuInfoDB.pos());
 								qApp->processEvents();
 							}
 						}
@@ -790,7 +790,7 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in emulator info file %1").arg(QDir::toNativeSeparators(path)));
 			}
 			commitTransaction();
-			qmc2MainWindow->progressBarGamelist->setValue(emuInfoDB.pos());
+			qmc2MainWindow->progressBarMachineList->setValue(emuInfoDB.pos());
 			if ( qmc2StopParser ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("import stopped, invalidating %1 table").arg(tr("emu info")));
 				recreateEmuInfoTable();
@@ -818,7 +818,7 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 
 	setQmc2Version(XSTR(QMC2_VERSION));
 	setDatInfoVersion(QMC2_DATINFO_VERSION);
-	qmc2MainWindow->progressBarGamelist->reset();
+	qmc2MainWindow->progressBarMachineList->reset();
 }
 
 bool DatInfoDatabaseManager::gameInfoImportRequired(QStringList pathList)
@@ -876,11 +876,11 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 			qmc2StopParser = false;
 			beginTransaction();
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-				qmc2MainWindow->progressBarGamelist->setFormat(tr("Machine info - %p%"));
+				qmc2MainWindow->progressBarMachineList->setFormat(tr("Machine info - %p%"));
 			else
-				qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-			qmc2MainWindow->progressBarGamelist->setRange(0, gameInfoDB.size());
-			qmc2MainWindow->progressBarGamelist->setValue(0);
+				qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+			qmc2MainWindow->progressBarMachineList->setRange(0, gameInfoDB.size());
+			qmc2MainWindow->progressBarMachineList->setValue(0);
 			qApp->processEvents();
 			QTextStream ts(&gameInfoDB);
 			ts.setCodec(QTextCodec::codecForName("UTF-8"));
@@ -892,7 +892,7 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 				while ( !startsWithDollarInfo && !ts.atEnd() ) {
 					singleLineSimplified = ts.readLine().simplified();
 					if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-						qmc2MainWindow->progressBarGamelist->setValue(gameInfoDB.pos());
+						qmc2MainWindow->progressBarMachineList->setValue(gameInfoDB.pos());
 						qApp->processEvents();
 					}
 					startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
@@ -903,7 +903,7 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 					while ( !startsWithDollarBio && !ts.atEnd() ) {
 						singleLineSimplified = ts.readLine().simplified();
 						if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-							qmc2MainWindow->progressBarGamelist->setValue(gameInfoDB.pos());
+							qmc2MainWindow->progressBarMachineList->setValue(gameInfoDB.pos());
 							qApp->processEvents();
 						}
 						startsWithDollarBio = singleLineSimplified.startsWith("$bio");
@@ -929,7 +929,7 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 								}
 							}
 							if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-								qmc2MainWindow->progressBarGamelist->setValue(gameInfoDB.pos());
+								qmc2MainWindow->progressBarMachineList->setValue(gameInfoDB.pos());
 								qApp->processEvents();
 							}
 						}
@@ -955,7 +955,7 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in machine info file %1").arg(QDir::toNativeSeparators(path)));
 			}
 			commitTransaction();
-			qmc2MainWindow->progressBarGamelist->setValue(gameInfoDB.pos());
+			qmc2MainWindow->progressBarMachineList->setValue(gameInfoDB.pos());
 			if ( qmc2StopParser ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("import stopped, invalidating %1 table").arg(tr("machine info")));
 				recreateGameInfoTable();
@@ -982,5 +982,5 @@ void DatInfoDatabaseManager::importGameInfo(QStringList pathList, QStringList em
 
 	setQmc2Version(XSTR(QMC2_VERSION));
 	setDatInfoVersion(QMC2_DATINFO_VERSION);
-	qmc2MainWindow->progressBarGamelist->reset();		
+	qmc2MainWindow->progressBarMachineList->reset();		
 }

@@ -15,7 +15,7 @@
 
 #include "emuopt.h"
 #include "options.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "itemselect.h"
 #include "qmc2main.h"
 #include "fileeditwidget.h"
@@ -33,7 +33,6 @@ extern Settings *qmc2Config;
 extern EmulatorOptions *qmc2GlobalEmulatorOptions;
 extern EmulatorOptions *qmc2EmulatorOptions;
 extern QTreeWidgetItem *qmc2CurrentItem;
-extern Gamelist *qmc2Gamelist;
 extern bool qmc2ReloadActive;
 extern bool qmc2TemplateCheck;
 extern DemoModeDialog *qmc2DemoModeDialog;

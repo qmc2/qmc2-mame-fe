@@ -31,19 +31,19 @@ FILES
 
   CONFIG_PATH/mame-xml-cache.db  XML cache database (SQLite 3)
 
-  CONFIG_PATH/mame-user-data.db  User data database (SQLite 3) containing rank information and personal comments per game
+  CONFIG_PATH/mame-user-data.db  User data database (SQLite 3) containing rank information and personal comments per machine
 
-  CONFIG_PATH/mame.glc  Game list cache
+  CONFIG_PATH/mame.glc  Machine list cache
 
-  CONFIG_PATH/mame.glc.filtered  Filtered version of the game list cache used by qmc2-arcade(6) (optional)
+  CONFIG_PATH/mame.glc.filtered  Filtered version of the machine list cache used by qmc2-arcade(6) (optional)
 
   CONFIG_PATH/mame-swl-cache.db  Software-list XML cache database (SQLite 3)
 
-  CONFIG_PATH/mame-dat-info.db  DAT-info database (SQLite 3), a combined data store for all supported DAT-info sources (emu-info, game-info and software-info)
+  CONFIG_PATH/mame-dat-info.db  DAT-info database (SQLite 3), a combined data store for all supported DAT-info sources (emu-info, machine-info and software-info)
 
-  CONFIG_PATH/mame.fav  List of favorite games
+  CONFIG_PATH/mame.fav  List of favorite machine
 
-  CONFIG_PATH/mame.hst  List of games last played (play history)
+  CONFIG_PATH/mame.hst  List of machine last played (play history)
 
   CONFIG_PATH/mame.sic  Slot-info cache
 

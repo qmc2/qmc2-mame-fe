@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-class GameObject : public QObject
+class MachineObject : public QObject
 {
     Q_OBJECT
 
@@ -13,11 +13,11 @@ class GameObject : public QObject
     Q_PROPERTY(int romState READ romState WRITE setRomState NOTIFY romStateChanged)
 
 public:
-    explicit GameObject(QString, QString, QString, int, QObject *parent = 0);
-    virtual ~GameObject();
+    explicit MachineObject(QString, QString, QString, int, QObject *parent = 0);
+    virtual ~MachineObject();
 
     static bool lessThan(const QObject *g1, const QObject *g2) {
-        return ((GameObject *)g1)->mDescription.toLower() < ((GameObject *)g2)->mDescription.toLower();
+        return ((MachineObject *)g1)->mDescription.toLower() < ((MachineObject *)g2)->mDescription.toLower();
     }
 
 signals:
