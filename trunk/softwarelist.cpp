@@ -10,7 +10,6 @@
 #include <QPainterPath>
 #include <QAbstractButton>
 #include <QHash>
-#include <QWidgetAction>
 #include <QLabel>
 
 #include <algorithm> // std::sort()
@@ -270,7 +269,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	qmc2ShortcutHash["F10"].second = actionCheckSoftwareStates;
 	menuSoftwareStates->addSeparator();
 	stateFilter = new SoftwareStateFilter(menuSoftwareStates);
-	QWidgetAction *stateFilterAction = new QWidgetAction(menuSoftwareStates);
+	stateFilterAction = new QWidgetAction(menuSoftwareStates);
 	stateFilterAction->setDefaultWidget(stateFilter);
 	menuSoftwareStates->addAction(stateFilterAction);
 
@@ -775,7 +774,7 @@ void SoftwareList::actionViewFlat_triggered()
 	toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/view_detail.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 	viewFlatAction->setChecked(true);
 	viewTreeAction->setChecked(false);
-	stateFilter->setEnabled(true);
+	stateFilterAction->setEnabled(true);
 	setViewTree(false);
 	stackedWidgetKnownSoftware->setCurrentIndex(QMC2_SWLIST_KNOWN_SW_PAGE_FLAT);
 }
@@ -787,7 +786,7 @@ void SoftwareList::actionViewTree_triggered()
 	toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/view_tree.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 	viewFlatAction->setChecked(false);
 	viewTreeAction->setChecked(true);
-	stateFilter->setEnabled(false);
+	stateFilterAction->setEnabled(false);
 	setViewTree(true);
 	stackedWidgetKnownSoftware->setCurrentIndex(QMC2_SWLIST_KNOWN_SW_PAGE_TREE);
 }
@@ -1833,6 +1832,11 @@ void SoftwareList::checkSoftwareStates()
 	updateStats();
 
 	foreach (QString softwareList, softwareLists) {
+		oldSoftwareCorrect = numSoftwareCorrect;
+		oldSoftwareIncorrect = numSoftwareIncorrect;
+		oldSoftwareMostlyCorrect = numSoftwareMostlyCorrect;
+		oldSoftwareNotFound = numSoftwareNotFound;
+		oldSoftwareUnknown = numSoftwareUnknown;
 		if ( softwareList == "NO_SOFTWARE_LIST" )
 			break;
 
@@ -2010,7 +2014,7 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( softwareStateFile.isOpen() )
 		softwareStateFile.close();
 
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("state info for software-list '%1': L:%2 C:%3 M:%4 I:%5 N:%6 U:%7").arg(softwareListName).arg(softwareListItems.count()).arg(numSoftwareCorrect).arg(numSoftwareMostlyCorrect).arg(numSoftwareIncorrect).arg(numSoftwareNotFound).arg(numSoftwareUnknown));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("state info for software-list '%1': L:%2 C:%3 M:%4 I:%5 N:%6 U:%7").arg(softwareListName).arg(softwareListItems.count()).arg(numSoftwareCorrect - oldSoftwareCorrect).arg(numSoftwareMostlyCorrect - oldSoftwareMostlyCorrect).arg(numSoftwareIncorrect - oldSoftwareIncorrect).arg(numSoftwareNotFound - oldSoftwareNotFound).arg(numSoftwareUnknown - oldSoftwareUnknown));
 
 	if ( toolButtonCompatFilterToggle->isChecked() )
 		on_toolButtonCompatFilterToggle_clicked(true);

@@ -14,6 +14,7 @@
 #if QMC2_OPENGL == 1
 #include <QGLWidget>
 #endif
+#include <QWidgetAction>
 
 #include "ui_softwarelist.h"
 #include "unzip.h"
@@ -276,8 +277,10 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QTreeWidgetItem *currentItem;
 		QTreeWidgetItem *enteredItem;
 		quint64 numSoftwareTotal, numSoftwareCorrect, numSoftwareIncorrect, numSoftwareMostlyCorrect, numSoftwareNotFound, numSoftwareUnknown;
+		quint64 oldSoftwareCorrect, oldSoftwareIncorrect, oldSoftwareMostlyCorrect, oldSoftwareNotFound, oldSoftwareUnknown;
 		SoftwareListExporter *exporter;
 		SoftwareStateFilter *stateFilter;
+		QWidgetAction *stateFilterAction;
 		QToolButton *toolBoxButtonKnownSoftware;
 
 		static bool isInitialLoad;
