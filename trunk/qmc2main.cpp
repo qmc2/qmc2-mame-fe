@@ -6399,7 +6399,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		delete qmc2ROMStatusExporter;
 	}
 	if ( qmc2ComponentSetup ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying detail setup"));
+		log(QMC2_LOG_FRONTEND, tr("destroying component setup"));
 		qmc2ComponentSetup->close();
 		delete qmc2ComponentSetup;
 	}
