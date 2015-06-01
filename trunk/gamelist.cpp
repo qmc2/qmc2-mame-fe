@@ -2218,6 +2218,7 @@ void Gamelist::filter(bool initial)
 				break;
 		}
 	} else {
+		QTreeWidgetItem *curItem = qmc2MainWindow->treeWidgetGamelist->currentItem();
 		qmc2MainWindow->treeWidgetGamelist->setVisible(false);
 		// note: reset()'ing the tree-widget is essential to avoid an apparent Qt bug that slows down filtering under certain circumstances
 		qmc2MainWindow->treeWidgetGamelist->reset();
@@ -2259,6 +2260,8 @@ void Gamelist::filter(bool initial)
 		qmc2MainWindow->loadAnimMovie->setPaused(true);
 		qmc2MainWindow->treeWidgetGamelist->setVisible(true);
 		qmc2MainWindow->labelLoadingGamelist->setVisible(false);
+		if ( curItem )
+			qmc2MainWindow->treeWidgetGamelist->setCurrentItem(curItem);
 	}
 	qmc2MainWindow->progressBarGamelist->setValue(itemCount - 1);
 	qmc2FilterActive = false;
