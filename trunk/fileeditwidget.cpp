@@ -35,11 +35,6 @@ FileEditWidget::FileEditWidget(QString filePath, QString filter, QString part, Q
 	myTreeWidget = treeWidget;
 }
 
-FileEditWidget::~FileEditWidget()
-{
-	// NOP
-}
-
 void FileEditWidget::on_toolButtonBrowse_clicked()
 {
 	QString startPath = lineEditFile->text();

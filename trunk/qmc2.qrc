@@ -79,6 +79,8 @@
         <file>data/img/effect.png</file>
         <file>data/img/embed.png</file>
         <file>data/img/embed_multiple.png</file>
+        <file>data/img/embed_multiple_recordmovie.png</file>
+        <file>data/img/embed_recordmovie.png</file>
         <file>data/img/exit.png</file>
         <file>data/img/exit_small.png</file>
         <file>data/img/export_rom_status.png</file>
@@ -131,6 +133,8 @@
         <file>data/img/kill.png</file>
         <file>data/img/launch.png</file>
         <file>data/img/launch_multiple.png</file>
+        <file>data/img/launch_multiple_recordmovie.png</file>
+        <file>data/img/launch_recordmovie.png</file>
         <file>data/img/led_off.png</file>
         <file>data/img/led_on.png</file>
         <file>data/img/left_action.png</file>
