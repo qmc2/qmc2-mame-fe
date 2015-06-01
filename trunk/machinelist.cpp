@@ -799,9 +799,6 @@ void MachineList::load()
 		if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
 			if ( qApp->focusWidget() != qmc2MainWindow->comboBoxToolbarSearch ) {
 				switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
-					case QMC2_VIEW_DETAIL_INDEX:
-						qmc2MainWindow->treeWidgetMachineList->setFocus();
-						break;
 					case QMC2_VIEW_TREE_INDEX:
 						qmc2MainWindow->treeWidgetHierarchy->setFocus();
 						break;
@@ -811,15 +808,13 @@ void MachineList::load()
 					case QMC2_VIEW_VERSION_INDEX:
 						qmc2MainWindow->treeWidgetVersionView->setFocus();
 						break;
+					case QMC2_VIEW_DETAIL_INDEX:
 					default:
 						qmc2MainWindow->treeWidgetMachineList->setFocus();
 						break;
 				}
 			}
 			switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
-				case QMC2_VIEW_DETAIL_INDEX:
-					qmc2MainWindow->treeWidgetMachineList_verticalScrollChanged();
-					break;
 				case QMC2_VIEW_TREE_INDEX:
 					qmc2MainWindow->treeWidgetHierarchy_verticalScrollChanged();
 					break;
@@ -828,6 +823,10 @@ void MachineList::load()
 					break;
 				case QMC2_VIEW_VERSION_INDEX:
 					qmc2MainWindow->treeWidgetVersionView_verticalScrollChanged();
+					break;
+				case QMC2_VIEW_DETAIL_INDEX:
+				default:
+					qmc2MainWindow->treeWidgetMachineList_verticalScrollChanged();
 					break;
 			}
 		}
@@ -2460,9 +2459,6 @@ void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
 		if ( qApp->focusWidget() != qmc2MainWindow->comboBoxToolbarSearch ) {
 			switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
-				case QMC2_VIEW_DETAIL_INDEX:
-					qmc2MainWindow->treeWidgetMachineList->setFocus();
-					break;
 				case QMC2_VIEW_TREE_INDEX:
 					qmc2MainWindow->treeWidgetHierarchy->setFocus();
 					break;
@@ -2472,6 +2468,7 @@ void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				case QMC2_VIEW_VERSION_INDEX:
 					qmc2MainWindow->treeWidgetVersionView->setFocus();
 					break;
+				case QMC2_VIEW_DETAIL_INDEX:
 				default:
 					qmc2MainWindow->treeWidgetMachineList->setFocus();
 					break;
