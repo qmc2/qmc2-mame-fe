@@ -40,7 +40,7 @@
 #include "options.h"
 #include "emuopt.h"
 #include "procmgr.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "preview.h"
 #include "flyer.h"
 #include "cabinet.h"
@@ -101,7 +101,7 @@
 
 // global variables
 MainWindow *qmc2MainWindow = NULL;
-Gamelist *qmc2Gamelist = NULL;
+MachineList *qmc2MachineList = NULL;
 Options *qmc2Options = NULL;
 Settings *qmc2Config = NULL;
 EmulatorOptions *qmc2GlobalEmulatorOptions = NULL;
@@ -182,7 +182,7 @@ bool qmc2SuppressQtMessages = false;
 bool qmc2CriticalSection = false;
 bool qmc2UseDefaultEmulator = true;
 bool qmc2ForceCacheRefresh = false;
-int qmc2GamelistResponsiveness = 100;
+int qmc2MachineListResponsiveness = 100;
 int qmc2UpdateDelay = 10;
 QFile *qmc2FrontendLogFile = NULL;
 QFile *qmc2EmulatorLogFile = NULL;
@@ -228,7 +228,7 @@ QMenu *qmc2EmulatorMenu = NULL,
       *qmc2PlayedMenu = NULL,
       *qmc2SearchMenu = NULL,
       *qmc2ForeignIDsMenu = NULL;
-QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
 QHash<QString, QString> qmc2ParentHash;
 QHash<QString, QIcon> qmc2IconHash;
@@ -265,7 +265,7 @@ int qmc2SoftwareSnapPosition = 0;
 QSplashScreen *qmc2SplashScreen = NULL;
 int qmc2DefaultLaunchMode = QMC2_LAUNCH_MODE_INDEPENDENT;
 QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
-QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
+QList<QTreeWidgetItem *> qmc2ExpandedMachineListItems;
 QPalette qmc2CustomPalette;
 QMap<QString, QPalette> qmc2StandardPalettes;
 bool qmc2CategoryInfoUsed = false;
@@ -455,7 +455,7 @@ MainWindow::MainWindow(QWidget *parent)
 	progressBarSearch->setVisible(false);
 	progressBarSearch->setFormat(tr("Searching machines - %p%"));
 
-	qmc2ActiveViews << treeWidgetGamelist << treeWidgetHierarchy << treeWidgetCategoryView << treeWidgetVersionView;
+	qmc2ActiveViews << treeWidgetMachineList << treeWidgetHierarchy << treeWidgetCategoryView << treeWidgetVersionView;
 
 #if defined(QMC2_OS_MAC)
 	// we cannot use a native menu-bar on Mac OS X since we have multiple and this conflicts with it
@@ -497,12 +497,12 @@ MainWindow::MainWindow(QWidget *parent)
 	loadAnimMovie->stop();
 
 	// replace loading animation labels with aspect-ratio keeping ones
-	gridLayoutGamelistPage->removeWidget(labelLoadingGamelist);
-	delete labelLoadingGamelist;
-	labelLoadingGamelist = new AspectRatioLabel(this);
-	labelLoadingGamelist->setMovie(loadAnimMovie);
-	gridLayoutGamelistPage->addWidget(labelLoadingGamelist, 1, 0);
-	labelLoadingGamelist->setVisible(false);
+	gridLayoutMachineListPage->removeWidget(labelLoadingMachineList);
+	delete labelLoadingMachineList;
+	labelLoadingMachineList = new AspectRatioLabel(this);
+	labelLoadingMachineList->setMovie(loadAnimMovie);
+	gridLayoutMachineListPage->addWidget(labelLoadingMachineList, 1, 0);
+	labelLoadingMachineList->setVisible(false);
 
 	gridLayoutHierarchyPage->removeWidget(labelLoadingHierarchy);
 	delete labelLoadingHierarchy;
@@ -530,7 +530,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 	checkBoxAudioFade->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
-	treeWidgetGamelist->setMouseTracking(true);
+	treeWidgetMachineList->setMouseTracking(true);
 	treeWidgetHierarchy->setMouseTracking(true);
 	treeWidgetCategoryView->setMouseTracking(true);
 	treeWidgetVersionView->setMouseTracking(true);
@@ -580,13 +580,13 @@ MainWindow::MainWindow(QWidget *parent)
 	embedderCornerWidget->setLayout(embedderCornerLayout);
 	tabWidgetEmbeddedEmulators->setCornerWidget(embedderCornerWidget, Qt::TopRightCorner);
 
-	widgetEmbeddedEmus = tabWidgetGamelist->widget(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
+	widgetEmbeddedEmus = tabWidgetMachineList->widget(tabWidgetMachineList->indexOf(tabEmbeddedEmus));
 #else
 	actionPlayEmbedded->setVisible(false);
 	actionPlayEmbeddedTagged->setVisible(false);
 #endif
 	tabWidgetEmbeddedEmulators->removeTab(0);
-	tabWidgetGamelist->removeTab(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
+	tabWidgetMachineList->removeTab(tabWidgetMachineList->indexOf(tabEmbeddedEmus));
 
 #if !defined(QMC2_YOUTUBE_ENABLED)
 	actionClearYouTubeCache->setVisible(false);
@@ -610,10 +610,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 	// tabs are movable
 	QTabBar *tabBar;
-	tabWidgetGamelist->setMovable(true);
-	tabBar = tabWidgetGamelist->findChild<QTabBar *>();
+	tabWidgetMachineList->setMovable(true);
+	tabBar = tabWidgetMachineList->findChild<QTabBar *>();
 	if ( tabBar )
-		connect(tabBar, SIGNAL(tabMoved(int, int)), this, SLOT(tabWidgetGamelist_tabMoved(int, int)));
+		connect(tabBar, SIGNAL(tabMoved(int, int)), this, SLOT(tabWidgetMachineList_tabMoved(int, int)));
 	tabWidgetGameDetail->setMovable(true);
 	tabBar = tabWidgetGameDetail->findChild<QTabBar *>();
 	if ( tabBar )
@@ -631,8 +631,8 @@ MainWindow::MainWindow(QWidget *parent)
 	qmc2Options->checkBoxShowGameName->setToolTip(tr("Show machine- or software-titles at the bottom of all images"));
 	qmc2Options->checkBoxShowGameNameOnlyWhenRequired->setToolTip(tr("Show machine titles only when the machine list is not visible due to the current layout"));
 
-	qmc2Gamelist = new Gamelist(this);
-	labelGamelistStatus->setText(qmc2Gamelist->status());
+	qmc2MachineList = new MachineList(this);
+	labelMachineListStatus->setText(qmc2MachineList->status());
 
 	statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar").toBool());
 
@@ -678,7 +678,7 @@ MainWindow::MainWindow(QWidget *parent)
 	tabPCB->setLayout(pcbLayout);
 
 	// remove column-width restrictions
-	treeWidgetGamelist->header()->setMinimumSectionSize(0);
+	treeWidgetMachineList->header()->setMinimumSectionSize(0);
 	treeWidgetHierarchy->header()->setMinimumSectionSize(0);
 	treeWidgetCategoryView->header()->setMinimumSectionSize(0);
 	treeWidgetVersionView->header()->setMinimumSectionSize(0);
@@ -704,7 +704,7 @@ MainWindow::MainWindow(QWidget *parent)
 		hSplitter->setSizes(hSplitterSizes);
 		vSplitter->setSizes(vSplitterSizes);
 		treeWidgetHierarchy->header()->setDefaultAlignment(Qt::AlignLeft);
-		treeWidgetGamelist->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState").toByteArray());
+		treeWidgetMachineList->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListHeaderState").toByteArray());
 		treeWidgetHierarchy->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState").toByteArray());
 		treeWidgetCategoryView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState").toByteArray());
 		treeWidgetCategoryView->setColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY, true);
@@ -719,7 +719,7 @@ MainWindow::MainWindow(QWidget *parent)
 		treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED2);
 #endif
 		actionFullscreenToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Fullscreen", false).toBool());
-		tabWidgetGamelist->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::North).toInt());
+		tabWidgetMachineList->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MachineList/TabPosition", QTabWidget::North).toInt());
 		tabWidgetGameDetail->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::North).toInt());
 		tabWidgetLogsAndEmulators->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::North).toInt());
 		tabWidgetSoftwareDetail->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareDetail/TabPosition", QTabWidget::North).toInt());
@@ -993,33 +993,33 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(action, SIGNAL(triggered()), this, SLOT(action_savePlayed_triggered()));
 
 	// tab widget position menus
-	menuTabWidgetGamelist = new QMenu(0);
+	menuTabWidgetMachineList = new QMenu(0);
 	s = tr("Set tab position north");
-	action = menuTabWidgetGamelist->addAction(tr("&North"));
+	action = menuTabWidgetMachineList->addAction(tr("&North"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/north.png")));
-	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGamelist_North_activated()));
+	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineList_North_activated()));
 	s = tr("Set tab position south");
-	action = menuTabWidgetGamelist->addAction(tr("&South"));
+	action = menuTabWidgetMachineList->addAction(tr("&South"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/south.png")));
-	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGamelist_South_activated()));
+	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineList_South_activated()));
 	s = tr("Set tab position west");
-	action = menuTabWidgetGamelist->addAction(tr("&West"));
+	action = menuTabWidgetMachineList->addAction(tr("&West"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/west.png")));
-	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGamelist_West_activated()));
+	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineList_West_activated()));
 	s = tr("Set tab position east");
-	action = menuTabWidgetGamelist->addAction(tr("&East"));
+	action = menuTabWidgetMachineList->addAction(tr("&East"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
-	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGamelist_East_activated()));
-	menuTabWidgetGamelist->addSeparator();
+	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineList_East_activated()));
+	menuTabWidgetMachineList->addSeparator();
 	s = tr("Feature setup");
-	action = menuTabWidgetGamelist->addAction(tr("Set&up..."));
+	action = menuTabWidgetMachineList->addAction(tr("Set&up..."));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
-	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGamelist_Setup_activated()));
+	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineList_Setup_activated()));
 
 	menuTabWidgetGameDetail = new QMenu(0);
 	s = tr("Set tab position north");
@@ -1107,40 +1107,40 @@ MainWindow::MainWindow(QWidget *parent)
 
 	QHeaderView *header;
 
-	menuGamelistHeader = new QMenu(0);
-	header = treeWidgetGamelist->header();
-	action = menuGamelistHeader->addAction(tr("Machine / Attribute"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_MACHINE);
-	action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_MACHINE));
-	action = menuGamelistHeader->addAction(tr("Tag"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_TAG);
-	action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_TAG));
-	action = menuGamelistHeader->addAction(tr("Icon / Value"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_ICON);
-	action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_ICON));
-	action = menuGamelistHeader->addAction(tr("Year"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_YEAR);
-	action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_YEAR));
-	action = menuGamelistHeader->addAction(tr("Manufacturer"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_MANU);
-	action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_MANU));
-	action = menuGamelistHeader->addAction(tr("Name"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_NAME);
-	action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_NAME));
-	action = menuGamelistHeader->addAction(tr("ROM types"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_RTYPES);
-	action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_RTYPES));
-	action = menuGamelistHeader->addAction(tr("Players"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_PLAYERS);
-	action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_PLAYERS));
-	action = menuGamelistHeader->addAction(tr("Driver status"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_DRVSTAT);
-	action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_DRVSTAT));
-	action = menuGamelistHeader->addAction(tr("Source file"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_SRCFILE);
-	action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_SRCFILE));
-	action = menuGamelistHeader->addAction(tr("Rank"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_RANK);
-	action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_RANK));
-	action = menuGamelistHeader->addAction(tr("Category"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_CATEGORY);
-	action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY));
-	actionMenuGamelistHeaderCategory = action;
-	action = menuGamelistHeader->addAction(tr("Version"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_VERSION);
-	action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION));
-	actionMenuGamelistHeaderVersion = action;
-	menuGamelistHeader->addSeparator();
-	action = menuGamelistHeader->addAction(QIcon(":data/img/reset.png"), tr("Reset"), this, SLOT(actionGamelistHeader_triggered())); action->setData(QMC2_MACHINELIST_RESET);
+	menuMachineListHeader = new QMenu(0);
+	header = treeWidgetMachineList->header();
+	action = menuMachineListHeader->addAction(tr("Machine / Attribute"), this, SLOT(actionMachineListHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_MACHINE);
+	action->setChecked(!treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_MACHINE));
+	action = menuMachineListHeader->addAction(tr("Tag"), this, SLOT(actionMachineListHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_TAG);
+	action->setChecked(!treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_TAG));
+	action = menuMachineListHeader->addAction(tr("Icon / Value"), this, SLOT(actionMachineListHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_ICON);
+	action->setChecked(!treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_ICON));
+	action = menuMachineListHeader->addAction(tr("Year"), this, SLOT(actionMachineListHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_YEAR);
+	action->setChecked(!treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_YEAR));
+	action = menuMachineListHeader->addAction(tr("Manufacturer"), this, SLOT(actionMachineListHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_MANU);
+	action->setChecked(!treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_MANU));
+	action = menuMachineListHeader->addAction(tr("Name"), this, SLOT(actionMachineListHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_NAME);
+	action->setChecked(!treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_NAME));
+	action = menuMachineListHeader->addAction(tr("ROM types"), this, SLOT(actionMachineListHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_RTYPES);
+	action->setChecked(!treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_RTYPES));
+	action = menuMachineListHeader->addAction(tr("Players"), this, SLOT(actionMachineListHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_PLAYERS);
+	action->setChecked(!treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_PLAYERS));
+	action = menuMachineListHeader->addAction(tr("Driver status"), this, SLOT(actionMachineListHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_DRVSTAT);
+	action->setChecked(!treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_DRVSTAT));
+	action = menuMachineListHeader->addAction(tr("Source file"), this, SLOT(actionMachineListHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_SRCFILE);
+	action->setChecked(!treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_SRCFILE));
+	action = menuMachineListHeader->addAction(tr("Rank"), this, SLOT(actionMachineListHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_RANK);
+	action->setChecked(!treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_RANK));
+	action = menuMachineListHeader->addAction(tr("Category"), this, SLOT(actionMachineListHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_CATEGORY);
+	action->setChecked(!treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY));
+	actionMenuMachineListHeaderCategory = action;
+	action = menuMachineListHeader->addAction(tr("Version"), this, SLOT(actionMachineListHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_VERSION);
+	action->setChecked(!treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION));
+	actionMenuMachineListHeaderVersion = action;
+	menuMachineListHeader->addSeparator();
+	action = menuMachineListHeader->addAction(QIcon(":data/img/reset.png"), tr("Reset"), this, SLOT(actionMachineListHeader_triggered())); action->setData(QMC2_MACHINELIST_RESET);
 	header->setContextMenuPolicy(Qt::CustomContextMenu);
-	connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetGamelistHeader_customContextMenuRequested(const QPoint &)));
+	connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetMachineListHeader_customContextMenuRequested(const QPoint &)));
 
 	menuHierarchyHeader = new QMenu(0);
 	header = treeWidgetHierarchy->header();
@@ -1247,7 +1247,7 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(actionViewByVersion, SIGNAL(triggered()), this, SLOT(viewByVersion()));
 	connect(comboBoxViewSelect, SIGNAL(currentIndexChanged(int)), stackedWidgetView, SLOT(setCurrentIndex(int)));
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxSearch_editTextChanged_delayed()));
-	connect(&updateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetGamelist_itemSelectionChanged_delayed()));
+	connect(&updateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetMachineList_itemSelectionChanged_delayed()));
 	connect(&activityCheckTimer, SIGNAL(timeout()), this, SLOT(checkActivity()));
 	activityState = false;
 	comboBoxSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
@@ -1364,31 +1364,31 @@ MainWindow::MainWindow(QWidget *parent)
 	actionRomStatusFilterC->setCheckable(true);
 	actionRomStatusFilterC->setShortcut(QKeySequence("Ctrl+Alt+C"));
 	actionRomStatusFilterC->setShortcutContext(Qt::ApplicationShortcut);
-	actionRomStatusFilterC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowC").toBool());
+	actionRomStatusFilterC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowC").toBool());
 	connect(actionRomStatusFilterC, SIGNAL(toggled(bool)), this, SLOT(romStateFilterC_toggled(bool)));
 	actionRomStatusFilterM = menuRomStatusFilter->addAction(QIcon(QString::fromUtf8(":/data/img/sphere_yellowgreen.png")), tr("&Mostly correct"));
 	actionRomStatusFilterM->setCheckable(true);
 	actionRomStatusFilterM->setShortcut(QKeySequence("Ctrl+Alt+M"));
 	actionRomStatusFilterM->setShortcutContext(Qt::ApplicationShortcut);
-	actionRomStatusFilterM->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowM").toBool());
+	actionRomStatusFilterM->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowM").toBool());
 	connect(actionRomStatusFilterM, SIGNAL(toggled(bool)), this, SLOT(romStateFilterM_toggled(bool)));
 	actionRomStatusFilterI = menuRomStatusFilter->addAction(QIcon(QString::fromUtf8(":/data/img/sphere_red.png")), tr("&Incorrect"));
 	actionRomStatusFilterI->setCheckable(true);
 	actionRomStatusFilterI->setShortcut(QKeySequence("Ctrl+Alt+I"));
 	actionRomStatusFilterI->setShortcutContext(Qt::ApplicationShortcut);
-	actionRomStatusFilterI->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowI").toBool());
+	actionRomStatusFilterI->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowI").toBool());
 	connect(actionRomStatusFilterI, SIGNAL(toggled(bool)), this, SLOT(romStateFilterI_toggled(bool)));
 	actionRomStatusFilterN = menuRomStatusFilter->addAction(QIcon(QString::fromUtf8(":/data/img/sphere_grey.png")), tr("&Not found"));
 	actionRomStatusFilterN->setCheckable(true);
 	actionRomStatusFilterN->setShortcut(QKeySequence("Ctrl+Alt+N"));
 	actionRomStatusFilterN->setShortcutContext(Qt::ApplicationShortcut);
-	actionRomStatusFilterN->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowN").toBool());
+	actionRomStatusFilterN->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowN").toBool());
 	connect(actionRomStatusFilterN, SIGNAL(toggled(bool)), this, SLOT(romStateFilterN_toggled(bool)));
 	actionRomStatusFilterU = menuRomStatusFilter->addAction(QIcon(QString::fromUtf8(":/data/img/sphere_blue.png")), tr("&Unknown"));
 	actionRomStatusFilterU->setCheckable(true);
 	actionRomStatusFilterU->setShortcut(QKeySequence("Ctrl+Alt+U"));
 	actionRomStatusFilterU->setShortcutContext(Qt::ApplicationShortcut);
-	actionRomStatusFilterU->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowU").toBool());
+	actionRomStatusFilterU->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowU").toBool());
 	connect(actionRomStatusFilterU, SIGNAL(toggled(bool)), this, SLOT(romStateFilterU_toggled(bool)));
 	pushButtonSelectRomFilter->setMenu(menuRomStatusFilter);
 
@@ -1401,13 +1401,13 @@ MainWindow::MainWindow(QWidget *parent)
 	actionRomStatusFilterU->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
 
 	// connect header click signals
-	connect(treeWidgetGamelist->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetGamelist_headerSectionClicked(int)));
+	connect(treeWidgetMachineList->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetMachineList_headerSectionClicked(int)));
 	connect(treeWidgetHierarchy->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetHierarchy_headerSectionClicked(int)));
 #if QT_VERSION < 0x050000
-	treeWidgetGamelist->header()->setClickable(true);
+	treeWidgetMachineList->header()->setClickable(true);
 	treeWidgetHierarchy->header()->setClickable(true);
 #else
-	treeWidgetGamelist->header()->setSectionsClickable(true);
+	treeWidgetMachineList->header()->setSectionsClickable(true);
 	treeWidgetHierarchy->header()->setSectionsClickable(true);
 #endif
 	connect(treeWidgetCategoryView->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetCategoryView_headerSectionClicked(int)));
@@ -1440,9 +1440,9 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(&memoryUpdateTimer, SIGNAL(timeout()), this, SLOT(memoryUpdateTimer_timeout()));
 #endif
 
-	connect(treeWidgetGamelist->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetGamelist_verticalScrollChanged(int)));
+	connect(treeWidgetMachineList->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetMachineList_verticalScrollChanged(int)));
 	m_glRankUpdateTimer.setSingleShot(true);
-	connect(&m_glRankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetGamelist_updateRanks()));
+	connect(&m_glRankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetMachineList_updateRanks()));
 	connect(treeWidgetHierarchy->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetHierarchy_verticalScrollChanged(int)));
 	m_hlRankUpdateTimer.setSingleShot(true);
 	connect(&m_hlRankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetHierarchy_updateRanks()));
@@ -1480,7 +1480,7 @@ MainWindow::~MainWindow()
 		delete qmc2StartupDefaultFont;
 }
 
-void MainWindow::tabWidgetGamelist_tabMoved(int from, int to)
+void MainWindow::tabWidgetMachineList_tabMoved(int from, int to)
 {
 	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(0);
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
@@ -1493,7 +1493,7 @@ void MainWindow::tabWidgetGamelist_tabMoved(int from, int to)
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( embedIndex >= 0 ) {
-		if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) < 0 ) {
+		if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 ) {
 			if ( embedIndex <= adjustedFrom )
 				adjustedFrom++;
 			if ( embedIndex <= adjustedTo )
@@ -1503,7 +1503,7 @@ void MainWindow::tabWidgetGamelist_tabMoved(int from, int to)
 #endif
 	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
 	if ( foreignIndex >= 0 ) {
-		if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 ) {
+		if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 ) {
 			if ( foreignIndex <= adjustedFrom )
 				adjustedFrom++;
 			if ( foreignIndex <= adjustedTo )
@@ -1654,7 +1654,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 	bool foreignEmulator = false;
 	if ( registeredEmulators.count() > 0 && qmc2DemoGame.isEmpty() ) {
 		if ( !launchForeignID ) {
-			if ( tabWidgetGamelist->currentIndex() == tabWidgetGamelist->indexOf(tabForeignEmulators) ) {
+			if ( tabWidgetMachineList->currentIndex() == tabWidgetMachineList->indexOf(tabForeignEmulators) ) {
 				QTreeWidgetItem *item = treeWidgetForeignIDs->currentItem();
 				if ( item && item->isSelected() ) {
 					QStringList foreignInfo = item->whatsThis(0).split("\t");
@@ -1691,7 +1691,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 				foreignEmulator = true;
 				QString emuCommand = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(selectedEmulator), QString()).toString();
 				QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(selectedEmulator), QString()).toString();
-				QString s = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(selectedEmulator), QString()).toString().replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2GamelistItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE));
+				QString s = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(selectedEmulator), QString()).toString().replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2MachineListItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 				QStringList emuArgs;
 				QRegExp rx("([^ ]+|\"[^\"]+\")");
 				int i = 0;
@@ -1720,7 +1720,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 		return;
 	}
 
-	if ( qmc2Gamelist->isDevice(gameName) ) {
+	if ( qmc2MachineList->isDevice(gameName) ) {
 		log(QMC2_LOG_FRONTEND, tr("sorry, devices cannot run standalone"));
 		return;
 	}
@@ -2066,14 +2066,14 @@ void MainWindow::on_actionPlay_triggered(bool)
 	if ( qmc2DemoGame.isEmpty() ) {
 		// add game/machine to played list
 		listWidgetPlayed->blockSignals(true);
-		QList<QListWidgetItem *> matches = listWidgetPlayed->findItems(qmc2GamelistItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
+		QList<QListWidgetItem *> matches = listWidgetPlayed->findItems(qmc2MachineListItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
 		QListWidgetItem *playedItem;
 		if ( matches.count() > 0 )
 			playedItem = listWidgetPlayed->takeItem(listWidgetPlayed->row(matches[0]));
 		else {
 			playedItem = new QListWidgetItem();
-			playedItem->setText(qmc2GamelistItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE));
-			playedItem->setWhatsThis(qmc2GamelistItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_NAME));
+			playedItem->setText(qmc2MachineListItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE));
+			playedItem->setWhatsThis(qmc2MachineListItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_NAME));
 		}
 		listWidgetPlayed->insertItem(0, playedItem);
 		listWidgetPlayed->setCurrentItem(playedItem);
@@ -2122,9 +2122,9 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
-	if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) != tabWidgetGamelist->currentIndex() || (tabWidgetGamelist->indexOf(tabEmbeddedEmus) == tabWidgetGamelist->currentIndex() && !toolButtonEmbedderMaximizeToggle->isChecked()) ) {
+	if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) != tabWidgetMachineList->currentIndex() || (tabWidgetMachineList->indexOf(tabEmbeddedEmus) == tabWidgetMachineList->currentIndex() && !toolButtonEmbedderMaximizeToggle->isChecked()) ) {
 		hSplitterSizes = hSplitter->sizes();
-	} else if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) == tabWidgetGamelist->currentIndex() && toolButtonEmbedderMaximizeToggle->isChecked() ) {
+	} else if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) == tabWidgetMachineList->currentIndex() && toolButtonEmbedderMaximizeToggle->isChecked() ) {
 		toolButtonEmbedderMaximizeToggle->setChecked(false);
 		menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 		statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -2221,7 +2221,7 @@ void MainWindow::on_actionReload_triggered(bool)
 		log(QMC2_LOG_FRONTEND, tr("machine list reload is already active"));
 	else {
 		qmc2StopParser = false;
-		qmc2Gamelist->enableWidgets(false);
+		qmc2MachineList->enableWidgets(false);
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() )
 			if ( !qmc2StopParser )
 				loadGameInfoDB();
@@ -2240,9 +2240,9 @@ void MainWindow::on_actionReload_triggered(bool)
 		}
 		if ( !qmc2StopParser ) {
 			qApp->processEvents();
-			qmc2Gamelist->load();
+			qmc2MachineList->load();
 		} else
-			qmc2Gamelist->enableWidgets(true);
+			qmc2MachineList->enableWidgets(true);
 	}
 
 	static bool initialCall = true;
@@ -2281,7 +2281,7 @@ void MainWindow::on_actionCheckCurrentROM_triggered(bool)
 	} else if ( qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active() ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
 	} else
-		qmc2Gamelist->verify(true);
+		qmc2MachineList->verify(true);
 }
 
 void MainWindow::on_actionCheckROMs_triggered(bool)
@@ -2305,13 +2305,13 @@ void MainWindow::on_actionCheckROMs_triggered(bool)
 	} else if ( qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active() ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
 	} else {
-		if ( !qmc2Gamelist->autoRomCheck ) {
+		if ( !qmc2MachineList->autoRomCheck ) {
 			switch ( QMessageBox::question(this,
 						tr("Confirm"),
 						tr("The ROM verification process may be very time-consuming.\nIt will overwrite existing cached data.\n\nDo you really want to check all ROM states now?"),
 						QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
 				case QMessageBox::Yes:
-					qmc2Gamelist->verify();
+					qmc2MachineList->verify();
 					break;
 
 				default:
@@ -2320,10 +2320,10 @@ void MainWindow::on_actionCheckROMs_triggered(bool)
 		} else {
 			if ( qmc2AutomaticReload )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("automatic ROM check triggered"));
-			qmc2Gamelist->verify();
+			qmc2MachineList->verify();
 		}
 	}
-	qmc2Gamelist->autoRomCheck = false;
+	qmc2MachineList->autoRomCheck = false;
 	qmc2AutomaticReload = false;
 }
 
@@ -2731,16 +2731,16 @@ void MainWindow::on_actionClearROMStateCache_triggered(bool)
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the ROM state cache file '%1', please check permissions").arg(fileName));
 	}
 
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck").toBool() ) {
-		qmc2Gamelist->autoRomCheck = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck").toBool();
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/AutoTriggerROMCheck").toBool() ) {
+		qmc2MachineList->autoRomCheck = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/AutoTriggerROMCheck").toBool();
 		log(QMC2_LOG_FRONTEND, tr("triggering an automatic ROM check on next reload"));
 	}
 }
 
-void MainWindow::on_actionClearGamelistCache_triggered(bool)
+void MainWindow::on_actionClearMachineListCache_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearGamelistCache_triggered(bool)");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearMachineListCache_triggered(bool)");
 #endif
 
 	if ( !qmc2ForceCacheRefresh ) {
@@ -2751,7 +2751,7 @@ void MainWindow::on_actionClearGamelistCache_triggered(bool)
 	}
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
-	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mame.glc").toString();
+	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/MachineListCacheFile", userScopePath + "/mame.glc").toString();
 
 	QFile f(fileName);
 	if ( f.exists() ) {
@@ -2774,7 +2774,7 @@ void MainWindow::on_actionClearXMLCache_triggered(bool)
 			return;
 		}
 	}
-	qmc2Gamelist->xmlDb()->recreateDatabase();
+	qmc2MachineList->xmlDb()->recreateDatabase();
 	systemSoftwareListHash.clear();
 	systemSoftwareFilterHash.clear();
 }
@@ -2832,7 +2832,7 @@ void MainWindow::on_actionClearAllEmulatorCaches_triggered(bool)
 #endif
 
 	actionClearROMStateCache->trigger();
-	actionClearGamelistCache->trigger();
+	actionClearMachineListCache->trigger();
 	actionClearXMLCache->trigger();
 	actionClearSlotInfoCache->trigger();
 	actionClearSoftwareListCache->trigger();
@@ -3140,8 +3140,8 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	} else
 		stopSearch = false;
 
-	if ( treeWidgetGamelist->topLevelItemCount() == 1 )
-		if ( treeWidgetGamelist->topLevelItem(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+	if ( treeWidgetMachineList->topLevelItemCount() == 1 )
+		if ( treeWidgetMachineList->topLevelItem(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
 			return;
 
 	QString pattern = comboBoxSearch->currentText();
@@ -3154,8 +3154,8 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		lastNegatedMatch = negatedMatch;
 		lastIncludeBioses = includeBioses;
 		lastIncludeDevices = includeDevices;
-		qmc2Gamelist->numSearchGames = listWidgetSearch->count();
-		labelGamelistStatus->setText(qmc2Gamelist->status());
+		qmc2MachineList->numSearchGames = listWidgetSearch->count();
+		labelMachineListStatus->setText(qmc2MachineList->status());
 		return;
 	} else if ( listWidgetSearch->count() == 0 )
 		lastSearchText.clear();
@@ -3203,8 +3203,8 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		lastNegatedMatch = negatedMatch;
 		lastIncludeBioses = includeBioses;
 		lastIncludeDevices = includeDevices;
-		qmc2Gamelist->numSearchGames = listWidgetSearch->count();
-		labelGamelistStatus->setText(qmc2Gamelist->status());
+		qmc2MachineList->numSearchGames = listWidgetSearch->count();
+		labelMachineListStatus->setText(qmc2MachineList->status());
 		return;
 	}
 
@@ -3212,7 +3212,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	lastSearchText = patternCopy;
 
 	progressBarSearch->setVisible(true);
-	progressBarSearch->setRange(0, treeWidgetGamelist->topLevelItemCount());
+	progressBarSearch->setRange(0, treeWidgetMachineList->topLevelItemCount());
 	progressBarSearch->setValue(0);
 
 	QString currentItemText;
@@ -3223,12 +3223,12 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	QList<QListWidgetItem *> itemList;
 	QListWidgetItem *currentItemPendant = NULL;
 
-	for (int i = 0; i < treeWidgetGamelist->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
-		QTreeWidgetItem *item = treeWidgetGamelist->topLevelItem(i);
+	for (int i = 0; i < treeWidgetMachineList->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
+		QTreeWidgetItem *item = treeWidgetMachineList->topLevelItem(i);
 		QString itemName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
-		if ( !includeBioses && qmc2Gamelist->isBios(itemName) )
+		if ( !includeBioses && qmc2MachineList->isBios(itemName) )
 			continue;
-		if ( !includeDevices && qmc2Gamelist->isDevice(itemName) )
+		if ( !includeDevices && qmc2MachineList->isDevice(itemName) )
 			continue;
 		QString itemText = item->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 		bool matched = itemText.indexOf(patternRx) > -1 || itemName.indexOf(patternRx) > -1;
@@ -3248,8 +3248,8 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 			foreach (QListWidgetItem *item, itemList)
 				listWidgetSearch->addItem(item);
 			itemList.clear();
-			qmc2Gamelist->numSearchGames = listWidgetSearch->count();
-			labelGamelistStatus->setText(qmc2Gamelist->status());
+			qmc2MachineList->numSearchGames = listWidgetSearch->count();
+			labelMachineListStatus->setText(qmc2MachineList->status());
 			if ( currentItemPendant ) {
 				listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
 				listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
@@ -3261,8 +3261,8 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	if ( !stopSearch && !qmc2CleaningUp ) {
 		foreach (QListWidgetItem *item, itemList)
 			listWidgetSearch->addItem(item);
-		qmc2Gamelist->numSearchGames = listWidgetSearch->count();
-		labelGamelistStatus->setText(qmc2Gamelist->status());
+		qmc2MachineList->numSearchGames = listWidgetSearch->count();
+		labelMachineListStatus->setText(qmc2MachineList->status());
 		if ( currentItemPendant ) {
 			listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
 			listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
@@ -3282,10 +3282,10 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 
 void MainWindow::on_comboBoxSearch_activated(const QString &/*pattern*/)
 {
-	if ( tabWidgetGamelist->currentWidget() != tabSearch ) {
-		tabWidgetGamelist->blockSignals(true);
-		tabWidgetGamelist->setCurrentWidget(tabSearch);
-		tabWidgetGamelist->blockSignals(false);
+	if ( tabWidgetMachineList->currentWidget() != tabSearch ) {
+		tabWidgetMachineList->blockSignals(true);
+		tabWidgetMachineList->setCurrentWidget(tabSearch);
+		tabWidgetMachineList->blockSignals(false);
 	}
 	searchTimer.start(QMC2_SEARCH_DELAY/10);
 	QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
@@ -3303,12 +3303,12 @@ void MainWindow::on_listWidgetSearch_currentItemChanged(QListWidgetItem *current
 	isActive = true;
 	QTreeWidgetItem *glItem = NULL;
 	if ( current )
-		glItem = qmc2GamelistItemHash[current->whatsThis()];
+		glItem = qmc2MachineListItemHash[current->whatsThis()];
 	if ( glItem ) {
 		qmc2CheckItemVisibility = false;
-		treeWidgetGamelist->clearSelection();
+		treeWidgetMachineList->clearSelection();
 		qmc2CurrentItem = glItem;
-		treeWidgetGamelist->setCurrentItem(glItem);
+		treeWidgetMachineList->setCurrentItem(glItem);
 	}
 	isActive = false;
 }
@@ -3342,15 +3342,15 @@ void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
 	if ( item == NULL )
 		return;
 
-	QList<QTreeWidgetItem *> matchItemList = treeWidgetGamelist->findItems(item->text(), Qt::MatchExactly);
+	QList<QTreeWidgetItem *> matchItemList = treeWidgetMachineList->findItems(item->text(), Qt::MatchExactly);
 	if ( !matchItemList.isEmpty() ) {
 		QTreeWidgetItem *matchItem = matchItemList[0];
 		qmc2CheckItemVisibility = false;
-		treeWidgetGamelist->clearSelection();
-		treeWidgetGamelist->setCurrentItem(matchItem);
-		treeWidgetGamelist->scrollToItem(matchItem, qmc2CursorPositioningMode);
+		treeWidgetMachineList->clearSelection();
+		treeWidgetMachineList->setCurrentItem(matchItem);
+		treeWidgetMachineList->scrollToItem(matchItem, qmc2CursorPositioningMode);
 		qmc2CurrentItem = matchItem;
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation").toBool() ) {
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/PlayOnSublistActivation").toBool() ) {
 			if ( qmc2DemoModeDialog )
 				if ( qmc2DemoModeDialog->demoModeRunning )
 					return;
@@ -3366,9 +3366,9 @@ void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
 					break;
 			}
 		} else {
-			tabWidgetGamelist->setCurrentWidget(tabGamelist);
+			tabWidgetMachineList->setCurrentWidget(tabMachineList);
 			if ( !qmc2ReloadActive )
-				treeWidgetGamelist->expandItem(matchItem);
+				treeWidgetMachineList->expandItem(matchItem);
 		}
 	} else
 		log(QMC2_LOG_FRONTEND, tr("ERROR: no match found (?)"));
@@ -3414,18 +3414,18 @@ void MainWindow::on_listWidgetPlayed_itemActivated(QListWidgetItem *item)
 	on_listWidgetSearch_itemActivated(item);
 }
 
-void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
+void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetGamelist_currentChanged(int i = " + QString::number(currentIndex) + ")");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetMachineList_currentChanged(int i = " + QString::number(currentIndex) + ")");
 #endif
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-	static int lastTabWidgetGamelistIndex = -1;
+	static int lastTabWidgetMachineListIndex = -1;
 #endif
 
 	if ( !qmc2EarlyStartup ) {
-		menuGamelistHeader->hide();
+		menuMachineListHeader->hide();
 		menuHierarchyHeader->hide();
 		menuCategoryHeader->hide();
 		menuVersionHeader->hide();
@@ -3441,19 +3441,19 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( embedIndex >= 0 && embedIndex <= currentIndex )
-		if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) < 0 )
+		if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 )
 			currentIndex++;
 #endif
 	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
 	if ( foreignIndex >= 0 && foreignIndex <= currentIndex )
-		if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
+		if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 			currentIndex++;
 	switch ( componentInfo->appliedFeatureList()[currentIndex] ) {
 		case QMC2_MACHINELIST_INDEX:
 			actionToggleTagCursorDown->setVisible(true);
 			actionToggleTagCursorUp->setVisible(true);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-			if ( componentInfo->appliedFeatureList()[lastTabWidgetGamelistIndex] != QMC2_EMBED_INDEX )
+			if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
 				QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -3480,9 +3480,9 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 					break;
 				case QMC2_VIEW_DETAIL_INDEX:
 				default:
-					treeWidgetGamelist->activateWindow();
-					treeWidgetGamelist->setFocus();
-					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetGamelist_verticalScrollChanged()));
+					treeWidgetMachineList->activateWindow();
+					treeWidgetMachineList->setFocus();
+					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetMachineList_verticalScrollChanged()));
 					break;
 			}
 			break;
@@ -3491,7 +3491,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 			actionToggleTagCursorDown->setVisible(false);
 			actionToggleTagCursorUp->setVisible(false);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-			if ( componentInfo->appliedFeatureList()[lastTabWidgetGamelistIndex] != QMC2_EMBED_INDEX )
+			if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
 				QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -3513,7 +3513,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 			actionToggleTagCursorDown->setVisible(false);
 			actionToggleTagCursorUp->setVisible(false);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-			if ( componentInfo->appliedFeatureList()[lastTabWidgetGamelistIndex] != QMC2_EMBED_INDEX )
+			if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
 				QTimer::singleShot(0, this, SLOT(checkCurrentFavoritesSelection()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -3532,7 +3532,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 			actionToggleTagCursorDown->setVisible(false);
 			actionToggleTagCursorUp->setVisible(false);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-			if ( componentInfo->appliedFeatureList()[lastTabWidgetGamelistIndex] != QMC2_EMBED_INDEX )
+			if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
 				QTimer::singleShot(0, this, SLOT(checkCurrentPlayedSelection()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -3610,7 +3610,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 		labelGameStatus->setVisible(false);
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-	lastTabWidgetGamelistIndex = currentIndex;
+	lastTabWidgetMachineListIndex = currentIndex;
 #endif
 }
 
@@ -3737,7 +3737,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PARENT_ID$"] = softwareParent;
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_LIST$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SUPPORTED$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_SUPPORTED);
-				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SUPPORTED_UT$"] = Gamelist::reverseTranslation[qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_SUPPORTED)];
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SUPPORTED_UT$"] = MachineList::reverseTranslation[qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_SUPPORTED)];
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_STATUS$"] = qmc2SoftwareList->softwareStatus(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST), qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME), true);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_STATUS_UT$"] = qmc2SoftwareList->softwareStatus(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST), qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME), false);
 	      			qmc2SoftwareNotesEditor->templateMap["$GUI_LANGUAGE$"] = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
@@ -3767,7 +3767,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file://" + QDir::fromNativeSeparators(qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath);
 #endif
 
-				QString swInfo = qmc2Gamelist->datInfoDb()->softwareInfo(listName, entryName);
+				QString swInfo = qmc2MachineList->datInfoDb()->softwareInfo(listName, entryName);
 				if ( !swInfo.isEmpty() ) {
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = swInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "OK";
@@ -3796,7 +3796,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 			if ( qmc2SoftwareList->currentItem != qmc2LastSoftwareInfoItem ) {
 				QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
 				QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
-				QString swInfo = qmc2Gamelist->datInfoDb()->softwareInfo(listName, entryName);
+				QString swInfo = qmc2MachineList->datInfoDb()->softwareInfo(listName, entryName);
 				if ( !swInfo.isEmpty() )
 					textBrowserSoftwareInfo->setHtml(swInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
 				else
@@ -3819,7 +3819,7 @@ void MainWindow::scrollToCurrentItem()
 	if ( qmc2CurrentItem )
 		ci = qmc2CurrentItem;
 	else
-		ci = treeWidgetGamelist->currentItem();
+		ci = treeWidgetMachineList->currentItem();
 	if ( ci ) {
 		if ( ci->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
 			return;
@@ -3851,9 +3851,9 @@ void MainWindow::scrollToCurrentItem()
 			case QMC2_VIEWMACHINELIST_INDEX:
 			default:
 				qmc2CheckItemVisibility = false;
-				treeWidgetGamelist->clearSelection();
-				treeWidgetGamelist->setCurrentItem(ci);
-				treeWidgetGamelist->scrollToItem(ci, qmc2CursorPositioningMode);
+				treeWidgetMachineList->clearSelection();
+				treeWidgetMachineList->setCurrentItem(ci);
+				treeWidgetMachineList->scrollToItem(ci, qmc2CursorPositioningMode);
 				break;
 		}
 		if ( !qmc2ReloadActive && ci )
@@ -4018,7 +4018,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	}
 
 	// paranoia :)
-	QTreeWidgetItem *ci = treeWidgetGamelist->currentItem();
+	QTreeWidgetItem *ci = treeWidgetMachineList->currentItem();
 	if ( !ci )
 		return;
 	if ( !ci->isSelected() )
@@ -4038,7 +4038,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	// show / hide game status indicator
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired").toBool() ) {
-			if ( hSplitter->sizes()[0] == 0 || tabWidgetGamelist->indexOf(tabGamelist) != tabWidgetGamelist->currentIndex() )
+			if ( hSplitter->sizes()[0] == 0 || tabWidgetMachineList->indexOf(tabMachineList) != tabWidgetMachineList->currentIndex() )
 				labelGameStatus->setVisible(true);
 			else
 				labelGameStatus->setVisible(false);
@@ -4050,7 +4050,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 
 	// setup status indicator color
-	switch ( qmc2Gamelist->romState(gameName) ) {
+	switch ( qmc2MachineList->romState(gameName) ) {
 		case 'C':
 			labelGameStatus->setPalette(qmc2StatusColorGreen);
 			break;
@@ -4143,7 +4143,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 				QVBoxLayout *layout = new QVBoxLayout;
 				layout->setContentsMargins(left, top, right, bottom);
 				QString setID = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-				qmc2YouTubeWidget = new YouTubeVideoPlayer(setID, qmc2GamelistItemHash[setID]->text(QMC2_MACHINELIST_COLUMN_MACHINE), tabYouTube);
+				qmc2YouTubeWidget = new YouTubeVideoPlayer(setID, qmc2MachineListItemHash[setID]->text(QMC2_MACHINELIST_COLUMN_MACHINE), tabYouTube);
 				layout->addWidget(qmc2YouTubeWidget);
 				tabYouTube->setLayout(layout);
 				qmc2YouTubeWidget->show();
@@ -4209,7 +4209,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 					tabDevices->setUpdatesEnabled(false);
 					qmc2MESSDeviceConfigurator->forceQuit = true;
 					if ( qmc2MESSDeviceConfigurator->refreshRunning ) {
-						QTimer::singleShot(1, this, SLOT(treeWidgetGamelist_itemSelectionChanged_delayed()));
+						QTimer::singleShot(1, this, SLOT(treeWidgetMachineList_itemSelectionChanged_delayed()));
 						return;
 					}
 					qmc2MESSDeviceConfigurator->disconnect();
@@ -4420,23 +4420,23 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 			if ( qmc2CurrentItem != qmc2LastGameInfoItem ) {
 				tabGameInfo->setUpdatesEnabled(false);
 				QString gameInfoKey = gameName;
-				if ( !qmc2Gamelist->datInfoDb()->existsGameInfo(gameInfoKey) ) {
+				if ( !qmc2MachineList->datInfoDb()->existsGameInfo(gameInfoKey) ) {
 					gameInfoKey = qmc2ParentHash[gameName];
-					if ( !qmc2Gamelist->datInfoDb()->existsGameInfo(gameInfoKey) )
+					if ( !qmc2MachineList->datInfoDb()->existsGameInfo(gameInfoKey) )
 						gameInfoKey.clear();
 				}
 				if ( !gameInfoKey.isEmpty() ) {
-					QString gameInfoText = qmc2Gamelist->datInfoDb()->gameInfo(gameInfoKey);
+					QString gameInfoText = qmc2MachineList->datInfoDb()->gameInfo(gameInfoKey);
 					if ( !gameInfoText.isEmpty() ) {
-						QString emulator = qmc2Gamelist->datInfoDb()->gameInfoEmulator(gameInfoKey);
+						QString emulator = qmc2MachineList->datInfoDb()->gameInfoEmulator(gameInfoKey);
 						if ( emulator == "MESS" )
 							textBrowserGameInfo->setHtml(messWikiToHtml(gameInfoText));
 						else
 							textBrowserGameInfo->setHtml(gameInfoText.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
 					} else
-						textBrowserGameInfo->setHtml("<h2>" + qmc2GamelistItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE) + "</h2>" + tr("<p>No data available</p>"));
+						textBrowserGameInfo->setHtml("<h2>" + qmc2MachineListItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE) + "</h2>" + tr("<p>No data available</p>"));
 				} else
-					textBrowserGameInfo->setHtml("<h2>" + qmc2GamelistItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE) + "</h2>" + tr("<p>No data available</p>"));
+					textBrowserGameInfo->setHtml("<h2>" + qmc2MachineListItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE) + "</h2>" + tr("<p>No data available</p>"));
 				qmc2LastGameInfoItem = qmc2CurrentItem;
 				tabGameInfo->setUpdatesEnabled(true);
 			}
@@ -4450,13 +4450,13 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 			if ( qmc2CurrentItem != qmc2LastEmuInfoItem ) {
 				tabEmuInfo->setUpdatesEnabled(false);
 				QString emuInfoKey = gameName;
-				if ( !qmc2Gamelist->datInfoDb()->existsEmuInfo(emuInfoKey) ) {
+				if ( !qmc2MachineList->datInfoDb()->existsEmuInfo(emuInfoKey) ) {
 					emuInfoKey = qmc2ParentHash[gameName];
-					if ( !qmc2Gamelist->datInfoDb()->existsEmuInfo(emuInfoKey) )
+					if ( !qmc2MachineList->datInfoDb()->existsEmuInfo(emuInfoKey) )
 						emuInfoKey.clear();
 				}
 				if ( !emuInfoKey.isEmpty() ) {
-					QString emuInfoText = qmc2Gamelist->datInfoDb()->emuInfo(emuInfoKey);
+					QString emuInfoText = qmc2MachineList->datInfoDb()->emuInfo(emuInfoKey);
 					if ( !emuInfoText.isEmpty() )
 						textBrowserEmuInfo->setHtml(emuInfoText.replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
 					else
@@ -4524,11 +4524,11 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 				qmc2SystemNotesEditor->templateMap["$PLAYERS$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS);
 				qmc2SystemNotesEditor->templateMap["$ROM_TYPES$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_RTYPES);
 				qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT);
-				qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS_UT$"] = Gamelist::reverseTranslation[qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT)];
-				qmc2SystemNotesEditor->templateMap["$ROM_STATUS$"] = qmc2Gamelist->romStatus(gameName, true);
-				qmc2SystemNotesEditor->templateMap["$ROM_STATUS_UT$"] = qmc2Gamelist->romStatus(gameName, false);
-				qmc2SystemNotesEditor->templateMap["$IS_BIOS$"] = qmc2Gamelist->isBios(gameName) ? "true" : "false";
-				qmc2SystemNotesEditor->templateMap["$IS_DEVICE$"] = qmc2Gamelist->isDevice(gameName) ? "true" : "false";
+				qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS_UT$"] = MachineList::reverseTranslation[qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT)];
+				qmc2SystemNotesEditor->templateMap["$ROM_STATUS$"] = qmc2MachineList->romStatus(gameName, true);
+				qmc2SystemNotesEditor->templateMap["$ROM_STATUS_UT$"] = qmc2MachineList->romStatus(gameName, false);
+				qmc2SystemNotesEditor->templateMap["$IS_BIOS$"] = qmc2MachineList->isBios(gameName) ? "true" : "false";
+				qmc2SystemNotesEditor->templateMap["$IS_DEVICE$"] = qmc2MachineList->isDevice(gameName) ? "true" : "false";
 				qmc2SystemNotesEditor->templateMap["$GUI_LANGUAGE$"] = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
 				qmc2SystemNotesEditor->templateMap["$EMULATOR_VARIANT$"] = QMC2_EMU_NAME_VARIANT;
 				qmc2SystemNotesEditor->templateMap["$EMULATOR_TYPE$"] = QMC2_EMU_NAME;
@@ -4636,13 +4636,13 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 				}
 
 				QString emuInfoKey = gameName;
-				if ( !qmc2Gamelist->datInfoDb()->existsEmuInfo(emuInfoKey) ) {
+				if ( !qmc2MachineList->datInfoDb()->existsEmuInfo(emuInfoKey) ) {
 					emuInfoKey = parentSystem;
-					if ( !qmc2Gamelist->datInfoDb()->existsEmuInfo(emuInfoKey) )
+					if ( !qmc2MachineList->datInfoDb()->existsEmuInfo(emuInfoKey) )
 						emuInfoKey.clear();
 				}
 				if ( !emuInfoKey.isEmpty() ) {
-					QString emuInfoText = qmc2Gamelist->datInfoDb()->emuInfo(emuInfoKey);
+					QString emuInfoText = qmc2MachineList->datInfoDb()->emuInfo(emuInfoKey);
 					if ( !emuInfoText.isEmpty() ) {
 						qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = emuInfoText.replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 						qmc2SystemNotesEditor->templateMap["$EMU_INFO_STATUS$"] = "OK";
@@ -4656,15 +4656,15 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 				}
 
 				QString gameInfoKey = gameName;
-				if ( !qmc2Gamelist->datInfoDb()->existsGameInfo(gameInfoKey) ) {
+				if ( !qmc2MachineList->datInfoDb()->existsGameInfo(gameInfoKey) ) {
 					gameInfoKey = parentSystem;
-					if ( !qmc2Gamelist->datInfoDb()->existsGameInfo(gameInfoKey) )
+					if ( !qmc2MachineList->datInfoDb()->existsGameInfo(gameInfoKey) )
 						gameInfoKey.clear();
 				}
 				if ( !gameInfoKey.isEmpty() ) {
-					QString gameInfoText = qmc2Gamelist->datInfoDb()->gameInfo(gameInfoKey);
+					QString gameInfoText = qmc2MachineList->datInfoDb()->gameInfo(gameInfoKey);
 					if ( !gameInfoText.isEmpty() ) {
-						QString emulator = qmc2Gamelist->datInfoDb()->gameInfoEmulator(gameInfoKey);
+						QString emulator = qmc2MachineList->datInfoDb()->gameInfoEmulator(gameInfoKey);
 						if ( emulator == "MESS" )
 							qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = messWikiToHtml(gameInfoText);
 						else
@@ -4753,7 +4753,7 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 	if ( defaultChoice )
 		defaultChoice->clear();
 
-	QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(gameName).split("\n", QString::SkipEmptyParts);
+	QStringList xmlLines = qmc2MachineList->xmlDb()->xml(gameName).split("\n", QString::SkipEmptyParts);
 	int i = 0;
 	while ( i < xmlLines.count() ) {
 		QString xmlLine = xmlLines[i++].simplified();
@@ -4831,10 +4831,10 @@ void MainWindow::emuSelector_currentIndexChanged(const QString &text)
 		qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)), text);
 }
 
-void MainWindow::on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *item, int column)
+void MainWindow::on_treeWidgetMachineList_itemActivated(QTreeWidgetItem *item, int column)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetMachineList_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
 	if ( qmc2DemoModeDialog )
@@ -4920,21 +4920,21 @@ void MainWindow::on_treeWidgetForeignIDs_itemActivated(QTreeWidgetItem *item, in
 	qmc2IgnoreItemActivation = false;
 }
 
-void MainWindow::on_treeWidgetGamelist_itemDoubleClicked(QTreeWidgetItem * /*item*/, int /*column*/)
+void MainWindow::on_treeWidgetMachineList_itemDoubleClicked(QTreeWidgetItem * /*item*/, int /*column*/)
 {
-	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/DoubleClickActivation").toBool() )
 		qmc2IgnoreItemActivation = true;
 }
 
 void MainWindow::on_treeWidgetHierarchy_itemDoubleClicked(QTreeWidgetItem * /*item*/, int /*column*/)
 {
-	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/DoubleClickActivation").toBool() )
 		qmc2IgnoreItemActivation = true;
 }
 
 void MainWindow::on_treeWidgetForeignIDs_itemDoubleClicked(QTreeWidgetItem * /*item*/, int /*column*/)
 {
-	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/DoubleClickActivation").toBool() )
 		qmc2IgnoreItemActivation = true;
 }
 
@@ -4948,42 +4948,42 @@ void MainWindow::on_treeWidgetForeignIDs_customContextMenuRequested(const QPoint
 	}
 }
 
-void MainWindow::on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *item)
+void MainWindow::on_treeWidgetMachineList_itemExpanded(QTreeWidgetItem *item)
 {
 	if ( !item )
 		return;
 
 	if ( qmc2ReloadActive ) {
-		treeWidgetGamelist->collapseItem(item);
+		treeWidgetMachineList->collapseItem(item);
 		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
 		return;
 	}
 
 	if ( qmc2SortingActive ) {
-		treeWidgetGamelist->collapseItem(item);
+		treeWidgetMachineList->collapseItem(item);
 		log(QMC2_LOG_FRONTEND, tr("please wait for sorting to finish and try again"));
 		return;
 	}
 
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetMachineList_itemExpanded(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
 	if ( item->child(0) ) {
-		treeWidgetGamelist->viewport()->update();
+		treeWidgetMachineList->viewport()->update();
 		qApp->processEvents();
 		if ( item->child(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") ) {
-			treeWidgetGamelist->viewport()->update();
-			qmc2Gamelist->parseGameDetail(item);
-			qmc2ExpandedGamelistItems << item;
+			treeWidgetMachineList->viewport()->update();
+			qmc2MachineList->parseGameDetail(item);
+			qmc2ExpandedMachineListItems << item;
 		}
 	}
 }
 
-void MainWindow::on_treeWidgetGamelist_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
+void MainWindow::on_treeWidgetMachineList_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetGamelist_currentItemChanged(QTreeWidgetItem *current = %1, QTreeWidgetItem *previous = %2").arg((qulonglong)current).arg((qulonglong)previous));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetMachineList_currentItemChanged(QTreeWidgetItem *current = %1, QTreeWidgetItem *previous = %2").arg((qulonglong)current).arg((qulonglong)previous));
 #endif
 
 	// workaround for a Qt bug: when POS1/Home is pressed, QTreeWidget & QTreeView don't correctly select the first VISIBLE item,
@@ -4991,15 +4991,15 @@ void MainWindow::on_treeWidgetGamelist_currentItemChanged(QTreeWidgetItem *curre
 	if ( current ) {
 		if ( qmc2CheckItemVisibility ) {
 			if ( current->isHidden() ) {
-				int i = treeWidgetGamelist->indexOfTopLevelItem(current);
+				int i = treeWidgetMachineList->indexOfTopLevelItem(current);
 				if ( i >= 0 ) {
-					while ( current->isHidden() && i < treeWidgetGamelist->topLevelItemCount() ) {
-						current = treeWidgetGamelist->topLevelItem(++i);
+					while ( current->isHidden() && i < treeWidgetMachineList->topLevelItemCount() ) {
+						current = treeWidgetMachineList->topLevelItem(++i);
 						if ( current == NULL ) 
 							break;
 					}
 					if ( current )
-						treeWidgetGamelist->setCurrentItem(current);
+						treeWidgetMachineList->setCurrentItem(current);
 				}
 			}
 		} else
@@ -5009,7 +5009,7 @@ void MainWindow::on_treeWidgetGamelist_currentItemChanged(QTreeWidgetItem *curre
 	if ( qmc2UpdateDelay > 0 )
 		updateTimer.start(qmc2UpdateDelay);
 	else
-		treeWidgetGamelist_itemSelectionChanged_delayed();
+		treeWidgetMachineList_itemSelectionChanged_delayed();
 }
 
 void MainWindow::on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
@@ -5022,25 +5022,25 @@ void MainWindow::on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *curr
 	if ( qmc2UpdateDelay > 0 )
 		updateTimer.start(qmc2UpdateDelay);
 	else
-		treeWidgetGamelist_itemSelectionChanged_delayed();
+		treeWidgetMachineList_itemSelectionChanged_delayed();
 }
 
-void MainWindow::on_treeWidgetGamelist_itemSelectionChanged()
+void MainWindow::on_treeWidgetMachineList_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetGamelist_itemSelectionChanged()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetMachineList_itemSelectionChanged()");
 #endif
 
 	if ( qmc2UpdateDelay > 0 )
 		updateTimer.start(qmc2UpdateDelay);
 	else
-		treeWidgetGamelist_itemSelectionChanged_delayed();
+		treeWidgetMachineList_itemSelectionChanged_delayed();
 }
 
-void MainWindow::treeWidgetGamelist_itemSelectionChanged_delayed()
+void MainWindow::treeWidgetMachineList_itemSelectionChanged_delayed()
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::treeWidgetGamelist_itemSelectionChanged_delayed()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::treeWidgetMachineList_itemSelectionChanged_delayed()");
 #endif
 
 	updateTimer.stop();
@@ -5048,10 +5048,10 @@ void MainWindow::treeWidgetGamelist_itemSelectionChanged_delayed()
 	if ( qmc2HierarchySelectedItem != NULL )
 		selected.append(qmc2HierarchySelectedItem);
 	else
-		selected = treeWidgetGamelist->selectedItems();
+		selected = treeWidgetMachineList->selectedItems();
 	if ( selected.count() == 0 )
-		if ( treeWidgetGamelist->currentItem() )
-			selected.append(treeWidgetGamelist->currentItem());
+		if ( treeWidgetMachineList->currentItem() )
+			selected.append(treeWidgetMachineList->currentItem());
 	if ( selected.count() > 0 ) {
 		QTreeWidgetItem *topLevelItem = selected.at(0);
 		while ( topLevelItem->parent() )
@@ -5085,9 +5085,9 @@ void MainWindow::on_treeWidgetHierarchy_itemSelectionChanged()
 	if ( selected.count() > 0 ) {
 		if ( selected.at(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
 			return;
-		qmc2HierarchySelectedItem = qmc2GamelistItemHash[selected.at(0)->text(QMC2_MACHINELIST_COLUMN_NAME)];
+		qmc2HierarchySelectedItem = qmc2MachineListItemHash[selected.at(0)->text(QMC2_MACHINELIST_COLUMN_NAME)];
 		qmc2CheckItemVisibility = false;
-		treeWidgetGamelist->setCurrentItem(qmc2HierarchySelectedItem);
+		treeWidgetMachineList->setCurrentItem(qmc2HierarchySelectedItem);
 	}
 }
 
@@ -5165,12 +5165,12 @@ void MainWindow::action_embedEmulator_triggered()
 			found = tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(gameID));
 		if ( found ) {                                                                  
 			log(QMC2_LOG_FRONTEND, tr("emulator #%1 is already embedded").arg(gameID));
-			tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
+			tabWidgetMachineList->setCurrentIndex(tabWidgetMachineList->indexOf(widgetEmbeddedEmus));
 			tabWidgetEmbeddedEmulators->setCurrentIndex(j - 1);
 			continue;
 		}
 
-		QTreeWidgetItem *gameItem = qmc2GamelistItemHash[gameName];
+		QTreeWidgetItem *gameItem = qmc2MachineListItemHash[gameName];
 #if defined(QMC2_OS_UNIX)
 		QList<WId> winIdList;
 		int xwininfoRetries = 0;
@@ -5206,18 +5206,18 @@ void MainWindow::action_embedEmulator_triggered()
 #endif
 
 		if ( !winIdList.isEmpty() ) {
-			int embeddedEmusIndex = tabWidgetGamelist->indexOf(widgetEmbeddedEmus);
-			if ( tabWidgetGamelist->currentIndex() != embeddedEmusIndex )
-				qmc2LastListIndex = tabWidgetGamelist->currentIndex();
+			int embeddedEmusIndex = tabWidgetMachineList->indexOf(widgetEmbeddedEmus);
+			if ( tabWidgetMachineList->currentIndex() != embeddedEmusIndex )
+				qmc2LastListIndex = tabWidgetMachineList->currentIndex();
 			if ( embeddedEmusIndex < 0 ) {
 				int insertIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 				int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
 				if ( foreignIndex >= 0 && foreignIndex <= insertIndex )
-					if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
+					if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 						insertIndex--;
-				tabWidgetGamelist->insertTab(insertIndex, widgetEmbeddedEmus, QIcon(QString::fromUtf8(":/data/img/embed.png")), tr("Embedded emulators"));
+				tabWidgetMachineList->insertTab(insertIndex, widgetEmbeddedEmus, QIcon(QString::fromUtf8(":/data/img/embed.png")), tr("Embedded emulators"));
 			}
-			tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
+			tabWidgetMachineList->setCurrentIndex(tabWidgetMachineList->indexOf(widgetEmbeddedEmus));
 #if defined(QMC2_OS_UNIX)
 			qApp->syncX();
 			log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg("0x" + QString::number(winIdList[0], 16)));
@@ -5356,7 +5356,7 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
 	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index = %1)").arg(index));
 #endif
 
-	tabWidgetGamelist->setUpdatesEnabled(false);
+	tabWidgetMachineList->setUpdatesEnabled(false);
 
 	QWidget *widget = NULL;
 
@@ -5369,8 +5369,8 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
 	qApp->processEvents();
 
 	if ( tabWidgetEmbeddedEmulators->count() < 1 ) {
-		tabWidgetGamelist->removeTab(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
-		tabWidgetGamelist->setCurrentIndex(qmc2LastListIndex);
+		tabWidgetMachineList->removeTab(tabWidgetMachineList->indexOf(tabEmbeddedEmus));
+		tabWidgetMachineList->setCurrentIndex(qmc2LastListIndex);
 		if ( toolButtonEmbedderMaximizeToggle->isChecked() )
 			hSplitter->setSizes(hSplitterSizes);
 		menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
@@ -5384,7 +5384,7 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
 		widget->deleteLater();
 	}
 
-	tabWidgetGamelist->setUpdatesEnabled(true);
+	tabWidgetMachineList->setUpdatesEnabled(true);
 }
 
 void MainWindow::closeEmbeddedEmuTab()
@@ -5473,7 +5473,7 @@ void MainWindow::embedderOptionsMenu_ToFavorites_activated()
 #endif
 
 	if ( embedder ) {
-		QString gameDescription = qmc2GamelistItemHash[embedder->gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
+		QString gameDescription = qmc2MachineListItemHash[embedder->gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 		QList<QListWidgetItem *> matches = listWidgetFavorites->findItems(gameDescription, Qt::MatchExactly);
 		if ( matches.count() <= 0 ) {
 			QListWidgetItem *item = new QListWidgetItem(listWidgetFavorites);
@@ -5603,7 +5603,7 @@ void MainWindow::action_clearAllFavorites_triggered()
 
 		case QMessageBox::Yes:
 			listWidgetFavorites->clear();
-			qmc2Gamelist->saveFavorites();
+			qmc2MachineList->saveFavorites();
 			break;
 
 		default:
@@ -5617,7 +5617,7 @@ void MainWindow::action_saveFavorites_triggered()
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::action_saveFavorites_triggered()");
 #endif
 
-	qmc2Gamelist->saveFavorites();
+	qmc2MachineList->saveFavorites();
 }
 
 void MainWindow::action_removeFromPlayed_triggered()
@@ -5648,7 +5648,7 @@ void MainWindow::action_clearAllPlayed_triggered()
 
 		case QMessageBox::Yes:
 			listWidgetPlayed->clear();
-			qmc2Gamelist->savePlayHistory();
+			qmc2MachineList->savePlayHistory();
 			break;
 
 		default:
@@ -5662,7 +5662,7 @@ void MainWindow::action_savePlayed_triggered()
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::action_savePlayed_triggered()");
 #endif
 
-	qmc2Gamelist->savePlayHistory();
+	qmc2MachineList->savePlayHistory();
 }
 
 void MainWindow::on_listWidgetSearch_customContextMenuRequested(const QPoint &p)
@@ -5707,19 +5707,19 @@ void MainWindow::on_listWidgetPlayed_customContextMenuRequested(const QPoint &p)
 	}
 }
 
-void MainWindow::on_treeWidgetGamelist_customContextMenuRequested(const QPoint &p)
+void MainWindow::on_treeWidgetMachineList_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetGamelist_customContextMenuRequested(const QPoint &p = ...)");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetMachineList_customContextMenuRequested(const QPoint &p = ...)");
 #endif
 
-	QTreeWidgetItem *item = treeWidgetGamelist->itemAt(p);
+	QTreeWidgetItem *item = treeWidgetMachineList->itemAt(p);
 	if ( !item )
 		return;
 	if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
 		return;
-	treeWidgetGamelist->setItemSelected(item, true);
-	qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetGamelist->viewport()->mapToGlobal(p), qmc2GameMenu));
+	treeWidgetMachineList->setItemSelected(item, true);
+	qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetMachineList->viewport()->mapToGlobal(p), qmc2GameMenu));
 	qmc2GameMenu->show();
 }
 
@@ -5748,18 +5748,18 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 #endif
 
 	if ( !qmc2EarlyStartup ) {
-		menuGamelistHeader->hide();
+		menuMachineListHeader->hide();
 		menuHierarchyHeader->hide();
 		menuCategoryHeader->hide();
 		menuVersionHeader->hide();
 	}
 
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", index);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", index);
 
 	if ( !qmc2CurrentItem )
 		return;
 
-	QTreeWidgetItem *ci = treeWidgetGamelist->currentItem();
+	QTreeWidgetItem *ci = treeWidgetMachineList->currentItem();
 	if ( !ci )
 		return;
 
@@ -5815,7 +5815,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 		case QMC2_VIEWMACHINELIST_INDEX:
 		default:
 			scrollToCurrentItem();
-			treeWidgetGamelist_verticalScrollChanged();
+			treeWidgetMachineList_verticalScrollChanged();
 			break;
 	}
 }
@@ -6166,12 +6166,12 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
 	if ( !qmc2TemplateCheck ) {
 		if ( listWidgetFavorites->count() > 0 )
-			qmc2Gamelist->saveFavorites();
+			qmc2MachineList->saveFavorites();
 
 		if ( listWidgetPlayed->count() > 0 )
-			qmc2Gamelist->savePlayHistory();
+			qmc2MachineList->savePlayHistory();
 
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", comboBoxViewSelect->currentIndex());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", comboBoxViewSelect->currentIndex());
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection").toBool() ) {
 			if ( qmc2CurrentItem ) {
 				log(QMC2_LOG_FRONTEND, tr("saving machine selection"));
@@ -6212,14 +6212,14 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-		int currentIndex = tabWidgetGamelist->currentIndex();
+		int currentIndex = tabWidgetMachineList->currentIndex();
 		int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 		if ( embedIndex >= 0 && embedIndex <= currentIndex )
-			if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) < 0 )
+			if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 )
 				currentIndex++;
 		int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
 		if ( foreignIndex >= 0 && foreignIndex <= currentIndex )
-			if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
+			if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 				currentIndex++;
 		if ( toolButtonEmbedderMaximizeToggle->isChecked() && componentInfo->appliedFeatureList()[currentIndex] == QMC2_EMBED_INDEX )
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitterSizes[0], hSplitterSizes[1]));
@@ -6236,18 +6236,18 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSoftwareDetail", QSize(vSplitterSizesSoftwareDetail.at(0), vSplitterSizesSoftwareDetail.at(1)));
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 		if ( componentInfo->appliedFeatureList()[currentIndex] == QMC2_EMBED_INDEX )
-			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", qmc2LastListIndex);
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", qmc2LastListIndex);
 		else
-			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", tabWidgetGamelist->currentIndex());
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", tabWidgetMachineList->currentIndex());
 #else
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", tabWidgetGamelist->currentIndex());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", tabWidgetMachineList->currentIndex());
 #endif
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", tabWidgetGameDetail->currentIndex());
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", tabWidgetLogsAndEmulators->currentIndex());
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailTab", tabWidgetSoftwareDetail->currentIndex());
 		// save toolbar state
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolbarState", saveState());
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState", treeWidgetGamelist->header()->saveState());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListHeaderState", treeWidgetMachineList->header()->saveState());
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState", treeWidgetHierarchy->header()->saveState());
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState", treeWidgetCategoryView->header()->saveState());
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState", treeWidgetVersionView->header()->saveState());
@@ -6330,7 +6330,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 	qmc2GlobalEmulatorOptions->saveHeaderState();
 	qmc2GlobalEmulatorOptions->setParent(0);
 	log(QMC2_LOG_FRONTEND, tr("destroying machine list"));
-	delete qmc2Gamelist;
+	delete qmc2MachineList;
 
 	if ( qmc2Preview ) {
 		log(QMC2_LOG_FRONTEND, tr("destroying preview"));
@@ -6510,7 +6510,7 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 	}
 
 	if ( refreshViews ) {
-		if ( tabWidgetGamelist->indexOf(tabGamelist) == tabWidgetGamelist->currentIndex() ) {
+		if ( tabWidgetMachineList->indexOf(tabMachineList) == tabWidgetMachineList->currentIndex() ) {
 			switch ( stackedWidgetView->currentIndex() ) {
 				case QMC2_VIEW_TREE_INDEX:
 					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetHierarchy_verticalScrollChanged()));
@@ -6523,7 +6523,7 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 					break;
 				case QMC2_VIEW_DETAIL_INDEX:
 				default:
-					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetGamelist_verticalScrollChanged()));
+					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetMachineList_verticalScrollChanged()));
 					break;
 			}
 		}
@@ -6564,14 +6564,14 @@ void MainWindow::init()
 
 	createFifo();
 
-	tabWidgetGamelist->setCurrentIndex(qmc2LastListIndex);
-	on_tabWidgetGamelist_currentChanged(qmc2LastListIndex);
+	tabWidgetMachineList->setCurrentIndex(qmc2LastListIndex);
+	on_tabWidgetMachineList_currentChanged(qmc2LastListIndex);
 	floatToggleButtonSoftwareDetail_toggled(floatToggleButtonSoftwareDetail->isChecked());
 	reloadImageFormats();
 
 	qmc2EarlyStartup = false;
 
-	qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt();
+	qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", 0).toInt();
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	if ( qmc2LastListIndex == QMC2_EMBED_INDEX )
 		qmc2LastListIndex = 0;
@@ -6691,18 +6691,18 @@ void MainWindow::viewFullDetail()
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
-		if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) < 0 )
+		if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 )
 			index--;
 #endif
 	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
 	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
-		if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
+		if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 			index--;
 	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWMACHINELIST_INDEX);
-	tabWidgetGamelist->setCurrentIndex(index);
-	tabWidgetGamelist->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/flat.png")));
+	tabWidgetMachineList->setCurrentIndex(index);
+	tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/flat.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/flat.png")));
-	treeWidgetGamelist->setFocus();
+	treeWidgetMachineList->setFocus();
 	stackedWidgetView->update();
 	qApp->processEvents();
 }
@@ -6714,16 +6714,16 @@ void MainWindow::viewParentClones()
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
-		if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) < 0 )
+		if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 )
 			index--;
 #endif
 	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
 	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
-		if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
+		if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 			index--;
 	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWHIERARCHY_INDEX);
-	tabWidgetGamelist->setCurrentIndex(index);
-	tabWidgetGamelist->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/clone.png")));
+	tabWidgetMachineList->setCurrentIndex(index);
+	tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/clone.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/clone.png")));
 	treeWidgetHierarchy->setFocus();
 	stackedWidgetView->update();
@@ -6737,25 +6737,25 @@ void MainWindow::viewByCategory()
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
-		if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) < 0 )
+		if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 )
 			index--;
 #endif
 	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
 	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
-		if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
+		if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 			index--;
 	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWCATEGORY_INDEX);
-	tabWidgetGamelist->setCurrentIndex(index);
-	tabWidgetGamelist->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/category.png")));
+	tabWidgetMachineList->setCurrentIndex(index);
+	tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/category.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/category.png")));
 	QTreeWidgetItem *item = treeWidgetCategoryView->topLevelItem(0);
 	if ( item ) {
 		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
-			QTimer::singleShot(0, qmc2Gamelist, SLOT(createCategoryView()));
+			QTimer::singleShot(0, qmc2MachineList, SLOT(createCategoryView()));
 		else
 			QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
 	} else
-		QTimer::singleShot(0, qmc2Gamelist, SLOT(createCategoryView()));
+		QTimer::singleShot(0, qmc2MachineList, SLOT(createCategoryView()));
 	treeWidgetCategoryView->setFocus();
 	stackedWidgetView->update();
 	qApp->processEvents();
@@ -6768,25 +6768,25 @@ void MainWindow::viewByVersion()
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
-		if ( tabWidgetGamelist->indexOf(tabEmbeddedEmus) < 0 )
+		if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 )
 			index--;
 #endif
 	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
 	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
-		if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
+		if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 			index--;
 	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWVERSION_INDEX);
-	tabWidgetGamelist->setCurrentIndex(index);
-	tabWidgetGamelist->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/version.png")));
+	tabWidgetMachineList->setCurrentIndex(index);
+	tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/version.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/version.png")));
 	QTreeWidgetItem *item = treeWidgetVersionView->topLevelItem(0);
 	if ( item ) {
 		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
-			QTimer::singleShot(0, qmc2Gamelist, SLOT(createVersionView()));
+			QTimer::singleShot(0, qmc2MachineList, SLOT(createVersionView()));
 		else
 			QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
 	} else
-		QTimer::singleShot(0, qmc2Gamelist, SLOT(createVersionView()));
+		QTimer::singleShot(0, qmc2MachineList, SLOT(createVersionView()));
 	treeWidgetVersionView->setFocus();
 	stackedWidgetView->update();
 	qApp->processEvents();
@@ -6931,17 +6931,17 @@ void MainWindow::loadYouTubeVideoInfoMap()
 		QFile f(youTubeCacheDir.canonicalPath() + "/qmc2.yti");
 #endif
 		if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
-			QString oldFormat = progressBarGamelist->format();
-			int oldMinimum = progressBarGamelist->minimum();
-			int oldMaximum = progressBarGamelist->maximum();
-			int oldValue = progressBarGamelist->value();
+			QString oldFormat = progressBarMachineList->format();
+			int oldMinimum = progressBarMachineList->minimum();
+			int oldMaximum = progressBarMachineList->maximum();
+			int oldValue = progressBarMachineList->value();
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-				progressBarGamelist->setFormat(tr("YouTube index - %p%"));
+				progressBarMachineList->setFormat(tr("YouTube index - %p%"));
 			else
-				progressBarGamelist->setFormat("%p%");
+				progressBarMachineList->setFormat("%p%");
 			QFileInfo fi(f.fileName());
-			progressBarGamelist->setRange(0, fi.size());
-			progressBarGamelist->setValue(0);
+			progressBarMachineList->setRange(0, fi.size());
+			progressBarMachineList->setValue(0);
 			qmc2YouTubeVideoInfoHash.clear();
 			QTextStream ts(&f);
 			quint64 viCounter = 0;
@@ -6954,17 +6954,17 @@ void MainWindow::loadYouTubeVideoInfoMap()
 				curLen += line.length() + 1; // + 0x0a
 #endif
 				if ( viCounter++ % QMC2_YOUTUBE_VIDEO_INFO_RSP == 0 )
-					progressBarGamelist->setValue(curLen);
+					progressBarMachineList->setValue(curLen);
 				if ( !line.startsWith("#") ) {
 					QStringList tokens = line.split("\t");
 					if ( tokens.count() > 2 )
 						qmc2YouTubeVideoInfoHash[tokens[0]] = YouTubeVideoInfo(tokens[2], tokens[1]);
 				}
 			}
-			progressBarGamelist->reset();
-			progressBarGamelist->setFormat(oldFormat);
-			progressBarGamelist->setRange(oldMinimum, oldMaximum);
-			progressBarGamelist->setValue(oldValue);
+			progressBarMachineList->reset();
+			progressBarMachineList->setFormat(oldFormat);
+			progressBarMachineList->setRange(oldMinimum, oldMaximum);
+			progressBarMachineList->setValue(oldValue);
 		}
 	}
 	log(QMC2_LOG_FRONTEND, tr("done (loading YouTube video info map)"));
@@ -6993,11 +6993,11 @@ void MainWindow::loadGameInfoDB()
 			emulatorList << "MESS";
 	}
 
-	if ( qmc2Gamelist->datInfoDb()->gameInfoImportRequired(pathList) ) {
+	if ( qmc2MachineList->datInfoDb()->gameInfoImportRequired(pathList) ) {
 		qmc2LoadingGameInfoDB = true;
 		qmc2Options->toolButtonImportGameInfo->setEnabled(false);
 		qmc2Options->toolButtonImportMachineInfo->setEnabled(false);
-		qmc2Gamelist->datInfoDb()->importGameInfo(pathList, emulatorList);
+		qmc2MachineList->datInfoDb()->importGameInfo(pathList, emulatorList);
 		qmc2Options->toolButtonImportGameInfo->setEnabled(true);
 		qmc2Options->toolButtonImportMachineInfo->setEnabled(true);
 		qmc2LoadingGameInfoDB = false;
@@ -7016,11 +7016,11 @@ void MainWindow::loadEmuInfoDB()
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() )
 		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString();
 
-	if ( qmc2Gamelist->datInfoDb()->emuInfoImportRequired(pathList) ) {
+	if ( qmc2MachineList->datInfoDb()->emuInfoImportRequired(pathList) ) {
 		qmc2LoadingEmuInfoDB = true;
 		qmc2Options->toolButtonImportMameInfo->setEnabled(false);
 		qmc2Options->toolButtonImportMessInfo->setEnabled(false);
-		qmc2Gamelist->datInfoDb()->importEmuInfo(pathList);
+		qmc2MachineList->datInfoDb()->importEmuInfo(pathList);
 		qmc2Options->toolButtonImportMameInfo->setEnabled(true);
 		qmc2Options->toolButtonImportMessInfo->setEnabled(true);
 		qmc2LoadingEmuInfoDB = false;
@@ -7034,10 +7034,10 @@ void MainWindow::loadSoftwareInfoDB()
 #endif
 
 	QStringList pathList = QStringList() << qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB").toString();
-	if ( qmc2Gamelist->datInfoDb()->softwareInfoImportRequired(pathList) ) {
+	if ( qmc2MachineList->datInfoDb()->softwareInfoImportRequired(pathList) ) {
 		qmc2LoadingSoftwareInfoDB = true;
 		qmc2Options->toolButtonImportSoftwareInfo->setEnabled(false);
-		qmc2Gamelist->datInfoDb()->importSoftwareInfo(pathList);
+		qmc2MachineList->datInfoDb()->importSoftwareInfo(pathList);
 		qmc2Options->toolButtonImportSoftwareInfo->setEnabled(true);
 		qmc2LoadingSoftwareInfoDB = false;
 	}
@@ -7848,10 +7848,10 @@ void MainWindow::romStateFilterC_toggled(bool on)
 
 	if ( qmc2StatesTogglesEnabled ) {
 		qmc2Options->toolButtonShowC->setChecked(on);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowC", on);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowC", on);
 		qmc2Filter.setBit(QMC2_ROMSTATE_INT_C, on);
-		qmc2Gamelist->verifyCurrentOnly = false;
-		qmc2Gamelist->filter();
+		qmc2MachineList->verifyCurrentOnly = false;
+		qmc2MachineList->filter();
 	}
 }
 
@@ -7863,10 +7863,10 @@ void MainWindow::romStateFilterM_toggled(bool on)
 
 	if ( qmc2StatesTogglesEnabled ) {
 		qmc2Options->toolButtonShowM->setChecked(on);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowM", on);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowM", on);
 		qmc2Filter.setBit(QMC2_ROMSTATE_INT_M, on);
-		qmc2Gamelist->verifyCurrentOnly = false;
-		qmc2Gamelist->filter();
+		qmc2MachineList->verifyCurrentOnly = false;
+		qmc2MachineList->filter();
 	}
 }
 
@@ -7878,10 +7878,10 @@ void MainWindow::romStateFilterI_toggled(bool on)
 
 	if ( qmc2StatesTogglesEnabled ) {
 		qmc2Options->toolButtonShowI->setChecked(on);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowI", on);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowI", on);
 		qmc2Filter.setBit(QMC2_ROMSTATE_INT_I, on);
-		qmc2Gamelist->verifyCurrentOnly = false;
-		qmc2Gamelist->filter();
+		qmc2MachineList->verifyCurrentOnly = false;
+		qmc2MachineList->filter();
 	}
 }
 
@@ -7893,10 +7893,10 @@ void MainWindow::romStateFilterN_toggled(bool on)
 
 	if ( qmc2StatesTogglesEnabled ) {
 		qmc2Options->toolButtonShowN->setChecked(on);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowN", on);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowN", on);
 		qmc2Filter.setBit(QMC2_ROMSTATE_INT_N, on);
-		qmc2Gamelist->verifyCurrentOnly = false;
-		qmc2Gamelist->filter();
+		qmc2MachineList->verifyCurrentOnly = false;
+		qmc2MachineList->filter();
 	}
 }
 
@@ -7908,20 +7908,20 @@ void MainWindow::romStateFilterU_toggled(bool on)
 
 	if ( qmc2StatesTogglesEnabled ) {
 		qmc2Options->toolButtonShowU->setChecked(on);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowU", on);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowU", on);
 		qmc2Filter.setBit(QMC2_ROMSTATE_INT_U, on);
-		qmc2Gamelist->verifyCurrentOnly = false;
-		qmc2Gamelist->filter();
+		qmc2MachineList->verifyCurrentOnly = false;
+		qmc2MachineList->filter();
 	}
 }
 
-void MainWindow::treeWidgetGamelist_headerSectionClicked(int logicalIndex)
+void MainWindow::treeWidgetMachineList_headerSectionClicked(int logicalIndex)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::treeWidgetGamelist_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::treeWidgetMachineList_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
 #endif
 
-	qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(false);
+	qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(false);
 	qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(false);
 	qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(false);
 	qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(false);
@@ -8018,31 +8018,31 @@ void MainWindow::treeWidgetGamelist_headerSectionClicked(int logicalIndex)
 	QTimer::singleShot(0, qmc2Options, SLOT(on_pushButtonApply_clicked()));
 }
 
-void MainWindow::menuTabWidgetGamelist_North_activated()
+void MainWindow::menuTabWidgetMachineList_North_activated()
 {
-	tabWidgetGamelist->setTabPosition(QTabWidget::North);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::North);
+	tabWidgetMachineList->setTabPosition(QTabWidget::North);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineList/TabPosition", QTabWidget::North);
 }
 
-void MainWindow::menuTabWidgetGamelist_South_activated()
+void MainWindow::menuTabWidgetMachineList_South_activated()
 {
-	tabWidgetGamelist->setTabPosition(QTabWidget::South);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::South);
+	tabWidgetMachineList->setTabPosition(QTabWidget::South);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineList/TabPosition", QTabWidget::South);
 }
 
-void MainWindow::menuTabWidgetGamelist_West_activated()
+void MainWindow::menuTabWidgetMachineList_West_activated()
 {
-	tabWidgetGamelist->setTabPosition(QTabWidget::West);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::West);
+	tabWidgetMachineList->setTabPosition(QTabWidget::West);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineList/TabPosition", QTabWidget::West);
 }
 
-void MainWindow::menuTabWidgetGamelist_East_activated()
+void MainWindow::menuTabWidgetMachineList_East_activated()
 {
-	tabWidgetGamelist->setTabPosition(QTabWidget::East);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::East);
+	tabWidgetMachineList->setTabPosition(QTabWidget::East);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineList/TabPosition", QTabWidget::East);
 }
 
-void MainWindow::menuTabWidgetGamelist_Setup_activated()
+void MainWindow::menuTabWidgetMachineList_Setup_activated()
 {
 	if ( !qmc2ComponentSetup )
 		return;
@@ -8062,11 +8062,11 @@ void MainWindow::menuTabWidgetGamelist_Setup_activated()
 }
 
 
-void MainWindow::on_tabWidgetGamelist_customContextMenuRequested(const QPoint &p)
+void MainWindow::on_tabWidgetMachineList_customContextMenuRequested(const QPoint &p)
 {
-	if ( !tabWidgetGamelist->currentWidget()->childrenRect().contains(p, true) ) {
-		menuTabWidgetGamelist->move(adjustedWidgetPosition(tabWidgetGamelist->mapToGlobal(p), menuTabWidgetGamelist));
-		menuTabWidgetGamelist->show();
+	if ( !tabWidgetMachineList->currentWidget()->childrenRect().contains(p, true) ) {
+		menuTabWidgetMachineList->move(adjustedWidgetPosition(tabWidgetMachineList->mapToGlobal(p), menuTabWidgetMachineList));
+		menuTabWidgetMachineList->show();
 	}
 }
 
@@ -8231,12 +8231,12 @@ void MainWindow::on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPo
 
 void MainWindow::treeWidgetHierarchy_headerSectionClicked(int logicalIndex)
 {
-	treeWidgetGamelist_headerSectionClicked(logicalIndex);
+	treeWidgetMachineList_headerSectionClicked(logicalIndex);
 }
 
 void MainWindow::treeWidgetCategoryView_headerSectionClicked(int logicalIndex)
 {
-	treeWidgetGamelist_headerSectionClicked(logicalIndex);
+	treeWidgetMachineList_headerSectionClicked(logicalIndex);
 }
 
 void MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item, int column)
@@ -8274,7 +8274,7 @@ void MainWindow::on_treeWidgetCategoryView_itemDoubleClicked(QTreeWidgetItem *it
 	if ( qmc2DemoModeDialog )
 		if ( qmc2DemoModeDialog->demoModeRunning )
 			qmc2IgnoreItemActivation = true;
-	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/DoubleClickActivation").toBool() )
 		qmc2IgnoreItemActivation = true;
 }
 
@@ -8288,7 +8288,7 @@ void MainWindow::on_treeWidgetCategoryView_currentItemChanged(QTreeWidgetItem *c
 	if ( qmc2UpdateDelay > 0 )
 		updateTimer.start(qmc2UpdateDelay);
 	else
-		treeWidgetGamelist_itemSelectionChanged_delayed();
+		treeWidgetMachineList_itemSelectionChanged_delayed();
 }
 
 void MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()
@@ -8299,9 +8299,9 @@ void MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()
 		QTreeWidgetItem *item = selected.at(0);
 		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") || item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
 			return;
-		qmc2CategoryViewSelectedItem = qmc2GamelistItemHash[item->text(QMC2_MACHINELIST_COLUMN_NAME)];
+		qmc2CategoryViewSelectedItem = qmc2MachineListItemHash[item->text(QMC2_MACHINELIST_COLUMN_NAME)];
 		qmc2CheckItemVisibility = false;
-		treeWidgetGamelist->setCurrentItem(qmc2CategoryViewSelectedItem);
+		treeWidgetMachineList->setCurrentItem(qmc2CategoryViewSelectedItem);
 	}
 }
 
@@ -8319,7 +8319,7 @@ void MainWindow::on_treeWidgetCategoryView_customContextMenuRequested(const QPoi
 
 void MainWindow::treeWidgetVersionView_headerSectionClicked(int logicalIndex)
 {
-	treeWidgetGamelist_headerSectionClicked(logicalIndex);
+	treeWidgetMachineList_headerSectionClicked(logicalIndex);
 }
 
 void MainWindow::on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *item, int column)
@@ -8354,7 +8354,7 @@ void MainWindow::on_treeWidgetVersionView_itemDoubleClicked(QTreeWidgetItem *ite
 		return;
 	if ( item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
 		return;
-	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/DoubleClickActivation").toBool() )
 		qmc2IgnoreItemActivation = true;
 }
 
@@ -8368,7 +8368,7 @@ void MainWindow::on_treeWidgetVersionView_currentItemChanged(QTreeWidgetItem *cu
 	if ( qmc2UpdateDelay > 0 )
 		updateTimer.start(qmc2UpdateDelay);
 	else
-		treeWidgetGamelist_itemSelectionChanged_delayed();
+		treeWidgetMachineList_itemSelectionChanged_delayed();
 }
 
 void MainWindow::on_treeWidgetVersionView_itemSelectionChanged()
@@ -8379,9 +8379,9 @@ void MainWindow::on_treeWidgetVersionView_itemSelectionChanged()
 		QTreeWidgetItem *item = selected.at(0);
 		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") || item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
 			return;
-		qmc2VersionViewSelectedItem = qmc2GamelistItemHash[item->text(QMC2_MACHINELIST_COLUMN_NAME)];
+		qmc2VersionViewSelectedItem = qmc2MachineListItemHash[item->text(QMC2_MACHINELIST_COLUMN_NAME)];
 		qmc2CheckItemVisibility = false;
-		treeWidgetGamelist->setCurrentItem(qmc2VersionViewSelectedItem);
+		treeWidgetMachineList->setCurrentItem(qmc2VersionViewSelectedItem);
 	}
 }
 
@@ -8400,12 +8400,12 @@ void MainWindow::on_treeWidgetVersionView_customContextMenuRequested(const QPoin
 void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 {
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
-	if ( tabWidgetGamelist->indexOf(tabGamelist) != tabWidgetGamelist->currentIndex() )
+	if ( tabWidgetMachineList->indexOf(tabMachineList) != tabWidgetMachineList->currentIndex() )
 		return;
 
 	switch ( index ) {
 		case QMC2_VIEWMACHINELIST_INDEX: {
-			bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool();
+			bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true).toBool();
 			pushButtonSelectRomFilter->setVisible(romFilterActive);
 			actionTagVisible->setVisible(romFilterActive);
 			actionUntagVisible->setVisible(romFilterActive);
@@ -8698,41 +8698,41 @@ void MainWindow::enableContextMenuPlayActions(bool enable)
 		action->setEnabled(enable);
 }
 
-void MainWindow::treeWidgetGamelistHeader_customContextMenuRequested(const QPoint &p)
+void MainWindow::treeWidgetMachineListHeader_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::treeWidgetGamelistHeader_customContextMenuRequested(const QPoint &p = ...)");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::treeWidgetMachineListHeader_customContextMenuRequested(const QPoint &p = ...)");
 #endif
 
-	menuGamelistHeader->move(adjustedWidgetPosition(treeWidgetGamelist->header()->viewport()->mapToGlobal(p), menuGamelistHeader));
-	menuGamelistHeader->show();
+	menuMachineListHeader->move(adjustedWidgetPosition(treeWidgetMachineList->header()->viewport()->mapToGlobal(p), menuMachineListHeader));
+	menuMachineListHeader->show();
 }
 
-void MainWindow::actionGamelistHeader_triggered()
+void MainWindow::actionMachineListHeader_triggered()
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::actionGamelistHeader_triggered()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::actionMachineListHeader_triggered()");
 #endif
 
 	QAction *action = (QAction *)sender();
 	int visibleColumns = 0;
-	for (int i = 0; i < treeWidgetGamelist->columnCount(); i++)
-		if ( !treeWidgetGamelist->isColumnHidden(i) )
+	for (int i = 0; i < treeWidgetMachineList->columnCount(); i++)
+		if ( !treeWidgetMachineList->isColumnHidden(i) )
 			visibleColumns++;
 	if ( action ) {
 		if ( action->data().toInt() == QMC2_MACHINELIST_RESET ) {
-			for (int i = 0; i < treeWidgetGamelist->columnCount(); i++) {
+			for (int i = 0; i < treeWidgetMachineList->columnCount(); i++) {
 				if ( i == QMC2_MACHINELIST_COLUMN_CATEGORY ) {
 				       	if ( qmc2CategoryInfoUsed )
-						treeWidgetGamelist->setColumnHidden(i, false);
+						treeWidgetMachineList->setColumnHidden(i, false);
 				} else if ( i == QMC2_MACHINELIST_COLUMN_VERSION ) {
 				       	if ( qmc2VersionInfoUsed )
-						treeWidgetGamelist->setColumnHidden(i, false);
+						treeWidgetMachineList->setColumnHidden(i, false);
 				} else
-					treeWidgetGamelist->setColumnHidden(i, false);
+					treeWidgetMachineList->setColumnHidden(i, false);
 			}
-			treeWidgetGamelist->header()->resizeSections(QHeaderView::Stretch);
-			foreach (QAction *a, menuGamelistHeader->actions())
+			treeWidgetMachineList->header()->resizeSections(QHeaderView::Stretch);
+			foreach (QAction *a, menuMachineListHeader->actions())
 				if ( a->isCheckable() ) {
 					a->blockSignals(true);
 					a->setChecked(true);
@@ -8742,9 +8742,9 @@ void MainWindow::actionGamelistHeader_triggered()
 		}
 		bool visibility = true;
 		if ( action->isChecked() )
-			treeWidgetGamelist->setColumnHidden(action->data().toInt(), false);
+			treeWidgetMachineList->setColumnHidden(action->data().toInt(), false);
 		else if ( visibleColumns > 1 ) {
-			treeWidgetGamelist->setColumnHidden(action->data().toInt(), true);
+			treeWidgetMachineList->setColumnHidden(action->data().toInt(), true);
 			visibility = false;
 		}
 		action->blockSignals(true);
@@ -8810,12 +8810,12 @@ void MainWindow::actionHierarchyHeader_triggered()
 	}
 }
 
-void MainWindow::on_treeWidgetGamelist_itemEntered(QTreeWidgetItem *item, int column)
+void MainWindow::on_treeWidgetMachineList_itemEntered(QTreeWidgetItem *item, int column)
 {
 	if ( column == QMC2_MACHINELIST_COLUMN_TAG && item->parent() == NULL ) {
 		if ( qApp->mouseButtons() == Qt::LeftButton && qApp->activeWindow() ) {
-			QPoint cPos = treeWidgetGamelist->viewport()->mapFromGlobal(QCursor::pos());
-			if ( treeWidgetGamelist->itemAt(cPos) == item ) {
+			QPoint cPos = treeWidgetMachineList->viewport()->mapFromGlobal(QCursor::pos());
+			if ( treeWidgetMachineList->itemAt(cPos) == item ) {
 				Qt::CheckState cs = (item->checkState(column) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
 				bool wasTagged = (cs != Qt::Checked);
 				item->setCheckState(column, cs);
@@ -8830,18 +8830,18 @@ void MainWindow::on_treeWidgetGamelist_itemEntered(QTreeWidgetItem *item, int co
 				if ( item )
 					item->setCheckState(column, cs);
 				if ( wasTagged )
-					qmc2Gamelist->numTaggedSets--;
+					qmc2MachineList->numTaggedSets--;
 				else
-					qmc2Gamelist->numTaggedSets++;
-				labelGamelistStatus->setText(qmc2Gamelist->status());
+					qmc2MachineList->numTaggedSets++;
+				labelMachineListStatus->setText(qmc2MachineList->status());
 			}
 		}
 	}
 }
 
-void MainWindow::on_treeWidgetGamelist_itemPressed(QTreeWidgetItem *item, int column)
+void MainWindow::on_treeWidgetMachineList_itemPressed(QTreeWidgetItem *item, int column)
 {
-	on_treeWidgetGamelist_itemEntered(item, column);
+	on_treeWidgetMachineList_itemEntered(item, column);
 }
 
 void MainWindow::on_treeWidgetHierarchy_itemEntered(QTreeWidgetItem *item, int column)
@@ -8854,7 +8854,7 @@ void MainWindow::on_treeWidgetHierarchy_itemEntered(QTreeWidgetItem *item, int c
 				bool wasTagged = (cs != Qt::Checked);
 				item->setCheckState(column, cs);
 				QString gameName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
-				item = qmc2GamelistItemHash[gameName];
+				item = qmc2MachineListItemHash[gameName];
 				if ( item )
 					item->setCheckState(column, cs);
 				item = qmc2CategoryItemHash[gameName];
@@ -8864,10 +8864,10 @@ void MainWindow::on_treeWidgetHierarchy_itemEntered(QTreeWidgetItem *item, int c
 				if ( item )
 					item->setCheckState(column, cs);
 				if ( wasTagged )
-					qmc2Gamelist->numTaggedSets--;
+					qmc2MachineList->numTaggedSets--;
 				else
-					qmc2Gamelist->numTaggedSets++;
-				labelGamelistStatus->setText(qmc2Gamelist->status());
+					qmc2MachineList->numTaggedSets++;
+				labelMachineListStatus->setText(qmc2MachineList->status());
 			}
 		}
 	}
@@ -8889,7 +8889,7 @@ void MainWindow::on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *item, in
 					bool wasTagged = (cs != Qt::Checked);
 					item->setCheckState(column, cs);
 					QString gameName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
-					item = qmc2GamelistItemHash[gameName];
+					item = qmc2MachineListItemHash[gameName];
 					if ( item )
 						item->setCheckState(column, cs);
 					item = qmc2HierarchyItemHash[gameName];
@@ -8899,10 +8899,10 @@ void MainWindow::on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *item, in
 					if ( item )
 						item->setCheckState(column, cs);
 					if ( wasTagged )
-						qmc2Gamelist->numTaggedSets--;
+						qmc2MachineList->numTaggedSets--;
 					else
-						qmc2Gamelist->numTaggedSets++;
-					labelGamelistStatus->setText(qmc2Gamelist->status());
+						qmc2MachineList->numTaggedSets++;
+					labelMachineListStatus->setText(qmc2MachineList->status());
 				}
 			}
 		}
@@ -8925,7 +8925,7 @@ void MainWindow::on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *item, int
 					bool wasTagged = (cs != Qt::Checked);
 					item->setCheckState(column, cs);
 					QString gameName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
-					item = qmc2GamelistItemHash[gameName];
+					item = qmc2MachineListItemHash[gameName];
 					if ( item )
 						item->setCheckState(column, cs);
 					item = qmc2HierarchyItemHash[gameName];
@@ -8935,10 +8935,10 @@ void MainWindow::on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *item, int
 					if ( item )
 						item->setCheckState(column, cs);
 					if ( wasTagged )
-						qmc2Gamelist->numTaggedSets--;
+						qmc2MachineList->numTaggedSets--;
 					else
-						qmc2Gamelist->numTaggedSets++;
-					labelGamelistStatus->setText(qmc2Gamelist->status());
+						qmc2MachineList->numTaggedSets++;
+					labelMachineListStatus->setText(qmc2MachineList->status());
 				}
 			}
 		}
@@ -9060,22 +9060,22 @@ void MainWindow::on_actionPlayTagged_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlayTagged_triggered(bool)");
 #endif
 
-	progressBarGamelist->reset();
+	progressBarMachineList->reset();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		progressBarGamelist->setFormat(tr("Play tagged - %p%"));
+		progressBarMachineList->setFormat(tr("Play tagged - %p%"));
 	else
-		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+		progressBarMachineList->setFormat("%p%");
+	progressBarMachineList->setRange(0, qmc2MachineList->numGames);
 	qApp->processEvents();
 	int count = 0;
 
 	QTreeWidgetItem *oldCurrentItem = qmc2CurrentItem;
-	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	while ( it.hasNext() ) {
-		progressBarGamelist->setValue(count++);
+		progressBarMachineList->setValue(count++);
 		it.next();
-		item = qmc2GamelistItemHash[it.key()];
+		item = qmc2MachineListItemHash[it.key()];
 		if ( item ) {
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked ) {
 				qApp->processEvents();
@@ -9085,7 +9085,7 @@ void MainWindow::on_actionPlayTagged_triggered(bool)
 		}
 	}
 	qmc2CurrentItem = oldCurrentItem;
-	progressBarGamelist->reset();
+	progressBarMachineList->reset();
 }
 
 void MainWindow::on_actionPlayEmbeddedTagged_triggered(bool)
@@ -9094,22 +9094,22 @@ void MainWindow::on_actionPlayEmbeddedTagged_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlayEmbeddedTagged_triggered(bool)");
 #endif
 
-	progressBarGamelist->reset();
+	progressBarMachineList->reset();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		progressBarGamelist->setFormat(tr("Play tagged - %p%"));
+		progressBarMachineList->setFormat(tr("Play tagged - %p%"));
 	else
-		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+		progressBarMachineList->setFormat("%p%");
+	progressBarMachineList->setRange(0, qmc2MachineList->numGames);
 	qApp->processEvents();
 	int count = 0;
 
 	QTreeWidgetItem *oldCurrentItem = qmc2CurrentItem;
-	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	while ( it.hasNext() ) {
-		progressBarGamelist->setValue(count++);
+		progressBarMachineList->setValue(count++);
 		it.next();
-		item = qmc2GamelistItemHash[it.key()];
+		item = qmc2MachineListItemHash[it.key()];
 		if ( item ) {
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked ) {
 				qApp->processEvents();
@@ -9121,7 +9121,7 @@ void MainWindow::on_actionPlayEmbeddedTagged_triggered(bool)
 		}
 	}
 	qmc2CurrentItem = oldCurrentItem;
-	progressBarGamelist->reset();
+	progressBarMachineList->reset();
 }
 
 void MainWindow::on_actionToFavoritesTagged_triggered(bool)
@@ -9130,22 +9130,22 @@ void MainWindow::on_actionToFavoritesTagged_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToFavoritesTagged_triggered(bool)");
 #endif
 
-	progressBarGamelist->reset();
+	progressBarMachineList->reset();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		progressBarGamelist->setFormat(tr("Add favorites - %p%"));
+		progressBarMachineList->setFormat(tr("Add favorites - %p%"));
 	else
-		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+		progressBarMachineList->setFormat("%p%");
+	progressBarMachineList->setRange(0, qmc2MachineList->numGames);
 	qApp->processEvents();
 	int count = 0;
 
 	QTreeWidgetItem *oldCurrentItem = qmc2CurrentItem;
-	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	while ( it.hasNext() ) {
-		progressBarGamelist->setValue(count++);
+		progressBarMachineList->setValue(count++);
 		it.next();
-		item = qmc2GamelistItemHash[it.key()];
+		item = qmc2MachineListItemHash[it.key()];
 		if ( item ) {
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked ) {
 				qApp->processEvents();
@@ -9155,7 +9155,7 @@ void MainWindow::on_actionToFavoritesTagged_triggered(bool)
 		}
 	}
 	qmc2CurrentItem = oldCurrentItem;
-	progressBarGamelist->reset();
+	progressBarMachineList->reset();
 }
 
 void MainWindow::on_actionCheckROMStateTagged_triggered(bool)
@@ -9169,11 +9169,11 @@ void MainWindow::on_actionCheckROMStateTagged_triggered(bool)
 		return;
 	}
 
-	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	while ( it.hasNext() && !qmc2StopParser ) {
 		it.next();
-		item = qmc2GamelistItemHash[it.key()];
+		item = qmc2MachineListItemHash[it.key()];
 		if ( item ) {
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked ) {
 				qApp->processEvents();
@@ -9192,7 +9192,7 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAnalyseROMTagged_triggered(bool)");
 #endif
 
-	if ( qmc2Gamelist->numTaggedSets <= 0 )
+	if ( qmc2MachineList->numTaggedSets <= 0 )
 		return;
 
 	if ( isActiveState ) {
@@ -9201,11 +9201,11 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 	}
 
 	QStringList setsToAnalyze;
-	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	while ( it.hasNext() ) {
 		it.next();
-		item = qmc2GamelistItemHash[it.key()];
+		item = qmc2MachineListItemHash[it.key()];
 		if ( item )
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
 				setsToAnalyze << item->text(QMC2_MACHINELIST_COLUMN_NAME);
@@ -9242,22 +9242,22 @@ void MainWindow::on_actionRunRomToolTagged_triggered(bool)
 		return;
 	}
 
-	progressBarGamelist->reset();
+	progressBarMachineList->reset();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		progressBarGamelist->setFormat(tr("ROM tool tagged - %p%"));
+		progressBarMachineList->setFormat(tr("ROM tool tagged - %p%"));
 	else
-		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+		progressBarMachineList->setFormat("%p%");
+	progressBarMachineList->setRange(0, qmc2MachineList->numGames);
 	qApp->processEvents();
 	int count = 0;
 
 	QTreeWidgetItem *oldCurrentItem = qmc2CurrentItem;
-	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	while ( it.hasNext() && !qmc2StopParser ) {
-		progressBarGamelist->setValue(count++);
+		progressBarMachineList->setValue(count++);
 		it.next();
-		item = qmc2GamelistItemHash[it.key()];
+		item = qmc2MachineListItemHash[it.key()];
 		if ( item ) {
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked ) {
 				qApp->processEvents();
@@ -9267,7 +9267,7 @@ void MainWindow::on_actionRunRomToolTagged_triggered(bool)
 		}
 	}
 	qmc2CurrentItem = oldCurrentItem;
-	progressBarGamelist->reset();
+	progressBarMachineList->reset();
 }
 
 void MainWindow::on_actionSetTag_triggered(bool)
@@ -9281,7 +9281,7 @@ void MainWindow::on_actionSetTag_triggered(bool)
 
 	bool wasUntagged = false;
 	QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-	QTreeWidgetItem *item = qmc2GamelistItemHash[gameName];
+	QTreeWidgetItem *item = qmc2MachineListItemHash[gameName];
 	if ( item ) {
 		wasUntagged = (item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Unchecked);
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
@@ -9296,8 +9296,8 @@ void MainWindow::on_actionSetTag_triggered(bool)
 	if ( item )
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
 	if ( wasUntagged ) {
-		qmc2Gamelist->numTaggedSets++;
-		labelGamelistStatus->setText(qmc2Gamelist->status());
+		qmc2MachineList->numTaggedSets++;
+		labelMachineListStatus->setText(qmc2MachineList->status());
 	}
 }
 
@@ -9312,7 +9312,7 @@ void MainWindow::on_actionUnsetTag_triggered(bool)
 
 	bool wasTagged = false;
 	QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-	QTreeWidgetItem *item = qmc2GamelistItemHash[gameName];
+	QTreeWidgetItem *item = qmc2MachineListItemHash[gameName];
 	if ( item ) {
 		wasTagged = (item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked);
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
@@ -9327,8 +9327,8 @@ void MainWindow::on_actionUnsetTag_triggered(bool)
 	if ( item )
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 	if ( wasTagged ) {
-		qmc2Gamelist->numTaggedSets--;
-		labelGamelistStatus->setText(qmc2Gamelist->status());
+		qmc2MachineList->numTaggedSets--;
+		labelMachineListStatus->setText(qmc2MachineList->status());
 	}
 }
 
@@ -9342,7 +9342,7 @@ void MainWindow::on_actionToggleTag_triggered(bool)
 		return;
 
 	QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-	QTreeWidgetItem *item = qmc2GamelistItemHash[gameName];
+	QTreeWidgetItem *item = qmc2MachineListItemHash[gameName];
 	if ( item ) {
 		Qt::CheckState cs = (item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
 		bool wasTagged = (cs != Qt::Checked);
@@ -9357,10 +9357,10 @@ void MainWindow::on_actionToggleTag_triggered(bool)
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
 		if ( wasTagged )
-			qmc2Gamelist->numTaggedSets--;
+			qmc2MachineList->numTaggedSets--;
 		else
-			qmc2Gamelist->numTaggedSets++;
-		labelGamelistStatus->setText(qmc2Gamelist->status());
+			qmc2MachineList->numTaggedSets++;
+		labelMachineListStatus->setText(qmc2MachineList->status());
 	}
 }
 
@@ -9376,8 +9376,8 @@ void MainWindow::on_actionToggleTagCursorDown_triggered(bool)
 	QWidget *focusWidget = qApp->focusWidget();
 	if ( qmc2ActiveViews.contains(focusWidget) ) {
 		bool doToggle = true;
-		if ( focusWidget == treeWidgetGamelist ) {
-			QTreeWidgetItem *item = treeWidgetGamelist->selectedItems()[0];
+		if ( focusWidget == treeWidgetMachineList ) {
+			QTreeWidgetItem *item = treeWidgetMachineList->selectedItems()[0];
 			if ( item->parent() )
 				doToggle = false;
 			while ( item->parent() )
@@ -9417,8 +9417,8 @@ void MainWindow::on_actionToggleTagCursorUp_triggered(bool)
 	QWidget *focusWidget = qApp->focusWidget();
 	if ( qmc2ActiveViews.contains(focusWidget) ) {
 		bool doToggle = true;
-		if ( focusWidget == treeWidgetGamelist ) {
-			QTreeWidgetItem *item = treeWidgetGamelist->selectedItems()[0];
+		if ( focusWidget == treeWidgetMachineList ) {
+			QTreeWidgetItem *item = treeWidgetMachineList->selectedItems()[0];
 			if ( item->parent() )
 				doToggle = false;
 			while ( item->parent() )
@@ -9449,9 +9449,9 @@ void MainWindow::on_actionToggleTagCursorUp_triggered(bool)
 void MainWindow::showLoadAnim(QString text, bool enable)
 {
 	if ( enable ) {
-		treeWidgetGamelist->setVisible(false);
-		((AspectRatioLabel *)labelLoadingGamelist)->setLabelText(text);
-		labelLoadingGamelist->setVisible(true);
+		treeWidgetMachineList->setVisible(false);
+		((AspectRatioLabel *)labelLoadingMachineList)->setLabelText(text);
+		labelLoadingMachineList->setVisible(true);
 		treeWidgetHierarchy->setVisible(false);
 		((AspectRatioLabel *)labelLoadingHierarchy)->setLabelText(text);
 		labelLoadingHierarchy->setVisible(true);
@@ -9464,8 +9464,8 @@ void MainWindow::showLoadAnim(QString text, bool enable)
 		loadAnimMovie->start();
 	} else {
 		loadAnimMovie->setPaused(true);
-		treeWidgetGamelist->setVisible(true);
-		labelLoadingGamelist->setVisible(false);
+		treeWidgetMachineList->setVisible(true);
+		labelLoadingMachineList->setVisible(false);
 		treeWidgetHierarchy->setVisible(true);
 		labelLoadingHierarchy->setVisible(false);
 		treeWidgetCategoryView->setVisible(true);
@@ -9485,23 +9485,23 @@ void MainWindow::on_actionTagAll_triggered(bool)
 	if ( qmc2ReloadActive )
 		return;
 
-	progressBarGamelist->reset();
-	QString oldFormat = progressBarGamelist->format();
+	progressBarMachineList->reset();
+	QString oldFormat = progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		progressBarGamelist->setFormat(tr("Tag - %p%"));
+		progressBarMachineList->setFormat(tr("Tag - %p%"));
 	else
-		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
+		progressBarMachineList->setFormat("%p%");
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->numDevices);
 	showLoadAnim(tr("Tagging, please wait..."));
-	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	QString id;
-	int taggingResponse = qmc2GamelistItemHash.count() / QMC2_STATEFILTER_UPDATES;
+	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_STATEFILTER_UPDATES;
 	int count = 0;
 	while ( it.hasNext() ) {
 		it.next();
 		id = it.key();
-		item = qmc2GamelistItemHash[id];
+		item = qmc2MachineListItemHash[id];
 		if ( !item )
 			continue;
 		if ( item )
@@ -9515,19 +9515,19 @@ void MainWindow::on_actionTagAll_triggered(bool)
 		item = qmc2VersionItemHash[id];
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
-		qmc2Gamelist->numTaggedSets++;
+		qmc2MachineList->numTaggedSets++;
 		if ( count++ % taggingResponse == 0 ) {
-			progressBarGamelist->setValue(count);
-			labelGamelistStatus->setText(qmc2Gamelist->status());
+			progressBarMachineList->setValue(count);
+			labelMachineListStatus->setText(qmc2MachineList->status());
 			qApp->processEvents();
 		}
 	}
-	qmc2Gamelist->numTaggedSets = qmc2Gamelist->numGames;
-	progressBarGamelist->setValue(count);
-	labelGamelistStatus->setText(qmc2Gamelist->status());
+	qmc2MachineList->numTaggedSets = qmc2MachineList->numGames;
+	progressBarMachineList->setValue(count);
+	labelMachineListStatus->setText(qmc2MachineList->status());
 	hideLoadAnim();
-	progressBarGamelist->setFormat(oldFormat);
-	progressBarGamelist->reset();
+	progressBarMachineList->setFormat(oldFormat);
+	progressBarMachineList->reset();
 }
 
 void MainWindow::on_actionUntagAll_triggered(bool)
@@ -9539,23 +9539,23 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 	if ( qmc2ReloadActive )
 		return;
 
-	progressBarGamelist->reset();
-	QString oldFormat = progressBarGamelist->format();
+	progressBarMachineList->reset();
+	QString oldFormat = progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		progressBarGamelist->setFormat(tr("Untag - %p%"));
+		progressBarMachineList->setFormat(tr("Untag - %p%"));
 	else
-		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
+		progressBarMachineList->setFormat("%p%");
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->numDevices);
 	showLoadAnim(tr("Untagging, please wait..."));
-	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	QString id;
-	int taggingResponse = qmc2GamelistItemHash.count() / QMC2_STATEFILTER_UPDATES;
+	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_STATEFILTER_UPDATES;
 	int count = 0;
 	while ( it.hasNext() ) {
 		it.next();
 		id = it.key();
-		item = qmc2GamelistItemHash[id];
+		item = qmc2MachineListItemHash[id];
 		if ( !item )
 			continue;
 		if ( item )
@@ -9569,19 +9569,19 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 		item = qmc2VersionItemHash[id];
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-		qmc2Gamelist->numTaggedSets--;
+		qmc2MachineList->numTaggedSets--;
 		if ( count++ % taggingResponse == 0 ) {
-			progressBarGamelist->setValue(count);
-			labelGamelistStatus->setText(qmc2Gamelist->status());
+			progressBarMachineList->setValue(count);
+			labelMachineListStatus->setText(qmc2MachineList->status());
 			qApp->processEvents();
 		}
 	}
-	qmc2Gamelist->numTaggedSets = 0;
-	progressBarGamelist->setValue(count);
-	labelGamelistStatus->setText(qmc2Gamelist->status());
+	qmc2MachineList->numTaggedSets = 0;
+	progressBarMachineList->setValue(count);
+	labelMachineListStatus->setText(qmc2MachineList->status());
 	hideLoadAnim();
-	progressBarGamelist->setFormat(oldFormat);
-	progressBarGamelist->reset();
+	progressBarMachineList->setFormat(oldFormat);
+	progressBarMachineList->reset();
 }
 
 void MainWindow::on_actionInvertTags_triggered(bool)
@@ -9593,23 +9593,23 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 	if ( qmc2ReloadActive )
 		return;
 
-	progressBarGamelist->reset();
-	QString oldFormat = progressBarGamelist->format();
+	progressBarMachineList->reset();
+	QString oldFormat = progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		progressBarGamelist->setFormat(tr("Invert tag - %p%"));
+		progressBarMachineList->setFormat(tr("Invert tag - %p%"));
 	else
-		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
+		progressBarMachineList->setFormat("%p%");
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->numDevices);
 	showLoadAnim(tr("Inverting tags, please wait..."));
-	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	QString id;
-	int taggingResponse = qmc2GamelistItemHash.count() / QMC2_STATEFILTER_UPDATES;
+	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_STATEFILTER_UPDATES;
 	int count = 0;
 	while ( it.hasNext() ) {
 		it.next();
 		id = it.key();
-		item = qmc2GamelistItemHash[id];
+		item = qmc2MachineListItemHash[id];
 		if ( !item )
 			continue;
 		Qt::CheckState cs = (item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
@@ -9625,20 +9625,20 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
 		if ( wasTagged )
-			qmc2Gamelist->numTaggedSets--;
+			qmc2MachineList->numTaggedSets--;
 		else
-			qmc2Gamelist->numTaggedSets++;
+			qmc2MachineList->numTaggedSets++;
 		if ( count++ % taggingResponse == 0 ) {
-			progressBarGamelist->setValue(count);
-			labelGamelistStatus->setText(qmc2Gamelist->status());
+			progressBarMachineList->setValue(count);
+			labelMachineListStatus->setText(qmc2MachineList->status());
 			qApp->processEvents();
 		}
 	}
-	progressBarGamelist->setValue(count);
-	labelGamelistStatus->setText(qmc2Gamelist->status());
+	progressBarMachineList->setValue(count);
+	labelMachineListStatus->setText(qmc2MachineList->status());
 	hideLoadAnim();
-	progressBarGamelist->setFormat(oldFormat);
-	progressBarGamelist->reset();
+	progressBarMachineList->setFormat(oldFormat);
+	progressBarMachineList->reset();
 }
 
 void MainWindow::on_actionTagVisible_triggered(bool)
@@ -9650,23 +9650,23 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 	if ( qmc2ReloadActive )
 		return;
 
-	progressBarGamelist->reset();
-	QString oldFormat = progressBarGamelist->format();
+	progressBarMachineList->reset();
+	QString oldFormat = progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		progressBarGamelist->setFormat(tr("Tag - %p%"));
+		progressBarMachineList->setFormat(tr("Tag - %p%"));
 	else
-		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
+		progressBarMachineList->setFormat("%p%");
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->numDevices);
 	showLoadAnim(tr("Tagging, please wait..."));
-	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	QString id;
-	int taggingResponse = qmc2GamelistItemHash.count() / QMC2_STATEFILTER_UPDATES;
+	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_STATEFILTER_UPDATES;
 	int count = 0;
 	while ( it.hasNext() ) {
 		it.next();
 		id = it.key();
-		item = qmc2GamelistItemHash[id];
+		item = qmc2MachineListItemHash[id];
 		if ( !item )
 			continue;
 		if ( item->isHidden() )
@@ -9681,18 +9681,18 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 		item = qmc2VersionItemHash[id];
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
-		qmc2Gamelist->numTaggedSets++;
+		qmc2MachineList->numTaggedSets++;
 		if ( count++ % taggingResponse == 0 ) {
-			progressBarGamelist->setValue(count);
-			labelGamelistStatus->setText(qmc2Gamelist->status());
+			progressBarMachineList->setValue(count);
+			labelMachineListStatus->setText(qmc2MachineList->status());
 			qApp->processEvents();
 		}
 	}
-	progressBarGamelist->setValue(count);
-	labelGamelistStatus->setText(qmc2Gamelist->status());
+	progressBarMachineList->setValue(count);
+	labelMachineListStatus->setText(qmc2MachineList->status());
 	hideLoadAnim();
-	progressBarGamelist->setFormat(oldFormat);
-	progressBarGamelist->reset();
+	progressBarMachineList->setFormat(oldFormat);
+	progressBarMachineList->reset();
 }
 
 void MainWindow::on_actionUntagVisible_triggered(bool)
@@ -9704,23 +9704,23 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 	if ( qmc2ReloadActive )
 		return;
 
-	progressBarGamelist->reset();
-	QString oldFormat = progressBarGamelist->format();
+	progressBarMachineList->reset();
+	QString oldFormat = progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		progressBarGamelist->setFormat(tr("Untag - %p%"));
+		progressBarMachineList->setFormat(tr("Untag - %p%"));
 	else
-		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
+		progressBarMachineList->setFormat("%p%");
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->numDevices);
 	showLoadAnim(tr("Untagging, please wait..."));
-	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	QString id;
-	int taggingResponse = qmc2GamelistItemHash.count() / QMC2_STATEFILTER_UPDATES;
+	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_STATEFILTER_UPDATES;
 	int count = 0;
 	while ( it.hasNext() ) {
 		it.next();
 		id = it.key();
-		item = qmc2GamelistItemHash[id];
+		item = qmc2MachineListItemHash[id];
 		if ( !item )
 			continue;
 		if ( item->isHidden() )
@@ -9735,18 +9735,18 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 		item = qmc2VersionItemHash[id];
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-		qmc2Gamelist->numTaggedSets--;
+		qmc2MachineList->numTaggedSets--;
 		if ( count++ % taggingResponse == 0 ) {
-			progressBarGamelist->setValue(count);
-			labelGamelistStatus->setText(qmc2Gamelist->status());
+			progressBarMachineList->setValue(count);
+			labelMachineListStatus->setText(qmc2MachineList->status());
 			qApp->processEvents();
 		}
 	}
-	progressBarGamelist->setValue(count);
-	labelGamelistStatus->setText(qmc2Gamelist->status());
+	progressBarMachineList->setValue(count);
+	labelMachineListStatus->setText(qmc2MachineList->status());
 	hideLoadAnim();
-	progressBarGamelist->setFormat(oldFormat);
-	progressBarGamelist->reset();
+	progressBarMachineList->setFormat(oldFormat);
+	progressBarMachineList->reset();
 }
 
 void MainWindow::on_actionInvertVisibleTags_triggered(bool)
@@ -9758,23 +9758,23 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 	if ( qmc2ReloadActive )
 		return;
 
-	progressBarGamelist->reset();
-	QString oldFormat = progressBarGamelist->format();
+	progressBarMachineList->reset();
+	QString oldFormat = progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		progressBarGamelist->setFormat(tr("Invert tag - %p%"));
+		progressBarMachineList->setFormat(tr("Invert tag - %p%"));
 	else
-		progressBarGamelist->setFormat("%p%");
-	progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
+		progressBarMachineList->setFormat("%p%");
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->numDevices);
 	showLoadAnim(tr("Inverting tags, please wait..."));
-	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	QString id;
-	int taggingResponse = qmc2GamelistItemHash.count() / QMC2_STATEFILTER_UPDATES;
+	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_STATEFILTER_UPDATES;
 	int count = 0;
 	while ( it.hasNext() ) {
 		it.next();
 		id = it.key();
-		item = qmc2GamelistItemHash[id];
+		item = qmc2MachineListItemHash[id];
 		if ( !item )
 			continue;
 		if ( item->isHidden() )
@@ -9792,20 +9792,20 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
 		if ( wasTagged )
-			qmc2Gamelist->numTaggedSets--;
+			qmc2MachineList->numTaggedSets--;
 		else
-			qmc2Gamelist->numTaggedSets++;
+			qmc2MachineList->numTaggedSets++;
 		if ( count++ % taggingResponse == 0 ) {
-			progressBarGamelist->setValue(count);
-			labelGamelistStatus->setText(qmc2Gamelist->status());
+			progressBarMachineList->setValue(count);
+			labelMachineListStatus->setText(qmc2MachineList->status());
 			qApp->processEvents();
 		}
 	}
-	progressBarGamelist->setValue(count);
-	labelGamelistStatus->setText(qmc2Gamelist->status());
+	progressBarMachineList->setValue(count);
+	labelMachineListStatus->setText(qmc2MachineList->status());
 	hideLoadAnim();
-	progressBarGamelist->setFormat(oldFormat);
-	progressBarGamelist->reset();
+	progressBarMachineList->setFormat(oldFormat);
+	progressBarMachineList->reset();
 }
 
 void MainWindow::commonWebSearch(QString baseUrl, QTreeWidgetItem *item)
@@ -9882,7 +9882,7 @@ void MainWindow::on_actionSearchInternalBrowser_triggered(bool checked)
 
 void MainWindow::on_actionRebuildROMTagged_triggered(bool)
 {
-	if ( qmc2Gamelist->numTaggedSets <= 0 )
+	if ( qmc2MachineList->numTaggedSets <= 0 )
 		return;
 
 	if ( isActiveState ) {
@@ -9896,11 +9896,11 @@ void MainWindow::on_actionRebuildROMTagged_triggered(bool)
 	}
 
 	QStringList setsToRebuild;
-	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	while ( it.hasNext() ) {
 		it.next();
-		item = qmc2GamelistItemHash[it.key()];
+		item = qmc2MachineListItemHash[it.key()];
 		if ( item )
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
 				setsToRebuild << item->text(QMC2_MACHINELIST_COLUMN_NAME);
@@ -10224,10 +10224,10 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
 {
 	comboBoxSearch->lineEdit()->setText(text);
-	if ( tabWidgetGamelist->currentWidget() != tabSearch ) {
-		tabWidgetGamelist->blockSignals(true);
-		tabWidgetGamelist->setCurrentWidget(tabSearch);
-		tabWidgetGamelist->blockSignals(false);
+	if ( tabWidgetMachineList->currentWidget() != tabSearch ) {
+		tabWidgetMachineList->blockSignals(true);
+		tabWidgetMachineList->setCurrentWidget(tabSearch);
+		tabWidgetMachineList->blockSignals(false);
 	}
 	comboBoxSearch_editTextChanged_delayed();
 	QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
@@ -10236,22 +10236,22 @@ void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
 void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
 {
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
-	if ( tabWidgetGamelist->indexOf(tabSearch) == tabWidgetGamelist->currentIndex() )
+	if ( tabWidgetMachineList->indexOf(tabSearch) == tabWidgetMachineList->currentIndex() )
 		comboBoxSearch->lineEdit()->setText(text);
 }
 
-void MainWindow::treeWidgetGamelist_verticalScrollChanged(int)
+void MainWindow::treeWidgetMachineList_verticalScrollChanged(int)
 {
-	if ( !treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_RANK) )
+	if ( !treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_RANK) )
 		m_glRankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
 }
 
-void MainWindow::treeWidgetGamelist_updateRanks()
+void MainWindow::treeWidgetMachineList_updateRanks()
 {
   	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
 		return;
 
-	QTreeWidget *treeWidget = treeWidgetGamelist;
+	QTreeWidget *treeWidget = treeWidgetMachineList;
 
 	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
 	QPoint bottomPoint = treeWidget->viewport()->rect().bottomLeft();
@@ -10720,7 +10720,7 @@ void MainWindow::menuRank_enableActions(bool enable)
 
 void MainWindow::menuRank_aboutToShow()
 {
-	bool taggedItemsVisible = (qmc2Gamelist->numTaggedSets > 0 && (menuGame->isVisible() || menuRank->isTearOffMenuVisible()));
+	bool taggedItemsVisible = (qmc2MachineList->numTaggedSets > 0 && (menuGame->isVisible() || menuRank->isTearOffMenuVisible()));
 	menuTaggedSetRank->menuAction()->setVisible(taggedItemsVisible);
 	actionTaggedIncreaseRank->setVisible(taggedItemsVisible);
 	actionTaggedDecreaseRank->setVisible(taggedItemsVisible);
@@ -10745,7 +10745,7 @@ RankItemWidget *MainWindow::getCurrentRankItemWidget()
 			break;
 		case QMC2_VIEW_DETAIL_INDEX:
 		default:
-			treeWidget = treeWidgetGamelist;
+			treeWidget = treeWidgetMachineList;
 			item = qmc2CurrentItem;
 			break;
 	}
@@ -10759,14 +10759,14 @@ QList<RankItemWidget *> *MainWindow::getTaggedRankItemWidgets()
 
 	taggedRiwList.clear();
 
-	QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	while ( it.hasNext() ) {
 		it.next();
-		item = qmc2GamelistItemHash[it.key()];
+		item = qmc2MachineListItemHash[it.key()];
 		if ( item ) {
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
-				taggedRiwList << (RankItemWidget *)treeWidgetGamelist->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
+				taggedRiwList << (RankItemWidget *)treeWidgetMachineList->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
 		}
 	}
 
@@ -10897,7 +10897,7 @@ void MainWindow::updateTabWidgets()
 {
 	tabWidgetLogsAndEmulators->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", 0).toInt());
 	on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex());
-	tabWidgetGamelist->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt());
+	tabWidgetMachineList->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", 0).toInt());
 	tabWidgetSoftwareDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailTab", 0).toInt());
 }
 

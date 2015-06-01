@@ -18,16 +18,16 @@
 #include "macros.h"
 #include "arcade/keysequences.h"
 #include "keyseqscan.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #if QMC2_JOYSTICK == 1
 #include "joyfuncscan.h"
 #endif
 
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
-extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 extern QHash<QString, QString> qmc2ParentHash;
-extern Gamelist *qmc2Gamelist;
+extern MachineList *qmc2MachineList;
 extern Options *qmc2Options;
 extern KeyPressFilter *qmc2KeyPressFilter;
 extern bool qmc2SuppressQtMessages;
@@ -66,9 +66,9 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 #endif
 
 	// category and version maps
-	if ( !qmc2Gamelist->categoryMap.isEmpty() )
+	if ( !qmc2MachineList->categoryMap.isEmpty() )
 		comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
-	if ( !qmc2Gamelist->versionMap.isEmpty() )
+	if ( !qmc2MachineList->versionMap.isEmpty() )
 		comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
 
 	QString defaultPath, tmpString;
@@ -127,7 +127,7 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	checkBoxTaggedSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/TaggedSetsOnly", false).toBool());
 	checkBoxParentSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ParentSetsOnly", false).toBool());
 	checkBoxUseFilteredList->setChecked(qmc2Config->value(QMC2_ARCADE_PREFIX + "UseFilteredList", false).toBool());
-	lineEditFilteredListFile->setText(QMC2_QSETTINGS_CAST(qmc2Config)->value(QMC2_ARCADE_PREFIX + "FilteredListFile", qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GamelistCacheFile", QString()).toString() + ".filtered").toString());
+	lineEditFilteredListFile->setText(QMC2_QSETTINGS_CAST(qmc2Config)->value(QMC2_ARCADE_PREFIX + "FilteredListFile", qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile", QString()).toString() + ".filtered").toString());
 	toolButtonSelectC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SelectC", true).toBool());
 	toolButtonSelectM->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SelectM", true).toBool());
 	toolButtonSelectI->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SelectI", false).toBool());
@@ -483,7 +483,7 @@ bool ArcadeModeSetup::isWritableFile(QString fileName)
 void ArcadeModeSetup::updateCategoryFilter()
 {
 	QStringList categoryNames;
-	foreach (QString *category, qmc2Gamelist->categoryMap.values())
+	foreach (QString *category, qmc2MachineList->categoryMap.values())
 		if ( category )
 			categoryNames << *category;
 	categoryNames.removeDuplicates();
@@ -632,31 +632,31 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 
 	QTextStream ts(&filteredListFile);
 	ts << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
-	ts << "MAME_VERSION\t" + qmc2Gamelist->emulatorVersion + "\tGLC_VERSION\t" + QString::number(QMC2_GLC_VERSION) + "\n";
+	ts << "MAME_VERSION\t" + qmc2MachineList->emulatorVersion + "\tGLC_VERSION\t" + QString::number(QMC2_GLC_VERSION) + "\n";
 
 	QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExcludedCategories", QStringList()).toStringList();
 	int minDrvStatus = comboBoxDriverStatus->currentIndex();
 	int itemCount = 0;
 	QString nameFilter = lineEditNameFilter->text();
 	QRegExp nameFilterRegExp(nameFilter);
-	QList<GamelistItem *> selectedGames;
+	QList<MachineListItem *> selectedGames;
 
 	if ( !nameFilter.isEmpty() && !nameFilterRegExp.isValid() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: arcade mode: the name filter regular expression is invalid"));
 
 	progressBarFilter->setFormat(tr("Filtering"));
-	progressBarFilter->setRange(0, qmc2GamelistItemHash.count());
+	progressBarFilter->setRange(0, qmc2MachineListItemHash.count());
 
-	foreach (QString game, qmc2GamelistItemHash.keys()) {
+	foreach (QString game, qmc2MachineListItemHash.keys()) {
 		progressBarFilter->setValue(++itemCount);
 
 		// no devices
-		if ( qmc2Gamelist->isDevice(game) )
+		if ( qmc2MachineList->isDevice(game) )
 			continue;
 
 		// tagged sets only?
 		if ( checkBoxTaggedSetsOnly->isChecked() ) {
-			GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemHash[game];
+			MachineListItem *gameItem = (MachineListItem *)qmc2MachineListItemHash[game];
 			if ( gameItem && gameItem->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
 				selectedGames << gameItem;
 			continue;
@@ -664,7 +664,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 
 		// favorite sets only?
 		if ( checkBoxFavoriteSetsOnly->isChecked() ) {
-			GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemHash[game];
+			MachineListItem *gameItem = (MachineListItem *)qmc2MachineListItemHash[game];
 			if ( gameItem ) {
 				QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
 				if ( !favoritesMatches.isEmpty() )
@@ -684,17 +684,17 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 				continue;
 
 		// category
-		QString *categoryPtr = qmc2Gamelist->categoryMap[game];
+		QString *categoryPtr = qmc2MachineList->categoryMap[game];
 		QString category;
 		if ( categoryPtr )
 			category = *categoryPtr;
 		else
 			category = tr("?");
 
-		if ( !qmc2Gamelist->categoryMap.isEmpty() && excludedCategories.contains(category) )
+		if ( !qmc2MachineList->categoryMap.isEmpty() && excludedCategories.contains(category) )
 			continue;
 
-		GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemHash[game];
+		MachineListItem *gameItem = (MachineListItem *)qmc2MachineListItemHash[game];
 		if ( !gameItem )
 			continue;
 
@@ -711,7 +711,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		}
 
 		// ROM status
-		switch ( qmc2Gamelist->romState(game) ) {
+		switch ( qmc2MachineList->romState(game) ) {
 			case 'C':
 				if ( toolButtonSelectC->isChecked() )
 					selectedGames << gameItem;
@@ -748,14 +748,14 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 	progressBarFilter->setFormat(tr("Exporting"));
 	for (int i = 0; i < selectedGames.count(); i++) {
 		progressBarFilter->setValue(i + 1);
-		GamelistItem *gameItem = selectedGames[i];
+		MachineListItem *gameItem = selectedGames[i];
 		QString gameName = gameItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 		ts << gameName << "\t"
 		   << gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) << "\t"
 		   << gameItem->text(QMC2_MACHINELIST_COLUMN_MANU) << "\t"
 		   << gameItem->text(QMC2_MACHINELIST_COLUMN_YEAR) << "\t"
 		   << qmc2ParentHash[gameName] << "\t"
-	   	   << (qmc2Gamelist->isBios(gameName) ? "1": "0") << "\t"
+	   	   << (qmc2MachineList->isBios(gameName) ? "1": "0") << "\t"
 		   << (gameItem->text(QMC2_MACHINELIST_COLUMN_RTYPES).contains(tr("ROM")) ? "1" : "0") << "\t"
 		   << (gameItem->text(QMC2_MACHINELIST_COLUMN_RTYPES).contains(tr("CHD")) ? "1": "0") << "\t"
 		   << gameItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS) << "\t"
@@ -792,7 +792,7 @@ void ArcadeModeSetup::on_toolButtonDeselectAll_clicked()
 	}
 }
 
-bool ArcadeModeSetup::lessThan(const GamelistItem *item1, const GamelistItem *item2)
+bool ArcadeModeSetup::lessThan(const MachineListItem *item1, const MachineListItem *item2)
 {
 	switch ( qmc2ArcadeModeSortCriteria ) {
 		case QMC2_SORT_BY_DESCRIPTION:
@@ -802,9 +802,9 @@ bool ArcadeModeSetup::lessThan(const GamelistItem *item1, const GamelistItem *it
 				return (item1->text(QMC2_MACHINELIST_COLUMN_MACHINE).toUpper() < item2->text(QMC2_MACHINELIST_COLUMN_MACHINE).toUpper());
 		case QMC2_SORT_BY_ROM_STATE:
 			if ( qmc2ArcadeModeSortOrder )
-				return (qmc2Gamelist->romState(item1->text(QMC2_MACHINELIST_COLUMN_NAME)) > qmc2Gamelist->romState(item2->text(QMC2_MACHINELIST_COLUMN_NAME)));
+				return (qmc2MachineList->romState(item1->text(QMC2_MACHINELIST_COLUMN_NAME)) > qmc2MachineList->romState(item2->text(QMC2_MACHINELIST_COLUMN_NAME)));
 			else
-				return (qmc2Gamelist->romState(item1->text(QMC2_MACHINELIST_COLUMN_NAME)) < qmc2Gamelist->romState(item2->text(QMC2_MACHINELIST_COLUMN_NAME)));
+				return (qmc2MachineList->romState(item1->text(QMC2_MACHINELIST_COLUMN_NAME)) < qmc2MachineList->romState(item2->text(QMC2_MACHINELIST_COLUMN_NAME)));
 		case QMC2_SORT_BY_TAG:
 			if ( qmc2ArcadeModeSortOrder )
 				return (int(item1->checkState(QMC2_MACHINELIST_COLUMN_TAG)) > int(item2->checkState(QMC2_MACHINELIST_COLUMN_TAG)));

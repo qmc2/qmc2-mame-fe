@@ -31,14 +31,14 @@ function init() {
                                             "overlayScaleMax: '" + overlayScaleMax + "'");
         viewer.loadSettings();
         colourScheme(darkone.colourScheme);
-        viewer.loadGamelist();
+        viewer.loadMachineList();
         debug && console.log("[init] lastIndex: '" + darkone.lastIndex + "', " +
-                                            "gameListModelCount: '" + gameListModelCount + "'");
-        darkone.lastIndex = (darkone.lastIndex < gameListModelCount && darkone.lastIndex > -1) ? darkone.lastIndex : 0;
-        gameListView.currentIndex = darkone.lastIndex
-        gameListView.positionViewAtIndex(gameListView.currentIndex, ListView.Center);
+                                            "machineListModelCount: '" + machineListModelCount + "'");
+        darkone.lastIndex = (darkone.lastIndex < machineListModelCount && darkone.lastIndex > -1) ? darkone.lastIndex : 0;
+        machineListView.currentIndex = darkone.lastIndex
+        machineListView.positionViewAtIndex(machineListView.currentIndex, ListView.Center);
         debug && console.log("[init] lastIndex: '" + darkone.lastIndex + "', " +
-                                            "gameListModelCount: '" + gameListModelCount + "'");
+                                            "machineListModelCount: '" + machineListModelCount + "'");
         darkone.dataTypeCurrent = darkone.dataTypePrimary;
         debug && console.log("[init 1] resetScale: '" + resetScale + "', " +
                                             "overlayScale: '" + darkone.overlayScale + "'");
@@ -48,7 +48,7 @@ function init() {
                                             "overlayScale: '" + darkone.overlayScale + "'");
 
         listToggle(1 - (darkone.listHidden * 2));
-        gameListViewBorder.opacity = darkone.listHidden ? 0 : 1;
+        machineListViewBorder.opacity = darkone.listHidden ? 0 : 1;
         if (darkone.fpsVisible)
             darkone.toolbarShowFpsLock = true;
         if (!darkone.keepLightOn) {
@@ -158,10 +158,10 @@ function listToggle(force) {
     resetOverlaySnapTimer.start();
     if (force > 0 || (darkone.listHidden && !force)) {
         darkone.listHidden = false;
-        gameListView.focus = true;
+        machineListView.focus = true;
     } else if (force < 0 || (!darkone.listHidden && !force)) {
         darkone.listHidden = true;
-        gameListView.focus && focus(1);
+        machineListView.focus && focus(1);
     }
     debug && console.log("[listToggle 2] " +
                                  "listHidden: '" + darkone.listHidden + "', " +
@@ -363,7 +363,7 @@ function gameCardHeader() {
     if (!darkone.initialised)
         return "";
 
-    var gameObject = gameListModel[gameListView.currentIndex];
+    var gameObject = machineListModel[machineListView.currentIndex];
     return "<html><head><style type='text/css'>p, h2 { margin: 0px; }</style></head><h2>" + gameObject.description + "</h2><p>" + qsTr("ID") + ": " + gameObject.id + " / " + qsTr("ROM state") + ": " + viewer.romStateText(gameObject.romState) + "</p></html>";
 }
 
@@ -435,14 +435,14 @@ function data(type) {
             var image = ""
             if (darkone.dataHidden) {
                 if (dataTypes[darkone.dataTypePrimary].type == "image") {
-                    var glItem = gameListModel[gameListView.currentIndex];
+                    var glItem = machineListModel[machineListView.currentIndex];
                     if ( viewer.loadImage(dataTypes[darkone.dataTypePrimary].path + "/" + glItem.id + "/" + glItem.parentId) != "" ) {
                          image = "image://qmc2/" + dataTypes[darkone.dataTypePrimary].path + "/" + glItem.id + "/" + glItem.parentId;
                          debug && console.log("[data] success using image path: '" + image + "'");
                     }
                 }
                 if (image == "" && dataTypes[darkone.dataTypeSecondary].type == "image") {
-                    var glItem = gameListModel[gameListView.currentIndex];
+                    var glItem = machineListModel[machineListView.currentIndex];
                     if ( viewer.loadImage(dataTypes[darkone.dataTypeSecondary].path + "/" + glItem.id + "/" + glItem.parentId) != "") {
                          image = "image://qmc2/" + dataTypes[darkone.dataTypeSecondary].path + "/" + glItem.id + "/" + glItem.parentId;
                          debug && console.log("[data] success using image path: '" + image + "'");
@@ -452,7 +452,7 @@ function data(type) {
                    image = "image://qmc2/ttl/default" // default
             } else {
                 if (dataTypes[darkone.dataTypeCurrent].type == "image") {
-                    var glItem = gameListModel[gameListView.currentIndex];
+                    var glItem = machineListModel[machineListView.currentIndex];
                     if ( viewer.loadImage(dataTypes[darkone.dataTypeCurrent].path + "/" + glItem.id + "/" + glItem.parentId) != "") {
                          image = "image://qmc2/" + dataTypes[darkone.dataTypeCurrent].path + "/" + glItem.id + "/" + glItem.parentId;
                          debug && console.log("[data] success using image path: '" + image + "'");
@@ -474,14 +474,14 @@ function data(type) {
             if (darkone.dataHidden) {
                  if (dataTypes[darkone.dataTypePrimary].type == "text") {
                      type = dataTypes[darkone.dataTypePrimary].text
-                     info = viewer.requestInfo(gameListModel[gameListView.currentIndex].id, dataTypes[darkone.dataTypePrimary].key);
+                     info = viewer.requestInfo(machineListModel[machineListView.currentIndex].id, dataTypes[darkone.dataTypePrimary].key);
                      if (!info.match(qsTr("no info available"))) {
                          debug && console.log("[data] using text type: '" + type + "'");
                      }
                 }
                 if (type == "" && dataTypes[darkone.dataTypeSecondary].type == "text") {
                     type = dataTypes[darkone.dataTypeSecondary].text
-                    info = viewer.requestInfo(gameListModel[gameListView.currentIndex].id, dataTypes[darkone.dataTypeSecondary].key);
+                    info = viewer.requestInfo(machineListModel[machineListView.currentIndex].id, dataTypes[darkone.dataTypeSecondary].key);
                     if (!info.match(qsTr("no info available"))) {
                         debug && console.log("[data] using text type: '" + type + "'");
                     }
@@ -490,7 +490,7 @@ function data(type) {
             else {
                 if (dataTypes[darkone.dataTypeCurrent].type == "text") {
                     type = dataTypes[darkone.dataTypeCurrent].text
-                    info = viewer.requestInfo(gameListModel[gameListView.currentIndex].id, dataTypes[darkone.dataTypeCurrent].key);
+                    info = viewer.requestInfo(machineListModel[machineListView.currentIndex].id, dataTypes[darkone.dataTypeCurrent].key);
                 }
             }
             info.match(qsTr("no info available")) ? darkone.infoMissing = true : darkone.infoMissing = false;
@@ -506,8 +506,8 @@ function gameStatusColour() {
     if (!darkone.initialised)
         return "transparent";
 
-    debug && console.log("romState: '" + gameListModel[gameListView.currentIndex].romState + "'");
-    switch ( gameListModel[gameListView.currentIndex].romState ) {
+    debug && console.log("romState: '" + machineListModel[machineListView.currentIndex].romState + "'");
+    switch ( machineListModel[machineListView.currentIndex].romState ) {
     case 0:
         // correct
         return "#00ce00";
@@ -588,7 +588,7 @@ function colourScheme(scheme) {
 function inFocus() {
     debug2 && console.log("\n[inFocus]\n" +
         "darkoneFocusScope: '" + darkoneFocusScope.focus + "|" + darkoneFocusScope.activeFocus + "'\n" +
-        "gameListView: '" + gameListView.focus + "|" + gameListView.activeFocus + "'\n" +
+        "machineListView: '" + machineListView.focus + "|" + machineListView.activeFocus + "'\n" +
         "overlay: '" + overlay.focus + "|"  + overlay.activeFocus + "'\n" +
         "overlayScreen: '" + overlayScreen.focus + "|"  + overlayScreen.activeFocus + "'\n" +
         "overlayDataTypeCycleItem: '" + overlayDataTypeCycleItem.focus + "|"  + overlayDataTypeCycleItem.activeFocus + "'\n" +
@@ -633,10 +633,10 @@ function focus(vFocus) {
                                 bSet = true;
                                 break;
                             }
-                            case "gameListView": {
+                            case "machineListView": {
                                 if (!darkone.listHidden) {
                                     debug3 && console.log("[focus=]: '" + last + "'");
-                                    gameListView.focus = "true";
+                                    machineListView.focus = "true";
                                     bSet = true;
                                 }
                                 break;

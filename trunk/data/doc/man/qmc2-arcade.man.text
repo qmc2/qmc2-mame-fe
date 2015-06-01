@@ -6,16 +6,16 @@ SYNOPSIS
 
 DESCRIPTION
   For those who want to 'go straight into the games' there's QMC2 Arcade, a QML / QtQuick based approach to presenting an optionally filtered
-  game- or machine-list, launching emulators in the same smart way that you're used to with QMC2's main GUI (see qmc2(6)).
+  machine-list, launching emulators in the same smart way that you're used to with QMC2's main GUI (see qmc2(6)).
 
   QMC2 Arcade usually loads within just a few seconds and is by far less bloated than the main GUI, trimmed to what's absolutely required.
   But although it's designed to run stand-alone, you must start QMC2's main GUI at least once prior to using QMC2 Arcade, because some of
   the file caches need to be created first - QMC2 Arcade doesn't take care of this itself, which is one of the reasons why it's so much
   faster. Also, you cannot change the emulator's configuration from within QMC2 Arcade. So whenever you want to make modifications to a
-  game's/machine's configuration (or the global setup) you have to do this through QMC2's main GUI as well. 
+  machine's configuration (or the global setup) you have to do this through QMC2's main GUI as well. 
 
   The main GUI also has a specific dialog for setting up all relevant back-end default options (-theme, -console, -graphicssystem and
-  -language), for producing a filtered game/machine list used by QMC2 Arcade exclusively (optional) and for mapping key-sequences or
+  -language), for producing a filtered machine list used by QMC2 Arcade exclusively (optional) and for mapping key-sequences or
   joystick-functions (also optional). Default values for back-end options can also be configured inside QMC2 Arcade provided the chosen
   qml_theme supports it (which all of the available themes do).
 
@@ -60,9 +60,9 @@ FILES
 
   CONFIG_PATH/qmc2.ini  Individual user's configuration
 
-  CONFIG_PATH/mame.glc, CONFIG_PATH/mess.glc, CONFIG_PATH/ume.glc  Game/machine list cache
+  CONFIG_PATH/mame.glc, CONFIG_PATH/mess.glc, CONFIG_PATH/ume.glc  Machine list cache
 
-  CONFIG_PATH/mame.glc.filtered, CONFIG_PATH/mess.glc.filtered, CONFIG_PATH/ume.glc.filtered  Filtered version of the game/machine list cache created by qmc2(6) (optional)
+  CONFIG_PATH/mame.glc.filtered, CONFIG_PATH/mess.glc.filtered, CONFIG_PATH/ume.glc.filtered  Filtered version of the machine list cache created by qmc2(6) (optional)
 
 SEE ALSO
   qmc2(6), qmc2-sdlmame(6), qmc2-sdlmess(6), qmc2-sdlume(6), qchdman(6)

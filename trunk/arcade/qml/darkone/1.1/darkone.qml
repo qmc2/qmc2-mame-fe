@@ -134,7 +134,7 @@ FocusScope {
                                          overlayBackLight.visible = true;
                                       overlayScreen.state = "on";
                                    } }
-        onListHiddenChanged: { darkone.listHidden ? gameListView.state = "hidden" : gameListView.state = "shown"; }
+        onListHiddenChanged: { darkone.listHidden ? machineListView.state = "hidden" : machineListView.state = "shown"; }
         onToolbarHiddenChanged: { darkone.toolbarHidden ? toolbar.state = "hidden" : toolbar.state = "shown"; }
         onDataHiddenChanged: { darkone.dataHidden ? overlayData.state = "hidden" : overlayData.state = "shown"; }
         onInfoMissingChanged: { darkone.infoMissing ? overlayText.state = "missing" : overlayText.state = "found"; }
@@ -361,7 +361,7 @@ FocusScope {
             repeat: true
             onTriggered: { if (!overlayScreenScaleAnimation.running) {
                               launchTimer.stop();
-                              viewer.launchEmulator(gameListModel[gameListView.currentIndex].id);
+                              viewer.launchEmulator(machineListModel[machineListView.currentIndex].id);
                            } } }
         Timer {
             id: hideToolbarTimer
@@ -489,14 +489,14 @@ FocusScope {
                             toolbarFocusScope.focus = true;
                             event.accepted = true;
                         } else if ( !darkone.listHidden ) {
-                            gameListView.focus = true;
+                            machineListView.focus = true;
                             event.accepted = true;
                         }
                         break;
                     }
                     case Qt.Key_Tab: {
                         if ( !darkone.listHidden ) {
-                            gameListView.focus = true;
+                            machineListView.focus = true;
                             event.accepted = true;
                         } else if ( !darkone.toolbarHidden ) {
                             toolbarFocusScope.focus = true;
@@ -543,7 +543,7 @@ FocusScope {
                                         toolbarFocusScope.focus = true;
                                         event.accepted = true;
                                     } else if ( !darkone.listHidden ) {
-                                        gameListView.focus = true;
+                                        machineListView.focus = true;
                                         event.accepted = true;
                                     }
                                 }
@@ -573,7 +573,7 @@ FocusScope {
                                     event.accepted = true;
                                 } else {
                                     if ( !darkone.listHidden ) {
-                                        gameListView.focus = true;
+                                        machineListView.focus = true;
                                         event.accepted = true;
                                     } else if ( !darkone.toolbarHidden ) {
                                         toolbarFocusScope.focus = true;
@@ -598,7 +598,7 @@ FocusScope {
                                 toolbarFocusScope.focus = true;
                                 event.accepted = true
                             } else if ( !darkone.listHidden ) {
-                                gameListView.focus = true;
+                                machineListView.focus = true;
                                 event.accepted = true
                             }
                         } else {
@@ -609,7 +609,7 @@ FocusScope {
                     case Qt.Key_Right: {
                         if ( event.modifiers & Qt.ControlModifier ) {
                             if ( !darkone.listHidden ) {
-                                gameListView.focus = true;
+                                machineListView.focus = true;
                                 event.accepted = true
                             } else if ( !darkone.toolbarHidden ) {
                                 toolbarFocusScope.focus = true;
@@ -1193,7 +1193,7 @@ FocusScope {
                     onEntered: { overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 1.0; }
                     onExited: { overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 0.5; }
                     onClicked: { if (!darkone.ignoreLaunch) {
-                                     gameListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
+                                     machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
                                      DarkoneJS.launch(); }
                     }
                 }
@@ -1221,7 +1221,7 @@ FocusScope {
                     onEntered: { overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 1.0; }
                     onExited: { overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 0.5; }
                     onClicked: { if (!darkone.ignoreLaunch) {
-                                     gameListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
+                                     machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
                                      DarkoneJS.launch(); }
                     }
                 }
@@ -1233,30 +1233,30 @@ FocusScope {
 * list
 */
         Rectangle {
-            id: gameListViewBorder
-            z: gameListView.z + 15
+            id: machineListViewBorder
+            z: machineListView.z + 15
             anchors.left: darkone.left
             anchors.leftMargin: 8
             anchors.top: darkone.top
-            anchors.topMargin: gameListView.itemHeight + 1
+            anchors.topMargin: machineListView.itemHeight + 1
             width: 2
-            height: gameListView.height - 2
+            height: machineListView.height - 2
             color: darkone.textColour2
-            visible: gameListView.activeFocus && darkone.activeBorders
+            visible: machineListView.activeFocus && darkone.activeBorders
         }
 
         ListView {
-            id: gameListView
+            id: machineListView
             focus: false // darkoneFocusScope
             property int itemHeight: 24
             z: 3
-            height: parent.height - (darkone.toolbarHidden ? 2 : toolbar.height) - gameListView.itemHeight - gameListView.itemHeight
+            height: parent.height - (darkone.toolbarHidden ? 2 : toolbar.height) - machineListView.itemHeight - machineListView.itemHeight
             width: DarkoneJS.listWidth()
             anchors.top: parent.top
-            anchors.topMargin: gameListView.itemHeight
+            anchors.topMargin: machineListView.itemHeight
             anchors.left: parent.left
             anchors.leftMargin: 15
-            model: gameListModel
+            model: machineListModel
             state: "shown"
             spacing: 10
             clip: true
@@ -1266,8 +1266,8 @@ FocusScope {
             maximumFlickVelocity: 5000
             interactive: true
             keyNavigationWraps: false
-            preferredHighlightBegin: (height / 2) - (gameListView.itemHeight / 2)
-            preferredHighlightEnd: (height / 2) + (gameListView.itemHeight / 2)
+            preferredHighlightBegin: (height / 2) - (machineListView.itemHeight / 2)
+            preferredHighlightEnd: (height / 2) + (machineListView.itemHeight / 2)
 
             states: [
                 State {
@@ -1292,63 +1292,63 @@ FocusScope {
                     to: "shown"
                     SequentialAnimation {
                         // ensure correct initial position
-                        PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: anchors.leftMargin; to: -5 - DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
-                        PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: gameListView.anchors.leftMargin; to: -5 - DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
+                        PropertyAnimation { target: machineListView; property: "anchors.leftMargin"; from: anchors.leftMargin; to: -5 - DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
+                        PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: machineListView.anchors.leftMargin; to: -5 - DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
                         // show list / search box
-                        PropertyAnimation { target: gameListView; property: "opacity"; from: 0; to: 1.0; duration: 0; }
+                        PropertyAnimation { target: machineListView; property: "opacity"; from: 0; to: 1.0; duration: 0; }
                         PropertyAnimation { target: searchBox; property: "opacity"; from: 0; to: 1.0; duration: 0; }
                         // animate
                         ParallelAnimation {
-                            PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: -5 - DarkoneJS.listWidth(); to: darkone.itemLeftMargin; duration: darkone.listDuration; easing.type: Easing.InOutQuad }
+                            PropertyAnimation { target: machineListView; property: "anchors.leftMargin"; from: -5 - DarkoneJS.listWidth(); to: darkone.itemLeftMargin; duration: darkone.listDuration; easing.type: Easing.InOutQuad }
                             PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: -5 - DarkoneJS.listWidth(); to: darkone.itemLeftMargin; duration: darkone.listDuration; easing.type: Easing.InOutQuad }
                             PropertyAnimation { target: showListButton; property: "anchors.leftMargin"; from: darkone.itemLeftMargin; to: darkone.itemLeftMargin + DarkoneJS.listWidth() + 15; duration: darkone.listDuration; easing.type: Easing.InOutQuad; } }
                         // show borders
-                        PropertyAnimation { target: gameListViewBorder; property: "opacity"; from: 0; to: 1.0; duration: 0; }
+                        PropertyAnimation { target: machineListViewBorder; property: "opacity"; from: 0; to: 1.0; duration: 0; }
                     } },
                 Transition {
                     from: "shown"
                     to: "hidden"
                     SequentialAnimation {
                         // hide border
-                        PropertyAnimation { target: gameListViewBorder; property: "opacity"; from: 1.0; to: 0; duration: 0; }
+                        PropertyAnimation { target: machineListViewBorder; property: "opacity"; from: 1.0; to: 0; duration: 0; }
                         // ensure correct initial position
-                        PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: anchors.leftMargin; to: darkone.itemLeftMargin + DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
-                        PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: gameListView.anchors.leftMargin; to: darkone.itemLeftMargin + DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
+                        PropertyAnimation { target: machineListView; property: "anchors.leftMargin"; from: anchors.leftMargin; to: darkone.itemLeftMargin + DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
+                        PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: machineListView.anchors.leftMargin; to: darkone.itemLeftMargin + DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
                         // animate
                         ParallelAnimation {
-                            PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: darkone.itemLeftMargin; to: -5 - DarkoneJS.listWidth(); duration: darkone.listDuration; easing.type: Easing.InOutQuad }
+                            PropertyAnimation { target: machineListView; property: "anchors.leftMargin"; from: darkone.itemLeftMargin; to: -5 - DarkoneJS.listWidth(); duration: darkone.listDuration; easing.type: Easing.InOutQuad }
                             PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: darkone.itemLeftMargin; to: -5 - DarkoneJS.listWidth(); duration: darkone.listDuration; easing.type: Easing.InOutQuad }
                             PropertyAnimation { target: showListButton; property: "anchors.leftMargin"; from: darkone.itemLeftMargin + DarkoneJS.listWidth() + 15; to: darkone.itemLeftMargin; duration: darkone.listDuration; easing.type: Easing.InOutQuad; } }
                         // hide list / search box
-                        PropertyAnimation { target: gameListView; property: "opacity"; from: 1.0; to: 0; duration: 0; }
+                        PropertyAnimation { target: machineListView; property: "opacity"; from: 1.0; to: 0; duration: 0; }
                         PropertyAnimation { target: searchBox; property: "opacity"; from: 1.0; to: 0; duration: 0; }
                 } }
             ]
 
-            function firstVisibleItem() { return - Math.floor(((height / 2) / (gameListView.itemHeight + 10))); } // relatives 'work'
-            function lastVisibleItem() { return + Math.floor(((height / 2) / (gameListView.itemHeight + 10))); } // relatives 'work'
+            function firstVisibleItem() { return - Math.floor(((height / 2) / (machineListView.itemHeight + 10))); } // relatives 'work'
+            function lastVisibleItem() { return + Math.floor(((height / 2) / (machineListView.itemHeight + 10))); } // relatives 'work'
             function itemsPerPage() { debug && console.log("contentX: '" + contentX + "', " +
                                                            "contentY: '" + contentY + "', " +
                                                            "firstVisibleItem: '" + firstVisibleItem() + "', " +
                                                            "lastVisibleItem: '" + lastVisibleItem() + "', " +
-                                                           "itemsPerPage: '" + height / (gameListView.itemHeight + 10) + "'");
+                                                           "itemsPerPage: '" + height / (machineListView.itemHeight + 10) + "'");
                                           return lastVisibleItem() - firstVisibleItem() + 1 }
             function listUp() {
                 if ( currentIndex - (itemsPerPage() - 1) > 0 ) {
                     currentIndex -= (itemsPerPage() - 1)
-                    gameListView.positionViewAtIndex(currentIndex, ListView.Contain);
+                    machineListView.positionViewAtIndex(currentIndex, ListView.Contain);
                 } else {
-                    gameListView.positionViewAtBeginning();
+                    machineListView.positionViewAtBeginning();
                     currentIndex = 0;
                 }
             }
             function listDown() {
-                if ( currentIndex + (itemsPerPage() - 1) < gameListModelCount ) {
+                if ( currentIndex + (itemsPerPage() - 1) < machineListModelCount ) {
                     currentIndex += (itemsPerPage() - 1)
-                    gameListView.positionViewAtIndex(currentIndex, ListView.Contain);
+                    machineListView.positionViewAtIndex(currentIndex, ListView.Contain);
                 } else {
-                    gameListView.positionViewAtEnd();
-                    currentIndex = gameListModelCount - 1;
+                    machineListView.positionViewAtEnd();
+                    currentIndex = machineListModelCount - 1;
                 }
             }
 
@@ -1362,13 +1362,13 @@ FocusScope {
                 } 
             }
             onFocusChanged: {
-                (debug2 || debug3) && console.log("[focus] gameListView: '" + focus + "'" );
+                (debug2 || debug3) && console.log("[focus] machineListView: '" + focus + "'" );
                 (debug2 || debug3) && focus && DarkoneJS.inFocus();
                 if ( focus )
-                    DarkoneJS.focus("gameListView");
+                    DarkoneJS.focus("machineListView");
             }
             onActiveFocusChanged: {
-                debug2 && console.log("[activeFocus] gameListView: '" + activeFocus + "'" );
+                debug2 && console.log("[activeFocus] machineListView: '" + activeFocus + "'" );
                 debug2 && activeFocus && DarkoneJS.inFocus();
             }
             onCurrentIndexChanged: {
@@ -1380,9 +1380,9 @@ FocusScope {
                 anchors.fill: parent
                 cursorShape: Qt.ArrowCursor
             }
-            // gameListView key events
+            // machineListView key events
             Keys.onPressed: {
-                debug2 && console.log("[keys] gameListView: '" + DarkoneJS.keyEvent2String(event) + "'")
+                debug2 && console.log("[keys] machineListView: '" + DarkoneJS.keyEvent2String(event) + "'")
 
                 // lights
                 darkone.lights();
@@ -1419,14 +1419,14 @@ FocusScope {
                     }
                     case Qt.Key_End: {
                         positionViewAtEnd();
-                        currentIndex = gameListModelCount - 1;
+                        currentIndex = machineListModelCount - 1;
                         event.accepted = true;
                         break;
                     }
                     case Qt.Key_Enter:
                     case Qt.Key_Return: {
                         if ( !(event.modifiers & Qt.AltModifier) && !darkone.ignoreLaunch ) {
-                            gameListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
+                            machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
                             DarkoneJS.launch();
                         }
                         break;
@@ -1443,7 +1443,7 @@ FocusScope {
                                     }
                                     case Qt.Key_Down: {
                                         positionViewAtEnd();
-                                        currentIndex = gameListModelCount - 1;
+                                        currentIndex = machineListModelCount - 1;
                                         event.accepted = true;
                                         break;
                                     }
@@ -1482,11 +1482,11 @@ FocusScope {
 
             // item
             delegate: Component {
-                id: gameListItemDelegate
+                id: machineListItemDelegate
                 Rectangle {
                     width: parent.width
-                    height: gameListView.itemHeight
-                    id: gameListItemBackground
+                    height: machineListView.itemHeight
+                    id: machineListItemBackground
                     smooth: true
                     border.color: "#333333"
                     border.width: 1
@@ -1498,40 +1498,40 @@ FocusScope {
                     opacity: 0.75
 
                     MouseArea {
-                        id: gameListItemMouseArea
+                        id: machineListItemMouseArea
                         anchors.fill: parent
                         hoverEnabled: true
                         acceptedButtons: Qt.LeftButton
                         onContainsMouseChanged: {
                             if ( mapToItem(toolbar, mouseX, mouseY).y < 0 ) {
                                 if ( containsMouse )
-                                    DarkoneJS.itemEntered(gameListItemText, gameListItemBackground, mapToItem(toolbar, mouseX, mouseY));
+                                    DarkoneJS.itemEntered(machineListItemText, machineListItemBackground, mapToItem(toolbar, mouseX, mouseY));
                                 else
-                                    DarkoneJS.itemExited(gameListItemText, gameListItemBackground, mapToItem(toolbar, mouseX, mouseY));
+                                    DarkoneJS.itemExited(machineListItemText, machineListItemBackground, mapToItem(toolbar, mouseX, mouseY));
                             }
                         }
                         onDoubleClicked: { if (!darkone.ignoreLaunch) {
-                                              gameListView.currentIndex = index;
-                                              gameListView.positionViewAtIndex(darkone.lastIndex, ListView.Center) ;
+                                              machineListView.currentIndex = index;
+                                              machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center) ;
                                               DarkoneJS.launch(); }
                         }
                         onClicked: {
-                            gameListView.currentIndex = index;
-                            debug && console.log("[gameListView] setting index: '" + index + "'");
-                            gameListView.focus = true;
-                            gameListView.forceActiveFocus();
+                            machineListView.currentIndex = index;
+                            debug && console.log("[machineListView] setting index: '" + index + "'");
+                            machineListView.focus = true;
+                            machineListView.forceActiveFocus();
                         }
                     }
 
                     Text {
                         property bool fontResized: false
-                        id: gameListItemText
+                        id: machineListItemText
                         anchors.fill: parent
                         anchors.margins: 10
                         verticalAlignment: Text.AlignVCenter
                         horizontalAlignment: Text.AlignHCenter
                         text: model.modelData.description
-                        color: gameListItemBackground.ListView.isCurrentItem ? darkone.textColour2: darkone.textColour1
+                        color: machineListItemBackground.ListView.isCurrentItem ? darkone.textColour2: darkone.textColour1
                         font.bold: true
                         font.pixelSize: 13
                         elide: Text.ElideRight
@@ -1713,13 +1713,13 @@ FocusScope {
                     onCheckedChanged: {
                         if (darkone.initialised) {
                             sortByName = checked;
-                            var desc = gameListModel[gameListView.currentIndex].description
+                            var desc = machineListModel[machineListView.currentIndex].description
                             viewer.saveSettings();
-                            viewer.loadGamelist();
-                            gameListView.currentIndex = viewer.findIndex(desc, gameListView.currentIndex);
-                            gameListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
+                            viewer.loadMachineList();
+                            machineListView.currentIndex = viewer.findIndex(desc, machineListView.currentIndex);
+                            machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
                             debug && console.log("[sortByName] desc: '" + desc + "', " +
-                                                 "result: '" + viewer.findIndex(desc, gameListView.currentIndex) + "'");
+                                                 "result: '" + viewer.findIndex(desc, machineListView.currentIndex) + "'");
                         }
                     }
 
@@ -2371,7 +2371,7 @@ FocusScope {
                         SequentialAnimation {
                             ParallelAnimation {
                                 PropertyAnimation { target: toolbar; property: "anchors.bottomMargin"; from: -(toolbar.height - 2); to: 0; duration: 500; easing.type: Easing.OutCubic }
-                                PropertyAnimation { target: gameListView; property: "anchors.bottomMargin"; from: 2 + gameListView.itemHeight; to: toolbar.height + gameListView.itemHeight; duration: 500; easing.type: Easing.OutCubic }
+                                PropertyAnimation { target: machineListView; property: "anchors.bottomMargin"; from: 2 + machineListView.itemHeight; to: toolbar.height + machineListView.itemHeight; duration: 500; easing.type: Easing.OutCubic }
                             }
                             PropertyAnimation { target: toolbarBorder; property: "opacity"; from: 0; to: 1.0; duration: 0; }
                             PropertyAnimation { target: toolbarItemBorderBottom; property: "opacity"; from: 0; to: 1.0; duration: 0; }
@@ -2385,7 +2385,7 @@ FocusScope {
                             PropertyAnimation { target: toolbarBorder; property: "opacity"; from: 1.0; to: 0; duration: 0; }
                             ParallelAnimation {
                                 PropertyAnimation { target: toolbar; property: "anchors.bottomMargin"; from: 0; to: -(toolbar.height - 2); duration: 500; easing.type: Easing.OutCubic }
-                                PropertyAnimation { target: gameListView; property: "anchors.bottomMargin"; from: toolbar.height + gameListView.itemHeight; to: 2 + gameListView.itemHeight; duration: 500; easing.type: Easing.OutCubic }
+                                PropertyAnimation { target: machineListView; property: "anchors.bottomMargin"; from: toolbar.height + machineListView.itemHeight; to: 2 + machineListView.itemHeight; duration: 500; easing.type: Easing.OutCubic }
                             }
                         }
                     }
@@ -2441,7 +2441,7 @@ FocusScope {
                                 case Qt.Key_Left:
                                 case Qt.Key_Up: {
                                     if ( !darkone.listHidden )
-                                        gameListView.forceActiveFocus();
+                                        machineListView.forceActiveFocus();
                                     else
                                         overlay.forceActiveFocus();
                                     event.accepted = true;
@@ -2460,7 +2460,7 @@ FocusScope {
                                     if ( toolbar.cycling ) {
                                         toolbar.cycling = false;
                                         if ( !darkone.listHidden )
-                                            gameListView.forceActiveFocus();
+                                            machineListView.forceActiveFocus();
                                         else
                                             overlay.forceActiveFocus();
                                     } else {
@@ -2539,8 +2539,8 @@ FocusScope {
                             onExited: { hideToolbarTimer.restart(); parent.opacity = 0.75 }
                             onClicked: {
                                 parent.opacity = 1.0;
-                                gameListView.currentIndex = viewer.findIndex(searchTextInput.text, gameListView.currentIndex)
-                                gameListView.positionViewAtIndex(gameListView.currentIndex, ListView.Center);
+                                machineListView.currentIndex = viewer.findIndex(searchTextInput.text, machineListView.currentIndex)
+                                machineListView.positionViewAtIndex(machineListView.currentIndex, ListView.Center);
                                 focus = true;
                             }
                         }
@@ -2560,8 +2560,8 @@ FocusScope {
                                 case Qt.Key_Space:
                                 case Qt.Key_Enter:
                                 case Qt.Key_Return: {
-                                    gameListView.currentIndex = viewer.findIndex(searchTextInput.text, gameListView.currentIndex)
-                                    gameListView.positionViewAtIndex(gameListView.currentIndex, ListView.Center);
+                                    machineListView.currentIndex = viewer.findIndex(searchTextInput.text, machineListView.currentIndex)
+                                    machineListView.positionViewAtIndex(machineListView.currentIndex, ListView.Center);
                                     focus = true;
                                     event.accepted = true;
                                     break;
@@ -2608,8 +2608,8 @@ FocusScope {
                                 visible: parent.activeFocus
                             }
 
-                            onAccepted: { gameListView.currentIndex = viewer.findIndex(searchTextInput.text, gameListView.currentIndex)
-                                          gameListView.positionViewAtIndex(gameListView.currentIndex, ListView.Center);
+                            onAccepted: { machineListView.currentIndex = viewer.findIndex(searchTextInput.text, machineListView.currentIndex)
+                                          machineListView.positionViewAtIndex(machineListView.currentIndex, ListView.Center);
                             }
                             onFocusChanged: {
                                 if ( darkone.initialised ) {
@@ -2713,7 +2713,7 @@ FocusScope {
                     anchors.bottomMargin: (parent.height - height) / 2
                     anchors.left: toolbar.left
                     // important: ensure behaviour is based on actual state and not 'secondary/wrapper' boolean darkone.listHidden
-                    anchors.leftMargin: darkone.itemLeftMargin + (gameListView.state == "hidden" ? 0 : DarkoneJS.listWidth() + 15);
+                    anchors.leftMargin: darkone.itemLeftMargin + (machineListView.state == "hidden" ? 0 : DarkoneJS.listWidth() + 15);
                     fillMode: Image.PreserveAspectFit
                     opacity: 0.75
                     rotation: darkone.listHidden ? 90 : 270
@@ -2929,7 +2929,7 @@ FocusScope {
                             case Qt.Key_Enter:
                             case Qt.Key_Return: {
                                 if (!darkone.ignoreLaunch) {
-                                    gameListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
+                                    machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
                                     DarkoneJS.launch();
                                 }
                                 event.accepted = true;
@@ -2973,7 +2973,7 @@ FocusScope {
                                         overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 0.5;
                             }
                             onClicked: { if (!darkone.ignoreLaunch) {
-                                             gameListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
+                                             machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
                                              DarkoneJS.launch(); }
                             }
                         }

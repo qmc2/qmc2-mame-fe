@@ -7,7 +7,7 @@
 
 #include "settings.h"
 #include "samplechecker.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "qmc2main.h"
 #include "procmgr.h"
 #include "toolexec.h"
@@ -17,12 +17,12 @@
 extern MainWindow *qmc2MainWindow;
 extern ProcessManager *qmc2ProcessManager;
 extern Settings *qmc2Config;
-extern Gamelist *qmc2Gamelist;
+extern MachineList *qmc2MachineList;
 extern bool qmc2CleaningUp;
 extern bool qmc2SampleCheckActive;
 extern bool qmc2StopParser;
 extern bool qmc2TemplateCheck;
-extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 
 SampleChecker::SampleChecker(QWidget *parent)
 #if defined(QMC2_OS_WIN)
@@ -138,11 +138,11 @@ void SampleChecker::verify()
 	int sampleCount = 0;
 	QMap<QString, int> sampleCountMap;
 	progressBar->setFormat(tr("Parsing XML data"));
-	qint64 xmlRowCount = qmc2Gamelist->xmlDb()->xmlRowCount();
+	qint64 xmlRowCount = qmc2MachineList->xmlDb()->xmlRowCount();
 	progressBar->setRange(0, xmlRowCount);
 	progressBar->setValue(0);
 	for (qint64 rowCounter = 1; rowCounter < xmlRowCount; rowCounter++) {
-		QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(rowCounter).split("\n", QString::SkipEmptyParts);
+		QStringList xmlLines = qmc2MachineList->xmlDb()->xml(rowCounter).split("\n", QString::SkipEmptyParts);
 		int xmlLinesCount = xmlLines.count();
 		progressBar->setValue(rowCounter);
 		if ( rowCounter % QMC2_CHECK_UPDATE_FAST == 0 )
@@ -180,7 +180,7 @@ void SampleChecker::verify()
 							sampleMap[currentGameName] = currentGameName;
 							sampleCountMap[currentGameName] = sampleCount;
 						} else {
-							if ( qmc2GamelistItemHash.contains(currentSampleOf) ) {
+							if ( qmc2MachineListItemHash.contains(currentSampleOf) ) {
 								sampleMap[currentGameName] = currentSampleOf;
 								sampleCountMap[currentGameName] = sampleCount;
 							} else

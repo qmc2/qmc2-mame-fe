@@ -33,7 +33,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QTabWidget" name="tabWidgetGamelist">
+         <widget class="QTabWidget" name="tabWidgetMachineList">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -46,7 +46,7 @@
           <property name="currentIndex">
            <number>0</number>
           </property>
-          <widget class="QWidget" name="tabGamelist">
+          <widget class="QWidget" name="tabMachineList">
            <attribute name="icon">
             <iconset resource="qmc2.qrc">
              <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
@@ -131,7 +131,7 @@
                <number>0</number>
               </property>
               <widget class="QWidget" name="gamelistPage">
-               <layout class="QGridLayout" name="gridLayoutGamelistPage">
+               <layout class="QGridLayout" name="gridLayoutMachineListPage">
                 <property name="margin">
                  <number>0</number>
                 </property>
@@ -139,7 +139,7 @@
                  <number>0</number>
                 </property>
                 <item row="0" column="0">
-                 <widget class="QTreeWidget" name="treeWidgetGamelist">
+                 <widget class="QTreeWidget" name="treeWidgetMachineList">
                   <property name="contextMenuPolicy">
                    <enum>Qt::CustomContextMenu</enum>
                   </property>
@@ -261,7 +261,7 @@
                  </widget>
                 </item>
                 <item row="1" column="0">
-                 <widget class="QLabel" name="labelLoadingGamelist">
+                 <widget class="QLabel" name="labelLoadingMachineList">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                     <horstretch>0</horstretch>
@@ -963,7 +963,7 @@
             <number>0</number>
            </property>
            <item row="0" column="0">
-            <widget class="QLabel" name="labelGamelistStatus">
+            <widget class="QLabel" name="labelMachineListStatus">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                <horstretch>0</horstretch>
@@ -982,7 +982,7 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QProgressBar" name="progressBarGamelist">
+            <widget class="QProgressBar" name="progressBarMachineList">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Ignored" vsizetype="Minimum">
                <horstretch>0</horstretch>
@@ -2622,7 +2622,7 @@
        <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
      </property>
      <addaction name="actionClearROMStateCache"/>
-     <addaction name="actionClearGamelistCache"/>
+     <addaction name="actionClearMachineListCache"/>
      <addaction name="actionClearXMLCache"/>
      <addaction name="actionClearSlotInfoCache"/>
      <addaction name="actionClearSoftwareListCache"/>
@@ -3811,7 +3811,7 @@
     <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
-  <action name="actionClearGamelistCache">
+  <action name="actionClearMachineListCache">
    <property name="text">
     <string>Clear machine list cache</string>
    </property>
@@ -4766,8 +4766,8 @@
  </widget>
  <layoutdefault spacing="6" margin="6"/>
  <tabstops>
-  <tabstop>tabWidgetGamelist</tabstop>
-  <tabstop>treeWidgetGamelist</tabstop>
+  <tabstop>tabWidgetMachineList</tabstop>
+  <tabstop>treeWidgetMachineList</tabstop>
   <tabstop>treeWidgetHierarchy</tabstop>
   <tabstop>treeWidgetCategoryView</tabstop>
   <tabstop>treeWidgetVersionView</tabstop>

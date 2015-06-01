@@ -24,7 +24,7 @@
 #include "romalyzer.h"
 #include "qmc2main.h"
 #include "options.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "macros.h"
 #include "unzip.h"
 #include "zip.h"
@@ -35,13 +35,13 @@
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
-extern Gamelist *qmc2Gamelist;
+extern MachineList *qmc2MachineList;
 extern bool qmc2ReloadActive;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
 extern bool qmc2StopParser;
 extern SoftwareList *qmc2SoftwareList;
-extern QHash<QString, QTreeWidgetItem *> qmc2GamelistItemHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
@@ -323,7 +323,7 @@ void ROMAlyzer::on_pushButtonAnalyze_clicked()
 		// stop ROMAlyzer
 		log(tr("stopping analysis"));
 		qmc2StopParser = true;
-	} else if ( qmc2Gamelist->numGames > 0 ) {
+	} else if ( qmc2MachineList->numGames > 0 ) {
 		// start ROMAlyzer
 		log(tr("starting analysis"));
 		qmc2StopParser = false;
@@ -768,20 +768,20 @@ void ROMAlyzer::analyze()
 			if ( wizardSearch || quickSearch || wildcardRx.indexIn(lineEditSets->text().simplified()) == -1 ) {
 				// no wild-cards => no need to search!
 				foreach (QString id, setPatternList)
-					if ( qmc2Gamelist->xmlDb()->exists(id) )
+					if ( qmc2MachineList->xmlDb()->exists(id) )
 						analyzerList << id;
 			} else {
 				if ( setPatternList.count() == 1 ) {
 					// special case for exactly ONE matching set -- no need to search
-					if ( qmc2GamelistItemHash.contains(setPatternList[0]) )
+					if ( qmc2MachineListItemHash.contains(setPatternList[0]) )
 						analyzerList << setPatternList[0];
 				}
 				if ( analyzerList.empty() ) {
 					// determine list of sets to analyze
 					labelStatus->setText(tr("Searching sets"));
-					progressBar->setRange(0, qmc2Gamelist->numGames);
+					progressBar->setRange(0, qmc2MachineList->numGames);
 					progressBar->reset();
-					QHashIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemHash);
+					QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 					i = 0;
 					bool matchAll = (lineEditSets->text().simplified() == "*");
 					while ( it.hasNext() && !qmc2StopParser ) {
@@ -1449,9 +1449,9 @@ QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 
 	if ( includeDTD ) {
 		xmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-		xmlBuffer += qmc2Gamelist->xmlDb()->dtd();
+		xmlBuffer += qmc2MachineList->xmlDb()->dtd();
 	}
-	xmlBuffer += qmc2Gamelist->xmlDb()->xml(gameName);
+	xmlBuffer += qmc2MachineList->xmlDb()->xml(gameName);
 
 	return xmlBuffer;
 }
@@ -2432,11 +2432,11 @@ void ROMAlyzer::selectItem(QString gameName)
 
 	switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 		case QMC2_VIEWMACHINELIST_INDEX: {
-			      QTreeWidgetItem *gameItem = qmc2GamelistItemHash[gameName];
+			      QTreeWidgetItem *gameItem = qmc2MachineListItemHash[gameName];
 			      if ( gameItem ) {
-				      qmc2MainWindow->treeWidgetGamelist->clearSelection();
-				      qmc2MainWindow->treeWidgetGamelist->setCurrentItem(gameItem);
-				      qmc2MainWindow->treeWidgetGamelist->scrollToItem(gameItem, qmc2CursorPositioningMode);
+				      qmc2MainWindow->treeWidgetMachineList->clearSelection();
+				      qmc2MainWindow->treeWidgetMachineList->setCurrentItem(gameItem);
+				      qmc2MainWindow->treeWidgetMachineList->scrollToItem(gameItem, qmc2CursorPositioningMode);
 				      gameItem->setSelected(true);
 			      }
 			      break;
@@ -2903,14 +2903,14 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
-			progressBar->setRange(0, qmc2MainWindow->treeWidgetGamelist->topLevelItemCount());
-			for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount(); i++) {
+			progressBar->setRange(0, qmc2MainWindow->treeWidgetMachineList->topLevelItemCount());
+			for (int i = 0; i < qmc2MainWindow->treeWidgetMachineList->topLevelItemCount(); i++) {
 				if ( i % QMC2_ROMALYZER_CKSUM_SEARCH_RESPONSE ) {
 					progressBar->setValue(i);
 					qApp->processEvents();
 				}
-				QString currentGame = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i)->text(QMC2_MACHINELIST_COLUMN_NAME);
-				QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(currentGame).split("\n", QString::SkipEmptyParts);
+				QString currentGame = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i)->text(QMC2_MACHINELIST_COLUMN_NAME);
+				QStringList xmlLines = qmc2MachineList->xmlDb()->xml(currentGame).split("\n", QString::SkipEmptyParts);
 				for (int j = 0; j < xmlLines.count(); j++) {
 					QString xmlLine = xmlLines[j];
 					int hashIndex = xmlLine.indexOf(hashStartString);
@@ -3283,7 +3283,7 @@ void ROMAlyzer::exportToDataFile()
 		QFileInfo fi(dataFilePath);
 		if ( dataFile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
 			setActive(true);
-			progressBar->setRange(0, qmc2MainWindow->treeWidgetGamelist->topLevelItemCount());
+			progressBar->setRange(0, qmc2MainWindow->treeWidgetMachineList->topLevelItemCount());
 			labelStatus->setText(tr("Exporting"));
 			QTextStream ts(&dataFile);
 			ts << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";

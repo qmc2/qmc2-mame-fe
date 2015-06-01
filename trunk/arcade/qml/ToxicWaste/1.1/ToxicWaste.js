@@ -11,7 +11,7 @@ function init() {
 }
 
 function restoreLastIndex() {
-    if ( lastIndex < gameListModelCount ) {
+    if ( lastIndex < machineListModelCount ) {
         gamelistView.currentIndex = lastIndex;
         gamelistView.positionViewAtIndex(lastIndex, ListView.Beginning);
     }
@@ -70,7 +70,7 @@ function overlayOffset(h) {
 }
 
 function gameCardHeader() {
-    var gameObject = gameListModel[gamelistView.currentIndex];
+    var gameObject = machineListModel[gamelistView.currentIndex];
     return "<h2>" + gameObject.description + "</h2>" + "<p>"+ qsTr("ID") + ": " + gameObject.id + " / " + qsTr("ROM state") + ": " + viewer.romStateText(gameObject.romState) + "</p>";
 }
 
@@ -194,13 +194,13 @@ function cachePrefix(imageType) {
 }
 
 function imageUrl(imageType) {
-    var imgUrl = "image://qmc2/" + cachePrefix(imageType) + "/" + gameListModel[gamelistView.currentIndex].id + "/" + gameListModel[gamelistView.currentIndex].parentId;
+    var imgUrl = "image://qmc2/" + cachePrefix(imageType) + "/" + machineListModel[gamelistView.currentIndex].id + "/" + machineListModel[gamelistView.currentIndex].parentId;
     return imgUrl;
 }
 
 function launchButtonSource() {
     var buttonSource = "images/launch_";
-    switch ( gameListModel[gamelistView.currentIndex].romState ) {
+    switch ( machineListModel[gamelistView.currentIndex].romState ) {
     case 0:
         buttonSource += "correct.png";
         break;

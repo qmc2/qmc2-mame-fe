@@ -329,6 +329,18 @@ bool Welcome::checkConfig()
 			startupConfig->remove("Frontend/GUI/ExitOnVariantLaunch");
 			startupConfig->remove("Frontend/GUI/MinimizeOnVariantLaunch");
 		}
+		if ( QMC2_TEST_VERSION(omv, 53, osr, 6702) ) {
+			QString oldKeySubString("Gamelist");
+			QString newKeySubString("MachineList");
+			foreach (QString key, startupConfig->allKeys()) {
+				if ( key.contains(oldKeySubString) ) {
+					QVariant value = startupConfig->value(key);
+					startupConfig->remove(key);
+					QString newKey = key.replace(oldKeySubString, newKeySubString);
+					startupConfig->setValue(newKey, value);
+				}
+			}
+		}
 	}
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();
 	return configOkay;

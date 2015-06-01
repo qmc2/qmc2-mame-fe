@@ -4,7 +4,7 @@
 #include <QStringList>
 
 #include "ui_arcademodesetup.h"
-#include "gamelist.h"
+#include "machinelist.h"
 
 class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 {
@@ -15,7 +15,7 @@ class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 		~ArcadeModeSetup();
 
 		bool isWritableFile(QString);
-		static bool lessThan(const GamelistItem *, const GamelistItem *);
+		static bool lessThan(const MachineListItem *, const MachineListItem *);
 
 		static QStringList keySequenceMapBases;
 #if QMC2_JOYSTICK == 1

@@ -6,7 +6,7 @@
 #include "options.h"
 #include "emuopt.h"
 #include "qmc2main.h"
-#include "gamelist.h"
+#include "machinelist.h"
 
 #if QMC2_JOYSTICK == 1
 #include <SDL.h>
@@ -24,7 +24,7 @@
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
-extern Gamelist *qmc2Gamelist;
+extern MachineList *qmc2MachineList;
 extern EmulatorOptions *qmc2GlobalEmulatorOptions;
 
 About::About(QWidget *parent)
@@ -132,7 +132,7 @@ void About::showEvent(QShowEvent *e)
 #elif defined(QMC2_OS_WIN)
 		"<p><b>" + tr("Running OS:") + "</b><br>" + winVersion + "</p>" +
 #endif
-		"<p><b>" + tr("Emulator version:") + "</b><br>" + qmc2Gamelist->emulatorVersion + "</p>" +
+		"<p><b>" + tr("Emulator version:") + "</b><br>" + qmc2MachineList->emulatorVersion + "</p>" +
 		"<p><b>" + tr("Template information:") + "</b><br>" + tr("Emulator:") + " " + qmc2GlobalEmulatorOptions->templateEmulator + "<br>" + tr("Version:") + " " + qmc2GlobalEmulatorOptions->templateVersion + "<br>" + tr("Format:") + " " + qmc2GlobalEmulatorOptions->templateFormat + "</p>" +
 		"<p><b>" + tr("Qt version:") + "</b><br>" + tr("Compile-time:") + " " + QT_VERSION_STR + "<br>" + tr("Run-time:") + " " + qVersion() +
 #if QT_VERSION >= 0x050000

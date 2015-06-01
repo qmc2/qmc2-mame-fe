@@ -14,7 +14,7 @@
 #include "datinfodbmgr.h"
 #include "macros.h"
 
-class Gamelist : public QObject
+class MachineList : public QObject
 {
 	Q_OBJECT
 
@@ -61,7 +61,7 @@ class Gamelist : public QObject
 		QFile romCache;
 		QFile gamelistCache;
 		QTextStream tsRomCache;
-		QTextStream tsGamelistCache;
+		QTextStream tsMachineListCache;
 		QString emulatorType;
 		QString emulatorVersion;
 		QString verifyLastLine;
@@ -96,8 +96,8 @@ class Gamelist : public QObject
 		UserDataDatabaseManager *userDataDb() { return m_userDataDb; }
 		DatInfoDatabaseManager *datInfoDb() { return m_datInfoDb; }
 
-		Gamelist(QObject *parent = 0);
-		~Gamelist();
+		MachineList(QObject *parent = 0);
+		~MachineList();
 
 	public slots:
 		void load();
@@ -136,11 +136,11 @@ class Gamelist : public QObject
 		DatInfoDatabaseManager *m_datInfoDb;
 };
 
-class GamelistItem : public QTreeWidgetItem
+class MachineListItem : public QTreeWidgetItem
 {
 	public:
-		GamelistItem(QTreeWidget *parentTreeWidget = 0) : QTreeWidgetItem(parentTreeWidget, QTreeWidgetItem::UserType) {}
-		GamelistItem(QTreeWidgetItem *parentItem) : QTreeWidgetItem(parentItem, QTreeWidgetItem::UserType) {}
+		MachineListItem(QTreeWidget *parentTreeWidget = 0) : QTreeWidgetItem(parentTreeWidget, QTreeWidgetItem::UserType) {}
+		MachineListItem(QTreeWidgetItem *parentItem) : QTreeWidgetItem(parentItem, QTreeWidgetItem::UserType) {}
 
 		virtual bool operator<(const QTreeWidgetItem &) const;
 };

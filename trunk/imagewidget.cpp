@@ -758,7 +758,7 @@ void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 	bool drawGameName = false;
 	if ( qmc2ShowGameName ) {
 		if ( qmc2ShowGameNameOnlyWhenRequired ) {
-			if ( qmc2MainWindow->hSplitter->sizes()[0] == 0 || qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_MACHINELIST_INDEX ) {
+			if ( qmc2MainWindow->hSplitter->sizes()[0] == 0 || qmc2MainWindow->tabWidgetMachineList->currentIndex() != QMC2_MACHINELIST_INDEX ) {
 				drawGameName = true;
 			} else {
 				drawGameName = false;

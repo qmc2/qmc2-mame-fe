@@ -7,13 +7,13 @@
 #include "softwarestatefilter.h"
 #include "softwarelist.h"
 #include "qmc2main.h"
-#include "gamelist.h"
+#include "machinelist.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern SoftwareList *qmc2SoftwareList;
-extern Gamelist *qmc2Gamelist;
+extern MachineList *qmc2MachineList;
 
 SoftwareStateFilter::SoftwareStateFilter(QWidget *parent)
 	: QWidget(parent)
@@ -67,7 +67,7 @@ void SoftwareStateFilter::filter()
 	qmc2SoftwareList->progressBar->setValue(0);
 	qmc2SoftwareList->progressBar->setVisible(true);
 	qmc2SoftwareList->treeWidgetKnownSoftware->setUpdatesEnabled(false);
-	QStringList hiddenLists = qmc2Gamelist->userDataDb()->hiddenLists(qmc2SoftwareList->systemName);
+	QStringList hiddenLists = qmc2MachineList->userDataDb()->hiddenLists(qmc2SoftwareList->systemName);
 	if ( checkBoxStateFilter->isChecked() ) {
 		for (int i = 0; i < qmc2SoftwareList->treeWidgetKnownSoftware->topLevelItemCount(); i++) {
 			QTreeWidgetItem *item = qmc2SoftwareList->treeWidgetKnownSoftware->topLevelItem(i);
