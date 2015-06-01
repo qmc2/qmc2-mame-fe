@@ -15,7 +15,6 @@ class FileEditWidget : public QWidget, public Ui::FileEditWidget
 		QTreeWidget *myTreeWidget;
 
 		FileEditWidget(QString, QString, QString part = "", QWidget *parent = 0, bool showClearButton = false, QString relativeTo = QString(), QTreeWidget *treeWidget = NULL);
-		~FileEditWidget();
 
 		bool returnRelativePath() { return !relativeToFolderOption.isEmpty(); }
 		QString relativeToPath();
