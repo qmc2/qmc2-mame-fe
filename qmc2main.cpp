@@ -5818,6 +5818,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 			treeWidgetMachineList_verticalScrollChanged();
 			break;
 	}
+	comboBoxViewSelect->setCurrentIndex(index);
 }
 
 void MainWindow::pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()
