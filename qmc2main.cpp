@@ -3823,7 +3823,6 @@ void MainWindow::scrollToCurrentItem()
 	if ( ci ) {
 		if ( ci->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
 			return;
-
 		switch ( stackedWidgetView->currentIndex() ) {
 			case QMC2_VIEWHIERARCHY_INDEX:
 				ci = qmc2HierarchyItemHash[ci->text(QMC2_MACHINELIST_COLUMN_NAME)];
@@ -3849,12 +3848,11 @@ void MainWindow::scrollToCurrentItem()
 					treeWidgetVersionView->scrollToItem(ci, qmc2CursorPositioningMode);
 				}
 				break;
-			case QMC2_VIEWGAMELIST_INDEX:
+			case QMC2_VIEWMACHINELIST_INDEX:
 			default:
 				qmc2CheckItemVisibility = false;
 				treeWidgetGamelist->clearSelection();
-				if ( !qmc2ReloadActive )
-					treeWidgetGamelist->setCurrentItem(ci);
+				treeWidgetGamelist->setCurrentItem(ci);
 				treeWidgetGamelist->scrollToItem(ci, qmc2CursorPositioningMode);
 				break;
 		}
@@ -5814,7 +5812,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 			}
 			break;
 
-		case QMC2_VIEWGAMELIST_INDEX:
+		case QMC2_VIEWMACHINELIST_INDEX:
 		default:
 			scrollToCurrentItem();
 			treeWidgetGamelist_verticalScrollChanged();
@@ -6700,7 +6698,7 @@ void MainWindow::viewFullDetail()
 	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
 		if ( tabWidgetGamelist->indexOf(tabForeignEmulators) < 0 )
 			index--;
-	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWGAMELIST_INDEX);
+	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWMACHINELIST_INDEX);
 	tabWidgetGamelist->setCurrentIndex(index);
 	tabWidgetGamelist->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/flat.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/flat.png")));
@@ -8406,7 +8404,7 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 		return;
 
 	switch ( index ) {
-		case QMC2_VIEWGAMELIST_INDEX: {
+		case QMC2_VIEWMACHINELIST_INDEX: {
 			bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool();
 			pushButtonSelectRomFilter->setVisible(romFilterActive);
 			actionTagVisible->setVisible(romFilterActive);

@@ -305,7 +305,7 @@ void ComponentSetup::loadComponent(QString name, bool fromSettings)
 	}
 	if ( name == "Component1" ) {
 		switch ( qmc2MainWindow->comboBoxViewSelect->currentIndex() ) {
-		       case QMC2_VIEWGAMELIST_INDEX:
+		       case QMC2_VIEWMACHINELIST_INDEX:
 			       componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
 			       break;
 		       case QMC2_VIEWHIERARCHY_INDEX:
@@ -351,7 +351,7 @@ void ComponentSetup::saveComponent(QString name)
 				switch ( index ) {
 					case QMC2_MACHINELIST_INDEX:
 						switch ( qmc2MainWindow->comboBoxViewSelect->currentIndex() ) {
-							case QMC2_VIEWGAMELIST_INDEX:
+							case QMC2_VIEWMACHINELIST_INDEX:
 								icon = QIcon(QString::fromUtf8(":/data/img/flat.png"));
 								break;
 							case QMC2_VIEWHIERARCHY_INDEX:

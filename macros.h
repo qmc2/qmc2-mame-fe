@@ -282,8 +282,7 @@
 #define QMC2_SDLMAME_OUTPUT_FIFO		"/tmp/sdlmame_out"
 
 // index positions of the machine list view stack
-#define QMC2_VIEWGAMELIST_INDEX			0
-#define QMC2_VIEWMACHINELIST_INDEX		QMC2_VIEWGAMELIST_INDEX
+#define QMC2_VIEWMACHINELIST_INDEX		0
 #define QMC2_VIEWHIERARCHY_INDEX		1
 #define QMC2_VIEWCATEGORY_INDEX			2
 #define QMC2_VIEWVERSION_INDEX			3	

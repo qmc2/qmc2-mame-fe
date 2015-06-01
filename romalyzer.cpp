@@ -2431,7 +2431,7 @@ void ROMAlyzer::selectItem(QString gameName)
 #endif
 
 	switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
-		case QMC2_VIEWGAMELIST_INDEX: {
+		case QMC2_VIEWMACHINELIST_INDEX: {
 			      QTreeWidgetItem *gameItem = qmc2GamelistItemHash[gameName];
 			      if ( gameItem ) {
 				      qmc2MainWindow->treeWidgetGamelist->clearSelection();
