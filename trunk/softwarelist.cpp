@@ -912,7 +912,8 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 			if ( !xmlLines.isEmpty() ) {
 				int i = 0;
 				QString s = "<machine name=\"" + systemName + "\"";
-				while ( i < xmlLines.count() && !xmlLines[i].contains(s) ) i++;
+				while ( i < xmlLines.count() && !xmlLines[i].contains(s) )
+					i++;
 				xmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 				if ( i < xmlLines.count() ) {
 					while ( i < xmlLines.count() && !xmlLines[i].contains("</machine>") )
@@ -986,28 +987,36 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 
 	int i = 0;
 	QString s = "<machine name=\"" + systemName + "\"";
-	while ( i < xmlData->count() && !(*xmlData)[i].contains(s) ) i++;
+	while ( i < xmlData->count() && !(*xmlData)[i].contains(s) )
+		i++;
 	while ( i < xmlData->count() && !(*xmlData)[i].contains("</machine>") ) {
 		QString line = (*xmlData)[i++].simplified();
 		if ( line.startsWith("<device type=\"") ) {
 			int startIndex = line.indexOf("interface=\"");
-			int endIndex;
+			int endIndex = -1;
+			QString devName;
 			if ( startIndex >= 0 ) {
 				startIndex += 11;
-				int endIndex = line.indexOf("\"", startIndex);
-				QStringList devInterfaces = line.mid(startIndex, endIndex - startIndex).split(",", QString::SkipEmptyParts);
-				line = xmlLines[i++].simplified();
-				startIndex = line.indexOf("briefname=\"") + 11;
 				endIndex = line.indexOf("\"", startIndex);
-				QString devName = line.mid(startIndex, endIndex - startIndex);
+				QStringList devInterfaces = line.mid(startIndex, endIndex - startIndex).split(",", QString::SkipEmptyParts);
+				line = (*xmlData)[i++].simplified();
+				startIndex = line.indexOf("briefname=\"");
+				if ( startIndex >= 0 ) {
+					startIndex += 11;
+					endIndex = line.indexOf("\"", startIndex);
+					devName = line.mid(startIndex, endIndex - startIndex);
+				}
 				if ( !devName.isEmpty() )
 					foreach (QString devIf, devInterfaces)
 						deviceInstanceMap[devIf] << devName;
 			} else {
 				line = (*xmlData)[i++].simplified();
-				startIndex = line.indexOf("briefname=\"") + 11;
-				endIndex = line.indexOf("\"", startIndex);
-				QString devName = line.mid(startIndex, endIndex - startIndex);
+				startIndex = line.indexOf("briefname=\"");
+				if ( startIndex >= 0 ) {
+					startIndex += 11;
+					endIndex = line.indexOf("\"", startIndex);
+					devName = line.mid(startIndex, endIndex - startIndex);
+				}
 				if ( !devName.isEmpty() )
 					deviceInstanceMap[devName] << devName;
 			}
