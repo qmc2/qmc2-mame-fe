@@ -1435,7 +1435,7 @@ bool MESSDeviceConfigurator::load()
 	slotMap.clear();
 	slotBiosMap.clear();
 
-	QString group = QString("MESS/Configuration/Devices/%1").arg(messMachineName);
+	QString group = QString("MAME/Configuration/Devices/%1").arg(messMachineName);
 	currentConfigName = qmc2Config->value(group + "/SelectedConfiguration").toString();
 	qmc2Config->beginGroup(group);
 	QStringList configurationList = qmc2Config->childGroups();
@@ -1498,7 +1498,7 @@ bool MESSDeviceConfigurator::save()
 	if ( !fullyLoaded )
 		return false;
 
-	QString group = QString("MESS/Configuration/Devices/%1").arg(messMachineName);
+	QString group = QString("MAME/Configuration/Devices/%1").arg(messMachineName);
 	QString devDir = qmc2Config->value(QString("%1/DefaultDeviceDirectory").arg(group), "").toString();
 
 	qmc2Config->remove(group);
@@ -2049,7 +2049,7 @@ void MESSDeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()");
 #endif
 
-	QString group = QString("MESS/Configuration/Devices/%1").arg(messMachineName);
+	QString group = QString("MAME/Configuration/Devices/%1").arg(messMachineName);
 	QString path = qmc2Config->value(group + "/DefaultDeviceDirectory", "").toString();
 
 	if ( path.isEmpty() ) {
@@ -2159,7 +2159,7 @@ void MESSDeviceConfigurator::setupFileChooser()
 	toolButtonChooserPlayEmbedded->setEnabled(false);
 	toolButtonChooserSaveConfiguration->setEnabled(false);
 
-	QString group = QString("MESS/Configuration/Devices/%1").arg(messMachineName);
+	QString group = QString("MAME/Configuration/Devices/%1").arg(messMachineName);
 	QString path = qmc2Config->value(group + "/DefaultDeviceDirectory", "").toString();
 
 	if ( path.isEmpty() ) {
