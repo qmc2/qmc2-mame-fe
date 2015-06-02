@@ -29,7 +29,7 @@ extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 extern QHash<QString, QString> qmc2ParentHash;
 extern MachineList *qmc2MachineList;
 extern Options *qmc2Options;
-extern KeyPressFilter *qmc2KeyPressFilter;
+extern MainEventFilter *qmc2MainEventFilter;
 extern bool qmc2SuppressQtMessages;
 
 int qmc2ArcadeModeSortCriteria = 0;
@@ -174,7 +174,7 @@ void ArcadeModeSetup::scanCustomKeySequence(QTreeWidgetItem *item, int /*column*
 	if ( !item->parent() )
 		return;
 
-	qApp->removeEventFilter(qmc2KeyPressFilter);
+	qApp->removeEventFilter(qmc2MainEventFilter);
 
 	KeySequenceScanner keySeqScanner(this, false, false, true);
 	keySeqScanner.setWindowTitle(tr("Scanning key sequence"));
@@ -192,7 +192,7 @@ void ArcadeModeSetup::scanCustomKeySequence(QTreeWidgetItem *item, int /*column*
 	} else if ( keySeqScanner.clearClicked )
 		item->setText(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, QString());
 
-	qApp->installEventFilter(qmc2KeyPressFilter);
+	qApp->installEventFilter(qmc2MainEventFilter);
 
 	QTimer::singleShot(0, this, SLOT(checkKeySequenceMaps()));
 }

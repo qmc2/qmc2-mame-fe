@@ -136,7 +136,7 @@ extern QMap<QString, unzFile> qmc2IconFileMap;
 extern QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
 extern QHash<QString, QPair<QString, QAction *> > qmc2ShortcutHash;
 extern QHash<QString, QString> qmc2CustomShortcutHash;
-extern KeyPressFilter *qmc2KeyPressFilter;
+extern MainEventFilter *qmc2MainEventFilter;
 extern QHash<QString, QKeySequence> qmc2QtKeyHash;
 extern QHash<QString, QByteArray *> qmc2GameInfoDB;
 extern ComponentSetup *qmc2ComponentSetup;
@@ -3573,7 +3573,7 @@ void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
 	if ( !item )
 		return;
 
-	qApp->removeEventFilter(qmc2KeyPressFilter);
+	qApp->removeEventFilter(qmc2MainEventFilter);
 
 	KeySequenceScanner keySeqScanner(this, qmc2QtKeyHash.contains(item->text(1)));
 	if ( keySeqScanner.exec() == QDialog::Accepted ) {
@@ -3612,7 +3612,7 @@ void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
 		pushButtonResetShortcut->setEnabled(true);
 	}
 
-	qApp->installEventFilter(qmc2KeyPressFilter);
+	qApp->installEventFilter(qmc2MainEventFilter);
 }
 
 void Options::on_treeWidgetShortcuts_itemSelectionChanged()

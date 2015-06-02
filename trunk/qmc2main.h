@@ -11,6 +11,7 @@
 #include <QWidgetAction>
 #include <QProxyStyle>
 #include <QMovie>
+#include <QPoint>
 
 #include "settings.h"
 #include "ui_qmc2main.h"
@@ -34,12 +35,12 @@ class ProxyStyle : public QProxyStyle
 		}
 };
 
-class KeyPressFilter : public QObject
+class MainEventFilter : public QObject
 {
 	Q_OBJECT
 
 	public:
-		KeyPressFilter(QObject *parent = NULL) : QObject(parent) { ; }
+		MainEventFilter(QObject *parent = NULL) : QObject(parent) { ; }
 
 	protected:
 		bool eventFilter(QObject *, QEvent *);
