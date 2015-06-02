@@ -1953,8 +1953,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 					qmc2MESSDeviceConfigurator->on_toolButtonSaveConfiguration_clicked();
 					if ( qmc2MESSDeviceConfigurator->configurationMap.contains(configName) ) {
 						QPair<QStringList, QStringList> valuePair = qmc2MESSDeviceConfigurator->slotMap[configName];
-						int i;
-						for (i = 0; i < valuePair.first.count(); i++) {
+						for (int i = 0; i < valuePair.first.count(); i++) {
 							QString slotName = valuePair.first[i];
 							QString slotOption = valuePair.second[i];
 							QTreeWidgetItem *item;
@@ -1992,7 +1991,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 							}
 						}
 						valuePair = qmc2MESSDeviceConfigurator->configurationMap[configName];
-						for (i = 0; i < valuePair.first.count(); i++)
+						for (int i = 0; i < valuePair.first.count(); i++)
 #if defined(QMC2_OS_WIN)
 							args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace('/', '\\');
 #else
