@@ -3408,7 +3408,8 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 							}
 						}
 						swlArgs << QString("-%1").arg(comboBox->currentText());
-						QTreeWidgetItem *item = *it;
+						QTreeWidgetItem *partItem = *it;
+						QTreeWidgetItem *item = partItem;
 						if ( viewTree() ) {
 							while ( item->whatsThis(QMC2_SWLIST_COLUMN_NAME).isEmpty() && item->parent() )
 								item = item->parent();
@@ -3416,7 +3417,7 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 							while ( item->parent() )
 								item = item->parent();
 						}
-						swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(item->text(QMC2_SWLIST_COLUMN_PART));
+						swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(partItem->text(QMC2_SWLIST_COLUMN_NAME).split(": ", QString::SkipEmptyParts)[1]);
 						if ( softwareLists )
 							*softwareLists << item->text(QMC2_SWLIST_COLUMN_LIST);
 						if ( softwareNames )
@@ -3437,8 +3438,8 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 			}
 			snapnameList = item->text(QMC2_SWLIST_COLUMN_LIST);
 			snapnameSoftware = item->text(QMC2_SWLIST_COLUMN_NAME);
-			QStringList interfaces = item->text(QMC2_SWLIST_COLUMN_INTERFACE).split(",");
-			QStringList parts = item->text(QMC2_SWLIST_COLUMN_PART).split(",");
+			QStringList interfaces = item->text(QMC2_SWLIST_COLUMN_INTERFACE).split(",", QString::SkipEmptyParts);
+			QStringList parts = item->text(QMC2_SWLIST_COLUMN_PART).split(",", QString::SkipEmptyParts);
 			successfulLookups.clear();
 			for (int i = 0; i < parts.count(); i++) {
 				QString mountDev = lookupMountDevice(parts[i], interfaces[i]);
