@@ -38,7 +38,7 @@
 #include "macros.h"
 #include "unzip.h"
 #include "sevenzipfile.h"
-#include "messdevcfg.h"
+#include "deviceconfigurator.h"
 #include "demomode.h"
 #include "softwarelist.h"
 #if defined(QMC2_YOUTUBE_ENABLED)
@@ -80,7 +80,7 @@ extern QTreeWidgetItem *qmc2LastGameInfoItem;
 extern QTreeWidgetItem *qmc2LastEmuInfoItem;
 extern QTreeWidgetItem *qmc2LastSoftwareListItem;
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
-extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
+extern DeviceConfigurator *qmc2DeviceConfigurator;
 extern QHash<QString, QHash<QString, QStringList> > messSystemSlotHash;
 extern QHash<QString, QString> messSlotNameHash;
 extern bool messSystemSlotsSupported;
@@ -458,14 +458,15 @@ void MachineList::load()
 	qmc2MainWindow->textBrowserEmuInfo->clear();
 	qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorBlue);
 	qmc2CurrentItem = NULL;
-	if ( qmc2MESSDeviceConfigurator ) {
-		qmc2MESSDeviceConfigurator->save();
-		qmc2MESSDeviceConfigurator->setVisible(false);
+	if ( qmc2DeviceConfigurator ) {
+		qmc2DeviceConfigurator->save();
+		qmc2DeviceConfigurator->saveSetup();
+		qmc2DeviceConfigurator->setVisible(false);
 		QLayout *vbl = qmc2MainWindow->tabDevices->layout();
 		if ( vbl )
 			delete vbl;
-		delete qmc2MESSDeviceConfigurator;
-		qmc2MESSDeviceConfigurator = NULL;
+		delete qmc2DeviceConfigurator;
+		qmc2DeviceConfigurator = NULL;
 	}
 	qmc2LastDeviceConfigItem = NULL;
 	messSystemSlotsSupported = true;

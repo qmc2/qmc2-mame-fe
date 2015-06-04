@@ -7,14 +7,14 @@
 #include <QIcon>
 
 #include "filesystemmodel.h"
-#include "ui_messdevcfg.h"
+#include "ui_deviceconfigurator.h"
 
-class MESSDeviceFileDelegate : public QItemDelegate
+class DeviceFileDelegate : public QItemDelegate
 {
 	Q_OBJECT
 
 	public:
-		MESSDeviceFileDelegate(QObject *parent = 0);
+		DeviceFileDelegate(QObject *parent = 0);
 
 		QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const;
 		virtual void setEditorData(QWidget *, const QModelIndex &) const;
@@ -28,7 +28,7 @@ class MESSDeviceFileDelegate : public QItemDelegate
 		void editorDataChanged(const QString &);
 };
 
-class MESSDeviceConfiguratorXmlHandler : public QXmlDefaultHandler
+class DeviceConfiguratorXmlHandler : public QXmlDefaultHandler
 {
 	public:
 		QTreeWidget *parentTreeWidget;
@@ -45,14 +45,14 @@ class MESSDeviceConfiguratorXmlHandler : public QXmlDefaultHandler
 		QMap<QString, QString> slotDeviceNames;
 		QMap<QString, QString> defaultSlotOptions;
 
-		MESSDeviceConfiguratorXmlHandler(QTreeWidget *);
+		DeviceConfiguratorXmlHandler(QTreeWidget *);
 
 		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
 		bool endElement(const QString &, const QString &, const QString &);
 		bool characters(const QString &);
 };
 
-class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
+class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 {
 	Q_OBJECT
 
@@ -69,7 +69,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		bool comboBoxChooserFilterPatternHadFocus;
 		bool forceQuit;
 		int fileModelRowInsertionCounter;
-		MESSDeviceFileDelegate fileEditDelegate;
+		DeviceFileDelegate fileEditDelegate;
 		QByteArray fileChooserHeaderState;
 		QByteArray dirChooserHeaderState;
 		QString messMachineName;
@@ -114,8 +114,8 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		QModelIndex modelIndexDirModel;
 		QListWidgetItem *configurationRenameItem;
 
-		MESSDeviceConfigurator(QString, QWidget *);
-		~MESSDeviceConfigurator();
+		DeviceConfigurator(QString, QWidget *);
+		~DeviceConfigurator();
 
 		QString &getXmlData(QString);
 		QString &getXmlDataWithEnabledSlots(QString);

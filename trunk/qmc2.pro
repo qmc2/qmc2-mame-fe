@@ -30,7 +30,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			romalyzer.ui \
 			romstatusexport.ui \
 			swlistexport.ui \
-			messdevcfg.ui \
+			deviceconfigurator.ui \
 			softwarelist.ui \
 			direditwidget.ui \
 			fileeditwidget.ui \
@@ -89,7 +89,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			joyfuncscan.cpp \
 			romstatusexport.cpp \
 			swlistexport.cpp \
-			messdevcfg.cpp \
+			deviceconfigurator.cpp \
 			softwarelist.cpp \
 			direditwidget.cpp \
 			fileeditwidget.cpp \
@@ -208,7 +208,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			joyfuncscan.h \
 			romstatusexport.h \
 			swlistexport.h \
-			messdevcfg.h \
+			deviceconfigurator.h \
 			softwarelist.h \
 			direditwidget.h \
 			fileeditwidget.h \
