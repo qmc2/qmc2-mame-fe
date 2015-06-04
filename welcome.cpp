@@ -341,6 +341,18 @@ bool Welcome::checkConfig()
 				}
 			}
 		}
+		if ( QMC2_TEST_VERSION(omv, 53, osr, 6711) ) {
+			QString oldKeySubString("MESSDeviceConfigurator");
+			QString newKeySubString("DeviceConfigurator");
+			foreach (QString key, startupConfig->allKeys()) {
+				if ( key.contains(oldKeySubString) ) {
+					QVariant value = startupConfig->value(key);
+					startupConfig->remove(key);
+					QString newKey = key.replace(oldKeySubString, newKeySubString);
+					startupConfig->setValue(newKey, value);
+				}
+			}
+		}
 	}
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();
 	return configOkay;

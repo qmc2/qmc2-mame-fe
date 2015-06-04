@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <author>R. Reucher</author>
- <class>MESSDeviceConfigurator</class>
- <widget class="QWidget" name="MESSDeviceConfigurator">
+ <class>DeviceConfigurator</class>
+ <widget class="QWidget" name="DeviceConfigurator">
   <property name="geometry">
    <rect>
     <x>0</x>

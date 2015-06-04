@@ -54,7 +54,7 @@
 #include "joystick.h"
 #include "joyfuncscan.h"
 #endif
-#include "messdevcfg.h"
+#include "deviceconfigurator.h"
 #include "softwarelist.h"
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 #include "embedder.h"
@@ -146,7 +146,7 @@ extern PaletteEditor *qmc2PaletteEditor;
 extern QHash<QString, QString> qmc2JoystickFunctionHash;
 extern bool qmc2JoystickIsCalibrating;
 #endif
-extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
+extern DeviceConfigurator *qmc2DeviceConfigurator;
 extern MiniWebBrowser *qmc2ProjectMESS;
 extern SoftwareList *qmc2SoftwareList;
 #if QMC2_USE_PHONON_API
@@ -643,25 +643,25 @@ void Options::apply()
 	toolButtonBrowseSoftwareListCacheDb->setIconSize(iconSize);
 	toolButtonBrowseSoftwareStateCache->setIconSize(iconSize);
 	toolButtonBrowseGeneralSoftwareFolder->setIconSize(iconSize);
-	if ( qmc2MESSDeviceConfigurator ) {
-		qmc2MESSDeviceConfigurator->toolButtonConfiguration->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->toolButtonNewConfiguration->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->toolButtonCloneConfiguration->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->toolButtonSaveConfiguration->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->toolButtonRemoveConfiguration->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->toolButtonChooserPlay->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->toolButtonChooserPlayEmbedded->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->toolButtonChooserReload->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->toolButtonChooserClearFilterPattern->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->toolButtonChooserAutoSelect->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->toolButtonChooserFilter->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->toolButtonChooserProcessZIPs->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->toolButtonChooserMergeMaps->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->toolButtonChooserSaveConfiguration->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->comboBoxDeviceInstanceChooser->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->treeWidgetDeviceSetup->setIconSize(iconSize);
-		qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->setIconSize(iconSize);
-		((IconLineEdit *)qmc2MESSDeviceConfigurator->comboBoxChooserFilterPattern->lineEdit())->setIconSize(iconSizeMiddle);
+	if ( qmc2DeviceConfigurator ) {
+		qmc2DeviceConfigurator->toolButtonConfiguration->setIconSize(iconSize);
+		qmc2DeviceConfigurator->toolButtonNewConfiguration->setIconSize(iconSize);
+		qmc2DeviceConfigurator->toolButtonCloneConfiguration->setIconSize(iconSize);
+		qmc2DeviceConfigurator->toolButtonSaveConfiguration->setIconSize(iconSize);
+		qmc2DeviceConfigurator->toolButtonRemoveConfiguration->setIconSize(iconSize);
+		qmc2DeviceConfigurator->toolButtonChooserPlay->setIconSize(iconSize);
+		qmc2DeviceConfigurator->toolButtonChooserPlayEmbedded->setIconSize(iconSize);
+		qmc2DeviceConfigurator->toolButtonChooserReload->setIconSize(iconSize);
+		qmc2DeviceConfigurator->toolButtonChooserClearFilterPattern->setIconSize(iconSize);
+		qmc2DeviceConfigurator->toolButtonChooserAutoSelect->setIconSize(iconSize);
+		qmc2DeviceConfigurator->toolButtonChooserFilter->setIconSize(iconSize);
+		qmc2DeviceConfigurator->toolButtonChooserProcessZIPs->setIconSize(iconSize);
+		qmc2DeviceConfigurator->toolButtonChooserMergeMaps->setIconSize(iconSize);
+		qmc2DeviceConfigurator->toolButtonChooserSaveConfiguration->setIconSize(iconSize);
+		qmc2DeviceConfigurator->comboBoxDeviceInstanceChooser->setIconSize(iconSize);
+		qmc2DeviceConfigurator->treeWidgetDeviceSetup->setIconSize(iconSize);
+		qmc2DeviceConfigurator->treeWidgetSlotOptions->setIconSize(iconSize);
+		((IconLineEdit *)qmc2DeviceConfigurator->comboBoxChooserFilterPattern->lineEdit())->setIconSize(iconSizeMiddle);
 	}
 	if ( qmc2SoftwareList ) {
 		qmc2SoftwareList->toolButtonExport->setIconSize(iconSize);
