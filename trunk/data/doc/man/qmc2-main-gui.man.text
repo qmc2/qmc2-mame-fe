@@ -2,7 +2,7 @@ NAME
   qmc2-sdlmame - QMC2 - M.A.M.E. Catalog/Launcher II
 
 SYNOPSIS
-  qmc2-sdlmame [-config_path path] [-cc] [-tc] [-h|-?|-help] [qt_arguments]
+  qmc2-sdlmame [-config_path path] [-cc] [-tc] [-r] [-h|-?|-help] [qt_arguments]
 
 DESCRIPTION
   QMC2 is a graphical front-end based on Qt which drives the great M.A.M.E. emulator.
@@ -12,7 +12,9 @@ OPTIONS
 
   -cc  This command line option will instruct QMC2 to clear (remove) all emulator related cache files while starting up in order to forcibly reload this data from the emulator.
 
-  -tc  Specifying this option on the command line will perform a template check against the current default emulator (if set), printing its output to stdout, and exit before actual start-up occurs. 
+  -tc  Specifying this option on the command line will perform a template check against the current default emulator (if set), printing its output to stdout, and exit before actual start-up occurs.
+
+  -r  The reconfigure option will rerun the setup wizard / welcome dialog before starting. This allows you to update or correct the most important emulator settings in an easy way.
 
   -h|-?|-help  Shows a brief command line usage help.
 
