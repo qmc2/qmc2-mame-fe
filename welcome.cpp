@@ -27,14 +27,6 @@ Welcome::Welcome(QWidget *parent)
 	hide();
 	if ( !checkConfig() ) {
 		setupUi(this);
-
-#if defined(QMC2_SDLMAME)
-		QString emulatorName = tr("SDLMAME");
-#elif defined(QMC2_MAME)
-		QString emulatorName = tr("MAME");
-#else
-		QString emulatorName = tr("Unsupported emulator");
-#endif
 		lineEditExecutableFile->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString());
 		lineEditWorkingDirectory->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString());
 		lineEditROMPath->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", QString()).toString());
