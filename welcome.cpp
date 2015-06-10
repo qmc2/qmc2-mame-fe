@@ -23,10 +23,6 @@ extern QTranslator *qmc2QtTranslator;
 Welcome::Welcome(QWidget *parent)
   : QDialog(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Welcome::Welcome(QWidget *parent = %1)").arg((qulonglong)parent));
-#endif
-
 	checkOkay = false;
 	hide();
 	if ( !checkConfig() ) {
@@ -40,6 +36,11 @@ Welcome::Welcome(QWidget *parent)
 		QString emulatorName = tr("Unsupported emulator");
 #endif
 		labelExecutableFile->setText(tr("%1 executable file").arg(emulatorName));
+		lineEditExecutableFile->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString());
+		lineEditWorkingDirectory->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString());
+		lineEditROMPath->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", QString()).toString());
+		lineEditSamplePath->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath", QString()).toString());
+		lineEditHashPath->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", QString()).toString());
 		adjustSize();
 		show();
 	} else {
@@ -50,19 +51,11 @@ Welcome::Welcome(QWidget *parent)
 
 Welcome::~Welcome()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::~Welcome()");
-#endif
-
 	delete startupConfig;
 }
 
 void Welcome::on_pushButtonOkay_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_pushButtonOkay_clicked()");
-#endif
-
 	if ( !checkOkay ) {
 		QFileInfo fileInfo(lineEditExecutableFile->text());
 		if ( fileInfo.isExecutable() && fileInfo.isReadable() && fileInfo.isFile() ) {
@@ -89,10 +82,6 @@ void Welcome::on_pushButtonOkay_clicked()
 
 void Welcome::on_toolButtonBrowseExecutableFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_toolButtonBrowseExecutableFile_clicked()");
-#endif
-
 	QString s;
 
 	if ( lineEditExecutableFile->text().isEmpty() )
@@ -110,10 +99,6 @@ void Welcome::on_toolButtonBrowseExecutableFile_clicked()
 
 void Welcome::on_toolButtonBrowseWorkingDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_toolButtonBrowseWorkingDirectory_clicked()");
-#endif
-
 	QString workingDirectory = lineEditWorkingDirectory->text();
 	QString executableFile = lineEditExecutableFile->text();
 	QString suggestion = workingDirectory;
@@ -129,10 +114,6 @@ void Welcome::on_toolButtonBrowseWorkingDirectory_clicked()
 
 void Welcome::on_toolButtonBrowseROMPath_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_toolButtonBrowseROMPath_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose ROM path"), lineEditROMPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() )
 		lineEditROMPath->setText(s);
@@ -141,10 +122,6 @@ void Welcome::on_toolButtonBrowseROMPath_clicked()
 
 void Welcome::on_toolButtonBrowseSamplePath_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_toolButtonBrowseSamplePath_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose sample path"), lineEditSamplePath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() )
 		lineEditSamplePath->setText(s);
@@ -153,10 +130,6 @@ void Welcome::on_toolButtonBrowseSamplePath_clicked()
 
 void Welcome::on_toolButtonBrowseHashPath_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_toolButtonBrowseHashPath_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose hash path"), lineEditHashPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() )
 		lineEditHashPath->setText(s);
@@ -165,10 +138,6 @@ void Welcome::on_toolButtonBrowseHashPath_clicked()
 
 void Welcome::setupLanguage()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::setupLanguage()");
-#endif
-
 	QString lang = startupConfig->value("GUI/Language").toString();
 	QStringList availableLanguages;
 	availableLanguages << "de" << "es" << "el" << "fr" << "it" << "pl" << "pt" << "ro" << "sv" << "us";
@@ -221,10 +190,6 @@ void Welcome::setupLanguage()
 
 bool Welcome::checkConfig()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::checkConfig()");
-#endif
-
 	bool configOkay = true;
 
 	QCoreApplication::setOrganizationName(QMC2_ORGANIZATION_NAME);
@@ -354,6 +319,9 @@ bool Welcome::checkConfig()
 			}
 		}
 	}
+
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();
+	configOkay &= !QMC2_CLI_OPT_RECONFIGURE;
+
 	return configOkay;
 }
