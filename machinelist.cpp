@@ -3503,13 +3503,16 @@ void MachineList::createCategoryView()
 	if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_CATEGORY_INDEX ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
 		return;
-	} else if ( numGames == -1 ) {
+	}
+	
+	if ( numGames == -1 ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
 		return;
 	}
 
 	if ( creatingCatView )
 		return;
+
 	creatingCatView = true;
 
 	qmc2MainWindow->stackedWidgetView->setCurrentIndex(QMC2_VIEW_CATEGORY_INDEX);
@@ -3749,13 +3752,16 @@ void MachineList::createVersionView()
 	if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_VERSION_INDEX ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
 		return;
-	} else if ( numGames == -1 ) {
+	}
+	
+	if ( numGames == -1 ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
 		return;
 	}
 
 	if ( creatingVerView )
 		return;
+
 	creatingVerView = true;
 
 	qmc2MainWindow->stackedWidgetView->setCurrentIndex(QMC2_VIEW_VERSION_INDEX);
