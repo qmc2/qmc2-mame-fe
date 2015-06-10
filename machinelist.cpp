@@ -3492,13 +3492,14 @@ void MachineList::createCategoryView()
 
 	static bool creatingCatView = false;
 
-	if ( !creatingCatView ) {
-		qmc2CategoryItemHash.clear();
-		qmc2MainWindow->treeWidgetCategoryView->setVisible(false);
-		((AspectRatioLabel *)qmc2MainWindow->labelCreatingCategoryView)->setLabelText(tr("Loading, please wait..."));
-		qmc2MainWindow->labelCreatingCategoryView->setVisible(true);
-		qmc2MainWindow->loadAnimMovie->start();
-	}
+	if ( creatingCatView )
+		return;
+
+	qmc2CategoryItemHash.clear();
+	qmc2MainWindow->treeWidgetCategoryView->setVisible(false);
+	((AspectRatioLabel *)qmc2MainWindow->labelCreatingCategoryView)->setLabelText(tr("Loading, please wait..."));
+	qmc2MainWindow->labelCreatingCategoryView->setVisible(true);
+	qmc2MainWindow->loadAnimMovie->start();
 
 	if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_CATEGORY_INDEX ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
@@ -3510,12 +3511,11 @@ void MachineList::createCategoryView()
 		return;
 	}
 
-	if ( creatingCatView )
+	if ( qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEW_CATEGORY_INDEX )
 		return;
 
 	creatingCatView = true;
 
-	qmc2MainWindow->stackedWidgetView->setCurrentIndex(QMC2_VIEW_CATEGORY_INDEX);
 	qmc2MainWindow->treeWidgetCategoryView->setColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY, true);
 
 	if ( !qmc2StopParser ) {
@@ -3535,6 +3535,8 @@ void MachineList::createCategoryView()
 		QList<QTreeWidgetItem *> itemList;
 		QList<QTreeWidgetItem *> hideList;
 		int loadResponse = numGames / QMC2_GENERAL_LOADING_UPDATES;
+		if ( loadResponse == 0 )
+			loadResponse = 25;
 		while ( it.hasNext() ) {
 			if ( counter % loadResponse == 0 ) {
 				qmc2MainWindow->progressBarMachineList->setValue(counter);
@@ -3545,9 +3547,9 @@ void MachineList::createCategoryView()
 			QString gameName = it.key();
 			if ( gameName.isEmpty() )
 				continue;
-			if ( !qmc2MachineListItemHash.contains(gameName) )
-				continue;
 			QTreeWidgetItem *baseItem = qmc2MachineListItemHash[gameName];
+			if ( !baseItem )
+				continue;
 			QString *categoryPtr = it.value();
 			QString category;
 			bool isBIOS = isBios(gameName);
@@ -3741,13 +3743,14 @@ void MachineList::createVersionView()
 
 	static bool creatingVerView = false;
 
-	if ( !creatingVerView ) {
-		qmc2VersionItemHash.clear();
-		qmc2MainWindow->treeWidgetVersionView->setVisible(false);
-		((AspectRatioLabel *)qmc2MainWindow->labelCreatingVersionView)->setLabelText(tr("Loading, please wait..."));
-		qmc2MainWindow->labelCreatingVersionView->setVisible(true);
-		qmc2MainWindow->loadAnimMovie->start();
-	}
+	if ( creatingVerView )
+		return;
+
+	qmc2VersionItemHash.clear();
+	qmc2MainWindow->treeWidgetVersionView->setVisible(false);
+	((AspectRatioLabel *)qmc2MainWindow->labelCreatingVersionView)->setLabelText(tr("Loading, please wait..."));
+	qmc2MainWindow->labelCreatingVersionView->setVisible(true);
+	qmc2MainWindow->loadAnimMovie->start();
 
 	if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_VERSION_INDEX ) {
 		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
@@ -3759,12 +3762,11 @@ void MachineList::createVersionView()
 		return;
 	}
 
-	if ( creatingVerView )
+	if ( qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEW_VERSION_INDEX )
 		return;
 
 	creatingVerView = true;
 
-	qmc2MainWindow->stackedWidgetView->setCurrentIndex(QMC2_VIEW_VERSION_INDEX);
 	qmc2MainWindow->treeWidgetVersionView->setColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION, true);
 
 	if ( !qmc2StopParser ) {
@@ -3784,6 +3786,8 @@ void MachineList::createVersionView()
 		QList<QTreeWidgetItem *> itemList;
 		QList<QTreeWidgetItem *> hideList;
 		int loadResponse = numGames / QMC2_GENERAL_LOADING_UPDATES;
+		if ( loadResponse == 0 )
+			loadResponse = 25;
 		while ( it.hasNext() ) {
 			if ( counter % loadResponse == 0 ) {
 				qmc2MainWindow->progressBarMachineList->setValue(counter);
@@ -3794,9 +3798,9 @@ void MachineList::createVersionView()
 			QString gameName = it.key();
 			if ( gameName.isEmpty() )
 				continue;
-			if ( !qmc2MachineListItemHash.contains(gameName) )
-				continue;
 			QTreeWidgetItem *baseItem = qmc2MachineListItemHash[gameName];
+			if ( !baseItem )
+				continue;
 			QString *versionPtr = it.value();
 			QString version;
 			if ( versionPtr )
