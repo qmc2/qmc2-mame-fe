@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.53, 01-JUN-2015</h3>
+<h3>README - v0.53, 10-JUN-2015</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -118,14 +118,16 @@ As a result of this flexible design, QMC2 can be used for multiple emulators tod
 <p>Please see <a href="http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Building_and_installing_QMC2_from_source" target="_blank">this section in QMC2 wiki</a> and/or
 <a href="http://wiki.batcom-it.net/index.php?title=QMC2_FAQ#Build_and_installation_instructions_for_specific_distributions" target="_blank">this FAQ</a> for build and installation instructions.</p>
 <h3><a name="3."></a>3. Command line arguments and configuration</h3>
-<p>Usage:</p>
-<pre>$ qmc2[-<i>emulator</i>] [-config_path &lt;path&gt;] [-cc] [-h|-?|-help] [qt_arguments]</pre>
+<p>Usage example (for Linux/UNIX and Mac OS X, the binary is called <code>qmc2-mame.exe</code> on Windows):</p>
+<pre>$ qmc2-sdlmame [-config_path &lt;path&gt;] [-cc] [-tc] [-r] [-h|-?|-help] [qt_arguments]</pre>
 <p>
 Arguments in detail:
 <ul>
   <li><i>-config_path</i>: See <a href="#config_path">configuration path</a> below!</li>
-  <li><i>-cc</i>: When this CLI option is specified, all emulator caches will be cleared (removed) before the application actually starts up. This is useful whenever the emulator version doesn't change and QMC2 can't figure out that it's time to update the caches because of this (so this mainly applies to those users that are often updating their MAME installation from the <a href="http://mamedev.org/?p=373" target="_blank">public SVN repository</a>).</li>
-  <li><i>-h|-?|-help</i>: Shows a brief command line usage help and exits.</li>
+  <li><i>-cc</i>: This command line option will instruct QMC2 to clear (remove) all emulator related cache files while starting up in order to forcibly reload this data from the emulator.</li>
+  <li><i>-tc</i>: Specifying this option on the command line will perform a template check against the current default emulator (if set), printing its output to stdout, and exit before actual start-up occurs.</li>
+  <li><i>-r</i>: The <i>reconfigure</i> option will rerun the setup wizard / welcome dialog before starting. This allows you to update or correct the most important emulator settings in an easy way.</li>
+  <li><i>-h|-?|-help</i>: Shows a brief command line usage help.</li>
   <li><i>qt_arguments</i>: See the <a href="http://doc.qt.io/qt-4.8/qapplication.html#QApplication" target="_blank">QApplication class reference</a> for details on what Qt arguments are available (note, however, that some of these arguments are useless since QMC2 will overwrite them with its saved ini-settings).</li>
 </ul>
 </p>
