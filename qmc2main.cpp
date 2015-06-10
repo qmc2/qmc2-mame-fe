@@ -3001,7 +3001,7 @@ void MainWindow::on_actionDocumentation_triggered(bool)
 		qmc2DocBrowser = new DocBrowser(this);
 		qmc2DocBrowser->browser->spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Zoom", 100).toInt());
 		QString searchPath;
-		searchPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "doc/html/" + qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString();
+		searchPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "doc/html/" + qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
 		QFileInfo fi(searchPath + "/index.html");
 		if ( !fi.exists() || !fi.isFile() || fi.isSymLink() ) // fall back to US English if there's no language-specific index file
 			searchPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "doc/html/us";
@@ -11171,7 +11171,7 @@ int main(int argc, char *argv[])
 #if QMC2_SVN_REV > 0
 			   ", " + QObject::tr("SVN r%1").arg(QMC2_SVN_REV) +
 #endif
-			   " (Qt " + qVersion() + ", " + QMC2_EMU_NAME_VARIANT + ", " + qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString() + ")";
+			   " (Qt " + qVersion() + ", " + QMC2_EMU_NAME_VARIANT + ", " + qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString() + ")";
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, greeting);
 
 #if QMC2_OPENGL == 1

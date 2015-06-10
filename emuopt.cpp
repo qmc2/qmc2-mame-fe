@@ -1129,7 +1129,7 @@ void EmulatorOptions::createTemplateMap()
 		templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/MAME/template.xml";
 #endif
 	QFile qmc2TemplateFile(templateFile);
-	QString lang = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString();
+	QString lang = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
 	if ( lang.isEmpty() )
 		lang = "us";
 	if ( qmc2TemplateFile.open(QFile::ReadOnly) ) {

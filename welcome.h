@@ -1,6 +1,8 @@
 #ifndef _WELCOME_H_
 #define _WELCOME_H_
 
+#include <QStringList>
+
 #include "ui_welcome.h"
 #include "settings.h"
 #include "macros.h"
@@ -27,7 +29,11 @@ class Welcome : public QDialog, public Ui::Welcome
 		void on_toolButtonBrowseROMPath_clicked();
 		void on_toolButtonBrowseSamplePath_clicked();
 		void on_toolButtonBrowseHashPath_clicked();
+		void on_comboBoxLanguage_currentIndexChanged(int index);
 		void setupLanguage();
+
+	private:
+		QStringList availableLanguages;
 };
 
 #endif
