@@ -23,10 +23,18 @@ extern QTranslator *qmc2QtTranslator;
 Welcome::Welcome(QWidget *parent)
   : QDialog(parent)
 {
+	availableLanguages << "de" << "es" << "el" << "fr" << "it" << "pl" << "pt" << "ro" << "sv" << "us";
 	checkOkay = false;
 	hide();
 	if ( !checkConfig() ) {
 		setupUi(this);
+		comboBoxLanguage->blockSignals(true);
+		comboBoxLanguage->addItems(availableLanguages);
+		QString lang = startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Language", QString()).toString();
+		int langIndex = comboBoxLanguage->findText(lang);
+		if ( langIndex >= 0 )
+			comboBoxLanguage->setCurrentIndex(langIndex);
+		comboBoxLanguage->blockSignals(false);
 		lineEditExecutableFile->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString());
 		lineEditWorkingDirectory->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString());
 		lineEditROMPath->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", QString()).toString());
@@ -74,17 +82,14 @@ void Welcome::on_pushButtonOkay_clicked()
 void Welcome::on_toolButtonBrowseExecutableFile_clicked()
 {
 	QString s;
-
 	if ( lineEditExecutableFile->text().isEmpty() )
 		s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), QString(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	else {
 		QFileInfo fileInfo(lineEditExecutableFile->text());
 		s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), fileInfo.absolutePath(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	}
-
 	if ( !s.isEmpty() )
 		lineEditExecutableFile->setText(s);
-
 	raise();
 }
 
@@ -127,12 +132,17 @@ void Welcome::on_toolButtonBrowseHashPath_clicked()
 	raise();
 }
 
+void Welcome::on_comboBoxLanguage_currentIndexChanged(int index)
+{
+	startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", availableLanguages[index]);
+	setupLanguage();
+	retranslateUi(this);
+	adjustSize();
+}
+
 void Welcome::setupLanguage()
 {
-	QString lang = startupConfig->value("GUI/Language").toString();
-	QStringList availableLanguages;
-	availableLanguages << "de" << "es" << "el" << "fr" << "it" << "pl" << "pt" << "ro" << "sv" << "us";
-
+	QString lang = startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Language", QString()).toString();
 	if ( lang.isEmpty() || !availableLanguages.contains(lang) ) {
 		// try to use default system locale - use "us" if a translation is not available for the system locale
 		switch ( QLocale::system().language() ) {
@@ -167,13 +177,21 @@ void Welcome::setupLanguage()
 				lang = "us";
 				break;
 		}
-		startupConfig->setValue("GUI/Language", lang);
+		startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", lang);
 	}
 
 	QString directory = startupConfig->value("FilesAndDirectories/DataDirectory", "data/").toString() + "lng/";
+	if ( qmc2QtTranslator ) {
+		qApp->removeTranslator(qmc2QtTranslator);
+		delete qmc2QtTranslator;
+	}
 	qmc2QtTranslator = new QTranslator(0);
 	qmc2QtTranslator->load(directory + QString("qt_") + lang + ".qm");
 	qApp->installTranslator(qmc2QtTranslator);
+	if ( qmc2Translator ) {
+		qApp->removeTranslator(qmc2Translator);
+		delete qmc2Translator;
+	}
 	qmc2Translator = new QTranslator(0);
 	qmc2Translator->load(directory + QString("qmc2_") + lang + ".qm");
 	qApp->installTranslator(qmc2Translator);
@@ -202,9 +220,9 @@ bool Welcome::checkConfig()
 	variant = "qmc2-???";
 #endif
 
-	startupConfig->beginGroup("Frontend/");
-
 	setupLanguage();
+
+	startupConfig->beginGroup(QMC2_FRONTEND_PREFIX);
 
 	if ( startupConfig->value("GUI/CheckSingleInstance", true).toBool() ) {
 		if ( startupConfig->value(QString("InstanceRunning")).toBool() ) {

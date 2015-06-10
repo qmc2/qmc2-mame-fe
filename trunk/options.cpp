@@ -880,7 +880,7 @@ void Options::on_pushButtonApply_clicked()
 	qmc2ParentImageFallback = checkBoxParentImageFallback->isChecked();
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ParentImageFallback", qmc2ParentImageFallback);
 	s = comboBoxLanguage->currentText().left(2).toLower();
-	needRestart |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString() != s);
+	needRestart |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString() != s);
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", s);
 
 #if QMC2_JOYSTICK == 1
