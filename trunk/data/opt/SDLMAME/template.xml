@@ -722,6 +722,26 @@
 			<description lang="pt" text="Definir tempo de impulso da moeda (n &lt; 0: desabilitar; n == 0: obedecer driver; n &gt; 0: definir tempo)"/>
 		</option>
 	</section>
+	<section name="comm">
+		<description lang="us" text="Communication"/>
+		<description lang="de" text="Kommunikation"/>
+		<option default="0.0.0.0" name="comm_localhost" type="string">
+			<description lang="us" text="Local address to bind to (0.0.0.0 = any)"/>
+			<description lang="de" text="Lokal gebundene Adresse (0.0.0.0 = jede)"/>
+		</option>
+		<option default="15112" name="comm_localport" type="int">
+			<description lang="us" text="Local port to bind to"/>
+			<description lang="de" text="Lokal gebundener Port"/>
+		</option>
+		<option default="127.0.0.1" name="comm_remotehost" type="string">
+			<description lang="us" text="Remote address to connect to"/>
+			<description lang="de" text="Entfernte Adresse"/>
+		</option>
+		<option default="15112" name="comm_remoteport" type="int">
+			<description lang="us" text="Remote port to connect to"/>
+			<description lang="de" text="Entfernter Port"/>
+		</option>
+	</section>
 	<section name="misc">
 		<description lang="es" text="Miscelánea"/>
 		<description lang="us" text="Miscellaneous"/>
