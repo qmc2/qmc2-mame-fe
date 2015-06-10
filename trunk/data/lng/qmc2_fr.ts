@@ -7068,7 +7068,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="673"/>
         <location filename="../../machinelist.cpp" line="674"/>
         <location filename="../../machinelist.cpp" line="728"/>
-        <location filename="../../machinelist.cpp" line="3935"/>
+        <location filename="../../machinelist.cpp" line="3941"/>
         <source>unknown</source>
         <translation>inconnu</translation>
     </message>
@@ -7529,32 +7529,32 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3559"/>
+        <location filename="../../machinelist.cpp" line="3561"/>
         <source>System / BIOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3561"/>
+        <location filename="../../machinelist.cpp" line="3563"/>
         <source>System / Device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3910"/>
+        <location filename="../../machinelist.cpp" line="3916"/>
         <source>correct</source>
         <translation type="unfinished">correct</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3916"/>
+        <location filename="../../machinelist.cpp" line="3922"/>
         <source>mostly correct</source>
         <translation type="unfinished">à peu près correct</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3922"/>
+        <location filename="../../machinelist.cpp" line="3928"/>
         <source>incorrect</source>
         <translation type="unfinished">incorrect</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3928"/>
+        <location filename="../../machinelist.cpp" line="3934"/>
         <source>not found</source>
         <translation type="unfinished">non trouvé</translation>
     </message>
@@ -7578,8 +7578,8 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="780"/>
         <location filename="../../machinelist.cpp" line="783"/>
-        <location filename="../../machinelist.cpp" line="3498"/>
-        <location filename="../../machinelist.cpp" line="3747"/>
+        <location filename="../../machinelist.cpp" line="3500"/>
+        <location filename="../../machinelist.cpp" line="3752"/>
         <source>Loading, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7834,8 +7834,8 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="2925"/>
         <location filename="../../machinelist.cpp" line="2926"/>
         <location filename="../../machinelist.cpp" line="2927"/>
-        <location filename="../../machinelist.cpp" line="3563"/>
-        <location filename="../../machinelist.cpp" line="3805"/>
+        <location filename="../../machinelist.cpp" line="3565"/>
+        <location filename="../../machinelist.cpp" line="3810"/>
         <source>?</source>
         <translation>?</translation>
     </message>
@@ -8062,27 +8062,27 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3674"/>
+        <location filename="../../machinelist.cpp" line="3677"/>
         <source>loading catver.ini</source>
         <translation>Chargement de catver.ini</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3680"/>
+        <location filename="../../machinelist.cpp" line="3683"/>
         <source>Catver.ini - %p%</source>
         <translation>Catver.ini - %p%</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3723"/>
+        <location filename="../../machinelist.cpp" line="3726"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation>ERREUR: impossible d&apos;ouvrir &apos;%1&apos; en liecture - pas de données catver.ini disponibles</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3732"/>
+        <location filename="../../machinelist.cpp" line="3735"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation>fait (Chargement de catver.ini, temps écoulé = %1)</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3733"/>
+        <location filename="../../machinelist.cpp" line="3736"/>
         <source>%1 category / %2 version records loaded</source>
         <translation>categorie %1 / %2 enregistrements de version chargés</translation>
     </message>
@@ -8100,7 +8100,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3775"/>
+        <location filename="../../machinelist.cpp" line="3778"/>
         <source>Version view - %p%</source>
         <translation>Vue par version - %p%</translation>
     </message>
@@ -16527,7 +16527,7 @@ Utiliser les paramètres locaux, les écraser par la configuration globale ou ne
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4368"/>
-        <location filename="../../qmc2main.cpp" line="11208"/>
+        <location filename="../../qmc2main.cpp" line="11209"/>
         <source>Import from...</source>
         <translation>Importer depuis...</translation>
     </message>
@@ -16548,51 +16548,51 @@ Utiliser les paramètres locaux, les écraser par la configuration globale ou ne
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11128"/>
+        <location filename="../../qmc2main.cpp" line="11129"/>
         <source>Setting up the GUI, please wait...</source>
         <translation>Configuration du GUI, patientez svp...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11168"/>
+        <location filename="../../qmc2main.cpp" line="11169"/>
         <source>M.A.M.E. Catalog / Launcher II v</source>
         <translation>M.A.M.E. Catalog / Launcher II v</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11171"/>
+        <location filename="../../qmc2main.cpp" line="11172"/>
         <source>SVN r%1</source>
         <translation>SVN r%1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11196"/>
+        <location filename="../../qmc2main.cpp" line="11197"/>
         <source>processing global emulator configuration</source>
         <translation>traitement de la configuration globale de l&apos;émulateur </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11205"/>
+        <location filename="../../qmc2main.cpp" line="11206"/>
         <source>Export to...</source>
         <translation>Exporter vers...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11206"/>
         <location filename="../../qmc2main.cpp" line="11207"/>
+        <location filename="../../qmc2main.cpp" line="11208"/>
         <source>Export global MAME configuration</source>
         <translation>Exporter la configuration globale de MAME</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11209"/>
         <location filename="../../qmc2main.cpp" line="11210"/>
+        <location filename="../../qmc2main.cpp" line="11211"/>
         <source>Import global MAME configuration</source>
         <translation>Importer la configuration globale de MAME</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11217"/>
-        <location filename="../../qmc2main.cpp" line="11221"/>
+        <location filename="../../qmc2main.cpp" line="11218"/>
+        <location filename="../../qmc2main.cpp" line="11222"/>
         <source>&lt;inipath&gt;/mame.ini</source>
         <translation>&lt;rep.ini&gt;/mame.ini</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11218"/>
-        <location filename="../../qmc2main.cpp" line="11222"/>
+        <location filename="../../qmc2main.cpp" line="11219"/>
+        <location filename="../../qmc2main.cpp" line="11223"/>
         <source>Select file...</source>
         <translation>Choisir le fichier...</translation>
     </message>
@@ -16637,18 +16637,18 @@ Utiliser les paramètres locaux, les écraser par la configuration globale ou ne
         <translation type="obsolete">nom du jeu</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11177"/>
+        <location filename="../../qmc2main.cpp" line="11178"/>
         <source>OpenGL features enabled</source>
         <translation>fonctions OpenGL activées</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11187"/>
-        <location filename="../../qmc2main.cpp" line="11191"/>
+        <location filename="../../qmc2main.cpp" line="11188"/>
+        <location filename="../../qmc2main.cpp" line="11192"/>
         <source>SDL joystick support enabled - using SDL v%1.%2.%3</source>
         <translation>Support du joystick SDL activé - Utilise SDL v%1.%2.%3</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11181"/>
+        <location filename="../../qmc2main.cpp" line="11182"/>
         <source>Phonon features enabled - using Phonon v%1</source>
         <translation>Phonon actif - Utilise Phonon v%1</translation>
     </message>
@@ -22136,59 +22136,59 @@ Utiliser les paramètres locaux, les écraser par la configuration globale ou ne
 <context>
     <name>Welcome</name>
     <message>
-        <location filename="../../welcome.cpp" line="36"/>
+        <location filename="../../welcome.cpp" line="32"/>
         <source>SDLMAME</source>
         <translation>SDLMAME</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="38"/>
+        <location filename="../../welcome.cpp" line="34"/>
         <source>MAME</source>
         <translation>MAME</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="85"/>
+        <location filename="../../welcome.cpp" line="77"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="85"/>
+        <location filename="../../welcome.cpp" line="77"/>
         <source>The specified file isn&apos;t executable!</source>
         <translation>Le fichier spécifié n&apos;est pas exécutable!</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="99"/>
-        <location filename="../../welcome.cpp" line="102"/>
+        <location filename="../../welcome.cpp" line="87"/>
+        <location filename="../../welcome.cpp" line="90"/>
         <source>Choose emulator executable file</source>
         <translation>Choisir l&apos;exécutable de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="99"/>
-        <location filename="../../welcome.cpp" line="102"/>
+        <location filename="../../welcome.cpp" line="87"/>
+        <location filename="../../welcome.cpp" line="90"/>
         <source>All files (*)</source>
         <translation>Tous les fichiers (*)</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="124"/>
+        <location filename="../../welcome.cpp" line="108"/>
         <source>Choose working directory</source>
         <translation>Choisir le répertoire de travail</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="136"/>
+        <location filename="../../welcome.cpp" line="116"/>
         <source>Choose ROM path</source>
         <translation>Choisir le répertoire de ROMS</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="148"/>
+        <location filename="../../welcome.cpp" line="124"/>
         <source>Choose sample path</source>
         <translation>Choisir le répertoire de samples</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="160"/>
+        <location filename="../../welcome.cpp" line="132"/>
         <source>Choose hash path</source>
         <translation>Choisir le répertoire de Hash</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="256"/>
+        <location filename="../../welcome.cpp" line="220"/>
         <source>It appears that another instance of %1 is already running.
 However, this can also be the leftover of a previous crash.
 
@@ -22204,7 +22204,7 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
         <translation>Bienvenue dans QMC2</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="149"/>
+        <location filename="../../welcome.ui" line="224"/>
         <source>Browse sample path</source>
         <translation>Parcourir pour le répertoire de samples</translation>
     </message>
@@ -22214,47 +22214,51 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
         <translation>Parcourir pour le répertoire de ROMS</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="217"/>
+        <location filename="../../welcome.ui" line="117"/>
+        <source>&lt;h1&gt;Welcome to QMC2!&lt;/h1&gt;&lt;font size=&quot;+1&quot;&gt;&lt;p&gt;This appears to be your first start of QMC2 because no valid configuration was found. In order to use QMC2 as a front end for an emulator, you must specify the path to the emulator&apos;s executable file below.&lt;/p&gt;&lt;p&gt;The paths below the executable file are optional, but you should specify as many of them as you can right now to avoid problems or confusion later (of course, you can change the paths in the emulator&apos;s global configuration at any time later).&lt;/p&gt;&lt;p&gt;&lt;b&gt;It&apos;s strongly recommended that you specify the ROM path you are going to use at least!&lt;/b&gt;&lt;/p&gt;&lt;/font&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="199"/>
         <source>Hash path</source>
         <translation>Répertoire de Hash</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="173"/>
+        <location filename="../../welcome.ui" line="241"/>
         <source>Path to hash files</source>
         <translation>Chemin vers les fichiers Hash</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="180"/>
+        <location filename="../../welcome.ui" line="177"/>
         <source>Browse hash path</source>
         <translation>Parcourir pour le répertoire de Hash</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="21"/>
+        <location filename="../../welcome.ui" line="88"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="28"/>
+        <location filename="../../welcome.ui" line="34"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="224"/>
+        <location filename="../../welcome.ui" line="206"/>
         <source>Browse working directory</source>
         <translation>Parcourir le répertoire de travail</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="120"/>
+        <location filename="../../welcome.ui" line="274"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
         <translation>Répertoire de travail utilisé quand l&apos;émulateur est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="51"/>
+        <location filename="../../welcome.ui" line="261"/>
         <source>Working directory</source>
         <translation>Répertoire de travail</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="77"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -22263,7 +22267,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This appears to be your first start of QMC2 because no valid configuration was found. In order to use QMC2 as a front end for an emulator, you must specify the path to the emulator&apos;s executable file below.&lt;/p&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The paths below the executable file are optional, but you should specify as many of them as you can right now to avoid problems or confusion later (of course, you can change the paths in the emulator&apos;s global configuration at any time later).&lt;/p&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;It&apos;s strongly recommended that you specify the ROM path you are going to use at least!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -22273,67 +22277,66 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Il est fortement recommandé de spécifier de répertoire de ROMS!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="64"/>
+        <location filename="../../welcome.ui" line="157"/>
         <source>Emulator executable file</source>
         <translation>Exécutable de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="138"/>
+        <location filename="../../welcome.ui" line="188"/>
         <source>Browse emulator executable file</source>
         <translation>Parcourir pour l&apos;exécutable de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="40"/>
+        <location filename="../../welcome.cpp" line="36"/>
         <source>Unsupported emulator</source>
         <translation>Emulateur non supporté</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="42"/>
         <source>%1 executable file</source>
-        <translation>%1 fichier exécutable</translation>
+        <translation type="obsolete">%1 fichier exécutable</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="255"/>
+        <location filename="../../welcome.cpp" line="219"/>
         <source>Single-instance check</source>
         <translation>Test d&apos;instance unique</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="257"/>
+        <location filename="../../welcome.cpp" line="221"/>
         <source>&amp;Exit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="257"/>
+        <location filename="../../welcome.cpp" line="221"/>
         <source>&amp;Once</source>
         <translation>&amp;Une fois</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="257"/>
+        <location filename="../../welcome.cpp" line="221"/>
         <source>&amp;Ignore</source>
         <translation>&amp;Ignorer</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="107"/>
+        <location filename="../../welcome.ui" line="254"/>
         <source>Path to ROM images</source>
         <translation>Chemin vers les images ROM</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="197"/>
+        <location filename="../../welcome.ui" line="144"/>
         <source>Path to samples</source>
         <translation>Chemin vers les samples</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="94"/>
+        <location filename="../../welcome.ui" line="104"/>
         <source>Emulator executable</source>
         <translation>Exécutable de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="44"/>
+        <location filename="../../welcome.ui" line="217"/>
         <source>ROM path</source>
         <translation>Répertoire de ROMS</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="160"/>
+        <location filename="../../welcome.ui" line="281"/>
         <source>Sample path</source>
         <translation>Répertoire de samples</translation>
     </message>
