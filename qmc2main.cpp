@@ -11083,7 +11083,7 @@ int main(int argc, char *argv[])
 #if defined(QMC2_OS_WIN)
 		winAllocConsole();
 #endif
-		printf("Usage: %s [-config_path <config_path>] [-cc] [-tc] [-h|-?|-help] [qt_arguments]\n\n"
+		printf("Usage: %s [-config_path <config_path>] [-cc] [-tc] [-r] [-h|-?|-help] [qt_arguments]\n\n"
 		       "-config_path    Use specified configuration path (default: %s)\n"
 		       "-cc             Clear all emulator caches before starting up\n"
 		       "-tc             Check the emulator configuration template and exit\n"
