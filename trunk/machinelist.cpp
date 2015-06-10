@@ -3650,7 +3650,8 @@ void MachineList::createCategoryView()
 		qmc2MainWindow->progressBarMachineList->reset();
 		qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
 
-		QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
+		if ( qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_CATEGORY_INDEX )
+			QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
 	}
 	qmc2MainWindow->loadAnimMovie->setPaused(true);
 	qmc2MainWindow->labelCreatingCategoryView->setVisible(false);
@@ -3892,7 +3893,8 @@ void MachineList::createVersionView()
 		qmc2MainWindow->progressBarMachineList->reset();
 		qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
 
-		QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetVersionView_verticalScrollChanged()));
+		if ( qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_VERSION_INDEX )
+			QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetVersionView_verticalScrollChanged()));
 	}
 	qmc2MainWindow->loadAnimMovie->setPaused(true);
 	qmc2MainWindow->labelCreatingVersionView->setVisible(false);
