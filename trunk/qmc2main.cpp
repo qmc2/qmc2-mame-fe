@@ -11087,6 +11087,7 @@ int main(int argc, char *argv[])
 		       "-config_path    Use specified configuration path (default: %s)\n"
 		       "-cc             Clear all emulator caches before starting up\n"
 		       "-tc             Check the emulator configuration template and exit\n"
+		       "-r		Reconfigure (runs the setup wizard before starting)\n"
 		       "-h|-?|-help     Show this help text and exit\n", argv[0], QString(QMC2_DOT_PATH).toLocal8Bit().constData());
 #if defined(QMC2_OS_WIN)
 		winFreeConsole();
