@@ -22240,87 +22240,92 @@ Are you sure you want to do this?</source>
         <translation>Bienvenido a QMC2</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="88"/>
+        <location filename="../../welcome.ui" line="28"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancelar</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="34"/>
+        <location filename="../../welcome.ui" line="21"/>
         <source>&amp;Ok</source>
         <translation>&amp;Aceptar</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="188"/>
+        <location filename="../../welcome.ui" line="245"/>
         <source>Browse emulator executable file</source>
         <translation>Navegar al archivo ejecutable del emulador</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="157"/>
+        <location filename="../../welcome.ui" line="238"/>
         <source>Emulator executable file</source>
         <translation>Archivo ejecutable del emulador</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="206"/>
+        <location filename="../../welcome.ui" line="122"/>
         <source>Browse working directory</source>
         <translation>Navegar al directorio de trabajo</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="177"/>
+        <location filename="../../welcome.ui" line="195"/>
         <source>Browse hash path</source>
         <translation>Navegar a la ruta de hash</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="127"/>
+        <location filename="../../welcome.ui" line="276"/>
         <source>Browse ROM path</source>
         <translation>Navegar a la ruta de ROM</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="281"/>
+        <location filename="../../welcome.ui" line="287"/>
         <source>Sample path</source>
         <translation>Ruta de muestras</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="241"/>
+        <location filename="../../welcome.ui" line="313"/>
+        <source>Language</source>
+        <translation type="unfinished">Idioma</translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="188"/>
         <source>Path to hash files</source>
         <translation>Ruta a los archivos de hash</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="199"/>
+        <location filename="../../welcome.ui" line="266"/>
         <source>Hash path</source>
         <translation>Ruta Hash</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="144"/>
+        <location filename="../../welcome.ui" line="303"/>
         <source>Path to samples</source>
         <translation>Ruta a las muestras</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="104"/>
+        <location filename="../../welcome.ui" line="156"/>
         <source>Emulator executable</source>
         <translation>Ejecutable del emulador</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="117"/>
+        <location filename="../../welcome.ui" line="172"/>
         <source>&lt;h1&gt;Welcome to QMC2!&lt;/h1&gt;&lt;font size=&quot;+1&quot;&gt;&lt;p&gt;This appears to be your first start of QMC2 because no valid configuration was found. In order to use QMC2 as a front end for an emulator, you must specify the path to the emulator&apos;s executable file below.&lt;/p&gt;&lt;p&gt;The paths below the executable file are optional, but you should specify as many of them as you can right now to avoid problems or confusion later (of course, you can change the paths in the emulator&apos;s global configuration at any time later).&lt;/p&gt;&lt;p&gt;&lt;b&gt;It&apos;s strongly recommended that you specify the ROM path you are going to use at least!&lt;/b&gt;&lt;/p&gt;&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="274"/>
+        <location filename="../../welcome.ui" line="115"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
         <translation>Directorio de trabajo a utilizar cuando se ejecute el emulador (se usa el directorio de trabajo actual de QMC2 si se deja en blanco)</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="261"/>
+        <location filename="../../welcome.ui" line="256"/>
         <source>Working directory</source>
         <translation>Directorio de trabajo</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="224"/>
+        <location filename="../../welcome.ui" line="98"/>
         <source>Browse sample path</source>
         <translation>Navegar a la ruta de muestras</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="254"/>
+        <location filename="../../welcome.ui" line="225"/>
         <source>Path to ROM images</source>
         <translation>Ruta a las imágenes ROM</translation>
     </message>
@@ -22343,24 +22348,13 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;¡Se recomienda que por lo menos especifiques la ruta a las ROMs que vayas a usar!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="217"/>
+        <location filename="../../welcome.ui" line="133"/>
         <source>ROM path</source>
         <translation>Ruta ROM</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="32"/>
-        <source>SDLMAME</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../welcome.cpp" line="34"/>
-        <source>MAME</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../welcome.cpp" line="36"/>
         <source>Unsupported emulator</source>
-        <translation>Emulador no soportado</translation>
+        <translation type="obsolete">Emulador no soportado</translation>
     </message>
     <message>
         <source>%1 executable file</source>
@@ -22377,44 +22371,44 @@ p, li { white-space: pre-wrap; }
         <translation>¡El archivo especificado no es ejecutable!</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="87"/>
-        <location filename="../../welcome.cpp" line="90"/>
+        <location filename="../../welcome.cpp" line="86"/>
+        <location filename="../../welcome.cpp" line="89"/>
         <source>Choose emulator executable file</source>
         <translation>Seleccionar el archivo ejecutable del emulador</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="87"/>
-        <location filename="../../welcome.cpp" line="90"/>
+        <location filename="../../welcome.cpp" line="86"/>
+        <location filename="../../welcome.cpp" line="89"/>
         <source>All files (*)</source>
         <translation>Todos los archivos (*)</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="108"/>
+        <location filename="../../welcome.cpp" line="105"/>
         <source>Choose working directory</source>
         <translation>Seleccionar el directorio de trabajo</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="116"/>
+        <location filename="../../welcome.cpp" line="113"/>
         <source>Choose ROM path</source>
         <translation>Seleccionaro la ruta ROM</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="124"/>
+        <location filename="../../welcome.cpp" line="121"/>
         <source>Choose sample path</source>
         <translation>Seleccionar la ruta de muestras</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="132"/>
+        <location filename="../../welcome.cpp" line="129"/>
         <source>Choose hash path</source>
         <translation>Seleccionaro la ruta hash</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="219"/>
+        <location filename="../../welcome.cpp" line="229"/>
         <source>Single-instance check</source>
         <translation>Comprobación única-instancia</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="220"/>
+        <location filename="../../welcome.cpp" line="230"/>
         <source>It appears that another instance of %1 is already running.
 However, this can also be the leftover of a previous crash.
 
@@ -22425,17 +22419,17 @@ Aunque puede que sean los restos de una caida previa.
 ¿Salir ahora, aceptar una vez o ignorar completamente?</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="221"/>
+        <location filename="../../welcome.cpp" line="231"/>
         <source>&amp;Exit</source>
         <translation>&amp;Salir</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="221"/>
+        <location filename="../../welcome.cpp" line="231"/>
         <source>&amp;Once</source>
         <translation>&amp;Una vez</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="221"/>
+        <location filename="../../welcome.cpp" line="231"/>
         <source>&amp;Ignore</source>
         <translation>&amp;Ignorar</translation>
     </message>
