@@ -409,6 +409,8 @@ DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent)
 		messDevIconHash["serial"] = QIcon(QString::fromUtf8(":/data/img/dev_serial.png"));
 		messDevIconHash["snapshot"] = QIcon(QString::fromUtf8(":/data/img/dev_snapshot.png"));
 		messDevIconHash["romimage"] = QIcon(QString::fromUtf8(":/data/img/rom.png"));
+		messDevIconHash["midiin"] = QIcon(QString::fromUtf8(":/data/img/midi-in.png"));
+		messDevIconHash["midiout"] = QIcon(QString::fromUtf8(":/data/img/midi-out.png"));
 	}
 
 	FileChooserKeyEventFilter *eventFilter = new FileChooserKeyEventFilter(this);
