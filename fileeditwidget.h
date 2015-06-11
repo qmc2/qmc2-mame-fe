@@ -14,10 +14,12 @@ class FileEditWidget : public QWidget, public Ui::FileEditWidget
 		QString relativeToFolderOption;
 		QTreeWidget *myTreeWidget;
 
-		FileEditWidget(QString, QString, QString part = "", QWidget *parent = 0, bool showClearButton = false, QString relativeTo = QString(), QTreeWidget *treeWidget = NULL);
+		FileEditWidget(QString, QString, QString part = "", QWidget *parent = 0, bool showClearButton = false, QString relativeTo = QString(), QTreeWidget *treeWidget = NULL, bool cbMode = false);
 
 		bool returnRelativePath() { return !relativeToFolderOption.isEmpty(); }
 		QString relativeToPath();
+
+		bool comboBoxMode() { return m_comboBoxMode; } 
 
 	public slots:
 		void on_toolButtonBrowse_clicked();
@@ -25,6 +27,9 @@ class FileEditWidget : public QWidget, public Ui::FileEditWidget
 
 	signals:
 		void dataChanged(QWidget *);
+
+	private:
+		bool m_comboBoxMode;
 };
 
 #endif

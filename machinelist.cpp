@@ -81,9 +81,9 @@ extern QTreeWidgetItem *qmc2LastEmuInfoItem;
 extern QTreeWidgetItem *qmc2LastSoftwareListItem;
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern DeviceConfigurator *qmc2DeviceConfigurator;
-extern QHash<QString, QHash<QString, QStringList> > messSystemSlotHash;
-extern QHash<QString, QString> messSlotNameHash;
-extern bool messSystemSlotsSupported;
+extern QHash<QString, QHash<QString, QStringList> > systemSlotHash;
+extern QHash<QString, QString> slotNameHash;
+extern bool systemSlotsSupported;
 extern SoftwareList *qmc2SoftwareList;
 extern QHash<QString, QStringList> systemSoftwareListHash;
 extern QHash<QString, QStringList> systemSoftwareFilterHash;
@@ -469,9 +469,9 @@ void MachineList::load()
 		qmc2DeviceConfigurator = NULL;
 	}
 	qmc2LastDeviceConfigItem = NULL;
-	messSystemSlotsSupported = true;
-	messSystemSlotHash.clear();
-	messSlotNameHash.clear();
+	systemSlotsSupported = true;
+	systemSlotHash.clear();
+	slotNameHash.clear();
 	if ( qmc2SystemNotesEditor ) {
 		qmc2SystemNotesEditor->save();
 		qmc2SystemNotesEditor->closeXmlBuffer();
