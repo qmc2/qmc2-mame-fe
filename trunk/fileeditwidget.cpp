@@ -18,14 +18,18 @@ extern Options *qmc2Options;
 extern EmulatorOptions *qmc2GlobalEmulatorOptions;
 extern EmulatorOptions *qmc2EmulatorOptions;
 
-FileEditWidget::FileEditWidget(QString filePath, QString filter, QString part, QWidget *parent, bool showClearButton, QString relativeTo, QTreeWidget *treeWidget)
+FileEditWidget::FileEditWidget(QString filePath, QString filter, QString part, QWidget *parent, bool showClearButton, QString relativeTo, QTreeWidget *treeWidget, bool cbMode)
 	: QWidget(parent)
 {
 	setupUi(this);
+	m_comboBoxMode = cbMode;
 	if ( !showClearButton )
 		toolButtonClear->hide();
 	relativeToFolderOption = relativeTo;
-	lineEditFile->setText(filePath);
+	if ( comboBoxMode() )
+		comboBox->lineEdit()->setText(filePath);
+	else
+		lineEditFile->setText(filePath);
 	browserFilter = filter;
 	browserPart = part;
 	QFontMetrics fm(QApplication::font());
@@ -37,7 +41,11 @@ FileEditWidget::FileEditWidget(QString filePath, QString filter, QString part, Q
 
 void FileEditWidget::on_toolButtonBrowse_clicked()
 {
-	QString startPath = lineEditFile->text();
+	QString startPath;
+	if ( comboBoxMode() )
+		startPath = comboBox->lineEdit()->text();
+	else
+		startPath = lineEditFile->text();
 	if ( returnRelativePath() ) {
 		QDir relativeToDir(relativeToPath());
 		QString relToPath = relativeToDir.path();
@@ -82,7 +90,10 @@ void FileEditWidget::on_toolButtonBrowse_clicked()
 			QFileInfo fi(s);
 			s = fi.baseName();
 		}
-		lineEditFile->setText(s);
+		if ( comboBoxMode() )
+			comboBox->lineEdit()->setText(s);
+		else
+			lineEditFile->setText(s);
 	}
 }
 
