@@ -30,8 +30,8 @@ Welcome::Welcome(QWidget *parent)
 		setupUi(this);
 		comboBoxLanguage->blockSignals(true);
 		comboBoxLanguage->addItems(availableLanguages);
-		QString lang = startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Language", QString()).toString();
-		int langIndex = comboBoxLanguage->findText(lang);
+		originalLanguage = startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Language", QString()).toString();
+		int langIndex = comboBoxLanguage->findText(originalLanguage);
 		if ( langIndex >= 0 )
 			comboBoxLanguage->setCurrentIndex(langIndex);
 		comboBoxLanguage->blockSignals(false);
@@ -77,6 +77,11 @@ void Welcome::on_pushButtonOkay_clicked()
 			QMessageBox::critical(this, tr("Error"), tr("The specified file isn't executable!"));
 	} else
 		emit accept();
+}
+
+void Welcome::on_pushButtonCancel_clicked()
+{
+	startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", originalLanguage);
 }
 
 void Welcome::on_toolButtonBrowseExecutableFile_clicked()
