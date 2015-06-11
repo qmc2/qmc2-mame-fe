@@ -24,7 +24,6 @@ class Welcome : public QDialog, public Ui::Welcome
 
 	public slots:
 		void on_pushButtonOkay_clicked();
-		void on_pushButtonCancel_clicked();
 		void on_toolButtonBrowseExecutableFile_clicked();
 		void on_toolButtonBrowseWorkingDirectory_clicked();
 		void on_toolButtonBrowseROMPath_clicked();
@@ -32,6 +31,7 @@ class Welcome : public QDialog, public Ui::Welcome
 		void on_toolButtonBrowseHashPath_clicked();
 		void on_comboBoxLanguage_currentIndexChanged(int index);
 		void setupLanguage();
+		void reject();
 
 	private:
 		QStringList availableLanguages;

@@ -79,11 +79,6 @@ void Welcome::on_pushButtonOkay_clicked()
 		emit accept();
 }
 
-void Welcome::on_pushButtonCancel_clicked()
-{
-	startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", originalLanguage);
-}
-
 void Welcome::on_toolButtonBrowseExecutableFile_clicked()
 {
 	QString s;
@@ -143,6 +138,13 @@ void Welcome::on_comboBoxLanguage_currentIndexChanged(int index)
 	setupLanguage();
 	retranslateUi(this);
 	adjustSize();
+}
+
+void Welcome::reject()
+{
+	if ( !originalLanguage.isEmpty() )
+		startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", originalLanguage);
+	QDialog::reject();
 }
 
 void Welcome::setupLanguage()
