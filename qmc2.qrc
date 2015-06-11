@@ -160,6 +160,8 @@
         <file>data/img/merge_ok.png</file>
         <file>data/img/merge_unknown.png</file>
         <file>data/img/minimize.png</file>
+        <file>data/img/midi-in.png</file>
+        <file>data/img/midi-out.png</file>
         <file>data/img/minus.png</file>
         <file>data/img/minus_all.png</file>
         <file>data/img/minus_multiple.png</file>
