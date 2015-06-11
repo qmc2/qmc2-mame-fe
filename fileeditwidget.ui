@@ -123,22 +123,5 @@
  <resources>
   <include location="qmc2.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>toolButtonClear</sender>
-   <signal>clicked()</signal>
-   <receiver>lineEditFile</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>160</x>
-     <y>9</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>86</x>
-     <y>15</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

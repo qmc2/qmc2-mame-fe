@@ -851,7 +851,6 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 	QProcess commandProc;
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
 #if defined(QMC2_SDLMAME)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)

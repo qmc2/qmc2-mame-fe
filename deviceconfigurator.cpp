@@ -6,6 +6,7 @@
 #endif
 #include <QMap>
 #include <QHash>
+#include <QProcess>
 
 #include <algorithm> // std::sort()
 
@@ -37,7 +38,11 @@ extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 QHash<QString, QHash<QString, QStringList> > systemSlotHash;
 QHash<QString, QString> slotNameHash;
 QHash<QString, QIcon> deviceIconHash;
+QHash<QString, int> deviceNameToIndexHash;
 bool systemSlotsSupported = true;
+QStringList midiInDevices;
+QStringList midiOutDevices;
+bool reloadMidiDevices = true;
 
 DeviceFileDelegate::DeviceFileDelegate(QObject *parent)
 	: QItemDelegate(parent)
@@ -71,7 +76,24 @@ QWidget *DeviceFileDelegate::createEditor(QWidget *parent, const QStyleOptionVie
 		}
 		filterString += ");;" + tr("All files") + " (*)";
 	}
-	FileEditWidget *fileEditWidget = new FileEditWidget("", filterString, "", parent, true);
+	FileEditWidget *fileEditWidget;
+	switch ( deviceNameToIndexHash[index.sibling(index.row(), QMC2_DEVCONFIG_COLUMN_TYPE).data(Qt::EditRole).toString()] ) {
+		case QMC2_DEVTYPE_MIDIIN:
+			if ( reloadMidiDevices )
+				loadMidiDevices();
+			fileEditWidget = new FileEditWidget(QString(), filterString, QString(), parent, true, QString(), 0, true);
+			fileEditWidget->comboBox->addItems(midiInDevices);
+			break;
+		case QMC2_DEVTYPE_MIDIOUT:
+			if ( reloadMidiDevices )
+				loadMidiDevices();
+			fileEditWidget = new FileEditWidget(QString(), filterString, QString(), parent, true, QString(), 0, true);
+			fileEditWidget->comboBox->addItems(midiOutDevices);
+			break;
+		default:
+			fileEditWidget = new FileEditWidget(QString(), filterString, QString(), parent, true);
+			break;
+	}
 	fileEditWidget->installEventFilter(const_cast<DeviceFileDelegate*>(this));
 	connect(fileEditWidget, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged(QWidget *)));
 	return fileEditWidget;
@@ -122,6 +144,79 @@ void DeviceFileDelegate::dataChanged(QWidget *widget)
 		emit editorDataChanged(fileEditWidget->lineEditFile->text());
 }
 
+void DeviceFileDelegate::loadMidiDevices()
+{
+	midiInDevices.clear();
+	midiOutDevices.clear();
+
+	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QProcess commandProc;
+#if defined(QMC2_SDLMAME)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
+#elif defined(QMC2_MAME)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
+#endif
+#if !defined(QMC2_OS_WIN)
+	commandProc.setStandardErrorFile("/dev/null");
+#endif
+	QStringList args;
+	args << "-listmidi";
+	bool commandProcStarted = false;
+	int retries = 0;
+	commandProc.start(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString(), args);
+	bool started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
+	while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
+		started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
+		qApp->processEvents();
+	}
+	if ( started ) {
+		commandProcStarted = true;
+		bool commandProcRunning = (commandProc.state() == QProcess::Running);
+		while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
+			qApp->processEvents();
+			commandProcRunning = (commandProc.state() == QProcess::Running);
+		}
+#if defined(QMC2_SDLMAME)
+		QFile qmc2TempFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
+#elif defined(QMC2_MAME)
+		QFile qmc2TempFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
+#endif
+		if ( commandProcStarted && qmc2TempFile.open(QFile::ReadOnly) ) {
+			QTextStream ts(&qmc2TempFile);
+			ts.setCodec(QTextCodec::codecForName("UTF-8"));
+			QString buffer = ts.readAll();
+#if defined(QMC2_OS_WIN)
+			buffer.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
+#endif
+			qmc2TempFile.close();
+			qmc2TempFile.remove();
+			if ( !buffer.isEmpty() ) {
+				QStringList lines = buffer.split("\n", QString::SkipEmptyParts);
+				QStringList midiInOutMarks = QStringList() << "MIDI input ports:" << "MIDI output ports:";
+				bool midiIn = false;
+				bool midiOut = false;
+				int i = 0;
+				while ( i < lines.count() ) {
+					QString line = lines[i++];
+					line = line.replace("(default)", "").trimmed();
+					if ( midiInOutMarks.contains(line) ) {
+						midiIn = midiInOutMarks.indexOf(line) == 0;
+						midiOut = midiInOutMarks.indexOf(line) == 1;
+						continue;
+					}
+					if ( midiIn )
+						midiInDevices << line;
+					if ( midiOut )
+						midiOutDevices << line;
+				}
+			}
+		}
+
+		reloadMidiDevices = false;
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up"));
+}
+
 DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent)
 	: QWidget(parent)
 {
@@ -158,7 +253,7 @@ DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent)
 	lineEditConfigurationName->setPlaceholderText(tr("Enter configuration name"));
 	lineEditConfigurationName->blockSignals(false);
 
-	messMachineName = machineName;
+	currentMachineName = machineName;
 	treeWidgetDeviceSetup->setItemDelegateForColumn(QMC2_DEVCONFIG_COLUMN_FILE, &fileEditDelegate);
 	connect(&fileEditDelegate, SIGNAL(editorDataChanged(const QString &)), this, SLOT(editorDataChanged(const QString &)));
 	tabWidgetDeviceSetup->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/DeviceConfigurator/DeviceSetupTab", 0).toInt());
@@ -229,7 +324,7 @@ DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent)
 	// configuration menu
 	configurationMenu = new QMenu(toolButtonConfiguration);
 	QString s = tr("Select default device directory");
-	QAction *action = configurationMenu->addAction(tr("&Default device directory for '%1'...").arg(messMachineName));
+	QAction *action = configurationMenu->addAction(tr("&Default device directory for '%1'...").arg(currentMachineName));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(actionSelectDefaultDeviceDirectory_triggered()));
@@ -393,6 +488,23 @@ DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent)
 		deviceIconHash["romimage"] = QIcon(QString::fromUtf8(":/data/img/rom.png"));
 		deviceIconHash["midiin"] = QIcon(QString::fromUtf8(":/data/img/midi-in.png"));
 		deviceIconHash["midiout"] = QIcon(QString::fromUtf8(":/data/img/midi-out.png"));
+		deviceNameToIndexHash["cartridge"] = QMC2_DEVTYPE_CARTRIDGE;
+		deviceNameToIndexHash["cassette"] = QMC2_DEVTYPE_CASSETTE;
+		deviceNameToIndexHash["cdrom"] = QMC2_DEVTYPE_CDROM;
+		deviceNameToIndexHash["cylinder"] = QMC2_DEVTYPE_CYLINDER;
+		deviceNameToIndexHash["floppydisk"] = QMC2_DEVTYPE_FLOPPYDISK;
+		deviceNameToIndexHash["harddisk"] = QMC2_DEVTYPE_HARDDISK;
+		deviceNameToIndexHash["magtape"] = QMC2_DEVTYPE_MAGTAPE;
+		deviceNameToIndexHash["memcard"] = QMC2_DEVTYPE_MEMCARD;
+		deviceNameToIndexHash["parallel"] = QMC2_DEVTYPE_PARALLEL;
+		deviceNameToIndexHash["printer"] = QMC2_DEVTYPE_PRINTER;
+		deviceNameToIndexHash["punchtape"] = QMC2_DEVTYPE_PUNCHTAPE;
+		deviceNameToIndexHash["quickload"] = QMC2_DEVTYPE_QUICKLOAD;
+		deviceNameToIndexHash["serial"] = QMC2_DEVTYPE_SERIAL;
+		deviceNameToIndexHash["snapshot"] = QMC2_DEVTYPE_SNAPSHOT;
+		deviceNameToIndexHash["romimage"] = QMC2_DEVTYPE_ROMIMAGE;
+		deviceNameToIndexHash["midiin"] = QMC2_DEVTYPE_MIDIIN;
+		deviceNameToIndexHash["midiout"] = QMC2_DEVTYPE_MIDIOUT;
 	}
 
 	FileChooserKeyEventFilter *eventFilter = new FileChooserKeyEventFilter(this);
@@ -480,7 +592,7 @@ QString &DeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 			break;
 		QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
 		if ( !slotName.isEmpty() ) {
-			bool isNestedSlot = !systemSlotHash[messMachineName].contains(slotName);
+			bool isNestedSlot = !systemSlotHash[currentMachineName].contains(slotName);
 			QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 			if ( cb ) {
 				int defaultIndex = -1;
@@ -938,7 +1050,7 @@ bool DeviceConfigurator::refreshDeviceMap()
 
 	refreshRunning = true;
 
-	QString xmlBuffer = getXmlDataWithEnabledSlots(messMachineName);
+	QString xmlBuffer = getXmlDataWithEnabledSlots(currentMachineName);
 
 	if ( xmlBuffer.isEmpty() ) {
 		refreshRunning = false;
@@ -960,7 +1072,7 @@ bool DeviceConfigurator::refreshDeviceMap()
 	xmlReader.setContentHandler(&xmlHandler);
 	if ( !xmlReader.parse(xmlInputSource) ) {
 		refreshRunning = false;
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for '%1'").arg(messMachineName));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for '%1'").arg(currentMachineName));
 		tabSlotOptions->setUpdatesEnabled(true);
 		return false;
 	}
@@ -1263,7 +1375,7 @@ bool DeviceConfigurator::load()
 	listWidgetDeviceConfigurations->setSortingEnabled(false);
 	listWidgetDeviceConfigurations->clear();
 
-	QString xmlBuffer = getXmlData(messMachineName);
+	QString xmlBuffer = getXmlData(currentMachineName);
   
 	QXmlInputSource xmlInputSource;
 	xmlInputSource.setData(xmlBuffer);
@@ -1328,7 +1440,7 @@ bool DeviceConfigurator::load()
 		qApp->processEvents();
 	}
 
-	QHashIterator<QString, QStringList> it(systemSlotHash[messMachineName]);
+	QHashIterator<QString, QStringList> it(systemSlotHash[currentMachineName]);
 	slotPreselectionMap.clear();
 	nestedSlotPreselectionMap.clear();
 	while ( it.hasNext() ) {
@@ -1336,7 +1448,7 @@ bool DeviceConfigurator::load()
 		QString slotName = it.key();
 		if ( slotName == "QMC2_UNUSED_SLOTS" )
 			continue;
-		bool isNestedSlot = !systemSlotHash[messMachineName].contains(slotName);
+		bool isNestedSlot = !systemSlotHash[currentMachineName].contains(slotName);
 		QStringList slotOptions;
 		QStringList slotOptionsShort;
 		foreach (QString s, it.value()) {
@@ -1390,7 +1502,7 @@ bool DeviceConfigurator::load()
 	slotMap.clear();
 	slotBiosMap.clear();
 
-	QString group = QString("MAME/Configuration/Devices/%1").arg(messMachineName);
+	QString group = QString("MAME/Configuration/Devices/%1").arg(currentMachineName);
 	currentConfigName = qmc2Config->value(group + "/SelectedConfiguration").toString();
 	qmc2Config->beginGroup(group);
 	QStringList configurationList = qmc2Config->childGroups();
@@ -1419,7 +1531,7 @@ bool DeviceConfigurator::load()
 	// use the 'general software folder' as fall-back, if applicable
 	if ( qmc2FileEditStartPath.isEmpty() ) {
 		qmc2FileEditStartPath = qmc2Config->value("MAME/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
-		QDir machineSoftwareFolder(qmc2FileEditStartPath + "/" + messMachineName);
+		QDir machineSoftwareFolder(qmc2FileEditStartPath + "/" + currentMachineName);
 		if ( machineSoftwareFolder.exists() )
 			qmc2FileEditStartPath = machineSoftwareFolder.canonicalPath();
 	}
@@ -1449,7 +1561,7 @@ bool DeviceConfigurator::save()
 	if ( !fullyLoaded )
 		return false;
 
-	QString group = QString("MAME/Configuration/Devices/%1").arg(messMachineName);
+	QString group = QString("MAME/Configuration/Devices/%1").arg(currentMachineName);
 	QString devDir = qmc2Config->value(QString("%1/DefaultDeviceDirectory").arg(group), "").toString();
 
 	qmc2Config->remove(group);
@@ -1796,7 +1908,7 @@ void DeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString 
 							QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(itemMap[valuePair.first[i]], QMC2_SLOTCONFIG_COLUMN_OPTION);
 							if ( cb ) {
 								int index = -1;
-								bool isNestedSlot = !systemSlotHash[messMachineName].contains(valuePair.first[i]);
+								bool isNestedSlot = !systemSlotHash[currentMachineName].contains(valuePair.first[i]);
 								if ( valuePair.second[i] != "\"\"" ) {
 									if ( isNestedSlot )
 										index = cb->findText(QString("%1 - %2").arg(valuePair.second[i]).arg(nestedSlotOptionMap[valuePair.first[i]][valuePair.second[i]]));
@@ -1937,19 +2049,19 @@ void DeviceConfigurator::actionSelectFile_triggered()
 
 void DeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()
 {
-	QString group = QString("MAME/Configuration/Devices/%1").arg(messMachineName);
+	QString group = QString("MAME/Configuration/Devices/%1").arg(currentMachineName);
 	QString path = qmc2Config->value(group + "/DefaultDeviceDirectory", "").toString();
 
 	if ( path.isEmpty() ) {
 		path = qmc2Config->value("MAME/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
-		QDir machineSoftwareFolder(path + "/" + messMachineName);
+		QDir machineSoftwareFolder(path + "/" + currentMachineName);
 		if ( machineSoftwareFolder.exists() )
 			path = machineSoftwareFolder.canonicalPath();
 	}
 
 	qmc2Config->beginGroup(group);
 
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(messMachineName), path, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(currentMachineName), path, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isEmpty() )
 		qmc2Config->setValue("DefaultDeviceDirectory", s);
 	qmc2FileEditStartPath = qmc2Config->value("DefaultDeviceDirectory").toString();
@@ -1958,7 +2070,7 @@ void DeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()
 
 	if ( qmc2FileEditStartPath.isEmpty() ) {
 		qmc2FileEditStartPath = qmc2Config->value("MAME/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
-		QDir machineSoftwareFolder(qmc2FileEditStartPath + "/" + messMachineName);
+		QDir machineSoftwareFolder(qmc2FileEditStartPath + "/" + currentMachineName);
 		if ( machineSoftwareFolder.exists() )
 			qmc2FileEditStartPath = machineSoftwareFolder.canonicalPath();
 	}
@@ -2026,12 +2138,12 @@ void DeviceConfigurator::setupFileChooser()
 	toolButtonChooserPlayEmbedded->setEnabled(false);
 	toolButtonChooserSaveConfiguration->setEnabled(false);
 
-	QString group = QString("MAME/Configuration/Devices/%1").arg(messMachineName);
+	QString group = QString("MAME/Configuration/Devices/%1").arg(currentMachineName);
 	QString path = qmc2Config->value(group + "/DefaultDeviceDirectory", "").toString();
 
 	if ( path.isEmpty() ) {
 		path = qmc2Config->value("MAME/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
-		QDir machineSoftwareFolder(path + "/" + messMachineName);
+		QDir machineSoftwareFolder(path + "/" + currentMachineName);
 		if ( machineSoftwareFolder.exists() )
 			path = machineSoftwareFolder.canonicalPath();
 	}
@@ -2215,7 +2327,7 @@ void DeviceConfigurator::dirChooserUseCurrentAsDefaultDirectory()
 	if ( modelIndexDirModel.isValid() ) {
 		QString path = dirModel->fileInfo(modelIndexDirModel).absoluteFilePath();
 		if ( !path.isEmpty() )
-			 qmc2Config->setValue(QString("MESS/Configuration/Devices/%1/DefaultDeviceDirectory").arg(messMachineName), path);
+			 qmc2Config->setValue(QString("MESS/Configuration/Devices/%1/DefaultDeviceDirectory").arg(currentMachineName), path);
 	}
 }
 
@@ -2560,13 +2672,13 @@ bool DeviceConfiguratorXmlHandler::startElement(const QString &/*namespaceURI*/,
 		deviceExtensions << attributes.value("name");
 	} else if ( qName == "slot" ) {
 		slotName = attributes.value("name");
-		if ( systemSlotHash[qmc2DeviceConfigurator->messMachineName]["QMC2_UNUSED_SLOTS"].contains(slotName) )
+		if ( systemSlotHash[qmc2DeviceConfigurator->currentMachineName]["QMC2_UNUSED_SLOTS"].contains(slotName) )
 			return true;
 		allSlots << slotName;
-		if ( !systemSlotHash[qmc2DeviceConfigurator->messMachineName].contains(slotName) )
+		if ( !systemSlotHash[qmc2DeviceConfigurator->currentMachineName].contains(slotName) )
 			newSlots << slotName;
 	} else if ( qName == "slotoption" ) {
-		if ( !systemSlotHash[qmc2DeviceConfigurator->messMachineName].contains(slotName) ) {
+		if ( !systemSlotHash[qmc2DeviceConfigurator->currentMachineName].contains(slotName) ) {
 			newSlotOptions[slotName] << attributes.value("name");
 			newSlotDevices[attributes.value("name")] = attributes.value("devname");
 		}

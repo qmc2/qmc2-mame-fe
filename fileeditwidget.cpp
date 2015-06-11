@@ -26,9 +26,10 @@ FileEditWidget::FileEditWidget(QString filePath, QString filter, QString part, Q
 	if ( !showClearButton )
 		toolButtonClear->hide();
 	relativeToFolderOption = relativeTo;
-	if ( comboBoxMode() )
+	if ( comboBoxMode() ) {
+		stackedWidget->setCurrentIndex(1);
 		comboBox->lineEdit()->setText(filePath);
-	else
+	} else
 		lineEditFile->setText(filePath);
 	browserFilter = filter;
 	browserPart = part;
@@ -95,6 +96,14 @@ void FileEditWidget::on_toolButtonBrowse_clicked()
 		else
 			lineEditFile->setText(s);
 	}
+}
+
+void FileEditWidget::on_toolButtonClear_clicked()
+{
+	if ( comboBoxMode() )
+		comboBox->lineEdit()->clear();
+	else
+		lineEditFile->clear();
 }
 
 QString FileEditWidget::relativeToPath()

@@ -21,6 +21,8 @@ class DeviceFileDelegate : public QItemDelegate
 		virtual void setModelData(QWidget *, QAbstractItemModel *, const QModelIndex &) const;
 		virtual void updateEditorGeometry(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const;
 
+		static void loadMidiDevices();
+
 	public slots:
 		void dataChanged(QWidget *);
 
@@ -72,7 +74,7 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		DeviceFileDelegate fileEditDelegate;
 		QByteArray fileChooserHeaderState;
 		QByteArray dirChooserHeaderState;
-		QString messMachineName;
+		QString currentMachineName;
 		QString currentConfigName;
 		QString oldConfigurationName;
 		QString normalXmlBuffer;
