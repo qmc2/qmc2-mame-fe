@@ -44,13 +44,13 @@ QStringList midiInDevices;
 QStringList midiOutDevices;
 bool reloadMidiDevices = true;
 
-DeviceFileDelegate::DeviceFileDelegate(QObject *parent)
+DeviceItemDelegate::DeviceItemDelegate(QObject *parent)
 	: QItemDelegate(parent)
 {
 	// NOP
 }
 
-QWidget *DeviceFileDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &/*option*/, const QModelIndex &index) const
+QWidget *DeviceItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &/*option*/, const QModelIndex &index) const
 {
 	QModelIndex sibling = index.sibling(index.row(), QMC2_DEVCONFIG_COLUMN_EXT);
 	QStringList extensions = sibling.data(Qt::EditRole).toString().split("/", QString::SkipEmptyParts);
@@ -94,12 +94,12 @@ QWidget *DeviceFileDelegate::createEditor(QWidget *parent, const QStyleOptionVie
 			fileEditWidget = new FileEditWidget(QString(), filterString, QString(), parent, true);
 			break;
 	}
-	fileEditWidget->installEventFilter(const_cast<DeviceFileDelegate*>(this));
+	fileEditWidget->installEventFilter(const_cast<DeviceItemDelegate*>(this));
 	connect(fileEditWidget, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged(QWidget *)));
 	return fileEditWidget;
 }
 
-void DeviceFileDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
+void DeviceItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
 	QString value = index.model()->data(index, Qt::EditRole).toString();
 	FileEditWidget *fileEditWidget = static_cast<FileEditWidget *>(editor);
@@ -114,7 +114,7 @@ void DeviceFileDelegate::setEditorData(QWidget *editor, const QModelIndex &index
 	}
 }
 
-void DeviceFileDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
+void DeviceItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
 	FileEditWidget *fileEditWidget = static_cast<FileEditWidget*>(editor);
 	QString v;
@@ -125,7 +125,7 @@ void DeviceFileDelegate::setModelData(QWidget *editor, QAbstractItemModel *model
 	model->setData(index, v, Qt::EditRole);
 }
 
-void DeviceFileDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const
+void DeviceItemDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const
 {
 	editor->setGeometry(option.rect);
 	QFontMetrics fm(QApplication::font());
@@ -134,7 +134,7 @@ void DeviceFileDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptio
 	fileEditWidget->toolButtonBrowse->setIconSize(iconSize);
 }
 
-void DeviceFileDelegate::dataChanged(QWidget *widget)
+void DeviceItemDelegate::dataChanged(QWidget *widget)
 {
 	emit commitData(widget);
 	FileEditWidget *fileEditWidget = static_cast<FileEditWidget*>(widget);
@@ -144,7 +144,7 @@ void DeviceFileDelegate::dataChanged(QWidget *widget)
 		emit editorDataChanged(fileEditWidget->lineEditFile->text());
 }
 
-void DeviceFileDelegate::loadMidiDevices()
+void DeviceItemDelegate::loadMidiDevices()
 {
 	midiInDevices.clear();
 	midiOutDevices.clear();
