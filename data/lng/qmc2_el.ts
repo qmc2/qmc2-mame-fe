@@ -4257,7 +4257,7 @@ Do you want to choose a different name?</source>
     </message>
 </context>
 <context>
-    <name>DeviceFileDelegate</name>
+    <name>DeviceItemDelegate</name>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="57"/>
         <location filename="../../deviceconfigurator.cpp" line="77"/>

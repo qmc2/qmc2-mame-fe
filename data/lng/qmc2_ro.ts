@@ -4344,7 +4344,7 @@ Doriti sa alegeti un nume diferit?</translation>
     </message>
 </context>
 <context>
-    <name>DeviceFileDelegate</name>
+    <name>DeviceItemDelegate</name>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="57"/>
         <location filename="../../deviceconfigurator.cpp" line="77"/>
