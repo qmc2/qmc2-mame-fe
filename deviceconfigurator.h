@@ -9,12 +9,12 @@
 #include "filesystemmodel.h"
 #include "ui_deviceconfigurator.h"
 
-class DeviceFileDelegate : public QItemDelegate
+class DeviceItemDelegate : public QItemDelegate
 {
 	Q_OBJECT
 
 	public:
-		DeviceFileDelegate(QObject *parent = 0);
+		DeviceItemDelegate(QObject *parent = 0);
 
 		QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const;
 		virtual void setEditorData(QWidget *, const QModelIndex &) const;
@@ -71,7 +71,7 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		bool comboBoxChooserFilterPatternHadFocus;
 		bool forceQuit;
 		int fileModelRowInsertionCounter;
-		DeviceFileDelegate fileEditDelegate;
+		DeviceItemDelegate fileEditDelegate;
 		QByteArray fileChooserHeaderState;
 		QByteArray dirChooserHeaderState;
 		QString currentMachineName;
