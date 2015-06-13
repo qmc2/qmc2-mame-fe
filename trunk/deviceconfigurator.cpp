@@ -5,7 +5,6 @@
 #include <QInputDialog>
 #endif
 #include <QMap>
-#include <QHash>
 #include <QProcess>
 
 #include <algorithm> // std::sort()
@@ -35,14 +34,13 @@ extern bool qmc2TemplateCheck;
 extern Options *qmc2Options;
 extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 
-QHash<QString, QHash<QString, QStringList> > systemSlotHash;
-QHash<QString, QString> slotNameHash;
-QHash<QString, QIcon> deviceIconHash;
-QHash<QString, int> deviceNameToIndexHash;
-bool systemSlotsSupported = true;
-QStringList midiInDevices;
-QStringList midiOutDevices;
-bool reloadMidiDevices = true;
+QHash<QString, QHash<QString, QStringList> > DeviceConfigurator::systemSlotHash;
+QHash<QString, QString> DeviceConfigurator::slotNameHash;
+QHash<QString, QIcon> DeviceConfigurator::deviceIconHash;
+QHash<QString, int> DeviceConfigurator::deviceNameToIndexHash;
+QStringList DeviceConfigurator::midiInDevices;
+QStringList DeviceConfigurator::midiOutDevices;
+bool DeviceConfigurator::reloadMidiDevices = true;
 
 DeviceItemDelegate::DeviceItemDelegate(QObject *parent)
 	: QItemDelegate(parent)
@@ -77,18 +75,18 @@ QWidget *DeviceItemDelegate::createEditor(QWidget *parent, const QStyleOptionVie
 		filterString += ");;" + tr("All files") + " (*)";
 	}
 	FileEditWidget *fileEditWidget;
-	switch ( deviceNameToIndexHash[index.sibling(index.row(), QMC2_DEVCONFIG_COLUMN_TYPE).data(Qt::EditRole).toString()] ) {
+	switch ( DeviceConfigurator::deviceNameToIndexHash[index.sibling(index.row(), QMC2_DEVCONFIG_COLUMN_TYPE).data(Qt::EditRole).toString()] ) {
 		case QMC2_DEVTYPE_MIDIIN:
-			if ( reloadMidiDevices )
+			if ( DeviceConfigurator::reloadMidiDevices )
 				loadMidiDevices();
 			fileEditWidget = new FileEditWidget(QString(), filterString, QString(), parent, true, QString(), 0, true);
-			fileEditWidget->comboBox->addItems(midiInDevices);
+			fileEditWidget->comboBox->addItems(DeviceConfigurator::midiInDevices);
 			break;
 		case QMC2_DEVTYPE_MIDIOUT:
-			if ( reloadMidiDevices )
+			if ( DeviceConfigurator::reloadMidiDevices )
 				loadMidiDevices();
 			fileEditWidget = new FileEditWidget(QString(), filterString, QString(), parent, true, QString(), 0, true);
-			fileEditWidget->comboBox->addItems(midiOutDevices);
+			fileEditWidget->comboBox->addItems(DeviceConfigurator::midiOutDevices);
 			break;
 		default:
 			fileEditWidget = new FileEditWidget(QString(), filterString, QString(), parent, true);
@@ -146,8 +144,8 @@ void DeviceItemDelegate::dataChanged(QWidget *widget)
 
 void DeviceItemDelegate::loadMidiDevices()
 {
-	midiInDevices.clear();
-	midiOutDevices.clear();
+	DeviceConfigurator::midiInDevices.clear();
+	DeviceConfigurator::midiOutDevices.clear();
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 	QProcess commandProc;
@@ -205,14 +203,14 @@ void DeviceItemDelegate::loadMidiDevices()
 						continue;
 					}
 					if ( midiIn )
-						midiInDevices << line;
+						DeviceConfigurator::midiInDevices << line;
 					if ( midiOut )
-						midiOutDevices << line;
+						DeviceConfigurator::midiOutDevices << line;
 				}
 			}
 		}
 
-		reloadMidiDevices = false;
+		DeviceConfigurator::reloadMidiDevices = false;
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up"));
 }
@@ -1358,7 +1356,7 @@ bool DeviceConfigurator::load()
 	refreshRunning = true;
 	fullyLoaded = false;
 
-	if ( systemSlotHash.isEmpty() && systemSlotsSupported )
+	if ( systemSlotHash.isEmpty() )
 		if ( !readSystemSlots() ) {
 			listWidgetDeviceConfigurations->setUpdatesEnabled(true);
 			refreshRunning = false;
@@ -2672,13 +2670,13 @@ bool DeviceConfiguratorXmlHandler::startElement(const QString &/*namespaceURI*/,
 		deviceExtensions << attributes.value("name");
 	} else if ( qName == "slot" ) {
 		slotName = attributes.value("name");
-		if ( systemSlotHash[qmc2DeviceConfigurator->currentMachineName]["QMC2_UNUSED_SLOTS"].contains(slotName) )
+		if ( DeviceConfigurator::systemSlotHash[qmc2DeviceConfigurator->currentMachineName]["QMC2_UNUSED_SLOTS"].contains(slotName) )
 			return true;
 		allSlots << slotName;
-		if ( !systemSlotHash[qmc2DeviceConfigurator->currentMachineName].contains(slotName) )
+		if ( !DeviceConfigurator::systemSlotHash[qmc2DeviceConfigurator->currentMachineName].contains(slotName) )
 			newSlots << slotName;
 	} else if ( qName == "slotoption" ) {
-		if ( !systemSlotHash[qmc2DeviceConfigurator->currentMachineName].contains(slotName) ) {
+		if ( !DeviceConfigurator::systemSlotHash[qmc2DeviceConfigurator->currentMachineName].contains(slotName) ) {
 			newSlotOptions[slotName] << attributes.value("name");
 			newSlotDevices[attributes.value("name")] = attributes.value("devname");
 		}
@@ -2698,7 +2696,7 @@ bool DeviceConfiguratorXmlHandler::endElement(const QString &/*namespaceURI*/, c
 				QTreeWidgetItem *deviceItem = new QTreeWidgetItem(parentTreeWidget);
 				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_NAME, instance);
 				if ( !deviceType.isEmpty() )
-					deviceItem->setIcon(QMC2_DEVCONFIG_COLUMN_NAME, deviceIconHash[deviceType]);
+					deviceItem->setIcon(QMC2_DEVCONFIG_COLUMN_NAME, DeviceConfigurator::deviceIconHash[deviceType]);
 				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_BRIEF, deviceBriefName);
 				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TYPE, deviceType);
 				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TAG, deviceTag);
