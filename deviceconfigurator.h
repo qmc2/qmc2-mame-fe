@@ -5,6 +5,7 @@
 #include <QModelIndex>
 #include <QXmlDefaultHandler>
 #include <QIcon>
+#include <QHash>
 
 #include "filesystemmodel.h"
 #include "ui_deviceconfigurator.h"
@@ -115,6 +116,14 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		QModelIndex modelIndexFileModel;
 		QModelIndex modelIndexDirModel;
 		QListWidgetItem *configurationRenameItem;
+
+		static QHash<QString, QHash<QString, QStringList> > systemSlotHash;
+		static QHash<QString, QString> slotNameHash;
+		static QHash<QString, QIcon> deviceIconHash;
+		static QHash<QString, int> deviceNameToIndexHash;
+		static QStringList midiInDevices;
+		static QStringList midiOutDevices;
+		static bool reloadMidiDevices;
 
 		DeviceConfigurator(QString, QWidget *);
 		~DeviceConfigurator();
