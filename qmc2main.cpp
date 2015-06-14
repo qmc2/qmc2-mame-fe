@@ -7669,13 +7669,11 @@ void MainWindow::createFifo(bool logFifoCreation)
 				qmc2FifoNotifier->setEnabled(true);
 				if ( logFifoCreation )
 					log(QMC2_LOG_FRONTEND, tr("SDLMAME output notifier FIFO created"));
-				else {
-					delete qmc2FifoFile;
-					qmc2FifoFile = NULL;
-					log(QMC2_LOG_FRONTEND, tr("WARNING: can't open SDLMAME output notifier FIFO for reading, path = %1").arg(QMC2_SDLMAME_OUTPUT_FIFO));
-				}
-			} else
+			} else {
+				delete qmc2FifoFile;
+				qmc2FifoFile = NULL;
 				log(QMC2_LOG_FRONTEND, tr("WARNING: can't open SDLMAME output notifier FIFO for reading, path = %1").arg(QMC2_SDLMAME_OUTPUT_FIFO));
+			}
 		}
 	}
 #endif
