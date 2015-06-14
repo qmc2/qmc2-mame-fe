@@ -1422,8 +1422,8 @@ bool DeviceConfigurator::load()
 			QTimer::singleShot(0, this, SLOT(setupFileChooser()));
 	} else {
 		comboBoxDeviceInstanceChooser->insertItem(0, tr("No devices available"));
-		tabFileChooser->setEnabled(false);
-		treeWidgetDeviceSetup->setEnabled(false);
+		// base system has no slot-devices so disable the device configurator *completely*
+		setEnabled(false);
 	}
 
 	comboBoxDeviceInstanceChooser->setUpdatesEnabled(true);
