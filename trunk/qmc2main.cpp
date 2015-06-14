@@ -7705,7 +7705,7 @@ void MainWindow::processFifoData()
 	if ( data.isEmpty() )
 		return;
 
-	QStringList sl = data.split("\n");
+	QStringList sl = data.split("\n", QString::SkipEmptyParts);
 
 	for (i = 0; i < sl.count(); i++) { 
 		if ( !sl[i].isEmpty() ) {
