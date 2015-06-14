@@ -265,22 +265,6 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ProcessManager::finished(...): trying to remove a null item"));
 	}
 
-#if defined(QMC2_SDLMAME)
-	if ( qmc2FifoFile && qmc2FifoFile->isOpen() ) {
-		if ( qmc2FifoNotifier ) {
-			qmc2FifoNotifier->setEnabled(false);
-			qmc2FifoNotifier->disconnect();
-			delete qmc2FifoNotifier;
-			qmc2FifoNotifier = NULL;
-		}
-		if ( qmc2FifoFile->isOpen() )
-			qmc2FifoFile->close();
-		delete qmc2FifoFile;
-		qmc2FifoFile = NULL;
-		qmc2MainWindow->createFifo(false);
-	}
-#endif
-
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 finished, exit code = %2, exit status = %3, remaining emulators = %4").arg(procMap[proc]).arg(exitCodeString(exitCode)).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))).arg(procMap.count() - 1));
 	procMap.remove(proc);
 	softwareListsMap.remove(proc);
@@ -302,6 +286,22 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 
 	if ( !qmc2AutoMinimizedWidgets.isEmpty() )
 		qmc2MainWindow->setWindowState(qmc2AutoMinimizedWidgets[qmc2MainWindow]);
+
+#if defined(QMC2_SDLMAME)
+	if ( qmc2FifoFile && qmc2FifoFile->isOpen() ) {
+		if ( qmc2FifoNotifier ) {
+			qmc2FifoNotifier->setEnabled(false);
+			qmc2FifoNotifier->disconnect();
+			delete qmc2FifoNotifier;
+			qmc2FifoNotifier = NULL;
+		}
+		if ( qmc2FifoFile->isOpen() )
+			qmc2FifoFile->close();
+		delete qmc2FifoFile;
+		qmc2FifoFile = NULL;
+		qmc2MainWindow->createFifo(false);
+	}
+#endif
 }
 
 void ProcessManager::started()
