@@ -9808,13 +9808,15 @@ void MainWindow::commonWebSearch(QString baseUrl, QTreeWidgetItem *item)
 		return;
 
 	QString manu = item->text(QMC2_MACHINELIST_COLUMN_MANU);
-	QString url;
+	QString searchPattern;
 	if ( manu != tr("?") )
-		url = item->text(QMC2_MACHINELIST_COLUMN_MACHINE) + " " + manu;
+		searchPattern = item->text(QMC2_MACHINELIST_COLUMN_MACHINE) + " " + manu;
 	else
-		url = item->text(QMC2_MACHINELIST_COLUMN_MACHINE);
-	url = url.replace(QRegExp("\\((.*)\\)"), "\\1").replace(QRegExp("<.*>"), "").replace(QRegExp("[\\\\,\\.\\;\\:\\/\\(\\)\\[\\]\\{\\}]"), " ").replace(" - ", " ").simplified();
-	url.replace(" ", "+");
+		searchPattern = item->text(QMC2_MACHINELIST_COLUMN_MACHINE);
+	searchPattern = searchPattern.replace(QRegExp("\\((.*)\\)"), "\\1").replace(QRegExp("<.*>"), "").replace(QRegExp("[\\\\,\\.\\;\\:\\/\\(\\)\\[\\]\\{\\}]"), " ").replace(" - ", " ").simplified();
+	QStringList wordList = searchPattern.split(" ", QString::SkipEmptyParts);
+	wordList.removeDuplicates();
+	QString url(wordList.join("+"));
 	url.prepend(baseUrl);
 
 	if ( actionSearchInternalBrowser->isChecked() ) {
