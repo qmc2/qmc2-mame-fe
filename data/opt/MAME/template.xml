@@ -742,6 +742,24 @@
 			<description lang="es" text="Definir el tiempo de impulso de la moneda (n &lt; 0: desactivar impulso; n == 0: obedecer driver; n &gt; 0: definir tiempo)"/>
 		</option>
 	</section>
+	<section name="keyboard_mapping">
+		<description lang="us" text="Keyboard mapping"/>
+		<description lang="de" text="Tastatur-Mapping"/>
+		<description lang="pl" text="Mapowanie klawiatury"/>
+		<description lang="fr" text="Mapping de clavier"/>
+		<description lang="pt" text="Mapeamento de teclado"/>
+		<description lang="es" text="Mapeado de teclado"/>
+		<option default="SCRLOCK" name="uimodekey" type="combo">
+			<description lang="us" text="Specifies the key used to toggle between full and partial UI mode"/>
+			<description lang="de" text="Gibt an, welche Taste für das Umschalten zwischen vollem und partiellem UI Modus verwendet wird"/>
+			<description lang="pl" text="Ustawia klawisz przełączający pomiędzy pełnym a częściowym trybem interfejsu użytkownika"/>
+			<description lang="fr" text="Spécifier la touche à utiliser pour basculer entre l'interface complète ou partielle"/>
+			<description lang="pt" text="Especificar a tecla usada para alternar entre interface total ou parcial"/>
+			<description lang="es" text="Especifica la tecla usada para cambiar entre UI completa y parcial"/>
+			<choice name="auto"/>
+			<choice name="SCRLOCK"/>
+		</option>
+	</section>
 	<section name="comm">
 		<description lang="us" text="Communication"/>
 		<description lang="de" text="Kommunikation"/>
