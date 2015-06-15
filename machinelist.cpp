@@ -1471,8 +1471,16 @@ void MachineList::parse()
 							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr(gameStatus.toLocal8Bit()));
 						}
 						if ( useCatverIni || useCategoryIni ) {
-							QString *categoryString = categoryMap[gameName];
-							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("Unknown"));
+							if ( isBIOS )
+								gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
+							else if ( isDevice )
+								gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
+							else {
+								QString *categoryString = categoryMap[gameName];
+								gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("Unknown"));
+							}
+						}
+						if ( useCatverIni ) {
 							QString *versionString = versionMap[gameName];
 							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
 						}
@@ -1700,8 +1708,16 @@ void MachineList::parse()
 						gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr(gameStatus.toLocal8Bit()));
 					}
 					if ( useCatverIni || useCategoryIni ) {
-						QString *categoryString = categoryMap[gameName];
-						gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("Unknown"));
+						if ( isBIOS )
+							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
+						else if ( isDevice )
+							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
+						else {
+							QString *categoryString = categoryMap[gameName];
+							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("Unknown"));
+						}
+					}
+					if ( useCatverIni ) {
 						QString *versionString = versionMap[gameName];
 						gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
 					}
@@ -3488,7 +3504,7 @@ void MachineList::createCategoryView()
 
 	static bool creatingCatView = false;
 
-	if ( creatingCatView )
+	if ( creatingCatView || qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEW_CATEGORY_INDEX )
 		return;
 
 	qmc2CategoryItemHash.clear();
@@ -3497,19 +3513,12 @@ void MachineList::createCategoryView()
 	qmc2MainWindow->labelCreatingCategoryView->setVisible(true);
 	qmc2MainWindow->loadAnimMovie->start();
 
-	if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_CATEGORY_INDEX ) {
-		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
+	if ( qmc2ReloadActive ) {
+		if ( !qmc2StopParser )
+			QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
 		return;
 	}
 	
-	if ( numGames == -1 ) {
-		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
-		return;
-	}
-
-	if ( qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEW_CATEGORY_INDEX )
-		return;
-
 	creatingCatView = true;
 
 	qmc2MainWindow->treeWidgetCategoryView->setColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY, true);
@@ -3546,17 +3555,17 @@ void MachineList::createCategoryView()
 			QTreeWidgetItem *baseItem = qmc2MachineListItemHash[gameName];
 			if ( !baseItem )
 				continue;
-			QString *categoryPtr = it.value();
 			QString category;
 			bool isBIOS = isBios(gameName);
 			bool isDevice = this->isDevice(gameName);
-			if ( categoryPtr )
-				category = *categoryPtr;
+			if ( isBIOS )
+				category = tr("System / BIOS");
+			else if ( isDevice )
+				category = tr("System / Device");
 			else {
-				if ( isBIOS )
-					category = tr("System / BIOS");
-				else if ( isDevice )
-					category = tr("System / Device");
+				QString *categoryPtr = it.value();
+				if ( categoryPtr )
+					category = *categoryPtr;
 				else
 					category = tr("?");
 			}
@@ -3740,7 +3749,7 @@ void MachineList::createVersionView()
 
 	static bool creatingVerView = false;
 
-	if ( creatingVerView )
+	if ( creatingVerView || qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEW_VERSION_INDEX )
 		return;
 
 	qmc2VersionItemHash.clear();
@@ -3749,18 +3758,11 @@ void MachineList::createVersionView()
 	qmc2MainWindow->labelCreatingVersionView->setVisible(true);
 	qmc2MainWindow->loadAnimMovie->start();
 
-	if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_VERSION_INDEX ) {
-		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
+	if ( qmc2ReloadActive ) {
+		if ( !qmc2StopParser )
+			QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
 		return;
 	}
-	
-	if ( numGames == -1 ) {
-		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
-		return;
-	}
-
-	if ( qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEW_VERSION_INDEX )
-		return;
 
 	creatingVerView = true;
 
