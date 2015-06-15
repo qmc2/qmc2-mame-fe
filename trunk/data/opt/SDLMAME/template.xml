@@ -1676,13 +1676,16 @@
 			<description lang="pt" text="Arquivo de mapeamento de teclado"/>
 			<description lang="es" text="Archivo de mapa de teclado"/>
 		</option>
-		<option default="SCRLOCK" default.Darwin="DEL" name="uimodekey" type="string">
+		<option default="SCRLOCK" default.Darwin="INSERT" name="uimodekey" type="string">
 			<description lang="us" text="Specifies the key used to toggle between full and partial UI mode"/>
 			<description lang="de" text="Gibt an, welche Taste für das Umschalten zwischen vollem und partiellem UI Modus verwendet wird"/>
 			<description lang="pl" text="Ustawia klawisz przełączający pomiędzy pełnym a częściowym trybem interfejsu użytkownika"/>
 			<description lang="fr" text="Spécifier la touche à utiliser pour basculer entre l'interface complète ou partielle"/>
 			<description lang="pt" text="Especificar a tecla usada para alternar entre interface total ou parcial"/>
 			<description lang="es" text="Especifica la tecla usada para cambiar entre UI completa y parcial"/>
+			<choice name="auto"/>
+			<choice ignore.Darwin="true" name="SCRLOCK"/>
+			<choice ignore.Linux="true" ignore.Windows="true" name="INSERT"/>
 		</option>
 	</section>
 	<section name="joystick_mapping">
