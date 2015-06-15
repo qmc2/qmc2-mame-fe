@@ -2325,7 +2325,7 @@ void DeviceConfigurator::dirChooserUseCurrentAsDefaultDirectory()
 	if ( modelIndexDirModel.isValid() ) {
 		QString path = dirModel->fileInfo(modelIndexDirModel).absoluteFilePath();
 		if ( !path.isEmpty() )
-			 qmc2Config->setValue(QString("MESS/Configuration/Devices/%1/DefaultDeviceDirectory").arg(currentMachineName), path);
+			 qmc2Config->setValue(QString("MAME/Configuration/Devices/%1/DefaultDeviceDirectory").arg(currentMachineName), path);
 	}
 }
 
