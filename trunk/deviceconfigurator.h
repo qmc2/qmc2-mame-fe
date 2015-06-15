@@ -22,7 +22,7 @@ class DeviceItemDelegate : public QItemDelegate
 		virtual void setModelData(QWidget *, QAbstractItemModel *, const QModelIndex &) const;
 		virtual void updateEditorGeometry(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const;
 
-		static void loadMidiDevices();
+		static void loadMidiInterfaces();
 
 	public slots:
 		void dataChanged(QWidget *);
@@ -121,9 +121,9 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		static QHash<QString, QString> slotNameHash;
 		static QHash<QString, QIcon> deviceIconHash;
 		static QHash<QString, int> deviceNameToIndexHash;
-		static QStringList midiInDevices;
-		static QStringList midiOutDevices;
-		static bool reloadMidiDevices;
+		static QStringList midiInInterfaces;
+		static QStringList midiOutInterfaces;
+		static bool reloadMidiInterfaces;
 
 		DeviceConfigurator(QString, QWidget *);
 		~DeviceConfigurator();

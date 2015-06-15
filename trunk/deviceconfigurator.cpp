@@ -38,9 +38,9 @@ QHash<QString, QHash<QString, QStringList> > DeviceConfigurator::systemSlotHash;
 QHash<QString, QString> DeviceConfigurator::slotNameHash;
 QHash<QString, QIcon> DeviceConfigurator::deviceIconHash;
 QHash<QString, int> DeviceConfigurator::deviceNameToIndexHash;
-QStringList DeviceConfigurator::midiInDevices;
-QStringList DeviceConfigurator::midiOutDevices;
-bool DeviceConfigurator::reloadMidiDevices = true;
+QStringList DeviceConfigurator::midiInInterfaces;
+QStringList DeviceConfigurator::midiOutInterfaces;
+bool DeviceConfigurator::reloadMidiInterfaces = true;
 
 DeviceItemDelegate::DeviceItemDelegate(QObject *parent)
 	: QItemDelegate(parent)
@@ -77,16 +77,16 @@ QWidget *DeviceItemDelegate::createEditor(QWidget *parent, const QStyleOptionVie
 	FileEditWidget *fileEditWidget;
 	switch ( DeviceConfigurator::deviceNameToIndexHash[index.sibling(index.row(), QMC2_DEVCONFIG_COLUMN_TYPE).data(Qt::EditRole).toString()] ) {
 		case QMC2_DEVTYPE_MIDIIN:
-			if ( DeviceConfigurator::reloadMidiDevices )
-				loadMidiDevices();
+			if ( DeviceConfigurator::reloadMidiInterfaces )
+				loadMidiInterfaces();
 			fileEditWidget = new FileEditWidget(QString(), filterString, QString(), parent, true, QString(), 0, true);
-			fileEditWidget->comboBox->addItems(DeviceConfigurator::midiInDevices);
+			fileEditWidget->comboBox->addItems(DeviceConfigurator::midiInInterfaces);
 			break;
 		case QMC2_DEVTYPE_MIDIOUT:
-			if ( DeviceConfigurator::reloadMidiDevices )
-				loadMidiDevices();
+			if ( DeviceConfigurator::reloadMidiInterfaces )
+				loadMidiInterfaces();
 			fileEditWidget = new FileEditWidget(QString(), filterString, QString(), parent, true, QString(), 0, true);
-			fileEditWidget->comboBox->addItems(DeviceConfigurator::midiOutDevices);
+			fileEditWidget->comboBox->addItems(DeviceConfigurator::midiOutInterfaces);
 			break;
 		default:
 			fileEditWidget = new FileEditWidget(QString(), filterString, QString(), parent, true);
@@ -142,10 +142,10 @@ void DeviceItemDelegate::dataChanged(QWidget *widget)
 		emit editorDataChanged(fileEditWidget->lineEditFile->text());
 }
 
-void DeviceItemDelegate::loadMidiDevices()
+void DeviceItemDelegate::loadMidiInterfaces()
 {
-	DeviceConfigurator::midiInDevices.clear();
-	DeviceConfigurator::midiOutDevices.clear();
+	DeviceConfigurator::midiInInterfaces.clear();
+	DeviceConfigurator::midiOutInterfaces.clear();
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 	QProcess commandProc;
@@ -203,14 +203,14 @@ void DeviceItemDelegate::loadMidiDevices()
 						continue;
 					}
 					if ( midiIn )
-						DeviceConfigurator::midiInDevices << line;
+						DeviceConfigurator::midiInInterfaces << line;
 					if ( midiOut )
-						DeviceConfigurator::midiOutDevices << line;
+						DeviceConfigurator::midiOutInterfaces << line;
 				}
 			}
 		}
 
-		DeviceConfigurator::reloadMidiDevices = false;
+		DeviceConfigurator::reloadMidiInterfaces = false;
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up"));
 }
