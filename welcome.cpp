@@ -10,6 +10,7 @@
 
 #include "welcome.h"
 #include "macros.h"
+#include "cryptedbytearray.h"
 
 #ifdef QMC2_DEBUG
 #include "qmc2main.h"
@@ -344,6 +345,14 @@ bool Welcome::checkConfig()
 					QString newKey = key.replace(oldKeySubString, newKeySubString);
 					startupConfig->setValue(newKey, value);
 				}
+			}
+		}
+		if ( QMC2_TEST_VERSION(omv, 53, osr, 6752) ) {
+			QString key("/Network/HTTPProxy/Password");
+			if ( startupConfig->contains(key) ) {
+				QString oldPwd(QMC2_UNCOMPRESS(startupConfig->value("Network/HTTPProxy/Password", QString()).toByteArray()));
+				CryptedByteArray cpw(oldPwd.toLatin1());
+				startupConfig->setValue("Network/HTTPProxy/Password", cpw.encryptedData());
 			}
 		}
 	}

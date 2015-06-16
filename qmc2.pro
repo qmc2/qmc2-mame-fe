@@ -134,6 +134,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			datinfodbmgr.cpp \
 			missingdumpsviewer.cpp \
 			movierecordersetup.cpp \
+			cryptedbytearray.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -255,6 +256,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			datinfodbmgr.h \
 			missingdumpsviewer.h \
 			movierecordersetup.h \
+			cryptedbytearray.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h
