@@ -1402,6 +1402,7 @@ void MachineList::parse()
 
 		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool();
 		bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
+		bool useCategories = useCatverIni | useCategoryIni;
 
 		if ( !reparseMachineList && !qmc2StopParser ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading machine data from machine list cache"));
@@ -1470,7 +1471,7 @@ void MachineList::parse()
 							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, gamePlayers);
 							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr(gameStatus.toLocal8Bit()));
 						}
-						if ( useCatverIni || useCategoryIni ) {
+						if ( useCategories ) {
 							if ( isBIOS )
 								gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
 							else if ( isDevice )
@@ -1615,6 +1616,7 @@ void MachineList::parse()
 
 		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool();
 		bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
+		bool useCategories = useCatverIni | useCategoryIni;
 
 		// parse XML data
 		numGames = numUnknownGames = numDevices = 0;
@@ -1707,7 +1709,7 @@ void MachineList::parse()
 						gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, gamePlayers);
 						gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr(gameStatus.toLocal8Bit()));
 					}
-					if ( useCatverIni || useCategoryIni ) {
+					if ( useCategories ) {
 						if ( isBIOS )
 							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
 						else if ( isDevice )
@@ -1831,6 +1833,7 @@ void MachineList::parse()
 
 	bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool();
 	bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
+	bool useCategories = useCatverIni | useCategoryIni;
 
 	// create parent/clone hierarchy tree
 	qmc2MainWindow->treeWidgetHierarchy->clear();
@@ -1866,10 +1869,10 @@ void MachineList::parse()
 		hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, baseItem->text(QMC2_MACHINELIST_COLUMN_RTYPES));
 		hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, baseItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS));
 		hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT));
-		if ( useCatverIni || useCategoryIni ) {
+		if ( useCategories )
 			hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY));
+		if ( useCatverIni )
 			hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, baseItem->text(QMC2_MACHINELIST_COLUMN_VERSION));
-		}
 		hierarchyItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 		qmc2HierarchyItemHash[iValue] = hierarchyItem;
 		if ( showROMStatusIcons ) {
@@ -1943,10 +1946,10 @@ void MachineList::parse()
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, baseItem->text(QMC2_MACHINELIST_COLUMN_RTYPES));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, baseItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT));
-			if ( useCatverIni || useCategoryIni ) {
+			if ( useCategories )
 				hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY));
+			if ( useCatverIni )
 				hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, baseItem->text(QMC2_MACHINELIST_COLUMN_VERSION));
-			}
 			qmc2HierarchyItemHash[jValue] = hierarchySubItem;
 			qmc2ParentHash[jValue] = iValue;
 
