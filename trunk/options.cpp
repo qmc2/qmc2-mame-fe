@@ -71,6 +71,7 @@
 #include "samplechecker.h"
 #include "rankitemwidget.h"
 #include "componentsetup.h"
+#include "cryptedbytearray.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -1277,7 +1278,8 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("Network/HTTPProxy/Host", lineEditHTTPProxyHost->text());
 	config->setValue("Network/HTTPProxy/Port", spinBoxHTTPProxyPort->value());
 	config->setValue("Network/HTTPProxy/UserID", lineEditHTTPProxyUserID->text());
-	config->setValue("Network/HTTPProxy/Password", QMC2_COMPRESS(lineEditHTTPProxyPassword->text().toLatin1()));
+	CryptedByteArray cpw(lineEditHTTPProxyPassword->text().toLatin1());
+	config->setValue("Network/HTTPProxy/Password", cpw.encryptedData());
 	if ( groupBoxHTTPProxy->isChecked() ) {
 		QNetworkProxy::setApplicationProxy(QNetworkProxy(QNetworkProxy::HttpProxy, 
 					lineEditHTTPProxyHost->text(),
@@ -2170,10 +2172,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	checkBoxCloseToolDialog->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Tools/CloseToolDialog", false).toBool());
 
 	groupBoxHTTPProxy->setChecked(config->value("Network/HTTPProxy/Enable", false).toBool());
-	lineEditHTTPProxyHost->setText(config->value("Network/HTTPProxy/Host", "").toString());
+	lineEditHTTPProxyHost->setText(config->value("Network/HTTPProxy/Host", QString()).toString());
 	spinBoxHTTPProxyPort->setValue(config->value("Network/HTTPProxy/Port", 80).toInt());
-	lineEditHTTPProxyUserID->setText(config->value("Network/HTTPProxy/UserID", "").toString());
-	lineEditHTTPProxyPassword->setText(QString(QMC2_UNCOMPRESS(config->value("Network/HTTPProxy/Password", "").toByteArray())));
+	lineEditHTTPProxyUserID->setText(config->value("Network/HTTPProxy/UserID", QString()).toString());
+	CryptedByteArray cpw(config->value("Network/HTTPProxy/Password", QString()).toByteArray());
+	lineEditHTTPProxyPassword->setText(QString(cpw.decryptedData()));
 
 	// Emulator
 
