@@ -1299,20 +1299,20 @@ void Options::on_pushButtonApply_clicked()
 	}
 
 	if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineListView").toInt() >= qmc2MainWindow->comboBoxViewSelect->count() )
-		config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", QMC2_VIEW_DETAIL_INDEX);
+		config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", QMC2_VIEWMACHINELIST_INDEX);
 
-	qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", QMC2_VIEW_DETAIL_INDEX).toInt());
+	qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", QMC2_VIEWMACHINELIST_INDEX).toInt());
 	switch ( qmc2MainWindow->comboBoxViewSelect->currentIndex() ) {
-		case QMC2_VIEW_DETAIL_INDEX:
+		case QMC2_VIEWMACHINELIST_INDEX:
 			qmc2MainWindow->tabWidgetMachineList->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
 			break;
-		case QMC2_VIEW_TREE_INDEX:
+		case QMC2_VIEWHIERARCHY_INDEX:
 			qmc2MainWindow->tabWidgetMachineList->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
 			break;
-		case QMC2_VIEW_CATEGORY_INDEX:
+		case QMC2_VIEWCATEGORY_INDEX:
 			qmc2MainWindow->tabWidgetMachineList->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
 			break;
-		case QMC2_VIEW_VERSION_INDEX:
+		case QMC2_VIEWVERSION_INDEX:
 			qmc2MainWindow->tabWidgetMachineList->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
 			break;
 	}

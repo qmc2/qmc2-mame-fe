@@ -109,11 +109,12 @@ extern MachineList *qmc2MachineList;
 extern bool qmc2TemplateCheck;
 extern bool qmc2ParentImageFallback;
 
-// local global variables
 QStringList MachineList::phraseTranslatorList;
 QStringList MachineList::romTypeNames;
 QMap<QString, QString> MachineList::reverseTranslation;
 QHash<QString, QStringList> qmc2HierarchyHash;
+bool MachineList::creatingCatView = false;
+bool MachineList::creatingVerView = false;
 
 MachineList::MachineList(QObject *parent)
 	: QObject(parent)
@@ -565,10 +566,10 @@ void MachineList::load()
 
 	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
 		switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
-			case QMC2_VIEW_CATEGORY_INDEX:
+			case QMC2_VIEWCATEGORY_INDEX:
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(viewByCategory()));
 				break;
-			case QMC2_VIEW_VERSION_INDEX:
+			case QMC2_VIEWVERSION_INDEX:
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(viewByVersion()));
 				break;
 			default:
@@ -796,32 +797,32 @@ void MachineList::load()
 		if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
 			if ( qApp->focusWidget() != qmc2MainWindow->comboBoxToolbarSearch ) {
 				switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
-					case QMC2_VIEW_TREE_INDEX:
+					case QMC2_VIEWHIERARCHY_INDEX:
 						qmc2MainWindow->treeWidgetHierarchy->setFocus();
 						break;
-					case QMC2_VIEW_CATEGORY_INDEX:
+					case QMC2_VIEWCATEGORY_INDEX:
 						qmc2MainWindow->treeWidgetCategoryView->setFocus();
 						break;
-					case QMC2_VIEW_VERSION_INDEX:
+					case QMC2_VIEWVERSION_INDEX:
 						qmc2MainWindow->treeWidgetVersionView->setFocus();
 						break;
-					case QMC2_VIEW_DETAIL_INDEX:
+					case QMC2_VIEWMACHINELIST_INDEX:
 					default:
 						qmc2MainWindow->treeWidgetMachineList->setFocus();
 						break;
 				}
 			}
 			switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
-				case QMC2_VIEW_TREE_INDEX:
+				case QMC2_VIEWHIERARCHY_INDEX:
 					qmc2MainWindow->treeWidgetHierarchy_verticalScrollChanged();
 					break;
-				case QMC2_VIEW_CATEGORY_INDEX:
+				case QMC2_VIEWCATEGORY_INDEX:
 					qmc2MainWindow->treeWidgetCategoryView_verticalScrollChanged();
 					break;
-				case QMC2_VIEW_VERSION_INDEX:
+				case QMC2_VIEWVERSION_INDEX:
 					qmc2MainWindow->treeWidgetVersionView_verticalScrollChanged();
 					break;
-				case QMC2_VIEW_DETAIL_INDEX:
+				case QMC2_VIEWMACHINELIST_INDEX:
 				default:
 					qmc2MainWindow->treeWidgetMachineList_verticalScrollChanged();
 					break;
@@ -1478,7 +1479,7 @@ void MachineList::parse()
 								gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
 							else {
 								QString *categoryString = categoryMap[gameName];
-								gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("Unknown"));
+								gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 							}
 						}
 						if ( useCatverIni ) {
@@ -1716,7 +1717,7 @@ void MachineList::parse()
 							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
 						else {
 							QString *categoryString = categoryMap[gameName];
-							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("Unknown"));
+							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 						}
 					}
 					if ( useCatverIni ) {
@@ -1927,8 +1928,8 @@ void MachineList::parse()
 
 		for (int j = 0; j < i.value().count(); j++) {
 			QString jValue = i.value().at(j);
-			QString jDescription = qmc2MachineListItemHash[jValue]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
-			if ( jDescription.isEmpty() )
+			baseItem = qmc2MachineListItemHash[jValue];
+			if ( !baseItem )
 				continue;
 			isBIOS = isBios(jValue);
 			isDevice = this->isDevice(jValue);
@@ -1937,8 +1938,7 @@ void MachineList::parse()
 				hideList << hierarchySubItem;
 			hierarchySubItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
 			hierarchySubItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, jDescription);
-			baseItem = qmc2MachineListItemHash[jValue];
+			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_MANU, baseItem->text(QMC2_MACHINELIST_COLUMN_MANU));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_NAME, baseItem->text(QMC2_MACHINELIST_COLUMN_NAME));
@@ -1946,13 +1946,19 @@ void MachineList::parse()
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, baseItem->text(QMC2_MACHINELIST_COLUMN_RTYPES));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, baseItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT));
-			if ( useCategories )
-				hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY));
+			if ( useCategories ) {
+				QString category = baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
+				if ( category == tr("?") ) {
+					category = hierarchyItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
+					baseItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, category);
+					//categoryMap[jValue] = categoryMap[hierarchyItem->text(QMC2_MACHINELIST_COLUMN_NAME)];
+				}
+				hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, category);
+			}
 			if ( useCatverIni )
 				hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, baseItem->text(QMC2_MACHINELIST_COLUMN_VERSION));
 			qmc2HierarchyItemHash[jValue] = hierarchySubItem;
 			qmc2ParentHash[jValue] = iValue;
-
 			QIcon icon = baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON);
 			if ( icon.isNull() ) {
 				if ( qmc2ParentImageFallback ) {
@@ -1964,7 +1970,6 @@ void MachineList::parse()
 				}
 			} else
 				hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
-
 			if ( showROMStatusIcons ) {
 				switch ( gameStatusHash[jValue] ) {
 					case 'C': 
@@ -2475,16 +2480,16 @@ void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
 		if ( qApp->focusWidget() != qmc2MainWindow->comboBoxToolbarSearch ) {
 			switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
-				case QMC2_VIEW_TREE_INDEX:
+				case QMC2_VIEWHIERARCHY_INDEX:
 					qmc2MainWindow->treeWidgetHierarchy->setFocus();
 					break;
-				case QMC2_VIEW_CATEGORY_INDEX:
+				case QMC2_VIEWCATEGORY_INDEX:
 					qmc2MainWindow->treeWidgetCategoryView->setFocus();
 					break;
-				case QMC2_VIEW_VERSION_INDEX:
+				case QMC2_VIEWVERSION_INDEX:
 					qmc2MainWindow->treeWidgetVersionView->setFocus();
 					break;
-				case QMC2_VIEW_DETAIL_INDEX:
+				case QMC2_VIEWMACHINELIST_INDEX:
 				default:
 					qmc2MainWindow->treeWidgetMachineList->setFocus();
 					break;
@@ -3505,9 +3510,7 @@ void MachineList::createCategoryView()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::createCategoryView()");
 #endif
 
-	static bool creatingCatView = false;
-
-	if ( creatingCatView || qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEW_CATEGORY_INDEX )
+	if ( creatingCatView || qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEWCATEGORY_INDEX )
 		return;
 
 	qmc2CategoryItemHash.clear();
@@ -3565,13 +3568,8 @@ void MachineList::createCategoryView()
 				category = tr("System / BIOS");
 			else if ( isDevice )
 				category = tr("System / Device");
-			else {
-				QString *categoryPtr = it.value();
-				if ( categoryPtr )
-					category = *categoryPtr;
-				else
-					category = tr("?");
-			}
+			else
+				category = baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
 			QTreeWidgetItem *matchedItem = NULL;
 			for (int i = 0; i < itemList.count() && matchedItem == NULL; i++) {
 				QString categoryText = itemList[i]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
@@ -3657,8 +3655,7 @@ void MachineList::createCategoryView()
 		qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		qmc2MainWindow->progressBarMachineList->reset();
 		qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
-
-		if ( qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_CATEGORY_INDEX )
+		if ( qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEWCATEGORY_INDEX )
 			QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
 	}
 	qmc2MainWindow->loadAnimMovie->setPaused(true);
@@ -3750,9 +3747,7 @@ void MachineList::createVersionView()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MachineList::createVersionView()");
 #endif
 
-	static bool creatingVerView = false;
-
-	if ( creatingVerView || qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEW_VERSION_INDEX )
+	if ( creatingVerView || qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEWVERSION_INDEX )
 		return;
 
 	qmc2VersionItemHash.clear();
@@ -3893,8 +3888,7 @@ void MachineList::createVersionView()
 		qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		qmc2MainWindow->progressBarMachineList->reset();
 		qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
-
-		if ( qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_VERSION_INDEX )
+		if ( qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEWVERSION_INDEX )
 			QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, qmc2MainWindow, SLOT(treeWidgetVersionView_verticalScrollChanged()));
 	}
 	qmc2MainWindow->loadAnimMovie->setPaused(true);

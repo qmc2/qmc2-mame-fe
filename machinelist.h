@@ -81,6 +81,8 @@ class MachineList : public QObject
 		static QStringList romTypeNames;
 		static QStringList phraseTranslatorList;
 		static QMap<QString, QString> reverseTranslation;
+		static bool creatingCatView;
+		static bool creatingVerView;
 
 		QString lookupDriverName(QString);
 		QString romStatus(QString, bool translated = false);

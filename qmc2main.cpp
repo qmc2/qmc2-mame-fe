@@ -1246,7 +1246,6 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(actionViewParentClones, SIGNAL(triggered()), this, SLOT(viewParentClones()));
 	connect(actionViewByCategory, SIGNAL(triggered()), this, SLOT(viewByCategory()));
 	connect(actionViewByVersion, SIGNAL(triggered()), this, SLOT(viewByVersion()));
-	connect(comboBoxViewSelect, SIGNAL(currentIndexChanged(int)), stackedWidgetView, SLOT(setCurrentIndex(int)));
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxSearch_editTextChanged_delayed()));
 	connect(&updateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetMachineList_itemSelectionChanged_delayed()));
 	connect(&activityCheckTimer, SIGNAL(timeout()), this, SLOT(checkActivity()));
@@ -3463,22 +3462,22 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
 #endif
 			switch ( stackedWidgetView->currentIndex() ) {
-				case QMC2_VIEW_TREE_INDEX:
+				case QMC2_VIEWHIERARCHY_INDEX:
 					treeWidgetHierarchy->activateWindow();
 					treeWidgetHierarchy->setFocus();
 					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetHierarchy_verticalScrollChanged()));
 					break;
-				case QMC2_VIEW_CATEGORY_INDEX:
+				case QMC2_VIEWCATEGORY_INDEX:
 					treeWidgetCategoryView->activateWindow();
 					treeWidgetCategoryView->setFocus();
 					QTimer::singleShot(0, this, SLOT(viewByCategory()));
 					break;
-				case QMC2_VIEW_VERSION_INDEX:
+				case QMC2_VIEWVERSION_INDEX:
 					treeWidgetVersionView->activateWindow();
 					treeWidgetVersionView->setFocus();
 					QTimer::singleShot(0, this, SLOT(viewByVersion()));
 					break;
-				case QMC2_VIEW_DETAIL_INDEX:
+				case QMC2_VIEWMACHINELIST_INDEX:
 				default:
 					treeWidgetMachineList->activateWindow();
 					treeWidgetMachineList->setFocus();
@@ -5818,7 +5817,6 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 			treeWidgetMachineList_verticalScrollChanged();
 			break;
 	}
-	comboBoxViewSelect->setCurrentIndex(index);
 }
 
 void MainWindow::pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()
@@ -6513,16 +6511,16 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 	if ( refreshViews ) {
 		if ( tabWidgetMachineList->indexOf(tabMachineList) == tabWidgetMachineList->currentIndex() ) {
 			switch ( stackedWidgetView->currentIndex() ) {
-				case QMC2_VIEW_TREE_INDEX:
+				case QMC2_VIEWHIERARCHY_INDEX:
 					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetHierarchy_verticalScrollChanged()));
 					break;
-				case QMC2_VIEW_CATEGORY_INDEX:
+				case QMC2_VIEWCATEGORY_INDEX:
 					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
 					break;
-				case QMC2_VIEW_VERSION_INDEX:
+				case QMC2_VIEWVERSION_INDEX:
 					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
 					break;
-				case QMC2_VIEW_DETAIL_INDEX:
+				case QMC2_VIEWMACHINELIST_INDEX:
 				default:
 					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetMachineList_verticalScrollChanged()));
 					break;
@@ -6699,7 +6697,10 @@ void MainWindow::viewFullDetail()
 	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
 		if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 			index--;
+	stackedWidgetView->setCurrentIndex(QMC2_VIEWMACHINELIST_INDEX);
+	comboBoxViewSelect->blockSignals(true);
 	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWMACHINELIST_INDEX);
+	comboBoxViewSelect->blockSignals(false);
 	tabWidgetMachineList->setCurrentIndex(index);
 	tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/flat.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/flat.png")));
@@ -6722,7 +6723,10 @@ void MainWindow::viewParentClones()
 	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
 		if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 			index--;
+	stackedWidgetView->setCurrentIndex(QMC2_VIEWHIERARCHY_INDEX);
+	comboBoxViewSelect->blockSignals(true);
 	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWHIERARCHY_INDEX);
+	comboBoxViewSelect->blockSignals(false);
 	tabWidgetMachineList->setCurrentIndex(index);
 	tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/clone.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/clone.png")));
@@ -6745,7 +6749,10 @@ void MainWindow::viewByCategory()
 	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
 		if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 			index--;
+	stackedWidgetView->setCurrentIndex(QMC2_VIEWCATEGORY_INDEX);
+	comboBoxViewSelect->blockSignals(true);
 	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWCATEGORY_INDEX);
+	comboBoxViewSelect->blockSignals(false);
 	tabWidgetMachineList->setCurrentIndex(index);
 	tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/category.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/category.png")));
@@ -6776,7 +6783,10 @@ void MainWindow::viewByVersion()
 	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
 		if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 			index--;
+	stackedWidgetView->setCurrentIndex(QMC2_VIEWVERSION_INDEX);
+	comboBoxViewSelect->blockSignals(true);
 	comboBoxViewSelect->setCurrentIndex(QMC2_VIEWVERSION_INDEX);
+	comboBoxViewSelect->blockSignals(false);
 	tabWidgetMachineList->setCurrentIndex(index);
 	tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/version.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/version.png")));
@@ -8393,7 +8403,6 @@ void MainWindow::on_treeWidgetVersionView_customContextMenuRequested(const QPoin
 
 void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 {
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
 	if ( tabWidgetMachineList->indexOf(tabMachineList) != tabWidgetMachineList->currentIndex() )
 		return;
 
@@ -10732,19 +10741,19 @@ RankItemWidget *MainWindow::getCurrentRankItemWidget()
 	QTreeWidget *treeWidget;
 	QTreeWidgetItem *item;
 	switch ( stackedWidgetView->currentIndex() ) {
-		case QMC2_VIEW_TREE_INDEX:
+		case QMC2_VIEWHIERARCHY_INDEX:
 			treeWidget = treeWidgetHierarchy;
 			item = qmc2HierarchyItemHash[qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)];
 			break;
-		case QMC2_VIEW_CATEGORY_INDEX:
+		case QMC2_VIEWCATEGORY_INDEX:
 			treeWidget = treeWidgetCategoryView;
 			item = qmc2CategoryItemHash[qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)];
 			break;
-		case QMC2_VIEW_VERSION_INDEX:
+		case QMC2_VIEWVERSION_INDEX:
 			treeWidget = treeWidgetVersionView;
 			item = qmc2VersionItemHash[qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)];
 			break;
-		case QMC2_VIEW_DETAIL_INDEX:
+		case QMC2_VIEWMACHINELIST_INDEX:
 		default:
 			treeWidget = treeWidgetMachineList;
 			item = qmc2CurrentItem;

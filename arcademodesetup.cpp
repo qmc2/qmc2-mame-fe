@@ -486,6 +486,7 @@ void ArcadeModeSetup::updateCategoryFilter()
 	foreach (QString *category, qmc2MachineList->categoryMap.values())
 		if ( category )
 			categoryNames << *category;
+	categoryNames.removeAll(tr("System / Device"));
 	categoryNames.removeDuplicates();
 	std::sort(categoryNames.begin(), categoryNames.end(), MainWindow::qStringListLessThan);
 	QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExcludedCategories", QStringList()).toStringList();
@@ -650,14 +651,17 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 	foreach (QString game, qmc2MachineListItemHash.keys()) {
 		progressBarFilter->setValue(++itemCount);
 
+		MachineListItem *gameItem = (MachineListItem *)qmc2MachineListItemHash[game];
+		if ( !gameItem )
+			continue;
+
 		// no devices
 		if ( qmc2MachineList->isDevice(game) )
 			continue;
 
 		// tagged sets only?
 		if ( checkBoxTaggedSetsOnly->isChecked() ) {
-			MachineListItem *gameItem = (MachineListItem *)qmc2MachineListItemHash[game];
-			if ( gameItem && gameItem->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
+			if ( gameItem->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
 				selectedGames << gameItem;
 			continue;
 		}
@@ -665,11 +669,9 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		// favorite sets only?
 		if ( checkBoxFavoriteSetsOnly->isChecked() ) {
 			MachineListItem *gameItem = (MachineListItem *)qmc2MachineListItemHash[game];
-			if ( gameItem ) {
-				QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
-				if ( !favoritesMatches.isEmpty() )
-					selectedGames << gameItem;
-			}
+			QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
+			if ( !favoritesMatches.isEmpty() )
+				selectedGames << gameItem;
 			continue;
 		}
 
@@ -684,19 +686,11 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 				continue;
 
 		// category
-		QString *categoryPtr = qmc2MachineList->categoryMap[game];
-		QString category;
-		if ( categoryPtr )
-			category = *categoryPtr;
-		else
-			category = tr("?");
-
-		if ( !qmc2MachineList->categoryMap.isEmpty() && excludedCategories.contains(category) )
-			continue;
-
-		MachineListItem *gameItem = (MachineListItem *)qmc2MachineListItemHash[game];
-		if ( !gameItem )
-			continue;
+		if ( !qmc2MachineList->categoryMap.isEmpty() ) {
+			QString category = gameItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
+			if ( excludedCategories.contains(category) )
+				continue;
+		}
 
 		// driver status
 		if ( minDrvStatus < QMC2_ARCADE_DRV_STATUS_PRELIMINARY ) {
