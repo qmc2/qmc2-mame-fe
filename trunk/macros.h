@@ -139,12 +139,6 @@
 // column used for the machine icon
 #define QMC2_ICON_INDEX				2
 
-// index positions of machine list view selector
-#define QMC2_VIEW_DETAIL_INDEX			0
-#define QMC2_VIEW_TREE_INDEX			1
-#define QMC2_VIEW_CATEGORY_INDEX		2
-#define QMC2_VIEW_VERSION_INDEX			3
-
 // logical column indexes in machine lists
 #define QMC2_MACHINELIST_RESET			-1
 #define QMC2_MACHINELIST_COLUMN_MACHINE		0
