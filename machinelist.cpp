@@ -3538,11 +3538,11 @@ void MachineList::createCategoryView()
 			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 		qmc2MainWindow->progressBarMachineList->setRange(0, qmc2MainWindow->treeWidgetMachineList->topLevelItemCount());
 		qmc2MainWindow->progressBarMachineList->reset();
-		QMapIterator<QString, QString *> it(categoryMap);
 		bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
 		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
 		QList<QTreeWidgetItem *> itemList;
 		QList<QTreeWidgetItem *> hideList;
+		QHash<QString, QTreeWidgetItem *> itemHash;
 		int loadResponse = qmc2MainWindow->treeWidgetMachineList->topLevelItemCount() / QMC2_GENERAL_LOADING_UPDATES;
 		if ( loadResponse == 0 )
 			loadResponse = 25;
@@ -3562,21 +3562,12 @@ void MachineList::createCategoryView()
 				category = tr("System / Device");
 			else
 				category = baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
-			QTreeWidgetItem *matchedItem = 0;
-			for (int i = 0; i < itemList.count() && !matchedItem; i++) {
-				QString categoryText = itemList[i]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
-				if ( categoryText == category )
-					matchedItem = itemList[i];
-				else if ( tr(categoryText.toLocal8Bit().constData()) == category )
-					matchedItem = itemList[i];
-			}
-			QTreeWidgetItem *categoryItem = 0;
-			if ( matchedItem )
-				categoryItem = matchedItem;
+			QTreeWidgetItem *categoryItem = itemHash[category];
 			if ( !categoryItem ) {
 				categoryItem = new QTreeWidgetItem();
 				categoryItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, category);
 				itemList << categoryItem;
+				itemHash[category] = categoryItem;
 			}
 			QTreeWidgetItem *gameItem = new MachineListItem(categoryItem);
 			if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
@@ -3768,46 +3759,28 @@ void MachineList::createVersionView()
 			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 		qmc2MainWindow->progressBarMachineList->setRange(0, versionMap.count());
 		qmc2MainWindow->progressBarMachineList->reset();
-		QMapIterator<QString, QString *> it(versionMap);
-		int counter = 0;
 		bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
 		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
 		QList<QTreeWidgetItem *> itemList;
 		QList<QTreeWidgetItem *> hideList;
+		QHash<QString, QTreeWidgetItem *> itemHash;
 		int loadResponse = numGames / QMC2_GENERAL_LOADING_UPDATES;
 		if ( loadResponse == 0 )
 			loadResponse = 25;
-		while ( it.hasNext() ) {
-			if ( counter % loadResponse == 0 ) {
-				qmc2MainWindow->progressBarMachineList->setValue(counter);
+		for (int i = 0; i < qmc2MainWindow->treeWidgetMachineList->topLevelItemCount(); i++) {
+			if ( i % loadResponse == 0 ) {
+				qmc2MainWindow->progressBarMachineList->setValue(i);
 				qApp->processEvents();
 			}
-			counter++;
-			it.next();
-			QString gameName = it.key();
-			if ( gameName.isEmpty() )
-				continue;
-			QTreeWidgetItem *baseItem = qmc2MachineListItemHash[gameName];
-			if ( !baseItem )
-				continue;
-			QString *versionPtr = it.value();
-			QString version;
-			if ( versionPtr )
-				version = *versionPtr;
-			else
-				version = tr("?");
-			QTreeWidgetItem *matchedItem = NULL;
-			for (int i = 0; i < itemList.count() && matchedItem == NULL; i++) {
-				if ( itemList[i]->text(QMC2_MACHINELIST_COLUMN_MACHINE) == version )
-					matchedItem = itemList[i];
-			}
-			QTreeWidgetItem *versionItem = NULL;
-			if ( matchedItem )
-				versionItem = matchedItem;
-			if ( versionItem == NULL ) {
+			QTreeWidgetItem *baseItem = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
+			QString gameName = baseItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+			QString version = baseItem->text(QMC2_MACHINELIST_COLUMN_VERSION);
+			QTreeWidgetItem *versionItem = itemHash[version];
+			if ( !versionItem ) {
 				versionItem = new QTreeWidgetItem();
 				versionItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, version);
 				itemList << versionItem;
+				itemHash[version] = versionItem;
 			}
 			QTreeWidgetItem *gameItem = new MachineListItem(versionItem);
 			bool isBIOS = isBios(gameName);
