@@ -1285,7 +1285,8 @@ bool SoftwareList::load()
 	getXmlData();
 
 	QStringList softwareList = systemSoftwareListHash[systemName];
-	if ( !softwareList.contains("NO_SOFTWARE_LIST") && !interruptLoad ) {
+	bool hasSoftwareLists = !softwareList.contains("NO_SOFTWARE_LIST");
+	if ( hasSoftwareLists && !interruptLoad ) {
 		foreach (QString swList, softwareList) {
 			if ( interruptLoad )
 				break;
@@ -1407,11 +1408,13 @@ bool SoftwareList::load()
 	toolButtonToggleSoftwareInfo->setEnabled(true);
 	toolButtonCompatFilterToggle->setEnabled(toolBoxSoftwareList->currentIndex() != QMC2_SWLIST_KNOWN_SW_PAGE || !viewTree());
 	toolButtonToggleSnapnameAdjustment->setEnabled(true);
-	toolButtonSoftwareStates->setEnabled(true);
-	toolButtonAnalyzeSoftware->setEnabled(true);
-	toolButtonRebuildSoftware->setEnabled(true);
+	if ( hasSoftwareLists ) {
+		toolButtonSoftwareStates->setEnabled(true);
+		toolButtonAnalyzeSoftware->setEnabled(true);
+		toolButtonRebuildSoftware->setEnabled(true);
+	}
 
-	if ( !softwareList.contains("NO_SOFTWARE_LIST") && !interruptLoad ) {
+	if ( hasSoftwareLists && !interruptLoad ) {
 		if ( knownSoftwareMenu ) {
 			if ( !toggleListMenu ) {
 				toggleListMenu = new QMenu(0);
@@ -5362,7 +5365,6 @@ void SoftwareSnapshot::enableWidgets(bool enable)
 	qmc2Options->comboBoxSoftwareSnapFileType->setEnabled(enable);
 	qmc2Options->toolButtonBrowseSoftwareSnapFile->setEnabled(enable);
 }
-
 
 bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName, bool fromParent)
 {
