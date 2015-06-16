@@ -3536,30 +3536,23 @@ void MachineList::createCategoryView()
 			qmc2MainWindow->progressBarMachineList->setFormat(tr("Category view - %p%"));
 		else
 			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-		qmc2MainWindow->progressBarMachineList->setRange(0, categoryMap.count());
+		qmc2MainWindow->progressBarMachineList->setRange(0, qmc2MainWindow->treeWidgetMachineList->topLevelItemCount());
 		qmc2MainWindow->progressBarMachineList->reset();
 		QMapIterator<QString, QString *> it(categoryMap);
-		int counter = 0;
 		bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
 		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
 		QList<QTreeWidgetItem *> itemList;
 		QList<QTreeWidgetItem *> hideList;
-		int loadResponse = numGames / QMC2_GENERAL_LOADING_UPDATES;
+		int loadResponse = qmc2MainWindow->treeWidgetMachineList->topLevelItemCount() / QMC2_GENERAL_LOADING_UPDATES;
 		if ( loadResponse == 0 )
 			loadResponse = 25;
-		while ( it.hasNext() ) {
-			if ( counter % loadResponse == 0 ) {
-				qmc2MainWindow->progressBarMachineList->setValue(counter);
+		for (int i = 0; i < qmc2MainWindow->treeWidgetMachineList->topLevelItemCount(); i++) {
+			if ( i % loadResponse == 0 ) {
+				qmc2MainWindow->progressBarMachineList->setValue(i);
 				qApp->processEvents();
 			}
-			counter++;
-			it.next();
-			QString gameName = it.key();
-			if ( gameName.isEmpty() )
-				continue;
-			QTreeWidgetItem *baseItem = qmc2MachineListItemHash[gameName];
-			if ( !baseItem )
-				continue;
+			QTreeWidgetItem *baseItem = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
+			QString gameName = baseItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 			QString category;
 			bool isBIOS = isBios(gameName);
 			bool isDevice = this->isDevice(gameName);
@@ -3569,18 +3562,18 @@ void MachineList::createCategoryView()
 				category = tr("System / Device");
 			else
 				category = baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
-			QTreeWidgetItem *matchedItem = NULL;
-			for (int i = 0; i < itemList.count() && matchedItem == NULL; i++) {
+			QTreeWidgetItem *matchedItem = 0;
+			for (int i = 0; i < itemList.count() && !matchedItem; i++) {
 				QString categoryText = itemList[i]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 				if ( categoryText == category )
 					matchedItem = itemList[i];
 				else if ( tr(categoryText.toLocal8Bit().constData()) == category )
 					matchedItem = itemList[i];
 			}
-			QTreeWidgetItem *categoryItem = NULL;
+			QTreeWidgetItem *categoryItem = 0;
 			if ( matchedItem )
 				categoryItem = matchedItem;
-			if ( categoryItem == NULL ) {
+			if ( !categoryItem ) {
 				categoryItem = new QTreeWidgetItem();
 				categoryItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, category);
 				itemList << categoryItem;

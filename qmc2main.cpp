@@ -5774,6 +5774,11 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 				QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[gameName];
 				treeWidgetHierarchy->clearSelection();
+				pushButtonSelectRomFilter->setVisible(false);
+				menuRomStatusFilter->setVisible(false);
+				actionTagVisible->setVisible(false);
+				actionUntagVisible->setVisible(false);
+				actionInvertVisibleTags->setVisible(false);
 				if ( hierarchyItem ) {
 					treeWidgetHierarchy->setCurrentItem(hierarchyItem);
 					treeWidgetHierarchy->scrollToItem(hierarchyItem, qmc2CursorPositioningMode);
@@ -5782,12 +5787,16 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 				treeWidgetHierarchy_verticalScrollChanged();
 			}
 			break;
-
 		case QMC2_VIEWCATEGORY_INDEX:
 			if ( !qmc2ReloadActive ) {
 				QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
 				treeWidgetCategoryView->clearSelection();
+				pushButtonSelectRomFilter->setVisible(false);
+				menuRomStatusFilter->setVisible(false);
+				actionTagVisible->setVisible(false);
+				actionUntagVisible->setVisible(false);
+				actionInvertVisibleTags->setVisible(false);
 				if ( categoryItem ) {
 					treeWidgetCategoryView->setCurrentItem(categoryItem);
 					treeWidgetCategoryView->scrollToItem(categoryItem, qmc2CursorPositioningMode);
@@ -5796,12 +5805,16 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 				treeWidgetCategoryView_verticalScrollChanged();
 			}
 			break;
-
 		case QMC2_VIEWVERSION_INDEX:
 			if ( !qmc2ReloadActive ) {
 				QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 				QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
 				treeWidgetVersionView->clearSelection();
+				pushButtonSelectRomFilter->setVisible(false);
+				menuRomStatusFilter->setVisible(false);
+				actionTagVisible->setVisible(false);
+				actionUntagVisible->setVisible(false);
+				actionInvertVisibleTags->setVisible(false);
 				if ( versionItem ) {
 					treeWidgetVersionView->setCurrentItem(versionItem);
 					treeWidgetVersionView->scrollToItem(versionItem, qmc2CursorPositioningMode);
@@ -5810,11 +5823,16 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 				treeWidgetVersionView_verticalScrollChanged();
 			}
 			break;
-
 		case QMC2_VIEWMACHINELIST_INDEX:
-		default:
-			scrollToCurrentItem();
-			treeWidgetMachineList_verticalScrollChanged();
+		default: {
+				bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true).toBool();
+				pushButtonSelectRomFilter->setVisible(romFilterActive);
+				actionTagVisible->setVisible(romFilterActive);
+				actionUntagVisible->setVisible(romFilterActive);
+				actionInvertVisibleTags->setVisible(romFilterActive);
+				scrollToCurrentItem();
+				treeWidgetMachineList_verticalScrollChanged();
+			}
 			break;
 	}
 }
@@ -8407,15 +8425,6 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 		return;
 
 	switch ( index ) {
-		case QMC2_VIEWMACHINELIST_INDEX: {
-			bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true).toBool();
-			pushButtonSelectRomFilter->setVisible(romFilterActive);
-			actionTagVisible->setVisible(romFilterActive);
-			actionUntagVisible->setVisible(romFilterActive);
-			actionInvertVisibleTags->setVisible(romFilterActive);
-			viewFullDetail();
-			break;
-		}
 		case QMC2_VIEWHIERARCHY_INDEX:
 			pushButtonSelectRomFilter->setVisible(false);
 			menuRomStatusFilter->setVisible(false);
@@ -8440,8 +8449,16 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 			actionInvertVisibleTags->setVisible(false);
 			viewByVersion();
 			break;
-		default:
+		case QMC2_VIEWMACHINELIST_INDEX:
+		default: {
+			bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true).toBool();
+			pushButtonSelectRomFilter->setVisible(romFilterActive);
+			actionTagVisible->setVisible(romFilterActive);
+			actionUntagVisible->setVisible(romFilterActive);
+			actionInvertVisibleTags->setVisible(romFilterActive);
+			viewFullDetail();
 			break;
+		}
 	}
 }
 
