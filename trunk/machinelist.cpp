@@ -1951,7 +1951,6 @@ void MachineList::parse()
 				if ( category == tr("?") ) {
 					category = hierarchyItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
 					baseItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, category);
-					//categoryMap[jValue] = categoryMap[hierarchyItem->text(QMC2_MACHINELIST_COLUMN_NAME)];
 				}
 				hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, category);
 			}
