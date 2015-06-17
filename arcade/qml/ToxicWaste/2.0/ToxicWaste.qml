@@ -399,7 +399,7 @@ Rectangle {
                             fontSize: 12 * ToxicWaste.scaleFactorX()
                             fontColor: "white"
                             arrowIcon: "images/down_arrow_white.png"
-                            displayText: viewer.requestInfo(machineListModel[gamelistView.currentIndex].id, "emuinfo");
+                            displayText: viewer.requestInfo(machineListModel[machineListView.currentIndex].id, "emuinfo");
                         }
                     }
                     Rectangle {
@@ -420,7 +420,7 @@ Rectangle {
                             fontSize: 12 * ToxicWaste.scaleFactorX()
                             fontColor: "white"
                             arrowIcon: "images/down_arrow_white.png"
-                            displayText: viewer.requestInfo(machineListModel[gamelistView.currentIndex].id, "gameinfo");
+                            displayText: viewer.requestInfo(machineListModel[machineListView.currentIndex].id, "gameinfo");
                         }
                     }
                 }
@@ -535,14 +535,14 @@ Rectangle {
                 onEntered: parent.opacity = 1.0
                 onExited: parent.opacity = 0.8
                 onClicked: {
-                    viewer.launchEmulator(machineListModel[gamelistView.currentIndex].id);
+                    viewer.launchEmulator(machineListModel[machineListView.currentIndex].id);
                     searchTextInput.focus = false;
                 }
             }
         }
     }
     ListView {
-        id: gamelistView
+        id: machineListView
         opacity: toxicWasteMain.machineListOpacity
         scale: ToxicWaste.scaleFactorX()
         flickDeceleration: 3500
@@ -577,16 +577,16 @@ Rectangle {
         highlightRangeMode: ListView.StrictlyEnforceRange
         highlightFollowsCurrentItem: true
         highlightMoveDuration: 500
-        cacheBuffer: 72 * itemsPerPage() // 72 = gamelistItemDelegate.height
+        cacheBuffer: 72 * itemsPerPage() // 72 = machineListItemDelegate.height
         delegate: Item {
             property string gameId: id
-            id: gamelistItemDelegate
+            id: machineListItemDelegate
             width: 280
             height: 72
             Rectangle {
-                id: gamelistItemBackground
+                id: machineListItemBackground
                 smooth: true
-                anchors.fill: gamelistItemDelegate
+                anchors.fill: machineListItemDelegate
                 gradient: Gradient {
                     GradientStop { position: 0.0; color: "lightgrey" }
                     GradientStop { position: 0.5; color: "white" }
@@ -597,15 +597,15 @@ Rectangle {
                 border.color: "black"
                 border.width: 2
                 Image {
-                    id: gamelistItemIcon
+                    id: machineListItemIcon
                     cache: viewer.isSevenZippedImageType("ico") ? toxicWasteMain.iconsReady : true
                     source: "image://qmc2/ico/" + model.modelData.id + "/" + model.modelData.parentId
-                    anchors.left: gamelistItemBackground.left
-                    anchors.verticalCenter: gamelistItemBackground.verticalCenter
+                    anchors.left: machineListItemBackground.left
+                    anchors.verticalCenter: machineListItemBackground.verticalCenter
                     anchors.margins: 10
                     smooth: true
                     fillMode: Image.PreserveAspectFit
-                    height: gamelistItemBackground.height / 3
+                    height: machineListItemBackground.height / 3
                     asynchronous: !viewer.isSevenZippedImageType("ico")
                     Connections {
                         target: viewer
@@ -617,45 +617,45 @@ Rectangle {
                 }
                 Text {
                     property bool fontResized: false
-                    id: gamelistItemText
+                    id: machineListItemText
                     text: model.modelData.description
                     color: "black"
                     font.bold: true
                     font.italic: true
-                    font.pixelSize: gamelistItemBackground.height / 3
+                    font.pixelSize: machineListItemBackground.height / 3
                     elide: Text.ElideRight
                     wrapMode: Text.NoWrap
-                    anchors.centerIn: gamelistItemBackground
-                    anchors.horizontalCenterOffset: gamelistItemIcon.width > 1 ? (paintedWidth + gamelistItemIcon.width + 45 < gamelistItemBackground.width ? 0 : gamelistItemIcon.width - 10) : 0
-                    width: gamelistItemIcon.width > 1 ? gamelistItemBackground.width - gamelistItemIcon.width - 20 : gamelistItemBackground.width - 20
+                    anchors.centerIn: machineListItemBackground
+                    anchors.horizontalCenterOffset: machineListItemIcon.width > 1 ? (paintedWidth + machineListItemIcon.width + 45 < machineListItemBackground.width ? 0 : machineListItemIcon.width - 10) : 0
+                    width: machineListItemIcon.width > 1 ? machineListItemBackground.width - machineListItemIcon.width - 20 : machineListItemBackground.width - 20
                     smooth: true
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
                 }
                 MouseArea {
-                    id: gamelistItemMouseArea
-                    anchors.fill: gamelistItemBackground
+                    id: machineListItemMouseArea
+                    anchors.fill: machineListItemBackground
                     hoverEnabled: true
                     acceptedButtons: Qt.LeftButton
                     onContainsMouseChanged: {
                         if ( mapToItem(menuAndStatusBar, mouseX, mouseY).y < 0 ) {
                             if ( containsMouse )
-                                ToxicWaste.itemEntered(gamelistItemText, gamelistItemBackground, gamelistItemIcon);
+                                ToxicWaste.itemEntered(machineListItemText, machineListItemBackground, machineListItemIcon);
                             else
-                                ToxicWaste.itemExited(gamelistItemText, gamelistItemBackground, gamelistItemIcon);
+                                ToxicWaste.itemExited(machineListItemText, machineListItemBackground, machineListItemIcon);
                         }
                     }
                     onDoubleClicked: {
-                        gamelistView.currentIndex = index;
-                        ToxicWaste.itemClicked(gamelistItemText, gamelistItemBackground, gamelistItemIcon);
+                        machineListView.currentIndex = index;
+                        ToxicWaste.itemClicked(machineListItemText, machineListItemBackground, machineListItemIcon);
                         searchTextInput.focus = false;
                         launchButton.opacity = 1.0;
-                        viewer.launchEmulator(machineListModel[gamelistView.currentIndex].id);
+                        viewer.launchEmulator(machineListModel[machineListView.currentIndex].id);
                         launchButtonFlashTimer.start();
                     }
                     onClicked: {
-                        gamelistView.currentIndex = index;
-                        ToxicWaste.itemClicked(gamelistItemText, gamelistItemBackground, gamelistItemIcon);
+                        machineListView.currentIndex = index;
+                        ToxicWaste.itemClicked(machineListItemText, machineListItemBackground, machineListItemIcon);
                         searchTextInput.focus = false;
                     }
                 }
@@ -707,7 +707,7 @@ Rectangle {
             case Qt.Key_Return:
                 if ( !searchTextInput.focus && !(event.modifiers & Qt.AltModifier) && !toxicWasteMain.ignoreLaunch ) {
                     launchButton.opacity = 1.0;
-                    viewer.launchEmulator(machineListModel[gamelistView.currentIndex].id);
+                    viewer.launchEmulator(machineListModel[machineListView.currentIndex].id);
                     launchButtonFlashTimer.start();
                     event.accepted = true;
                 }
@@ -1535,7 +1535,7 @@ Rectangle {
                     onExited: parent.opacity = 0.5
                     onClicked: {
                         parent.opacity = 1.0;
-                        gamelistView.positionViewAtIndex(viewer.findIndex(searchTextInput.text, gamelistView.currentIndex), ListView.Beginning);
+                        machineListView.positionViewAtIndex(viewer.findIndex(searchTextInput.text, machineListView.currentIndex), ListView.Beginning);
                         searchTextInput.focus = false;
                     }
                 }
@@ -1579,7 +1579,7 @@ Rectangle {
                             PauseAnimation { duration: 500 }
                         }
                     }
-                    onAccepted: gamelistView.positionViewAtIndex(viewer.findIndex(searchTextInput.text, gamelistView.currentIndex), ListView.Beginning);
+                    onAccepted: machineListView.positionViewAtIndex(viewer.findIndex(searchTextInput.text, machineListView.currentIndex), ListView.Beginning);
                     onFocusChanged: {
                         if ( !focus )
                             toxicWasteMain.focus = true;
@@ -1690,7 +1690,7 @@ Rectangle {
                 case Qt.Key_P:
                     if ( !toxicWasteMain.ignoreLaunch ) {
                         launchButton.opacity = 1.0;
-                        viewer.launchEmulator(machineListModel[gamelistView.currentIndex].id);
+                        viewer.launchEmulator(machineListModel[machineListView.currentIndex].id);
                         launchButtonFlashTimer.start();
                     }
                     event.accepted = true;
@@ -1741,7 +1741,7 @@ Rectangle {
             }
         }
     }
-    Keys.forwardTo: [gamelistView]
+    Keys.forwardTo: [machineListView]
     onFullScreenChanged: {
         if ( !ToxicWaste.initializing ) {
             if ( fullScreen ) {
