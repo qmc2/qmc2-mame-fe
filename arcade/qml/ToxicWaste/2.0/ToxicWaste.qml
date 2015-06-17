@@ -404,7 +404,7 @@ Rectangle {
                     }
                     Rectangle {
                         id: gameInfoViewer
-                        property string title: qsTr("Game info")
+                        property string title: qsTr("Machine info")
                         anchors.fill: parent
                         anchors.topMargin: 5 * ToxicWaste.scaleFactorY()
                         anchors.bottomMargin: 10 * ToxicWaste.scaleFactorY()
@@ -1157,7 +1157,7 @@ Rectangle {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     anchors.margins: 5
-                    sliderText: qsTr("Game list opacity")
+                    sliderText: qsTr("Machine list opacity")
                     minimum: 0
                     maximum: 1
                     value: toxicWasteMain.machineListOpacity

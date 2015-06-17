@@ -1043,7 +1043,7 @@
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="409"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="407"/>
-        <source>Game info</source>
+        <source>Machine info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1151,7 +1151,7 @@
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1162"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1160"/>
-        <source>Game list opacity</source>
+        <source>Machine list opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

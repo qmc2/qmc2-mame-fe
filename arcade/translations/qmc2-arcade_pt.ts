@@ -1076,10 +1076,14 @@
         <translation>Info do emulador</translation>
     </message>
     <message>
+        <source>Game info</source>
+        <translation type="obsolete">Info do jogo</translation>
+    </message>
+    <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="409"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="407"/>
-        <source>Game info</source>
-        <translation>Info do jogo</translation>
+        <source>Machine info</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="749"/>
@@ -1186,8 +1190,12 @@
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1162"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1160"/>
+        <source>Machine list opacity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Game list opacity</source>
-        <translation>Opacidade da lista de jogos</translation>
+        <translation type="obsolete">Opacidade da lista de jogos</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1172"/>

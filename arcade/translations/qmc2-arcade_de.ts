@@ -1076,10 +1076,14 @@
         <translation>Emu Info</translation>
     </message>
     <message>
+        <source>Game info</source>
+        <translation type="obsolete">Spiel Info</translation>
+    </message>
+    <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="409"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="407"/>
-        <source>Game info</source>
-        <translation>Spiel Info</translation>
+        <source>Machine info</source>
+        <translation>Maschinen Info</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="749"/>
@@ -1175,19 +1179,23 @@
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1136"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1134"/>
         <source>Cabinet opacity</source>
-        <translation>Gehäuse Undurchsichtigkeit</translation>
+        <translation>Undurchsichtigkeit des Gehäuses</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1149"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1147"/>
         <source>Background opacity</source>
-        <translation>Hintergrund Undurchsichtigkeit</translation>
+        <translation>Undurchsichtigkeit des Hintergrunds</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1162"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1160"/>
+        <source>Machine list opacity</source>
+        <translation>Undurchsichtigkeit der Maschinenliste</translation>
+    </message>
+    <message>
         <source>Game list opacity</source>
-        <translation>Spieleliste Undurchsichtigkeit</translation>
+        <translation type="obsolete">Spieleliste Undurchsichtigkeit</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1172"/>
