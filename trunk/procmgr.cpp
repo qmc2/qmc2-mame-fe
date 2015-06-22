@@ -57,23 +57,19 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/OneEmulatorOnly", false).toBool() ) {
 		foreach (int index, procMap) {
 			QProcess *proc = process(index);
-
 			if ( !proc )
 				continue;
-
 			bool finished = false;
 			proc->terminate();
 			for (int i = 0; i < 1000 / QMC2_PROCESS_POLL_TIME && !finished; i++) {
 				finished = proc->waitForFinished(QMC2_PROCESS_POLL_TIME);
 				qApp->processEvents();
 			}
-
 			if ( !proc->waitForFinished(0) )
 				proc->kill();
 		}
 		qApp->processEvents();
 	}
-
 	launchForeignID = qmc2MainWindow->launchForeignID;
 	QProcess *proc = new QProcess(this);
 	if ( !workDir.isEmpty() ) {
@@ -86,14 +82,12 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
 		} else
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ProcessManager::start(): the specified working directory '%1' does not exist -- ignored").arg(workDir));
 	}
-
 #if defined(QMC2_OS_UNIX)
 	// we use a (session-)unique ID in the WM_CLASS property to identify the window later...
 	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 	env.insert("SDL_VIDEO_X11_WMCLASS", QString("QMC2-MAME-ID-%1").arg(procCount));
 	proc->setProcessEnvironment(env);
 #endif
-
 	if ( autoConnect ) {
 		lastCommand = command;
 #if defined(QMC2_OS_WIN)
@@ -116,6 +110,10 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
 			if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\)|\\;)")) )
 				arg = "\"" + arg + "\"";
 #endif
+			if ( (arg.endsWith("\"\"") && arg.startsWith("\"")) || (arg.endsWith("\"") && arg.startsWith("\"\"")) ) {
+				arg.remove(0, 1);
+				arg.remove(arg.length() - 1, 1);
+			}
 			lastCommand += " " + arg;
 		}
 #if defined(QMC2_OS_WIN)
@@ -135,7 +133,6 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
 	softwareListsMap[proc] = softwareLists;
 	softwareNamesMap[proc] = softwareNames;
 	proc->start(command, arguments);
-
 	return procCount - 1;
 }
 
