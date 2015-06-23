@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.53, 10-JUN-2015</h3>
+<h3>README - v0.53, 23-JUN-2015</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -18,7 +18,7 @@
     <p><a href="#3.">Command line arguments and configuration</a></p>
   </li>
   <li>
-    <p><a href="#4.">Game/machine list statistics, ROM status and the ROMAlyzer</a></p>
+    <p><a href="#4.">Machine list statistics, ROM status and the ROMAlyzer</a></p>
   </li>
   <li>
     <p><a href="#5.">GUI style plugins and Qt style sheets</a></p>
@@ -64,55 +64,55 @@ As a result of this flexible design, QMC2 can be used for multiple emulators tod
 </p>
 <p>QMC2's current major features include:</p>
 <ul>
-  <li>Extremely fast drawing of game/machine images, optionally smoothly scaled (PNG images, buffered in a resizable LRU-cache)</li>
-  <li>Support for game/machine icons -- historically only PNG images, but when icons are stored in a ZIP or 7z archive, <i>any</i> image format that Qt supports can be used (including ICO format)</li>
-  <li>Icons and all game/machine images can either be stored as individual files in respective directories or they can be combined and compressed in ZIP or 7z archives</li>
+  <li>Extremely fast drawing of machine images, optionally smoothly scaled (PNG images, buffered in a resizable LRU-cache)</li>
+  <li>Support for machine icons -- historically only PNG images, but when icons are stored in a ZIP or 7z archive, <i>any</i> image format that Qt supports can be used (including ICO format)</li>
+  <li>Icons and all machine images can either be stored as individual files in respective directories or they can be combined and compressed in ZIP or 7z archives</li>
   <li>Easily extensible template-based emulator configuration scheme (defined through an external XML file)</li>
-  <li>Cool editor for configuration of global and game/machine-specific emulator options, including a search function</li>
+  <li>Cool editor for configuration of global and machine-specific emulator options, including a search function</li>
   <li>Support for all emulation-related extra information available through the emulator (displayed in a tree)</li>
   <li>Fast search function with automatic wildcard pattern matching</li>
-  <li>All emulator targets: selectable sort criteria and order for game/machine lists (description, name/ID, ROM state, year, manufacturer and ROM types)</li>
+  <li>All emulator targets: selectable sort criteria and order for machine lists (description, name/ID, ROM state, year, manufacturer and ROM types)</li>
   <li>Straightforward process management to control emulator processes</li>
   <li>Clear and full logging (separate front end and emulator logs)</li>
-  <li>Cached ROM state verification, indicated as colored spheres in front of each game/machine description</li>
+  <li>Cached ROM state verification, indicated as colored spheres in front of each machine description</li>
   <li>Verification of sample sets</li>
-  <li>Game/machine image checks (icons, previews &amp; flyers)
-  <li>Online display of current game/machine list and search result statistics</li>
-  <li>All emulator targets: two different views of the game/machine list: <i>full detail</i> and <i>parent/clone hierarchy</i></li>
+  <li>Machine image checks (icons, previews &amp; flyers)
+  <li>Online display of current machine list and search result statistics</li>
+  <li>All emulator targets: two different views of the machine list: <i>full detail</i> and <i>parent/clone hierarchy</i></li>
   <li>Optional additional <i>category-oriented</i> and <i>version-oriented</i> views when <i><a href="http://www.progettoemma.net/?catlist" target="_blank">catver.ini</a></i> and/or <i>category.ini</i> support is enabled</li>
   <li>The GUI will always remain interactive even if heavy background processing is running</li>
   <li>Time-consuming background tasks can be stopped on demand at (nearly) any time</li>
-  <li>Optional auto-save/restore of window layout and game/machine selection</li>
+  <li>Optional auto-save/restore of window layout and machine selection</li>
   <li>Multi-platform support (Linux/UNIX, Mac OS X and Windows)</li>
   <li>Fully multi-language capable -- right now, translations exist (or are being worked on) for English (us), French (fr), German (de), Greek (el), Italian (it), Polish (pl), Portuguese (pt), Romanian (ro), Spanish (es) and Swedish (sv)</li>
-  <li>Game/machine favorites management and play-history</li>
+  <li>Machine favorites management and play-history</li>
   <li>Online HTML documentation and browser</li>
   <li>Designed to be used for multiple emulators: SDLMAME on UNIX and Mac OS X, MAME on Windows -- plus support for additional <i>foreign</i> emulators on all platforms</li>
   <li>Built-in support for GUI styles and Qt style sheets (.qss)</li>
-  <li>Automatic caching of analysed game/machine data to speed up processing</li>
+  <li>Automatic caching of analysed machine data to speed up processing</li>
   <li>Import &amp; export of emulator configuration files (i. e. mame.ini)</li>
   <li>All short cuts and GUI control keys can be remapped</li>
   <li>Removal of obsolete samples and image files (stored in directories or ZIP / 7z archives)</li>
   <li>Automatic caching of XML output from the emulator</li>
-  <li>Built-in ROMAlyzer to deeply analyze a game's/machine's ROMs (including repair- and rewrite-functionality for zipped sets) and CHDs -- inspired by <a href="credits.html#Carsten">Carsten Engel's</a> ROMAlyzer script (see scripts/romalyzer.pl in source distribution)</li>
+  <li>Built-in ROMAlyzer to deeply analyze a machine's ROMs (including repair- and rewrite-functionality for zipped sets) and CHDs -- inspired by <a href="credits.html#Carsten">Carsten Engel's</a> ROMAlyzer script (see scripts/romalyzer.pl in source distribution)</li>
   <li>Optional use of OpenGL features (currently only for image painting)</li>
   <li>Support for direct GUI control via analog and digital joysticks through SDL (<i>Simple Directmedia Layer</i>)</li>
-  <li>Detailed game/machine information from MAME's <i>history.dat</i> game information database and MESS' <i>sysinfo.dat</i> machine information database</li>
+  <li>Detailed machine information from MAME's <i>history.dat</i> game information database and MESS' <i>sysinfo.dat</i> machine information database</li>
   <li>Basically the same for <i>mameinfo.dat</i> as MAME's emulator information database and <i>messinfo.dat</i> for MESS sets</li>
   <li>Support for output notifications via a named pipe on UNIX and Mac OS X (see emulator control panel)</li>
   <li>Built-in audio- and (YouTube-)video-players based on the Phonon API</li>
   <li>ROM status export to clipboard or file as ASCII, CSV or HTML</li>
   <li>Integrated device configuration with support for mapping of files to device instances &amp; machine slots, as well as an easy-to-use <i>file chooser</i> for simple file-to-device mapping</li>
-  <li>Freely adjust the order and visibility of available game/machine details</li>
+  <li>Freely adjust the order and visibility of available machine details</li>
   <li>ProjectMESS system search</li>
   <li>X11 and Windows platforms: optional / on-demand embedding of emulator windows</li>
   <li>Freely adjustable layout of the main widget's major sub-widgets</li>
-  <li><i>Demo mode</i> to run random games for a specific period of time (in a mode suitable for demo purposes)</li>
+  <li><i>Demo mode</i> to run random machines for a specific period of time (in a mode suitable for demo purposes)</li>
   <li>Support for software-lists, including favorites management, search feature and sneak previews in-game/run-time snap-shots, plus an extra software-detail widget with a scaling preview image, a ProjectMESS software look-up and a WYSIWIG editor for personal rich-text notes</li>
   <li>Dock-able/floating software-detail widget with a separate snapshot-browser, a <a href="http://www.progettoemma.net/mess/" target="_blank">ProjectMESS</a> software-lookup feature, and an HTML editor/viewer for personal rich-text software-notes</li>
   <li>Item tagging and related 'batch-mode' operations</li>
   <li>A QML based standalone graphical arcade mode binary (<i>QMC2 Arcade</i>) which utilizes the cached data of its bigger brothers to quickly display and launch emulators and get you "straight into the games" :)</li>
-  <li>An easy to use ranking system to set personal <i>ranks</i> for games/machines and sort by them</li>
+  <li>An easy to use ranking system to set personal <i>ranks</i> for machines and sort by them</li>
 </ul>
 <h3><a name="2."></a>2. Build and installation instructions</h3>
 <p>Please see <a href="http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Building_and_installing_QMC2_from_source" target="_blank">this section in QMC2 wiki</a> and/or
@@ -161,8 +161,8 @@ that may have inherited the previous dot-path will have to be changed manually (
   <li>Although it is recommended to edit the configuration with the built-in setup dialog, you may change it manually with
       any editor at your own risk -- only do this if QMC2 is <b>not</b> currently running, though!</li>
 </ul>
-<h3><a name="4."></a>4. Game/machine list statistics, ROM status and the ROMAlyzer</h3>
-<p>Game/machine list statistics are shown in the lower-left corner of the main widget, below the game/machine list.
+<h3><a name="4."></a>4. Machine list statistics, ROM status and the ROMAlyzer</h3>
+<p>Machine list statistics are shown in the lower-left corner of the main widget, below the machine list.
 The letters - and their colors - have the following meanings:
 </p>
 <table style="text-align: left;" border="1" cellpadding="2"
@@ -178,43 +178,43 @@ The letters - and their colors - have the following meanings:
       <td style="text-align: left; vertical-align: top;"><b>L</b></td>
       <td style="text-align: left; vertical-align: top;">black</td>
       <td style="text-align: left; vertical-align: top;">--</td>
-      <td style="text-align: left; vertical-align: top;"><p>Number of <b>L</b>isted games/machines</p><p><font size="-1">This is the overall number of games/machines the emulator supports.</font></p></td>
+      <td style="text-align: left; vertical-align: top;"><p>Number of <b>L</b>isted machines</p><p><font size="-1">This is the overall number of machines the emulator supports.</font></p></td>
     </tr>
     <tr>
       <td style="text-align: left; vertical-align: top;"><b>C</b><sup>*</sup></td>
       <td style="text-align: left; vertical-align: top;">green</td>
       <td style="text-align: left; vertical-align: top;"><img alt="" src="../images/sphere_green.png" style="width: 16px; height: 16px;"></td>
-      <td style="text-align: left; vertical-align: top;"><p>Number of <b>C</b>orrect games/machines</p><p><font size="-1">All dumps exist emulator-wise; they also exist in your local collection, and their header checksums are the expected ones. The game/machine will most likely work fine (provided its driver is mature enough).</font></p></td>
+      <td style="text-align: left; vertical-align: top;"><p>Number of <b>C</b>orrect machines</p><p><font size="-1">All dumps exist emulator-wise; they also exist in your local collection, and their header checksums are the expected ones. The machine will most likely work fine (provided its driver is mature enough).</font></p></td>
     </tr>
     <tr>
       <td style="text-align: left; vertical-align: top;"><b>M</b><sup>*</sup></td>
       <td style="text-align: left; vertical-align: top;">yellow-green</td>
       <td style="text-align: left; vertical-align: top;"><img alt="" src="../images/sphere_yellowgreen.png" style="width: 16px; height: 16px;"></td>
-      <td style="text-align: left; vertical-align: top;"><p>Number of <b>M</b>ostly correct games/machines</p><p><font size="-1">One or more dumps are missing or bad (emulator-wise), but your collection has all (correct) dumps that are available. The game/machine may not work (as expected), but most of the time it will run fine (provided its driver is mature enough).</font></p></td>
+      <td style="text-align: left; vertical-align: top;"><p>Number of <b>M</b>ostly correct machines</p><p><font size="-1">One or more dumps are missing or bad (emulator-wise), but your collection has all (correct) dumps that are available. The machine may not work (as expected), but most of the time it will run fine (provided its driver is mature enough).</font></p></td>
     </tr>
     <tr>
       <td style="text-align: left; vertical-align: top;"><b>I</b><sup>*</sup></td>
       <td style="text-align: left; vertical-align: top;">red</td>
       <td style="text-align: left; vertical-align: top;"><img alt="" src="../images/sphere_red.png" style="width: 16px; height: 16px;"></td>
-      <td style="text-align: left; vertical-align: top;"><p>Number of <b>I</b>ncorrect games/machines</p><p><font size="-1">One or more dumps in your collection are bad (there may also be missing or bad dumps emulator-wise). The game/machine may not work, and most of the time it won't.</font></p></td>
+      <td style="text-align: left; vertical-align: top;"><p>Number of <b>I</b>ncorrect machines</p><p><font size="-1">One or more dumps in your collection are bad (there may also be missing or bad dumps emulator-wise). The machine may not work, and most of the time it won't.</font></p></td>
     </tr>
     <tr>
       <td style="text-align: left; vertical-align: top;"><b>N</b><sup>*</sup></td>
       <td style="text-align: left; vertical-align: top;">grey</td>
       <td style="text-align: left; vertical-align: top;"><img alt="" src="../images/sphere_grey.png" style="width: 16px; height: 16px;"></td>
-      <td style="text-align: left; vertical-align: top;"><p>Number of games/machines which were <b>N</b>ot found</p><p><font size="-1">One or more <i>required</i> dumps are missing in your collection (there may also be missing or bad dumps emulator-wise). The game/machine will not work.</font></p></td>
+      <td style="text-align: left; vertical-align: top;"><p>Number of machines which were <b>N</b>ot found</p><p><font size="-1">One or more <i>required</i> dumps are missing in your collection (there may also be missing or bad dumps emulator-wise). The machine will not work.</font></p></td>
     </tr>
     <tr>
       <td style="text-align: left; vertical-align: top;"><b>U</b></td>
       <td style="text-align: left; vertical-align: top;">blue</td>
       <td style="text-align: left; vertical-align: top;"><img alt="" src="../images/sphere_blue.png" style="width: 16px; height: 16px;"></td>
-      <td style="text-align: left; vertical-align: top;"><p>Number of games/machines with an <b>U</b>nknown ROM status</p><p><font size="-1">The ROM state of the respective game/machine hasn't been checked yet (or something went wrong during the check, or the check was prematurely interrupted).</font></p></td>
+      <td style="text-align: left; vertical-align: top;"><p>Number of machines with an <b>U</b>nknown ROM status</p><p><font size="-1">The ROM state of the respective machine hasn't been checked yet (or something went wrong during the check, or the check was prematurely interrupted).</font></p></td>
     </tr>
     <tr>
       <td style="text-align: left; vertical-align: top;"><b>S</b></td>
       <td style="text-align: left; vertical-align: top;">chocolate</td>
       <td style="text-align: left; vertical-align: top;">--</td>
-      <td style="text-align: left; vertical-align: top;"><p>Number of game/machine-matches for the current <b>S</b>earch-pattern (if any)</p></td>
+      <td style="text-align: left; vertical-align: top;"><p>Number of machine-matches for the current <b>S</b>earch-pattern (if any)</p></td>
     </tr>
     <tr>
       <td style="text-align: left; vertical-align: top;"><b>T</b></td>
@@ -226,32 +226,31 @@ The letters - and their colors - have the following meanings:
 </table>
 <font size="-1"><sup>*</sup>: These numbers are only available when the ROM state has been checked.</font>
 <p>If any statistical number is yet undetermined, a question mark (?) is shown instead.</p>
-<p>Individual ROM states are displayed in the game/machine list itself, indicated by colored sphere icons
-in front of each game/machine entry (see table above). When using the <i>classic</i> image set, BIOS ROMs will contain a white <b>B</b>
+<p>Individual ROM states are displayed in the machine list itself, indicated by colored sphere icons
+in front of each machine entry (see table above). When using the <i>classic</i> image set, BIOS ROMs will contain a white <b>B</b>
 in their ROM status icons. Device ROMs contain a white <b>D</b> and cannot run standalone. Other (= non-default) image sets may indicate BIOS and device ROMs differently.</p>
 <p>Depending on your hardware, ROM status determination may be a very time-consuming task, so it's not started automatically.
 You have to explicitly trigger a ROM check (see <i>Tools</i> menu) at least once. To speed up this process for future runs, ROM states
 are cached in an external <i>ROM state cache</i> file (default: <i>~/.qmc2/&lt;emulator&gt;.rsc</i> on UNIX, <i>~/Library/Application Support/qmc2/&lt;emulator&gt;.rsc</i> on Mac OS X,
-or <i>%USERPROFILE%\.qmc2\&lt;emulator&gt;.rsc</i> on Windows). If QMC2 finds cached ROM state information in this file, it will read the states for each game/machine from the cache
-when the game/machine list is reloaded.</p>
+or <i>%USERPROFILE%\.qmc2\&lt;emulator&gt;.rsc</i> on Windows). If QMC2 finds cached ROM state information in this file, it will read the states for each machine from the cache
+when the machine list is reloaded.</p>
 <p>Unless the option <i>AutoTriggerROMCheck</i> hasn't been activated, it is in your responsibility to trigger a re-check of the ROM states when anything changes (ROM images or
-MAME updates). If the number of totally supported games/machines (by the emulator) is different than the number of cached ROM states, QMC2 will log a warning to the front end log
+MAME updates). If the number of totally supported machines (by the emulator) is different than the number of cached ROM states, QMC2 will log a warning to the front end log
 (and optionally trigger an automatic ROM check, if <i>AutoTriggerROMCheck</i> has been set).</p>
-<p>QMC2 also supports individual ROM checks, so changes to only <i>some</i> games/machines of your collection do not force you to fully re-check every ROM.
-For MAME updates there's probably no way around it, though (unless you know which games/machines have changed or have been added).</p>
-<p>ROM states can be used to filter and/or sort the detailed game/machine list (a.k.a. the <i>master list</i>). Please note that as a matter of principle
-the ROM state filter can't be applied to the hierarchical parent/clone view of the game/machine list, because the display of clones depends on the display
+<p>QMC2 also supports individual ROM checks, so changes to only <i>some</i> machines of your collection do not force you to fully re-check every ROM.
+For MAME updates there's probably no way around it, though (unless you know which machines have changed or have been added).</p>
+<p>ROM states can be used to filter and/or sort the detailed machine list (a.k.a. the <i>master list</i>). Please note that as a matter of principle
+the ROM state filter can't be applied to the hierarchical parent/clone view of the machine list, because the display of clones depends on the display
 of their parents. The optional views 'by version' and 'by category' (which are only available when the use of <a href="http://www.progettoemma.net/?catlist" target="_blank">catver.ini</a>
 and/or <i>MESS category.ini</i> has been enabled) are also not filtered.</p>
-<p>BTW, the words <i>game</i>, <i>machine</i> or <i>system</i> are used as <u>synonyms</u> throughout QMC2.</p>
 <p><b>ROMAlyzer</b></p>
-<p>Since v0.2.b1, there is also a so called <i>ROMAlyzer</i> which allows to deeply scan individual (or multiple) games/machines for their exact ROM state. This work was inspired by <a href="credits.html#Carsten">Carsten Engel's</a> romalyzer.pl Perl script (see scripts/romalyzer.pl in the source distribution) - he also offered very helpful comments on ROM identification and how to handle CHDs. Thanks!</p>
+<p>Since v0.2.b1, there is also a so called <i>ROMAlyzer</i> which allows to deeply scan individual (or multiple) machines for their exact ROM state. This work was inspired by <a href="credits.html#Carsten">Carsten Engel's</a> romalyzer.pl Perl script (see scripts/romalyzer.pl in the source distribution) - he also offered very helpful comments on ROM identification and how to handle CHDs. Thanks!</p>
 <p>ROMAlyzer features, tips and restrictions:</p>
 <ul>
   <li>Imitates the emulator's way of finding ROMs, using their CRCs to identify the individual ROM files (in ZIP or 7z archives).</li>
-  <li>Uses the XML game/machine data to compare (expected) checksums and sizes as well as to know which ROM &amp; CHD files are required, if they need to be merged from other sets etc.</li>
+  <li>Uses the XML machine data to compare (expected) checksums and sizes as well as to know which ROM &amp; CHD files are required, if they need to be merged from other sets etc.</li>
   <li>ZIP- and 7z-archived ROMs will be decompressed and their checksums will be recalculated on-the-fly (this will also identify ZIP-/7z-archives with invalid file integrity).</li>
-  <li>ROMs which are stored in game/machine-directories (not ZIP- or 7z-archived) will be loaded to calculate their hashes.</li>
+  <li>ROMs which are stored in machine-directories (not ZIP- or 7z-archived) will be loaded to calculate their hashes.</li>
   <li>All required hash algorithms are supported: CRC(-32), SHA1 and MD5.</li>
   <li>CHD verification is accomplished through the comparison of the header checksums with the expected hash values; you can optionally enable deeper file integrity verifications through the CHD manager (<i>chdman</i>) which is thus required to use this feature (slow).</li>
   <li>The CHD manager will allow you to optionally <i>update</i> your CHDs on-the-fly if applicable -- <b>backup your CHDs before enabling automatic updates!</b> Also, make absolutely sure you're using the latest version of <i>chdman</i>, that is, the version that came with your current MAME release (the minimum required version is 0.145u1!). QMC2 assumes that CHD version 5 is the latest and greatest format, and it will only try to update a CHD if its version is less than that.</li>
@@ -307,19 +306,19 @@ and/or <i>MESS category.ini</i> has been enabled) are also not filtered.</p>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+P</td>
-      <td style="vertical-align: top;">Play the currently selected game/machine (start emulation)</td>
+      <td style="vertical-align: top;">Play the currently selected machine (start emulation)</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+Shift+P</td>
-      <td style="vertical-align: top;">Linux/Unix and Windows only: Play the currently selected game/machine (start emulation) in embedded mode</td>
+      <td style="vertical-align: top;">Linux/Unix and Windows only: Play the currently selected machine (start emulation) in embedded mode</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+R</td>
-      <td style="vertical-align: top;">Reload the entire game/machine list</td>
+      <td style="vertical-align: top;">Reload the entire machine list</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+J</td>
-      <td style="vertical-align: top;">Copy the currently selected game/machine to the list of favorites</td>
+      <td style="vertical-align: top;">Copy the currently selected machine to the list of favorites</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+X</td>
@@ -367,7 +366,7 @@ and/or <i>MESS category.ini</i> has been enabled) are also not filtered.</p>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+S</td>
-      <td style="vertical-align: top;">Check current game's/machine's ROM state individually and update its state in the ROM state cache</td>
+      <td style="vertical-align: top;">Check current machine's ROM state individually and update its state in the ROM state cache</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+D</td>
@@ -387,11 +386,11 @@ and/or <i>MESS category.ini</i> has been enabled) are also not filtered.</p>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+1</td>
-      <td style="vertical-align: top;">Check ROM states for all games/machines and recreate the ROM state cache from scratch</td>
+      <td style="vertical-align: top;">Check ROM states for all machines and recreate the ROM state cache from scratch</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+2</td>
-      <td style="vertical-align: top;">Check sample sets for games that need samples</td>
+      <td style="vertical-align: top;">Check sample sets for machines that need samples</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+3</td>
@@ -423,19 +422,19 @@ and/or <i>MESS category.ini</i> has been enabled) are also not filtered.</p>
     </tr>
     <tr>
       <td style="vertical-align: top;">Alt+PgUp</td>
-      <td style="vertical-align: top;">Increase game's/machine's rank</td>
+      <td style="vertical-align: top;">Increase machine's rank</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Alt+PgDown</td>
-      <td style="vertical-align: top;">Decrease game's/machine's rank</td>
+      <td style="vertical-align: top;">Decrease machine's rank</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">F2</td>
-      <td style="vertical-align: top;">Rebuild the current game's/machine's ROM set with the ROMAlyzer</td>
+      <td style="vertical-align: top;">Rebuild the current machine's ROM set with the ROMAlyzer</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">F5</td>
-      <td style="vertical-align: top;">View game/machine list with full detail</td>
+      <td style="vertical-align: top;">View machine list with full detail</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">F6</td>
@@ -443,15 +442,15 @@ and/or <i>MESS category.ini</i> has been enabled) are also not filtered.</p>
     </tr>
     <tr>
       <td style="vertical-align: top;">F7</td>
-      <td style="vertical-align: top;">View games by category (only available when the use of catver.ini / category.ini has been enabled)</td>
+      <td style="vertical-align: top;">View machines by category (only available when the use of catver.ini and/or category.ini has been enabled)</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">F8</td>
-      <td style="vertical-align: top;">View games by version they were added to the emulator (only available when the use of catver.ini has been enabled)</td>
+      <td style="vertical-align: top;">View machines by version they were added to the emulator (only available when the use of catver.ini has been enabled)</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">F9</td>
-      <td style="vertical-align: top;">Run external (and generic) ROM tool on the currently selected game/machine</td>
+      <td style="vertical-align: top;">Run external (and generic) ROM tool on the currently selected machine</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">F10</td>
@@ -467,7 +466,7 @@ and/or <i>MESS category.ini</i> has been enabled) are also not filtered.</p>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+Shift+F2</td>
-      <td style="vertical-align: top;">Rebuild the ROM sets of all tagged games/machines with the ROMAlyzer</td>
+      <td style="vertical-align: top;">Rebuild the ROM sets of all tagged machines with the ROMAlyzer</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+Shift+T</td>
@@ -605,7 +604,7 @@ the joystick movements, button presses etc... it will just not react on them whi
 <h3><a name="7."></a>7. External tools and tool argument syntax</h3>
 <p>External tools are used for specific operations which aren't natively built into QMC2.</p>
 <p>For instance, to remove obsolete or corrupt image files from ZIP or 7z archives, QMC2 uses an external program (zip or 7za) and passes the files to be removed on the argument list when the tool is started.</p>
-<p>A third and more <i>generic</i> tool - the so called <i>ROM tool</i> - can be used to call any program or script which does some external processing based on the game's/machine's ID and/or its long name (description). It's completely up to you what this tool might do... ideally, it should have some ROM management / ROM related functionality, though :).</p> 
+<p>A third and more <i>generic</i> tool - the so called <i>ROM tool</i> - can be used to call any program or script which does some external processing based on the machine's ID and/or its long name (description). It's completely up to you what this tool might do... ideally, it should have some ROM management / ROM related functionality, though :).</p> 
 <p>Tools can have a single function or they can have multiple functions. For each function, an argument list has to be specified which defines the correct syntax for the command. Macros (like <i>$MACRONAME$</i>) can be used as placeholders and will be filled with <i>real</i> data before execution.</p>
 <p>The following macros exist:</p>
 <table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
@@ -627,12 +626,12 @@ the joystick movements, button presses etc... it will just not react on them whi
     </tr>
     <tr>
       <td style="vertical-align: top;">$ID$</td>
-      <td style="vertical-align: top;">... the ID of the currently selected game/machine</td>
+      <td style="vertical-align: top;">... the ID of the currently selected machine</td>
       <td style="vertical-align: top;">ROM tool</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">$DESCRIPTION$</td>
-      <td style="vertical-align: top;">... the long name (or description) of the currently selected game/machine</td>
+      <td style="vertical-align: top;">... the long name (or description) of the currently selected machine</td>
       <td style="vertical-align: top;">ROM tool</td>
     </tr>
   </tbody>
