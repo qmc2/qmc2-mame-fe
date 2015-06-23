@@ -9,7 +9,7 @@
 #include "samplechecker.h"
 #include "machinelist.h"
 #include "qmc2main.h"
-#include "procmgr.h"
+#include "processmanager.h"
 #include "toolexec.h"
 #include "macros.h"
 

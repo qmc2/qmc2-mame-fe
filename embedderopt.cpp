@@ -14,7 +14,7 @@
 #include "title.h"
 #include "pcb.h"
 #include "softwarelist.h"
-#include "procmgr.h"
+#include "processmanager.h"
 #include "options.h"
 #include "macros.h"
 

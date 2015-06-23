@@ -5,7 +5,7 @@
 #include <QMap>
 
 #include "settings.h"
-#include "procmgr.h"
+#include "processmanager.h"
 #include "qmc2main.h"
 #include "embedder.h"
 #include "youtubevideoplayer.h"
@@ -89,10 +89,10 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
 	proc->setProcessEnvironment(env);
 #endif
 	if ( autoConnect ) {
-		lastCommand = command;
 #if defined(QMC2_OS_WIN)
 		bool snapnameActive = false;
 #endif
+		QStringList fullArgs = QStringList() << command;
 		for (int i = 0; i < arguments.count(); i++) {
 			QString arg = arguments[i];
 			if ( !launchForeignID ) {
@@ -112,13 +112,14 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
 					arg = "\"" + arg + "\"";
 #endif
 			}
-			lastCommand += " " + arg;
+			fullArgs << arg;
 		}
+		loggedCommandLine = fullArgs.join(" ");
 #if defined(QMC2_OS_WIN)
-		QString emuCommandLine = lastCommand;
+		QString emuCommandLine = loggedCommandLine;
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulator #%1, command = %2").arg(procCount).arg(emuCommandLine.replace('/', '\\').replace("$QMC2FWSL$", "/")));
 #else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulator #%1, command = %2").arg(procCount).arg(lastCommand));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulator #%1, command = %2").arg(procCount).arg(loggedCommandLine));
 #endif
 		connect(proc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(error(QProcess::ProcessError)));
 		connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(finished(int, QProcess::ExitStatus)));
@@ -319,10 +320,10 @@ void ProcessManager::started()
 	} else
 		procItem->setText(QMC2_EMUCONTROL_COLUMN_GAME, qmc2DriverName);
 #if defined(QMC2_OS_WIN)
-	QString emuCommandLine = lastCommand;
+	QString emuCommandLine = loggedCommandLine;
 	procItem->setText(QMC2_EMUCONTROL_COLUMN_COMMAND, emuCommandLine.replace('/', '\\'));
 #else
-	procItem->setText(QMC2_EMUCONTROL_COLUMN_COMMAND, lastCommand);
+	procItem->setText(QMC2_EMUCONTROL_COLUMN_COMMAND, loggedCommandLine);
 #endif
 	// expand command column if it's still at the rightmost position
 	if ( qmc2MainWindow->treeWidgetEmulators->header()->visualIndex(QMC2_EMUCONTROL_COLUMN_COMMAND) == QMC2_EMUCONTROL_COLUMN_COMMAND ) 
