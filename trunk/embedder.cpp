@@ -10,7 +10,7 @@
 #elif defined(QMC2_OS_WIN)
 #include <QTest>
 #include "windows_tools.h"
-#include "procmgr.h"
+#include "processmanager.h"
 #endif
 #include "embedder.h"
 #include "qmc2main.h"

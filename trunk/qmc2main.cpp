@@ -40,7 +40,7 @@
 #include "qmc2main.h"
 #include "options.h"
 #include "emuopt.h"
-#include "procmgr.h"
+#include "processmanager.h"
 #include "machinelist.h"
 #include "preview.h"
 #include "flyer.h"

@@ -1,5 +1,5 @@
-#ifndef _PROCMGR_H_
-#define _PROCMGR_H_
+#ifndef _PROCESSMANAGER_H_
+#define _PROCESSMANAGER_H_
 
 #include <QProcess>
 #include <QMap>
@@ -16,7 +16,7 @@ class ProcessManager : public QObject
 		QMap<QProcess *, QStringList> softwareListsMap;
 		QMap<QProcess *, QStringList> softwareNamesMap;
 		ushort procCount;
-		QString lastCommand;
+		QString loggedCommandLine;
 		QString exitString;
 		bool launchForeignID;
 #if QMC2_USE_PHONON_API
