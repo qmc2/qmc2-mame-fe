@@ -1662,19 +1662,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 						// 0:emuName -- 1:id -- 2:description 
 						foreignEmuName = foreignInfo[0];
 						foreignID = foreignInfo[1];
-						if ( foreignID.contains(QRegExp("(\\s|\\\\|\\(|\\)|\\;)")) )
-							foreignID = "\"" + foreignID + "\"";
-						if ( foreignID.startsWith("\"\"") )
-							foreignID.remove(0, 1);
-						if ( foreignID.endsWith("\"\"") )
-							foreignID.remove(foreignID.length() - 1, 1);
 						foreignDescription = foreignInfo[2];
-						if ( foreignDescription.contains(QRegExp("(\\s|\\\\|\\(|\\)|\\;)")) )
-							foreignDescription = "\"" + foreignDescription + "\"";
-						if ( foreignDescription.startsWith("\"\"") )
-							foreignDescription.remove(0, 1);
-						if ( foreignDescription.endsWith("\"\"") )
-							foreignDescription.remove(foreignDescription.length() - 1, 1);
 						launchForeignID = true;
 					}
 				}
@@ -1686,18 +1674,14 @@ void MainWindow::on_actionPlay_triggered(bool)
 			QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(foreignEmuName), QString()).toString();
 			QString argString = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(foreignEmuName), QString()).toString();
 			QStringList emuArgs;
-			QRegExp rx("([^ ]+|\"[^\"]+\")");
+			if ( foreignID == tr("N/A") )
+				argString.replace("$ID$", "").replace("$DESCRIPTION$", "");
+			else
+				argString.replace("$ID$", foreignID).replace("$DESCRIPTION$", foreignDescription);
+			QRegExp rx("([^\\s]+|[^\\s]*\"[^\"]+\"[^\\s]*)");
 			int i = 0;
 			while ( (i = rx.indexIn(argString, i)) != -1 ) {
-				QString arg = rx.cap(1).remove(QRegExp("^\"")).remove(QRegExp("\"$"));
-				if ( foreignID == tr("N/A") )
-					arg.replace("$ID$", "").replace("$DESCRIPTION$", "");
-				else
-					arg.replace("$ID$", foreignID).replace("$DESCRIPTION$", foreignDescription);
-				arg.replace("\"\"", "\"");
-				if ( arg.count("\"") % 2 != 0 )
-					arg += "\"";
-				emuArgs << arg;
+				emuArgs << rx.cap(1).trimmed().remove("\"");
 				i += rx.matchedLength();
 			}
 			qmc2ProcessManager->process(qmc2ProcessManager->start(emuCommand, emuArgs, true, emuWorkDir));
@@ -1709,15 +1693,11 @@ void MainWindow::on_actionPlay_triggered(bool)
 				QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(selectedEmulator), QString()).toString();
 				QString argString = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(selectedEmulator), QString()).toString();
 				QStringList emuArgs;
-				QRegExp rx("([^ ]+|\"[^\"]+\")");
+				argString.replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2MachineListItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE));
+				QRegExp rx("([^\\s]+|[^\\s]*\"[^\"]+\"[^\\s]*)");
 				int i = 0;
 				while ( (i = rx.indexIn(argString, i)) != -1 ) {
-					QString arg = rx.cap(1).remove(QRegExp("^\"")).remove(QRegExp("\"$"));
-					arg.replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2MachineListItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE));
-					arg.replace("\"\"", "\"");
-					if ( arg.count("\"") % 2 != 0 )
-						arg += "\"";
-					emuArgs << arg;
+					emuArgs << rx.cap(1).trimmed().remove("\"");
 					i += rx.matchedLength();
 				}
 				qmc2ProcessManager->process(qmc2ProcessManager->start(emuCommand, emuArgs, true, emuWorkDir));
