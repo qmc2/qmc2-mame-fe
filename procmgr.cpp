@@ -95,24 +95,22 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
 #endif
 		for (int i = 0; i < arguments.count(); i++) {
 			QString arg = arguments[i];
+			if ( !launchForeignID ) {
 #if defined(QMC2_OS_WIN)
-			if ( arg == "-snapname" )
-				snapnameActive = true;
-			if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\)|\\/|\\;)")) ) {
-				arg = "\"" + arg + "\"";
-				if ( snapnameActive ) {
-					if ( arg.contains("/") )
-						arg.replace("/", "$QMC2FWSL$");
-					snapnameActive = false;
+				if ( arg == "-snapname" )
+					snapnameActive = true;
+				if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\)|\\/|\\;)")) ) {
+					arg = "\"" + arg + "\"";
+					if ( snapnameActive ) {
+						if ( arg.contains("/") )
+							arg.replace("/", "$QMC2FWSL$");
+						snapnameActive = false;
+					}
 				}
-			}
 #else
-			if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\)|\\;)")) )
-				arg = "\"" + arg + "\"";
+				if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\)|\\;)")) )
+					arg = "\"" + arg + "\"";
 #endif
-			if ( (arg.endsWith("\"\"") && arg.startsWith("\"")) || (arg.endsWith("\"") && arg.startsWith("\"\"")) ) {
-				arg.remove(0, 1);
-				arg.remove(arg.length() - 1, 1);
 			}
 			lastCommand += " " + arg;
 		}
