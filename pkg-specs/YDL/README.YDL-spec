@@ -1,7 +1,0 @@
-The YDL spec is maintained by Bill Blake (billb) for his ps3bodega (bdg)
-repository. It's included in the source RPM -- together with a patch to support
-the UNOFFICIAL -nativeres option (native game/machine resolutions in full screen
-mode).
-
-Get the latest version here:
-http://pleasantfiction.ipower.com/ps3linux/ps3bodega62/SRPMS/

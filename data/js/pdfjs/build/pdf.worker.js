@@ -22,8 +22,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '1.1.159';
-PDFJS.build = '82536f8';
+PDFJS.version = '1.1.222';
+PDFJS.build = '18e1a14';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -2611,17 +2611,33 @@ var Page = (function PageClosure() {
       return this.pageDict.get(key);
     },
 
-    getInheritedPageProp: function Page_inheritPageProp(key) {
-      var dict = this.pageDict;
-      var value = dict.get(key);
-      while (value === undefined) {
-        dict = dict.get('Parent');
-        if (!dict) {
+    getInheritedPageProp: function Page_getInheritedPageProp(key) {
+      var dict = this.pageDict, valueArray = null, loopCount = 0;
+      var MAX_LOOP_COUNT = 100;
+      // Always walk up the entire parent chain, to be able to find
+      // e.g. \Resources placed on multiple levels of the tree.
+      while (dict) {
+        var value = dict.get(key);
+        if (value) {
+          if (!valueArray) {
+            valueArray = [];
+          }
+          valueArray.push(value);
+        }
+        if (++loopCount > MAX_LOOP_COUNT) {
+          warn('Page_getInheritedPageProp: maximum loop count exceeded.');
           break;
         }
-        value = dict.get(key);
+        dict = dict.get('Parent');
       }
-      return value;
+      if (!valueArray) {
+        return Dict.empty;
+      }
+      if (valueArray.length === 1 || !isDict(valueArray[0]) ||
+          loopCount > MAX_LOOP_COUNT) {
+        return valueArray[0];
+      }
+      return Dict.merge(this.xref, valueArray);
     },
 
     get content() {
@@ -2629,14 +2645,10 @@ var Page = (function PageClosure() {
     },
 
     get resources() {
-      var value = this.getInheritedPageProp('Resources');
       // For robustness: The spec states that a \Resources entry has to be
-      // present, but can be empty. Some document omit it still. In this case
-      // return an empty dictionary:
-      if (value === undefined) {
-        value = Dict.empty;
-      }
-      return shadow(this, 'resources', value);
+      // present, but can be empty. Some document omit it still, in this case
+      // we return an empty dictionary.
+      return shadow(this, 'resources', this.getInheritedPageProp('Resources'));
     },
 
     get mediaBox() {
@@ -2909,6 +2921,10 @@ var PDFDocument = (function PDFDocumentClosure() {
   PDFDocument.prototype = {
     parse: function PDFDocument_parse(recoveryMode) {
       this.setup(recoveryMode);
+      var version = this.catalog.catDict.get('Version');
+      if (isName(version)) {
+        this.pdfFormatVersion = version.name;
+      }
       try {
         // checking if AcroForm is present
         this.acroForm = this.catalog.catDict.get('AcroForm');
@@ -3010,8 +3026,10 @@ var PDFDocument = (function PDFDocumentClosure() {
           }
           version += String.fromCharCode(ch);
         }
-        // removing "%PDF-"-prefix
-        this.pdfFormatVersion = version.substring(5);
+        if (!this.pdfFormatVersion) {
+          // removing "%PDF-"-prefix
+          this.pdfFormatVersion = version.substring(5);
+        }
         return;
       }
       // May not be a PDF file, continue anyway.
@@ -3287,6 +3305,24 @@ var Dict = (function DictClosure() {
   };
 
   Dict.empty = new Dict(null);
+
+  Dict.merge = function Dict_merge(xref, dictArray) {
+    var mergedDict = new Dict(xref);
+
+    for (var i = 0, ii = dictArray.length; i < ii; i++) {
+      var dict = dictArray[i];
+      if (!isDict(dict)) {
+        continue;
+      }
+      for (var keyName in dict.map) {
+        if (mergedDict.map[keyName]) {
+          continue;
+        }
+        mergedDict.map[keyName] = dict.map[keyName];
+      }
+    }
+    return mergedDict;
+  };
 
   return Dict;
 })();
@@ -5762,7 +5798,10 @@ var PDFFunction = (function PDFFunctionClosure() {
         var rmin = encode[2 * i];
         var rmax = encode[2 * i + 1];
 
-        tmpBuf[0] = rmin + (v - dmin) * (rmax - rmin) / (dmax - dmin);
+        // Prevent the value from becoming NaN as a result
+        // of division by zero (fixes issue6113.pdf).
+        tmpBuf[0] = dmin === dmax ? rmin :
+                    rmin + (v - dmin) * (rmax - rmin) / (dmax - dmin);
 
         // call the appropriate function
         fns[i](tmpBuf, 0, dest, destOffset);
@@ -6771,9 +6810,9 @@ var ColorSpace = (function ColorSpaceClosure() {
           error('unrecognized colorspace ' + mode);
       }
     } else if (isArray(cs)) {
-      mode = cs[0].name;
+      mode = xref.fetchIfRef(cs[0]).name;
       this.mode = mode;
-      var numComps, params;
+      var numComps, params, alt;
 
       switch (mode) {
         case 'DeviceGray':
@@ -6795,6 +6834,17 @@ var ColorSpace = (function ColorSpaceClosure() {
           var stream = xref.fetchIfRef(cs[1]);
           var dict = stream.dict;
           numComps = dict.get('N');
+          alt = dict.get('Alternate');
+          if (alt) {
+            var altIR = ColorSpace.parseToIR(alt, xref, res);
+            // Parse the /Alternate CS to ensure that the number of components
+            // are correct, and also (indirectly) that it is not a PatternCS.
+            var altCS = ColorSpace.fromIR(altIR);
+            if (altCS.numComps === numComps) {
+              return altIR;
+            }
+            warn('ICCBased color space: Ignoring incorrect /Alternate entry.');
+          }
           if (numComps === 1) {
             return 'DeviceGrayCS';
           } else if (numComps === 3) {
@@ -6804,7 +6854,7 @@ var ColorSpace = (function ColorSpaceClosure() {
           }
           break;
         case 'Pattern':
-          var basePatternCS = cs[1];
+          var basePatternCS = cs[1] || null;
           if (basePatternCS) {
             basePatternCS = ColorSpace.parseToIR(basePatternCS, xref, res);
           }
@@ -6812,7 +6862,7 @@ var ColorSpace = (function ColorSpaceClosure() {
         case 'Indexed':
         case 'I':
           var baseIndexedCS = ColorSpace.parseToIR(cs[1], xref, res);
-          var hiVal = cs[2] + 1;
+          var hiVal = xref.fetchIfRef(cs[2]) + 1;
           var lookup = xref.fetchIfRef(cs[3]);
           if (isStream(lookup)) {
             lookup = lookup.getBytes();
@@ -6820,18 +6870,18 @@ var ColorSpace = (function ColorSpaceClosure() {
           return ['IndexedCS', baseIndexedCS, hiVal, lookup];
         case 'Separation':
         case 'DeviceN':
-          var name = cs[1];
+          var name = xref.fetchIfRef(cs[1]);
           numComps = 1;
           if (isName(name)) {
             numComps = 1;
           } else if (isArray(name)) {
             numComps = name.length;
           }
-          var alt = ColorSpace.parseToIR(cs[2], xref, res);
+          alt = ColorSpace.parseToIR(cs[2], xref, res);
           var tintFnIR = PDFFunction.getIR(xref, xref.fetchIfRef(cs[3]));
           return ['AlternateCS', numComps, alt, tintFnIR];
         case 'Lab':
-          params = cs[1].getAll();
+          params = xref.fetchIfRef(cs[1]).getAll();
           return ['LabCS', params];
         default:
           error('unimplemented color space object "' + mode + '"');
@@ -11204,6 +11254,10 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
               }
               // eagerly compile XForm objects
               var name = args[0].name;
+              if (!name) {
+                warn('XObject must be referred to by name.');
+                continue;
+              }
               if (imageCache[name] !== undefined) {
                 operatorList.addOp(imageCache[name].fn, imageCache[name].args);
                 args = null;
@@ -16882,11 +16936,13 @@ var Font = (function FontClosure() {
       case 0x7F: // Control char
       case 0xA0: // Non breaking space
       case 0xAD: // Soft hyphen
-      case 0x0E33: // Thai character SARA AM
       case 0x2011: // Non breaking hyphen
       case 0x205F: // Medium mathematical space
       case 0x25CC: // Dotted circle (combining mark)
         return true;
+    }
+    if ((code & ~0xFF) === 0x0E00) { // Thai/Lao chars (with combining mark)
+      return true;
     }
     return false;
   }
@@ -18311,13 +18367,18 @@ var Font = (function FontClosure() {
         }
       }
 
-      var charCodeToGlyphId = [], charCode, toUnicode = properties.toUnicode;
+      var charCodeToGlyphId = [], charCode;
+      var toUnicode = properties.toUnicode, widths = properties.widths;
+      var isIdentityUnicode = toUnicode instanceof IdentityToUnicodeMap;
 
-      function hasGlyph(glyphId, charCode) {
+      function hasGlyph(glyphId, charCode, widthCode) {
         if (!missingGlyphs[glyphId]) {
           return true;
         }
-        if (charCode >= 0 && toUnicode.has(charCode)) {
+        if (!isIdentityUnicode && charCode >= 0 && toUnicode.has(charCode)) {
+          return true;
+        }
+        if (widths && widthCode >= 0 && isNum(widths[widthCode])) {
           return true;
         }
         return false;
@@ -18337,7 +18398,7 @@ var Font = (function FontClosure() {
           }
 
           if (glyphId >= 0 && glyphId < numGlyphs &&
-              hasGlyph(glyphId, charCode)) {
+              hasGlyph(glyphId, charCode, cid)) {
             charCodeToGlyphId[charCode] = glyphId;
           }
         });
@@ -18398,18 +18459,19 @@ var Font = (function FontClosure() {
             var found = false;
             for (i = 0; i < cmapMappingsLength; ++i) {
               if (cmapMappings[i].charCode === unicodeOrCharCode &&
-                  hasGlyph(cmapMappings[i].glyphId, unicodeOrCharCode)) {
+                  hasGlyph(cmapMappings[i].glyphId, unicodeOrCharCode, -1)) {
                 charCodeToGlyphId[charCode] = cmapMappings[i].glyphId;
                 found = true;
                 break;
               }
             }
             if (!found && properties.glyphNames) {
-              // Try to map using the post table. There are currently no known
-              // pdfs that this fixes.
+              // Try to map using the post table.
               var glyphId = properties.glyphNames.indexOf(glyphName);
-              if (glyphId > 0 && hasGlyph(glyphId, -1)) {
+              if (glyphId > 0 && hasGlyph(glyphId, -1, -1)) {
                 charCodeToGlyphId[charCode] = glyphId;
+              } else {
+                charCodeToGlyphId[charCode] = 0; // notdef
               }
             }
           }

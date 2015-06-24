@@ -7,7 +7,7 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{DB53A3CB-C0CA-494E-AFD4-11C8B66A7B67}
 AppName=QMC2 - M.A.M.E. Catalog Launcher II
-AppVerName=QMC2 0.53
+AppVerName=QMC2 0.54
 AppPublisher=The QMC2 Development Team
 AppPublisherURL=http://qmc2.arcadehits.net/wordpress
 AppSupportURL=http://qmc2.arcadehits.net/wordpress
