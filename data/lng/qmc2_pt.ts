@@ -887,12 +887,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="389"/>
         <source>Machine list filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro da lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="466"/>
         <source>Export a filtered version of the machine list according to the filter / sort settings specified below</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar uma versão filtrada da lista de máquinas de acordo com as configurações de filtro / ordernação especificadas abaixo</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="469"/>
@@ -902,7 +902,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="617"/>
         <source>Browse the output file used as the filtered machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o arquivo de saída usado como a lista de máquinas filtrada</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="724"/>
@@ -912,12 +912,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="773"/>
         <source>Use a filtered version of the machine list (otherwise use the full list)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar uma versão filtrada da lista de máquinas (caso contrário usar a lista completa)</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="867"/>
         <source>Output file used as the filtered machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de saída usado como a lista de máquinas filtrada</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="882"/>
@@ -1005,7 +1005,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="489"/>
         <source>System / Device</source>
-        <translation type="unfinished">Sistema / Dispositivo</translation>
+        <translation>Sistema / Dispositivo</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="495"/>
@@ -2872,12 +2872,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../componentsetup.cpp" line="244"/>
         <source>Snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Captura</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="249"/>
         <source>ProjectMESS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="117"/>
@@ -2887,32 +2887,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../componentsetup.cpp" line="51"/>
         <source>Machine &amp;list</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="52"/>
         <source>Machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="102"/>
         <source>Machine preview image</source>
-        <translation type="unfinished"></translation>
+        <translation>Image de preview da máquina</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="105"/>
         <source>Machine flyer image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagem do flyer da máquina</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="107"/>
         <source>Machine &amp;info</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Informações da máquina</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="108"/>
         <source>Machine information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informações da máquina</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="118"/>
@@ -2996,7 +2996,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../componentsetup.cpp" line="254"/>
         <source>Notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Notas</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="255"/>
@@ -3377,50 +3377,50 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="476"/>
         <location filename="../../datinfodbmgr.cpp" line="481"/>
         <source>machine-info</source>
-        <translation type="unfinished"></translation>
+        <translation>informações de máquina</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="874"/>
         <location filename="../../datinfodbmgr.cpp" line="964"/>
         <source>machine info-texts</source>
-        <translation type="unfinished"></translation>
+        <translation>textos de informação de máquina</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="879"/>
         <source>Machine info - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Informações de máquina - %p%</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="951"/>
         <source>WARNING: missing &apos;$end&apos; in machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$end&apos; faltando no arquivo de informação de máquina %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="953"/>
         <source>WARNING: missing &apos;$bio&apos; in machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$bio&apos; faltando no arquivo de informação de máquina %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="955"/>
         <source>WARNING: missing &apos;$info&apos; in machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;$info&apos; faltando no arquivo de informação de máquina %1</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="960"/>
         <source>machine info</source>
-        <translation type="unfinished"></translation>
+        <translation>informações de máquina</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="969"/>
         <source>WARNING: can&apos;t open machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível abrir arquivo de informação de máquina %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../../datinfodbmgr.cpp" line="973"/>
         <source>%n machine info record(s) imported</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de máquina importado</numerusform>
+            <numerusform>%n registros de informação de máquinas importado</numerusform>
         </translation>
     </message>
     <message>
@@ -3638,15 +3638,15 @@ p, li { white-space: pre-wrap; }
     <message numerus="yes">
         <location filename="../../demomode.cpp" line="291"/>
         <source>demo mode started -- %n machine(s) selected by filter</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>modo demonstração iniciado -- %n máquina selecionada pelo filtro</numerusform>
+            <numerusform>modo demonstração iniciado -- %n máquinas selecionadas pelo filtro</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="293"/>
         <source>demo mode cannot start -- no machine selected by filter</source>
-        <translation type="unfinished"></translation>
+        <translation>modo demonstração não pode iniciar -- nenhuma máquina selecionada pelo filtro</translation>
     </message>
     <message numerus="yes">
         <source>demo mode started -- %n game(s) selected by filter</source>
@@ -4064,7 +4064,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.cpp" line="333"/>
         <location filename="../../deviceconfigurator.cpp" line="384"/>
         <source>Play selected machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar máquina selecionada</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="736"/>
@@ -4409,7 +4409,7 @@ Você quer escolher um nome diferente?</translation>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="215"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">FATAL: impossível iniciar o executável do emulador dentro de um tempo razoável, desistindo</translation>
+        <translation>FATAL: impossível iniciar o executável do emulador dentro de um tempo razoável, desistindo</translation>
     </message>
 </context>
 <context>
@@ -4620,7 +4620,8 @@ Você quer escolher um nome diferente?</translation>
         <location filename="../../emuoptactions.cpp" line="114"/>
         <source>An open machine-specific emulator configuration has been detected.
 Use local value for option &apos;%1&apos;, overwrite with global value or don&apos;t apply?</source>
-        <translation type="unfinished"></translation>
+        <translation>Uma configuração de emulador específica de máquina aberta foi detectada.
+Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global ou não aplicar?</translation>
     </message>
     <message>
         <source>An open game-specific emulator configuration has been detected.
@@ -4789,7 +4790,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../emuopt.cpp" line="412"/>
         <source>Machine specific emulator configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração de emulador específica de máquina</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="501"/>
@@ -4983,7 +4984,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../emuopt.cpp" line="1777"/>
         <location filename="../../emuopt.cpp" line="1872"/>
         <source>machine-specific</source>
-        <translation type="unfinished"></translation>
+        <translation>específico de máquina</translation>
     </message>
     <message>
         <source>game-specific</source>
@@ -7448,7 +7449,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../machinelist.cpp" line="1027"/>
         <source>WARNING: couldn&apos;t find machine information for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível encontrar informações de máquina para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1032"/>
@@ -8001,29 +8002,29 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../machinelist.cpp" line="1364"/>
         <source>processing machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>processando lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1390"/>
         <source>WARNING: couldn&apos;t determine emulator version of machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível determinar versão do emulador do cache da lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1392"/>
         <location filename="../../machinelist.cpp" line="1397"/>
         <source>INFORMATION: the machine list cache will now be updated due to a new format</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMAÇÃO: o cache de lista de máquinas será atualizado devido ao novo formato</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1409"/>
         <source>loading machine data from machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando dados da máquina do cache da lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1411"/>
         <location filename="../../machinelist.cpp" line="1604"/>
         <source>Machine data - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Dados da máquina - %p%</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1469"/>
@@ -8408,52 +8409,52 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../machinelist.cpp" line="1594"/>
         <source>done (loading machine data from machine list cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando dados da máquina do cache da lista de máquinas, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1602"/>
         <source>parsing machine data and recreating machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>analisando dados das máquinas e recriando cache de lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1609"/>
         <source>ERROR: can&apos;t open machine list cache for writing, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: impossível abrir cache da lista de máquinas para escrita, caminho = %1</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2070"/>
         <location filename="../../machinelist.cpp" line="2961"/>
         <source>sorting machine list by %1 in %2 order</source>
-        <translation type="unfinished"></translation>
+        <translation>ordenando lista de máquinas por %1 na ordem %2</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2092"/>
         <location filename="../../machinelist.cpp" line="2103"/>
         <source>restoring machine selection</source>
-        <translation type="unfinished"></translation>
+        <translation>restaurando seleção de máquinas</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2115"/>
         <source>done (processing machine list, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (processando lista de máquinas, tempo = %1)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../machinelist.cpp" line="2116"/>
         <source>%n machine(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n máquina</numerusform>
+            <numerusform>%n máquinas</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2120"/>
         <source>WARNING: machine list not fully parsed, invalidating machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: lista de máquinas não totalmente analisada, invalidando cache de lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2124"/>
         <source>WARNING: machine list cache is out of date, invalidating machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: lista de máquinas desatualizada, invalidando cache da lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2450"/>
@@ -8581,27 +8582,27 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../qmc2main.cpp" line="457"/>
         <source>Searching machines - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscando máquinas - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="607"/>
         <source>Machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="631"/>
         <source>Show machine/software titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar títulos das máquinas/softwares</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="632"/>
         <source>Show machine- or software-titles at the bottom of all images</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar títulos de máquinas ou software embaixo de qualquer imagem</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="633"/>
         <source>Show machine titles only when the machine list is not visible due to the current layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar títulos das máquinas somente quando a lista de máquinas não está visível devido ao layout atual</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="756"/>
@@ -8716,7 +8717,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../qmc2main.cpp" line="910"/>
         <location filename="../../qmc2main.cpp" line="969"/>
         <source>Rebuild current machine&apos;s ROM set with the ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir ROM da máquina atual com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="921"/>
@@ -9478,13 +9479,13 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2221"/>
         <source>machine list reload is already active</source>
-        <translation type="unfinished"></translation>
+        <translation>recarregamento da lista de máquinas já está ativa</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2236"/>
         <location filename="../../qmc2main.cpp" line="6195"/>
         <source>saving machine selection</source>
-        <translation type="unfinished"></translation>
+        <translation>salvando seleção de máquinas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2401"/>
@@ -9510,12 +9511,12 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2759"/>
         <source>machine list cache file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo de cache da lista de máquinas &apos;%1&apos; removido</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2761"/>
         <source>WARNING: cannot remove the machine list cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível remover o arquivo de cache &apos;%1&apos; da lista de máquinas, por favor cheque as permissões</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2803"/>
@@ -9550,7 +9551,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4321"/>
         <source>Emulator for this machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulador para esta máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4964"/>
@@ -9593,32 +9594,32 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="6319"/>
         <source>saving current machine&apos;s favorite software</source>
-        <translation type="unfinished"></translation>
+        <translation>salvando software favorito da máquina atual</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6325"/>
         <source>saving current machine&apos;s device configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>salvando configurações de dispositivos da máquina atual</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6338"/>
         <source>destroying current machine&apos;s emulator configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo configuração do emulador da máquina atual</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6350"/>
         <source>destroying machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6420"/>
         <source>destroying component setup</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo configuração de componentes</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6436"/>
         <source>destroying machine info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo BD de informação de máquinas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6451"/>
@@ -9820,7 +9821,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="9839"/>
         <source>?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9907"/>
@@ -10777,81 +10778,81 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
     <message>
         <location filename="../../qmc2main.ui" line="55"/>
         <source>&amp;Machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de &amp;Máquinas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="78"/>
         <location filename="../../qmc2main.ui" line="81"/>
         <source>Switch between detailed machine list and parent / clone hierarchy</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar entre lista de máquinas detalhada e hierarquia de pai / clone</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="85"/>
         <source>Machine list with full detail (filtered)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de máquinas detalhada (filtrada)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="147"/>
         <source>List of all supported machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de todas as máquinas suportadas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="157"/>
         <location filename="../../qmc2main.cpp" line="1113"/>
         <source>Machine / Attribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Máquina / Atributo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="308"/>
         <location filename="../../qmc2main.cpp" line="1148"/>
         <source>Machine / Clones</source>
-        <translation type="unfinished"></translation>
+        <translation>Máquina / Clones</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="452"/>
         <source>List of machines viewed by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de máquinas vistas por categoria</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="462"/>
         <location filename="../../qmc2main.cpp" line="1183"/>
         <source>Category / Machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Categoria / Máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="606"/>
         <source>List of machines viewed by version they were added to the emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de máquinas vistas pela versão em que foram adicionadas ao emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="616"/>
         <location filename="../../qmc2main.cpp" line="1214"/>
         <source>Version / Machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Versão / Máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="787"/>
         <location filename="../../qmc2main.cpp" line="475"/>
         <source>Search for machines (not case-sensitive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar por máquinas (não sensível à caixa)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="790"/>
         <location filename="../../qmc2main.cpp" line="476"/>
         <source>Search for machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar por máquinas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="833"/>
         <location filename="../../qmc2main.ui" line="836"/>
         <source>Favorite machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Máquinas favoritas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="863"/>
         <location filename="../../qmc2main.ui" line="866"/>
         <source>Machines last played</source>
-        <translation type="unfinished"></translation>
+        <translation>Últimas máquinas executadas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="893"/>
@@ -10863,34 +10864,34 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="993"/>
         <location filename="../../qmc2main.ui" line="996"/>
         <source>Progress indicator for machine list processing</source>
-        <translation type="unfinished"></translation>
+        <translation>Indicador de progresso para o processamento de lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1493"/>
         <location filename="../../qmc2main.ui" line="1496"/>
         <source>Machine status indicator</source>
-        <translation type="unfinished"></translation>
+        <translation>Indicador de estado da máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1544"/>
         <source>Machine &amp;info</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Informações da máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1559"/>
         <location filename="../../qmc2main.ui" line="1562"/>
         <source>Detailed machine information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação detalhada da máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1868"/>
         <source>Machine / Notifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Máquina / Notificação</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2679"/>
         <source>&amp;Machine</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2752"/>
@@ -10918,7 +10919,7 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="2948"/>
         <location filename="../../qmc2main.ui" line="2951"/>
         <source>Play current machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar máquina atual</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2975"/>
@@ -11027,7 +11028,7 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.cpp" line="854"/>
         <location filename="../../qmc2main.cpp" line="952"/>
         <source>Add current machine to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar máquina atual para os favoritos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3135"/>
@@ -11089,7 +11090,7 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.cpp" line="899"/>
         <location filename="../../qmc2main.cpp" line="958"/>
         <source>Check current machine&apos;s ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar estado das ROM da máquina atual</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3215"/>
@@ -11381,24 +11382,24 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="3711"/>
         <location filename="../../qmc2main.ui" line="3714"/>
         <source>View machines by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver máquinas por categoria</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3732"/>
         <location filename="../../qmc2main.ui" line="3735"/>
         <source>View machines by version they were added to the emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver máquinas pela versão em que foram adicionadas ao emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3816"/>
         <source>Clear machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar cache de lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3819"/>
         <location filename="../../qmc2main.ui" line="3822"/>
         <source>Forcedly clear (remove) the machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Forçar limpar (remover) o cache da lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3844"/>
@@ -11415,19 +11416,19 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="3893"/>
         <location filename="../../qmc2main.ui" line="3896"/>
         <source>Play all tagged machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar todas as máquinas etiquetadas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3911"/>
         <location filename="../../qmc2main.ui" line="3914"/>
         <source>Play all tagged machines (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar todas as máquinas etiquetadas (embutido)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3929"/>
         <location filename="../../qmc2main.ui" line="3932"/>
         <source>Add all tagged machines to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar todos as máquinas etiquetadas aos favoritos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3935"/>
@@ -11884,7 +11885,7 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="4733"/>
         <location filename="../../qmc2main.ui" line="4736"/>
         <source>Rebuild current machine with the ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir ROM da máquina atual com o ROMAlyzer</translation>
     </message>
     <message>
         <source>Rebuild current game with ROMAlyzer</source>
@@ -11920,25 +11921,25 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="3074"/>
         <location filename="../../qmc2main.ui" line="3077"/>
         <source>Reload entire machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Recarregar lista de máquinas completamente</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3150"/>
         <location filename="../../qmc2main.ui" line="3153"/>
         <source>View machine list with full detail</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver lista de máquinas em detalhes</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3233"/>
         <location filename="../../qmc2main.ui" line="3236"/>
         <source>Analyse current machine with the ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisar ROM da máquina atual com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3672"/>
         <location filename="../../qmc2main.ui" line="3675"/>
         <source>Play current machine (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar máquina atual (embutida)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4187"/>
@@ -12149,7 +12150,7 @@ Tentar novamente?</translation>
         <location filename="../../qmc2main.cpp" line="884"/>
         <location filename="../../qmc2main.cpp" line="938"/>
         <source>Play selected machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar máquina selecionada</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="788"/>
@@ -12158,7 +12159,7 @@ Tentar novamente?</translation>
         <location filename="../../qmc2main.cpp" line="891"/>
         <location filename="../../qmc2main.cpp" line="945"/>
         <source>Play selected machine (embedded)</source>
-        <translation type="unfinished">Jogar máquina selecionada (embutida)</translation>
+        <translation>Jogar máquina selecionada (embutida)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="822"/>
@@ -12166,7 +12167,7 @@ Tentar novamente?</translation>
         <location filename="../../qmc2main.cpp" line="904"/>
         <location filename="../../qmc2main.cpp" line="963"/>
         <source>Analyse current machine&apos;s ROM set with the ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisar ROM da máquina atual com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5264"/>
@@ -12509,7 +12510,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../movierecordersetup.ui" line="14"/>
         <source>Movie recorder setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações do gravador de vídeos</translation>
     </message>
 </context>
 <context>
@@ -12869,33 +12870,34 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="1092"/>
         <source>View machines by category (not filtered)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver máquinas por categoria (não filtrado)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1094"/>
         <source>View machines by emulator version (not filtered)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver máquinas pela versão do emulador (não filtrado)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1327"/>
         <source>An open machine-specific emulator configuration has been detected.
 Use local machine-settings, overwrite with global settings or don&apos;t apply?</source>
-        <translation type="unfinished"></translation>
+        <translation>Uma configuração de emulador específica para máquina foi detectada.
+Usar configurações de máquina local, sobrescrever com as configurações globais ou não aplicar?</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1427"/>
         <source>please reload machine list for some changes to take effect</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor recarregue a lista de máquinas para as alterações terem efeito</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1439"/>
         <source>the machine list cannot be sorted at the moment, please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>a lista de máquinas não pode ser ordenada no momento, por favor espere a verificação de ROM terminar e tente novamente</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1489"/>
         <source>sorting machine list by %1 in %2 order</source>
-        <translation type="unfinished"></translation>
+        <translation>ordenando lista de máquinas por %1 na ordem %2</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1729"/>
@@ -12922,7 +12924,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="1806"/>
         <source>triggering automatic reload of machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>ativando recarregamento automático da lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2423"/>
@@ -13140,22 +13142,22 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../options.cpp" line="255"/>
         <source>Analyze current machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisar máquina atual</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="258"/>
         <source>Copy machine to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar máquina para favoritos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="277"/>
         <source>Reload machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Recarregar lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="278"/>
         <source>Check machine&apos;s ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar estado das ROM da máquina</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="290"/>
@@ -13170,27 +13172,27 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../options.cpp" line="308"/>
         <source>Rebuild current machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir máquina atual</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="309"/>
         <source>Rebuild tagged machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruir máquinas etiquetadas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="310"/>
         <source>Machine list with full detail</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de máquinas detalhada</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="312"/>
         <source>View machines by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver máquinas por categoria</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="313"/>
         <source>View machines by version</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver máquinas por versão</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="318"/>
@@ -13622,12 +13624,12 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../options.cpp" line="2940"/>
         <source>Choose machine favorites file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo de favoritos de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2964"/>
         <source>Choose machine list cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo de cache da lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2991"/>
@@ -13657,7 +13659,7 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../options.cpp" line="3099"/>
         <source>Choose MAME machine info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o BD de informações de máquinas do MAME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3147"/>
@@ -15218,17 +15220,17 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../options.ui" line="133"/>
         <source>Show machine&apos;s description at the bottom of any images</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar descrição da máquina abaixo de quaisquer imagens</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="136"/>
         <source>Show machine name</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar nome da máquina</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="149"/>
         <source>Show machine&apos;s description only when the machine list is not visible due to the current layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar descrição de máquina somente quando a lista de máquinas não é visível devido ao layout atual</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="201"/>
@@ -15243,52 +15245,52 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../options.ui" line="239"/>
         <source>Show the machine status indicator only when the machine list is not visible due to the current layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar o indicador de estado de máquina somente quando a lista de máquinas não é visível devido ao layout atual</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="276"/>
         <source>Restore saved machine selection at start and after reloading the machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar seleção de máquinas ao iniciar e antes de recarregar a lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="279"/>
         <source>Restore machine selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar seleção de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="509"/>
         <source>Show vertical machine status indicator in machine details</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostar indicador vertical do estado da máquina nos detalhes de máquina</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="512"/>
         <source>Machine status indicator</source>
-        <translation type="unfinished"></translation>
+        <translation>Indicador de estado da máquina</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="818"/>
         <source>Save machine selection on exit and before reloading the machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar seleção de máquinas ao sair e antes de recarregar a lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="821"/>
         <source>Save machine selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar seleção de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1002"/>
         <source>Import MAME machine information to DAT-info database</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar informação do máquina do MAME para a base de dados de informação DAT</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1184"/>
         <source>Browse machine favorites file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por arquivo de favoritos de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1471"/>
         <source>MAME machine information database - history.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Base da dados de informação de máquinas do MAME -- history.dat (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1619"/>
@@ -15303,32 +15305,32 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../options.ui" line="4868"/>
         <location filename="../../options.ui" line="4884"/>
         <source>Option requires a reload of the machine list to take effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Opção requer recarregamento da lista de máquinas para ter efeito</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2747"/>
         <source>Machine favorites file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de máquinas favoritas (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2808"/>
         <source>Load MAME machine information database (history.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar base de dados de informações de máquinas do MAME (history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2811"/>
         <source>Machine info (MAME)</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de máquina (MAME)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2881"/>
         <source>Browse MAME machine information database (history.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por base de dados de informação de máquinas do MAME(history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2899"/>
         <source>Machine &amp;list</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2998"/>
@@ -15343,12 +15345,12 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../options.ui" line="3018"/>
         <source>Machine description</source>
-        <translation type="unfinished"></translation>
+        <translation>Descrição da máquina</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3043"/>
         <source>Machine name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome da máquina</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3063"/>
@@ -15363,7 +15365,7 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../options.ui" line="3216"/>
         <source>Number of item insertions between machine list updates during reload (higher means faster, but makes the GUI less responsive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Número de itens inseridos entre as atualizações da lista de máquinas durante o recarregamento (maior significa mais rápido, mas torna a interface menos disponível)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3361"/>
@@ -15383,7 +15385,7 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../options.ui" line="3440"/>
         <source>Delay update of any machine details (preview, flyer, info, configuration, ...) by how many milliseconds?</source>
-        <translation type="unfinished"></translation>
+        <translation>Atrasar atualização dos detalhes das máquinas (preview, flyer, informações, configurações, ....) por quantos milisegundos?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3485"/>
@@ -15764,12 +15766,12 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../options.ui" line="4799"/>
         <source>Machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache da lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4825"/>
         <source>Browse machine list cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar arquivo de cache de lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4896"/>
@@ -15789,7 +15791,7 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../options.ui" line="5117"/>
         <source>Machine list cache file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de cache de lista de máquinas (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5182"/>
@@ -16049,7 +16051,7 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../options.ui" line="5304"/>
         <source>Registered emulators -- you may select one of these in the machine-specific emulator configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Emuladores registrados -- você pode selecionar um desses na configuração de emulador específica de máquina</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5633"/>
@@ -16423,7 +16425,7 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../processmanager.cpp" line="409"/>
         <source>machine doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>máquina não existe</translation>
     </message>
     <message>
         <source>game doesn&apos;t exist</source>
@@ -16623,13 +16625,13 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../machinelist.cpp" line="2032"/>
         <location filename="../../options.cpp" line="1450"/>
         <source>machine description</source>
-        <translation type="unfinished"></translation>
+        <translation>descrição da máquina</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2047"/>
         <location filename="../../options.cpp" line="1465"/>
         <source>machine name</source>
-        <translation type="unfinished"></translation>
+        <translation>nome da máquina</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2055"/>
@@ -16702,13 +16704,13 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../qmc2main.cpp" line="4366"/>
         <location filename="../../qmc2main.cpp" line="4367"/>
         <source>Export machine-specific MAME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar configuração do MAME específica de máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4369"/>
         <location filename="../../qmc2main.cpp" line="4370"/>
         <source>Import machine-specific MAME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar configuração do MAME específica de máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11161"/>
@@ -17037,12 +17039,12 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../arcade/keysequences.h" line="50"/>
         <source>[global] Flip cabinet / machine-card</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Girar gabinete / cartão de máquina</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="86"/>
         <source>[context] Abort machine launch / Hide preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Abortar lançamento da máquina / Esconder preferências</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="101"/>
@@ -18223,7 +18225,7 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../romalyzer.cpp" line="2375"/>
         <source>Select machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar máquina</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2536"/>
@@ -19118,7 +19120,7 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../romalyzer.ui" line="567"/>
         <source>Create sets that do not need parent sets (otherwise create space-efficient sets which are merged upon loading, recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar conjuntos que não precisam dos conjuntos pais (caso contrário, criar conjuntos menores que são mergeados ao carregar, recomendado)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="625"/>
@@ -19139,13 +19141,13 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../romalyzer.ui" line="827"/>
         <location filename="../../romalyzer.cpp" line="2376"/>
         <source>Select machine in machine list if selected in analysis report?</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar máquina na lista de máquinas se selecionado na análise?</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="945"/>
         <location filename="../../romalyzer.cpp" line="2377"/>
         <source>Automatically scroll to the currently analyzed machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir automaticamente para a máquina analisada atualmente</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="994"/>
@@ -19853,12 +19855,12 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../romstatusexport.ui" line="198"/>
         <source>Machine description</source>
-        <translation type="unfinished"></translation>
+        <translation>Descrição da máquina</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="218"/>
         <source>Machine name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome da máquina</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="228"/>
@@ -20276,17 +20278,17 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../samplechecker.cpp" line="187"/>
         <source>WARNING: XML bug: the machine &apos;%1&apos; is referencing a non-existing sample-set (sampleof=&quot;%2&quot;) -- please inform MAME developers</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Defeito do XML: a máquina &apos;%1&apos; referencia um conjunto de sample inexistente (sampleof=&quot;%2&quot;) -- por favor informe os desenvolvedores do MAME</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="221"/>
         <source>WARNING: XML bug: the following machines are referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Defeito do XML: as máquinas a seguir referenciam um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MAME</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="223"/>
         <source>WARNING: XML bug: the following machine is referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Defeito do XML: as máquinas a seguir referenciam um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MAME</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="395"/>
@@ -22451,7 +22453,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../welcome.ui" line="313"/>
         <source>Language</source>
-        <translation type="unfinished">Língua</translation>
+        <translation>Língua</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="225"/>
@@ -22481,7 +22483,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../welcome.ui" line="172"/>
         <source>&lt;h1&gt;Welcome to QMC2!&lt;/h1&gt;&lt;font size=&quot;+1&quot;&gt;&lt;p&gt;This appears to be your first start of QMC2 because no valid configuration was found. In order to use QMC2 as a front end for an emulator, you must specify the path to the emulator&apos;s executable file below.&lt;/p&gt;&lt;p&gt;The paths below the executable file are optional, but you should specify as many of them as you can right now to avoid problems or confusion later (of course, you can change the paths in the emulator&apos;s global configuration at any time later).&lt;/p&gt;&lt;p&gt;&lt;b&gt;It&apos;s strongly recommended that you specify the ROM path you are going to use at least!&lt;/b&gt;&lt;/p&gt;&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h1&gt;Bem-Vindo ao QMC2!&lt;/h1&gt;&lt;font size=&quot;+1&quot;&gt;&lt;p&gt;Essa parece ser a primeira vez que você usa o QMC2 pois nenhuma configuração válida foi encontrada. Para usar o QMC2 como um front end para um emulador você precisa especificar o caminho para o arquivo executável do emulador abaixo.&lt;/p&gt;&lt;p&gt;Os caminhos abaixo do arquivo executável são opcionais, mas você deveria especificar o maior número deles agora para evitar problemas ou confusão posteriormente (claos, você pode mudar os caminhos nas configurações globais do emulador a qualquer momento).&lt;/p&gt;&lt;p&gt;&lt;b&gt;É altamente recomendado que você pelo menos especifique o caminho das ROMs que você irã utilizar!&lt;/b&gt;&lt;/p&gt;&lt;/font&gt; </translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="133"/>
