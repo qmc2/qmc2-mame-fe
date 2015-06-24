@@ -982,7 +982,7 @@
 			<description lang="pt" text="Script para o debugger"/>
 			<description lang="es" text="Script para depurador"/>
 		</option>
-		<option default="Lucida Console" name="debugger_font" type="string">
+		<option default="auto" name="debugger_font" type="string">
 			<description lang="us" text="Specifies the font to use for debugging; defaults to 'Lucida Console'"/>
 			<description lang="de" text="Legt die Schriftart für den Debugger fest; Standard-Schriftart: 'Lucida Console'"/>
 			<description lang="pl" text="Ustala czcionkę dla debuggera, standard to 'Lucida Console'"/>
@@ -990,7 +990,7 @@
 			<description lang="pt" text="Especificar a fonte para usar para debugging; padrão é 'Lucida Console'"/>
 			<description lang="es" text="Especifica la tipografía a utilizar por el depurador; predeterminado 'Lucida Console'"/>
 		</option>
-		<option default="9" name="debugger_font_size" type="int">
+		<option default="0" name="debugger_font_size" type="int">
 			<description lang="us" text="Specifies the font size to use for debugging; defaults to 9 pt"/>
 			<description lang="de" text="Legt die Größe der Schriftart für den Debugger fest; Standard-Größe: 9 Pixel"/>
 			<description lang="pl" text="Ustala rozmiar czcionki dla debuggera, standard to 9 punktów"/>
@@ -1566,33 +1566,41 @@
 			<description lang="pt" text="Nome da textura da máscara de sombras"/>
 			<description lang="es" text="Nombre de la textura shadow mask"/>
 		</option>
-		<option default="320" name="shadow_mask_x_count" type="int">
+		<option default="6" name="shadow_mask_x_count" type="int">
 			<description lang="us" text="Shadow mask width, in phosphor dots"/>
 			<description lang="de" text="Breite der Shadow Mask, in 'Phosphor-Dots'"/>
 			<description lang="fr" text="Largeur du masque d'ombrage, en 'phosphor dots'"/>
 			<description lang="pt" text="Comprimento da máscara de sombras, em pontos de fósforo"/>
 			<description lang="es" text="Ancho de shadow mask, en 'phosphor dots'"/>
 		</option>
-		<option default="240" name="shadow_mask_y_count" type="int">
+		<option default="6" name="shadow_mask_y_count" type="int">
 			<description lang="us" text="Shadow mask height, in phosphor dots"/>
 			<description lang="de" text="Höhe der Shadow Mask, in 'Phosphor-Dots'"/>
 			<description lang="fr" text="Hauteur du masque d'ombrage, en 'phosphor dots'"/>
 			<description lang="pt" text="Altura da máscara de sombras, em pontos de fósforo"/>
 			<description lang="es" text="Alto de shadow mask, en 'phosphor dots'"/>
 		</option>
-		<option default="0.09375" name="shadow_mask_usize" type="float">
+		<option default="0.1875" name="shadow_mask_usize" type="float">
 			<description lang="us" text="Shadow mask texture size in U direction"/>
 			<description lang="de" text="Größe der Shadow Mask Textur in U-Richtung"/>
 			<description lang="fr" text="Taille de la texture du masque d'ombrage en direction U"/>
 			<description lang="pt" text="Tamanho da textura da máscara de sombras na direção U"/>
 			<description lang="es" text="Tamaño de textura de shadow mask en dirección U"/>
 		</option>
-		<option default="0.109375" name="shadow_mask_vsize" type="float">
+		<option default="0.1875" name="shadow_mask_vsize" type="float">
 			<description lang="us" text="Shadow mask texture size in V direction"/>
 			<description lang="de" text="Größe der Shadow Mask Textur in V-Richtung"/>
 			<description lang="fr" text="Taille de la texture du masque d'ombrage en direction V"/>
 			<description lang="pt" text="Tamanho da textura da máscara de sombras na direção V"/>
 			<description lang="es" text="Tamaño de textura de shadow mask en dirección V"/>
+		</option>
+		<option default="0.0" name="shadow_mask_uoffset" type="float">
+			<description lang="us" text="Shadow mask texture offset in U direction"/>
+			<description lang="de" text="Textur-Offset der Shadow Mask in U Richtung"/>
+		</option>
+		<option default="0.0" name="shadow_mask_voffset" type="float">
+			<description lang="us" text="Shadow mask texture offset in V direction"/>
+			<description lang="de" text="Textur-Offset der Shadow Mask in V Richtung"/>
 		</option>
 		<option default="0.03" name="curvature" type="float">
 			<description lang="us" text="Screen curvature amount"/>
@@ -1601,12 +1609,17 @@
 			<description lang="pt" text="Quantidade de curvatura da tela"/>
 			<description lang="es" text="Cantidad de curvatura de la pantalla"/>
 		</option>
-		<option default="0.03" name="pincushion" type="float">
-			<description lang="us" text="Pincushion amount"/>
-			<description lang="de" text="Betrag der Kissenverzerrung"/>
-			<description lang="fr" text="Quantité de Pincushion"/>
-			<description lang="pt" text="Quantidade de pincushion"/>
-			<description lang="es" text="Cantidad de 'pincushion'"/>
+		<option default="0.03" name="reflection" type="float">
+			<description lang="us" text="Screen reflection amount"/>
+			<description lang="de" text="Betrag der Bildschirmreflexion"/>
+		</option>
+		<option default="0.03" name="round_corner" type="float">
+			<description lang="us" text="Screen round corner amount"/>
+			<description lang="de" text="Betrag der Bildschirmabrundung"/>
+		</option>
+		<option default="0.03" name="vignetting" type="float">
+			<description lang="us" text="Image vignetting amount"/>
+			<description lang="de" text="Betrag der Bildvignettierung"/>
 		</option>
 		<option default="1" name="scanline_alpha" type="float">
 			<description lang="us" text="Overall alpha scaling value for scanlines"/>
