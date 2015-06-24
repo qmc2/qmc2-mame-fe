@@ -20,7 +20,7 @@ inf: informational only
 	<li>fix: the <i>GeneralSoftwareFolder</i> setting was neither restored nor used (unification bug)</li>
 	<li>fix: ROMAlyzer: corrected the delta counter (for <i>objects in database</i>) when both the system- and software-mode's check-sum scanners are running in parallel</li>
 	<li>fix: corrected glitches in splash screen image that were only visible on PowerPC Macs</li>
-	<li>fix: version- and category-column visibility wasn't correctly restored in both the master list and the hierarchical view (<a href="http://tracker.batcom-it.net/view.php?id=106" target="_blank">bug tracker ID #106</a>)</li>
+	<li>fix: version- and category-column visibility wasn't correctly restored in both the master list and the hierarchical parent/clone view (<a href="http://tracker.batcom-it.net/view.php?id=106" target="_blank">bug tracker ID #106</a>)</li>
 	<li>fix: restoring the last machine selection didn't work correctly with active ROM state filtering</li>
 	<li>fix: software-lists: individual software-list state counters weren't correctly logged upon checking</li>
 	<li>fix: correctly handle view-switching while the category- or version-views are being created</li>
@@ -31,11 +31,11 @@ inf: informational only
  	<li>imp: updated category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MAME 0.163</li>
 	<li>imp: ROM status icons are now taken from the embedded resources rather than loaded from file during initialization</li>
 	<li>imp: globally replaced the term 'game' with a corresponding 'machine' pendant</li>
-	<li>imp: emulator configuration templates updated to MAME 0.163 (added new communication options to all templates, added 'uimodekey' to the Windows OSD template)</li>
+	<li>imp: emulator configuration templates updated to MAME 0.163 (added new communication options to all templates, added 'uimodekey' to the Windows OSD template, updated HLSL options and a number of default values in the Windows OSD template)</li>
 	<li>imp: smarter system web-search that also takes the manufacturer into account</li>
 	<li>imp: when a machine has no slot-devices at all the device configurator is <i>completely</i> disabled now</li>
 	<li>imp: category handling: BIOS and device sets are <i>fully</i> auto-categorized now, uncategorized child sets inherit their parent's category if applicable</li>
-	<li>imp: improved generation of argument list passed to foreign emulators</li>
+	<li>imp: improved generation of command line arguments passed to foreign emulators</li>
 	<li>new: added command line option '-r' (<i>reconfigure</i>) which will run the setup wizard / welcome dialog before starting</li>
 	<li>new: device configurator: suggest actual MIDI ports (from -listmidi) for midiin/midiout devices</li>
 	<li>wip: adding support for launching emulators in movie recording mode (<a href="http://tracker.batcom-it.net/view.php?id=107" target="_blank">bug tracker ID #107</a>)</li>
