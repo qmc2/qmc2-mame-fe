@@ -545,8 +545,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>638</width>
-        <height>192</height>
+        <width>86</width>
+        <height>67</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -643,8 +643,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>638</width>
-        <height>192</height>
+        <width>87</width>
+        <height>117</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -801,10 +801,10 @@
         </sizepolicy>
        </property>
        <property name="toolTip">
-        <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown</string>
+        <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search</string>
        </property>
        <property name="statusTip">
-        <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown</string>
+        <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search</string>
        </property>
        <property name="text">
         <string/>
