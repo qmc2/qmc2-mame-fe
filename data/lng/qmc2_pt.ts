@@ -629,10 +629,6 @@ p, li { white-space: pre-wrap; }
         <translation>Depurar mapeamento de funções do joystick</translation>
     </message>
     <message>
-        <source>Game list filter</source>
-        <translation type="obsolete">Filtro da lista de jogos</translation>
-    </message>
-    <message>
         <location filename="../../arcademodesetup.ui" line="437"/>
         <source>good + imperfect</source>
         <translation>bom + imperfeito</translation>
@@ -683,10 +679,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.ui" line="1051"/>
         <source>Joystick function</source>
         <translation>Função do joystick</translation>
-    </message>
-    <message>
-        <source>Browse the output file used as the filtered game list</source>
-        <translation type="obsolete">Procurar o arquivo de saída usado como a lista de jogos filtrada</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="634"/>
@@ -842,17 +834,9 @@ p, li { white-space: pre-wrap; }
         <translation>Descendente</translation>
     </message>
     <message>
-        <source>Use a filtered version of the game list (otherwise use the full list)</source>
-        <translation type="obsolete">Usar uma versão filtrada da lista de jogos (caso contrário usar a lista completa)</translation>
-    </message>
-    <message>
         <location filename="../../arcademodesetup.ui" line="776"/>
         <source>Use filtered list</source>
         <translation>Usar lista filtrada</translation>
-    </message>
-    <message>
-        <source>Output file used as the filtered game list</source>
-        <translation type="obsolete">Arquivo de saída usado como a lista de jogos filtrada</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="807"/>
@@ -864,10 +848,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.cpp" line="763"/>
         <source>Idle</source>
         <translation>Ocioso</translation>
-    </message>
-    <message>
-        <source>Export a filtered version of the game list according to the filter / sort settings specified below</source>
-        <translation type="obsolete">Exportar uma versão filtrada da lista de jogos de acordo com as configurações de filtro / ordernação especificadas abaixo</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="360"/>
@@ -2690,14 +2670,6 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Cancelar</translation>
     </message>
     <message>
-        <source>&amp;Game list</source>
-        <translation type="obsolete">Lista de &amp;Jogos</translation>
-    </message>
-    <message>
-        <source>Game list</source>
-        <translation type="obsolete">Lista de jogos</translation>
-    </message>
-    <message>
         <location filename="../../componentsetup.cpp" line="55"/>
         <source>&amp;Search</source>
         <translation>&amp;Buscar</translation>
@@ -2749,25 +2721,9 @@ p, li { white-space: pre-wrap; }
         <translation>Pre&amp;visualização</translation>
     </message>
     <message>
-        <source>Game preview image</source>
-        <translation type="obsolete">Imagem de preview do jogo</translation>
-    </message>
-    <message>
         <location filename="../../componentsetup.cpp" line="104"/>
         <source>Fl&amp;yer</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Game flyer image</source>
-        <translation type="obsolete">Imagem do flyer do jogo</translation>
-    </message>
-    <message>
-        <source>Game &amp;info</source>
-        <translation type="obsolete">&amp;Informação do jogo</translation>
-    </message>
-    <message>
-        <source>Game information</source>
-        <translation type="obsolete">Informação do jogo</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="110"/>
@@ -2978,10 +2934,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../componentsetup.cpp" line="214"/>
         <source>Downloads</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Snapsh&amp;ot</source>
-        <translation type="obsolete">Capt&amp;ura de tela</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="245"/>
@@ -3424,10 +3376,6 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <source>game-info</source>
-        <translation type="obsolete">Informação de jogo</translation>
-    </message>
-    <message>
         <location filename="../../datinfodbmgr.cpp" line="488"/>
         <location filename="../../datinfodbmgr.cpp" line="495"/>
         <source>meta-data</source>
@@ -3501,41 +3449,6 @@ p, li { white-space: pre-wrap; }
         <translation>
             <numerusform>%n registro de informação de software importado</numerusform>
             <numerusform>%n registros de informação de software importados</numerusform>
-        </translation>
-    </message>
-    <message>
-        <source>game info-texts</source>
-        <translation type="obsolete">textos de informação de jogo</translation>
-    </message>
-    <message>
-        <source>Game info - %p%</source>
-        <translation type="obsolete">Informação do jogo - %p%</translation>
-    </message>
-    <message>
-        <source>WARNING: missing &apos;$end&apos; in game info file %1</source>
-        <translation type="obsolete">AVISO: &apos;$end&apos; faltando no arquivo de informação de jogo %1</translation>
-    </message>
-    <message>
-        <source>WARNING: missing &apos;$bio&apos; in game info file %1</source>
-        <translation type="obsolete">AVISO: &apos;$bio&apos; faltando no arquivo de informação de jogo %1</translation>
-    </message>
-    <message>
-        <source>WARNING: missing &apos;$info&apos; in game info file %1</source>
-        <translation type="obsolete">AVISO: &apos;$info&apos; faltando no arquivo de informação de jogo %1</translation>
-    </message>
-    <message>
-        <source>game info</source>
-        <translation type="obsolete">informação de jogo</translation>
-    </message>
-    <message>
-        <source>WARNING: can&apos;t open game info file %1</source>
-        <translation type="obsolete">AVISO: impossível abrir arquivo de informação de jogo %1</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n game info record(s) imported</source>
-        <translation type="obsolete">
-            <numerusform>%n registro de informação de jogo importado</numerusform>
-            <numerusform>%n registros de informação de jogo importados</numerusform>
         </translation>
     </message>
     <message>
@@ -3647,17 +3560,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../demomode.cpp" line="293"/>
         <source>demo mode cannot start -- no machine selected by filter</source>
         <translation>modo demonstração não pode iniciar -- nenhuma máquina selecionada pelo filtro</translation>
-    </message>
-    <message numerus="yes">
-        <source>demo mode started -- %n game(s) selected by filter</source>
-        <translation type="obsolete">
-            <numerusform>modo demonstração iniciado -- %n jogo selecionado pelo filtro</numerusform>
-            <numerusform>modo demonstração iniciado -- %n jogos selecionados pelo filtro</numerusform>
-        </translation>
-    </message>
-    <message>
-        <source>demo mode cannot start -- no games selected by filter</source>
-        <translation type="obsolete">modo demonstração não pode iniciar -- nenhum jogo selecionado pelo filtro</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="299"/>
@@ -3913,10 +3815,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.cpp" line="1366"/>
         <source>Enter search string</source>
         <translation>Entre o texto de busca</translation>
-    </message>
-    <message>
-        <source>Play selected game</source>
-        <translation type="obsolete">Jogar selecionado</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="334"/>
@@ -4624,12 +4522,6 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global ou não aplicar?</translation>
     </message>
     <message>
-        <source>An open game-specific emulator configuration has been detected.
-Use local value for option &apos;%1&apos;, overwrite with global value or don&apos;t apply?</source>
-        <translation type="obsolete">Uma configuração de emulador específica de jogo aberta foi detectada.
-Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global ou não aplicar?</translation>
-    </message>
-    <message>
         <location filename="../../emuoptactions.cpp" line="115"/>
         <source>&amp;Local</source>
         <translation>&amp;Local</translation>
@@ -4688,10 +4580,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../emuopt.cpp" line="1221"/>
         <source>unknown</source>
         <translation>desconhecido</translation>
-    </message>
-    <message>
-        <source>Game specific emulator configuration</source>
-        <translation type="obsolete">Configuração de emulador específico de jogo</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="415"/>
@@ -4985,10 +4873,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../emuopt.cpp" line="1872"/>
         <source>machine-specific</source>
         <translation>específico de máquina</translation>
-    </message>
-    <message>
-        <source>game-specific</source>
-        <translation type="obsolete">específico de jogo</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1688"/>
@@ -7457,10 +7341,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <translation>Atualizando</translation>
     </message>
     <message>
-        <source>WARNING: couldn&apos;t find game information for &apos;%1&apos;</source>
-        <translation type="obsolete">AVISO: impossível encontrar informações do jogo para &apos;%1&apos;</translation>
-    </message>
-    <message>
         <location filename="../../machinelist.cpp" line="1043"/>
         <source>Name</source>
         <translation>Nome</translation>
@@ -7748,10 +7628,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <translation>valor DIP</translation>
     </message>
     <message>
-        <source>parsing game data and recreating game list cache</source>
-        <translation type="obsolete">analisando dados dos jogos e recriando cache de lista de jogos</translation>
-    </message>
-    <message>
         <location filename="../../machinelist.cpp" line="2242"/>
         <source>Filtering, please wait...</source>
         <translation>Filtrando, por favor espere...</translation>
@@ -8035,13 +7911,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <translation></translation>
     </message>
     <message numerus="yes">
-        <source>%n game(s)</source>
-        <translation type="obsolete">
-            <numerusform>%n jogo</numerusform>
-            <numerusform>%n jogos</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <location filename="../../machinelist.cpp" line="2116"/>
         <source> and %n device(s) loaded</source>
         <translation>
@@ -8074,10 +7943,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <translation>AVISO: cache de estado de ROM está imcompleto ou desatualizado, por favor re-verifique as ROMs</translation>
     </message>
     <message>
-        <source>processing game list</source>
-        <translation type="obsolete">processando lista de jogos</translation>
-    </message>
-    <message>
         <location filename="../../machinelist.cpp" line="581"/>
         <source>determining emulator version and supported sets</source>
         <translation>determinando versão do emulador e conjuntos suportados</translation>
@@ -8101,22 +7966,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../machinelist.cpp" line="941"/>
         <source>verifying ROM status for all sets</source>
         <translation>verificando estado da ROM para todos os conjuntos</translation>
-    </message>
-    <message>
-        <source>WARNING: couldn&apos;t determine emulator version of game list cache</source>
-        <translation type="obsolete">AVISO: impossível determinar versão do emulador do cache da lista de jogos</translation>
-    </message>
-    <message>
-        <source>INFORMATION: the game list cache will now be updated due to a new format</source>
-        <translation type="obsolete">INFORMAÇÃO: o cache de lista de jogos será atualizado devido ao novo formato</translation>
-    </message>
-    <message>
-        <source>loading game data from game list cache</source>
-        <translation type="obsolete">carregando dados do jogo do cache da lista de jogo</translation>
-    </message>
-    <message>
-        <source>Game data - %p%</source>
-        <translation type="obsolete">Dado do jogo - %p%</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="172"/>
@@ -8167,21 +8016,9 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <translation></translation>
     </message>
     <message>
-        <source>done (loading game data from game list cache, elapsed time = %1)</source>
-        <translation type="obsolete">feito (carregando dado do jogo do cache da lista de jogos, tempo = %1)</translation>
-    </message>
-    <message>
-        <source>ERROR: can&apos;t open game list cache for writing, path = %1</source>
-        <translation type="obsolete">ERRO: impossível abrir cache da lista de jogos para escrita, caminho = %1</translation>
-    </message>
-    <message>
         <location filename="../../machinelist.cpp" line="1644"/>
         <source>WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml</source>
         <translation>AVISO: atributo nome está vazio na linha %1 do XML (conjunto será ignorado!) -- por favor informe os desenvolvedores do MAME e inclua a saída com problema do --listxml</translation>
-    </message>
-    <message>
-        <source>sorting game list by %1 in %2 order</source>
-        <translation type="obsolete">ordenando lista de jogos por %1 na ordem %2</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2070"/>
@@ -8194,22 +8031,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../machinelist.cpp" line="2961"/>
         <source>descending</source>
         <translation>decrescente</translation>
-    </message>
-    <message>
-        <source>restoring game selection</source>
-        <translation type="obsolete">restaurando seleção de jogos</translation>
-    </message>
-    <message>
-        <source>done (processing game list, elapsed time = %1)</source>
-        <translation type="obsolete">feito (processando lista de jogos, tempo = %1)</translation>
-    </message>
-    <message>
-        <source>WARNING: game list not fully parsed, invalidating game list cache</source>
-        <translation type="obsolete">AVISO: lista de jogos não totalmente analisada, invalidando cache de lista de jogos</translation>
-    </message>
-    <message>
-        <source>WARNING: game list cache is out of date, invalidating game list cache</source>
-        <translation type="obsolete">AVISO: lista de jogos desatualizada, invalidando cache da lista de jogos</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2172"/>
@@ -8647,10 +8468,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <translation>&amp;Copiar comando</translation>
     </message>
     <message>
-        <source>Play selected game</source>
-        <translation type="obsolete">Jogar jogo selecionado</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="2945"/>
         <location filename="../../qmc2main.cpp" line="782"/>
         <location filename="../../qmc2main.cpp" line="798"/>
@@ -8659,10 +8476,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../qmc2main.cpp" line="939"/>
         <source>&amp;Play</source>
         <translation>&amp;Jogar</translation>
-    </message>
-    <message>
-        <source>Play selected game (embedded)</source>
-        <translation type="obsolete">Jogar jogo selecionado (embutido)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3669"/>
@@ -8675,10 +8488,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <translation>Jogar &amp;embutido</translation>
     </message>
     <message>
-        <source>Add current game to favorites</source>
-        <translation type="obsolete">Adicionar jogo atual para os favoritos</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="3126"/>
         <location filename="../../qmc2main.cpp" line="812"/>
         <location filename="../../qmc2main.cpp" line="855"/>
@@ -8688,20 +8497,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <translation>Para &amp;favoritos</translation>
     </message>
     <message>
-        <source>Check current game&apos;s ROM state</source>
-        <translation type="obsolete">Verificar estado das ROM do jogo atual</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.cpp" line="818"/>
         <location filename="../../qmc2main.cpp" line="861"/>
         <location filename="../../qmc2main.cpp" line="900"/>
         <location filename="../../qmc2main.cpp" line="959"/>
         <source>Check &amp;ROM state</source>
         <translation>Verificar estado da &amp;ROM</translation>
-    </message>
-    <message>
-        <source>Analyse current game&apos;s ROM set with ROMAlyzer</source>
-        <translation type="obsolete">Analisar conjunto de ROM do jogo atual com ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="823"/>
@@ -8932,14 +8733,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <translation>por favor espere o ROMAlyzer terminar a análise atual e tente novamente</translation>
     </message>
     <message>
-        <source>game list reload is already active</source>
-        <translation type="obsolete">recarregamento da lista de jogos já está ativa</translation>
-    </message>
-    <message>
-        <source>saving game selection</source>
-        <translation type="obsolete">salvando seleção de jogo</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.cpp" line="2272"/>
         <location filename="../../qmc2main.cpp" line="2296"/>
         <source>ROM verification already active</source>
@@ -9036,10 +8829,6 @@ Você realmente quer verificar o estado de todas as ROMs agora?</translation>
         <translation>arquivo de cache de estado de ROM &apos;%1&apos; removido</translation>
     </message>
     <message>
-        <source>game list cache file &apos;%1&apos; removed</source>
-        <translation type="obsolete">arquivo de cache da lista de jogos &apos;%1&apos; removido</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.cpp" line="2801"/>
         <source>slot info cache file &apos;%1&apos; removed</source>
         <translation>arquivo de cache de informações de slot &apos;%1&apos; removido</translation>
@@ -9054,10 +8843,6 @@ Você realmente quer verificar o estado de todas as ROMs agora?</translation>
         <location filename="../../qmc2main.cpp" line="3374"/>
         <source>ERROR: no match found (?)</source>
         <translation>ERRO: nenhuma ocorrência encontrada (?)</translation>
-    </message>
-    <message>
-        <source>Emulator for this game</source>
-        <translation type="obsolete">Emulador para este jogo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4365"/>
@@ -9201,10 +8986,6 @@ Sair mesmo assim?</translation>
         <translation>salvando layout do widget principal</translation>
     </message>
     <message>
-        <source>saving current game&apos;s favorite software</source>
-        <translation type="obsolete">salvando software favorito do jogo atual</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="3634"/>
         <location filename="../../qmc2main.ui" line="3637"/>
         <source>Clear ProjectMESS cache</source>
@@ -9224,10 +9005,6 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="2731"/>
         <source>WARNING: cannot remove the ROM state cache file &apos;%1&apos;, please check permissions</source>
         <translation>AVISO: impossível remover o arquivo de cache &apos;%1&apos; do estado da ROM, por favor cheque as permissões</translation>
-    </message>
-    <message>
-        <source>WARNING: cannot remove the game list cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="obsolete">AVISO: impossível remover o arquivo de cache &apos;%1&apos; da lista de jogos, por favor cheque as permissões</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4264"/>
@@ -9256,17 +9033,9 @@ Sair mesmo assim?</translation>
         <translation>falhou (salvando mapa de informação de vídeo do YouTube)</translation>
     </message>
     <message>
-        <source>destroying current game&apos;s emulator configuration</source>
-        <translation type="obsolete">destruindo configuração do emulador do jogo atual</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.cpp" line="6347"/>
         <source>destroying global emulator options</source>
         <translation>destruindo opções globais do emulador</translation>
-    </message>
-    <message>
-        <source>destroying game list</source>
-        <translation type="obsolete">destruindo lista de jogos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6354"/>
@@ -9335,10 +9104,6 @@ Sair mesmo assim?</translation>
         <translation>destruindo explorador de estado de ROM</translation>
     </message>
     <message>
-        <source>destroying detail setup</source>
-        <translation type="obsolete">destruindo configuração detalhada</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.cpp" line="6430"/>
         <source>destroying demo mode dialog</source>
         <translation>destruindo janela de modo demonstração</translation>
@@ -9347,10 +9112,6 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="6161"/>
         <source>disconnecting audio source from audio sink</source>
         <translation>desconectando fonte de áudio do sumidouro de áudio</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation type="obsolete">Jogo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="474"/>
@@ -9362,22 +9123,6 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="602"/>
         <source>Dock / undock this widget</source>
         <translation>Anexar / desanexar este widget</translation>
-    </message>
-    <message>
-        <source>Show game/software titles</source>
-        <translation type="obsolete">Mostrar títulos dos jogos/softwares</translation>
-    </message>
-    <message>
-        <source>Show game- or software-titles at the bottom of any images</source>
-        <translation type="obsolete">Mostrar títulos de jogos ou software embaixo de qualquer imagem</translation>
-    </message>
-    <message>
-        <source>Show game titles only when the game list is not visible due to the current layout</source>
-        <translation type="obsolete">Mostrar títulos dos jogos somente quando a lista de jogos não está visível devido ao layout atual</translation>
-    </message>
-    <message>
-        <source>Searching games - %p%</source>
-        <translation type="obsolete">Buscando jogos - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="477"/>
@@ -9427,10 +9172,6 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="2022"/>
         <source>N/A</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Rebuild current game&apos;s ROM set with ROMAlyzer</source>
-        <translation type="obsolete">Reconstruir ROM do jogo atual com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="829"/>
@@ -9564,10 +9305,6 @@ Sair mesmo assim?</translation>
         <translation>destruindo widget de vídeos do YouTube</translation>
     </message>
     <message>
-        <source>saving current game&apos;s device configurations</source>
-        <translation type="obsolete">salvando configurações de dispositivos do jogo atual</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.cpp" line="6391"/>
         <source>destroying ProjectMESS lookup</source>
         <translation>destruindo lookup do ProjectMESS</translation>
@@ -9586,10 +9323,6 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="6425"/>
         <source>destroying tool-bar customization</source>
         <translation>destruindo customização da barra de ferramentas</translation>
-    </message>
-    <message>
-        <source>destroying game info DB</source>
-        <translation type="obsolete">destruindo BD de informação de jogos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6319"/>
@@ -9960,26 +9693,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <translation></translation>
     </message>
     <message>
-        <source>Search for games (not case-sensitive)</source>
-        <translation type="obsolete">Buscar por jogos (não sensível à caixa)</translation>
-    </message>
-    <message>
-        <source>Search for games</source>
-        <translation type="obsolete">Busca por jogos</translation>
-    </message>
-    <message>
-        <source>&amp;Game list</source>
-        <translation type="obsolete">Lista de &amp;Jogos</translation>
-    </message>
-    <message>
-        <source>List of all supported games</source>
-        <translation type="obsolete">Lista de todos os jogos suportados</translation>
-    </message>
-    <message>
-        <source>Game / Attribute</source>
-        <translation type="obsolete">Jogo / Atributo</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="167"/>
         <location filename="../../qmc2main.cpp" line="1117"/>
         <source>Icon / Value</source>
@@ -10061,18 +9774,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <translation>Hierarquia pai / clone</translation>
     </message>
     <message>
-        <source>Game / Clones</source>
-        <translation type="obsolete">Jogos / Clones</translation>
-    </message>
-    <message>
-        <source>Switch between detailed game list and parent / clone hierarchy</source>
-        <translation type="obsolete">Alternar entre lista de jogos detalhada e hierarquia de pai / clone</translation>
-    </message>
-    <message>
-        <source>Game list with full detail (filtered)</source>
-        <translation type="obsolete">Lista de jogos detalhada (filtrada)</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="94"/>
         <source>Parent / clone hierarchy (not filtered)</source>
         <translation>Hierarquia pai / clone (não filtrado)</translation>
@@ -10082,22 +9783,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="115"/>
         <source>Toggle individual ROM states</source>
         <translation>Ativar estados individuais de ROM</translation>
-    </message>
-    <message>
-        <source>List of games viewed by category</source>
-        <translation type="obsolete">Lista de jogos vistos por categoria</translation>
-    </message>
-    <message>
-        <source>Category / Game</source>
-        <translation type="obsolete">Categoria / Jogo</translation>
-    </message>
-    <message>
-        <source>List of games viewed by version they were added to the emulator</source>
-        <translation type="obsolete">Lista de jogos vistos pela versão que foram adicionados ao emulador</translation>
-    </message>
-    <message>
-        <source>Version / Game</source>
-        <translation type="obsolete">Versão / Jogo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="756"/>
@@ -10116,14 +9801,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <translation>Favo&amp;ritos</translation>
     </message>
     <message>
-        <source>Favorite games</source>
-        <translation type="obsolete">Jogos favoritos</translation>
-    </message>
-    <message>
-        <source>Games last played</source>
-        <translation type="obsolete">Últimos jogos executados</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="878"/>
         <source>&amp;Foreign emulators</source>
         <translation>&amp;Emuladores estrangeiros</translation>
@@ -10139,18 +9816,10 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <translation>&lt;b&gt;&lt;font color=black&gt;L:?&lt;/font&gt; &lt;font color=#00cc00&gt;C:?&lt;/font&gt; &lt;font color=#a2c743&gt;M:?&lt;/font&gt; &lt;font color=#f90000&gt;I:?&lt;/font&gt; &lt;font color=#7f7f7f&gt;N:?&lt;/font&gt; &lt;font color=#0000f9&gt;D:?&lt;/font&gt; &lt;font color=chocolate&gt;B:?&lt;/font&gt;&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>Progress indicator for game list processing</source>
-        <translation type="obsolete">Indicador de progresso para o processamento de lista de jogos</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="1018"/>
         <location filename="../../qmc2main.ui" line="1021"/>
         <source>Indicator for current memory usage</source>
         <translation>Indicador para o uso atual de memória</translation>
-    </message>
-    <message>
-        <source>Game status indicator</source>
-        <translation type="obsolete">Indicador de estado do jogo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1526"/>
@@ -10161,14 +9830,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="1535"/>
         <source>Fl&amp;yer</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Game &amp;info</source>
-        <translation type="obsolete">&amp;Informação do jogo</translation>
-    </message>
-    <message>
-        <source>Detailed game information</source>
-        <translation type="obsolete">Informação detalhada do jogo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1580"/>
@@ -10258,10 +9919,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="1863"/>
         <source>#</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Game / Notifier</source>
-        <translation type="obsolete">Jogo / Notificação</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1873"/>
@@ -10548,10 +10205,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <translation>&amp;Notas</translation>
     </message>
     <message>
-        <source>&amp;Game</source>
-        <translation type="obsolete">&amp;Jogo</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="2788"/>
         <source>&amp;Check</source>
         <translation>&amp;Verificar</translation>
@@ -10585,10 +10238,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="2933"/>
         <source>Ctrl+3</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Play current game</source>
-        <translation type="obsolete">Jogar jogo atual</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2954"/>
@@ -10627,26 +10276,14 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <translation>Jogar (etiquetados)</translation>
     </message>
     <message>
-        <source>Play all tagged games</source>
-        <translation type="obsolete">Jogar todos os jogos etiquetados</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="3908"/>
         <source>Play embedded (tagged)</source>
         <translation>Jogar embutido (etiquetados)</translation>
     </message>
     <message>
-        <source>Play all tagged games (embedded)</source>
-        <translation type="obsolete">Jogar todos os jogos etiquetados (embutido)</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="3926"/>
         <source>To favorites (tagged)</source>
         <translation>Para favoritos (etiquetados)</translation>
-    </message>
-    <message>
-        <source>Add all tagged games to favorites</source>
-        <translation type="obsolete">Adicionar todos os jogos etiquetados aos favoritos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3947"/>
@@ -10985,10 +10622,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <translation>&amp;Recarregar</translation>
     </message>
     <message>
-        <source>Reload entire game list</source>
-        <translation type="obsolete">Recarregar lista de jogos completamente</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="3080"/>
         <source>Ctrl+R</source>
         <translation></translation>
@@ -11039,10 +10672,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="3147"/>
         <source>Full detail</source>
         <translation>Detalhes completos</translation>
-    </message>
-    <message>
-        <source>View game list with full detail</source>
-        <translation type="obsolete">Ver lista de jogos em detalhes</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3156"/>
@@ -11106,10 +10735,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="3230"/>
         <source>Analyse ROM</source>
         <translation>Analisar ROM</translation>
-    </message>
-    <message>
-        <source>Analyse current game with ROMAlyzer</source>
-        <translation type="obsolete">Analisar jogo atual com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3239"/>
@@ -11357,10 +10982,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="3654"/>
         <source>Check template map against the configuration options of the currently selected emulator</source>
         <translation>Verificar mapa do template contra as opções de configuração do emulador selecionado atualmente</translation>
-    </message>
-    <message>
-        <source>Play current game (embedded)</source>
-        <translation type="obsolete">Jogar jogo atual (embutido)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3678"/>
@@ -11888,10 +11509,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <translation>Reconstruir ROM da máquina atual com o ROMAlyzer</translation>
     </message>
     <message>
-        <source>Rebuild current game with ROMAlyzer</source>
-        <translation type="obsolete">Reconstruir jogo atual com o ROMAlyzer</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="4739"/>
         <source>F2</source>
         <translation></translation>
@@ -11990,10 +11607,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <translation>Por categoria</translation>
     </message>
     <message>
-        <source>View games by category</source>
-        <translation type="obsolete">Ver jogos por categoria</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="3717"/>
         <source>F7</source>
         <translation></translation>
@@ -12002,10 +11615,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="3729"/>
         <source>By version</source>
         <translation>Por versão</translation>
-    </message>
-    <message>
-        <source>View games by version they were added to the emulator</source>
-        <translation type="obsolete">Ver jogos pela versão que foram adicionados ao emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3738"/>
@@ -12065,14 +11674,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="3808"/>
         <source>Forcedly clear (remove) the ROM state cache</source>
         <translation>Forçar limpar (remover) o cache de estado da ROM</translation>
-    </message>
-    <message>
-        <source>Clear game list cache</source>
-        <translation type="obsolete">Limpar cache da lista de jogos</translation>
-    </message>
-    <message>
-        <source>Forcedly clear (remove) the game list cache</source>
-        <translation type="obsolete">Forçar limpar (remover) o cache da lista de jogos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3830"/>
@@ -12543,10 +12144,6 @@ Tentar novamente?</translation>
         <translation>Sobre QMC2</translation>
     </message>
     <message>
-        <source>Analyze current game</source>
-        <translation type="obsolete">Analisar jogo atual</translation>
-    </message>
-    <message>
         <location filename="../../options.cpp" line="256"/>
         <source>Analyze tagged sets</source>
         <translation>Analisar conjuntos etiquetados</translation>
@@ -12555,10 +12152,6 @@ Tentar novamente?</translation>
         <location filename="../../options.cpp" line="257"/>
         <source>Export ROM Status</source>
         <translation>Exportar estado da ROM</translation>
-    </message>
-    <message>
-        <source>Copy game to favorites</source>
-        <translation type="obsolete">Copiar jogo para favoritos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="259"/>
@@ -12605,10 +12198,6 @@ Tentar novamente?</translation>
         <location filename="../../options.cpp" line="275"/>
         <source>About Qt</source>
         <translation>Sobre o Qt</translation>
-    </message>
-    <message>
-        <source>Check game&apos;s ROM state</source>
-        <translation type="obsolete">Verificar estado das ROMs dos jogos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="279"/>
@@ -12717,25 +12306,9 @@ Tentar novamente?</translation>
         <translation>Inverter etiquetas de visíveis</translation>
     </message>
     <message>
-        <source>Rebuild current game</source>
-        <translation type="obsolete">Reconstruir jogo atual</translation>
-    </message>
-    <message>
-        <source>Rebuild tagged games</source>
-        <translation type="obsolete">Reconstruir jogos etiquetados</translation>
-    </message>
-    <message>
         <location filename="../../options.cpp" line="311"/>
         <source>Parent / clone hierarchy</source>
         <translation>Hierarquia pai / clone</translation>
-    </message>
-    <message>
-        <source>View games by category</source>
-        <translation type="obsolete">Ver jogos por categoria</translation>
-    </message>
-    <message>
-        <source>View games by version</source>
-        <translation type="obsolete">Ver jogos por versão</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="314"/>
@@ -13004,10 +12577,6 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>Escolher arquivo de banco de dados de informações dat</translation>
     </message>
     <message>
-        <source>Choose MAME game info DB</source>
-        <translation type="obsolete">Escolha o BD de informações de jogos do MAME</translation>
-    </message>
-    <message>
         <location filename="../../options.cpp" line="3111"/>
         <source>Choose MESS machine info DB</source>
         <translation>Escolha o BD de informações de máquinas do MESS</translation>
@@ -13247,24 +12816,10 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>tamanho do cache de imagem definido para %1 MB</translation>
     </message>
     <message>
-        <source>View games by category (not filtered)</source>
-        <translation type="obsolete">Ver jogos por categoria (não filtrado)</translation>
-    </message>
-    <message>
-        <source>View games by emulator version (not filtered)</source>
-        <translation type="obsolete">Ver jogos pela versão do emulador (não filtrado)</translation>
-    </message>
-    <message>
         <location filename="../../options.cpp" line="1326"/>
         <location filename="../../options.cpp" line="2834"/>
         <source>Confirm</source>
         <translation>Confirmar</translation>
-    </message>
-    <message>
-        <source>An open game-specific emulator configuration has been detected.
-Use local game-settings, overwrite with global settings or don&apos;t apply?</source>
-        <translation type="obsolete">Uma configuração de emulador específica para jogo foi detectada.
-Usar configurações de jogo local, sobrescrever com as configurações globais ou não aplicar?</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1328"/>
@@ -13282,26 +12837,14 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>&amp;Não aplicar</translation>
     </message>
     <message>
-        <source>please reload game list for some changes to take effect</source>
-        <translation type="obsolete">por favor recarregue a lista de jogos para as alterações terem efeito</translation>
-    </message>
-    <message>
         <location filename="../../options.cpp" line="1430"/>
         <source>please restart QMC2 for some changes to take effect</source>
         <translation>por favor reinicie o QMC2 para que algumas mudanças tenha efeito</translation>
     </message>
     <message>
-        <source>re-sort of game list impossible at this time, please wait for ROM verification to finish and try again</source>
-        <translation type="obsolete">reordenação da lista de jogos é impossível no momento, por favor espere a verificação da ROM terminar e tente novamente</translation>
-    </message>
-    <message>
         <location filename="../../options.cpp" line="1447"/>
         <source>?</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>sorting game list by %1 in %2 order</source>
-        <translation type="obsolete">ordenando lista de jogos por %1 na ordem %2</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1489"/>
@@ -13327,10 +12870,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../options.cpp" line="1789"/>
         <source>FATAL: can&apos;t open icon file, please check access permissions for %1</source>
         <translation>FATAL: impossível abrir arquivo do ícone, por favor verifique permissões de acesso para %1</translation>
-    </message>
-    <message>
-        <source>triggering automatic reload of game list</source>
-        <translation type="obsolete">ativando recarregamento automático da lista de jogos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1982"/>
@@ -13557,17 +13096,9 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>Escolha a ferramenta de ROM</translation>
     </message>
     <message>
-        <source>Choose game favorites file</source>
-        <translation type="obsolete">Escolha o arquivo de favoritos de jogos</translation>
-    </message>
-    <message>
         <location filename="../../options.cpp" line="2952"/>
         <source>Choose play history file</source>
         <translation>Escolha o arquivo de histórico de jogos</translation>
-    </message>
-    <message>
-        <source>Choose gamelist cache file</source>
-        <translation type="obsolete">Escolha o arquivo de cache da lista de jogos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2979"/>
@@ -13595,14 +13126,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../options.cpp" line="263"/>
         <source>Clear ProjectMESS cache</source>
         <translation>Limpar cache do ProjectMESS</translation>
-    </message>
-    <message>
-        <source>Reload game list</source>
-        <translation type="obsolete">Recarregar lista de jogos</translation>
-    </message>
-    <message>
-        <source>Game list with full detail</source>
-        <translation type="obsolete">Lista de jogos em detalhes</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1721"/>
@@ -13787,14 +13310,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>US (Inglês)</translation>
     </message>
     <message>
-        <source>Save game selection</source>
-        <translation type="obsolete">Salvar seleção de jogo</translation>
-    </message>
-    <message>
-        <source>Restore game selection</source>
-        <translation type="obsolete">Restaurar seleção de jogo</translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="93"/>
         <location filename="../../options.ui" line="103"/>
         <location filename="../../options.ui" line="113"/>
@@ -13868,34 +13383,10 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>Verificar instância única</translation>
     </message>
     <message>
-        <source>Show vertical game status indicator in game details</source>
-        <translation type="obsolete">Mostar indicador vertical do estado do jogo nos detalhes do jogo</translation>
-    </message>
-    <message>
-        <source>Game status indicator</source>
-        <translation type="obsolete">Mostrar indicador de estado</translation>
-    </message>
-    <message>
-        <source>Show the game status indicator only when the game list is not visible due to the current layout</source>
-        <translation type="obsolete">Mostrar o indicador vertical de estado de jogo somente quando a lista de máquinas não é visível devido ao layout atual</translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="152"/>
         <location filename="../../options.ui" line="242"/>
         <source>Only when required</source>
         <translation>Somente quando requerido</translation>
-    </message>
-    <message>
-        <source>Show game&apos;s description at the bottom of any images</source>
-        <translation type="obsolete">Mostrar descrição do jogo abaixo de quaisquer imagens</translation>
-    </message>
-    <message>
-        <source>Show game name</source>
-        <translation type="obsolete">Mostrar nome do jogo</translation>
-    </message>
-    <message>
-        <source>Show game&apos;s description only when the game list is not visible due to the current layout</source>
-        <translation type="obsolete">Mostrar descrição de jogo somente quando a lista de máquinas não é visível devido ao layout atual</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="341"/>
@@ -13907,14 +13398,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../options.ui" line="360"/>
         <source>restart required</source>
         <translation>requer reinício</translation>
-    </message>
-    <message>
-        <source>Option requires a reload of the gamelist to take effect</source>
-        <translation type="obsolete">Opção requer recarregamento da lista de jogos para ter efeito</translation>
-    </message>
-    <message>
-        <source>Option requires a reload of the entire game list to take effect</source>
-        <translation type="obsolete">Opção requer recarregar a lista de jogos inteira para ter efeito</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2322"/>
@@ -14132,14 +13615,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>Arquivo de favoritos</translation>
     </message>
     <message>
-        <source>Game favorites file (write)</source>
-        <translation type="obsolete">Arquivo de jogos favoritos (escrita)</translation>
-    </message>
-    <message>
-        <source>Browse game favorites file</source>
-        <translation type="obsolete">Procurar por arquivo de favoritos</translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="989"/>
         <source>Play history file</source>
         <translation>Arquivo de histórico de jogadas</translation>
@@ -14287,10 +13762,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>Procurar pelo diretório de snapshots de software</translation>
     </message>
     <message>
-        <source>Game &amp;list</source>
-        <translation type="obsolete">&amp;Lista de jogos</translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="2931"/>
         <source>ROM state filter</source>
         <translation>Filtro de estado da ROM</translation>
@@ -14331,10 +13802,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>Selecione um critério de ordenação</translation>
     </message>
     <message>
-        <source>Game description</source>
-        <translation type="obsolete">Descrição do jogo</translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="3023"/>
         <source>ROM state</source>
         <translation>Estado da ROM</translation>
@@ -14348,10 +13815,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../options.ui" line="3038"/>
         <source>Manufacturer</source>
         <translation>Fabricante</translation>
-    </message>
-    <message>
-        <source>Game name</source>
-        <translation type="obsolete">Nome do jogo</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3048"/>
@@ -14389,10 +13852,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>Disponibilidade</translation>
     </message>
     <message>
-        <source>Number of item insertions between game list updates during reload (higher means faster, but makes the GUI less responsive)</source>
-        <translation type="obsolete">Número de itens inseridos entre as atualizações da lista de jogos durante o recarregamento (maior significa mais rápido, mas torna a interface menos disponível)</translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="3219"/>
         <source>immediate</source>
         <translation>imediata</translation>
@@ -14401,10 +13860,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../options.ui" line="2991"/>
         <source>Update delay</source>
         <translation>Atraso de atualização</translation>
-    </message>
-    <message>
-        <source>Delay update of any game details (preview, flyer, info, configuration, ...) by how many milliseconds?</source>
-        <translation type="obsolete">Atrasar atualização dos qualquer detalhe do jogo (preview, flyer, informações, configurações, ....) por quantos milisegundos?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3443"/>
@@ -14527,14 +13982,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>Um emulador por vez</translation>
     </message>
     <message>
-        <source>MAME game information database - history.dat (read)</source>
-        <translation type="obsolete">Base de dados de informação de jogos do MAME - history.dat (leitura)</translation>
-    </message>
-    <message>
-        <source>Browse MAME game information database (history.dat)</source>
-        <translation type="obsolete">Procurar por base de dados de informação de jogos do MAME(history.dat)</translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="2818"/>
         <source>Load MESS machine information database (sysinfo.dat)</source>
         <translation>Carregar base da dados de informação de máquinas do MESS (sysinfo.dat)</translation>
@@ -14553,10 +14000,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../options.ui" line="948"/>
         <source>Import MESS emulator information to DAT-info database</source>
         <translation>Importar informação do emulador MESS para a base de dados de informação DAT</translation>
-    </message>
-    <message>
-        <source>Import MAME game information to DAT-info database</source>
-        <translation type="obsolete">Importar informação de jogo do MAME para a base de dados de informação DAT</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1035"/>
@@ -14582,10 +14025,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../options.ui" line="1712"/>
         <source>DAT-info database file (write)</source>
         <translation>Arquivo do banco de dados de informação DAT (escrita)</translation>
-    </message>
-    <message>
-        <source>Game info (MAME)</source>
-        <translation type="obsolete">Informação de jogo (MAME)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2821"/>
@@ -14735,24 +14174,12 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>Limpar banco de dados</translation>
     </message>
     <message>
-        <source>Game list cache</source>
-        <translation type="obsolete">Cache da lista de jogos</translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="3657"/>
         <location filename="../../options.cpp" line="381"/>
         <location filename="../../options.cpp" line="382"/>
         <location filename="../../options.cpp" line="4014"/>
         <source>Default</source>
         <translation>Padrão</translation>
-    </message>
-    <message>
-        <source>Save game selection on exit and before reloading the game list</source>
-        <translation type="obsolete">Salvar seleção de jogos ao sair e antes de recarregar a lista de jogos</translation>
-    </message>
-    <message>
-        <source>Restore saved game selection at start and after reloading the game list</source>
-        <translation type="obsolete">Restaurar seleção de jogos ao iniciar e antes de recarregar a lista de jogos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="788"/>
@@ -15082,10 +14509,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../options.ui" line="1450"/>
         <source>Browse compressed software snap-shot file</source>
         <translation>Procurar o arquivo comprimido de snapshots de software</translation>
-    </message>
-    <message>
-        <source>Load MAME game information database (history.dat)</source>
-        <translation type="obsolete">Carregar base de dados de informações de jogos do MAME (history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2828"/>
@@ -15967,10 +15390,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>Recriar automaticamente todos os caches de emuladores quando a saída do &apos;-listfull&apos; mudar</translation>
     </message>
     <message>
-        <source>Registered emulators -- you may select one of these in the game-specific emulator configuration</source>
-        <translation type="obsolete">Emuladores registrados -- você pode selecionar um desses na configuração de emulador específica de jogo</translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="5343"/>
         <source>Name</source>
         <translation>Nome</translation>
@@ -16014,14 +15433,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../options.ui" line="5434"/>
         <source>Replace emulator registration</source>
         <translation>Substituir registro do emulador</translation>
-    </message>
-    <message>
-        <source>Game list cache file (write)</source>
-        <translation type="obsolete">Arquivo de cache de lista de jogos (escrita)</translation>
-    </message>
-    <message>
-        <source>Browse game list cache file</source>
-        <translation type="obsolete">Procurar arquivo de cache de lista de jogos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5083"/>
@@ -16428,10 +15839,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>máquina não existe</translation>
     </message>
     <message>
-        <source>game doesn&apos;t exist</source>
-        <translation type="obsolete">jogo não existe</translation>
-    </message>
-    <message>
         <location filename="../../processmanager.cpp" line="410"/>
         <source>invalid configuration</source>
         <translation>configuração inválida</translation>
@@ -16590,10 +15997,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>Tipos de ROM</translation>
     </message>
     <message>
-        <source>game description</source>
-        <translation type="obsolete">descrição do jogo</translation>
-    </message>
-    <message>
         <location filename="../../machinelist.cpp" line="2035"/>
         <location filename="../../options.cpp" line="1453"/>
         <source>ROM state</source>
@@ -16616,10 +16019,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../options.cpp" line="1462"/>
         <source>manufacturer</source>
         <translation>fabricante</translation>
-    </message>
-    <message>
-        <source>game name</source>
-        <translation type="obsolete">nome do jogo</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2032"/>
@@ -16687,18 +16086,10 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>Padrão</translation>
     </message>
     <message>
-        <source>Export game-specific MAME configuration</source>
-        <translation type="obsolete">Exportar configuração do MAME específica de jogo</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.cpp" line="4368"/>
         <location filename="../../qmc2main.cpp" line="11241"/>
         <source>Import from...</source>
         <translation>Importar de...</translation>
-    </message>
-    <message>
-        <source>Import game-specific MAME configuration</source>
-        <translation type="obsolete">Importar configuração do MAME específica de jogo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4366"/>
@@ -16820,35 +16211,35 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1142"/>
-        <location filename="../../softwarelist.cpp" line="3616"/>
-        <location filename="../../softwarelist.cpp" line="3679"/>
-        <location filename="../../softwarelist.cpp" line="5104"/>
+        <location filename="../../softwarelist.cpp" line="3622"/>
+        <location filename="../../softwarelist.cpp" line="3685"/>
+        <location filename="../../softwarelist.cpp" line="5112"/>
         <source>Auto mount</source>
         <translation>Montar automaticamente</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1147"/>
-        <location filename="../../softwarelist.cpp" line="3632"/>
-        <location filename="../../softwarelist.cpp" line="3653"/>
+        <location filename="../../softwarelist.cpp" line="3638"/>
         <location filename="../../softwarelist.cpp" line="3659"/>
-        <location filename="../../softwarelist.cpp" line="3683"/>
-        <location filename="../../softwarelist.cpp" line="5109"/>
-        <location filename="../../softwarelist.cpp" line="5113"/>
+        <location filename="../../softwarelist.cpp" line="3665"/>
+        <location filename="../../softwarelist.cpp" line="3689"/>
+        <location filename="../../softwarelist.cpp" line="5117"/>
+        <location filename="../../softwarelist.cpp" line="5121"/>
         <source>Not mounted</source>
         <translation>Não montado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1149"/>
-        <location filename="../../softwarelist.cpp" line="3634"/>
-        <location filename="../../softwarelist.cpp" line="3687"/>
-        <location filename="../../softwarelist.cpp" line="5115"/>
+        <location filename="../../softwarelist.cpp" line="3640"/>
+        <location filename="../../softwarelist.cpp" line="3693"/>
+        <location filename="../../softwarelist.cpp" line="5123"/>
         <source>Mounted on:</source>
         <translation>Mointado em:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1141"/>
-        <location filename="../../softwarelist.cpp" line="3640"/>
-        <location filename="../../softwarelist.cpp" line="5103"/>
+        <location filename="../../softwarelist.cpp" line="3646"/>
+        <location filename="../../softwarelist.cpp" line="5111"/>
         <source>Don&apos;t mount</source>
         <translation>Não montar</translation>
     </message>
@@ -16856,35 +16247,35 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../softwarelist.cpp" line="1520"/>
         <location filename="../../softwarelist.cpp" line="1546"/>
         <location filename="../../softwarelist.cpp" line="1567"/>
-        <location filename="../../softwarelist.cpp" line="4111"/>
+        <location filename="../../softwarelist.cpp" line="4119"/>
         <source>Waiting for data...</source>
         <translation>Aguardando por dados...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5067"/>
-        <location filename="../../softwarelist.cpp" line="5069"/>
+        <location filename="../../softwarelist.cpp" line="5075"/>
+        <location filename="../../softwarelist.cpp" line="5077"/>
         <source>Searching</source>
         <translation>Procurando</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5081"/>
+        <location filename="../../softwarelist.cpp" line="5089"/>
         <source>Updating</source>
         <translation>Atualizando</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5093"/>
+        <location filename="../../softwarelist.cpp" line="5101"/>
         <source>Part:</source>
         <translation>Parte:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1151"/>
-        <location filename="../../softwarelist.cpp" line="5120"/>
+        <location filename="../../softwarelist.cpp" line="5128"/>
         <source>No mount device</source>
         <translation>Nenhum dispositivo montado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1152"/>
-        <location filename="../../softwarelist.cpp" line="5121"/>
+        <location filename="../../softwarelist.cpp" line="5129"/>
         <source>Unmanaged</source>
         <translation>Não gerenciado</translation>
     </message>
@@ -16894,49 +16285,49 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>Informação de estado para a lista de software &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4102"/>
+        <location filename="../../softwarelist.cpp" line="4110"/>
         <source>yes</source>
         <translation>sim</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4104"/>
+        <location filename="../../softwarelist.cpp" line="4112"/>
         <source>no</source>
         <translation>não</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4106"/>
+        <location filename="../../softwarelist.cpp" line="4114"/>
         <source>partially</source>
         <translation>parcialmente</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5146"/>
+        <location filename="../../softwarelist.cpp" line="5154"/>
         <source>Data area:</source>
         <translation>Área de dados:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5149"/>
-        <location filename="../../softwarelist.cpp" line="5161"/>
-        <location filename="../../softwarelist.cpp" line="5175"/>
+        <location filename="../../softwarelist.cpp" line="5157"/>
+        <location filename="../../softwarelist.cpp" line="5169"/>
+        <location filename="../../softwarelist.cpp" line="5183"/>
         <source>Size:</source>
         <translation>Tamanho:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5158"/>
+        <location filename="../../softwarelist.cpp" line="5166"/>
         <source>Disk area:</source>
         <translation>Área do disco:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5178"/>
+        <location filename="../../softwarelist.cpp" line="5186"/>
         <source>CRC:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5193"/>
+        <location filename="../../softwarelist.cpp" line="5201"/>
         <source>SHA1:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5202"/>
+        <location filename="../../softwarelist.cpp" line="5210"/>
         <source>Info:</source>
         <translation>Informação:</translation>
     </message>
@@ -16974,10 +16365,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../arcade/keysequences.h" line="85"/>
         <source>[context] Select / Set / Toggle details / Start emulation</source>
         <translation>[contexto] Selecionar / Definir / Alternar detalhes / Iniciar emulação</translation>
-    </message>
-    <message>
-        <source>[context] Abort game launch / Hide preferences</source>
-        <translation type="obsolete">[contexto] Abortar lançamento do jogo / esconder preferências</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="87"/>
@@ -17107,10 +16494,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>[global] Alternar barra de menu</translation>
     </message>
     <message>
-        <source>[global] Flip cabinet / game-card</source>
-        <translation type="obsolete">[global] Girar gabinete / cartão do jogo</translation>
-    </message>
-    <message>
         <location filename="../../arcade/keysequences.h" line="95"/>
         <location filename="../../arcade/keysequences.h" line="96"/>
         <source>[global] Next component</source>
@@ -17233,10 +16616,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../romalyzer.cpp" line="2366"/>
         <source>software mode</source>
         <translation>modo de software</translation>
-    </message>
-    <message>
-        <source>Select game</source>
-        <translation type="obsolete">Selecionar jogo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2379"/>
@@ -18826,10 +18205,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>Calcular some CRC-32</translation>
     </message>
     <message>
-        <source>Automatically scroll to the currently analyzed game</source>
-        <translation type="obsolete">Ir automaticamente para o jogo analisado atualmente</translation>
-    </message>
-    <message>
         <location filename="../../romalyzer.ui" line="915"/>
         <source>Automatically expand file info</source>
         <translation>Automaticamente expandir as informações do arquivo</translation>
@@ -18926,10 +18301,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../romalyzer.ui" line="846"/>
         <source> lines</source>
         <translation>linhas</translation>
-    </message>
-    <message>
-        <source>Select game in game list if selected in analysis report?</source>
-        <translation type="obsolete">Selecionar jogo na lista de jogo se selecionado na análise?</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1110"/>
@@ -19836,10 +19207,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>Selecione o critério de ordenação</translation>
     </message>
     <message>
-        <source>Game description</source>
-        <translation type="obsolete">Descrição do jogo</translation>
-    </message>
-    <message>
         <location filename="../../romstatusexport.ui" line="203"/>
         <location filename="../../romstatusexport.cpp" line="191"/>
         <location filename="../../romstatusexport.cpp" line="307"/>
@@ -19847,10 +19214,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../romstatusexport.cpp" line="792"/>
         <source>ROM status</source>
         <translation>Estado da ROM</translation>
-    </message>
-    <message>
-        <source>Game name</source>
-        <translation type="obsolete">Nome do jogo</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="198"/>
@@ -20150,18 +19513,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../samplechecker.cpp" line="140"/>
         <source>Parsing XML data</source>
         <translation>Analisando dados do XML</translation>
-    </message>
-    <message>
-        <source>WARNING: XML bug: the game &apos;%1&apos; is referencing a non-existing sample-set (sampleof=&quot;%2&quot;) -- please inform MAME developers</source>
-        <translation type="obsolete">AVISO: Defeito do XML: o jogo &apos;%1&apos; referencia um conjunto de sample inexistente (sampleof=&quot;%2&quot;) -- por favor informe os desenvolvedores do MAME</translation>
-    </message>
-    <message>
-        <source>WARNING: XML bug: the following games are referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
-        <translation type="obsolete">AVISO: Defeito do XML: os jogos a seguir referenciam um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MAME</translation>
-    </message>
-    <message>
-        <source>WARNING: XML bug: the following game is referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
-        <translation type="obsolete">AVISO: Defeito do XML: o jogo a seguir referencia um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MAME</translation>
     </message>
     <message numerus="yes">
         <location filename="../../samplechecker.cpp" line="229"/>
@@ -20641,7 +19992,7 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../softwarelist.ui" line="210"/>
         <location filename="../../softwarelist.cpp" line="2448"/>
-        <location filename="../../softwarelist.cpp" line="3363"/>
+        <location filename="../../softwarelist.cpp" line="3369"/>
         <source>Default configuration</source>
         <translation>Configuração padrão</translation>
     </message>
@@ -20814,8 +20165,8 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
     <message>
         <location filename="../../softwarelist.ui" line="804"/>
         <location filename="../../softwarelist.ui" line="807"/>
-        <source>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown</source>
-        <translation>L:Listado - C:Correto - M:Maioria correto - I:Incorreto - N:Não econtrado - D:Desconhecido</translation>
+        <source>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="826"/>
@@ -21011,8 +20362,8 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <location filename="../../softwarelist.cpp" line="2632"/>
         <location filename="../../softwarelist.cpp" line="2661"/>
         <location filename="../../softwarelist.cpp" line="2690"/>
-        <location filename="../../softwarelist.cpp" line="3261"/>
-        <location filename="../../softwarelist.cpp" line="3748"/>
+        <location filename="../../softwarelist.cpp" line="3264"/>
+        <location filename="../../softwarelist.cpp" line="3754"/>
         <source>Waiting for data...</source>
         <translation>Aguardando por dados...</translation>
     </message>
@@ -21082,38 +20433,38 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>FATAL: não foi possível encontrar os dados XML para a entrada &apos;%1.%2&apos; da lista de software</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3884"/>
-        <location filename="../../softwarelist.cpp" line="3893"/>
+        <location filename="../../softwarelist.cpp" line="3890"/>
+        <location filename="../../softwarelist.cpp" line="3900"/>
         <source>L:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3886"/>
-        <location filename="../../softwarelist.cpp" line="3895"/>
+        <location filename="../../softwarelist.cpp" line="3892"/>
+        <location filename="../../softwarelist.cpp" line="3902"/>
         <source>C:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3887"/>
-        <location filename="../../softwarelist.cpp" line="3896"/>
+        <location filename="../../softwarelist.cpp" line="3893"/>
+        <location filename="../../softwarelist.cpp" line="3903"/>
         <source>M:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3888"/>
-        <location filename="../../softwarelist.cpp" line="3897"/>
+        <location filename="../../softwarelist.cpp" line="3894"/>
+        <location filename="../../softwarelist.cpp" line="3904"/>
         <source>I:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3889"/>
-        <location filename="../../softwarelist.cpp" line="3898"/>
+        <location filename="../../softwarelist.cpp" line="3895"/>
+        <location filename="../../softwarelist.cpp" line="3905"/>
         <source>N:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3890"/>
-        <location filename="../../softwarelist.cpp" line="3899"/>
+        <location filename="../../softwarelist.cpp" line="3896"/>
+        <location filename="../../softwarelist.cpp" line="3906"/>
         <source>U:</source>
         <translation>D:</translation>
     </message>
@@ -21237,97 +20588,103 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
         <translation>FATAL: erro durante a análise dos dados do XML para a entrada da lista de software &apos;%1:%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3717"/>
+        <location filename="../../softwarelist.cpp" line="3723"/>
         <source>Choose file to merge favorites from</source>
         <translation>Escolher arquivo de origem para mesclar os favoritos</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3717"/>
-        <location filename="../../softwarelist.cpp" line="3796"/>
+        <location filename="../../softwarelist.cpp" line="3723"/>
+        <location filename="../../softwarelist.cpp" line="3802"/>
         <source>All files (*)</source>
         <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3730"/>
+        <location filename="../../softwarelist.cpp" line="3736"/>
         <source>loading software-favorites for &apos;%1&apos; from &apos;%2&apos;</source>
         <translation>carregando favoritos de software para &apos;%1&apos; de &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3773"/>
+        <location filename="../../softwarelist.cpp" line="3779"/>
         <source>entry &apos;%1:%2&apos; successfully imported</source>
         <translation>entrada &apos;%1:%2&apos; importada com sucesso</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3775"/>
+        <location filename="../../softwarelist.cpp" line="3781"/>
         <source>WARNING: entry &apos;%1:%2&apos; cannot be associated with any known software for this system (line %3 ignored)</source>
         <translation>AVISO: entrada &apos;%1:%2&apos; não pode ser associada com qualquer software conhecido para esse sistema (linha %3 ignorada)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3777"/>
+        <location filename="../../softwarelist.cpp" line="3783"/>
         <source>WARNING: a favorite entry for &apos;%1:%2&apos; already exists (line %3 ignored)</source>
         <translation>AVISO: uma entrada de favorito para &apos;%1:%2&apos; já existe (linha %3 ignorada)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3779"/>
+        <location filename="../../softwarelist.cpp" line="3785"/>
         <source>WARNING: syntax error on line %1 (ignored)</source>
         <translation>AVISO: erro de sintaxe na linha %1 (ignorada)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3783"/>
+        <location filename="../../softwarelist.cpp" line="3789"/>
         <source>done (loading software-favorites for &apos;%1&apos; from &apos;%2&apos;)</source>
         <translation>feito (carregando favoritos de software para &apos;%1&apos; de &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3785"/>
+        <location filename="../../softwarelist.cpp" line="3791"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for reading, please check permissions</source>
         <translation>FATAL: impossível abrir &apos;%1&apos; para leitura. por favor verifique as permissões</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3796"/>
+        <location filename="../../softwarelist.cpp" line="3802"/>
         <source>Choose file to store favorites to</source>
         <translation>Escolha o arquivo para guardar os favoritos</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3807"/>
+        <location filename="../../softwarelist.cpp" line="3813"/>
         <source>saving software-favorites for &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>salvando favoritos de software para &apos;%1&apos; de &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3822"/>
+        <location filename="../../softwarelist.cpp" line="3828"/>
         <source>done (saving software-favorites for &apos;%1&apos; to &apos;%2&apos;)</source>
         <translation>feito (salvando favoritos de software para &apos;%1&apos; de &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3824"/>
+        <location filename="../../softwarelist.cpp" line="3830"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing, please check permissions</source>
         <translation>FATAL: impossível abrir &apos;%1&apos; para escrita. por favor verifique as permissões</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3835"/>
+        <location filename="../../softwarelist.cpp" line="3841"/>
         <source>correct</source>
         <translation>correto</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3841"/>
+        <location filename="../../softwarelist.cpp" line="3847"/>
         <source>mostly correct</source>
         <translation>maioria correto</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3847"/>
+        <location filename="../../softwarelist.cpp" line="3853"/>
         <source>incorrect</source>
         <translation>incorreto</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3853"/>
+        <location filename="../../softwarelist.cpp" line="3859"/>
         <source>not found</source>
         <translation>não encontrado</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3860"/>
-        <location filename="../../softwarelist.cpp" line="3867"/>
+        <location filename="../../softwarelist.cpp" line="3866"/>
         <location filename="../../softwarelist.cpp" line="3873"/>
+        <location filename="../../softwarelist.cpp" line="3879"/>
         <source>unknown</source>
         <translation>desconhecido</translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="3897"/>
+        <location filename="../../softwarelist.cpp" line="3907"/>
+        <source>S:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -21753,75 +21110,75 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
 <context>
     <name>SoftwareSnap</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="4286"/>
+        <location filename="../../softwarelist.cpp" line="4294"/>
         <source>Copy image to clipboard</source>
         <translation>Copiar imagem para a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4292"/>
+        <location filename="../../softwarelist.cpp" line="4300"/>
         <source>Copy file path to clipboard</source>
         <translation>Copiar caminho do arquivo para a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4301"/>
+        <location filename="../../softwarelist.cpp" line="4309"/>
         <source>Zoom in (+10%)</source>
         <translation>Aumentar zoom (+10%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4307"/>
+        <location filename="../../softwarelist.cpp" line="4315"/>
         <source>Zoom out (-10%)</source>
         <translation>Diminuir zoom (-10%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4313"/>
+        <location filename="../../softwarelist.cpp" line="4321"/>
         <source>Reset zoom (100%)</source>
         <translation>Redefinir zoom (100%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4321"/>
+        <location filename="../../softwarelist.cpp" line="4329"/>
         <source>Refresh cache slot</source>
         <translation>Atualizar slot do cache</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4333"/>
-        <location filename="../../softwarelist.cpp" line="4648"/>
+        <location filename="../../softwarelist.cpp" line="4341"/>
+        <location filename="../../softwarelist.cpp" line="4656"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: impossível abrir arquivo de snapshot de software. por favor verifique as permissões de acesso para %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4339"/>
-        <location filename="../../softwarelist.cpp" line="4695"/>
+        <location filename="../../softwarelist.cpp" line="4347"/>
+        <location filename="../../softwarelist.cpp" line="4703"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
         <translation>FATAL: impossível abrir arquivo de snapshot de software %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4339"/>
-        <location filename="../../softwarelist.cpp" line="4695"/>
+        <location filename="../../softwarelist.cpp" line="4347"/>
+        <location filename="../../softwarelist.cpp" line="4703"/>
         <source>7z error</source>
         <translation>erro do 7z</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4388"/>
+        <location filename="../../softwarelist.cpp" line="4396"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>FATAL: impossível criar um backup do arquivo de imagem existente &apos;%1&apos; como &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4403"/>
+        <location filename="../../softwarelist.cpp" line="4411"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
         <translation>FATAL: impossível criar arquivo de imagem &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4409"/>
+        <location filename="../../softwarelist.cpp" line="4417"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
         <translation>FATAL: impossível determinar caminho primário para o tipo de imagem &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4409"/>
+        <location filename="../../softwarelist.cpp" line="4417"/>
         <source>software snapshot</source>
         <translation>snapshot de software</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4730"/>
+        <location filename="../../softwarelist.cpp" line="4738"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Descomprimindo arquivo, por favor espere...</translation>
     </message>
@@ -21829,37 +21186,37 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="5271"/>
+        <location filename="../../softwarelist.cpp" line="5279"/>
         <source>Copy image to clipboard</source>
         <translation>Copiar imagem para a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5277"/>
+        <location filename="../../softwarelist.cpp" line="5285"/>
         <source>Copy file path to clipboard</source>
         <translation>Copiar caminho do arquivo para a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5286"/>
+        <location filename="../../softwarelist.cpp" line="5294"/>
         <source>Refresh cache slot</source>
         <translation>Atualizar slot do cache</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5392"/>
+        <location filename="../../softwarelist.cpp" line="5400"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: impossível abrir arquivo de snapshot de software. por favor verifique as permissões de acesso para %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5441"/>
+        <location filename="../../softwarelist.cpp" line="5449"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
         <translation>FATAL: impossível abrir arquivo de snapshot de software %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5441"/>
+        <location filename="../../softwarelist.cpp" line="5449"/>
         <source>7z error</source>
         <translation>erro do 7z</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5474"/>
+        <location filename="../../softwarelist.cpp" line="5482"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Descomprimindo arquivo, por favor espere...</translation>
     </message>
@@ -22322,14 +21679,6 @@ Usar configurações de jogo local, sobrescrever com as configurações globais 
 <context>
     <name>Welcome</name>
     <message>
-        <source>Unsupported emulator</source>
-        <translation type="obsolete">Emulador não suportado</translation>
-    </message>
-    <message>
-        <source>%1 executable file</source>
-        <translation type="obsolete">Arquivo executável %1</translation>
-    </message>
-    <message>
         <location filename="../../welcome.cpp" line="78"/>
         <source>Error</source>
         <translation>Erro</translation>
@@ -22406,24 +21755,6 @@ Sair agora, aceitar uma vez ou ignorar completamente?</translation>
         <location filename="../../welcome.ui" line="15"/>
         <source>Welcome to QMC2</source>
         <translation>Bem vindo ao QMC2</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;Welcome to QMC2!&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This appears to be your first start of QMC2 because no valid configuration was found. In order to use QMC2 as a front end for an emulator, you must specify the path to the emulator&apos;s executable file below.&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The paths below the executable file are optional, but you should specify as many of them as you can right now to avoid problems or confusion later (of course, you can change the paths in the emulator&apos;s global configuration at any time later).&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;It&apos;s strongly recommended that you specify the ROM path you are going to use at least!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;Bem-vindo ao QMC2!&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Essa parece ser sua primeira execução do QMC2 pois nenhuma configuração válida foi encontrada. Para poder usar o QMC2 como front end para um emulador, você precisa especificar o caminho para o arquivo executável do emulador abaixo.&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Os campos abaixo ao do arquivo executável são opcionais, mas você deveria especificar todos os que você conseguir agora para evitar problemas ou confusão mais tarde (claro que você pode mudar esses caminhos nas configurações globais do emulador a qualquer tempo).&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;É fortemente recomendado que você especifique pelo menos o caminho de onde se encontram as ROMs que você irá usar!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="238"/>

@@ -276,7 +276,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QTimer detailUpdateTimer;
 		QTreeWidgetItem *currentItem;
 		QTreeWidgetItem *enteredItem;
-		quint64 numSoftwareTotal, numSoftwareCorrect, numSoftwareIncorrect, numSoftwareMostlyCorrect, numSoftwareNotFound, numSoftwareUnknown;
+		quint64 numSoftwareTotal, numSoftwareCorrect, numSoftwareIncorrect, numSoftwareMostlyCorrect, numSoftwareNotFound, numSoftwareUnknown, numSoftwareMatches;
 		quint64 oldSoftwareCorrect, oldSoftwareIncorrect, oldSoftwareMostlyCorrect, oldSoftwareNotFound, oldSoftwareUnknown;
 		SoftwareListExporter *exporter;
 		SoftwareStateFilter *stateFilter;

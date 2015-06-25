@@ -1169,7 +1169,7 @@ bool SoftwareList::load()
 	isLoading = true;
 	fullyLoaded = false;
 	validData = swlSupported;
-	numSoftwareTotal = numSoftwareCorrect = numSoftwareIncorrect = numSoftwareMostlyCorrect = numSoftwareNotFound = numSoftwareUnknown = 0;
+	numSoftwareTotal = numSoftwareCorrect = numSoftwareIncorrect = numSoftwareMostlyCorrect = numSoftwareNotFound = numSoftwareUnknown = numSoftwareMatches = 0;
 	updateStats();
 
 	toolButtonReload->setEnabled(false);
@@ -3189,6 +3189,8 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 		treeWidgetSearchResults->clear();
 		lastSearchText.clear();
 		lastNegatedMatch = negatedMatch;
+		numSoftwareMatches = 0;
+		updateStats();
 		return;
 	} else if ( treeWidgetSearchResults->topLevelItemCount() == 0 )
 		lastSearchText.clear();
@@ -3247,6 +3249,7 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 	QList<SoftwareItem *> hideList;
 	QStringList compatFilters = systemSoftwareFilterHash[systemName];
 	QStringList hiddenLists = qmc2MachineList->userDataDb()->hiddenLists(systemName);
+	numSoftwareMatches = 0;
 	for (int i = 0; i < treeWidgetKnownSoftware->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
 		QTreeWidgetItem *item = treeWidgetKnownSoftware->topLevelItem(i);
 		QString itemText = item->text(QMC2_SWLIST_COLUMN_TITLE);
@@ -3284,6 +3287,8 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 			}
 			if ( !showItem )
 				hideList << newItem;
+			else
+				numSoftwareMatches++;
 		}
 		progressBarSearch->setValue(progressBarSearch->value() + 1);
 		if ( i % QMC2_SEARCH_RESULT_UPDATE == 0 ) {
@@ -3295,6 +3300,7 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 			itemList.clear();
 			hideList.clear();
 			treeWidgetSearchResults->setUpdatesEnabled(true);
+			updateStats();
 			qApp->processEvents();
 		}
 	}
@@ -3312,6 +3318,7 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 	} else
 		lastSearchText.clear();
 
+	updateStats();
 	lastNegatedMatch = negatedMatch;
 
 	progressBarSearch->setVisible(false);
@@ -3324,7 +3331,6 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 	}
 
 	autoSelectSearchItem = false;
-
 	searchActive = false;
 }
 
@@ -3888,6 +3894,7 @@ QString SoftwareList::status(SoftwareListXmlHandler *handler)
 			statusString += "<font color=\"#f90000\">" + tr("I:") + locale.toString(numSoftwareIncorrect + handler->numIncorrect) + "</font> ";
 			statusString += "<font color=\"#7f7f7f\">" + tr("N:") + locale.toString(numSoftwareNotFound + handler->numNotFound) + "</font> ";
 			statusString += "<font color=\"#0000f9\">" + tr("U:") + locale.toString(numSoftwareUnknown + handler->numUnknown) + "</font> ";
+			statusString += "<font color=\"chocolate\">" + tr("S:") + locale.toString(numSoftwareMatches) + "</font> ";
 		}
 	} else {
 		statusString += "<font color=black>" + tr("L:") + locale.toString(numSoftwareTotal) + "</font> ";
@@ -3897,6 +3904,7 @@ QString SoftwareList::status(SoftwareListXmlHandler *handler)
 			statusString += "<font color=\"#f90000\">" + tr("I:") + locale.toString(numSoftwareIncorrect) + "</font> ";
 			statusString += "<font color=\"#7f7f7f\">" + tr("N:") + locale.toString(numSoftwareNotFound) + "</font> ";
 			statusString += "<font color=\"#0000f9\">" + tr("U:") + locale.toString(numSoftwareUnknown) + "</font> ";
+			statusString += "<font color=\"chocolate\">" + tr("S:") + locale.toString(numSoftwareMatches) + "</font> ";
 		}
 	}
 	statusString += "</b>";
