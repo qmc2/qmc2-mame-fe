@@ -1,6 +1,6 @@
 ﻿<!--
 SHIDERAVAN SYSTEM TEMPLATE
-LAST MODIFICATION: 22/May/2015
+LAST MODIFICATION: 28/June/2015
 
 Copyright (c) 2015 Jose Marcio Rezende Franco
 
@@ -18,6 +18,7 @@ Copyright (c) 2015 Jose Marcio Rezende Franco
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Whatsnew:
+28/June/2015: -New option to open source codes in GitHub using external default web browser. 
 22/May/2015: -Updated the whatsnew, documentation and licensing.
 21/May/2015: -Now if "shadows" is checked, it won't drawn shadows for images in the black column. 
 18/May/2015: -Now the source code open http://git.redump.net/ pages, since the current version MiniWebBroser is not able of opening GitHub page. (I intend to change as soon as there is compatibility). 
@@ -283,6 +284,12 @@ function toggleProgettoEmma(enable)
 function toggleArcadeHits(enable) 
 {
    localStorage['SystemNotesTemplate/UseArcadeHits'] = enable ? 'true' : 'false';
+   qmc2NEO.loadCurrentTemplate();
+}
+
+function driverSource(enable) 
+{
+   localStorage['SystemNotesTemplate/GHSource'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
@@ -1852,20 +1859,37 @@ if (localStorage['SystemNotesTemplate/InfoXML'] == 'true')
       document.write("<font size=\"3\"><br><i>$MANUFACTURER$, $YEAR$</i>");
    }   
         
-   /*Driver and source - MiniWebBrowser cannot open GitHub pages yet, then I'm using git.redump*/ 
+   /*Driver and source - If true, open GitHub in default browser. If false, open git.redump with MiniWebBrowser. */ 
    document.write("<br><br><b>"+tr('Driver'));   
    
-   if (device=="0")
+   if (localStorage['SystemNotesTemplate/GHSource']=='true')
    {
-      document.write("(Arcade): </b><a href=http://git.redump.net/mame/tree/src/mame/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in git.redump.net\">$SOURCE_FILE$</a><br><b>"+tr('Driver')+"(Other): </b><a href=http://git.redump.net/mame/tree/src/mess/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in git.redump.net\">$SOURCE_FILE$</a>"); 
+      if (device=="0")
+      {   
+         document.write(":<br></b><button title=\"Click here to see the source code in GitHub (for arcade systems)\" style= \"color:black;background-color:#009FFF;height:17\" onclick=\"qmc2NEO.openLinkInDefaultBrowser('https://github.com/mamedev/mame/blob/master/src/mame/drivers/$SOURCE_FILE$')\">$SOURCE_FILE$</button><button title=\"Click here to see the source code in GitHub (non-arcade)\" style= \"color:black;background-color:orange;height:17\" onclick=\"qmc2NEO.openLinkInDefaultBrowser('https://github.com/mamedev/mame/blob/master/src/mess/drivers/$SOURCE_FILE$')\">$SOURCE_FILE$</button>");
+      }   
+      
+      /*For devices, all source are stored in same place*/
+      else
+      { 
+         document.write(":<br></b><button title=\"Click here to see the source code of this device in GitHub\" style= \"color:white;background-color:#007095;height:17\" onclick=\"qmc2NEO.openLinkInDefaultBrowser('https://github.com/mamedev/mame/blob/master/src/mame/drivers/$SOURCE_FILE$')\">$SOURCE_FILE$</button>");
+      }
    }
    
-   /*For devices, all source are stored in same place*/
    else
-   {   
-      document.write(": </b><a href=http://git.redump.net/mame/tree/$SOURCE_FILE$ title=\"Click here to see the source code in git.redump.net\">$SOURCE_FILE$</a>");   
-   }           
-     
+   {
+      if (device=="0")
+      {
+         document.write("(Arcade): </b><a href=http://git.redump.net/mame/tree/src/mame/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in git.redump.net\">$SOURCE_FILE$</a><br><b>"+tr('Driver')+"(Other): </b><a href=http://git.redump.net/mame/tree/src/mess/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in git.redump.net\">$SOURCE_FILE$</a>"); 
+      }
+   
+      /*For devices, all source are stored in same place*/
+      else
+      {   
+         document.write(": </b><a href=http://git.redump.net/mame/tree/$SOURCE_FILE$ title=\"Click here to see the source code in git.redump.net\">$SOURCE_FILE$</a>");   
+      }           
+   }
+
    /*So long MiniWebBroser have compatibility for GitHub, change this part for this code
    
       if (device=="0")
@@ -3080,9 +3104,18 @@ if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
       document.write("<input name=\"cusezip\" type=\"checkbox\" id=\"cusezip\" onclick=\"toggleUseZip(this.checked);\" title=\"Select this option if you want to use images from zip files (maybe slow)\"/> <label>"+tr('Use images from ZIP (may be slow)')+"</label>");
    }   
 
-   document.write("</td></tr><tr><td width=\"10%\">");
-   document.write("</td><td align=\"left\">"); 
+      document.write("</td></tr><tr><td width=\"10%\"><font color=\"white\">"+tr('Others')+":");
+      document.write("</td><td align=\"left\"><font color=\"white\">");
 
+   if ( localStorage['SystemNotesTemplate/GHSource'] == 'true' )     
+   {
+      document.write("<input name=\"ghsource\" type=\"checkbox\" id=\"ghsource\" checked=\"checked\" onclick=\"driverSource(this.checked);\" title=\"Open source code in git.redump (in MiniWebBroser) or in GitHub (in external default web browser?)\"/> <label>"+tr('Source in GitHub')+"</label></td>");       
+   }
+                
+   else
+   {
+      document.write("<input name=\"ghsource\" type=\"checkbox\" id=\"ghsource\" onclick=\"driverSource(this.checked);\" title=\"Open source code in git.redump (in MiniWebBroser) or in GitHub (in external default web browser?)\"/> <label>"+tr('Source in GitHub')+"</label></td>");       
+   }
 
    document.write("<td><input name=\"btxt\" type=\"button\" id=\"btxt\" onclick=\"selectTextCor();\" style=\"background-image: url('../img/fonts.png');background-size: 100%; vertical-align: middle; width: 30; height: 30;\" title=\"Select Text Color\"/></font>"); 
 
