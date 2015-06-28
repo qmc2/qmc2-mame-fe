@@ -515,7 +515,7 @@ QString ArcadeSettings::colourScheme()
 
 QString ArcadeSettings::gameListCacheFile()
 {
-    return value(QString("%1/FilesAndDirectories/GamelistCacheFile").arg(emulatorPrefix)).toString();
+    return value(QString("%1/FilesAndDirectories/MachineListCacheFile").arg(emulatorPrefix)).toString();
 }
 
 QString ArcadeSettings::romStateCacheFile()
