@@ -48,7 +48,7 @@
 #define YOUTUBE_PLAYOMATIC_RANDOM	1
 
 // Play-O-Matic delay between videos
-#define YOUTUBE_PLAYOMATIC_DELAY	2000
+#define YOUTUBE_PLAYOMATIC_DELAY	1000
 
 // timeout and reply polling (wait) time for video info requests in ms
 #define YOUTUBE_VIDEOINFO_TIMEOUT	10000
