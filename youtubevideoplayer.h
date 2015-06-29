@@ -112,7 +112,6 @@ class VideoOverlayWidget : public QWidget
 			} else
 				hide();
 		}
-
 		void clearMessage()
 		{
 			clearMessageTimer.stop();
@@ -145,6 +144,22 @@ class VideoOverlayWidget : public QWidget
 		QString messageText;
 		QTimer clearMessageTimer;
 		QWidget *mVideoWidget;
+};
+
+class YouTubeVideoPlayer;
+
+class VideoEventFilter : public QObject
+{
+	Q_OBJECT
+
+	public:
+		VideoEventFilter(YouTubeVideoPlayer *player, QObject *parent = 0) : QObject(parent) { mPlayer = player; }
+
+	protected:
+		bool eventFilter(QObject *, QEvent *);
+
+	private:
+		YouTubeVideoPlayer *mPlayer;
 };
 
 class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
@@ -201,6 +216,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QMenu *menuVideoPlayer;
 		QMenu *menuSuggestButton;
 		VideoOverlayWidget *videoOverlayWidget;
+		VideoEventFilter *videoEventFilter;
 
 		QUrl getVideoStreamUrl(QString, QStringList *videoInfoStringList = NULL, bool videoInfoOnly = false);
 		QString indexToFormat(int);

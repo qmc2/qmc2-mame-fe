@@ -35,10 +35,6 @@ extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
 	: QWidget(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID = %1, QString sName = %2, QWidget *parent = %3)").arg(sID).arg(sName).arg((qulonglong) parent));
-#endif
-
 	setupUi(this);
 
 	mySetID = sID;
@@ -60,7 +56,6 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	connect(mediaObject(), SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(videoStateChanged(Phonon::State, Phonon::State)));
 	connect(mediaObject(), SIGNAL(bufferStatus(int)), this, SLOT(videoBufferStatus(int)));
 	connect(videoPlayer(), SIGNAL(finished()), this, SLOT(videoFinished()));
-	connect(videoPlayer(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(videoPlayer_customContextMenuRequested(const QPoint &)));
 #else
 	mFullscreenVideoWidget = NULL;
 	mVideoWidget = new QVideoWidget(this);
@@ -78,8 +73,10 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	connect(mediaObject(), SIGNAL(positionChanged(qint64)), this, SLOT(videoTick(qint64)));
 	connect(mediaObject(), SIGNAL(stateChanged(QMediaPlayer::State)), this, SLOT(videoStateChanged(QMediaPlayer::State)));
 	connect(mediaObject(), SIGNAL(bufferStatusChanged(int)), this, SLOT(videoBufferStatus(int)));
-	connect(videoWidget(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(videoPlayer_customContextMenuRequested(const QPoint &)));
 #endif
+
+	videoEventFilter = new VideoEventFilter(this, 0);
+	videoWidget()->installEventFilter(videoEventFilter);
 
 	videoOverlayWidget = new VideoOverlayWidget(videoWidget());
 
@@ -301,10 +298,6 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 
 YouTubeVideoPlayer::~YouTubeVideoPlayer()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::~YouTubeVideoPlayer()");
-#endif
-
 	// clean up
 	if ( videoOverlayWidget ) {
 		disconnect(videoOverlayWidget);
@@ -324,6 +317,8 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 		delete mFullscreenVideoWidget;
 	}
 #endif
+	if ( videoEventFilter )
+		delete videoEventFilter;
 	if ( menuAttachedVideos ) {
 		disconnect(menuAttachedVideos);
 		delete menuAttachedVideos;
@@ -372,10 +367,6 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 
 void YouTubeVideoPlayer::saveSettings()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::saveSettings()");
-#endif
-
   	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PreferredFormat", comboBoxPreferredFormat->currentIndex());
 #if QT_VERSION < 0x050000
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioVolume", int(audioOutput()->volume() * 100));
@@ -408,10 +399,6 @@ void YouTubeVideoPlayer::saveSettings()
 
 void YouTubeVideoPlayer::setSuggestorAppendString()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::setSuggestorAppendString()");
-#endif
-
 	bool ok;
 	QString appendString = QInputDialog::getText(this,
 						tr("Appended string"),
@@ -426,10 +413,6 @@ void YouTubeVideoPlayer::setSuggestorAppendString()
 
 void YouTubeVideoPlayer::loadNullVideo()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::loadNullVideo()");
-#endif
-
 	if ( forcedExit )
 		return;
 
@@ -443,10 +426,6 @@ void YouTubeVideoPlayer::loadNullVideo()
 
 void YouTubeVideoPlayer::playNextVideo()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::playNextVideo()");
-#endif
-
 	toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
 	QList<QListWidgetItem *> il = listWidgetAttachedVideos->findItems("*", Qt::MatchWildcard);
 	if ( il.count() > 0 ) {
@@ -511,10 +490,6 @@ void YouTubeVideoPlayer::playNextVideo()
 
 void YouTubeVideoPlayer::playAttachedVideo()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::playAttachedVideo()");
-#endif
-
 	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
 	if ( item ) {
 		on_listWidgetAttachedVideos_itemActivated(item);
@@ -524,10 +499,6 @@ void YouTubeVideoPlayer::playAttachedVideo()
 
 void YouTubeVideoPlayer::playSearchedVideo()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::playSearchedVideo()");
-#endif
-
 	QListWidgetItem *item = listWidgetSearchResults->currentItem();
 	if ( item )
 		on_listWidgetSearchResults_itemActivated(item);
@@ -535,10 +506,6 @@ void YouTubeVideoPlayer::playSearchedVideo()
 
 void YouTubeVideoPlayer::copyYouTubeUrl()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyYouTubeUrl()");
-#endif
-
 	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
 	if ( item ) {
 		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
@@ -556,10 +523,6 @@ void YouTubeVideoPlayer::copyYouTubeUrl()
 
 void YouTubeVideoPlayer::copyYouTubeUrlAlt()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyYouTubeUrlAlt()");
-#endif
-
 	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
 	if ( item ) {
 		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
@@ -580,10 +543,6 @@ void YouTubeVideoPlayer::pasteYouTubeUrl()
 	QString videoID = qApp->clipboard()->text();
 	videoID.replace(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=(.*)$"), "\\1").replace(QRegExp("\\&.*$"), "");
 
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::pasteYouTubeUrl(): videoID = '%1'").arg(videoID));
-#endif
-
 	if ( videoID.isEmpty() )
 		return;
 
@@ -600,10 +559,6 @@ void YouTubeVideoPlayer::playerPasteYouTubeUrl()
 	QString videoID = qApp->clipboard()->text();
 	videoID.replace(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=(.*)$"), "\\1").replace(QRegExp("\\&.*$"), "");
 
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::playerPasteYouTubeUrl(): videoID = '%1'").arg(videoID));
-#endif
-
 	if ( videoID.isEmpty() )
 		return;
 
@@ -612,10 +567,6 @@ void YouTubeVideoPlayer::playerPasteYouTubeUrl()
 
 void YouTubeVideoPlayer::playerLocalMovieFile()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::playerLocalMovieFile()");
-#endif
-	
 	QString filter = tr("All files (*)");
 	QString path = QFileDialog::getOpenFileName(this, tr("Choose movie file"), QString(), filter, 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !path.isNull() )
@@ -624,10 +575,6 @@ void YouTubeVideoPlayer::playerLocalMovieFile()
 
 void YouTubeVideoPlayer::attachMovieFile()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::attachMovieFile()");
-#endif
-
 	QString filter = tr("All files (*)");
 	QString path = QFileDialog::getOpenFileName(this, tr("Choose movie file"), QString(), filter, 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !path.isNull() )
@@ -636,10 +583,6 @@ void YouTubeVideoPlayer::attachMovieFile()
 
 void YouTubeVideoPlayer::playMovieFile(QString &filePath)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::playMovieFile(QString &filePath = %1)").arg(filePath));
-#endif
-
 	QFileInfo fi(filePath);
 	if ( fi.exists() ) {
 		currentVideoID = "#:" + filePath;
@@ -658,10 +601,6 @@ void YouTubeVideoPlayer::playMovieFile(QString &filePath)
 
 void YouTubeVideoPlayer::copyAuthorUrl()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyAuthorUrl()");
-#endif
-
 	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
 	if ( item ) {
 		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
@@ -679,10 +618,6 @@ void YouTubeVideoPlayer::copyAuthorUrl()
 
 void YouTubeVideoPlayer::copySearchYouTubeUrl()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copySearchYouTubeUrl()");
-#endif
-
 	QListWidgetItem *item = listWidgetSearchResults->currentItem();
 	if ( item ) {
 		VideoItemWidget *viw = (VideoItemWidget *)listWidgetSearchResults->itemWidget(item);
@@ -700,10 +635,6 @@ void YouTubeVideoPlayer::copySearchYouTubeUrl()
 
 void YouTubeVideoPlayer::copySearchYouTubeUrlAlt()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copySearchYouTubeUrlAlt()");
-#endif
-
 	QListWidgetItem *item = listWidgetSearchResults->currentItem();
 	if ( item ) {
 		VideoItemWidget *viw = (VideoItemWidget *)listWidgetSearchResults->itemWidget(item);
@@ -721,10 +652,6 @@ void YouTubeVideoPlayer::copySearchYouTubeUrlAlt()
 
 void YouTubeVideoPlayer::copySearchAuthorUrl()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copySearchAuthorUrl()");
-#endif
-
 	QListWidgetItem *item = listWidgetSearchResults->currentItem();
 	if ( item ) {
 		VideoItemWidget *viw = (VideoItemWidget *)listWidgetSearchResults->itemWidget(item);
@@ -742,10 +669,6 @@ void YouTubeVideoPlayer::copySearchAuthorUrl()
 
 void YouTubeVideoPlayer::copyCurrentYouTubeUrl()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyCurrentYouTubeUrl()");
-#endif
-
 	if ( !currentVideoID.isEmpty() ) {
 		QString url = VIDEOITEM_YOUTUBE_URL_PATTERN;
 		url.replace("$VIDEO_ID$", currentVideoID);
@@ -755,10 +678,6 @@ void YouTubeVideoPlayer::copyCurrentYouTubeUrl()
 
 void YouTubeVideoPlayer::copyCurrentYouTubeUrlAlt()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyCurrentYouTubeUrlAlt()");
-#endif
-
 	if ( !currentVideoID.isEmpty() ) {
 		QString url = VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER;
 		url.replace("$VIDEO_ID$", currentVideoID);
@@ -768,10 +687,6 @@ void YouTubeVideoPlayer::copyCurrentYouTubeUrlAlt()
 
 void YouTubeVideoPlayer::copyCurrentAuthorUrl()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyCurrentAuthorUrl()");
-#endif
-
 	if ( !currentVideoAuthor.isEmpty() ) {
 		QString url = VIDEOITEM_YOUTUBE_AUTHOR_URL_PATTERN;
 		url.replace("$USER_ID$", currentVideoAuthor);
@@ -781,10 +696,6 @@ void YouTubeVideoPlayer::copyCurrentAuthorUrl()
 
 void YouTubeVideoPlayer::removeSelectedVideos()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::removeSelectedVideos()");
-#endif
-
 	QList<QListWidgetItem *> il = listWidgetAttachedVideos->selectedItems();
 	foreach (QListWidgetItem *item, il) {
 		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
@@ -798,10 +709,15 @@ void YouTubeVideoPlayer::removeSelectedVideos()
 
 void YouTubeVideoPlayer::switchToFullScreen()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::switchToFullScreen()");
+	if ( videoWidget()->isFullScreen() ) {
+#if QT_VERSION < 0x050000
+		videoWidget()->setFullScreen(false);
+#else
+		switchToWindowed();
 #endif
-
+		menuVideoPlayer->hide();
+		return;
+	}
 #if QT_VERSION < 0x050000
 	if ( !videoWidget()->isFullScreen() ) {
 		videoWidget()->setFullScreen(true);
@@ -834,10 +750,6 @@ void YouTubeVideoPlayer::switchToFullScreen()
 
 void YouTubeVideoPlayer::switchToWindowed()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::switchToWindowed()");
-#endif
-
 #if QT_VERSION >= 0x050000
 	if ( mFullscreenVideoWidget ) {
 		mFullscreenVideoWidget->hide();
@@ -851,10 +763,6 @@ void YouTubeVideoPlayer::switchToWindowed()
 
 void YouTubeVideoPlayer::attachVideoById(QString id)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::attachVideoById(QString id = %1)").arg(id));
-#endif
-
 	QStringList videoInfoList;
 	getVideoStreamUrl(id, &videoInfoList, true);
 	if ( videoInfoList.count() > 2 )
@@ -863,10 +771,6 @@ void YouTubeVideoPlayer::attachVideoById(QString id)
 
 void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author, int itemType)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::attachVideo(QString id = '%1', QString title = '%2', QString author = '%3')").arg(id).arg(title).arg(author));
-#endif
-
 	if ( id.startsWith("#:") ) {
 		if ( itemType == VIDEOITEM_TYPE_YOUTUBE )
 			itemType = VIDEOITEM_TYPE_LOCAL_MOVIE;
@@ -913,10 +817,6 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author, 
 
 void YouTubeVideoPlayer::attachCurrentVideo()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::attachCurrentVideo()");
-#endif
-
 	if ( currentVideoID.startsWith("#:") ) {
 		attachVideo(currentVideoID, QString(), QString());
 	} else if ( !currentVideoID.isEmpty() && !currentVideoTitle.isEmpty() && !currentVideoAuthor.isEmpty() ) {
@@ -927,10 +827,6 @@ void YouTubeVideoPlayer::attachCurrentVideo()
 
 void YouTubeVideoPlayer::attachSearchedVideo()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::attachSearchedVideo()");
-#endif
-
 	QListWidgetItem *item = listWidgetSearchResults->currentItem();
 	if ( item ) {
 		VideoItemWidget *viw = (VideoItemWidget *)listWidgetSearchResults->itemWidget(item);
@@ -943,10 +839,6 @@ void YouTubeVideoPlayer::attachSearchedVideo()
 
 void YouTubeVideoPlayer::init()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::init()");
-#endif
-
 	if ( forcedExit )
 		return;
 
@@ -1014,10 +906,6 @@ void YouTubeVideoPlayer::init()
 
 void YouTubeVideoPlayer::adjustIconSizes()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::adjustIconSizes()"));
-#endif
-
 	if ( forcedExit )
 		return;
 
@@ -1038,10 +926,6 @@ void YouTubeVideoPlayer::adjustIconSizes()
 
 void YouTubeVideoPlayer::videoFinished()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::videoFinished()");
-#endif
-
 	seekSlider->setValue(0);
 
 	labelSeekSlider->setText(tr("Remaining") + " --:--:--");
@@ -1060,11 +944,6 @@ void YouTubeVideoPlayer::videoTick(qint64 time)
 	if ( time == oldTime )
 		return;
 	oldTime = time;
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoTick(qint64 time = %1)").arg(time));
-#endif
-
 	QTime hrTime(0, 0, 0, 0);
 	hrTime = hrTime.addMSecs(remainingTime());
 	labelSeekSlider->setText(tr("Remaining") + " " + hrTime.toString("hh:mm:ss"));
@@ -1075,10 +954,6 @@ void YouTubeVideoPlayer::videoTick(qint64 time)
 
 void YouTubeVideoPlayer::videoBufferStatus(int percentFilled)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoBufferStatus(int percentFilled = %1)").arg(percentFilled));
-#endif
-
 	progressBarBufferStatus->setValue(percentFilled);
 	progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(percentFilled));
 	showMessage(tr("Buffering: %1%").arg(percentFilled));
@@ -1087,10 +962,6 @@ void YouTubeVideoPlayer::videoBufferStatus(int percentFilled)
 #if QT_VERSION < 0x050000
 void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State oldState)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoStateChanged(Phonon::State newState = %1, Phonon::State oldState = %2)").arg(newState).arg(oldState));
-#endif
-
 	QTime hrTime(0, 0, 0, 0);
 
 	switch ( newState ) {
@@ -1165,10 +1036,6 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 #else
 void YouTubeVideoPlayer::videoStateChanged(QMediaPlayer::State state)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoStateChanged(QMediaPlayer::State state = %1)").arg(state));
-#endif
-
 	QTime hrTime(0, 0, 0, 0);
 
 	switch ( state ) {
@@ -1213,10 +1080,6 @@ void YouTubeVideoPlayer::videoStateChanged(QMediaPlayer::State state)
 
 void YouTubeVideoPlayer::loadVideo(QString &videoID)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::loadVideo(QString videoID = %1)").arg(videoID));
-#endif
-
 	currentVideoID = videoID;
 	QUrl url = getVideoStreamUrl(videoID);
 	isMuted = audioOutput()->isMuted();
@@ -1237,10 +1100,6 @@ void YouTubeVideoPlayer::loadVideo(QString &videoID)
 
 void YouTubeVideoPlayer::playVideo(QString &videoID)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::playVideo(QString videoID = %1)").arg(videoID));
-#endif
-
 	currentVideoID = videoID;
 	QUrl url = getVideoStreamUrl(videoID);
 	if ( url.isValid() ) {
@@ -1259,10 +1118,6 @@ void YouTubeVideoPlayer::playVideo(QString &videoID)
 
 QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoInfoStringList, bool videoInfoOnly)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::getVideoStreamUrl(QString videoID = %1, QStringList *videoInfoStringList = %2, bool videoInfoOnly = %3)").arg(videoID).arg((qulonglong)videoInfoStringList).arg(videoInfoOnly));
-#endif
-
 	static QUrl videoUrl;
 
 	showMessage(tr("Fetching info for video ID '%1'").arg(videoID));
@@ -1477,19 +1332,11 @@ QString YouTubeVideoPlayer::indexToFormat(int index)
 
 void YouTubeVideoPlayer::videoInfoReadyRead()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::videoInfoReadyRead()");
-#endif
-
 	videoInfoBuffer += videoInfoReply->readAll();
 }
 
 void YouTubeVideoPlayer::videoInfoError(QNetworkReply::NetworkError error)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoInfoError(QNetworkReply::NetworkError error = %1)").arg(error));
-#endif
-
 	viError = true;
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: video info error: %1").arg(videoInfoReply->errorString()));
 	showMessage(tr("Video info error: %1").arg(videoInfoReply->errorString()), 4000);
@@ -1497,19 +1344,11 @@ void YouTubeVideoPlayer::videoInfoError(QNetworkReply::NetworkError error)
 
 void YouTubeVideoPlayer::videoInfoFinished()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::videoInfoFinished()");
-#endif
-
 	viFinished = true;
 }
 
 void YouTubeVideoPlayer::on_toolButtonPlayPause_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::on_toolButtonPlayPause_clicked()");
-#endif
-
 	if ( isPlaying() ) {
 		pausedByHideEvent = false;
 		pause();
@@ -1523,10 +1362,6 @@ void YouTubeVideoPlayer::on_toolButtonPlayPause_clicked()
 
 void YouTubeVideoPlayer::on_toolButtonMute_toggled(bool mute)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_toolButtonMute_toggled(bool mute = %1)").arg(mute));
-#endif
-
 	audioOutput()->setMuted(mute);
 
 	if ( mute )
@@ -1537,10 +1372,6 @@ void YouTubeVideoPlayer::on_toolButtonMute_toggled(bool mute)
 
 void YouTubeVideoPlayer::on_comboBoxPreferredFormat_activated(int index)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_comboBoxPreferredFormat_activated(int index = %1)").arg(index));
-#endif
-
 	if ( !currentVideoID.isEmpty() ) {
 		if ( availableFormats.contains(index) ) {
 			if ( isPlaying() ) {
@@ -1561,10 +1392,6 @@ void YouTubeVideoPlayer::on_comboBoxPreferredFormat_activated(int index)
 
 void YouTubeVideoPlayer::on_toolBox_currentChanged(int page)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_toolBox_currentChanged(int page = %1)").arg(page));
-#endif
-
 	switch ( page ) {
 		case YOUTUBE_VIDEO_PLAYER_PAGE:
 			break;
@@ -1578,10 +1405,6 @@ void YouTubeVideoPlayer::on_toolBox_currentChanged(int page)
 
 void YouTubeVideoPlayer::showEvent(QShowEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	if ( isPaused() && pausedByHideEvent )
 		play();
 	pausedByHideEvent = false;
@@ -1589,10 +1412,6 @@ void YouTubeVideoPlayer::showEvent(QShowEvent *e)
 
 void YouTubeVideoPlayer::hideEvent(QHideEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	if ( isPlaying() ) {
 		pausedByHideEvent = true;
 		pause();
@@ -1601,10 +1420,6 @@ void YouTubeVideoPlayer::hideEvent(QHideEvent *e)
 
 void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetItem *item)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetItem *item = %1)").arg((qulonglong)item));
-#endif
-
 	VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
 	if ( viw ) {
 		toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
@@ -1627,10 +1442,6 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetIt
 
 void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemSelectionChanged()");
-#endif
-
 	for (int i = 0; i < listWidgetAttachedVideos->count(); i++) {
 		QListWidgetItem *item = listWidgetAttachedVideos->item(i);
 		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
@@ -1648,10 +1459,6 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemSelectionChanged()
 
 void YouTubeVideoPlayer::on_listWidgetSearchResults_itemActivated(QListWidgetItem *item)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_listWidgetSearchResults_itemActivated(QListWidgetItem *item = %1)").arg((qulonglong)item));
-#endif
-
 	VideoItemWidget *viw = (VideoItemWidget *)listWidgetSearchResults->itemWidget(item);
 	if ( viw ) {
 		toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
@@ -1664,10 +1471,6 @@ void YouTubeVideoPlayer::on_listWidgetSearchResults_itemActivated(QListWidgetIte
 
 void YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &p = [%1, %2])").arg(p.x()).arg(p.y()));
-#endif
-
 	QString clipboardText = qApp->clipboard()->text();
 	if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=.*$")) == 0 )
 		avmActionPasteVideoUrl->setEnabled(true);
@@ -1708,10 +1511,6 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(
 
 void YouTubeVideoPlayer::on_listWidgetSearchResults_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_listWidgetSearchResults_customContextMenuRequested(const QPoint &p = [%1, %2])").arg(p.x()).arg(p.y()));
-#endif
-
 	QWidget *w = listWidgetSearchResults->viewport();
 	if ( sender() )
 		if ( sender()->objectName() == "QMC2_VIDEO_TITLE" )
@@ -1726,10 +1525,6 @@ void YouTubeVideoPlayer::on_listWidgetSearchResults_customContextMenuRequested(c
 
 void YouTubeVideoPlayer::videoPlayer_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoPlayer_customContextMenuRequested(const QPoint &p = [%1, %2])").arg(p.x()).arg(p.y()));
-#endif
-
 	if ( menuVideoPlayer ) {
 		QString clipboardText = qApp->clipboard()->text();
 		if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=.*$")) == 0 )
@@ -1756,48 +1551,53 @@ void YouTubeVideoPlayer::videoPlayer_customContextMenuRequested(const QPoint &p)
 				videoMenuCopyAuthorUrlAction->setEnabled(true);
 			}
 		}
-
 		QString keySeq = qmc2CustomShortcutHash["F11"];
-		if ( !keySeq.isEmpty() )
-			videoMenuFullscreenAction->setText(tr("Full screen (press %1 to return)").arg(keySeq));
-		else
-			videoMenuFullscreenAction->setText(tr("Full screen (return with toggle-key)"));
-
 #if QT_VERSION < 0x050000
-		menuVideoPlayer->move(qmc2MainWindow->adjustedWidgetPosition(videoPlayer()->mapToGlobal(p), menuVideoPlayer));
+		if ( videoWidget()->isFullScreen() ) {
+			QString text = tr("Return to windowed mode");
+			if ( !keySeq.isEmpty() )
+				text += QString(" (%1)").arg(keySeq);
+			videoMenuFullscreenAction->setText(text);
+			menuVideoPlayer->move(p);
+		} else {
+			if ( !keySeq.isEmpty() )
+				videoMenuFullscreenAction->setText(tr("Full screen (press %1 to return)").arg(keySeq));
+			else
+				videoMenuFullscreenAction->setText(tr("Full screen (return with toggle-key)"));
+			menuVideoPlayer->move(qmc2MainWindow->adjustedWidgetPosition(videoPlayer()->mapToGlobal(p), menuVideoPlayer));
+		}
 #else
-		menuVideoPlayer->move(qmc2MainWindow->adjustedWidgetPosition(videoWidget()->mapToGlobal(p), menuVideoPlayer));
+		if ( mFullscreenVideoWidget ) {
+			QString text = tr("Return to windowed mode");
+			if ( !keySeq.isEmpty() )
+				text += QString(" (%1)").arg(keySeq);
+			videoMenuFullscreenAction->setText(text);
+			menuVideoPlayer->move(p);
+		} else {
+			if ( !keySeq.isEmpty() )
+				videoMenuFullscreenAction->setText(tr("Full screen (press %1 to return)").arg(keySeq));
+			else
+				videoMenuFullscreenAction->setText(tr("Full screen (return with toggle-key)"));
+			menuVideoPlayer->move(qmc2MainWindow->adjustedWidgetPosition(videoWidget()->mapToGlobal(p), menuVideoPlayer));
+		}
 #endif
-
 		menuVideoPlayer->show();
 	}
 }
 
 void YouTubeVideoPlayer::videoPlayer_durationChanged(qint64 duration)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoPlayer_durationChanged(qint64 duration = %1)").arg(duration));
-#endif
-
 	seekSlider->setMaximum((int)duration);
 }
 
 void YouTubeVideoPlayer::on_lineEditSearchString_textChanged(const QString &text)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_lineEditSearchString_textChanged(const QString &text = %1)").arg(text));
-#endif
-
 	toolButtonSearch->setEnabled(!text.isEmpty());
 	spinBoxStartIndex->setValue(1);
 }
 
 void YouTubeVideoPlayer::on_toolButtonSuggest_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::on_toolButtonSuggest_clicked()");
-#endif
-
 	QString suggestedSearchPattern = mySetName;
 	suggestedSearchPattern = suggestedSearchPattern.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").simplified();
 	if ( !suggestorAppendString.isEmpty() )
@@ -1810,10 +1610,6 @@ void YouTubeVideoPlayer::on_toolButtonSuggest_clicked()
 
 void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::on_toolButtonSearch_clicked()");
-#endif
-
 	lineEditSearchString->setEnabled(false);
 	spinBoxStartIndex->setEnabled(false);
 	spinBoxResultsPerRequest->setEnabled(false);
@@ -1835,9 +1631,6 @@ void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 		delete searchRequestManager;
 		searchRequestManager = NULL;
 	}
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_toolButtonSearch_clicked(): search request URL: %1").arg(searchRequest.url().toString()));
-#endif
 	searchRequestManager = new QNetworkAccessManager(this);
 	searchRequestReply = searchRequestManager->get(searchRequest);
 	connect(searchRequestReply, SIGNAL(readyRead()), this, SLOT(searchRequestReadyRead()));
@@ -1847,10 +1640,6 @@ void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 
 void YouTubeVideoPlayer::on_volumeSlider_valueChanged(int volume)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_volumeSlider_valueChanged(int volume = %1)").arg(volume));
-#endif
-
 #if QT_VERSION < 0x050000
 	audioOutput()->setVolume((double)volume / 100.0);
 #else
@@ -1861,10 +1650,6 @@ void YouTubeVideoPlayer::on_volumeSlider_valueChanged(int volume)
 
 void YouTubeVideoPlayer::on_seekSlider_valueChanged(int position)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_seekSlider_valueChanged(int volume = %1)").arg(position));
-#endif
-
 #if QT_VERSION < 0x050000
 	mediaObject()->seek(position);
 #else
@@ -1874,10 +1659,6 @@ void YouTubeVideoPlayer::on_seekSlider_valueChanged(int position)
 
 void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::updateAttachedVideoInfoImages()");
-#endif
-
 	for (int i = 0; i < listWidgetAttachedVideos->count(); i++) {
 		QListWidgetItem *item = listWidgetAttachedVideos->item(i);
 		if ( forcedExit )
@@ -1975,19 +1756,11 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 
 void YouTubeVideoPlayer::videoImageReadyRead()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::videoImageReadyRead()");
-#endif
-
 	videoImageBuffer += videoImageReply->readAll();
 }
 
 void YouTubeVideoPlayer::videoImageError(QNetworkReply::NetworkError error)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoImageError(QNetworkReply::NetworkError error = %1)").arg(error));
-#endif
-
 	vimgError = true;
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: video image info error: %1").arg(videoInfoReply->errorString()));
 	showMessage(tr("Video info error: %1").arg(videoInfoReply->errorString()), 4000);
@@ -1995,19 +1768,11 @@ void YouTubeVideoPlayer::videoImageError(QNetworkReply::NetworkError error)
 
 void YouTubeVideoPlayer::videoImageFinished()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::videoImageFinished()");
-#endif
-
 	vimgFinished = true;
 }
 
 void YouTubeVideoPlayer::searchRequestReadyRead()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::searchRequestReadyRead()");
-#endif
-
 	QString part = searchRequestReply->readAll();
 #ifdef QMC2_DEBUG
 	printf("%s", (const char *)part.toLatin1());
@@ -2017,10 +1782,6 @@ void YouTubeVideoPlayer::searchRequestReadyRead()
 
 void YouTubeVideoPlayer::searchRequestError(QNetworkReply::NetworkError error)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::searchRequestError(QNetworkReply::NetworkError error = %1)").arg(error));
-#endif
-
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: search request error: %1").arg(searchRequestReply->errorString()));
 	lineEditSearchString->setEnabled(true);
 	spinBoxStartIndex->setEnabled(true);
@@ -2033,10 +1794,6 @@ void YouTubeVideoPlayer::searchRequestError(QNetworkReply::NetworkError error)
 
 void YouTubeVideoPlayer::searchRequestFinished()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::searchRequestFinished()");
-#endif
-
 	QXmlInputSource xmlInputSource;
 	xmlInputSource.setData(searchRequestBuffer);
 	YouTubeXmlHandler xmlHandler(listWidgetSearchResults, this);
@@ -2064,16 +1821,10 @@ void YouTubeVideoPlayer::searchRequestFinished()
 void YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply)
 {
 	QString urlString = reply->url().toString();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply = %1): URL = '%2'").arg((qulonglong)reply).arg(urlString));
-#endif
-
 	if ( forcedExit ) {
 		reply->deleteLater();
 		return;
 	}
-
 	// example URL: 'http://i3.ytimg.com/vi/bFjX1uUhB1A/default.jpg'
 	QString videoID;
 	QRegExp rx("http\\:\\/\\/.*\\/vi\\/(.*)\\/.*");
@@ -2185,3 +1936,22 @@ bool YouTubeXmlHandler::fatalError(const QXmlParseException &exception)
 	return false;
 }
 #endif
+
+bool VideoEventFilter::eventFilter(QObject *object, QEvent *event)
+{
+	if ( event->type() == QEvent::MouseButtonPress ) {
+		QMouseEvent *e = static_cast<QMouseEvent *>(event);
+		switch ( e->button() ) {
+			case Qt::LeftButton:
+				if ( mPlayer->isPlaying() )
+					mPlayer->pause();
+				else
+					mPlayer->play();
+				break;
+			case Qt::RightButton:
+				mPlayer->videoPlayer_customContextMenuRequested(e->pos());
+				break;
+		}
+	}
+	return QObject::eventFilter(object, event);
+}
