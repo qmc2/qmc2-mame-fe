@@ -4931,40 +4931,40 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 <context>
     <name>FileSystemModel</name>
     <message>
-        <location filename="../../filesystemmodel.h" line="368"/>
+        <location filename="../../filesystemmodel.h" line="373"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="368"/>
+        <location filename="../../filesystemmodel.h" line="373"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="552"/>
-        <location filename="../../filesystemmodel.h" line="566"/>
+        <location filename="../../filesystemmodel.h" line="557"/>
+        <location filename="../../filesystemmodel.h" line="571"/>
         <source> KB</source>
         <translation> KB</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="555"/>
-        <location filename="../../filesystemmodel.h" line="569"/>
+        <location filename="../../filesystemmodel.h" line="560"/>
+        <location filename="../../filesystemmodel.h" line="574"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="558"/>
-        <location filename="../../filesystemmodel.h" line="572"/>
+        <location filename="../../filesystemmodel.h" line="563"/>
+        <location filename="../../filesystemmodel.h" line="577"/>
         <source> GB</source>
         <translation> GB</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="561"/>
+        <location filename="../../filesystemmodel.h" line="566"/>
         <source> TB</source>
         <translation> TB</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="368"/>
+        <location filename="../../filesystemmodel.h" line="373"/>
         <source>Date modified</source>
         <translation>Date modifiée</translation>
     </message>
@@ -6806,42 +6806,42 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 <context>
     <name>JoystickCalibrationWidget</name>
     <message>
-        <location filename="../../options.cpp" line="4557"/>
+        <location filename="../../options.cpp" line="4573"/>
         <source>Axis %1:</source>
         <translation>Axe %1:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4566"/>
+        <location filename="../../options.cpp" line="4582"/>
         <source>Current value of axis %1</source>
         <translation>Valeur actuelle de l&apos;axe %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4570"/>
+        <location filename="../../options.cpp" line="4586"/>
         <source>DZ:</source>
         <translation>DZ:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4572"/>
+        <location filename="../../options.cpp" line="4588"/>
         <source>Deadzone of axis %1</source>
         <translation>Zone Morte de l&apos;axe %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4578"/>
+        <location filename="../../options.cpp" line="4594"/>
         <source>S:</source>
         <translation>S:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4580"/>
+        <location filename="../../options.cpp" line="4596"/>
         <source>Sensitivity of axis %1</source>
         <translation>Sensibilité de l&apos;axe %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4558"/>
+        <location filename="../../options.cpp" line="4574"/>
         <source>Reset calibration of axis %1</source>
         <translation>Ré-initialiser la calibration de l&apos;axe %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4553"/>
+        <location filename="../../options.cpp" line="4569"/>
         <source>Enable/disable axis %1</source>
         <translation>Active/Désactive l&apos;axe %1</translation>
     </message>
@@ -6895,67 +6895,67 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 <context>
     <name>JoystickTestWidget</name>
     <message>
-        <location filename="../../options.cpp" line="4797"/>
+        <location filename="../../options.cpp" line="4813"/>
         <source>A%1: %v</source>
         <translation>A%1: %v</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4798"/>
+        <location filename="../../options.cpp" line="4814"/>
         <source>Current value of axis %1</source>
         <translation>Valeur actuelle de l&apos;axe %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4808"/>
+        <location filename="../../options.cpp" line="4824"/>
         <source>B%1</source>
         <translation>B%1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4809"/>
+        <location filename="../../options.cpp" line="4825"/>
         <source>Current state of button %1</source>
         <translation>Valeur actuelle du bouton %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4819"/>
+        <location filename="../../options.cpp" line="4835"/>
         <source>H%1: 0</source>
         <translation>H%1: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4820"/>
+        <location filename="../../options.cpp" line="4836"/>
         <source>Current value of hat %1</source>
         <translation>Valeur actuelle du hat %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4830"/>
+        <location filename="../../options.cpp" line="4846"/>
         <source>T%1 DX: 0</source>
         <translation>T%1 DX: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4831"/>
+        <location filename="../../options.cpp" line="4847"/>
         <source>Current X-delta of trackball %1</source>
         <translation>Valeur actuelle X-delta du trackball %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4841"/>
+        <location filename="../../options.cpp" line="4857"/>
         <source>T%1 DY: 0</source>
         <translation>T%1 DY: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4842"/>
+        <location filename="../../options.cpp" line="4858"/>
         <source>Current Y-delta of trackball %1</source>
         <translation>Valeur actuelle Y-delta du trackball %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4930"/>
+        <location filename="../../options.cpp" line="4946"/>
         <source>H%1: %2</source>
         <translation>H%1: %2</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4964"/>
+        <location filename="../../options.cpp" line="4980"/>
         <source>T%1 DX: %2</source>
         <translation>T%1 DX: %2</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4965"/>
+        <location filename="../../options.cpp" line="4981"/>
         <source>T%1 DY: %2</source>
         <translation>T%1 DY: %2</translation>
     </message>
@@ -12295,47 +12295,47 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <translation>Page Haut</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5473"/>
-        <location filename="../../options.cpp" line="2235"/>
-        <location filename="../../options.cpp" line="3860"/>
+        <location filename="../../options.ui" line="5510"/>
+        <location filename="../../options.cpp" line="2236"/>
+        <location filename="../../options.cpp" line="3876"/>
         <source>Specify pre-defined foreign IDs for this emulator, launchable from the &apos;foreign emulators&apos; view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2253"/>
-        <location filename="../../options.cpp" line="3868"/>
+        <location filename="../../options.cpp" line="2254"/>
+        <location filename="../../options.cpp" line="3884"/>
         <source>Choose icon for this foreign emulator (hold down for menu)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2255"/>
-        <location filename="../../options.cpp" line="3870"/>
+        <location filename="../../options.cpp" line="2256"/>
+        <location filename="../../options.cpp" line="3886"/>
         <source>Default icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2258"/>
-        <location filename="../../options.cpp" line="3873"/>
+        <location filename="../../options.cpp" line="2259"/>
+        <location filename="../../options.cpp" line="3889"/>
         <source>No icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2378"/>
+        <location filename="../../options.cpp" line="2379"/>
         <source>N/A</source>
         <translation type="unfinished">N/D</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2423"/>
+        <location filename="../../options.cpp" line="2424"/>
         <source>&amp;Foreign emulators</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4073"/>
+        <location filename="../../options.cpp" line="4089"/>
         <source>Choose image file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4073"/>
+        <location filename="../../options.cpp" line="4089"/>
         <source>Supported image files (%1)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12456,7 +12456,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <translation>Revenir à la police par défaut</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="901"/>
+        <location filename="../../options.cpp" line="902"/>
         <source>image cache size set to %1 MB</source>
         <translation>taille du cache d&apos;images réglé à %1 MB</translation>
     </message>
@@ -12472,7 +12472,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     </message>
     <message>
         <location filename="../../options.cpp" line="1326"/>
-        <location filename="../../options.cpp" line="2834"/>
+        <location filename="../../options.cpp" line="2835"/>
         <source>Confirm</source>
         <translation>Confirmer</translation>
     </message>
@@ -12561,228 +12561,228 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../options.cpp" line="2030"/>
-        <location filename="../../options.cpp" line="3345"/>
+        <location filename="../../options.cpp" line="3346"/>
         <source>SW snap file</source>
         <translation>fichier SW snap</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5476"/>
-        <location filename="../../options.cpp" line="2234"/>
-        <location filename="../../options.cpp" line="3859"/>
+        <location filename="../../options.ui" line="5513"/>
+        <location filename="../../options.cpp" line="2235"/>
+        <location filename="../../options.cpp" line="3875"/>
         <source>Custom IDs...</source>
         <translation>IDs personnalisés...</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2821"/>
+        <location filename="../../options.cpp" line="2822"/>
         <source>Choose XML cache database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2834"/>
+        <location filename="../../options.cpp" line="2835"/>
         <source>This will remove &lt;b&gt;all&lt;/b&gt; existing user data and recreate the database.
 Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2834"/>
+        <location filename="../../options.cpp" line="2835"/>
         <source>&amp;Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2834"/>
+        <location filename="../../options.cpp" line="2835"/>
         <source>&amp;No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2868"/>
+        <location filename="../../options.cpp" line="2869"/>
         <source>Choose user data database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2880"/>
+        <location filename="../../options.cpp" line="2881"/>
         <source>Choose cookie database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2904"/>
+        <location filename="../../options.cpp" line="2905"/>
         <source>Choose 7-zip tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2916"/>
+        <location filename="../../options.cpp" line="2917"/>
         <source>Choose ROM tool</source>
         <translation>Choisir l&apos;outil de ROM</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2928"/>
-        <location filename="../../options.cpp" line="3003"/>
-        <location filename="../../options.cpp" line="3833"/>
+        <location filename="../../options.cpp" line="2929"/>
+        <location filename="../../options.cpp" line="3004"/>
+        <location filename="../../options.cpp" line="3849"/>
         <source>Choose working directory</source>
         <translation>Choisir le répertoire de travail</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2940"/>
+        <location filename="../../options.cpp" line="2941"/>
         <source>Choose machine favorites file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2964"/>
+        <location filename="../../options.cpp" line="2965"/>
         <source>Choose machine list cache file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2991"/>
+        <location filename="../../options.cpp" line="2992"/>
         <source>Choose slot info cache file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3030"/>
+        <location filename="../../options.cpp" line="3031"/>
         <source>Choose software state cache directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3045"/>
+        <location filename="../../options.cpp" line="3046"/>
         <source>Choose general software folder</source>
         <translation>Choisir le répertoire des logiciels général</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3087"/>
+        <location filename="../../options.cpp" line="3088"/>
         <source>Choose dat-info database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3111"/>
+        <location filename="../../options.cpp" line="3112"/>
         <source>Choose MESS machine info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3123"/>
+        <location filename="../../options.cpp" line="3124"/>
         <source>Choose MAME emulator info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3135"/>
+        <location filename="../../options.cpp" line="3136"/>
         <source>Choose MESS emulator info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3147"/>
+        <location filename="../../options.cpp" line="3148"/>
         <source>Choose software info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3159"/>
+        <location filename="../../options.cpp" line="3160"/>
         <source>Choose catver.ini file</source>
         <translation>Choisir le fichier catver.ini</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3354"/>
+        <location filename="../../options.cpp" line="3355"/>
         <source>Choose compressed preview file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3354"/>
-        <location filename="../../options.cpp" line="3371"/>
-        <location filename="../../options.cpp" line="3388"/>
-        <location filename="../../options.cpp" line="3405"/>
-        <location filename="../../options.cpp" line="3422"/>
-        <location filename="../../options.cpp" line="3439"/>
-        <location filename="../../options.cpp" line="3456"/>
-        <location filename="../../options.cpp" line="3473"/>
-        <location filename="../../options.cpp" line="3505"/>
+        <location filename="../../options.cpp" line="3355"/>
+        <location filename="../../options.cpp" line="3372"/>
+        <location filename="../../options.cpp" line="3389"/>
+        <location filename="../../options.cpp" line="3406"/>
+        <location filename="../../options.cpp" line="3423"/>
+        <location filename="../../options.cpp" line="3440"/>
+        <location filename="../../options.cpp" line="3457"/>
+        <location filename="../../options.cpp" line="3474"/>
+        <location filename="../../options.cpp" line="3506"/>
         <source>ZIP archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3354"/>
-        <location filename="../../options.cpp" line="3371"/>
-        <location filename="../../options.cpp" line="3388"/>
-        <location filename="../../options.cpp" line="3405"/>
-        <location filename="../../options.cpp" line="3422"/>
-        <location filename="../../options.cpp" line="3439"/>
-        <location filename="../../options.cpp" line="3456"/>
-        <location filename="../../options.cpp" line="3473"/>
-        <location filename="../../options.cpp" line="3505"/>
+        <location filename="../../options.cpp" line="3355"/>
+        <location filename="../../options.cpp" line="3372"/>
+        <location filename="../../options.cpp" line="3389"/>
+        <location filename="../../options.cpp" line="3406"/>
+        <location filename="../../options.cpp" line="3423"/>
+        <location filename="../../options.cpp" line="3440"/>
+        <location filename="../../options.cpp" line="3457"/>
+        <location filename="../../options.cpp" line="3474"/>
+        <location filename="../../options.cpp" line="3506"/>
         <source>7z archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3354"/>
-        <location filename="../../options.cpp" line="3371"/>
-        <location filename="../../options.cpp" line="3388"/>
-        <location filename="../../options.cpp" line="3405"/>
-        <location filename="../../options.cpp" line="3422"/>
-        <location filename="../../options.cpp" line="3439"/>
-        <location filename="../../options.cpp" line="3456"/>
-        <location filename="../../options.cpp" line="3473"/>
-        <location filename="../../options.cpp" line="3505"/>
+        <location filename="../../options.cpp" line="3355"/>
+        <location filename="../../options.cpp" line="3372"/>
+        <location filename="../../options.cpp" line="3389"/>
+        <location filename="../../options.cpp" line="3406"/>
+        <location filename="../../options.cpp" line="3423"/>
+        <location filename="../../options.cpp" line="3440"/>
+        <location filename="../../options.cpp" line="3457"/>
+        <location filename="../../options.cpp" line="3474"/>
+        <location filename="../../options.cpp" line="3506"/>
         <source>All files</source>
         <translation type="unfinished">Tous les fichiers</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3354"/>
-        <location filename="../../options.cpp" line="3371"/>
-        <location filename="../../options.cpp" line="3388"/>
-        <location filename="../../options.cpp" line="3405"/>
-        <location filename="../../options.cpp" line="3422"/>
-        <location filename="../../options.cpp" line="3439"/>
-        <location filename="../../options.cpp" line="3456"/>
-        <location filename="../../options.cpp" line="3473"/>
-        <location filename="../../options.cpp" line="3505"/>
+        <location filename="../../options.cpp" line="3355"/>
+        <location filename="../../options.cpp" line="3372"/>
+        <location filename="../../options.cpp" line="3389"/>
+        <location filename="../../options.cpp" line="3406"/>
+        <location filename="../../options.cpp" line="3423"/>
+        <location filename="../../options.cpp" line="3440"/>
+        <location filename="../../options.cpp" line="3457"/>
+        <location filename="../../options.cpp" line="3474"/>
+        <location filename="../../options.cpp" line="3506"/>
         <source>Supported archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3371"/>
+        <location filename="../../options.cpp" line="3372"/>
         <source>Choose compressed flyer file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3388"/>
+        <location filename="../../options.cpp" line="3389"/>
         <source>Choose compressed icon file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3405"/>
+        <location filename="../../options.cpp" line="3406"/>
         <source>Choose compressed cabinet file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3422"/>
+        <location filename="../../options.cpp" line="3423"/>
         <source>Choose compressed controller file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3439"/>
+        <location filename="../../options.cpp" line="3440"/>
         <source>Choose compressed marquee file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3456"/>
+        <location filename="../../options.cpp" line="3457"/>
         <source>Choose compressed title file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3473"/>
+        <location filename="../../options.cpp" line="3474"/>
         <source>Choose compressed PCB file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3505"/>
+        <location filename="../../options.cpp" line="3506"/>
         <source>Choose compressed software snap file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3657"/>
+        <location filename="../../options.ui" line="3694"/>
         <location filename="../../options.cpp" line="381"/>
         <location filename="../../options.cpp" line="382"/>
-        <location filename="../../options.cpp" line="4014"/>
+        <location filename="../../options.cpp" line="4030"/>
         <source>Default</source>
         <translation>Défaut</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1982"/>
-        <location filename="../../options.cpp" line="3257"/>
+        <location filename="../../options.cpp" line="3258"/>
         <source>Preview file</source>
         <translation>Fichier Capture</translation>
     </message>
@@ -12847,206 +12847,211 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.ui" line="1066"/>
         <location filename="../../options.cpp" line="1982"/>
-        <location filename="../../options.cpp" line="3257"/>
+        <location filename="../../options.cpp" line="3258"/>
         <source>Preview directory</source>
         <translation>Répertoire des captures</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1988"/>
-        <location filename="../../options.cpp" line="3268"/>
+        <location filename="../../options.cpp" line="3269"/>
         <source>Flyer file</source>
         <translation>fichier Flyer</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="962"/>
         <location filename="../../options.cpp" line="1988"/>
-        <location filename="../../options.cpp" line="3268"/>
+        <location filename="../../options.cpp" line="3269"/>
         <source>Flyer directory</source>
         <translation>Répertoire des flyers</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1994"/>
-        <location filename="../../options.cpp" line="3279"/>
+        <location filename="../../options.cpp" line="3280"/>
         <source>Icon file</source>
         <translation>Fichier des icônes</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1650"/>
         <location filename="../../options.cpp" line="1994"/>
-        <location filename="../../options.cpp" line="3279"/>
+        <location filename="../../options.cpp" line="3280"/>
         <source>Icon directory</source>
         <translation>Répertoire des icônes</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2024"/>
-        <location filename="../../options.cpp" line="3334"/>
+        <location filename="../../options.cpp" line="3335"/>
         <source>PCB file</source>
         <translation>Fichier des PCB</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1082"/>
         <location filename="../../options.cpp" line="2024"/>
-        <location filename="../../options.cpp" line="3334"/>
+        <location filename="../../options.cpp" line="3335"/>
         <source>PCB directory</source>
         <translation>Répertoire des PCB</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2641"/>
+        <location filename="../../options.cpp" line="2642"/>
         <source>Choose Qt style sheet file</source>
         <translation>Choisir le fichier de style QT</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2641"/>
+        <location filename="../../options.cpp" line="2642"/>
         <source>Qt Style Sheets (*.qss)</source>
         <translation>fichiers Qt Style (*.qss)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2653"/>
+        <location filename="../../options.cpp" line="2654"/>
         <source>Choose temporary work file</source>
         <translation>Choisir le fichier de travail temporaire</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2653"/>
-        <location filename="../../options.cpp" line="2785"/>
-        <location filename="../../options.cpp" line="2797"/>
-        <location filename="../../options.cpp" line="2809"/>
-        <location filename="../../options.cpp" line="2821"/>
-        <location filename="../../options.cpp" line="2868"/>
-        <location filename="../../options.cpp" line="2880"/>
-        <location filename="../../options.cpp" line="2892"/>
-        <location filename="../../options.cpp" line="2904"/>
-        <location filename="../../options.cpp" line="2916"/>
-        <location filename="../../options.cpp" line="2940"/>
-        <location filename="../../options.cpp" line="2952"/>
-        <location filename="../../options.cpp" line="2964"/>
-        <location filename="../../options.cpp" line="2979"/>
-        <location filename="../../options.cpp" line="2991"/>
-        <location filename="../../options.cpp" line="3018"/>
-        <location filename="../../options.cpp" line="3060"/>
-        <location filename="../../options.cpp" line="3087"/>
-        <location filename="../../options.cpp" line="3099"/>
-        <location filename="../../options.cpp" line="3111"/>
-        <location filename="../../options.cpp" line="3123"/>
-        <location filename="../../options.cpp" line="3135"/>
-        <location filename="../../options.cpp" line="3147"/>
-        <location filename="../../options.cpp" line="3159"/>
-        <location filename="../../options.cpp" line="3171"/>
-        <location filename="../../options.cpp" line="3537"/>
-        <location filename="../../options.cpp" line="3564"/>
-        <location filename="../../options.cpp" line="3817"/>
-        <location filename="../../options.cpp" line="4073"/>
+        <location filename="../../options.cpp" line="2654"/>
+        <location filename="../../options.cpp" line="2786"/>
+        <location filename="../../options.cpp" line="2798"/>
+        <location filename="../../options.cpp" line="2810"/>
+        <location filename="../../options.cpp" line="2822"/>
+        <location filename="../../options.cpp" line="2869"/>
+        <location filename="../../options.cpp" line="2881"/>
+        <location filename="../../options.cpp" line="2893"/>
+        <location filename="../../options.cpp" line="2905"/>
+        <location filename="../../options.cpp" line="2917"/>
+        <location filename="../../options.cpp" line="2941"/>
+        <location filename="../../options.cpp" line="2953"/>
+        <location filename="../../options.cpp" line="2965"/>
+        <location filename="../../options.cpp" line="2980"/>
+        <location filename="../../options.cpp" line="2992"/>
+        <location filename="../../options.cpp" line="3019"/>
+        <location filename="../../options.cpp" line="3061"/>
+        <location filename="../../options.cpp" line="3088"/>
+        <location filename="../../options.cpp" line="3100"/>
+        <location filename="../../options.cpp" line="3112"/>
+        <location filename="../../options.cpp" line="3124"/>
+        <location filename="../../options.cpp" line="3136"/>
+        <location filename="../../options.cpp" line="3148"/>
+        <location filename="../../options.cpp" line="3160"/>
+        <location filename="../../options.cpp" line="3172"/>
+        <location filename="../../options.cpp" line="3538"/>
+        <location filename="../../options.cpp" line="3565"/>
+        <location filename="../../options.cpp" line="3833"/>
+        <location filename="../../options.cpp" line="4089"/>
         <source>All files (*)</source>
         <translation>Tous les fichiers (*)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2665"/>
+        <location filename="../../options.cpp" line="2666"/>
         <source>Choose preview directory</source>
         <translation>Choisir le répertoire des captures</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2680"/>
+        <location filename="../../options.cpp" line="2681"/>
         <source>Choose flyer directory</source>
         <translation>Choisir le répertoire des flyers</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2695"/>
+        <location filename="../../options.cpp" line="2696"/>
         <source>Choose icon directory</source>
         <translation>Choisir le répertoire des icônes</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2770"/>
+        <location filename="../../options.cpp" line="2771"/>
         <source>Choose PCB directory</source>
         <translation>Choisir le répertoire des PCB</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2785"/>
+        <location filename="../../options.cpp" line="2786"/>
         <source>Choose options template file</source>
         <translation>Choisir les options du fichier template</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2797"/>
-        <location filename="../../options.cpp" line="3817"/>
+        <location filename="../../options.cpp" line="2798"/>
+        <location filename="../../options.cpp" line="3833"/>
         <source>Choose emulator executable file</source>
         <translation>Choisir l&apos;exécutable de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2809"/>
+        <location filename="../../options.cpp" line="2810"/>
         <source>Choose emulator log file</source>
         <translation>Choisir le fichier log de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2892"/>
+        <location filename="../../options.cpp" line="2893"/>
         <source>Choose zip tool</source>
         <translation>Choisir l&apos;outil zip</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2952"/>
+        <location filename="../../options.cpp" line="2953"/>
         <source>Choose play history file</source>
         <translation>Choisir le fichier de l&apos;historique des jeux joués</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2979"/>
+        <location filename="../../options.cpp" line="2980"/>
         <source>Choose ROM state cache file</source>
         <translation>Choisir le fichier cache d&apos;état de ROM</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3018"/>
+        <location filename="../../options.cpp" line="3019"/>
         <source>Choose software list cache database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3072"/>
+        <location filename="../../options.cpp" line="3073"/>
         <source>Choose data directory</source>
         <translation>Choisir le répertoire des données</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3099"/>
+        <location filename="../../options.cpp" line="3100"/>
         <source>Choose MAME machine info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3171"/>
+        <location filename="../../options.cpp" line="3172"/>
         <source>Choose category.ini file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3490"/>
+        <location filename="../../options.cpp" line="3491"/>
         <source>Choose software snap directory</source>
         <translation>Choisir le répertoire des captures des logiciels</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3522"/>
+        <location filename="../../options.cpp" line="3523"/>
         <source>Choose software notes folder</source>
         <translation>Choisir le répertoire des notes des logiciels</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3537"/>
+        <location filename="../../options.cpp" line="3538"/>
         <source>Choose software notes template</source>
         <translation>Choisir le template des notes des logiciels</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3537"/>
-        <location filename="../../options.cpp" line="3564"/>
+        <location filename="../../options.cpp" line="3538"/>
+        <location filename="../../options.cpp" line="3565"/>
         <source>HTML files (*.html *.htm)</source>
         <translation>fichiers HTML (*.html *.htm)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3549"/>
+        <location filename="../../options.cpp" line="3550"/>
         <source>Choose system notes folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3564"/>
+        <location filename="../../options.cpp" line="3565"/>
         <source>Choose system notes template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3791"/>
+        <location filename="../../options.cpp" line="3577"/>
+        <source>Choose video snap folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.cpp" line="3807"/>
         <source>shortcut map is clean</source>
         <translation>La carte des raccourcis est propre</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3793"/>
+        <location filename="../../options.cpp" line="3809"/>
         <source>WARNING: shortcut map contains duplicates</source>
         <translation>ATTENTION: la carte des raccourcis contient des doublons</translation>
     </message>
@@ -13173,7 +13178,7 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../options.ui" line="835"/>
-        <location filename="../../options.ui" line="4675"/>
+        <location filename="../../options.ui" line="4712"/>
         <source>F&amp;iles / Directories</source>
         <translation>F&amp;ichiers / Répertoires</translation>
     </message>
@@ -13188,22 +13193,22 @@ Are you sure you want to do this?</source>
         <translation>Répertoire de données du frontend (lecture)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="881"/>
+        <location filename="../../options.ui" line="897"/>
         <source>Data directory</source>
         <translation>Répertoire de données</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4849"/>
+        <location filename="../../options.ui" line="4886"/>
         <source>Browse ROM state cache file</source>
         <translation>Parcourir le cache d&apos;état de ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5195"/>
+        <location filename="../../options.ui" line="5232"/>
         <source>ROM state cache file (write)</source>
         <translation>Cache d&apos;état de ROM (écriture)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4836"/>
+        <location filename="../../options.ui" line="4873"/>
         <source>ROM state cache</source>
         <translation>Cache d&apos;état de ROM</translation>
     </message>
@@ -13218,7 +13223,7 @@ Are you sure you want to do this?</source>
         <translation>Fichier temporaire</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="888"/>
+        <location filename="../../options.ui" line="904"/>
         <source>Favorites file</source>
         <translation>Fichier des favoris</translation>
     </message>
@@ -13273,219 +13278,219 @@ Are you sure you want to do this?</source>
         <translation>Parcourir pour le répertoire de captures</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3501"/>
+        <location filename="../../options.ui" line="3538"/>
         <source>Auto-trigger ROM check</source>
         <translation>Vérification automatique de ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2991"/>
+        <location filename="../../options.ui" line="3028"/>
         <source>Update delay</source>
         <translation>Délai de mise à jour</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3219"/>
+        <location filename="../../options.ui" line="3256"/>
         <source>immediate</source>
         <translation>immédiat</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3446"/>
+        <location filename="../../options.ui" line="3483"/>
         <source> ms</source>
         <translation> ms</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3203"/>
+        <location filename="../../options.ui" line="3240"/>
         <source>Responsiveness</source>
         <translation>Répondant</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3099"/>
+        <location filename="../../options.ui" line="3136"/>
         <source>Select sort order</source>
         <translation>Sélectionner l&apos;ordre de tri</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3103"/>
+        <location filename="../../options.ui" line="3140"/>
         <source>Ascending</source>
         <translation>Ascendant</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3112"/>
+        <location filename="../../options.ui" line="3149"/>
         <source>Descending</source>
         <translation>Descendant</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3014"/>
+        <location filename="../../options.ui" line="3051"/>
         <source>Select sort criteria</source>
         <translation>Sélectionner le critère de tri</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3023"/>
+        <location filename="../../options.ui" line="3060"/>
         <source>ROM state</source>
         <translation>statut de ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3033"/>
+        <location filename="../../options.ui" line="3070"/>
         <source>Year</source>
         <translation>Année</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3038"/>
+        <location filename="../../options.ui" line="3075"/>
         <source>Manufacturer</source>
         <translation>Fabricant</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3086"/>
+        <location filename="../../options.ui" line="3123"/>
         <source>Sort order</source>
         <translation>Ordre de tri</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3354"/>
+        <location filename="../../options.ui" line="3391"/>
         <source>Sort criteria</source>
         <translation>Critère de tri</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2931"/>
+        <location filename="../../options.ui" line="2968"/>
         <source>ROM state filter</source>
         <translation>filtre d&apos;état de ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3243"/>
+        <location filename="../../options.ui" line="3280"/>
         <source>Show ROM state C (correct)?</source>
         <translation>Affiche l&apos;état de ROM C (correct)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3266"/>
+        <location filename="../../options.ui" line="3303"/>
         <source>Show ROM state M (mostly correct)?</source>
         <translation>Affiche l&apos;état de ROM M (presque correct)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3289"/>
+        <location filename="../../options.ui" line="3326"/>
         <source>Show ROM state I (incorrect)?</source>
         <translation>Affiche l&apos;état de ROM I (incorrect)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3312"/>
+        <location filename="../../options.ui" line="3349"/>
         <source>Show ROM state N (not found)?</source>
         <translation>Affiche l&apos;état de ROM N (non trouvé)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3335"/>
+        <location filename="../../options.ui" line="3372"/>
         <source>Show ROM state U (unknown)?</source>
         <translation>Affiche l&apos;état de ROM U (inconnu)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3555"/>
+        <location filename="../../options.ui" line="3592"/>
         <source>&amp;Shortcuts / Keys</source>
         <translation>&amp;Raccourcis / Touches</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3607"/>
+        <location filename="../../options.ui" line="3644"/>
         <source>Reset key sequence to default</source>
         <translation>Ré-initialiser la séquence de touche par défaut</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3610"/>
+        <location filename="../../options.ui" line="3647"/>
         <source>Reset</source>
         <translation>Ré-initialise</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3587"/>
-        <location filename="../../options.ui" line="3590"/>
+        <location filename="../../options.ui" line="3624"/>
+        <location filename="../../options.ui" line="3627"/>
         <source>Redefine key sequence</source>
         <translation>Redéfinir la séquence de touches</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3630"/>
+        <location filename="../../options.ui" line="3667"/>
         <source>Active shortcut definitions; double-click to redefine key sequence</source>
         <translation>Définitions des raccourcis actifs: double-clic pour redéfinir la séquence de touches</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3662"/>
+        <location filename="../../options.ui" line="3699"/>
         <source>Custom</source>
         <translation>Personnalisé</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4169"/>
+        <location filename="../../options.ui" line="4206"/>
         <source>Zip tool</source>
         <translation>outil ZIP</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4188"/>
+        <location filename="../../options.ui" line="4225"/>
         <source>External zip tool, i.e. &quot;zip&quot; (read and execute)</source>
         <translation>Outil ZIP externe, ex: &quot;zip&quot; (lecture et exécution)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4201"/>
+        <location filename="../../options.ui" line="4238"/>
         <source>Browse for zip tool</source>
         <translation>Parcourir pour l&apos;outil zip</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4225"/>
+        <location filename="../../options.ui" line="4262"/>
         <source>Zip tool argument list to remove entries from the ZIP archive (i. e. &quot;$ARCHIVE$ -d $FILELIST$&quot;)</source>
         <translation>Liste d&apos;arguments de l&apos;outil zip pour supprimer des entrées depuis l&apos;archive ZIP (ex &quot;$ARCHIVE$ -d $FILELIST$&quot;)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4212"/>
-        <location filename="../../options.ui" line="4291"/>
-        <location filename="../../options.ui" line="4626"/>
-        <location filename="../../options.ui" line="5358"/>
-        <location filename="../../options.ui" line="5584"/>
+        <location filename="../../options.ui" line="4249"/>
+        <location filename="../../options.ui" line="4328"/>
+        <location filename="../../options.ui" line="4663"/>
+        <location filename="../../options.ui" line="5395"/>
+        <location filename="../../options.ui" line="5621"/>
         <source>Arguments</source>
         <translation>Arguments</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4481"/>
+        <location filename="../../options.ui" line="4518"/>
         <source>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</source>
         <translation>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;ATTENTION: les mots de passe enregistrés sont &lt;u&gt;faiblement&lt;/u&gt; encryptés!&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4660"/>
+        <location filename="../../options.ui" line="4697"/>
         <source>E&amp;mulator</source>
         <translation>E&amp;mulateur</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4670"/>
+        <location filename="../../options.ui" line="4707"/>
         <source>&amp;Global configuration</source>
         <translation>Confi&amp;guration globale</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4764"/>
+        <location filename="../../options.ui" line="4801"/>
         <source>Browse emulator log file</source>
         <translation>Parcourir pour le fichier de log de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5156"/>
+        <location filename="../../options.ui" line="5193"/>
         <source>Emulator log file (write)</source>
         <translation>Fichier de log de l&apos;émulateur (écriture)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4751"/>
+        <location filename="../../options.ui" line="4788"/>
         <source>Emulator log file</source>
         <translation>Fichier de log de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4740"/>
-        <location filename="../../options.ui" line="5528"/>
+        <location filename="../../options.ui" line="4777"/>
+        <location filename="../../options.ui" line="5565"/>
         <source>Browse emulator executable file</source>
         <translation>Parcourir pour l&apos;exécutable de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5182"/>
+        <location filename="../../options.ui" line="5219"/>
         <source>Emulator executable file (read and execute)</source>
         <translation>Exécutable de l&apos;émulateur (lecture et exécution)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4725"/>
-        <location filename="../../options.ui" line="5502"/>
+        <location filename="../../options.ui" line="4762"/>
+        <location filename="../../options.ui" line="5539"/>
         <source>Executable file</source>
         <translation>Exécutable</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4788"/>
+        <location filename="../../options.ui" line="4825"/>
         <source>Browse options template file</source>
         <translation>Parcourir pour le fichier template d&apos;options</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5143"/>
+        <location filename="../../options.ui" line="5180"/>
         <source>Options template file (read)</source>
         <translation>Fichier template d&apos;options (lecture)</translation>
     </message>
@@ -13550,12 +13555,12 @@ Are you sure you want to do this?</source>
         <translation>Parcourir pour le répertoire des PCB</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="895"/>
+        <location filename="../../options.ui" line="911"/>
         <source>Enable the use of catver.ini -- get the newest version from http://www.progettoemma.net/?catlist</source>
         <translation>Active l&apos;utilisation de catver.ini - Trouvez la nouvelle version sur http://www.progettoemma.net/?catlist</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="898"/>
+        <location filename="../../options.ui" line="914"/>
         <source>Use catver.ini</source>
         <translation>Utilise catver.ini</translation>
     </message>
@@ -13570,59 +13575,59 @@ Are you sure you want to do this?</source>
         <translation>Parcourir pour le répertoire de catver.ini</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3048"/>
+        <location filename="../../options.ui" line="3085"/>
         <source>ROM types</source>
         <translation>types de ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3478"/>
+        <location filename="../../options.ui" line="3515"/>
         <source>SW snap position</source>
         <translation>Position du SW snap</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3396"/>
+        <location filename="../../options.ui" line="3433"/>
         <source>Above / Left</source>
         <translation>Dessus / Gauche</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3401"/>
+        <location filename="../../options.ui" line="3438"/>
         <source>Above / Center</source>
         <translation>Dessus / Centre</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3406"/>
+        <location filename="../../options.ui" line="3443"/>
         <source>Above / Right</source>
         <translation>Dessus / Droite</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3411"/>
+        <location filename="../../options.ui" line="3448"/>
         <source>Below / Left</source>
         <translation>Dessous / Gauche</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3416"/>
+        <location filename="../../options.ui" line="3453"/>
         <source>Below / Center</source>
         <translation>Dessous / Centre</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3421"/>
+        <location filename="../../options.ui" line="3458"/>
         <source>Below / Right</source>
         <translation>Dessous / Droite</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5247"/>
+        <location filename="../../options.ui" line="5284"/>
         <source>Directory used as the default software folder for the MESS device configurator (if a sub-folder named as the current machine exists, that folder will be selected instead)</source>
         <translation>Répertoire utilisé comme répertoire par défaut des logiciels pour le configurateur de périphériques MESS (si un sous-répertoire nommé comme la machine actuelle existe, il sera sinon sélectionné)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3130"/>
+        <location filename="../../options.ui" line="3167"/>
         <source>Launch emulation directly when an item is activated in the search-, favorites- or played-lists (instead of jumping to the master list)</source>
         <translation>Démarrer l&apos;émulation directement quand un élément est sélectionné dans la recherche, les favoris ou la liste des jeux joués (plutôt que basculer à la liste principale)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1135"/>
         <location filename="../../options.cpp" line="2030"/>
-        <location filename="../../options.cpp" line="3345"/>
+        <location filename="../../options.cpp" line="3346"/>
         <source>SW snap folder</source>
         <translation>Répertoire SW snap</translation>
     </message>
@@ -13637,42 +13642,42 @@ Are you sure you want to do this?</source>
         <translation>Parcourir pour le répertoire des captures d&apos;écran</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3053"/>
+        <location filename="../../options.ui" line="3090"/>
         <source>Players</source>
         <translation>Joueurs</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3133"/>
+        <location filename="../../options.ui" line="3170"/>
         <source>Play on sub-list activation</source>
         <translation>Lancer les jeux dans les sous-listes</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3173"/>
+        <location filename="../../options.ui" line="3210"/>
         <source>Select the cursor position QMC2 uses when auto-scrolling to the current item (this setting applies to all views and lists!)</source>
         <translation>Sélectionner la position du curseur que QMC2 utilise lors du défilement automatique vers l&apos;élément actuel (ce paramètre s&apos;applique à toutes les vues et listes!)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3180"/>
+        <location filename="../../options.ui" line="3217"/>
         <source>Visible</source>
         <translation>Visible</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3185"/>
+        <location filename="../../options.ui" line="3222"/>
         <source>Top</source>
         <translation>Haut</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3190"/>
+        <location filename="../../options.ui" line="3227"/>
         <source>Bottom</source>
         <translation>Bas</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3195"/>
+        <location filename="../../options.ui" line="3232"/>
         <source>Center</source>
         <translation>Centre</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3160"/>
+        <location filename="../../options.ui" line="3197"/>
         <source>Cursor position</source>
         <translation>Position du curseur</translation>
     </message>
@@ -13717,7 +13722,7 @@ Are you sure you want to do this?</source>
         <translation>Afficher l&apos;écran de démarrage</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="874"/>
+        <location filename="../../options.ui" line="890"/>
         <source>Software notes folder</source>
         <translation>Répertoire des notes logicels</translation>
     </message>
@@ -13732,47 +13737,47 @@ Are you sure you want to do this?</source>
         <translation>Parcourir pour le répertoire des notes logiciels</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3028"/>
+        <location filename="../../options.ui" line="3065"/>
         <source>Tag</source>
         <translation>Tag</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3058"/>
+        <location filename="../../options.ui" line="3095"/>
         <source>Driver status</source>
         <translation>Statut du driver</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3146"/>
+        <location filename="../../options.ui" line="3183"/>
         <source>Display ROM status icons in master lists?</source>
         <translation>Afficher les icônes de statut de ROM dans les listes?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3149"/>
+        <location filename="../../options.ui" line="3186"/>
         <source>Show ROM status icons</source>
         <translation>Afficher l&apos;icône de statut ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3392"/>
+        <location filename="../../options.ui" line="3429"/>
         <source>Select the position where sofware snap-shots are displayed within software lists</source>
         <translation>Sélectionner la position où les captures d&apos;écran des logiciels sont affichées dans les listes des logiciels</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3426"/>
+        <location filename="../../options.ui" line="3463"/>
         <source>Disable snaps</source>
         <translation>Désactive les captures</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3076"/>
+        <location filename="../../options.ui" line="3113"/>
         <source>Display software snap-shots when hovering the software list with the mouse cursor</source>
         <translation>Afficher les captures d&apos;écran des logiciels par survol de la souris sur la liste des logiciels</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3079"/>
+        <location filename="../../options.ui" line="3116"/>
         <source>SW snaps on mouse hover</source>
         <translation>snaps SW sur survol de souris</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2928"/>
+        <location filename="../../options.ui" line="2965"/>
         <source>Enable ROM state filtering?</source>
         <translation>Activer le filtrage d&apos;état de ROM?</translation>
     </message>
@@ -13966,7 +13971,7 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="926"/>
+        <location filename="../../options.ui" line="864"/>
         <source>Switch between specifying a cabinet directory or a compressed cabinet file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -14026,12 +14031,12 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="909"/>
+        <location filename="../../options.ui" line="925"/>
         <source>Enable the use of a template for (empty) software notes</source>
         <translation>Active l&apos;utilisation d&apos;un template pour les notes logiciels (vide)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="912"/>
+        <location filename="../../options.ui" line="928"/>
         <source>Software notes template</source>
         <translation>Template des notes logiciels</translation>
     </message>
@@ -14071,12 +14076,12 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="864"/>
+        <location filename="../../options.ui" line="880"/>
         <source>Enable the use of a template for (empty) system notes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="867"/>
+        <location filename="../../options.ui" line="883"/>
         <source>System notes template</source>
         <translation type="unfinished"></translation>
     </message>
@@ -14228,10 +14233,10 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.ui" line="2303"/>
         <location filename="../../options.ui" line="2319"/>
-        <location filename="../../options.ui" line="2963"/>
-        <location filename="../../options.ui" line="2979"/>
-        <location filename="../../options.ui" line="4868"/>
-        <location filename="../../options.ui" line="4884"/>
+        <location filename="../../options.ui" line="3000"/>
+        <location filename="../../options.ui" line="3016"/>
+        <location filename="../../options.ui" line="4905"/>
+        <location filename="../../options.ui" line="4921"/>
         <source>Option requires a reload of the machine list to take effect</source>
         <translation type="unfinished"></translation>
     </message>
@@ -14256,489 +14261,504 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2899"/>
+        <location filename="../../options.ui" line="2892"/>
+        <source>Video snap folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2905"/>
+        <source>Video snap folder (read)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2918"/>
+        <source>Browse video snap folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2936"/>
         <source>Machine &amp;list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2998"/>
+        <location filename="../../options.ui" line="3035"/>
         <source>Automatically disable SW snaps when software-detail is visible (may be annoying)</source>
         <translation>Désactive automatiquement les snaps SW quand les détails des logciels sont visibles (peut être dérangeant)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3001"/>
+        <location filename="../../options.ui" line="3038"/>
         <source>No SW snaps for visible details</source>
         <translation>Pas de snaps SW pour les détails visibles</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3018"/>
+        <location filename="../../options.ui" line="3055"/>
         <source>Machine description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3043"/>
+        <location filename="../../options.ui" line="3080"/>
         <source>Machine name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3063"/>
+        <location filename="../../options.ui" line="3100"/>
         <source>Source file</source>
         <translation type="unfinished">Fichier source</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3068"/>
+        <location filename="../../options.ui" line="3105"/>
         <source>Rank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3216"/>
+        <location filename="../../options.ui" line="3253"/>
         <source>Number of item insertions between machine list updates during reload (higher means faster, but makes the GUI less responsive)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3361"/>
+        <location filename="../../options.ui" line="3398"/>
         <source>Select the default launch-mode (independent or embedded window) used when emulation is started by activating an entry in any list</source>
         <translation>Choisir le mode de lancement par défaut (indépendant ou embarqué) à utiliser lorsque l&apos;émulation est démarrée par l&apos;activation d&apos;une entrée dans une liste</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3365"/>
+        <location filename="../../options.ui" line="3402"/>
         <source>independent</source>
         <translation>indépendant</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3374"/>
+        <location filename="../../options.ui" line="3411"/>
         <source>embedded</source>
         <translation>embarqué</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3440"/>
+        <location filename="../../options.ui" line="3477"/>
         <source>Delay update of any machine details (preview, flyer, info, configuration, ...) by how many milliseconds?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3485"/>
+        <location filename="../../options.ui" line="3522"/>
         <source>Default launch-mode</source>
         <translation>Mode de lancement</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3514"/>
+        <location filename="../../options.ui" line="3551"/>
         <source>Display (or hide) device sets in master lists?</source>
         <translation>Afficher (ou masquer) les sets de périphériques dans les listes?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3517"/>
+        <location filename="../../options.ui" line="3554"/>
         <source>Show device sets</source>
         <translation>Voir les sets de périphériques</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3534"/>
+        <location filename="../../options.ui" line="3571"/>
         <source>Display (or hide) BIOS sets in master lists?</source>
         <translation>Afficher (ou masquer) les sets BIOS dans les listes?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3537"/>
+        <location filename="../../options.ui" line="3574"/>
         <source>Show BIOS sets</source>
         <translation>Afficher les sets BIOS</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4248"/>
+        <location filename="../../options.ui" line="4285"/>
         <source>ROM tool</source>
         <translation>outil de ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4267"/>
+        <location filename="../../options.ui" line="4304"/>
         <source>External ROM tool (it&apos;s completely up to you...)</source>
         <translation>outil de ROM externe (c&apos;est totalement sous votre contrôle...)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4280"/>
+        <location filename="../../options.ui" line="4317"/>
         <source>Browse ROM tool</source>
         <translation>Parcourir pour l&apos;outil de ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4304"/>
+        <location filename="../../options.ui" line="4341"/>
         <source>ROM tool argument list (i. e. &quot;$ID$ $DESCRIPTION$&quot;)</source>
         <translation>liste d&apos;arguments de l&apos;outil de ROM (ex. &quot;$ID$ $DESCRIPTION$&quot;)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4337"/>
+        <location filename="../../options.ui" line="4374"/>
         <source>Browse working directory of the ROM tool</source>
         <translation>Parcourir pour le répertoire de travail de l&apos;outil de ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4354"/>
+        <location filename="../../options.ui" line="4391"/>
         <source>Copy the tool&apos;s output to the front end log (keeping it for debugging)</source>
         <translation>Copier la sortie de l&apos;outil vers le log du Front-End (conservé pour débug)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4357"/>
+        <location filename="../../options.ui" line="4394"/>
         <source>Copy tool output to front end log</source>
         <translation>Copier la sortie de l&apos;outil dans le log du Front-End</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4364"/>
+        <location filename="../../options.ui" line="4401"/>
         <source>Automatically close the tool-executor dialog when the external process finished</source>
         <translation>Fermer automatiquement la fenêtre de l&apos;outil quand le processus externe est terminé</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4367"/>
+        <location filename="../../options.ui" line="4404"/>
         <source>Close dialog automatically</source>
         <translation>Fermer la fenêtre automatiquement</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4491"/>
+        <location filename="../../options.ui" line="4528"/>
         <source>Browser settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4503"/>
+        <location filename="../../options.ui" line="4540"/>
         <source>Browse cookie database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4520"/>
+        <location filename="../../options.ui" line="4557"/>
         <source>Cookie database file (write)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4527"/>
+        <location filename="../../options.ui" line="4564"/>
         <source>Cookie database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4536"/>
+        <location filename="../../options.ui" line="4573"/>
         <source>Save and restore cookies used on web pages?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4568"/>
+        <location filename="../../options.ui" line="4605"/>
         <source>Remove all cookies by recreating the database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4583"/>
+        <location filename="../../options.ui" line="4620"/>
         <source>7-zip tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4602"/>
+        <location filename="../../options.ui" line="4639"/>
         <source>External 7-zip tool, i.e. &quot;7za&quot; (read and execute)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4615"/>
+        <location filename="../../options.ui" line="4652"/>
         <source>Browse for 7-zip tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4639"/>
+        <location filename="../../options.ui" line="4676"/>
         <source>7-zip tool argument list to remove entries from the 7-zip archive (i. e. &quot;d $ARCHIVE$ $FILELIST$&quot;)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4775"/>
+        <location filename="../../options.ui" line="4812"/>
         <source>Options template file</source>
         <translation>Fichier template d&apos;options</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5100"/>
+        <location filename="../../options.ui" line="5137"/>
         <source>Clean up user data database (removes obsolete entries)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4968"/>
+        <location filename="../../options.ui" line="5005"/>
         <source>Slot info cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5208"/>
+        <location filename="../../options.ui" line="5245"/>
         <source>Slot info cache file (write)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4981"/>
+        <location filename="../../options.ui" line="5018"/>
         <source>Browse slot info cache file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4992"/>
+        <location filename="../../options.ui" line="5029"/>
         <source>Software state cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5234"/>
+        <location filename="../../options.ui" line="5271"/>
         <source>Directory used to store individual state cache files for each software-list (write)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5005"/>
+        <location filename="../../options.ui" line="5042"/>
         <source>Browse software state cache directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5016"/>
+        <location filename="../../options.ui" line="5053"/>
         <source>XML cache database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5130"/>
+        <location filename="../../options.ui" line="5167"/>
         <source>Database file for caching the output from -listxml (write)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5029"/>
+        <location filename="../../options.ui" line="5066"/>
         <source>Browse XML cache database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5040"/>
+        <location filename="../../options.ui" line="5077"/>
         <source>User data database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5053"/>
+        <location filename="../../options.ui" line="5090"/>
         <source>Database file for storing/retrieving user data (write)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5066"/>
+        <location filename="../../options.ui" line="5103"/>
         <source>Browse user data database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5591"/>
+        <location filename="../../options.ui" line="5628"/>
         <source>Indicates if the $ID$ placeholder is missing on the supplied command line (yellow) or not (green)</source>
         <translation>Indique si l&apos;$ID$ est manquant dans la ligne de commande envoyée (jaune) or pas (vert) </translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5437"/>
+        <location filename="../../options.ui" line="5474"/>
         <source>Replace</source>
         <translation>Remplacer</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5612"/>
+        <location filename="../../options.ui" line="5649"/>
         <source>Arguments passed to the emulator -- use $ID$ as placeholder for the unique set ID, $DESCRIPTION$ for its description</source>
         <translation>Arguments passés à l&apos;émulateur -- utiliser $ID$ comme base pour un set unique ID, $DESCRIPTION$ pour sa description</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4311"/>
-        <location filename="../../options.ui" line="4944"/>
-        <location filename="../../options.ui" line="5353"/>
-        <location filename="../../options.ui" line="5542"/>
+        <location filename="../../options.ui" line="4348"/>
+        <location filename="../../options.ui" line="4981"/>
+        <location filename="../../options.ui" line="5390"/>
+        <location filename="../../options.ui" line="5579"/>
         <source>Working directory</source>
         <translation>Répertoire de travail</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5169"/>
-        <location filename="../../options.ui" line="5555"/>
+        <location filename="../../options.ui" line="5206"/>
+        <location filename="../../options.ui" line="5592"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
         <translation>Répertoire de travail utilisé quand l&apos;émulateur est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4957"/>
-        <location filename="../../options.ui" line="5568"/>
+        <location filename="../../options.ui" line="4994"/>
+        <location filename="../../options.ui" line="5605"/>
         <source>Browse working directory</source>
         <translation>Parcourir pour le répertoire de travail</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4920"/>
+        <location filename="../../options.ui" line="4957"/>
         <source>General software folder</source>
         <translation>Répertoire général des logiciels</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4324"/>
+        <location filename="../../options.ui" line="4361"/>
         <source>Working directory that&apos;s used when the ROM tool is executed (if empty, QMC2&apos;s current working directory is used)</source>
         <translation>Répertoire de travail utilisé quand l&apos;outil de ROM est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4896"/>
+        <location filename="../../options.ui" line="4933"/>
         <source>Software list cache DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4909"/>
+        <location filename="../../options.ui" line="4946"/>
         <source>Browse software list cache database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4933"/>
+        <location filename="../../options.ui" line="4970"/>
         <source>Browse general software folder</source>
         <translation>Parcourir pour le répertoire général des logiciels</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5221"/>
+        <location filename="../../options.ui" line="5258"/>
         <source>Database file for caching the ouput from -listsoftware (write)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5254"/>
-        <location filename="../../options.ui" line="5257"/>
-        <location filename="../../options.ui" line="5260"/>
+        <location filename="../../options.ui" line="5291"/>
+        <location filename="../../options.ui" line="5294"/>
+        <location filename="../../options.ui" line="5297"/>
         <source>Automatically recreate all emulator caches when the output from &apos;-listfull&apos; changes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5343"/>
+        <location filename="../../options.ui" line="5380"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5348"/>
+        <location filename="../../options.ui" line="5385"/>
         <source>Executable</source>
         <translation>Exécutable</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5363"/>
+        <location filename="../../options.ui" line="5400"/>
         <source>Custom IDs</source>
         <translation>IDs personnalisés</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5382"/>
+        <location filename="../../options.ui" line="5419"/>
         <source>Register emulator</source>
         <translation>Enregistrer l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5385"/>
+        <location filename="../../options.ui" line="5422"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5408"/>
+        <location filename="../../options.ui" line="5445"/>
         <source>Deregister emulator</source>
         <translation>Retire l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5495"/>
+        <location filename="../../options.ui" line="5532"/>
         <source>Registered emulator&apos;s name</source>
         <translation>nom des émulateurs enregistrés</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5515"/>
+        <location filename="../../options.ui" line="5552"/>
         <source>Command to execute the emulator (path to the executable file)</source>
         <translation>Commande pour exécuter l&apos;émulateur (chemin vers l&apos;exécutable)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5434"/>
+        <location filename="../../options.ui" line="5471"/>
         <source>Replace emulator registration</source>
         <translation>Retirer l&apos;enregistrement de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4140"/>
+        <location filename="../../options.ui" line="4177"/>
         <source>Network / &amp;Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4539"/>
+        <location filename="../../options.ui" line="4576"/>
         <source>Restore cookies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4555"/>
+        <location filename="../../options.ui" line="4592"/>
         <source>Manage cookies stored in database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4558"/>
+        <location filename="../../options.ui" line="4595"/>
         <source>Manage stored cookies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4571"/>
+        <location filename="../../options.ui" line="4608"/>
         <source>Clear database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5083"/>
+        <location filename="../../options.ui" line="5120"/>
         <source>Recreate user data database (removes &lt;b&gt;all&lt;/b&gt; entries)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5277"/>
+        <location filename="../../options.ui" line="5314"/>
         <source>Foreign &amp;emulators</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5338"/>
+        <location filename="../../options.ui" line="5375"/>
         <source>Icon</source>
         <translation type="unfinished">Icône</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5488"/>
+        <location filename="../../options.ui" line="5525"/>
         <source>Emulator name</source>
         <translation>Nom de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5411"/>
+        <location filename="../../options.ui" line="5448"/>
         <source> Remove</source>
         <translation>Enlever</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4799"/>
+        <location filename="../../options.ui" line="4836"/>
         <source>Machine list cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4825"/>
+        <location filename="../../options.ui" line="4862"/>
         <source>Browse machine list cache file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5117"/>
+        <location filename="../../options.ui" line="5154"/>
         <source>Machine list cache file (write)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5304"/>
+        <location filename="../../options.ui" line="5341"/>
         <source>Registered emulators -- you may select one of these in the machine-specific emulator configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5633"/>
+        <location filename="../../options.ui" line="5670"/>
         <source>Apply settings</source>
         <translation>Appliquer les paramètres</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5636"/>
+        <location filename="../../options.ui" line="5673"/>
         <source>&amp;Apply</source>
         <translation>&amp;Appliquer</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5650"/>
+        <location filename="../../options.ui" line="5687"/>
         <source>Restore currently applied settings</source>
         <translation>Restaurer les paramètres appliqués en cours</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5653"/>
+        <location filename="../../options.ui" line="5690"/>
         <source>&amp;Restore</source>
         <translation>&amp;Restaurer</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5667"/>
+        <location filename="../../options.ui" line="5704"/>
         <source>Reset to default settings (click &lt;i&gt;Restore&lt;/i&gt; to restore currently applied settings!)</source>
         <translation>Remettre au paramètres par défaut (cliquer &lt;i&gt;Restaurer&lt;/i&gt; pour restaurer les paramètres appliqués en cours)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5670"/>
+        <location filename="../../options.ui" line="5707"/>
         <source>&amp;Default</source>
         <translation>Par &amp;défaut</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5697"/>
+        <location filename="../../options.ui" line="5734"/>
         <source>Close and apply settings</source>
         <translation>Fermer et appliquer les paramètres</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5700"/>
+        <location filename="../../options.ui" line="5737"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5714"/>
+        <location filename="../../options.ui" line="5751"/>
         <source>Close and discard changes</source>
         <translation>Fermer et annuler les changements</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="5717"/>
+        <location filename="../../options.ui" line="5754"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annuler</translation>
     </message>
@@ -14848,211 +14868,211 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3677"/>
+        <location filename="../../options.ui" line="3714"/>
         <source>&amp;Joystick</source>
         <translation>&amp;Joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3706"/>
+        <location filename="../../options.ui" line="3743"/>
         <source>Enable GUI control via joystick</source>
         <translation>Active le contrôle du GUI par le joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3709"/>
+        <location filename="../../options.ui" line="3746"/>
         <source>Enable joystick control</source>
         <translation>Active le contrôle au joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3725"/>
+        <location filename="../../options.ui" line="3762"/>
         <source>Rescan available joysticks</source>
         <translation>Rescanne les joysticks disponibles</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3728"/>
+        <location filename="../../options.ui" line="3765"/>
         <source>Rescan joysticks</source>
         <translation>Rescanne les joysticks</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3751"/>
+        <location filename="../../options.ui" line="3788"/>
         <source>Select joystick</source>
         <translation>Choisir le joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3761"/>
+        <location filename="../../options.ui" line="3798"/>
         <source>List of available joysticks - select the one you want to use for GUI control</source>
         <translation>Liste des joysticks disponibles - sélectionnez celui que vous voulez pour contrôler le GUI</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3765"/>
-        <location filename="../../options.cpp" line="4172"/>
-        <location filename="../../options.cpp" line="4199"/>
-        <location filename="../../options.cpp" line="4255"/>
-        <location filename="../../options.cpp" line="4344"/>
+        <location filename="../../options.ui" line="3802"/>
+        <location filename="../../options.cpp" line="4188"/>
+        <location filename="../../options.cpp" line="4215"/>
+        <location filename="../../options.cpp" line="4271"/>
+        <location filename="../../options.cpp" line="4360"/>
         <source>No joysticks found</source>
         <translation>Aucun joystick détecté</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3776"/>
+        <location filename="../../options.ui" line="3813"/>
         <source>Joystick information and settings</source>
         <translation>Informations et paramètres du joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3793"/>
+        <location filename="../../options.ui" line="3830"/>
         <source>Number of joystick axes</source>
         <translation>Nombre d&apos;axes du joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3796"/>
-        <location filename="../../options.ui" line="3817"/>
-        <location filename="../../options.ui" line="3838"/>
-        <location filename="../../options.ui" line="3859"/>
+        <location filename="../../options.ui" line="3833"/>
+        <location filename="../../options.ui" line="3854"/>
+        <location filename="../../options.ui" line="3875"/>
+        <location filename="../../options.ui" line="3896"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3807"/>
+        <location filename="../../options.ui" line="3844"/>
         <source>Buttons:</source>
         <translation>Boutons:</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3814"/>
+        <location filename="../../options.ui" line="3851"/>
         <source>Number of joystick buttons</source>
         <translation>Nombre de boutons du joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3828"/>
+        <location filename="../../options.ui" line="3865"/>
         <source>Hats:</source>
         <translation>Hats:</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3835"/>
+        <location filename="../../options.ui" line="3872"/>
         <source>Number of coolie hats</source>
         <translation>Nombre coolie hats</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3849"/>
+        <location filename="../../options.ui" line="3886"/>
         <source>Trackballs:</source>
         <translation>Trackballs:</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3856"/>
+        <location filename="../../options.ui" line="3893"/>
         <source>Number of trackballs</source>
         <translation>Nombre de trackballs</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3975"/>
+        <location filename="../../options.ui" line="4012"/>
         <source>Calibrate joystick axes</source>
         <translation>Calibrer les axes du joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3997"/>
+        <location filename="../../options.ui" line="4034"/>
         <source>Test all joystick functions</source>
         <translation>Tester toutes les fonctions du joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3786"/>
+        <location filename="../../options.ui" line="3823"/>
         <source>Axes:</source>
         <translation>Axes:</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3885"/>
+        <location filename="../../options.ui" line="3922"/>
         <source>Automatically repeat joystick functions after specified delay</source>
         <translation>Répète automatiquement les fonctions de joystick après le délai spécifié</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3888"/>
+        <location filename="../../options.ui" line="3925"/>
         <source>Auto repeat after</source>
         <translation>Recommencer automatiquement après</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3904"/>
+        <location filename="../../options.ui" line="3941"/>
         <source>Repeat all joystick functions after how many milliseconds?</source>
         <translation>Répète automatiquement les fonctions de tous les joysticks après combien de millisecondes ?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3907"/>
-        <location filename="../../options.ui" line="3952"/>
+        <location filename="../../options.ui" line="3944"/>
+        <location filename="../../options.ui" line="3989"/>
         <source>ms</source>
         <translation>ms</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3933"/>
+        <location filename="../../options.ui" line="3970"/>
         <source>Event timeout</source>
         <translation>Temps pour l&apos;évènement écoulé</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3949"/>
+        <location filename="../../options.ui" line="3986"/>
         <source>Process joystick events after how many milliseconds?</source>
         <translation>Exécute les évènements de joystick après combien de millisecondes ?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3652"/>
-        <location filename="../../options.ui" line="4114"/>
+        <location filename="../../options.ui" line="3689"/>
+        <location filename="../../options.ui" line="4151"/>
         <source>Function / Key</source>
         <translation>Fonction / Touche</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3978"/>
+        <location filename="../../options.ui" line="4015"/>
         <source>Calibrate</source>
         <translation>Calibrer</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4000"/>
+        <location filename="../../options.ui" line="4037"/>
         <source>Test</source>
         <translation>Tester</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4022"/>
+        <location filename="../../options.ui" line="4059"/>
         <source>Map</source>
         <translation>Carte</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4058"/>
+        <location filename="../../options.ui" line="4095"/>
         <source>Remap</source>
         <translation>Re-mapper</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4075"/>
+        <location filename="../../options.ui" line="4112"/>
         <source>Remove</source>
         <translation>Enlever</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4092"/>
+        <location filename="../../options.ui" line="4129"/>
         <source>Active joystick mappings; double-click to remap joystick function</source>
         <translation>Active le mapping de joystick: double-clic pour remapper les fonctions joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4119"/>
+        <location filename="../../options.ui" line="4156"/>
         <source>Joystick function</source>
         <translation>Fonction joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4019"/>
+        <location filename="../../options.ui" line="4056"/>
         <source>Map joystick functions to GUI functions</source>
         <translation>Mapper les fonctions de joystick pour les fonctions du GUI</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4055"/>
+        <location filename="../../options.ui" line="4092"/>
         <source>Remap a joystick function to the selected GUI function</source>
         <translation>Remapper une fonction du joystick pour la fonction du GUI sélectionnée</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4072"/>
+        <location filename="../../options.ui" line="4109"/>
         <source>Remove joystick mapping from selected GUI function</source>
         <translation>Enlever une fonction du joystick pour la fonction du GUI sélectionnée</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4183"/>
+        <location filename="../../options.cpp" line="4199"/>
         <source>ERROR: couldn&apos;t initialize SDL joystick support</source>
         <translation type="unfinished">ERREUR: Impossible d&apos;initialiser le support joystick SDL</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4518"/>
+        <location filename="../../options.cpp" line="4534"/>
         <source>joystick map is clean</source>
         <translation>Mapping de joystick nettoyé</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4520"/>
+        <location filename="../../options.cpp" line="4536"/>
         <source>WARNING: joystick map contains duplicates</source>
         <translation>ATTENTION: La carte de joystick contient des doublons</translation>
     </message>
@@ -15074,13 +15094,13 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../options.ui" line="2322"/>
-        <location filename="../../options.ui" line="2982"/>
-        <location filename="../../options.ui" line="4887"/>
+        <location filename="../../options.ui" line="3019"/>
+        <location filename="../../options.ui" line="4924"/>
         <source>reload required</source>
         <translation>rechargement requis</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3443"/>
+        <location filename="../../options.ui" line="3480"/>
         <source>none</source>
         <translation>aucun</translation>
     </message>
@@ -15250,24 +15270,24 @@ Are you sure you want to do this?</source>
         <translation>Style d&apos;application (Défaut = utiliser le style par défaut du système)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3498"/>
+        <location filename="../../options.ui" line="3535"/>
         <source>Automatically trigger a ROM check if necessary</source>
         <translation>Effectue automatiquement une vérification de ROM si nécessaire</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4175"/>
-        <location filename="../../options.ui" line="4254"/>
-        <location filename="../../options.ui" line="4589"/>
+        <location filename="../../options.ui" line="4212"/>
+        <location filename="../../options.ui" line="4291"/>
+        <location filename="../../options.ui" line="4626"/>
         <source>Command</source>
         <translation>Commande</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3468"/>
+        <location filename="../../options.ui" line="3505"/>
         <source>Launch emulation on double-click events (may be annoying)</source>
         <translation>Lancer l&apos;émulation par double-clic (peut-être ennuyeux)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3471"/>
+        <location filename="../../options.ui" line="3508"/>
         <source>Double-click activation</source>
         <translation>Activation du double-clic</translation>
     </message>
@@ -15288,37 +15308,37 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../options.cpp" line="2000"/>
-        <location filename="../../options.cpp" line="3290"/>
+        <location filename="../../options.cpp" line="3291"/>
         <source>Cabinet file</source>
         <translation>Fichier Borne (cabinet)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="929"/>
+        <location filename="../../options.ui" line="867"/>
         <location filename="../../options.cpp" line="2000"/>
-        <location filename="../../options.cpp" line="3290"/>
+        <location filename="../../options.cpp" line="3291"/>
         <source>Cabinet directory</source>
         <translation>Répertoire des bornes</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2006"/>
-        <location filename="../../options.cpp" line="3301"/>
+        <location filename="../../options.cpp" line="3302"/>
         <source>Controller file</source>
         <translation>Fichier Contrôleur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2222"/>
         <location filename="../../options.cpp" line="2006"/>
-        <location filename="../../options.cpp" line="3301"/>
+        <location filename="../../options.cpp" line="3302"/>
         <source>Controller directory</source>
         <translation>Répertoire des contrôleurs</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2710"/>
+        <location filename="../../options.cpp" line="2711"/>
         <source>Choose cabinet directory</source>
         <translation>Choisir le répertoire des bornes</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2725"/>
+        <location filename="../../options.cpp" line="2726"/>
         <source>Choose controller directory</source>
         <translation>Choisir le répertoire des contrôleurs</translation>
     </message>
@@ -15359,37 +15379,37 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../options.cpp" line="2012"/>
-        <location filename="../../options.cpp" line="3312"/>
+        <location filename="../../options.cpp" line="3313"/>
         <source>Marquee file</source>
         <translation>Fichier Marquee</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1112"/>
         <location filename="../../options.cpp" line="2012"/>
-        <location filename="../../options.cpp" line="3312"/>
+        <location filename="../../options.cpp" line="3313"/>
         <source>Marquee directory</source>
         <translation>Répertoire des marquees</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2018"/>
-        <location filename="../../options.cpp" line="3323"/>
+        <location filename="../../options.cpp" line="3324"/>
         <source>Title file</source>
         <translation>Fichier titre</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1016"/>
         <location filename="../../options.cpp" line="2018"/>
-        <location filename="../../options.cpp" line="3323"/>
+        <location filename="../../options.cpp" line="3324"/>
         <source>Title directory</source>
         <translation>Répertoire des titres</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2740"/>
+        <location filename="../../options.cpp" line="2741"/>
         <source>Choose marquee directory</source>
         <translation>Choisir le répertoire des marquees</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2755"/>
+        <location filename="../../options.cpp" line="2756"/>
         <source>Choose title directory</source>
         <translation>Choisir le répertoire des titres</translation>
     </message>
@@ -15434,7 +15454,7 @@ Are you sure you want to do this?</source>
         <translation>Nombre maximum de lignes à garder dans le navigateur du fichier log du front-end</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="919"/>
+        <location filename="../../options.ui" line="935"/>
         <source>Front end log file</source>
         <translation>Fichier de log du front-end</translation>
     </message>
@@ -15449,57 +15469,57 @@ Are you sure you want to do this?</source>
         <translation>Parcourir pour le fichier de log du front-end</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3060"/>
+        <location filename="../../options.cpp" line="3061"/>
         <source>Choose front end log file</source>
         <translation>Choisir le fichier log du front-end</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4380"/>
+        <location filename="../../options.ui" line="4417"/>
         <source>Use HTTP proxy</source>
         <translation>Utiliser un proxy HTTP</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4392"/>
+        <location filename="../../options.ui" line="4429"/>
         <source>Host / IP</source>
         <translation>Hôte/IP</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4405"/>
+        <location filename="../../options.ui" line="4442"/>
         <source>Hostname or IP address of the HTTP proxy server</source>
         <translation>Nom d&apos;hôte ou adresse IP du serveur proxy HTTP</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4412"/>
+        <location filename="../../options.ui" line="4449"/>
         <source>Port</source>
         <translation>Port</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4425"/>
+        <location filename="../../options.ui" line="4462"/>
         <source>Port to access the HTTP proxy service</source>
         <translation>Port pour l&apos;accès au service du proxy HTTP</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4438"/>
+        <location filename="../../options.ui" line="4475"/>
         <source>User ID</source>
         <translation>Compte Utilisateur</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4451"/>
+        <location filename="../../options.ui" line="4488"/>
         <source>User ID to access the HTTP proxy service (empty = no authentication)</source>
         <translation>Compte Utilisateur pour accéder au service de proxy HTTP (vide = pas d&apos;authentification)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4458"/>
+        <location filename="../../options.ui" line="4495"/>
         <source>Password</source>
         <translation>Mot de passe</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4377"/>
+        <location filename="../../options.ui" line="4414"/>
         <source>Enable / disable the use of an HTTP proxy on any web lookups</source>
         <translation>Active / Désactive l&apos;utilisation d&apos;un proxy HTTP pour tout accès web</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4471"/>
+        <location filename="../../options.ui" line="4508"/>
         <source>Password to access the HTTP proxy service (empty = no authentication)</source>
         <translation>Mot de passe pour accéder au service de proxy HTTP (vide = pas d&apos;authentification)</translation>
     </message>
@@ -16185,7 +16205,7 @@ Are you sure you want to do this?</source>
         <translation>Phonon actif - Utilise Phonon v%1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2145"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2161"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
         <translation>lecteur vidéo: erreur XML: erreur fatal ligne %1, colonne %2: %3</translation>
     </message>
@@ -21623,34 +21643,34 @@ Are you sure you want to do this?</source>
 <context>
     <name>VideoItemWidget</name>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="167"/>
+        <location filename="../../videoitemwidget.cpp" line="168"/>
         <source>Path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="169"/>
+        <location filename="../../videoitemwidget.cpp" line="170"/>
         <source>Title:</source>
         <translation>Titre:</translation>
     </message>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="174"/>
-        <location filename="../../videoitemwidget.cpp" line="176"/>
+        <location filename="../../videoitemwidget.cpp" line="175"/>
+        <location filename="../../videoitemwidget.cpp" line="177"/>
         <source>Author:</source>
         <translation>Auteur:</translation>
     </message>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="174"/>
+        <location filename="../../videoitemwidget.cpp" line="175"/>
         <source>Open author URL with the default browser</source>
         <translation>Ouvrir l&apos;URL de l&apos;auteur avec le navigateur par défaut</translation>
     </message>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="182"/>
+        <location filename="../../videoitemwidget.cpp" line="183"/>
         <source>Open video URL with the default browser</source>
         <translation>Ouvrir l&apos;URL de la vidéo avec le navigateur par défaut</translation>
     </message>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="182"/>
-        <location filename="../../videoitemwidget.cpp" line="184"/>
+        <location filename="../../videoitemwidget.cpp" line="183"/>
+        <location filename="../../videoitemwidget.cpp" line="185"/>
         <source>Video:</source>
         <translation>Vidéo:</translation>
     </message>
@@ -22011,7 +22031,7 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="273"/>
-        <location filename="../../youtubevideoplayer.cpp" line="190"/>
+        <location filename="../../youtubevideoplayer.cpp" line="194"/>
         <source>Start / pause / resume video playback</source>
         <translation>Joue / pause / reprise de la lecture vidéo</translation>
     </message>
@@ -22022,20 +22042,20 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="323"/>
-        <location filename="../../youtubevideoplayer.cpp" line="134"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1009"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1032"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1071"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1073"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1104"/>
+        <location filename="../../youtubevideoplayer.cpp" line="138"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1025"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1048"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1087"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1089"/>
         <location filename="../../youtubevideoplayer.cpp" line="1120"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1166"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1136"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1182"/>
         <source>Remaining</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="353"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1821"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1837"/>
         <source>Volume</source>
         <translation type="unfinished"></translation>
     </message>
@@ -22085,272 +22105,272 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
         <translation>Coupe / Ouvre la sortie audio</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="132"/>
+        <location filename="../../youtubevideoplayer.cpp" line="136"/>
         <source>Volume level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="133"/>
+        <location filename="../../youtubevideoplayer.cpp" line="137"/>
         <source>Video progress</source>
         <translation>Progression de la vidéo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="137"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1013"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1045"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1062"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1107"/>
+        <location filename="../../youtubevideoplayer.cpp" line="141"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1029"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1061"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1078"/>
         <location filename="../../youtubevideoplayer.cpp" line="1123"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1169"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1139"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1185"/>
         <source>Current buffer fill level: %1%</source>
         <translation>Niveau de cache actuel: %1%</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="144"/>
-        <location filename="../../youtubevideoplayer.cpp" line="244"/>
+        <location filename="../../youtubevideoplayer.cpp" line="148"/>
+        <location filename="../../youtubevideoplayer.cpp" line="248"/>
         <source>Play this video</source>
         <translation>Joue cette vidéo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="151"/>
-        <location filename="../../youtubevideoplayer.cpp" line="205"/>
-        <location filename="../../youtubevideoplayer.cpp" line="255"/>
+        <location filename="../../youtubevideoplayer.cpp" line="155"/>
+        <location filename="../../youtubevideoplayer.cpp" line="209"/>
+        <location filename="../../youtubevideoplayer.cpp" line="259"/>
         <source>Copy video URL</source>
         <translation>Copier l&apos;URL de la vidéo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="157"/>
-        <location filename="../../youtubevideoplayer.cpp" line="211"/>
-        <location filename="../../youtubevideoplayer.cpp" line="260"/>
+        <location filename="../../youtubevideoplayer.cpp" line="161"/>
+        <location filename="../../youtubevideoplayer.cpp" line="215"/>
+        <location filename="../../youtubevideoplayer.cpp" line="264"/>
         <source>Copy video URL (no country filter)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="163"/>
-        <location filename="../../youtubevideoplayer.cpp" line="217"/>
-        <location filename="../../youtubevideoplayer.cpp" line="265"/>
+        <location filename="../../youtubevideoplayer.cpp" line="167"/>
+        <location filename="../../youtubevideoplayer.cpp" line="221"/>
+        <location filename="../../youtubevideoplayer.cpp" line="269"/>
         <source>Copy author URL</source>
         <translation>Copier l&apos;URL de l&apos;auteur</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="169"/>
-        <location filename="../../youtubevideoplayer.cpp" line="223"/>
+        <location filename="../../youtubevideoplayer.cpp" line="173"/>
+        <location filename="../../youtubevideoplayer.cpp" line="227"/>
         <source>Paste video URL</source>
         <translation>Coller l&apos;URL de la vidéo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="176"/>
-        <location filename="../../youtubevideoplayer.cpp" line="230"/>
+        <location filename="../../youtubevideoplayer.cpp" line="180"/>
+        <location filename="../../youtubevideoplayer.cpp" line="234"/>
         <source>Local movie file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="182"/>
+        <location filename="../../youtubevideoplayer.cpp" line="186"/>
         <source>Remove selected videos</source>
         <translation>Enlever les vidéos sélectionnées</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="198"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1726"/>
+        <location filename="../../youtubevideoplayer.cpp" line="202"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1742"/>
         <source>Full screen (return with toggle-key)</source>
         <translation>Plein écran (retour avec la touche de bascul)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="236"/>
-        <location filename="../../youtubevideoplayer.cpp" line="249"/>
+        <location filename="../../youtubevideoplayer.cpp" line="240"/>
+        <location filename="../../youtubevideoplayer.cpp" line="253"/>
         <source>Attach this video</source>
         <translation>Attacher cette vidéo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="272"/>
+        <location filename="../../youtubevideoplayer.cpp" line="276"/>
         <source>Auto-suggest a search pattern?</source>
         <translation>Suggérer automatique un pattern de recherche?</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="273"/>
+        <location filename="../../youtubevideoplayer.cpp" line="277"/>
         <source>Auto-suggest</source>
         <translation>Auto-suggestion</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="278"/>
+        <location filename="../../youtubevideoplayer.cpp" line="282"/>
         <source>Enter string to be appended</source>
         <translation>Entrer la chaîne qui sera ajoutée</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="279"/>
+        <location filename="../../youtubevideoplayer.cpp" line="283"/>
         <source>Append...</source>
         <translation>Ajouter...</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="287"/>
+        <location filename="../../youtubevideoplayer.cpp" line="291"/>
         <source>Enter search string</source>
         <translation>Entrer la chaîne de recherche</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="410"/>
+        <location filename="../../youtubevideoplayer.cpp" line="415"/>
         <source>Appended string</source>
         <translation>Ajouter une chaîne</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="411"/>
+        <location filename="../../youtubevideoplayer.cpp" line="416"/>
         <source>Enter the string to be appended when suggesting a pattern:</source>
         <translation>Entrer la chaîne à ajouter quand un pattern est suggéré:</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="412"/>
+        <location filename="../../youtubevideoplayer.cpp" line="417"/>
         <source>Valid placeholder macros:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="611"/>
-        <location filename="../../youtubevideoplayer.cpp" line="623"/>
+        <location filename="../../youtubevideoplayer.cpp" line="616"/>
+        <location filename="../../youtubevideoplayer.cpp" line="628"/>
         <source>All files (*)</source>
         <translation type="unfinished">Tous les fichiers (*)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="612"/>
-        <location filename="../../youtubevideoplayer.cpp" line="624"/>
+        <location filename="../../youtubevideoplayer.cpp" line="617"/>
+        <location filename="../../youtubevideoplayer.cpp" line="629"/>
         <source>Choose movie file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="799"/>
-        <location filename="../../youtubevideoplayer.cpp" line="817"/>
+        <location filename="../../youtubevideoplayer.cpp" line="805"/>
+        <location filename="../../youtubevideoplayer.cpp" line="823"/>
         <source>Full-screen mode -- press %1 to return to windowed mode</source>
         <translation>Mode plein écran - presser %1 pour retourner au mode fenêtré</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="801"/>
-        <location filename="../../youtubevideoplayer.cpp" line="819"/>
+        <location filename="../../youtubevideoplayer.cpp" line="807"/>
+        <location filename="../../youtubevideoplayer.cpp" line="825"/>
         <source>Full-screen mode -- press toggle-key to return to windowed mode</source>
         <translation>Mode plein écran - presser la touche de bacul pour retourner au mode fenêtré</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="865"/>
+        <location filename="../../youtubevideoplayer.cpp" line="870"/>
         <source>video player: the local movie file &apos;%1&apos; is already attached, ignored</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="869"/>
+        <location filename="../../youtubevideoplayer.cpp" line="874"/>
         <source>video player: a video with the ID &apos;%1&apos; is already attached, ignored</source>
         <translation>lecteur vidéo: une vidéo avec l&apos;ID &apos;%1&apos; est déjà attachée, ignoré</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1046"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1062"/>
         <source>Buffering: %1%</source>
         <translation>Mise en cache: %1%</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1064"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1080"/>
         <source>Loading</source>
         <translation>Chargement</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1080"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1142"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1096"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1158"/>
         <source>Playing</source>
         <translation>En lecture</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1091"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1153"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1107"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1169"/>
         <source>Paused</source>
         <translation>En pause</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1094"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1110"/>
         <source>video player: playback error: %1</source>
         <translation>lecteur vidéo: erreur de lecture: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1095"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1111"/>
         <source>Video playback error: %1</source>
         <translation>Erreur de lecture vidéo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1230"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1246"/>
         <source>Fetching info for video ID &apos;%1&apos;</source>
         <translation>Récupération des informations de la vidéo ID &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1322"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1338"/>
         <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
         <translation>lecteur vidéo: info erreur vidéo ID = &apos;%1&apos;, statut = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1323"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1457"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1955"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1339"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1473"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1971"/>
         <source>Video info error: %1</source>
         <translation>Info de l&apos;erreur vidéo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1418"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1434"/>
         <source>video player: video info error: timeout occurred</source>
         <translation>lecteur vidéo: info de l&apos;erreur vidéo: délai expiré</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1419"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1435"/>
         <source>video info error: timeout occurred</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1423"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1439"/>
         <source>video info error: unknown reason</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1456"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1472"/>
         <source>video player: video info error: %1</source>
         <translation>lecteur vidéo: info de l&apos;erreur vidéo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1724"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1740"/>
         <source>Full screen (press %1 to return)</source>
         <translation>Plein écran (presser %1 pour revenir)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1954"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1970"/>
         <source>video player: video image info error: %1</source>
         <translation>lecteur vidéo: info de l&apos;erreur d&apos;image vidéo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1986"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2002"/>
         <source>video player: search request error: %1</source>
         <translation>lecteur vidéo: erreur de recherche: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2015"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2031"/>
         <source>video player: search error: can&apos;t parse XML data</source>
         <translation>lecteur vidéo: erreur de recherche: n&apos;a pas pu parcourir les données XML</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2049"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2065"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
         <translation>lecteur vidéo: impossible de déterminer l&apos;ID de la vidéo depuis l&apos;URL &apos;%1&apos; - merci d&apos;informer les développeurs</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2055"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2071"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
         <translation>lecteur vidéo: impossible d&apos;associer l&apos;image retournée pour la vidéo ID &apos;%1&apos; - merci d&apos;informer les développeurs</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2072"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2088"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
         <translation>lecteur vidéo: impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos; dans le répertoire de cache Youtube &apos;%2&apos; - vérifiez les permissions svp</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2074"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2090"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
         <translation>lecteur vidéo: impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos;, le répertoire de cache Youtube &apos;%2&apos; n&apos;existe pas - merci de corriger</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2076"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2092"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
         <translation>lecteur vidéo: le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, l&apos;image reçu n&apos;est pas valide</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2078"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2094"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
         <translation>lecteur vidéo: le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, texte de l&apos;&apos;erreur = &apos;%2&apos;</translation>
     </message>

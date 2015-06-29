@@ -533,6 +533,7 @@ void Options::apply()
 	comboBoxSoftwareSnapFileType->setIconSize(iconSize);
 	toolButtonBrowseSoftwareNotesFolder->setIconSize(iconSize);
 	toolButtonBrowseSoftwareNotesTemplate->setIconSize(iconSize);
+	toolButtonBrowseVideoSnapFolder->setIconSize(iconSize);
 	toolButtonBrowseSystemNotesFolder->setIconSize(iconSize);
 	toolButtonBrowseSystemNotesTemplate->setIconSize(iconSize);
 	toolButtonShowC->setIconSize(iconSize);
@@ -1021,6 +1022,7 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("MAME/FilesAndDirectories/SystemNotesFolder", lineEditSystemNotesFolder->text());
 	config->setValue("MAME/FilesAndDirectories/UseSystemNotesTemplate", checkBoxUseSystemNotesTemplate->isChecked());
 	config->setValue("MAME/FilesAndDirectories/SystemNotesTemplate", lineEditSystemNotesTemplate->text());
+	config->setValue("MAME/FilesAndDirectories/VideoSnapFolder", lineEditVideoSnapFolder->text());
 	s = lineEditMameHistoryDat->text();
 	needManualReload |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString() != s);
 	invalidateGameInfoDB |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString() != s);
@@ -1043,7 +1045,6 @@ void Options::on_pushButtonApply_clicked()
 	needManualReload |= (config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB").toString() != s);
 	invalidateSoftwareInfoDB |= (config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB").toString() != s);
 	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB", lineEditSoftwareInfoDB->text());
-
 	if ( qmc2SystemNotesEditor ) {
 		qmc2SystemNotesEditor->enableFileNewFromTemplateAction(checkBoxUseSystemNotesTemplate->isChecked());
 		qmc2SystemNotesEditor->setCurrentTemplateName(lineEditSystemNotesTemplate->text());
@@ -1052,7 +1053,6 @@ void Options::on_pushButtonApply_clicked()
 		qmc2SoftwareNotesEditor->enableFileNewFromTemplateAction(checkBoxUseSoftwareNotesTemplate->isChecked());
 		qmc2SoftwareNotesEditor->setCurrentTemplateName(lineEditSoftwareNotesTemplate->text());
 	}
-
 	bool catverUsed = checkBoxUseCatverIni->isChecked();
 	needReload |= (config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", false).toBool() != catverUsed );
 	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", catverUsed);
@@ -2033,6 +2033,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	checkBoxUseSoftwareNotesTemplate->setChecked(config->value("MAME/FilesAndDirectories/UseSoftwareNotesTemplate", false).toBool());
 	lineEditSystemNotesFolder->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SystemNotesFolder", QMC2_DEFAULT_DATA_PATH + "/gmn/").toString());
 	lineEditSystemNotesTemplate->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SystemNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/gmn/template.html").toString());
+	lineEditVideoSnapFolder->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/VideoSnapFolder", QMC2_DEFAULT_DATA_PATH + "/vdo/").toString());
 	checkBoxUseSystemNotesTemplate->setChecked(config->value("MAME/FilesAndDirectories/UseSystemNotesTemplate", false).toBool());
 	lineEditMameHistoryDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
 	lineEditMessSysinfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
@@ -3564,6 +3565,21 @@ void Options::on_toolButtonBrowseSystemNotesTemplate_clicked()
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose system notes template"), lineEditSystemNotesTemplate->text(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditSystemNotesTemplate->setText(s);
+	raise();
+}
+
+void Options::on_toolButtonBrowseVideoSnapFolder_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseVideoSnapFolder_clicked()");
+#endif
+
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose video snap folder"), lineEditVideoSnapFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
+	if ( !s.isNull() ) {
+		if ( !s.endsWith("/") )
+			s += "/";
+		lineEditVideoSnapFolder->setText(s);
+	}
 	raise();
 }
 

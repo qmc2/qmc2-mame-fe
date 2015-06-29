@@ -165,6 +165,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QString savedSearchString;
 		QStringList youTubeFormats;
 		QStringList youTubeFormatNames;
+		QStringList videoSnapAllowedFormatExtensions;
 		QNetworkReply *videoInfoReply, *videoImageReply, *searchRequestReply;
 		QNetworkAccessManager *videoInfoManager, *videoImageManager, *searchRequestManager, *imageDownloadManager;
 		QNetworkRequest videoInfoRequest, videoImageRequest, searchRequest;
@@ -295,7 +296,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void setSuggestorAppendString();
 		void updateAttachedVideoInfoImages();
 		void imageDownloadFinished(QNetworkReply *);
-		void attachVideo(QString, QString, QString);
+		void attachVideo(QString, QString, QString, int itemType = VIDEOITEM_TYPE_YOUTUBE);
 		void attachVideoById(QString);
 		void switchToFullScreen();
 		void switchToWindowed();

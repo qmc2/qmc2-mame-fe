@@ -14,6 +14,7 @@
 #define VIDEOITEM_TYPE_YOUTUBE					0
 #define VIDEOITEM_TYPE_YOUTUBE_SEARCH				1
 #define VIDEOITEM_TYPE_LOCAL_MOVIE				2
+#define VIDEOITEM_TYPE_VIDEO_SNAP				3
 
 #define VIDEOITEM_YOUTUBE_URL_PATTERN				"http://www.youtube.com/watch?v=$VIDEO_ID$"
 #define VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER		"http://www.youtube.com/v/$VIDEO_ID$"

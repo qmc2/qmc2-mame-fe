@@ -64,6 +64,7 @@ void VideoItemWidget::setType(int type)
 			}
 			break;
 		case VIDEOITEM_TYPE_LOCAL_MOVIE:
+		case VIDEOITEM_TYPE_VIDEO_SNAP:
 			videoUrlPattern.clear();
 			authorUrlPattern.clear();
 			if ( myVideoPlayer ) {
@@ -126,7 +127,7 @@ void VideoItemWidget::setID(QString vID)
 	if ( closingState() )
 		return;
 
-	if ( itemType == VIDEOITEM_TYPE_LOCAL_MOVIE )
+	if ( itemType == VIDEOITEM_TYPE_LOCAL_MOVIE || itemType == VIDEOITEM_TYPE_VIDEO_SNAP )
 		videoImageValid = true;
 
 	videoID = vID;
@@ -161,7 +162,7 @@ void VideoItemWidget::setTitle(QString vTitle)
 	videoTitle = vTitle;
 
 	QString htmlText = "<html><body><table cellpadding=\"0\" border=\"0\" width=\"100%\" height=\"100%\">";
-	if ( itemType == VIDEOITEM_TYPE_LOCAL_MOVIE ) {
+	if ( itemType == VIDEOITEM_TYPE_LOCAL_MOVIE || itemType == VIDEOITEM_TYPE_VIDEO_SNAP ) {
 		QString vidCopy = videoID;
 		vidCopy.remove(QRegExp("^\\#\\:"));
 		htmlText += "<tr><td width=\"5%\" align=\"right\" valign=\"top\">" + tr("Path:") + "</td><td width=\"95%\" valign=\"top\"><b>" + vidCopy + "</b></td></tr>";
