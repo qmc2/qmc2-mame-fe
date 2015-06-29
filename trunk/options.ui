@@ -850,14 +850,30 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>348</width>
-                <height>810</height>
+                <y>-302</y>
+                <width>536</width>
+                <height>842</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_5">
+                 <item row="16" column="0" colspan="2">
+                  <widget class="QRadioButton" name="radioButtonCabinetSelect">
+                   <property name="toolTip">
+                    <string>Switch between specifying a cabinet directory or a compressed cabinet file</string>
+                   </property>
+                   <property name="text">
+                    <string>Cabinet directory</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="24" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxUseSystemNotesTemplate">
                    <property name="toolTip">
@@ -917,22 +933,6 @@
                   <widget class="QLabel" name="labelFrontendLogFile">
                    <property name="text">
                     <string>Front end log file</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="16" column="0" colspan="2">
-                  <widget class="QRadioButton" name="radioButtonCabinetSelect">
-                   <property name="toolTip">
-                    <string>Switch between specifying a cabinet directory or a compressed cabinet file</string>
-                   </property>
-                   <property name="text">
-                    <string>Cabinet directory</string>
-                   </property>
-                   <property name="checkable">
-                    <bool>false</bool>
-                   </property>
-                   <property name="autoExclusive">
-                    <bool>false</bool>
                    </property>
                   </widget>
                  </item>
@@ -2259,7 +2259,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="27" column="0" colspan="4">
+                 <item row="28" column="0" colspan="4">
                   <spacer name="spacer5">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -2289,7 +2289,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="28" column="0" colspan="4">
+                 <item row="29" column="0" colspan="4">
                   <layout class="QHBoxLayout" name="layout8">
                    <item>
                     <widget class="QLabel" name="labelLegend3Pic">
@@ -2886,6 +2886,43 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="27" column="0" colspan="2">
+                  <widget class="QLabel" name="labelVideoSnapFolder">
+                   <property name="text">
+                    <string>Video snap folder</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="27" column="2">
+                  <widget class="QLineEdit" name="lineEditVideoSnapFolder">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Video snap folder (read)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="27" column="3">
+                  <widget class="QToolButton" name="toolButtonBrowseVideoSnapFolder">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse video snap folder</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -2915,8 +2952,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>499</width>
-                <height>245</height>
+                <width>550</width>
+                <height>540</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
@@ -3571,8 +3608,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>252</width>
-                <height>39</height>
+                <width>550</width>
+                <height>540</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -3693,8 +3730,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>332</width>
-                <height>211</height>
+                <width>550</width>
+                <height>540</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
@@ -4156,7 +4193,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>374</width>
+                <width>536</width>
                 <height>548</height>
                </rect>
               </property>
@@ -4692,7 +4729,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>429</width>
-                <height>402</height>
+                <height>405</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_23">
@@ -5879,6 +5916,8 @@
   <tabstop>checkBoxUseSoftwareNotesTemplate</tabstop>
   <tabstop>lineEditSoftwareNotesTemplate</tabstop>
   <tabstop>toolButtonBrowseSoftwareNotesTemplate</tabstop>
+  <tabstop>lineEditVideoSnapFolder</tabstop>
+  <tabstop>toolButtonBrowseVideoSnapFolder</tabstop>
   <tabstop>checkBoxRomStateFilter</tabstop>
   <tabstop>toolButtonShowC</tabstop>
   <tabstop>toolButtonShowM</tabstop>
