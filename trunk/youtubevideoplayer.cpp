@@ -27,7 +27,9 @@ extern Options *qmc2Options;
 extern QHash <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoHash;
 extern QHash<QString, QString> qmc2CustomShortcutHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
+extern QHash<QString, QString> qmc2ParentHash;
 extern bool qmc2YouTubeVideoInfoHashChanged;
+extern bool qmc2ParentImageFallback;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
@@ -951,6 +953,7 @@ void YouTubeVideoPlayer::init()
 	videoWidget()->resize(videoPlayer()->size());
 #endif
 
+	int videoSnapCounter = 0;
 	foreach (QString videoSnapFolder, qmc2Config->value("MAME/FilesAndDirectories/VideoSnapFolder", QMC2_DEFAULT_DATA_PATH + "/vdo/").toString().split(";", QString::SkipEmptyParts)) {
 		foreach (QString formatExtension, videoSnapAllowedFormatExtensions) {
 			QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + mySetID + formatExtension));
@@ -958,6 +961,23 @@ void YouTubeVideoPlayer::init()
 				QString vid = fi.absoluteFilePath();
 				vid.prepend("#:");
 				attachVideo(vid, QString(), QString(), VIDEOITEM_TYPE_VIDEO_SNAP);
+				videoSnapCounter++;
+			}
+		}
+		if ( videoSnapCounter == 0 ) { // parent fallback
+			if ( qmc2ParentImageFallback ) {
+				QString parentId = qmc2ParentHash[mySetID];
+				if ( !parentId.isEmpty() ) {
+					foreach (QString formatExtension, videoSnapAllowedFormatExtensions) {
+						QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + parentId + formatExtension));
+						if ( fi.exists() && fi.isReadable() ) {
+							QString vid = fi.absoluteFilePath();
+							vid.prepend("#:");
+							attachVideo(vid, QString(), QString(), VIDEOITEM_TYPE_VIDEO_SNAP);
+							videoSnapCounter++;
+						}
+					}
+				}
 			}
 		}
 	}
