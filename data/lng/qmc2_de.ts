@@ -12741,6 +12741,16 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Zeige Maschinenbeschreibung nur an, wenn die Maschinenliste aufgrund des aktuellen Layouts nicht sichtbar ist</translation>
     </message>
     <message>
+        <location filename="../../options.ui" line="189"/>
+        <source>Fall back to the parent&apos;s image / video if an indivual image / video is missing but there&apos;s one for the parent</source>
+        <translation>Rückgriff auf Bild / Video des Originals sofern ein individuelles Bild / Video fehlt, aber eines für das Original vorhanden ist</translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="192"/>
+        <source>Parent image / video fallback</source>
+        <translation>Original Bild / Video Rückgriff</translation>
+    </message>
+    <message>
         <location filename="../../options.ui" line="201"/>
         <source>Open the component setup dialog</source>
         <translation>Komponenten Einstellungen vornehmen</translation>
@@ -14665,14 +14675,12 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>ROM Status exportieren</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="189"/>
         <source>Fall back to the parent&apos;s image if an indivual image is missing but there&apos;s one for the parent</source>
-        <translation>Rückgriff auf Bild des Original-Sets, sofern ein einzelnes Bild fehlt, aber das Bild des Originals vorhanden ist</translation>
+        <translation type="obsolete">Rückgriff auf Bild des Original-Sets, sofern ein einzelnes Bild fehlt, aber das Bild des Originals vorhanden ist</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="192"/>
         <source>Parent image fallback</source>
-        <translation>Original-Bild Rückgriff</translation>
+        <translation type="obsolete">Original-Bild Rückgriff</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="152"/>
@@ -16206,7 +16214,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Phonon Features aktiviert - verwende Phonon v%1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2161"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2183"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
         <translation>Videospieler: XML-Fehler: fataler Fehler in Zeile %1, Spalte %2: %3</translation>
     </message>
@@ -21991,49 +21999,49 @@ Jetzt beenden, einmalig akzeptieren oder vollständig ignorieren?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="201"/>
-        <location filename="../../youtubevideoplayer.cpp" line="112"/>
+        <location filename="../../youtubevideoplayer.cpp" line="114"/>
         <source>FLV 240P</source>
         <translation>FLV 240P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="210"/>
-        <location filename="../../youtubevideoplayer.cpp" line="113"/>
+        <location filename="../../youtubevideoplayer.cpp" line="115"/>
         <source>FLV 360P</source>
         <translation>FLV 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="219"/>
-        <location filename="../../youtubevideoplayer.cpp" line="114"/>
+        <location filename="../../youtubevideoplayer.cpp" line="116"/>
         <source>MP4 360P</source>
         <translation>MP4 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="228"/>
-        <location filename="../../youtubevideoplayer.cpp" line="115"/>
+        <location filename="../../youtubevideoplayer.cpp" line="117"/>
         <source>FLV 480P</source>
         <translation>FLV 480P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="237"/>
-        <location filename="../../youtubevideoplayer.cpp" line="116"/>
+        <location filename="../../youtubevideoplayer.cpp" line="118"/>
         <source>MP4 720P</source>
         <translation>MP4 720P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="246"/>
-        <location filename="../../youtubevideoplayer.cpp" line="117"/>
+        <location filename="../../youtubevideoplayer.cpp" line="119"/>
         <source>MP4 1080P</source>
         <translation>MP4 1080P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="255"/>
-        <location filename="../../youtubevideoplayer.cpp" line="118"/>
+        <location filename="../../youtubevideoplayer.cpp" line="120"/>
         <source>MP4 3072P</source>
         <translation>MP4 3072P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="273"/>
-        <location filename="../../youtubevideoplayer.cpp" line="194"/>
+        <location filename="../../youtubevideoplayer.cpp" line="196"/>
         <source>Start / pause / resume video playback</source>
         <translation>Video Wiedergabe starten / pausieren / fortsetzen</translation>
     </message>
@@ -22044,20 +22052,20 @@ Jetzt beenden, einmalig akzeptieren oder vollständig ignorieren?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="323"/>
-        <location filename="../../youtubevideoplayer.cpp" line="138"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1025"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1048"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1087"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1089"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1120"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1136"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1182"/>
+        <location filename="../../youtubevideoplayer.cpp" line="140"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1047"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1070"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1109"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1111"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1142"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1158"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1204"/>
         <source>Remaining</source>
         <translation>Verbleibend</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="353"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1837"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1859"/>
         <source>Volume</source>
         <translation>Lautstärke</translation>
     </message>
@@ -22102,277 +22110,277 @@ Jetzt beenden, einmalig akzeptieren oder vollständig ignorieren?</translation>
         <translation>Suchzeichenkette vorschlagen (gedrückt halten für Menü)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="95"/>
+        <location filename="../../youtubevideoplayer.cpp" line="97"/>
         <source>Mute / unmute audio output</source>
         <translation>Audio-Ausgabe stummschalten / aktivieren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="136"/>
+        <location filename="../../youtubevideoplayer.cpp" line="138"/>
         <source>Volume level</source>
         <translation>Lautstärke</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="137"/>
+        <location filename="../../youtubevideoplayer.cpp" line="139"/>
         <source>Video progress</source>
         <translation>Video-Fortschrittsanzeige</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="141"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1029"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1061"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1078"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1123"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1139"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1185"/>
+        <location filename="../../youtubevideoplayer.cpp" line="143"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1051"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1083"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1100"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1145"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1161"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1207"/>
         <source>Current buffer fill level: %1%</source>
         <translation>Puffer-Füllstand: %1%</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="148"/>
-        <location filename="../../youtubevideoplayer.cpp" line="248"/>
+        <location filename="../../youtubevideoplayer.cpp" line="150"/>
+        <location filename="../../youtubevideoplayer.cpp" line="250"/>
         <source>Play this video</source>
         <translation>Dieses Video abspielen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="155"/>
-        <location filename="../../youtubevideoplayer.cpp" line="209"/>
-        <location filename="../../youtubevideoplayer.cpp" line="259"/>
+        <location filename="../../youtubevideoplayer.cpp" line="157"/>
+        <location filename="../../youtubevideoplayer.cpp" line="211"/>
+        <location filename="../../youtubevideoplayer.cpp" line="261"/>
         <source>Copy video URL</source>
         <translation>Video-URL kopieren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="161"/>
-        <location filename="../../youtubevideoplayer.cpp" line="215"/>
-        <location filename="../../youtubevideoplayer.cpp" line="264"/>
+        <location filename="../../youtubevideoplayer.cpp" line="163"/>
+        <location filename="../../youtubevideoplayer.cpp" line="217"/>
+        <location filename="../../youtubevideoplayer.cpp" line="266"/>
         <source>Copy video URL (no country filter)</source>
         <translation>Video-URL kopieren (kein Länderfilter)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="167"/>
-        <location filename="../../youtubevideoplayer.cpp" line="221"/>
-        <location filename="../../youtubevideoplayer.cpp" line="269"/>
+        <location filename="../../youtubevideoplayer.cpp" line="169"/>
+        <location filename="../../youtubevideoplayer.cpp" line="223"/>
+        <location filename="../../youtubevideoplayer.cpp" line="271"/>
         <source>Copy author URL</source>
         <translation>Home-URL des Autors kopieren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="173"/>
-        <location filename="../../youtubevideoplayer.cpp" line="227"/>
+        <location filename="../../youtubevideoplayer.cpp" line="175"/>
+        <location filename="../../youtubevideoplayer.cpp" line="229"/>
         <source>Paste video URL</source>
         <translation>Video-URL einfügen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="180"/>
-        <location filename="../../youtubevideoplayer.cpp" line="234"/>
+        <location filename="../../youtubevideoplayer.cpp" line="182"/>
+        <location filename="../../youtubevideoplayer.cpp" line="236"/>
         <source>Local movie file...</source>
         <translation>Lokale Video Datei...</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="186"/>
+        <location filename="../../youtubevideoplayer.cpp" line="188"/>
         <source>Remove selected videos</source>
         <translation>Ausgewählte Videos entfernen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="202"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1742"/>
+        <location filename="../../youtubevideoplayer.cpp" line="204"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1764"/>
         <source>Full screen (return with toggle-key)</source>
         <translation>Vollbild (Rückkehr mit Umschalt-Taste)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="240"/>
-        <location filename="../../youtubevideoplayer.cpp" line="253"/>
+        <location filename="../../youtubevideoplayer.cpp" line="242"/>
+        <location filename="../../youtubevideoplayer.cpp" line="255"/>
         <source>Attach this video</source>
         <translation>Dieses Video zuordnen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="276"/>
+        <location filename="../../youtubevideoplayer.cpp" line="278"/>
         <source>Auto-suggest a search pattern?</source>
         <translation>Suche-Zeichenkette automatisch vorschlagen?</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="277"/>
+        <location filename="../../youtubevideoplayer.cpp" line="279"/>
         <source>Auto-suggest</source>
         <translation>Autom. vorschlagen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="282"/>
+        <location filename="../../youtubevideoplayer.cpp" line="284"/>
         <source>Enter string to be appended</source>
         <translation>Angefügte Zeichenkette eingeben</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="283"/>
+        <location filename="../../youtubevideoplayer.cpp" line="285"/>
         <source>Append...</source>
         <translation>Anhängen...</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="291"/>
+        <location filename="../../youtubevideoplayer.cpp" line="293"/>
         <source>Enter search string</source>
         <translation>Such-Zeichenkette eingeben</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="415"/>
+        <location filename="../../youtubevideoplayer.cpp" line="417"/>
         <source>Appended string</source>
         <translation>Angehängte Zeichenkette</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="416"/>
+        <location filename="../../youtubevideoplayer.cpp" line="418"/>
         <source>Enter the string to be appended when suggesting a pattern:</source>
         <translation>Zeichenkette, die dem Vorschlag immer angehängt werden soll:</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="417"/>
+        <location filename="../../youtubevideoplayer.cpp" line="419"/>
         <source>Valid placeholder macros:</source>
         <translation>Gültige Platzhalter:</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="616"/>
-        <location filename="../../youtubevideoplayer.cpp" line="628"/>
+        <location filename="../../youtubevideoplayer.cpp" line="618"/>
+        <location filename="../../youtubevideoplayer.cpp" line="630"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="617"/>
-        <location filename="../../youtubevideoplayer.cpp" line="629"/>
+        <location filename="../../youtubevideoplayer.cpp" line="619"/>
+        <location filename="../../youtubevideoplayer.cpp" line="631"/>
         <source>Choose movie file</source>
         <translation>Lokale Video Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="805"/>
-        <location filename="../../youtubevideoplayer.cpp" line="823"/>
+        <location filename="../../youtubevideoplayer.cpp" line="809"/>
+        <location filename="../../youtubevideoplayer.cpp" line="827"/>
         <source>Full-screen mode -- press %1 to return to windowed mode</source>
         <translation>Vollbild-Modus -- %1 drücken, um in den Fenstermodus zurückzukehren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="807"/>
-        <location filename="../../youtubevideoplayer.cpp" line="825"/>
+        <location filename="../../youtubevideoplayer.cpp" line="811"/>
+        <location filename="../../youtubevideoplayer.cpp" line="829"/>
         <source>Full-screen mode -- press toggle-key to return to windowed mode</source>
         <translation>Vollbild-Modus -- Umschalttaste drücken, um in den Fenstermodus zurückzukehren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="870"/>
+        <location filename="../../youtubevideoplayer.cpp" line="874"/>
         <source>video player: the local movie file &apos;%1&apos; is already attached, ignored</source>
         <translation>Videospieler: die lokale Video Datei &apos;%1&apos; ist bereits zugeordnet, ignoriert</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="874"/>
+        <location filename="../../youtubevideoplayer.cpp" line="878"/>
         <source>video player: a video with the ID &apos;%1&apos; is already attached, ignored</source>
         <translation>Videospieler: ein Video mit der ID &apos;%1&apos; ist bereits zugeordnet, ignoriert</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1062"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1084"/>
         <source>Buffering: %1%</source>
         <translation>Pufferung: %1%</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1080"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1102"/>
         <source>Loading</source>
         <translation>Lade Video-Stream</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1096"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1158"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1118"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1180"/>
         <source>Playing</source>
         <translation>Wiedergabe</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1107"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1169"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1129"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1191"/>
         <source>Paused</source>
         <translation>Pausiert</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1110"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1132"/>
         <source>video player: playback error: %1</source>
         <translation>Videospieler: Wiedergabe-Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1111"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1133"/>
         <source>Video playback error: %1</source>
         <translation>Wiedergabe-Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1246"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1268"/>
         <source>Fetching info for video ID &apos;%1&apos;</source>
         <translation>Ermittle Infos für Video ID &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1338"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1360"/>
         <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
         <translation>Videospieler: Video-Info Fehler: ID= &apos;%1&apos;, Status = &apos;%2&apos;, Fehler-Code = &apos;%3&apos;, Fehler-Text = &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1339"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1473"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1971"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1361"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1495"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1993"/>
         <source>Video info error: %1</source>
         <translation>Video-Info Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1434"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1456"/>
         <source>video player: video info error: timeout occurred</source>
         <translation>Videospieler: Video-Info Fehler: Zeitüberschreitung der Anfrage</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1435"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1457"/>
         <source>video info error: timeout occurred</source>
         <translation>Video-Info Fehler: Zeitüberschreitung der Anfrage</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1439"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1461"/>
         <source>video info error: unknown reason</source>
         <translation>Video-Info Fehler: Grund unbekannt</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1472"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1494"/>
         <source>video player: video info error: %1</source>
         <translation>Videospieler: Video-Info Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1740"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1762"/>
         <source>Full screen (press %1 to return)</source>
         <translation>Vollbild (Rückkehr mit %1)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1970"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1992"/>
         <source>video player: video image info error: %1</source>
         <translation>Videospieler: Videobild-Info Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2002"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2024"/>
         <source>video player: search request error: %1</source>
         <translation>Videospieler: Suchanfrage-Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2031"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2053"/>
         <source>video player: search error: can&apos;t parse XML data</source>
         <translation>Videospieler: Suchanfrage-Fehler: kann XML Daten nicht parsen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2065"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2087"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
         <translation>Videospieler: kann die Video ID nicht aus der Antwort URL &apos;%1&apos; ermitteln -- bitte Entwickler informieren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2071"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2093"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
         <translation>Videospieler: kann die erhaltenen Bilddaten nicht mit der Video ID &apos;%1&apos; assoziieren -- bitte Entwickler informieren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2088"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2110"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
         <translation>Videospieler: kann das Bild für Video ID &apos;%1&apos; nicht im YouTube Cache Verzeichnis &apos;%2&apos; abspeichern -- bitte Berechtigungen prüfen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2090"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2112"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
         <translation>Videospieler: kann das Bild für Video ID &apos;%1&apos; nicht abspeichern, da das YouTube Cache Verzeichnis &apos;%2&apos; nicht existiert -- bitte korrigieren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2092"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2114"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
         <translation>Videospieler: der Download des Bildes für Video ID &apos;%1&apos; ist fehlgeschlagen, da die erhaltenen Bilddaten nicht gültig sind</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="2094"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2116"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
         <translation>Videospieler: der Download des Bildes für Video ID &apos;%1&apos; ist fehlgeschlagen, Fehlertext = &apos;%2&apos;</translation>
     </message>

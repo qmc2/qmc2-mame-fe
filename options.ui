@@ -186,10 +186,10 @@
                  <item row="12" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxParentImageFallback">
                    <property name="toolTip">
-                    <string>Fall back to the parent's image if an indivual image is missing but there's one for the parent</string>
+                    <string>Fall back to the parent's image / video if an indivual image / video is missing but there's one for the parent</string>
                    </property>
                    <property name="text">
-                    <string>Parent image fallback</string>
+                    <string>Parent image / video fallback</string>
                    </property>
                   </widget>
                  </item>
@@ -850,8 +850,8 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-302</y>
-                <width>536</width>
+                <y>0</y>
+                <width>348</width>
                 <height>842</height>
                </rect>
               </property>
@@ -2952,8 +2952,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>550</width>
-                <height>540</height>
+                <width>499</width>
+                <height>248</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
@@ -3608,8 +3608,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>550</width>
-                <height>540</height>
+                <width>252</width>
+                <height>39</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -3730,8 +3730,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>550</width>
-                <height>540</height>
+                <width>332</width>
+                <height>211</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
@@ -4193,7 +4193,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>536</width>
+                <width>374</width>
                 <height>548</height>
                </rect>
               </property>
