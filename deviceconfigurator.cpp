@@ -2151,7 +2151,7 @@ void DeviceConfigurator::setupFileChooser()
 
 	treeViewDirChooser->setUpdatesEnabled(false);
 	dirModel = new DirectoryModel(this);
-	dirModel->setFilter(QDir::Dirs | QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Drives | QDir::CaseSensitive);
+	dirModel->setFilter(QDir::Dirs | QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Drives | QDir::CaseSensitive | QDir::Hidden);
 #if defined(QMC2_OS_WIN)
 	dirModel->setRootPath(dirModel->myComputer().toString());
 #else

@@ -149,7 +149,10 @@ class DirectoryScannerThread : public QThread
 						}
 					}
 #else
-					QDirIterator dirIterator(dirPath, nameFilters, includeFolders ? QDir::Files | QDir::Dirs | QDir::NoDot : QDir::Files);
+					QDir::Filters filters = QDir::Files | QDir::Hidden;
+					if ( includeFolders )
+						filters =  QDir::Files | QDir::Dirs | QDir::NoDot | QDir::Hidden;
+					QDirIterator dirIterator(dirPath, nameFilters, filters);
 					while ( !stopScanning && !quitFlag && dirIterator.hasNext() ) {
 						dirIterator.next();
 						dirEntries << dirIterator.fileName();
