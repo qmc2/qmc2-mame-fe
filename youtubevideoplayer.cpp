@@ -447,6 +447,7 @@ void YouTubeVideoPlayer::playNextVideo()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::playNextVideo()");
 #endif
 
+	toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
 	QList<QListWidgetItem *> il = listWidgetAttachedVideos->findItems("*", Qt::MatchWildcard);
 	if ( il.count() > 0 ) {
 		switch ( comboBoxMode->currentIndex() ) {
@@ -1002,7 +1003,6 @@ void YouTubeVideoPlayer::init()
 	if ( checkBoxPlayOMatic->isChecked() ) {
 		if ( listWidgetAttachedVideos->count() > 0 ) {
 			QTimer::singleShot(YOUTUBE_PLAYOMATIC_DELAY, this, SLOT(playNextVideo()));
-			toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
 		} else
 			QTimer::singleShot(0, this, SLOT(loadNullVideo()));
 	} else
