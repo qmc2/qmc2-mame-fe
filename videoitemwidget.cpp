@@ -6,22 +6,12 @@
 #include "videoitemwidget.h"
 #include "youtubevideoplayer.h"
 
-#ifdef QMC2_DEBUG
-#include "qmc2main.h"
-extern MainWindow *qmc2MainWindow;
-#endif
-
 VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, ImagePixmap *vImage, int vType, void *vPlayer, QWidget *parent)
-  : QWidget(parent)
+	: QWidget(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vTitle = %2, QString vAuthor = %3, ImagePixmap *vImage = %4, int vType = %5, void *vPlayer = %6, QWidget *parent = %7)").arg(vID).arg(vTitle).arg(vAuthor).arg((qulonglong)vImage).arg(vType).arg((qulonglong)vPlayer).arg((qulonglong)parent));
-#endif
-
 	setupUi(this);
 	textBrowserVideoTitle->setObjectName("QMC2_VIDEO_TITLE");
 	setAutoFillBackground(true);
-
 	myVideoPlayer = vPlayer;
 	setType(vType);
 	setID(vID);
@@ -49,10 +39,6 @@ bool VideoItemWidget::closingState()
 
 void VideoItemWidget::setType(int type)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setType(int type = %1)").arg(type));
-#endif
-
 	itemType = type;
 	switch ( itemType ) {
 		case VIDEOITEM_TYPE_YOUTUBE_SEARCH:
@@ -86,13 +72,8 @@ void VideoItemWidget::setType(int type)
 
 void VideoItemWidget::setImage(const ImagePixmap &vImage, bool valid)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setImage(const ImagePixmap &vImage = ..., bool valid = %1)").arg(valid));
-#endif
-
 	if ( closingState() )
 		return;
-
 	videoImageValid = valid;
 	videoImage = vImage;
 	videoImage.imagePath = vImage.imagePath;
@@ -103,13 +84,8 @@ void VideoItemWidget::setImage(const ImagePixmap &vImage, bool valid)
 
 void VideoItemWidget::setImage(ImagePixmap *vImage, bool valid)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setImage(ImagePixmap *vImage = %1, bool valid = %2)").arg((qulonglong)vImage).arg(valid));
-#endif
-
 	if ( closingState() )
 		return;
-
 	videoImageValid = valid;
 	videoImage = *vImage;
 	videoImage.imagePath = vImage->imagePath;
@@ -120,31 +96,19 @@ void VideoItemWidget::setImage(ImagePixmap *vImage, bool valid)
 
 void VideoItemWidget::setID(QString vID)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setID(QString vID = %1)").arg(vID));
-#endif
-
 	if ( closingState() )
 		return;
-
 	if ( itemType == VIDEOITEM_TYPE_LOCAL_MOVIE || itemType == VIDEOITEM_TYPE_VIDEO_SNAP )
 		videoImageValid = true;
-
 	videoID = vID;
-
 	if ( !videoTitle.isEmpty() )
 		setTitle(videoTitle);
 }
 
 void VideoItemWidget::setAuthor(QString vAuthor)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setAuthor(QString vAuthor = %1)").arg(vAuthor));
-#endif
-
 	if ( closingState() )
 		return;
-
 	videoAuthor = vAuthor;
 	if ( !videoTitle.isEmpty() )
 		setTitle(videoTitle);
@@ -152,15 +116,9 @@ void VideoItemWidget::setAuthor(QString vAuthor)
 
 void VideoItemWidget::setTitle(QString vTitle)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setTitle(QString vTitle = %1)").arg(vTitle));
-#endif
-
 	if ( closingState() )
 		return;
-
 	videoTitle = vTitle;
-
 	QString htmlText = "<html><body><table cellpadding=\"0\" border=\"0\" width=\"100%\" height=\"100%\">";
 	if ( itemType == VIDEOITEM_TYPE_LOCAL_MOVIE || itemType == VIDEOITEM_TYPE_VIDEO_SNAP ) {
 		QString vidCopy = videoID;
