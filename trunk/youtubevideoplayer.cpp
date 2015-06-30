@@ -893,9 +893,9 @@ void YouTubeVideoPlayer::init()
 		return;
 
 	if ( checkBoxPlayOMatic->isChecked() ) {
-		if ( listWidgetAttachedVideos->count() > 0 ) {
+		if ( listWidgetAttachedVideos->count() > 0 )
 			QTimer::singleShot(YOUTUBE_PLAYOMATIC_DELAY, this, SLOT(playNextVideo()));
-		} else
+		else
 			QTimer::singleShot(0, this, SLOT(loadNullVideo()));
 	} else
 		QTimer::singleShot(0, this, SLOT(loadNullVideo()));
@@ -927,13 +927,11 @@ void YouTubeVideoPlayer::adjustIconSizes()
 void YouTubeVideoPlayer::videoFinished()
 {
 	seekSlider->setValue(0);
-
 	labelSeekSlider->setText(tr("Remaining") + " --:--:--");
 	toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 	videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 	progressBarBufferStatus->setValue(0);
 	progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
-
 	if ( checkBoxPlayOMatic->isChecked() )
 		QTimer::singleShot(YOUTUBE_PLAYOMATIC_DELAY, this, SLOT(playNextVideo()));
 }
