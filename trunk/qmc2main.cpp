@@ -8474,7 +8474,7 @@ void MainWindow::projectMessLoadFinished(bool ok)
 		QString cacheKey = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST) + "_" + qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
 		if ( qmc2ProjectMESSCache.contains(cacheKey) )
 			qmc2ProjectMESSCache.remove(cacheKey);
-		QByteArray data = QMC2_COMPRESS(qmc2ProjectMESS->webViewBrowser->page()->mainFrame()->toHtml().toLocal8Bit());
+		QByteArray data = QMC2_COMPRESS(qmc2ProjectMESS->webViewBrowser->page()->mainFrame()->toHtml().toUtf8());
 		qmc2ProjectMESSCache.insert(cacheKey, new QByteArray(data), data.size());
 	}
 
@@ -8497,7 +8497,7 @@ void MainWindow::projectMessSystemLoadFinished(bool ok)
 #endif
 
 	if ( ok ) {
-		QByteArray projectMessData = QMC2_COMPRESS(qmc2ProjectMESSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLocal8Bit());
+		QByteArray projectMessData = QMC2_COMPRESS(qmc2ProjectMESSLookup->webViewBrowser->page()->mainFrame()->toHtml().toUtf8());
     		QString machName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 		if ( qmc2ProjectMESSCache.contains(machName) )
 			qmc2ProjectMESSCache.remove(machName);
@@ -10964,7 +10964,7 @@ void myQtMessageHandler(QtMsgType type, const QMessageLogContext &, const QStrin
 	if ( qmc2GuiReady )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, msgString);
 	else {
-		printf("%s: %s\n", QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit().constData(), msgString.toLocal8Bit().constData());
+		printf("%s: %s\n", QTime::currentTime().toString("hh:mm:ss.zzz").toUtf8().constData(), msgString.toUtf8().constData());
 		fflush(stdout);
 	}
 }
@@ -11120,7 +11120,7 @@ int main(int argc, char *argv[])
 		       "-cc             Clear all emulator caches before starting up\n"
 		       "-tc             Check the emulator configuration template and exit\n"
 		       "-r		Reconfigure (runs the setup wizard before starting)\n"
-		       "-h|-?|-help     Show this help text and exit\n", argv[0], QString(QMC2_DOT_PATH).toLocal8Bit().constData());
+		       "-h|-?|-help     Show this help text and exit\n", argv[0], QString(QMC2_DOT_PATH).toUtf8().constData());
 #if defined(QMC2_OS_WIN)
 		winFreeConsole();
 #endif

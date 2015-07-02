@@ -175,7 +175,7 @@ MachineList::MachineList(QObject *parent)
 
 	if ( QMC2_ICON_FILETYPE_ZIP ) {
 		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
-			unzFile iconFile = unzOpen(filePath.toLocal8Bit());
+			unzFile iconFile = unzOpen(filePath.toUtf8().constData());
 			if ( iconFile == NULL )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(filePath));
 			else
@@ -714,7 +714,7 @@ void MachineList::load()
 		qmc2Temp.close();
 		qmc2Temp.remove();
 		qApp->processEvents();
-		sha1.addData(lfOutput.toLocal8Bit());
+		sha1.addData(lfOutput.toUtf8().constData());
 		listfullSha1 = sha1.result().toHex();
 		elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
@@ -980,7 +980,7 @@ QString MachineList::value(QString element, QString attribute, bool translate)
 		if ( valueString == ">" )
 			return QString::null;
 		if ( translate )
-			return tr(valueString.toLocal8Bit());
+			return tr(valueString.toUtf8().constData());
 		else
 			return valueString;
 	} else
@@ -995,7 +995,7 @@ void MachineList::insertAttributeItems(QTreeWidgetItem *parent, QString element,
 		if ( !valueString.isEmpty() ) {
 			QTreeWidgetItem *attributeItem = new QTreeWidgetItem();
 			attributeItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, descriptions.at(i));
-			attributeItem->setText(QMC2_MACHINELIST_COLUMN_ICON, tr(valueString.toLocal8Bit()));
+			attributeItem->setText(QMC2_MACHINELIST_COLUMN_ICON, tr(valueString.toUtf8().constData()));
 			itemList << attributeItem;
 		}
 	}
@@ -1009,7 +1009,7 @@ void MachineList::insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QStri
 		if ( !valueString.isEmpty() ) {
 			QTreeWidgetItem *attributeItem = new QTreeWidgetItem();
 			attributeItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, descriptions.at(i));
-			attributeItem->setText(QMC2_MACHINELIST_COLUMN_ICON, tr(valueString.toLocal8Bit()));
+			attributeItem->setText(QMC2_MACHINELIST_COLUMN_ICON, tr(valueString.toUtf8().constData()));
 			itemList->append(attributeItem);
 		}
 	}
@@ -1470,7 +1470,7 @@ void MachineList::parse()
 							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr("N/A"));
 						} else {
 							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, gamePlayers);
-							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr(gameStatus.toLocal8Bit()));
+							gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr(gameStatus.toUtf8().constData()));
 						}
 						if ( useCategories ) {
 							if ( isBIOS )
@@ -1708,7 +1708,7 @@ void MachineList::parse()
 						gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr("N/A"));
 					} else {
 						gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, gamePlayers);
-						gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr(gameStatus.toLocal8Bit()));
+						gameDescriptionItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr(gameStatus.toUtf8().constData()));
 					}
 					if ( useCategories ) {
 						if ( isBIOS )

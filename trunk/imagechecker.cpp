@@ -104,7 +104,7 @@ void ImageCheckerThread::run()
 
 	if ( imageWidget->useZip() ) {
 		foreach (QString zipFileName, imageWidget->imageZip().split(";", QString::SkipEmptyParts)) {
-			zipMap[zipFileName] = unzOpen(zipFileName.toLocal8Bit());
+			zipMap[zipFileName] = unzOpen(zipFileName.toUtf8().constData());
 			if ( zipMap[zipFileName] ) {
 				emit log(tr("Thread[%1]: ZIP file '%2' successfully opened").arg(threadNumber).arg(zipFileName));
 			} else {
@@ -752,7 +752,8 @@ void ImageChecker::feedWorkerThreads()
 					QStringList workUnit;
 					while ( it.hasNext() && qmc2ImageCheckActive && workUnit.count() < QMC2_IMGCHK_WORKUNIT_SIZE && !qmc2StopParser ) {
 						it.next();
-						workUnit << it.key();
+						if ( qmc2MachineListItemHash[it.key()] )
+							workUnit << it.key();
 					}
 					threadMap[selectedThread]->workUnitMutex.unlock();
 					if ( qmc2ImageCheckActive ) {
@@ -778,6 +779,8 @@ void ImageChecker::feedWorkerThreads()
 			while ( it.hasNext() && qmc2ImageCheckActive && !qmc2StopParser ) {
 				it.next();
 				QString gameName = it.key();
+				if ( !qmc2MachineListItemHash[gameName] )
+					continue;
 				if ( qmc2MachineList->loadIcon(gameName, NULL, true, NULL) ) {
 					log(tr("Thread[%1]: Icon for '%2' found").arg(0).arg(gameName));
 					bufferedFoundList << gameName;
@@ -948,7 +951,7 @@ void ImageChecker::on_toolButtonRemoveBad_clicked()
 					unzClose(imageWidget->imageFileMap[filePath]);
 					ToolExecutor zipRemovalTool(this, command, args);
 					zipRemovalTool.exec();
-					imageWidget->imageFileMap[filePath] = unzOpen(filePath.toLocal8Bit());
+					imageWidget->imageFileMap[filePath] = unzOpen(filePath.toUtf8().constData());
 					if ( zipRemovalTool.toolExitStatus == QProcess::NormalExit && zipRemovalTool.toolExitCode == 0 ) {
 						listWidgetMissing->setUpdatesEnabled(false);
 						int filesRemoved = 0;
@@ -1163,7 +1166,7 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 					unzClose(imageWidget->imageFileMap[filePath]);
 					ToolExecutor zipRemovalTool(this, command, args);
 					zipRemovalTool.exec();
-					imageWidget->imageFileMap[filePath] = unzOpen(filePath.toLocal8Bit());
+					imageWidget->imageFileMap[filePath] = unzOpen(filePath.toUtf8().constData());
 					if ( zipRemovalTool.toolExitStatus != QProcess::NormalExit || zipRemovalTool.toolExitCode != 0 )
 						log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
 				}
@@ -1328,7 +1331,7 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 					unzClose(qmc2IconFileMap[filePath]);
 					ToolExecutor zipRemovalTool(this, command, args);
 					zipRemovalTool.exec();
-					qmc2IconFileMap[filePath] = unzOpen(filePath.toLocal8Bit());
+					qmc2IconFileMap[filePath] = unzOpen(filePath.toUtf8().constData());
 					if ( zipRemovalTool.toolExitStatus != QProcess::NormalExit || zipRemovalTool.toolExitCode != 0 )
 						log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
 				}

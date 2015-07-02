@@ -146,12 +146,12 @@
 
 // debugging macros
 #define QCHDMAN_PRINT_TXT(t)        printf("%s\n", #t); fflush(stdout);
-#define QCHDMAN_PRINT_STR(s)        printf("%s = %s\n", #s, (const char *)s.toLocal8Bit()); fflush(stdout);
+#define QCHDMAN_PRINT_STR(s)        printf("%s = %s\n", #s, (const char *)s.toUtf8()); fflush(stdout);
 #define QCHDMAN_PRINT_CSTR(s)       printf("%s = %s\n", #s, (const char *)s); fflush(stdout);
 #define QCHDMAN_PRINT_PTR(p)        printf("%s = %p\n", #p, p); fflush(stdout);
 #define QCHDMAN_PRINT_INT(i)        printf("%s = %ld\n", #i, i); fflush(stdout);
 #define QCHDMAN_PRINT_HEX(x)        printf("%s = %x\n", #x, x); fflush(stdout);
 #define QCHDMAN_PRINT_BOOL(b)       printf("%s = %s\n", #b, b ? "true" : "false"); fflush(stdout);
-#define QCHDMAN_PRINT_STRLST(l)     for (int i = 0; i < l.count(); i++) printf("%s[%ld] = %s\n", #l, i, (const char *)l[i].toLocal8Bit()); fflush(stdout);
+#define QCHDMAN_PRINT_STRLST(l)     for (int i = 0; i < l.count(); i++) printf("%s[%ld] = %s\n", #l, i, (const char *)l[i].toUtf8()); fflush(stdout);
 
 #endif // MACROS_H

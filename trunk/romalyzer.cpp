@@ -2085,7 +2085,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 				QFileInfo fi(filePath);
 				if ( fi.isReadable() ) {
 					// try loading data from a ZIP archive
-					unzFile zipFile = unzOpen(filePath.toLocal8Bit().constData());
+					unzFile zipFile = unzOpen(filePath.toUtf8().constData());
 					if ( zipFile ) {
 						// identify file by CRC
 						unz_file_info zipInfo;
@@ -2110,7 +2110,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 							fn = fileName;
 						}
 
-						if ( unzLocateFile(zipFile, (const char *)fn.toLocal8Bit(), 2) == UNZ_OK ) { // NOT case-sensitive filename compare!
+						if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 2) == UNZ_OK ) { // NOT case-sensitive filename compare!
 							totalSize = 0;
 							if ( unzGetCurrentFileInfo(zipFile, &zipInfo, 0, 0, 0, 0, 0, 0) == UNZ_OK ) 
 								totalSize = zipInfo.uncompressed_size;
@@ -3311,7 +3311,7 @@ void ROMAlyzer::exportToDataFile()
 				QString name = item->text(QMC2_ROMALYZER_COLUMN_GAME).split(" ", QString::SkipEmptyParts)[0];
 				if ( analyzerBadSets.contains(name) ) {
 					QString sourcefile, isbios, cloneof, romof, sampleof;
-					QByteArray xmlDocument(ROMAlyzer::getXmlData(name, true).toLocal8Bit());
+					QByteArray xmlDocument(ROMAlyzer::getXmlData(name, true).toUtf8());
 					QBuffer xmlQueryBuffer(&xmlDocument);
 					xmlQueryBuffer.open(QIODevice::ReadOnly);
 					QXmlQuery xmlQuery(QXmlQuery::XQuery10);
@@ -3567,7 +3567,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
 bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *dataMap, QMap<QString, QString> *fileMap, QStringList *fileList)
 {
 	bool success = true;
-	unzFile zipFile = unzOpen(fileName.toLocal8Bit().constData());
+	unzFile zipFile = unzOpen(fileName.toUtf8().constData());
 
 	if ( zipFile ) {
   		char ioBuffer[QMC2_ROMALYZER_ZIP_BUFFER_SIZE];
@@ -3662,7 +3662,7 @@ bool ROMAlyzer::readSevenZipFileData(QString fileName, QString crc, QByteArray *
 bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 {
 	bool success = true;
-	unzFile zipFile = unzOpen(fileName.toLocal8Bit().constData());
+	unzFile zipFile = unzOpen(fileName.toUtf8().constData());
 
 	if ( zipFile ) {
   		char ioBuffer[QMC2_ROMALYZER_ZIP_BUFFER_SIZE];
@@ -3678,7 +3678,7 @@ bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 		unzGoToFirstFile(zipFile);
 		if ( crcIdentMap.contains(ulCRC) ) {
 			QString fn = crcIdentMap[ulCRC];
-			if ( unzLocateFile(zipFile, (const char *)fn.toLocal8Bit(), 2) == UNZ_OK ) { // NOT case-sensitive filename compare!
+			if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 2) == UNZ_OK ) { // NOT case-sensitive filename compare!
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
 					qint64 len;
 					progressBarFileIO->setRange(0, zipInfo.uncompressed_size);
@@ -3781,7 +3781,7 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 
 	zipFile zip = NULL;
 	if ( success )
-		zip = zipOpen((const char *)fileName.toLocal8Bit(), APPEND_STATUS_CREATE);
+		zip = zipOpen(fileName.toUtf8().constData(), APPEND_STATUS_CREATE);
 
 	if ( zip ) {
 		zip_fileinfo zipInfo;
@@ -3809,7 +3809,7 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 			QByteArray data = it.value();
 			if ( writeLog )
 				log(tr("set rewriter: deflating '%1' (uncompressed size: %2)").arg(file).arg(humanReadable(data.length())));
-			if ( zipOpenNewFileInZip(zip, (const char *)file.toLocal8Bit(), &zipInfo, (const void *)file.toLocal8Bit(), file.length(), 0, 0, 0, Z_DEFLATED, spinBoxSetRewriterZipLevel->value()) == ZIP_OK ) {
+			if ( zipOpenNewFileInZip(zip, file.toUtf8().constData(), &zipInfo, file.toUtf8().constData(), file.length(), 0, 0, 0, Z_DEFLATED, spinBoxSetRewriterZipLevel->value()) == ZIP_OK ) {
 				quint64 bytesWritten = 0;
 				progressBarFileIO->setInvertedAppearance(true);
 				progressBarFileIO->setRange(0, data.length());
@@ -3835,7 +3835,7 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 				success = false;
 		}
 		if ( checkBoxAddZipComment->isChecked() )
-			zipClose(zip, (const char *)tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit());
+			zipClose(zip, tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toUtf8().constData());
 		else
 			zipClose(zip, "");
 	} else
@@ -3963,8 +3963,8 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 									}
 									if ( fileExists ) {
 										log(tr("check-sum wizard: an entry with the name '%1' already exists, recreating the ZIP from scratch to replace the bad file").arg(targetFile));
-										targetDataMap.remove(targetDataMap.key(targetFile.toLocal8Bit()));
-										targetFileMap.remove(targetFileMap.key(targetFile.toLocal8Bit()));
+										targetDataMap.remove(targetDataMap.key(targetFile.toUtf8()));
+										targetFileMap.remove(targetFileMap.key(targetFile.toUtf8()));
 									}
 									// we need to make sure that only 'valid' (aka 'accepted') CRCs are reproduced
 									QStringList acceptedCRCs;
@@ -4012,7 +4012,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 
 						zipFile zip = NULL;
 					        if ( saveOkay )
-							zip = zipOpen((const char *)targetPath.toLocal8Bit(), appendType);
+							zip = zipOpen(targetPath.toUtf8().constData(), appendType);
 
 						if ( zip ) {
 							if ( !copyTargetData ) {
@@ -4038,7 +4038,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 								it.next();
 								QString tFile = targetFileMap[it.key()];
 								QByteArray tData = it.value();
-								if ( zipOpenNewFileInZip(zip, (const char *)tFile.toLocal8Bit(), &zipInfo, (const void *)tFile.toLocal8Bit(), tFile.length(), 0, 0, 0, Z_DEFLATED, Z_DEFAULT_COMPRESSION) == ZIP_OK ) {
+								if ( zipOpenNewFileInZip(zip, tFile.toUtf8().constData(), &zipInfo, tFile.toUtf8().constData(), tFile.length(), 0, 0, 0, Z_DEFLATED, Z_DEFAULT_COMPRESSION) == ZIP_OK ) {
 									quint64 bytesWritten = 0;
 									progressBarFileIO->setRange(0, tData.length());
 									progressBarFileIO->reset();
@@ -4064,9 +4064,9 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 							if ( saveOkay )
 								if ( checkBoxAddZipComment->isChecked() ) {
 									if ( appendType == APPEND_STATUS_ADDINZIP )
-										zipClose(zip, (const char *)tr("Fixed by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit());
+										zipClose(zip, tr("Fixed by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toUtf8().constData());
 									else
-										zipClose(zip, (const char *)tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit());
+										zipClose(zip, tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toUtf8().constData());
 								} else
 									zipClose(zip, "");
 							else
@@ -4648,7 +4648,7 @@ bool ROMAlyzerXmlHandler::characters(const QString &str)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::characters(...)");
 #endif
 
-	currentText += QString::fromUtf8(str.toLocal8Bit());
+	currentText += QString::fromUtf8(str.toUtf8());
 	return true;
 }
 
@@ -4985,7 +4985,7 @@ void CheckSumScannerThread::recursiveFileList(const QString &sDir, QStringList *
 #ifdef UNICODE
 	HANDLE hFind = FindFirstFile((TCHAR *)dirName.utf16(), &ffd);
 #else
-	HANDLE hFind = FindFirstFile((TCHAR *)dirName.toLocal8Bit().constData(), &ffd);
+	HANDLE hFind = FindFirstFile((TCHAR *)dirName.toUtf8().constData(), &ffd);
 #endif
 	if ( !exitThread && !stopScan && hFind != INVALID_HANDLE_VALUE ) {
 		do {
@@ -5039,7 +5039,7 @@ int CheckSumScannerThread::fileType(QString fileName)
 
 bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, QList<quint64> *sizeList, QStringList *sha1List, QStringList *crcList)
 {
-	unzFile zipFile = unzOpen(fileName.toLocal8Bit().constData());
+	unzFile zipFile = unzOpen(fileName.toUtf8().constData());
 	if ( zipFile ) {
   		char ioBuffer[QMC2_ROMALYZER_ZIP_BUFFER_SIZE];
 		unz_file_info zipInfo;

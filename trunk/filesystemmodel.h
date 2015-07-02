@@ -96,7 +96,7 @@ class DirectoryScannerThread : public QThread
 				waitCondition.wait(&waitMutex);
 				waitMutex.unlock();
 #if defined(QMC2_DEBUG)
-				printf("DirectoryScannerThread: starting scan of %s\n", dirPath.toLocal8Bit().constData());
+				printf("DirectoryScannerThread: starting scan of %s\n", dirPath.toUtf8().constData());
 #endif
 				if ( !stopScanning && !quitFlag ) {
 					waitMutex.lock();
@@ -115,7 +115,7 @@ class DirectoryScannerThread : public QThread
 #ifdef UNICODE
 						HANDLE hFind = FindFirstFile((TCHAR *)dirName.utf16(), &ffd);
 #else
-						HANDLE hFind = FindFirstFile((TCHAR *)dirName.toLocal8Bit().constData(), &ffd);
+						HANDLE hFind = FindFirstFile((TCHAR *)dirName.toUtf8().constData(), &ffd);
 #endif
 						if ( !stopScanning && !quitFlag && hFind != INVALID_HANDLE_VALUE ) {
 							do {
@@ -140,7 +140,7 @@ class DirectoryScannerThread : public QThread
 										emit entriesAvailable(dirEntries);
 #if defined(QMC2_DEBUG)
 										foreach (QString entry, dirEntries)
-											printf("DirectoryScannerThread: %s\n", entry.toLocal8Bit().constData());
+											printf("DirectoryScannerThread: %s\n", entry.toUtf8().constData());
 #endif
 										dirEntries.clear();
 									}
@@ -162,7 +162,7 @@ class DirectoryScannerThread : public QThread
 							emit entriesAvailable(dirEntries);
 #if defined(QMC2_DEBUG)
 							foreach (QString entry, dirEntries)
-								printf("DirectoryScannerThread: %s\n", entry.toLocal8Bit().constData());
+								printf("DirectoryScannerThread: %s\n", entry.toUtf8().constData());
 #endif
 							dirEntries.clear();
 						}
@@ -174,7 +174,7 @@ class DirectoryScannerThread : public QThread
 							emit entriesAvailable(dirEntries);
 #if defined(QMC2_DEBUG)
 							foreach (QString entry, dirEntries)
-								printf("DirectoryScannerThread: %s\n", entry.toLocal8Bit().constData());
+								printf("DirectoryScannerThread: %s\n", entry.toUtf8().constData());
 #endif
 						}
 						emit finished();
@@ -183,7 +183,7 @@ class DirectoryScannerThread : public QThread
 					waitMutex.unlock();
 				}
 #if defined(QMC2_DEBUG)
-				printf("DirectoryScannerThread: finished scan of %s\n", dirPath.toLocal8Bit().constData());
+				printf("DirectoryScannerThread: finished scan of %s\n", dirPath.toUtf8().constData());
 #endif
 			}
 #if defined(QMC2_DEBUG)
@@ -678,7 +678,7 @@ class FileSystemModel : public QAbstractItemModel
 
 			QString lowerCaseFilePath = fileItem->absoluteFilePath().toLower();
 			if ( lowerCaseFilePath.endsWith(".zip") ) {
-				unzFile zipFile = unzOpen(fileItem->absoluteFilePath().toLocal8Bit().constData());
+				unzFile zipFile = unzOpen(fileItem->absoluteFilePath().toUtf8().constData());
 				if ( zipFile ) {
 					char zipFileName[QMC2_ZIP_BUFFER_SIZE];
 					unz_file_info zipInfo;

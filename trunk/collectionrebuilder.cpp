@@ -1281,7 +1281,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 	bool uniqueCRCs = rebuilderDialog()->romAlyzer()->checkBoxSetRewriterUniqueCRCs->isChecked();
 	bool ignoreErrors = !rebuilderDialog()->romAlyzer()->checkBoxSetRewriterAbortOnError->isChecked();
 	int zipLevel = rebuilderDialog()->romAlyzer()->spinBoxSetRewriterZipLevel->value();
-	zipFile zip = zipOpen(fileName.toLocal8Bit().constData(), APPEND_STATUS_CREATE);
+	zipFile zip = zipOpen(fileName.toUtf8().constData(), APPEND_STATUS_CREATE);
 	if ( zip ) {
 		emit log(tr("creating new ZIP archive '%1'").arg(fileName));
 		zip_fileinfo zipInfo;
@@ -1324,7 +1324,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 						errorReason = tr("unknown file type '%1'").arg(type);
 						break;
 				}
-				if ( success && zipOpenNewFileInZip(zip, file.toLocal8Bit().constData(), &zipInfo, (const void *)file.toLocal8Bit().constData(), file.length(), 0, 0, 0, Z_DEFLATED, zipLevel) == ZIP_OK ) {
+				if ( success && zipOpenNewFileInZip(zip, file.toUtf8().constData(), &zipInfo, file.toUtf8().constData(), file.length(), 0, 0, 0, Z_DEFLATED, zipLevel) == ZIP_OK ) {
 					emit log(tr("writing '%1' to ZIP archive '%2' (uncompressed size: %3)").arg(file).arg(fileName).arg(ROMAlyzer::humanReadable(data.length())));
 					quint64 bytesWritten = 0;
 					while ( bytesWritten < (quint64)data.length() && !exitThread && success ) {
@@ -1360,7 +1360,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 			}
 		}
 		if ( rebuilderDialog()->romAlyzer()->checkBoxAddZipComment->isChecked() )
-			zipClose(zip, tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toLocal8Bit().constData());
+			zipClose(zip, tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toUtf8().constData());
 		else
 			zipClose(zip, "");
 		if ( reproducedDumps == 0 )
@@ -1422,7 +1422,7 @@ bool CollectionRebuilderThread::readSevenZipFileData(QString fileName, QString c
 bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, QByteArray *data)
 {
 	bool success = true;
-	unzFile zipFile = unzOpen(fileName.toLocal8Bit().constData());
+	unzFile zipFile = unzOpen(fileName.toUtf8().constData());
 	if ( zipFile ) {
   		char ioBuffer[QMC2_ZIP_BUFFER_SIZE];
 		unz_file_info zipInfo;
@@ -1435,7 +1435,7 @@ bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, Q
 		unzGoToFirstFile(zipFile);
 		if ( crcIdentMap.contains(ulCRC) ) {
 			QString fn = crcIdentMap[ulCRC];
-			if ( unzLocateFile(zipFile, fn.toLocal8Bit().constData(), 2) == UNZ_OK ) {
+			if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 2) == UNZ_OK ) {
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
 					emit log(tr("reading '%1' from ZIP archive '%2' (uncompressed size: %3)").arg(fn).arg(fileName).arg(ROMAlyzer::humanReadable(zipInfo.uncompressed_size)));
 					qint64 len;

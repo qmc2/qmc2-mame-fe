@@ -1235,7 +1235,7 @@ void EmulatorOptions::checkTemplateMap()
 	QMap <QString, QString> emuOptions;
 
 	if ( qmc2TemplateCheck ) {
-		printf("%s\n", tr("checking template configuration map against selected emulator").toLocal8Bit().constData());
+		printf("%s\n", tr("checking template configuration map against selected emulator").toUtf8().constData());
 		fflush(stdout);
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("checking template configuration map against selected emulator"));
@@ -1243,7 +1243,7 @@ void EmulatorOptions::checkTemplateMap()
 	QFileInfo fi(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString());
 	if ( !fi.exists() ) {
 		if ( qmc2TemplateCheck ) {
-			printf("%s\n", tr("FATAL: %1 executable file '%2' doesn't exist").arg(QMC2_EMU_NAME).arg(fi.filePath()).toLocal8Bit().constData());
+			printf("%s\n", tr("FATAL: %1 executable file '%2' doesn't exist").arg(QMC2_EMU_NAME).arg(fi.filePath()).toUtf8().constData());
 			fflush(stdout);
 		} else
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: %1 executable file '%2' doesn't exist").arg(QMC2_EMU_NAME).arg(fi.filePath()));
@@ -1251,7 +1251,7 @@ void EmulatorOptions::checkTemplateMap()
 	}
 	if ( !fi.isExecutable() ) {
 		if ( qmc2TemplateCheck ) {
-			printf("%s\n", tr("FATAL: '%1' isn't executable").arg(fi.filePath()).toLocal8Bit().constData());
+			printf("%s\n", tr("FATAL: '%1' isn't executable").arg(fi.filePath()).toUtf8().constData());
 			fflush(stdout);
 		} else
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: '%1' isn't executable").arg(fi.filePath()));
@@ -1288,7 +1288,7 @@ void EmulatorOptions::checkTemplateMap()
 		}
 	} else {
 		if ( qmc2TemplateCheck ) {
-			printf("%s\n", tr("FATAL: can't start MAME executable within a reasonable time frame, giving up").toLocal8Bit().constData());
+			printf("%s\n", tr("FATAL: can't start MAME executable within a reasonable time frame, giving up").toUtf8().constData());
 			fflush(stdout);
 		} else
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up"));
@@ -1344,7 +1344,7 @@ void EmulatorOptions::checkTemplateMap()
 			continue;
 		}
 	} else if ( qmc2TemplateCheck ) {
-		printf("%s\n", tr("FATAL: can't create temporary file, please check emulator executable and permissions").toLocal8Bit().constData());
+		printf("%s\n", tr("FATAL: can't create temporary file, please check emulator executable and permissions").toUtf8().constData());
 		fflush(stdout);
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create temporary file, please check emulator executable and permissions"));
@@ -1366,7 +1366,7 @@ void EmulatorOptions::checkTemplateMap()
 						if ( option.dvalue.toInt() != emuOptions[option.name].toInt() ) {
 							diffCount++;
 							if ( qmc2TemplateCheck ) {
-								printf("%s\n", tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name].toInt()).arg(option.dvalue.toInt()).arg(assumedType).toLocal8Bit().constData());
+								printf("%s\n", tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name].toInt()).arg(option.dvalue.toInt()).arg(assumedType).toUtf8().constData());
 								fflush(stdout);
 							} else
 								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name].toInt()).arg(option.dvalue.toInt()).arg(assumedType));
@@ -1378,7 +1378,7 @@ void EmulatorOptions::checkTemplateMap()
 						if ( option.dvalue.toDouble() != emuOptions[option.name].toDouble() ) {
 							diffCount++;
 							if ( qmc2TemplateCheck ) {
-								printf("%s\n", tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name].toDouble()).arg(option.dvalue.toDouble()).arg(assumedType).toLocal8Bit().constData());
+								printf("%s\n", tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name].toDouble()).arg(option.dvalue.toDouble()).arg(assumedType).toUtf8().constData());
 								fflush(stdout);
 							} else
 								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name].toDouble()).arg(option.dvalue.toDouble()).arg(assumedType));
@@ -1396,7 +1396,7 @@ void EmulatorOptions::checkTemplateMap()
 						if ( isDifferent ) {
 							diffCount++;
 							if ( qmc2TemplateCheck ) {
-								printf("%s\n", tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType).toLocal8Bit().constData());
+								printf("%s\n", tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType).toUtf8().constData());
 								fflush(stdout);
 							} else
 								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType));
@@ -1414,7 +1414,7 @@ void EmulatorOptions::checkTemplateMap()
 						if ( isDifferent ) {
 							diffCount++;
 							if ( qmc2TemplateCheck ) {
-								printf("%s\n", tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType).toLocal8Bit().constData());
+								printf("%s\n", tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType).toUtf8().constData());
 								fflush(stdout);
 							} else
 								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType));
@@ -1427,7 +1427,7 @@ void EmulatorOptions::checkTemplateMap()
 						if ( option.dvalue != emuOpt ) {
 							diffCount++;
 							if ( qmc2TemplateCheck ) {
-								printf("%s\n", tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType).toLocal8Bit().constData());
+								printf("%s\n", tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType).toUtf8().constData());
 								fflush(stdout);
 							} else
 								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType));
@@ -1450,7 +1450,7 @@ void EmulatorOptions::checkTemplateMap()
 						if ( option.dvalue.replace("$HOME", "~") != emuOptions[option.name].replace("$HOME", "~") ) {
 							diffCount++;
 							if ( qmc2TemplateCheck ) {
-								printf("%s\n", tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType).toLocal8Bit().constData());
+								printf("%s\n", tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType).toUtf8().constData());
 								fflush(stdout);
 							} else
 								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType));
@@ -1460,7 +1460,7 @@ void EmulatorOptions::checkTemplateMap()
 			} else if ( option.name != "readconfig" ) {
 				diffCount++;
 				if ( qmc2TemplateCheck ) {
-					printf("%s\n", tr("template option '%1' is unknown to the emulator").arg(option.name).toLocal8Bit().constData());
+					printf("%s\n", tr("template option '%1' is unknown to the emulator").arg(option.name).toUtf8().constData());
 					fflush(stdout);
 				} else
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("template option '%1' is unknown to the emulator").arg(option.name));
@@ -1475,7 +1475,7 @@ void EmulatorOptions::checkTemplateMap()
 		if ( !templateOptions.contains(optName) && !ignoredOptions.contains(optName) ) {
 			diffCount++;
 			if ( qmc2TemplateCheck ) {
-				printf("%s\n", tr("emulator option '%1' with default value '%2' is unknown to the template").arg(optName).arg(it.value()).toLocal8Bit().constData());
+				printf("%s\n", tr("emulator option '%1' with default value '%2' is unknown to the template").arg(optName).arg(it.value()).toUtf8().constData());
 				fflush(stdout);
 			} else
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator option '%1' with default value '%2' is unknown to the template").arg(optName).arg(it.value()));
@@ -1483,8 +1483,8 @@ void EmulatorOptions::checkTemplateMap()
 	}
 
 	if ( qmc2TemplateCheck ) {
-		printf("%s\n", tr("done (checking template configuration map against selected emulator)").toLocal8Bit().constData());
-		printf("%s\n", tr("check results: %n difference(s)", "", diffCount).toLocal8Bit().constData());
+		printf("%s\n", tr("done (checking template configuration map against selected emulator)").toUtf8().constData());
+		printf("%s\n", tr("check results: %n difference(s)", "", diffCount).toUtf8().constData());
 		fflush(stdout);
 	} else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (checking template configuration map against selected emulator)"));

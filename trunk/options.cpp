@@ -1716,7 +1716,7 @@ void Options::on_pushButtonApply_clicked()
 					iw->imageFileMap7z.clear();
 					if ( iw->useZip() ) {
 						foreach (QString filePath, Settings::stResolve(iw->imageZip()).split(";", QString::SkipEmptyParts)) {
-							unzFile imageFile = unzOpen(filePath.toLocal8Bit());
+							unzFile imageFile = unzOpen(filePath.toUtf8().constData());
 							if ( imageFile == NULL )
 								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(iw->imageType()).arg(filePath));
 							else
@@ -1751,7 +1751,7 @@ void Options::on_pushButtonApply_clicked()
 				qmc2SoftwareSnap->snapFileMap7z.clear();
 				if ( qmc2SoftwareSnap->useZip() ) {
 					foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
-						unzFile imageFile = unzOpen(filePath.toLocal8Bit());
+						unzFile imageFile = unzOpen(filePath.toUtf8().constData());
 						if ( imageFile == NULL )
 							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(filePath));
 						else
@@ -1784,7 +1784,7 @@ void Options::on_pushButtonApply_clicked()
 			qmc2IconFileMap7z.clear();
 			if ( QMC2_ICON_FILETYPE_ZIP ) {
 				foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
-					unzFile iconFile = unzOpen(filePath.toLocal8Bit());
+					unzFile iconFile = unzOpen(filePath.toUtf8().constData());
 					if ( iconFile == NULL )
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(filePath));
 					else
@@ -2112,7 +2112,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 		for (int i = 0; i < words.count(); i++) {
 			if ( i > 0 )
 				itemText += "+";
-			itemText += QObject::tr(words[i].toLocal8Bit());
+			itemText += QObject::tr(words[i].toUtf8().constData());
 		}
 		item->setText(1, itemText);
 		QString customSC = config->value(QString(QMC2_FRONTEND_PREFIX + "Shortcuts/%1").arg(itShortcut), itShortcut).toString();
@@ -2123,7 +2123,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 			for (int i = 0; i < words.count(); i++) {
 				if ( i > 0 )
 					customSC += "+";
-				customSC += QObject::tr(words[i].toLocal8Bit());
+				customSC += QObject::tr(words[i].toUtf8().constData());
 			}
 			item->setText(2, customSC);
 		}
@@ -3601,7 +3601,7 @@ void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
 		for (int i = 0; i < words.count(); i++) {
 			if ( i > 0 )
 				nativeShortcut += "+";
-			nativeShortcut += QObject::tr(words[i].toLocal8Bit());
+			nativeShortcut += QObject::tr(words[i].toUtf8().constData());
 		}
 
 		bool found = false;
@@ -3613,7 +3613,7 @@ void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
 			for (int i = 0; i < words.count(); i++) {
 				if ( i > 0 )
 					itShortcut += "+";
-				itShortcut += QObject::tr(words[i].toLocal8Bit());
+				itShortcut += QObject::tr(words[i].toUtf8().constData());
 			}
 
 			if ( itShortcut == nativeShortcut ) {
@@ -3674,7 +3674,7 @@ void Options::on_pushButtonResetShortcut_clicked()
 		for (int i = 0; i < words.count(); i++) {
 			if ( i > 0 )
 				nativeShortcut += "+";
-			nativeShortcut += QObject::tr(words[i].toLocal8Bit());
+			nativeShortcut += QObject::tr(words[i].toUtf8().constData());
 		}
 
 		bool found = false;
@@ -3686,7 +3686,7 @@ void Options::on_pushButtonResetShortcut_clicked()
 			for (int i = 0; i < words.count(); i++) {
 				if ( i > 0 )
 					itShortcut += "+";
-				itShortcut += QObject::tr(words[i].toLocal8Bit());
+				itShortcut += QObject::tr(words[i].toUtf8().constData());
 			}
 
 			if ( itShortcut == nativeShortcut ) {

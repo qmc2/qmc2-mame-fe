@@ -67,7 +67,7 @@ void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 			foreach (QString id, dumpMap.uniqueKeys()) {
 				if ( defaultEmulator() ) {
 					QString sourcefile, isbios, cloneof, romof, sampleof, description, year, manufacturer, merge;
-					QByteArray xmlDocument(ROMAlyzer::getXmlData(id, true).toLocal8Bit());
+					QByteArray xmlDocument(ROMAlyzer::getXmlData(id, true).toUtf8());
 					QBuffer xmlQueryBuffer(&xmlDocument);
 					xmlQueryBuffer.open(QIODevice::ReadOnly);
 					QXmlQuery xmlQuery(QXmlQuery::XQuery10);
