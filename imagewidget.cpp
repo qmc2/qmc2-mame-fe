@@ -83,7 +83,7 @@ ImageWidget::ImageWidget(QWidget *parent)
 
 	if ( useZip() ) {
 		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
-			unzFile imageFile = unzOpen((const char *)filePath.toLocal8Bit());
+			unzFile imageFile = unzOpen(filePath.toUtf8().constData());
 			if ( imageFile == NULL )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
 			else
@@ -287,7 +287,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 					*fileName = gameFile;
 
 				foreach (unzFile imageFile, imageFileMap) {
-					if ( unzLocateFile(imageFile, gameFile.toLocal8Bit().constData(), 0) == UNZ_OK ) {
+					if ( unzLocateFile(imageFile, gameFile.toUtf8().constData(), 0) == UNZ_OK ) {
 						if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
 							while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
 								imageData.append(imageBuffer, len);
@@ -305,11 +305,11 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 				}
 
 				if ( fileOk )
-					fileOk = pm.loadFromData(imageData, formatName.toLocal8Bit().constData());
+					fileOk = pm.loadFromData(imageData, formatName.toUtf8().constData());
 
 				if ( !checkOnly ) {
 					if ( fileOk ) {
-						//printf("ZIP: Image loaded for %s\n", cacheKey.toLocal8Bit().constData()); fflush(stdout);
+						//printf("ZIP: Image loaded for %s\n", cacheKey.toUtf8().constData()); fflush(stdout);
 						qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 						currentPixmap = pm;
 					} else {
@@ -320,7 +320,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 							currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
 							if ( !qmc2RetryLoadingImages )
 								qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
-							//printf("ZIP: Using ghost image for %s\n", cacheKey.toLocal8Bit().constData()); fflush(stdout);
+							//printf("ZIP: Using ghost image for %s\n", cacheKey.toUtf8().constData()); fflush(stdout);
 						}
 					}
 				}
@@ -367,11 +367,11 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 				}
 
 				if ( fileOk )
-					fileOk = pm.loadFromData(imageData, formatName.toLocal8Bit().constData());
+					fileOk = pm.loadFromData(imageData, formatName.toUtf8().constData());
 
 				if ( !checkOnly ) {
 					if ( fileOk ) {
-						//printf("7z: Image loaded for %s\n", cacheKey.toLocal8Bit().constData()); fflush(stdout);
+						//printf("7z: Image loaded for %s\n", cacheKey.toUtf8().constData()); fflush(stdout);
 						qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 						currentPixmap = pm;
 					} else {
@@ -402,7 +402,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 								p.end();
 								enableWidgets(false);
 							}
-							//printf("7z: Using ghost image for %s%s\n", cacheKey.toLocal8Bit().constData(), isFillingDictionary ? " (filling up dictionary)" : ""); fflush(stdout);
+							//printf("7z: Using ghost image for %s%s\n", cacheKey.toUtf8().constData(), isFillingDictionary ? " (filling up dictionary)" : ""); fflush(stdout);
 							if ( isFillingDictionary )
 								QTimer::singleShot(QMC2_IMG_7Z_DICT_FILL_DELAY, this, SLOT(update()));
 						}
@@ -445,7 +445,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 
 					if ( checkOnly ) {
 						if ( loadImages )
-							fileOk = pm.load(imagePath, formatName.toLocal8Bit().constData());
+							fileOk = pm.load(imagePath, formatName.toUtf8().constData());
 						else {
 							QFile f(imagePath);
 							fileOk = f.exists();
@@ -456,9 +456,9 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 							}
 						}
 					} else {
-						if ( pm.load(imagePath, formatName.toLocal8Bit().constData()) ) {
+						if ( pm.load(imagePath, formatName.toUtf8().constData()) ) {
 							pm.imagePath = imagePath;
-							//printf("Folder: Image loaded for %s\n", cacheKey.toLocal8Bit().constData()); fflush(stdout);
+							//printf("Folder: Image loaded for %s\n", cacheKey.toUtf8().constData()); fflush(stdout);
 							qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 							currentPixmap = pm;
 							fileOk = true;
@@ -470,7 +470,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 								currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
 								if ( !qmc2RetryLoadingImages )
 									qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
-								//printf("Folder: Using ghost image for %s\n", cacheKey.toLocal8Bit().constData()); fflush(stdout);
+								//printf("Folder: Using ghost image for %s\n", cacheKey.toUtf8().constData()); fflush(stdout);
 								fileOk = false;
 							}
 						}
@@ -568,7 +568,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 
 				if ( zip == NULL ) {
 					foreach (unzFile imageFile, imageFileMap) {
-						if ( unzLocateFile(imageFile, gameFile.toLocal8Bit().constData(), 0) == UNZ_OK ) {
+						if ( unzLocateFile(imageFile, gameFile.toUtf8().constData(), 0) == UNZ_OK ) {
 							if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
 								while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
 									imageData.append(imageBuffer, len);
@@ -585,7 +585,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 							imageData.clear();
 					}
 				} else {
-					if ( unzLocateFile(zip, gameFile.toLocal8Bit().constData(), 0) == UNZ_OK ) {
+					if ( unzLocateFile(zip, gameFile.toUtf8().constData(), 0) == UNZ_OK ) {
 						if ( unzOpenCurrentFile(zip) == UNZ_OK ) {
 							while ( (len = unzReadCurrentFile(zip, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
 								imageData.append(imageBuffer, len);
@@ -599,7 +599,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 
 				if ( fileOk ) {
 					QBuffer buffer(&imageData);
-					QImageReader imageReader(&buffer, formatName.toLocal8Bit().constData());
+					QImageReader imageReader(&buffer, formatName.toUtf8().constData());
 					fileOk = imageReader.read(&image);
 					if ( fileOk ) {
 						if ( sizeReturn )
@@ -675,7 +675,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 				bool ifd = isFillingDict ? *isFillingDict : false;
 				if ( fileOk && !ifd ) {
 					QBuffer buffer(&imageData);
-					QImageReader imageReader(&buffer, formatName.toLocal8Bit().constData());
+					QImageReader imageReader(&buffer, formatName.toUtf8().constData());
 					fileOk = imageReader.read(&image);
 					if ( fileOk ) {
 						if ( sizeReturn )
@@ -705,7 +705,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 					if ( fileName )
 						*fileName = QDir::toNativeSeparators(localImagePath);
 
-					QImageReader imageReader(localImagePath, formatName.toLocal8Bit().constData());
+					QImageReader imageReader(localImagePath, formatName.toUtf8().constData());
 					fileOk = imageReader.read(&image);
 
 					if ( fileOk ) {

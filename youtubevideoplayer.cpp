@@ -1903,17 +1903,17 @@ bool YouTubeXmlHandler::endElement(const QString &/*namespaceURI*/, const QStrin
 	} else if ( qName == "id" ) {
 		id = currentText.remove(0, currentText.lastIndexOf("/") + 1);
 #ifdef QMC2_DEBUG
-		printf("    id     = '%s'\n", id.toLocal8Bit().constData());
+		printf("    id     = '%s'\n", id.toUtf8().constData());
 #endif
 	} else if ( qName == "title" ) {
 		title = currentText;
 #ifdef QMC2_DEBUG
-		printf("    title  = '%s'\n", title.toLocal8Bit().constData());
+		printf("    title  = '%s'\n", title.toUtf8().constData());
 #endif
 	} else if ( qName == "author" ) {
 		author = currentText.left(currentText.indexOf("http://"));
 #ifdef QMC2_DEBUG
-		printf("    author = '%s'\n", author.toLocal8Bit().constData());
+		printf("    author = '%s'\n", author.toUtf8().constData());
 #endif
 	}
 
@@ -1922,7 +1922,7 @@ bool YouTubeXmlHandler::endElement(const QString &/*namespaceURI*/, const QStrin
 
 bool YouTubeXmlHandler::characters(const QString &chars)
 {
-	currentText += QString::fromUtf8(chars.toLocal8Bit());
+	currentText += QString::fromUtf8(chars.toUtf8());
 
 	return true;
 }

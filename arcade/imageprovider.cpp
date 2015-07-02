@@ -33,7 +33,7 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *paren
     foreach (QString imageType, mImageTypes) {
         foreach (QString imagePath, imageTypeToFile(imageType).split(";", QString::SkipEmptyParts)) {
             if ( isZippedImageType(imageType) ) {
-                mFileMapZip[imagePath] = unzOpen(imagePath.toLocal8Bit().constData());
+                mFileMapZip[imagePath] = unzOpen(imagePath.toUtf8().constData());
                 if ( !mFileMapZip[imagePath] ) {
                     QMC2_ARCADE_LOG_STR(QString("WARNING: Can't open %1 ZIP file '%2'").arg(imageTypeToLongName(imageType)).arg(imagePath));
                 } else
@@ -273,7 +273,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
                             QString formatName = mFormatNames[format];
                             foreach (QString extension, mFormatExtensions[format].split(", ", QString::SkipEmptyParts)) {
                                 QString imageFileName = gameId + "." + extension;
-                                if ( imageFile && unzLocateFile(imageFile, imageFileName.toLocal8Bit().constData(), 0) == UNZ_OK ) {
+                                if ( imageFile && unzLocateFile(imageFile, imageFileName.toUtf8().constData(), 0) == UNZ_OK ) {
                                     QByteArray imageData;
                                     char imageBuffer[QMC2_ARCADE_ZIP_BUFSIZE];
                                     if ( unzOpenCurrentFile(imageFile) != UNZ_OK ) {
@@ -283,7 +283,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
                                         while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ARCADE_ZIP_BUFSIZE)) > 0 )
                                             imageData.append(imageBuffer, len);
                                         unzCloseCurrentFile(imageFile);
-                                        if ( image.loadFromData(imageData, formatName.toLocal8Bit().constData()) )  {
+                                        if ( image.loadFromData(imageData, formatName.toUtf8().constData()) )  {
                                             mImageCache.insert(cacheKey, new QImage(image));
                                             validCacheKey = cacheKey;
                                         }
@@ -309,7 +309,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
                                     if ( readLength == 0 && async ) {
                                         validCacheKey = cacheKey;
                                         sevenZipFile->setUserData(cacheKey);
-                                    } else if ( image.loadFromData(imageData, formatName.toLocal8Bit().constData()) ) {
+                                    } else if ( image.loadFromData(imageData, formatName.toUtf8().constData()) ) {
                                         mImageCache.insert(cacheKey, new QImage(image));
                                         validCacheKey = cacheKey;
                                     }
@@ -357,7 +357,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
                             QString formatName = mFormatNames[format];
                             foreach (QString extension, mFormatExtensions[format].split(", ", QString::SkipEmptyParts)) {
                                 QString imageFileName = gameId + "." + extension;
-                                if ( imageFile && unzLocateFile(imageFile, imageFileName.toLocal8Bit().constData(), 0) == UNZ_OK ) {
+                                if ( imageFile && unzLocateFile(imageFile, imageFileName.toUtf8().constData(), 0) == UNZ_OK ) {
                                     QByteArray imageData;
                                     char imageBuffer[QMC2_ARCADE_ZIP_BUFSIZE];
                                     if ( unzOpenCurrentFile(imageFile) != UNZ_OK ) {
@@ -367,7 +367,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
                                         while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ARCADE_ZIP_BUFSIZE)) > 0 )
                                             imageData.append(imageBuffer, len);
                                         unzCloseCurrentFile(imageFile);
-                                        if ( image.loadFromData(imageData, formatName.toLocal8Bit().constData()) )  {
+                                        if ( image.loadFromData(imageData, formatName.toUtf8().constData()) )  {
                                             mPixmapCache.insert(cacheKey, new QPixmap(image));
                                             validCacheKey = cacheKey;
                                         }
@@ -393,7 +393,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
                                     if ( readLength == 0 && async ) {
                                         validCacheKey = cacheKey;
                                         sevenZipFile->setUserData(cacheKey);
-                                    } else if ( image.loadFromData(imageData, formatName.toLocal8Bit().constData()) ) {
+                                    } else if ( image.loadFromData(imageData, formatName.toUtf8().constData()) ) {
                                         mPixmapCache.insert(cacheKey, new QPixmap(image));
                                         validCacheKey = cacheKey;
                                     }

@@ -793,13 +793,13 @@
 
 // debugging macros
 #define QMC2_PRINT_TXT(t)			printf("%s\n", #t)
-#define QMC2_PRINT_STR(s)			printf("%s = %s\n", #s, s.toLocal8Bit().constData())
+#define QMC2_PRINT_STR(s)			printf("%s = %s\n", #s, s.toUtf8().constData())
 #define QMC2_PRINT_CSTR(s)			printf("%s = %s\n", #s, s)
 #define QMC2_PRINT_PTR(p)			printf("%s = %p\n", #p, p)
 #define QMC2_PRINT_INT(i)			printf("%s = %ld\n", #i, i)
 #define QMC2_PRINT_HEX(x)			printf("%s = %x\n", #x, x)
 #define QMC2_PRINT_BOOL(b)			printf("%s = %s\n", #b, b ? "true" : "false")
-#define QMC2_PRINT_STRLST(l)			for (int i = 0; i < l.count(); i++) printf("%s[%ld] = %s\n", #l, i, l[i].toLocal8Bit().constData())
+#define QMC2_PRINT_STRLST(l)			for (int i = 0; i < l.count(); i++) printf("%s[%ld] = %s\n", #l, i, l[i].toUtf8().constData())
 
 // Google dev-key
 #define QMC2_GOOGLE_DEV_KEY			"AI39si7D4n3EI-m_1eeFsfbmD8fG7Sqb9gpkgjyliWrSVs4M4hUPZsLnE_Z7XQUMSPK4GuV9A3wbzKkcSBxOTniTe-d8Y1dOlw"

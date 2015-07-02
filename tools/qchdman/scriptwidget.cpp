@@ -180,7 +180,7 @@ void ScriptWidget::load(const QString &fileName, QString *buffer)
 
     QFile loadFile(scriptName);
     QTextStream ts;
-    QByteArray ba(buffer != NULL ? buffer->toLocal8Bit().constData() : "");
+    QByteArray ba(buffer != NULL ? buffer->toUtf8().constData() : "");
     QBuffer baBuffer(&ba);
 
     if ( buffer != NULL ) {

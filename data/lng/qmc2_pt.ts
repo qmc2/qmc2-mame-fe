@@ -5795,13 +5795,13 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../imagechecker.ui" line="176"/>
         <location filename="../../imagechecker.cpp" line="311"/>
         <location filename="../../imagechecker.cpp" line="501"/>
-        <location filename="../../imagechecker.cpp" line="972"/>
-        <location filename="../../imagechecker.cpp" line="1045"/>
-        <location filename="../../imagechecker.cpp" line="1170"/>
-        <location filename="../../imagechecker.cpp" line="1232"/>
-        <location filename="../../imagechecker.cpp" line="1335"/>
-        <location filename="../../imagechecker.cpp" line="1397"/>
-        <location filename="../../imagechecker.cpp" line="1447"/>
+        <location filename="../../imagechecker.cpp" line="975"/>
+        <location filename="../../imagechecker.cpp" line="1048"/>
+        <location filename="../../imagechecker.cpp" line="1173"/>
+        <location filename="../../imagechecker.cpp" line="1235"/>
+        <location filename="../../imagechecker.cpp" line="1338"/>
+        <location filename="../../imagechecker.cpp" line="1400"/>
+        <location filename="../../imagechecker.cpp" line="1450"/>
         <source>Idle</source>
         <translation>Ocioso</translation>
     </message>
@@ -5854,8 +5854,8 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../imagechecker.ui" line="252"/>
         <location filename="../../imagechecker.cpp" line="323"/>
         <location filename="../../imagechecker.cpp" line="568"/>
-        <location filename="../../imagechecker.cpp" line="811"/>
-        <location filename="../../imagechecker.cpp" line="1757"/>
+        <location filename="../../imagechecker.cpp" line="814"/>
+        <location filename="../../imagechecker.cpp" line="1760"/>
         <source>Found:</source>
         <translation>Encontradas:</translation>
     </message>
@@ -5863,8 +5863,8 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../imagechecker.ui" line="261"/>
         <location filename="../../imagechecker.cpp" line="324"/>
         <location filename="../../imagechecker.cpp" line="570"/>
-        <location filename="../../imagechecker.cpp" line="813"/>
-        <location filename="../../imagechecker.cpp" line="1758"/>
+        <location filename="../../imagechecker.cpp" line="816"/>
+        <location filename="../../imagechecker.cpp" line="1761"/>
         <source>Missing:</source>
         <translation>Faltantes:</translation>
     </message>
@@ -5877,9 +5877,9 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../imagechecker.ui" line="348"/>
         <location filename="../../imagechecker.cpp" line="330"/>
         <location filename="../../imagechecker.cpp" line="577"/>
-        <location filename="../../imagechecker.cpp" line="820"/>
-        <location filename="../../imagechecker.cpp" line="1445"/>
-        <location filename="../../imagechecker.cpp" line="1761"/>
+        <location filename="../../imagechecker.cpp" line="823"/>
+        <location filename="../../imagechecker.cpp" line="1448"/>
+        <location filename="../../imagechecker.cpp" line="1764"/>
         <source>Obsolete:</source>
         <translation>Obsoletas:</translation>
     </message>
@@ -5984,16 +5984,16 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../imagechecker.cpp" line="497"/>
         <location filename="../../imagechecker.cpp" line="554"/>
-        <location filename="../../imagechecker.cpp" line="1704"/>
-        <location filename="../../imagechecker.cpp" line="1710"/>
+        <location filename="../../imagechecker.cpp" line="1707"/>
+        <location filename="../../imagechecker.cpp" line="1713"/>
         <source>Icon</source>
         <translation>Ícone</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="497"/>
         <location filename="../../imagechecker.cpp" line="554"/>
-        <location filename="../../imagechecker.cpp" line="1704"/>
-        <location filename="../../imagechecker.cpp" line="1710"/>
+        <location filename="../../imagechecker.cpp" line="1707"/>
+        <location filename="../../imagechecker.cpp" line="1713"/>
         <source>Image</source>
         <translation>Imagem</translation>
     </message>
@@ -6061,213 +6061,213 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <translation>Descomprimindo arquivo</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="782"/>
+        <location filename="../../imagechecker.cpp" line="785"/>
         <source>Thread[%1]: Icon for &apos;%2&apos; found</source>
         <translation>Thread[%1]: Ícone para &apos;%2&apos; encontrado</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="786"/>
+        <location filename="../../imagechecker.cpp" line="789"/>
         <source>Thread[%1]: Icon for &apos;%2&apos; is missing</source>
         <translation>Thread[%1]: Ícone para &apos;%2&apos; está faltando</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="838"/>
+        <location filename="../../imagechecker.cpp" line="841"/>
         <source>Choose file to store the image checker log</source>
         <translation>Escolha o arquivo para guardar o log do verificador de imagens</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="838"/>
+        <location filename="../../imagechecker.cpp" line="841"/>
         <source>All files (*)</source>
         <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="843"/>
-        <location filename="../../imagechecker.cpp" line="844"/>
+        <location filename="../../imagechecker.cpp" line="846"/>
+        <location filename="../../imagechecker.cpp" line="847"/>
         <source>saving image checker log to &apos;%1&apos;</source>
         <translation>salvando log do verificador de imagens para &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="847"/>
-        <location filename="../../imagechecker.cpp" line="848"/>
+        <location filename="../../imagechecker.cpp" line="850"/>
+        <location filename="../../imagechecker.cpp" line="851"/>
         <source>done (saving image checker log to &apos;%1&apos;)</source>
         <translation>feito (salvando log do verificador de imagens para &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="850"/>
-        <location filename="../../imagechecker.cpp" line="851"/>
+        <location filename="../../imagechecker.cpp" line="853"/>
+        <location filename="../../imagechecker.cpp" line="854"/>
         <source>WARNING: can&apos;t open file &apos;%1&apos; for writing, please check permissions</source>
         <translation>AVISO: impossível abrir arquivo &apos;%1&apos; para escrita, por favor verifique as permissões</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="947"/>
+        <location filename="../../imagechecker.cpp" line="950"/>
         <source>Running ZIP tool to remove bad image files, command = &apos;%1&apos;</source>
         <translation>Executando ferramenta ZIP para remover arquivos de imagem ruins, comando = &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="970"/>
-        <location filename="../../imagechecker.cpp" line="1168"/>
-        <location filename="../../imagechecker.cpp" line="1333"/>
+        <location filename="../../imagechecker.cpp" line="973"/>
+        <location filename="../../imagechecker.cpp" line="1171"/>
+        <location filename="../../imagechecker.cpp" line="1336"/>
         <source>WARNING: ZIP tool didn&apos;t exit cleanly: exitCode = %1, exitStatus = %2</source>
         <translation>AVISO: ferramenta ZIP não terminou corretamente: código de saída = %1, estado de saída = %2</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="970"/>
-        <location filename="../../imagechecker.cpp" line="1043"/>
-        <location filename="../../imagechecker.cpp" line="1168"/>
-        <location filename="../../imagechecker.cpp" line="1230"/>
-        <location filename="../../imagechecker.cpp" line="1333"/>
-        <location filename="../../imagechecker.cpp" line="1395"/>
+        <location filename="../../imagechecker.cpp" line="973"/>
+        <location filename="../../imagechecker.cpp" line="1046"/>
+        <location filename="../../imagechecker.cpp" line="1171"/>
+        <location filename="../../imagechecker.cpp" line="1233"/>
+        <location filename="../../imagechecker.cpp" line="1336"/>
+        <location filename="../../imagechecker.cpp" line="1398"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="970"/>
-        <location filename="../../imagechecker.cpp" line="1043"/>
-        <location filename="../../imagechecker.cpp" line="1168"/>
-        <location filename="../../imagechecker.cpp" line="1230"/>
-        <location filename="../../imagechecker.cpp" line="1333"/>
-        <location filename="../../imagechecker.cpp" line="1395"/>
+        <location filename="../../imagechecker.cpp" line="973"/>
+        <location filename="../../imagechecker.cpp" line="1046"/>
+        <location filename="../../imagechecker.cpp" line="1171"/>
+        <location filename="../../imagechecker.cpp" line="1233"/>
+        <location filename="../../imagechecker.cpp" line="1336"/>
+        <location filename="../../imagechecker.cpp" line="1398"/>
         <source>crashed</source>
         <translation>quebrado</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="979"/>
-        <location filename="../../imagechecker.cpp" line="1181"/>
-        <location filename="../../imagechecker.cpp" line="1346"/>
+        <location filename="../../imagechecker.cpp" line="982"/>
+        <location filename="../../imagechecker.cpp" line="1184"/>
+        <location filename="../../imagechecker.cpp" line="1349"/>
         <source>Executing 7z tool</source>
         <translation>Executando ferramenta 7z</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1020"/>
+        <location filename="../../imagechecker.cpp" line="1023"/>
         <source>Running 7z tool to remove bad image files, command = &apos;%1&apos;</source>
         <translation>Executando ferramenta 7z para remover arquivos de imagem ruins, comando = &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1043"/>
-        <location filename="../../imagechecker.cpp" line="1230"/>
-        <location filename="../../imagechecker.cpp" line="1395"/>
+        <location filename="../../imagechecker.cpp" line="1046"/>
+        <location filename="../../imagechecker.cpp" line="1233"/>
+        <location filename="../../imagechecker.cpp" line="1398"/>
         <source>WARNING: 7z tool didn&apos;t exit cleanly: exitCode = %1, exitStatus = %2</source>
         <translation>AVISO: ferramenta 7z não terminou corretamente. código de saída = %1, estado da saída = %2</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1057"/>
+        <location filename="../../imagechecker.cpp" line="1060"/>
         <source>Bad image file &apos;%1&apos; removed</source>
         <translation>Arquivo de imagem ruim &apos;%1&apos; removida</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1063"/>
+        <location filename="../../imagechecker.cpp" line="1066"/>
         <source>Bad image file &apos;%1&apos; cannot be removed, please check permissions</source>
         <translation>Arquivo de imagem ruim &apos;%1&apos; não pode ser removido, por favor verifque as permissões</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="906"/>
-        <location filename="../../imagechecker.cpp" line="1119"/>
-        <location filename="../../imagechecker.cpp" line="1284"/>
+        <location filename="../../imagechecker.cpp" line="909"/>
+        <location filename="../../imagechecker.cpp" line="1122"/>
+        <location filename="../../imagechecker.cpp" line="1287"/>
         <source>Executing ZIP tool</source>
         <translation>Executando ferramenta ZIP</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1162"/>
-        <location filename="../../imagechecker.cpp" line="1327"/>
+        <location filename="../../imagechecker.cpp" line="1165"/>
+        <location filename="../../imagechecker.cpp" line="1330"/>
         <source>Running ZIP tool to remove obsolete files, command = &apos;%1&apos;</source>
         <translation>Executando ferramenta ZIP para remover arquivos obsoletos, comando = &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1224"/>
-        <location filename="../../imagechecker.cpp" line="1389"/>
+        <location filename="../../imagechecker.cpp" line="1227"/>
+        <location filename="../../imagechecker.cpp" line="1392"/>
         <source>Running 7z tool to remove obsolete files, command = &apos;%1&apos;</source>
         <translation>Executando ferramenta 7z para remover arquivos obsoletos, comando = &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1242"/>
-        <location filename="../../imagechecker.cpp" line="1407"/>
+        <location filename="../../imagechecker.cpp" line="1245"/>
+        <location filename="../../imagechecker.cpp" line="1410"/>
         <source>Removing obsolete files / folders</source>
         <translation>Removendo arquivos / pastas obsoletos</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1253"/>
+        <location filename="../../imagechecker.cpp" line="1256"/>
         <source>Obsolete image folder &apos;%1&apos; removed</source>
         <translation>Pasta de imagem obsoleta &apos;%1&apos; removida</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1259"/>
+        <location filename="../../imagechecker.cpp" line="1262"/>
         <source>Obsolete image folder &apos;%1&apos; cannot be removed, please check permissions</source>
         <translation>Pasta de imagem obsoleta &apos;%1&apos; não pode ser removido, por favor verifque as permissões</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1263"/>
+        <location filename="../../imagechecker.cpp" line="1266"/>
         <source>Obsolete image file &apos;%1&apos; removed</source>
         <translation>Arquivo de imagem obsoleto &apos;%1&apos; removido</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1269"/>
+        <location filename="../../imagechecker.cpp" line="1272"/>
         <source>Obsolete image file &apos;%1&apos; cannot be removed, please check permissions</source>
         <translation>Arquivo de imagem obsoleto &apos;%1&apos; não pode ser removido, por favor verifque as permissões</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1418"/>
+        <location filename="../../imagechecker.cpp" line="1421"/>
         <source>Obsolete icon folder &apos;%1&apos; removed</source>
         <translation>Pasta de ícone obsoleta &apos;%1&apos; removida</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1424"/>
+        <location filename="../../imagechecker.cpp" line="1427"/>
         <source>Obsolete icon folder &apos;%1&apos; cannot be removed, please check permissions</source>
         <translation>Pasta de ícone obsoleta &apos;%1&apos; não pode ser removida, por favor verifque as permissões</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1428"/>
+        <location filename="../../imagechecker.cpp" line="1431"/>
         <source>Obsolete icon file &apos;%1&apos; removed</source>
         <translation>Arquivo de ícone obsoleto &apos;%1&apos; removido</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1434"/>
+        <location filename="../../imagechecker.cpp" line="1437"/>
         <source>Obsolete icon file &apos;%1&apos; cannot be removed, please check permissions</source>
         <translation>Arquivo de ícone obsoleto &apos;%1&apos; não pode ser removido, por favor verifque as permissões</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1489"/>
+        <location filename="../../imagechecker.cpp" line="1492"/>
         <source>Checking for obsolete files</source>
         <translation>Procurando por arquivos obsoletos</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1518"/>
+        <location filename="../../imagechecker.cpp" line="1521"/>
         <source>Checking for obsolete files / folder</source>
         <translation>Procurando por arquivos / pastas obsoletos</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1528"/>
-        <location filename="../../imagechecker.cpp" line="1545"/>
+        <location filename="../../imagechecker.cpp" line="1531"/>
+        <location filename="../../imagechecker.cpp" line="1548"/>
         <source>Reading ZIP directory recursively</source>
         <translation>Lendo diretório do ZIP recursivamente</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1532"/>
-        <location filename="../../imagechecker.cpp" line="1549"/>
+        <location filename="../../imagechecker.cpp" line="1535"/>
+        <location filename="../../imagechecker.cpp" line="1552"/>
         <source>Reading 7z directory recursively</source>
         <translation>Lendo diretório do 7z recursivamente</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1538"/>
+        <location filename="../../imagechecker.cpp" line="1541"/>
         <source>Reading image directory &apos;%1&apos; recursively</source>
         <translation>Lendo diretório de imagens &apos;%1&apos; recursivamente</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1555"/>
+        <location filename="../../imagechecker.cpp" line="1558"/>
         <source>Reading icon directory &apos;%1&apos; recursively</source>
         <translation>Lendo diretório de ícones &apos;%1&apos; recursivamente</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1704"/>
+        <location filename="../../imagechecker.cpp" line="1707"/>
         <source>%1 folder &apos;%2&apos; is obsolete</source>
         <translation>Pasta de %1 &apos;%2&apos; é obsoleta</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="1710"/>
+        <location filename="../../imagechecker.cpp" line="1713"/>
         <source>%1 file &apos;%2&apos; is obsolete</source>
         <translation>Arquivo de %1 &apos;%2&apos; é obsoleto</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../imagechecker.cpp" line="1728"/>
+        <location filename="../../imagechecker.cpp" line="1731"/>
         <source>%n obsolete file(s) found</source>
         <translation>
             <numerusform>%n arquivo obsoleto encontrado</numerusform>
@@ -6278,16 +6278,16 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../imagechecker.ui" line="280"/>
         <location filename="../../imagechecker.cpp" line="325"/>
         <location filename="../../imagechecker.cpp" line="571"/>
-        <location filename="../../imagechecker.cpp" line="814"/>
-        <location filename="../../imagechecker.cpp" line="964"/>
-        <location filename="../../imagechecker.cpp" line="1037"/>
-        <location filename="../../imagechecker.cpp" line="1069"/>
-        <location filename="../../imagechecker.cpp" line="1760"/>
+        <location filename="../../imagechecker.cpp" line="817"/>
+        <location filename="../../imagechecker.cpp" line="967"/>
+        <location filename="../../imagechecker.cpp" line="1040"/>
+        <location filename="../../imagechecker.cpp" line="1072"/>
+        <location filename="../../imagechecker.cpp" line="1763"/>
         <source>Bad:</source>
         <translation>Ruim:</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../imagechecker.cpp" line="1561"/>
+        <location filename="../../imagechecker.cpp" line="1564"/>
         <source>%n directory entries to check</source>
         <translation>
             <numerusform>%n entrada de diretório para verificar</numerusform>
@@ -16225,7 +16225,7 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>sem dump / dump ruim</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1915"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1932"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
         <translation>reprodutor de vídeo: Erro no XML: erro fatal na linha %1, coluna %2: %3</translation>
     </message>
@@ -21664,34 +21664,34 @@ Tem certeza que deseja fazer isso?</translation>
 <context>
     <name>VideoItemWidget</name>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="168"/>
+        <location filename="../../videoitemwidget.cpp" line="126"/>
         <source>Path:</source>
         <translation>Caminho:</translation>
     </message>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="170"/>
+        <location filename="../../videoitemwidget.cpp" line="128"/>
         <source>Title:</source>
         <translation>Título:</translation>
     </message>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="175"/>
-        <location filename="../../videoitemwidget.cpp" line="177"/>
+        <location filename="../../videoitemwidget.cpp" line="133"/>
+        <location filename="../../videoitemwidget.cpp" line="135"/>
         <source>Author:</source>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="175"/>
+        <location filename="../../videoitemwidget.cpp" line="133"/>
         <source>Open author URL with the default browser</source>
         <translation>Abrir URL do autor com o navegador padrão</translation>
     </message>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="183"/>
+        <location filename="../../videoitemwidget.cpp" line="141"/>
         <source>Open video URL with the default browser</source>
         <translation>Abrir URL do vídeo com o navegador padrão</translation>
     </message>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="183"/>
-        <location filename="../../videoitemwidget.cpp" line="185"/>
+        <location filename="../../videoitemwidget.cpp" line="141"/>
+        <location filename="../../videoitemwidget.cpp" line="143"/>
         <source>Video:</source>
         <translation>Vídeo:</translation>
     </message>
@@ -22010,49 +22010,49 @@ Sair agora, aceitar uma vez ou ignorar completamente?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="201"/>
-        <location filename="../../youtubevideoplayer.cpp" line="110"/>
+        <location filename="../../youtubevideoplayer.cpp" line="111"/>
         <source>FLV 240P</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="210"/>
-        <location filename="../../youtubevideoplayer.cpp" line="111"/>
+        <location filename="../../youtubevideoplayer.cpp" line="112"/>
         <source>FLV 360P</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="219"/>
-        <location filename="../../youtubevideoplayer.cpp" line="112"/>
+        <location filename="../../youtubevideoplayer.cpp" line="113"/>
         <source>MP4 360P</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="228"/>
-        <location filename="../../youtubevideoplayer.cpp" line="113"/>
+        <location filename="../../youtubevideoplayer.cpp" line="114"/>
         <source>FLV 480P</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="237"/>
-        <location filename="../../youtubevideoplayer.cpp" line="114"/>
+        <location filename="../../youtubevideoplayer.cpp" line="115"/>
         <source>MP4 720P</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="246"/>
-        <location filename="../../youtubevideoplayer.cpp" line="115"/>
+        <location filename="../../youtubevideoplayer.cpp" line="116"/>
         <source>MP4 1080P</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="255"/>
-        <location filename="../../youtubevideoplayer.cpp" line="116"/>
+        <location filename="../../youtubevideoplayer.cpp" line="117"/>
         <source>MP4 3072P</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="273"/>
-        <location filename="../../youtubevideoplayer.cpp" line="192"/>
+        <location filename="../../youtubevideoplayer.cpp" line="193"/>
         <source>Start / pause / resume video playback</source>
         <translation>Reproduzir / pausar / resumir vídeo</translation>
     </message>
@@ -22063,20 +22063,20 @@ Sair agora, aceitar uma vez ou ignorar completamente?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="323"/>
-        <location filename="../../youtubevideoplayer.cpp" line="136"/>
-        <location filename="../../youtubevideoplayer.cpp" line="919"/>
-        <location filename="../../youtubevideoplayer.cpp" line="937"/>
-        <location filename="../../youtubevideoplayer.cpp" line="968"/>
-        <location filename="../../youtubevideoplayer.cpp" line="970"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1001"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1017"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1059"/>
+        <location filename="../../youtubevideoplayer.cpp" line="137"/>
+        <location filename="../../youtubevideoplayer.cpp" line="930"/>
+        <location filename="../../youtubevideoplayer.cpp" line="947"/>
+        <location filename="../../youtubevideoplayer.cpp" line="978"/>
+        <location filename="../../youtubevideoplayer.cpp" line="980"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1011"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1027"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1069"/>
         <source>Remaining</source>
         <translation>Restante</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="353"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1629"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1646"/>
         <source>Volume</source>
         <translation></translation>
     </message>
@@ -22121,277 +22121,285 @@ Sair agora, aceitar uma vez ou ignorar completamente?</translation>
         <translation>Sugerir um padrão de busca (segure para mostrar o menu)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="93"/>
+        <location filename="../../youtubevideoplayer.cpp" line="94"/>
         <source>Mute / unmute audio output</source>
         <translation>Tornar mudo / audível a saída de áudio</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="134"/>
+        <location filename="../../youtubevideoplayer.cpp" line="135"/>
         <source>Volume level</source>
         <translation>Nível de volume</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="135"/>
+        <location filename="../../youtubevideoplayer.cpp" line="136"/>
         <source>Video progress</source>
         <translation>Progresso do vídeo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="139"/>
-        <location filename="../../youtubevideoplayer.cpp" line="923"/>
-        <location filename="../../youtubevideoplayer.cpp" line="946"/>
-        <location filename="../../youtubevideoplayer.cpp" line="959"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1004"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1020"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1062"/>
+        <location filename="../../youtubevideoplayer.cpp" line="140"/>
+        <location filename="../../youtubevideoplayer.cpp" line="934"/>
+        <location filename="../../youtubevideoplayer.cpp" line="956"/>
+        <location filename="../../youtubevideoplayer.cpp" line="969"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1014"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1030"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1072"/>
         <source>Current buffer fill level: %1%</source>
         <translation>Nível atual do buffer: %1%</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="146"/>
-        <location filename="../../youtubevideoplayer.cpp" line="246"/>
+        <location filename="../../youtubevideoplayer.cpp" line="147"/>
+        <location filename="../../youtubevideoplayer.cpp" line="247"/>
         <source>Play this video</source>
         <translation>Reproduzir esse vídeo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="153"/>
-        <location filename="../../youtubevideoplayer.cpp" line="207"/>
-        <location filename="../../youtubevideoplayer.cpp" line="257"/>
+        <location filename="../../youtubevideoplayer.cpp" line="154"/>
+        <location filename="../../youtubevideoplayer.cpp" line="208"/>
+        <location filename="../../youtubevideoplayer.cpp" line="258"/>
         <source>Copy video URL</source>
         <translation>Copiar URL do vídeo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="159"/>
-        <location filename="../../youtubevideoplayer.cpp" line="213"/>
-        <location filename="../../youtubevideoplayer.cpp" line="262"/>
+        <location filename="../../youtubevideoplayer.cpp" line="160"/>
+        <location filename="../../youtubevideoplayer.cpp" line="214"/>
+        <location filename="../../youtubevideoplayer.cpp" line="263"/>
         <source>Copy video URL (no country filter)</source>
         <translation>Copiar URL do vídeo (sem filtro de país)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="165"/>
-        <location filename="../../youtubevideoplayer.cpp" line="219"/>
-        <location filename="../../youtubevideoplayer.cpp" line="267"/>
+        <location filename="../../youtubevideoplayer.cpp" line="166"/>
+        <location filename="../../youtubevideoplayer.cpp" line="220"/>
+        <location filename="../../youtubevideoplayer.cpp" line="268"/>
         <source>Copy author URL</source>
         <translation>Copiar URL do autor</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="171"/>
-        <location filename="../../youtubevideoplayer.cpp" line="225"/>
+        <location filename="../../youtubevideoplayer.cpp" line="172"/>
+        <location filename="../../youtubevideoplayer.cpp" line="226"/>
         <source>Paste video URL</source>
         <translation>Colar URL do vídeo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="178"/>
-        <location filename="../../youtubevideoplayer.cpp" line="232"/>
+        <location filename="../../youtubevideoplayer.cpp" line="179"/>
+        <location filename="../../youtubevideoplayer.cpp" line="233"/>
         <source>Local movie file...</source>
         <translation>Arquivo de vídeo local...</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="184"/>
+        <location filename="../../youtubevideoplayer.cpp" line="185"/>
         <source>Remove selected videos</source>
         <translation>Remover vídeos selecionados</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="200"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1557"/>
+        <location filename="../../youtubevideoplayer.cpp" line="201"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1564"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1578"/>
         <source>Full screen (return with toggle-key)</source>
         <translation>Tela cheia (retornar com tecla)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="238"/>
-        <location filename="../../youtubevideoplayer.cpp" line="251"/>
+        <location filename="../../youtubevideoplayer.cpp" line="239"/>
+        <location filename="../../youtubevideoplayer.cpp" line="252"/>
         <source>Attach this video</source>
         <translation>Anexar esse vídeo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="274"/>
+        <location filename="../../youtubevideoplayer.cpp" line="275"/>
         <source>Auto-suggest a search pattern?</source>
         <translation>Sugerir um padrão de busca automaticamente?</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="275"/>
+        <location filename="../../youtubevideoplayer.cpp" line="276"/>
         <source>Auto-suggest</source>
         <translation>Auto-sugerir</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="280"/>
+        <location filename="../../youtubevideoplayer.cpp" line="281"/>
         <source>Enter string to be appended</source>
         <translation>Entre com o texto a ser anexado</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="281"/>
+        <location filename="../../youtubevideoplayer.cpp" line="282"/>
         <source>Append...</source>
         <translation>Anexar...</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="289"/>
+        <location filename="../../youtubevideoplayer.cpp" line="290"/>
         <source>Enter search string</source>
         <translation>Entre com o texto de busca</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="401"/>
+        <location filename="../../youtubevideoplayer.cpp" line="404"/>
         <source>Appended string</source>
         <translation>Anexar texto</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="402"/>
+        <location filename="../../youtubevideoplayer.cpp" line="405"/>
         <source>Enter the string to be appended when suggesting a pattern:</source>
         <translation>Entre com o texto a ser anexado quando sugerir um padrão:</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="403"/>
+        <location filename="../../youtubevideoplayer.cpp" line="406"/>
         <source>Valid placeholder macros:</source>
         <translation>Variáveis válidas:</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="567"/>
-        <location filename="../../youtubevideoplayer.cpp" line="575"/>
+        <location filename="../../youtubevideoplayer.cpp" line="570"/>
+        <location filename="../../youtubevideoplayer.cpp" line="578"/>
         <source>All files (*)</source>
         <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="568"/>
-        <location filename="../../youtubevideoplayer.cpp" line="576"/>
+        <location filename="../../youtubevideoplayer.cpp" line="571"/>
+        <location filename="../../youtubevideoplayer.cpp" line="579"/>
         <source>Choose movie file</source>
         <translation>Escolha o arquivo de vídeo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="714"/>
-        <location filename="../../youtubevideoplayer.cpp" line="732"/>
+        <location filename="../../youtubevideoplayer.cpp" line="726"/>
+        <location filename="../../youtubevideoplayer.cpp" line="744"/>
         <source>Full-screen mode -- press %1 to return to windowed mode</source>
         <translation>Modo tela cheia -- pressione %1 para retornar para o modo janela</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="716"/>
-        <location filename="../../youtubevideoplayer.cpp" line="734"/>
+        <location filename="../../youtubevideoplayer.cpp" line="728"/>
+        <location filename="../../youtubevideoplayer.cpp" line="746"/>
         <source>Full-screen mode -- press toggle-key to return to windowed mode</source>
         <translation>Modo tela cheia -- pressione tecla de alternância para retornar para o modo janela</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="767"/>
+        <location filename="../../youtubevideoplayer.cpp" line="779"/>
         <source>video player: the local movie file &apos;%1&apos; is already attached, ignored</source>
         <translation>video player: o arquivo de vídeo local &apos;%1&apos; ja está anexado, ignorado</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="771"/>
+        <location filename="../../youtubevideoplayer.cpp" line="783"/>
         <source>video player: a video with the ID &apos;%1&apos; is already attached, ignored</source>
         <translation>reprodutor de vídeo: um vídeo com ID &apos;%1&apos; já está anexado, ignorado</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="947"/>
+        <location filename="../../youtubevideoplayer.cpp" line="957"/>
         <source>Buffering: %1%</source>
         <translation>Carregando: %1%</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="961"/>
+        <location filename="../../youtubevideoplayer.cpp" line="971"/>
         <source>Loading</source>
         <translation>Carregando</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="977"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1035"/>
+        <location filename="../../youtubevideoplayer.cpp" line="987"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1045"/>
         <source>Playing</source>
         <translation>Executando</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="988"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1046"/>
+        <location filename="../../youtubevideoplayer.cpp" line="998"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1056"/>
         <source>Paused</source>
         <translation>Pausado</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="991"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1001"/>
         <source>video player: playback error: %1</source>
         <translation>reprodutor de vídeo: erro de reprodução: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="992"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1002"/>
         <source>Video playback error: %1</source>
         <translation>Erro reproduzindo vídeo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1111"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1121"/>
         <source>Fetching info for video ID &apos;%1&apos;</source>
         <translation>Obtendo informações para o vídeo com ID &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1203"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1213"/>
         <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
         <translation>reprodutor de vídeo: erro nas informações do vídeo: ID = &apos;%1&apos;. estado = &apos;%2&apos;, código de erro = &apos;%3&apos;, texto do erro = &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1204"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1330"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1747"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1214"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1340"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1764"/>
         <source>Video info error: %1</source>
         <translation>Erro obtendo informações do vídeo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1299"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1309"/>
         <source>video player: video info error: timeout occurred</source>
         <translation>reprodutor de vídeo: erro na informação do vídeo: estouro de tempo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1300"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1310"/>
         <source>video info error: timeout occurred</source>
         <translation>erro na informação do vídeo: estouro de tempo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1304"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1314"/>
         <source>video info error: unknown reason</source>
         <translation>erro na informação do vídeo: razão desconhecida</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1329"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1339"/>
         <source>video player: video info error: %1</source>
         <translation>reprodutor de vídeo: erro na informação do vídeo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1555"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1569"/>
+        <source>Return to windowed mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../youtubevideoplayer.cpp" line="1562"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1576"/>
         <source>Full screen (press %1 to return)</source>
         <translation>Tela cheia (pressione %1 para retornar)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1746"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1763"/>
         <source>video player: video image info error: %1</source>
         <translation>reprodutor de vídeo: erro na informação da imagem do vídeo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1766"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1783"/>
         <source>video player: search request error: %1</source>
         <translation>reprodutor de vídeo: erro na requisição de busca: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1791"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1808"/>
         <source>video player: search error: can&apos;t parse XML data</source>
         <translation>reprodutor de vídeo: erro na busca: impossível analisar os dados do XML</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1819"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1836"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
         <translation>reprodutor de vídeo: impossível determinar o ID do vídeo da URL - &apos;%1&apos; -- por favor informe os desenvolvedores</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1825"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1842"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
         <translation>reprodutor de vídeo: impossível associar a imagem para o vídeo com ID &apos;%1&apos; -- por favor informe os desenvolvedores</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1842"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1859"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
         <translation>reprodutor de vídeo: impossível salvar a imagem para o vídeo com ID &apos;%1&apos; para o diretório de cache do YouTube &apos;%2&apos; -- por favor cheque as permissões</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1844"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1861"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
         <translation>reprodutor de vídeo: impossível salvar a imagem para o vídeo com ID &apos;%1&apos; o diretório de cache do YouTube &apos;%2&apos; não existe -- por favor corrija</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1846"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1863"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
         <translation>reprodutor de vídeo: download da imagem para o vídeo com ID &apos;%1&apos; falhou, a imagem não é válida</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1848"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1865"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
         <translation>reprodutor de vídeo: download da imagem para o vídeo com ID &apos;%1&apos; falhou, texto do erro = &apos;%2&apos;</translation>
     </message>
