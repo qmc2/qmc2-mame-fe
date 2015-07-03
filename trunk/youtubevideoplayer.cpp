@@ -116,10 +116,6 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 		<< tr("MP4 1080P")
 		<< tr("MP4 3072P");
 
-	videoSnapAllowedFormatExtensions
-		<< ".mp4"
-		<< ".avi";
-
 	forcedExit = loadOnly = isMuted = pausedByHideEvent = viError = viFinished = vimgError = vimgFinished = fullyLoaded = false;
 	videoInfoReply = videoImageReply = searchRequestReply = NULL;
 	videoInfoManager = videoImageManager = searchRequestManager = NULL;
@@ -848,7 +844,7 @@ void YouTubeVideoPlayer::init()
 
 	int videoSnapCounter = 0;
 	foreach (QString videoSnapFolder, qmc2Config->value("MAME/FilesAndDirectories/VideoSnapFolder", QMC2_DEFAULT_DATA_PATH + "/vdo/").toString().split(";", QString::SkipEmptyParts)) {
-		foreach (QString formatExtension, videoSnapAllowedFormatExtensions) {
+		foreach (QString formatExtension, qmc2MainWindow->videoSnapAllowedFormatExtensions) {
 			QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + mySetID + formatExtension));
 			if ( fi.exists() && fi.isReadable() ) {
 				QString vid = fi.absoluteFilePath();
@@ -861,7 +857,7 @@ void YouTubeVideoPlayer::init()
 			if ( qmc2ParentImageFallback ) {
 				QString parentId = qmc2ParentHash[mySetID];
 				if ( !parentId.isEmpty() ) {
-					foreach (QString formatExtension, videoSnapAllowedFormatExtensions) {
+					foreach (QString formatExtension, qmc2MainWindow->videoSnapAllowedFormatExtensions) {
 						QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + parentId + formatExtension));
 						if ( fi.exists() && fi.isReadable() ) {
 							QString vid = fi.absoluteFilePath();

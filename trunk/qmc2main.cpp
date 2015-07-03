@@ -425,6 +425,10 @@ MainWindow::MainWindow(QWidget *parent)
 	proxyStyle = NULL;
 	swlDb = NULL;
 
+	videoSnapAllowedFormatExtensions
+		<< ".mp4"
+		<< ".avi";
+
 	FileIconProvider::setCacheSize(QMC2_FILEICONPROVIDER_CACHE_SIZE);
 
 	// remember the default style
@@ -3766,7 +3770,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				else
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file://" + QDir::fromNativeSeparators(qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath);
 #endif
-
 				QString swInfo = qmc2MachineList->datInfoDb()->softwareInfo(listName, entryName);
 				if ( !swInfo.isEmpty() ) {
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = swInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
@@ -3775,7 +3778,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO$"] = tr("No data available");
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_INFO_STATUS$"] = "NO_DATA";
 				}
-
 				qmc2SoftwareNotesEditor->setCurrentTemplateName(softwareNotesTemplate);
 				qmc2SoftwareNotesEditor->stopLoading = true;
 
@@ -3787,7 +3789,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					else
 						qmc2SoftwareNotesEditor->fileNew();
 				}
-
 				qmc2SoftwareNotesEditor->setCurrentFileName(fileName);
 				qmc2LastSoftwareNotesItem = qmc2SoftwareList->currentItem;
 			}
@@ -4541,6 +4542,12 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #else
 				qmc2SystemNotesEditor->templateMap["$GHOST_IMAGE$"] = "file://" + ghostPath;
 #endif
+				QString ghostVideoPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost_video.png");
+#if defined(QMC2_OS_WIN)
+				qmc2SystemNotesEditor->templateMap["$GHOST_VIDEO$"] = "file:///" + ghostVideoPath;
+#else
+				qmc2SystemNotesEditor->templateMap["$GHOST_VIDEO$"] = "file://" + ghostVideoPath;
+#endif
 				if ( qmc2Preview ) {
 #if defined(QMC2_OS_WIN)
 					if ( qmc2Preview->loadImage(gameName, gameName, true, &filePath, false) )
@@ -4654,6 +4661,42 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 					qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = tr("No data available");
 					qmc2SystemNotesEditor->templateMap["$EMU_INFO_STATUS$"] = "NO_DATA";
 				}
+
+				QString videoSnapUrl;
+				foreach (QString videoSnapFolder, qmc2Config->value("MAME/FilesAndDirectories/VideoSnapFolder", QMC2_DEFAULT_DATA_PATH + "/vdo/").toString().split(";", QString::SkipEmptyParts)) {
+					foreach (QString formatExtension, videoSnapAllowedFormatExtensions) {
+						QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + gameName + formatExtension));
+						if ( fi.exists() && fi.isReadable() ) {
+							videoSnapUrl = fi.absoluteFilePath();
+#if defined(QMC2_OS_WIN)
+							videoSnapUrl.prepend("file:///");
+#else
+							videoSnapUrl.prepend("file://");
+#endif
+							break;
+						}
+					}
+					if ( videoSnapUrl.isEmpty() ) { // parent fallback
+						if ( qmc2ParentImageFallback ) {
+							QString parentId = qmc2ParentHash[gameName];
+							if ( !parentId.isEmpty() ) {
+								foreach (QString formatExtension, videoSnapAllowedFormatExtensions) {
+									QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + parentId + formatExtension));
+									if ( fi.exists() && fi.isReadable() ) {
+										videoSnapUrl = fi.absoluteFilePath();
+#if defined(QMC2_OS_WIN)
+										videoSnapUrl.prepend("file:///");
+#else
+										videoSnapUrl.prepend("file://");
+#endif
+										break;
+									}
+								}
+							}
+						}
+					}
+				}
+				qmc2SystemNotesEditor->templateMap["$VIDEO_SNAP_URL$"] = videoSnapUrl;
 
 				QString gameInfoKey = gameName;
 				if ( !qmc2MachineList->datInfoDb()->existsGameInfo(gameInfoKey) ) {

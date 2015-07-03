@@ -21,7 +21,7 @@
 	$IS_BIOS$		Set to "true" if the current game/machine is a BIOS set, otherwise set to "false"
 	$IS_DEVICE$		Set to "true" if the current game/machine is a device set, otherwise set to "false"
 
-	Image macros:
+	Image / video macros:
 
 	$PREVIEW_IMAGE$		Current system's preview image
 	$FLYER_IMAGE$		Current system's flyer image
@@ -33,6 +33,7 @@
 	$PCB_IMAGE$		Current system's PCB image
 	$GHOST_IMAGE$		Path to the Ghostbusters logo (if an image wasn't found, its file URL will
 				be same as the value of this macro, so you can use it to check image validity)
+	$VIDEO_SNAP_URL$	The complete file URL to the video snap (empty when there is no video snap)
 
 	DAT info sources:
 
@@ -66,6 +67,12 @@
 			height: 100%;
 			width: 100%;
 			margin: 0;
+		}
+		video::-webkit-media-controls-fullscreen-button {
+			display:none !important;
+		}
+		video::-webkit-media-controls-current-time-display {
+			display:none !important;
 		}
 		.fancyImageStyle {
 			max-height: 300px;
@@ -419,26 +426,32 @@
 				}
 			</script>
 		</tr>
+		<tr>
 		<script>
-			if ( "$EMULATOR_VARIANT$" != "SDLMESS" && "$EMULATOR_VARIANT$" != "MESS" ) {
-				document.write("<tr><td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Title screen') + "</td></tr>");
-				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
-					if ( qmc2NEO.isZippedImage('ttl') )
-						document.write("<tr><td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ttl') + "\"></td></tr>");
-					else
-						document.write("<tr><td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td></tr>");
-				} else {
-					if ( qmc2NEO.isZippedImage('ttl') )
-						document.write("<tr><td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ttl') + "\"></td></tr>");
-					else
-						document.write("<tr><td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td></tr>");
-				}
-			}
+			document.write("<td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Title screen') + "</td>");
+			if ( "$VIDEO_SNAP_URL$" != "" )
+				document.write("<td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Video snap') + "</td>");
 		</script>
+		</tr>
+		<tr>
+		<script>
+			if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
+				if ( qmc2NEO.isZippedImage('ttl') )
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ttl') + "\"></td>");
+				else
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
+			} else {
+				if ( qmc2NEO.isZippedImage('ttl') )
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ttl') + "\"></td>");
+				else
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
+			}
+			if ( "$VIDEO_SNAP_URL$" != "" )
+				document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><video " + dropShadow() + "width=\"100%\" controls poster=\"$GHOST_VIDEO$\" src=\"$VIDEO_SNAP_URL$\"></video></td>");
+		</script>
+		</tr>
 	</tbody>
 </table>
-<h3><script>document.write(tr('Comments'));</script></h3>
-<p><br></p>
 <h3><script>document.write(tr('System info'));</script></h3>
 <p>$GAME_INFO$</p>
 <h3><script>document.write(tr('Emulator info'));</script></h3>

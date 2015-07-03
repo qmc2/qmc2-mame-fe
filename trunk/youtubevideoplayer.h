@@ -180,7 +180,6 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QString savedSearchString;
 		QStringList youTubeFormats;
 		QStringList youTubeFormatNames;
-		QStringList videoSnapAllowedFormatExtensions;
 		QNetworkReply *videoInfoReply, *videoImageReply, *searchRequestReply;
 		QNetworkAccessManager *videoInfoManager, *videoImageManager, *searchRequestManager, *imageDownloadManager;
 		QNetworkRequest videoInfoRequest, videoImageRequest, searchRequest;
