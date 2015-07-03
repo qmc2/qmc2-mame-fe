@@ -1368,8 +1368,14 @@ void YouTubeVideoPlayer::on_toolButtonPlayPause_clicked()
 		play();
 	else if ( hasVideo() )
 		play();
-	else if ( !currentVideoID.isEmpty() )
-		playVideo(currentVideoID);
+	else if ( !currentVideoID.isEmpty() ) {
+		if ( currentVideoID.startsWith("#:") ) {
+			QString vidCopy = currentVideoID;;
+			vidCopy.remove(QRegExp("^\\#\\:"));
+			playMovieFile(vidCopy);
+		} else
+			playVideo(currentVideoID);
+	}
 }
 
 void YouTubeVideoPlayer::on_toolButtonMute_toggled(bool mute)
