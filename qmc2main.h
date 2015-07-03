@@ -89,6 +89,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QAction *actionRomStatusFilterU;
 		QList<QAction *> rebuildRomActions;
 		QList<QAction *> contextMenuPlayActions;
+		QStringList videoSnapAllowedFormatExtensions;
 #if QMC2_JOYSTICK == 1
 		int joyIndex;
 #endif
