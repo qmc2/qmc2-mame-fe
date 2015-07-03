@@ -1674,10 +1674,8 @@ void YouTubeVideoPlayer::on_seekSlider_valueChanged(int position)
 
 void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 {
-	for (int i = 0; i < listWidgetAttachedVideos->count(); i++) {
+	for (int i = 0; !forcedExit && i < listWidgetAttachedVideos->count(); i++) {
 		QListWidgetItem *item = listWidgetAttachedVideos->item(i);
-		if ( forcedExit )
-			break;
 		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
 		if ( !viw )
 			continue;
