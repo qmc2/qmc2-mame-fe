@@ -32,6 +32,8 @@
 #include <QTreeWidgetItem>
 #include <QColorDialog>
 #include <QFileDialog>
+#include <QFileInfo>
+#include <QDir>
 #include <QCache>
 #include <QRegExp>
 #include <QDesktopServices>
@@ -96,6 +98,8 @@ extern bool qmc2UseSoftwareSnapFile;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 extern MachineList *qmc2MachineList;
 extern MainWindow *qmc2MainWindow;
+extern bool qmc2ParentImageFallback;
+extern QHash<QString, QString> qmc2ParentHash;
 
 HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(false), wysiwygDirty(false), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
@@ -1266,6 +1270,45 @@ QString HtmlEditor::emuInfo(QString id)
 	else
 		emulatorInfo.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(qmc2MainWindow->urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 	return emulatorInfo;
+}
+
+QStringList HtmlEditor::videoSnapUrls(QString id)
+{
+	QStringList vsUrls;
+	foreach (QString videoSnapFolder, qmc2Config->value("MAME/FilesAndDirectories/VideoSnapFolder", QMC2_DEFAULT_DATA_PATH + "/vdo/").toString().split(";", QString::SkipEmptyParts)) {
+		foreach (QString formatExtension, qmc2MainWindow->videoSnapAllowedFormatExtensions) {
+			QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + id + formatExtension));
+			if ( fi.exists() && fi.isReadable() ) {
+				QString videoSnapUrl = fi.absoluteFilePath();
+#if defined(QMC2_OS_WIN)
+				videoSnapUrl.prepend("file:///");
+#else
+				videoSnapUrl.prepend("file://");
+#endif
+				vsUrls << videoSnapUrl;
+			}
+		}
+		if ( vsUrls.isEmpty() ) { // parent fallback
+			if ( qmc2ParentImageFallback ) {
+				QString parentId = qmc2ParentHash[id];
+				if ( !parentId.isEmpty() ) {
+					foreach (QString formatExtension, qmc2MainWindow->videoSnapAllowedFormatExtensions) {
+						QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + parentId + formatExtension));
+						if ( fi.exists() && fi.isReadable() ) {
+							QString videoSnapUrl = fi.absoluteFilePath();
+#if defined(QMC2_OS_WIN)
+							videoSnapUrl.prepend("file:///");
+#else
+							videoSnapUrl.prepend("file://");
+#endif
+							vsUrls << videoSnapUrl;
+						}
+					}
+				}
+			}
+		}
+	}
+	return vsUrls;
 }
 
 QString HtmlEditor::softwareInfo(QString list, QString id)
