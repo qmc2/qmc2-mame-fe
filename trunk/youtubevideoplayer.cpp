@@ -83,7 +83,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	toolButtonPlayPause->setEnabled(false);
 	toolButtonSearch->setEnabled(false);
 	comboBoxPreferredFormat->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PreferredFormat", YOUTUBE_FORMAT_MP4_1080P_INDEX).toInt());
-	toolBox->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PageIndex", YOUTUBE_SEARCH_VIDEO_PAGE).toInt());
+	toolBox->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PageIndex", YOUTUBE_VIDEO_PLAYER_PAGE).toInt());
 	checkBoxPlayOMatic->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", false).toBool());
 	comboBoxMode->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", YOUTUBE_PLAYOMATIC_SEQUENTIAL).toInt());
 	checkBoxRepeat->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Repeat", true).toBool());
@@ -165,6 +165,9 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyAuthorUrl()));
 	avmActionCopyAuthorUrl = action;
+	// FIXME: begin
+	avmActionCopyAuthorUrl->setVisible(false);
+	// FIXME: end
 	s = tr("Paste video URL");
 	action = menuAttachedVideos->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
@@ -219,6 +222,9 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	videoMenuCopyAuthorUrlAction = action;
 	connect(action, SIGNAL(triggered()), this, SLOT(copyCurrentAuthorUrl()));
+	// FIXME: begin
+	videoMenuCopyAuthorUrlAction->setVisible(false);
+	// FIXME: end
 	s = tr("Paste video URL");
 	action = menuVideoPlayer->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
@@ -285,8 +291,14 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 
 	lineEditSearchString->setPlaceholderText(tr("Enter search string"));
 
-	if ( autoSuggestAction->isChecked() )
-		QTimer::singleShot(0, this, SLOT(on_toolButtonSuggest_clicked()));
+	// FIXME: begin
+	if ( toolBox->currentIndex() == YOUTUBE_SEARCH_VIDEO_PAGE )
+		 toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
+	toolBox->removeItem(YOUTUBE_SEARCH_VIDEO_PAGE);
+	delete pageSearchVideos;
+	//if ( autoSuggestAction->isChecked() )
+	//	QTimer::singleShot(0, this, SLOT(on_toolButtonSuggest_clicked()));
+	// FIXME: end
 
 	QTimer::singleShot(0, this, SLOT(adjustIconSizes()));
 	QTimer::singleShot(250, this, SLOT(init()));
@@ -373,9 +385,11 @@ void YouTubeVideoPlayer::saveSettings()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", checkBoxPlayOMatic->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", comboBoxMode->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Repeat", checkBoxRepeat->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AutoSuggest", autoSuggestAction->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", suggestorAppendString);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SearchResultsPerRequest", spinBoxResultsPerRequest->value());
+	// FIXME: begin
+	//qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AutoSuggest", autoSuggestAction->isChecked());
+	//qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", suggestorAppendString);
+	//qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SearchResultsPerRequest", spinBoxResultsPerRequest->value());
+	// FIXME: end
 
 	if ( fullyLoaded ) {
 		QStringList attachedVideos;
@@ -537,6 +551,7 @@ void YouTubeVideoPlayer::copyYouTubeUrlAlt()
 void YouTubeVideoPlayer::pasteYouTubeUrl()
 {
 	QString videoID = qApp->clipboard()->text();
+	videoID.replace("https:", "http:");
 	videoID.replace(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=(.*)$"), "\\1").replace(QRegExp("\\&.*$"), "");
 
 	if ( videoID.isEmpty() )
@@ -553,6 +568,7 @@ void YouTubeVideoPlayer::pasteYouTubeUrl()
 void YouTubeVideoPlayer::playerPasteYouTubeUrl()
 {
 	QString videoID = qApp->clipboard()->text();
+	videoID.replace("https:", "http:");
 	videoID.replace(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=(.*)$"), "\\1").replace(QRegExp("\\&.*$"), "");
 
 	if ( videoID.isEmpty() )
@@ -912,11 +928,13 @@ void YouTubeVideoPlayer::adjustIconSizes()
 	comboBoxPreferredFormat->setIconSize(iconSize);
 	toolButtonPlayPause->setIconSize(iconSize);
 	toolButtonMute->setIconSize(iconSize);
-	toolButtonSuggest->setIconSize(iconSize);
-	toolButtonSearch->setIconSize(iconSize);
 	toolBox->setItemIcon(YOUTUBE_ATTACHED_VIDEOS_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/movie.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 	toolBox->setItemIcon(YOUTUBE_VIDEO_PLAYER_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/youtube.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
-	toolBox->setItemIcon(YOUTUBE_SEARCH_VIDEO_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/pacman.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+	// FIXME: begin
+	//toolButtonSuggest->setIconSize(iconSize);
+	//toolButtonSearch->setIconSize(iconSize);
+	//toolBox->setItemIcon(YOUTUBE_SEARCH_VIDEO_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/pacman.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+	// FIXME: end
 	progressBarBufferStatus->setFixedWidth(progressBarBufferStatus->sizeHint().width() / 2);
 }
 
@@ -1418,9 +1436,10 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetIt
 	if ( viw ) {
 		toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
 		if ( viw->itemType == VIDEOITEM_TYPE_LOCAL_MOVIE || viw->itemType == VIDEOITEM_TYPE_VIDEO_SNAP ) {
-			if ( currentVideoID == viw->videoID && !isPlaying() )
-				play();
-			else {
+			if ( currentVideoID == viw->videoID ) {
+				if ( !isPlaying() )
+					play();
+			} else {
 				QString vidCopy = viw->videoID;
 				vidCopy.remove(QRegExp("^\\#\\:"));
 				playMovieFile(vidCopy);
@@ -1466,6 +1485,7 @@ void YouTubeVideoPlayer::on_listWidgetSearchResults_itemActivated(QListWidgetIte
 void YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &p)
 {
 	QString clipboardText = qApp->clipboard()->text();
+	clipboardText.replace("https:", "http:");
 	if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=.*$")) == 0 )
 		avmActionPasteVideoUrl->setEnabled(true);
 	else
@@ -1521,6 +1541,7 @@ void YouTubeVideoPlayer::videoPlayer_customContextMenuRequested(const QPoint &p)
 {
 	if ( menuVideoPlayer ) {
 		QString clipboardText = qApp->clipboard()->text();
+		clipboardText.replace("https:", "http:");
 		if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=.*$")) == 0 )
 			videoMenuPasteVideoUrlAction->setEnabled(true);
 		else

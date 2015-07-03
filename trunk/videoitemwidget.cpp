@@ -43,7 +43,8 @@ void VideoItemWidget::setType(int type)
 	switch ( itemType ) {
 		case VIDEOITEM_TYPE_YOUTUBE_SEARCH:
 			videoUrlPattern = VIDEOITEM_YOUTUBE_URL_PATTERN;
-			authorUrlPattern = VIDEOITEM_YOUTUBE_AUTHOR_URL_PATTERN;
+			//authorUrlPattern = VIDEOITEM_YOUTUBE_AUTHOR_URL_PATTERN;
+			authorUrlPattern.clear();
 			if ( myVideoPlayer ) {
 				textBrowserVideoTitle->disconnect((YouTubeVideoPlayer *)myVideoPlayer);
 				connect(textBrowserVideoTitle, SIGNAL(customContextMenuRequested(const QPoint &)), (YouTubeVideoPlayer *)myVideoPlayer, SLOT(on_listWidgetSearchResults_customContextMenuRequested(const QPoint &))); 
@@ -61,7 +62,8 @@ void VideoItemWidget::setType(int type)
 		case VIDEOITEM_TYPE_YOUTUBE:
 		default:
 			videoUrlPattern = VIDEOITEM_YOUTUBE_URL_PATTERN;
-			authorUrlPattern = VIDEOITEM_YOUTUBE_AUTHOR_URL_PATTERN;
+			//authorUrlPattern = VIDEOITEM_YOUTUBE_AUTHOR_URL_PATTERN;
+			authorUrlPattern.clear();
 			if ( myVideoPlayer ) {
 				textBrowserVideoTitle->disconnect((YouTubeVideoPlayer *)myVideoPlayer);
 				connect(textBrowserVideoTitle, SIGNAL(customContextMenuRequested(const QPoint &)), (YouTubeVideoPlayer *)myVideoPlayer, SLOT(on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &))); 
