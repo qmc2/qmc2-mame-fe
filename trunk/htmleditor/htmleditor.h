@@ -169,6 +169,7 @@ public slots:
     QString comment(QString id);
     QString systemInfo(QString id);
     QString emuInfo(QString id);
+    QStringList videoSnapUrls(QString id);
     QString softwareInfo(QString list, QString id);
     void openLinkInDefaultBrowser(QString linkUrl);
 
