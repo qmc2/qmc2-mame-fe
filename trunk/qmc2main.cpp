@@ -4129,6 +4129,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 			if ( qmc2CurrentItem != qmc2LastYouTubeItem ) {
 				tabYouTube->setUpdatesEnabled(false);
 				if ( qmc2YouTubeWidget ) {
+					qmc2YouTubeWidget->stop();
 					qmc2YouTubeWidget->saveSettings();
 					qmc2YouTubeWidget->forcedExit = true;
 					if ( qmc2YouTubeWidget->isPlaying() || qmc2YouTubeWidget->isPaused() )
@@ -4137,7 +4138,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 					if ( vbl )
 						delete vbl;
 					qmc2YouTubeWidget->close();
-					delete qmc2YouTubeWidget;
+					qmc2YouTubeWidget->deleteLater();
 					qmc2YouTubeWidget = NULL;
 				}
 				gridLayout->getContentsMargins(&left, &top, &right, &bottom);
