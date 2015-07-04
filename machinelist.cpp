@@ -1335,6 +1335,8 @@ void MachineList::parse()
 	gamelistCache.open(QIODevice::ReadOnly | QIODevice::Text);
 	bool reparseMachineList = true;
 	bool romStateCacheUpdate = false;
+	bool loadedFromCache = false;
+	QTime gameDataCacheElapsedTime(0, 0, 0, 0);
 	if ( gamelistCache.isOpen() ) {
 		QString line;
 		tsMachineListCache.setDevice(&gamelistCache);
@@ -1372,7 +1374,6 @@ void MachineList::parse()
 				qmc2MainWindow->progressBarMachineList->setFormat(tr("Machine data - %p%"));
 			else
 				qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-			QTime gameDataCacheElapsedTime(0, 0, 0, 0);
 			miscTimer.start();
 			numGames = numUnknownGames = numDevices = 0;
 			qmc2MainWindow->progressBarMachineList->setValue(0);
@@ -1538,8 +1539,7 @@ void MachineList::parse()
 				hiddenItem->setHidden(true);
 			qmc2MainWindow->progressBarMachineList->setValue(numGames);
 			qApp->processEvents();
-			gameDataCacheElapsedTime = gameDataCacheElapsedTime.addMSecs(miscTimer.elapsed());
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading machine data from machine list cache, elapsed time = %1)").arg(gameDataCacheElapsedTime.toString("mm:ss.zzz")));
+			loadedFromCache = true;
 		}
 	} 
 	if ( gamelistCache.isOpen() )
@@ -1856,6 +1856,10 @@ void MachineList::parse()
 		itemList << hierarchyItem;
 	}
 	qmc2MainWindow->treeWidgetHierarchy->addTopLevelItems(itemList);
+	if ( loadedFromCache ) {
+		gameDataCacheElapsedTime = gameDataCacheElapsedTime.addMSecs(miscTimer.elapsed());
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading machine data from machine list cache, elapsed time = %1)").arg(gameDataCacheElapsedTime.toString("mm:ss.zzz")));
+	}
 	foreach (QTreeWidgetItem *hiddenItem, hideList)
 		hiddenItem->setHidden(true);
 	QString sortCriteria = tr("?");
