@@ -952,7 +952,7 @@ void MachineList::verify(bool currentOnly)
 	QStringList args;
 	QString command = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString();
 	if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath") )
-		args << "-rompath" << qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString().replace("~", "$HOME");
+		args << "-rompath" << QString("\"%1\"").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString().replace("~", "$HOME"));
 	args << "-verifyroms";
 	if ( verifyCurrentOnly )
 		args << checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
