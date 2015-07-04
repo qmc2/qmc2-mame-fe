@@ -1232,7 +1232,7 @@ bool SoftwareList::load()
 		args << "-listsoftware";
 		QString hashPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", QString()).toString().replace("~", "$HOME");
 		if ( !hashPath.isEmpty() )
-			args << "-hashpath" << hashPath;
+			args << "-hashpath" << QString("\"%1\"").arg(hashPath);
 
 		if ( !qmc2StopParser ) {
 			validData = true;
@@ -1883,10 +1883,10 @@ void SoftwareList::checkSoftwareStates()
 		args << "-verifysoftlist" << softwareList;
 		QString romPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString().replace("~", "$HOME");
 		if ( !romPath.isEmpty() )
-			args << "-rompath" << romPath;
+			args << "-rompath" << QString("\"%1\"").arg(romPath);
 		QString hashPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath").toString().replace("~", "$HOME");
 		if ( !hashPath.isEmpty() )
-			args << "-hashpath" << hashPath;
+			args << "-hashpath" << QString("\"%1\"").arg(hashPath);
 
 		if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString().isEmpty() )
 			verifyProc->setWorkingDirectory(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString());
