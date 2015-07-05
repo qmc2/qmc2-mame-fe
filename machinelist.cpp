@@ -1811,6 +1811,7 @@ void MachineList::parse()
 	bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
 	bool useCategories = useCatverIni | useCategoryIni;
 	// create parent/clone hierarchy tree
+	qmc2MainWindow->labelMachineListStatus->setText(status());
 	qmc2MainWindow->treeWidgetHierarchy->clear();
 	QHashIterator<QString, QStringList> i(qmc2HierarchyHash);
 	QList<QTreeWidgetItem *> itemList, hideList;
@@ -1949,7 +1950,6 @@ void MachineList::parse()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 	// final update of progress bar and machine list stats
 	qmc2MainWindow->progressBarMachineList->setValue(qmc2MainWindow->progressBarMachineList->maximum());
-	qmc2MainWindow->labelMachineListStatus->setText(status());
 	// sort the master-list
 	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
 	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
