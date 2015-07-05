@@ -27,7 +27,6 @@ class MachineList : public QObject
 		int numNotFoundGames;
 		int numUnknownGames;
 		int numSearchGames;
-		int numDevices;
 		int cachedGamesCounter;
 		int numTaggedSets;
 		int numVerifyRoms;
@@ -75,8 +74,8 @@ class MachineList : public QObject
 		QMap<QString, QString *> versionNames;
 		QMap<QString, QString *> versionMap;
 		QTreeWidgetItem *checkedItem;
-		QStringList biosSets;
-		QStringList deviceSets;
+		QHash<QString, bool> biosSets;
+		QHash<QString, bool> deviceSets;
 
 		static QStringList romTypeNames;
 		static QStringList phraseTranslatorList;
