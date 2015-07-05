@@ -9556,7 +9556,7 @@ void MainWindow::on_actionTagAll_triggered(bool)
 		progressBarMachineList->setFormat(tr("Tag - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->numDevices);
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->deviceSets.count());
 	showLoadAnim(tr("Tagging, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -9610,7 +9610,7 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 		progressBarMachineList->setFormat(tr("Untag - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->numDevices);
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->deviceSets.count());
 	showLoadAnim(tr("Untagging, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -9664,7 +9664,7 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 		progressBarMachineList->setFormat(tr("Invert tag - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->numDevices);
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->deviceSets.count());
 	showLoadAnim(tr("Inverting tags, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -9721,7 +9721,7 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 		progressBarMachineList->setFormat(tr("Tag - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->numDevices);
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->deviceSets.count());
 	showLoadAnim(tr("Tagging, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -9775,7 +9775,7 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 		progressBarMachineList->setFormat(tr("Untag - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->numDevices);
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->deviceSets.count());
 	showLoadAnim(tr("Untagging, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -9829,7 +9829,7 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 		progressBarMachineList->setFormat(tr("Invert tag - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->numDevices);
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->deviceSets.count());
 	showLoadAnim(tr("Inverting tags, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
