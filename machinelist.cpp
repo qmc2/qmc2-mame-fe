@@ -1895,6 +1895,7 @@ void MachineList::parse()
 			break;
 		case QMC2_SORT_BY_NAME:
 			sortCriteria = QObject::tr("machine name");
+			break;
 		case QMC2_SORT_BY_ROMTYPES:
 			sortCriteria = QObject::tr("ROM types");
 			break;
