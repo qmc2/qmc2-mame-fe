@@ -1363,46 +1363,20 @@ MainWindow::MainWindow(QWidget *parent)
 	checkBoxRemoveFinishedDownloads->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", false).toBool());
 
 	// setup ROM state filter selector menu & toggle actions / short cuts
+	qmc2StatesTogglesEnabled = false;
 	menuRomStatusFilter = new QMenu(pushButtonSelectRomFilter);
-	actionRomStatusFilterC = menuRomStatusFilter->addAction(QIcon(QString::fromUtf8(":/data/img/sphere_green.png")), tr("&Correct"));
-	actionRomStatusFilterC->setCheckable(true);
-	actionRomStatusFilterC->setShortcut(QKeySequence("Ctrl+Alt+C"));
-	actionRomStatusFilterC->setShortcutContext(Qt::ApplicationShortcut);
-	actionRomStatusFilterC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowC").toBool());
-	connect(actionRomStatusFilterC, SIGNAL(toggled(bool)), this, SLOT(romStateFilterC_toggled(bool)));
-	actionRomStatusFilterM = menuRomStatusFilter->addAction(QIcon(QString::fromUtf8(":/data/img/sphere_yellowgreen.png")), tr("&Mostly correct"));
-	actionRomStatusFilterM->setCheckable(true);
-	actionRomStatusFilterM->setShortcut(QKeySequence("Ctrl+Alt+M"));
-	actionRomStatusFilterM->setShortcutContext(Qt::ApplicationShortcut);
-	actionRomStatusFilterM->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowM").toBool());
-	connect(actionRomStatusFilterM, SIGNAL(toggled(bool)), this, SLOT(romStateFilterM_toggled(bool)));
-	actionRomStatusFilterI = menuRomStatusFilter->addAction(QIcon(QString::fromUtf8(":/data/img/sphere_red.png")), tr("&Incorrect"));
-	actionRomStatusFilterI->setCheckable(true);
-	actionRomStatusFilterI->setShortcut(QKeySequence("Ctrl+Alt+I"));
-	actionRomStatusFilterI->setShortcutContext(Qt::ApplicationShortcut);
-	actionRomStatusFilterI->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowI").toBool());
-	connect(actionRomStatusFilterI, SIGNAL(toggled(bool)), this, SLOT(romStateFilterI_toggled(bool)));
-	actionRomStatusFilterN = menuRomStatusFilter->addAction(QIcon(QString::fromUtf8(":/data/img/sphere_grey.png")), tr("&Not found"));
-	actionRomStatusFilterN->setCheckable(true);
-	actionRomStatusFilterN->setShortcut(QKeySequence("Ctrl+Alt+N"));
-	actionRomStatusFilterN->setShortcutContext(Qt::ApplicationShortcut);
-	actionRomStatusFilterN->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowN").toBool());
-	connect(actionRomStatusFilterN, SIGNAL(toggled(bool)), this, SLOT(romStateFilterN_toggled(bool)));
-	actionRomStatusFilterU = menuRomStatusFilter->addAction(QIcon(QString::fromUtf8(":/data/img/sphere_blue.png")), tr("&Unknown"));
-	actionRomStatusFilterU->setCheckable(true);
-	actionRomStatusFilterU->setShortcut(QKeySequence("Ctrl+Alt+U"));
-	actionRomStatusFilterU->setShortcutContext(Qt::ApplicationShortcut);
-	actionRomStatusFilterU->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowU").toBool());
-	connect(actionRomStatusFilterU, SIGNAL(toggled(bool)), this, SLOT(romStateFilterU_toggled(bool)));
+	romStateFilter = new RomStateFilter(this);
+	stateFilterAction = new QWidgetAction(menuRomStatusFilter);
+	stateFilterAction->setDefaultWidget(romStateFilter);
+	menuRomStatusFilter->addAction(stateFilterAction);
 	pushButtonSelectRomFilter->setMenu(menuRomStatusFilter);
 
 	// initialize ROM state toggles
-	qmc2StatesTogglesEnabled = false;
-	actionRomStatusFilterC->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);
-	actionRomStatusFilterM->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_M]);
-	actionRomStatusFilterI->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
-	actionRomStatusFilterN->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
-	actionRomStatusFilterU->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
+	romStateFilter->toolButtonCorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);
+	romStateFilter->toolButtonMostlyCorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_M]);
+	romStateFilter->toolButtonIncorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
+	romStateFilter->toolButtonNotFound->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
+	romStateFilter->toolButtonUnknown->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
 
 	// connect header click signals
 	connect(treeWidgetMachineList->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetMachineList_headerSectionClicked(int)));
@@ -5870,7 +5844,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 			break;
 		case QMC2_VIEWMACHINELIST_INDEX:
 		default: {
-				bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true).toBool();
+				bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool();
 				pushButtonSelectRomFilter->setVisible(romFilterActive);
 				actionTagVisible->setVisible(romFilterActive);
 				actionUntagVisible->setVisible(romFilterActive);
@@ -7907,81 +7881,6 @@ void MainWindow::processFifoData()
 #endif
 }
 
-void MainWindow::romStateFilterC_toggled(bool on)
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::romStateFilterC_toggled(bool on = %1)").arg(on));
-#endif
-
-	if ( qmc2StatesTogglesEnabled ) {
-		qmc2Options->toolButtonShowC->setChecked(on);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowC", on);
-		qmc2Filter.setBit(QMC2_ROMSTATE_INT_C, on);
-		qmc2MachineList->verifyCurrentOnly = false;
-		qmc2MachineList->filter();
-	}
-}
-
-void MainWindow::romStateFilterM_toggled(bool on)
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::romStateFilterM_toggled(bool on = %1)").arg(on));
-#endif
-
-	if ( qmc2StatesTogglesEnabled ) {
-		qmc2Options->toolButtonShowM->setChecked(on);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowM", on);
-		qmc2Filter.setBit(QMC2_ROMSTATE_INT_M, on);
-		qmc2MachineList->verifyCurrentOnly = false;
-		qmc2MachineList->filter();
-	}
-}
-
-void MainWindow::romStateFilterI_toggled(bool on)
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::romStateFilterI_toggled(bool on = %1)").arg(on));
-#endif
-
-	if ( qmc2StatesTogglesEnabled ) {
-		qmc2Options->toolButtonShowI->setChecked(on);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowI", on);
-		qmc2Filter.setBit(QMC2_ROMSTATE_INT_I, on);
-		qmc2MachineList->verifyCurrentOnly = false;
-		qmc2MachineList->filter();
-	}
-}
-
-void MainWindow::romStateFilterN_toggled(bool on)
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::romStateFilterN_toggled(bool on = %1)").arg(on));
-#endif
-
-	if ( qmc2StatesTogglesEnabled ) {
-		qmc2Options->toolButtonShowN->setChecked(on);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowN", on);
-		qmc2Filter.setBit(QMC2_ROMSTATE_INT_N, on);
-		qmc2MachineList->verifyCurrentOnly = false;
-		qmc2MachineList->filter();
-	}
-}
-
-void MainWindow::romStateFilterU_toggled(bool on)
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::romStateFilterU_toggled(bool on = %1)").arg(on));
-#endif
-
-	if ( qmc2StatesTogglesEnabled ) {
-		qmc2Options->toolButtonShowU->setChecked(on);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowU", on);
-		qmc2Filter.setBit(QMC2_ROMSTATE_INT_U, on);
-		qmc2MachineList->verifyCurrentOnly = false;
-		qmc2MachineList->filter();
-	}
-}
-
 void MainWindow::treeWidgetMachineList_headerSectionClicked(int logicalIndex)
 {
 #ifdef QMC2_DEBUG
@@ -8496,7 +8395,7 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 			break;
 		case QMC2_VIEWMACHINELIST_INDEX:
 		default: {
-			bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true).toBool();
+			bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool();
 			pushButtonSelectRomFilter->setVisible(romFilterActive);
 			actionTagVisible->setVisible(romFilterActive);
 			actionUntagVisible->setVisible(romFilterActive);
@@ -11057,11 +10956,11 @@ void prepareShortcuts()
 #endif
 	qmc2ShortcutHash["Ctrl+Z"].second = qmc2MainWindow->actionSystemROMAlyzer;
 	qmc2ShortcutHash["Ctrl+W"].second = qmc2MainWindow->actionSoftwareROMAlyzer;
-	qmc2ShortcutHash["Ctrl+Alt+C"].second = qmc2MainWindow->actionRomStatusFilterC;
-	qmc2ShortcutHash["Ctrl+Alt+M"].second = qmc2MainWindow->actionRomStatusFilterM;
-	qmc2ShortcutHash["Ctrl+Alt+I"].second = qmc2MainWindow->actionRomStatusFilterI;
-	qmc2ShortcutHash["Ctrl+Alt+N"].second = qmc2MainWindow->actionRomStatusFilterN;
-	qmc2ShortcutHash["Ctrl+Alt+U"].second = qmc2MainWindow->actionRomStatusFilterU;
+	qmc2ShortcutHash["Ctrl+Alt+C"].second = qmc2MainWindow->romStateFilter->actionShowCorrect;
+	qmc2ShortcutHash["Ctrl+Alt+M"].second = qmc2MainWindow->romStateFilter->actionShowMostlyCorrect;
+	qmc2ShortcutHash["Ctrl+Alt+I"].second = qmc2MainWindow->romStateFilter->actionShowIncorrect;
+	qmc2ShortcutHash["Ctrl+Alt+N"].second = qmc2MainWindow->romStateFilter->actionShowNotFound;
+	qmc2ShortcutHash["Ctrl+Alt+U"].second = qmc2MainWindow->romStateFilter->actionShowUnknown;
 	qmc2ShortcutHash["Ctrl+Shift+T"].second = qmc2MainWindow->actionSetTag;
 	qmc2ShortcutHash["Ctrl+Shift+U"].second = qmc2MainWindow->actionUnsetTag;
 	qmc2ShortcutHash["Ctrl+Shift+G"].second = qmc2MainWindow->actionToggleTag;

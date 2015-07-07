@@ -60,6 +60,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			collectionrebuilder.ui \
 			missingdumpsviewer.ui \
 			movierecordersetup.ui \
+			romstatefilter.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
 			htmleditor/tablepropertydialog.ui
@@ -135,6 +136,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			missingdumpsviewer.cpp \
 			movierecordersetup.cpp \
 			cryptedbytearray.cpp \
+			romstatefilter.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -257,6 +259,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			missingdumpsviewer.h \
 			movierecordersetup.h \
 			cryptedbytearray.h \
+			romstatefilter.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h

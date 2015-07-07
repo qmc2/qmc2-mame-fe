@@ -259,34 +259,6 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList[1].toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 50, osr, 6566) ) {
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/ActiveDetails") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MAME + "Layout/Component2/ActiveFeatures", startupConfig->value(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/ActiveDetails").toStringList());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/ActiveDetails");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/ActiveDetails") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "Layout/Component2/ActiveFeatures", startupConfig->value(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/ActiveDetails").toStringList());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/ActiveDetails");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/ActiveDetails") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX_UME + "Layout/Component2/ActiveFeatures", startupConfig->value(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/ActiveDetails").toStringList());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/ActiveDetails");
-			}
-		}
-		if ( QMC2_TEST_VERSION(omv, 50, osr, 6579) ) {
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/hSplitterFlipped");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/hSplitterSwapped");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/vSplitterFlipped");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/vSplitterSwapped");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/hSplitterFlipped");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/hSplitterSwapped");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/vSplitterFlipped");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/vSplitterSwapped");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/hSplitterFlipped");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/hSplitterSwapped");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/vSplitterFlipped");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/vSplitterSwapped");
-		}
 		if ( QMC2_TEST_VERSION(omv, 52, osr, 6646) ) {
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS);
 			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME);
@@ -353,6 +325,28 @@ bool Welcome::checkConfig()
 				QString oldPwd(QMC2_UNCOMPRESS(startupConfig->value("Network/HTTPProxy/Password", QString()).toByteArray()));
 				CryptedByteArray cpw(oldPwd.toLatin1());
 				startupConfig->setValue("Network/HTTPProxy/Password", cpw.encryptedData());
+			}
+		}
+		if ( QMC2_TEST_VERSION(omv, 54, osr, 6810) ) {
+			QStringList oldKeys = QStringList() << "/Frontend/MachineList/EnableRomStateFilter"
+							    << "/Frontend/MachineList/ShowC"
+							    << "/Frontend/MachineList/ShowM"
+							    << "/Frontend/MachineList/ShowI"
+							    << "/Frontend/MachineList/ShowN"
+							    << "/Frontend/MachineList/ShowU";
+			QStringList newKeys = QStringList() << "/Frontend/RomStateFilter/Enabled"
+							    << "/Frontend/RomStateFilter/ShowCorrect"
+							    << "/Frontend/RomStateFilter/ShowMostlyCorrect"
+							    << "/Frontend/RomStateFilter/ShowIncorrect"
+							    << "/Frontend/RomStateFilter/ShowNotFound"
+							    << "/Frontend/RomStateFilter/ShowUnknown";
+			for (int i = 0; i < oldKeys.count(); i++) {
+				QString oldKey = oldKeys[i];
+				QString newKey = newKeys[i];
+				if ( startupConfig->contains(oldKey) ) {
+					startupConfig->setValue(newKey, startupConfig->value(oldKey));
+					startupConfig->remove(oldKey);
+				}
 			}
 		}
 	}
