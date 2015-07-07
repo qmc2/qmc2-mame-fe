@@ -2033,7 +2033,7 @@ void MachineList::parse()
 
 	if ( autoRomCheck )
 		QTimer::singleShot(QMC2_AUTOROMCHECK_DELAY, qmc2MainWindow->actionCheckROMs, SLOT(trigger()));
-	else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true).toBool() && !qmc2StopParser )
+	else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool() && !qmc2StopParser )
 		filter(true);
 
 	enableWidgets(true);
@@ -2056,11 +2056,11 @@ void MachineList::filter(bool initial)
 		return;
 	}
 
-	bool showC = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowC", true).toBool();
-	bool showM = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowM", true).toBool();
-	bool showI = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowI", true).toBool();
-	bool showN = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowN", true).toBool();
-	bool showU = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowU", true).toBool();
+	bool showC = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowCorrect", true).toBool();
+	bool showM = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowMostlyCorrect", true).toBool();
+	bool showI = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowIncorrect", true).toBool();
+	bool showN = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowNotFound", true).toBool();
+	bool showU = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowUnknown", true).toBool();
 	bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
 	bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
 
@@ -2828,7 +2828,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 	}
 
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true).toBool() ){
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool() ){
 		if ( doFilter )
 			QTimer::singleShot(0, this, SLOT(filter()));
 		else {

@@ -1160,20 +1160,20 @@ void Options::on_pushButtonApply_clicked()
 	qmc2SortOrder = (i == 0 ? Qt::AscendingOrder : Qt::DescendingOrder);
 	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/SortOrder", qmc2SortOrder);
 	QBitArray newFilter(QMC2_ROMSTATE_COUNT);
-	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowC", toolButtonShowC->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowCorrect", toolButtonShowC->isChecked());
 	newFilter.setBit(QMC2_ROMSTATE_INT_C, toolButtonShowC->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowM", toolButtonShowM->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowMostlyCorrect", toolButtonShowM->isChecked());
 	newFilter.setBit(QMC2_ROMSTATE_INT_M, toolButtonShowM->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowI", toolButtonShowI->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowIncorrect", toolButtonShowI->isChecked());
 	newFilter.setBit(QMC2_ROMSTATE_INT_I, toolButtonShowI->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowN", toolButtonShowN->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowNotFound", toolButtonShowN->isChecked());
 	newFilter.setBit(QMC2_ROMSTATE_INT_N, toolButtonShowN->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/ShowU", toolButtonShowU->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowUnknown", toolButtonShowU->isChecked());
 	newFilter.setBit(QMC2_ROMSTATE_INT_U, toolButtonShowU->isChecked());
 	needFilter = (qmc2Filter != newFilter);
 	qmc2Filter = newFilter;
 
-	bool oldRSF = config->value(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true).toBool();
+	bool oldRSF = config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool();
 	if ( checkBoxRomStateFilter->isChecked() ) {
 		if ( qmc2MainWindow->comboBoxViewSelect->currentIndex() == QMC2_VIEWMACHINELIST_INDEX ) {
 			qmc2MainWindow->pushButtonSelectRomFilter->setVisible(true);
@@ -1181,12 +1181,8 @@ void Options::on_pushButtonApply_clicked()
 			qmc2MainWindow->actionUntagVisible->setVisible(true);
 			qmc2MainWindow->actionInvertVisibleTags->setVisible(true);
 		}
-		qmc2MainWindow->actionRomStatusFilterC->setEnabled(true);
-		qmc2MainWindow->actionRomStatusFilterM->setEnabled(true);
-		qmc2MainWindow->actionRomStatusFilterI->setEnabled(true);
-		qmc2MainWindow->actionRomStatusFilterN->setEnabled(true);
-		qmc2MainWindow->actionRomStatusFilterU->setEnabled(true);
-		config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true);
+		qmc2MainWindow->romStateFilter->setEnabled(true);
+		config->setValue(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true);
 		if ( !oldRSF ) {
 			needReload = true;
 			needFilter = true;
@@ -1196,12 +1192,8 @@ void Options::on_pushButtonApply_clicked()
 		qmc2MainWindow->actionTagVisible->setVisible(false);
 		qmc2MainWindow->actionUntagVisible->setVisible(false);
 		qmc2MainWindow->actionInvertVisibleTags->setVisible(false);
-		qmc2MainWindow->actionRomStatusFilterC->setEnabled(false);
-		qmc2MainWindow->actionRomStatusFilterM->setEnabled(false);
-		qmc2MainWindow->actionRomStatusFilterI->setEnabled(false);
-		qmc2MainWindow->actionRomStatusFilterN->setEnabled(false);
-		qmc2MainWindow->actionRomStatusFilterU->setEnabled(false);
-		config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", false);
+		qmc2MainWindow->romStateFilter->setEnabled(false);
+		config->setValue(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", false);
 		if ( oldRSF ) {
 			needReload = true;
 			needFilter = false;
@@ -1669,11 +1661,11 @@ void Options::on_pushButtonApply_clicked()
 
 		if ( needFilter && !needReload ) {
 			qmc2StatesTogglesEnabled = false;
-			qmc2MainWindow->actionRomStatusFilterC->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);
-			qmc2MainWindow->actionRomStatusFilterM->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_M]);
-			qmc2MainWindow->actionRomStatusFilterI->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
-			qmc2MainWindow->actionRomStatusFilterN->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
-			qmc2MainWindow->actionRomStatusFilterU->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
+			qmc2MainWindow->romStateFilter->toolButtonCorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);
+			qmc2MainWindow->romStateFilter->toolButtonMostlyCorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_M]);
+			qmc2MainWindow->romStateFilter->toolButtonIncorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
+			qmc2MainWindow->romStateFilter->toolButtonNotFound->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
+			qmc2MainWindow->romStateFilter->toolButtonUnknown->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
 			qmc2MachineList->filter();
 		}
 
@@ -2068,33 +2060,29 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	qmc2SortCriteria = comboBoxSortCriteria->currentIndex();
 	comboBoxSortOrder->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "MachineList/SortOrder", 0).toInt());
 	qmc2SortOrder = comboBoxSortOrder->currentIndex() == 0 ? Qt::AscendingOrder : Qt::DescendingOrder;
-	qmc2Filter.setBit(QMC2_ROMSTATE_INT_C, config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowC", true).toBool());
+	qmc2Filter.setBit(QMC2_ROMSTATE_INT_C, config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowCorrect", true).toBool());
 	toolButtonShowC->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);
-	qmc2Filter.setBit(QMC2_ROMSTATE_INT_M, config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowM", true).toBool());
+	qmc2Filter.setBit(QMC2_ROMSTATE_INT_M, config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowMostlyCorrect", true).toBool());
 	toolButtonShowM->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_M]);
-	qmc2Filter.setBit(QMC2_ROMSTATE_INT_I, config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowI", true).toBool());
+	qmc2Filter.setBit(QMC2_ROMSTATE_INT_I, config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowIncorrect", true).toBool());
 	toolButtonShowI->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
-	qmc2Filter.setBit(QMC2_ROMSTATE_INT_N, config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowN", true).toBool());
+	qmc2Filter.setBit(QMC2_ROMSTATE_INT_N, config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowNotFound", true).toBool());
 	toolButtonShowN->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
-	qmc2Filter.setBit(QMC2_ROMSTATE_INT_U, config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowU", true).toBool());
+	qmc2Filter.setBit(QMC2_ROMSTATE_INT_U, config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowUnknown", true).toBool());
 	toolButtonShowU->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
-	bool rsf = config->value(QMC2_FRONTEND_PREFIX + "MachineList/EnableRomStateFilter", true).toBool();
+	bool rsf = config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool();
 	checkBoxRomStateFilter->setChecked(rsf);
 	if ( !qmc2EarlyStartup ) {
 		qmc2MainWindow->pushButtonSelectRomFilter->setVisible(rsf);
-		qmc2MainWindow->actionRomStatusFilterC->setEnabled(rsf);
-		qmc2MainWindow->actionRomStatusFilterM->setEnabled(rsf);
-		qmc2MainWindow->actionRomStatusFilterI->setEnabled(rsf);
-		qmc2MainWindow->actionRomStatusFilterN->setEnabled(rsf);
-		qmc2MainWindow->actionRomStatusFilterU->setEnabled(rsf);
+		qmc2MainWindow->romStateFilter->setEnabled(rsf);
 	}
 	if ( qmc2MainWindow ) {
 		qmc2StatesTogglesEnabled = false;
-		qmc2MainWindow->actionRomStatusFilterC->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);
-		qmc2MainWindow->actionRomStatusFilterM->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_M]);
-		qmc2MainWindow->actionRomStatusFilterI->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
-		qmc2MainWindow->actionRomStatusFilterN->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
-		qmc2MainWindow->actionRomStatusFilterU->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
+		qmc2MainWindow->romStateFilter->toolButtonCorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);
+		qmc2MainWindow->romStateFilter->toolButtonMostlyCorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_M]);
+		qmc2MainWindow->romStateFilter->toolButtonIncorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
+		qmc2MainWindow->romStateFilter->toolButtonNotFound->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
+		qmc2MainWindow->romStateFilter->toolButtonUnknown->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
 		if ( !qmc2EarlyStartup )
 			qmc2StatesTogglesEnabled = true;
 	}

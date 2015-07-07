@@ -23,6 +23,7 @@
 #include "imagewidget.h"
 #include "rankitemwidget.h"
 #include "swldbmgr.h"
+#include "romstatefilter.h"
 
 class ProxyStyle : public QProxyStyle
 {
@@ -82,11 +83,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QMenu *menuVersionHeader;
 		QAction *actionMenuMachineListHeaderVersion;
 		QAction *actionMenuHierarchyHeaderVersion;
-		QAction *actionRomStatusFilterC;
-		QAction *actionRomStatusFilterM;
-		QAction *actionRomStatusFilterI;
-		QAction *actionRomStatusFilterN;
-		QAction *actionRomStatusFilterU;
+		QWidgetAction *stateFilterAction;
 		QList<QAction *> rebuildRomActions;
 		QList<QAction *> contextMenuPlayActions;
 		QStringList videoSnapAllowedFormatExtensions;
@@ -157,6 +154,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QStringList &getXmlChoices(QString, QString, QString optionAttribute = QString(), QString *defaultChoice = NULL);
 		static bool qStringListLessThan(const QString &, const QString &);
 		SoftwareListXmlDatabaseManager *swlDb;
+		RomStateFilter *romStateFilter;
 
 		MainWindow(QWidget *parent = 0);
 		~MainWindow();
@@ -307,13 +305,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
 		// download manager widget
 		void on_checkBoxRemoveFinishedDownloads_stateChanged(int);
-
-		// ROM state filter toggles
-		void romStateFilterC_toggled(bool);
-		void romStateFilterM_toggled(bool);
-		void romStateFilterI_toggled(bool);
-		void romStateFilterN_toggled(bool);
-		void romStateFilterU_toggled(bool);
 
 		// tab widget position callbacks
 		void menuTabWidgetMachineList_North_activated();
