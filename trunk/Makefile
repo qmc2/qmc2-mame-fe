@@ -1479,7 +1479,7 @@ man-clean:
 
 doc-install: man-install
 man-install:
-	@$(ECHO) "Installing man-pages to $(MAN_DIR)/man6"
+	@$(ECHO) "Installing man-pages to $(DESTDIR)$(MAN_DIR)/man6"
 	@$(MKDIR) $(DESTDIR)$(MAN_DIR)/man6
 	@$(RSYNC) --exclude '*svn*' ./data/doc/man/*.gz $(DESTDIR)$(MAN_DIR)/man6/
 endif
