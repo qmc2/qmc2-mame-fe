@@ -1765,7 +1765,7 @@ void ImageChecker::updateResults()
 
 	qApp->processEvents();
 
-	if ( listWidgetFound->count() + listWidgetMissing->count() >= qmc2MachineListItemHash.count() && isRunning && passNumber != 2 ) {
+	if ( listWidgetFound->count() + listWidgetMissing->count() >= qmc2MainWindow->treeWidgetMachineList->topLevelItemCount() && isRunning && passNumber != 2 ) {
 		passNumber = 2;
 		QTimer::singleShot(0, this, SLOT(startStop()));
 	} else {
