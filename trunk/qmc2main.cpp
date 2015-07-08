@@ -294,9 +294,7 @@ void MainWindow::log(char logTarget, QString message)
 {
 	if ( !qmc2GuiReady )
 		return;
-
 	QString timeString = QTime::currentTime().toString("hh:mm:ss.zzz");
-
 	// count subsequent message duplicates
 	switch ( logTarget ) {
 		case QMC2_LOG_FRONTEND:
@@ -332,27 +330,21 @@ void MainWindow::log(char logTarget, QString message)
 		default:
 			return;
 	}
-
-	QString msg = timeString + ": " + message;
-
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
-	QString defaultEmuLogPath, defaultFrontendLogPath;
-#if defined(QMC2_SDLMAME)
-	defaultFrontendLogPath = userScopePath + "/qmc2-sdlmame.log";
-	defaultEmuLogPath = userScopePath + "/mame.log";
-#elif defined(QMC2_MAME)
-	defaultFrontendLogPath = userScopePath + "/qmc2-mame.log";
-	defaultEmuLogPath = userScopePath + "/mame.log";
-#endif
-
+	message.prepend(timeString + ": ");
 	switch ( logTarget ) {
 		case QMC2_LOG_FRONTEND:
-			textBrowserFrontendLog->appendPlainText(msg);
-			if ( !qmc2FrontendLogFile )
+			textBrowserFrontendLog->appendPlainText(message);
+			if ( !qmc2FrontendLogFile ) {
+#if defined(QMC2_SDLMAME)
+				QString defaultFrontendLogPath = QString(QMC2_DYNAMIC_DOT_PATH) + "/qmc2-sdlmame.log";
+#elif defined(QMC2_MAME)
+				QString defaultFrontendLogPath = QString(QMC2_DYNAMIC_DOT_PATH) + "/qmc2-mame.log";
+#endif
 				if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", defaultFrontendLogPath).toString(), this)) == NULL ) {
 					qmc2LogFrontendMutex.unlock();
 					return;
 				}
+			}
 			if ( qmc2FrontendLogFile->handle() == -1 ) {
 				if ( qmc2FrontendLogFile->open(QIODevice::WriteOnly | QIODevice::Text) )
 					qmc2FrontendLogStream.setDevice(qmc2FrontendLogFile);
@@ -361,13 +353,14 @@ void MainWindow::log(char logTarget, QString message)
 					return;
 				}
 			}
-			qmc2FrontendLogStream << msg << "\n";
+			qmc2FrontendLogStream << message << "\n";
 			qmc2FrontendLogStream.flush();
 			break;
 
 		case QMC2_LOG_EMULATOR:
-			textBrowserEmulatorLog->appendPlainText(msg);
+			textBrowserEmulatorLog->appendPlainText(message);
 			if ( !qmc2EmulatorLogFile ) {
+				QString defaultEmuLogPath = QString(QMC2_DYNAMIC_DOT_PATH) + "/mame.log";
 				if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/LogFile", defaultEmuLogPath).toString(), this)) == NULL ) {
 					qmc2LogEmulatorMutex.unlock();
 					return;
@@ -381,11 +374,10 @@ void MainWindow::log(char logTarget, QString message)
 					return;
 				}
 			}
-			qmc2EmulatorLogStream << msg << "\n";
+			qmc2EmulatorLogStream << message << "\n";
 			qmc2EmulatorLogStream.flush();
 			break;
 	}
-
 	if ( logTarget == QMC2_LOG_FRONTEND )
 		qmc2LogFrontendMutex.unlock();
 	else
