@@ -2732,7 +2732,8 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				}
 			}
 			qmc2MainWindow->labelMachineListStatus->setText(status());
-		}
+		} else if ( checkedItem )
+			gameName = checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 		if ( romCache.isOpen() ) {
 			QHashIterator<QString, char> it(gameStatusHash);
 			while ( it.hasNext() ) {
@@ -2761,7 +2762,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				}
 			}
 		}
-		doFilter = oldRomState != gameStatusHash[gameName];
+		doFilter = (oldRomState != gameStatusHash[gameName]);
 	}
 
 	QTime elapsedTime(0, 0, 0, 0);
