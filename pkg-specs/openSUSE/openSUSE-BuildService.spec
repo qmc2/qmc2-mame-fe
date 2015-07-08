@@ -1,6 +1,6 @@
 Name:           qmc2
 Version:        0.54
-Release:        1
+Release:        2
 Summary:        M.A.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
 License:        GPL-2.0
@@ -86,7 +86,7 @@ make qchdman-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=
 popd
 
 pushd manpages
-make man-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT MAN_DIR=$RPM_BUILD_ROOT/usr/share/man DISTCFG=1 \
+make man-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT MAN_DIR=/usr/share/man DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     JOYSTICK=1 WIP=0 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3
@@ -131,6 +131,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/qchdman.6.gz
 
 %changelog
+* Wed Jul 08 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.54-2
+- adjusted MAN_DIR
+
 * Wed Jun 24 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.54-1
 - updated spec to QMC2 0.54
 
