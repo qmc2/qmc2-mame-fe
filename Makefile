@@ -238,7 +238,7 @@ ifndef WIP
 WIP = 0
 endif
 
-# >>> PHONON <<<
+# >>> PHONON / FORCE_PHONON <<<
 #
 # Enable Phonon based features (1) or leave them out of the build (0).
 #
@@ -248,10 +248,14 @@ endif
 # Built-in Phonon features include the MP3 audio player and the YouTube video
 # widget.
 #
-# For Qt 5, this will be disabled automatically (Qt 5 has no Phonon module)!
+# For Qt 5, this will be disabled automatically (Qt 5 has no Phonon module)
+# unless you set FORCE_PHONON = 1 to use an external Qt/Phonon module!
 #
 ifndef PHONON
 PHONON = 1
+endif
+ifndef FORCE_PHONON
+FORCE_PHONON = 0
 endif
 
 # >>> CCACHE <<<
@@ -595,7 +599,11 @@ endif
 endif
 
 ifeq '$(QMAKEV)' '3'
-PHONON=0
+ifeq '$(FORCE_PHONON)' '1'
+PHONON = 1
+else
+PHONON = 0
+endif
 endif
 
 ifneq '$(QMAKEV)' '1'
@@ -1385,6 +1393,7 @@ config:
 	@$(ECHO) "DISTCFG                Use distribution-specific config (0, 1)       $(DISTCFG)"
 	@$(ECHO) "FADER_SPEED            Audio fading speed (0: fastest, >0: slower)   $(FADER_SPEED)"
 	@$(ECHO) "FIND                   UNIX command find                             $(FIND)"
+	@$(ECHO) "FORCE_PHONON           Force using Phonon even with Qt 5 (0, 1)      $(FORCE_PHONON)"
 	@$(ECHO) "GREP                   UNIX command grep                             $(GREP)"
 	@$(ECHO) "IMGSET                 Image set to be used                          $(IMGSET)"
 	@$(ECHO) "JOYSTICK               Compile with SDL joystick support (0, 1)      $(JOYSTICK)"
