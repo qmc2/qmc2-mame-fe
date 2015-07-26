@@ -83,7 +83,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 		case QMC2_EMUOPT_TYPE_BOOL: {
 			QCheckBox *checkBoxEditor = new QCheckBox(parent);
 			checkBoxEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
-			checkBoxEditor->setAccessibleName("checkBoxEditor");
+			checkBoxEditor->setWhatsThis("checkBoxEditor");
 			if ( !optionDescription.isEmpty() )
 				checkBoxEditor->setToolTip(optionDescription);
 			connect(checkBoxEditor, SIGNAL(toggled(bool)), this, SLOT(dataChanged()));
@@ -95,7 +95,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			spinBoxEditor->setRange(_MIN, _MAX);
 			spinBoxEditor->setSingleStep(1);
 			spinBoxEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
-			spinBoxEditor->setAccessibleName("spinBoxEditor");
+			spinBoxEditor->setWhatsThis("spinBoxEditor");
 			if ( !optionDescription.isEmpty() )
 				spinBoxEditor->setToolTip(optionDescription);
 			connect(spinBoxEditor, SIGNAL(valueChanged(int)), this, SLOT(dataChanged()));
@@ -108,7 +108,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			doubleSpinBoxEditor->setSingleStep(0.1);
 			doubleSpinBoxEditor->setDecimals(optionDecimals);
 			doubleSpinBoxEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
-			doubleSpinBoxEditor->setAccessibleName("doubleSpinBoxEditor");
+			doubleSpinBoxEditor->setWhatsThis("doubleSpinBoxEditor");
 			if ( !optionDescription.isEmpty() )
 				doubleSpinBoxEditor->setToolTip(optionDescription);
 			connect(doubleSpinBoxEditor, SIGNAL(valueChanged(double)), this, SLOT(dataChanged()));
@@ -124,7 +124,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			float2Editor->doubleSpinBox1->setSingleStep(0.1);
 			float2Editor->doubleSpinBox1->setDecimals(optionDecimals);
 			float2Editor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
-			float2Editor->setAccessibleName("float2Editor");
+			float2Editor->setWhatsThis("float2Editor");
 			if ( !optionDescription.isEmpty() )
 				float2Editor->setToolTip(optionDescription);
 			connect(float2Editor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
@@ -143,7 +143,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			float3Editor->doubleSpinBox2->setSingleStep(0.1);
 			float3Editor->doubleSpinBox2->setDecimals(optionDecimals);
 			float3Editor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
-			float3Editor->setAccessibleName("float3Editor");
+			float3Editor->setWhatsThis("float3Editor");
 			if ( !optionDescription.isEmpty() )
 				float3Editor->setToolTip(optionDescription);
 			connect(float3Editor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
@@ -153,7 +153,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 		case QMC2_EMUOPT_TYPE_FILE: {
 			FileEditWidget *fileEditor = new FileEditWidget("", tr("All files (*)"), optionPart, parent, false, optionRelativeTo, mTreeWidget);
 			fileEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
-			fileEditor->setAccessibleName("fileEditor");
+			fileEditor->setWhatsThis("fileEditor");
 			if ( !optionDescription.isEmpty() ) {
 				fileEditor->lineEditFile->setToolTip(optionDescription);
 				fileEditor->toolButtonBrowse->setToolTip(tr("Browse: ") + optionDescription);
@@ -165,7 +165,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 		case QMC2_EMUOPT_TYPE_DIRECTORY: {
 			DirectoryEditWidget *directoryEditor = new DirectoryEditWidget("", parent, mTreeWidget);
 			directoryEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
-			directoryEditor->setAccessibleName("directoryEditor");
+			directoryEditor->setWhatsThis("directoryEditor");
 			if ( !optionDescription.isEmpty() ) {
 				directoryEditor->lineEditDirectory->setToolTip(optionDescription);
 				directoryEditor->toolButtonBrowse->setToolTip(tr("Browse: ") + optionDescription);
@@ -177,7 +177,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 		case QMC2_EMUOPT_TYPE_COMBO: {
 			ComboBoxEditWidget *comboEditor = new ComboBoxEditWidget(optionChoices, "", parent);
 			comboEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
-			comboEditor->setAccessibleName("comboEditor");
+			comboEditor->setWhatsThis("comboEditor");
 			if ( !optionDescription.isEmpty() )
 				comboEditor->comboBoxValue->setToolTip(optionDescription);
 			connect(comboEditor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
@@ -188,7 +188,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 		default: {
 			QLineEdit *lineEditEditor = new QLineEdit(parent);
 			lineEditEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
-			lineEditEditor->setAccessibleName("lineEditEditor");
+			lineEditEditor->setWhatsThis("lineEditEditor");
 			if ( !optionDescription.isEmpty() )
 				lineEditEditor->setToolTip(optionDescription);
 			connect(lineEditEditor, SIGNAL(textEdited(const QString &)), this, SLOT(dataChanged()));
@@ -199,7 +199,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 
 void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-	if ( editor->accessibleName() == "checkBoxEditor" ) {
+	if ( editor->whatsThis() == "checkBoxEditor" ) {
 		bool value = index.model()->data(index, Qt::EditRole).toBool();
 		QCheckBox *checkBoxEditor = static_cast<QCheckBox *>(editor);
 		checkBoxEditor->setChecked(value);
@@ -207,7 +207,7 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 			checkBoxEditor->setText("(" + tr("enabled") + ")");
 		else
 			checkBoxEditor->setText("(" + tr("disabled") + ")");
-	} else if ( editor->accessibleName() == "spinBoxEditor" ) {
+	} else if ( editor->whatsThis() == "spinBoxEditor" ) {
 		int value = index.model()->data(index, Qt::EditRole).toInt();
 		QSpinBox *spinBox = static_cast<QSpinBox *>(editor);
 		int cPos = 0;
@@ -217,7 +217,7 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 		spinBox->setValue(value);
 		if ( lineEdit )
 			lineEdit->setCursorPosition(cPos);
-	} else if ( editor->accessibleName() == "doubleSpinBoxEditor" ) {
+	} else if ( editor->whatsThis() == "doubleSpinBoxEditor" ) {
 		double value = index.model()->data(index, Qt::EditRole).toDouble();
 		QDoubleSpinBox *doubleSpinBox = static_cast<QDoubleSpinBox *>(editor);
 		int cPos = 0;
@@ -227,7 +227,7 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 		doubleSpinBox->setValue(value);
 		if ( lineEdit )
 			lineEdit->setCursorPosition(cPos);
-	} else if ( editor->accessibleName() == "float2Editor" ) {
+	} else if ( editor->whatsThis() == "float2Editor" ) {
 		QString value = index.model()->data(index, Qt::EditRole).toString();
 		FloatEditWidget *float2Editor = static_cast<FloatEditWidget *>(editor);
 		QStringList subValues = value.split(",");
@@ -248,7 +248,7 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 			if ( lineEdit )
 				lineEdit->setCursorPosition(cPos);
 		}
-	} else if ( editor->accessibleName() == "float3Editor" ) {
+	} else if ( editor->whatsThis() == "float3Editor" ) {
 		QString value = index.model()->data(index, Qt::EditRole).toString();
 		FloatEditWidget *float3Editor = static_cast<FloatEditWidget *>(editor);
 		QStringList subValues = value.split(",");
@@ -277,19 +277,19 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 			if ( lineEdit )
 				lineEdit->setCursorPosition(cPos);
 		}
-	} else if ( editor->accessibleName() == "fileEditor" ) {
+	} else if ( editor->whatsThis() == "fileEditor" ) {
 		QString value = index.model()->data(index, Qt::EditRole).toString();
 		FileEditWidget *fileEditor = static_cast<FileEditWidget *>(editor);
 		int cPos = fileEditor->lineEditFile->cursorPosition();
 		fileEditor->lineEditFile->setText(value);
 		fileEditor->lineEditFile->setCursorPosition(cPos);
-	} else if ( editor->accessibleName() == "directoryEditor" ) {
+	} else if ( editor->whatsThis() == "directoryEditor" ) {
 		QString value = index.model()->data(index, Qt::EditRole).toString();
 		DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget *>(editor);
 		int cPos = directoryEditor->lineEditDirectory->cursorPosition();
 		directoryEditor->lineEditDirectory->setText(value);
 		directoryEditor->lineEditDirectory->setCursorPosition(cPos);
-	} else if ( editor->accessibleName() == "comboEditor" ) {
+	} else if ( editor->whatsThis() == "comboEditor" ) {
 		QString value = index.model()->data(index, Qt::EditRole).toString();
 		ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget *>(editor);
 		int cPos = comboEditor->comboBoxValue->lineEdit()->cursorPosition();
@@ -310,26 +310,26 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 
 void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
-	if ( editor->accessibleName() == "checkBoxEditor" ) {
+	if ( editor->whatsThis() == "checkBoxEditor" ) {
 		optionType = QMC2_EMUOPT_TYPE_BOOL;
 		QCheckBox *checkBoxEditor = static_cast<QCheckBox*>(editor);
 		bool v = checkBoxEditor->isChecked();
 		model->setData(index, QColor(0, 0, 0, 0), Qt::ForegroundRole);
 		model->setData(index, QFont("Helvetica", 1), Qt::FontRole);
 		model->setData(index, v);
-	} else if ( editor->accessibleName() == "spinBoxEditor" ) {
+	} else if ( editor->whatsThis() == "spinBoxEditor" ) {
 		optionType = QMC2_EMUOPT_TYPE_INT;
 		QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
 		spinBox->interpretText();
 		int v = spinBox->value();
 		model->setData(index, v);
-	} else if ( editor->accessibleName() == "doubleSpinBoxEditor" ) {
+	} else if ( editor->whatsThis() == "doubleSpinBoxEditor" ) {
 		optionType = QMC2_EMUOPT_TYPE_FLOAT;
 		QDoubleSpinBox *doubleSpinBox = static_cast<QDoubleSpinBox*>(editor);
 		doubleSpinBox->interpretText();
 		double v = doubleSpinBox->value();
 		model->setData(index, v);
-	} else if ( editor->accessibleName() == "float2Editor" ) {
+	} else if ( editor->whatsThis() == "float2Editor" ) {
 		optionType = QMC2_EMUOPT_TYPE_FLOAT2;
 		FloatEditWidget *float2Editor = static_cast<FloatEditWidget*>(editor);
 		float2Editor->doubleSpinBox0->interpretText();
@@ -337,7 +337,7 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
 		QLocale cLoc(QLocale::C);
 		QString v = cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals());
 		model->setData(index, v);
-	} else if ( editor->accessibleName() == "float3Editor" ) {
+	} else if ( editor->whatsThis() == "float3Editor" ) {
 		optionType = QMC2_EMUOPT_TYPE_FLOAT3;
 		FloatEditWidget *float3Editor = static_cast<FloatEditWidget*>(editor);
 		float3Editor->doubleSpinBox0->interpretText();
@@ -346,17 +346,17 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
 		QLocale cLoc(QLocale::C);
 		QString v = cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals());
 		model->setData(index, v);
-	} else if ( editor->accessibleName() == "fileEditor" ) {
+	} else if ( editor->whatsThis() == "fileEditor" ) {
 		optionType = QMC2_EMUOPT_TYPE_FILE;
 		FileEditWidget *fileEditor = static_cast<FileEditWidget*>(editor);
 		QString v = fileEditor->lineEditFile->text();
 		model->setData(index, v);
-	} else if ( editor->accessibleName() == "directoryEditor" ) {
+	} else if ( editor->whatsThis() == "directoryEditor" ) {
 		optionType = QMC2_EMUOPT_TYPE_DIRECTORY;
 		DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget*>(editor);
 		QString v = directoryEditor->lineEditDirectory->text();
 		model->setData(index, v);
-	} else if ( editor->accessibleName() == "comboEditor" ) {
+	} else if ( editor->whatsThis() == "comboEditor" ) {
 		optionType = QMC2_EMUOPT_TYPE_COMBO;
 		ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget*>(editor);
 		QString v = comboEditor->comboBoxValue->lineEdit()->text();
@@ -374,11 +374,11 @@ void EmulatorOptionDelegate::updateEditorGeometry(QWidget *editor, const QStyleO
 	editor->setGeometry(option.rect);
 	QFontMetrics fm(QApplication::font());
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
-	if ( editor->accessibleName() == "fileEditor" ) {
+	if ( editor->whatsThis() == "fileEditor" ) {
 		FileEditWidget *fileEditWidget = static_cast<FileEditWidget *>(editor);
 		fileEditWidget->toolButtonBrowse->setIconSize(iconSize);
 		fileEditWidget->toolButtonClear->setIconSize(iconSize);
-	} else if ( editor->accessibleName() == "directoryEditor" ) {
+	} else if ( editor->whatsThis() == "directoryEditor" ) {
 		DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget *>(editor);
 		directoryEditor->toolButtonBrowse->setIconSize(iconSize);
 	}
@@ -507,32 +507,32 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 			storedValue = "<UNSET>";
 
 		QLocale cLoc(QLocale::C);
-		if ( editor->accessibleName() == "checkBoxEditor" ) {
+		if ( editor->whatsThis() == "checkBoxEditor" ) {
 			QCheckBox *checkBoxEditor = static_cast<QCheckBox*>(editor);
 			if ( checkBoxEditor->isChecked() )
 				currentValue = "true";
 			else
 				currentValue = "false";
-		} else if ( editor->accessibleName() == "spinBoxEditor" ) {
+		} else if ( editor->whatsThis() == "spinBoxEditor" ) {
 			QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
 			currentValue = QString::number(spinBox->value());
-		} else if ( editor->accessibleName() == "doubleSpinBoxEditor" ) {
+		} else if ( editor->whatsThis() == "doubleSpinBoxEditor" ) {
 			QDoubleSpinBox *doubleSpinBox = static_cast<QDoubleSpinBox*>(editor);
 			currentValue = cLoc.toString(doubleSpinBox->value(), 'f', doubleSpinBox->decimals());
 			defaultValue = cLoc.toString(defaultValue.toDouble(), 'f', doubleSpinBox->decimals());
-		} else if ( editor->accessibleName() == "float2Editor" ) {
+		} else if ( editor->whatsThis() == "float2Editor" ) {
 			FloatEditWidget *float2Editor = static_cast<FloatEditWidget*>(editor);
 			currentValue = cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals());
-		} else if ( editor->accessibleName() == "float3Editor" ) {
+		} else if ( editor->whatsThis() == "float3Editor" ) {
 			FloatEditWidget *float3Editor = static_cast<FloatEditWidget*>(editor);
 			currentValue = cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals());
-		} else if ( editor->accessibleName() == "fileEditor" ) {
+		} else if ( editor->whatsThis() == "fileEditor" ) {
 			FileEditWidget *fileEditor = static_cast<FileEditWidget*>(editor);
 			currentValue = fileEditor->lineEditFile->text();
-		} else if ( editor->accessibleName() == "directoryEditor" ) {
+		} else if ( editor->whatsThis() == "directoryEditor" ) {
 			DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget*>(editor);
 			currentValue = directoryEditor->lineEditDirectory->text();
-		} else if ( editor->accessibleName() == "comboEditor" ) {
+		} else if ( editor->whatsThis() == "comboEditor" ) {
 			ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget*>(editor);
 			currentValue = comboEditor->comboBoxValue->lineEdit()->text();
 		} else {
