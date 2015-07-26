@@ -7,7 +7,7 @@
 # Please don't change anything below the line containing END OF MAKE OPTIONS!
 #
 
-# >>> MINGW <<<
+# >>> FORCE_MINGW <<<
 #
 # Enable (1) or disable (0) support for the MinGW (GCC) compiler on Windows.
 #
@@ -25,11 +25,11 @@
 # For detailed build instructions on Windows, see our Wiki:
 # http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Windows
 #
-ifndef MINGW
-ifeq ($(findstring mingw,$(shell gcc -dumpmachine)),mingw)
-MINGW = 1
+ifndef FORCE_MINGW
+ifeq ($(OS),Windows_NT)
+FORCE_MINGW = 1
 else
-MINGW = 0
+FORCE_MINGW = 0
 endif
 endif
 
@@ -38,7 +38,7 @@ endif
 # Enable (1) or disable (0) support for audio-effect dialogs.
 #
 ifndef AUDIOEFFECTDIALOGS
-ifeq '$(MINGW)' '1'
+ifeq '$(FORCE_MINGW)' '1'
 AUDIOEFFECTDIALOGS = 0
 else
 AUDIOEFFECTDIALOGS = 1
@@ -50,7 +50,7 @@ endif
 # The prefix directory used by the 'make install' target.
 #
 ifndef PREFIX
-ifeq '$(MINGW)' '1'
+ifeq '$(FORCE_MINGW)' '1'
 PREFIX = .
 else
 PREFIX = /usr/local
@@ -96,7 +96,7 @@ endif
 # tell the correct OS name of your system (see also OSREL and MACHINE!).
 #
 ifndef ARCH
-ifeq '$(MINGW)' '1'
+ifeq '$(FORCE_MINGW)' '1'
 ARCH = Windows
 else
 ARCH = $(shell uname)
@@ -109,7 +109,7 @@ endif
 # you're doing :)!
 #
 ifndef OSREL
-ifeq '$(MINGW)' '1'
+ifeq '$(FORCE_MINGW)' '1'
 OSREL = $(shell arch\Windows\osrel.bat)
 else
 OSREL = $(shell uname -r)
@@ -122,7 +122,7 @@ endif
 # what you're doing :)!
 #
 ifndef MACHINE
-ifeq '$(MINGW)' '1'
+ifeq '$(FORCE_MINGW)' '1'
 MACHINE = $(shell gcc -dumpmachine)
 else
 MACHINE = $(shell uname -m)
@@ -137,7 +137,7 @@ ifndef DATADIR
 ifeq '$(ARCH)' 'Darwin'
 DATADIR = /Library/Application Support
 else
-ifeq '$(MINGW)' '1'
+ifeq '$(FORCE_MINGW)' '1'
 DATADIR = data
 else
 DATADIR = $(PREFIX)/share
@@ -153,7 +153,7 @@ ifndef SYSCONFDIR
 ifeq '$(ARCH)' 'Darwin'
 SYSCONFDIR = /Library/Application Support
 else
-ifeq '$(MINGW)' '1'
+ifeq '$(FORCE_MINGW)' '1'
 SYSCONFDIR =
 else
 SYSCONFDIR = /etc
@@ -170,7 +170,7 @@ ifndef BINDIR
 ifeq '$(ARCH)' 'Darwin'
 BINDIR = /Applications
 else
-ifeq '$(MINGW)' '1'
+ifeq '$(FORCE_MINGW)' '1'
 BINDIR = .
 else
 BINDIR = $(PREFIX)/bin
@@ -351,7 +351,7 @@ endif
 # FADER_SPEED > 0 .... Fading pause/resume (slower)
 #
 ifndef FADER_SPEED
-ifeq '$(MINGW)' '1'
+ifeq '$(FORCE_MINGW)' '1'
 FADER_SPEED = 2000
 else
 FADER_SPEED = 500
@@ -424,7 +424,7 @@ endif
 # Specify (overwrite) the Qt mkspec (qmake spec) to be used.
 #
 ifndef MKSPEC
-ifeq '$(MINGW)' '1'
+ifeq '$(FORCE_MINGW)' '1'
 MKSPEC = win32-g++-4.6
 else
 ifeq '$(ARCH)' 'Darwin'
@@ -484,7 +484,7 @@ endif
 #
 # The base-directory used by the 'make doc-install' target to install man-pages.
 #
-ifneq '$(MINGW)' '1'
+ifneq '$(FORCE_MINGW)' '1'
 ifndef MAN_DIR
 ifeq '$(ARCH)' 'Darwin'
 MAN_DIR = /usr/share/man
@@ -499,7 +499,7 @@ endif
 # SDL version to use (1 or 2). Auto-detected if unspecified -- SDL=1 has
 # precendence.
 #
-ifneq '$(MINGW)' '1'
+ifneq '$(FORCE_MINGW)' '1'
 ifndef SDL
 SDL = $(shell scripts/sdl-version.sh)
 else
@@ -927,7 +927,7 @@ else
 ARCADE_CONF = CONFIG+=warn_on CONFIG+=debug
 ARCADE_DEFINES = DEFINES+=QMC2_ARCADE_DEBUG QMC2_ARCADE_SVN_REV=$(SVN_REV)
 endif
-ifeq '$(MINGW)' '1'
+ifeq '$(FORCE_MINGW)' '1'
 ARCADE_DEFINES += QMC2_ARCADE_MINGW
 endif
 ifeq '$(ARCH)' 'Darwin'
@@ -1032,10 +1032,10 @@ endif
 	@$(ECHO) "Configuring build of QMC2 v$(VERSION)"
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
-	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
+	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(FORCE_MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
 else
 	@$(shell scripts\\setup_imgset.bat $(IMGSET)) 
-	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(FORCE_MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 ifeq '$(ARCH)' 'Darwin'
 ifneq '$(QT_LIB48PLUS)' 'true'
@@ -1098,15 +1098,15 @@ else
 endif
 ifeq '$(ARCH)' 'Darwin'
 ifneq '$(QT_LIB48PLUS)' 'true'
-	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(FORCE_MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $<
 	@$(SED) -e "s/-c /cc -c /" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
 	@$(RM) ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 	@$(MV) ./Makefile.qmake.xcodeproj/qt_preprocess.mak.new ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 else
-	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(FORCE_MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 else
-	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(FORCE_MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 endif
 
@@ -1393,6 +1393,9 @@ config:
 	@$(ECHO) "DISTCFG                Use distribution-specific config (0, 1)       $(DISTCFG)"
 	@$(ECHO) "FADER_SPEED            Audio fading speed (0: fastest, >0: slower)   $(FADER_SPEED)"
 	@$(ECHO) "FIND                   UNIX command find                             $(FIND)"
+ifeq '$(ARCH)' 'Windows'
+	@$(ECHO) "FORCE_MINGW            Force use of MinGW on Windows (0, 1)          $(FORCE_MINGW)"
+endif
 	@$(ECHO) "FORCE_PHONON           Force using Phonon even with Qt 5 (0, 1)      $(FORCE_PHONON)"
 	@$(ECHO) "GREP                   UNIX command grep                             $(GREP)"
 	@$(ECHO) "IMGSET                 Image set to be used                          $(IMGSET)"
@@ -1415,9 +1418,6 @@ endif
 	@$(ECHO) "MAKESILENT             GNU make command (silent mode)                $(MAKESILENT)"
 ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) "MAN_DIR                Base directory for man-page installation      $(MAN_DIR)"
-endif
-ifeq '$(ARCH)' 'Windows'
-	@$(ECHO) "MINGW                  Force use of MinGW on Windows (0, 1)          $(MINGW)"
 endif
 	@$(ECHO) "MKDIR                  UNIX command mkdir                            $(MKDIR)"
 	@$(ECHO) "MKSPEC                 Qt mkspec to be used (empty = default)        $(MKSPEC)"
