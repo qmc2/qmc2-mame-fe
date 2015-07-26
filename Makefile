@@ -26,7 +26,7 @@
 # http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Windows
 #
 ifndef MINGW
-ifeq ($(findstring mingw, $(shell gcc -dumpmachine)),mingw)
+ifeq ($(findstring mingw,$(shell gcc -dumpmachine)),mingw)
 MINGW = 1
 else
 MINGW = 0
