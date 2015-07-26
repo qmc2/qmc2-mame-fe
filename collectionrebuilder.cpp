@@ -1435,7 +1435,7 @@ bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, Q
 		unzGoToFirstFile(zipFile);
 		if ( crcIdentMap.contains(ulCRC) ) {
 			QString fn = crcIdentMap[ulCRC];
-			if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 2) == UNZ_OK ) {
+			if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 0) == UNZ_OK ) {
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
 					emit log(tr("reading '%1' from ZIP archive '%2' (uncompressed size: %3)").arg(fn).arg(fileName).arg(ROMAlyzer::humanReadable(zipInfo.uncompressed_size)));
 					qint64 len;

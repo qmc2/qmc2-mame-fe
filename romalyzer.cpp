@@ -2110,7 +2110,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 							fn = fileName;
 						}
 
-						if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 2) == UNZ_OK ) { // NOT case-sensitive filename compare!
+						if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 0) == UNZ_OK ) { // NOT case-sensitive filename compare!
 							totalSize = 0;
 							if ( unzGetCurrentFileInfo(zipFile, &zipInfo, 0, 0, 0, 0, 0, 0) == UNZ_OK ) 
 								totalSize = zipInfo.uncompressed_size;
@@ -3678,7 +3678,7 @@ bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 		unzGoToFirstFile(zipFile);
 		if ( crcIdentMap.contains(ulCRC) ) {
 			QString fn = crcIdentMap[ulCRC];
-			if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 2) == UNZ_OK ) { // NOT case-sensitive filename compare!
+			if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 0) == UNZ_OK ) { // NOT case-sensitive filename compare!
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
 					qint64 len;
 					progressBarFileIO->setRange(0, zipInfo.uncompressed_size);
