@@ -26,7 +26,8 @@
 # http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Windows
 #
 ifndef MINGW
-ifeq ($(OS),Windows_NT)
+COMPILERENV = $(shell gcc -dumpmachine)
+ifneq (, $(findstring mingw, $(COMPILERENV)))
 MINGW = 1
 else
 MINGW = 0
@@ -123,7 +124,7 @@ endif
 #
 ifndef MACHINE
 ifeq '$(MINGW)' '1'
-MACHINE = $(shell gcc -dumpmachine)
+MACHINE = $(COMPILERENV)
 else
 MACHINE = $(shell uname -m)
 endif
