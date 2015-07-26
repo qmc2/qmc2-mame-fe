@@ -3500,9 +3500,13 @@ void MachineList::loadCatverIni()
 		qmc2MainWindow->progressBarMachineList->setRange(0, catverIniFile.size());
 		QTextStream tsCatverIni(&catverIniFile);
 		bool isVersion = false, isCategory = false;
+		quint64 lineCounter = 0;
 		while ( !tsCatverIni.atEnd() ) {
 			QString catverLine = tsCatverIni.readLine().simplified().trimmed();
-			qmc2MainWindow->progressBarMachineList->setValue(catverIniFile.pos());
+			if ( lineCounter++ % QMC2_CATVERINI_LOAD_RESPONSE == 0 ) {
+				qmc2MainWindow->progressBarMachineList->setValue(catverIniFile.pos());
+				qApp->processEvents();
+			}
 			if ( catverLine.isEmpty() )
 				continue;
 			if ( catverLine.contains("[Category]") ) {
@@ -3522,7 +3526,8 @@ void MachineList::loadCatverIni()
 						categoryMap.insert(token0, categoryNames[token1]);
 					} else if ( isVersion ) {
 						QString verStr = token1;
-						if ( verStr.startsWith(".") ) verStr.prepend("0");
+						if ( verStr.startsWith(".") )
+							verStr.prepend("0");
 						if ( !versionNames.contains(verStr) )
 							versionNames[verStr] = new QString(verStr);
 						versionMap.insert(token0, versionNames[verStr]);
@@ -3531,6 +3536,8 @@ void MachineList::loadCatverIni()
 			}
 		}
 		catverIniFile.close();
+		qmc2MainWindow->progressBarMachineList->setValue(qmc2MainWindow->progressBarMachineList->maximum());
+		qApp->processEvents();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open '%1' for reading -- no catver.ini data available").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString()));
 
