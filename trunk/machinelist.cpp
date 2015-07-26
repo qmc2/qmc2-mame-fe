@@ -3500,7 +3500,7 @@ void MachineList::loadCatverIni()
 		qmc2MainWindow->progressBarMachineList->setRange(0, catverIniFile.size());
 		QTextStream tsCatverIni(&catverIniFile);
 		bool isVersion = false, isCategory = false;
-		quint64 lineCounter = 0;
+		int lineCounter = 0;
 		while ( !tsCatverIni.atEnd() ) {
 			QString catverLine = tsCatverIni.readLine().simplified().trimmed();
 			if ( lineCounter++ % QMC2_CATVERINI_LOAD_RESPONSE == 0 ) {
