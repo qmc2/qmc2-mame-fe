@@ -4,10 +4,10 @@ REM #############################################################
 REM # !!! ADJUST THESE PATHS TO FIT YOUR LOCAL INSTALLATION !!! #
 REM #############################################################
 
-set QT_PATH=c:\Qt
-set QT_PATH_64=c:\Qt-64
-set QT_PATH_ESCAPED=c:\\Qt
-set QT_PATH_64_ESCAPED=c:\\Qt-64
+set QT_PATH=d:\Qt4
+set QT_PATH_64=d:\Qt4-64
+set QT_PATH_ESCAPED=d:\\Qt4
+set QT_PATH_64_ESCAPED=d:\\Qt4-64
 set PSAPI_LIB_PATH_64=c:\Program Files\Microsoft SDKs\Windows\v7.1\Lib\x64\Psapi.Lib
 set LIB_PATH_64=c:\Program Files\Microsoft SDKs\Windows\v7.1\Lib\x64
 set SVN_REV_COMMAND="c:\Program Files\TortoiseSVN\bin\SubWCRev.exe"

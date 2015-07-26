@@ -100,7 +100,11 @@ class Options : public QDialog, public Ui::Options
 		void apply();
 		void restoreCurrentConfig(bool useDefaultSettings = false);
 
+#if defined(QMC2_OS_MAC)
+		bool useNativeFileDialogs() { return config->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", true).toBool(); }
+#else
 		bool useNativeFileDialogs() { return config->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", false).toBool(); }
+#endif
 
 	public slots:
 		// callback functions

@@ -20,7 +20,11 @@ class Welcome : public QDialog, public Ui::Welcome
 		QString variant;
 
 		bool checkConfig();
+#if defined(QMC2_OS_MAC)
+		bool useNativeFileDialogs() { return startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", true).toBool(); }
+#else
 		bool useNativeFileDialogs() { return startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", false).toBool(); }
+#endif
 
 	public slots:
 		void on_pushButtonOkay_clicked();

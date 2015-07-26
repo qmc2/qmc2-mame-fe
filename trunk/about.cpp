@@ -51,6 +51,9 @@ About::About(QWidget *parent)
 #if QT_VERSION >= 0x050200 || (QT_VERSION >= 0x040806 && QT_VERSION < 0x050000)
 		case QSysInfo::MV_10_9: macVersion = tr("Mac OS X 10.9"); break;
 #endif
+#if QT_VERSION >= 0x050500 || (QT_VERSION >= 0x040807 && QT_VERSION < 0x050000)
+		case QSysInfo::MV_10_10: macVersion = tr("Mac OS X 10.10"); break;
+#endif
 		default: macVersion = tr("Mac OS X"); break;
 	}
 #elif defined(QMC2_OS_WIN)
@@ -66,6 +69,9 @@ About::About(QWidget *parent)
 #endif
 #if QT_VERSION >= 0x050200 || (QT_VERSION >= 0x040806 && QT_VERSION < 0x050000)
 		case QSysInfo::WV_6_3: winVersion = tr("Windows 8.1 (Windows 6.3)"); break;
+#endif
+#if QT_VERSION >= 0x050500 || (QT_VERSION >= 0x040807 && QT_VERSION < 0x050000)
+		case QSysInfo::WV_10_0: winVersion = tr("Windows 10 (Windows 10.0)"); break;
 #endif
 		default: winVersion = tr("Windows"); break;
 	}
