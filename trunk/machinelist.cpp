@@ -2109,6 +2109,7 @@ void MachineList::filter(bool initial)
 		}
 	} else {
 		QTreeWidgetItem *curItem = qmc2MainWindow->treeWidgetMachineList->currentItem();
+		QWidget *currentFocusWidget = qApp->focusWidget();
 		qmc2MainWindow->treeWidgetMachineList->setVisible(false);
 		// note: reset()'ing the tree-widget is essential to avoid an apparent Qt bug that slows down filtering under certain circumstances
 		qmc2MainWindow->treeWidgetMachineList->reset();
@@ -2152,6 +2153,8 @@ void MachineList::filter(bool initial)
 		qmc2MainWindow->labelLoadingMachineList->setVisible(false);
 		if ( curItem )
 			qmc2MainWindow->treeWidgetMachineList->setCurrentItem(curItem);
+		if ( currentFocusWidget )
+			currentFocusWidget->setFocus();
 	}
 	qmc2MainWindow->progressBarMachineList->setValue(itemCount - 1);
 	qmc2FilterActive = false;
