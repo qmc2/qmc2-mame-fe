@@ -3499,8 +3499,9 @@ void MachineList::loadCatverIni()
 	if ( catverIniFile.open(QFile::ReadOnly) ) {
 		qmc2MainWindow->progressBarMachineList->setRange(0, catverIniFile.size());
 		QTextStream tsCatverIni(&catverIniFile);
-		bool isVersion = false, isCategory = false;
+		bool categoryDone = false, versionDone = false;
 		int lineCounter = 0;
+		char catVerSwitch = 0;
 		while ( !tsCatverIni.atEnd() ) {
 			QString catverLine = tsCatverIni.readLine().simplified().trimmed();
 			if ( lineCounter++ % QMC2_CATVERINI_LOAD_RESPONSE == 0 ) {
@@ -3509,30 +3510,45 @@ void MachineList::loadCatverIni()
 			}
 			if ( catverLine.isEmpty() )
 				continue;
-			if ( catverLine.contains("[Category]") ) {
-				isCategory = true;
-				isVersion = false;
-			} else if ( catverLine.contains("[VerAdded]") ) {
-				isCategory = false;
-				isVersion = true;
-			} else {
-				QStringList tokens = catverLine.split("=");
-				if ( tokens.count() >= 2 ) {
-					QString token0 = tokens[0].trimmed();
-					QString token1 = tokens[1].trimmed();
-					if ( isCategory ) {
-						if ( !categoryNames.contains(token1) )
-							categoryNames[token1] = new QString(token1);
-						categoryMap.insert(token0, categoryNames[token1]);
-					} else if ( isVersion ) {
-						QString verStr = token1;
-						if ( verStr.startsWith(".") )
-							verStr.prepend("0");
-						if ( !versionNames.contains(verStr) )
-							versionNames[verStr] = new QString(verStr);
-						versionMap.insert(token0, versionNames[verStr]);
-					}
+			if ( !categoryDone && catVerSwitch != 1 ) {
+				if ( catverLine.indexOf("[Category]") >= 0 ) {
+					categoryDone = true;
+					catVerSwitch = 1;
 				}
+			}
+			if ( !versionDone && catVerSwitch != 2 ) {
+				if ( catverLine.indexOf("[VerAdded]") >= 0 ) {
+					versionDone = true;
+					catVerSwitch = 2;
+				}
+			}
+			switch ( catVerSwitch ) {
+				case 1: {	// category
+						QStringList tokens = catverLine.split("=");
+						if ( tokens.count() >= 2 ) {
+							QString token0 = tokens[0].trimmed();
+							QString token1 = tokens[1].trimmed();
+							if ( !categoryNames.contains(token1) )
+								categoryNames[token1] = new QString(token1);
+							categoryMap.insert(token0, categoryNames[token1]);
+						}
+					}
+					break;
+				case 2: {	// version
+						QStringList tokens = catverLine.split("=");
+						if ( tokens.count() >= 2 ) {
+							QString token0 = tokens[0].trimmed();
+							QString token1 = tokens[1].trimmed();
+							if ( token1.startsWith(".") )
+								token1.prepend("0");
+							if ( !versionNames.contains(token1) )
+								versionNames[token1] = new QString(token1);
+							versionMap.insert(token0, versionNames[token1]);
+						}
+					}
+					break;
+				default:
+					break;
 			}
 		}
 		catverIniFile.close();
