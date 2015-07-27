@@ -66,9 +66,9 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 #endif
 
 	// category and version maps
-	if ( !qmc2MachineList->categoryMap.isEmpty() )
+	if ( !qmc2MachineList->categoryHash.isEmpty() )
 		comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
-	if ( !qmc2MachineList->versionMap.isEmpty() )
+	if ( !qmc2MachineList->versionHash.isEmpty() )
 		comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
 
 	QString defaultPath, tmpString;
@@ -483,7 +483,7 @@ bool ArcadeModeSetup::isWritableFile(QString fileName)
 void ArcadeModeSetup::updateCategoryFilter()
 {
 	QStringList categoryNames;
-	foreach (QString *category, qmc2MachineList->categoryMap.values())
+	foreach (QString *category, qmc2MachineList->categoryHash.values())
 		if ( category )
 			categoryNames << *category;
 	categoryNames.removeAll(tr("System / Device"));
@@ -686,7 +686,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 				continue;
 
 		// category
-		if ( !qmc2MachineList->categoryMap.isEmpty() ) {
+		if ( !qmc2MachineList->categoryHash.isEmpty() ) {
 			QString category = gameItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
 			if ( excludedCategories.contains(category) )
 				continue;
