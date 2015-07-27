@@ -999,24 +999,20 @@ void MachineList::parseGameDetail(QTreeWidgetItem *item)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't find machine information for '%1'").arg(gameName));
 		return;
 	}
-
 	int gamePos = 1;
 	item->child(0)->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Updating"));
 	qmc2MainWindow->treeWidgetMachineList->viewport()->repaint();
 	qApp->processEvents();
-
 	QString element, content;
 	QStringList attributes, descriptions;
 	QTreeWidgetItem *childItem = NULL;
 	QList<QTreeWidgetItem *> itemList;
 
-	// game/machine element
 	attributes << "name" << "sourcefile" << "isbios" << "isdevice" << "runnable" << "cloneof" << "romof" << "sampleof";
 	descriptions << tr("Name") << tr("Source file") << tr("Is BIOS?") << tr("Is device?") << tr("Runnable") << tr("Clone of") << tr("ROM of") << tr("Sample of");
 	element = xmlLines.at(gamePos - 1).simplified();
 	insertAttributeItems(&itemList, element, attributes, descriptions, true);
-
-	QString endMark = "</machine>";
+	QString endMark("</machine>");
 
 	while ( !xmlLines[gamePos].contains(endMark) ) {
 		childItem = NULL;
@@ -2265,16 +2261,15 @@ QString MachineList::status()
 {
 	QLocale locale;
 	QString statusString = "<b>";
-	statusString += "<font color=\"black\">" + tr("L:") + QString(numGames > -1 ? locale.toString(numGames) : tr("?")) + "</font>\n";
-	statusString += "<font color=\"#00cc00\">" + tr("C:") + QString(numCorrectGames > -1 ? locale.toString(numCorrectGames) : tr("?")) + "</font>\n";
-	statusString += "<font color=\"#799632\">" + tr("M:") + QString(numMostlyCorrectGames > -1 ? locale.toString(numMostlyCorrectGames) : tr("?")) + "</font>\n";
-	statusString += "<font color=\"#f90000\">" + tr("I:") + QString(numIncorrectGames > -1 ? locale.toString(numIncorrectGames) : tr("?")) + "</font>\n";
-	statusString += "<font color=\"#7f7f7f\">" + tr("N:") + QString(numNotFoundGames > -1 ? locale.toString(numNotFoundGames) : tr("?")) + "</font>\n";
-	statusString += "<font color=\"#0000f9\">" + tr("U:") + QString(numUnknownGames > -1 ? locale.toString(numUnknownGames) : tr("?")) + "</font>\n";
-	statusString += "<font color=\"chocolate\">" + tr("S:") + QString(numSearchGames > -1 ? locale.toString(numSearchGames) : tr("?")) + "</font>\n";
+	statusString += "<font color=\"black\">" + tr("L:") + QString(numGames > -1 ? locale.toString(numGames) : tr("?")) + "</font> ";
+	statusString += "<font color=\"#00cc00\">" + tr("C:") + QString(numCorrectGames > -1 ? locale.toString(numCorrectGames) : tr("?")) + "</font> ";
+	statusString += "<font color=\"#799632\">" + tr("M:") + QString(numMostlyCorrectGames > -1 ? locale.toString(numMostlyCorrectGames) : tr("?")) + "</font> ";
+	statusString += "<font color=\"#f90000\">" + tr("I:") + QString(numIncorrectGames > -1 ? locale.toString(numIncorrectGames) : tr("?")) + "</font> ";
+	statusString += "<font color=\"#7f7f7f\">" + tr("N:") + QString(numNotFoundGames > -1 ? locale.toString(numNotFoundGames) : tr("?")) + "</font> ";
+	statusString += "<font color=\"#0000f9\">" + tr("U:") + QString(numUnknownGames > -1 ? locale.toString(numUnknownGames) : tr("?")) + "</font> ";
+	statusString += "<font color=\"chocolate\">" + tr("S:") + QString(numSearchGames > -1 ? locale.toString(numSearchGames) : tr("?")) + "</font> ";
 	statusString += "<font color=\"sandybrown\">" + tr("T:") + QString(numTaggedSets > -1 ? locale.toString(numTaggedSets) : tr("?")) + "</font>";
 	statusString += "</b>";
-
 	return statusString;
 }
 
