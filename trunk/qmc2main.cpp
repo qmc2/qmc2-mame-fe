@@ -11042,7 +11042,7 @@ int main(int argc, char *argv[])
 	// this hack ensures that we're using the bundled plugins rather than the ones from a Qt SDK installation
 	char exec_path[4096];
 	uint32_t exec_path_size = sizeof(exec_path);
-	f ( _NSGetExecutablePath(exec_path, &exec_path_size) == 0 ) {
+	if ( _NSGetExecutablePath(exec_path, &exec_path_size) == 0 ) {
 		QFileInfo fi(exec_path);
 		QCoreApplication::addLibraryPath(fi.absoluteDir().absolutePath() + "/../PlugIns");
 	}
