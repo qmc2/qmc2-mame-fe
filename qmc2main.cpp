@@ -34,9 +34,6 @@
 #include <QDesktopWidget>
 #include <QtWebKitWidgets/QWebFrame>
 #endif
-#if defined(QMC2_OS_MAC)
-#include <mach-o/dyld.h>
-#endif
 
 #include <algorithm> // std::sort()
 
@@ -97,11 +94,12 @@
 #include "fileiconprovider.h"
 #include "aspectratiolabel.h"
 
-#ifdef __APPLE__
+#if defined(QMC2_OS_MAC)
 #include <ApplicationServices/ApplicationServices.h>
 #if defined(verify) // verify() is #defined in AssertMacros.h on OS X
 #undef verify
 #endif
+#include <mach-o/dyld.h>
 #endif
 
 // global variables
