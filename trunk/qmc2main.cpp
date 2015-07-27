@@ -26,12 +26,16 @@
 #include <QtWebKit>
 #include <QNetworkAccessManager>
 #include <QSplashScreen>
+#include <QDir>
 #include <QTest>
 #include <QColorDialog>
 #if QT_VERSION >= 0x050000
 #include <QInputDialog>
 #include <QDesktopWidget>
 #include <QtWebKitWidgets/QWebFrame>
+#endif
+#if defined(QMC2_OS_MAC)
+#include <mach-o/dyld.h>
 #endif
 
 #include <algorithm> // std::sort()
@@ -11034,6 +11038,16 @@ void prepareShortcuts()
 
 int main(int argc, char *argv[])
 {
+#if defined(QMC2_OS_MAC)
+	// this hack ensures that we're using the bundled plugins rather than the ones from a Qt SDK installation
+	char exec_path[4096];
+	uint32_t exec_path_size = sizeof(exec_path);
+	f ( _NSGetExecutablePath(exec_path, &exec_path_size) == 0 ) {
+		QFileInfo fi(exec_path);
+		QCoreApplication::addLibraryPath(fi.absoluteDir().absolutePath() + "/../PlugIns");
+	}
+#endif
+
 	qsrand(QDateTime::currentDateTime().toTime_t());
 
 	// install message handler
