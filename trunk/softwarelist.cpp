@@ -3894,7 +3894,7 @@ QString SoftwareList::status(SoftwareListXmlHandler *handler)
 			statusString += "<font color=\"#f90000\">" + tr("I:") + locale.toString(numSoftwareIncorrect + handler->numIncorrect) + "</font> ";
 			statusString += "<font color=\"#7f7f7f\">" + tr("N:") + locale.toString(numSoftwareNotFound + handler->numNotFound) + "</font> ";
 			statusString += "<font color=\"#0000f9\">" + tr("U:") + locale.toString(numSoftwareUnknown + handler->numUnknown) + "</font> ";
-			statusString += "<font color=\"chocolate\">" + tr("S:") + locale.toString(numSoftwareMatches) + "</font> ";
+			statusString += "<font color=\"chocolate\">" + tr("S:") + locale.toString(numSoftwareMatches) + "</font>";
 		}
 	} else {
 		statusString += "<font color=black>" + tr("L:") + locale.toString(numSoftwareTotal) + "</font> ";
@@ -3904,7 +3904,7 @@ QString SoftwareList::status(SoftwareListXmlHandler *handler)
 			statusString += "<font color=\"#f90000\">" + tr("I:") + locale.toString(numSoftwareIncorrect) + "</font> ";
 			statusString += "<font color=\"#7f7f7f\">" + tr("N:") + locale.toString(numSoftwareNotFound) + "</font> ";
 			statusString += "<font color=\"#0000f9\">" + tr("U:") + locale.toString(numSoftwareUnknown) + "</font> ";
-			statusString += "<font color=\"chocolate\">" + tr("S:") + locale.toString(numSoftwareMatches) + "</font> ";
+			statusString += "<font color=\"chocolate\">" + tr("S:") + locale.toString(numSoftwareMatches) + "</font>";
 		}
 	}
 	statusString += "</b>";

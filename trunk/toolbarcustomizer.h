@@ -2,6 +2,7 @@
 #define _TOOLBARCUSTOMIZER_H_
 
 #include <QList>
+#include <QMap>
 #include <QAction>
 
 #include "ui_toolbarcustomizer.h"

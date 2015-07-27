@@ -6,6 +6,7 @@
 #include <QXmlDefaultHandler>
 #include <QIcon>
 #include <QHash>
+#include <QMap>
 
 #include "filesystemmodel.h"
 #include "ui_deviceconfigurator.h"

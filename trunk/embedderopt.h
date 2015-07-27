@@ -2,6 +2,7 @@
 #define _EMBEDDEROPT_H_
 
 #include <qglobal.h>
+#include <QMap>
 #include <QtGui>
 #include "macros.h"
 

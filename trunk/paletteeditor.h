@@ -1,7 +1,6 @@
 #ifndef _PALETTEEDITOR_H_
 #define _PALETTEEDITOR_H_
 
-#include <QMap>
 #include <QPalette>
 #include <QStringList>
 

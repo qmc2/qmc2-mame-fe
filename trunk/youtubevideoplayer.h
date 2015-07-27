@@ -7,6 +7,7 @@
 #include <QtGui>
 #include <QtXml>
 #include <QtNetwork>
+#include <QMap>
 #include <QDesktopWidget>
 #include <QPainterPath>
 #if QT_VERSION >= 0x050000
