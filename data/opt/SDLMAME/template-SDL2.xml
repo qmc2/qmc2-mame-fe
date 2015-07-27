@@ -1684,7 +1684,7 @@
 			<description lang="pt" text="Arquivo de mapeamento de teclado"/>
 			<description lang="es" text="Archivo de mapa de teclado"/>
 		</option>
-		<option default="SCRLOCK" default.Darwin="INSERT" name="uimodekey" type="combo">
+		<option default="SCRLOCK" default.Darwin="DEL" name="uimodekey" type="combo">
 			<description lang="us" text="Specifies the key used to toggle between full and partial UI mode"/>
 			<description lang="de" text="Gibt an, welche Taste für das Umschalten zwischen vollem und partiellem UI Modus verwendet wird"/>
 			<description lang="pl" text="Ustawia klawisz przełączający pomiędzy pełnym a częściowym trybem interfejsu użytkownika"/>
