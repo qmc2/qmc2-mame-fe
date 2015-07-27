@@ -148,7 +148,7 @@ void DemoModeDialog::updateCategoryFilter()
 #endif
 
 	QStringList categoryNames;
-	foreach (QString *category, qmc2MachineList->categoryMap.values())
+	foreach (QString *category, qmc2MachineList->categoryHash.values())
 		if ( category )
 			categoryNames << *category;
 	categoryNames.removeDuplicates();
@@ -241,13 +241,13 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 				if ( !nameFilter.isEmpty() )
 					if ( game.indexOf(nameFilterRegExp) < 0 )
 						continue;
-				QString *categoryPtr = qmc2MachineList->categoryMap[game];
+				QString *categoryPtr = qmc2MachineList->categoryHash[game];
 				QString category;
 				if ( categoryPtr )
 					category = *categoryPtr;
 				else
 					category = tr("?");
-				if ( qmc2MachineList->isDevice(game) || (!qmc2MachineList->categoryMap.isEmpty() && excludedCategories.contains(category)) )
+				if ( qmc2MachineList->isDevice(game) || (!qmc2MachineList->categoryHash.isEmpty() && excludedCategories.contains(category)) )
 					continue;
 				QTreeWidgetItem *gameItem = qmc2MachineListItemHash[game];
 				if ( !gameItem )

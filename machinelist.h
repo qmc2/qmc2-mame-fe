@@ -69,10 +69,10 @@ class MachineList : public QObject
 		QString xmlLineBuffer;
 		QHash<QString, QString> driverNameHash;
 		QHash<QString, char> gameStatusHash;
-		QMap<QString, QString *> categoryNames;
-		QMap<QString, QString *> categoryMap;
-		QMap<QString, QString *> versionNames;
-		QMap<QString, QString *> versionMap;
+		QHash<QString, QString *> categoryNames;
+		QHash<QString, QString *> categoryHash;
+		QHash<QString, QString *> versionNames;
+		QHash<QString, QString *> versionHash;
 		QTreeWidgetItem *checkedItem;
 		QHash<QString, bool> biosSets;
 		QHash<QString, bool> deviceSets;

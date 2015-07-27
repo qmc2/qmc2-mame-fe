@@ -208,9 +208,9 @@ MachineList::~MachineList()
 		verifyProc->kill();
 
 	clearCategoryNames();
-	categoryMap.clear();
+	categoryHash.clear();
 	clearVersionNames();
-	versionMap.clear();
+	versionHash.clear();
 
 	foreach (unzFile iconFile, qmc2IconFileMap)
 		unzClose(iconFile);
@@ -734,8 +734,8 @@ void MachineList::load()
 	}
 	qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "ListfullSha1", listfullSha1);
 
-	categoryMap.clear();
-	versionMap.clear();
+	categoryHash.clear();
+	versionHash.clear();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool() ) {
 		loadCatverIni();
 		mergeCategories = true;
@@ -1422,7 +1422,7 @@ void MachineList::parse()
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, gameSource);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(hasROMs) + int(hasCHDs) * 2]);
 					if ( useCatverIni ) {
-						QString *versionString = versionMap[gameName];
+						QString *versionString = versionHash[gameName];
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
 					}
 					switch ( gameStatusHash[gameName] ) {
@@ -1447,7 +1447,7 @@ void MachineList::parse()
 								gamePlayers = gameDrvStat = "N/A";
 							} else if ( showROMStatusIcons ) {
 								if ( useCategories ) {
-									QString *categoryString = categoryMap[gameName];
+									QString *categoryString = categoryHash[gameName];
 									machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 								}
 								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
@@ -1474,7 +1474,7 @@ void MachineList::parse()
 								gamePlayers = gameDrvStat = "N/A";
 							} else if ( showROMStatusIcons ) {
 								if ( useCategories ) {
-									QString *categoryString = categoryMap[gameName];
+									QString *categoryString = categoryHash[gameName];
 									machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 								}
 								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
@@ -1501,7 +1501,7 @@ void MachineList::parse()
 								gamePlayers = gameDrvStat = "N/A";
 							} else if ( showROMStatusIcons ) {
 								if ( useCategories ) {
-									QString *categoryString = categoryMap[gameName];
+									QString *categoryString = categoryHash[gameName];
 									machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 								}
 								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
@@ -1528,7 +1528,7 @@ void MachineList::parse()
 								gamePlayers = gameDrvStat = "N/A";
 							} else if ( showROMStatusIcons ) {
 								if ( useCategories ) {
-									QString *categoryString = categoryMap[gameName];
+									QString *categoryString = categoryHash[gameName];
 									machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 								}
 								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
@@ -1556,7 +1556,7 @@ void MachineList::parse()
 								gamePlayers = gameDrvStat = "N/A";
 							} else if ( showROMStatusIcons ) {
 								if ( useCategories ) {
-									QString *categoryString = categoryMap[gameName];
+									QString *categoryString = categoryHash[gameName];
 									machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 								}
 								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
@@ -1700,12 +1700,12 @@ void MachineList::parse()
 						else if ( isDevice )
 							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
 						else {
-							QString *categoryString = categoryMap[gameName];
+							QString *categoryString = categoryHash[gameName];
 							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 						}
 					}
 					if ( useCatverIni ) {
-						QString *versionString = versionMap[gameName];
+						QString *versionString = versionHash[gameName];
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
 					}
 					switch ( gameStatusHash[gameName] ) {
@@ -3261,7 +3261,7 @@ void MachineList::loadCategoryIni()
 {
 	if ( !mergeCategories ) {
 		clearCategoryNames();
-		categoryMap.clear();
+		categoryHash.clear();
 	}
 
 	QTime loadTimer, elapsedTime(0, 0, 0, 0);
@@ -3313,7 +3313,7 @@ void MachineList::loadCategoryIni()
 			} else if ( !categoryName.isEmpty() ) {
 				if ( !categoryNames.contains(categoryName) )
 					categoryNames[categoryName] = new QString(categoryName);
-				categoryMap.insert(categoryLine, categoryNames[categoryName]);
+				categoryHash.insert(categoryLine, categoryNames[categoryName]);
 				entryCounter++;
 			}
 		}
@@ -3477,9 +3477,9 @@ void MachineList::createCategoryView()
 void MachineList::loadCatverIni()
 {
 	clearCategoryNames();
-	categoryMap.clear();
+	categoryHash.clear();
 	clearVersionNames();
-	versionMap.clear();
+	versionHash.clear();
 
 	QTime loadTimer, elapsedTime(0, 0, 0, 0);
 	loadTimer.start();
@@ -3530,7 +3530,7 @@ void MachineList::loadCatverIni()
 							QString token1 = tokens[1].trimmed();
 							if ( !categoryNames.contains(token1) )
 								categoryNames[token1] = new QString(token1);
-							categoryMap.insert(token0, categoryNames[token1]);
+							categoryHash.insert(token0, categoryNames[token1]);
 						}
 					}
 					break;
@@ -3543,7 +3543,7 @@ void MachineList::loadCatverIni()
 								token1.prepend("0");
 							if ( !versionNames.contains(token1) )
 								versionNames[token1] = new QString(token1);
-							versionMap.insert(token0, versionNames[token1]);
+							versionHash.insert(token0, versionNames[token1]);
 						}
 					}
 					break;
@@ -3565,7 +3565,7 @@ void MachineList::loadCatverIni()
 
 	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading catver.ini, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%1 category / %2 version records loaded").arg(categoryMap.count()).arg(versionMap.count()));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%1 category / %2 version records loaded").arg(categoryHash.count()).arg(versionHash.count()));
 }
 
 void MachineList::createVersionView()
@@ -3597,7 +3597,7 @@ void MachineList::createVersionView()
 			qmc2MainWindow->progressBarMachineList->setFormat(tr("Version view - %p%"));
 		else
 			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-		qmc2MainWindow->progressBarMachineList->setRange(0, versionMap.count());
+		qmc2MainWindow->progressBarMachineList->setRange(0, versionHash.count());
 		qmc2MainWindow->progressBarMachineList->reset();
 		bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
 		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
