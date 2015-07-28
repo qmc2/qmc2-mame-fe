@@ -1386,10 +1386,7 @@ void MachineList::parse()
 						qmc2MainWindow->labelMachineListStatus->setText(status());
 						qApp->processEvents();
 					}
-					line = lines[l];
-					if ( line.startsWith("#") )
-						continue;
-					QStringList machineData = line.split("\t");
+					QStringList machineData = lines[l].split("\t");
 					QString machineName(machineData[QMC2_GLC_INDEX_NAME]);
 					QString machineCloneOf(machineData[QMC2_GLC_INDEX_CLONEOF]);
 					QString machinePlayers(machineData[QMC2_GLC_INDEX_PLAYERS]);
