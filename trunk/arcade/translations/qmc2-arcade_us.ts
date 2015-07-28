@@ -256,13 +256,6 @@
             <numerusform>%n machine info records imported</numerusform>
         </translation>
     </message>
-    <message numerus="yes">
-        <source>%n game info record(s) imported</source>
-        <translation type="obsolete">
-            <numerusform>%n game info record imported</numerusform>
-            <numerusform>%n game info records imported</numerusform>
-        </translation>
-    </message>
 </context>
 <context>
     <name>ImageProvider</name>
