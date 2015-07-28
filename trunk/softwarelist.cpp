@@ -3425,7 +3425,7 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 							while ( item->parent() )
 								item = item->parent();
 						}
-						swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(partItem->text(QMC2_SWLIST_COLUMN_NAME).split(": ", QString::SkipEmptyParts)[1]);
+						swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(partItem->text(QMC2_SWLIST_COLUMN_PART));
 						if ( softwareLists )
 							*softwareLists << item->text(QMC2_SWLIST_COLUMN_LIST);
 						if ( softwareNames )
