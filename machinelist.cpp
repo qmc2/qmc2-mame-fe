@@ -1378,10 +1378,8 @@ void MachineList::parse()
 			while ( (!tsMachineListCache.atEnd() || !readBuffer.isEmpty() ) && !qmc2StopParser ) {
 				readBuffer += tsMachineListCache.read(QMC2_FILE_BUFFER_SIZE);
 				bool endsWithNewLine = readBuffer.endsWith("\n");
-				QStringList lines = readBuffer.split("\n");
-				int lc = lines.count();
-				if ( !endsWithNewLine )
-					lc -= 1;
+				QStringList lines = readBuffer.split("\n", QString::SkipEmptyParts);
+				int lc = endsWithNewLine ? lines.count() : lines.count() - 1;
 				for (int l = 0; l < lc; l++) {
 					if ( numGames % qmc2MachineListResponsiveness == 0 ) {
 						qmc2MainWindow->progressBarMachineList->setValue(numGames);
@@ -1389,42 +1387,38 @@ void MachineList::parse()
 						qApp->processEvents();
 					}
 					line = lines[l];
-					if ( line.isEmpty() || line.startsWith("#") )
+					if ( line.startsWith("#") )
 						continue;
-					QStringList words = line.split("\t");
-					QString gameName(words[0]);
-					QString gameDescription(words[1]);
-					QString gameManufacturer(words[2]);
-					QString gameYear(words[3]);
-					QString gameCloneOf(words[4]);
-					QString gamePlayers(words[8]);
-					QString gameDrvStat(words[9]);
-					QString gameSource(words[11]);
-					int machineType = int(words[5] == "1") + int(words[10] == "1") * 2; // 0: normal, 1: BIOS, 2: device
+					QStringList machineData = line.split("\t");
+					QString machineName(machineData[QMC2_GLC_INDEX_NAME]);
+					QString machineCloneOf(machineData[QMC2_GLC_INDEX_CLONEOF]);
+					QString machinePlayers(machineData[QMC2_GLC_INDEX_PLAYERS]);
+					QString machineDrvStat(machineData[QMC2_GLC_INDEX_DRVSTAT]);
+					int machineType = int(machineData[QMC2_GLC_INDEX_ISBIOS] == "1") + int(machineData[QMC2_GLC_INDEX_ISDEVICE] == "1") * 2; // 0: normal, 1: BIOS, 2: device
 					MachineListItem *machineItem = new MachineListItem();
 					machineItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
 					machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-					if ( !gameCloneOf.isEmpty() )
-						qmc2HierarchyHash[gameCloneOf].append(gameName);
-					else if ( !qmc2HierarchyHash.contains(gameName) )
-						qmc2HierarchyHash.insert(gameName, QStringList());
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, gameDescription);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, gameYear);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, gameManufacturer);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_NAME, gameName);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, gameSource);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(words[6] == "1") + int(words[7] == "1") * 2]);
+					if ( machineCloneOf.isEmpty() )
+						qmc2HierarchyHash.insert(machineName, QStringList());
+					else
+						qmc2HierarchyHash[machineCloneOf].append(machineName);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, machineData[QMC2_GLC_INDEX_MACHINE]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, machineData[QMC2_GLC_INDEX_YEAR]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineData[QMC2_GLC_INDEX_MANU]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_NAME, machineName);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, machineData[QMC2_GLC_INDEX_SRCFILE]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(machineData[QMC2_GLC_INDEX_HASROM] == "1") + int(machineData[QMC2_GLC_INDEX_HASCHD] == "1") * 2]);
 					if ( useCatverIni ) {
-						QString *versionString = versionHash[gameName];
+						QString *versionString = versionHash[machineName];
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
 					}
-					switch ( gameStatusHash[gameName] ) {
+					switch ( gameStatusHash[machineName] ) {
 						case 'C': 
 							numCorrectGames++;
 							switch ( machineType ) {
 								case 0:
 									if ( useCategories ) {
-										QString *categoryString = categoryHash[gameName];
+										QString *categoryString = categoryHash[machineName];
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
@@ -1436,7 +1430,7 @@ void MachineList::parse()
 										hideList << machineItem;
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
-									biosSets.insert(gameName, true);
+									biosSets.insert(machineName, true);
 									break;
 								case 2:
 									if ( showROMStatusIcons )
@@ -1445,8 +1439,8 @@ void MachineList::parse()
 										hideList << machineItem;
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
-									deviceSets.insert(gameName, true);
-									gamePlayers = gameDrvStat = "N/A";
+									deviceSets.insert(machineName, true);
+									machinePlayers = machineDrvStat = "N/A";
 									break;
 							}
 							break;
@@ -1455,7 +1449,7 @@ void MachineList::parse()
 							switch ( machineType ) {
 								case 0:
 									if ( useCategories ) {
-										QString *categoryString = categoryHash[gameName];
+										QString *categoryString = categoryHash[machineName];
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
@@ -1467,7 +1461,7 @@ void MachineList::parse()
 										hideList << machineItem;
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
-									biosSets.insert(gameName, true);
+									biosSets.insert(machineName, true);
 									break;
 								case 2:
 									if ( showROMStatusIcons )
@@ -1476,8 +1470,8 @@ void MachineList::parse()
 										hideList << machineItem;
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
-									deviceSets.insert(gameName, true);
-									gamePlayers = gameDrvStat = "N/A";
+									deviceSets.insert(machineName, true);
+									machinePlayers = machineDrvStat = "N/A";
 									break;
 							}
 							break;
@@ -1486,7 +1480,7 @@ void MachineList::parse()
 							switch ( machineType ) {
 								case 0:
 									if ( useCategories ) {
-										QString *categoryString = categoryHash[gameName];
+										QString *categoryString = categoryHash[machineName];
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
@@ -1498,7 +1492,7 @@ void MachineList::parse()
 										hideList << machineItem;
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
-									biosSets.insert(gameName, true);
+									biosSets.insert(machineName, true);
 									break;
 								case 2:
 									if ( showROMStatusIcons )
@@ -1507,8 +1501,8 @@ void MachineList::parse()
 										hideList << machineItem;
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
-									deviceSets.insert(gameName, true);
-									gamePlayers = gameDrvStat = "N/A";
+									deviceSets.insert(machineName, true);
+									machinePlayers = machineDrvStat = "N/A";
 									break;
 							}
 							break;
@@ -1517,7 +1511,7 @@ void MachineList::parse()
 							switch ( machineType ) {
 								case 0:
 									if ( useCategories ) {
-										QString *categoryString = categoryHash[gameName];
+										QString *categoryString = categoryHash[machineName];
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
@@ -1529,7 +1523,7 @@ void MachineList::parse()
 										hideList << machineItem;
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
-									biosSets.insert(gameName, true);
+									biosSets.insert(machineName, true);
 									break;
 								case 2:
 									if ( showROMStatusIcons )
@@ -1538,19 +1532,18 @@ void MachineList::parse()
 										hideList << machineItem;
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
-									deviceSets.insert(gameName, true);
-									gamePlayers = gameDrvStat = "N/A";
+									deviceSets.insert(machineName, true);
+									machinePlayers = machineDrvStat = "N/A";
 									break;
 							}
 							break;
-						case 'U':
 						default:
 							numUnknownGames++;
-							gameStatusHash[gameName] = 'U';
+							gameStatusHash[machineName] = 'U';
 							switch ( machineType ) {
 								case 0:
 									if ( useCategories ) {
-										QString *categoryString = categoryHash[gameName];
+										QString *categoryString = categoryHash[machineName];
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
@@ -1562,7 +1555,7 @@ void MachineList::parse()
 										hideList << machineItem;
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
-									biosSets.insert(gameName, true);
+									biosSets.insert(machineName, true);
 									break;
 								case 2:
 									if ( showROMStatusIcons )
@@ -1571,19 +1564,19 @@ void MachineList::parse()
 										hideList << machineItem;
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
-									deviceSets.insert(gameName, true);
-									gamePlayers = gameDrvStat = "N/A";
+									deviceSets.insert(machineName, true);
+									machinePlayers = machineDrvStat = "N/A";
 									break;
 							}
 							break;
 					}
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, gamePlayers);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr(gameDrvStat.toUtf8().constData()));
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, machinePlayers);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr(machineDrvStat.toUtf8().constData()));
 					QTreeWidgetItem *nameItem = new QTreeWidgetItem(machineItem);
 					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
-					nameItem->setText(QMC2_MACHINELIST_COLUMN_ICON, gameName);
-					qmc2MachineListItemHash[gameName] = machineItem;
-					loadIcon(gameName, machineItem);
+					nameItem->setText(QMC2_MACHINELIST_COLUMN_ICON, machineName);
+					qmc2MachineListItemHash[machineName] = machineItem;
+					loadIcon(machineName, machineItem);
 					numGames++;
 					itemList << machineItem;
 				}
