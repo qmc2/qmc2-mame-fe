@@ -120,10 +120,6 @@
         <translation>informação de emulador</translation>
     </message>
     <message>
-        <source>game-info</source>
-        <translation type="obsolete">informação de jogo</translation>
-    </message>
-    <message>
         <location filename="../datinfodbmgr.cpp" line="488"/>
         <location filename="../datinfodbmgr.cpp" line="493"/>
         <location filename="../datinfodbmgr.cpp" line="500"/>
@@ -258,29 +254,6 @@
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
-        </translation>
-    </message>
-    <message>
-        <source>WARNING: missing &apos;$end&apos; in game info file %1</source>
-        <translation type="obsolete">AVISO: &apos;$end&apos; faltando no arquivo de informação de jogo %1</translation>
-    </message>
-    <message>
-        <source>WARNING: missing &apos;$bio&apos; in game info file %1</source>
-        <translation type="obsolete">AVISO: &apos;$bio&apos; faltando no arquivo de informação de jogo %1</translation>
-    </message>
-    <message>
-        <source>WARNING: missing &apos;$info&apos; in game info file %1</source>
-        <translation type="obsolete">AVISO: &apos;$info&apos; faltando no arquivo de informação de jogo %1</translation>
-    </message>
-    <message>
-        <source>WARNING: can&apos;t open game info file %1</source>
-        <translation type="obsolete">AVISO: não foi possível abrir arquivo de informação de jogo %1</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n game info record(s) imported</source>
-        <translation type="obsolete">
-            <numerusform>%n registro de informação de jogo importado</numerusform>
-            <numerusform>%n registros de informação de jogo importados</numerusform>
         </translation>
     </message>
 </context>
@@ -707,10 +680,6 @@
         <translation>[contexto] Selecionar / Definir / Alternar detalhes / Iniciar emulação</translation>
     </message>
     <message>
-        <source>[context] Abort game launch / Hide preferences</source>
-        <translation type="obsolete">[contexto] Abortar lançamento do jogo / esconder preferências</translation>
-    </message>
-    <message>
         <location filename="../keysequences.h" line="87"/>
         <source>[context] Zoom in / List top</source>
         <translation>[contexto] Mais zoom / Topo da lista</translation>
@@ -836,10 +805,6 @@
         <location filename="../keysequences.h" line="45"/>
         <source>[global] Toggle menu-bar</source>
         <translation>[global] Alternar barra de menu</translation>
-    </message>
-    <message>
-        <source>[global] Flip cabinet / game-card</source>
-        <translation type="obsolete">[global] Girar gabinete / cartão do jogo</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="95"/>
@@ -1076,10 +1041,6 @@
         <translation>Info do emulador</translation>
     </message>
     <message>
-        <source>Game info</source>
-        <translation type="obsolete">Info do jogo</translation>
-    </message>
-    <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="409"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="407"/>
         <source>Machine info</source>
@@ -1192,10 +1153,6 @@
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1160"/>
         <source>Machine list opacity</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Game list opacity</source>
-        <translation type="obsolete">Opacidade da lista de jogos</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1172"/>
@@ -1335,10 +1292,6 @@ terem efeito, por favor reinicie o Arcade do QMC2!</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>game list</source>
-        <translation type="obsolete">lista de jogos</translation>
-    </message>
-    <message>
         <location filename="../tweakedqmlappviewer.cpp" line="381"/>
         <source>Loading %1 from &apos;%2&apos;</source>
         <translation>Carregando %1 de &apos;%2&apos;</translation>
@@ -1380,10 +1333,6 @@ terem efeito, por favor reinicie o Arcade do QMC2!</translation>
         <location filename="../tweakedqmlappviewer.cpp" line="438"/>
         <source>Starting emulator #%1 for %2 ID &apos;%3&apos;</source>
         <translation>Iniciando emulador #%1 para %2 ID &apos;%3&apos;</translation>
-    </message>
-    <message>
-        <source>game</source>
-        <translation type="obsolete">jogo</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="462"/>
