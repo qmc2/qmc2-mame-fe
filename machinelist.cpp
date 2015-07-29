@@ -1397,7 +1397,7 @@ void MachineList::parse()
 					machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 					if ( machineCloneOf.isEmpty() )
 						qmc2HierarchyHash.insert(machineName, QStringList());
-					else
+					else if ( !qmc2HierarchyHash.contains(machineName) )
 						qmc2HierarchyHash[machineCloneOf].append(machineName);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, machineData[QMC2_GLC_INDEX_MACHINE]);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, machineData[QMC2_GLC_INDEX_YEAR]);
