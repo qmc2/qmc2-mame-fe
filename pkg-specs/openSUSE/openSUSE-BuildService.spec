@@ -1,6 +1,6 @@
 Name:           qmc2
-Version:        0.54
-Release:        2
+Version:        0.55
+Release:        1
 Summary:        M.A.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
 License:        GPL-2.0
@@ -131,6 +131,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/qchdman.6.gz
 
 %changelog
+* Wed Jul 29 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.55-1
+- updated spec to QMC2 0.55
+
 * Wed Jul 08 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.54-2
 - adjusted MAN_DIR
 
