@@ -900,7 +900,10 @@ void DeviceConfigurator::addNestedSlot(QString slotName, QStringList slotOptionN
 	QStringList slotOptionsShort;
 	int count = 0;
 	foreach (QString s, slotOptionNames) {
-		slotOptions << QString("%1 - %2").arg(s).arg(slotOptionDescriptions[count]);
+		if ( slotOptionDescriptions[count].isEmpty() )
+			slotOptions << s;
+		else
+			slotOptions << QString("%1 - %2").arg(s).arg(slotOptionDescriptions[count]);
 		slotOptionsShort << s;
 		nestedSlotOptionMap[slotName][s] = slotOptionDescriptions[count++];
 	}
@@ -1087,7 +1090,6 @@ bool DeviceConfigurator::refreshDeviceMap()
 			QMC2_PRINT_STRTXT(QString("DeviceConfigurator::refreshDeviceMap(): newSlot = %1").arg(newSlot));
 #endif
 			QStringList newSlotOptionDescriptions;
-			int subItemCount = 0;
 			foreach (QString newSlotOption, xmlHandler.newSlotOptions[newSlot]) {
 				QTreeWidgetItem *item = qmc2MachineListItemHash[xmlHandler.newSlotDevices[newSlotOption]];
 				if ( item ) {
@@ -1096,15 +1098,14 @@ bool DeviceConfigurator::refreshDeviceMap()
 					QMC2_PRINT_STRTXT(QString("DeviceConfigurator::refreshDeviceMap():     newSlotOption = %1 [%2], default = %3").arg(newSlotOption).arg(slotOptionDescription).arg(xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no"));
 #endif
 					newSlotOptionDescriptions << slotOptionDescription;
-					subItemCount++;
+				} else {
+#ifdef QMC2_DEBUG
+					QMC2_PRINT_STRTXT(QString("DeviceConfigurator::refreshDeviceMap():     newSlotOption = %1, default = %2").arg(newSlotOption).arg(xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no"));
+#endif
+					newSlotOptionDescriptions << QString();
 				}
 			}
-			if ( subItemCount > 0 )
-				addNestedSlot(newSlot, xmlHandler.newSlotOptions[newSlot], newSlotOptionDescriptions, xmlHandler.defaultSlotOptions[newSlot]);
-#ifdef QMC2_DEBUG
-			else
-				QMC2_PRINT_STRTXT(QString("DeviceConfigurator::refreshDeviceMap(): slot %1 ignored due to a non-existing nested device reference").arg(newSlot));
-#endif
+			addNestedSlot(newSlot, xmlHandler.newSlotOptions[newSlot], newSlotOptionDescriptions, xmlHandler.defaultSlotOptions[newSlot]);
 		}
 	}
 
