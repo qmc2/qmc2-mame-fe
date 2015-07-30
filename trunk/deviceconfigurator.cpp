@@ -1087,15 +1087,24 @@ bool DeviceConfigurator::refreshDeviceMap()
 			printf("DeviceConfigurator::refreshDeviceMap(): newSlot = %s\n", newSlot.toUtf8().constData());
 #endif
 			QStringList newSlotOptionDescriptions;
+			int subItemCount = 0;
 			foreach (QString newSlotOption, xmlHandler.newSlotOptions[newSlot]) {
-				QString slotOptionDescription = qmc2MachineListItemHash[xmlHandler.newSlotDevices[newSlotOption]]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
+				QTreeWidgetItem *item = qmc2MachineListItemHash[xmlHandler.newSlotDevices[newSlotOption]];
+				if ( item ) {
+					QString slotOptionDescription = item->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 #ifdef QMC2_DEBUG
-				printf("DeviceConfigurator::refreshDeviceMap():     newSlotOption = %s [%s], default = %s\n",
-				       newSlotOption.toUtf8().constData(), slotOptionDescription.toUtf8().constData(), xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no");
+					printf("DeviceConfigurator::refreshDeviceMap():     newSlotOption = %s [%s], default = %s\n", newSlotOption.toUtf8().constData(), slotOptionDescription.toUtf8().constData(), xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no");
 #endif
-				newSlotOptionDescriptions << slotOptionDescription;
+					newSlotOptionDescriptions << slotOptionDescription;
+					subItemCount++;
+				}
 			}
-			addNestedSlot(newSlot, xmlHandler.newSlotOptions[newSlot], newSlotOptionDescriptions, xmlHandler.defaultSlotOptions[newSlot]);
+			if ( subItemCount > 0 )
+				addNestedSlot(newSlot, xmlHandler.newSlotOptions[newSlot], newSlotOptionDescriptions, xmlHandler.defaultSlotOptions[newSlot]);
+#ifdef QMC2_DEBUG
+			else
+				printf("DeviceConfigurator::refreshDeviceMap(): slot %s ignored due to a non-existing nested device reference\n", newSlot.toUtf8().constData());
+#endif
 		}
 	}
 
