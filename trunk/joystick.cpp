@@ -81,7 +81,6 @@ bool Joystick::open(int stick)
 		jsIndex = stick;
 		return true;
 	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: couldn't open SDL joystick #%1").arg(stick));
 		jsIndex = -1;
 		return false;
 	}

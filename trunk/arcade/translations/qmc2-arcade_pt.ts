@@ -279,12 +279,7 @@
         <translation>Joystick SDL #%1 aberto: nome = %2, eixos = %3, botões = %4, hats = %5, trackballs = %6</translation>
     </message>
     <message>
-        <location filename="../joystick.cpp" line="71"/>
-        <source>ERROR: couldn&apos;t open SDL joystick #%1</source>
-        <translation>ERRO: não foi possível abrir o joystick do SDL #%1</translation>
-    </message>
-    <message>
-        <location filename="../joystick.cpp" line="82"/>
+        <location filename="../joystick.cpp" line="81"/>
         <source>SDL joystick #%1 closed</source>
         <translation>Joystick SDL #%1 fechado</translation>
     </message>

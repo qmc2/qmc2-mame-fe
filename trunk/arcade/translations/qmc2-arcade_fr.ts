@@ -279,12 +279,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../joystick.cpp" line="71"/>
-        <source>ERROR: couldn&apos;t open SDL joystick #%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../joystick.cpp" line="82"/>
+        <location filename="../joystick.cpp" line="81"/>
         <source>SDL joystick #%1 closed</source>
         <translation type="unfinished"></translation>
     </message>

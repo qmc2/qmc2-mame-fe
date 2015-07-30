@@ -68,7 +68,6 @@ bool Joystick::open(int stick)
         }
         return true;
     } else {
-        QMC2_ARCADE_LOG_STR(tr("ERROR: couldn't open SDL joystick #%1").arg(stick));
         jsIndex = -1;
         return false;
     }
