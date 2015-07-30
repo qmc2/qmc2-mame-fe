@@ -1258,8 +1258,6 @@ void DeviceConfigurator::updateSlotBiosSelections()
 			QString slotDeviceName = slotDeviceNames[slotOption];
 			QString defaultChoice;
 			QStringList biosChoices = qmc2MainWindow->getXmlChoices(slotDeviceName, "rom", "bios", &defaultChoice);
-			if ( !biosChoices.isEmpty() )
-				biosChoices.removeAt(0); // the very first choice is empty (this is *required* at another place)
 			QComboBox *cbBIOS = NULL;
 			bool isNewCB = false;
 			if ( item )
@@ -1281,6 +1279,7 @@ void DeviceConfigurator::updateSlotBiosSelections()
 				QStringList biosEntries;
 				int defaultIndex = -1;
 				int index = 0;
+				biosChoices.removeDuplicates();
 				foreach (QString biosChoice, biosChoices) {
 					if ( biosChoice == defaultChoice ) {
 						biosEntries << biosChoice + " / " + tr("default");
