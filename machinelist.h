@@ -68,7 +68,7 @@ class MachineList : public QObject
 		QStringList verifiedList;
 		QString xmlLineBuffer;
 		QHash<QString, QString> driverNameHash;
-		QHash<QString, char> gameStatusHash;
+		QHash<QString, char> machineStatusHash;
 		QHash<QString, QString *> categoryNames;
 		QHash<QString, QString *> categoryHash;
 		QHash<QString, QString *> versionNames;
