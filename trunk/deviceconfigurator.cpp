@@ -661,11 +661,9 @@ QString &DeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	if ( commandProcStarted && qmc2TempXml.open(QFile::ReadOnly) ) {
 		QTextStream ts(&qmc2TempXml);
 		slotXmlBuffer = ts.readAll();
-#if defined(QMC2_OS_WIN)
-		slotXmlBuffer.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
-#endif
 		qmc2TempXml.close();
 		qmc2TempXml.remove();
+		/*
 		if ( !slotXmlBuffer.isEmpty() ) {
 			QStringList xmlLines = slotXmlBuffer.split("\n");
 			qApp->processEvents();
@@ -689,6 +687,7 @@ QString &DeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 				}
 			}
 		}
+		*/
 	}
 
 	qmc2CriticalSection = false;
@@ -1068,7 +1067,7 @@ bool DeviceConfigurator::refreshDeviceMap()
 
 	QXmlInputSource xmlInputSource;
 	xmlInputSource.setData(xmlBuffer);
-	DeviceConfiguratorXmlHandler xmlHandler(treeWidgetDeviceSetup);
+	DeviceConfiguratorXmlHandler xmlHandler(treeWidgetDeviceSetup, currentMachineName);
 	QXmlSimpleReader xmlReader;
 	xmlReader.setContentHandler(&xmlHandler);
 	if ( !xmlReader.parse(xmlInputSource) ) {
@@ -1091,13 +1090,21 @@ bool DeviceConfigurator::refreshDeviceMap()
 #endif
 			QStringList newSlotOptionDescriptions;
 			foreach (QString newSlotOption, xmlHandler.newSlotOptions[newSlot]) {
-				QTreeWidgetItem *item = qmc2MachineListItemHash[xmlHandler.newSlotDevices[newSlotOption]];
+				QString xmlHandlerNewSlotOption = xmlHandler.newSlotDevices[newSlotOption];
+				QTreeWidgetItem *item = qmc2MachineListItemHash[xmlHandlerNewSlotOption];
 				if ( item ) {
 					QString slotOptionDescription = item->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 #ifdef QMC2_DEBUG
 					QMC2_PRINT_STRTXT(QString("DeviceConfigurator::refreshDeviceMap():     newSlotOption = %1 [%2], default = %3").arg(newSlotOption).arg(slotOptionDescription).arg(xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no"));
 #endif
 					newSlotOptionDescriptions << slotOptionDescription;
+				} else if ( xmlHandler.newDevices.contains(xmlHandlerNewSlotOption) ) {
+					QString slotOptionDescription = xmlHandler.newDevices[xmlHandlerNewSlotOption];
+#ifdef QMC2_DEBUG
+					QMC2_PRINT_STRTXT(QString("DeviceConfigurator::refreshDeviceMap():     newSlotOption = %1 [%2], default = %3").arg(newSlotOption).arg(slotOptionDescription).arg(xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no"));
+#endif
+					newSlotOptionDescriptions << slotOptionDescription;
+
 				} else {
 #ifdef QMC2_DEBUG
 					QMC2_PRINT_STRTXT(QString("DeviceConfigurator::refreshDeviceMap():     newSlotOption = %1, default = %2").arg(newSlotOption).arg(xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no"));
@@ -1387,7 +1394,7 @@ bool DeviceConfigurator::load()
   
 	QXmlInputSource xmlInputSource;
 	xmlInputSource.setData(xmlBuffer);
-	DeviceConfiguratorXmlHandler xmlHandler(treeWidgetDeviceSetup);
+	DeviceConfiguratorXmlHandler xmlHandler(treeWidgetDeviceSetup, currentMachineName);
 	QXmlSimpleReader xmlReader;
 	xmlReader.setContentHandler(&xmlHandler);
 	xmlReader.parse(xmlInputSource);
@@ -2660,39 +2667,53 @@ void DeviceConfigurator::on_splitterFileChooser_splitterMoved(int, int)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DeviceConfigurator/FileChooserSplitter", QSize(splitterFileChooser->sizes().at(0), splitterFileChooser->sizes().at(1)));
 }
 
-DeviceConfiguratorXmlHandler::DeviceConfiguratorXmlHandler(QTreeWidget *parent)
+DeviceConfiguratorXmlHandler::DeviceConfiguratorXmlHandler(QTreeWidget *parent, QString machineName)
 {
 	parentTreeWidget = parent;
+	currentMachineName = machineName;
+	isCurrentMachine = false;
 }
 
 bool DeviceConfiguratorXmlHandler::startElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName, const QXmlAttributes &attributes)
 {
-	if ( qName == "device" ) {
-		deviceType = attributes.value("type");
-		deviceTag = attributes.value("tag");
-		deviceInstances.clear();
-		deviceExtensions.clear();
-		deviceBriefName.clear();
-	} else if ( qName == "instance" ) {
-		deviceInstances << attributes.value("name");
-		deviceBriefName = attributes.value("briefname");
-	} else if ( qName == "extension" ) {
-		deviceExtensions << attributes.value("name");
-	} else if ( qName == "slot" ) {
-		slotName = attributes.value("name");
-		if ( DeviceConfigurator::systemSlotHash[qmc2DeviceConfigurator->currentMachineName]["QMC2_UNUSED_SLOTS"].contains(slotName) )
-			return true;
-		allSlots << slotName;
-		if ( !DeviceConfigurator::systemSlotHash[qmc2DeviceConfigurator->currentMachineName].contains(slotName) )
-			newSlots << slotName;
-	} else if ( qName == "slotoption" ) {
-		if ( !DeviceConfigurator::systemSlotHash[qmc2DeviceConfigurator->currentMachineName].contains(slotName) ) {
-			newSlotOptions[slotName] << attributes.value("name");
-			newSlotDevices[attributes.value("name")] = attributes.value("devname");
+	if ( qName == "machine" ) {
+		isCurrentMachine = (attributes.value("name") == currentMachineName);
+		if ( !isCurrentMachine && attributes.value("isdevice") == "yes" )
+			newDeviceName = attributes.value("name");
+		else
+			newDeviceName.clear();
+	}
+	if ( isCurrentMachine ) {
+		if ( qName == "device" ) {
+			deviceType = attributes.value("type");
+			deviceTag = attributes.value("tag");
+			deviceInstances.clear();
+			deviceExtensions.clear();
+			deviceBriefName.clear();
+		} else if ( qName == "instance" ) {
+			deviceInstances << attributes.value("name");
+			deviceBriefName = attributes.value("briefname");
+		} else if ( qName == "extension" ) {
+			deviceExtensions << attributes.value("name");
+		} else if ( qName == "slot" ) {
+			slotName = attributes.value("name");
+			if ( DeviceConfigurator::systemSlotHash[qmc2DeviceConfigurator->currentMachineName]["QMC2_UNUSED_SLOTS"].contains(slotName) )
+				return true;
+			allSlots << slotName;
+			if ( !DeviceConfigurator::systemSlotHash[qmc2DeviceConfigurator->currentMachineName].contains(slotName) )
+				newSlots << slotName;
+		} else if ( qName == "slotoption" ) {
+			if ( !DeviceConfigurator::systemSlotHash[qmc2DeviceConfigurator->currentMachineName].contains(slotName) ) {
+				newSlotOptions[slotName] << attributes.value("name");
+				newSlotDevices[attributes.value("name")] = attributes.value("devname");
+			}
+			slotDeviceNames[attributes.value("name")] = attributes.value("devname");
+			if ( attributes.value("default") == "yes" )
+				defaultSlotOptions[slotName] = attributes.value("name");
 		}
-		slotDeviceNames[attributes.value("name")] = attributes.value("devname");
-		if ( attributes.value("default") == "yes" )
-			defaultSlotOptions[slotName] = attributes.value("name");
+	} else {
+		if ( qName == "description" )
+			currentText.clear();
 	}
 
 	return true;
@@ -2700,28 +2721,36 @@ bool DeviceConfiguratorXmlHandler::startElement(const QString &/*namespaceURI*/,
 
 bool DeviceConfiguratorXmlHandler::endElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName)
 {
-	if ( qName == "device" ) {
-		foreach (QString instance, deviceInstances) {
-			if ( !instance.isEmpty() ) {
-				QTreeWidgetItem *deviceItem = new QTreeWidgetItem(parentTreeWidget);
-				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_NAME, instance);
-				if ( !deviceType.isEmpty() )
-					deviceItem->setIcon(QMC2_DEVCONFIG_COLUMN_NAME, DeviceConfigurator::deviceIconHash[deviceType]);
-				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_BRIEF, deviceBriefName);
-				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TYPE, deviceType);
-				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TAG, deviceTag);
-				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_EXT, deviceExtensions.join("/"));
-				parentTreeWidget->openPersistentEditor(deviceItem, QMC2_DEVCONFIG_COLUMN_FILE);
-				deviceItem->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, QString());
+	if ( isCurrentMachine ) {
+		if ( qName == "device" ) {
+			foreach (QString instance, deviceInstances) {
+				if ( !instance.isEmpty() ) {
+					QTreeWidgetItem *deviceItem = new QTreeWidgetItem(parentTreeWidget);
+					deviceItem->setText(QMC2_DEVCONFIG_COLUMN_NAME, instance);
+					if ( !deviceType.isEmpty() )
+						deviceItem->setIcon(QMC2_DEVCONFIG_COLUMN_NAME, DeviceConfigurator::deviceIconHash[deviceType]);
+					deviceItem->setText(QMC2_DEVCONFIG_COLUMN_BRIEF, deviceBriefName);
+					deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TYPE, deviceType);
+					deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TAG, deviceTag);
+					deviceItem->setText(QMC2_DEVCONFIG_COLUMN_EXT, deviceExtensions.join("/"));
+					parentTreeWidget->openPersistentEditor(deviceItem, QMC2_DEVCONFIG_COLUMN_FILE);
+					deviceItem->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, QString());
+				}
 			}
+		}
+	} else {
+		if ( qName == "description" ) {
+			if ( !newDeviceName.isEmpty() )
+				newDevices.insert(newDeviceName, currentText);
 		}
 	}
 
 	return true;
 }
 
-bool DeviceConfiguratorXmlHandler::characters(const QString &)
+bool DeviceConfiguratorXmlHandler::characters(const QString &text)
 {
+	currentText += text;
 	return true;
 }
 

@@ -48,8 +48,13 @@ class DeviceConfiguratorXmlHandler : public QXmlDefaultHandler
 		QMap<QString, QString> newSlotDevices;
 		QMap<QString, QString> slotDeviceNames;
 		QMap<QString, QString> defaultSlotOptions;
+		bool isCurrentMachine;
+		QString currentMachineName;
+		QString currentText;
+		QString newDeviceName;
+		QHash <QString, QString> newDevices;
 
-		DeviceConfiguratorXmlHandler(QTreeWidget *);
+		DeviceConfiguratorXmlHandler(QTreeWidget *, QString);
 
 		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
 		bool endElement(const QString &, const QString &, const QString &);
