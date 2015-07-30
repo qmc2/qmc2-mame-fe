@@ -40,10 +40,6 @@ ImageWidget::ImageWidget(QWidget *parent)
 	: QWidget(parent)
 #endif
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageWidget::ImageWidget(QWidget *parent = %1)").arg((qulonglong)parent));
-#endif
-
 	contextMenu = new QMenu(this);
 	contextMenu->hide();
 
@@ -106,10 +102,6 @@ ImageWidget::ImageWidget(QWidget *parent)
 
 ImageWidget::~ImageWidget()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageWidget::~ImageWidget()");
-#endif
-
 	if ( useZip() ) {
 		foreach (unzFile imageFile, imageFileMap)
 			unzClose(imageFile);
@@ -123,10 +115,6 @@ ImageWidget::~ImageWidget()
 
 void ImageWidget::reloadActiveFormats()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageWidget::reloadActiveFormats()");
-#endif
-
 	activeFormats.clear();
 	QStringList imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(cachePrefix()), QStringList()).toStringList();
 	if ( imgFmts.isEmpty() )
@@ -137,10 +125,6 @@ void ImageWidget::reloadActiveFormats()
 
 QString ImageWidget::cleanDir(QString dirs)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageWidget::cleanDir(QString dirs = %1)").arg(dirs));
-#endif
-
 	QStringList dirList;
 	foreach (QString dir, dirs.split(";", QString::SkipEmptyParts)) {
 		if ( !dir.endsWith("/") )
@@ -152,10 +136,6 @@ QString ImageWidget::cleanDir(QString dirs)
 
 void ImageWidget::paintEvent(QPaintEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageWidget::paintEvent(QPaintEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	QPainter p(this);
 
 	if ( !qmc2CurrentItem ) {
@@ -189,10 +169,6 @@ void ImageWidget::paintEvent(QPaintEvent *e)
 
 void ImageWidget::refresh()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageWidget::refresh()");
-#endif
-
 	if ( !cacheKey.isEmpty() ) {
 		qmc2ImagePixmapCache.remove(cacheKey);
 		update();
@@ -201,10 +177,6 @@ void ImageWidget::refresh()
 
 void ImageWidget::sevenZipDataReady()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageWidget::sevenZipDataReady()");
-#endif
-
 	update();
 	enableWidgets(true);
 }
@@ -259,10 +231,6 @@ void ImageWidget::enableWidgets(bool enable)
 
 bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly, QString *fileName, bool loadImages)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageWidget::loadImage(QString gameName = %1, QString onBehalfOf = %2, bool checkOnly = %3, QString *fileName = %4, bool loadImages = %5)").arg(gameName).arg(onBehalfOf).arg(checkOnly).arg((qulonglong)fileName).arg(loadImages));
-#endif
-
 	ImagePixmap pm;
 	char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
 
@@ -309,7 +277,9 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 
 				if ( !checkOnly ) {
 					if ( fileOk ) {
-						//printf("ZIP: Image loaded for %s\n", cacheKey.toUtf8().constData()); fflush(stdout);
+#if defined(QMC2_DEBUG)
+						QMC2_PRINT_STRTXT(QString("ZIP: Image loaded for %1").arg(cacheKey));
+#endif
 						qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 						currentPixmap = pm;
 					} else {
@@ -320,7 +290,9 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 							currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
 							if ( !qmc2RetryLoadingImages )
 								qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
-							//printf("ZIP: Using ghost image for %s\n", cacheKey.toUtf8().constData()); fflush(stdout);
+#if defined(QMC2_DEBUG)
+							QMC2_PRINT_STRTXT(QString("ZIP: Using ghost image for %1").arg(cacheKey));
+#endif
 						}
 					}
 				}
@@ -371,7 +343,9 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 
 				if ( !checkOnly ) {
 					if ( fileOk ) {
-						//printf("7z: Image loaded for %s\n", cacheKey.toUtf8().constData()); fflush(stdout);
+#if defined(QMC2_DEBUG)
+						QMC2_PRINT_STRTXT(QString("7z: Image loaded for %1").arg(cacheKey));
+#endif
 						qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 						currentPixmap = pm;
 					} else {
@@ -402,7 +376,9 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 								p.end();
 								enableWidgets(false);
 							}
-							//printf("7z: Using ghost image for %s%s\n", cacheKey.toUtf8().constData(), isFillingDictionary ? " (filling up dictionary)" : ""); fflush(stdout);
+#if defined(QMC2_DEBUG)
+							QMC2_PRINT_STRTXT(QString("7z: Using ghost image for %1%2").arg(cacheKey).arg(isFillingDictionary ? " (filling up dictionary)" : ""));
+#endif
 							if ( isFillingDictionary )
 								QTimer::singleShot(QMC2_IMG_7Z_DICT_FILL_DELAY, this, SLOT(update()));
 						}
@@ -458,7 +434,9 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 					} else {
 						if ( pm.load(imagePath, formatName.toUtf8().constData()) ) {
 							pm.imagePath = imagePath;
-							//printf("Folder: Image loaded for %s\n", cacheKey.toUtf8().constData()); fflush(stdout);
+#if defined(QMC2_DEBUG)
+							QMC2_PRINT_STRTXT(QString("Folder: Image loaded for %1").arg(cacheKey));
+#endif
 							qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 							currentPixmap = pm;
 							fileOk = true;
@@ -470,7 +448,9 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 								currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
 								if ( !qmc2RetryLoadingImages )
 									qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
-								//printf("Folder: Using ghost image for %s\n", cacheKey.toUtf8().constData()); fflush(stdout);
+#if defined(QMC2_DEBUG)
+								QMC2_PRINT_STRTXT(QString("Folder: Using ghost image for %1").arg(cacheKey));
+#endif
 								fileOk = false;
 							}
 						}
@@ -735,10 +715,6 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 
 void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageWidget::drawCenteredImage(QPixmap *pm = %1, QPainter *p = %2)").arg((qulonglong)pm).arg((qulonglong)p));
-#endif
-
 	p->eraseRect(rect());
 
 	if ( pm == NULL ) {
@@ -796,10 +772,6 @@ void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 
 void ImageWidget::drawScaledImage(QPixmap *pm, QPainter *p)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageWidget::drawScaledImage(QPixmap *pm = %1, QPainter *p = %2)").arg((qulonglong)pm).arg((qulonglong)p));
-#endif
-
 	if ( pm == NULL ) {
 		p->eraseRect(rect());
 		p->end();
@@ -841,30 +813,18 @@ void ImageWidget::drawScaledImage(QPixmap *pm, QPainter *p)
 
 void ImageWidget::copyToClipboard()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageWidget::copyToClipboard()");
-#endif
-
 	if ( !currentPixmap.isNull() )
 		qApp->clipboard()->setPixmap(currentPixmap);
 }
 
 void ImageWidget::copyPathToClipboard()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageWidget::copyPathToClipboard()");
-#endif
-
 	if ( !currentPixmap.imagePath.isEmpty() )
 		qApp->clipboard()->setText(currentPixmap.imagePath);
 }
 
 void ImageWidget::contextMenuEvent(QContextMenuEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageWidget::contextMenuEvent(QContextMenuEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	actionCopyPathToClipboard->setVisible(!currentPixmap.imagePath.isEmpty());
 	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
 	contextMenu->show();
