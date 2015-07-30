@@ -414,10 +414,10 @@ void MachineList::load()
 	qmc2StopParser = false;
 	machineStatusHash.clear();
 	qmc2MachineListItemHash.clear();
-	biosSets.clear();
-	deviceSets.clear();
 	qmc2HierarchyItemHash.clear();
 	qmc2ExpandedMachineListItems.clear();
+	biosSets.clear();
+	deviceSets.clear();
 	userDataDb()->clearRankCache();
 	userDataDb()->clearCommentCache();
 
@@ -1390,10 +1390,10 @@ void MachineList::parse()
 					qmc2MachineListItemHash.insert(machineName, machineItem);
 					machineItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
 					machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-					if ( machineCloneOf.isEmpty() )
-						qmc2HierarchyHash.insert(machineName, QStringList());
-					else if ( !qmc2HierarchyHash.contains(machineName) )
+					if ( !machineCloneOf.isEmpty() )
 						qmc2HierarchyHash[machineCloneOf].append(machineName);
+					else if ( !qmc2HierarchyHash.contains(machineName) )
+						qmc2HierarchyHash.insert(machineName, QStringList());
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, machineData[QMC2_GLC_INDEX_MACHINE]);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, machineData[QMC2_GLC_INDEX_YEAR]);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineData[QMC2_GLC_INDEX_MANU]);
@@ -1825,6 +1825,7 @@ void MachineList::parse()
 		if ( !baseItem )
 			continue;
 		MachineListItem *hierarchyItem = new MachineListItem();
+		qmc2HierarchyItemHash.insert(iValue, hierarchyItem);
 		if ( (!showBiosSets && isBios(iValue)) || (!showDeviceSets && isDevice(iValue)) )
 			hideList << hierarchyItem;
 		hierarchyItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
@@ -1844,7 +1845,6 @@ void MachineList::parse()
 		if ( showROMStatusIcons )
 			hierarchyItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->icon(QMC2_MACHINELIST_COLUMN_MACHINE));
 		hierarchyItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
-		qmc2HierarchyItemHash[iValue] = hierarchyItem;
 		// sub-items
 		for (int j = 0; j < i.value().count(); j++) {
 			if ( counter++ % qmc2MachineListResponsiveness == 0 ) {
@@ -1856,6 +1856,7 @@ void MachineList::parse()
 			if ( !baseItem )
 				continue;
 			MachineListItem *hierarchySubItem = new MachineListItem(hierarchyItem);
+			qmc2HierarchyItemHash.insert(jValue, hierarchySubItem);
 			if ( (!showBiosSets && isBios(jValue)) || (!showDeviceSets && isDevice(jValue)) )
 				hideList << hierarchySubItem;
 			hierarchySubItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
@@ -1891,7 +1892,6 @@ void MachineList::parse()
 				}
 			} else
 				hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
-			qmc2HierarchyItemHash[jValue] = hierarchySubItem;
 			qmc2ParentHash[jValue] = iValue;
 		}
 		itemList << hierarchyItem;
