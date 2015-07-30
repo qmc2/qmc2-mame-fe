@@ -864,7 +864,7 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 	args << systemName << swlArgs << "-listxml";
 
 #ifdef QMC2_DEBUG
-	printf("SoftwareList::getXmlDataWithEnabledSlots(): args = %s\n", args.join(" ").toUtf8().constData());
+	QMC2_PRINT_STRTXT(QString("SoftwareList::getXmlDataWithEnabledSlots(): args = %1").arg(args.join(" ")));
 #endif
 
 	bool commandProcStarted = false;
@@ -977,10 +977,10 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 			dynamicXmlData << line.trimmed();
 		xmlData = &dynamicXmlData;
 #ifdef QMC2_DEBUG
-		printf("SoftwareList::getXmlDataWithEnabledSlots(): XML data start\n");
+		QMC2_PRINT_STRTXT(QString("SoftwareList::getXmlDataWithEnabledSlots(): XML data start"));
 		foreach (QString line, dynamicXmlData)
-			printf("%s\n", line.toUtf8().constData());
-		printf("SoftwareList::getXmlDataWithEnabledSlots(): XML data end\n");
+			QMC2_PRINT_STRTXT(line);
+		QMC2_PRINT_STRTXT(QString("SoftwareList::getXmlDataWithEnabledSlots(): XML data end"));
 #endif
 	}
 
