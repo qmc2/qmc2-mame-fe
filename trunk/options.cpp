@@ -13,7 +13,6 @@
 #include <QBitArray>
 #include <QAction>
 #include <QPair>
-#include <QLocale>
 #include <QNetworkProxy>
 #include <QScrollBar>
 #include <QInputDialog>
