@@ -9129,6 +9129,7 @@ void MainWindow::on_actionCheckROMStateTagged_triggered(bool)
 
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
+	qmc2StopParser = false;
 	while ( it.hasNext() && !qmc2StopParser ) {
 		it.next();
 		item = qmc2MachineListItemHash[it.key()];
