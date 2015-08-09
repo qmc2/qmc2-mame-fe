@@ -10,6 +10,7 @@
 #include "macros.h"
 #include "qmc2main.h"
 #include "settings.h"
+#include "options.h"
 #include "machinelist.h"
 #include "userdatadbmgr.h"
 
@@ -26,7 +27,7 @@ UserDataDatabaseManager::UserDataDatabaseManager(QObject *parent)
 	: QObject(parent)
 {
 	setLogActive(true);
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString userScopePath = Options::configPath();
 	m_connectionName = QString("user-data-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
 	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UserDataDatabase", QString(userScopePath + "/%1-user-data.db").arg(QMC2_EMU_NAME.toLower())).toString());

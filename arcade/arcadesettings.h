@@ -28,6 +28,7 @@ public:
     QString joyFunctionMapBaseKey();
 #endif
     QString emulatorName();
+    static QString configPath();
 
 signals:
     

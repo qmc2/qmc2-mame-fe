@@ -10,12 +10,8 @@
 
 #include "welcome.h"
 #include "macros.h"
+#include "options.h"
 #include "cryptedbytearray.h"
-
-#ifdef QMC2_DEBUG
-#include "qmc2main.h"
-extern MainWindow *qmc2MainWindow;
-#endif
 
 // external global variables
 extern QTranslator *qmc2Translator;
@@ -216,7 +212,7 @@ bool Welcome::checkConfig()
 #if !defined(QMC2_OS_WIN)
 	QSettings::setPath(QSettings::IniFormat, QSettings::SystemScope, QMC2_SYSCONF_PATH);
 #endif
-	QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_DYNAMIC_DOT_PATH);
+	QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, Options::configPath());
 
 	startupConfig = new Settings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
 

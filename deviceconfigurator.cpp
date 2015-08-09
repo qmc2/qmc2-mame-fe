@@ -147,7 +147,7 @@ void DeviceItemDelegate::loadMidiInterfaces()
 	DeviceConfigurator::midiInInterfaces.clear();
 	DeviceConfigurator::midiOutInterfaces.clear();
 
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString userScopePath = Options::configPath();
 	QProcess commandProc;
 #if defined(QMC2_SDLMAME)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
@@ -563,7 +563,7 @@ QString &DeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	qmc2CriticalSection = true;
 	slotXmlBuffer.clear();
 
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString userScopePath = Options::configPath();
 	QProcess commandProc;
 #if defined(QMC2_SDLMAME)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
@@ -706,7 +706,7 @@ bool DeviceConfigurator::readSystemSlots()
 	QTime elapsedTime(0, 0, 0, 0);
 	QTime loadTimer;
 
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString userScopePath = Options::configPath();
 	QString slotInfoCachePath;
 	slotInfoCachePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString();
 

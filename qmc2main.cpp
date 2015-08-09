@@ -338,9 +338,9 @@ void MainWindow::log(char logTarget, QString message)
 			textBrowserFrontendLog->appendPlainText(message);
 			if ( !qmc2FrontendLogFile ) {
 #if defined(QMC2_SDLMAME)
-				QString defaultFrontendLogPath = QString(QMC2_DYNAMIC_DOT_PATH) + "/qmc2-sdlmame.log";
+				QString defaultFrontendLogPath = QString(Options::configPath()) + "/qmc2-sdlmame.log";
 #elif defined(QMC2_MAME)
-				QString defaultFrontendLogPath = QString(QMC2_DYNAMIC_DOT_PATH) + "/qmc2-mame.log";
+				QString defaultFrontendLogPath = QString(Options::configPath()) + "/qmc2-mame.log";
 #endif
 				if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", defaultFrontendLogPath).toString(), this)) == NULL ) {
 					qmc2LogFrontendMutex.unlock();
@@ -362,7 +362,7 @@ void MainWindow::log(char logTarget, QString message)
 		case QMC2_LOG_EMULATOR:
 			textBrowserEmulatorLog->appendPlainText(message);
 			if ( !qmc2EmulatorLogFile ) {
-				QString defaultEmuLogPath = QString(QMC2_DYNAMIC_DOT_PATH) + "/mame.log";
+				QString defaultEmuLogPath = QString(Options::configPath()) + "/mame.log";
 				if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/LogFile", defaultEmuLogPath).toString(), this)) == NULL ) {
 					qmc2LogEmulatorMutex.unlock();
 					return;
@@ -2692,7 +2692,7 @@ void MainWindow::on_actionClearROMStateCache_triggered(bool)
 		}
 	}
 
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString userScopePath = Options::configPath();
 	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString();
 
 	QFile f(fileName);
@@ -2722,7 +2722,7 @@ void MainWindow::on_actionClearMachineListCache_triggered(bool)
 		}
 	}
 
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString userScopePath = Options::configPath();
 	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/MachineListCacheFile", userScopePath + "/mame.glc").toString();
 
 	QFile f(fileName);
@@ -2764,7 +2764,7 @@ void MainWindow::on_actionClearSlotInfoCache_triggered(bool)
 		}
 	}
 
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString userScopePath = Options::configPath();
 	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString();
 
 	QFile f(fileName);

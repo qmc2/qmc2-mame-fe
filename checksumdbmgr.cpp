@@ -9,6 +9,7 @@
 
 #include "macros.h"
 #include "settings.h"
+#include "options.h"
 #include "checksumdbmgr.h"
 
 // external global variables
@@ -19,7 +20,7 @@ CheckSumDatabaseManager::CheckSumDatabaseManager(QObject *parent, QString settin
 {
 	m_settingsKey = settingsKey;
 	m_fileTypes << "ZIP" << "7Z" << "CHD" << "FILE";
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString userScopePath = Options::configPath();
 	m_connectionName = QString("checksum-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
 	QString variantName = QMC2_VARIANT_NAME.toLower().replace(QRegExp("\\..*$"), "");

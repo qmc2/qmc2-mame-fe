@@ -15,6 +15,7 @@
 #include "macros.h"
 #include "qmc2main.h"
 #include "settings.h"
+#include "options.h"
 #include "datinfodbmgr.h"
 
 // external global variables
@@ -26,7 +27,7 @@ extern QHash<QString, QString> softwareParentHash;
 DatInfoDatabaseManager::DatInfoDatabaseManager(QObject *parent)
 	: QObject(parent)
 {
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString userScopePath = Options::configPath();
 	m_connectionName = QString("dat-info-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
 	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/DatInfoDatabase", QString(userScopePath + "/%1-dat-info.db").arg(QMC2_EMU_NAME.toLower())).toString());

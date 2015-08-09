@@ -7,6 +7,7 @@
 #include "macros.h"
 #include "qmc2main.h"
 #include "settings.h"
+#include "options.h"
 #include "xmldbmgr.h"
 
 // external global variables
@@ -17,7 +18,7 @@ XmlDatabaseManager::XmlDatabaseManager(QObject *parent)
 	: QObject(parent)
 {
 	setLogActive(true);
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString userScopePath = Options::configPath();
 	m_connectionName = QString("xml-cache-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
 	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/XmlCacheDatabase", QString(userScopePath + "/%1-xml-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
