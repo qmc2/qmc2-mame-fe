@@ -105,6 +105,7 @@ class Options : public QDialog, public Ui::Options
 #else
 		bool useNativeFileDialogs() { return config->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", false).toBool(); }
 #endif
+		static QString configPath();
 
 	public slots:
 		// callback functions

@@ -401,7 +401,7 @@ void MachineList::enableWidgets(bool enable)
 
 void MachineList::load()
 {
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString userScopePath = Options::configPath();
 
 	QString gameName;
 	if ( qmc2CurrentItem && qmc2CurrentItem->child(0) )

@@ -6,6 +6,7 @@
 #include <QUuid>
 
 #include "settings.h"
+#include "options.h"
 #include "cookiejar.h"
 #include "qmc2main.h"
 #include "macros.h"
@@ -15,7 +16,7 @@ extern Settings *qmc2Config;
 
 CookieJar::CookieJar(QObject *parent) : QNetworkCookieJar(parent)
 {
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString userScopePath = Options::configPath();
 	db = QSqlDatabase::addDatabase("QSQLITE", "cookie-db-connection-" + QUuid::createUuid().toString());
 	db.setDatabaseName(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/CookieDatabase", userScopePath + "/qmc2-" + QMC2_EMU_NAME_VARIANT.toLower() + "-cookies.db").toString());
 	if ( !db.open() ) {

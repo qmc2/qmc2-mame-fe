@@ -104,7 +104,7 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	else
 		defaultPath.clear();
 	lineEditWorkingDirectory->setText(QMC2_QSETTINGS_CAST(qmc2Config)->value(QMC2_FRONTEND_PREFIX + "Arcade/WorkingDirectory", defaultPath).toString());
-	lineEditConfigurationPath->setText(QMC2_QSETTINGS_CAST(qmc2Config)->value(QMC2_FRONTEND_PREFIX + "Arcade/ConfigurationPath", QMC2_DYNAMIC_DOT_PATH).toString());
+	lineEditConfigurationPath->setText(QMC2_QSETTINGS_CAST(qmc2Config)->value(QMC2_FRONTEND_PREFIX + "Arcade/ConfigurationPath", Options::configPath()).toString());
 	index = comboBoxGraphicsSystem->findText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/GraphicsSystem", "raster").toString());
 	if ( index > 0 )
 		comboBoxGraphicsSystem->setCurrentIndex(index);

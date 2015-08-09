@@ -1,5 +1,6 @@
 #include <QtGui>
 #include <QApplication>
+#include <QDir>
 
 #include "mainwindow.h"
 #include "qchdmansettings.h"
@@ -19,7 +20,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName(QCHDMAN_ORG_NAME);
     QCoreApplication::setOrganizationDomain(QCHDMAN_ORG_DOMAIN);
     QCoreApplication::setApplicationName(QCHDMAN_APP_NAME);
-    QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QCHDMAN_DYN_DOT_PATH);
+
+    QDir cd(QCHDMAN_DYN_DOT_PATH);
+    cd.makeAbsolute();
+    QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, cd.absolutePath());
     globalConfig = new QtChdmanGuiSettings();
     globalConfig->setApplicationVersion(QCHDMAN_APP_VERSION);
 

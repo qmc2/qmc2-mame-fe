@@ -146,7 +146,7 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent, bool useAsPdfViewer)
 	}
 
 	// setup browser settings
-	webViewBrowser->page()->settings()->setIconDatabasePath(QMC2_DYNAMIC_DOT_PATH);
+	webViewBrowser->page()->settings()->setIconDatabasePath(Options::configPath());
 	webViewBrowser->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, true);
 #if defined(QMC2_BROWSER_JAVASCRIPT_ENABLED)
 	webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);

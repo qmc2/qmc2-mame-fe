@@ -6,6 +6,7 @@
 #include <QProcess>
 
 #include "settings.h"
+#include "options.h"
 #include "samplechecker.h"
 #include "machinelist.h"
 #include "qmc2main.h"
@@ -233,7 +234,7 @@ void SampleChecker::verify()
 	progressBar->setFormat(tr("Checking sample status"));
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("check pass 1: checking sample status"));
   
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString userScopePath = Options::configPath();
 	QString emuWorkDir = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString();
 	for (int i = 0; i < sampleSets.count() && !qmc2StopParser; i++) {
 		progressBar->setValue(i + 1);

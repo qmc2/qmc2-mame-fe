@@ -73,6 +73,13 @@ QString ArcadeSettings::emulatorName()
     }
 }
 
+QString ArcadeSettings::configPath()
+{
+    QDir cd(QMC2_ARCADE_DYN_DOT_PATH);
+    cd.makeAbsolute();
+    return cd.absolutePath();
+}
+
 void ArcadeSettings::setApplicationVersion(QString version)
 {
     setValue("Arcade/Version", version);
@@ -807,7 +814,7 @@ int ArcadeSettings::joystickSensitivity(int joystickIndex, int axis)
 
 QString ArcadeSettings::datInfoDatabaseName()
 {
-    return value(QString("%1/FilesAndDirectories/DatInfoDatabase").arg(emulatorName().toLower()), QString(QMC2_ARCADE_DYN_DOT_PATH + "/%1-dat-info.db").arg(emulatorPrefix)).toString();
+    return value(QString("%1/FilesAndDirectories/DatInfoDatabase").arg(emulatorName().toLower()), QString(configPath() + "/%1-dat-info.db").arg(emulatorPrefix)).toString();
 }
 
 QStringList ArcadeSettings::softwareInfoImportFiles()

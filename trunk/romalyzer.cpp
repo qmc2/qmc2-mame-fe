@@ -529,7 +529,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 
 	static bool initialCall = true;
 
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString userScopePath = Options::configPath();
 	QString variantName = QMC2_VARIANT_NAME.toLower().replace(QRegExp("\\..*$"), "");
 
 	// restore settings

@@ -229,7 +229,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName(QMC2_ARCADE_ORG_NAME);
     QCoreApplication::setOrganizationDomain(QMC2_ARCADE_ORG_DOMAIN);
     QCoreApplication::setApplicationName(QMC2_ARCADE_APP_NAME);
-    QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_ARCADE_DYN_DOT_PATH);
+    QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, ArcadeSettings::configPath());
 
 #if QT_VERSION < 0x050000
     globalConfig = new ArcadeSettings;
