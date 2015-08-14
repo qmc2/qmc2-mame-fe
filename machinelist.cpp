@@ -126,6 +126,7 @@ MachineList::MachineList(QObject *parent)
 	checkedItem = NULL;
 	emulatorVersion = tr("unknown");
 	mergeCategories = autoRomCheck = verifyCurrentOnly = dtdBufferReady = false;
+	initialLoad = true;
 
 	qmc2UnknownImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_blue.png"));
 	qmc2UnknownBIOSImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_blue_bios.png"));
@@ -402,8 +403,6 @@ void MachineList::enableWidgets(bool enable)
 
 void MachineList::load()
 {
-	static bool isInitial = true;
-
 	QString userScopePath = Options::configPath();
 
 	QString gameName;
@@ -774,11 +773,11 @@ void MachineList::load()
 		loadFavorites();
 		loadPlayHistory();
 
-		if ( isInitial ) {
+		if ( initialLoad ) {
 			QTime startupTime(0, 0, 0, 0);
 			startupTime = startupTime.addMSecs(qmc2StartupTimer.elapsed());
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("total start-up time: %1").arg(startupTime.toString("mm:ss.zzz")));
-			isInitial = false;
+			initialLoad = false;
 		}
 
 		// show game list / hide loading animation
@@ -2293,8 +2292,6 @@ void MachineList::loadStarted()
 
 void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-	static bool isInitial = true;
-
 	bool invalidateListXmlCache = false;
 	if ( exitStatus != QProcess::NormalExit && !qmc2StopParser ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: emulator audit call didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))));
@@ -2326,11 +2323,11 @@ void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	loadFavorites();
 	loadPlayHistory();
 
-	if ( isInitial ) {
+	if ( initialLoad ) {
 		QTime startupTime(0, 0, 0, 0);
 		startupTime = startupTime.addMSecs(qmc2StartupTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("total start-up time: %1").arg(startupTime.toString("mm:ss.zzz")));
-		isInitial = false;
+		initialLoad = false;
 	}
 
 	// show game list / hide loading animation

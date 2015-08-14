@@ -35,6 +35,7 @@ class MachineList : public QObject
 		bool autoRomCheck;
 		bool mergeCategories;
 		bool dtdBufferReady;
+		bool initialLoad;
 		char oldRomState;
 		QIcon qmc2UnknownImageIcon;
 		QIcon qmc2UnknownBIOSImageIcon;
