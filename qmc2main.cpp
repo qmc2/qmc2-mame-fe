@@ -275,6 +275,7 @@ bool qmc2CategoryInfoUsed = false;
 bool qmc2VersionInfoUsed = false;
 bool qmc2TemplateCheck = false;
 QMap<QWidget *, Qt::WindowStates> qmc2AutoMinimizedWidgets;
+QTime qmc2StartupTimer;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -11150,6 +11151,7 @@ int main(int argc, char *argv[])
 			   ", " + QObject::tr("SVN r%1").arg(QMC2_SVN_REV) +
 #endif
 			   " (Qt " + qVersion() + ", " + QMC2_EMU_NAME_VARIANT + ", " + qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString() + ")";
+	qmc2StartupTimer.start();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, greeting);
 
 #if QMC2_OPENGL == 1

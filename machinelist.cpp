@@ -108,6 +108,7 @@ extern QList<QTreeWidgetItem *> qmc2ExpandedMachineListItems;
 extern MachineList *qmc2MachineList;
 extern bool qmc2TemplateCheck;
 extern bool qmc2ParentImageFallback;
+extern QTime qmc2StartupTimer;
 
 QStringList MachineList::phraseTranslatorList;
 QStringList MachineList::romTypeNames;
@@ -401,6 +402,8 @@ void MachineList::enableWidgets(bool enable)
 
 void MachineList::load()
 {
+	static bool isInitial = true;
+
 	QString userScopePath = Options::configPath();
 
 	QString gameName;
@@ -770,6 +773,13 @@ void MachineList::load()
 		parse();
 		loadFavorites();
 		loadPlayHistory();
+
+		if ( isInitial ) {
+			QTime startupTime(0, 0, 0, 0);
+			startupTime = startupTime.addMSecs(qmc2StartupTimer.elapsed());
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("total start-up time: %1").arg(startupTime.toString("mm:ss.zzz")));
+			isInitial = false;
+		}
 
 		// show game list / hide loading animation
 		qmc2MainWindow->loadAnimMovie->setPaused(true);
@@ -2283,6 +2293,8 @@ void MachineList::loadStarted()
 
 void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
+	static bool isInitial = true;
+
 	bool invalidateListXmlCache = false;
 	if ( exitStatus != QProcess::NormalExit && !qmc2StopParser ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: emulator audit call didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))));
@@ -2313,6 +2325,13 @@ void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
   	QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 	loadFavorites();
 	loadPlayHistory();
+
+	if ( isInitial ) {
+		QTime startupTime(0, 0, 0, 0);
+		startupTime = startupTime.addMSecs(qmc2StartupTimer.elapsed());
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("total start-up time: %1").arg(startupTime.toString("mm:ss.zzz")));
+		isInitial = false;
+	}
 
 	// show game list / hide loading animation
 	qmc2MainWindow->loadAnimMovie->setPaused(true);
