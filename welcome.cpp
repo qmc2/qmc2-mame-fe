@@ -18,7 +18,7 @@ extern QTranslator *qmc2Translator;
 extern QTranslator *qmc2QtTranslator;
 
 Welcome::Welcome(QWidget *parent)
-  : QDialog(parent)
+	: QDialog(parent)
 {
 	availableLanguages << "de" << "es" << "el" << "fr" << "it" << "pl" << "pt" << "ro" << "sv" << "us";
 	checkOkay = false;
