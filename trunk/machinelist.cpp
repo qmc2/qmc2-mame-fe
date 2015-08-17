@@ -1976,8 +1976,10 @@ void MachineList::parse()
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
 					qmc2MainWindow->treeWidgetMachineList->setCurrentItem(glItem);
 					QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
-				}
-			}
+				} else
+					QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
+			} else
+				QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 		}
 	} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
 		QString selectedGame = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
@@ -1987,8 +1989,10 @@ void MachineList::parse()
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
 				qmc2MainWindow->treeWidgetMachineList->setCurrentItem(glItem);
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
-			}
-		}
+			} else
+				QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
+		} else
+			QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 	}
 	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 	qmc2MainWindow->labelMachineListStatus->setText(status());
