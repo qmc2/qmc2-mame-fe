@@ -1993,7 +1993,8 @@ void MachineList::parse()
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 		} else
 			QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
-	}
+	} else
+		QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
