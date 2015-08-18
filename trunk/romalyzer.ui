@@ -355,7 +355,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-192</y>
+            <y>0</y>
             <width>617</width>
             <height>768</height>
            </rect>
@@ -2001,7 +2001,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>79</x>
-     <y>584</y>
+     <y>520</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
@@ -2016,12 +2016,12 @@
    <slot>animateClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>38</x>
-     <y>545</y>
+     <x>30</x>
+     <y>86</y>
     </hint>
     <hint type="destinationlabel">
-     <x>486</x>
-     <y>545</y>
+     <x>52</x>
+     <y>86</y>
     </hint>
    </hints>
   </connection>
@@ -2036,7 +2036,7 @@
      <y>18</y>
     </hint>
     <hint type="destinationlabel">
-     <x>571</x>
+     <x>559</x>
      <y>29</y>
     </hint>
    </hints>
@@ -2048,12 +2048,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>278</x>
-     <y>133</y>
+     <x>111</x>
+     <y>94</y>
     </hint>
     <hint type="destinationlabel">
-     <x>278</x>
-     <y>159</y>
+     <x>111</x>
+     <y>94</y>
     </hint>
    </hints>
   </connection>
@@ -2064,12 +2064,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>90</x>
-     <y>454</y>
+     <x>95</x>
+     <y>406</y>
     </hint>
     <hint type="destinationlabel">
-     <x>89</x>
-     <y>486</y>
+     <x>94</x>
+     <y>406</y>
     </hint>
    </hints>
   </connection>
@@ -2080,12 +2080,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>221</x>
-     <y>448</y>
+     <x>111</x>
+     <y>406</y>
     </hint>
     <hint type="destinationlabel">
-     <x>262</x>
-     <y>475</y>
+     <x>111</x>
+     <y>406</y>
     </hint>
    </hints>
   </connection>
@@ -2096,12 +2096,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>123</x>
-     <y>238</y>
+     <x>111</x>
+     <y>94</y>
     </hint>
     <hint type="destinationlabel">
-     <x>292</x>
-     <y>240</y>
+     <x>111</x>
+     <y>94</y>
     </hint>
    </hints>
   </connection>
@@ -2112,12 +2112,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>125</x>
-     <y>238</y>
+     <x>111</x>
+     <y>94</y>
     </hint>
     <hint type="destinationlabel">
-     <x>666</x>
-     <y>240</y>
+     <x>111</x>
+     <y>94</y>
     </hint>
    </hints>
   </connection>
@@ -2128,12 +2128,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>404</x>
-     <y>483</y>
+     <x>111</x>
+     <y>406</y>
     </hint>
     <hint type="destinationlabel">
-     <x>513</x>
-     <y>485</y>
+     <x>111</x>
+     <y>406</y>
     </hint>
    </hints>
   </connection>
@@ -2144,12 +2144,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>404</x>
-     <y>483</y>
+     <x>111</x>
+     <y>406</y>
     </hint>
     <hint type="destinationlabel">
-     <x>667</x>
-     <y>485</y>
+     <x>111</x>
+     <y>406</y>
     </hint>
    </hints>
   </connection>
@@ -2160,8 +2160,8 @@
    <slot>animateClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>220</x>
-     <y>16</y>
+     <x>219</x>
+     <y>21</y>
     </hint>
     <hint type="destinationlabel">
      <x>553</x>
@@ -2176,12 +2176,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>212</x>
-     <y>435</y>
+     <x>111</x>
+     <y>406</y>
     </hint>
     <hint type="destinationlabel">
-     <x>233</x>
-     <y>486</y>
+     <x>111</x>
+     <y>406</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEditChecksumWizardHash</sender>
+   <signal>returnPressed()</signal>
+   <receiver>pushButtonChecksumWizardSearch</receiver>
+   <slot>animateClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>265</x>
+     <y>72</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>571</x>
+     <y>81</y>
     </hint>
    </hints>
   </connection>
