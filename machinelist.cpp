@@ -3511,7 +3511,7 @@ void MachineList::loadCatverIni()
 		int lineCounter = 0;
 		char catVerSwitch = 0;
 		while ( !tsCatverIni.atEnd() ) {
-			QString catverLine = tsCatverIni.readLine().simplified().trimmed();
+			QString catverLine = tsCatverIni.readLine();
 			if ( lineCounter++ % QMC2_CATVERINI_LOAD_RESPONSE == 0 ) {
 				qmc2MainWindow->progressBarMachineList->setValue(catverIniFile.pos());
 				qApp->processEvents();
