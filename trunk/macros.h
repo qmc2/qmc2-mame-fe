@@ -449,7 +449,7 @@
 #define QMC2_YOUTUBE_VIDEO_INFO_RSP		50
 
 // responsiveness while loading catver.ini
-#define QMC2_CATVERINI_LOAD_RESPONSE		5000
+#define QMC2_CATVERINI_LOAD_RESPONSE		15000
 
 // delay in milliseconds before an automatic ROM check gets triggered
 #define QMC2_AUTOROMCHECK_DELAY			250
