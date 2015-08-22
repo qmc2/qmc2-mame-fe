@@ -1908,6 +1908,7 @@ void MachineList::parse()
 		}
 		itemList << hierarchyItem;
 	}
+	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
 	qmc2MainWindow->treeWidgetHierarchy->addTopLevelItems(itemList);
 	if ( loadedFromCache ) {
 		gameDataCacheElapsedTime = gameDataCacheElapsedTime.addMSecs(miscTimer.elapsed());
@@ -1958,11 +1959,7 @@ void MachineList::parse()
 			break;
 	}
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
-	// final update of progress bar and machine list stats
 	qmc2MainWindow->progressBarMachineList->setValue(qmc2MainWindow->progressBarMachineList->maximum());
-	// sort the master-list
-	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
-	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
 	if ( !qmc2MachineList->userDataDb()->rankCacheComplete() )
 		qmc2MachineList->userDataDb()->fillUpRankCache();
 	qmc2MainWindow->treeWidgetMachineList->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
@@ -2001,11 +1998,9 @@ void MachineList::parse()
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
-
 	processMachineListElapsedTimer = processMachineListElapsedTimer.addMSecs(parseTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (processing machine list, elapsed time = %1)").arg(processMachineListElapsedTimer.toString("mm:ss.zzz")));
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n machine(s)", "", numTotalGames - biosSets.count()) + tr(", %n BIOS set(s)", "", biosSets.count()) + tr(" and %n device(s) loaded", "", deviceSets.count()));
-
 	if ( numGames - deviceSets.count() != numTotalGames ) {
 		if ( reparseMachineList && qmc2StopParser ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: machine list not fully parsed, invalidating machine list cache"));
@@ -2025,10 +2020,7 @@ void MachineList::parse()
 	QString sU = numUnknownGames >= 0 ? QString::number(numUnknownGames) : tr("?");
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(sL).arg(sC).arg(sM).arg(sI).arg(sN).arg(sU));
 	qmc2MainWindow->progressBarMachineList->reset();
-
-	qmc2ReloadActive = false;
-	qmc2StartingUp = false;
-
+	qmc2ReloadActive = qmc2StartingUp = false;
 	if ( qmc2StopParser ) {
 		if ( loadProc )
 			loadProc->kill();
@@ -2042,14 +2034,11 @@ void MachineList::parse()
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ROM state cache is incomplete or not up to date, please re-check ROMs"));
 		}
 	}
-
 	verifyCurrentOnly = false;
-
 	if ( autoRomCheck )
 		QTimer::singleShot(QMC2_AUTOROMCHECK_DELAY, qmc2MainWindow->actionCheckROMs, SLOT(trigger()));
 	else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool() && !qmc2StopParser )
 		filter(true);
-
 	enableWidgets(true);
 }
 
@@ -2059,17 +2048,14 @@ void MachineList::filter(bool initial)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state filter already active"));
 		return;
 	}
-
 	if ( qmc2VerifyActive ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
 		return;
 	}
-
 	if ( qmc2ReloadActive ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
 		return;
 	}
-
 	bool showC = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowCorrect", true).toBool();
 	bool showM = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowMostlyCorrect", true).toBool();
 	bool showI = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowIncorrect", true).toBool();
@@ -2077,12 +2063,10 @@ void MachineList::filter(bool initial)
 	bool showU = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowUnknown", true).toBool();
 	bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
 	bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
-
 	if ( initial && showC && showM && showI && showN && showU && showDeviceSets && showBiosSets ) {
 		qmc2StatesTogglesEnabled = true;
 		return;
 	}
-
 	QTime elapsedTime(0, 0, 0, 0);
 	qmc2StopParser = false;
 	parseTimer.start();
@@ -2183,7 +2167,6 @@ void MachineList::filter(bool initial)
 void MachineList::loadFavorites()
 {
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading favorites"));
-
 	qmc2MainWindow->listWidgetFavorites->clear();
 	QFile f(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FavoritesFile").toString());
 	if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
@@ -2203,7 +2186,6 @@ void MachineList::loadFavorites()
 		}
 		f.close();
 	}
-
 	qmc2MainWindow->listWidgetFavorites->sortItems();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading favorites)"));
 	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabFavorites) == qmc2MainWindow->tabWidgetMachineList->currentIndex() )
@@ -2215,7 +2197,6 @@ void MachineList::loadFavorites()
 void MachineList::saveFavorites()
 {
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("saving favorites"));
-
 	QFile f(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FavoritesFile").toString());
 	if ( f.open(QIODevice::WriteOnly | QIODevice::Text) ) {
 		QTextStream ts(&f);
@@ -2224,14 +2205,12 @@ void MachineList::saveFavorites()
 		f.close();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open favorites file for writing, path = %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FavoritesFile").toString()));
-
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (saving favorites)"));
 }
 
 void MachineList::loadPlayHistory()
 {
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading play history"));
-
 	qmc2MainWindow->listWidgetPlayed->clear();
 	QFile f(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/HistoryFile").toString());
 	if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
@@ -2251,7 +2230,6 @@ void MachineList::loadPlayHistory()
 		}
 		f.close();
 	}
-
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading play history)"));
 	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabPlayed) == qmc2MainWindow->tabWidgetMachineList->currentIndex() )
 		QTimer::singleShot(50, qmc2MainWindow, SLOT(checkCurrentPlayedSelection()));
@@ -2262,7 +2240,6 @@ void MachineList::loadPlayHistory()
 void MachineList::savePlayHistory()
 {
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("saving play history"));
-
 	QFile f(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/HistoryFile").toString());
 	if ( f.open(QIODevice::WriteOnly | QIODevice::Text) ) {
 		QTextStream ts(&f);
@@ -2271,7 +2248,6 @@ void MachineList::savePlayHistory()
 		f.close();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open play history file for writing, path = %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/HistoryFile").toString()));
-
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (saving play history)"));
 }
 
@@ -2314,36 +2290,30 @@ void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( loadProc )
 		delete loadProc;
 	loadProc = NULL;
-
 	if ( romCache.isOpen() )
 		romCache.close();
-
 	xmlDb()->commitTransaction();
 	uncommittedXmlDbRows = 0;
 	if ( invalidateListXmlCache ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
 		xmlDb()->recreateDatabase();
 	}
-
 	parse();
   	QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 	loadFavorites();
 	loadPlayHistory();
-
 	if ( initialLoad ) {
 		QTime startupTime(0, 0, 0, 0);
 		startupTime = startupTime.addMSecs(qmc2StartupTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("total start-up time: %1").arg(startupTime.toString("mm:ss.zzz")));
 		initialLoad = false;
 	}
-
 	// show game list / hide loading animation
 	qmc2MainWindow->loadAnimMovie->setPaused(true);
 	qmc2MainWindow->labelLoadingMachineList->setVisible(false);
 	qmc2MainWindow->treeWidgetMachineList->setVisible(true);
 	qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
 	qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
-
 	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
 		if ( qApp->focusWidget() != qmc2MainWindow->comboBoxToolbarSearch ) {
 			switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
@@ -2363,7 +2333,6 @@ void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			}
 		}
 	}
-
 	qApp->processEvents();
 }
 
@@ -2378,28 +2347,21 @@ void MachineList::loadReadyReadStandardOutput()
 	// this makes the GUI much more responsive, but is HAS to be called before loadProc->readAllStandardOutput()!
 	if ( QCoreApplication::hasPendingEvents() )
 		qApp->processEvents();
-
 #if defined(QMC2_OS_WIN)
 	QString readBuffer = QString::fromUtf8(loadProc->readAllStandardOutput());
 #else
 	QString readBuffer = loadProc->readAllStandardOutput();
 #endif
-
 	bool startsWithSpace = readBuffer.startsWith(" ") && !lastCharacterWasSpace;
 	bool endsWithSpace = readBuffer.endsWith(" ");
 	lastCharacterWasSpace = false;
-
 	if ( uncommittedXmlDbRows == 0 )
 		xmlDb()->beginTransaction();
-
 	if ( qmc2StopParser )
 		loadProc->kill();
-
 	readBuffer = readBuffer.simplified();
-
 	if ( startsWithSpace )
 		readBuffer.prepend(" ");
-
 	// ensure XML elements are on individual lines
 	for (int i = 0; i < readBuffer.length(); i++) {
 		if ( readBuffer[i] == '>' ) {
@@ -2415,9 +2377,7 @@ void MachineList::loadReadyReadStandardOutput()
 			}
 		}
 	}
-
 	QStringList sl = readBuffer.split("\n");
-
 	for (int l = 0; l < sl.count(); l++) {
 		QString singleXMLLine = sl[l];
 		bool newLine = singleXMLLine.endsWith(">");
@@ -2458,7 +2418,6 @@ void MachineList::loadReadyReadStandardOutput()
 			singleXMLLine += " ";
 			lastCharacterWasSpace = true;
 		}
-
 		xmlLineBuffer += singleXMLLine;
 		if ( xmlLineBuffer.endsWith("\n") ) {
 			if ( !dtdBufferReady ) {
@@ -2501,12 +2460,10 @@ void MachineList::loadReadyReadStandardOutput()
 			xmlLineBuffer.clear();
 		}
 	}
-
 	if ( uncommittedXmlDbRows >= QMC2_XMLCACHE_COMMIT ) {
 		xmlDb()->commitTransaction();
 		uncommittedXmlDbRows = 0;
 	}
-
 	qmc2MainWindow->progressBarMachineList->setValue(qmc2MainWindow->progressBarMachineList->value() + readBuffer.count("<machine name="));
 }
 
@@ -2520,13 +2477,11 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
 	if ( !verifyProc->atEnd() )
 		verifyReadyReadStandardOutput();
-
 	bool cleanExit = true;
 	if ( exitStatus != QProcess::NormalExit && !qmc2StopParser ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: emulator audit call didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))));
 		cleanExit = false;
 	}
-
 	bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool();
 	if ( !verifyCurrentOnly ) {
 		// the progress text may have changed in the meantime...
@@ -2708,7 +2663,6 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		}
 		qmc2MainWindow->labelMachineListStatus->setText(status());
 	}
-
 	bool doFilter = true;
 	if ( verifyCurrentOnly ) {
 		QString gameName;
@@ -2787,14 +2741,12 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		}
 		doFilter = (oldRomState != machineStatusHash[gameName]);
 	}
-
 	QTime elapsedTime(0, 0, 0, 0);
 	elapsedTime = elapsedTime.addMSecs(verifyTimer.elapsed());
 	if ( verifyCurrentOnly )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for '%1', elapsed time = %2)").arg(checkedItem->text(QMC2_MACHINELIST_COLUMN_MACHINE)).arg(elapsedTime.toString("mm:ss.zzz")));
 	else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for all sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-
 	QString sL = numTotalGames + deviceSets.count() >= 0 ? QString::number(numTotalGames + deviceSets.count()) : tr("?");
 	QString sC = numCorrectGames >= 0 ? QString::number(numCorrectGames) : tr("?");
 	QString sM = numMostlyCorrectGames >= 0 ? QString::number(numMostlyCorrectGames) : tr("?");
@@ -2803,17 +2755,14 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	QString sU = numUnknownGames >= 0 ? QString::number(numUnknownGames) : tr("?");
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(sL).arg(sC).arg(sM).arg(sI).arg(sN).arg(sU));
 	qmc2MainWindow->progressBarMachineList->reset();
-
 	if ( verifyProc )
 		delete verifyProc;
 	verifyProc = NULL;
 	qmc2VerifyActive = false;
-
 	if ( romCache.isOpen() ) {
 		tsRomCache.flush();
 		romCache.close();
 	}
-
 	if ( qmc2SortCriteria == QMC2_SORT_BY_ROM_STATE ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(tr("ROM state")).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 		qmc2SortingActive = true;
@@ -2851,7 +2800,6 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		qmc2SortingActive = false;
 		QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 	}
-
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool() ){
 		if ( doFilter )
 			QTimer::singleShot(0, this, SLOT(filter()));
@@ -2873,20 +2821,17 @@ void MachineList::verifyReadyReadStandardOutput()
 	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
 	QStringList lines = s.split("\n");
-
 	if ( s.endsWith("\n") )
 		verifyLastLine.clear();
 	else {
 		verifyLastLine = lines.last();
 		lines.removeLast();
 	}
-
 	if ( !verifyCurrentOnly ) {
 		// the progress text may have changed in the meantime...
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 			qmc2MainWindow->progressBarMachineList->setFormat(tr("ROM check - %p%"));
 	}
-
 	bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool();
 	for (int i = 0; i < lines.count(); i++) {
 		if ( lines[i].startsWith("romset ") ) {
@@ -3063,7 +3008,6 @@ void MachineList::verifyReadyReadStandardOutput()
 			}
 		}
 	}
-
 	if ( romCache.isOpen() && !verifyCurrentOnly )
 		tsRomCache.flush();
 
@@ -3072,7 +3016,6 @@ void MachineList::verifyReadyReadStandardOutput()
 
 	if ( !verifyCurrentOnly )
 		qmc2MainWindow->progressBarMachineList->setValue(numVerifyRoms);
-
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 }
 
@@ -3080,7 +3023,6 @@ bool MachineList::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOn
 {
 	if ( fileName )
 		*fileName = gameName;
-
 	if ( !qmc2IconHash[gameName].isNull() ) {
 		// use cached icon
 		if ( !checkOnly )
@@ -3097,7 +3039,6 @@ bool MachineList::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOn
 			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 		return false;
 	}
-
 	if ( qmc2UseIconFile ) {
 		// use icon file
 		QByteArray imageData;
@@ -3202,10 +3143,8 @@ bool MachineList::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOn
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n icon(s) loaded", "", iconCount));
 				qmc2IconsPreloaded = true;
 			}
-
 			if ( checkOnly )
 				qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
-
 			return loadIcon(gameName, item, checkOnly);
 		}
 	} else {
@@ -3260,10 +3199,8 @@ bool MachineList::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOn
 			return loadIcon(gameName, item, checkOnly);
 		}
 	}
-
 	if ( checkOnly )
 		qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
-
 	return false;
 }
 
@@ -3273,22 +3210,18 @@ void MachineList::loadCategoryIni()
 		clearCategoryNames();
 		categoryHash.clear();
 	}
-
 	QTime loadTimer, elapsedTime(0, 0, 0, 0);
 	loadTimer.start();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading category.ini"));
 	qApp->processEvents();
-
 	int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
 	QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		qmc2MainWindow->progressBarMachineList->setFormat(tr("Category.ini - %p%"));
 	else
 		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-
 	qmc2MainWindow->progressBarMachineList->reset();
 	qApp->processEvents();
-
 	QFile categoryIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CategoryIni").toString());
 	int entryCounter = 0;
 	if ( categoryIniFile.open(QFile::ReadOnly) ) {
@@ -3330,13 +3263,11 @@ void MachineList::loadCategoryIni()
 		categoryIniFile.close();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open '%1' for reading -- no category.ini data available").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CategoryIni").toString()));
-
 	qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
 	else
 		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-
 	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading category.ini, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n category record(s) loaded", "", entryCounter));
@@ -3346,23 +3277,18 @@ void MachineList::createCategoryView()
 {
 	if ( creatingCatView || qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEWCATEGORY_INDEX )
 		return;
-
 	qmc2CategoryItemHash.clear();
 	qmc2MainWindow->treeWidgetCategoryView->setVisible(false);
 	((AspectRatioLabel *)qmc2MainWindow->labelCreatingCategoryView)->setLabelText(tr("Loading, please wait..."));
 	qmc2MainWindow->labelCreatingCategoryView->setVisible(true);
 	qmc2MainWindow->loadAnimMovie->start();
-
 	if ( qmc2ReloadActive ) {
 		if ( !qmc2StopParser )
 			QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
 		return;
 	}
-	
 	creatingCatView = true;
-
 	qmc2MainWindow->treeWidgetCategoryView->setColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY, true);
-
 	if ( !qmc2StopParser ) {
 		qmc2MainWindow->loadAnimMovie->start();
 		qmc2MainWindow->treeWidgetCategoryView->clear();
@@ -3490,12 +3416,10 @@ void MachineList::loadCatverIni()
 	categoryHash.clear();
 	clearVersionNames();
 	versionHash.clear();
-
 	QTime loadTimer, elapsedTime(0, 0, 0, 0);
 	loadTimer.start();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading catver.ini"));
 	qApp->processEvents();
-
 	int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
 	QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -3504,7 +3428,6 @@ void MachineList::loadCatverIni()
 		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 	qmc2MainWindow->progressBarMachineList->reset();
 	qApp->processEvents();
-
 	QFile catverIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString());
 	if ( catverIniFile.open(QFile::ReadOnly) ) {
 		qmc2MainWindow->progressBarMachineList->setRange(0, catverIniFile.size());
@@ -3566,13 +3489,11 @@ void MachineList::loadCatverIni()
 		qApp->processEvents();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open '%1' for reading -- no catver.ini data available").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString()));
-
 	qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
 	else
 		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-
 	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading catver.ini, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%1 category / %2 version records loaded").arg(categoryHash.count()).arg(versionHash.count()));
@@ -3582,23 +3503,18 @@ void MachineList::createVersionView()
 {
 	if ( creatingVerView || qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEWVERSION_INDEX )
 		return;
-
 	qmc2VersionItemHash.clear();
 	qmc2MainWindow->treeWidgetVersionView->setVisible(false);
 	((AspectRatioLabel *)qmc2MainWindow->labelCreatingVersionView)->setLabelText(tr("Loading, please wait..."));
 	qmc2MainWindow->labelCreatingVersionView->setVisible(true);
 	qmc2MainWindow->loadAnimMovie->start();
-
 	if ( qmc2ReloadActive ) {
 		if ( !qmc2StopParser )
 			QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
 		return;
 	}
-
 	creatingVerView = true;
-
 	qmc2MainWindow->treeWidgetVersionView->setColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION, true);
-
 	if ( !qmc2StopParser ) {
 		qmc2MainWindow->loadAnimMovie->start();
 		qmc2MainWindow->treeWidgetVersionView->clear();
@@ -3718,38 +3634,16 @@ QString MachineList::romStatus(QString systemName, bool translated)
 {
 	switch ( machineStatusHash[systemName] ) {
 		case 'C':
-			if ( translated )
-				return tr("correct");
-			else
-				return "correct";
-			break;
+			return translated ? tr("correct") : "correct";
 		case 'M':
-			if ( translated )
-				return tr("mostly correct");
-			else
-				return "mostly correct";
-			break;
+			return translated ? tr("mostly correct") : "mostly correct";
 		case 'I':
-			if ( translated )
-				return tr("incorrect");
-			else
-				return "incorrect";
-			break;
+			return translated ? tr("incorrect") : "incorrect";
 		case 'N':
-			if ( translated )
-				return tr("not found");
-			else
-				return "not found";
-			break;
-		case 'U':
+			return translated ? tr("not found") : "not found";
 		default:
-			if ( translated )
-				return tr("unknown");
-			else
-				return "unknown";
-			break;
+			return translated ? tr("unknown") : "unknown";
 	}
-
 }
 
 char MachineList::romState(QString systemName)
@@ -3761,7 +3655,6 @@ char MachineList::romState(QString systemName)
 QString MachineList::lookupDriverName(QString systemName)
 {
 	QString driverName = driverNameHash[systemName];
-
 	if ( driverName.isEmpty() ) {
 		QString xml = xmlDb()->xml(systemName).simplified();
 		if ( !xml.isEmpty() ) {
@@ -3774,7 +3667,6 @@ QString MachineList::lookupDriverName(QString systemName)
 			}
 		}
 	}
-
 	return driverName;
 }
 
@@ -3798,7 +3690,7 @@ bool MachineListItem::operator<(const QTreeWidgetItem &otherItem) const
 {
 	switch ( qmc2SortCriteria ) {
 		case QMC2_SORT_BY_DESCRIPTION:
-			return (text(QMC2_MACHINELIST_COLUMN_MACHINE).toUpper() < otherItem.text(QMC2_MACHINELIST_COLUMN_MACHINE).toUpper());
+			return (text(QMC2_MACHINELIST_COLUMN_MACHINE).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::CaseInsensitive) < 0);
 
 		case QMC2_SORT_BY_ROM_STATE:
 			return (qmc2MachineList->machineStatusHash[text(QMC2_MACHINELIST_COLUMN_NAME)] < qmc2MachineList->machineStatusHash[otherItem.text(QMC2_MACHINELIST_COLUMN_NAME)]);
@@ -3807,34 +3699,34 @@ bool MachineListItem::operator<(const QTreeWidgetItem &otherItem) const
 			return (int(checkState(QMC2_MACHINELIST_COLUMN_TAG)) < int(otherItem.checkState(QMC2_MACHINELIST_COLUMN_TAG)));
 
 		case QMC2_SORT_BY_YEAR:
-			return (text(QMC2_MACHINELIST_COLUMN_YEAR) < otherItem.text(QMC2_MACHINELIST_COLUMN_YEAR));
+			return (text(QMC2_MACHINELIST_COLUMN_YEAR).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_YEAR), Qt::CaseInsensitive) < 0);
 
 		case QMC2_SORT_BY_MANUFACTURER:
-			return (text(QMC2_MACHINELIST_COLUMN_MANU).toUpper() < otherItem.text(QMC2_MACHINELIST_COLUMN_MANU).toUpper());
+			return (text(QMC2_MACHINELIST_COLUMN_MANU).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_MANU), Qt::CaseInsensitive) < 0);
 
 		case QMC2_SORT_BY_NAME:
-			return (text(QMC2_MACHINELIST_COLUMN_NAME).toUpper() < otherItem.text(QMC2_MACHINELIST_COLUMN_NAME).toUpper());
+			return (text(QMC2_MACHINELIST_COLUMN_NAME).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_NAME), Qt::CaseInsensitive) < 0);
 
 		case QMC2_SORT_BY_ROMTYPES:
-			return (text(QMC2_MACHINELIST_COLUMN_RTYPES).toUpper() < otherItem.text(QMC2_MACHINELIST_COLUMN_RTYPES).toUpper());
+			return (text(QMC2_MACHINELIST_COLUMN_RTYPES).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_RTYPES), Qt::CaseInsensitive) < 0);
 
 		case QMC2_SORT_BY_PLAYERS:
-			return (text(QMC2_MACHINELIST_COLUMN_PLAYERS).toUpper() < otherItem.text(QMC2_MACHINELIST_COLUMN_PLAYERS).toUpper());
+			return (text(QMC2_MACHINELIST_COLUMN_PLAYERS).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_PLAYERS), Qt::CaseInsensitive) < 0);
 
 		case QMC2_SORT_BY_DRVSTAT:
-			return (text(QMC2_MACHINELIST_COLUMN_DRVSTAT).toUpper() < otherItem.text(QMC2_MACHINELIST_COLUMN_DRVSTAT).toUpper());
+			return (text(QMC2_MACHINELIST_COLUMN_DRVSTAT).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_DRVSTAT), Qt::CaseInsensitive) < 0);
 
 		case QMC2_SORT_BY_SRCFILE:
-			return (text(QMC2_MACHINELIST_COLUMN_SRCFILE).toUpper() < otherItem.text(QMC2_MACHINELIST_COLUMN_SRCFILE).toUpper());
+			return (text(QMC2_MACHINELIST_COLUMN_SRCFILE).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_SRCFILE), Qt::CaseInsensitive) < 0);
 
 		case QMC2_SORT_BY_RANK:
 			return (whatsThis(QMC2_MACHINELIST_COLUMN_RANK).toInt() > otherItem.whatsThis(QMC2_MACHINELIST_COLUMN_RANK).toInt());
 
 		case QMC2_SORT_BY_CATEGORY:
-			return (text(QMC2_MACHINELIST_COLUMN_CATEGORY).toUpper() < otherItem.text(QMC2_MACHINELIST_COLUMN_CATEGORY).toUpper());
+			return (text(QMC2_MACHINELIST_COLUMN_CATEGORY).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_CATEGORY), Qt::CaseInsensitive) < 0);
 
 		case QMC2_SORT_BY_VERSION:
-			return (text(QMC2_MACHINELIST_COLUMN_VERSION).toUpper() < otherItem.text(QMC2_MACHINELIST_COLUMN_VERSION).toUpper());
+			return (text(QMC2_MACHINELIST_COLUMN_VERSION).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_VERSION), Qt::CaseInsensitive) < 0);
 
 		default:
 			return false;
