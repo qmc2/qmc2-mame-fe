@@ -1378,7 +1378,7 @@ void MachineList::parse()
 			qmc2MainWindow->progressBarMachineList->setValue(0);
 			QString readBuffer;
 			QList<QTreeWidgetItem *> itemList, hideList;
-			while ( (!tsMachineListCache.atEnd() || !readBuffer.isEmpty() ) && !qmc2StopParser ) {
+			while ( (!tsMachineListCache.atEnd() || !readBuffer.isEmpty()) && !qmc2StopParser ) {
 				readBuffer += tsMachineListCache.read(QMC2_FILE_BUFFER_SIZE);
 				bool endsWithNewLine = readBuffer.endsWith("\n");
 				QStringList lines = readBuffer.split("\n", QString::SkipEmptyParts);
@@ -1585,6 +1585,7 @@ void MachineList::parse()
 				else
 					readBuffer = lines.last();
 			}
+			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
 			qmc2MainWindow->treeWidgetMachineList->addTopLevelItems(itemList);
 			foreach (QTreeWidgetItem *hiddenItem, hideList)
 				hiddenItem->setHidden(true);
@@ -1617,7 +1618,6 @@ void MachineList::parse()
 		bool useCategories = useCatverIni | useCategoryIni;
 		// parse XML data
 		numGames = numUnknownGames = 0;
-		qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
 		QList <QTreeWidgetItem *> itemList;
 		QList <QTreeWidgetItem *> hideList;
 		qint64 xmlRowCount = xmlDb()->xmlRowCount();
@@ -1808,9 +1808,12 @@ void MachineList::parse()
 				}
 			}
 		}
+		qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
 		qmc2MainWindow->treeWidgetMachineList->addTopLevelItems(itemList);
 		foreach (QTreeWidgetItem *hiddenItem, hideList)
 			hiddenItem->setHidden(true);
+		qmc2MainWindow->progressBarMachineList->setValue(numGames);
+		qApp->processEvents();
 	}
 	if ( gamelistCache.isOpen() )
 		gamelistCache.close();
@@ -1995,7 +1998,6 @@ void MachineList::parse()
 			QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 	} else
 		QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
-	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
