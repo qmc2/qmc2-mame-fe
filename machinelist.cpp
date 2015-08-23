@@ -2281,7 +2281,6 @@ void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		qmc2StopParser = invalidateListXmlCache = true;
 	} else if ( qmc2StopParser && exitStatus == QProcess::CrashExit )
 		qmc2StopParser = invalidateListXmlCache = true;
-
 	QTime elapsedTime(0, 0, 0, 0);
 	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML data and recreating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
@@ -3010,10 +3009,8 @@ void MachineList::verifyReadyReadStandardOutput()
 	}
 	if ( romCache.isOpen() && !verifyCurrentOnly )
 		tsRomCache.flush();
-
 	if ( qmc2StopParser && verifyProc )
 		verifyProc->kill();
-
 	if ( !verifyCurrentOnly )
 		qmc2MainWindow->progressBarMachineList->setValue(numVerifyRoms);
 	qmc2MainWindow->labelMachineListStatus->setText(status());
@@ -3023,10 +3020,11 @@ bool MachineList::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOn
 {
 	if ( fileName )
 		*fileName = gameName;
-	if ( !qmc2IconHash[gameName].isNull() ) {
+	QIcon cachedIcon = qmc2IconHash[gameName];
+	if ( !cachedIcon.isNull() ) {
 		// use cached icon
 		if ( !checkOnly )
-			item->setIcon(QMC2_MACHINELIST_COLUMN_ICON, qmc2IconHash[gameName]);
+			item->setIcon(QMC2_MACHINELIST_COLUMN_ICON, cachedIcon);
 		else
 			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 		return true;
