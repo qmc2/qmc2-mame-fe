@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.55, 01-AUG-2015</h3>
+<h3>README - v0.55, 24-AUG-2015</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -46,74 +46,10 @@
   </li>
 </ol>
 <h3><a name="1."></a>1. What is the M.A.M.E. Catalog / Launcher II?</h3>
-<p>
-<i>M.A.M.E. Catalog / Launcher II</i> -- also referred to as <i>QMC2</i> --
-is the successor of one of the first UNIX MAME GUI front ends available on this planet
-called <i>QMamecat</i> (derived from <i>MAMECAT</i>, which was text-only).
-</p>
-<p>
-QMamecat was based upon Qt 2; its development was frozen in 2003. QMC2 has been rebuilt
-from scratch as a Qt 4 project. Parts of the design and code were inspired by its predecessor,
-but it's not just a remake. We tried to make the new design as flexible as possible to minimize
-dependencies from front end and CLI related MAME changes, which was a major deficiency of
-QMamecat. QMC2 now uses a template based emulator configuration scheme, which can easily be
-enhanced with additional command line options (defined in an XML template file).
-</p>
-<p>
-As a result of this flexible design, QMC2 can be used for multiple emulators today. On UNIX and Mac OS X we currently support SDLMAME, on Windows you have to use original variant called MAME.
-</p>
-<p>QMC2's current major features include:</p>
-<ul>
-  <li>Extremely fast drawing of machine images, optionally smoothly scaled (PNG images, buffered in a resizable LRU-cache)</li>
-  <li>Support for machine icons -- historically only PNG images, but when icons are stored in a ZIP or 7z archive, <i>any</i> image format that Qt supports can be used (including ICO format)</li>
-  <li>Icons and all machine images can either be stored as individual files in respective directories or they can be combined and compressed in ZIP or 7z archives</li>
-  <li>Easily extensible template-based emulator configuration scheme (defined through an external XML file)</li>
-  <li>Cool editor for configuration of global and machine-specific emulator options, including a search function</li>
-  <li>Support for all emulation-related extra information available through the emulator (displayed in a tree)</li>
-  <li>Fast search function with automatic wildcard pattern matching</li>
-  <li>All emulator targets: selectable sort criteria and order for machine lists (description, name/ID, ROM state, year, manufacturer and ROM types)</li>
-  <li>Straightforward process management to control emulator processes</li>
-  <li>Clear and full logging (separate front end and emulator logs)</li>
-  <li>Cached ROM state verification, indicated as colored spheres in front of each machine description</li>
-  <li>Verification of sample sets</li>
-  <li>Machine image checks (icons, previews &amp; flyers)
-  <li>Online display of current machine list and search result statistics</li>
-  <li>All emulator targets: two different views of the machine list: <i>full detail</i> and <i>parent/clone hierarchy</i></li>
-  <li>Optional additional <i>category-oriented</i> and <i>version-oriented</i> views when <i><a href="http://www.progettoemma.net/?catlist" target="_blank">catver.ini</a></i> and/or <i>category.ini</i> support is enabled</li>
-  <li>The GUI will always remain interactive even if heavy background processing is running</li>
-  <li>Time-consuming background tasks can be stopped on demand at (nearly) any time</li>
-  <li>Optional auto-save/restore of window layout and machine selection</li>
-  <li>Multi-platform support (Linux/UNIX, Mac OS X and Windows)</li>
-  <li>Fully multi-language capable -- right now, translations exist (or are being worked on) for English (us), French (fr), German (de), Greek (el), Italian (it), Polish (pl), Portuguese (pt), Romanian (ro), Spanish (es) and Swedish (sv)</li>
-  <li>Machine favorites management and play-history</li>
-  <li>Online HTML documentation and browser</li>
-  <li>Designed to be used for multiple emulators: SDLMAME on UNIX and Mac OS X, MAME on Windows -- plus support for additional <i>foreign</i> emulators on all platforms</li>
-  <li>Built-in support for GUI styles and Qt style sheets (.qss)</li>
-  <li>Automatic caching of analysed machine data to speed up processing</li>
-  <li>Import &amp; export of emulator configuration files (i. e. mame.ini)</li>
-  <li>All short cuts and GUI control keys can be remapped</li>
-  <li>Removal of obsolete samples and image files (stored in directories or ZIP / 7z archives)</li>
-  <li>Automatic caching of XML output from the emulator</li>
-  <li>Built-in ROMAlyzer to deeply analyze a machine's ROMs (including repair- and rewrite-functionality for zipped sets) and CHDs -- inspired by <a href="credits.html#Carsten">Carsten Engel's</a> ROMAlyzer script (see scripts/romalyzer.pl in source distribution)</li>
-  <li>Optional use of OpenGL features (currently only for image painting)</li>
-  <li>Support for direct GUI control via analog and digital joysticks through SDL (<i>Simple Directmedia Layer</i>)</li>
-  <li>Detailed machine information from MAME's <i>history.dat</i> game information database and MESS' <i>sysinfo.dat</i> machine information database</li>
-  <li>Basically the same for <i>mameinfo.dat</i> as MAME's emulator information database and <i>messinfo.dat</i> for MESS sets</li>
-  <li>Support for output notifications via a named pipe on UNIX and Mac OS X (see emulator control panel)</li>
-  <li>Built-in audio- and (YouTube-)video-players based on the Phonon API</li>
-  <li>ROM status export to clipboard or file as ASCII, CSV or HTML</li>
-  <li>Integrated device configuration with support for mapping of files to device instances &amp; machine slots, as well as an easy-to-use <i>file chooser</i> for simple file-to-device mapping</li>
-  <li>Freely adjust the order and visibility of available machine details</li>
-  <li>ProjectMESS system search</li>
-  <li>X11 and Windows platforms: optional / on-demand embedding of emulator windows</li>
-  <li>Freely adjustable layout of the main widget's major sub-widgets</li>
-  <li><i>Demo mode</i> to run random machines for a specific period of time (in a mode suitable for demo purposes)</li>
-  <li>Support for software-lists, including favorites management, search feature and sneak previews in-game/run-time snap-shots, plus an extra software-detail widget with a scaling preview image, a ProjectMESS software look-up and a WYSIWIG editor for personal rich-text notes</li>
-  <li>Dock-able/floating software-detail widget with a separate snapshot-browser, a <a href="http://www.progettoemma.net/mess/" target="_blank">ProjectMESS</a> software-lookup feature, and an HTML editor/viewer for personal rich-text software-notes</li>
-  <li>Item tagging and related 'batch-mode' operations</li>
-  <li>A QML based standalone graphical arcade mode binary (<i>QMC2 Arcade</i>) which utilizes the cached data of its bigger brothers to quickly display and launch emulators and get you "straight into the games" :)</li>
-  <li>An easy to use ranking system to set personal <i>ranks</i> for machines and sort by them</li>
-</ul>
+<p><i>M.A.M.E. Catalog / Launcher II</i> - also referred to as <i>QMC2</i> - is the successor of one of the first UNIX M.A.M.E. GUI front ends available on this planet called <i>QMamecat</i> (derived from <i>MAMECAT</i>, which was text-only). QMamecat was based upon Qt 2; its development was frozen in 2003.</p>
+<p>By the beginning of March 2006, we started to build QMC2 from scratch as a Qt 4 project. Parts of the design and code were inspired by its predecessor, but it's not just a remake. We tried to make the new design as flexible as possible to minimize dependencies from front end and CLI related MAME changes, which was a major deficiency of QMamecat. QMC2 now uses a template based emulator configuration scheme, which can easily be enhanced with additional command line options (defined in an XML template file).</p>
+<p>As a result of this flexible design and countless hours of work, QMC2 today is a stable, feature-rich and fast multi-platform GUI front end for M.A.M.E. (Multiple Arcade Machine Emulator). It's known to work on any modern Linux distribution, most UNIX derivates such as OpenSolaris or FreeBSD, on Mac OS X and Windows (XP, Vista and above).</p>
+<p>See the incomplete <a href="http://wiki.batcom-it.net/index.php?title=About_QMC2#Features" target="_blank">feature list</a> for more details.</p>
 <h3><a name="2."></a>2. Build and installation instructions</h3>
 <p>Please see <a href="http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Building_and_installing_QMC2_from_source" target="_blank">this section in QMC2 wiki</a> and/or
 <a href="http://wiki.batcom-it.net/index.php?title=QMC2_FAQ#Build_and_installation_instructions_for_specific_distributions" target="_blank">this FAQ</a> for build and installation instructions.</p>
