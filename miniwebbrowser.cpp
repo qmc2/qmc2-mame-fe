@@ -385,7 +385,7 @@ void MiniWebBrowser::on_toolButtonLoad_clicked()
 				text.prepend("http://");
 		comboBoxURL->setEditText(text);
 		comboBoxURL->lineEdit()->setCursorPosition(0);
-		webViewBrowser->load(QUrl(text, QUrl::TolerantMode));
+		webViewBrowser->load(QUrl::fromUserInput(text));
 	}
 }
 
