@@ -68,9 +68,7 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent, bool useAsPdfViewer)
 
 	comboBoxURL->lineEdit()->setPlaceholderText(tr("Enter URL"));
 
-	firstTimeLoadStarted = true;
-	firstTimeLoadProgress = true;
-	firstTimeLoadFinished = true;
+	firstTimeLoadStarted = firstTimeLoadProgress = firstTimeLoadFinished = true;
 
 	iconCache.setMaxCost(QMC2_BROWSER_ICONCACHE_SIZE);
 
@@ -100,7 +98,7 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent, bool useAsPdfViewer)
 	if ( isPdfViewer() ) {
 		frameUrl->hide();
 		// hide all page actions
-		for(QWebPage::WebAction pa = QWebPage::OpenLink; pa != QWebPage::AlignRight; pa = static_cast<QWebPage::WebAction>(static_cast<int>(pa) + 1)) {
+		for (QWebPage::WebAction pa = QWebPage::OpenLink; pa != QWebPage::AlignRight; pa = static_cast<QWebPage::WebAction>(static_cast<int>(pa) + 1)) {
 			QAction *a= webViewBrowser->pageAction(pa);
 			if ( a )
 				a->setVisible(false);
