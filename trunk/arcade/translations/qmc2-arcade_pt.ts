@@ -125,7 +125,7 @@
         <location filename="../datinfodbmgr.cpp" line="500"/>
         <location filename="../datinfodbmgr.cpp" line="505"/>
         <source>machine-info</source>
-        <translation type="unfinished"></translation>
+        <translation>informação de máquina</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="513"/>
@@ -231,29 +231,29 @@
     <message>
         <location filename="../datinfodbmgr.cpp" line="924"/>
         <source>WARNING: missing &apos;$end&apos; in machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: faltando &apos;$end&apos; no arquivo de informação de máquina %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="927"/>
         <source>WARNING: missing &apos;$bio&apos; in machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: faltando &apos;$bio&apos; no arquivo de informação de máquina %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="930"/>
         <source>WARNING: missing &apos;$info&apos; in machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: faltando &apos;$info&apos; no arquivo de informação de máquina %1</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="939"/>
         <source>WARNING: can&apos;t open machine info file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível abrir arquivo de informação de máquina %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../datinfodbmgr.cpp" line="943"/>
         <source>%n machine info record(s) imported</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de máquina importado</numerusform>
+            <numerusform>%n registros de informação de máquina importados</numerusform>
         </translation>
     </message>
 </context>
@@ -734,12 +734,12 @@
     <message>
         <location filename="../keysequences.h" line="50"/>
         <source>[global] Flip cabinet / machine-card</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Girar card de gabinete / máquina</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="86"/>
         <source>[context] Abort machine launch / Hide preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Abortar execução de máquina / Esconder preferências</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="101"/>
@@ -1039,7 +1039,7 @@
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="409"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="407"/>
         <source>Machine info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de máquina</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="749"/>
@@ -1147,7 +1147,7 @@
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1162"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1160"/>
         <source>Machine list opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Opacidade da lista de máquinas</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1172"/>
@@ -1279,12 +1279,12 @@ terem efeito, por favor reinicie o Arcade do QMC2!</translation>
         <location filename="../tweakedqmlappviewer.cpp" line="424"/>
         <location filename="../tweakedqmlappviewer.cpp" line="433"/>
         <source>machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>lista de máquinas</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="438"/>
         <source>machine</source>
-        <translation type="unfinished"></translation>
+        <translation>máquina</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="381"/>

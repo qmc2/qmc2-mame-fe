@@ -36,7 +36,7 @@
     <message>
         <location filename="../../about.cpp" line="55"/>
         <source>Mac OS X 10.10</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="57"/>
@@ -76,7 +76,7 @@
     <message>
         <location filename="../../about.cpp" line="74"/>
         <source>Windows 10 (Windows 10.0)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="111"/>
@@ -7323,7 +7323,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../machinelist.cpp" line="780"/>
         <location filename="../../machinelist.cpp" line="2332"/>
         <source>total start-up time: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>tempo total de inicialização: %1</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="831"/>
@@ -12681,7 +12681,7 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../options.cpp" line="3571"/>
         <source>Choose video snap folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha a pasta de snaps de video</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4083"/>
@@ -14643,12 +14643,12 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../options.ui" line="189"/>
         <source>Fall back to the parent&apos;s image / video if an indivual image / video is missing but there&apos;s one for the parent</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar a imagem / vídeo do pai se uma imagem / vídeo individual está faltando mas existe uma para o pai</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="192"/>
         <source>Parent image / video fallback</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar imagem / vídeo do pai</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="201"/>
@@ -14748,17 +14748,17 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../options.ui" line="2892"/>
         <source>Video snap folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório de snap de vídeo</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2905"/>
         <source>Video snap folder (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório de snap de vídeo (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2918"/>
         <source>Browse video snap folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha a pasta de snaps de video</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2936"/>
@@ -19450,36 +19450,36 @@ Tem certeza que deseja fazer isso?</translation>
         <location filename="../../romstatefilter.ui" line="32"/>
         <location filename="../../romstatefilter.ui" line="35"/>
         <source>Toggle ROM state &apos;correct&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar estado de rom &apos;correto&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatefilter.ui" line="58"/>
         <location filename="../../romstatefilter.ui" line="61"/>
         <source>Toggle ROM state &apos;unknown&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar estado de rom &apos;desconhecido&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatefilter.ui" line="84"/>
         <location filename="../../romstatefilter.ui" line="87"/>
         <source>Toggle ROM state &apos;mostly correct&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar estado de rom &apos;maioria correto&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatefilter.ui" line="110"/>
         <location filename="../../romstatefilter.ui" line="113"/>
         <source>Toggle ROM state &apos;not found&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar estado de rom &apos;não encontrado&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatefilter.ui" line="136"/>
         <location filename="../../romstatefilter.ui" line="139"/>
         <source>Toggle ROM state &apos;incorrect&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar estado de rom &apos;incorreto&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatefilter.cpp" line="182"/>
         <source>State filter settings</source>
-        <translation type="unfinished">Configurações do filtro de estado</translation>
+        <translation>Configurações do filtro de estado</translation>
     </message>
 </context>
 <context>
@@ -20214,7 +20214,7 @@ Tem certeza que deseja fazer isso?</translation>
         <location filename="../../softwarelist.ui" line="804"/>
         <location filename="../../softwarelist.ui" line="807"/>
         <source>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search</source>
-        <translation type="unfinished"></translation>
+        <translation>L:Listado - C:Correto - M:Maioria correto - I:Incorreto - N:Não encontrado - D:Desconhecido - B:Busca</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="826"/>
@@ -20732,7 +20732,7 @@ Tem certeza que deseja fazer isso?</translation>
         <location filename="../../softwarelist.cpp" line="3897"/>
         <location filename="../../softwarelist.cpp" line="3907"/>
         <source>S:</source>
-        <translation type="unfinished"></translation>
+        <translation>B:</translation>
     </message>
 </context>
 <context>
@@ -22378,7 +22378,7 @@ Sair agora, aceitar uma vez ou ignorar completamente?</translation>
         <location filename="../../youtubevideoplayer.cpp" line="1578"/>
         <location filename="../../youtubevideoplayer.cpp" line="1592"/>
         <source>Return to windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Retornar para o modo janela</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1585"/>
