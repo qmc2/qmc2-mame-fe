@@ -577,7 +577,7 @@ Deseja continuar?</translation>
     <message>
         <location filename="../preferencesdialog.ui" line="81"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Língua</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="154"/>
