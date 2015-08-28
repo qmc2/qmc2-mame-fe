@@ -3730,3 +3730,8 @@ bool MachineListItem::operator<(const QTreeWidgetItem &otherItem) const
 			return false;
 	}
 }
+
+char MachineListItem::romStatus()
+{
+	return qmc2MachineList->machineStatusHash[id()];
+}
