@@ -75,9 +75,17 @@ static void MyCPUID(UInt32_7z function, UInt32_7z *a, UInt32_7z *b, UInt32_7z *c
   #else
 
   __asm__ __volatile__ (
+  #if defined(MY_CPU_X86) && defined(__PIC__)
+    "mov %%ebx, %%edi;"
+    "cpuid;"
+    "xchgl %%ebx, %%edi;"
+    : "=a" (*a) ,
+      "=D" (*b) ,
+  #else
     "cpuid"
     : "=a" (*a) ,
       "=b" (*b) ,
+  #endif
       "=c" (*c) ,
       "=d" (*d)
     : "0" (function)) ;
