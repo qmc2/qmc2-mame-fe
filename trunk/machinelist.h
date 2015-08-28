@@ -156,10 +156,16 @@ class MachineListItem : public QTreeWidgetItem
 		QString sourceFile() { return text(QMC2_MACHINELIST_COLUMN_SRCFILE); }
 		QString category() { return text(QMC2_MACHINELIST_COLUMN_CATEGORY); }
 		QString version() { return text(QMC2_MACHINELIST_COLUMN_VERSION); }
+		QIcon machineIcon() { return icon(QMC2_MACHINELIST_COLUMN_MACHINE); }
 		int players() { bool ok; int p = text(QMC2_MACHINELIST_COLUMN_PLAYERS).toInt(&ok); return ok ? p : -1; }
 		int rank() { return whatsThis(QMC2_MACHINELIST_COLUMN_RANK).toInt(); }
+		bool isParent() { return parentId().isEmpty(); }
+		bool isClone() { return !isParent(); }
 		bool tagged() { return checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked; }
+		bool isBios();
+		bool isDevice();
 		char romStatus();
+		QString parentId();
 };
 
 #endif

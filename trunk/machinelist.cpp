@@ -3731,7 +3731,22 @@ bool MachineListItem::operator<(const QTreeWidgetItem &otherItem) const
 	}
 }
 
+bool MachineListItem::isBios()
+{
+	return qmc2MachineList->isBios(id());
+}
+
+bool MachineListItem::isDevice()
+{
+	return qmc2MachineList->isDevice(id());
+}
+
 char MachineListItem::romStatus()
 {
 	return qmc2MachineList->machineStatusHash[id()];
+}
+
+QString MachineListItem::parentId()
+{
+	return qmc2ParentHash[id()];
 }
