@@ -145,6 +145,21 @@ class MachineListItem : public QTreeWidgetItem
 		MachineListItem(QTreeWidgetItem *parentItem) : QTreeWidgetItem(parentItem, QTreeWidgetItem::UserType) {}
 
 		virtual bool operator<(const QTreeWidgetItem &) const;
+
+		QString id() { return text(QMC2_MACHINELIST_COLUMN_NAME); }
+		QString name() { return id(); }
+		QString description() { return text(QMC2_MACHINELIST_COLUMN_MACHINE); }
+		QString manufacturer() { return text(QMC2_MACHINELIST_COLUMN_MANU); }
+		QString year() { return text(QMC2_MACHINELIST_COLUMN_YEAR); }
+		QString romTypes() { return text(QMC2_MACHINELIST_COLUMN_RTYPES); }
+		QString driverStatus() { return text(QMC2_MACHINELIST_COLUMN_DRVSTAT); }
+		QString sourceFile() { return text(QMC2_MACHINELIST_COLUMN_SRCFILE); }
+		QString category() { return text(QMC2_MACHINELIST_COLUMN_CATEGORY); }
+		QString version() { return text(QMC2_MACHINELIST_COLUMN_VERSION); }
+		int players() { bool ok; int p = text(QMC2_MACHINELIST_COLUMN_PLAYERS).toInt(&ok); return ok ? p : -1; }
+		int rank() { return whatsThis(QMC2_MACHINELIST_COLUMN_RANK).toInt(); }
+		bool tagged() { return checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked; }
+		char romStatus();
 };
 
 #endif
