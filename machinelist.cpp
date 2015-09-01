@@ -317,6 +317,7 @@ void MachineList::enableWidgets(bool enable)
 	qmc2Options->toolButtonBrowseSoftwareNotesTemplate->setEnabled(enable);
 	qmc2Options->toolButtonBrowseSystemNotesFolder->setEnabled(enable);
 	qmc2Options->toolButtonBrowseSystemNotesTemplate->setEnabled(enable);
+	qmc2Options->toolButtonBrowseVideoSnapFolder->setEnabled(enable);
 	qmc2Options->toolButtonShowC->setEnabled(enable);
 	qmc2Options->toolButtonShowM->setEnabled(enable);
 	qmc2Options->toolButtonShowI->setEnabled(enable);
