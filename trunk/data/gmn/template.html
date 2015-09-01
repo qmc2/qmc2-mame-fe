@@ -431,7 +431,8 @@
 		<tr>
 		<script>
 			document.write("<td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Title screen') + "</td>");
-			if ( "$VIDEO_SNAP_URL$" != "" )
+			var vsUrls = qmc2NEO.videoSnapUrls("$ID$");
+			if ( vsUrls.length > 0 )
 				document.write("<td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Video snap') + "</td>");
 		</script>
 		</tr>
@@ -448,8 +449,12 @@
 				else
 					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
 			}
-			if ( "$VIDEO_SNAP_URL$" != "" )
-				document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><video " + dropShadow() + "width=\"100%\" loop controls poster=\"$GHOST_VIDEO$\" src=\"$VIDEO_SNAP_URL$\"></video></td>");
+			if ( vsUrls.length > 0 ) {
+				document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><video " + dropShadow() + "width=\"100%\" loop controls poster=\"$GHOST_VIDEO$\">");
+				for (var i = 0; i < vsUrls.length; i++)
+					document.write("<source src=\"" + vsUrls[i] + "\" />");
+				document.write("</video></td>");
+			}
 		</script>
 		</tr>
 	</tbody>
