@@ -255,30 +255,6 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList[1].toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 52, osr, 6646) ) {
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS);
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_UME);
-			startupConfig->remove(QMC2_EMULATOR_PREFIX_MESS);
-			startupConfig->remove(QMC2_EMULATOR_PREFIX_UME);
-		}
-		if ( QMC2_TEST_VERSION(omv, 52, osr, 6650) ) {
-			QMap<QString, QVariant> valueMap;
-			startupConfig->beginGroup(QMC2_FRONTEND_PREFIX_MAME);
-			foreach (QString key, startupConfig->allKeys()) {
-				valueMap[key] = startupConfig->value(key);
-				startupConfig->remove(key);
-			}
-			startupConfig->endGroup();
-			startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME);
-			foreach (QString key, valueMap.uniqueKeys())
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + key, valueMap[key]);
-		}
-		if ( QMC2_TEST_VERSION(omv, 52, osr, 6660) ) {
-			startupConfig->remove("MAME/FilesAndDirectories/MAWSCacheDirectory");
-			startupConfig->remove("Frontend/MAWS/Zoom");
-			startupConfig->remove("Frontend/GUI/ExitOnVariantLaunch");
-			startupConfig->remove("Frontend/GUI/MinimizeOnVariantLaunch");
-		}
 		if ( QMC2_TEST_VERSION(omv, 53, osr, 6702) ) {
 			QString oldKeySubString("Gamelist");
 			QString newKeySubString("MachineList");
