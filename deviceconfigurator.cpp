@@ -2192,7 +2192,6 @@ void DeviceConfigurator::setupFileChooser()
 
 	fileModelRowInsertionCounter = 0;
 	lcdNumberFileCounter->display(0);
-	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
 	lcdNumberFileCounter->update();
 	fileModel = new FileSystemModel(this);
 	fileModel->setIncludeFolders(includeFolders);
@@ -2282,7 +2281,6 @@ void DeviceConfigurator::on_toolButtonChooserFilter_toggled(bool enabled)
 
 	fileModelRowInsertionCounter = 0;
 	lcdNumberFileCounter->display(0);
-	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
 	lcdNumberFileCounter->update();
 	treeViewFileChooser->selectionModel()->clearSelection();
 	treeViewFileChooser->selectionModel()->reset();
@@ -2518,7 +2516,6 @@ void DeviceConfigurator::fileModel_rowsInserted(const QModelIndex &, int start, 
 void DeviceConfigurator::fileModel_finished()
 {
 	lcdNumberFileCounter->display(fileModel->rowCount());
-	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Outline);
 	lcdNumberFileCounter->update();
 	treeViewFileChooser->setUpdatesEnabled(true);
 	treeViewFileChooser->update();
@@ -2540,7 +2537,6 @@ void DeviceConfigurator::on_toolButtonChooserReload_clicked()
 {
 	fileModelRowInsertionCounter = 0;
 	lcdNumberFileCounter->display(0);
-	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
 	lcdNumberFileCounter->update();
 	treeViewFileChooser->selectionModel()->clearSelection();
 	treeViewFileChooser->selectionModel()->reset();

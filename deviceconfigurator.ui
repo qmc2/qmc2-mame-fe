@@ -425,7 +425,7 @@
                  <number>6</number>
                 </property>
                 <property name="segmentStyle">
-                 <enum>QLCDNumber::Outline</enum>
+                 <enum>QLCDNumber::Flat</enum>
                 </property>
                </widget>
               </item>
