@@ -1388,7 +1388,6 @@ void MachineList::parse()
 					if ( numGames % qmc2MachineListResponsiveness == 0 ) {
 						qmc2MainWindow->progressBarMachineList->setValue(numGames);
 						qmc2MainWindow->labelMachineListStatus->setText(status());
-						qApp->processEvents();
 					}
 					QStringList machineData = lines[l].split("\t");
 					QString machineName(machineData[QMC2_GLC_INDEX_NAME]);
@@ -1805,7 +1804,6 @@ void MachineList::parse()
 				if ( numGames % qmc2MachineListResponsiveness == 0 ) {
 					qmc2MainWindow->progressBarMachineList->setValue(numGames);
 					qmc2MainWindow->labelMachineListStatus->setText(status());
-					qApp->processEvents();
 				}
 			}
 		}
