@@ -99,9 +99,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		bool audioSkippingTracks;
 		Phonon::State audioState;
 #endif
-#if defined(QMC2_MEMORY_INFO_ENABLED)
-		QTimer memoryUpdateTimer;
-#endif
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 		QWidget *widgetEmbeddedEmus;
 		QWidget *embedderCornerWidget;
@@ -327,9 +324,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void menuTabWidgetSoftwareDetail_West_activated();
 		void menuTabWidgetSoftwareDetail_East_activated();
 		void menuTabWidgetSoftwareDetail_Setup_activated();
-
-		// memory indicator
-		void memoryUpdateTimer_timeout();
 
 		// other
 		void on_tabWidgetGameDetail_currentChanged(int);

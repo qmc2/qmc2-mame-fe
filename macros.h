@@ -635,8 +635,6 @@
 // determine if memory infomation can be made available at all
 #if defined(_SC_PHYS_PAGES) && defined(_SC_PAGESIZE) && defined(_SC_AVPHYS_PAGES)
 #define QMC2_MEMORY_INFO_ENABLED
-#define QMC2_MEMORY_INFO_TYPE_POSIX
-#define QMC2_MEMORY_UPDATE_TIME			500
 #endif
 
 // X11 and Windows only: embedder specific delays (in ms)

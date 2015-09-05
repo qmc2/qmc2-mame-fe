@@ -500,6 +500,7 @@ MainWindow::MainWindow(QWidget *parent)
 	gridLayoutMachineListPage->removeWidget(labelLoadingMachineList);
 	delete labelLoadingMachineList;
 	labelLoadingMachineList = new AspectRatioLabel(this);
+	labelLoadingMachineList->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
 	labelLoadingMachineList->setMovie(loadAnimMovie);
 	gridLayoutMachineListPage->addWidget(labelLoadingMachineList, 1, 0);
 	labelLoadingMachineList->setVisible(false);
@@ -507,6 +508,7 @@ MainWindow::MainWindow(QWidget *parent)
 	gridLayoutHierarchyPage->removeWidget(labelLoadingHierarchy);
 	delete labelLoadingHierarchy;
 	labelLoadingHierarchy = new AspectRatioLabel(this);
+	labelLoadingHierarchy->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
 	labelLoadingHierarchy->setMovie(loadAnimMovie);
 	gridLayoutHierarchyPage->addWidget(labelLoadingHierarchy, 1, 0);
 	labelLoadingHierarchy->setVisible(false);
@@ -514,6 +516,7 @@ MainWindow::MainWindow(QWidget *parent)
 	gridLayoutCategoryPage->removeWidget(labelCreatingCategoryView);
 	delete labelCreatingCategoryView;
 	labelCreatingCategoryView = new AspectRatioLabel(this);
+	labelCreatingCategoryView->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
 	labelCreatingCategoryView->setMovie(loadAnimMovie);
 	gridLayoutCategoryPage->addWidget(labelCreatingCategoryView, 1, 0);
 	labelCreatingCategoryView->setVisible(false);
@@ -521,12 +524,10 @@ MainWindow::MainWindow(QWidget *parent)
 	gridLayoutVersionPage->removeWidget(labelCreatingVersionView);
 	delete labelCreatingVersionView;
 	labelCreatingVersionView = new AspectRatioLabel(this);
+	labelCreatingVersionView->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
 	labelCreatingVersionView->setMovie(loadAnimMovie);
 	gridLayoutVersionPage->addWidget(labelCreatingVersionView, 1, 0);
 	labelCreatingVersionView->setVisible(false);
-
-	// hide memory indicator initially
-	progressBarMemory->setVisible(false);
 
 	checkBoxAudioFade->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
@@ -1359,12 +1360,12 @@ MainWindow::MainWindow(QWidget *parent)
 
 	// setup ROM state filter selector menu & toggle actions / short cuts
 	qmc2StatesTogglesEnabled = false;
-	menuRomStatusFilter = new QMenu(pushButtonSelectRomFilter);
+	menuRomStatusFilter = new QMenu(toolButtonSelectRomFilter);
 	romStateFilter = new RomStateFilter(this);
 	stateFilterAction = new QWidgetAction(menuRomStatusFilter);
 	stateFilterAction->setDefaultWidget(romStateFilter);
 	menuRomStatusFilter->addAction(stateFilterAction);
-	pushButtonSelectRomFilter->setMenu(menuRomStatusFilter);
+	toolButtonSelectRomFilter->setMenu(menuRomStatusFilter);
 
 	// initialize ROM state toggles
 	romStateFilter->toolButtonCorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);
@@ -1407,11 +1408,6 @@ MainWindow::MainWindow(QWidget *parent)
 	// URL replacement regexp
 	QString urlChar = QLatin1String("\\+\\-\\w\\./#@&;:=\\?~%_,\\!\\$\\*");
 	urlSectionRegExp = QString("[%1]+").arg(urlChar);
-
-#if defined(QMC2_MEMORY_INFO_ENABLED)
-	progressBarMemory->setRange(0, 100);
-	connect(&memoryUpdateTimer, SIGNAL(timeout()), this, SLOT(memoryUpdateTimer_timeout()));
-#endif
 
 	connect(treeWidgetMachineList->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetMachineList_verticalScrollChanged(int)));
 	m_glRankUpdateTimer.setSingleShot(true);
@@ -2102,7 +2098,6 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
 		menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 		statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 		toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
-		frameStatus->show();
 	}
 #endif
 
@@ -3129,6 +3124,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		lastIncludeDevices = includeDevices;
 		qmc2MachineList->numSearchGames = listWidgetSearch->count();
 		labelMachineListStatus->setText(qmc2MachineList->status());
+		lcdNumberSearchResults->display(qmc2MachineList->numSearchGames);
 		return;
 	} else if ( listWidgetSearch->count() == 0 )
 		lastSearchText.clear();
@@ -3178,6 +3174,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		lastIncludeDevices = includeDevices;
 		qmc2MachineList->numSearchGames = listWidgetSearch->count();
 		labelMachineListStatus->setText(qmc2MachineList->status());
+		lcdNumberSearchResults->display(qmc2MachineList->numSearchGames);
 		return;
 	}
 
@@ -3223,6 +3220,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 			itemList.clear();
 			qmc2MachineList->numSearchGames = listWidgetSearch->count();
 			labelMachineListStatus->setText(qmc2MachineList->status());
+			lcdNumberSearchResults->display(qmc2MachineList->numSearchGames);
 			if ( currentItemPendant ) {
 				listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
 				listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
@@ -3236,6 +3234,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 			listWidgetSearch->addItem(item);
 		qmc2MachineList->numSearchGames = listWidgetSearch->count();
 		labelMachineListStatus->setText(qmc2MachineList->status());
+		lcdNumberSearchResults->display(qmc2MachineList->numSearchGames);
 		if ( currentItemPendant ) {
 			listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
 			listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
@@ -3431,7 +3430,6 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 			toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
-			frameStatus->show();
 #else
 			QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
 #endif
@@ -3469,7 +3467,6 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 			toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
-			frameStatus->show();
 #else
 			QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
 #endif
@@ -3491,7 +3488,6 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 			toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
-			frameStatus->show();
 #else
 			QTimer::singleShot(0, this, SLOT(checkCurrentFavoritesSelection()));
 #endif
@@ -3510,7 +3506,6 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 			toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
-			frameStatus->show();
 #else
 			QTimer::singleShot(0, this, SLOT(checkCurrentPlayedSelection()));
 #endif
@@ -3527,7 +3522,6 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 			toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
-			frameStatus->show();
 #else
 			QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
 #endif
@@ -3545,7 +3539,6 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 				menuBar()->hide();
 				statusBar()->hide();
 				toolbar->hide();
-				frameStatus->hide();
 				qApp->processEvents();
 				hSplitterSizes = hSplitter->sizes();
 				QList<int> maximizedSizes;
@@ -5389,7 +5382,6 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
 		menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 		statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 		toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
-		frameStatus->show();
 	}
 
 	if ( widget ) {
@@ -5421,7 +5413,6 @@ void MainWindow::toolButtonEmbedderMaximizeToggle_toggled(bool on)
 		menuBar()->hide();
 		statusBar()->hide();
 		toolbar->hide();
-		frameStatus->hide();
 		qApp->processEvents();
 		hSplitterSizes = hSplitter->sizes();
 		QList<int> maximizedSizes;
@@ -5436,7 +5427,6 @@ void MainWindow::toolButtonEmbedderMaximizeToggle_toggled(bool on)
 		menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 		statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 		toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
-		frameStatus->show();
 		toolButtonEmbedderMaximizeToggle->setIcon(QIcon(QString::fromUtf8(":/data/img/maximize.png")));
 	}
 }
@@ -5773,7 +5763,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 		case QMC2_VIEWHIERARCHY_INDEX:
 		case QMC2_VIEWCATEGORY_INDEX:
 		case QMC2_VIEWVERSION_INDEX:
-			pushButtonSelectRomFilter->setVisible(false);
+			toolButtonSelectRomFilter->setVisible(false);
 			menuRomStatusFilter->setVisible(false);
 			actionTagVisible->setVisible(false);
 			actionUntagVisible->setVisible(false);
@@ -5781,7 +5771,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 			break;
 		case QMC2_VIEWMACHINELIST_INDEX:
 		default:
-			pushButtonSelectRomFilter->setVisible(romFilterActive);
+			toolButtonSelectRomFilter->setVisible(romFilterActive);
 			actionTagVisible->setVisible(romFilterActive);
 			actionUntagVisible->setVisible(romFilterActive);
 			actionInvertVisibleTags->setVisible(romFilterActive);
@@ -6589,7 +6579,6 @@ void MainWindow::init()
 
 	qmc2GhostImagePixmap.load(":/data/img/ghost.png");
 	qmc2GhostImagePixmap.isGhost = true;
-	progressBarMemory->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", false).toBool());
 
 	createFifo();
 
@@ -8363,7 +8352,7 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 
 	switch ( index ) {
 		case QMC2_VIEWHIERARCHY_INDEX:
-			pushButtonSelectRomFilter->setVisible(false);
+			toolButtonSelectRomFilter->setVisible(false);
 			menuRomStatusFilter->setVisible(false);
 			actionTagVisible->setVisible(false);
 			actionUntagVisible->setVisible(false);
@@ -8371,7 +8360,7 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 			viewParentClones();
 			break;
 		case QMC2_VIEWCATEGORY_INDEX:
-			pushButtonSelectRomFilter->setVisible(false);
+			toolButtonSelectRomFilter->setVisible(false);
 			menuRomStatusFilter->setVisible(false);
 			actionTagVisible->setVisible(false);
 			actionUntagVisible->setVisible(false);
@@ -8379,7 +8368,7 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 			viewByCategory();
 			break;
 		case QMC2_VIEWVERSION_INDEX:
-			pushButtonSelectRomFilter->setVisible(false);
+			toolButtonSelectRomFilter->setVisible(false);
 			menuRomStatusFilter->setVisible(false);
 			actionTagVisible->setVisible(false);
 			actionUntagVisible->setVisible(false);
@@ -8389,7 +8378,7 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 		case QMC2_VIEWMACHINELIST_INDEX:
 		default: {
 			bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool();
-			pushButtonSelectRomFilter->setVisible(romFilterActive);
+			toolButtonSelectRomFilter->setVisible(romFilterActive);
 			actionTagVisible->setVisible(romFilterActive);
 			actionUntagVisible->setVisible(romFilterActive);
 			actionInvertVisibleTags->setVisible(romFilterActive);
@@ -8543,28 +8532,6 @@ void MainWindow::on_pushButtonStopSelectedDownloads_clicked()
 		it++;
 	}
 }
-
-#if defined(QMC2_MEMORY_INFO_ENABLED)
-void MainWindow::memoryUpdateTimer_timeout()
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::memoryUpdateTimer_timeout()");
-#endif
-
-	// get memory information
-	quint64 numPages, pageSize, freePages, totalSize, totalUsed, totalFree;
-	numPages = sysconf(_SC_PHYS_PAGES) / 1024;
-	pageSize = sysconf(_SC_PAGESIZE) / 1024;
-	freePages = sysconf(_SC_AVPHYS_PAGES) / 1024;
-	totalSize = numPages * pageSize;
-	totalFree = pageSize * freePages;
-	totalUsed = totalSize - totalFree;
-	progressBarMemory->setValue(100 * ((double)totalUsed/(double)totalSize));
-	progressBarMemory->setToolTip("<b>" + tr("Physical memory:") + "</b><br>" + tr("Total: %1 MB").arg(totalSize) + "<br>" + tr("Free: %1 MB").arg(totalFree) + "<br>" + tr("Used: %1 MB").arg(totalUsed));
-}
-#else
-void MainWindow::memoryUpdateTimer_timeout() {}
-#endif
 
 void MainWindow::checkActivity()
 {
