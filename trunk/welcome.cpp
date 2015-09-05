@@ -321,6 +321,8 @@ bool Welcome::checkConfig()
 				}
 			}
 		}
+		if ( QMC2_TEST_VERSION(omv, 56, osr, 6907) )
+			startupConfig->remove("/Frontend/GUI/MemoryIndicator");
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

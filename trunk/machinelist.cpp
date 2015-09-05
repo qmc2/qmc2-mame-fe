@@ -397,7 +397,7 @@ void MachineList::enableWidgets(bool enable)
 		}
 	} else
 		qmc2MainWindow->actionSoftwareROMAlyzer->setEnabled(enable);
-	qmc2MainWindow->pushButtonSelectRomFilter->setEnabled(enable);
+	qmc2MainWindow->toolButtonSelectRomFilter->setEnabled(enable);
 	qmc2MainWindow->actionLaunchArcade->setEnabled(enable);
 	qmc2MainWindow->actionArcadeSetup->setEnabled(enable);
 }

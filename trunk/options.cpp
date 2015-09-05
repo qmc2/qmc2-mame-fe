@@ -235,10 +235,6 @@ Options::Options(QWidget *parent)
 	comboBoxDefaultLaunchMode->setVisible(false);
 #endif
 
-#if !defined(QMC2_MEMORY_INFO_ENABLED)
-	checkBoxMemoryIndicator->setVisible(false);
-#endif
-
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	checkBoxMinimizeOnEmuLaunch->setToolTip(tr("Minimize when launching (non-embedded) emulators?"));
 #endif
@@ -699,7 +695,7 @@ void Options::apply()
 	qmc2MainWindow->pushButtonReloadSelectedDownloads->setIconSize(iconSize);
 	qmc2MainWindow->pushButtonStopSelectedDownloads->setIconSize(iconSize);
 	qmc2MainWindow->treeWidgetDownloads->setIconSize(iconSize);
-	qmc2MainWindow->pushButtonSelectRomFilter->setIconSize(iconSize);
+	qmc2MainWindow->toolButtonSelectRomFilter->setIconSize(iconSize);
 	qmc2MainWindow->comboBoxViewSelect->setIconSize(iconSize);
 
 	QTabBar *tabBar = qmc2MainWindow->tabWidgetMachineList->findChild<QTabBar *>();
@@ -932,19 +928,6 @@ void Options::on_pushButtonApply_clicked()
 	qmc2MainWindow->textBrowserFrontendLog->setMaximumBlockCount(spinBoxFrontendLogSize->value());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/EmulatorLogSize", spinBoxEmulatorLogSize->value());
 	qmc2MainWindow->textBrowserEmulatorLog->setMaximumBlockCount(spinBoxEmulatorLogSize->value());
-
-#if defined(QMC2_MEMORY_INFO_ENABLED)
-	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", checkBoxMemoryIndicator->isChecked());
-	if ( checkBoxMemoryIndicator->isChecked() ) {
-		qmc2MainWindow->memoryUpdateTimer.start(QMC2_MEMORY_UPDATE_TIME);
-		qmc2MainWindow->progressBarMemory->setVisible(true);
-		qmc2MainWindow->memoryUpdateTimer_timeout();
-	} else {
-		qmc2MainWindow->memoryUpdateTimer.stop();
-		qmc2MainWindow->progressBarMemory->setVisible(false);
-	}
-#endif
-
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", checkBoxNativeFileDialogs->isChecked());
 
 	// Files and directories
@@ -1175,7 +1158,7 @@ void Options::on_pushButtonApply_clicked()
 	bool oldRSF = config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool();
 	if ( checkBoxRomStateFilter->isChecked() ) {
 		if ( qmc2MainWindow->comboBoxViewSelect->currentIndex() == QMC2_VIEWMACHINELIST_INDEX ) {
-			qmc2MainWindow->pushButtonSelectRomFilter->setVisible(true);
+			qmc2MainWindow->toolButtonSelectRomFilter->setVisible(true);
 			qmc2MainWindow->actionTagVisible->setVisible(true);
 			qmc2MainWindow->actionUntagVisible->setVisible(true);
 			qmc2MainWindow->actionInvertVisibleTags->setVisible(true);
@@ -1187,7 +1170,7 @@ void Options::on_pushButtonApply_clicked()
 			needFilter = true;
 		}
 	} else {
-		qmc2MainWindow->pushButtonSelectRomFilter->setVisible(false);
+		qmc2MainWindow->toolButtonSelectRomFilter->setVisible(false);
 		qmc2MainWindow->actionTagVisible->setVisible(false);
 		qmc2MainWindow->actionUntagVisible->setVisible(false);
 		qmc2MainWindow->actionInvertVisibleTags->setVisible(false);
@@ -1940,9 +1923,6 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	qmc2ShowGameNameOnlyWhenRequired = checkBoxShowGameNameOnlyWhenRequired->isChecked();
 	spinBoxFrontendLogSize->setValue(config->value(QMC2_FRONTEND_PREFIX + "GUI/FrontendLogSize", 0).toInt());
 	spinBoxEmulatorLogSize->setValue(config->value(QMC2_FRONTEND_PREFIX + "GUI/EmulatorLogSize", 0).toInt());
-#if defined(QMC2_MEMORY_INFO_ENABLED)
-	checkBoxMemoryIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", false).toBool());
-#endif
 #if defined(QMC2_OS_MAC)
 	checkBoxNativeFileDialogs->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", true).toBool());
 #else
@@ -2072,7 +2052,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	bool rsf = config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool();
 	checkBoxRomStateFilter->setChecked(rsf);
 	if ( !qmc2EarlyStartup ) {
-		qmc2MainWindow->pushButtonSelectRomFilter->setVisible(rsf);
+		qmc2MainWindow->toolButtonSelectRomFilter->setVisible(rsf);
 		qmc2MainWindow->romStateFilter->setEnabled(rsf);
 	}
 	if ( qmc2MainWindow ) {

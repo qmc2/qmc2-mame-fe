@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>582</width>
+    <width>543</width>
     <height>641</height>
    </rect>
   </property>
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>536</width>
+                <width>497</width>
                 <height>573</height>
                </rect>
               </property>
@@ -717,16 +717,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="13" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxMemoryIndicator">
-                   <property name="toolTip">
-                    <string>Show indicator for current memory usage</string>
-                   </property>
-                   <property name="text">
-                    <string>Show memory  usage</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="16" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxMinimizeOnEmuLaunch">
                    <property name="toolTip">
@@ -734,26 +724,6 @@
                    </property>
                    <property name="text">
                     <string>Minimize on emulator launch</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="13" column="3">
-                  <widget class="QCheckBox" name="checkBoxStandardColorPalette">
-                   <property name="toolTip">
-                    <string>Use standard or custom color palette?</string>
-                   </property>
-                   <property name="text">
-                    <string>Default palette</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="13" column="4" colspan="3">
-                  <widget class="QPushButton" name="pushButtonEditPalette">
-                   <property name="toolTip">
-                    <string>Edit the color palette</string>
-                   </property>
-                   <property name="text">
-                    <string>Edit color palette...</string>
                    </property>
                   </widget>
                  </item>
@@ -822,6 +792,26 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="13" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxStandardColorPalette">
+                   <property name="toolTip">
+                    <string>Use standard or custom color palette?</string>
+                   </property>
+                   <property name="text">
+                    <string>Default palette</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="13" column="3" colspan="4">
+                  <widget class="QPushButton" name="pushButtonEditPalette">
+                   <property name="toolTip">
+                    <string>Edit the color palette</string>
+                   </property>
+                   <property name="text">
+                    <string>Edit color palette...</string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -851,7 +841,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>348</width>
+                <width>536</width>
                 <height>842</height>
                </rect>
               </property>
@@ -2952,8 +2942,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>499</width>
-                <height>248</height>
+                <width>550</width>
+                <height>540</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
@@ -3608,8 +3598,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>252</width>
-                <height>39</height>
+                <width>550</width>
+                <height>540</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -3730,8 +3720,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>332</width>
-                <height>211</height>
+                <width>550</width>
+                <height>540</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
@@ -4193,7 +4183,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>374</width>
+                <width>536</width>
                 <height>548</height>
                </rect>
               </property>
@@ -5792,7 +5782,6 @@
   <tabstop>checkBoxSmoothScaling</tabstop>
   <tabstop>checkBoxRetryLoadingImages</tabstop>
   <tabstop>checkBoxParentImageFallback</tabstop>
-  <tabstop>checkBoxMemoryIndicator</tabstop>
   <tabstop>checkBoxStandardColorPalette</tabstop>
   <tabstop>pushButtonEditPalette</tabstop>
   <tabstop>checkBoxStatusbar</tabstop>
@@ -6041,8 +6030,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>476</x>
-     <y>601</y>
+     <x>491</x>
+     <y>635</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
@@ -6057,8 +6046,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>539</x>
-     <y>601</y>
+     <x>576</x>
+     <y>635</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
@@ -6073,12 +6062,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>119</x>
-     <y>81</y>
+     <x>129</x>
+     <y>79</y>
     </hint>
     <hint type="destinationlabel">
-     <x>523</x>
-     <y>83</y>
+     <x>560</x>
+     <y>81</y>
     </hint>
    </hints>
   </connection>
@@ -6089,12 +6078,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>91</x>
-     <y>81</y>
+     <x>101</x>
+     <y>79</y>
     </hint>
     <hint type="destinationlabel">
-     <x>202</x>
-     <y>109</y>
+     <x>285</x>
+     <y>107</y>
     </hint>
    </hints>
   </connection>
@@ -6105,8 +6094,8 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>77</x>
-     <y>81</y>
+     <x>87</x>
+     <y>79</y>
     </hint>
     <hint type="destinationlabel">
      <x>129</x>
@@ -6121,12 +6110,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>129</x>
-     <y>81</y>
+     <x>139</x>
+     <y>79</y>
     </hint>
     <hint type="destinationlabel">
      <x>89</x>
-     <y>109</y>
+     <y>107</y>
     </hint>
    </hints>
   </connection>
@@ -6137,12 +6126,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>137</x>
-     <y>191</y>
+     <x>136</x>
+     <y>188</y>
     </hint>
     <hint type="destinationlabel">
-     <x>202</x>
-     <y>192</y>
+     <x>199</x>
+     <y>189</y>
     </hint>
    </hints>
   </connection>
@@ -6153,12 +6142,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>177</x>
-     <y>544</y>
+     <x>187</x>
+     <y>460</y>
     </hint>
     <hint type="destinationlabel">
-     <x>506</x>
-     <y>547</y>
+     <x>546</x>
+     <y>460</y>
     </hint>
    </hints>
   </connection>
@@ -6169,12 +6158,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>186</x>
-     <y>569</y>
+     <x>196</x>
+     <y>485</y>
     </hint>
     <hint type="destinationlabel">
-     <x>506</x>
-     <y>572</y>
+     <x>546</x>
+     <y>485</y>
     </hint>
    </hints>
   </connection>
@@ -6189,8 +6178,8 @@
      <y>225</y>
     </hint>
     <hint type="destinationlabel">
-     <x>456</x>
-     <y>236</y>
+     <x>538</x>
+     <y>232</y>
     </hint>
    </hints>
   </connection>
@@ -6217,12 +6206,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>339</x>
-     <y>433</y>
+     <x>263</x>
+     <y>360</y>
     </hint>
     <hint type="destinationlabel">
-     <x>374</x>
-     <y>435</y>
+     <x>546</x>
+     <y>360</y>
     </hint>
    </hints>
   </connection>
