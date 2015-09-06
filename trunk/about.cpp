@@ -7,6 +7,9 @@
 #include "emuopt.h"
 #include "qmc2main.h"
 #include "machinelist.h"
+#if defined(QMC2_OS_WIN)
+#include "windows_tools.h"
+#endif
 
 #if QMC2_JOYSTICK == 1
 #include <SDL.h>
@@ -82,8 +85,8 @@ void About::showEvent(QShowEvent *e)
 {
 	ignoreResizeAndMove = true;
 
-#if defined(QMC2_MEMORY_INFO_ENABLED)
 	// get memory information
+#if defined(QMC2_POSIX_MEMORY_INFO_ENABLED)
 	quint64 numPages, pageSize, freePages, totalSize, totalUsed, totalFree;
 	numPages = sysconf(_SC_PHYS_PAGES) / 1024;
 	pageSize = sysconf(_SC_PAGESIZE) / 1024;
@@ -91,6 +94,10 @@ void About::showEvent(QShowEvent *e)
 	totalSize = numPages * pageSize;
 	totalFree = pageSize * freePages;
 	totalUsed = totalSize - totalFree;
+#elif defined(QMC2_WINDOWS_MEMORY_INFO_ENABLED)
+	// FIXME
+	quint64 totalSize = 0, totalUsed = 0, totalFree = 0;
+	winGetMemoryInfo(&totalSize, &totalUsed, &totalFree);
 #endif
 
 #if QMC2_JOYSTICK == 1
@@ -163,7 +170,7 @@ void About::showEvent(QShowEvent *e)
 		sysInfoString += "<br>" + mimeType;
 	sysInfoString += QString("</p>");
 #endif
-#if defined(QMC2_MEMORY_INFO_ENABLED)
+#if defined(QMC2_POSIX_MEMORY_INFO_ENABLED) || defined(QMC2_WINDOWS_MEMORY_INFO_ENABLED)
 	sysInfoString += "<p><b>" + tr("Physical memory:") + "</b><br>" + tr("Total: %1 MB").arg(totalSize) + "<br>" + tr("Free: %1 MB").arg(totalFree) + "<br>" + tr("Used: %1 MB").arg(totalUsed) + "</p>";
 #endif
 	sysInfoString += "<p><b>" + tr("Number of CPUs:") + "</b><br>" + (numLogicalCores != -1 ? QString("%1").arg(numLogicalCores) : tr("unknown")) + "</p><p><b>" + tr("Environment variables:") + "</b>";
