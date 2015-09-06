@@ -632,9 +632,11 @@
 // -help/-?/-h: show usage help and exit
 #define QMC2_CLI_OPT_HELP			(qApp->arguments().indexOf(QRegExp("(-help|-\\?|-h)")) >= 0)
 
-// determine if memory infomation can be made available at all
+// determine which type of memory infomation is available
 #if defined(_SC_PHYS_PAGES) && defined(_SC_PAGESIZE) && defined(_SC_AVPHYS_PAGES)
-#define QMC2_MEMORY_INFO_ENABLED
+#define QMC2_POSIX_MEMORY_INFO_ENABLED
+#elif defined(QMC2_OS_WIN)
+#define QMC2_WINDOWS_MEMORY_INFO_ENABLED
 #endif
 
 // X11 and Windows only: embedder specific delays (in ms)

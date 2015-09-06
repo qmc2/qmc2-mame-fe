@@ -17,6 +17,7 @@ HWND winFindWindowHandleOfProcess(Q_PID, QString subString = QString());
 void winRefreshWindowMap();
 void winAllocConsole(bool parentOnly = true);
 void winFreeConsole();
+void winGetMemoryInfo(quint64 *, quint64 *, quint64 *);
 
 #endif
 

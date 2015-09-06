@@ -132,4 +132,15 @@ void winFreeConsole()
 	FreeConsole();
 }
 
+void winGetMemoryInfo(quint64 *totalSize, quint64 *totalUsed, quint64 *totalFree)
+{
+	MEMORYSTATUSEX memStatus;
+	memStatus.dwLength = sizeof(memStatus);
+	if ( GlobalMemoryStatusEx(&memStatus) ) {
+		*totalSize = memStatus.ullTotalPhys / QMC2_1M;
+		*totalFree = memStatus.ullAvailPhys / QMC2_1M;
+		*totalUsed = *totalSize - *totalFree;
+	}
+}
+
 #endif
