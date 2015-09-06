@@ -1,6 +1,6 @@
 ﻿<!--
 SHIDERAVAN SYSTEM TEMPLATE
-LAST MODIFICATION: 28/June/2015
+LAST MODIFICATION: 05/September/2015
 
 Copyright (c) 2015 Jose Marcio Rezende Franco
 
@@ -18,7 +18,15 @@ Copyright (c) 2015 Jose Marcio Rezende Franco
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Whatsnew:
-28/June/2015: -New option to open source codes in GitHub using external default web browser. 
+05/Sep/2015: -Changed "No image available" for "Not available" to fit Video Snaps better (changed text for Portuguese already done, need translation for the other languages).
+             -Fixed black column proportions bug.
+             -Created a menu option to enable/disable Video Snaps.
+             -If Video Snap for the system is not available, it will now execute Parent Video snap, if it's available.
+             -Various small fixes.
+01/Sep/2015: -Experimental support for Video Snaps.
+              Note: If you're a Windows user, you'll need to download aditional DLLs in http://qmc2.arcadehits.net/Win32/qmc2-alt-qtwebkit-x64.zip and unzip into the QMC2 installation folder. Create a backup for QtWebKit4.dll before replace. Also, you'll need a MP4 codec installed.
+             -Fixed extra 1 pixel layout error in black column.
+28/Jun/2015: -New option to open source codes in GitHub using external default web browser. 
 22/May/2015: -Updated the whatsnew, documentation and licensing.
 21/May/2015: -Now if "shadows" is checked, it won't drawn shadows for images in the black column. 
 18/May/2015: -Now the source code open http://git.redump.net/ pages, since the current version MiniWebBroser is not able of opening GitHub page. (I intend to change as soon as there is compatibility). 
@@ -51,7 +59,7 @@ Whatsnew:
 09/Sep/2012: -First beta version released.
              -Portuguese support (as a different html file version at the time).
 
-This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.52 by Shideravan. Enjoy!
+This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.55 and beyond by Shideravan. Enjoy!
 This code are distributed with GPLv2 license.
 http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -173,7 +181,16 @@ Status of the languages supported:
       bottom: 0;
       height: 21;
       width: 100%;
-   }              
+   }
+   
+    video::-webkit-media-controls-fullscreen-button 
+    {
+        display:none !important;
+    }
+    video::-webkit-media-controls-current-time-display 
+    {
+        display:none !important;
+    }              
 </style>
 
 
@@ -287,6 +304,12 @@ function toggleArcadeHits(enable)
    qmc2NEO.loadCurrentTemplate();
 }
 
+function toggleVideoSnaps(enable) 
+{
+   localStorage['SystemNotesTemplate/UseVideoSnaps'] = enable ? 'true' : 'false';
+   qmc2NEO.loadCurrentTemplate();
+}
+
 function driverSource(enable) 
 {
    localStorage['SystemNotesTemplate/GHSource'] = enable ? 'true' : 'false';
@@ -323,7 +346,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['SYSTEM WITHOUT ROM'] = 'SISTEMA SEM ROM';
       trMap['Image source'] = 'Fonte da imagem';
       trMap['your default directory'] = 'seu diretório padrão';
-      trMap['No image availiable'] = 'Imagem não disponível';
+      trMap['Not available'] = 'Não disponível';
       
       trMap['ZIP File'] = 'Arquivo ZIP';
       trMap['file not zipped'] = 'arquivo não compactado';
@@ -405,6 +428,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Softwarelist/Samples XML'] = 'Softwarelist/Samples pelo XML'; 
       trMap['Processors info XML'] = 'Informação de processadores por XML';     
       trMap['Use images from ZIP (may be slow)'] = 'Usar imagens de ZIP (pode ficar lento)';      
+      trMap['Use Video Snaps'] = 'Usar Video Snaps';
          
       /*BG Modes*/ 
       trMap['BG mode'] = 'Fundo';
@@ -421,7 +445,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['SYSTEM WITHOUT ROM'] = 'System ohne ROM';
       trMap['Image source'] = 'Bildquelle';
       trMap['your default directory'] = 'Dein Standardverzeichnis';
-      trMap['No image availiable'] = 'Kein Bild vorhanden';
+      trMap['Not available'] = 'Nicht verfügbar';
       
       trMap['ZIP File'] = 'ZIP Datei';
       trMap['file not zipped'] = 'Datei nicht komprimiert';
@@ -504,6 +528,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Softwarelist/Samples XML'] = 'Software-Listen/Samples XML'; 
       trMap['Processors info XML'] = 'Prozessor-Info XML'; 
       trMap['Use images from ZIP (may be slow)'] = 'Bilder aus ZIPs vewenden (u.U. langsam)'; 
+      trMap['Use Video Snaps'] = '???';
       
       /*BG Modes*/ 
       trMap['BG mode'] = 'HG Modus';
@@ -520,7 +545,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['SYSTEM WITHOUT ROM'] = '???';
       trMap['Image source'] = 'Source de l\'image';
       trMap['your default directory'] = 'votre répertoire par défaut';
-      trMap['No image availiable'] = 'Pas d\'image disponible';    
+      trMap['Not available'] = 'Pas d\'image disponible';    
 
       trMap['ZIP File'] = '???';
       trMap['file not zipped'] = '???';
@@ -602,7 +627,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['Status XML'] = '???';    
       trMap['Softwarelist/Samples XML'] = '???'; 
       trMap['Processors info XML'] = '???';     
-      trMap['Use images from ZIP (may be slow)'] = '???';          
+      trMap['Use images from ZIP (may be slow)'] = '???';
+      trMap['Use Video Snaps'] = '???';          
 
       /*BG Modes*/ 
       trMap['BG mode'] = '???';
@@ -619,7 +645,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['SYSTEM WITHOUT ROM'] = 'SISTEMA SIN ROM'; 
       trMap['Image source'] = 'Origen de la imagen';
       trMap['your default directory'] = 'tu directorio por defecto';
-      trMap['No image availiable'] = 'No hay una imagen disponible'; 
+      trMap['Not available'] = 'No hay una imagen disponible'; 
 
       trMap['ZIP File'] = 'Fichero ZIP';
       trMap['file not zipped'] = 'Fichero no comprimido';
@@ -702,6 +728,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Softwarelist/Samples XML'] = 'XML de Listas de software/Samples';
       trMap['Processors info XML'] = 'XML de información de los Procesadores';
       trMap['Use images from ZIP (may be slow)'] = 'Usar imágenes en ficheros ZIP (puede ser lento)';
+      trMap['Use Video Snaps'] = '???';
 
       /*BG Modes*/ 
       trMap['BG mode'] = 'Modo BG';
@@ -718,7 +745,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['SYSTEM WITHOUT ROM'] = '???';      
       trMap['Image source'] = '???';
       trMap['your default directory'] = '???';
-      trMap['No image availiable'] = '???';        
+      trMap['Not available'] = '???';        
 
       trMap['ZIP File'] = '???';
       trMap['file not zipped'] = '???';
@@ -800,7 +827,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['Status XML'] = '???';    
       trMap['Softwarelist/Samples XML'] = '???'; 
       trMap['Processors info XML'] = '???';     
-      trMap['Use images from ZIP (may be slow)'] = '???'; 
+      trMap['Use images from ZIP (may be slow)'] = '???';
+      trMap['Use Video Snaps'] = '???'; 
       
       /*BG Modes*/ 
       trMap['BG mode'] = '???';
@@ -817,7 +845,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['SYSTEM WITHOUT ROM'] = '???';      
       trMap['Image source'] = '???';
       trMap['your default directory'] = '???';
-      trMap['No image availiable'] = '???';        
+      trMap['Not available'] = '???';        
 
       trMap['ZIP File'] = '???';
       trMap['file not zipped'] = '???';
@@ -899,7 +927,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['Status XML'] = '???';    
       trMap['Softwarelist/Samples XML'] = '???'; 
       trMap['Processors info XML'] = '???';     
-      trMap['Use images from ZIP (may be slow)'] = '???'; 
+      trMap['Use images from ZIP (may be slow)'] = '???';
+      trMap['Use Video Snaps'] = '???'; 
       
       /*BG Modes*/ 
       trMap['BG mode'] = '???';
@@ -916,7 +945,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['SYSTEM WITHOUT ROM'] = '???';      
       trMap['Image source'] = '???';
       trMap['your default directory'] = '???';
-      trMap['No image availiable'] = '???';        
+      trMap['Not available'] = '???';        
 
       trMap['ZIP File'] = '???';
       trMap['file not zipped'] = '???';
@@ -998,7 +1027,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['Status XML'] = '???';    
       trMap['Softwarelist/Samples XML'] = '???'; 
       trMap['Processors info XML'] = '???';     
-      trMap['Use images from ZIP (may be slow)'] = '???'; 
+      trMap['Use images from ZIP (may be slow)'] = '???';
+      trMap['Use Video Snaps'] = '???'; 
       
       /*BG Modes*/ 
       trMap['BG mode'] = '???';
@@ -1015,7 +1045,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['SYSTEM WITHOUT ROM'] = '???';      
       trMap['Image source'] = '???';
       trMap['your default directory'] = '???';
-      trMap['No image availiable'] = '???';        
+      trMap['Not available'] = '???';        
 
       trMap['ZIP File'] = '???';
       trMap['file not zipped'] = '???';
@@ -1097,7 +1127,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['Status XML'] = '???';    
       trMap['Softwarelist/Samples XML'] = '???'; 
       trMap['Processors info XML'] = '???';     
-      trMap['Use images from ZIP (may be slow)'] = '???'; 
+      trMap['Use images from ZIP (may be slow)'] = '???';
+      trMap['Use Video Snaps'] = '???'; 
       
       /*BG Modes*/ 
       trMap['BG mode'] = '???';
@@ -1114,7 +1145,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['SYSTEM WITHOUT ROM'] = '???';      
       trMap['Image source'] = '???';
       trMap['your default directory'] = '???';
-      trMap['No image availiable'] = '???';        
+      trMap['Not available'] = '???';        
 
       trMap['ZIP File'] = '???';
       trMap['file not zipped'] = '???';
@@ -1195,7 +1226,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['Status XML'] = '???';    
       trMap['Softwarelist/Samples XML'] = '???'; 
       trMap['Processors info XML'] = '???';     
-      trMap['Use images from ZIP (may be slow)'] = '???'; 
+      trMap['Use images from ZIP (may be slow)'] = '???';
+      trMap['Use Video Snaps'] = '???'; 
       
       /*BG Modes*/ 
       trMap['BG mode'] = '???';
@@ -1390,7 +1422,7 @@ function mostraFonte(v, type, zip)
    
    if(v=="miss")
    {
-      document.write("<i>"+tr('No image availiable')+"</i><br>");
+      document.write("<i>"+tr('Not available')+"</i><br>");
    }                  
 }
 
@@ -1455,7 +1487,7 @@ function estilImagem(type)
    
    stilo+="  \" ";
    
-   if (type=="mrq"||type=="cab"||type=="tit")
+   if (type=="mrq"||type=="tit")
       stilo+="border=\"1\"";  
    return stilo;
 }
@@ -2225,10 +2257,24 @@ if (localStorage['SystemNotesTemplate/PrevImageMode'] != 'no')
    </td>
 </tr></tbody></table>
 
+<!--Video Snaps Bar
+<table cellspacing="0" height="0" width="100%" style="table-layout: fixed;">
+<tbody><tr>
+<script>
+    var vsUrls = qmc2NEO.videoSnapUrls("$ID$");
+    if ( vsUrls.length > 0 ) 
+    {
+        document.write("<td width=\"1%\" valign=\"center\" align=\"center\"><video autoplay height=\"300\" width=\"100%\">");
+        for (var i = 0; i < vsUrls.length; i++)
+            document.write("<source src=\"" + vsUrls[i] + "\" />");
+        document.write("</video></td>");
+    }
+</script>
+</tr></tbody></table>-->
+
 
 <!--Info below color status bar-->
-
-<table cellspacing="1" width="100%" height="100%" style="table-layout: fixed;">
+<table cellspacing="0" width="100%" height="100%" style="table-layout: fixed;">
 <tbody><tr>
 <script language="JavaScript">
    document.write("<td width=\""+ei+"%\" valign=\"top\">");
@@ -2245,6 +2291,36 @@ if (localStorage['SystemNotesTemplate/PrevImageMode'] != 'no')
          <font size=\"3\" color=\"white\">"); 
 
 <!--Many sets in project MESS: amilo3438-->    
+
+     <!--Video Snap-->   
+     if (localStorage['SystemNotesTemplate/UseVideoSnaps'] == 'true')
+     { 
+        var vsUrls = qmc2NEO.videoSnapUrls("$ID$");
+        
+        <!--If not available, verifies parent too--> 
+        if ( vsUrls.length <= 0 ) 
+           var vsUrls = qmc2NEO.videoSnapUrls("$PARENT_ID$");
+           
+        if ( vsUrls.length > 0 ) 
+        {
+            document.write("<video autoplay width=\"100%\">");
+            /*document.write("<video controls loop autoplay width=\"100%\">");*/
+            /*NOTE: for windows "loop" doesn't work and "controls" increase instability issues*/
+            
+            for (var i = 0; i < vsUrls.length; i++)
+               document.write("<source src=\"" + vsUrls[i] + "\" />");
+            document.write("</video>");
+         }
+      
+         else
+         {
+            document.write("<b>VIDEO SNAP:</b><br>");
+            mostraFonte("miss", "n","n"); 
+         } 
+            
+         document.write("<br>"); 
+      }   
+      
       <!--Cabinet Image-->   
       x=0;
       switch(true)
@@ -3019,7 +3095,7 @@ if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
       
       document.write("</td><td align=\"left\"><font color=\"white\">");        
       
-      if ( localStorage['SystemNotesTemplate/UseProjectMess'] == 'true' )
+      if (localStorage['SystemNotesTemplate/UseProjectMess'] == 'true')
       {
          document.write("<input name=\"cpmess\" type=\"checkbox\" id=\"cpmess\" checked=\"checked\" onclick=\"toggleProjectMess(this.checked);\" title=\"Try to load images from P.MESS if not found on local disk?\"/> <label>P.MESS</label>");
       }
@@ -3031,7 +3107,7 @@ if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
              
       document.write("</td><td align=\"right\"><font color=\"white\">");             
              
-      if ( localStorage['SystemNotesTemplate/UseArcadeHits'] == 'true' )
+      if (localStorage['SystemNotesTemplate/UseArcadeHits'] == 'true')
       {
          document.write("A.Hits<input name=\"cahits\" type=\"checkbox\" id=\"cahits\" checked=\"checked\" onclick=\"toggleArcadeHits(this.checked);\" title=\"Try to load images from A.Hits if not found on local disk?\"/> <label></label>");       
       }      
@@ -3045,7 +3121,7 @@ if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
    document.write("</td></tr><tr><td width=\"10%\"><font color=\"white\">XML/Zip");
    document.write(":</td><td align=\"left\"><font color=\"white\">");               
              
-   if ( localStorage['SystemNotesTemplate/InfoXML'] == 'true' )
+   if (localStorage['SystemNotesTemplate/InfoXML'] == 'true')
    {
       document.write("<input name=\"cixml\" type=\"checkbox\" id=\"cixml\" checked=\"checked\" onclick=\"toggleInfoXML(this.checked);\" title=\"Show extra information from search from XML in information area(can be slow)\"/> <label>"+tr('Info XML')+"</label>");
    }     
@@ -3057,7 +3133,7 @@ if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
       
    document.write("</td><td align=\"left\"><font color=\"white\">");             
              
-   if ( localStorage['SystemNotesTemplate/SearchXML'] == 'true' )
+   if (localStorage['SystemNotesTemplate/SearchXML'] == 'true')
    {
       document.write("<input name=\"csxml\" type=\"checkbox\" id=\"csxml\" checked=\"checked\" onclick=\"toggleSearchXML(this.checked);\" title=\"Show information from search from XML (can be slow)\"/> <label>"+tr('Status XML')+"</label>"); 
    }     
@@ -3104,10 +3180,22 @@ if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
       document.write("<input name=\"cusezip\" type=\"checkbox\" id=\"cusezip\" onclick=\"toggleUseZip(this.checked);\" title=\"Select this option if you want to use images from zip files (maybe slow)\"/> <label>"+tr('Use images from ZIP (may be slow)')+"</label>");
    }   
 
+   document.write("</td><td align=\"right\"><font color=\"white\">");
+   
+   if (localStorage['SystemNotesTemplate/UseVideoSnaps'] == 'true')
+   {
+      document.write(tr('Use Video Snaps')+" (experimental)<input name=\"cusevideo\" type=\"checkbox\" id=\"cusevideo\" checked=\"checked\" onclick=\"toggleVideoSnaps(this.checked);\" title=\"Select this option if you want to use video snaps (experimental)\"/>");
+   }     
+              
+   else
+   {
+      document.write(tr('Use Video Snaps')+" (experimental)<input name=\"cusevideo\" type=\"checkbox\" id=\"cusevideo\" onclick=\"toggleVideoSnaps(this.checked);\" title=\"Select this option if you want to use video snaps (experimental)\"/>");
+   } 
+
       document.write("</td></tr><tr><td width=\"10%\"><font color=\"white\">"+tr('Others')+":");
       document.write("</td><td align=\"left\"><font color=\"white\">");
 
-   if ( localStorage['SystemNotesTemplate/GHSource'] == 'true' )     
+   if (localStorage['SystemNotesTemplate/GHSource'] == 'true')     
    {
       document.write("<input name=\"ghsource\" type=\"checkbox\" id=\"ghsource\" checked=\"checked\" onclick=\"driverSource(this.checked);\" title=\"Open source code in git.redump (in MiniWebBroser) or in GitHub (in external default web browser?)\"/> <label>"+tr('Source in GitHub')+"</label></td>");       
    }
