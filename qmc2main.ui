@@ -27,969 +27,960 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWidget" name="layoutWidget">
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QTabWidget" name="tabWidgetMachineList">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="contextMenuPolicy">
-           <enum>Qt::CustomContextMenu</enum>
-          </property>
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <widget class="QWidget" name="tabMachineList">
-           <attribute name="icon">
-            <iconset resource="qmc2.qrc">
-             <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
-           </attribute>
-           <attribute name="title">
-            <string>&amp;Machine list</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_2">
-            <property name="margin">
-             <number>2</number>
-            </property>
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item row="0" column="0">
-             <widget class="QStackedWidget" name="stackedWidgetView">
-              <property name="currentIndex">
-               <number>0</number>
-              </property>
-              <widget class="QWidget" name="gamelistPage">
-               <layout class="QGridLayout" name="gridLayoutMachineListPage">
-                <property name="margin">
-                 <number>0</number>
+      <widget class="QTabWidget" name="tabWidgetMachineList">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="tabMachineList">
+        <attribute name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
+        </attribute>
+        <attribute name="title">
+         <string>&amp;Machine list</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <property name="margin">
+          <number>2</number>
+         </property>
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QStackedWidget" name="stackedWidgetView">
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
+           <widget class="QWidget" name="gamelistPage">
+            <layout class="QGridLayout" name="gridLayoutMachineListPage">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QTreeWidget" name="treeWidgetMachineList">
+               <property name="contextMenuPolicy">
+                <enum>Qt::CustomContextMenu</enum>
+               </property>
+               <property name="statusTip">
+                <string>List of all supported machines</string>
+               </property>
+               <property name="uniformRowHeights">
+                <bool>true</bool>
+               </property>
+               <property name="columnCount">
+                <number>13</number>
+               </property>
+               <column>
+                <property name="text">
+                 <string>Machine / Attribute</string>
                 </property>
-                <property name="spacing">
-                 <number>0</number>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Tag</string>
                 </property>
-                <item row="0" column="0">
-                 <widget class="QTreeWidget" name="treeWidgetMachineList">
-                  <property name="contextMenuPolicy">
-                   <enum>Qt::CustomContextMenu</enum>
-                  </property>
-                  <property name="statusTip">
-                   <string>List of all supported machines</string>
-                  </property>
-                  <property name="uniformRowHeights">
-                   <bool>true</bool>
-                  </property>
-                  <property name="columnCount">
-                   <number>13</number>
-                  </property>
-                  <column>
-                   <property name="text">
-                    <string>Machine / Attribute</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Tag</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Icon / Value</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Year</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Manufacturer</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Name</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>ROM types</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Players</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Driver status</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Source file</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Rank</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Category</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Version</string>
-                   </property>
-                  </column>
-                  <item>
-                   <property name="text">
-                    <string>Waiting for data...</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QLabel" name="labelLoadingMachineList">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-              <widget class="QWidget" name="hierarchyPage">
-               <layout class="QGridLayout" name="gridLayoutHierarchyPage">
-                <property name="margin">
-                 <number>0</number>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Icon / Value</string>
                 </property>
-                <property name="spacing">
-                 <number>0</number>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Year</string>
                 </property>
-                <item row="0" column="0">
-                 <widget class="QTreeWidget" name="treeWidgetHierarchy">
-                  <property name="contextMenuPolicy">
-                   <enum>Qt::CustomContextMenu</enum>
-                  </property>
-                  <property name="statusTip">
-                   <string>Parent / clone hierarchy</string>
-                  </property>
-                  <property name="uniformRowHeights">
-                   <bool>true</bool>
-                  </property>
-                  <column>
-                   <property name="text">
-                    <string>Machine / Clones</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Tag</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Icon</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Year</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Manufacturer</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Name</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>ROM types</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Players</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Driver status</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Source file</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Rank</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Category</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Version</string>
-                   </property>
-                  </column>
-                  <item>
-                   <property name="text">
-                    <string>Waiting for data...</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QLabel" name="labelLoadingHierarchy">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-              <widget class="QWidget" name="categoryPage">
-               <layout class="QGridLayout" name="gridLayoutCategoryPage">
-                <property name="margin">
-                 <number>0</number>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Manufacturer</string>
                 </property>
-                <property name="spacing">
-                 <number>0</number>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Name</string>
                 </property>
-                <item row="0" column="0">
-                 <widget class="QTreeWidget" name="treeWidgetCategoryView">
-                  <property name="contextMenuPolicy">
-                   <enum>Qt::CustomContextMenu</enum>
-                  </property>
-                  <property name="statusTip">
-                   <string>List of machines viewed by category</string>
-                  </property>
-                  <property name="uniformRowHeights">
-                   <bool>true</bool>
-                  </property>
-                  <property name="columnCount">
-                   <number>13</number>
-                  </property>
-                  <column>
-                   <property name="text">
-                    <string>Category / Machine</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Tag</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Icon</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Year</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Manufacturer</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Name</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>ROM types</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Players</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Driver status</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Source file</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Rank</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Category</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Version</string>
-                   </property>
-                  </column>
-                  <item>
-                   <property name="text">
-                    <string>Waiting for data...</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QLabel" name="labelCreatingCategoryView">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-              <widget class="QWidget" name="versionPage">
-               <layout class="QGridLayout" name="gridLayoutVersionPage">
-                <property name="margin">
-                 <number>0</number>
+               </column>
+               <column>
+                <property name="text">
+                 <string>ROM types</string>
                 </property>
-                <property name="spacing">
-                 <number>0</number>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Players</string>
                 </property>
-                <item row="0" column="0">
-                 <widget class="QTreeWidget" name="treeWidgetVersionView">
-                  <property name="contextMenuPolicy">
-                   <enum>Qt::CustomContextMenu</enum>
-                  </property>
-                  <property name="statusTip">
-                   <string>List of machines viewed by version they were added to the emulator</string>
-                  </property>
-                  <property name="uniformRowHeights">
-                   <bool>true</bool>
-                  </property>
-                  <property name="columnCount">
-                   <number>13</number>
-                  </property>
-                  <column>
-                   <property name="text">
-                    <string>Version / Machine</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Tag</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Icon</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Year</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Manufacturer</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Name</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>ROM types</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Players</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Driver status</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Source file</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Rank</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Category</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Version</string>
-                   </property>
-                  </column>
-                  <item>
-                   <property name="text">
-                    <string>Waiting for data...</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QLabel" name="labelCreatingVersionView">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayoutViewSelect" stretch="2,1,1,0">
-              <property name="spacing">
-               <number>2</number>
-              </property>
-              <property name="topMargin">
-               <number>2</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="labelMachineListStatus">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Driver status</string>
                 </property>
-                <property name="toolTip">
-                 <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search - T:Tagged</string>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Source file</string>
                 </property>
-                <property name="statusTip">
-                 <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search - T:Tagged</string>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Rank</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Category</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Version</string>
+                </property>
+               </column>
+               <item>
+                <property name="text">
+                 <string>Waiting for data...</string>
                 </property>
                 <property name="text">
-                 <string>&lt;b&gt;&lt;font color=black&gt;L:?&lt;/font&gt; &lt;font color=#00cc00&gt;C:?&lt;/font&gt; &lt;font color=#a2c743&gt;M:?&lt;/font&gt; &lt;font color=#f90000&gt;I:?&lt;/font&gt; &lt;font color=#7f7f7f&gt;N:?&lt;/font&gt; &lt;font color=#0000f9&gt;U:?&lt;/font&gt; &lt;font color=chocolate&gt;S:?&lt;/font&gt;&lt;/b&gt;</string>
+                 <string/>
                 </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QProgressBar" name="progressBarMachineList">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
+                <property name="text">
+                 <string/>
                 </property>
-                <property name="toolTip">
-                 <string>Progress indicator for machine list processing</string>
+                <property name="text">
+                 <string/>
                 </property>
-                <property name="statusTip">
-                 <string>Progress indicator for machine list processing</string>
+                <property name="text">
+                 <string/>
                 </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                <property name="text">
+                 <string/>
                 </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="comboBoxViewSelect">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
+                <property name="text">
+                 <string/>
                 </property>
-                <property name="toolTip">
-                 <string>Switch between detailed machine list and parent / clone hierarchy</string>
+                <property name="text">
+                 <string/>
                 </property>
-                <property name="statusTip">
-                 <string>Switch between detailed machine list and parent / clone hierarchy</string>
+                <property name="text">
+                 <string/>
                 </property>
-                <item>
-                 <property name="text">
-                  <string>Machine list with full detail (filtered)</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Parent / clone hierarchy (not filtered)</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/clone.png</normaloff>:/data/img/clone.png</iconset>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item>
-               <widget class="QToolButton" name="toolButtonSelectRomFilter">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
+                <property name="text">
+                 <string/>
                 </property>
-                <property name="toolTip">
-                 <string>Toggle individual ROM states</string>
+                <property name="text">
+                 <string/>
                 </property>
-                <property name="statusTip">
-                 <string>Toggle individual ROM states</string>
+                <property name="text">
+                 <string/>
                 </property>
-                <property name="icon">
-                 <iconset resource="qmc2.qrc">
-                  <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
+                <property name="text">
+                 <string/>
                 </property>
-                <property name="popupMode">
-                 <enum>QToolButton::InstantPopup</enum>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tabSearch">
-           <attribute name="icon">
-            <iconset resource="qmc2.qrc">
-             <normaloff>:/data/img/hint.png</normaloff>:/data/img/hint.png</iconset>
-           </attribute>
-           <attribute name="title">
-            <string>&amp;Search</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayoutSearch">
-            <property name="margin">
-             <number>2</number>
-            </property>
-            <property name="spacing">
-             <number>2</number>
-            </property>
-            <item row="0" column="0">
-             <widget class="QComboBox" name="comboBoxSearch">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="toolTip">
-               <string>Search for machines (not case-sensitive)</string>
-              </property>
-              <property name="statusTip">
-               <string>Search for machines</string>
-              </property>
-              <property name="editable">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLCDNumber" name="lcdNumberSearchResults">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Maximum" vsizetype="Ignored">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="toolTip">
-               <string>Number of matches</string>
-              </property>
-              <property name="statusTip">
-               <string>Number of matches</string>
-              </property>
-              <property name="smallDecimalPoint">
-               <bool>false</bool>
-              </property>
-              <property name="numDigits">
-               <number>5</number>
-              </property>
-              <property name="digitCount">
-               <number>5</number>
-              </property>
-              <property name="segmentStyle">
-               <enum>QLCDNumber::Flat</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0" colspan="2">
-             <widget class="QListWidget" name="listWidgetSearch">
-              <property name="contextMenuPolicy">
-               <enum>Qt::CustomContextMenu</enum>
-              </property>
-              <property name="toolTip">
-               <string>Search result</string>
-              </property>
-              <property name="statusTip">
-               <string>Search result</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0" colspan="2">
-             <widget class="QProgressBar" name="progressBarSearch">
-              <property name="toolTip">
-               <string>Search progress</string>
-              </property>
-              <property name="statusTip">
-               <string>Search progress</string>
-              </property>
-              <property name="value">
-               <number>0</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tabFavorites">
-           <attribute name="icon">
-            <iconset resource="qmc2.qrc">
-             <normaloff>:/data/img/favorites.png</normaloff>:/data/img/favorites.png</iconset>
-           </attribute>
-           <attribute name="title">
-            <string>Favo&amp;rites</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayoutFavorites">
-            <property name="margin">
-             <number>2</number>
-            </property>
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item row="0" column="0">
-             <widget class="QListWidget" name="listWidgetFavorites">
-              <property name="contextMenuPolicy">
-               <enum>Qt::CustomContextMenu</enum>
-              </property>
-              <property name="toolTip">
-               <string>Favorite machines</string>
-              </property>
-              <property name="statusTip">
-               <string>Favorite machines</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tabPlayed">
-           <attribute name="icon">
-            <iconset resource="qmc2.qrc">
-             <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
-           </attribute>
-           <attribute name="title">
-            <string>Pl&amp;ayed</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayoutPlayed">
-            <property name="margin">
-             <number>2</number>
-            </property>
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item row="0" column="0">
-             <widget class="QListWidget" name="listWidgetPlayed">
-              <property name="contextMenuPolicy">
-               <enum>Qt::CustomContextMenu</enum>
-              </property>
-              <property name="toolTip">
-               <string>Machines last played</string>
-              </property>
-              <property name="statusTip">
-               <string>Machines last played</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tabForeignEmulators">
-           <attribute name="icon">
-            <iconset resource="qmc2.qrc">
-             <normaloff>:/data/img/alien.png</normaloff>:/data/img/alien.png</iconset>
-           </attribute>
-           <attribute name="title">
-            <string>&amp;Foreign emulators</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayoutForeignIDs">
-            <property name="margin">
-             <number>2</number>
-            </property>
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item row="0" column="0">
-             <widget class="QTreeWidget" name="treeWidgetForeignIDs">
-              <property name="contextMenuPolicy">
-               <enum>Qt::CustomContextMenu</enum>
-              </property>
-              <property name="toolTip">
-               <string>Foreign emulators with custom IDs</string>
-              </property>
-              <property name="statusTip">
-               <string>Foreign emulators with custom IDs</string>
-              </property>
-              <property name="headerHidden">
-               <bool>true</bool>
-              </property>
-              <column>
-               <property name="text">
-                <string notr="true">1</string>
-               </property>
-              </column>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tabEmbeddedEmus">
-           <attribute name="icon">
-            <iconset resource="qmc2.qrc">
-             <normaloff>:/data/img/embed.png</normaloff>:/data/img/embed.png</iconset>
-           </attribute>
-           <attribute name="title">
-            <string>Embedded emulators</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayoutEmbddedEmus">
-            <property name="margin">
-             <number>2</number>
-            </property>
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item row="0" column="0">
-             <widget class="QTabWidget" name="tabWidgetEmbeddedEmulators">
-              <property name="currentIndex">
-               <number>0</number>
-              </property>
-              <property name="tabsClosable">
-               <bool>true</bool>
-              </property>
-              <property name="movable">
-               <bool>true</bool>
-              </property>
-              <widget class="QWidget" name="tabEmulator">
-               <attribute name="title">
-                <string>Emulator</string>
-               </attribute>
+               </item>
               </widget>
-             </widget>
-            </item>
-           </layout>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="labelLoadingMachineList">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="hierarchyPage">
+            <layout class="QGridLayout" name="gridLayoutHierarchyPage">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QTreeWidget" name="treeWidgetHierarchy">
+               <property name="contextMenuPolicy">
+                <enum>Qt::CustomContextMenu</enum>
+               </property>
+               <property name="statusTip">
+                <string>Parent / clone hierarchy</string>
+               </property>
+               <property name="uniformRowHeights">
+                <bool>true</bool>
+               </property>
+               <column>
+                <property name="text">
+                 <string>Machine / Clones</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Tag</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Icon</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Year</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Manufacturer</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Name</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>ROM types</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Players</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Driver status</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Source file</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Rank</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Category</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Version</string>
+                </property>
+               </column>
+               <item>
+                <property name="text">
+                 <string>Waiting for data...</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="labelLoadingHierarchy">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="categoryPage">
+            <layout class="QGridLayout" name="gridLayoutCategoryPage">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QTreeWidget" name="treeWidgetCategoryView">
+               <property name="contextMenuPolicy">
+                <enum>Qt::CustomContextMenu</enum>
+               </property>
+               <property name="statusTip">
+                <string>List of machines viewed by category</string>
+               </property>
+               <property name="uniformRowHeights">
+                <bool>true</bool>
+               </property>
+               <property name="columnCount">
+                <number>13</number>
+               </property>
+               <column>
+                <property name="text">
+                 <string>Category / Machine</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Tag</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Icon</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Year</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Manufacturer</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Name</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>ROM types</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Players</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Driver status</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Source file</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Rank</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Category</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Version</string>
+                </property>
+               </column>
+               <item>
+                <property name="text">
+                 <string>Waiting for data...</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="labelCreatingCategoryView">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="versionPage">
+            <layout class="QGridLayout" name="gridLayoutVersionPage">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QTreeWidget" name="treeWidgetVersionView">
+               <property name="contextMenuPolicy">
+                <enum>Qt::CustomContextMenu</enum>
+               </property>
+               <property name="statusTip">
+                <string>List of machines viewed by version they were added to the emulator</string>
+               </property>
+               <property name="uniformRowHeights">
+                <bool>true</bool>
+               </property>
+               <property name="columnCount">
+                <number>13</number>
+               </property>
+               <column>
+                <property name="text">
+                 <string>Version / Machine</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Tag</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Icon</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Year</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Manufacturer</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Name</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>ROM types</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Players</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Driver status</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Source file</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Rank</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Category</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Version</string>
+                </property>
+               </column>
+               <item>
+                <property name="text">
+                 <string>Waiting for data...</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="labelCreatingVersionView">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
           </widget>
-         </widget>
-        </item>
-       </layout>
+         </item>
+         <item row="1" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayoutViewSelect" stretch="3,2,1,0">
+           <property name="spacing">
+            <number>2</number>
+           </property>
+           <property name="topMargin">
+            <number>2</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="labelMachineListStatus">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search - T:Tagged</string>
+             </property>
+             <property name="statusTip">
+              <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search - T:Tagged</string>
+             </property>
+             <property name="text">
+              <string>&lt;b&gt;&lt;font color=black&gt;L:?&lt;/font&gt; &lt;font color=#00cc00&gt;C:?&lt;/font&gt; &lt;font color=#a2c743&gt;M:?&lt;/font&gt; &lt;font color=#f90000&gt;I:?&lt;/font&gt; &lt;font color=#7f7f7f&gt;N:?&lt;/font&gt; &lt;font color=#0000f9&gt;U:?&lt;/font&gt; &lt;font color=chocolate&gt;S:?&lt;/font&gt;&lt;/b&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QProgressBar" name="progressBarMachineList">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>Progress indicator for machine list processing</string>
+             </property>
+             <property name="statusTip">
+              <string>Progress indicator for machine list processing</string>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboBoxViewSelect">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>Switch between detailed machine list and parent / clone hierarchy</string>
+             </property>
+             <property name="statusTip">
+              <string>Switch between detailed machine list and parent / clone hierarchy</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Machine list with full detail (filtered)</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Parent / clone hierarchy (not filtered)</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/clone.png</normaloff>:/data/img/clone.png</iconset>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="toolButtonSelectRomFilter">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>Toggle individual ROM states</string>
+             </property>
+             <property name="statusTip">
+              <string>Toggle individual ROM states</string>
+             </property>
+             <property name="icon">
+              <iconset resource="qmc2.qrc">
+               <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
+             </property>
+             <property name="popupMode">
+              <enum>QToolButton::InstantPopup</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabSearch">
+        <attribute name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/hint.png</normaloff>:/data/img/hint.png</iconset>
+        </attribute>
+        <attribute name="title">
+         <string>&amp;Search</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayoutSearch">
+         <property name="margin">
+          <number>2</number>
+         </property>
+         <property name="spacing">
+          <number>2</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QComboBox" name="comboBoxSearch">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Search for machines (not case-sensitive)</string>
+           </property>
+           <property name="statusTip">
+            <string>Search for machines</string>
+           </property>
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLCDNumber" name="lcdNumberSearchResults">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Maximum" vsizetype="Ignored">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Number of matches</string>
+           </property>
+           <property name="statusTip">
+            <string>Number of matches</string>
+           </property>
+           <property name="smallDecimalPoint">
+            <bool>false</bool>
+           </property>
+           <property name="numDigits">
+            <number>5</number>
+           </property>
+           <property name="digitCount">
+            <number>5</number>
+           </property>
+           <property name="segmentStyle">
+            <enum>QLCDNumber::Flat</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QListWidget" name="listWidgetSearch">
+           <property name="contextMenuPolicy">
+            <enum>Qt::CustomContextMenu</enum>
+           </property>
+           <property name="toolTip">
+            <string>Search result</string>
+           </property>
+           <property name="statusTip">
+            <string>Search result</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" colspan="2">
+          <widget class="QProgressBar" name="progressBarSearch">
+           <property name="toolTip">
+            <string>Search progress</string>
+           </property>
+           <property name="statusTip">
+            <string>Search progress</string>
+           </property>
+           <property name="value">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabFavorites">
+        <attribute name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/favorites.png</normaloff>:/data/img/favorites.png</iconset>
+        </attribute>
+        <attribute name="title">
+         <string>Favo&amp;rites</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayoutFavorites">
+         <property name="margin">
+          <number>2</number>
+         </property>
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QListWidget" name="listWidgetFavorites">
+           <property name="contextMenuPolicy">
+            <enum>Qt::CustomContextMenu</enum>
+           </property>
+           <property name="toolTip">
+            <string>Favorite machines</string>
+           </property>
+           <property name="statusTip">
+            <string>Favorite machines</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabPlayed">
+        <attribute name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
+        </attribute>
+        <attribute name="title">
+         <string>Pl&amp;ayed</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayoutPlayed">
+         <property name="margin">
+          <number>2</number>
+         </property>
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QListWidget" name="listWidgetPlayed">
+           <property name="contextMenuPolicy">
+            <enum>Qt::CustomContextMenu</enum>
+           </property>
+           <property name="toolTip">
+            <string>Machines last played</string>
+           </property>
+           <property name="statusTip">
+            <string>Machines last played</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabForeignEmulators">
+        <attribute name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/alien.png</normaloff>:/data/img/alien.png</iconset>
+        </attribute>
+        <attribute name="title">
+         <string>&amp;Foreign emulators</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayoutForeignIDs">
+         <property name="margin">
+          <number>2</number>
+         </property>
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QTreeWidget" name="treeWidgetForeignIDs">
+           <property name="contextMenuPolicy">
+            <enum>Qt::CustomContextMenu</enum>
+           </property>
+           <property name="toolTip">
+            <string>Foreign emulators with custom IDs</string>
+           </property>
+           <property name="statusTip">
+            <string>Foreign emulators with custom IDs</string>
+           </property>
+           <property name="headerHidden">
+            <bool>true</bool>
+           </property>
+           <column>
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabEmbeddedEmus">
+        <attribute name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/embed.png</normaloff>:/data/img/embed.png</iconset>
+        </attribute>
+        <attribute name="title">
+         <string>Embedded emulators</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayoutEmbddedEmus">
+         <property name="margin">
+          <number>2</number>
+         </property>
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QTabWidget" name="tabWidgetEmbeddedEmulators">
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
+           <property name="tabsClosable">
+            <bool>true</bool>
+           </property>
+           <property name="movable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="tabEmulator">
+            <attribute name="title">
+             <string>Emulator</string>
+            </attribute>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
       <widget class="QSplitter" name="vSplitter">
        <property name="contextMenuPolicy">
