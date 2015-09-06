@@ -664,16 +664,6 @@
 // maximum delay in ms before finally killing an external tool (if required to)
 #define QMC2_TOOL_KILL_WAIT			2000
 
-// supported DB drivers
-#define QMC2_DB_DRIVER_MYSQL			0
-#define QMC2_DB_DRIVER_SQLITE			1
-
-// DB server default ports
-#define QMC2_DB_DFLT_PORT_MYSQL			3306
-
-// DB connection check button reset delay
-#define QMC2_DB_RESET_CCB_DELAY			1000
-
 // MAME/MESS exit codes (from MAME source -- src/emu/mame.h)
 #define	QMC2_MAME_ERROR_NONE			0	// no error
 #define	QMC2_MAME_ERROR_FAILED_VALIDITY		1	// failed validity checks
