@@ -87,6 +87,7 @@ void showHelp()
     QString defGSys = globalConfig->defaultGraphicsSystem();
 #endif
     QString defLang = globalConfig->defaultLanguage();
+    QString defVideo = globalConfig->defaultVideo();
 
     QStringList themeList;
     foreach (QString theme, arcadeThemes) {
@@ -126,29 +127,39 @@ void showHelp()
     }
     QString availableLanguages = langList.join(", ");
 
+    QStringList videoList;
+    foreach (QString v, QStringList() << "on" << "off") {
+        if ( defVideo == v )
+            videoList << "[" + v + "]";
+        else
+            videoList << v;
+    }
+    QString availableVideoSettings = videoList.join(", ");
+
     QString helpMessage;
 #if QT_VERSION < 0x050000
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-config_path <path>] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
 #else
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-config_path <path>] [-debugkeys] [-h|-?|-help]\n\n";
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-debugkeys] [-h|-?|-help]\n\n";
 #endif
 #else
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-config_path <path>] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
 #else
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-config_path <path>] [-debugkeys] [-h|-?|-help]\n\n";
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-debugkeys] [-h|-?|-help]\n\n";
 #endif
 #endif
     helpMessage += "Option           Meaning             Possible values ([..] = default)\n"
                    "---------------  ------------------  -----------------------------------------\n"
-                   "-emu             Emulator mode       [mame], mess, ume\n";
+                   "-emu             Emulator mode       [mame]\n";
     helpMessage += "-theme           Theme selection     " + availableThemes + "\n";
     helpMessage += "-console         Console type        " + availableConsoles + "\n";
 #if QT_VERSION < 0x050000
     helpMessage += "-graphicssystem  Graphics engine     " + availableGraphicsSystems + "\n";
 #endif
     helpMessage += "-language        Language selection  " + availableLanguages + "\n";
+    helpMessage += "-video           Video snap support  " + availableVideoSettings + "\n";
     helpMessage += QString("-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
     helpMessage += "-debugkeys       Debug key-mapping   N/A\n";
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
@@ -413,11 +424,24 @@ int main(int argc, char *argv[])
 
         QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using theme '%1'").arg(theme));
 
+        bool useVideoSnaps = (globalConfig->defaultVideo() == "on");
+        if ( QMC2_ARCADE_CLI_VIDEO_VAL )
+            useVideoSnaps = (QMC2_ARCADE_CLI_VIDEO == "on");
+
+        // load theme
+        QString themeUrl;
 #if QT_VERSION < 0x050000
-        viewer->setSource(QUrl(QString("qrc:/qml/%1/1.1/%1.qml").arg(theme)));
+        if ( useVideoSnaps )
+            themeUrl = QString("qrc:/qml/%1/1.1/%1-video.qml").arg(theme);
+        else
+            themeUrl = QString("qrc:/qml/%1/1.1/%1.qml").arg(theme);
 #else
-        viewer->setSource(QUrl(QString("qrc:/qml/%1/2.0/%1.qml").arg(theme)));
+        if ( useVideoSnaps )
+            themeUrl = QString("qrc:/qml/%1/2.0/%1-video.qml").arg(theme);
+        else
+            themeUrl = QString("qrc:/qml/%1/2.0/%1.qml").arg(theme);
 #endif
+        viewer->setSource(QUrl(themeUrl));
 
         // delayed setup of the initial display mode
         QTimer::singleShot(100, viewer, SLOT(displayInit()));

@@ -73,11 +73,12 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
 #endif
 
     infoClasses << "gameinfo" << "emuinfo" << "softinfo";
+    videoSnapAllowedFormatExtensions << ".mp4" << ".avi";
 
 #if QT_VERSION < 0x050000
-    cliParams << "theme" << "graphicssystem" << "console" << "language";
+    cliParams << "theme" << "graphicssystem" << "console" << "language" << "video";
 #else
-    cliParams << "theme" << "console" << "language";
+    cliParams << "theme" << "console" << "language" << "video";
 #endif
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
@@ -90,12 +91,14 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
 #endif
     cliAllowedParameterValues["console"] = consoleModes;
     cliAllowedParameterValues["language"] = globalConfig->languageMap.keys();
+    cliAllowedParameterValues["video"] = QStringList() << "on" << "off";
     cliParameterDescriptions["theme"] = tr("Theme");
 #if QT_VERSION < 0x050000
     cliParameterDescriptions["graphicssystem"] = tr("Graphics system");
 #endif
     cliParameterDescriptions["console"] = tr("Console mode");
     cliParameterDescriptions["language"] = tr("Language");
+    cliParameterDescriptions["video"] = tr("Video snaps");
 
 #if QT_VERSION < 0x050000
     qmlRegisterType<WheelArea>("Wheel", 1, 0, "WheelArea");
@@ -486,6 +489,43 @@ QString TweakedQmlApplicationViewer::requestInfo(const QString &id, const QStrin
     return infoText;
 }
 
+QString TweakedQmlApplicationViewer::videoSnapUrl(const QString &id)
+{
+    foreach (QString videoSnapFolder, globalConfig->videoSnapFolder().split(";", QString::SkipEmptyParts)) {
+        foreach (QString formatExtension, videoSnapAllowedFormatExtensions) {
+            QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + id + formatExtension));
+            if ( fi.exists() && fi.isReadable() ) {
+                QString videoSnapUrl = fi.absoluteFilePath();
+#if defined(QMC2_ARCADE_OS_WIN)
+                videoSnapUrl.prepend("file:///");
+#else
+                videoSnapUrl.prepend("file://");
+#endif
+                return videoSnapUrl;
+            }
+        }
+        // parent fallback
+        if ( globalConfig->parentImageFallback() ) {
+            QString pI = parentId(id);
+            if ( !pI.isEmpty() ) {
+                foreach (QString formatExtension, videoSnapAllowedFormatExtensions) {
+                    QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + pI + formatExtension));
+                    if ( fi.exists() && fi.isReadable() ) {
+                        QString videoSnapUrl = fi.absoluteFilePath();
+#if defined(QMC2_ARCADE_OS_WIN)
+                        videoSnapUrl.prepend("file:///");
+#else
+                        videoSnapUrl.prepend("file://");
+#endif
+                        return videoSnapUrl;
+                    }
+                }
+            }
+        }
+    }
+    return QString();
+}
+
 int TweakedQmlApplicationViewer::findIndex(QString pattern, int startIndex)
 {
     if ( pattern.isEmpty() )
@@ -552,6 +592,8 @@ QString TweakedQmlApplicationViewer::cliParamValue(QString param)
         return globalConfig->defaultConsoleType();
     case QMC2_ARCADE_PARAM_LANGUAGE:
         return globalConfig->defaultLanguage();
+    case QMC2_ARCADE_PARAM_VIDEO:
+        return globalConfig->defaultVideo();
     default:
         return QString();
     }
@@ -578,6 +620,9 @@ void TweakedQmlApplicationViewer::setCliParamValue(QString param, QString value)
         break;
     case QMC2_ARCADE_PARAM_LANGUAGE:
         globalConfig->setDefaultLanguage(value);
+        break;
+    case QMC2_ARCADE_PARAM_VIDEO:
+        globalConfig->setDefaultVideo(value);
         break;
     }
 }

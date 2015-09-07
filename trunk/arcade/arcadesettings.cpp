@@ -192,6 +192,16 @@ QString ArcadeSettings::defaultFont()
     return value(QString("%1/GUI/Font").arg(frontEndPrefix)).toString();
 }
 
+void ArcadeSettings::setDefaultVideo(QString vdo)
+{
+    setValue(QString("%1/Arcade/Video").arg(frontEndPrefix), vdo);
+}
+
+QString ArcadeSettings::defaultVideo()
+{
+    return value(QString("%1/Arcade/Video").arg(frontEndPrefix), "off").toString();
+}
+
 void ArcadeSettings::setFpsVisible(bool visible)
 {
     setValue(QString("Arcade/%1/fpsVisible").arg(arcadeTheme), visible);
@@ -758,6 +768,11 @@ QStringList ArcadeSettings::activeImageFormats(QString imageType)
 bool ArcadeSettings::parentImageFallback()
 {
     return value(QString("%1/GUI/ParentImageFallback").arg(frontEndPrefix)).toBool();
+}
+
+QString ArcadeSettings::videoSnapFolder()
+{
+    return value(QString("%1/FilesAndDirectories/VideoSnapFolder").arg(emulatorPrefix)).toString();
 }
 
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)

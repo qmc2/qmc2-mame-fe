@@ -29,9 +29,11 @@
 #define QMC2_ARCADE_PARAM_GRASYS    1
 #define QMC2_ARCADE_PARAM_CONSOLE   2
 #define QMC2_ARCADE_PARAM_LANGUAGE  3
+#define QMC2_ARCADE_PARAM_VIDEO     4
 #else
 #define QMC2_ARCADE_PARAM_CONSOLE   1
 #define QMC2_ARCADE_PARAM_LANGUAGE  2
+#define QMC2_ARCADE_PARAM_VIDEO     3
 #endif
 
 #if QT_VERSION < 0x050000
@@ -56,6 +58,7 @@ public:
     QMap<QString, QString> cliParameterDescriptions;
     QStringList cliParams;
     QStringList infoClasses;
+    QStringList videoSnapAllowedFormatExtensions;
     KeySequenceMap *keySequenceMap;
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
     JoyFunctionMap *joyFunctionMap;
@@ -108,7 +111,8 @@ public slots:
     void loadMachineList();
     void launchEmulator(QString);
     QString loadImage(const QString &);
-    QString requestInfo(const QString&, const QString&);
+    QString requestInfo(const QString &, const QString &);
+    QString videoSnapUrl(const QString &);
     int findIndex(QString, int startIndex = 0);
     void log(QString);
     QStringList cliParamNames();
