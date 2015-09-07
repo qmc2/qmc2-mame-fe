@@ -122,14 +122,18 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 
 evil_hack_to_fool_lupdate {
     SOURCES += qml/ToxicWaste/1.1/ToxicWaste.qml \
+	       qml/ToxicWaste/1.1/ToxicWaste-video.qml \
                qml/ToxicWaste/1.1/ToxicWaste.js \
                qml/ToxicWaste/1.1/animations/BackgroundAnimation.qml \
                qml/ToxicWaste/2.0/ToxicWaste.qml \
+               qml/ToxicWaste/2.0/ToxicWaste-video.qml \
                qml/ToxicWaste/2.0/ToxicWaste.js \
                qml/ToxicWaste/2.0/animations/BackgroundAnimation.qml \
                qml/darkone/1.1/darkone.qml \
+               qml/darkone/1.1/darkone-video.qml \
                qml/darkone/1.1/darkone.js \
                qml/darkone/2.0/darkone.qml \
+               qml/darkone/2.0/darkone-video.qml \
                qml/darkone/2.0/darkone.js
 }
 

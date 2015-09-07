@@ -2,6 +2,7 @@
     <qresource prefix="/">
         <file>qml/ToxicWaste/1.1/ToxicWaste.js</file>
         <file>qml/ToxicWaste/1.1/ToxicWaste.qml</file>
+        <file>qml/ToxicWaste/1.1/ToxicWaste-video.qml</file>
         <file>qml/ToxicWaste/1.1/animations/BackgroundAnimation.qml</file>
         <file>qml/ToxicWaste/1.1/components/Button.qml</file>
         <file>qml/ToxicWaste/1.1/components/CheckBox.qml</file>
@@ -46,6 +47,7 @@
         <file>qml/darkone/1.1/components/CycleItem.qml</file>
         <file>qml/darkone/1.1/darkone.js</file>
         <file>qml/darkone/1.1/darkone.qml</file>
+        <file>qml/darkone/1.1/darkone-video.qml</file>
         <file>qml/darkone/1.1/images/arrow.png</file>
         <file>qml/darkone/1.1/images/checkmark.png</file>
         <file>qml/darkone/1.1/images/clear.png</file>

@@ -60,6 +60,8 @@ public slots:
     QString defaultLanguage();
     void setDefaultFont(QString);
     QString defaultFont();
+    void setDefaultVideo(QString);
+    QString defaultVideo();
 
     // theme-specific settings (general)
     void setFpsVisible(bool);
@@ -184,6 +186,7 @@ public slots:
     QString softwareInfoDat();
     QStringList activeImageFormats(QString);
     bool parentImageFallback();
+    QString videoSnapFolder();
 
     // joystick related
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)

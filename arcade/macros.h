@@ -141,6 +141,10 @@
 #define QMC2_ARCADE_CLI_LANG            (argumentList.indexOf("-language") >= 0 && argumentList.count() > argumentList.indexOf("-language") + 1 ? argumentList[argumentList.indexOf("-language") + 1] : "us")
 #define QMC2_ARCADE_CLI_LANG_INV        (argumentList.indexOf("-language") >= 0 && argumentList.count() == argumentList.indexOf("-language") + 1)
 #define QMC2_ARCADE_CLI_LANG_VAL        (argumentList.indexOf("-language") >= 0 && argumentList.count() > argumentList.indexOf("-language") + 1)
+// -video
+#define QMC2_ARCADE_CLI_VIDEO           (argumentList.indexOf("-video") >= 0 && argumentList.count() > argumentList.indexOf("-video") + 1 ? argumentList[argumentList.indexOf("-video") + 1] : "off")
+#define QMC2_ARCADE_CLI_VIDEO_INV       (argumentList.indexOf("-video") >= 0 && argumentList.count() == argumentList.indexOf("-video") + 1)
+#define QMC2_ARCADE_CLI_VIDEO_VAL       (argumentList.indexOf("-video") >= 0 && argumentList.count() > argumentList.indexOf("-video") + 1)
 // -debugkeys
 #define QMC2_ARCADE_CLI_DEBUG_KEYS      (argumentList.indexOf("-debugkeys") >= 0)
 // -joy <index>
@@ -154,7 +158,7 @@
 // -h|-?|-help
 #define QMC2_ARCADE_CLI_HELP            (argumentList.indexOf(QRegExp("(-h|-\\?|-help)")) >= 0)
 // argument validation
-#define QMC2_ARCADE_CLI_INVALID         (QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV || QMC2_ARCADE_CLI_CONS_INV || QMC2_ARCADE_CLI_GSYS_INV || QMC2_ARCADE_CLI_LANG_INV || QMC2_ARCADE_CLI_JOY_INV)
+#define QMC2_ARCADE_CLI_INVALID         (QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV || QMC2_ARCADE_CLI_CONS_INV || QMC2_ARCADE_CLI_GSYS_INV || QMC2_ARCADE_CLI_LANG_INV || QMC2_ARCADE_CLI_VIDEO_INV || QMC2_ARCADE_CLI_JOY_INV)
 
 // console logging macros
 #define QMC2_ARCADE_LOG_STR(s)          if ( !consoleWindow ) { printf("%s: %s\n", QTime::currentTime().toString("hh:mm:ss.zzz").toUtf8().constData(), s.toUtf8().constData()); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + s); }
