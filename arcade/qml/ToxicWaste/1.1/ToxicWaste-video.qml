@@ -204,6 +204,7 @@ Rectangle {
                         property string videoUrl: viewer.videoSnapUrl(machineListModel[machineListView.currentIndex].id)
                         source: videoUrl
                         onVideoUrlChanged: {
+                            videoSnap.stop();
                             if ( videoSnap.videoUrl == "" )
                                 videoIndicator.opacity = 0;
                             else
