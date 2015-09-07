@@ -166,6 +166,7 @@ Rectangle {
                         anchors.centerIn: parent
                         anchors.margins: 1
                         fillMode: Image.PreserveAspectFit
+                        opacity: videoSnap.playing ? 0 : 1
                         Connections {
                             target: viewer
                             onImageDataUpdated: {
@@ -198,7 +199,7 @@ Rectangle {
                         id: videoSnap
                         anchors.fill: parent
                         anchors.centerIn: parent
-                        anchors.margins: 1
+                        anchors.margins: 3
                         fillMode: Video.Stretch
                         autoLoad: false
                         opacity: playing ? 1 : 0
