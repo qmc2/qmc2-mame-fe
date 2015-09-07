@@ -2,7 +2,7 @@ NAME
   qmc2-arcade - Arcade / non-desktop version of QMC2 - M.A.M.E. Catalog/Launcher II
 
 SYNOPSIS
-  qmc2-arcade [-theme qml_theme] [-console type] [-graphicssystem engine] [-language lang] [-config_path path] [-debugkeys] [-nojoy] [-joy index] [-debugjoy] [-h|-?|-help]
+  qmc2-arcade [-theme qml_theme] [-console type] [-graphicssystem engine] [-language lang] [-video vdo] [-config_path path] [-debugkeys] [-nojoy] [-joy index] [-debugjoy] [-h|-?|-help]
 
 DESCRIPTION
   For those who want to 'go straight into the games' there's QMC2 Arcade, a QML / QtQuick based approach to presenting an optionally filtered
@@ -14,8 +14,8 @@ DESCRIPTION
   faster. Also, you cannot change the emulator's configuration from within QMC2 Arcade. So whenever you want to make modifications to a
   machine's configuration (or the global setup) you have to do this through QMC2's main GUI as well. 
 
-  The main GUI also has a specific dialog for setting up all relevant back-end default options (-theme, -console, -graphicssystem and
-  -language), for producing a filtered machine list used by QMC2 Arcade exclusively (optional) and for mapping key-sequences or
+  The main GUI also has a specific dialog for setting up all relevant back-end default options (-theme, -console, -graphicssystem, -language
+  and -video), for producing a filtered machine list used by QMC2 Arcade exclusively (optional) and for mapping key-sequences or
   joystick-functions (also optional). Default values for back-end options can also be configured inside QMC2 Arcade provided the chosen
   qml_theme supports it (which all of the available themes do).
 
@@ -38,6 +38,9 @@ OPTIONS
 
   -language lang  Choose translation to load. Run 'qmc2-arcade -h' for a list of available values for lang. Note that the default value for -language
                   is shared with the main GUI's language setting!
+
+  -video vdo  Enable (vdo = 'on') or disable (vdo = 'off') the use of video snaps (theme-specific). The value of vdo will be ignored when the current
+              theme has no built-in support for video snaps.
 
   -config_path path  Specify this argument to use the directory path instead of the default folder (CONFIG_PATH) to search for QMC2's configuration
                      and cache-files.
