@@ -106,6 +106,8 @@ public slots:
     QString cabinetImageType();
     void setAutoStopAnimations(bool);
     bool autoStopAnimations();
+    double videoPlayerVolume();
+    void setVideoPlayerVolume(double);
 
     // darkone
     void setToolbarHidden(bool);

@@ -93,6 +93,8 @@ public:
 #endif
 
     int themeIndex();
+    void setVideoEnabled(bool enable) { m_videoEnabled = enable; }
+    bool videoEnabled() { return m_videoEnabled; }
 
 signals:
     void emulatorStarted(int);
@@ -136,6 +138,7 @@ private:
     bool m_initialized;
     QHash<QString, QString> m_parentHash;
     QHash<QString, QString> m_videoSnapUrlCache;
+    bool m_videoEnabled;
 
 #if QT_VERSION < 0x050000
 protected:

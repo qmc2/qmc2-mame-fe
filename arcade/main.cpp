@@ -424,19 +424,19 @@ int main(int argc, char *argv[])
 
         QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using theme '%1'").arg(theme));
 
-        bool useVideoSnaps = (globalConfig->defaultVideo() == "on");
+        viewer->setVideoEnabled(globalConfig->defaultVideo() == "on");
         if ( QMC2_ARCADE_CLI_VIDEO_VAL )
-            useVideoSnaps = (QMC2_ARCADE_CLI_VIDEO == "on");
+            viewer->setVideoEnabled(QMC2_ARCADE_CLI_VIDEO == "on");
 
         // load theme
         QString themeUrl;
 #if QT_VERSION < 0x050000
-        if ( useVideoSnaps )
+        if ( viewer->videoEnabled() )
             themeUrl = QString("qrc:/qml/%1/1.1/%1-video.qml").arg(theme);
         else
             themeUrl = QString("qrc:/qml/%1/1.1/%1.qml").arg(theme);
 #else
-        if ( useVideoSnaps )
+        if ( viewer->videoEnabled() )
             themeUrl = QString("qrc:/qml/%1/2.0/%1-video.qml").arg(theme);
         else
             themeUrl = QString("qrc:/qml/%1/2.0/%1.qml").arg(theme);

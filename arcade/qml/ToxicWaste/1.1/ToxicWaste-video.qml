@@ -39,6 +39,7 @@ Rectangle {
     property real backgroundOpacity: 0.7
     property real machineListOpacity: 1
     property bool autoStopAnimations: true
+    property real videoPlayerVolume: 0.5
 
     // delayed init
     Timer {
@@ -203,6 +204,7 @@ Rectangle {
                         opacity: playing ? 1 : 0
                         property string videoUrl: viewer.videoSnapUrl(machineListModel[machineListView.currentIndex].id)
                         source: videoUrl
+                        volume: toxicWasteMain.videoPlayerVolume
                         onVideoUrlChanged: {
                             videoSnap.stop();
                             if ( videoSnap.videoUrl == "" )
@@ -1213,6 +1215,19 @@ Rectangle {
                     value: toxicWasteMain.machineListOpacity
                     defaultValue: 1
                     onValueChanged: toxicWasteMain.machineListOpacity = value
+                }
+                Slider {
+                    id: videoPlayerVolumeSlider
+                    anchors.top: machineListOpacitySlider.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.margins: 5
+                    sliderText: qsTr("Video player volume")
+                    minimum: 0
+                    maximum: 1
+                    value: toxicWasteMain.videoPlayerVolume
+                    defaultValue: 0.5
+                    onValueChanged: toxicWasteMain.videoPlayerVolume = value
                 }
             }
             Rectangle {

@@ -392,6 +392,16 @@ bool ArcadeSettings::autoStopAnimations()
     return value(QString("Arcade/%1/autoStopAnimations").arg(arcadeTheme), true).toBool();
 }
 
+double ArcadeSettings::videoPlayerVolume()
+{
+    return value(QString("Arcade/%1/videoPlayerVolume").arg(arcadeTheme), 0.5).toDouble();
+}
+
+void ArcadeSettings::setVideoPlayerVolume(double volume)
+{
+    setValue(QString("Arcade/%1/videoPlayerVolume").arg(arcadeTheme), volume);
+}
+
 void ArcadeSettings::setToolbarHidden(bool hidden)
 {
     setValue(QString("Arcade/%1/toolbarHidden").arg(arcadeTheme), hidden);
