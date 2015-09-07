@@ -210,6 +210,8 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("gameListOpacity", globalConfig->gameListOpacity());
         rootObject()->setProperty("cabinetImageType", globalConfig->cabinetImageType());
         rootObject()->setProperty("autoStopAnimations", globalConfig->autoStopAnimations());
+        if ( videoEnabled() )
+            rootObject()->setProperty("videoPlayerVolume", globalConfig->videoPlayerVolume());
         break;
     case QMC2_ARCADE_THEME_DARKONE:
         rootObject()->setProperty("lastIndex", globalConfig->lastIndex());
@@ -271,6 +273,8 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setGameListOpacity(rootObject()->property("gameListOpacity").toDouble());
         globalConfig->setCabinetImageType(rootObject()->property("cabinetImageType").toString());
         globalConfig->setAutoStopAnimations(rootObject()->property("autoStopAnimations").toBool());
+        if ( videoEnabled() )
+            globalConfig->setVideoPlayerVolume(rootObject()->property("videoPlayerVolume").toDouble());
         break;
     case QMC2_ARCADE_THEME_DARKONE:
         globalConfig->setLastIndex(rootObject()->property("lastIndex").toInt());
