@@ -64,6 +64,23 @@
        <string>General settings</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
+       <item row="3" column="3">
+        <widget class="QToolButton" name="toolButtonBrowseConfigurationPath">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Browse configuration path for QMC2 Arcade</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
        <item row="5" column="1" colspan="3">
         <widget class="QComboBox" name="comboBoxArcadeTheme">
          <property name="toolTip">
@@ -133,7 +150,7 @@
          </item>
         </widget>
        </item>
-       <item row="7" column="0" colspan="2">
+       <item row="8" column="0" colspan="2">
         <widget class="QCheckBox" name="checkBoxDebugKeys">
          <property name="toolTip">
           <string>Log debug messages of key-sequence mapping events to the console</string>
@@ -143,7 +160,7 @@
          </property>
         </widget>
        </item>
-       <item row="9" column="0" colspan="2">
+       <item row="10" column="0" colspan="2">
         <widget class="QCheckBox" name="checkBoxDebugJoy">
          <property name="toolTip">
           <string>Log debug messages of joystick function mapping events to the console</string>
@@ -261,22 +278,18 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="3">
-        <widget class="QToolButton" name="toolButtonBrowseConfigurationPath">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+       <item row="12" column="0" colspan="4">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
          </property>
-         <property name="toolTip">
-          <string>Browse configuration path for QMC2 Arcade</string>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
          </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-         </property>
-        </widget>
+        </spacer>
        </item>
        <item row="3" column="1" colspan="2">
         <widget class="QLineEdit" name="lineEditConfigurationPath">
@@ -323,20 +336,7 @@
          </item>
         </widget>
        </item>
-       <item row="11" column="0" colspan="4">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>0</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="7" column="2" colspan="2">
+       <item row="8" column="2" colspan="2">
         <widget class="QCheckBox" name="checkBoxNoJoy">
          <property name="toolTip">
           <string>Disable joystick function mapping</string>
@@ -346,7 +346,7 @@
          </property>
         </widget>
        </item>
-       <item row="9" column="2" colspan="2">
+       <item row="10" column="2" colspan="2">
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
           <widget class="QCheckBox" name="checkBoxJoy">
@@ -381,6 +381,30 @@
           </widget>
          </item>
         </layout>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Video snaps</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1" colspan="3">
+        <widget class="QComboBox" name="comboBoxVideoSnaps">
+         <property name="toolTip">
+          <string>Enable (on) / disable (off)  the use of video snaps</string>
+         </property>
+         <item>
+          <property name="text">
+           <string notr="true">on</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">off</string>
+          </property>
+         </item>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -1066,11 +1090,15 @@
  <tabstops>
   <tabstop>tabWidget</tabstop>
   <tabstop>lineEditExecutableFile</tabstop>
+  <tabstop>toolButtonBrowseExecutableFile</tabstop>
   <tabstop>lineEditWorkingDirectory</tabstop>
+  <tabstop>toolButtonBrowseWorkingDirectory</tabstop>
   <tabstop>lineEditConfigurationPath</tabstop>
+  <tabstop>toolButtonBrowseConfigurationPath</tabstop>
   <tabstop>comboBoxGraphicsSystem</tabstop>
   <tabstop>comboBoxArcadeTheme</tabstop>
   <tabstop>comboBoxConsoleType</tabstop>
+  <tabstop>comboBoxVideoSnaps</tabstop>
   <tabstop>checkBoxDebugKeys</tabstop>
   <tabstop>checkBoxNoJoy</tabstop>
   <tabstop>checkBoxDebugJoy</tabstop>
@@ -1104,9 +1132,6 @@
   <tabstop>treeWidgetJoyMapDarkone</tabstop>
   <tabstop>pushButtonOk</tabstop>
   <tabstop>pushButtonCancel</tabstop>
-  <tabstop>toolButtonBrowseWorkingDirectory</tabstop>
-  <tabstop>toolButtonBrowseExecutableFile</tabstop>
-  <tabstop>toolButtonBrowseConfigurationPath</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
@@ -1119,7 +1144,7 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>382</x>
+     <x>378</x>
      <y>265</y>
     </hint>
     <hint type="destinationlabel">
@@ -1135,7 +1160,7 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>185</x>
+     <x>183</x>
      <y>402</y>
     </hint>
     <hint type="destinationlabel">
@@ -1167,12 +1192,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>239</x>
-     <y>215</y>
+     <x>378</x>
+     <y>241</y>
     </hint>
     <hint type="destinationlabel">
-     <x>109</x>
-     <y>241</y>
+     <x>117</x>
+     <y>267</y>
     </hint>
    </hints>
   </connection>
@@ -1183,12 +1208,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>313</x>
-     <y>215</y>
+     <x>378</x>
+     <y>241</y>
     </hint>
     <hint type="destinationlabel">
-     <x>303</x>
-     <y>241</y>
+     <x>322</x>
+     <y>267</y>
     </hint>
    </hints>
   </connection>
@@ -1199,12 +1224,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>382</x>
-     <y>215</y>
+     <x>378</x>
+     <y>241</y>
     </hint>
     <hint type="destinationlabel">
-     <x>381</x>
-     <y>242</y>
+     <x>377</x>
+     <y>268</y>
     </hint>
    </hints>
   </connection>

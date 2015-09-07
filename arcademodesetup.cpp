@@ -114,6 +114,9 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	index = comboBoxConsoleType->findText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ConsoleType", "terminal").toString());
 	if ( index > 0 )
 		comboBoxConsoleType->setCurrentIndex(index);
+	index = comboBoxVideoSnaps->findText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/Video", "off").toString());
+	if ( index > 0 )
+		comboBoxVideoSnaps->setCurrentIndex(index);
 	checkBoxDebugKeys->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/DebugKeys", false).toBool());
 #if QMC2_JOYSTICK == 1
 	checkBoxNoJoy->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/NoJoy", false).toBool());
@@ -430,6 +433,7 @@ void ArcadeModeSetup::saveSettings()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/GraphicsSystem", comboBoxGraphicsSystem->currentText());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/Theme", comboBoxArcadeTheme->currentText());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/ConsoleType", comboBoxConsoleType->currentText());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/Video", comboBoxVideoSnaps->currentText());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/DebugKeys", checkBoxDebugKeys->isChecked());
 #if QMC2_JOYSTICK == 1
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/NoJoy", checkBoxNoJoy->isChecked());
