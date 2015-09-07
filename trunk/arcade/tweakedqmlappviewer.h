@@ -135,6 +135,7 @@ public slots:
 private:
     bool m_initialized;
     QHash<QString, QString> m_parentHash;
+    QHash<QString, QString> m_videoSnapUrlCache;
 
 #if QT_VERSION < 0x050000
 protected:
