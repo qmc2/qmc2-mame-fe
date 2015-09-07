@@ -35,6 +35,7 @@
         <file>qml/ToxicWaste/1.1/images/purple_bubble.png</file>
         <file>qml/ToxicWaste/1.1/images/x.png</file>
         <file>qml/ToxicWaste/1.1/images/cabinet_small.png</file>
+        <file>qml/ToxicWaste/1.1/images/movie.png</file>
         <file>qml/darkone/1.1/components/Button.qml</file>
         <file>qml/darkone/1.1/components/CheckBox.qml</file>
         <file>qml/darkone/1.1/components/Checkable.qml</file>

@@ -182,14 +182,33 @@ Rectangle {
                             }
                         }
                     }
+                    Image {
+                        id: videoIndicator
+                        anchors.fill: parent
+                        anchors.centerIn: parent
+                        anchors.margins: 1
+                        source: "images/movie.png"
+                        fillMode: Image.PreserveAspectFit
+                        scale: 0.33
+                        smooth: true
+                        opacity: 0
+                    }
                     Video {
                         id: videoSnap
                         anchors.fill: parent
                         anchors.centerIn: parent
                         anchors.margins: 1
                         fillMode: Video.Stretch
+                        autoLoad: false
                         opacity: playing ? 1 : 0
-                        source: viewer.videoSnapUrl(machineListModel[machineListView.currentIndex].id)
+                        property string videoUrl: viewer.videoSnapUrl(machineListModel[machineListView.currentIndex].id)
+                        source: videoUrl
+                        onVideoUrlChanged: {
+                            if ( videoSnap.videoUrl == "" )
+                                videoIndicator.opacity = 0;
+                            else
+                                videoIndicator.opacity = 0.4;
+                        }
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {

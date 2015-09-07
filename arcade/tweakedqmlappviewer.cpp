@@ -491,6 +491,8 @@ QString TweakedQmlApplicationViewer::requestInfo(const QString &id, const QStrin
 
 QString TweakedQmlApplicationViewer::videoSnapUrl(const QString &id)
 {
+    if ( m_videoSnapUrlCache.contains(id) )
+        return m_videoSnapUrlCache[id];
     foreach (QString videoSnapFolder, globalConfig->videoSnapFolder().split(";", QString::SkipEmptyParts)) {
         foreach (QString formatExtension, videoSnapAllowedFormatExtensions) {
             QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + id + formatExtension));
@@ -501,6 +503,7 @@ QString TweakedQmlApplicationViewer::videoSnapUrl(const QString &id)
 #else
                 videoSnapUrl.prepend("file://");
 #endif
+                m_videoSnapUrlCache[id] = videoSnapUrl;
                 return videoSnapUrl;
             }
         }
@@ -517,6 +520,7 @@ QString TweakedQmlApplicationViewer::videoSnapUrl(const QString &id)
 #else
                         videoSnapUrl.prepend("file://");
 #endif
+                        m_videoSnapUrlCache[id] = videoSnapUrl;
                         return videoSnapUrl;
                     }
                 }
