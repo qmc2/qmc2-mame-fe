@@ -1613,7 +1613,7 @@ FocusScope {
                 property int itemSpacing: 6
                 property int itemTextSize: 9
                 property string activeColour: darkone.textColour2
-                height: (itemHeight + itemSpacing) * 22 + 10
+                height: (itemHeight + itemSpacing) * 23 + 10
                 width: 175
                 smooth: true
                 border.color: parent.focus ? activeColour : "transparent";
