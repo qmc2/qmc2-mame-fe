@@ -37,6 +37,7 @@ FocusScope {
     property alias toolbarAutoHide: darkone.toolbarAutoHide
     property alias overlayScale: darkone.overlayScale
     property alias colourScheme: darkone.colourScheme
+    property alias videoPlayerVolume: darkone.videoPlayerVolume
 
     Rectangle {
         id: darkone
@@ -73,6 +74,7 @@ FocusScope {
         property bool toolbarAutoHide: true
         property real overlayScale: 1
         property string colourScheme: "dark"
+        property real videoPlayerVolume: 0.5
 
         property bool initialised: false
         property bool activeBorders: false
