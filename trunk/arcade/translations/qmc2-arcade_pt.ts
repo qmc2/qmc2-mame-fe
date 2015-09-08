@@ -1692,117 +1692,122 @@ terem efeito, por favor reinicie o Arcade do QMC2!</translation>
 <context>
     <name>darkone-video</name>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1707"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1709"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1638"/>
         <source>Preferences</source>
         <translation type="unfinished">Preferências</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1730"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1732"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1661"/>
         <source>behaviour</source>
         <translation type="unfinished">comportamento</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1760"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1762"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1691"/>
         <source>sort by name?</source>
         <translation type="unfinished">ordenar por nome?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1796"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1798"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1727"/>
         <source>auto-hide toolbar</source>
         <translation type="unfinished">auto-ocultar barra de ferramentas</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1820"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1822"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1751"/>
         <source>FPS counter</source>
         <translation type="unfinished">contador de QPS</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1848"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1850"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1779"/>
         <source>lights out in</source>
         <translation type="unfinished">apagar luzes em</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1849"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1851"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1780"/>
         <source>secs</source>
         <translation type="unfinished">segs</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1901"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1903"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1832"/>
         <source>scale</source>
         <translation type="unfinished">escala</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1925"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1932"/>
+        <source>volume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1959"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1856"/>
         <source>effects</source>
         <translation type="unfinished">efeitos</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1954"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1988"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1885"/>
         <source>screen lighting</source>
         <translation type="unfinished">iluminação da tela</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1987"/>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2046"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2021"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2080"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1918"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1977"/>
         <source>opacity</source>
         <translation type="unfinished">opacidade</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2013"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2047"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1944"/>
         <source>back lighting</source>
         <translation type="unfinished">luz de fundo</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2072"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2106"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="2003"/>
         <source>launch flash?</source>
         <translation type="unfinished">flash na inicialização?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2096"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2130"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="2027"/>
         <source>launch zoom?</source>
         <translation type="unfinished">zoom na inicialização?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2121"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2155"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="2052"/>
         <source>colour scheme</source>
         <translation type="unfinished">esquema de cor</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2149"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2183"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="2080"/>
         <source>dark</source>
         <translation type="unfinished">escuro</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2173"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2207"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="2104"/>
         <source>metal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2200"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2234"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="2131"/>
         <source>backend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2953"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2987"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="2880"/>
         <source>FPS</source>
         <translation type="unfinished">QPS</translation>

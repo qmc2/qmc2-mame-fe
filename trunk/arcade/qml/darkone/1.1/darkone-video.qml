@@ -39,6 +39,7 @@ FocusScope {
     property alias toolbarAutoHide: darkone.toolbarAutoHide
     property alias overlayScale: darkone.overlayScale
     property alias colourScheme: darkone.colourScheme
+    property alias videoPlayerVolume: darkone.videoPlayerVolume
 
     Rectangle {
         id: darkone
@@ -75,6 +76,7 @@ FocusScope {
         property bool toolbarAutoHide: true
         property real overlayScale: 1
         property string colourScheme: "dark"
+        property real videoPlayerVolume: 0.5
 
         property bool initialised: false
         property bool activeBorders: false
@@ -901,7 +903,7 @@ FocusScope {
                         opacity: playing ? 1 : 0
                         property string videoUrl: darkone.initialised ? viewer.videoSnapUrl(machineListModel[machineListView.currentIndex].id) : ""
                         source: videoUrl
-                        volume: 0.5 // FIXME!
+                        volume: darkone.videoPlayerVolume
                         onVideoUrlChanged: {
                             videoSnap.stop();
                             if ( videoSnap.videoUrl == "" )
@@ -1908,6 +1910,38 @@ FocusScope {
                     KeyNavigation.up: KeyNavigation.backtab
                     KeyNavigation.down: KeyNavigation.tab
                     KeyNavigation.backtab: lightOutInputItem
+                    KeyNavigation.tab: videoPlayerVolumeSlider
+                }
+                SliderItem {
+                    id: videoPlayerVolumeSlider
+                    property int index: prefsText.index + 6
+                    height: parent.itemHeight
+                    anchors.top: parent.top
+                    anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    textSize: preferences.itemTextSize
+                    textColour: darkone.textColour1
+                    activeColour: darkone.textColour2
+                    fgColour1: darkone.colour3
+                    fgColour2: darkone.colour4
+                    bgColour1: "white"
+                    bgColour2: "white"
+                    textPrefix: qsTr("volume")
+                    textSuffix: DarkoneJS.round(100 * darkone.videoPlayerVolume, 0) + "%"
+                    textSuffixWidth: 25
+                    slidePercentage: 5
+                    minimum: 0
+                    maximum: 1
+                    value: darkone.videoPlayerVolume;
+
+                    onValueChanged: darkone.videoPlayerVolume = DarkoneJS.round(value, 2);
+
+                    KeyNavigation.up: KeyNavigation.backtab
+                    KeyNavigation.down: KeyNavigation.tab
+                    KeyNavigation.backtab: overlayScaleSliderItem
                     KeyNavigation.tab: screenLightCheckBox
                 }
 
@@ -1916,7 +1950,7 @@ FocusScope {
                 */
                 Text {
                     id: prefsEffectsText
-                    property int index: 8
+                    property int index: 9
                     opacity: 1.0
                     anchors.top: parent.top
                     anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
@@ -1964,7 +1998,7 @@ FocusScope {
 
                     KeyNavigation.up: KeyNavigation.backtab
                     KeyNavigation.down: KeyNavigation.tab
-                    KeyNavigation.backtab: overlayScaleSliderItem
+                    KeyNavigation.backtab: videoPlayerVolumeSlider
                     KeyNavigation.tab: screenLightOpacitySliderItem
                 }
                 SliderItem {
@@ -2112,7 +2146,7 @@ FocusScope {
                 */
                 Text {
                     id: prefsColourSchemeText
-                    property int index: 15
+                    property int index: 16
                     opacity: 1.0
                     anchors.top: parent.top
                     anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
@@ -2191,7 +2225,7 @@ FocusScope {
                 */
                 Text {
                     id: prefsBackendText
-                    property int index: 18
+                    property int index: 19
                     opacity: 1.0
                     anchors.top: parent.top
                     anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
