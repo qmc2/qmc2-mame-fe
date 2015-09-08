@@ -1,4 +1,5 @@
 import QtQuick 1.1;
+import QtMultimediaKit 1.1
 import "./components";
 import Wheel 1.0;
 import Pointer 1.0;
@@ -755,7 +756,7 @@ FocusScope {
                     Behavior on anchors.bottomMargin { PropertyAnimation { duration: darkone.zoomDuration; easing.type: Easing.Linear } }
                     CursorShapeArea {
                         anchors.fill: parent
-                        cursorShape: Qt.CrossCursor
+                        cursorShape: videoSnap.playing ? Qt.ArrowCursor : Qt.CrossCursor
                     }
                     MouseArea {
                         anchors.fill: parent
@@ -774,7 +775,7 @@ FocusScope {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.centerIn: parent
                         fillMode: Image.PreserveAspectFit
-
+                        opacity: videoSnap.playing ? 0 : 1
                         MouseArea {
                             anchors.fill: parent
                             onDoubleClicked: { debug && console.log("[overlayImage] double-clicked");
@@ -794,7 +795,6 @@ FocusScope {
                             }
                         }
                     }
-
                     Rectangle {
                         id: overlayTextWrap
                         z: 1
@@ -862,6 +862,59 @@ FocusScope {
                                         PropertyChanges { target: overlayText; horizontalAlignment: Text.AlignHCenter }
                                     }
                                 ]
+                            }
+                        }
+                    }
+                    Image {
+                        id: videoIndicator
+                        anchors.fill: parent
+                        anchors.centerIn: parent
+                        anchors.margins: 1
+                        z: 3
+                        source: "images/movie.png"
+                        fillMode: Image.PreserveAspectFit
+                        scale: 0.33
+                        smooth: true
+                        opacity: 0
+                        CursorShapeArea {
+                            anchors.fill: parent
+                            cursorShape: videoIndicator.opacity > 0 ? Qt.ArrowCursor: Qt.CrossCursor
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                if ( videoSnap.playing )
+                                    videoSnap.stop();
+                                else
+                                    videoSnap.play();
+                            }
+                        }
+                    }
+                    Video {
+                        id: videoSnap
+                        anchors.fill: parent
+                        anchors.centerIn: parent
+                        anchors.margins: 1
+                        z: 3
+                        fillMode: Video.Stretch
+                        autoLoad: false
+                        opacity: playing ? 1 : 0
+                        property string videoUrl: darkone.initialised ? viewer.videoSnapUrl(machineListModel[machineListView.currentIndex].id) : ""
+                        source: videoUrl
+                        volume: 0.5 // FIXME!
+                        onVideoUrlChanged: {
+                            videoSnap.stop();
+                            if ( videoSnap.videoUrl == "" )
+                                videoIndicator.opacity = 0;
+                            else
+                                videoIndicator.opacity = 0.4;
+                        }
+                        MouseArea {
+                            enabled: videoSnap.playing
+                            anchors.fill: parent
+                            onClicked: {
+                                if ( videoSnap.playing )
+                                    videoSnap.stop();
                             }
                         }
                     }

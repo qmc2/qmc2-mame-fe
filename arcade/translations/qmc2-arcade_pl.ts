@@ -1212,181 +1212,181 @@ take effect, please restart QMC2 Arcade!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="308"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="309"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="256"/>
         <source>Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="438"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="439"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="386"/>
         <source>Emu info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="459"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="460"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="407"/>
         <source>Machine info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="799"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="800"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="747"/>
         <source>Really quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="816"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="817"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="764"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="832"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="833"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="780"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="911"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="912"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="859"/>
         <source>Switches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="930"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="931"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="878"/>
         <source>Show floating-bubbles animation?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="963"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="964"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="911"/>
         <source>Draw animation in the foreground?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="992"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="993"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="940"/>
         <source>Show radial wave effect on background?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1022"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1023"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="970"/>
         <source>Auto-stop animation and wave effect?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1051"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1052"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="999"/>
         <source>Show FPS counter in the menu-bar?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1080"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1081"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1028"/>
         <source>Confirm when quitting the application?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1109"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1110"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1057"/>
         <source>Scale &amp; position cabinet automatically?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1130"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1131"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1078"/>
         <source>Sliders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1145"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1146"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1093"/>
         <source>Cabinet zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1158"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1159"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1106"/>
         <source>Cabinet X center offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1172"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1173"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1120"/>
         <source>Cabinet Y center offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1186"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1187"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1134"/>
         <source>Cabinet opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1199"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1200"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1147"/>
         <source>Background opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1212"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1213"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1160"/>
         <source>Machine list opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1225"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1226"/>
         <source>Video player volume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1235"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1236"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1170"/>
         <source>Backend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1252"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1253"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1187"/>
         <source>Option</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1304"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1305"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1239"/>
         <source>Value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1346"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1347"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1281"/>
         <source>For customized default backend options to
 take effect, please restart QMC2 Arcade!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1372"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1373"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1307"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1479"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1480"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1414"/>
         <source>FPS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1718"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1719"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1653"/>
         <source>Starting shader effect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1720"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1721"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1655"/>
         <source>Shader effect stopped</source>
         <translation type="unfinished"></translation>
@@ -1695,117 +1695,117 @@ take effect, please restart QMC2 Arcade!</source>
 <context>
     <name>darkone-video</name>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1654"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1707"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1638"/>
         <source>Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1677"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1730"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1661"/>
         <source>behaviour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1707"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1760"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1691"/>
         <source>sort by name?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1743"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1796"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1727"/>
         <source>auto-hide toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1767"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1820"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1751"/>
         <source>FPS counter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1795"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1848"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1779"/>
         <source>lights out in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1796"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1849"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1780"/>
         <source>secs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1848"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1901"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1832"/>
         <source>scale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1872"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1925"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1856"/>
         <source>effects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1901"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1954"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1885"/>
         <source>screen lighting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1934"/>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1993"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1987"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2046"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1918"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1977"/>
         <source>opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="1960"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2013"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="1944"/>
         <source>back lighting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2019"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2072"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="2003"/>
         <source>launch flash?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2043"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2096"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="2027"/>
         <source>launch zoom?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2068"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2121"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="2052"/>
         <source>colour scheme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2096"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2149"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="2080"/>
         <source>dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2120"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2173"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="2104"/>
         <source>metal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2147"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2200"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="2131"/>
         <source>backend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2900"/>
+        <location filename="../qml/darkone/1.1/darkone-video.qml" line="2953"/>
         <location filename="../qml/darkone/2.0/darkone-video.qml" line="2880"/>
         <source>FPS</source>
         <translation type="unfinished"></translation>
