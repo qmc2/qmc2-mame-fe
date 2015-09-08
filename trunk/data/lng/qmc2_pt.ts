@@ -16414,6 +16414,11 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>[global] Iniciar emulação</translation>
     </message>
     <message>
+        <location filename="../../arcade/keysequences.h" line="20"/>
+        <source>[global] Toggle video playback</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../arcade/keysequences.h" line="53"/>
         <source>[global] Flip cabinet / machine-card</source>
         <translation>[global] Girar gabinete / cartão de máquina</translation>
@@ -16432,11 +16437,6 @@ Tem certeza que deseja fazer isso?</translation>
         <location filename="../../arcade/keysequences.h" line="19"/>
         <source>[global] Toggle preferences</source>
         <translation>[global] Alternar preferências</translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="20"/>
-        <source>[global] Toggle video</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="39"/>

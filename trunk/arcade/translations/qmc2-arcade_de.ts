@@ -732,6 +732,11 @@
         <translation>[Global] Emulation starten</translation>
     </message>
     <message>
+        <location filename="../keysequences.h" line="20"/>
+        <source>[global] Toggle video playback</source>
+        <translation>[Global] Video Wiedergabe ein-/ausschalten</translation>
+    </message>
+    <message>
         <location filename="../keysequences.h" line="53"/>
         <source>[global] Flip cabinet / machine-card</source>
         <translation>[Global] Gehäuse / Maschinen-Karte umdrehen</translation>
@@ -750,11 +755,6 @@
         <location filename="../keysequences.h" line="19"/>
         <source>[global] Toggle preferences</source>
         <translation>[Global] Vorgaben ein-/ausschalten</translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="20"/>
-        <source>[global] Toggle video</source>
-        <translation>[Global] Video ein-/ausschalten</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="39"/>
