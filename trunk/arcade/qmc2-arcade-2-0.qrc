@@ -61,5 +61,6 @@
         <file>qml/darkone/2.0/images/screenlight.png</file>
         <file>qml/darkone/2.0/images/backlight.png</file>
         <file>qml/darkone/2.0/images/windowed.png</file>
+        <file>qml/darkone/2.0/images/movie.png</file>
     </qresource>
 </RCC>
