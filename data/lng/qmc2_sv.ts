@@ -16386,6 +16386,11 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../arcade/keysequences.h" line="20"/>
+        <source>[global] Toggle video playback</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../arcade/keysequences.h" line="53"/>
         <source>[global] Flip cabinet / machine-card</source>
         <translation type="unfinished"></translation>
@@ -16403,11 +16408,6 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../arcade/keysequences.h" line="19"/>
         <source>[global] Toggle preferences</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="20"/>
-        <source>[global] Toggle video</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -732,6 +732,11 @@
         <translation></translation>
     </message>
     <message>
+        <location filename="../keysequences.h" line="20"/>
+        <source>[global] Toggle video playback</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../keysequences.h" line="53"/>
         <source>[global] Flip cabinet / machine-card</source>
         <translation></translation>
@@ -749,11 +754,6 @@
     <message>
         <location filename="../keysequences.h" line="19"/>
         <source>[global] Toggle preferences</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="20"/>
-        <source>[global] Toggle video</source>
         <translation></translation>
     </message>
     <message>
