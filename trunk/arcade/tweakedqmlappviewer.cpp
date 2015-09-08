@@ -232,6 +232,8 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("overlayScale", QMC2_ARCADE_MAX(0.33, globalConfig->overlayScale()));
         rootObject()->setProperty("lightTimeout", QMC2_ARCADE_MAX(5.0, globalConfig->lightTimeout()));
         rootObject()->setProperty("colourScheme", globalConfig->colourScheme());
+        if ( videoEnabled() )
+            rootObject()->setProperty("videoPlayerVolume", globalConfig->videoPlayerVolume());
         break;
     }
     m_initialized = true;
@@ -295,6 +297,8 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setOverlayScale(rootObject()->property("overlayScale").toDouble());
         globalConfig->setLightTimeout(rootObject()->property("lightTimeout").toDouble());
         globalConfig->setColourScheme(rootObject()->property("colourScheme").toString());
+        if ( videoEnabled() )
+            globalConfig->setVideoPlayerVolume(rootObject()->property("videoPlayerVolume").toDouble());
         break;
     }
 }
