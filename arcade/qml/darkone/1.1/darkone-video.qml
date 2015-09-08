@@ -262,6 +262,13 @@ FocusScope {
                             event.accepted = true;
                             break;
                         }
+                        case Qt.Key_V: {
+                            if ( videoSnap.playing )
+                                videoSnap.stop();
+                            else
+                                videoSnap.play();
+                            break;
+                        }
                     }
                 }
             } else {
