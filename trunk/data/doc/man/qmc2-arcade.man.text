@@ -2,7 +2,7 @@ NAME
   qmc2-arcade - Arcade / non-desktop version of QMC2 - M.A.M.E. Catalog/Launcher II
 
 SYNOPSIS
-  qmc2-arcade [-theme qml_theme] [-console type] [-graphicssystem engine] [-language lang] [-video vdo] [-config_path path] [-debugkeys] [-nojoy] [-joy index] [-debugjoy] [-h|-?|-help]
+  qmc2-arcade [-theme qml_theme] [-console type] [-graphicssystem engine] [-language lang] [-video vdo] [-config_path path] [-fullscreen] [-windowed] [-debugkeys] [-nojoy] [-joy index] [-debugjoy] [-h|-?|-help]
 
 DESCRIPTION
   For those who want to 'go straight into the games' there's QMC2 Arcade, a QML / QtQuick based approach to presenting an optionally filtered
@@ -44,6 +44,10 @@ OPTIONS
 
   -config_path path  Specify this argument to use the directory path instead of the default folder (CONFIG_PATH) to search for QMC2's configuration
                      and cache-files.
+
+  -fullscreen  Start up in full screen mode, overwriting the stored setting
+
+  -windowed  Start up in windowed mode, overwriting the stored setting
 
   -debugkeys  Enable debug logging for key-sequence mapping. Every recognized key or key-sequence will be logged to the console together with info on
               how the event is processed. Mapped key-sequences will cause event emulation, others will follow Qt's default event processing.

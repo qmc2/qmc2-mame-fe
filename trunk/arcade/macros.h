@@ -135,7 +135,7 @@
 #define QMC2_ARCADE_CLI_GSYS_INV        (argumentList.indexOf("-graphicssystem") >= 0 && argumentList.count() == argumentList.indexOf("-graphicssystem") + 1)
 #define QMC2_ARCADE_CLI_GSYS_VAL        (argumentList.indexOf("-graphicssystem") >= 0 && argumentList.count() > argumentList.indexOf("-graphicssystem") + 1)
 #else
-#define QMC2_ARCADE_CLI_GSYS_INV      false
+#define QMC2_ARCADE_CLI_GSYS_INV        false
 #endif
 // -language <lang>
 #define QMC2_ARCADE_CLI_LANG            (argumentList.indexOf("-language") >= 0 && argumentList.count() > argumentList.indexOf("-language") + 1 ? argumentList[argumentList.indexOf("-language") + 1] : "us")
@@ -145,6 +145,10 @@
 #define QMC2_ARCADE_CLI_VIDEO           (argumentList.indexOf("-video") >= 0 && argumentList.count() > argumentList.indexOf("-video") + 1 ? argumentList[argumentList.indexOf("-video") + 1] : "off")
 #define QMC2_ARCADE_CLI_VIDEO_INV       (argumentList.indexOf("-video") >= 0 && argumentList.count() == argumentList.indexOf("-video") + 1)
 #define QMC2_ARCADE_CLI_VIDEO_VAL       (argumentList.indexOf("-video") >= 0 && argumentList.count() > argumentList.indexOf("-video") + 1)
+// -fullscreen
+#define QMC2_ARCADE_CLI_FULLSCREEN      (argumentList.indexOf("-fullscreen") >= 0)
+// -windowed
+#define QMC2_ARCADE_CLI_WINDOWED        (argumentList.indexOf("-windowed") >= 0)
 // -debugkeys
 #define QMC2_ARCADE_CLI_DEBUG_KEYS      (argumentList.indexOf("-debugkeys") >= 0)
 // -joy <index>

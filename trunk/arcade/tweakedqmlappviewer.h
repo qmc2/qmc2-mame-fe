@@ -95,6 +95,8 @@ public:
     int themeIndex();
     void setVideoEnabled(bool enable) { m_videoEnabled = enable; }
     bool videoEnabled() { return m_videoEnabled; }
+    void setInitialFullScreen(bool enable) { m_initialFullScreen = enable; }
+    bool initialFullScreen() { return m_initialFullScreen; }
 
 signals:
     void emulatorStarted(int);
@@ -136,9 +138,10 @@ public slots:
 
 private:
     bool m_initialized;
+    bool m_videoEnabled;
+    bool m_initialFullScreen;
     QHash<QString, QString> m_parentHash;
     QHash<QString, QString> m_videoSnapUrlCache;
-    bool m_videoEnabled;
 
 #if QT_VERSION < 0x050000
 protected:

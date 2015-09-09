@@ -52,9 +52,8 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
     : QQuickView(parent)
 #endif
 {
-    m_initialized = false;
+    m_initialized = m_initialFullScreen = m_videoEnabled = windowModeSwitching = false;
     numFrames = 0;
-    windowModeSwitching = false;
 
     QStringList keySequences;
     QMC2_ARCADE_ADD_COMMON_KEYSEQUENCES(keySequences);
@@ -165,7 +164,7 @@ int TweakedQmlApplicationViewer::themeIndex()
 
 void TweakedQmlApplicationViewer::displayInit()
 {
-    if ( globalConfig->fullScreen() )
+    if ( initialFullScreen() )
         switchToFullScreen(true);
     else
         switchToWindowed(true);
