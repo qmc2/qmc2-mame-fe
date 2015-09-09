@@ -402,6 +402,16 @@ void ArcadeSettings::setVideoPlayerVolume(double volume)
     setValue(QString("Arcade/%1/videoPlayerVolume").arg(arcadeTheme), volume);
 }
 
+int ArcadeSettings::videoAutoPlayTimeout()
+{
+    return value(QString("Arcade/%1/videoAutoPlayTimeout").arg(arcadeTheme), -1).toInt();
+}
+
+void ArcadeSettings::setVideoAutoPlayTimeout(int timeout)
+{
+    setValue(QString("Arcade/%1/videoAutoPlayTimeout").arg(arcadeTheme), timeout);
+}
+
 void ArcadeSettings::setToolbarHidden(bool hidden)
 {
     setValue(QString("Arcade/%1/toolbarHidden").arg(arcadeTheme), hidden);

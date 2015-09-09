@@ -40,6 +40,7 @@ FocusScope {
     property alias overlayScale: darkone.overlayScale
     property alias colourScheme: darkone.colourScheme
     property alias videoPlayerVolume: darkone.videoPlayerVolume
+    property alias videoAutoPlayTimeout: darkone.videoAutoPlayTimeout
 
     Rectangle {
         id: darkone
@@ -77,6 +78,7 @@ FocusScope {
         property real overlayScale: 1
         property string colourScheme: "dark"
         property real videoPlayerVolume: 0.5
+        property int videoAutoPlayTimeout: -1000
 
         property bool initialised: false
         property bool activeBorders: false

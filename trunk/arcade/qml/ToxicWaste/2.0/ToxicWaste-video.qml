@@ -37,6 +37,7 @@ Rectangle {
     property real machineListOpacity: 1
     property bool autoStopAnimations: true
     property real videoPlayerVolume: 0.5
+    property int videoAutoPlayTimeout: -1000
 
     // delayed init
     Timer {

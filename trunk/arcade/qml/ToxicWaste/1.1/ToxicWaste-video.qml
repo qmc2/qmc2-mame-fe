@@ -40,6 +40,7 @@ Rectangle {
     property real machineListOpacity: 1
     property bool autoStopAnimations: true
     property real videoPlayerVolume: 0.5
+    property int videoAutoPlayTimeout: -1000
 
     // delayed init
     Timer {
@@ -85,6 +86,14 @@ Rectangle {
         running: false
         repeat: false
         onTriggered: toxicWasteMain.flipDirectionChanged = false
+    }
+
+    Timer {
+        id: videoAutoPlayTimer
+        interval: toxicWasteMain.videoAutoPlayTimeout
+        running: false
+        repeat: false
+        onTriggered: videoSnap.play()
     }
 
     Connections {
@@ -207,11 +216,14 @@ Rectangle {
                         source: videoUrl
                         volume: toxicWasteMain.videoPlayerVolume
                         onVideoUrlChanged: {
+                            videoAutoPlayTimer.stop();
                             videoSnap.stop();
                             if ( videoSnap.videoUrl == "" )
                                 videoIndicator.opacity = 0;
                             else
                                 videoIndicator.opacity = 0.4;
+                            if ( toxicWasteMain.videoAutoPlayTimeout >= 0 )
+                                videoAutoPlayTimer.start();
                         }
                         MouseArea {
                             anchors.fill: parent
@@ -1229,6 +1241,27 @@ Rectangle {
                     value: toxicWasteMain.videoPlayerVolume
                     defaultValue: 0.5
                     onValueChanged: toxicWasteMain.videoPlayerVolume = value
+                }
+                Slider {
+                    id: videoAutoPlaySlider
+                    anchors.top: videoPlayerVolumeSlider.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.margins: 5
+                    sliderText: qsTr("Video auto play")
+                    minimum: -1
+                    maximum: 60
+                    specialValue: -1
+                    specialValueText: qsTr("off")
+                    prefixText: qsTr("after") + " "
+                    suffixText: qsTr("s")
+                    showAsPercent: false
+                    value: toxicWasteMain.videoAutoPlayTimeout / 1000
+                    defaultValue: -1
+                    onValueChanged: {
+                        videoAutoPlayTimer.stop();
+                        toxicWasteMain.videoAutoPlayTimeout = value * 1000;
+                    }
                 }
             }
             Rectangle {

@@ -210,8 +210,10 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("gameListOpacity", globalConfig->gameListOpacity());
         rootObject()->setProperty("cabinetImageType", globalConfig->cabinetImageType());
         rootObject()->setProperty("autoStopAnimations", globalConfig->autoStopAnimations());
-        if ( videoEnabled() )
-            rootObject()->setProperty("videoPlayerVolume", globalConfig->videoPlayerVolume());
+        if ( videoEnabled() ) {
+            rootObject()->setProperty("videoPlayerVolume", QMC2_ARCADE_MAX(0.0, QMC2_ARCADE_MIN(1.0, globalConfig->videoPlayerVolume())));
+            rootObject()->setProperty("videoAutoPlayTimeout", QMC2_ARCADE_MAX(-1, QMC2_ARCADE_MIN(60, globalConfig->videoAutoPlayTimeout())) * 1000);
+        }
         break;
     case QMC2_ARCADE_THEME_DARKONE:
         rootObject()->setProperty("lastIndex", globalConfig->lastIndex());
@@ -232,8 +234,10 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("overlayScale", QMC2_ARCADE_MAX(0.33, globalConfig->overlayScale()));
         rootObject()->setProperty("lightTimeout", QMC2_ARCADE_MAX(5.0, globalConfig->lightTimeout()));
         rootObject()->setProperty("colourScheme", globalConfig->colourScheme());
-        if ( videoEnabled() )
-            rootObject()->setProperty("videoPlayerVolume", globalConfig->videoPlayerVolume());
+        if ( videoEnabled() ) {
+            rootObject()->setProperty("videoPlayerVolume", QMC2_ARCADE_MAX(0.0, QMC2_ARCADE_MIN(1.0, globalConfig->videoPlayerVolume())));
+            rootObject()->setProperty("videoAutoPlayTimeout", QMC2_ARCADE_MAX(-1, QMC2_ARCADE_MIN(60, globalConfig->videoAutoPlayTimeout())) * 1000);
+        }
         break;
     }
     m_initialized = true;
@@ -275,8 +279,10 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setGameListOpacity(rootObject()->property("gameListOpacity").toDouble());
         globalConfig->setCabinetImageType(rootObject()->property("cabinetImageType").toString());
         globalConfig->setAutoStopAnimations(rootObject()->property("autoStopAnimations").toBool());
-        if ( videoEnabled() )
+        if ( videoEnabled() ) {
             globalConfig->setVideoPlayerVolume(rootObject()->property("videoPlayerVolume").toDouble());
+            globalConfig->setVideoAutoPlayTimeout(rootObject()->property("videoAutoPlayTimeout").toInt() / 1000);
+        }
         break;
     case QMC2_ARCADE_THEME_DARKONE:
         globalConfig->setLastIndex(rootObject()->property("lastIndex").toInt());
@@ -297,8 +303,10 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setOverlayScale(rootObject()->property("overlayScale").toDouble());
         globalConfig->setLightTimeout(rootObject()->property("lightTimeout").toDouble());
         globalConfig->setColourScheme(rootObject()->property("colourScheme").toString());
-        if ( videoEnabled() )
+        if ( videoEnabled() ) {
             globalConfig->setVideoPlayerVolume(rootObject()->property("videoPlayerVolume").toDouble());
+            globalConfig->setVideoAutoPlayTimeout(rootObject()->property("videoAutoPlayTimeout").toInt() / 1000);
+        }
         break;
     }
 }
