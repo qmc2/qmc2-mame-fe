@@ -221,10 +221,11 @@ Rectangle {
                             videoSnap.stop();
                             if ( videoSnap.videoUrl == "" )
                                 videoIndicator.opacity = 0;
-                            else
+                            else {
                                 videoIndicator.opacity = 0.4;
-                            if ( toxicWasteMain.videoAutoPlayTimeout >= 0 )
-                                videoAutoPlayTimer.start();
+                                if ( toxicWasteMain.videoAutoPlayTimeout >= 0 )
+                                    videoAutoPlayTimer.start();
+                            }
                         }
                         MouseArea {
                             anchors.fill: parent
