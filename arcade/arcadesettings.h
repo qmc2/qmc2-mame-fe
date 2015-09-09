@@ -108,6 +108,8 @@ public slots:
     bool autoStopAnimations();
     double videoPlayerVolume();
     void setVideoPlayerVolume(double);
+    int videoAutoPlayTimeout();
+    void setVideoAutoPlayTimeout(int);
 
     // darkone
     void setToolbarHidden(bool);

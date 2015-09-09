@@ -62,6 +62,10 @@ Item {
     property real handleOpacity: 0.8
     property bool showAsPercent: true
     property real defaultValue: 0
+    property real specialValue: -1
+    property string specialValueText: ""
+    property string suffixText: ""
+    property string prefixText: ""
 
     onValueChanged: updatePos()
     onXMaxChanged: updatePos()
@@ -70,7 +74,11 @@ Item {
     Component.onCompleted: updatePos()
 
     function updatePos() {
-        if (maximum > minimum) {
+        if ( value == minimum ) {
+            handle.x = 20;
+            return;
+        }
+        if ( maximum > minimum ) {
             var pos = (value - minimum) * slider.xMax / (maximum - minimum);
             pos = Math.min(pos, sliderBackground.width - handle.width - 4);
             pos = Math.max(pos, 2);
@@ -145,7 +153,7 @@ Item {
             anchors.rightMargin: 2
             smooth: true
             color: slider.sliderTextColor
-            text: slider.showAsPercent ? Math.round(slider.value * 100) + "%" : Math.round(slider.value)
+            text: slider.specialValue === slider.value && slider.specialValueText.length > 0 ? slider.specialValueText : slider.showAsPercent ? Math.round(slider.value * 100) + "%" : slider.prefixText + Math.round(slider.value) + slider.suffixText
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignRight
         }
