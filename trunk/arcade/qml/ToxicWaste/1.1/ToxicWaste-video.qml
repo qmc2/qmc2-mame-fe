@@ -186,6 +186,7 @@ Rectangle {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
+                                videoAutoPlayTimer.stop();
                                 if ( videoSnap.playing )
                                     videoSnap.stop();
                                 else
@@ -228,6 +229,7 @@ Rectangle {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
+                                videoAutoPlayTimer.stop();
                                 if ( videoSnap.playing )
                                     videoSnap.stop();
                                 else
