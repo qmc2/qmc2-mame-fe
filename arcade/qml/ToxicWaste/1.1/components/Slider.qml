@@ -153,7 +153,7 @@ Item {
             anchors.rightMargin: 2
             smooth: true
             color: slider.sliderTextColor
-            text: slider.specialValue === slider.value && slider.specialValueText.length > 0 ? slider.specialValueText : slider.showAsPercent ? Math.round(slider.value * 100) + "%" : slider.prefixText + Math.round(slider.value) + slider.suffixText
+            text: slider.specialValueText.length > 0 && slider.specialValue === Math.round(slider.value) ? slider.specialValueText : slider.showAsPercent ? Math.round(slider.value * 100) + "%" : slider.prefixText + Math.round(slider.value) + slider.suffixText
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignRight
         }
