@@ -397,6 +397,13 @@ FocusScope {
             onTriggered: { darkone.lightOutScreen = true;
                            lightOutScreenTimer.stop(); }
         }
+        Timer {
+            id: videoAutoPlayTimer
+            interval: darkone.videoAutoPlayTimeout
+            running: false
+            repeat: false
+            onTriggered: videoSnap.play()
+        }
 
 
 /***
@@ -894,6 +901,7 @@ FocusScope {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
+                                videoAutoPlayTimer.stop();
                                 if ( videoSnap.playing )
                                     videoSnap.stop();
                                 else
@@ -914,16 +922,21 @@ FocusScope {
                         source: videoUrl
                         volume: darkone.videoPlayerVolume
                         onVideoUrlChanged: {
+                            videoAutoPlayTimer.stop();
                             videoSnap.stop();
                             if ( videoSnap.videoUrl == "" )
                                 videoIndicator.opacity = 0;
-                            else
+                            else {
                                 videoIndicator.opacity = 0.4;
+                                if ( darkone.videoAutoPlayTimeout >= 0 )
+                                    videoAutoPlayTimer.start();
+                            }
                         }
                         MouseArea {
                             enabled: videoSnap.playing
                             anchors.fill: parent
                             onClicked: {
+                                videoAutoPlayTimer.stop();
                                 if ( videoSnap.playing )
                                     videoSnap.stop();
                             }
@@ -1622,7 +1635,7 @@ FocusScope {
                 property int itemSpacing: 6
                 property int itemTextSize: 9
                 property string activeColour: darkone.textColour2
-                height: (itemHeight + itemSpacing) * 23 + 10
+                height: (itemHeight + itemSpacing) * 25 + 10
                 width: 175
                 smooth: true
                 border.color: parent.focus ? activeColour : "transparent";
@@ -1921,9 +1934,39 @@ FocusScope {
                     KeyNavigation.backtab: lightOutInputItem
                     KeyNavigation.tab: videoPlayerVolumeSlider
                 }
+
+                /***
+                * video snaps
+                */
+                Text {
+                    id: videoSnapsText
+                    property int index: 8
+                    opacity: 1.0
+                    anchors.top: parent.top
+                    anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    text: qsTr("video snaps")
+                    font.pixelSize: preferences.itemTextSize + 2
+                    font.bold: true
+                    color: darkone.textColour1
+                    smooth: true
+                }
+                Rectangle {
+                    id: videoSnapsSeparator
+                    height: 1
+                    anchors.verticalCenter: videoSnapsText.verticalCenter
+                    anchors.left: videoSnapsText.right
+                    anchors.leftMargin: 7
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    color: darkone.textColour1
+                    opacity: 0.5
+                    smooth: true
+                }
                 SliderItem {
                     id: videoPlayerVolumeSlider
-                    property int index: prefsText.index + 6
+                    property int index: videoSnapsText.index + 1
                     height: parent.itemHeight
                     anchors.top: parent.top
                     anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
@@ -1941,7 +1984,7 @@ FocusScope {
                     textPrefix: qsTr("volume")
                     textSuffix: DarkoneJS.round(100 * darkone.videoPlayerVolume, 0) + "%"
                     textSuffixWidth: 25
-                    slidePercentage: 5
+                    slidePercentage: 2
                     minimum: 0
                     maximum: 1
                     value: darkone.videoPlayerVolume;
@@ -1951,6 +1994,38 @@ FocusScope {
                     KeyNavigation.up: KeyNavigation.backtab
                     KeyNavigation.down: KeyNavigation.tab
                     KeyNavigation.backtab: overlayScaleSliderItem
+                    KeyNavigation.tab: videoAutoPlaySlider
+                }
+                SliderItem {
+                    id: videoAutoPlaySlider
+                    property int index: videoSnapsText.index + 2
+                    height: parent.itemHeight
+                    anchors.top: parent.top
+                    anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    textSize: preferences.itemTextSize
+                    textColour: darkone.textColour1
+                    activeColour: darkone.textColour2
+                    fgColour1: darkone.colour3
+                    fgColour2: darkone.colour4
+                    bgColour1: "white"
+                    bgColour2: "white"
+                    textPrefix: qsTr("auto-play")
+                    textSuffix: value === minimum ? qsTr("off") : DarkoneJS.round(value, 0) + qsTr("s")
+                    textSuffixWidth: 25
+                    slidePercentage: 2
+                    minimum: -1
+                    maximum: 60
+                    value: darkone.videoAutoPlayTimeout / 1000;
+
+                    onValueChanged: darkone.videoAutoPlayTimeout = value * 1000;
+
+                    KeyNavigation.up: KeyNavigation.backtab
+                    KeyNavigation.down: KeyNavigation.tab
+                    KeyNavigation.backtab: videoPlayerVolumeSlider
                     KeyNavigation.tab: screenLightCheckBox
                 }
 
@@ -1959,7 +2034,7 @@ FocusScope {
                 */
                 Text {
                     id: prefsEffectsText
-                    property int index: 9
+                    property int index: 11
                     opacity: 1.0
                     anchors.top: parent.top
                     anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
@@ -2007,7 +2082,7 @@ FocusScope {
 
                     KeyNavigation.up: KeyNavigation.backtab
                     KeyNavigation.down: KeyNavigation.tab
-                    KeyNavigation.backtab: videoPlayerVolumeSlider
+                    KeyNavigation.backtab: videoAutoPlaySlider
                     KeyNavigation.tab: screenLightOpacitySliderItem
                 }
                 SliderItem {
@@ -2155,7 +2230,7 @@ FocusScope {
                 */
                 Text {
                     id: prefsColourSchemeText
-                    property int index: 16
+                    property int index: 18
                     opacity: 1.0
                     anchors.top: parent.top
                     anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
@@ -2234,7 +2309,7 @@ FocusScope {
                 */
                 Text {
                     id: prefsBackendText
-                    property int index: 19
+                    property int index: 21
                     opacity: 1.0
                     anchors.top: parent.top
                     anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
