@@ -139,33 +139,35 @@ void showHelp()
     QString helpMessage;
 #if QT_VERSION < 0x050000
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
 #else
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-debugkeys] [-h|-?|-help]\n\n";
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-h|-?|-help]\n\n";
 #endif
 #else
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
 #else
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-debugkeys] [-h|-?|-help]\n\n";
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-h|-?|-help]\n\n";
 #endif
 #endif
-    helpMessage += "Option           Meaning             Possible values ([..] = default)\n"
-                   "---------------  ------------------  -----------------------------------------\n"
-                   "-emu             Emulator mode       [mame]\n";
-    helpMessage += "-theme           Theme selection     " + availableThemes + "\n";
-    helpMessage += "-console         Console type        " + availableConsoles + "\n";
+    helpMessage += "Option           Meaning              Possible values ([..] = default)\n"
+                   "---------------  -------------------  -----------------------------------------\n"
+                   "-emu             Emulator mode        [mame]\n";
+    helpMessage += "-theme           Theme selection      " + availableThemes + "\n";
+    helpMessage += "-console         Console type         " + availableConsoles + "\n";
 #if QT_VERSION < 0x050000
-    helpMessage += "-graphicssystem  Graphics engine     " + availableGraphicsSystems + "\n";
+    helpMessage += "-graphicssystem  Graphics engine      " + availableGraphicsSystems + "\n";
 #endif
-    helpMessage += "-language        Language selection  " + availableLanguages + "\n";
-    helpMessage += "-video           Video snap support  " + availableVideoSettings + "\n";
-    helpMessage += QString("-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
-    helpMessage += "-debugkeys       Debug key-mapping   N/A\n";
+    helpMessage += "-language        Language selection   " + availableLanguages + "\n";
+    helpMessage += "-video           Video snap support   " + availableVideoSettings + "\n";
+    helpMessage += QString("-config_path     Configuration path   [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
+    helpMessage += "-fullscreen      Full screen display  N/A\n";
+    helpMessage += "-windowed        Windowed display     N/A\n";
+    helpMessage += "-debugkeys       Debug key-mapping    N/A\n";
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
-    helpMessage += "-nojoy           Disable joystick    N/A\n";
-    helpMessage += QString("-joy             Use given joystick  SDL joystick index number [%1]\n").arg(globalConfig->joystickIndex());
-    helpMessage += "-debugjoy        Debug joy-mapping   N/A\n";
+    helpMessage += "-nojoy           Disable joystick     N/A\n";
+    helpMessage += QString("-joy             Use given joystick   SDL joystick index number [%1]\n").arg(globalConfig->joystickIndex());
+    helpMessage += "-debugjoy        Debug joy-mapping    N/A\n";
 #endif
 
 #if defined(QMC2_ARCADE_OS_WIN)
@@ -424,6 +426,14 @@ int main(int argc, char *argv[])
 
         QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using theme '%1'").arg(theme));
 
+        bool initialFullScreen = globalConfig->fullScreen();
+        if ( QMC2_ARCADE_CLI_FULLSCREEN )
+            initialFullScreen = true;
+        else if ( QMC2_ARCADE_CLI_WINDOWED )
+            initialFullScreen = false;
+
+        // setup viewer params
+        viewer->setInitialFullScreen(initialFullScreen);
         viewer->setVideoEnabled(globalConfig->defaultVideo() == "on");
         if ( QMC2_ARCADE_CLI_VIDEO_VAL )
             viewer->setVideoEnabled(QMC2_ARCADE_CLI_VIDEO == "on");
