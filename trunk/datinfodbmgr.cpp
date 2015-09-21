@@ -178,15 +178,12 @@ void DatInfoDatabaseManager::setSoftwareInfo(QString list, QString id, QString i
 bool DatInfoDatabaseManager::existsSoftwareInfo(QString list, QString id)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT list, id FROM %1 WHERE list=:list AND id=:id").arg(m_softwareInfoTableName));
+	query.prepare(QString("SELECT list, id FROM %1 WHERE list=:list AND id=:id LIMIT 1").arg(m_softwareInfoTableName));
 	query.bindValue(":list", list);
 	query.bindValue(":id", id);
-	if ( query.exec() ) {
-		if ( query.first() )
-			return (query.value(0).toString() == list) && (query.value(1).toString() == id);
-		else
-			return false;
-	} else {
+	if ( query.exec() )
+		return query.first();
+	else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("list, id").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return false;
 	}
@@ -249,14 +246,11 @@ void DatInfoDatabaseManager::setEmuInfo(QString id, QString infotext)
 bool DatInfoDatabaseManager::existsEmuInfo(QString id)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT id FROM %1 WHERE id=:id").arg(m_emuInfoTableName));
+	query.prepare(QString("SELECT id FROM %1 WHERE id=:id LIMIT 1").arg(m_emuInfoTableName));
 	query.bindValue(":id", id);
-	if ( query.exec() ) {
-		if ( query.first() )
-			return (query.value(0).toString() == id);
-		else
-			return false;
-	} else {
+	if ( query.exec() )
+		return query.first();
+	 else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return false;
 	}
@@ -336,14 +330,11 @@ void DatInfoDatabaseManager::setGameInfo(QString id, QString infotext, QString e
 bool DatInfoDatabaseManager::existsGameInfo(QString id)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT id FROM %1 WHERE id=:id").arg(m_gameInfoTableName));
+	query.prepare(QString("SELECT id FROM %1 WHERE id=:id LIMIT 1").arg(m_gameInfoTableName));
 	query.bindValue(":id", id);
-	if ( query.exec() ) {
-		if ( query.first() )
-			return (query.value(0).toString() == id);
-		else
-			return false;
-	} else {
+	if ( query.exec() )
+		return query.first();
+	else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return false;
 	}

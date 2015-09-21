@@ -249,28 +249,28 @@ bool CheckSumDatabaseManager::exists(QString sha1, QString crc, quint64 size)
 	QSqlQuery query(m_db);
 	if ( size > 0 ) {
 		if ( sha1.isEmpty() ) {
-			query.prepare(QString("SELECT sha1, crc, size FROM %1 WHERE crc=:crc AND size=:size").arg(m_tableBasename));
+			query.prepare(QString("SELECT sha1, crc, size FROM %1 WHERE crc=:crc AND size=:size LIMIT 1").arg(m_tableBasename));
 			query.bindValue(":crc", crc);
 			query.bindValue(":size", size);
 		} else if ( crc.isEmpty() ) {
-			query.prepare(QString("SELECT sha1, crc, size FROM %1 WHERE sha1=:sha1 AND size=:size").arg(m_tableBasename));
+			query.prepare(QString("SELECT sha1, crc, size FROM %1 WHERE sha1=:sha1 AND size=:size LIMIT 1").arg(m_tableBasename));
 			query.bindValue(":sha1", sha1);
 			query.bindValue(":size", size);
 		} else {
-			query.prepare(QString("SELECT sha1, crc, size FROM %1 WHERE (sha1=:sha1 OR crc=:crc) AND size=:size").arg(m_tableBasename));
+			query.prepare(QString("SELECT sha1, crc, size FROM %1 WHERE (sha1=:sha1 OR crc=:crc) AND size=:size LIMIT 1").arg(m_tableBasename));
 			query.bindValue(":sha1", sha1);
 			query.bindValue(":crc", crc);
 			query.bindValue(":size", size);
 		}
 	} else {
 		if ( sha1.isEmpty() ) {
-			query.prepare(QString("SELECT sha1, crc FROM %1 WHERE crc=:crc").arg(m_tableBasename));
+			query.prepare(QString("SELECT sha1, crc FROM %1 WHERE crc=:crc LIMIT 1").arg(m_tableBasename));
 			query.bindValue(":crc", crc);
 		} else if ( crc.isEmpty() ) {
-			query.prepare(QString("SELECT sha1, crc FROM %1 WHERE sha1=:sha1").arg(m_tableBasename));
+			query.prepare(QString("SELECT sha1, crc FROM %1 WHERE sha1=:sha1 LIMIT 1").arg(m_tableBasename));
 			query.bindValue(":sha1", sha1);
 		} else {
-			query.prepare(QString("SELECT sha1, crc FROM %1 WHERE sha1=:sha1 OR crc=:crc").arg(m_tableBasename));
+			query.prepare(QString("SELECT sha1, crc FROM %1 WHERE sha1=:sha1 OR crc=:crc LIMIT 1").arg(m_tableBasename));
 			query.bindValue(":sha1", sha1);
 			query.bindValue(":crc", crc);
 		}
