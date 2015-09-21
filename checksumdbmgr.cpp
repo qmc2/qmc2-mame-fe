@@ -275,15 +275,9 @@ bool CheckSumDatabaseManager::exists(QString sha1, QString crc, quint64 size)
 			query.bindValue(":crc", crc);
 		}
 	}
-	if ( query.exec() ) {
-		if ( query.first() ) {
-			if ( size > 0 )
-				return (query.value(0).toString() == sha1 || query.value(1).toString() == crc) && (query.value(2).toULongLong() == size);
-			else
-				return (query.value(0).toString() == sha1 || query.value(1).toString() == crc);
-		} else
-			return false;
-	} else {
+	if ( query.exec() )
+		return query.first();
+	else {
 		emit log(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("sha1, crc").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return false;
 	}
