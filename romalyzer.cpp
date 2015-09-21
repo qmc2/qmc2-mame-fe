@@ -496,6 +496,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDatabasePath", lineEditCheckSumDbDatabasePath->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScanIncrementally", toolButtonCheckSumDbScanIncrementally->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDeepScan", toolButtonCheckSumDbDeepScan->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbHashCache", toolButtonCheckSumDbHashCache->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ReportHeaderState", treeWidgetChecksums->header()->saveState());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/AnalysisTab", tabWidgetAnalysis->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ChecksumWizardHeaderState", treeWidgetChecksumWizardSearchResult->header()->saveState());
@@ -596,6 +597,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	lineEditCheckSumDbDatabasePath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDatabasePath", QString(userScopePath + "/%1-checksum.db").arg(variantName)).toString());
 	toolButtonCheckSumDbScanIncrementally->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScanIncrementally", true).toBool());
 	toolButtonCheckSumDbDeepScan->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDeepScan", true).toBool());
+	toolButtonCheckSumDbHashCache->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbHashCache", false).toBool());
 
 	if ( e )
 		e->accept();
@@ -4273,6 +4275,7 @@ void ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()
 				checkSumScannerThread()->scannedPaths << listWidgetCheckSumDbScannedPaths->item(i)->text();
 		checkSumScannerThread()->scanIncrementally = toolButtonCheckSumDbScanIncrementally->isChecked();
 		checkSumScannerThread()->deepScan = toolButtonCheckSumDbDeepScan->isChecked();
+		checkSumScannerThread()->useHashCache = toolButtonCheckSumDbHashCache->isChecked();
 		checkSumScannerThread()->waitCondition.wakeAll();
 	}
 	qApp->processEvents();
@@ -4655,7 +4658,7 @@ bool ROMAlyzerXmlHandler::characters(const QString &str)
 CheckSumScannerThread::CheckSumScannerThread(CheckSumScannerLog *scannerLog, QString settingsKey, QObject *parent)
 	: QThread(parent)
 {
-	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopScan = scanIncrementally = deepScan = false;
+	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopScan = scanIncrementally = deepScan = useHashCache = false;
 	m_preparingIncrementalScan = false;
 	m_checkSumDb = NULL;
 	m_scannerLog = scannerLog;
@@ -4800,6 +4803,23 @@ void CheckSumScannerThread::resume()
 	isPaused = false;
 }
 
+bool CheckSumScannerThread::checkSumExists(QString sha1, QString crc, quint64 size)
+{
+	if ( useHashCache ) {
+		QString key = QString("%1-%2-%3").arg(sha1).arg(crc).arg(size);
+		if ( m_hashCache.contains(key) )
+			return true;
+		if ( !scanIncrementally )
+			return false;
+		if ( checkSumDb()->exists(sha1, crc, size) ) {
+			m_hashCache[key] = true;
+			return true;
+		} else
+			return false;
+	} else
+		return checkSumDb()->exists(sha1, crc, size);
+}
+
 void CheckSumScannerThread::run()
 {
 	emit log(tr("scanner thread started"));
@@ -4890,9 +4910,11 @@ void CheckSumScannerThread::run()
 						case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
 						case QMC2_CHECKSUM_SCANNER_FILE_7Z:
 							for (int i = 0; i < memberList.count(); i++) {
-								if ( !checkSumDb()->exists(sha1List[i], crcList[i], sizeList[i]) ) {
+								if ( !checkSumExists(sha1List[i], crcList[i], sizeList[i]) ) {
 									emit log(tr("database update") + ": " + tr("adding member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' to database").arg(memberList[i]).arg(filePath).arg(sha1List[i]).arg(crcList[i]));
 									checkSumDb()->setData(sha1List[i], crcList[i], sizeList[i], filePath, memberList[i], checkSumDb()->typeToName(type));
+									if ( useHashCache )
+										m_hashCache[QString("%1-%2-%3").arg(sha1List[i]).arg(crcList[i]).arg(sizeList[i])] = true;
 									m_pendingUpdates++;
 								} else
 									emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1List[i]).arg(crcList[i]) + ", " + tr("member '%1' from archive '%2' ignored").arg(memberList[i]).arg(filePath));
@@ -4907,17 +4929,21 @@ void CheckSumScannerThread::run()
 							}
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_CHD:
-							if ( !checkSumDb()->exists(sha1, crc, size) ) {
+							if ( !checkSumExists(sha1, crc, size) ) {
 								emit log(tr("database update") + ": " + tr("adding CHD '%1' with SHA-1 '%2' to database").arg(filePath).arg(sha1));
 								checkSumDb()->setData(sha1, QString(), size, filePath, QString(), checkSumDb()->typeToName(type));
+								if ( useHashCache )
+									m_hashCache[QString("%1--%2").arg(sha1).arg(size)] = true;
 								m_pendingUpdates++;
 							} else
 								emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("CHD '%1' ignored").arg(filePath));
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
-							if ( !checkSumDb()->exists(sha1, crc, size) ) {
+							if ( !checkSumExists(sha1, crc, size) ) {
 								emit log(tr("database update") + ": " + tr("adding file '%1' with SHA-1 '%2' and CRC '%3' to database").arg(filePath).arg(sha1).arg(crc));
 								checkSumDb()->setData(sha1, crc, size, filePath, QString(), checkSumDb()->typeToName(type));
+								if ( useHashCache )
+									m_hashCache[QString("%1-%2-%3").arg(sha1).arg(crc).arg(size)] = true;
 								m_pendingUpdates++;
 							} else
 								emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("file '%1' ignored").arg(filePath));
@@ -4963,6 +4989,10 @@ void CheckSumScannerThread::run()
 			emit log(tr("committing database transaction"));
 			checkSumDb()->setScanTime(QDateTime::currentDateTime().toTime_t());
 			checkSumDb()->commitTransaction();
+			if ( useHashCache ) {
+				m_hashCache.clear();
+				m_hashCache.squeeze();
+			}
 			m_pendingUpdates = 0;
 			emit progressTextChanged(tr("Idle"));
 			emit progressRangeChanged(0, 100);

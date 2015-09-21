@@ -355,7 +355,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>-343</y>
             <width>617</width>
             <height>768</height>
            </rect>
@@ -1545,6 +1545,28 @@
                     </property>
                    </widget>
                   </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButtonCheckSumDbHashCache">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="toolTip">
+                     <string>If enabled, scanned hashes are cached during the scan which will improve scanning speed enormously but will consume additional memory (about 35 MB per 100K scanned objects)</string>
+                    </property>
+                    <property name="text">
+                     <string>Cache</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
                  </layout>
                 </item>
                </layout>
@@ -1972,6 +1994,7 @@
   <tabstop>groupBoxCheckSumDatabase</tabstop>
   <tabstop>toolButtonCheckSumDbScanIncrementally</tabstop>
   <tabstop>toolButtonCheckSumDbDeepScan</tabstop>
+  <tabstop>toolButtonCheckSumDbHashCache</tabstop>
   <tabstop>listWidgetCheckSumDbScannedPaths</tabstop>
   <tabstop>toolButtonCheckSumDbAddPath</tabstop>
   <tabstop>toolButtonCheckSumDbRemovePath</tabstop>

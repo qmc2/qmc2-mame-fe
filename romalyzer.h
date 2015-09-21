@@ -8,6 +8,7 @@
 #include <QWaitCondition>
 #include <QStringList>
 #include <QTimer>
+#include <QHash>
 #include <QPixmap>
 
 #include "macros.h"
@@ -166,6 +167,7 @@ class CheckSumScannerThread : public QThread
 		bool pauseRequested;
 		bool scanIncrementally;
 		bool deepScan;
+		bool useHashCache;
 		QMutex mutex;
 		QWaitCondition waitCondition;
 		QStringList scannedPaths;
@@ -203,6 +205,8 @@ class CheckSumScannerThread : public QThread
 		quint64 m_pendingUpdates;
 		bool m_preparingIncrementalScan;
 		QString m_settingsKey;
+		QHash<QString, bool> m_hashCache;
+		bool checkSumExists(QString sha1, QString crc, quint64 size = 0);
 		void recursiveFileList(const QString &, QStringList *);
 		bool scanZip(QString, QStringList *, QList<quint64> *, QStringList *, QStringList *);
 		bool scanSevenZip(QString, QStringList *, QList<quint64> *, QStringList *, QStringList *);
