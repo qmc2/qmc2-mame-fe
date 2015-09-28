@@ -1,6 +1,6 @@
 ﻿<!--
 SHIDERAVAN SYSTEM TEMPLATE
-LAST MODIFICATION: 05/September/2015
+LAST MODIFICATION: 27/September/2015
 
 Copyright (c) 2015 Jose Marcio Rezende Franco
 
@@ -18,7 +18,8 @@ Copyright (c) 2015 Jose Marcio Rezende Franco
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Whatsnew:
-05/Sep/2015: -Changed "No image available" for "Not available" to fit Video Snaps better (changed text for Portuguese already done, need translation for the other languages).
+26/Sep/2015: -Updated German, Spanish and French languages giving them the status of "full support" as of now (thanks René, A.Viloria, Cpt. Pugwash and remax with the help for this update).
+05/Sep/2015: -Changed "No image available" for "Not available" to fit Video Snaps better.
              -Fixed black column proportions bug.
              -Created a menu option to enable/disable Video Snaps.
              -If Video Snap for the system is not available, it will now execute Parent Video snap, if it's available.
@@ -71,9 +72,9 @@ My girlfriend for all the support
 Status of the languages supported: 
  us (English) = Full
  pt (Portuguese) = Full
- de (German) = Partial
- es (Spanish) = Partial
- fr (French) = Partial
+ de (German) = Full
+ es (Spanish) = Full
+ fr (French) = Full
  it (Italian) = Partial
  sv (Swedish) = Partial
  pl (Polish) = Nothing 
@@ -97,7 +98,7 @@ Status of the languages supported:
   $SOURCE_FILE$		The driver's source file name
   
   
-  Image macros:
+  Image / video macros:
   $PREVIEW_IMAGE$    Current system's preview image
   $FLYER_IMAGE$    Current system's flyer image
   $CABINET_IMAGE$    Current system's cabinet image
@@ -107,6 +108,8 @@ Status of the languages supported:
   $PCB_IMAGE$    Current system's PCB image
   $GHOST_IMAGE$    Path to the Ghostbusters logo (if an image wasn't found, its file URL will
         be same as the value of this macro, so you can use it to check image validity)
+  $VIDEO_SNAP_URL$	The complete file URL to the video snap (empty when there is no video snap)
+  $GHOST_VIDEO$		Path to the Ghostbusters logo inside a video frame        
 
   DAT info sources:
   $GAME_INFO$    Game/machine info DB entry (from MAME history.dat / MESS sysinfo.dat)
@@ -117,7 +120,6 @@ Status of the languages supported:
   $EMU_INFO_STATUS$  Status of the emulator info DB entry (OK / NO_DATA)
 
   General macros:
-
   $GUI_LANGUAGE$    The GUI's current language setting (us, de, ...)
   
   Obsolete: 
@@ -353,6 +355,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['CPU'] = 'CPU';
       trMap['Audio'] = 'Áudio';
       trMap['Others'] = 'Outros';
+      trMap['Manual'] = 'Manual';
+      trMap['experimental'] = 'experimental';
       
       /*Infobar*/
       trMap['Manufacturer'] = 'Fabricante';
@@ -411,7 +415,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not used']  = 'Não mostrar';    
       trMap['Original'] = 'Original';
       trMap['Big Image'] = 'Imagem extendida';      
-      trMap['TVMode'] = 'ModoTV';      
+      trMap['TV Mode'] = 'ModoTV';      
       
       trMap['Image Options'] = 'Opções de Imagem';
       trMap['Image Transition'] = 'Transição de Imagens';        
@@ -451,7 +455,9 @@ switch ("$GUI_LANGUAGE$")
       trMap['file not zipped'] = 'Datei nicht komprimiert';
       trMap['CPU'] = 'CPU';
       trMap['Audio'] = 'Audio';
-      trMap['Others'] = 'Weitere';        
+      trMap['Others'] = 'Weitere';    
+      trMap['Manual'] = 'Handbuch';
+      trMap['experimental'] = 'experimentell';    
       
       /*Infobar*/
       trMap['Manufacturer'] = 'Hersteller';
@@ -490,13 +496,13 @@ switch ("$GUI_LANGUAGE$")
       trMap['Device set'] = 'Gerät';      
       
       /*Extra images*/
-      trMap['Activate P.EMMA for'] = '???';
-      trMap['Activate A.Hits for'] = '???';      
-      trMap['Activate "EXTRA IMAGES" for more images'] = '???';  
+      trMap['Activate P.EMMA for'] = 'P.EMMA aktivieren für';
+      trMap['Activate A.Hits for'] = 'A.HITS aktivieren für';      
+      trMap['Activate "EXTRA IMAGES" for more images'] = '"EXTRA BILDER" für zusätzliche Bilder aktivieren';  
       
       /*DE:options*/
       trMap['SHOW OPTIONS'] = 'Optionen anzeigen';
-      trMap['+Images'] = '???';
+      trMap['+Images'] = '+Bilder';
       
       trMap['Structural Options'] = 'Strukturelle Optionen';
       trMap['Emulator Info'] = 'Emulator Info';
@@ -511,7 +517,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not used']  = 'Nicht verwendet'; 
       trMap['Original'] = 'Original';
       trMap['Big Image'] = 'Großes Bild';
-      trMap['TVMode'] = 'TV Modus';       
+      trMap['TV Mode'] = 'TV Modus';       
       
       trMap['Image Options'] = 'Bild-Optionen';
       trMap['Image Transition'] = 'Bildübergang';        
@@ -528,7 +534,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Softwarelist/Samples XML'] = 'Software-Listen/Samples XML'; 
       trMap['Processors info XML'] = 'Prozessor-Info XML'; 
       trMap['Use images from ZIP (may be slow)'] = 'Bilder aus ZIPs vewenden (u.U. langsam)'; 
-      trMap['Use Video Snaps'] = '???';
+      trMap['Use Video Snaps'] = 'Video Snaps verwenden';
       
       /*BG Modes*/ 
       trMap['BG mode'] = 'HG Modus';
@@ -542,16 +548,18 @@ switch ("$GUI_LANGUAGE$")
    case "fr":
    {        
       /*LANGUAGE: FR*/
-      trMap['SYSTEM WITHOUT ROM'] = '???';
+      trMap['SYSTEM WITHOUT ROM'] = 'SYSTÈME SANS ROM';
       trMap['Image source'] = 'Source de l\'image';
       trMap['your default directory'] = 'votre répertoire par défaut';
       trMap['Not available'] = 'Indisponible';    
 
-      trMap['ZIP File'] = '???';
-      trMap['file not zipped'] = '???';
-      trMap['CPU'] = '???';
-      trMap['Audio'] = '???';
-      trMap['Others'] = '???';
+      trMap['ZIP File'] = 'Fichier ZIP';
+      trMap['file not zipped'] = 'fichier non compressé';
+      trMap['CPU'] = 'CPU';
+      trMap['Audio'] = 'Audio';
+      trMap['Others'] = 'Autres';
+      trMap['Manual'] = 'Manuel';
+      trMap['experimental'] = 'expérimental';
           
       /*Infobar*/
       trMap['Manufacturer'] = 'Fabricant';
@@ -559,83 +567,83 @@ switch ("$GUI_LANGUAGE$")
       trMap['Players'] = 'Joueurs';
       trMap['Version'] = 'Version';
       trMap['Clone of'] = 'Clone de';
-      trMap['MAIN SYSTEM'] = '???';
+      trMap['MAIN SYSTEM'] = 'SYSTÈME PRINCIPAL';
 
       /*Driver Information*/
-      trMap['PROCESSORS'] = '???';
-      trMap['Driver'] =  '???';
-      trMap['Processors'] = '???';
-      trMap['Screen'] = '???';
-      trMap['Sound'] = '???';
-      trMap['Control'] = '???';      
+      trMap['PROCESSORS'] = 'PROCESSEURS';
+      trMap['Driver'] = 'Pilote';
+      trMap['Processors'] = 'Processeurs';
+      trMap['Screen'] = 'Écran';
+      trMap['Sound'] = 'Son';
+      trMap['Control'] = 'Contrôle';      
       
       /*Emulation Status*/
-      trMap['Samples'] = '???';
-      trMap['Software List'] = '???';  
-      trMap['Emulation'] = '???';          
-      trMap['Graphics'] = '???';
-      trMap['Color'] = '???';
-      trMap['S.State'] = '???';
+      trMap['Samples'] = 'Échantillons';
+      trMap['Software List'] = 'Liste des logiciels';  
+      trMap['Emulation'] = 'Émulation';          
+      trMap['Graphics'] = 'Graphiques';
+      trMap['Color'] = 'Couleur';
+      trMap['S.State'] = 'Sauvegarde';
       
-      trMap['Not necessary'] = '???';   
-      trMap['None'] = '???';
-      trMap['Good'] = '???';
-      trMap['Imperfect'] = '???';
-      trMap['Preliminary'] = '???';
-      trMap['Supported'] = '???';
-      trMap['Unsupported'] = '???';
-      trMap['XML query error!'] = '???'; 
+      trMap['Not necessary'] = 'Pas nécessaire';   
+      trMap['None'] = 'Aucun';
+      trMap['Good'] = 'Bon';
+      trMap['Imperfect'] = 'Imparfait';
+      trMap['Preliminary'] = 'Préliminaire';
+      trMap['Supported'] = 'Supporté';
+      trMap['Unsupported'] = 'Non Supporté';
+      trMap['XML query error!'] = 'Erreur de requête XML'; 
            
-      trMap['BIOS set'] = '???';
-      trMap['Device set'] = '???';      
+      trMap['BIOS set'] = 'set BIOS';
+      trMap['Device set'] = 'set Périphériques';      
       
       /*Extra images*/
-      trMap['Activate P.EMMA for'] = '???';
-      trMap['Activate A.Hits for'] = '???';      
-      trMap['Activate "EXTRA IMAGES" for more images'] = '???';               
+      trMap['Activate P.EMMA for'] = 'Activer P.EMMA pour';
+      trMap['Activate A.Hits for'] = 'Activer A.Hits pour';      
+      trMap['Activate "EXTRA IMAGES" for more images'] = 'Activer "IMAGES SUPPLEMENTAIRES" pour plus d\'images';               
       
       /*FR :options*/
-      trMap['SHOW OPTIONS'] = '???';
-      trMap['+Images'] = '???';
+      trMap['SHOW OPTIONS'] = 'MONTRER OPTIONS';
+      trMap['+Images'] = '+Images';
       
-      trMap['Structural Options'] = '???';
+      trMap['Structural Options'] = 'Options de présentation';
       trMap['Emulator Info'] = 'Info sur l\'emulateur';
-      trMap['Black Column'] = '???';
-      trMap['System Info'] = '???';      
+      trMap['Black Column'] = 'Colonne Noire';
+      trMap['System Info'] = 'Info Système';      
       
-      trMap['Header Options'] = '???';
-      trMap['Title/Cabinet Image'] = '???';
-      trMap['Toggle Info'] = '???';
+      trMap['Header Options'] = 'Options d\'en-tête';
+      trMap['Title/Cabinet Image'] = 'Image Titre/Borne';
+      trMap['Toggle Info'] = 'Affichage ou non des infos';
       
-      trMap['Preview Image'] = '???';
-      trMap['Not used']  = '???';    
-      trMap['Original'] = '???';
-      trMap['Big Image'] = '???';      
-      trMap['TVMode'] = 'Mode TV';      
+      trMap['Preview Image'] = 'Aperçu';
+      trMap['Not used'] = 'Non utilisé';    
+      trMap['Original'] = 'Original';
+      trMap['Big Image'] = 'Grande Image';      
+      trMap['TV Mode'] = 'Mode TV';      
       
-      trMap['Image Options'] = '???';
-      trMap['Image Transition'] = '???';        
+      trMap['Image Options'] = 'Options Images';
+      trMap['Image Transition'] = 'Transition d\'image';        
       trMap['Show sources'] = 'Voir les sources';      
       
-      trMap['General Options'] = '???';
-      trMap['Bottom Info'] = '???';      
-      trMap['Shadows'] = '???';
-      trMap['Search Extra Images'] = '???';             
-      trMap['Internet Databases'] = '???';
+      trMap['General Options'] = 'Options générales';
+      trMap['Bottom Info'] = 'Infos supplémentaires en bas';      
+      trMap['Shadows'] = 'Ombres';
+      trMap['Search Extra Images'] = 'Chercher des images supplémentaires';             
+      trMap['Internet Databases'] = 'Bases de données Internet';
                          
-      trMap['Info XML'] = '???';          
-      trMap['Status XML'] = '???';    
-      trMap['Softwarelist/Samples XML'] = '???'; 
-      trMap['Processors info XML'] = '???';     
-      trMap['Use images from ZIP (may be slow)'] = '???';
-      trMap['Use Video Snaps'] = '???';          
+      trMap['Info XML'] = 'XML Info';          
+      trMap['Status XML'] = 'XML Status';    
+      trMap['Softwarelist/Samples XML'] = 'XML Liste des logiciels/Échantillons'; 
+      trMap['Processors info XML'] = 'XML Info Processeur';     
+      trMap['Use images from ZIP (may be slow)'] = 'Utiliser images compressées (peut-être lent)';
+      trMap['Use Video Snaps'] = 'Utiliser les captures vidéos';          
 
       /*BG Modes*/ 
-      trMap['BG mode'] = '???';
-      trMap['Default'] = '???';
-      trMap['Image'] = '???';
-      trMap['scaled'] = '???';
-      trMap['tiled'] = '???';      
+      trMap['BG mode'] = 'Arrière Plan';
+      trMap['Default'] = 'Défaut';
+      trMap['Image'] = 'Image';
+      trMap['scaled'] = 'etiré';
+      trMap['tiled'] = 'mosaïque';
       break;
    }
 
@@ -652,6 +660,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['CPU'] = 'CPU';
       trMap['Audio'] = 'Audio';
       trMap['Others'] = 'Otros';
+      trMap['Manual'] = 'Manual';
+      trMap['experimental'] = 'experimental';
 
       /*Infobar*/
       trMap['Manufacturer'] = 'Fabricante';
@@ -711,7 +721,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not used'] = 'No utilizar'; /* Also 'No usar' */
       trMap['Original'] = 'Original';
       trMap['Big Image'] = 'Imagen Grande';
-      trMap['TVMode'] = 'ModoTV';
+      trMap['TV Mode'] = 'ModoTV';
 
       trMap['Image Options'] = 'Opciones de Imagen';
       trMap['Image Transition'] = 'Transición de Imágenes'; 
@@ -728,7 +738,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Softwarelist/Samples XML'] = 'XML de Listas de software/Samples';
       trMap['Processors info XML'] = 'XML de información de los Procesadores';
       trMap['Use images from ZIP (may be slow)'] = 'Usar imágenes en ficheros ZIP (puede ser lento)';
-      trMap['Use Video Snaps'] = '???';
+      trMap['Use Video Snaps'] = 'Usar Video Snaps';
 
       /*BG Modes*/ 
       trMap['BG mode'] = 'Modo BG';
@@ -752,6 +762,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['CPU'] = '???';
       trMap['Audio'] = '???';
       trMap['Others'] = '???';
+      trMap['Manual'] = '???';
+      trMap['experimental'] = '???';
             
       /*Infobar*/
       trMap['Manufacturer'] = 'Tillverkare';
@@ -811,7 +823,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not used']  = '???';    
       trMap['Original'] = '???';
       trMap['Big Image'] = '???';      
-      trMap['TVMode'] = '???';      
+      trMap['TV Mode'] = '???';      
       
       trMap['Image Options'] = '???';
       trMap['Image Transition'] = '???';        
@@ -852,6 +864,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['CPU'] = '???';
       trMap['Audio'] = '???';
       trMap['Others'] = '???';
+      trMap['Manual'] = '???';
+      trMap['experimental'] = '???';
           
       /*Infobar*/
       trMap['Manufacturer'] = 'Construttore';
@@ -911,7 +925,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not used']  = '???';    
       trMap['Original'] = '???';
       trMap['Big Image'] = '???';      
-      trMap['TVMode'] = '???';      
+      trMap['TV Mode'] = '???';      
       
       trMap['Image Options'] = '???';
       trMap['Image Transition'] = '???';        
@@ -952,6 +966,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['CPU'] = '???';
       trMap['Audio'] = '???';
       trMap['Others'] = '???';
+      trMap['Manual'] = '???';
+      trMap['experimental'] = '???';
           
       /*Infobar*/
       trMap['Manufacturer'] = '???';
@@ -1011,7 +1027,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not used']  = '???';    
       trMap['Original'] = '???';
       trMap['Big Image'] = '???';      
-      trMap['TVMode'] = '???';      
+      trMap['TV Mode'] = '???';      
       
       trMap['Image Options'] = '???';
       trMap['Image Transition'] = '???';        
@@ -1052,6 +1068,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['CPU'] = '???';
       trMap['Audio'] = '???';
       trMap['Others'] = '???';
+      trMap['Manual'] = '???';
+      trMap['experimental'] = '???';
           
       /*Infobar*/
       trMap['Manufacturer'] = '???';
@@ -1111,7 +1129,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not used']  = '???';    
       trMap['Original'] = '???';
       trMap['Big Image'] = '???';      
-      trMap['TVMode'] = '???';      
+      trMap['TV Mode'] = '???';      
       
       trMap['Image Options'] = '???';
       trMap['Image Transition'] = '???';        
@@ -1152,6 +1170,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['CPU'] = '???';
       trMap['Audio'] = '???';
       trMap['Others'] = '???';
+      trMap['Manual'] = '???';
+      trMap['experimental'] = '???';
           
       /*Infobar*/
       trMap['Manufacturer'] = '???';
@@ -1210,7 +1230,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not used']  = '???';    
       trMap['Original'] = '???';
       trMap['Big Image'] = '???';      
-      trMap['TVMode'] = '???';      
+      trMap['TV Mode'] = '???';      
       
       trMap['Image Options'] = '???';
       trMap['Image Transition'] = '???';        
@@ -2973,25 +2993,25 @@ if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
    {
       case  'no':
       {
-         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\" >"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TVMode')+"</option></select></td>");
+         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\" >"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TV Mode')+"</option></select></td>");
          break;
       }   
    
       case 'tvmode':
       {
-         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\" selected=\"selected\">"+tr('Preview Image')+": "+tr('TVMode')+"</option></select></td>"); 
+         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\" selected=\"selected\">"+tr('Preview Image')+": "+tr('TV Mode')+"</option></select></td>"); 
          break;  
       }
    
       case 'bigimage':
       {
-         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TVMode')+"</option></select></td>"); 
+         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TV Mode')+"</option></select></td>"); 
          break;    
       }
    
       default:
       {
-         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TVMode')+"</option></select></td>");  
+         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TV Mode')+"</option></select></td>");  
       }
    }
    
@@ -3184,12 +3204,12 @@ if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
    
    if (localStorage['SystemNotesTemplate/UseVideoSnaps'] == 'true')
    {
-      document.write(tr('Use Video Snaps')+" (experimental)<input name=\"cusevideo\" type=\"checkbox\" id=\"cusevideo\" checked=\"checked\" onclick=\"toggleVideoSnaps(this.checked);\" title=\"Select this option if you want to use video snaps (experimental)\"/>");
+      document.write(tr('Use Video Snaps')+" ("+tr('experimental')+")<input name=\"cusevideo\" type=\"checkbox\" id=\"cusevideo\" checked=\"checked\" onclick=\"toggleVideoSnaps(this.checked);\" title=\"Select this option if you want to use video snaps (experimental)\"/>");
    }     
               
    else
    {
-      document.write(tr('Use Video Snaps')+" (experimental)<input name=\"cusevideo\" type=\"checkbox\" id=\"cusevideo\" onclick=\"toggleVideoSnaps(this.checked);\" title=\"Select this option if you want to use video snaps (experimental)\"/>");
+      document.write(tr('Use Video Snaps')+" ("+tr('experimental')+")<input name=\"cusevideo\" type=\"checkbox\" id=\"cusevideo\" onclick=\"toggleVideoSnaps(this.checked);\" title=\"Select this option if you want to use video snaps (experimental)\"/>");
    } 
 
       document.write("</td></tr><tr><td width=\"10%\"><font color=\"white\">"+tr('Others')+":");

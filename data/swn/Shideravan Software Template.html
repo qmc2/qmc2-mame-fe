@@ -1,6 +1,6 @@
-<!--
+﻿<!--
 SHIDERAVAN SOFTWARE TEMPLATE
-LAST MODIFICATION: 28/May/2015
+LAST MODIFICATION: 27/September/2015
 
 Copyright (c) 2015 Jose Marcio Rezende Franco
 
@@ -18,6 +18,9 @@ Copyright (c) 2015 Jose Marcio Rezende Franco
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
   
 Whatsnew:
+27/Sep/2015: -Changed "No image available" for "Not available" (for standarization with System Template).
+             -Updated French languages giving them the status of "full support" as of now (thanks remax with the help for this update).
+             -Added translations for all the BG Modes (the same from System templates).
 28/May/2015: -Add "SOFTWARE_PARENT_ID" macro compatibility (either for showing in the software info or for search images online).
 22/May/2015: -Updated the whatsnew, documentation and licensing.
 10/Jan/2015: -Updates and Cleanups  
@@ -36,7 +39,7 @@ status of the languages supported:
  pt (Portuguese) = Full
  de (German) = Full
  es (Spanish) = Full
- fr (French) = Partial
+ fr (French) = Full
  it (Italian) = Partial
  sv (Swedish) = Partial
  pl (Polish) = Nothing 
@@ -126,7 +129,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Support'] = 'Suporte';
       trMap['Image source'] = 'Fonte da imagem';
       trMap['your default directory'] = 'seu diretório padrão';
-      trMap['No image availiable'] = 'Imagem não disponível';
+      trMap['Not available'] = 'Não disponível';
     
       trMap['ZIP File'] = 'Arquivo ZIP';
       trMap['file not zipped'] = 'arquivo não compactado';
@@ -159,7 +162,13 @@ switch ("$GUI_LANGUAGE$")
       
       /*BG Mode*/
       trMap['BG mode'] = 'Fundo';
-      trMap['SoftInfo/BG'] = 'Fundo SoftInfo';     
+      trMap['SoftInfo/BG'] = 'Fundo SoftInfo';
+      trMap['None'] = 'Nenhum';
+      trMap['Default'] = 'Padrão';
+      trMap['Color'] = 'Cor';
+      trMap['Image'] = 'Imagem';
+      trMap['scaled'] = 'extendida';
+      trMap['tiled'] = 'lado a lado';           
       break;
    }            
 
@@ -170,7 +179,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Support'] = 'Unterstützung';
       trMap['Image source'] = 'Bildquelle';
       trMap['your default directory'] = 'dein Standardverzeichnis';
-      trMap['No image availiable'] = 'Kein Bild verfügbar';
+      trMap['Not available'] = 'Nicht verfügbar';
 
       trMap['ZIP File'] = 'ZIP Datei';
       trMap['file not zipped'] = 'Datei nicht komprimiert';
@@ -203,51 +212,63 @@ switch ("$GUI_LANGUAGE$")
       
       /*BG Mode*/
       trMap['BG mode'] = 'HG Modus';
-      trMap['SoftInfo/BG'] = 'SW-Info/HG';     
+      trMap['SoftInfo/BG'] = 'SW-Info/HG';
+      trMap['None'] = 'Kein(e)'; /* if the last 'e' is required or not depends on the context where this is used! */ 
+      trMap['Default'] = 'Standard';
+      trMap['Color'] = 'Farbe';
+      trMap['Image'] = 'Bild';
+      trMap['scaled'] = 'skaliert';
+      trMap['tiled'] = 'gekachelt';    
       break;
   }           
 
   case "fr":
   {     
       /*LANGUAGE: FR*/
-      trMap['File Status'] = '???';
-      trMap['Support'] = '???';
+      trMap['File Status'] = 'Statut du Fichier';
+      trMap['Support'] = 'Support';
       trMap['Image source'] = 'Source de l\'image';
       trMap['your default directory'] = 'votre répertoire par défaut';
-      trMap['No image availiable'] = '???';
+      trMap['Not available'] = 'Indisponible';
 
-      trMap['ZIP File'] = '???';
-      trMap['file not zipped'] = '???';      
+      trMap['ZIP File'] = 'Fichier ZIP';
+      trMap['file not zipped'] = 'fichier non compressé';      
       
       /*FR:infobar*/
       trMap['Software-list'] = 'Liste des logiciels';
       trMap['Publisher'] = 'Editeur';
       trMap['Release date'] = 'Année';
-      trMap['Clone of'] = '???';
-      trMap['MAIN SOFTWARE'] = '???';        
+      trMap['Clone of'] = 'Clone de';
+      trMap['MAIN SOFTWARE'] = 'LOGICIEL PRINCIPAL';        
             
       /*FR :options*/
-      trMap['SHOW OPTIONS'] = '???';
+      trMap['SHOW OPTIONS'] = 'MONTRER OPTIONS';
       
-      trMap['General Options'] = '???';
-      trMap['Show Sources'] = '???';      
+      trMap['General Options'] = 'Options générales';
+      trMap['Show sources'] = 'Voir les sources';      
                    
-      trMap['Header Options'] = '???';
-      trMap['Left Snapshot'] = '???';
-      trMap['Info Bar'] = '???';      
-      trMap['Right Snapshot'] = '???';      
+      trMap['Header Options'] = 'Options d\'en-tête';
+      trMap['Left Snapshot'] = 'Capture d\'écran gauche';
+      trMap['Info Bar'] = 'Barre d\'info';      
+      trMap['Right Snapshot'] = 'Capture d\'écran droite';      
            
-      trMap['Image Options'] = '???';      
-      trMap['TV Mode'] = '???';
-      trMap['Scaled Images'] = '???';       
-      trMap['Image Transition'] = '???';
+      trMap['Image Options'] = 'Options Images';      
+      trMap['TV Mode'] = 'Mode TV';
+      trMap['Scaled Images'] = 'Images redimensionnées';       
+      trMap['Image Transition'] = 'Transition d\'image';
       
-      trMap['Shadows'] = '???';
-      trMap['Use images from ZIP (may be slow)'] = '???';
+      trMap['Shadows'] = 'Ombres';
+      trMap['Use images from ZIP (may be slow)'] = 'Utiliser images compressées (peut-être lent)';
       
       /*BG Mode*/
-      trMap['BG mode'] = '???';
-      trMap['SoftInfo/BG'] = '???';            
+      trMap['BG mode'] = 'Arrière Plan';
+      trMap['SoftInfo/BG'] = 'Info Logiciel/Arrière Plan';
+      trMap['None'] = 'Aucun';  
+      trMap['Default'] = 'Défaut';
+      trMap['Color'] = 'Couleur';
+      trMap['Image'] = 'Image';
+      trMap['scaled'] = 'etiré';
+      trMap['tiled'] = 'mosaïque';                
       break;
    }            
 
@@ -258,7 +279,7 @@ switch ("$GUI_LANGUAGE$")
         trMap['Support'] = 'Soporte';
         trMap['Image source'] = 'Origen de la imagen';
         trMap['your default directory'] = 'tu directorio por defecto';
-        trMap['No image availiable'] = 'No hay una imagen disponible';
+        trMap['Not available'] = 'No disponible';
 
         trMap['ZIP File'] = 'Fichero ZIP';
         trMap['file not zipped'] = 'Fichero no comprimido';
@@ -292,6 +313,12 @@ switch ("$GUI_LANGUAGE$")
         /*BG Mode*/
         trMap['BG mode'] = 'Modo BG';
         trMap['SoftInfo/BG'] = 'SoftInfo/BG';
+        trMap['None'] = 'Ninguno';
+        trMap['Default'] = 'Por defecto';
+        trMap['Color'] = 'Color';
+        trMap['Image'] = 'Imagen';
+        trMap['scaled'] = 'escalado';
+        trMap['tiled'] = 'mosaico';        
         break; 
      }                  
 
@@ -335,7 +362,13 @@ switch ("$GUI_LANGUAGE$")
       
       /*BG Mode*/
       trMap['BG mode'] = '???';
-      trMap['SoftInfo/BG'] = '???';      
+      trMap['SoftInfo/BG'] = '???';   
+      trMap['None'] = '???';
+      trMap['Default'] = '???';
+      trMap['Color'] = '???';
+      trMap['Image'] = '???';
+      trMap['scaled'] = '???';
+      trMap['tiled'] = '???';    
       break;
   }                  
 
@@ -379,7 +412,13 @@ switch ("$GUI_LANGUAGE$")
       
       /*BG Mode*/
       trMap['BG mode'] = '???';
-      trMap['SoftInfo/BG'] = '???';          
+      trMap['SoftInfo/BG'] = '???';   
+      trMap['None'] = '???';
+      trMap['Default'] = '???';
+      trMap['Color'] = '???';
+      trMap['Image'] = '???';
+      trMap['scaled'] = '???';
+      trMap['tiled'] = '???';     
       break;
   }      
 
@@ -423,7 +462,13 @@ switch ("$GUI_LANGUAGE$")
       
       /*BG Mode*/
       trMap['BG mode'] = '???';
-      trMap['SoftInfo/BG'] = '???';            
+      trMap['SoftInfo/BG'] = '???';   
+      trMap['None'] = '???';
+      trMap['Default'] = '???';
+      trMap['Color'] = '???';
+      trMap['Image'] = '???';
+      trMap['scaled'] = '???';
+      trMap['tiled'] = '???';           
       break;
   }        
   
@@ -467,7 +512,13 @@ switch ("$GUI_LANGUAGE$")
       
       /*BG Mode*/
       trMap['BG mode'] = '???';
-      trMap['SoftInfo/BG'] = '???';         
+      trMap['SoftInfo/BG'] = '???';   
+      trMap['None'] = '???';
+      trMap['Default'] = '???';
+      trMap['Color'] = '???';
+      trMap['Image'] = '???';
+      trMap['scaled'] = '???';
+      trMap['tiled'] = '???';         
       break;
   }    
   
@@ -511,7 +562,13 @@ switch ("$GUI_LANGUAGE$")
       
       /*BG Mode*/
       trMap['BG mode'] = '???';
-      trMap['SoftInfo/BG'] = '???';           
+      trMap['SoftInfo/BG'] = '???';   
+      trMap['None'] = '???';
+      trMap['Default'] = '???';
+      trMap['Color'] = '???';
+      trMap['Image'] = '???';
+      trMap['scaled'] = '???';
+      trMap['tiled'] = '???';           
       break;
   }-->   
 }
