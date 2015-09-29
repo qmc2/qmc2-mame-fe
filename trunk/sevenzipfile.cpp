@@ -196,8 +196,7 @@ bool SevenZipFile::open(QString fileName)
 		return false;
 	}
 
-	if ( InFile_Open(&m_archiveStream.file, m_fileName.toUtf8().constData()) )
-	{
+	if ( InFile_Open(&m_archiveStream.file, m_fileName.toUtf8().constData()) ) {
 		m_lastError = tr("can't open archive '%1'").arg(m_fileName);
 		emit error(lastError());
 		return false;
