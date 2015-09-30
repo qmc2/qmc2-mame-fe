@@ -7,6 +7,7 @@
 #include <QMutex>
 #include <QWaitCondition>
 #include <QStringList>
+#include <QTime>
 #include <QTimer>
 #include <QHash>
 #include <QPixmap>
@@ -171,6 +172,7 @@ class CheckSumScannerThread : public QThread
 		QMutex mutex;
 		QWaitCondition waitCondition;
 		QStringList scannedPaths;
+		QTime scanTimer;
 
 		CheckSumScannerThread(CheckSumScannerLog *scannerLog, QString settingsKey, QObject *parent = 0);
 		~CheckSumScannerThread();
@@ -181,6 +183,7 @@ class CheckSumScannerThread : public QThread
 		void reopenCheckSumDb();
 		int fileType(QString);
 		void prepareIncrementalScan(QStringList *fileList);
+		QString scanTime();
 
 	public slots:
 		void pause();

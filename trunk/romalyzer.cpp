@@ -4443,7 +4443,7 @@ void ROMAlyzer::updateCheckSumDbStatus()
 	statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Age of stored data") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + ageString + "</td></tr>";
 	statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Pending updates") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(checkSumScannerThread()->pendingUpdates()) + "</td></tr>";
 	if ( checkSumScannerLog()->progress() > 0 && isScanning )
-		statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Scanner status") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + checkSumScannerThread()->status() + " | " + QString::number(checkSumScannerLog()->progress(), 'f', 1) + "%</td></tr>";
+		statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Scanner status") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + checkSumScannerThread()->status() + " | " + checkSumScannerThread()->scanTime() + " | " + QString::number(checkSumScannerLog()->progress(), 'f', 1) + "%</td></tr>";
 	else
 		statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Scanner status") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + checkSumScannerThread()->status() + "</td></tr>";
 	statusString += "</table></center>";
@@ -4820,6 +4820,16 @@ bool CheckSumScannerThread::checkSumExists(QString sha1, QString crc, quint64 si
 		return checkSumDb()->exists(sha1, crc, size);
 }
 
+QString CheckSumScannerThread::scanTime()
+{
+	QTime elapsedTime(0, 0, 0, 0);
+	elapsedTime = elapsedTime.addMSecs(scanTimer.elapsed());
+	if ( elapsedTime.hour() > 0 )
+		return elapsedTime.toString("hh:mm:ss");
+	else
+		return elapsedTime.toString("mm:ss");
+}
+
 void CheckSumScannerThread::run()
 {
 	emit log(tr("scanner thread started"));
@@ -4834,7 +4844,7 @@ void CheckSumScannerThread::run()
 		mutex.unlock();
 		if ( !exitThread && !stopScan ) {
 			emit scanStarted();
-			QTime scanTimer, elapsedTime(0, 0, 0, 0);
+			QTime elapsedTime(0, 0, 0, 0);
 			scanTimer.start();
 			QStringList fileList;
 			emit progressTextChanged(tr("Scanning"));
