@@ -4713,7 +4713,8 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 		fileHash.insert(file, true);
 	while ( row > 0 && !exitThread && !stopScan ) {
 		emit progressChanged(count++);
-		QString path = checkSumDb()->pathOfRow(row);
+		QString key;
+		QString path = checkSumDb()->pathOfRow(row, &key);
 		if ( !path.isEmpty() ) {
 			if ( !fileHash.contains(path) ) {
 				checkSumDb()->pathRemove(path);
@@ -4721,7 +4722,7 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 			} else {
 				pathsInDatabase[path] = true;
 				if ( useHashCache )
-					m_hashCache[checkSumDb()->keyOfRow(row)] = true;
+					m_hashCache[key] = true;
 			}
 		}
 		row = checkSumDb()->nextRowId();

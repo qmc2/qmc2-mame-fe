@@ -384,19 +384,34 @@ void CheckSumDatabaseManager::pathRemove(QString path)
 		emit log(tr("WARNING: failed to remove path '%1' from check-sum database: query = '%2', error = '%3'").arg(path).arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
-QString CheckSumDatabaseManager::pathOfRow(qint64 row)
+QString CheckSumDatabaseManager::pathOfRow(qint64 row, QString *key)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT path FROM %1 WHERE rowid=:row").arg(m_tableBasename));
-	query.bindValue(":row", row);
-	if ( query.exec() ) {
-		if ( query.first() )
-			return query.value(0).toString();
-		else
+	if ( key ) {
+		query.prepare(QString("SELECT path, sha1, crc, size FROM %1 WHERE rowid=:row").arg(m_tableBasename));
+		query.bindValue(":row", row);
+		if ( query.exec() ) {
+			if ( query.first() ) {
+				*key = QString("%1-%2-%3").arg(query.value(1).toString()).arg(query.value(2).toString()).arg(query.value(3).toString());
+				return query.value(0).toString();
+			} else
+				return QString();
+		} else {
+			emit log(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("path, sha1, crc, size").arg(query.lastQuery()).arg(m_db.lastError().text()));
 			return QString();
+		}
 	} else {
-		emit log(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("path").arg(query.lastQuery()).arg(m_db.lastError().text()));
-		return QString();
+		query.prepare(QString("SELECT path FROM %1 WHERE rowid=:row").arg(m_tableBasename));
+		query.bindValue(":row", row);
+		if ( query.exec() ) {
+			if ( query.first() )
+				return query.value(0).toString();
+			else
+				return QString();
+		} else {
+			emit log(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("path").arg(query.lastQuery()).arg(m_db.lastError().text()));
+			return QString();
+		}
 	}
 }
 
