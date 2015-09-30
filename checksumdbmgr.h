@@ -40,6 +40,7 @@ class CheckSumDatabaseManager : public QObject
 
 		void pathRemove(QString path);
 		QString pathOfRow(qint64 row);
+		QString keyOfRow(qint64 row);
 
 		int nameToType(QString name);
 		QString typeToName(int type);

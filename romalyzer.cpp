@@ -4718,8 +4718,11 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 			if ( !fileHash.contains(path) ) {
 				checkSumDb()->pathRemove(path);
 				pathsRemoved++;
-			} else
+			} else {
 				pathsInDatabase[path] = true;
+				if ( useHashCache )
+					m_hashCache[checkSumDb()->keyOfRow(row)] = true;
+			}
 		}
 		row = checkSumDb()->nextRowId();
 		if ( exitThread || stopScan )
@@ -4805,18 +4808,9 @@ void CheckSumScannerThread::resume()
 
 bool CheckSumScannerThread::checkSumExists(QString sha1, QString crc, quint64 size)
 {
-	if ( useHashCache ) {
-		QString key = QString("%1-%2-%3").arg(sha1).arg(crc).arg(size);
-		if ( m_hashCache.contains(key) )
-			return true;
-		if ( !scanIncrementally )
-			return false;
-		if ( checkSumDb()->exists(sha1, crc, size) ) {
-			m_hashCache[key] = true;
-			return true;
-		} else
-			return false;
-	} else
+	if ( useHashCache )
+		return m_hashCache.contains(QString("%1-%2-%3").arg(sha1).arg(crc).arg(size));
+	else
 		return checkSumDb()->exists(sha1, crc, size);
 }
 

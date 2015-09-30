@@ -400,6 +400,22 @@ QString CheckSumDatabaseManager::pathOfRow(qint64 row)
 	}
 }
 
+QString CheckSumDatabaseManager::keyOfRow(qint64 row)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT sha1, crc, size FROM %1 WHERE rowid=:row").arg(m_tableBasename));
+	query.bindValue(":row", row);
+	if ( query.exec() ) {
+		if ( query.first() )
+			return QString("%1-%2-%3").arg(query.value(0).toString()).arg(query.value(1).toString()).arg(query.value(2).toString());
+		else
+			return QString();
+	} else {
+		emit log(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("sha1, crc, size").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return QString();
+	}
+}
+
 int CheckSumDatabaseManager::nameToType(QString name)
 {
 	return m_fileTypes.indexOf(name);
