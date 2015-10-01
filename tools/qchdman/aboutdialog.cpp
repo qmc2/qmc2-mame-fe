@@ -30,11 +30,17 @@ AboutDialog::AboutDialog(QWidget *parent) :
                       "<p>" + tr("See the") + " <a href=\"http://www.gnu.org/licenses/old-licenses/gpl-2.0.html\">" + tr("GNU General Public License") + "</a> " + tr("for more details.") +
                       "<p>" + tr("Qt CHDMAN GUI is part of the") + " <a href=\"http://qmc2.batcom-it.net/\">" + tr("QMC2 project") + "</a>.</p>";
     ui->labelCredits->setText(credits);
-    adjustSize();
-    setMinimumSize(size());
 }
 
 AboutDialog::~AboutDialog()
 {
     delete ui;
+}
+
+void AboutDialog::showEvent(QShowEvent *e)
+{
+    setMinimumSize(QSize(0, 0));
+    adjustSize();
+    setMinimumSize(size());
+    QDialog::showEvent(e);
 }
