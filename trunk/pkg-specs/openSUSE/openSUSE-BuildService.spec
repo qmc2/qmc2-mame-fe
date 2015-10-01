@@ -4,7 +4,7 @@ Release:        1
 Summary:        M.A.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
 License:        GPL-2.0
-URL:            http://qmc2.arcadehits.net/wordpress
+URL:            http://qmc2.batcom-it.net
 Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
 
 BuildRequires:  libqt4-devel
