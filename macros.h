@@ -572,10 +572,10 @@
 
 // QMC2 variant launcher specific stuff
 #define QMC2_VARIANT_SDLMAME_NAME		"qmc2-sdlmame"
-#define QMC2_VARIANT_SDLMAME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_SDLMAME_NAME
+#define QMC2_VARIANT_SDLMAME_BUNDLE_ID		"net.batcom-it.qmc2." QMC2_VARIANT_SDLMAME_NAME
 #define QMC2_VARIANT_SDLMAME_TITLE		MainWindow::tr("M.A.M.E. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
 #define QMC2_VARIANT_MAME_NAME			"qmc2-mame.exe"
-#define QMC2_VARIANT_MAME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_MAME_NAME
+#define QMC2_VARIANT_MAME_BUNDLE_ID		"net.batcom-it.qmc2." QMC2_VARIANT_MAME_NAME
 #define QMC2_VARIANT_MAME_TITLE			MainWindow::tr("M.A.M.E. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
 
 // separation for QMC2 variants
@@ -723,7 +723,7 @@
 
 // settings-related organization name/domain
 #define QMC2_ORGANIZATION_NAME			QString("qmc2")
-#define QMC2_ORGANIZATION_DOMAIN		QString("qmc2.arcadehits.net")
+#define QMC2_ORGANIZATION_DOMAIN		QString("qmc2.batcom-it.net")
 
 // time to wait before retrying operations when 'critical sections' are active
 #define QMC2_CRITSECT_POLLING_TIME		10

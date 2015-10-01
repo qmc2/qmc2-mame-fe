@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Marcelo Marzola Bossoni <mmbossoni@gmail.com>
 Build-Depends: debhelper (>= 5), libqt4-dev (>= 4.8.0), libphonon-dev, libqt4-opengl-dev, libqtwebkit-dev, libsdl1.2-dev, rsync, libxmu-dev, w3m, gawk
 Standards-Version: 3.9.3
-Homepage: http://qmc2.arcadehits.net
+Homepage: http://qmc2.batcom-it.net
 
 Package: qmc2-sdlmame
 Architecture: any

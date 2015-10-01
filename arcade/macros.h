@@ -44,7 +44,7 @@
 #define QMC2_ARCADE_MIN(a, b)           (((a) < (b)) ? (a) : (b))
 
 // application and ini related
-#define QMC2_ARCADE_ORG_DOMAIN          QString("qmc2.arcadehits.net")
+#define QMC2_ARCADE_ORG_DOMAIN          QString("qmc2.batcom-it.net")
 #define QMC2_ARCADE_ORG_NAME            QString("qmc2")
 #define QMC2_ARCADE_APP_VERSION         QString(XSTR(QMC2_ARCADE_VERSION))
 #define QMC2_ARCADE_APP_TITLE           QObject::tr("QMC2 Arcade")

@@ -9,9 +9,9 @@ AppId={{DB53A3CB-C0CA-494E-AFD4-11C8B66A7B67}
 AppName=QMC2 - M.A.M.E. Catalog Launcher II
 AppVerName=QMC2 0.57
 AppPublisher=The QMC2 Development Team
-AppPublisherURL=http://qmc2.arcadehits.net/wordpress
-AppSupportURL=http://qmc2.arcadehits.net/wordpress
-AppUpdatesURL=http://qmc2.arcadehits.net/wordpress
+AppPublisherURL=http://qmc2.batcom-it.net/
+AppSupportURL=http://qmc2.batcom-it.net/
+AppUpdatesURL=http://qmc2.batcom-it.net/
 DefaultDirName={pf}\QMC2
 DefaultGroupName=QMC2
 AllowNoIcons=yes
@@ -42,7 +42,7 @@ Source: "c:\projects\qmc2\package\*"; DestDir: "{app}"; Flags: ignoreversion rec
 Name: "{app}"; Permissions: everyone-readexec
 
 [Icons]
-Name: "{group}\{cm:ProgramOnTheWeb,QMC2}"; Filename: "http://qmc2.arcadehits.net/wordpress"
+Name: "{group}\{cm:ProgramOnTheWeb,QMC2}"; Filename: "http://qmc2.batcom-it.net/"
 Name: "{group}\{cm:UninstallProgram,QMC2}"; Filename: "{uninstallexe}"
 Name: "{group}\QMC2 (M.A.M.E.)"; Filename: "{app}\qmc2-mame.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\mame.ico"
 Name: "{group}\QMC2 Arcade"; Filename: "{app}\qmc2-arcade.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\qmc2-arcade.ico"

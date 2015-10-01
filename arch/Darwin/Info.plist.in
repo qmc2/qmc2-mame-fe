@@ -11,7 +11,7 @@
 	<key>CFBundleIconFile</key>
 	<string>@ICON@</string>
 	<key>CFBundleIdentifier</key>
-	<string>net.arcadehits.qmc2.@EXECUTABLE@</string>
+	<string>net.batcom-it.qmc2.@EXECUTABLE@</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

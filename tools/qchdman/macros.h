@@ -36,7 +36,7 @@
 #define QCHDMAN_APP_NAME            QString("qchdman")
 #define QCHDMAN_APP_TITLE           QString("Qt CHDMAN GUI")
 #define QCHDMAN_APP_VERSION         QString(XSTR(QCHDMAN_VERSION))
-#define QCHDMAN_ORG_DOMAIN          QString("qmc2.arcadehits.net")
+#define QCHDMAN_ORG_DOMAIN          QString("qmc2.batcom-it.net")
 #define QCHDMAN_ORG_NAME            QString("qmc2")
 
 // dot-path related
