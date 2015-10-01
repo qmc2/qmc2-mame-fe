@@ -15,6 +15,9 @@ public:
     explicit AboutDialog(QWidget *parent = 0);
     ~AboutDialog();
 
+protected:
+    void showEvent(QShowEvent *);
+
 private:
     Ui::AboutDialog *ui;
 };
