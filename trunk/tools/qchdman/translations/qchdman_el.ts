@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="el_GR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -14,52 +14,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="24"/>
-        <source>Qt based graphical user interface to CHDMAN, the MAME/MESS CHD management tool</source>
+        <location filename="../aboutdialog.cpp" line="23"/>
+        <source>Qt based graphical user interface to CHDMAN, the MAME CHD management tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="25"/>
+        <location filename="../aboutdialog.cpp" line="24"/>
         <source>Copyright</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="25"/>
+        <location filename="../aboutdialog.cpp" line="24"/>
         <source>All Rights Reserved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="26"/>
+        <location filename="../aboutdialog.cpp" line="25"/>
         <source>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the license, or (at your option) any later version.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="29"/>
+        <location filename="../aboutdialog.cpp" line="28"/>
         <source>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="31"/>
+        <location filename="../aboutdialog.cpp" line="30"/>
         <source>See the</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="31"/>
+        <location filename="../aboutdialog.cpp" line="30"/>
         <source>GNU General Public License</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="31"/>
+        <location filename="../aboutdialog.cpp" line="30"/>
         <source>for more details.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="32"/>
+        <location filename="../aboutdialog.cpp" line="31"/>
         <source>Qt CHDMAN GUI is part of the</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="32"/>
+        <location filename="../aboutdialog.cpp" line="31"/>
         <source>QMC2 project</source>
         <translation type="unfinished"></translation>
     </message>

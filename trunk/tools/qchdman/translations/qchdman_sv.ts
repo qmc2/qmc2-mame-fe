@@ -14,52 +14,56 @@
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="24"/>
         <source>Qt based graphical user interface to CHDMAN, the MAME/MESS CHD management tool</source>
-        <translation>Qt-baserat grafiskt användargränssnitt till CHDMAN, CHD-hanteringsverktyget för MAME/MESS</translation>
+        <translation type="obsolete">Qt-baserat grafiskt användargränssnitt till CHDMAN, CHD-hanteringsverktyget för MAME/MESS</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="25"/>
+        <location filename="../aboutdialog.cpp" line="23"/>
+        <source>Qt based graphical user interface to CHDMAN, the MAME CHD management tool</source>
+        <translation>Qt-baserat grafiskt användargränssnitt till CHDMAN, CHD-hanteringsverktyget för MAME</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="24"/>
         <source>Copyright</source>
         <translation>Copyright</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="25"/>
+        <location filename="../aboutdialog.cpp" line="24"/>
         <source>All Rights Reserved.</source>
         <translation>Alla rättigheter är reserverade.</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="26"/>
+        <location filename="../aboutdialog.cpp" line="25"/>
         <source>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the license, or (at your option) any later version.</source>
         <translation>Detta program är fri programvara. Du kan distribuera det och/eller modifiera det under villkoren i GNU General Public License, publicerad av Free Software Foundation, antingen version 2 eller (om du så vill) någon senare version.</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="29"/>
+        <location filename="../aboutdialog.cpp" line="28"/>
         <source>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. </source>
         <translation>Detta program distribueras i hopp om att det ska vara användbart, men UTAN NÅGON SOM HELST GARANTI, även utan underförstådd garanti om SÄLJBARHET eller LÄMPLIGHET FÖR NÅGOT SPECIELLT ÄNDAMÅL. </translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="31"/>
+        <location filename="../aboutdialog.cpp" line="30"/>
         <source>See the</source>
         <translation>Se</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="31"/>
+        <location filename="../aboutdialog.cpp" line="30"/>
         <source>GNU General Public License</source>
         <translation>GNU General Public License</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="31"/>
+        <location filename="../aboutdialog.cpp" line="30"/>
         <source>for more details.</source>
         <translation>för mer information.</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="32"/>
+        <location filename="../aboutdialog.cpp" line="31"/>
         <source>Qt CHDMAN GUI is part of the</source>
         <translation>Qt CHDMAN GUI är en del av</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="32"/>
+        <location filename="../aboutdialog.cpp" line="31"/>
         <source>QMC2 project</source>
         <translation>QMC2-projektet</translation>
     </message>
@@ -512,7 +516,6 @@
 
 Proceed?</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>

@@ -14,52 +14,56 @@
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="24"/>
         <source>Qt based graphical user interface to CHDMAN, the MAME/MESS CHD management tool</source>
-        <translation>Interfaz de usuario gráfica basada en Qt para CHDMAN, la herramienta de gestión CHD de MAME/MESS</translation>
+        <translation type="obsolete">Interfaz de usuario gráfica basada en Qt para CHDMAN, la herramienta de gestión CHD de MAME/MESS</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="25"/>
+        <location filename="../aboutdialog.cpp" line="23"/>
+        <source>Qt based graphical user interface to CHDMAN, the MAME CHD management tool</source>
+        <translation>Interfaz de usuario gráfica basada en Qt para CHDMAN, la herramienta de gestión CHD de MAME</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="24"/>
         <source>Copyright</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="25"/>
+        <location filename="../aboutdialog.cpp" line="24"/>
         <source>All Rights Reserved.</source>
         <translation>Todos los derechos reservados.</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="26"/>
+        <location filename="../aboutdialog.cpp" line="25"/>
         <source>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the license, or (at your option) any later version.</source>
         <translation> </translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="29"/>
+        <location filename="../aboutdialog.cpp" line="28"/>
         <source>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="31"/>
+        <location filename="../aboutdialog.cpp" line="30"/>
         <source>See the</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="31"/>
+        <location filename="../aboutdialog.cpp" line="30"/>
         <source>GNU General Public License</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="31"/>
+        <location filename="../aboutdialog.cpp" line="30"/>
         <source>for more details.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="32"/>
+        <location filename="../aboutdialog.cpp" line="31"/>
         <source>Qt CHDMAN GUI is part of the</source>
         <translation>Qt CHDMAN GUI es parte del</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="32"/>
+        <location filename="../aboutdialog.cpp" line="31"/>
         <source>QMC2 project</source>
         <translation>proyecto QMC2</translation>
     </message>
@@ -512,7 +516,6 @@
 
 Proceed?</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
