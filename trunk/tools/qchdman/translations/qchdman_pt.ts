@@ -14,10 +14,6 @@
         <translation></translation>
     </message>
     <message>
-        <source>Qt based graphical user interface to CHDMAN, the MAME/MESS CHD management tool</source>
-        <translation type="obsolete">Interface gráfica feita em Qt para o CHDMAN, a ferramenta de gerenciamento de CHDs do MAME/MESS</translation>
-    </message>
-    <message>
         <location filename="../aboutdialog.cpp" line="23"/>
         <source>Qt based graphical user interface to CHDMAN, the MAME CHD management tool</source>
         <translation>Interface gráfica feita em Qt para o CHDMAN, a ferramenta de gerenciamento de CHDs do MAME</translation>

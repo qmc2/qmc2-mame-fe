@@ -14,10 +14,6 @@
         <translation>Aceptar</translation>
     </message>
     <message>
-        <source>Qt based graphical user interface to CHDMAN, the MAME/MESS CHD management tool</source>
-        <translation type="obsolete">Interfaz de usuario gráfica basada en Qt para CHDMAN, la herramienta de gestión CHD de MAME/MESS</translation>
-    </message>
-    <message>
         <location filename="../aboutdialog.cpp" line="23"/>
         <source>Qt based graphical user interface to CHDMAN, the MAME CHD management tool</source>
         <translation>Interfaz de usuario gráfica basada en Qt para CHDMAN, la herramienta de gestión CHD de MAME</translation>
@@ -516,6 +512,7 @@
 
 Proceed?</source>
         <translation type="unfinished">
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
