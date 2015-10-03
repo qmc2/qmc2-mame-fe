@@ -2999,6 +2999,11 @@ void MainWindow::on_actionAbout_triggered(bool)
 	qmc2About->raise();
 }
 
+void MainWindow::on_actionHomepage_triggered(bool)
+{
+	QDesktopServices::openUrl(QUrl::fromUserInput("http://qmc2.batcom-it.net/"));
+}
+
 void MainWindow::on_actionWiki_triggered(bool)
 {
 	QDesktopServices::openUrl(QUrl::fromUserInput("http://wiki.batcom-it.net/index.php?title=The_'ultimate'_guide_to_QMC2"));
