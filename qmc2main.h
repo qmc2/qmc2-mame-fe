@@ -229,6 +229,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		// help menu
 		void on_actionDocumentation_triggered(bool checked = false);
 		void on_actionAbout_triggered(bool checked = false);
+		void on_actionHomepage_triggered(bool checked = false);
 		void on_actionWiki_triggered(bool checked = false);
 		void on_actionForum_triggered(bool checked = false);
 		void on_actionBugTracker_triggered(bool checked = false);
