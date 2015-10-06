@@ -906,6 +906,7 @@ void Options::on_pushButtonApply_clicked()
 	qmc2SuppressQtMessages = checkBoxSuppressQtMessages->isChecked();
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SuppressQtMessages", qmc2SuppressQtMessages);
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowSplashScreen", checkBoxShowSplashScreen->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", checkBoxShowLoadingAnimation->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SetWorkDirFromExec", checkBoxSetWorkDirFromExec->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", checkBoxGameStatusIndicator->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", checkBoxGameStatusIndicatorOnlyWhenRequired->isChecked());
@@ -1910,6 +1911,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	qmc2SuppressQtMessages = config->value(QMC2_FRONTEND_PREFIX + "GUI/SuppressQtMessages", false).toBool();
 	checkBoxSuppressQtMessages->setChecked(qmc2SuppressQtMessages);
 	checkBoxShowSplashScreen->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowSplashScreen", true).toBool());
+	checkBoxShowLoadingAnimation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool());
 	checkBoxSetWorkDirFromExec->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SetWorkDirFromExec", false).toBool());
 	if ( checkBoxSetWorkDirFromExec->isChecked() )
 		QDir::setCurrent(QCoreApplication::applicationDirPath());
@@ -2441,6 +2443,19 @@ void Options::applyDelayed()
 #else
 	qmc2MainWindow->menuBar()->setVisible(checkBoxShowMenuBar->isChecked());
 #endif
+
+	if ( checkBoxShowLoadingAnimation->isChecked() ) {
+		qmc2MainWindow->labelLoadingMachineList->setMovie(qmc2MainWindow->loadAnimMovie);
+		qmc2MainWindow->labelLoadingHierarchy->setMovie(qmc2MainWindow->loadAnimMovie);
+		qmc2MainWindow->labelCreatingCategoryView->setMovie(qmc2MainWindow->loadAnimMovie);
+		qmc2MainWindow->labelCreatingVersionView->setMovie(qmc2MainWindow->loadAnimMovie);
+	} else {
+		qmc2MainWindow->labelLoadingMachineList->setMovie(qmc2MainWindow->nullMovie);
+		qmc2MainWindow->labelLoadingHierarchy->setMovie(qmc2MainWindow->nullMovie);
+		qmc2MainWindow->labelCreatingCategoryView->setMovie(qmc2MainWindow->nullMovie);
+		qmc2MainWindow->labelCreatingVersionView->setMovie(qmc2MainWindow->nullMovie);
+	}
+
 	qApp->processEvents();
 	qmc2VariantSwitchReady = true;
 	cancelClicked = false;
