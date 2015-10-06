@@ -998,7 +998,7 @@
           <enum>QLayout::SetNoConstraint</enum>
          </property>
          <item>
-          <widget class="QLabel" name="labelGameStatus">
+          <widget class="QLabel" name="labelMachineStatus">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
              <horstretch>0</horstretch>

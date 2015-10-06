@@ -537,8 +537,8 @@ MainWindow::MainWindow(QWidget *parent)
 	treeWidgetCategoryView->setMouseTracking(true);
 	treeWidgetVersionView->setMouseTracking(true);
 
-	labelGameStatus->setVisible(false);
-	labelGameStatus->setPalette(qmc2StatusColorBlue);
+	labelMachineStatus->setVisible(false);
+	labelMachineStatus->setPalette(qmc2StatusColorBlue);
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	embedderCornerWidget = new QWidget(tabWidgetEmbeddedEmulators);
@@ -2108,19 +2108,19 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired").toBool() ) {
 			if ( pos == 0 ) {
-				if ( !labelGameStatus->isVisible() )
-					labelGameStatus->setVisible(true);
+				if ( !labelMachineStatus->isVisible() )
+					labelMachineStatus->setVisible(true);
 			} else {
-				if ( labelGameStatus->isVisible() )
-					labelGameStatus->setVisible(false);
+				if ( labelMachineStatus->isVisible() )
+					labelMachineStatus->setVisible(false);
 			}
 		} else {
-			if ( !labelGameStatus->isVisible() )
-				labelGameStatus->setVisible(true);
+			if ( !labelMachineStatus->isVisible() )
+				labelMachineStatus->setVisible(true);
 		}
 	} else
-		if ( labelGameStatus->isVisible() )
-			labelGameStatus->setVisible(false);
+		if ( labelMachineStatus->isVisible() )
+			labelMachineStatus->setVisible(false);
 
 	if ( qmc2SystemNotesEditor ) {
 		qmc2SystemNotesEditor->move(0, 0);
@@ -3575,13 +3575,13 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired").toBool() ) {
 			if ( componentInfo->appliedFeatureList()[currentIndex] != QMC2_MACHINELIST_INDEX )
-				labelGameStatus->setVisible(true);
+				labelMachineStatus->setVisible(true);
 			else
-				labelGameStatus->setVisible(false);
+				labelMachineStatus->setVisible(false);
 		} else
-			labelGameStatus->setVisible(true);
+			labelMachineStatus->setVisible(true);
 	} else
-		labelGameStatus->setVisible(false);
+		labelMachineStatus->setVisible(false);
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	lastTabWidgetMachineListIndex = currentIndex;
@@ -4010,37 +4010,37 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired").toBool() ) {
 			if ( hSplitter->sizes()[0] == 0 || tabWidgetMachineList->indexOf(tabMachineList) != tabWidgetMachineList->currentIndex() )
-				labelGameStatus->setVisible(true);
+				labelMachineStatus->setVisible(true);
 			else
-				labelGameStatus->setVisible(false);
+				labelMachineStatus->setVisible(false);
 		} else
-			labelGameStatus->setVisible(true);
+			labelMachineStatus->setVisible(true);
 	} else
-		labelGameStatus->setVisible(false);
+		labelMachineStatus->setVisible(false);
 
 	QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 
 	// setup status indicator color
 	switch ( qmc2MachineList->romState(gameName) ) {
 		case 'C':
-			labelGameStatus->setPalette(qmc2StatusColorGreen);
+			labelMachineStatus->setPalette(qmc2StatusColorGreen);
 			break;
 
 		case 'M':
-			labelGameStatus->setPalette(qmc2StatusColorYellowGreen);
+			labelMachineStatus->setPalette(qmc2StatusColorYellowGreen);
 			break;
 
 		case 'I':
-			labelGameStatus->setPalette(qmc2StatusColorRed);
+			labelMachineStatus->setPalette(qmc2StatusColorRed);
 			break;
 
 		case 'N':
-			labelGameStatus->setPalette(qmc2StatusColorGrey);
+			labelMachineStatus->setPalette(qmc2StatusColorGrey);
 			break;
 
 		case 'U':
 		default:
-			labelGameStatus->setPalette(qmc2StatusColorBlue);
+			labelMachineStatus->setPalette(qmc2StatusColorBlue);
 			break;
 	}
 
