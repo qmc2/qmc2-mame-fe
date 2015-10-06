@@ -33,6 +33,7 @@ Welcome::Welcome(QWidget *parent)
 			comboBoxLanguage->setCurrentIndex(langIndex);
 		comboBoxLanguage->blockSignals(false);
 		QStringList emuHistory = startupConfig->value(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", QStringList()).toStringList();
+		emuHistory.sort();
 		for (int i = 0; i < emuHistory.count(); i++) {
 			QString emuPath = emuHistory[i];
 			QFileInfo fi(emuPath);
@@ -70,8 +71,10 @@ void Welcome::on_pushButtonOkay_clicked()
 				emuHistory << comboBoxExecutableFile->lineEdit()->text();
 			if ( emuHistory.isEmpty() )
 				startupConfig->remove(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory");
-			else
+			else {
+				emuHistory.sort();
 				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", emuHistory);
+			}
 			if ( !lineEditWorkingDirectory->text().isEmpty() ) {
 				QString s = lineEditWorkingDirectory->text();
 				if ( !s.endsWith("/") )
