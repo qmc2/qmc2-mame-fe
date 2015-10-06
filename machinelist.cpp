@@ -441,7 +441,7 @@ void MachineList::load()
 	qmc2MainWindow->listWidgetPlayed->clear();
 	qmc2MainWindow->textBrowserGameInfo->clear();
 	qmc2MainWindow->textBrowserEmuInfo->clear();
-	qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorBlue);
+	qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorBlue);
 	qmc2CurrentItem = NULL;
 	if ( qmc2DeviceConfigurator ) {
 		qmc2DeviceConfigurator->save();
@@ -2541,7 +2541,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					}
 				}
 				if ( romItem == qmc2CurrentItem )
-					qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorBlue);
+					qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorBlue);
 			}
 		} else {
 			if ( !remainingGames.isEmpty() && !qmc2StopParser )
@@ -2651,11 +2651,11 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					if ( romRequired ) {
 						machineStatusHash[gameName] = 'N';
 						if ( romItem == qmc2CurrentItem )
-							qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorGrey);
+							qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorGrey);
 					} else {
 						machineStatusHash[gameName] = 'C';
 						if ( romItem == qmc2CurrentItem )
-							qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorGreen);
+							qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorGreen);
 					}
 				}
 			}
@@ -2677,7 +2677,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				numUnknownGames--;
 				numCorrectGames++;
 				if ( checkedItem == qmc2CurrentItem )
-					qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorGreen);
+					qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorGreen);
 				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
 				QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
 				if ( isBios(gameName) ) {
@@ -2876,7 +2876,7 @@ void MachineList::verifyReadyReadStandardOutput()
 							}
 						}
 						if ( romItem == qmc2CurrentItem )
-							qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorGreen);
+							qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorGreen);
 					} else if ( words.last() == "bad" ) {
 						romState = 'I';
 						romStateLong = QObject::tr("incorrect");
@@ -2906,7 +2906,7 @@ void MachineList::verifyReadyReadStandardOutput()
 							}
 						}
 						if ( romItem == qmc2CurrentItem )
-							qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorRed);
+							qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorRed);
 					} else if ( words.last() == "available" ) {
 						romState = 'M';
 						romStateLong = QObject::tr("mostly correct");
@@ -2936,7 +2936,7 @@ void MachineList::verifyReadyReadStandardOutput()
 							}
 						}
 						if ( romItem == qmc2CurrentItem )
-							qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorYellowGreen);
+							qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorYellowGreen);
 					} else if ( words.last() == "missing" || words.last() == "found!" ) {
 						romState = 'N';
 						romStateLong = QObject::tr("not found");
@@ -2966,7 +2966,7 @@ void MachineList::verifyReadyReadStandardOutput()
 							}
 						}
 						if ( romItem == qmc2CurrentItem )
-							qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorGrey);
+							qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorGrey);
 					} else {
 						romState = 'U';
 						romStateLong = QObject::tr("unknown");
@@ -2996,7 +2996,7 @@ void MachineList::verifyReadyReadStandardOutput()
 							}
 						}
 						if ( romItem == qmc2CurrentItem )
-							qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorBlue);
+							qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorBlue);
 					}
 					machineStatusHash[romName] = romState;
 					verifiedList << romName;

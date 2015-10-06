@@ -918,13 +918,13 @@ void Options::on_pushButtonApply_clicked()
 	if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
 		if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired").toBool() ) {
 			if ( qmc2MainWindow->hSplitter->sizes()[0] == 0 || qmc2MainWindow->tabWidgetMachineList->currentIndex() != QMC2_MACHINELIST_INDEX )
-				qmc2MainWindow->labelGameStatus->setVisible(true);
+				qmc2MainWindow->labelMachineStatus->setVisible(true);
 			else
-				qmc2MainWindow->labelGameStatus->setVisible(false);
+				qmc2MainWindow->labelMachineStatus->setVisible(false);
 		} else
-			qmc2MainWindow->labelGameStatus->setVisible(true);
+			qmc2MainWindow->labelMachineStatus->setVisible(true);
 	} else
-		qmc2MainWindow->labelGameStatus->setVisible(false);
+		qmc2MainWindow->labelMachineStatus->setVisible(false);
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/FrontendLogSize", spinBoxFrontendLogSize->value());
 	qmc2MainWindow->textBrowserFrontendLog->setMaximumBlockCount(spinBoxFrontendLogSize->value());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/EmulatorLogSize", spinBoxEmulatorLogSize->value());
