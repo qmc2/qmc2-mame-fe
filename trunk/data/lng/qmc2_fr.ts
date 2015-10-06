@@ -21714,49 +21714,49 @@ Are you sure you want to do this?</source>
 <context>
     <name>Welcome</name>
     <message>
-        <location filename="../../welcome.cpp" line="74"/>
+        <location filename="../../welcome.cpp" line="90"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="74"/>
+        <location filename="../../welcome.cpp" line="90"/>
         <source>The specified file isn&apos;t executable!</source>
         <translation>Le fichier spécifié n&apos;est pas exécutable!</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="83"/>
-        <location filename="../../welcome.cpp" line="86"/>
+        <location filename="../../welcome.cpp" line="99"/>
+        <location filename="../../welcome.cpp" line="102"/>
         <source>Choose emulator executable file</source>
         <translation>Choisir l&apos;exécutable de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="83"/>
-        <location filename="../../welcome.cpp" line="86"/>
+        <location filename="../../welcome.cpp" line="99"/>
+        <location filename="../../welcome.cpp" line="102"/>
         <source>All files (*)</source>
         <translation>Tous les fichiers (*)</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="102"/>
+        <location filename="../../welcome.cpp" line="118"/>
         <source>Choose working directory</source>
         <translation>Choisir le répertoire de travail</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="110"/>
+        <location filename="../../welcome.cpp" line="126"/>
         <source>Choose ROM path</source>
         <translation>Choisir le répertoire de ROMS</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="118"/>
+        <location filename="../../welcome.cpp" line="134"/>
         <source>Choose sample path</source>
         <translation>Choisir le répertoire de samples</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="126"/>
+        <location filename="../../welcome.cpp" line="142"/>
         <source>Choose hash path</source>
         <translation>Choisir le répertoire de Hash</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="234"/>
+        <location filename="../../welcome.cpp" line="250"/>
         <source>It appears that another instance of %1 is already running.
 However, this can also be the leftover of a previous crash.
 
@@ -21777,12 +21777,12 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
         <translation>Parcourir pour le répertoire de samples</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="276"/>
+        <location filename="../../welcome.ui" line="263"/>
         <source>Browse ROM path</source>
         <translation>Parcourir pour le répertoire de ROMS</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="313"/>
+        <location filename="../../welcome.ui" line="319"/>
         <source>Language</source>
         <translation type="unfinished">Langue</translation>
     </message>
@@ -21792,7 +21792,7 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="266"/>
+        <location filename="../../welcome.ui" line="253"/>
         <source>Hash path</source>
         <translation>Répertoire de Hash</translation>
     </message>
@@ -21827,37 +21827,37 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
         <translation>Répertoire de travail utilisé quand l&apos;émulateur est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="256"/>
+        <location filename="../../welcome.ui" line="243"/>
         <source>Working directory</source>
         <translation>Répertoire de travail</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="238"/>
+        <location filename="../../welcome.ui" line="303"/>
         <source>Emulator executable file</source>
         <translation>Exécutable de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="245"/>
+        <location filename="../../welcome.ui" line="232"/>
         <source>Browse emulator executable file</source>
         <translation>Parcourir pour l&apos;exécutable de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="233"/>
+        <location filename="../../welcome.cpp" line="249"/>
         <source>Single-instance check</source>
         <translation>Test d&apos;instance unique</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="235"/>
+        <location filename="../../welcome.cpp" line="251"/>
         <source>&amp;Exit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="235"/>
+        <location filename="../../welcome.cpp" line="251"/>
         <source>&amp;Once</source>
         <translation>&amp;Une fois</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="235"/>
+        <location filename="../../welcome.cpp" line="251"/>
         <source>&amp;Ignore</source>
         <translation>&amp;Ignorer</translation>
     </message>
@@ -21867,7 +21867,7 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
         <translation>Chemin vers les images ROM</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="303"/>
+        <location filename="../../welcome.ui" line="290"/>
         <source>Path to samples</source>
         <translation>Chemin vers les samples</translation>
     </message>
@@ -21882,7 +21882,7 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
         <translation>Répertoire de ROMS</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="287"/>
+        <location filename="../../welcome.ui" line="274"/>
         <source>Sample path</source>
         <translation>Répertoire de samples</translation>
     </message>

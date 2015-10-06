@@ -21714,17 +21714,17 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="238"/>
+        <location filename="../../welcome.ui" line="303"/>
         <source>Emulator executable file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="245"/>
+        <location filename="../../welcome.ui" line="232"/>
         <source>Browse emulator executable file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="313"/>
+        <location filename="../../welcome.ui" line="319"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21739,7 +21739,7 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="256"/>
+        <location filename="../../welcome.ui" line="243"/>
         <source>Working directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21749,12 +21749,12 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="276"/>
+        <location filename="../../welcome.ui" line="263"/>
         <source>Browse ROM path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="303"/>
+        <location filename="../../welcome.ui" line="290"/>
         <source>Path to samples</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21774,12 +21774,12 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="287"/>
+        <location filename="../../welcome.ui" line="274"/>
         <source>Sample path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="266"/>
+        <location filename="../../welcome.ui" line="253"/>
         <source>Hash path</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21804,54 +21804,54 @@ Are you sure you want to do this?</source>
         <translation type="unfinished">&amp;Cancella</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="74"/>
+        <location filename="../../welcome.cpp" line="90"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="74"/>
+        <location filename="../../welcome.cpp" line="90"/>
         <source>The specified file isn&apos;t executable!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="83"/>
-        <location filename="../../welcome.cpp" line="86"/>
+        <location filename="../../welcome.cpp" line="99"/>
+        <location filename="../../welcome.cpp" line="102"/>
         <source>Choose emulator executable file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="83"/>
-        <location filename="../../welcome.cpp" line="86"/>
+        <location filename="../../welcome.cpp" line="99"/>
+        <location filename="../../welcome.cpp" line="102"/>
         <source>All files (*)</source>
         <translation type="unfinished">Tutti i file (*)</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="102"/>
+        <location filename="../../welcome.cpp" line="118"/>
         <source>Choose working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="110"/>
+        <location filename="../../welcome.cpp" line="126"/>
         <source>Choose ROM path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="118"/>
+        <location filename="../../welcome.cpp" line="134"/>
         <source>Choose sample path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="126"/>
+        <location filename="../../welcome.cpp" line="142"/>
         <source>Choose hash path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="233"/>
+        <location filename="../../welcome.cpp" line="249"/>
         <source>Single-instance check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="234"/>
+        <location filename="../../welcome.cpp" line="250"/>
         <source>It appears that another instance of %1 is already running.
 However, this can also be the leftover of a previous crash.
 
@@ -21859,17 +21859,17 @@ Exit now, accept once or ignore completely?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="235"/>
+        <location filename="../../welcome.cpp" line="251"/>
         <source>&amp;Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="235"/>
+        <location filename="../../welcome.cpp" line="251"/>
         <source>&amp;Once</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="235"/>
+        <location filename="../../welcome.cpp" line="251"/>
         <source>&amp;Ignore</source>
         <translation type="unfinished"></translation>
     </message>

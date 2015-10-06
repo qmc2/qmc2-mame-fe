@@ -21746,12 +21746,12 @@ Are you sure you want to do this?</source>
         <translation>&amp;Aceptar</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="245"/>
+        <location filename="../../welcome.ui" line="232"/>
         <source>Browse emulator executable file</source>
         <translation>Navegar al archivo ejecutable del emulador</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="238"/>
+        <location filename="../../welcome.ui" line="303"/>
         <source>Emulator executable file</source>
         <translation>Archivo ejecutable del emulador</translation>
     </message>
@@ -21766,17 +21766,17 @@ Are you sure you want to do this?</source>
         <translation>Navegar a la ruta de hash</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="276"/>
+        <location filename="../../welcome.ui" line="263"/>
         <source>Browse ROM path</source>
         <translation>Navegar a la ruta de ROM</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="287"/>
+        <location filename="../../welcome.ui" line="274"/>
         <source>Sample path</source>
         <translation>Ruta de muestras</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="313"/>
+        <location filename="../../welcome.ui" line="319"/>
         <source>Language</source>
         <translation type="unfinished">Idioma</translation>
     </message>
@@ -21786,12 +21786,12 @@ Are you sure you want to do this?</source>
         <translation>Ruta a los archivos de hash</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="266"/>
+        <location filename="../../welcome.ui" line="253"/>
         <source>Hash path</source>
         <translation>Ruta Hash</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="303"/>
+        <location filename="../../welcome.ui" line="290"/>
         <source>Path to samples</source>
         <translation>Ruta a las muestras</translation>
     </message>
@@ -21811,7 +21811,7 @@ Are you sure you want to do this?</source>
         <translation>Directorio de trabajo a utilizar cuando se ejecute el emulador (se usa el directorio de trabajo actual de QMC2 si se deja en blanco)</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="256"/>
+        <location filename="../../welcome.ui" line="243"/>
         <source>Working directory</source>
         <translation>Directorio de trabajo</translation>
     </message>
@@ -21831,54 +21831,54 @@ Are you sure you want to do this?</source>
         <translation>Ruta ROM</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="74"/>
+        <location filename="../../welcome.cpp" line="90"/>
         <source>Error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="74"/>
+        <location filename="../../welcome.cpp" line="90"/>
         <source>The specified file isn&apos;t executable!</source>
         <translation>¡El archivo especificado no es ejecutable!</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="83"/>
-        <location filename="../../welcome.cpp" line="86"/>
+        <location filename="../../welcome.cpp" line="99"/>
+        <location filename="../../welcome.cpp" line="102"/>
         <source>Choose emulator executable file</source>
         <translation>Seleccionar el archivo ejecutable del emulador</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="83"/>
-        <location filename="../../welcome.cpp" line="86"/>
+        <location filename="../../welcome.cpp" line="99"/>
+        <location filename="../../welcome.cpp" line="102"/>
         <source>All files (*)</source>
         <translation>Todos los archivos (*)</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="102"/>
+        <location filename="../../welcome.cpp" line="118"/>
         <source>Choose working directory</source>
         <translation>Seleccionar el directorio de trabajo</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="110"/>
+        <location filename="../../welcome.cpp" line="126"/>
         <source>Choose ROM path</source>
         <translation>Seleccionaro la ruta ROM</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="118"/>
+        <location filename="../../welcome.cpp" line="134"/>
         <source>Choose sample path</source>
         <translation>Seleccionar la ruta de muestras</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="126"/>
+        <location filename="../../welcome.cpp" line="142"/>
         <source>Choose hash path</source>
         <translation>Seleccionaro la ruta hash</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="233"/>
+        <location filename="../../welcome.cpp" line="249"/>
         <source>Single-instance check</source>
         <translation>Comprobación única-instancia</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="234"/>
+        <location filename="../../welcome.cpp" line="250"/>
         <source>It appears that another instance of %1 is already running.
 However, this can also be the leftover of a previous crash.
 
@@ -21889,17 +21889,17 @@ Aunque puede que sean los restos de una caida previa.
 ¿Salir ahora, aceptar una vez o ignorar completamente?</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="235"/>
+        <location filename="../../welcome.cpp" line="251"/>
         <source>&amp;Exit</source>
         <translation>&amp;Salir</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="235"/>
+        <location filename="../../welcome.cpp" line="251"/>
         <source>&amp;Once</source>
         <translation>&amp;Una vez</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="235"/>
+        <location filename="../../welcome.cpp" line="251"/>
         <source>&amp;Ignore</source>
         <translation>&amp;Ignorar</translation>
     </message>

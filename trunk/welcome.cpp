@@ -32,7 +32,14 @@ Welcome::Welcome(QWidget *parent)
 		if ( langIndex >= 0 )
 			comboBoxLanguage->setCurrentIndex(langIndex);
 		comboBoxLanguage->blockSignals(false);
-		lineEditExecutableFile->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString());
+		QStringList emuHistory = startupConfig->value(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", QStringList()).toStringList();
+		for (int i = 0; i < emuHistory.count(); i++) {
+			QString emuPath = emuHistory[i];
+			QFileInfo fi(emuPath);
+			if ( fi.exists() && fi.isReadable() && fi.isExecutable() && fi.isFile() )
+				comboBoxExecutableFile->insertItem(i, emuPath);
+		}
+		comboBoxExecutableFile->lineEdit()->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString());
 		lineEditWorkingDirectory->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString());
 		lineEditROMPath->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", QString()).toString());
 		lineEditSamplePath->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath", QString()).toString());
@@ -53,9 +60,18 @@ Welcome::~Welcome()
 void Welcome::on_pushButtonOkay_clicked()
 {
 	if ( !checkOkay ) {
-		QFileInfo fileInfo(lineEditExecutableFile->text());
+		QFileInfo fileInfo(comboBoxExecutableFile->lineEdit()->text());
 		if ( fileInfo.isExecutable() && fileInfo.isReadable() && fileInfo.isFile() ) {
-			startupConfig->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
+			startupConfig->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", comboBoxExecutableFile->lineEdit()->text());
+			QStringList emuHistory;
+			for (int i = 0; i < comboBoxExecutableFile->count(); i++)
+				emuHistory << comboBoxExecutableFile->itemText(i);
+			if ( !emuHistory.contains(comboBoxExecutableFile->lineEdit()->text()) )
+				emuHistory << comboBoxExecutableFile->lineEdit()->text();
+			if ( emuHistory.isEmpty() )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory");
+			else
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", emuHistory);
 			if ( !lineEditWorkingDirectory->text().isEmpty() ) {
 				QString s = lineEditWorkingDirectory->text();
 				if ( !s.endsWith("/") )
@@ -79,21 +95,21 @@ void Welcome::on_pushButtonOkay_clicked()
 void Welcome::on_toolButtonBrowseExecutableFile_clicked()
 {
 	QString s;
-	if ( lineEditExecutableFile->text().isEmpty() )
+	if ( comboBoxExecutableFile->lineEdit()->text().isEmpty() )
 		s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), QString(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	else {
-		QFileInfo fileInfo(lineEditExecutableFile->text());
+		QFileInfo fileInfo(comboBoxExecutableFile->lineEdit()->text());
 		s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), fileInfo.absoluteFilePath(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	}
 	if ( !s.isEmpty() )
-		lineEditExecutableFile->setText(s);
+		comboBoxExecutableFile->lineEdit()->setText(s);
 	raise();
 }
 
 void Welcome::on_toolButtonBrowseWorkingDirectory_clicked()
 {
 	QString workingDirectory = lineEditWorkingDirectory->text();
-	QString executableFile = lineEditExecutableFile->text();
+	QString executableFile = comboBoxExecutableFile->lineEdit()->text();
 	QString suggestion = workingDirectory;
 	if ( workingDirectory.isEmpty() && !executableFile.isEmpty() ) {
 		QFileInfo fi(executableFile);
