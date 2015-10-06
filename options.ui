@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>543</width>
+    <width>567</width>
     <height>641</height>
    </rect>
   </property>
@@ -56,14 +56,31 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>497</width>
-                <height>573</height>
+                <y>-58</y>
+                <width>521</width>
+                <height>598</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_1">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_2">
+                 <item row="3" column="6">
+                  <widget class="QToolButton" name="toolButtonBrowseLogFont">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse font used in logs</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fonts.png</normaloff>:/data/img/fonts.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="16" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxNativeFileDialogs">
                    <property name="toolTip">
@@ -74,7 +91,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="22" column="0" colspan="7">
+                 <item row="23" column="0" colspan="7">
                   <spacer name="spacer4">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -253,20 +270,19 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="6">
-                  <widget class="QToolButton" name="toolButtonBrowseLogFont">
+                 <item row="3" column="1" colspan="5">
+                  <widget class="QLineEdit" name="lineEditLogFont">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Browse font used in logs</string>
+                    <string>Font used in logs (= application font if empty)</string>
                    </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/fonts.png</normaloff>:/data/img/fonts.png</iconset>
+                   <property name="readOnly">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -317,17 +333,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="20" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxSetWorkDirFromExec">
-                   <property name="toolTip">
-                    <string>Force QMC2's working directory to be the same as the executable's path</string>
-                   </property>
-                   <property name="text">
-                    <string>Set working directory from executable</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="23" column="0" colspan="7">
+                 <item row="24" column="0" colspan="7">
                   <layout class="QHBoxLayout" name="layout3">
                    <item>
                     <widget class="QLabel" name="labelLegend1Pic">
@@ -517,22 +523,6 @@
                   <widget class="QLabel" name="labelLogFont">
                    <property name="text">
                     <string>Log font</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1" colspan="5">
-                  <widget class="QLineEdit" name="lineEditLogFont">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Font used in logs (= application font if empty)</string>
-                   </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -812,6 +802,26 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="20" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxShowLoadingAnimation">
+                   <property name="toolTip">
+                    <string>Show animation when loading, filtering or tagging the machine list?</string>
+                   </property>
+                   <property name="text">
+                    <string>Show loading animation</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="22" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxSetWorkDirFromExec">
+                   <property name="toolTip">
+                    <string>Force QMC2's working directory to be the same as the executable's path</string>
+                   </property>
+                   <property name="text">
+                    <string>Set working directory from executable</string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -841,7 +851,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>536</width>
+                <width>521</width>
                 <height>842</height>
                </rect>
               </property>
@@ -2942,7 +2952,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>550</width>
+                <width>535</width>
                 <height>540</height>
                </rect>
               </property>
@@ -3598,7 +3608,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>550</width>
+                <width>535</width>
                 <height>540</height>
                </rect>
               </property>
@@ -3720,7 +3730,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>550</width>
+                <width>535</width>
                 <height>540</height>
                </rect>
               </property>
@@ -4183,7 +4193,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>536</width>
+                <width>521</width>
                 <height>548</height>
                </rect>
               </property>
@@ -5798,9 +5808,10 @@
   <tabstop>checkBoxCheckSingleInstance</tabstop>
   <tabstop>checkBoxSuppressQtMessages</tabstop>
   <tabstop>checkBoxShowSplashScreen</tabstop>
-  <tabstop>checkBoxSetWorkDirFromExec</tabstop>
+  <tabstop>checkBoxShowLoadingAnimation</tabstop>
   <tabstop>checkBoxOneEmulatorOnly</tabstop>
   <tabstop>checkBoxKillEmulatorsOnExit</tabstop>
+  <tabstop>checkBoxSetWorkDirFromExec</tabstop>
   <tabstop>lineEditTemporaryFile</tabstop>
   <tabstop>toolButtonBrowseTemporaryFile</tabstop>
   <tabstop>lineEditFrontendLogFile</tabstop>

@@ -130,6 +130,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QAction *actionSearchIncludeBiosSets;
 		QList<QAction *> criticalActions;
 		QMovie *loadAnimMovie;
+		QMovie *nullMovie;
 		bool activityState;
 		bool isCreatingSoftList;
 		bool negatedMatch;

@@ -495,6 +495,7 @@ MainWindow::MainWindow(QWidget *parent)
 	loadAnimMovie->setCacheMode(QMovie::CacheAll);
 	loadAnimMovie->setSpeed(50);
 	loadAnimMovie->stop();
+	nullMovie = new QMovie();
 
 	// replace loading animation labels with aspect-ratio keeping ones
 	gridLayoutMachineListPage->removeWidget(labelLoadingMachineList);
@@ -1447,6 +1448,8 @@ MainWindow::~MainWindow()
 {
 	if ( qmc2StartupDefaultFont )
 		delete qmc2StartupDefaultFont;
+	delete loadAnimMovie;
+	delete nullMovie;
 }
 
 void MainWindow::tabWidgetMachineList_tabMoved(int from, int to)
@@ -9391,7 +9394,8 @@ void MainWindow::showLoadAnim(QString text, bool enable)
 		treeWidgetVersionView->setVisible(false);
 		((AspectRatioLabel *)labelCreatingVersionView)->setLabelText(text);
 		labelCreatingVersionView->setVisible(true);
-		loadAnimMovie->start();
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
+			loadAnimMovie->start();
 	} else {
 		loadAnimMovie->setPaused(true);
 		treeWidgetMachineList->setVisible(true);
