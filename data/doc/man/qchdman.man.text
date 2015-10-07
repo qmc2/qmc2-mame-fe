@@ -20,7 +20,7 @@ FILES
   CONFIG_PATH/qchdman.ini  Individual user's configuration
 
 SEE ALSO
-  qmc2(6), qmc2-sdlmame(6), qmc2-sdlmess(6), qmc2-sdlume(6), qmc2-arcade(6)
+  qmc2-sdlmame(6), qmc2-arcade(6)
 
 BUGS
   None that we're aware of.

@@ -67,12 +67,12 @@ FILES
 
   CONFIG_PATH/qmc2.ini  Individual user's configuration
 
-  CONFIG_PATH/mame.glc, CONFIG_PATH/mess.glc, CONFIG_PATH/ume.glc  Machine list cache
+  CONFIG_PATH/mame.glc  Machine list cache
 
-  CONFIG_PATH/mame.glc.filtered, CONFIG_PATH/mess.glc.filtered, CONFIG_PATH/ume.glc.filtered  Filtered version of the machine list cache created by qmc2(6) (optional)
+  CONFIG_PATH/mame.glc.filtered  Filtered version of the machine list cache created by qmc2(6) (optional)
 
 SEE ALSO
-  qmc2(6), qmc2-sdlmame(6), qmc2-sdlmess(6), qmc2-sdlume(6), qchdman(6)
+  qmc2-sdlmame(6), qchdman(6)
 
 BUGS
   See the TODO file in the included QMC2 documentation for known bugs and restrictions.
