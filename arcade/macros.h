@@ -75,8 +75,6 @@
 // emulator modes
 #define QMC2_ARCADE_EMUMODE_UNK         -1
 #define QMC2_ARCADE_EMUMODE_MAME        0
-#define QMC2_ARCADE_EMUMODE_MESS        1
-#define QMC2_ARCADE_EMUMODE_UME         2
 
 // console modes
 #define QMC2_ARCADE_CONSOLE_UNK         -1
