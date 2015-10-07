@@ -139,20 +139,19 @@ void showHelp()
     QString helpMessage;
 #if QT_VERSION < 0x050000
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
+    helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
 #else
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-h|-?|-help]\n\n";
+    helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-h|-?|-help]\n\n";
 #endif
 #else
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
+    helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
 #else
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-h|-?|-help]\n\n";
+    helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-h|-?|-help]\n\n";
 #endif
 #endif
     helpMessage += "Option           Meaning              Possible values ([..] = default)\n"
-                   "---------------  -------------------  -----------------------------------------\n"
-                   "-emu             Emulator mode        [mame]\n";
+                   "---------------  -------------------  -----------------------------------------\n";
     helpMessage += "-theme           Theme selection      " + availableThemes + "\n";
     helpMessage += "-console         Console type         " + availableConsoles + "\n";
 #if QT_VERSION < 0x050000

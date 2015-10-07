@@ -60,7 +60,7 @@ OPTIONS
   -debugjoy  Enable debug logging for joystick-function mapping. Every recognized joystick-function which has been mapped to a key-sequence will be
              logged to the console.
 
-  -h|-?|-help  Show usage help, available options / values and their current defaults (for the given emulator mode).
+  -h|-?|-help  Show usage help, available options / values and their current defaults.
 
 FILES
   SYS_CONF_DIR/qmc2/qmc2.ini  System-wide default configuration (optional)
