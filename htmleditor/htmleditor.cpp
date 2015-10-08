@@ -1218,6 +1218,8 @@ bool HtmlEditor::queryLocalXml(QString id, QString queryString, bool sort, QStri
 	localXmlQueryBuffer.open(QIODevice::ReadOnly);
 	xmlQuery.bindVariable("xmlDocument", &localXmlQueryBuffer);
 	xmlResult.clear();
+	if ( !queryString.contains("doc($xmlDocument)") )
+		queryString.prepend("doc($xmlDocument)");
 	xmlQuery.setQuery(queryString);
 	if ( xmlQuery.evaluateTo(&xmlResult) ) {
 		if ( sort )
