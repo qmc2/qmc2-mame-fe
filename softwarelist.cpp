@@ -1363,6 +1363,7 @@ bool SoftwareList::load()
 				SoftwareItem *item = new SoftwareItem(treeWidgetFavoriteSoftware);
 				item->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, swItem->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
 				item->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, swItem->whatsThis(QMC2_SWLIST_COLUMN_NAME));
+				item->setWhatsThis(QMC2_SWLIST_COLUMN_PART, swItem->whatsThis(QMC2_SWLIST_COLUMN_PART));
 				bool softwareListHidden = hiddenLists.contains(swItem->text(QMC2_SWLIST_COLUMN_LIST));
 				bool showItem = true;
 				if ( softwareListHidden )
@@ -2506,6 +2507,7 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool)
 			item->setIcon(QMC2_SWLIST_COLUMN_TITLE, si->icon(QMC2_SWLIST_COLUMN_TITLE));
 			item->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, si->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
 			item->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, si->whatsThis(QMC2_SWLIST_COLUMN_NAME));
+			item->setWhatsThis(QMC2_SWLIST_COLUMN_PART, si->whatsThis(QMC2_SWLIST_COLUMN_PART));
 			QStringList compatList = item->whatsThis(QMC2_SWLIST_COLUMN_TITLE).split(",", QString::SkipEmptyParts);
 			bool softwareListHidden = hiddenLists.contains(item->text(QMC2_SWLIST_COLUMN_LIST));
 			bool showItem = true;
@@ -3266,6 +3268,7 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 			newItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, item->icon(QMC2_SWLIST_COLUMN_TITLE));
 			newItem->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, item->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
 			newItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, item->whatsThis(QMC2_SWLIST_COLUMN_NAME));
+			newItem->setWhatsThis(QMC2_SWLIST_COLUMN_PART, item->whatsThis(QMC2_SWLIST_COLUMN_PART));
 			newItem->setText(QMC2_SWLIST_COLUMN_NAME, item->text(QMC2_SWLIST_COLUMN_NAME));
 			newItem->setText(QMC2_SWLIST_COLUMN_PUBLISHER, item->text(QMC2_SWLIST_COLUMN_PUBLISHER));
 			newItem->setText(QMC2_SWLIST_COLUMN_YEAR, item->text(QMC2_SWLIST_COLUMN_YEAR));
@@ -3449,6 +3452,9 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 			QStringList interfaces = item->text(QMC2_SWLIST_COLUMN_INTERFACE).split(",", QString::SkipEmptyParts);
 			QStringList parts = item->text(QMC2_SWLIST_COLUMN_PART).split(",", QString::SkipEmptyParts);
 			successfulLookups.clear();
+			foreach (QString requirement, item->whatsThis(QMC2_SWLIST_COLUMN_PART).split("\t", QString::SkipEmptyParts))
+				foreach (QString subarg, requirement.split(" ", QString::SkipEmptyParts))
+					swlArgs << QString("%1").arg(subarg);
 			for (int i = 0; i < parts.count(); i++) {
 				QString mountDev = lookupMountDevice(parts[i], interfaces[i]);
 				if ( !mountDev.isEmpty() ) {
@@ -3755,6 +3761,7 @@ void SoftwareList::loadFavoritesFromFile()
 								item->setText(QMC2_SWLIST_COLUMN_TITLE, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_TITLE));
 								item->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, knowSoftwareItem->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
 								item->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, knowSoftwareItem->whatsThis(QMC2_SWLIST_COLUMN_NAME));
+								item->setWhatsThis(QMC2_SWLIST_COLUMN_PART, knowSoftwareItem->whatsThis(QMC2_SWLIST_COLUMN_PART));
 								bool softwareListHidden = hiddenLists.contains(item->text(QMC2_SWLIST_COLUMN_LIST));
 								bool showItem = true;
 								if ( softwareListHidden )
@@ -4225,8 +4232,19 @@ bool SoftwareListXmlHandler::startElement(const QString &/*namespaceURI*/, const
 						softwareItem->setHidden(!showItem);
 				}
 			}
+			return true;
 		}
-		return true;
+		if ( attributes.value("name") == "requirement" ) {
+			// we use the invisible whatsThis data of the part column to store the requirements
+			QString requirement = attributes.value("value");
+			if ( !requirement.isEmpty() ) {
+				QStringList currentRequirements = softwareItem->whatsThis(QMC2_SWLIST_COLUMN_PART).split("\t", QString::SkipEmptyParts);
+				currentRequirements << requirement;
+				currentRequirements.removeDuplicates();
+				softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_PART, currentRequirements.join("\t"));
+			}
+			return true;
+		}
 	}
 
 	if ( qName == "description" || qName == "year" || qName == "publisher" )
@@ -5057,7 +5075,7 @@ SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item, bool vie
 	parentTreeWidgetItem = (SoftwareItem *)item;
 	softwareName = parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_NAME);
 	softwareValid = success = false;
-	partItem = dataareaItem = romItem = NULL;
+	partItem = dataareaItem = romItem = infoItem = requirementItem = 0;
 	elementCounter = animSequenceCounter = 0;
 	setViewTree(viewTree);
 }
@@ -5142,6 +5160,14 @@ bool SoftwareEntryXmlHandler::startElement(const QString &/*namespaceURI*/, cons
 				QString partTitle = attributes.value("value");
 				if ( !partTitle.isEmpty() )
 					partItem->setText(QMC2_SWLIST_COLUMN_TITLE, partItem->text(QMC2_SWLIST_COLUMN_TITLE) + " (" + partTitle + ")");
+				return true;
+			}
+
+			if ( featureName == "requirement" ) {
+				requirementItem = new SoftwareItem((QTreeWidget *)NULL);
+				requirementItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Requirement:") + " " + attributes.value("value"));
+				requirementItems << requirementItem;
+				return true;
 			}
 		}
 
@@ -5236,6 +5262,8 @@ bool SoftwareEntryXmlHandler::endElement(const QString &/*namespaceURI*/, const 
 			if ( cb )
 				parentTreeWidgetItem->treeWidget()->setItemWidget(item, QMC2_SWLIST_COLUMN_PUBLISHER, cb);
 		}
+		if ( !requirementItems.isEmpty() )
+			parentTreeWidgetItem->insertChildren(0, requirementItems);
 		if ( !infoItems.isEmpty() )
 			parentTreeWidgetItem->insertChildren(0, infoItems);
 		parentTreeWidgetItem->treeWidget()->setUpdatesEnabled(true);

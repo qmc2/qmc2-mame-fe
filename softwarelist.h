@@ -94,6 +94,7 @@ class SoftwareEntryXmlHandler : public QXmlDefaultHandler
 		SoftwareItem *parentTreeWidgetItem;
 		SoftwareItem *partItem;
 		SoftwareItem *infoItem;
+		SoftwareItem *requirementItem;
 		SoftwareItem *dataareaItem;
 		SoftwareItem *romItem;
 		bool softwareValid;
@@ -103,6 +104,7 @@ class SoftwareEntryXmlHandler : public QXmlDefaultHandler
 		int animSequenceCounter;
 		QList<QTreeWidgetItem *> partItems;
 		QList<QTreeWidgetItem *> infoItems;
+		QList<QTreeWidgetItem *> requirementItems;
 		QMap<QTreeWidgetItem *, QComboBox *> comboBoxes;
 
 		SoftwareEntryXmlHandler(QTreeWidgetItem *, bool viewTree = false);
