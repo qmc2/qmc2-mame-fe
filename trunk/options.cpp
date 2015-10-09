@@ -1410,13 +1410,6 @@ void Options::on_pushButtonApply_clicked()
 		if ( needResort && !needReload ) {
 			bool doResort = true;
 
-			if ( qmc2VerifyActive ) {
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("the machine list cannot be sorted at the moment, please wait for ROM verification to finish and try again"));
-				qmc2SortCriteria = oldSortCriteria;
-				qmc2SortOrder = oldSortOrder;
-				doResort = false;
-			}
-
 			if ( doResort ) {
 				qmc2SortingActive = true;
 				QString sortCriteria = tr("?");
