@@ -491,6 +491,8 @@ void ArcadeModeSetup::updateCategoryFilter()
 		if ( category )
 			categoryNames << *category;
 	categoryNames.removeAll(tr("System / Device"));
+	if ( !categoryNames.contains("System / BIOS") )
+		categoryNames << tr("System / BIOS");
 	categoryNames.removeDuplicates();
 	std::sort(categoryNames.begin(), categoryNames.end(), MainWindow::qStringListLessThan);
 	QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExcludedCategories", QStringList()).toStringList();
@@ -499,9 +501,6 @@ void ArcadeModeSetup::updateCategoryFilter()
 	QListWidgetItem *item = new QListWidgetItem(tr("?"), listWidgetCategoryFilter);
 	item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 	item->setCheckState(excludedCategories.contains(tr("?")) ? Qt::Unchecked : Qt::Checked);
-	item = new QListWidgetItem(tr("System / BIOS"), listWidgetCategoryFilter);
-	item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-	item->setCheckState(excludedCategories.contains(tr("System / BIOS")) ? Qt::Unchecked : Qt::Checked);
 	foreach (QString category, categoryNames) {
 		if ( !category.isEmpty() ) {
 			item = new QListWidgetItem(category, listWidgetCategoryFilter);
