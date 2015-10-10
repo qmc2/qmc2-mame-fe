@@ -106,7 +106,6 @@ class SoftwareEntryXmlHandler : public QXmlDefaultHandler
 		QList<QTreeWidgetItem *> partItems;
 		QList<QTreeWidgetItem *> infoItems;
 		QList<QTreeWidgetItem *> requirementItems;
-		QList<QTreeWidgetItem *> compatItems;
 		QMap<QTreeWidgetItem *, QComboBox *> comboBoxes;
 
 		SoftwareEntryXmlHandler(QTreeWidgetItem *, bool viewTree = false);
