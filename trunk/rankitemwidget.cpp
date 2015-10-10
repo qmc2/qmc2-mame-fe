@@ -31,7 +31,8 @@ RankItemWidget::RankItemWidget(QTreeWidgetItem *item, QWidget *parent)
 	m_item = item;
 	setupUi(this);
 	updateSize();
-	QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
+	if ( m_item )
+		QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
 }
 
 QIcon RankItemWidget::gradientRankIcon()
@@ -74,6 +75,8 @@ void RankItemWidget::updateSize(QFontMetrics *fm)
 		newSize.scale(width(), QMC2_MAX(qApp->style()->pixelMetric(QStyle::PM_IndicatorHeight), fm->height()), Qt::KeepAspectRatio);
 	else
 		newSize.scale(width(), QMC2_MAX(qApp->style()->pixelMetric(QStyle::PM_IndicatorHeight), fontMetrics().height()), Qt::KeepAspectRatio);
+	if ( !m_item )
+		newSize += QSize(2, 2);
 	setFixedSize(newSize);
 }
 
@@ -85,7 +88,8 @@ void RankItemWidget::setRank(int rank)
 	p.begin(&pm);
 	p.setBrush(rankGradient);
 	m_rank = rank;
-	m_item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, QString::number(m_rank));
+	if ( m_item )
+		m_item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, QString::number(m_rank));
 	QPixmap pmRank = useFlatRankImage || useColorRankImage ? QPixmap::fromImage(rankSingleFlat) : QPixmap::fromImage(rankSingle);
 	QPainter pRank;
 	pRank.begin(&pmRank);
@@ -101,20 +105,24 @@ void RankItemWidget::setRank(int rank)
 	QPainter pBackground;
 	pBackground.begin(&pmBackground);
 	pBackground.setCompositionMode(QPainter::CompositionMode_SourceIn);
-	pBackground.fillRect(pmBackground.rect(), m_item->treeWidget()->palette().color(QPalette::Text));
+	if ( m_item )
+		pBackground.fillRect(pmBackground.rect(), m_item->treeWidget()->palette().color(QPalette::Text));
 	pBackground.end();
 	p.drawPixmap(0, 0, pmBackground);
 	p.end();
 	rankImage->setPixmap(pm.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	update();
+	emit rankChanged(m_rank);
 }
 
 void RankItemWidget::setRankComplete(int rank)
 {
 	if ( rank != m_rank ) {
 		setRank(rank);
-		qmc2MachineList->userDataDb()->setRank(m_item->text(QMC2_MACHINELIST_COLUMN_NAME), m_rank);
-		updateForeignItems();
+		if ( m_item ) {
+			qmc2MachineList->userDataDb()->setRank(m_item->text(QMC2_MACHINELIST_COLUMN_NAME), m_rank);
+			updateForeignItems();
+		}
 	}
 }
 
@@ -139,7 +147,7 @@ void RankItemWidget::updateRankFromDb()
 
 void RankItemWidget::updateRankFromMousePos(int mouseX)
 {
-	if ( RankItemWidget::ranksLocked )
+	if ( m_item && RankItemWidget::ranksLocked )
 		return;
 
 	setRankComplete(int(0.5f + 6.0f * (double)mouseX / (double)(width())));

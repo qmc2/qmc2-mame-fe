@@ -639,187 +639,192 @@ p, li { white-space: pre-wrap; }
         <translation>Depurar mapeado de función de joystick</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="461"/>
+        <location filename="../../arcademodesetup.ui" line="609"/>
         <source>good + imperfect</source>
         <translation>bueno + imperfecto</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="466"/>
+        <location filename="../../arcademodesetup.ui" line="614"/>
         <source>good + imperfect + preliminary</source>
         <translation>bueno + imperfecto + preliminar</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="708"/>
+        <location filename="../../arcademodesetup.ui" line="695"/>
         <source>Tag</source>
         <translation>Etiqueta</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="733"/>
+        <location filename="../../arcademodesetup.ui" line="720"/>
         <source>Players</source>
         <translation>Jugadores</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="909"/>
+        <location filename="../../arcademodesetup.ui" line="896"/>
         <source>Only favorite sets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="925"/>
+        <location filename="../../arcademodesetup.ui" line="912"/>
         <source>Only tagged sets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="939"/>
+        <location filename="../../arcademodesetup.ui" line="926"/>
         <source>Use only parent sets (no clones)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="942"/>
+        <location filename="../../arcademodesetup.ui" line="929"/>
         <source>Only parent sets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="1036"/>
-        <location filename="../../arcademodesetup.ui" line="1063"/>
+        <location filename="../../arcademodesetup.ui" line="964"/>
+        <source>Rank filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.ui" line="1065"/>
+        <location filename="../../arcademodesetup.ui" line="1092"/>
         <source>Double-click to scan or clear a joystck function mapped to a key-sequence</source>
         <translation>Doble-click para escanear o limpiar una función de joystick mapeada a una secuencia de teclas</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="1048"/>
-        <location filename="../../arcademodesetup.ui" line="1075"/>
+        <location filename="../../arcademodesetup.ui" line="1077"/>
+        <location filename="../../arcademodesetup.ui" line="1104"/>
         <source>Joystick function</source>
         <translation>Función de joystick</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="658"/>
+        <location filename="../../arcademodesetup.ui" line="553"/>
         <source>ROM state filter</source>
         <translation>Filtro de estado de ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="694"/>
+        <location filename="../../arcademodesetup.ui" line="681"/>
         <source>Select sort criteria</source>
         <translation>Seleccionar el criterio de ordenación</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="698"/>
+        <location filename="../../arcademodesetup.ui" line="685"/>
         <source>Description</source>
         <translation>Descripción</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="703"/>
+        <location filename="../../arcademodesetup.ui" line="690"/>
         <source>ROM state</source>
         <translation>Estado de ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="713"/>
+        <location filename="../../arcademodesetup.ui" line="700"/>
         <source>Year</source>
         <translation>Año</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="718"/>
+        <location filename="../../arcademodesetup.ui" line="705"/>
         <source>Manufacturer</source>
         <translation>Fabricante</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="723"/>
+        <location filename="../../arcademodesetup.ui" line="710"/>
         <source>Name (ID)</source>
         <translation>Nombre (ID)</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="728"/>
+        <location filename="../../arcademodesetup.ui" line="715"/>
         <source>ROM types</source>
         <translation>Tipos de ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="518"/>
+        <location filename="../../arcademodesetup.ui" line="433"/>
         <source>Select ROM state C (correct)?</source>
         <translation>¿Seleccionar estado de ROM C (correcto)?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="544"/>
+        <location filename="../../arcademodesetup.ui" line="459"/>
         <source>Select ROM state M (mostly correct)?</source>
         <translation>¿Seleccionar estado de ROM M (mayormente correcto)?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="570"/>
+        <location filename="../../arcademodesetup.ui" line="485"/>
         <source>Select ROM state I (incorrect)?</source>
         <translation>¿Seleccionar estado de ROM I (incorrecto)?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="593"/>
+        <location filename="../../arcademodesetup.ui" line="508"/>
         <source>Select ROM state N (not found)?</source>
         <translation>¿Seleccionar estado de ROM N (no encontrado)?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="616"/>
+        <location filename="../../arcademodesetup.ui" line="531"/>
         <source>Select ROM state U (unknown)?</source>
         <translation>¿Seleccionar estado de ROM D (desconocido)?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="738"/>
-        <location filename="../../arcademodesetup.ui" line="814"/>
+        <location filename="../../arcademodesetup.ui" line="725"/>
+        <location filename="../../arcademodesetup.ui" line="801"/>
         <source>Driver status</source>
         <translation>Estado del driver</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="452"/>
+        <location filename="../../arcademodesetup.ui" line="600"/>
         <source>Choose the driver maturity states for sets to be included</source>
         <translation>Seleccionar los estados de madurez del driver de los sets a incluir</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="456"/>
-        <location filename="../../arcademodesetup.cpp" line="703"/>
-        <location filename="../../arcademodesetup.cpp" line="706"/>
+        <location filename="../../arcademodesetup.ui" line="604"/>
+        <location filename="../../arcademodesetup.cpp" line="761"/>
+        <location filename="../../arcademodesetup.cpp" line="764"/>
         <source>good</source>
         <translation>bueno</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="743"/>
+        <location filename="../../arcademodesetup.ui" line="730"/>
         <source>Source file</source>
         <translation>Archivo original</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="807"/>
+        <location filename="../../arcademodesetup.ui" line="794"/>
         <source>Name filter</source>
         <translation>Filtro de nombre</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="844"/>
+        <location filename="../../arcademodesetup.ui" line="831"/>
         <source>Deselect all categories</source>
         <translation>Deseleccionar todas las categorías</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="855"/>
+        <location filename="../../arcademodesetup.ui" line="842"/>
         <source>Select all categories</source>
         <translation>Seleccionar todas las categorías</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="875"/>
+        <location filename="../../arcademodesetup.ui" line="862"/>
         <source>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</source>
         <translation>Especificar un filtro por nombre (ID) (¡sintáxis de expresiones de Qt!) -- dejar vacío para no filtrar por nombre</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="674"/>
+        <location filename="../../arcademodesetup.ui" line="661"/>
         <source>Clear name filter</source>
         <translation>Borrar el filtro de nombre</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="432"/>
+        <location filename="../../arcademodesetup.ui" line="957"/>
         <source>Category filter</source>
         <translation>Filtro de categorías</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="442"/>
+        <location filename="../../arcademodesetup.ui" line="590"/>
         <source>Select / deselect the categories you want to include / exclude</source>
         <translation>Seleccionar / deseleccionar las categorías que quieres incluir / excluir</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="474"/>
+        <location filename="../../arcademodesetup.ui" line="622"/>
         <source>Sort criteria</source>
         <translation>Criterio de ordenación</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="821"/>
+        <location filename="../../arcademodesetup.ui" line="808"/>
         <source>Sort order</source>
         <translation>Orden</translation>
     </message>
@@ -829,33 +834,33 @@ p, li { white-space: pre-wrap; }
         <translation>Configuración general</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="772"/>
+        <location filename="../../arcademodesetup.ui" line="759"/>
         <source>Select sort order</source>
         <translation>Seleccionar el orden</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="776"/>
+        <location filename="../../arcademodesetup.ui" line="763"/>
         <source>Ascending</source>
         <translation>Ascendente</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="785"/>
+        <location filename="../../arcademodesetup.ui" line="772"/>
         <source>Descending</source>
         <translation>Descendente</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="800"/>
+        <location filename="../../arcademodesetup.ui" line="787"/>
         <source>Use filtered list</source>
         <translation>Usar lista filtrada</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="831"/>
+        <location filename="../../arcademodesetup.ui" line="818"/>
         <source>Filter / export progress</source>
         <translation>Progreso de filtrado /exportación</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="837"/>
-        <location filename="../../arcademodesetup.cpp" line="767"/>
+        <location filename="../../arcademodesetup.ui" line="824"/>
+        <location filename="../../arcademodesetup.cpp" line="825"/>
         <source>Idle</source>
         <translation>Parado</translation>
     </message>
@@ -890,84 +895,84 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="490"/>
+        <location filename="../../arcademodesetup.ui" line="638"/>
         <source>Export a filtered version of the machine list according to the filter / sort settings specified below</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="493"/>
+        <location filename="../../arcademodesetup.ui" line="641"/>
         <source>Export</source>
         <translation>Exportar</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="641"/>
+        <location filename="../../arcademodesetup.ui" line="569"/>
         <source>Browse the output file used as the filtered machine list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="748"/>
+        <location filename="../../arcademodesetup.ui" line="735"/>
         <source>Rank</source>
         <translation>Rango</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="797"/>
+        <location filename="../../arcademodesetup.ui" line="784"/>
         <source>Use a filtered version of the machine list (otherwise use the full list)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="891"/>
+        <location filename="../../arcademodesetup.ui" line="878"/>
         <source>Output file used as the filtered machine list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="906"/>
+        <location filename="../../arcademodesetup.ui" line="893"/>
         <source>Use only sets included in the favorites list?</source>
         <translation>¿Usar sólo sets incluídos en la lista de favoritos?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="922"/>
+        <location filename="../../arcademodesetup.ui" line="909"/>
         <source>Use only sets that are tagged?</source>
         <translation>¿Usar sólo sets que están etiquetados?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="952"/>
+        <location filename="../../arcademodesetup.ui" line="981"/>
         <source>Keys</source>
         <translation>Teclas</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="962"/>
-        <location filename="../../arcademodesetup.ui" line="1030"/>
+        <location filename="../../arcademodesetup.ui" line="991"/>
+        <location filename="../../arcademodesetup.ui" line="1059"/>
         <source>ToxicWaste</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="968"/>
-        <location filename="../../arcademodesetup.ui" line="995"/>
+        <location filename="../../arcademodesetup.ui" line="997"/>
+        <location filename="../../arcademodesetup.ui" line="1024"/>
         <source>Double-click to scan or clear a custom key sequence</source>
         <translation>Doble-click para escanear o limpiar una secuencia de teclas personalizada</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="975"/>
-        <location filename="../../arcademodesetup.ui" line="1002"/>
-        <location filename="../../arcademodesetup.ui" line="1043"/>
-        <location filename="../../arcademodesetup.ui" line="1070"/>
+        <location filename="../../arcademodesetup.ui" line="1004"/>
+        <location filename="../../arcademodesetup.ui" line="1031"/>
+        <location filename="../../arcademodesetup.ui" line="1072"/>
+        <location filename="../../arcademodesetup.ui" line="1099"/>
         <source>Function / Key-sequence</source>
         <translation>Función / Secuencia de teclas</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="980"/>
-        <location filename="../../arcademodesetup.ui" line="1007"/>
+        <location filename="../../arcademodesetup.ui" line="1009"/>
+        <location filename="../../arcademodesetup.ui" line="1036"/>
         <source>Custom key-sequence</source>
         <translation>Secuencia de teclas personalizada</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="989"/>
-        <location filename="../../arcademodesetup.ui" line="1057"/>
+        <location filename="../../arcademodesetup.ui" line="1018"/>
+        <location filename="../../arcademodesetup.ui" line="1086"/>
         <source>darkone</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="1020"/>
+        <location filename="../../arcademodesetup.ui" line="1049"/>
         <source>Joystick</source>
         <translation></translation>
     </message>
@@ -987,101 +992,122 @@ p, li { white-space: pre-wrap; }
         <translation>¡Por favor habilita el control de joystick!</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="70"/>
+        <location filename="../../arcademodesetup.cpp" line="62"/>
+        <source>Select the rank a machine must at least have to be included (or none to ignore the rank)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.cpp" line="66"/>
+        <location filename="../../arcademodesetup.cpp" line="207"/>
+        <source>Machine rank ignored</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.cpp" line="85"/>
         <source>Category</source>
         <translation>Categoría</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="72"/>
+        <location filename="../../arcademodesetup.cpp" line="96"/>
         <source>Version</source>
         <translation>Versión</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="183"/>
-        <location filename="../../arcademodesetup.cpp" line="184"/>
+        <location filename="../../arcademodesetup.cpp" line="209"/>
+        <source>Machine rank must be %1 at least</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.cpp" line="220"/>
+        <location filename="../../arcademodesetup.cpp" line="221"/>
         <source>Scanning key sequence</source>
         <translation>Escaneando secuencia de teclas</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="493"/>
+        <location filename="../../arcademodesetup.cpp" line="532"/>
         <source>System / Device</source>
         <translation type="unfinished">Sistema / Dispositivo</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="499"/>
-        <location filename="../../arcademodesetup.cpp" line="501"/>
-        <location filename="../../arcademodesetup.cpp" line="519"/>
+        <location filename="../../arcademodesetup.cpp" line="534"/>
+        <source>System / BIOS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.cpp" line="540"/>
+        <location filename="../../arcademodesetup.cpp" line="542"/>
+        <location filename="../../arcademodesetup.cpp" line="560"/>
         <source>?</source>
         <translation>¿?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="601"/>
+        <location filename="../../arcademodesetup.cpp" line="650"/>
         <source>Choose QMC2 Arcade&apos;s executable file</source>
         <translation>Seleccionar el archivo ejecutable de QMC2 Arcade</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="601"/>
-        <location filename="../../arcademodesetup.cpp" line="622"/>
+        <location filename="../../arcademodesetup.cpp" line="650"/>
+        <location filename="../../arcademodesetup.cpp" line="671"/>
         <source>All files (*)</source>
         <translation>Todos los archivos (*)</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="608"/>
+        <location filename="../../arcademodesetup.cpp" line="657"/>
         <source>Choose QMC2 Arcade&apos;s working directory</source>
         <translation>Seleccionar el directorio de trabajo de QMC2 Arcade</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="615"/>
+        <location filename="../../arcademodesetup.cpp" line="664"/>
         <source>Choose QMC2 Arcade&apos;s configuration path</source>
         <translation>Seleccionar la ruta de configuración de QMC2 Arcade</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="622"/>
+        <location filename="../../arcademodesetup.cpp" line="671"/>
         <source>Choose filtered list file for export</source>
         <translation>Seleccionar el archivo de lista filtrada para exportar</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="632"/>
+        <location filename="../../arcademodesetup.cpp" line="681"/>
         <source>FATAL: arcade mode: cannot open &apos;%1&apos; for writing</source>
         <translation>ERROR: modo arcade: no se puede abrir &apos;%1&apos; para su escritura</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="650"/>
+        <location filename="../../arcademodesetup.cpp" line="700"/>
         <source>WARNING: arcade mode: the name filter regular expression is invalid</source>
         <translation>ATENCIÓN: modo arcade: la expresión regular de filtro de nombre es inválida</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="652"/>
+        <location filename="../../arcademodesetup.cpp" line="702"/>
         <source>Filtering</source>
         <translation>Filtrando</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="703"/>
+        <location filename="../../arcademodesetup.cpp" line="761"/>
         <source>imperfect</source>
         <translation>imperfecto</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="738"/>
+        <location filename="../../arcademodesetup.cpp" line="796"/>
         <source>Sorting</source>
         <translation>Ordenando</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="746"/>
+        <location filename="../../arcademodesetup.cpp" line="804"/>
         <source>Exporting</source>
         <translation>Exportando</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="757"/>
+        <location filename="../../arcademodesetup.cpp" line="815"/>
         <source>ROM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="758"/>
+        <location filename="../../arcademodesetup.cpp" line="816"/>
         <source>CHD</source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../arcademodesetup.cpp" line="769"/>
+        <location filename="../../arcademodesetup.cpp" line="827"/>
         <source>arcade mode: exported %n filtered set(s) to &apos;%1&apos;</source>
         <translation>
             <numerusform>modo arcade: exportado %n set filtrado a &apos;%1&apos;</numerusform>
@@ -7034,7 +7060,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="657"/>
         <location filename="../../machinelist.cpp" line="658"/>
         <location filename="../../machinelist.cpp" line="712"/>
-        <location filename="../../machinelist.cpp" line="3649"/>
+        <location filename="../../machinelist.cpp" line="3672"/>
         <source>unknown</source>
         <translation>desconocido</translation>
     </message>
@@ -7340,7 +7366,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="764"/>
         <location filename="../../machinelist.cpp" line="767"/>
         <location filename="../../machinelist.cpp" line="3282"/>
-        <location filename="../../machinelist.cpp" line="3510"/>
+        <location filename="../../machinelist.cpp" line="3522"/>
         <source>Loading, please wait...</source>
         <translation>Cargando, por favor espere...</translation>
     </message>
@@ -7708,7 +7734,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1527"/>
         <location filename="../../machinelist.cpp" line="1559"/>
         <location filename="../../machinelist.cpp" line="1708"/>
-        <location filename="../../machinelist.cpp" line="3323"/>
+        <location filename="../../machinelist.cpp" line="3324"/>
         <source>System / BIOS</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7719,27 +7745,27 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1536"/>
         <location filename="../../machinelist.cpp" line="1568"/>
         <location filename="../../machinelist.cpp" line="1710"/>
-        <location filename="../../machinelist.cpp" line="3325"/>
+        <location filename="../../machinelist.cpp" line="3326"/>
         <source>System / Device</source>
         <translation>Sistema / Dispositivo</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3641"/>
+        <location filename="../../machinelist.cpp" line="3664"/>
         <source>correct</source>
         <translation>correcto</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3643"/>
+        <location filename="../../machinelist.cpp" line="3666"/>
         <source>mostly correct</source>
         <translation>mayormente correcto</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3645"/>
+        <location filename="../../machinelist.cpp" line="3668"/>
         <source>incorrect</source>
         <translation>incorrecto</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3647"/>
+        <location filename="../../machinelist.cpp" line="3670"/>
         <source>not found</source>
         <translation>no encontrado</translation>
     </message>
@@ -8367,27 +8393,27 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation>hecho (cargando category.ini, tiempo transcurrido = %1)</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3423"/>
+        <location filename="../../machinelist.cpp" line="3435"/>
         <source>loading catver.ini</source>
         <translation>cargando catver.ini</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3428"/>
+        <location filename="../../machinelist.cpp" line="3440"/>
         <source>Catver.ini - %p%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3493"/>
+        <location filename="../../machinelist.cpp" line="3505"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation>ERROR: no se puede abrir &apos;%1&apos; para su lectura -- no hay datos de catver.ini disponibles</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3500"/>
+        <location filename="../../machinelist.cpp" line="3512"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation>hecho (cargando catver.ini, tiempo transcurrido = %1)</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3501"/>
+        <location filename="../../machinelist.cpp" line="3513"/>
         <source>%1 category / %2 version records loaded</source>
         <translation>categoría %1 / %2 registros de versión cargados</translation>
     </message>
@@ -8405,7 +8431,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3527"/>
+        <location filename="../../machinelist.cpp" line="3539"/>
         <source>Version view - %p%</source>
         <translation>Vista versión - %p%</translation>
     </message>
@@ -16309,34 +16335,34 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5188"/>
+        <location filename="../../softwarelist.cpp" line="5187"/>
         <source>Data area:</source>
         <translation>Área de datos:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5191"/>
-        <location filename="../../softwarelist.cpp" line="5203"/>
-        <location filename="../../softwarelist.cpp" line="5217"/>
+        <location filename="../../softwarelist.cpp" line="5190"/>
+        <location filename="../../softwarelist.cpp" line="5202"/>
+        <location filename="../../softwarelist.cpp" line="5216"/>
         <source>Size:</source>
         <translation>Tamaño:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5200"/>
+        <location filename="../../softwarelist.cpp" line="5199"/>
         <source>Disk area:</source>
         <translation>Área de disco:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5220"/>
+        <location filename="../../softwarelist.cpp" line="5219"/>
         <source>CRC:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5235"/>
+        <location filename="../../softwarelist.cpp" line="5234"/>
         <source>SHA1:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5244"/>
+        <location filename="../../softwarelist.cpp" line="5243"/>
         <source>Info:</source>
         <translation></translation>
     </message>
@@ -21253,37 +21279,37 @@ Are you sure you want to do this?</source>
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="5317"/>
+        <location filename="../../softwarelist.cpp" line="5316"/>
         <source>Copy image to clipboard</source>
         <translation>Copiar imagen al portapapeles</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5323"/>
+        <location filename="../../softwarelist.cpp" line="5322"/>
         <source>Copy file path to clipboard</source>
         <translation>Copiar la ruta del archivo al portapapeles</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5332"/>
+        <location filename="../../softwarelist.cpp" line="5331"/>
         <source>Refresh cache slot</source>
         <translation>Actualizar el slot de caché</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5438"/>
+        <location filename="../../softwarelist.cpp" line="5437"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>ERROR: no se puede abrir el archivo de captura de software, por favor comprueba los permisos de acceso para &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5487"/>
+        <location filename="../../softwarelist.cpp" line="5486"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
         <translation>ERROR: no se puede abrir archivo de instantánea de software %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5487"/>
+        <location filename="../../softwarelist.cpp" line="5486"/>
         <source>7z error</source>
         <translation>error 7z</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5520"/>
+        <location filename="../../softwarelist.cpp" line="5519"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Descomprimiendo archivo, por favor espera...</translation>
     </message>

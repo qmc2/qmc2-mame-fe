@@ -5,6 +5,7 @@
 
 #include "ui_arcademodesetup.h"
 #include "machinelist.h"
+#include "rankitemwidget.h"
 
 class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 {
@@ -48,10 +49,13 @@ class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 		void on_lineEditFilteredListFile_textChanged(QString);
 		void on_toolButtonSelectAll_clicked();
 		void on_toolButtonDeselectAll_clicked();
+		void rankChanged(int);
 
 	private:
 		bool m_useCategories;
 		bool m_useVersions;
+		RankItemWidget *m_rankItemWidget;
+		QLabel *m_rankLabel;
 };
 
 #endif
