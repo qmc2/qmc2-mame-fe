@@ -5079,7 +5079,7 @@ SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item, bool vie
 	parentTreeWidgetItem = (SoftwareItem *)item;
 	softwareName = parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_NAME);
 	softwareValid = success = false;
-	partItem = dataareaItem = romItem = infoItem = requirementItem = 0;
+	partItem = dataareaItem = romItem = infoItem = requirementItem = compatItem = 0;
 	elementCounter = animSequenceCounter = 0;
 	setViewTree(viewTree);
 }
@@ -5171,6 +5171,11 @@ bool SoftwareEntryXmlHandler::startElement(const QString &/*namespaceURI*/, cons
 				requirementItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Requirement:") + " " + attributes.value("value"));
 				requirementItems << requirementItem;
 				return true;
+			}
+			if ( featureName == "compatibility" ) {
+				compatItem = new SoftwareItem((QTreeWidget *)NULL);
+				compatItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Compatibility:") + " " + attributes.value("value"));
+				compatItems << compatItem;
 			}
 		}
 
@@ -5267,6 +5272,8 @@ bool SoftwareEntryXmlHandler::endElement(const QString &/*namespaceURI*/, const 
 		}
 		if ( !requirementItems.isEmpty() )
 			parentTreeWidgetItem->insertChildren(0, requirementItems);
+		if ( !compatItems.isEmpty() )
+			parentTreeWidgetItem->insertChildren(0, compatItems);
 		if ( !infoItems.isEmpty() )
 			parentTreeWidgetItem->insertChildren(0, infoItems);
 		parentTreeWidgetItem->treeWidget()->setUpdatesEnabled(true);
