@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>391</width>
-    <height>407</height>
+    <height>411</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -412,24 +412,44 @@
       <attribute name="title">
        <string>Machine list filter</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="5" column="0" colspan="4">
-        <widget class="Line" name="horizontalLine2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="0">
-        <widget class="QLabel" name="labelCategoryFilter">
+      <layout class="QGridLayout" name="gridLayoutFilter">
+       <item row="6" column="0">
+        <widget class="QLabel" name="labelROMStatesToSelect">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
          <property name="text">
-          <string>Category filter</string>
+          <string>ROM state filter</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QToolButton" name="toolButtonBrowseFilteredListFile">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Browse the output file used as the filtered machine list</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="4">
+        <widget class="Line" name="horizontalLine2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
@@ -625,39 +645,6 @@
           </widget>
          </item>
         </layout>
-       </item>
-       <item row="0" column="3">
-        <widget class="QToolButton" name="toolButtonBrowseFilteredListFile">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Browse the output file used as the filtered machine list</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="labelROMStatesToSelect">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>ROM state filter</string>
-         </property>
-        </widget>
        </item>
        <item row="10" column="3">
         <widget class="QToolButton" name="toolButtonClearNameFilter">
@@ -944,6 +931,32 @@
           </widget>
          </item>
         </layout>
+       </item>
+       <item row="11" column="0">
+        <widget class="QLabel" name="labelCategoryFilter">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Category filter</string>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="0" colspan="4">
+        <spacer name="verticalSpaceFiller">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>

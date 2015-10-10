@@ -65,11 +65,27 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 		joyFunctionMapBases << "Arcade/ToxicWaste/joyFunctionMap" << "Arcade/darkone/joyFunctionMap";
 #endif
 
+	bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool();
+	bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
+	m_useCategories = useCatverIni | useCategoryIni;
+	m_useVersions = useCatverIni;
+
 	// category and version maps
-	if ( !qmc2MachineList->categoryHash.isEmpty() )
-		comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
-	if ( !qmc2MachineList->versionHash.isEmpty() )
-		comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
+	if ( m_useCategories ) {
+		if ( !qmc2MachineList->categoryHash.isEmpty() )
+			comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
+		gridLayoutFilter->removeItem(verticalSpaceFiller);
+		delete verticalSpaceFiller;
+	} else {
+		labelCategoryFilter->setVisible(false);
+		toolButtonSelectAll->setVisible(false);
+		toolButtonDeselectAll->setVisible(false);
+		listWidgetCategoryFilter->setVisible(false);
+	}
+	if ( m_useVersions ) {
+		if ( !qmc2MachineList->versionHash.isEmpty() )
+			comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
+	}
 
 	QString defaultPath, tmpString;
 	int index;
@@ -140,7 +156,8 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	comboBoxSortOrder->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SortOrder", 0).toInt());
 	comboBoxDriverStatus->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/DriverStatus", QMC2_ARCADE_DRV_STATUS_GOOD).toInt());
 	lineEditNameFilter->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/NameFilter", QString()).toString());
-	updateCategoryFilter();
+	if ( m_useCategories )
+		updateCategoryFilter();
 
 	// miscellaneous connections
 	connect(pushButtonOk, SIGNAL(clicked()), this, SLOT(saveSettings()));
@@ -457,7 +474,8 @@ void ArcadeModeSetup::saveSettings()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SortOrder", comboBoxSortOrder->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/DriverStatus", comboBoxDriverStatus->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/NameFilter", lineEditNameFilter->text());
-	saveCategoryFilter();
+	if ( m_useCategories )
+		saveCategoryFilter();
 
 	// key-sequence and joystick-function maps
 	saveKeySequenceMaps();
@@ -635,7 +653,8 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		return;
 	}
 
-	saveCategoryFilter();
+	if ( m_useCategories )
+		saveCategoryFilter();
 
 	QTextStream ts(&filteredListFile);
 	ts << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
@@ -692,10 +711,12 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 				continue;
 
 		// category
-		if ( !qmc2MachineList->categoryHash.isEmpty() ) {
-			QString category = gameItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
-			if ( excludedCategories.contains(category) )
-				continue;
+		if ( m_useCategories ) {
+			if ( !qmc2MachineList->categoryHash.isEmpty() ) {
+				QString category = gameItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
+				if ( excludedCategories.contains(category) )
+					continue;
+			}
 		}
 
 		// driver status
