@@ -3452,9 +3452,11 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 			QStringList interfaces = item->text(QMC2_SWLIST_COLUMN_INTERFACE).split(",", QString::SkipEmptyParts);
 			QStringList parts = item->text(QMC2_SWLIST_COLUMN_PART).split(",", QString::SkipEmptyParts);
 			successfulLookups.clear();
+			/*
 			foreach (QString requirement, item->whatsThis(QMC2_SWLIST_COLUMN_PART).split("\t", QString::SkipEmptyParts))
 				foreach (QString subarg, requirement.split(" ", QString::SkipEmptyParts))
 					swlArgs << QString("%1").arg(subarg);
+			*/
 			for (int i = 0; i < parts.count(); i++) {
 				QString mountDev = lookupMountDevice(parts[i], interfaces[i]);
 				if ( !mountDev.isEmpty() ) {
@@ -4234,6 +4236,7 @@ bool SoftwareListXmlHandler::startElement(const QString &/*namespaceURI*/, const
 			}
 			return true;
 		}
+		/*
 		if ( attributes.value("name") == "requirement" ) {
 			// we use the invisible whatsThis data of the part column to store the requirements
 			QString requirement = attributes.value("value");
@@ -4245,6 +4248,7 @@ bool SoftwareListXmlHandler::startElement(const QString &/*namespaceURI*/, const
 			}
 			return true;
 		}
+		*/
 	}
 
 	if ( qName == "description" || qName == "year" || qName == "publisher" )
@@ -5162,7 +5166,6 @@ bool SoftwareEntryXmlHandler::startElement(const QString &/*namespaceURI*/, cons
 					partItem->setText(QMC2_SWLIST_COLUMN_TITLE, partItem->text(QMC2_SWLIST_COLUMN_TITLE) + " (" + partTitle + ")");
 				return true;
 			}
-
 			if ( featureName == "requirement" ) {
 				requirementItem = new SoftwareItem((QTreeWidget *)NULL);
 				requirementItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Requirement:") + " " + attributes.value("value"));
