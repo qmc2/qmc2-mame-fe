@@ -57,6 +57,15 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 
 	adjustIconSizes();
 
+	m_rankItemWidget = new RankItemWidget(0, frameRankFilter);
+	m_rankItemWidget->setMouseTracking(true);
+	m_rankItemWidget->setToolTip(tr("Select the rank a machine must at least have to be included (or none to ignore the rank)"));
+	gridLayoutRankFilter->addWidget(m_rankItemWidget, 0, 0, Qt::AlignLeft);
+	connect(m_rankItemWidget, SIGNAL(rankChanged(int)), this, SLOT(rankChanged(int)));
+
+	m_rankLabel = new QLabel(tr("Machine rank ignored"), frameRankFilter);
+	gridLayoutRankFilter->addWidget(m_rankLabel, 0, 1, Qt::AlignRight);
+
 	// QSettings base-keys for key-sequence and joystick-function maps (take care that the indexes in the string-lists correspond to the QMC2_ARCADE_THEME_* macros!)
 	if ( keySequenceMapBases.isEmpty() )
 		keySequenceMapBases << "Arcade/ToxicWaste/keySequenceMap" << "Arcade/darkone/keySequenceMap";
@@ -156,6 +165,7 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	comboBoxSortOrder->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SortOrder", 0).toInt());
 	comboBoxDriverStatus->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/DriverStatus", QMC2_ARCADE_DRV_STATUS_GOOD).toInt());
 	lineEditNameFilter->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/NameFilter", QString()).toString());
+	m_rankItemWidget->setRank(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/RankFilter", 0).toInt());
 	if ( m_useCategories )
 		updateCategoryFilter();
 
@@ -187,6 +197,16 @@ ArcadeModeSetup::~ArcadeModeSetup()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupJoyMapToxicWasteHeaderState", treeWidgetJoyMapToxicWaste->header()->saveState());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupJoyMapDarkoneHeaderState", treeWidgetJoyMapDarkone->header()->saveState());
 #endif
+}
+
+void ArcadeModeSetup::rankChanged(int rank)
+{
+	if ( rank > 5 )
+		rank = 5;
+	if ( rank <= 0 )
+		m_rankLabel->setText(tr("Machine rank ignored"));
+	else
+		m_rankLabel->setText(tr("Machine rank must be %1 at least").arg(rank));
 }
 
 void ArcadeModeSetup::scanCustomKeySequence(QTreeWidgetItem *item, int /*column*/)
@@ -474,6 +494,7 @@ void ArcadeModeSetup::saveSettings()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SortOrder", comboBoxSortOrder->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/DriverStatus", comboBoxDriverStatus->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/NameFilter", lineEditNameFilter->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/RankFilter", m_rankItemWidget->rank());
 	if ( m_useCategories )
 		saveCategoryFilter();
 
@@ -587,17 +608,25 @@ void ArcadeModeSetup::on_checkBoxUseFilteredList_toggled(bool enable)
 	enable &= !checkBoxFavoriteSetsOnly->isChecked() && !checkBoxTaggedSetsOnly->isChecked();
 
 	checkBoxParentSetsOnly->setEnabled(enable);
+	labelROMStatesToSelect->setEnabled(enable);
 	toolButtonSelectC->setEnabled(enable);
 	toolButtonSelectM->setEnabled(enable);
 	toolButtonSelectI->setEnabled(enable);
 	toolButtonSelectN->setEnabled(enable);
 	toolButtonSelectU->setEnabled(enable);
+	labelSortCriteria->setEnabled(enable);
+	labelSortOrder->setEnabled(enable);
+	labelDriverStatus->setEnabled(enable);
+	labelNameFilter->setEnabled(enable);
+	labelRankFilter->setEnabled(enable);
+	labelCategoryFilter->setEnabled(enable);
 	toolButtonSelectAll->setEnabled(enable);
 	toolButtonDeselectAll->setEnabled(enable);
 	comboBoxSortCriteria->setEnabled(enable);
 	comboBoxSortOrder->setEnabled(enable);
 	comboBoxDriverStatus->setEnabled(enable);
 	lineEditNameFilter->setEnabled(enable);
+	frameRankFilter->setEnabled(enable);
 	toolButtonClearNameFilter->setEnabled(enable);
 	listWidgetCategoryFilter->setEnabled(enable);
 }
@@ -676,8 +705,8 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 	foreach (QString game, qmc2MachineListItemHash.keys()) {
 		progressBarFilter->setValue(++itemCount);
 
-		MachineListItem *gameItem = (MachineListItem *)qmc2MachineListItemHash[game];
-		if ( !gameItem )
+		MachineListItem *machineItem = (MachineListItem *)qmc2MachineListItemHash[game];
+		if ( !machineItem )
 			continue;
 
 		// no devices
@@ -686,23 +715,29 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 
 		// tagged sets only?
 		if ( checkBoxTaggedSetsOnly->isChecked() ) {
-			if ( gameItem->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
-				selectedGames << gameItem;
+			if ( machineItem->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
+				selectedGames << machineItem;
 			continue;
 		}
 
 		// favorite sets only?
 		if ( checkBoxFavoriteSetsOnly->isChecked() ) {
-			MachineListItem *gameItem = (MachineListItem *)qmc2MachineListItemHash[game];
-			QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
+			MachineListItem *machineItem = (MachineListItem *)qmc2MachineListItemHash[game];
+			QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(machineItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
 			if ( !favoritesMatches.isEmpty() )
-				selectedGames << gameItem;
+				selectedGames << machineItem;
 			continue;
 		}
 
 		// parent sets only?
 		if ( checkBoxParentSetsOnly->isChecked() )
 			if ( !qmc2ParentHash[game].isEmpty() )
+				continue;
+
+		// rank filter
+		int rank = QMC2_MIN(m_rankItemWidget->rank(), 5);
+		if ( rank > 0 )
+			if ( machineItem->whatsThis(QMC2_MACHINELIST_COLUMN_RANK).toInt() < rank )
 				continue;
 
 		// name filter
@@ -713,7 +748,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		// category
 		if ( m_useCategories ) {
 			if ( !qmc2MachineList->categoryHash.isEmpty() ) {
-				QString category = gameItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
+				QString category = machineItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
 				if ( excludedCategories.contains(category) )
 					continue;
 			}
@@ -721,7 +756,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 
 		// driver status
 		if ( minDrvStatus < QMC2_ARCADE_DRV_STATUS_PRELIMINARY ) {
-			QString drvStatus = gameItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT);
+			QString drvStatus = machineItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT);
 			if ( minDrvStatus == QMC2_ARCADE_DRV_STATUS_IMPERFECT ) {
 				if ( drvStatus != tr("good") && drvStatus != tr("imperfect") )
 					continue;
@@ -735,24 +770,24 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		switch ( qmc2MachineList->romState(game) ) {
 			case 'C':
 				if ( toolButtonSelectC->isChecked() )
-					selectedGames << gameItem;
+					selectedGames << machineItem;
 				break;
 			case 'M':
 				if ( toolButtonSelectM->isChecked() )
-					selectedGames << gameItem;
+					selectedGames << machineItem;
 				break;
 			case 'I':
 				if ( toolButtonSelectI->isChecked() )
-					selectedGames << gameItem;
+					selectedGames << machineItem;
 				break;
 			case 'N':
 				if ( toolButtonSelectN->isChecked() )
-					selectedGames << gameItem;
+					selectedGames << machineItem;
 				break;
 			case 'U':
 			default:
 				if ( toolButtonSelectU->isChecked() )
-					selectedGames << gameItem;
+					selectedGames << machineItem;
 				break;
 		}
 	}
@@ -769,20 +804,20 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 	progressBarFilter->setFormat(tr("Exporting"));
 	for (int i = 0; i < selectedGames.count(); i++) {
 		progressBarFilter->setValue(i + 1);
-		MachineListItem *gameItem = selectedGames[i];
-		QString gameName = gameItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-		ts << gameName << "\t"
-		   << gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) << "\t"
-		   << gameItem->text(QMC2_MACHINELIST_COLUMN_MANU) << "\t"
-		   << gameItem->text(QMC2_MACHINELIST_COLUMN_YEAR) << "\t"
-		   << qmc2ParentHash[gameName] << "\t"
-	   	   << (qmc2MachineList->isBios(gameName) ? "1": "0") << "\t"
-		   << (gameItem->text(QMC2_MACHINELIST_COLUMN_RTYPES).contains(tr("ROM")) ? "1" : "0") << "\t"
-		   << (gameItem->text(QMC2_MACHINELIST_COLUMN_RTYPES).contains(tr("CHD")) ? "1": "0") << "\t"
-		   << gameItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS) << "\t"
-		   << gameItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT) << "\t"
+		MachineListItem *machineItem = selectedGames[i];
+		QString machineName = machineItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+		ts << machineName << "\t"
+		   << machineItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) << "\t"
+		   << machineItem->text(QMC2_MACHINELIST_COLUMN_MANU) << "\t"
+		   << machineItem->text(QMC2_MACHINELIST_COLUMN_YEAR) << "\t"
+		   << qmc2ParentHash[machineName] << "\t"
+	   	   << (qmc2MachineList->isBios(machineName) ? "1": "0") << "\t"
+		   << (machineItem->text(QMC2_MACHINELIST_COLUMN_RTYPES).contains(tr("ROM")) ? "1" : "0") << "\t"
+		   << (machineItem->text(QMC2_MACHINELIST_COLUMN_RTYPES).contains(tr("CHD")) ? "1": "0") << "\t"
+		   << machineItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS) << "\t"
+		   << machineItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT) << "\t"
 		   << "0\t"
-		   << gameItem->text(QMC2_MACHINELIST_COLUMN_SRCFILE) << "\n";
+		   << machineItem->text(QMC2_MACHINELIST_COLUMN_SRCFILE) << "\n";
 	}
 
 	progressBarFilter->setRange(0, 100);

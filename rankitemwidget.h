@@ -46,6 +46,9 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 		void updateRankFromMousePos(int mouseX = 0);
 		void updateRankImage() { setRank(rank()); };
 
+	signals:
+		void rankChanged(int);
+
 	protected:
 		void mousePressEvent(QMouseEvent *e);
 		void mouseMoveEvent(QMouseEvent *e);

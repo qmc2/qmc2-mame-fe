@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>391</width>
-    <height>411</height>
+    <height>427</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -413,111 +413,6 @@
        <string>Machine list filter</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayoutFilter">
-       <item row="6" column="0">
-        <widget class="QLabel" name="labelROMStatesToSelect">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>ROM state filter</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QToolButton" name="toolButtonBrowseFilteredListFile">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Browse the output file used as the filtered machine list</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0" colspan="4">
-        <widget class="Line" name="horizontalLine2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="12" column="0" colspan="4">
-        <widget class="QListWidget" name="listWidgetCategoryFilter">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="toolTip">
-          <string>Select / deselect the categories you want to include / exclude</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="1" colspan="3">
-        <widget class="QComboBox" name="comboBoxDriverStatus">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="toolTip">
-          <string>Choose the driver maturity states for sets to be included</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>good</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>good + imperfect</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>good + imperfect + preliminary</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="labelSortCriteria">
-         <property name="text">
-          <string>Sort criteria</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="pushButtonExport">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Export a filtered version of the machine list according to the filter / sort settings specified below</string>
-         </property>
-         <property name="text">
-          <string>Export</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
-         </property>
-        </widget>
-       </item>
        <item row="6" column="1" colspan="3">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <property name="spacing">
@@ -645,6 +540,111 @@
           </widget>
          </item>
         </layout>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="labelROMStatesToSelect">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>ROM state filter</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QToolButton" name="toolButtonBrowseFilteredListFile">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Browse the output file used as the filtered machine list</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="4">
+        <widget class="Line" name="horizontalLine2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="0" colspan="4">
+        <widget class="QListWidget" name="listWidgetCategoryFilter">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Select / deselect the categories you want to include / exclude</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1" colspan="3">
+        <widget class="QComboBox" name="comboBoxDriverStatus">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Choose the driver maturity states for sets to be included</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>good</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>good + imperfect</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>good + imperfect + preliminary</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="labelSortCriteria">
+         <property name="text">
+          <string>Sort criteria</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="pushButtonExport">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Export a filtered version of the machine list according to the filter / sort settings specified below</string>
+         </property>
+         <property name="text">
+          <string>Export</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+         </property>
+        </widget>
        </item>
        <item row="10" column="3">
         <widget class="QToolButton" name="toolButtonClearNameFilter">
@@ -825,7 +825,7 @@
          </property>
         </widget>
        </item>
-       <item row="11" column="3">
+       <item row="12" column="3">
         <widget class="QToolButton" name="toolButtonDeselectAll">
          <property name="toolTip">
           <string>Deselect all categories</string>
@@ -836,7 +836,7 @@
          </property>
         </widget>
        </item>
-       <item row="11" column="2">
+       <item row="12" column="2">
         <widget class="QToolButton" name="toolButtonSelectAll">
          <property name="toolTip">
           <string>Select all categories</string>
@@ -932,7 +932,20 @@
          </item>
         </layout>
        </item>
-       <item row="11" column="0">
+       <item row="14" column="0" colspan="4">
+        <spacer name="verticalSpaceFiller">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="12" column="0">
         <widget class="QLabel" name="labelCategoryFilter">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -945,18 +958,21 @@
          </property>
         </widget>
        </item>
-       <item row="13" column="0" colspan="4">
-        <spacer name="verticalSpaceFiller">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+       <item row="11" column="0">
+        <widget class="QLabel" name="labelRankFilter">
+         <property name="text">
+          <string>Rank filter</string>
          </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
+        </widget>
+       </item>
+       <item row="11" column="1" colspan="3">
+        <widget class="QFrame" name="frameRankFilter">
+         <layout class="QGridLayout" name="gridLayoutRankFilter">
+          <property name="margin">
+           <number>0</number>
+          </property>
+         </layout>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -1189,8 +1205,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>205</x>
-     <y>401</y>
+     <x>246</x>
+     <y>422</y>
     </hint>
     <hint type="destinationlabel">
      <x>279</x>
