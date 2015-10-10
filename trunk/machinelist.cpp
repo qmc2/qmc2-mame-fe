@@ -406,9 +406,9 @@ void MachineList::load()
 {
 	QString userScopePath = Options::configPath();
 
-	QString gameName;
+	QString machineName;
 	if ( qmc2CurrentItem && qmc2CurrentItem->child(0) )
-		gameName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
+		machineName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
 
 	if ( qmc2DemoModeDialog )
 		qmc2DemoModeDialog->saveCategoryFilter();
@@ -535,12 +535,12 @@ void MachineList::load()
 		if ( vbl )
 			delete vbl;
 		delete qmc2MainWindow->labelEmuSelector;
-		if ( !gameName.isEmpty() ) {
+		if ( !machineName.isEmpty() ) {
 			QString selectedEmulator = qmc2MainWindow->comboBoxEmuSelector->currentText();
 			if ( selectedEmulator == tr("Default") || selectedEmulator.isEmpty() )
-				qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(gameName));
+				qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(machineName));
 			else
-				qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(gameName), selectedEmulator);
+				qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(machineName), selectedEmulator);
 		}
 		delete qmc2MainWindow->comboBoxEmuSelector;
 		qmc2MainWindow->comboBoxEmuSelector = NULL;
@@ -999,10 +999,10 @@ void MachineList::insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QStri
 
 void MachineList::parseGameDetail(QTreeWidgetItem *item)
 {
-	QString gameName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
-	QStringList xmlLines = xmlDb()->xml(gameName).split("\n", QString::SkipEmptyParts);
+	QString machineName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
+	QStringList xmlLines = xmlDb()->xml(machineName).split("\n", QString::SkipEmptyParts);
 	if ( xmlLines.count() < 2 ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't find machine information for '%1'").arg(gameName));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't find machine information for '%1'").arg(machineName));
 		return;
 	}
 	int gamePos = 1;
@@ -2083,12 +2083,12 @@ void MachineList::filter(bool initial)
 	qmc2MainWindow->progressBarMachineList->setRange(0, itemCount - 1);
 	qApp->processEvents();
 	if ( verifyCurrentOnly && checkedItem ) {
-		QString gameName = checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-		if ( !showBiosSets && isBios(gameName) )
+		QString machineName = checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+		if ( !showBiosSets && isBios(machineName) )
 			checkedItem->setHidden(true);
-		else if ( !showDeviceSets && isDevice(gameName) )
+		else if ( !showDeviceSets && isDevice(machineName) )
 			checkedItem->setHidden(true);
-		else switch ( machineStatusHash[gameName] ) {
+		else switch ( machineStatusHash[machineName] ) {
 			case 'C':
 				checkedItem->setHidden(!showC);
 				break;
@@ -2120,12 +2120,12 @@ void MachineList::filter(bool initial)
 		int filterResponse = itemCount / QMC2_STATEFILTER_UPDATES;
 		for (int i = 0; i < itemCount && !qmc2StopParser; i++) {
 			QTreeWidgetItem *item = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
-			QString gameName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
-			if ( !showBiosSets && isBios(gameName) )
+			QString machineName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
+			if ( !showBiosSets && isBios(machineName) )
 				item->setHidden(true);
-			else if ( !showDeviceSets && isDevice(gameName) )
+			else if ( !showDeviceSets && isDevice(machineName) )
 				item->setHidden(true);
-			else switch ( machineStatusHash[gameName] ) {
+			else switch ( machineStatusHash[machineName] ) {
 				case 'C':
 					item->setHidden(!showC);
 					break;
@@ -2174,14 +2174,14 @@ void MachineList::loadFavorites()
 	if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		QTextStream ts(&f);
 		while ( !ts.atEnd() ) {
-			QString gameName = ts.readLine();
-			if ( !gameName.isEmpty() ) {
-				QTreeWidgetItem *gameItem = qmc2MachineListItemHash[gameName];
-				if ( gameItem ) {
+			QString machineName = ts.readLine();
+			if ( !machineName.isEmpty() ) {
+				QTreeWidgetItem *machineItem = qmc2MachineListItemHash[machineName];
+				if ( machineItem ) {
 					QListWidgetItem *item = new QListWidgetItem(qmc2MainWindow->listWidgetFavorites);
-					item->setText(gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
-					item->setWhatsThis(gameItem->text(QMC2_MACHINELIST_COLUMN_NAME));
-					if ( gameItem->isSelected() )
+					item->setText(machineItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
+					item->setWhatsThis(machineItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+					if ( machineItem->isSelected() )
 						item->setSelected(true);
 				}
 			}
@@ -2218,14 +2218,14 @@ void MachineList::loadPlayHistory()
 	if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		QTextStream ts(&f);
 		while ( !ts.atEnd() ) {
-			QString gameName = ts.readLine();
-			if ( !gameName.isEmpty() ) {
-				QTreeWidgetItem *gameItem = qmc2MachineListItemHash[gameName];
-				if ( gameItem ) {
+			QString machineName = ts.readLine();
+			if ( !machineName.isEmpty() ) {
+				QTreeWidgetItem *machineItem = qmc2MachineListItemHash[machineName];
+				if ( machineItem ) {
 					QListWidgetItem *item = new QListWidgetItem(qmc2MainWindow->listWidgetPlayed);
-					item->setText(gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
-					item->setWhatsThis(gameItem->text(QMC2_MACHINELIST_COLUMN_NAME));
-					if ( gameItem->isSelected() )
+					item->setText(machineItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
+					item->setWhatsThis(machineItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+					if ( machineItem->isSelected() )
 						item->setSelected(true);
 				}
 			}
@@ -2499,17 +2499,17 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					qmc2MainWindow->labelMachineListStatus->setText(status());
 					qApp->processEvents();
 				}
-				QString gameName = remainingGames[i];
-				QTreeWidgetItem *romItem = qmc2MachineListItemHash[gameName];
-				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[gameName];
+				QString machineName = remainingGames[i];
+				QTreeWidgetItem *romItem = qmc2MachineListItemHash[machineName];
+				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[machineName];
 				if ( romItem && hierarchyItem ) {
-					QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
-					QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
-					machineStatusHash[gameName] = 'U';
-					bool isBIOS = isBios(gameName);
-					bool isDevice = this->isDevice(gameName);
+					QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[machineName];
+					QTreeWidgetItem *versionItem = qmc2VersionItemHash[machineName];
+					machineStatusHash[machineName] = 'U';
+					bool isBIOS = isBios(machineName);
+					bool isDevice = this->isDevice(machineName);
 					if ( romCache.isOpen() )
-						tsRomCache << gameName << " U\n";
+						tsRomCache << machineName << " U\n";
 					numUnknownGames++;
 					if ( isBIOS ) {
 						if ( showROMStatusIcons ) {
@@ -2553,17 +2553,17 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					qmc2MainWindow->labelMachineListStatus->setText(status());
 					qApp->processEvents();
 				}
-				QString gameName = remainingGames[i];
-				bool isBIOS = isBios(gameName);
-				bool isDevice = this->isDevice(gameName);
-				QTreeWidgetItem *romItem = qmc2MachineListItemHash[gameName];
-				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[gameName];
-				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
-				QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
+				QString machineName = remainingGames[i];
+				bool isBIOS = isBios(machineName);
+				bool isDevice = this->isDevice(machineName);
+				QTreeWidgetItem *romItem = qmc2MachineListItemHash[machineName];
+				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[machineName];
+				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[machineName];
+				QTreeWidgetItem *versionItem = qmc2VersionItemHash[machineName];
 				// there are quite a number of sets in MESS and MAME that don't require any ROMs... many/most device-sets in particular
 				bool romRequired = true;
 				int xmlCounter = 0;
-				QStringList xmlLines = xmlDb()->xml(gameName).split("\n", QString::SkipEmptyParts);
+				QStringList xmlLines = xmlDb()->xml(machineName).split("\n", QString::SkipEmptyParts);
 				if ( xmlLines.count() > 0 ) {
 					int romCounter = 0;
 					int chdCounter = 0;
@@ -2588,10 +2588,10 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				if ( romItem && hierarchyItem ) {
 					if ( romCache.isOpen() ) {
 						if ( romRequired ) {
-							tsRomCache << gameName << " N\n";
+							tsRomCache << machineName << " N\n";
 							numNotFoundGames++;
 						} else {
-							tsRomCache << gameName << " C\n";
+							tsRomCache << machineName << " C\n";
 							numCorrectGames++;
 						}
 					}
@@ -2649,11 +2649,11 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 						}
 					}
 					if ( romRequired ) {
-						machineStatusHash[gameName] = 'N';
+						machineStatusHash[machineName] = 'N';
 						if ( romItem == qmc2CurrentItem )
 							qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorGrey);
 					} else {
-						machineStatusHash[gameName] = 'C';
+						machineStatusHash[machineName] = 'C';
 						if ( romItem == qmc2CurrentItem )
 							qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorGreen);
 					}
@@ -2666,21 +2666,21 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	}
 	bool doFilter = true;
 	if ( verifyCurrentOnly ) {
-		QString gameName;
+		QString machineName;
 		if ( verifiedList.isEmpty() && checkedItem && exitCode == QMC2_MAME_ERROR_NO_SUCH_MACHINE ) {
 			// many device-sets that have no ROMs are declared as being "invalid" during the audit, but that isn't true :)
-			gameName = checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-			QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[gameName];
+			machineName = checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+			QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[machineName];
 			if ( hierarchyItem ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM status for '%1' is '%2'").arg(checkedItem->text(QMC2_MACHINELIST_COLUMN_MACHINE)).arg(QObject::tr("correct")));
-				machineStatusHash[gameName] = 'C';
+				machineStatusHash[machineName] = 'C';
 				numUnknownGames--;
 				numCorrectGames++;
 				if ( checkedItem == qmc2CurrentItem )
 					qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorGreen);
-				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
-				QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
-				if ( isBios(gameName) ) {
+				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[machineName];
+				QTreeWidgetItem *versionItem = qmc2VersionItemHash[machineName];
+				if ( isBios(machineName) ) {
 					if ( showROMStatusIcons ) {
 						checkedItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
 						hierarchyItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
@@ -2689,7 +2689,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 						if ( versionItem )
 							versionItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
 					}
-				} else if ( isDevice(gameName) ) {
+				} else if ( isDevice(machineName) ) {
 					if ( showROMStatusIcons ) {
 						checkedItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectDeviceImageIcon);
 						hierarchyItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectDeviceImageIcon);
@@ -2711,14 +2711,14 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			}
 			qmc2MainWindow->labelMachineListStatus->setText(status());
 		} else if ( checkedItem )
-			gameName = checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+			machineName = checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 		if ( romCache.isOpen() ) {
 			QHashIterator<QString, char> it(machineStatusHash);
 			while ( it.hasNext() ) {
 				it.next();
-				QString gameName = it.key();
-				if ( !gameName.isEmpty() ) {
-					tsRomCache << gameName << " ";
+				QString machineName = it.key();
+				if ( !machineName.isEmpty() ) {
+					tsRomCache << machineName << " ";
 					switch ( it.value() ) {
 						case 'C':
 							tsRomCache << "C\n";
@@ -2740,7 +2740,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				}
 			}
 		}
-		doFilter = (oldRomState != machineStatusHash[gameName]);
+		doFilter = (oldRomState != machineStatusHash[machineName]);
 	}
 	QTime elapsedTime(0, 0, 0, 0);
 	elapsedTime = elapsedTime.addMSecs(verifyTimer.elapsed());
@@ -3018,11 +3018,11 @@ void MachineList::verifyReadyReadStandardOutput()
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 }
 
-bool MachineList::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly, QString *fileName)
+bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool checkOnly, QString *fileName)
 {
 	if ( fileName )
-		*fileName = gameName;
-	QIcon cachedIcon = qmc2IconHash[gameName];
+		*fileName = machineName;
+	QIcon cachedIcon = qmc2IconHash[machineName];
 	if ( !cachedIcon.isNull() ) {
 		// use cached icon
 		if ( !checkOnly )
@@ -3033,7 +3033,7 @@ bool MachineList::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOn
 	} else if ( qmc2IconsPreloaded ) {
 		// icon wasn't found
 		if ( !checkOnly ) {
-			qmc2IconHash[gameName] = QIcon();
+			qmc2IconHash[machineName] = QIcon();
 			item->setIcon(QMC2_MACHINELIST_COLUMN_ICON, QIcon());
 		} else
 			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
@@ -3145,7 +3145,7 @@ bool MachineList::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOn
 			}
 			if ( checkOnly )
 				qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
-			return loadIcon(gameName, item, checkOnly);
+			return loadIcon(machineName, item, checkOnly);
 		}
 	} else {
 		// use icon directory
@@ -3196,7 +3196,7 @@ bool MachineList::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOn
 			if ( checkOnly )
 				qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 
-			return loadIcon(gameName, item, checkOnly);
+			return loadIcon(machineName, item, checkOnly);
 		}
 	}
 	if ( checkOnly )
@@ -3309,16 +3309,17 @@ void MachineList::createCategoryView()
 		int loadResponse = qmc2MainWindow->treeWidgetMachineList->topLevelItemCount() / QMC2_GENERAL_LOADING_UPDATES;
 		if ( loadResponse == 0 )
 			loadResponse = 25;
+		QHash<QTreeWidgetItem *, int> childCountHash;
 		for (int i = 0; i < qmc2MainWindow->treeWidgetMachineList->topLevelItemCount(); i++) {
 			if ( i % loadResponse == 0 ) {
 				qmc2MainWindow->progressBarMachineList->setValue(i);
 				qApp->processEvents();
 			}
 			QTreeWidgetItem *baseItem = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
-			QString gameName = baseItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+			QString machineName = baseItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 			QString category;
-			bool isBIOS = isBios(gameName);
-			bool isDevice = this->isDevice(gameName);
+			bool isBIOS = isBios(machineName);
+			bool isDevice = this->isDevice(machineName);
 			if ( isBIOS )
 				category = tr("System / BIOS");
 			else if ( isDevice )
@@ -3331,69 +3332,80 @@ void MachineList::createCategoryView()
 				categoryItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, category);
 				itemList << categoryItem;
 				itemHash[category] = categoryItem;
+				childCountHash[categoryItem] = 0;
 			}
-			QTreeWidgetItem *gameItem = new MachineListItem(categoryItem);
-			if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
-				hideList << gameItem;
-			gameItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
-			gameItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, baseItem->checkState(QMC2_MACHINELIST_COLUMN_TAG));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_MANU, baseItem->text(QMC2_MACHINELIST_COLUMN_MANU));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_NAME, baseItem->text(QMC2_MACHINELIST_COLUMN_NAME));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, baseItem->text(QMC2_MACHINELIST_COLUMN_SRCFILE));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, baseItem->text(QMC2_MACHINELIST_COLUMN_RTYPES));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, baseItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, baseItem->text(QMC2_MACHINELIST_COLUMN_VERSION));
-			gameItem->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, baseItem->whatsThis(QMC2_MACHINELIST_COLUMN_RANK));
-			gameItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
+			QTreeWidgetItem *machineItem = new MachineListItem(categoryItem);
+			childCountHash[categoryItem]++;
+			if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) ) {
+				hideList << machineItem;
+				childCountHash[categoryItem]--;
+			}
+			machineItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+			machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, baseItem->checkState(QMC2_MACHINELIST_COLUMN_TAG));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, baseItem->text(QMC2_MACHINELIST_COLUMN_MANU));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_NAME, baseItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, baseItem->text(QMC2_MACHINELIST_COLUMN_SRCFILE));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, baseItem->text(QMC2_MACHINELIST_COLUMN_RTYPES));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, baseItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, baseItem->text(QMC2_MACHINELIST_COLUMN_VERSION));
+			machineItem->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, baseItem->whatsThis(QMC2_MACHINELIST_COLUMN_RANK));
+			machineItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool() ) {
-				switch ( machineStatusHash[gameName] ) {
+				switch ( machineStatusHash[machineName] ) {
 					case 'C':
 						if ( isBIOS )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
 						else if ( isDevice )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectDeviceImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectDeviceImageIcon);
 						else
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
 						break;
 					case 'M':
 						if ( isBIOS )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectBIOSImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectBIOSImageIcon);
 						else if ( isDevice )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectDeviceImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectDeviceImageIcon);
 						else
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
 						break;
 					case 'I':
 						if ( isBIOS )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectBIOSImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectBIOSImageIcon);
 						else if ( isDevice )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectDeviceImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectDeviceImageIcon);
 						else
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
 						break;
 					case 'N':
 						if ( isBIOS )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundBIOSImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundBIOSImageIcon);
 						else if ( isDevice )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundDeviceImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundDeviceImageIcon);
 						else
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
 						break;
 					case 'U':
 					default:
 						if ( isBIOS )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownBIOSImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownBIOSImageIcon);
 						else if ( isDevice )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownDeviceImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownDeviceImageIcon);
 						else
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
 						break;
 				}
 			}
-			qmc2CategoryItemHash[gameName] = gameItem;
+			qmc2CategoryItemHash[machineName] = machineItem;
+		}
+		foreach (QTreeWidgetItem *item, itemList) {
+			if ( childCountHash.contains(item) ) {
+				if ( childCountHash[item] <= 0 )
+					hideList << item;
+			} else
+				hideList << item;
 		}
 		qmc2MainWindow->treeWidgetCategoryView->insertTopLevelItems(0, itemList);
 		foreach (QTreeWidgetItem *hiddenItem, hideList)
@@ -3537,13 +3549,14 @@ void MachineList::createVersionView()
 		int loadResponse = numGames / QMC2_GENERAL_LOADING_UPDATES;
 		if ( loadResponse == 0 )
 			loadResponse = 25;
+		QHash<QTreeWidgetItem *, int> childCountHash;
 		for (int i = 0; i < qmc2MainWindow->treeWidgetMachineList->topLevelItemCount(); i++) {
 			if ( i % loadResponse == 0 ) {
 				qmc2MainWindow->progressBarMachineList->setValue(i);
 				qApp->processEvents();
 			}
 			QTreeWidgetItem *baseItem = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
-			QString gameName = baseItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+			QString machineName = baseItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 			QString version = baseItem->text(QMC2_MACHINELIST_COLUMN_VERSION);
 			QTreeWidgetItem *versionItem = itemHash[version];
 			if ( !versionItem ) {
@@ -3552,70 +3565,80 @@ void MachineList::createVersionView()
 				itemList << versionItem;
 				itemHash[version] = versionItem;
 			}
-			QTreeWidgetItem *gameItem = new MachineListItem(versionItem);
-			bool isBIOS = isBios(gameName);
-			bool isDevice = this->isDevice(gameName);
-			if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
-				hideList << gameItem;
-			gameItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
-			gameItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, baseItem->checkState(QMC2_MACHINELIST_COLUMN_TAG));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_MANU, baseItem->text(QMC2_MACHINELIST_COLUMN_MANU));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_NAME, baseItem->text(QMC2_MACHINELIST_COLUMN_NAME));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, baseItem->text(QMC2_MACHINELIST_COLUMN_SRCFILE));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, baseItem->text(QMC2_MACHINELIST_COLUMN_RTYPES));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, baseItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT));
-			gameItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY));
-			gameItem->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, baseItem->whatsThis(QMC2_MACHINELIST_COLUMN_RANK));
-			gameItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
+			QTreeWidgetItem *machineItem = new MachineListItem(versionItem);
+			bool isBIOS = isBios(machineName);
+			bool isDevice = this->isDevice(machineName);
+			childCountHash[versionItem]++;
+			if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) ) {
+				hideList << machineItem;
+				childCountHash[versionItem]--;
+			}
+			machineItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+			machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, baseItem->checkState(QMC2_MACHINELIST_COLUMN_TAG));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, baseItem->text(QMC2_MACHINELIST_COLUMN_MANU));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_NAME, baseItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, baseItem->text(QMC2_MACHINELIST_COLUMN_SRCFILE));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, baseItem->text(QMC2_MACHINELIST_COLUMN_RTYPES));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, baseItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT));
+			machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY));
+			machineItem->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, baseItem->whatsThis(QMC2_MACHINELIST_COLUMN_RANK));
+			machineItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool() ) {
-				switch ( machineStatusHash[gameName] ) {
+				switch ( machineStatusHash[machineName] ) {
 					case 'C':
 						if ( isBIOS )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
 						else if ( isDevice )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectDeviceImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectDeviceImageIcon);
 						else
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
 						break;
 					case 'M':
 						if ( isBIOS )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectBIOSImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectBIOSImageIcon);
 						else if ( isDevice )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectDeviceImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectDeviceImageIcon);
 						else
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
 						break;
 					case 'I':
 						if ( isBIOS )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectBIOSImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectBIOSImageIcon);
 						else if ( isDevice )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectDeviceImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectDeviceImageIcon);
 						else
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
 						break;
 					case 'N':
 						if ( isBIOS )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundBIOSImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundBIOSImageIcon);
 						else if ( isDevice )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundDeviceImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundDeviceImageIcon);
 						else
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
 						break;
 					case 'U':
 					default:
 						if ( isBIOS )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownBIOSImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownBIOSImageIcon);
 						else if ( isDevice )
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownDeviceImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownDeviceImageIcon);
 						else
-							gameItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
+							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
 						break;
 				}
 			}
-			qmc2VersionItemHash[gameName] = gameItem;
+			qmc2VersionItemHash[machineName] = machineItem;
+		}
+		foreach (QTreeWidgetItem *item, itemList) {
+			if ( childCountHash.contains(item) ) {
+				if ( childCountHash[item] <= 0 )
+					hideList << item;
+			} else
+				hideList << item;
 		}
 		qmc2MainWindow->treeWidgetVersionView->insertTopLevelItems(0, itemList);
 		foreach (QTreeWidgetItem *hiddenItem, hideList)
