@@ -28,9 +28,9 @@ Welcome::Welcome(QWidget *parent)
 		comboBoxLanguage->blockSignals(true);
 		comboBoxLanguage->addItems(availableLanguages);
 		originalLanguage = startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Language", QString()).toString();
-		int langIndex = comboBoxLanguage->findText(originalLanguage);
-		if ( langIndex >= 0 )
-			comboBoxLanguage->setCurrentIndex(langIndex);
+		int index = comboBoxLanguage->findText(originalLanguage);
+		if ( index >= 0 )
+			comboBoxLanguage->setCurrentIndex(index);
 		comboBoxLanguage->blockSignals(false);
 		QStringList emuHistory = startupConfig->value(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", QStringList()).toStringList();
 		emuHistory.sort();
@@ -41,6 +41,9 @@ Welcome::Welcome(QWidget *parent)
 				comboBoxExecutableFile->insertItem(i, emuPath);
 		}
 		comboBoxExecutableFile->lineEdit()->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString());
+		index = comboBoxExecutableFile->findText(comboBoxExecutableFile->lineEdit()->text());
+		if ( index >= 0 )
+			comboBoxExecutableFile->setCurrentIndex(index);
 		lineEditWorkingDirectory->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString());
 		lineEditROMPath->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", QString()).toString());
 		lineEditSamplePath->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath", QString()).toString());
