@@ -1,6 +1,6 @@
 ﻿<!--
 SHIDERAVAN SYSTEM TEMPLATE
-LAST MODIFICATION: 30/September/2015
+LAST MODIFICATION: 13/October/2015
 
 Copyright (c) 2015 Jose Marcio Rezende Franco
 
@@ -18,6 +18,9 @@ Copyright (c) 2015 Jose Marcio Rezende Franco
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Whatsnew:
+13/Oct/2015: -Since now all MESS drivers finally merged to MAME directory in repositories, then the old "non-arcade" button/link for GitHub and git.redump which used to go to old 'mess' directory has been removed and only one button will show for non-device drivers.
+             -Updated sources in Github for devices.
+             -New preview image options: Straight-corners (4:3) and Widescreen (16:9). Also, "Straight-corners" and "Widescreen" already translated for Portuguese.
 30/Sep/2015: -Some updates in Italian language (thanks criccroc).
 26/Sep/2015: -Updated German, Spanish and French languages giving them the status of "full support" as of now (thanks René, A.Viloria, Cpt. Pugwash and remax with the help for this update).
 05/Sep/2015: -Changed "No image available" for "Not available" to fit Video Snaps better.
@@ -74,9 +77,9 @@ My girlfriend for all the support
 Status of the languages supported: 
  us (English) = Full
  pt (Portuguese) = Full
- de (German) = Full
- es (Spanish) = Full
- fr (French) = Full
+ de (German) = Partial
+ es (Spanish) = Partial
+ fr (French) = Partial
  it (Italian) = Partial
  sv (Swedish) = Partial
  pl (Polish) = Nothing 
@@ -417,8 +420,10 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not used']  = 'Não mostrar';    
       trMap['Original'] = 'Original';
       trMap['Big Image'] = 'Imagem extendida';      
-      trMap['TV Mode'] = 'ModoTV';      
-      
+      trMap['TV Mode'] = 'Modo TV';
+      trMap['Straight-corners'] = 'Bordas retas';
+      trMap['Widescreen'] = 'Widescreen';
+            
       trMap['Image Options'] = 'Opções de Imagem';
       trMap['Image Transition'] = 'Transição de Imagens';        
       trMap['Show sources'] = 'Mostrar fontes';      
@@ -463,7 +468,7 @@ switch ("$GUI_LANGUAGE$")
       
       /*Infobar*/
       trMap['Manufacturer'] = 'Hersteller';
-      trMap['Release date'] = 'Erscheinungsdatum';      
+      trMap['Release date'] = 'Erscheinungsdatum';
       trMap['Players'] = 'Anzahl der Spieler';
       trMap['Version'] = 'Version';
       trMap['Clone of'] = 'Klon von';
@@ -479,8 +484,8 @@ switch ("$GUI_LANGUAGE$")
       
       /*Emulation Status*/
       trMap['Samples'] = 'Samples';
-      trMap['Software List'] = 'Software-Liste';   
-      trMap['Emulation'] = 'Emulation';       
+      trMap['Software List'] = 'Software-Liste';
+      trMap['Emulation'] = 'Emulation';
       trMap['Graphics'] = 'Grafik';
       trMap['Color'] = 'Farbe';
       trMap['S.State'] = 'S.State';
@@ -519,8 +524,10 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not used']  = 'Nicht verwendet'; 
       trMap['Original'] = 'Original';
       trMap['Big Image'] = 'Großes Bild';
-      trMap['TV Mode'] = 'TV Modus';       
-      
+      trMap['TV Mode'] = 'TV Modus';
+      trMap['Straight-corners'] = 'Seitenverhältnis 4:3';
+      trMap['Widescreen'] = 'Seitenverhältnis 16:9';
+           
       trMap['Image Options'] = 'Bild-Optionen';
       trMap['Image Transition'] = 'Bildübergang';        
       trMap['Show sources'] = 'Quellenanzeige';      
@@ -621,7 +628,9 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not used'] = 'Non utilisé';    
       trMap['Original'] = 'Original';
       trMap['Big Image'] = 'Grande Image';      
-      trMap['TV Mode'] = 'Mode TV';      
+      trMap['TV Mode'] = 'Mode TV';
+      trMap['Straight-corners'] = '???';
+      trMap['Widescreen'] = '???';
       
       trMap['Image Options'] = 'Options Images';
       trMap['Image Transition'] = 'Transition d\'image';        
@@ -724,6 +733,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['Original'] = 'Original';
       trMap['Big Image'] = 'Imagen Grande';
       trMap['TV Mode'] = 'ModoTV';
+      trMap['Straight-corners'] = '???';
+      trMap['Widescreen'] = '???';
 
       trMap['Image Options'] = 'Opciones de Imagen';
       trMap['Image Transition'] = 'Transición de Imágenes'; 
@@ -824,8 +835,10 @@ switch ("$GUI_LANGUAGE$")
       trMap['Preview Image'] = '???';
       trMap['Not used']  = '???';    
       trMap['Original'] = '???';
-      trMap['Big Image'] = '???';      
-      trMap['TV Mode'] = '???';      
+      trMap['Big Image'] = '???';
+      trMap['TV Mode'] = '???';
+      trMap['Straight-corners'] = '???';
+      trMap['Widescreen'] = '???';            
       
       trMap['Image Options'] = '???';
       trMap['Image Transition'] = '???';        
@@ -928,6 +941,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['Original'] = 'Originale';
       trMap['Big Image'] = 'Immagine grande';
       trMap['TV Mode'] = 'Modalità TV';
+      trMap['Straight-corners'] = '???';
+      trMap['Widescreen'] = '???';
       
       trMap['Image Options'] = 'Opzioni Immagine';
       trMap['Image Transition'] = 'Transizione Immagine';
@@ -1026,17 +1041,19 @@ switch ("$GUI_LANGUAGE$")
       trMap['Toggle Info'] = '???';
       
       trMap['Preview Image'] = '???';
-      trMap['Not used']  = '???';    
+      trMap['Not used']  = '???';
       trMap['Original'] = '???';
-      trMap['Big Image'] = '???';      
-      trMap['TV Mode'] = '???';      
+      trMap['Big Image'] = '???';
+      trMap['TV Mode'] = '???';
+      trMap['Straight-corners'] = '???';
+      trMap['Widescreen'] = '???';
       
       trMap['Image Options'] = '???';
       trMap['Image Transition'] = '???';        
       trMap['Show sources'] = '???';      
       
       trMap['General Options'] = '???';
-      trMap['Bottom Info'] = '???';      
+      trMap['Bottom Info'] = '???';
       trMap['Shadows'] = '???';
       trMap['Search Extra Images'] = '???';             
       trMap['Internet Databases'] = '???';
@@ -1131,7 +1148,9 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not used']  = '???';    
       trMap['Original'] = '???';
       trMap['Big Image'] = '???';      
-      trMap['TV Mode'] = '???';      
+      trMap['TV Mode'] = '???';
+      trMap['Straight-corners'] = '???';
+      trMap['Widescreen'] = '???';     
       
       trMap['Image Options'] = '???';
       trMap['Image Transition'] = '???';        
@@ -1232,7 +1251,9 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not used']  = '???';    
       trMap['Original'] = '???';
       trMap['Big Image'] = '???';      
-      trMap['TV Mode'] = '???';      
+      trMap['TV Mode'] = '???';
+      trMap['Straight-corners'] = '???';
+      trMap['Widescreen'] = '???';
       
       trMap['Image Options'] = '???';
       trMap['Image Transition'] = '???';        
@@ -1467,7 +1488,19 @@ function estilImagem(type)
          {
             case 'tvmode':
             {
-               stilo+="height: 200; width: 300; border-radius: 12;";     
+               stilo+="height: 200; width: 300; border-radius: 10;";
+               break;
+            }
+            
+            case 'squarecorners':
+            {
+               stilo+="height: 200; width: 300;";
+               break;
+            }
+            
+            case 'widescreen':
+            {
+               stilo+="height: 169; width: 300;";
                break;
             }
       
@@ -1920,13 +1953,13 @@ if (localStorage['SystemNotesTemplate/InfoXML'] == 'true')
    {
       if (device=="0")
       {   
-         document.write(":<br></b><button title=\"Click here to see the source code in GitHub (for arcade systems)\" style= \"color:black;background-color:#009FFF;height:17\" onclick=\"qmc2NEO.openLinkInDefaultBrowser('https://github.com/mamedev/mame/blob/master/src/mame/drivers/$SOURCE_FILE$')\">$SOURCE_FILE$</button><button title=\"Click here to see the source code in GitHub (non-arcade)\" style= \"color:black;background-color:orange;height:17\" onclick=\"qmc2NEO.openLinkInDefaultBrowser('https://github.com/mamedev/mame/blob/master/src/mess/drivers/$SOURCE_FILE$')\">$SOURCE_FILE$</button>");
+         document.write(":<br></b><button title=\"Click here to see the source code in GitHub\" style= \"color:black;background-color:#009FFF;height:17\" onclick=\"qmc2NEO.openLinkInDefaultBrowser('https://github.com/mamedev/mame/blob/master/src/mame/drivers/$SOURCE_FILE$')\">$SOURCE_FILE$</button>");
       }   
       
       /*For devices, all source are stored in same place*/
       else
       { 
-         document.write(":<br></b><button title=\"Click here to see the source code of this device in GitHub\" style= \"color:white;background-color:#007095;height:17\" onclick=\"qmc2NEO.openLinkInDefaultBrowser('https://github.com/mamedev/mame/blob/master/src/mame/drivers/$SOURCE_FILE$')\">$SOURCE_FILE$</button>");
+         document.write(":<br></b><button title=\"Click here to see the source code of this device in GitHub\" style= \"color:white;background-color:#007095;height:17\" onclick=\"qmc2NEO.openLinkInDefaultBrowser('https://github.com/mamedev/mame/blob/8e4ced4b531ac52fb764d9374a7c215bc62a890a/$SOURCE_FILE$')\">$SOURCE_FILE$</button>");
       }
    }
    
@@ -1934,7 +1967,7 @@ if (localStorage['SystemNotesTemplate/InfoXML'] == 'true')
    {
       if (device=="0")
       {
-         document.write("(Arcade): </b><a href=http://git.redump.net/mame/tree/src/mame/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in git.redump.net\">$SOURCE_FILE$</a><br><b>"+tr('Driver')+"(Other): </b><a href=http://git.redump.net/mame/tree/src/mess/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in git.redump.net\">$SOURCE_FILE$</a>"); 
+         document.write(": </b><a href=http://git.redump.net/mame/tree/src/mame/drivers/$SOURCE_FILE$ title=\"Click here to see the source code in git.redump.net\">$SOURCE_FILE$</a>"); 
       }
    
       /*For devices, all source are stored in same place*/
@@ -2995,25 +3028,37 @@ if (localStorage['SystemNotesTemplate/ToggleOptions'] == 'true')
    {
       case  'no':
       {
-         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\" >"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TV Mode')+"</option></select></td>");
+         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\" >"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TV Mode')+" (4:3)</option><option value=\"squarecorners\">"+tr('Preview Image')+": "+tr('Straight-corners')+" (4:3)</option><option value=\"widescreen\">"+tr('Preview Image')+": "+tr('Widescreen')+" (16:9)</option></select></td>");
          break;
       }   
    
       case 'tvmode':
       {
-         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\" selected=\"selected\">"+tr('Preview Image')+": "+tr('TV Mode')+"</option></select></td>"); 
+         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\" selected=\"selected\">"+tr('Preview Image')+": "+tr('TV Mode')+" (4:3)</option><option value=\"squarecorners\">"+tr('Preview Image')+": "+tr('Straight-corners')+" (4:3)</option><option value=\"widescreen\">"+tr('Preview Image')+": "+tr('Widescreen')+" (16:9)</option></select></td>"); 
          break;  
       }
-   
+
+      case 'squarecorners':
+      {
+         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TV Mode')+" (4:3)</option><option value=\"squarecorners\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Straight-corners')+" (4:3)</option><option value=\"widescreen\">"+tr('Preview Image')+": "+tr('Widescreen')+" (16:9)</option></select></td>"); 
+         break;  
+      }
+      
+      case 'widescreen':
+      {
+         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TV Mode')+" (4:3)</option><option value=\"squarecorners\">"+tr('Preview Image')+": "+tr('Straight-corners')+" (4:3)</option><option value=\"widescreen\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Widescreen')+" (16:9)</option></select></td>"); 
+         break;  
+      }      
+      
       case 'bigimage':
       {
-         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TV Mode')+"</option></select></td>"); 
+         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TV Mode')+" (4:3)</option><option value=\"squarecorners\">"+tr('Preview Image')+": "+tr('Straight-corners')+" (4:3)</option><option value=\"widescreen\">"+tr('Preview Image')+": "+tr('Widescreen')+" (16:9)</option></select></td>"); 
          break;    
       }
    
       default:
       {
-         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TV Mode')+"</option></select></td>");  
+         document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TV Mode')+" (4:3)</option><option value=\"squarecorners\">"+tr('Preview Image')+": "+tr('Straight-corners')+" (4:3)</option><option value=\"widescreen\">"+tr('Preview Image')+": "+tr('Widescreen')+" (16:9)</option></select></td>");  
       }
    }
    
