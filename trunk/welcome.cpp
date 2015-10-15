@@ -277,50 +277,6 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList[1].toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 53, osr, 6702) ) {
-			QString oldKeySubString("Gamelist");
-			QString newKeySubString("MachineList");
-			foreach (QString key, startupConfig->allKeys()) {
-				if ( key.contains(oldKeySubString) ) {
-					QVariant value = startupConfig->value(key);
-					startupConfig->remove(key);
-					QString newKey = key.replace(oldKeySubString, newKeySubString);
-					startupConfig->setValue(newKey, value);
-				}
-			}
-		}
-		if ( QMC2_TEST_VERSION(omv, 53, osr, 6711) ) {
-			QString oldKeySubString("MESSDeviceConfigurator");
-			QString newKeySubString("DeviceConfigurator");
-			foreach (QString key, startupConfig->allKeys()) {
-				if ( key.contains(oldKeySubString) ) {
-					QVariant value = startupConfig->value(key);
-					startupConfig->remove(key);
-					QString newKey = key.replace(oldKeySubString, newKeySubString);
-					startupConfig->setValue(newKey, value);
-				}
-			}
-		}
-		if ( QMC2_TEST_VERSION(omv, 53, osr, 6749) ) {
-			QString oldKeySubString("MESS/Configuration/Devices");
-			QString newKeySubString("MAME/Configuration/Devices");
-			foreach (QString key, startupConfig->allKeys()) {
-				if ( key.startsWith(oldKeySubString) ) {
-					QVariant value = startupConfig->value(key);
-					startupConfig->remove(key);
-					QString newKey = key.replace(oldKeySubString, newKeySubString);
-					startupConfig->setValue(newKey, value);
-				}
-			}
-		}
-		if ( QMC2_TEST_VERSION(omv, 53, osr, 6752) ) {
-			QString key("/Network/HTTPProxy/Password");
-			if ( startupConfig->contains(key) ) {
-				QString oldPwd(QMC2_UNCOMPRESS(startupConfig->value("Network/HTTPProxy/Password", QString()).toByteArray()));
-				CryptedByteArray cpw(oldPwd.toLatin1());
-				startupConfig->setValue("Network/HTTPProxy/Password", cpw.encryptedData());
-			}
-		}
 		if ( QMC2_TEST_VERSION(omv, 54, osr, 6810) ) {
 			QStringList oldKeys = QStringList() << "/Frontend/MachineList/EnableRomStateFilter"
 							    << "/Frontend/MachineList/ShowC"
