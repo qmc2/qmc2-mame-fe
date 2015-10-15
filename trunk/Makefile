@@ -461,16 +461,6 @@ ifndef YOUTUBE
 YOUTUBE = 1
 endif
 
-# >>> XCODE3 <<<
-#
-# When this option is set to 1, assume that XCode 3 is used in case of Mac OS X,
-# forcibly overwriting the special handling of Qt 4.8+ to circumvent XCode 4
-# incompatibility
-#
-ifndef XCODE3
-XCODE3 = 0
-endif
-
 # >>> LOCAL_QML_IMPORT_PATH <<<
 #
 # Specifies a local path that's used as an additional path for QML imports. The
@@ -611,16 +601,13 @@ ifneq '$(QMAKEV)' '1'
 ifneq '$(ARCH)' 'Windows'
 QT_LIBVERSION = $(shell $(QMAKE) -v | $(GREP) "Qt version" | $(AWK) '{print $$4}')
 ifeq '$(ARCH)' 'Darwin'
+QMAKEFILE = Makefile.qmake
 QT_LIBTMP = $(shell $(ECHO) $(QT_LIBVERSION) | tr "." " " )
 QT_LIBMAJ = $(shell $(ECHO) $(QT_LIBTMP) | $(AWK) '{ print $$1 }')
 QT_LIBMIN = $(shell $(ECHO) $(QT_LIBTMP) | $(AWK) '{ print $$2 }')
-QT_LIB48PLUS = $(shell [ $(QT_LIBMAJ) -ge 4 ] && [ $(QT_LIBMIN) -ge 8 ] && $(ECHO) true)
-ifeq '$(XCODE3)' '0'
-ifeq '$(QT_LIB48PLUS)' 'true'
-QMAKEFILE = Makefile.qmake
-endif
-else
-QT_LIB48PLUS = false
+QT_LIB48PLUS = $(shell (([ $(QT_LIBMAJ) -ge 4 ] && [ $(QT_LIBMIN) -ge 8 ]) || [ $(QT_LIBMAJ) -ge 5 ]) && $(ECHO) true)
+ifneq '$(QT_LIB48PLUS)' 'true'
+$(error Sorry, Qt 4.8+ not found!)
 endif
 endif
 endif
