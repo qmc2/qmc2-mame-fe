@@ -399,11 +399,11 @@ void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
 			action->setVisible(!iw->useZip());
 			if ( action->isVisible() ) {
 				activateUseAsMenu = true;
-				action->setText(actionText + " (" + iw->primaryPathFor(embedder->gameName) + ")");
+				action->setText(actionText + " (" + iw->primaryPathFor(embedder->machineName) + ")");
 			}
 		} else if ( sws ) {
 			if ( !qmc2UseSoftwareSnapFile ) {
-				QProcess *proc = qmc2ProcessManager->process(embedder->gameID.toInt());
+				QProcess *proc = qmc2ProcessManager->process(embedder->machineId.toInt());
 				QStringList softwareLists = qmc2ProcessManager->softwareListsMap[proc];
 				QStringList softwareNames = qmc2ProcessManager->softwareNamesMap[proc];
 				if ( softwareLists.count() > 1 && softwareNames.count() > 1 ) {
@@ -456,15 +456,15 @@ void SnapshotViewer::useAsImage()
 	switch ( cachePrefixes.indexOf(dataList[0]) ) {
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_PREVIEW:
 			if ( qmc2Preview )
-				qmc2Preview->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+				qmc2Preview->replaceImage(embedder->machineName, embedderOptions->snapshotMap[myItem]);
 			break;
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_TITLE:
 			if ( qmc2Title )
-				qmc2Title->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+				qmc2Title->replaceImage(embedder->machineName, embedderOptions->snapshotMap[myItem]);
 			break;
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_SWS:
 			if ( qmc2SoftwareSnap ) {
-				QProcess *proc = qmc2ProcessManager->process(embedder->gameID.toInt());
+				QProcess *proc = qmc2ProcessManager->process(embedder->machineId.toInt());
 				QStringList softwareLists = qmc2ProcessManager->softwareListsMap[proc];
 				QStringList softwareNames = qmc2ProcessManager->softwareNamesMap[proc];
 				if ( softwareLists.count() > 0 && softwareNames.count() > 0 ) {
@@ -475,23 +475,23 @@ void SnapshotViewer::useAsImage()
 			break;
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_FLYER:
 			if ( qmc2Flyer )
-				qmc2Flyer->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+				qmc2Flyer->replaceImage(embedder->machineName, embedderOptions->snapshotMap[myItem]);
 			break;
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_CABINET:
 			if ( qmc2Cabinet )
-				qmc2Cabinet->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+				qmc2Cabinet->replaceImage(embedder->machineName, embedderOptions->snapshotMap[myItem]);
 			break;
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_CONTROLLER:
 			if ( qmc2Controller )
-				qmc2Controller->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+				qmc2Controller->replaceImage(embedder->machineName, embedderOptions->snapshotMap[myItem]);
 			break;
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_MARQUEE:
 			if ( qmc2Marquee )
-				qmc2Marquee->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+				qmc2Marquee->replaceImage(embedder->machineName, embedderOptions->snapshotMap[myItem]);
 			break;
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_PCB:
 			if ( qmc2PCB )
-				qmc2PCB->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+				qmc2PCB->replaceImage(embedder->machineName, embedderOptions->snapshotMap[myItem]);
 			break;
 	}
 }
@@ -514,7 +514,7 @@ void SnapshotViewer::saveAs()
 
 	if ( fileName.isEmpty() ) {
 		Embedder *embedder = (Embedder *)(parent()->parent());
-		fileName = embedder->gameName + ".png";
+		fileName = embedder->machineName + ".png";
 		if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "SnapshotViewer/LastStoragePath") )
 			fileName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SnapshotViewer/LastStoragePath").toString());
 	}

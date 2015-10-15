@@ -912,32 +912,32 @@ void ArcadeSettings::removeEmuInfoImportDates()
     remove(QString("%1/DatInfoDatabase/EmuInfoImportDates").arg(emulatorPrefix));
 }
 
-QStringList ArcadeSettings::gameInfoImportFiles()
+QStringList ArcadeSettings::machineInfoImportFiles()
 {
-    return value(QString("%1/DatInfoDatabase/GameInfoImportFiles").arg(emulatorPrefix), QStringList()).toStringList();
+    return value(QString("%1/DatInfoDatabase/MachineInfoImportFiles").arg(emulatorPrefix), QStringList()).toStringList();
 }
 
-void ArcadeSettings::setGameInfoImportFiles(QStringList &files)
+void ArcadeSettings::setMachineInfoImportFiles(QStringList &files)
 {
-    setValue(QString("%1/DatInfoDatabase/GameInfoImportFiles").arg(emulatorPrefix), files);
+    setValue(QString("%1/DatInfoDatabase/MachineInfoImportFiles").arg(emulatorPrefix), files);
 }
 
-void ArcadeSettings::removeGameInfoImportFiles()
+void ArcadeSettings::removeMachineInfoImportFiles()
 {
-    remove(QString("%1/DatInfoDatabase/GameInfoImportFiles").arg(emulatorPrefix));
+    remove(QString("%1/DatInfoDatabase/MachineInfoImportFiles").arg(emulatorPrefix));
 }
 
-QStringList ArcadeSettings::gameInfoImportDates()
+QStringList ArcadeSettings::machineInfoImportDates()
 {
-    return value(QString("%1/DatInfoDatabase/GameInfoImportDates").arg(emulatorPrefix), QStringList()).toStringList();
+    return value(QString("%1/DatInfoDatabase/MachineInfoImportDates").arg(emulatorPrefix), QStringList()).toStringList();
 }
 
-void ArcadeSettings::setGameInfoImportDates(QStringList &dates)
+void ArcadeSettings::setMachineInfoImportDates(QStringList &dates)
 {
-    setValue(QString("%1/DatInfoDatabase/GameInfoImportDates").arg(emulatorPrefix), dates);
+    setValue(QString("%1/DatInfoDatabase/MachineInfoImportDates").arg(emulatorPrefix), dates);
 }
 
-void ArcadeSettings::removeGameInfoImportDates()
+void ArcadeSettings::removeMachineInfoImportDates()
 {
-    remove(QString("%1/DatInfoDatabase/GameInfoImportDates").arg(emulatorPrefix));
+    remove(QString("%1/DatInfoDatabase/MachineInfoImportDates").arg(emulatorPrefix));
 }

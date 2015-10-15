@@ -27,8 +27,8 @@ class Embedder : public QWidget
 		WId embeddedWinId;
 		EmbedderOptions *embedderOptions;
 		QGridLayout *gridLayout;
-		QString gameName;
-		QString gameID;
+		QString machineName;
+		QString machineId;
 		QSize nativeResolution;
 		int cmLeft, cmTop, cmRight, cmBottom;
 #if defined(QMC2_OS_UNIX)

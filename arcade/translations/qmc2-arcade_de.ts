@@ -27,161 +27,164 @@
 <context>
     <name>DatInfoDatabaseManager</name>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="43"/>
+        <location filename="../datinfodbmgr.cpp" line="51"/>
         <source>WARNING: failed to open DAT-info database &apos;%1&apos;: error = &apos;%2&apos;</source>
         <translation>WARNUNG: DAT-Info Datenbank &apos;%1&apos; konnte nicht geöffnet werden: Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="63"/>
-        <location filename="../datinfodbmgr.cpp" line="90"/>
-        <location filename="../datinfodbmgr.cpp" line="104"/>
-        <location filename="../datinfodbmgr.cpp" line="131"/>
-        <location filename="../datinfodbmgr.cpp" line="147"/>
-        <location filename="../datinfodbmgr.cpp" line="180"/>
-        <location filename="../datinfodbmgr.cpp" line="193"/>
-        <location filename="../datinfodbmgr.cpp" line="223"/>
-        <location filename="../datinfodbmgr.cpp" line="253"/>
-        <location filename="../datinfodbmgr.cpp" line="265"/>
-        <location filename="../datinfodbmgr.cpp" line="295"/>
-        <location filename="../datinfodbmgr.cpp" line="311"/>
-        <location filename="../datinfodbmgr.cpp" line="343"/>
-        <location filename="../datinfodbmgr.cpp" line="355"/>
+        <location filename="../datinfodbmgr.cpp" line="71"/>
+        <location filename="../datinfodbmgr.cpp" line="98"/>
+        <location filename="../datinfodbmgr.cpp" line="112"/>
+        <location filename="../datinfodbmgr.cpp" line="139"/>
+        <location filename="../datinfodbmgr.cpp" line="155"/>
+        <location filename="../datinfodbmgr.cpp" line="188"/>
+        <location filename="../datinfodbmgr.cpp" line="201"/>
+        <location filename="../datinfodbmgr.cpp" line="231"/>
+        <location filename="../datinfodbmgr.cpp" line="261"/>
+        <location filename="../datinfodbmgr.cpp" line="273"/>
+        <location filename="../datinfodbmgr.cpp" line="303"/>
+        <location filename="../datinfodbmgr.cpp" line="319"/>
+        <location filename="../datinfodbmgr.cpp" line="351"/>
+        <location filename="../datinfodbmgr.cpp" line="363"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht von der DAT-Info Datenbank gelesen werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="78"/>
-        <location filename="../datinfodbmgr.cpp" line="119"/>
-        <location filename="../datinfodbmgr.cpp" line="166"/>
-        <location filename="../datinfodbmgr.cpp" line="240"/>
-        <location filename="../datinfodbmgr.cpp" line="329"/>
+        <location filename="../datinfodbmgr.cpp" line="86"/>
+        <location filename="../datinfodbmgr.cpp" line="127"/>
+        <location filename="../datinfodbmgr.cpp" line="174"/>
+        <location filename="../datinfodbmgr.cpp" line="248"/>
+        <location filename="../datinfodbmgr.cpp" line="337"/>
         <source>WARNING: failed to add &apos;%1&apos; to DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht zur DAT-Info Datenbank hinzugefügt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="85"/>
-        <location filename="../datinfodbmgr.cpp" line="126"/>
-        <location filename="../datinfodbmgr.cpp" line="175"/>
-        <location filename="../datinfodbmgr.cpp" line="248"/>
-        <location filename="../datinfodbmgr.cpp" line="338"/>
+        <location filename="../datinfodbmgr.cpp" line="93"/>
+        <location filename="../datinfodbmgr.cpp" line="134"/>
+        <location filename="../datinfodbmgr.cpp" line="183"/>
+        <location filename="../datinfodbmgr.cpp" line="256"/>
+        <location filename="../datinfodbmgr.cpp" line="346"/>
         <source>WARNING: failed to update &apos;%1&apos; in DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht in der DAT-Info Datenbank geändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="207"/>
-        <location filename="../datinfodbmgr.cpp" line="279"/>
-        <location filename="../datinfodbmgr.cpp" line="369"/>
+        <location filename="../datinfodbmgr.cpp" line="215"/>
+        <location filename="../datinfodbmgr.cpp" line="287"/>
+        <location filename="../datinfodbmgr.cpp" line="377"/>
         <source>WARNING: failed to fetch row count from DAT-info database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Anzahl der Tabellenzeilen konnte nicht aus der DAT-Info Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="399"/>
-        <location filename="../datinfodbmgr.cpp" line="410"/>
-        <location filename="../datinfodbmgr.cpp" line="421"/>
+        <location filename="../datinfodbmgr.cpp" line="407"/>
+        <location filename="../datinfodbmgr.cpp" line="418"/>
+        <location filename="../datinfodbmgr.cpp" line="429"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: Die Einstellung &apos;%1&apos; konnte in der DAT-Info Datenbank nicht verändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="429"/>
-        <location filename="../datinfodbmgr.cpp" line="434"/>
-        <location filename="../datinfodbmgr.cpp" line="454"/>
-        <location filename="../datinfodbmgr.cpp" line="459"/>
-        <location filename="../datinfodbmgr.cpp" line="479"/>
-        <location filename="../datinfodbmgr.cpp" line="484"/>
-        <location filename="../datinfodbmgr.cpp" line="504"/>
+        <location filename="../datinfodbmgr.cpp" line="437"/>
+        <location filename="../datinfodbmgr.cpp" line="442"/>
+        <location filename="../datinfodbmgr.cpp" line="462"/>
+        <location filename="../datinfodbmgr.cpp" line="467"/>
+        <location filename="../datinfodbmgr.cpp" line="487"/>
+        <location filename="../datinfodbmgr.cpp" line="492"/>
+        <location filename="../datinfodbmgr.cpp" line="512"/>
         <source>WARNING: failed to remove %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: %1 Tabelle konnte nicht entfernt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="429"/>
-        <location filename="../datinfodbmgr.cpp" line="434"/>
-        <location filename="../datinfodbmgr.cpp" line="441"/>
-        <location filename="../datinfodbmgr.cpp" line="446"/>
+        <location filename="../datinfodbmgr.cpp" line="437"/>
+        <location filename="../datinfodbmgr.cpp" line="442"/>
+        <location filename="../datinfodbmgr.cpp" line="449"/>
+        <location filename="../datinfodbmgr.cpp" line="454"/>
         <source>software-info</source>
         <translation>Software-Info</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="441"/>
-        <location filename="../datinfodbmgr.cpp" line="446"/>
-        <location filename="../datinfodbmgr.cpp" line="466"/>
-        <location filename="../datinfodbmgr.cpp" line="471"/>
-        <location filename="../datinfodbmgr.cpp" line="491"/>
-        <location filename="../datinfodbmgr.cpp" line="496"/>
-        <location filename="../datinfodbmgr.cpp" line="511"/>
+        <location filename="../datinfodbmgr.cpp" line="449"/>
+        <location filename="../datinfodbmgr.cpp" line="454"/>
+        <location filename="../datinfodbmgr.cpp" line="474"/>
+        <location filename="../datinfodbmgr.cpp" line="479"/>
+        <location filename="../datinfodbmgr.cpp" line="499"/>
+        <location filename="../datinfodbmgr.cpp" line="504"/>
+        <location filename="../datinfodbmgr.cpp" line="519"/>
         <source>WARNING: failed to create %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: %1 Tabelle konnte nicht erstellt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="454"/>
-        <location filename="../datinfodbmgr.cpp" line="459"/>
-        <location filename="../datinfodbmgr.cpp" line="466"/>
-        <location filename="../datinfodbmgr.cpp" line="471"/>
+        <location filename="../datinfodbmgr.cpp" line="462"/>
+        <location filename="../datinfodbmgr.cpp" line="467"/>
+        <location filename="../datinfodbmgr.cpp" line="474"/>
+        <location filename="../datinfodbmgr.cpp" line="479"/>
         <source>emu-info</source>
         <translation>Emu-Info</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="479"/>
-        <location filename="../datinfodbmgr.cpp" line="484"/>
-        <location filename="../datinfodbmgr.cpp" line="491"/>
-        <location filename="../datinfodbmgr.cpp" line="496"/>
+        <location filename="../datinfodbmgr.cpp" line="487"/>
+        <location filename="../datinfodbmgr.cpp" line="492"/>
+        <location filename="../datinfodbmgr.cpp" line="499"/>
+        <location filename="../datinfodbmgr.cpp" line="504"/>
+        <location filename="../datinfodbmgr.cpp" line="968"/>
+        <location filename="../datinfodbmgr.cpp" line="970"/>
+        <location filename="../datinfodbmgr.cpp" line="972"/>
         <source>machine-info</source>
         <translation>Maschinen-Info</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="504"/>
-        <location filename="../datinfodbmgr.cpp" line="511"/>
+        <location filename="../datinfodbmgr.cpp" line="512"/>
+        <location filename="../datinfodbmgr.cpp" line="519"/>
         <source>meta-data</source>
         <translation>Meta-Daten</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="573"/>
-        <location filename="../datinfodbmgr.cpp" line="643"/>
-        <location filename="../datinfodbmgr.cpp" line="648"/>
-        <location filename="../datinfodbmgr.cpp" line="652"/>
-        <location filename="../datinfodbmgr.cpp" line="714"/>
-        <location filename="../datinfodbmgr.cpp" line="768"/>
-        <location filename="../datinfodbmgr.cpp" line="771"/>
-        <location filename="../datinfodbmgr.cpp" line="773"/>
-        <location filename="../datinfodbmgr.cpp" line="778"/>
-        <location filename="../datinfodbmgr.cpp" line="784"/>
-        <location filename="../datinfodbmgr.cpp" line="788"/>
-        <location filename="../datinfodbmgr.cpp" line="852"/>
-        <location filename="../datinfodbmgr.cpp" line="915"/>
-        <location filename="../datinfodbmgr.cpp" line="918"/>
-        <location filename="../datinfodbmgr.cpp" line="921"/>
-        <location filename="../datinfodbmgr.cpp" line="925"/>
-        <location filename="../datinfodbmgr.cpp" line="930"/>
-        <location filename="../datinfodbmgr.cpp" line="934"/>
+        <location filename="../datinfodbmgr.cpp" line="581"/>
+        <location filename="../datinfodbmgr.cpp" line="651"/>
+        <location filename="../datinfodbmgr.cpp" line="656"/>
+        <location filename="../datinfodbmgr.cpp" line="660"/>
+        <location filename="../datinfodbmgr.cpp" line="722"/>
+        <location filename="../datinfodbmgr.cpp" line="776"/>
+        <location filename="../datinfodbmgr.cpp" line="779"/>
+        <location filename="../datinfodbmgr.cpp" line="781"/>
+        <location filename="../datinfodbmgr.cpp" line="786"/>
+        <location filename="../datinfodbmgr.cpp" line="792"/>
+        <location filename="../datinfodbmgr.cpp" line="796"/>
+        <location filename="../datinfodbmgr.cpp" line="860"/>
+        <location filename="../datinfodbmgr.cpp" line="923"/>
+        <location filename="../datinfodbmgr.cpp" line="926"/>
+        <location filename="../datinfodbmgr.cpp" line="929"/>
+        <location filename="../datinfodbmgr.cpp" line="933"/>
+        <location filename="../datinfodbmgr.cpp" line="938"/>
+        <location filename="../datinfodbmgr.cpp" line="942"/>
         <source>DAT-info database</source>
         <translation>DAT-Info Datenbank</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="573"/>
-        <location filename="../datinfodbmgr.cpp" line="714"/>
-        <location filename="../datinfodbmgr.cpp" line="852"/>
+        <location filename="../datinfodbmgr.cpp" line="581"/>
+        <location filename="../datinfodbmgr.cpp" line="722"/>
+        <location filename="../datinfodbmgr.cpp" line="860"/>
         <source>importing %1 from &apos;%2&apos;</source>
         <translation>Importiere %1 von &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="573"/>
-        <location filename="../datinfodbmgr.cpp" line="643"/>
+        <location filename="../datinfodbmgr.cpp" line="581"/>
+        <location filename="../datinfodbmgr.cpp" line="651"/>
         <source>software info-texts</source>
         <translation>Software Info-Texte</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="643"/>
-        <location filename="../datinfodbmgr.cpp" line="778"/>
-        <location filename="../datinfodbmgr.cpp" line="925"/>
+        <location filename="../datinfodbmgr.cpp" line="651"/>
+        <location filename="../datinfodbmgr.cpp" line="786"/>
+        <location filename="../datinfodbmgr.cpp" line="933"/>
         <source>done (importing %1 from &apos;%2&apos;)</source>
         <translation>Fertig (Importiere %1 von &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="648"/>
+        <location filename="../datinfodbmgr.cpp" line="656"/>
         <source>WARNING: can&apos;t open software info file &apos;%1&apos;</source>
         <translation>WARNUNG: kann Software Info Datei &apos;%1&apos; nicht öffnen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../datinfodbmgr.cpp" line="652"/>
+        <location filename="../datinfodbmgr.cpp" line="660"/>
         <source>%n software info record(s) imported</source>
         <translation>
             <numerusform>%n Software Info Datensatz importiert</numerusform>
@@ -189,33 +192,33 @@
         </translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="714"/>
-        <location filename="../datinfodbmgr.cpp" line="778"/>
+        <location filename="../datinfodbmgr.cpp" line="722"/>
+        <location filename="../datinfodbmgr.cpp" line="786"/>
         <source>emulator info-texts</source>
         <translation>Emulator Info-Texte</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="768"/>
+        <location filename="../datinfodbmgr.cpp" line="776"/>
         <source>WARNING: missing &apos;$end&apos; in emulator info file %1</source>
         <translation>WARNUNG: &apos;$end&apos; fehlt in Emulator Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="771"/>
+        <location filename="../datinfodbmgr.cpp" line="779"/>
         <source>WARNING: missing &apos;$mame&apos; in emulator info file %1</source>
         <translation>WARNUNG: &apos;$mame&apos; fehlt in Emulator Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="773"/>
+        <location filename="../datinfodbmgr.cpp" line="781"/>
         <source>WARNING: missing &apos;$info&apos; in emulator info file %1</source>
         <translation>WARNUNG: &apos;$info&apos; fehlt in Emulator Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="784"/>
+        <location filename="../datinfodbmgr.cpp" line="792"/>
         <source>WARNING: can&apos;t open emulator info file %1</source>
         <translation>WARNUNG: kann Emulator Info Datei &apos;%1&apos; nicht öffnen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../datinfodbmgr.cpp" line="788"/>
+        <location filename="../datinfodbmgr.cpp" line="796"/>
         <source>%n emulator info record(s) imported</source>
         <translation>
             <numerusform>%n Emulator Info Datensatz importiert</numerusform>
@@ -223,38 +226,45 @@
         </translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="852"/>
-        <location filename="../datinfodbmgr.cpp" line="925"/>
+        <location filename="../datinfodbmgr.cpp" line="860"/>
+        <location filename="../datinfodbmgr.cpp" line="933"/>
         <source>system info-texts</source>
         <translation>System Info-Texte</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="915"/>
+        <location filename="../datinfodbmgr.cpp" line="923"/>
         <source>WARNING: missing &apos;$end&apos; in machine info file %1</source>
         <translation>WARNUNG: &apos;$end&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="918"/>
+        <location filename="../datinfodbmgr.cpp" line="926"/>
         <source>WARNING: missing &apos;$bio&apos; in machine info file %1</source>
         <translation>WARNUNG: &apos;$bio&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="921"/>
+        <location filename="../datinfodbmgr.cpp" line="929"/>
         <source>WARNING: missing &apos;$info&apos; in machine info file %1</source>
         <translation>WARNUNG: &apos;$info&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="930"/>
+        <location filename="../datinfodbmgr.cpp" line="938"/>
         <source>WARNING: can&apos;t open machine info file %1</source>
         <translation>WARNUNG: kann Maschinen Info Datei &apos;%1&apos; nicht öffnen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../datinfodbmgr.cpp" line="934"/>
+        <location filename="../datinfodbmgr.cpp" line="942"/>
         <source>%n machine info record(s) imported</source>
         <translation>
             <numerusform>%n Maschinen Info Datensatz importiert</numerusform>
             <numerusform>%n Maschinen Info Datensätze importiert</numerusform>
         </translation>
+    </message>
+    <message>
+        <location filename="../datinfodbmgr.cpp" line="968"/>
+        <location filename="../datinfodbmgr.cpp" line="970"/>
+        <location filename="../datinfodbmgr.cpp" line="972"/>
+        <source>WARNING: failed to alter %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
+        <translation>WARNUNG: %1 Tabelle konnte nicht geändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
 </context>
 <context>
@@ -575,67 +585,67 @@
         <translation>QMC2 Arcade</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="262"/>
+        <location filename="../main.cpp" line="261"/>
         <source>%1 is not a valid graphics-system - available graphics-systems: %2</source>
         <translation>%1 ist kein gültiges Grafik-System - verfügare Grafik-Systeme: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="278"/>
+        <location filename="../main.cpp" line="277"/>
         <source>%1 is not a valid emulator-mode - available emulator-modes: %2</source>
         <translation>%1 ist kein gültiger Emulator-Modus - verfügare Emulator-Modi: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="296"/>
+        <location filename="../main.cpp" line="295"/>
         <source>%1 is not a valid console-mode - available console-modes: %2</source>
         <translation>%1 ist kein gültiger Konsolen-Modus - verfügare Konsolen-Modi: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="319"/>
+        <location filename="../main.cpp" line="318"/>
         <source>%1 is not valid theme - available themes: %2</source>
         <translation>%1 ist kein gültiger Theme - verfügare Themes: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="334"/>
+        <location filename="../main.cpp" line="333"/>
         <source>%1 is not a valid %2 theme - available %2 themes: %3</source>
         <translation>%1 ist kein gültiger %2 Theme - verfügare %2 Themes: %3</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="334"/>
+        <location filename="../main.cpp" line="333"/>
         <source>(none)</source>
         <translation>(keine)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="389"/>
+        <location filename="../main.cpp" line="388"/>
         <source>emulator-mode: %1</source>
         <translation>Emulator-Modus: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="394"/>
+        <location filename="../main.cpp" line="393"/>
         <source>language: %1</source>
         <translation>Sprache: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="395"/>
+        <location filename="../main.cpp" line="394"/>
         <source>theme: %1</source>
         <translation>Theme: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="392"/>
+        <location filename="../main.cpp" line="391"/>
         <source>graphics-system: %1</source>
         <translation>Grafik-System: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="390"/>
+        <location filename="../main.cpp" line="389"/>
         <source>console-mode: %1</source>
         <translation>Konsolen-Modus: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="427"/>
+        <location filename="../main.cpp" line="426"/>
         <source>Starting QML viewer using theme &apos;%1&apos;</source>
         <translation>Starte QML Anzeige unter Verwendung des Themes &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="469"/>
+        <location filename="../main.cpp" line="468"/>
         <source>QML viewer not started - please close the console window to exit</source>
         <translation>QML Anzeige nicht gestartet - bitte Konsolenfenster schließen um das Programm zu beenden</translation>
     </message>

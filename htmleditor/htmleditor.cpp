@@ -1256,7 +1256,7 @@ QString HtmlEditor::comment(QString id)
 
 QString HtmlEditor::systemInfo(QString id)
 {
-	QString sysInfo = qmc2MachineList->datInfoDb()->gameInfo(id);
+	QString sysInfo = qmc2MachineList->datInfoDb()->machineInfo(id);
 	if ( sysInfo.isEmpty() )
 		sysInfo = tr("No data available");
 	else

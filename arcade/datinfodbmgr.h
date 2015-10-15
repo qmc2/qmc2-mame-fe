@@ -31,18 +31,12 @@ class DatInfoDatabaseManager : public QObject
 		qint64 emuInfoRowCount();
 		bool emuInfoImportRequired(QStringList pathList);
 
-		QString gameInfo(QString id);
-		QString machineInfo(QString id) { return gameInfo(id); }
-		QString gameInfoEmulator(QString id);
-		QString machineInfoEmulator(QString id) { return gameInfoEmulator(id); }
-		void setGameInfo(QString id, QString infotext, QString emulator);
-		void setMachineInfo(QString id, QString infotext, QString emulator) { setGameInfo(id, infotext, emulator); }
-		bool existsGameInfo(QString id);
-		bool existsMachineInfo(QString id) { return existsGameInfo(id); }
-		qint64 gameInfoRowCount();
-		qint64 machineInfoRowCount() { return gameInfoRowCount(); }
-		bool gameInfoImportRequired(QStringList pathList);
-		bool machineInfoImportRequired(QStringList pathList) { return gameInfoImportRequired(pathList); }
+        QString machineInfo(QString id);
+        QString machineInfoEmulator(QString id);
+        void setMachineInfo(QString id, QString infotext, QString emulator);
+        bool existsMachineInfo(QString id);
+        qint64 machineInfoRowCount();
+        bool machineInfoImportRequired(QStringList pathList);
 
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
@@ -51,15 +45,17 @@ class DatInfoDatabaseManager : public QObject
 		void setSyncMode(uint syncMode);
 		void setJournalMode(uint journalMode);
 
+        void updateDatabaseFormat(int from, int to);
+
 	public slots:
 		void recreateSoftwareInfoTable();
 		void recreateEmuInfoTable();
-		void recreateGameInfoTable();
+        void recreateMachineInfoTable();
 		void recreateMetaDataTable();
 		void recreateDatabase();
 		void importSoftwareInfo(QStringList pathList, bool fromScratch = true);
 		void importEmuInfo(QStringList pathList, bool fromScratch = true);
-		void importGameInfo(QStringList pathList, QStringList emulatorList, bool fromScratch = true);
+        void importMachineInfo(QStringList pathList, QStringList emulatorList, bool fromScratch = true);
 		void beginTransaction() { m_db.driver()->beginTransaction(); }
 		void commitTransaction() { m_db.driver()->commitTransaction(); }
 
@@ -67,7 +63,7 @@ class DatInfoDatabaseManager : public QObject
 		mutable QSqlDatabase m_db;
 		QString m_softwareInfoTableName;
 		QString m_emuInfoTableName;
-		QString m_gameInfoTableName;
+        QString m_machineInfoTableName;
 		QString m_metaDataTableName;
 		QString m_connectionName;
 };

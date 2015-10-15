@@ -33,8 +33,8 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 	setAttribute(Qt::WA_DontCreateNativeAncestors);
 	createWinId();
 
-	gameName = name;
-	gameID = id;
+	machineName = name;
+	machineId = id;
 	embeddedWinId = wid;
 #if defined(QMC2_OS_UNIX)
 	embedded = pauseKeyPressed = pausing = resuming = false;
@@ -161,7 +161,7 @@ void Embedder::embed()
 	fullScreen = false;
 	embedded = true;
 	embeddingWindow = false;
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = %2").arg(gameID).arg("0x" + QString::number((qulonglong)windowHandle, 16)));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = %2").arg(machineId).arg("0x" + QString::number((qulonglong)windowHandle, 16)));
 	SetParent(windowHandle, embedContainer->winId());
 	QTimer::singleShot(0, this, SLOT(updateWindow()));
 	checkTimer.start(250);
@@ -178,7 +178,7 @@ void Embedder::release()
 	embedContainer->clearFocus();
 #if defined(QMC2_OS_UNIX)
 	embedContainer->discardClient();
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(gameID).arg("0x" + QString::number(embeddedWinId, 16)));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(machineId).arg("0x" + QString::number(embeddedWinId, 16)));
 	qApp->syncX();
 	XUnmapWindow(QX11Info::display(), embeddedWinId);
 	XMapWindow(QX11Info::display(), embeddedWinId);
@@ -196,7 +196,7 @@ void Embedder::release()
 	UpdateWindow(windowHandle);
 	qmc2MainWindow->raise();
 	qmc2MainWindow->activateWindow();
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(gameID).arg("0x" + QString::number((qulonglong)windowHandle, 16)));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(machineId).arg("0x" + QString::number((qulonglong)windowHandle, 16)));
 	windowHandle = embeddedWinId = 0;
 	releasingWindow = false;
 #endif
@@ -419,7 +419,7 @@ void Embedder::simulatePauseKey()
 void Embedder::clientEmbedded()
 {
 	embedded = true;
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = %2").arg(gameID).arg("0x" + QString::number(embeddedWinId, 16)));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = %2").arg(machineId).arg("0x" + QString::number(embeddedWinId, 16)));
 
 	// this works around a Qt bug when the tool bar is vertical and obscured by the emulator window before embedding
 	QTimer::singleShot(0, qmc2MainWindow->toolbar, SLOT(update()));
@@ -466,11 +466,11 @@ void Embedder::checkWindow()
 
 	LONG currentStyle = GetWindowLong(windowHandle, GWL_STYLE);
 	if ( currentStyle == 0 ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("window ID for emulator #%1 lost, looking for replacement").arg(gameID));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("window ID for emulator #%1 lost, looking for replacement").arg(machineId));
 		qApp->processEvents();
 		HWND hwnd = NULL;
 		int retries = 0;
-		Q_PID gamePid = qmc2ProcessManager->getPid(gameID.toInt());
+		Q_PID gamePid = qmc2ProcessManager->getPid(machineId.toInt());
 		while ( gamePid && !hwnd && retries++ < QMC2_MAX_WININFO_RETRIES ) {
 			hwnd = winFindWindowHandleOfProcess(gamePid, "MAME:");
 			if ( !hwnd )
@@ -486,7 +486,7 @@ void Embedder::checkWindow()
 			SetParent(windowHandle, embedContainer->winId());
 			SetWindowLong(windowHandle, GWL_STYLE, QMC2_EMBEDDED_STYLE);
 			MoveWindow(windowHandle, 0, 0, embedContainer->width(), embedContainer->height(), true);
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("using replacement window ID %1 for emulator #%2").arg((qulonglong)windowHandle).arg(gameID));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("using replacement window ID %1 for emulator #%2").arg((qulonglong)windowHandle).arg(machineId));
 			UpdateWindow(windowHandle);
   			SetWindowPos(windowHandle, HWND_TOPMOST, 0, 0, embedContainer->width(), embedContainer->height(), SWP_SHOWWINDOW);
 			EnableWindow(windowHandle, true);
@@ -494,7 +494,7 @@ void Embedder::checkWindow()
 			checkingWindow = false;
 			return;
 		} else {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("no replacement window ID found for emulator #%1, closing embedder").arg(gameID));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("no replacement window ID found for emulator #%1, closing embedder").arg(machineId));
 			checkTimer.stop();
 			windowHandle = embeddedWinId = 0;
 			QTimer::singleShot(0, this, SLOT(clientClosed()));
@@ -504,7 +504,7 @@ void Embedder::checkWindow()
 		fullScreen = false;
 	} else if ( currentStyle != QMC2_EMBEDDED_STYLE ) {
 		if ( currentStyle & WS_OVERLAPPEDWINDOW ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("embedded emulator #%1 is returning from full-screen").arg(gameID));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("embedded emulator #%1 is returning from full-screen").arg(machineId));
 			fullScreen = false;
 			QTimer::singleShot(0, this, SLOT(updateWindow()));
 			checkingWindow = false;
@@ -514,7 +514,7 @@ void Embedder::checkWindow()
 				int desktopWidth, desktopHeight;
 				desktopWidth = qApp->desktop()->width();
 				desktopHeight = qApp->desktop()->height();
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("embedded emulator #%1 is switching to full-screen, using desktop-resolution %2x%3").arg(gameID).arg(desktopWidth).arg(desktopHeight));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("embedded emulator #%1 is switching to full-screen, using desktop-resolution %2x%3").arg(machineId).arg(desktopWidth).arg(desktopHeight));
   				SetWindowPos(windowHandle, HWND_BOTTOM, 0, 0, desktopWidth, desktopHeight, SWP_HIDEWINDOW);
 				SetParent(windowHandle, NULL);
 				SetWindowLong(windowHandle, GWL_STYLE, currentStyle | WS_POPUP);

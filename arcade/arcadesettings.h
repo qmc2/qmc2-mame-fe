@@ -220,12 +220,12 @@ public slots:
     QStringList emuInfoImportDates();
     void setEmuInfoImportDates(QStringList &);
     void removeEmuInfoImportDates();
-    QStringList gameInfoImportFiles();
-    void setGameInfoImportFiles(QStringList &);
-    void removeGameInfoImportFiles();
-    QStringList gameInfoImportDates();
-    void setGameInfoImportDates(QStringList &);
-    void removeGameInfoImportDates();
+    QStringList machineInfoImportFiles();
+    void setMachineInfoImportFiles(QStringList &);
+    void removeMachineInfoImportFiles();
+    QStringList machineInfoImportDates();
+    void setMachineInfoImportDates(QStringList &);
+    void removeMachineInfoImportDates();
 
 private:
     QMap<QString, QMap<QString, QVariant> > m_themeDefaults;

@@ -237,7 +237,6 @@ QHash<QString, QString> qmc2ParentHash;
 QHash<QString, QIcon> qmc2IconHash;
 QHash<QString, QPair<QString, QAction *> > qmc2ShortcutHash;
 QHash<QString, QString> qmc2CustomShortcutHash;
-QHash<QString, QByteArray *> qmc2GameInfoDB;
 QList<QWidget *> qmc2ActiveViews;
 QString qmc2DemoGame;
 QStringList qmc2DemoArgs;
@@ -4391,16 +4390,16 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 			if ( qmc2CurrentItem != qmc2LastGameInfoItem ) {
 				tabGameInfo->setUpdatesEnabled(false);
-				QString gameInfoKey = gameName;
-				if ( !qmc2MachineList->datInfoDb()->existsGameInfo(gameInfoKey) ) {
-					gameInfoKey = qmc2ParentHash[gameName];
-					if ( !qmc2MachineList->datInfoDb()->existsGameInfo(gameInfoKey) )
-						gameInfoKey.clear();
+				QString machineInfoKey = gameName;
+				if ( !qmc2MachineList->datInfoDb()->existsMachineInfo(machineInfoKey) ) {
+					machineInfoKey = qmc2ParentHash[gameName];
+					if ( !qmc2MachineList->datInfoDb()->existsMachineInfo(machineInfoKey) )
+						machineInfoKey.clear();
 				}
-				if ( !gameInfoKey.isEmpty() ) {
-					QString gameInfoText = qmc2MachineList->datInfoDb()->gameInfo(gameInfoKey);
+				if ( !machineInfoKey.isEmpty() ) {
+					QString gameInfoText = qmc2MachineList->datInfoDb()->machineInfo(machineInfoKey);
 					if ( !gameInfoText.isEmpty() ) {
-						QString emulator = qmc2MachineList->datInfoDb()->gameInfoEmulator(gameInfoKey);
+						QString emulator = qmc2MachineList->datInfoDb()->machineInfoEmulator(machineInfoKey);
 						if ( emulator == "MESS" )
 							textBrowserGameInfo->setHtml(messWikiToHtml(gameInfoText));
 						else
@@ -4612,7 +4611,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 						qmc2SystemNotesEditor->templateMap["$PCB_IMAGE$"] = "file://" + ghostPath;
 #endif
 				}
-
 				QString emuInfoKey = gameName;
 				if ( !qmc2MachineList->datInfoDb()->existsEmuInfo(emuInfoKey) ) {
 					emuInfoKey = parentSystem;
@@ -4632,7 +4630,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 					qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = tr("No data available");
 					qmc2SystemNotesEditor->templateMap["$EMU_INFO_STATUS$"] = "NO_DATA";
 				}
-
 				QString videoSnapUrl;
 				foreach (QString videoSnapFolder, qmc2Config->value("MAME/FilesAndDirectories/VideoSnapFolder", QMC2_DEFAULT_DATA_PATH + "/vdo/").toString().split(";", QString::SkipEmptyParts)) {
 					foreach (QString formatExtension, videoSnapAllowedFormatExtensions) {
@@ -4668,17 +4665,16 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 					}
 				}
 				qmc2SystemNotesEditor->templateMap["$VIDEO_SNAP_URL$"] = videoSnapUrl;
-
-				QString gameInfoKey = gameName;
-				if ( !qmc2MachineList->datInfoDb()->existsGameInfo(gameInfoKey) ) {
-					gameInfoKey = parentSystem;
-					if ( !qmc2MachineList->datInfoDb()->existsGameInfo(gameInfoKey) )
-						gameInfoKey.clear();
+				QString machineInfoKey = gameName;
+				if ( !qmc2MachineList->datInfoDb()->existsMachineInfo(machineInfoKey) ) {
+					machineInfoKey = parentSystem;
+					if ( !qmc2MachineList->datInfoDb()->existsMachineInfo(machineInfoKey) )
+						machineInfoKey.clear();
 				}
-				if ( !gameInfoKey.isEmpty() ) {
-					QString gameInfoText = qmc2MachineList->datInfoDb()->gameInfo(gameInfoKey);
+				if ( !machineInfoKey.isEmpty() ) {
+					QString gameInfoText = qmc2MachineList->datInfoDb()->machineInfo(machineInfoKey);
 					if ( !gameInfoText.isEmpty() ) {
-						QString emulator = qmc2MachineList->datInfoDb()->gameInfoEmulator(gameInfoKey);
+						QString emulator = qmc2MachineList->datInfoDb()->machineInfoEmulator(machineInfoKey);
 						if ( emulator == "MESS" )
 							qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = messWikiToHtml(gameInfoText);
 						else
@@ -4694,7 +4690,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 				}
 				qmc2SystemNotesEditor->templateMap["$MACHINE_INFO$"] = qmc2SystemNotesEditor->templateMap["$GAME_INFO$"];
 				qmc2SystemNotesEditor->templateMap["$MACHINE_INFO_STATUS$"] = qmc2SystemNotesEditor->templateMap["$GAME_INFO_STATUS$"];
-
 				qmc2SystemNotesEditor->setCurrentTemplateName(systemNotesTemplate);
 				qmc2SystemNotesEditor->stopLoading = true;
 				if ( QFile::exists(fileName) )
@@ -5452,7 +5447,7 @@ void MainWindow::embedderOptionsMenu_KillEmulator_activated()
 #endif
 
 	if ( embedder )
-		qmc2ProcessManager->kill(embedder->gameID.toInt());
+		qmc2ProcessManager->kill(embedder->machineId.toInt());
 }
 
 void MainWindow::embedderOptionsMenu_TerminateEmulator_activated()
@@ -5468,7 +5463,7 @@ void MainWindow::embedderOptionsMenu_TerminateEmulator_activated()
 #endif
 
 	if ( embedder )
-		qmc2ProcessManager->terminate(embedder->gameID.toInt());
+		qmc2ProcessManager->terminate(embedder->machineId.toInt());
 }
 
 void MainWindow::embedderOptionsMenu_ToFavorites_activated()
@@ -5484,7 +5479,7 @@ void MainWindow::embedderOptionsMenu_ToFavorites_activated()
 #endif
 
 	if ( embedder ) {
-		QString gameDescription = qmc2MachineListItemHash[embedder->gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
+		QString gameDescription = qmc2MachineListItemHash[embedder->machineName]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 		QList<QListWidgetItem *> matches = listWidgetFavorites->findItems(gameDescription, Qt::MatchExactly);
 		if ( matches.count() <= 0 ) {
 			QListWidgetItem *item = new QListWidgetItem(listWidgetFavorites);
@@ -5507,7 +5502,7 @@ void MainWindow::embedderOptionsMenu_CopyCommand_activated()
 #endif
 
 	if ( embedder ) {
-		QList<QTreeWidgetItem *> il = treeWidgetEmulators->findItems(embedder->gameID, Qt::MatchExactly, QMC2_EMUCONTROL_COLUMN_ID);
+		QList<QTreeWidgetItem *> il = treeWidgetEmulators->findItems(embedder->machineId, Qt::MatchExactly, QMC2_EMUCONTROL_COLUMN_ID);
 		if ( il.count() > 0 )
 			QApplication::clipboard()->setText(il[0]->text(QMC2_EMUCONTROL_COLUMN_COMMAND));
 	}
@@ -6441,22 +6436,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		delete qmc2DemoModeDialog;
 	}
 
-	if ( !qmc2GameInfoDB.isEmpty() ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying machine info DB"));
-		QHashIterator<QString, QByteArray *> it(qmc2GameInfoDB);
-		QList<QByteArray *> deletedRecords;
-		while ( it.hasNext() ) {
-			it.next();
-			if ( !deletedRecords.contains(it.value()) ) {
-				if ( it.value() )
-					delete it.value();
-				deletedRecords.append(it.value());
-			}
-		}
-		deletedRecords.clear();
-		qmc2GameInfoDB.clear();
-	}
-
 	log(QMC2_LOG_FRONTEND, tr("destroying process manager"));
 	if ( qmc2ProcessManager->procMap.count() > 0 ) {
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
@@ -7026,11 +7005,11 @@ void MainWindow::loadGameInfoDB()
 			emulatorList << "MESS";
 	}
 
-	if ( qmc2MachineList->datInfoDb()->gameInfoImportRequired(pathList) ) {
+	if ( qmc2MachineList->datInfoDb()->machineInfoImportRequired(pathList) ) {
 		qmc2LoadingGameInfoDB = true;
 		qmc2Options->toolButtonImportGameInfo->setEnabled(false);
 		qmc2Options->toolButtonImportMachineInfo->setEnabled(false);
-		qmc2MachineList->datInfoDb()->importGameInfo(pathList, emulatorList);
+		qmc2MachineList->datInfoDb()->importMachineInfo(pathList, emulatorList);
 		qmc2Options->toolButtonImportGameInfo->setEnabled(true);
 		qmc2Options->toolButtonImportMachineInfo->setEnabled(true);
 		qmc2LoadingGameInfoDB = false;

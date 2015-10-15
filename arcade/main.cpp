@@ -177,6 +177,29 @@ void showHelp()
     QMC2_ARCADE_LOG_STR_NT(helpMessage);
 }
 
+void upgradeSettings()
+{
+    QStringList verList = globalConfig->value("Version").toString().split(".", QString::SkipEmptyParts);
+    if ( verList.count() > 1 ) {
+        int omv = verList[1].toInt();
+        int osr = globalConfig->value("SVN_Revision").toInt();
+        if ( QMC2_ARCADE_TEST_VERSION(omv, 57, osr, 6989) ) {
+            QStringList oldKeys = QStringList() << "/MAME/DatInfoDatabase/GameInfoImportFiles"
+                                                << "/MAME/DatInfoDatabase/GameInfoImportDates";
+            QStringList newKeys = QStringList() << "/MAME/DatInfoDatabase/MachineInfoImportFiles"
+                                                << "/MAME/DatInfoDatabase/MachineInfoImportDates";
+            for (int i = 0; i < oldKeys.count(); i++) {
+                QString oldKey = oldKeys[i];
+                QString newKey = newKeys[i];
+                if ( globalConfig->contains(oldKey) ) {
+                    globalConfig->setValue(newKey, globalConfig->value(oldKey));
+                    globalConfig->remove(oldKey);
+                }
+            }
+        }
+    }
+}
+
 #if defined(QMC2_ARCADE_OS_WIN)
 #if defined(TCOD_VISUAL_STUDIO)
 int SDL_main(int argc, char *argv[]) {
@@ -341,6 +364,7 @@ int main(int argc, char *argv[])
 
     // create final instance of the global settings object
     globalConfig = new ArcadeSettings(theme);
+    upgradeSettings();
     globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
 
     // set default font

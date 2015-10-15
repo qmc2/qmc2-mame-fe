@@ -1332,15 +1332,15 @@ void MachineList::parse()
 	qmc2HierarchyHash.clear();
 	qmc2ParentHash.clear();
 	qmc2MainWindow->progressBarMachineList->reset();
-	gamelistCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile").toString());
-	gamelistCache.open(QIODevice::ReadOnly | QIODevice::Text);
+	machineListCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile").toString());
+	machineListCache.open(QIODevice::ReadOnly | QIODevice::Text);
 	bool reparseMachineList = true;
 	bool romStateCacheUpdate = false;
 	bool loadedFromCache = false;
 	QTime gameDataCacheElapsedTime(0, 0, 0, 0);
-	if ( gamelistCache.isOpen() ) {
+	if ( machineListCache.isOpen() ) {
 		QString line;
-		tsMachineListCache.setDevice(&gamelistCache);
+		tsMachineListCache.setDevice(&machineListCache);
 		tsMachineListCache.setCodec(QTextCodec::codecForName("UTF-8"));
 		tsMachineListCache.seek(0);
 		if ( !tsMachineListCache.atEnd() ) {
@@ -1595,8 +1595,8 @@ void MachineList::parse()
 			loadedFromCache = true;
 		}
 	} 
-	if ( gamelistCache.isOpen() )
-		gamelistCache.close();
+	if ( machineListCache.isOpen() )
+		machineListCache.close();
 	if ( reparseMachineList && !qmc2StopParser ) {
 		qmc2MainWindow->progressBarMachineList->setRange(0, numTotalGames * 2);
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing machine data and recreating machine list cache"));
@@ -1604,11 +1604,11 @@ void MachineList::parse()
 			qmc2MainWindow->progressBarMachineList->setFormat(tr("Machine data - %p%"));
 		else
 			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-		gamelistCache.open(QIODevice::WriteOnly | QIODevice::Text);
-		if ( !gamelistCache.isOpen() )
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open machine list cache for writing, path = %1").arg(gamelistCache.fileName()));
+		machineListCache.open(QIODevice::WriteOnly | QIODevice::Text);
+		if ( !machineListCache.isOpen() )
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open machine list cache for writing, path = %1").arg(machineListCache.fileName()));
 		else {
-			tsMachineListCache.setDevice(&gamelistCache);
+			tsMachineListCache.setDevice(&machineListCache);
 			tsMachineListCache.setCodec(QTextCodec::codecForName("UTF-8"));
 			tsMachineListCache.reset();
 			tsMachineListCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
@@ -1793,7 +1793,7 @@ void MachineList::parse()
 					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
 					nameItem->setText(QMC2_MACHINELIST_COLUMN_ICON, machineName);
 					loadIcon(machineName, machineItem);
-					if ( gamelistCache.isOpen() )
+					if ( machineListCache.isOpen() )
 						tsMachineListCache << machineName << "\t" << machineDescription << "\t" << machineManufacturer << "\t"
 							<< machineYear << "\t" << machineCloneOf << "\t" << (isBIOS ? "1": "0") << "\t"
 							<< (hasROMs ? "1" : "0") << "\t" << (hasCHDs ? "1": "0") << "\t"
@@ -1816,8 +1816,8 @@ void MachineList::parse()
 		qmc2MainWindow->progressBarMachineList->setValue(numGames);
 		qApp->processEvents();
 	}
-	if ( gamelistCache.isOpen() )
-		gamelistCache.close();
+	if ( machineListCache.isOpen() )
+		machineListCache.close();
 	bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool();
 	bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
 	bool useCategories = useCatverIni | useCategoryIni;

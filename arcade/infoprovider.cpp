@@ -42,8 +42,8 @@ QString InfoProvider::requestInfo(const QString &id, InfoClass infoClass)
 
     switch ( infoClass ) {
     case InfoProvider::InfoClassGame:
-        if ( datInfoDb()->existsGameInfo(id) ) {
-            QString newGameInfo = datInfoDb()->gameInfo(id);
+        if ( datInfoDb()->existsMachineInfo(id) ) {
+            QString newGameInfo = datInfoDb()->machineInfo(id);
             if ( !newGameInfo.isEmpty() ) {
                 switch ( emulatorMode ) {
                 case QMC2_ARCADE_EMUMODE_MAME:
@@ -237,8 +237,8 @@ void InfoProvider::loadGameInfo()
         break;
     }
 
-    if ( datInfoDb()->gameInfoImportRequired(pathList) )
-        datInfoDb()->importGameInfo(pathList, emulatorList);
+    if ( datInfoDb()->machineInfoImportRequired(pathList) )
+        datInfoDb()->importMachineInfo(pathList, emulatorList);
 }
 
 void InfoProvider::loadEmuInfo()

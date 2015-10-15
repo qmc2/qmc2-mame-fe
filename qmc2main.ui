@@ -60,7 +60,7 @@
            <property name="currentIndex">
             <number>0</number>
            </property>
-           <widget class="QWidget" name="gamelistPage">
+           <widget class="QWidget" name="machineListPage">
             <layout class="QGridLayout" name="gridLayoutMachineListPage">
              <property name="margin">
               <number>0</number>
