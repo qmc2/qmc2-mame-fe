@@ -34,7 +34,7 @@
 #include <stdio.h>
 
 // current format version of the DAT-info database schema
-#define QMC2_ARCADE_DATINFO_VERSION     1
+#define QMC2_ARCADE_DATINFO_VERSION     2
 
 // number of rows added to the DAT-info database in *one* transaction
 #define QMC2_ARCADE_DATINFO_COMMIT      5000
@@ -191,5 +191,7 @@
 
 // responsiveness when loading data from files (game/machine info DBs, ROM state cache and game/machine list caches)
 #define QMC2_ARCADE_LOAD_RESPONSE       500
+
+#define QMC2_ARCADE_TEST_VERSION(v, mv, r, mr)  ((v) < mv || ((r) > 0 && (r) < (mr)))
 
 #endif

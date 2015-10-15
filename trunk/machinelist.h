@@ -59,7 +59,7 @@ class MachineList : public QObject
 		QTime parseTimer;
 		QTime miscTimer;
 		QFile romCache;
-		QFile gamelistCache;
+		QFile machineListCache;
 		QTextStream tsRomCache;
 		QTextStream tsMachineListCache;
 		QString emulatorType;

@@ -273,7 +273,7 @@ bool Welcome::checkConfig()
 
 	startupConfig->endGroup();
 
-	QStringList verList = startupConfig->value("Version").toString().split(".");
+	QStringList verList = startupConfig->value("Version").toString().split(".", QString::SkipEmptyParts);
 	if ( verList.count() > 1 ) {
 		int omv = verList[1].toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
@@ -345,6 +345,20 @@ bool Welcome::checkConfig()
 		}
 		if ( QMC2_TEST_VERSION(omv, 56, osr, 6907) )
 			startupConfig->remove("/Frontend/GUI/MemoryIndicator");
+		if ( QMC2_TEST_VERSION(omv, 57, osr, 6989) ) {
+			QStringList oldKeys = QStringList() << "/MAME/DatInfoDatabase/GameInfoImportFiles"
+							    << "/MAME/DatInfoDatabase/GameInfoImportDates";
+			QStringList newKeys = QStringList() << "/MAME/DatInfoDatabase/MachineInfoImportFiles"
+							    << "/MAME/DatInfoDatabase/MachineInfoImportDates";
+			for (int i = 0; i < oldKeys.count(); i++) {
+				QString oldKey = oldKeys[i];
+				QString newKey = newKeys[i];
+				if ( startupConfig->contains(oldKey) ) {
+					startupConfig->setValue(newKey, startupConfig->value(oldKey));
+					startupConfig->remove(oldKey);
+				}
+			}
+		}
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

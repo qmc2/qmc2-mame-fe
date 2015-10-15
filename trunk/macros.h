@@ -138,7 +138,7 @@
 #define QMC2_SWLCACHE_COMMIT			1000
 
 // current format version of the DAT-info database schema
-#define QMC2_DATINFO_VERSION			1
+#define QMC2_DATINFO_VERSION			2
 
 // number of rows added to the DAT-info database in *one* transaction
 #define QMC2_DATINFO_COMMIT			5000

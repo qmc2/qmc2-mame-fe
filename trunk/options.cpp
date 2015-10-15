@@ -138,7 +138,6 @@ extern QHash<QString, QPair<QString, QAction *> > qmc2ShortcutHash;
 extern QHash<QString, QString> qmc2CustomShortcutHash;
 extern MainEventFilter *qmc2MainEventFilter;
 extern QHash<QString, QKeySequence> qmc2QtKeyHash;
-extern QHash<QString, QByteArray *> qmc2GameInfoDB;
 extern ComponentSetup *qmc2ComponentSetup;
 extern ToolBarCustomizer *qmc2ToolBarCustomizer;
 extern PaletteEditor *qmc2PaletteEditor;
@@ -1390,7 +1389,7 @@ void Options::on_pushButtonApply_clicked()
 		apply();
 
 	if ( invalidateGameInfoDB )
-		qmc2MachineList->datInfoDb()->recreateGameInfoTable();
+		qmc2MachineList->datInfoDb()->recreateMachineInfoTable();
 
 	if ( invalidateEmuInfoDB )
 		qmc2MachineList->datInfoDb()->recreateEmuInfoTable();
@@ -2520,7 +2519,7 @@ void Options::on_toolButtonImportGameInfo_clicked()
 	qmc2Options->toolButtonImportGameInfo->setEnabled(false);
 	qmc2Options->toolButtonImportMachineInfo->setEnabled(false);
 	qApp->processEvents();
-	qmc2MachineList->datInfoDb()->importGameInfo(pathList, emulatorList);
+	qmc2MachineList->datInfoDb()->importMachineInfo(pathList, emulatorList);
 	qmc2Options->toolButtonImportGameInfo->setEnabled(true);
 	qmc2Options->toolButtonImportMachineInfo->setEnabled(true);
 	qmc2LoadingGameInfoDB = false;
@@ -2550,7 +2549,7 @@ void Options::on_toolButtonImportMachineInfo_clicked()
 	qmc2Options->toolButtonImportGameInfo->setEnabled(false);
 	qmc2Options->toolButtonImportMachineInfo->setEnabled(false);
 	qApp->processEvents();
-	qmc2MachineList->datInfoDb()->importGameInfo(pathList, emulatorList);
+	qmc2MachineList->datInfoDb()->importMachineInfo(pathList, emulatorList);
 	qmc2Options->toolButtonImportGameInfo->setEnabled(true);
 	qmc2Options->toolButtonImportMachineInfo->setEnabled(true);
 	qmc2LoadingGameInfoDB = false;
