@@ -40,7 +40,7 @@ DatInfoDatabaseManager::DatInfoDatabaseManager(QObject *parent)
 		if ( tables.count() >= 4 ) {
 			switch ( datInfoVersion() ) {
 				case 1:
-					updateDatabaseFormat(1, 2);
+					upgradeDatabaseFormat(1, 2);
 					tables = m_db.driver()->tables(QSql::Tables);
 					break;
 			}
@@ -985,7 +985,7 @@ void DatInfoDatabaseManager::importMachineInfo(QStringList pathList, QStringList
 	qmc2MainWindow->progressBarMachineList->reset();		
 }
 
-void DatInfoDatabaseManager::updateDatabaseFormat(int from, int to)
+void DatInfoDatabaseManager::upgradeDatabaseFormat(int from, int to)
 {
 	switch ( from ) {
 		case 1:

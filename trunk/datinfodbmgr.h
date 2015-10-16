@@ -45,7 +45,7 @@ class DatInfoDatabaseManager : public QObject
 		void setSyncMode(uint syncMode);
 		void setJournalMode(uint journalMode);
 
-		void updateDatabaseFormat(int from, int to);
+		void upgradeDatabaseFormat(int from, int to);
 
 	public slots:
 		void recreateSoftwareInfoTable();
