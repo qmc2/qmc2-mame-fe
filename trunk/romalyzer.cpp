@@ -482,6 +482,8 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterOutputPath", lineEditSetRewriterOutputPath->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUseAdditionalRomPath", checkBoxSetRewriterUseAdditionalRomPath->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAdditionalRomPath", lineEditSetRewriterAdditionalRomPath->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CollectionRebuilderHashCache", checkBoxCollectionRebuilderHashCache->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CollectionRebuilderDryRun", checkBoxCollectionRebuilderDryRun->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardHashType", comboBoxChecksumWizardHashType->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardAutomationLevel", comboBoxChecksumWizardAutomationLevel->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableCheckSumDb", groupBoxCheckSumDatabase->isChecked());
@@ -555,6 +557,8 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	lineEditSetRewriterOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterOutputPath", QString()).toString());
 	checkBoxSetRewriterUseAdditionalRomPath->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUseAdditionalRomPath", false).toBool());
 	lineEditSetRewriterAdditionalRomPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAdditionalRomPath", QString()).toString());
+	checkBoxCollectionRebuilderHashCache->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CollectionRebuilderHashCache", false).toBool());
+	checkBoxCollectionRebuilderDryRun->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CollectionRebuilderDryRun", false).toBool());
 	groupBoxSetRewriter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableSetRewriter", false).toBool());
 	checkBoxSetRewriterWhileAnalyzing->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterWhileAnalyzing", false).toBool());
 	checkBoxSetRewriterSelfContainedSets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterSelfContainedSets", false).toBool());
@@ -569,10 +573,16 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterIndividualDirectories", false).toBool());
 	groupBoxCheckSumDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableCheckSumDb", false).toBool());
 	on_groupBoxCheckSumDatabase_toggled(groupBoxCheckSumDatabase->isChecked());
+	bool enable = true;
 	if ( initialCall || !checkSumScannerThread() )
-		tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked());
+		enable = groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked();
 	else
-		tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked() && !checkSumScannerThread()->isActive);
+		enable = groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked() && !checkSumScannerThread()->isActive;
+	tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, enable);
+	labelCollectionRebuilderSpecific->setEnabled(enable);
+	lineCollectionRebuilderSpecific->setEnabled(enable);
+	checkBoxCollectionRebuilderHashCache->setEnabled(enable);
+	checkBoxCollectionRebuilderDryRun->setEnabled(enable);
 	listWidgetCheckSumDbScannedPaths->clear();
 	QStringList checkSumDbScannedPaths = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScannedPaths", QStringList()).toStringList();
 	QStringList checkSumDbScannedPathsEnabled = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScannedPathsEnabled", QStringList()).toStringList();
@@ -598,10 +608,8 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	toolButtonCheckSumDbScanIncrementally->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScanIncrementally", true).toBool());
 	toolButtonCheckSumDbDeepScan->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDeepScan", true).toBool());
 	toolButtonCheckSumDbHashCache->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbHashCache", false).toBool());
-
 	if ( e )
 		e->accept();
-
 	initialCall = false;
 }
 
@@ -2746,7 +2754,12 @@ void ROMAlyzer::lineEditChecksumWizardHash_textChanged_delayed()
 
 void ROMAlyzer::on_groupBoxSetRewriter_toggled(bool enable)
 {
-	tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxCheckSumDatabase->isChecked() && enable && !checkSumScannerThread()->isActive);
+	bool doEnable = groupBoxCheckSumDatabase->isChecked() && enable && !checkSumScannerThread()->isActive;
+	tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, doEnable);
+	labelCollectionRebuilderSpecific->setEnabled(doEnable);
+	lineCollectionRebuilderSpecific->setEnabled(doEnable);
+	checkBoxCollectionRebuilderHashCache->setEnabled(doEnable);
+	checkBoxCollectionRebuilderDryRun->setEnabled(doEnable);
 	if ( mode() == QMC2_ROMALYZER_MODE_SYSTEM )
 		qmc2MainWindow->update_rebuildRomActions_visibility();
 	else if ( qmc2SoftwareList )
@@ -2762,10 +2775,16 @@ void ROMAlyzer::on_groupBoxSetRewriter_toggled(bool enable)
 void ROMAlyzer::on_groupBoxCheckSumDatabase_toggled(bool enable)
 {
 	widgetCheckSumDbQueryStatus->setVisible(enable);
+	bool doEnable = true;
 	if ( checkSumScannerThread() )
-		tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxSetRewriter->isChecked() && enable && !checkSumScannerThread()->isActive);
+		doEnable = groupBoxSetRewriter->isChecked() && enable && !checkSumScannerThread()->isActive;
 	else
-		tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxSetRewriter->isChecked() && enable);
+		doEnable = groupBoxSetRewriter->isChecked() && enable;
+	tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, doEnable);
+	labelCollectionRebuilderSpecific->setEnabled(doEnable);
+	lineCollectionRebuilderSpecific->setEnabled(doEnable);
+	checkBoxCollectionRebuilderHashCache->setEnabled(doEnable);
+	checkBoxCollectionRebuilderDryRun->setEnabled(doEnable);
 	if ( mode() == QMC2_ROMALYZER_MODE_SYSTEM )
 		qmc2MainWindow->update_rebuildRomActions_visibility();
 	else if ( qmc2SoftwareList )
@@ -4331,6 +4350,10 @@ void ROMAlyzer::checkSumScannerThread_scanStarted()
 	pushButtonCheckSumDbScan->setEnabled(true);
 	pushButtonCheckSumDbPauseResumeScan->setEnabled(true);
 	tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, false);
+	labelCollectionRebuilderSpecific->setEnabled(false);
+	lineCollectionRebuilderSpecific->setEnabled(false);
+	checkBoxCollectionRebuilderHashCache->setEnabled(false);
+	checkBoxCollectionRebuilderDryRun->setEnabled(false);
 	qApp->processEvents();
 	QTimer::singleShot(0, this, SLOT(updateCheckSumDbStatus()));
 }
@@ -4348,7 +4371,12 @@ void ROMAlyzer::checkSumScannerThread_scanFinished()
 	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG);
 	pushButtonCheckSumDbScan->setEnabled(true);
 	pushButtonCheckSumDbPauseResumeScan->setEnabled(true);
-	tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked());
+	bool enable = groupBoxCheckSumDatabase->isChecked() && groupBoxSetRewriter->isChecked();
+	tabWidgetAnalysis->setTabEnabled(QMC2_ROMALYZER_PAGE_RCR, enable);
+	labelCollectionRebuilderSpecific->setEnabled(enable);
+	lineCollectionRebuilderSpecific->setEnabled(enable);
+	checkBoxCollectionRebuilderHashCache->setEnabled(enable);
+	checkBoxCollectionRebuilderDryRun->setEnabled(enable);
 	qApp->processEvents();
 	updateCheckSumDbStatus();
 	QTimer::singleShot(50, this, SLOT(updateCheckSumDbStatus()));
@@ -4848,7 +4876,7 @@ void CheckSumScannerThread::run()
 			checkSumDb()->beginTransaction();
 			int counter = 0;
 			foreach (QString filePath, fileList) {
-				QTest::qWait(0);
+				QTest::qWait(1);
 				if ( exitThread || stopScan )
 					break;
 				emit log(tr("scan started for file '%1'").arg(filePath));

@@ -257,7 +257,7 @@ bool CheckSumDatabaseManager::exists(QString sha1, QString crc, quint64 size)
 			query.bindValue(":sha1", sha1);
 			query.bindValue(":size", size);
 		} else {
-			query.prepare(QString("SELECT sha1, crc, size FROM %1 WHERE (sha1=:sha1 OR crc=:crc) AND size=:size LIMIT 1").arg(m_tableBasename));
+			query.prepare(QString("SELECT sha1, crc, size FROM %1 WHERE sha1=:sha1 AND crc=:crc AND size=:size LIMIT 1").arg(m_tableBasename));
 			query.bindValue(":sha1", sha1);
 			query.bindValue(":crc", crc);
 			query.bindValue(":size", size);
@@ -270,7 +270,7 @@ bool CheckSumDatabaseManager::exists(QString sha1, QString crc, quint64 size)
 			query.prepare(QString("SELECT sha1, crc FROM %1 WHERE sha1=:sha1 LIMIT 1").arg(m_tableBasename));
 			query.bindValue(":sha1", sha1);
 		} else {
-			query.prepare(QString("SELECT sha1, crc FROM %1 WHERE sha1=:sha1 OR crc=:crc LIMIT 1").arg(m_tableBasename));
+			query.prepare(QString("SELECT sha1, crc FROM %1 WHERE sha1=:sha1 AND crc=:crc LIMIT 1").arg(m_tableBasename));
 			query.bindValue(":sha1", sha1);
 			query.bindValue(":crc", crc);
 		}
@@ -384,15 +384,20 @@ void CheckSumDatabaseManager::pathRemove(QString path)
 		emit log(tr("WARNING: failed to remove path '%1' from check-sum database: query = '%2', error = '%3'").arg(path).arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
 
-QString CheckSumDatabaseManager::pathOfRow(qint64 row, QString *key)
+QString CheckSumDatabaseManager::pathOfRow(qint64 row, QString *key, bool simpleKey)
 {
 	QSqlQuery query(m_db);
 	if ( key ) {
-		query.prepare(QString("SELECT path, sha1, crc, size FROM %1 WHERE rowid=:row").arg(m_tableBasename));
+		query.prepare(QString("SELECT path, sha1, crc, size, type FROM %1 WHERE rowid=:row").arg(m_tableBasename));
 		query.bindValue(":row", row);
 		if ( query.exec() ) {
 			if ( query.first() ) {
-				*key = QString("%1-%2-%3").arg(query.value(1).toString()).arg(query.value(2).toString()).arg(query.value(3).toString());
+				if ( !simpleKey )
+					*key = QString("%1-%2-%3").arg(query.value(1).toString()).arg(query.value(2).toString()).arg(query.value(3).toString());
+				else if ( query.value(4).toString() == "CHD" )
+					*key = QString("%1-0-0").arg(query.value(1).toString());
+				else
+					*key = QString("%1-%2-%3").arg(query.value(1).toString()).arg(query.value(2).toString()).arg(query.value(3).toString());
 				return query.value(0).toString();
 			} else
 				return QString();

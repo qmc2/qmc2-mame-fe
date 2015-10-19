@@ -50,6 +50,8 @@ class CollectionRebuilderThread : public QThread
 		bool includeStateU;
 		bool exactMatch;
 		bool exactMatchSoftware;
+		bool useHashCache;
+		bool dryRun;
 		quint64 missingDisks;
 		quint64 missingROMs;
 		quint64 setsProcessed;
@@ -148,6 +150,10 @@ class CollectionRebuilderThread : public QThread
 		bool m_merge;
 		static QHash<QString, QString> m_replacementHash;
 		static QStringList m_fileTypes;
+		QHash<QString, bool> m_hashCache;
+		uint m_hashCacheUpdateTime;
+		bool checkSumExists(QString sha1, QString crc, quint64 size = 0);
+		void updateHashCache();
 };
 
 class CollectionRebuilder : public QWidget, public Ui::CollectionRebuilder
@@ -195,8 +201,10 @@ class CollectionRebuilder : public QWidget, public Ui::CollectionRebuilder
 		void rebuilderThread_newMissing(QString, QString, QString, QString, QString, QString, QString);
 		void animationTimer_timeout();
 		void updateMissingList();
+		void updateButtonText();
 
 	protected:
+		void showEvent(QShowEvent *);
 		void hideEvent(QHideEvent *);
 
 	private:

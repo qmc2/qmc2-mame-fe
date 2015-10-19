@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>647</width>
-    <height>526</height>
+    <width>732</width>
+    <height>659</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -355,9 +355,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-343</y>
-            <width>617</width>
-            <height>768</height>
+            <y>0</y>
+            <width>702</width>
+            <height>771</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayoutScrollAreeaSettings" rowstretch="0,0,0,1,0">
@@ -370,7 +370,7 @@
               </sizepolicy>
              </property>
              <property name="title">
-              <string>Enable set rewriter</string>
+              <string>Enable set rewriter / collection rebuilder</string>
              </property>
              <property name="checkable">
               <bool>true</bool>
@@ -379,17 +379,18 @@
               <item row="0" column="0">
                <layout class="QGridLayout" name="gridLayoutSetRewriter">
                 <item row="4" column="4" colspan="3">
-                 <spacer name="verticalSpacer_5">
+                 <widget class="QLabel" name="labelCollectionRebuilderSpecific">
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Collection rebuilder specific flags&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="4" colspan="3">
+                 <widget class="Line" name="lineCollectionRebuilderSpecific">
                   <property name="orientation">
-                   <enum>Qt::Vertical</enum>
+                   <enum>Qt::Horizontal</enum>
                   </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                 </spacer>
+                 </widget>
                 </item>
                 <item row="0" column="0">
                  <widget class="QLabel" name="labelSetRewriterFlags">
@@ -411,6 +412,88 @@
                    <enum>Qt::Horizontal</enum>
                   </property>
                  </widget>
+                </item>
+                <item row="2" column="2" rowspan="5">
+                 <layout class="QVBoxLayout" name="verticalLayout_2">
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_2">
+                    <item>
+                     <widget class="QRadioButton" name="radioButtonSetRewriterZipArchives">
+                      <property name="toolTip">
+                       <string>Produce ZIP archived sets (recommended)</string>
+                      </property>
+                      <property name="text">
+                       <string>ZIPs</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSpinBox" name="spinBoxSetRewriterZipLevel">
+                      <property name="toolTip">
+                       <string>Select the ZIP compression level (0 = lowest / fastest, 9 = highest / slowest)</string>
+                      </property>
+                      <property name="specialValueText">
+                       <string>Default</string>
+                      </property>
+                      <property name="prefix">
+                       <string>Level </string>
+                      </property>
+                      <property name="minimum">
+                       <number>-1</number>
+                      </property>
+                      <property name="maximum">
+                       <number>9</number>
+                      </property>
+                      <property name="value">
+                       <number>-1</number>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkBoxSetRewriterUniqueCRCs">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="toolTip">
+                     <string>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</string>
+                    </property>
+                    <property name="text">
+                     <string>Unique CRCs</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkBoxAddZipComment">
+                    <property name="toolTip">
+                     <string>When enabled, QMC2 will add a comment to the ZIP containing its version and the archive creation- or fixing-date</string>
+                    </property>
+                    <property name="text">
+                     <string>Add ZIP comment</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="radioButtonSetRewriterIndividualDirectories">
+                    <property name="toolTip">
+                     <string>Produce sets in individual sub-directories (not recommended)</string>
+                    </property>
+                    <property name="text">
+                     <string>Directories</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item row="2" column="5">
                  <widget class="QLineEdit" name="lineEditSetRewriterOutputPath">
@@ -509,7 +592,7 @@
                   </property>
                  </widget>
                 </item>
-                <item row="0" column="1" rowspan="6">
+                <item row="0" column="1" rowspan="7">
                  <widget class="Line" name="line_14">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
@@ -523,14 +606,14 @@
                   </property>
                  </widget>
                 </item>
-                <item row="0" column="3" rowspan="6">
+                <item row="0" column="3" rowspan="7">
                  <widget class="Line" name="line_15">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
                   </property>
                  </widget>
                 </item>
-                <item row="2" column="0" rowspan="4">
+                <item row="2" column="0" rowspan="5">
                  <layout class="QVBoxLayout" name="verticalLayout">
                   <item>
                    <widget class="QCheckBox" name="checkBoxSetRewriterWhileAnalyzing">
@@ -599,85 +682,40 @@
                   </item>
                  </layout>
                 </item>
-                <item row="2" column="2" rowspan="4">
-                 <layout class="QVBoxLayout" name="verticalLayout_2">
+                <item row="6" column="4" colspan="3">
+                 <layout class="QHBoxLayout" name="horizontalLayout_5">
                   <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_2">
-                    <item>
-                     <widget class="QRadioButton" name="radioButtonSetRewriterZipArchives">
-                      <property name="toolTip">
-                       <string>Produce ZIP archived sets (recommended)</string>
-                      </property>
-                      <property name="text">
-                       <string>ZIPs</string>
-                      </property>
-                      <property name="checked">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QSpinBox" name="spinBoxSetRewriterZipLevel">
-                      <property name="toolTip">
-                       <string>Select the ZIP compression level (0 = lowest / fastest, 9 = highest / slowest)</string>
-                      </property>
-                      <property name="specialValueText">
-                       <string>Default</string>
-                      </property>
-                      <property name="prefix">
-                       <string>Level </string>
-                      </property>
-                      <property name="minimum">
-                       <number>-1</number>
-                      </property>
-                      <property name="maximum">
-                       <number>9</number>
-                      </property>
-                      <property name="value">
-                       <number>-1</number>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <widget class="QCheckBox" name="checkBoxSetRewriterUniqueCRCs">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
+                   <widget class="QCheckBox" name="checkBoxCollectionRebuilderHashCache">
                     <property name="toolTip">
-                     <string>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</string>
+                     <string>Enabling this will speed up hash lookups during rebuild operations (requires about 35 MB per 100K hash keys which are pre-loaded from the database)</string>
                     </property>
                     <property name="text">
-                     <string>Unique CRCs</string>
+                     <string>Use hash cache</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QCheckBox" name="checkBoxAddZipComment">
+                   <widget class="QCheckBox" name="checkBoxCollectionRebuilderDryRun">
                     <property name="toolTip">
-                     <string>When enabled, QMC2 will add a comment to the ZIP containing its version and the archive creation- or fixing-date</string>
+                     <string>In dry run mode the collection rebuilder will not create any output (good for checking &quot;what if&quot; and to quickly create a fix.dat)</string>
                     </property>
                     <property name="text">
-                     <string>Add ZIP comment</string>
-                    </property>
-                    <property name="checked">
-                     <bool>true</bool>
+                     <string>Dry run mode</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QRadioButton" name="radioButtonSetRewriterIndividualDirectories">
-                    <property name="toolTip">
-                     <string>Produce sets in individual sub-directories (not recommended)</string>
+                   <spacer name="horizontalSpacer_2">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
                     </property>
-                    <property name="text">
-                     <string>Directories</string>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
                     </property>
-                   </widget>
+                   </spacer>
                   </item>
                  </layout>
                 </item>
@@ -1991,16 +2029,18 @@
   <tabstop>checkBoxSetRewriterUseAdditionalRomPath</tabstop>
   <tabstop>lineEditSetRewriterAdditionalRomPath</tabstop>
   <tabstop>toolButtonBrowseSetRewriterAdditionalRomPath</tabstop>
+  <tabstop>checkBoxCollectionRebuilderHashCache</tabstop>
+  <tabstop>checkBoxCollectionRebuilderDryRun</tabstop>
   <tabstop>groupBoxCheckSumDatabase</tabstop>
   <tabstop>toolButtonCheckSumDbScanIncrementally</tabstop>
   <tabstop>toolButtonCheckSumDbDeepScan</tabstop>
   <tabstop>toolButtonCheckSumDbHashCache</tabstop>
   <tabstop>listWidgetCheckSumDbScannedPaths</tabstop>
   <tabstop>toolButtonCheckSumDbAddPath</tabstop>
-  <tabstop>toolButtonCheckSumDbRemovePath</tabstop>
   <tabstop>lineEditCheckSumDbDatabasePath</tabstop>
   <tabstop>toolButtonBrowseCheckSumDbDatabasePath</tabstop>
   <tabstop>toolButtonCheckSumDbViewLog</tabstop>
+  <tabstop>toolButtonCheckSumDbRemovePath</tabstop>
   <tabstop>pushButtonCheckSumDbScan</tabstop>
   <tabstop>pushButtonCheckSumDbPauseResumeScan</tabstop>
   <tabstop>comboBoxChecksumWizardHashType</tabstop>
@@ -2024,7 +2064,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>79</x>
-     <y>520</y>
+     <y>911</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
@@ -2039,12 +2079,12 @@
    <slot>animateClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>30</x>
-     <y>86</y>
+     <x>38</x>
+     <y>872</y>
     </hint>
     <hint type="destinationlabel">
-     <x>52</x>
-     <y>86</y>
+     <x>458</x>
+     <y>872</y>
     </hint>
    </hints>
   </connection>
@@ -2071,12 +2111,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>94</y>
+     <x>274</x>
+     <y>137</y>
     </hint>
     <hint type="destinationlabel">
-     <x>111</x>
-     <y>94</y>
+     <x>274</x>
+     <y>163</y>
     </hint>
    </hints>
   </connection>
@@ -2087,12 +2127,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>95</x>
-     <y>406</y>
+     <x>109</x>
+     <y>451</y>
     </hint>
     <hint type="destinationlabel">
-     <x>94</x>
-     <y>406</y>
+     <x>108</x>
+     <y>476</y>
     </hint>
    </hints>
   </connection>
@@ -2103,12 +2143,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>406</y>
+     <x>221</x>
+     <y>453</y>
     </hint>
     <hint type="destinationlabel">
-     <x>111</x>
-     <y>406</y>
+     <x>262</x>
+     <y>481</y>
     </hint>
    </hints>
   </connection>
@@ -2119,12 +2159,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>94</y>
+     <x>125</x>
+     <y>242</y>
     </hint>
     <hint type="destinationlabel">
-     <x>111</x>
-     <y>94</y>
+     <x>292</x>
+     <y>244</y>
     </hint>
    </hints>
   </connection>
@@ -2135,12 +2175,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>94</y>
+     <x>125</x>
+     <y>242</y>
     </hint>
     <hint type="destinationlabel">
-     <x>111</x>
-     <y>94</y>
+     <x>652</x>
+     <y>244</y>
     </hint>
    </hints>
   </connection>
@@ -2151,12 +2191,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>406</y>
+     <x>404</x>
+     <y>481</y>
     </hint>
     <hint type="destinationlabel">
-     <x>111</x>
-     <y>406</y>
+     <x>513</x>
+     <y>483</y>
     </hint>
    </hints>
   </connection>
@@ -2167,12 +2207,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>406</y>
+     <x>404</x>
+     <y>481</y>
     </hint>
     <hint type="destinationlabel">
-     <x>111</x>
-     <y>406</y>
+     <x>653</x>
+     <y>483</y>
     </hint>
    </hints>
   </connection>
@@ -2199,12 +2239,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>406</y>
+     <x>221</x>
+     <y>453</y>
     </hint>
     <hint type="destinationlabel">
-     <x>111</x>
-     <y>406</y>
+     <x>279</x>
+     <y>506</y>
     </hint>
    </hints>
   </connection>
@@ -2219,8 +2259,8 @@
      <y>72</y>
     </hint>
     <hint type="destinationlabel">
-     <x>571</x>
-     <y>81</y>
+     <x>660</x>
+     <y>90</y>
     </hint>
    </hints>
   </connection>
