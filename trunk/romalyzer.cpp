@@ -1205,7 +1205,6 @@ void ROMAlyzer::analyze()
 						if ( !fromCheckSumDb && groupBoxCheckSumDatabase->isChecked() && checkSumDb()->exists(childItem->text(QMC2_ROMALYZER_COLUMN_SHA1), childItem->text(QMC2_ROMALYZER_COLUMN_CRC), size) ) {
 							QString pathFromDb, memberFromDb, typeFromDb;
 							if ( checkSumDb()->getData(childItem->text(QMC2_ROMALYZER_COLUMN_SHA1), childItem->text(QMC2_ROMALYZER_COLUMN_CRC), &size, &pathFromDb, &memberFromDb, &typeFromDb) ) {
-								fileItem = new QTreeWidgetItem(childItem);
 								QStringList sl;
 								switch ( checkSumDb()->nameToType(typeFromDb) ) {
 									case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
@@ -1255,23 +1254,6 @@ void ROMAlyzer::analyze()
 									icon = QIcon(pm);
 									childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
 									childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, icon);
-									fileStatus.clear();
-									if ( !childItem->text(QMC2_ROMALYZER_COLUMN_SIZE).isEmpty() ) {
-										fileStatus = tr("SIZE");
-										fileItem->setText(QMC2_ROMALYZER_COLUMN_SIZE, childItem->text(QMC2_ROMALYZER_COLUMN_SIZE));
-									}
-									if ( checkBoxCalculateCRC->isChecked() && !childItem->text(QMC2_ROMALYZER_COLUMN_CRC).isEmpty() ) {
-										if ( !fileStatus.isEmpty() )
-											fileStatus += " ";
-										fileStatus += tr("CRC");
-										fileItem->setText(QMC2_ROMALYZER_COLUMN_CRC, childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
-									}
-									if ( checkBoxCalculateSHA1->isChecked() && !childItem->text(QMC2_ROMALYZER_COLUMN_SHA1).isEmpty() ) {
-										if ( !fileStatus.isEmpty() )
-											fileStatus += " ";
-										fileStatus += tr("SHA-1");
-										fileItem->setText(QMC2_ROMALYZER_COLUMN_SHA1, childItem->text(QMC2_ROMALYZER_COLUMN_SHA1));
-									}
 								}
 							}
 						} else {
