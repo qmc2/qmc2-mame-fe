@@ -4876,9 +4876,6 @@ void CheckSumScannerThread::run()
 			checkSumDb()->beginTransaction();
 			int counter = 0;
 			foreach (QString filePath, fileList) {
-				QTest::qWait(1);
-				if ( exitThread || stopScan )
-					break;
 				emit log(tr("scan started for file '%1'").arg(filePath));
 				emit progressChanged(counter++);
 				QStringList memberList, sha1List, crcList;
@@ -4997,7 +4994,10 @@ void CheckSumScannerThread::run()
 					break;
 				else
 					emit log(tr("scan finished for file '%1'").arg(filePath));
-
+				QTest::qWait(1);
+				yieldCurrentThread();
+				if ( exitThread || stopScan )
+					break;
 			}
 			if ( exitThread || stopScan )
 				emit log(tr("scanner interrupted"));
