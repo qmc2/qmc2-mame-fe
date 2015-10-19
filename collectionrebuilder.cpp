@@ -83,7 +83,6 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 			m_unknownIconPixmap = QPixmap(QString::fromUtf8(":/data/img/sphere_blue.png"));
 			break;
 	}
-
 	checkBoxFilterStates->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/UseStateFilter", false).toBool());
 	toolButtonStateC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateC", true).toBool());
 	toolButtonStateM->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateM", true).toBool());
@@ -334,6 +333,8 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 			rebuilderThread()->setStateFilter(true, toolButtonStateC->isChecked(), toolButtonStateM->isChecked(), toolButtonStateI->isChecked(), toolButtonStateN->isChecked(), toolButtonStateU->isChecked());
 		else
 			rebuilderThread()->clearStateFilter();
+		rebuilderThread()->useHashCache = romAlyzer()->checkBoxCollectionRebuilderHashCache->isChecked();
+		rebuilderThread()->dryRun = romAlyzer()->checkBoxCollectionRebuilderDryRun->isChecked();
 		rebuilderThread()->waitCondition.wakeAll();
 	}
 }
@@ -524,7 +525,13 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 		missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(false);
 	}
 	pushButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
-	pushButtonStartStop->setText(tr("Stop rebuilding"));
+	if ( rebuilderThread()->dryRun ) {
+		pushButtonStartStop->setText(tr("Stop dry run"));
+		pushButtonStartStop->setToolTip(tr("Start / stop dry run"));
+	} else {
+		pushButtonStartStop->setText(tr("Stop rebuilding"));
+		pushButtonStartStop->setToolTip(tr("Start / stop rebuilding"));
+	}
 	pushButtonPauseResume->setText(tr("Pause"));
 	pushButtonPauseResume->show();
 	pushButtonStartStop->setEnabled(true);
@@ -555,6 +562,7 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	frameEntities->setEnabled(false);
 	romAlyzer()->groupBoxCheckSumDatabase->setEnabled(false);
 	romAlyzer()->groupBoxSetRewriter->setEnabled(false);
+	romAlyzer()->checkBoxCollectionRebuilderDryRun->setEnabled(false);
 	m_animationSequence = 0;
 	m_animationTimer.start(QMC2_ROMALYZER_REBUILD_ANIM_SPEED);
 	if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE && qmc2SoftwareList ) {
@@ -602,7 +610,13 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 		missingDumpsViewer()->setDefaultEmulator(defaultEmulator());
 	}
 	pushButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
-	pushButtonStartStop->setText(tr("Start rebuilding"));
+	if ( romAlyzer()->checkBoxCollectionRebuilderDryRun->isChecked() ) {
+		pushButtonStartStop->setText(tr("Start dry run"));
+		pushButtonStartStop->setToolTip(tr("Start / stop dry run"));
+	} else {
+		pushButtonStartStop->setText(tr("Start rebuilding"));
+		pushButtonStartStop->setToolTip(tr("Start / stop rebuilding"));
+	}
 	pushButtonPauseResume->hide();
 	pushButtonStartStop->setEnabled(true);
 	pushButtonPauseResume->setEnabled(true);
@@ -630,6 +644,7 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	frameEntities->setEnabled(true);
 	romAlyzer()->groupBoxCheckSumDatabase->setEnabled(true);
 	romAlyzer()->groupBoxSetRewriter->setEnabled(true);
+	romAlyzer()->checkBoxCollectionRebuilderDryRun->setEnabled(true);
 	m_animationTimer.stop();
 	romAlyzer()->tabWidgetAnalysis->setTabIcon(QMC2_ROMALYZER_PAGE_RCR, QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
 	if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE && qmc2SoftwareList ) {
@@ -733,6 +748,32 @@ void CollectionRebuilder::updateMissingList()
 		missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(missingDumpsViewer()->treeWidget->topLevelItemCount() > 0);
 }
 
+void CollectionRebuilder::updateButtonText()
+{
+	if ( active() ) {
+		if ( rebuilderThread()->dryRun ) {
+			pushButtonStartStop->setText(tr("Stop dry run"));
+			pushButtonStartStop->setToolTip(tr("Start / stop dry run"));
+		} else {
+			pushButtonStartStop->setText(tr("Stop rebuilding"));
+			pushButtonStartStop->setToolTip(tr("Start / stop rebuilding"));
+		}
+	} else {
+		if ( romAlyzer()->checkBoxCollectionRebuilderDryRun->isChecked() ){
+			pushButtonStartStop->setText(tr("Start dry run"));
+			pushButtonStartStop->setToolTip(tr("Start / stop dry run"));
+		} else {
+			pushButtonStartStop->setText(tr("Start rebuilding"));
+			pushButtonStartStop->setToolTip(tr("Start / stop rebuilding"));
+		}
+	}
+}
+
+void CollectionRebuilder::showEvent(QShowEvent *e)
+{
+	QTimer::singleShot(0, this, SLOT(updateButtonText()));
+}
+
 void CollectionRebuilder::hideEvent(QHideEvent *e)
 {
 	switch ( romAlyzer()->mode() ) {
@@ -773,10 +814,11 @@ CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
 {
 	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopRebuilding = doFilter = doFilterSoftware = isIncludeFilter = isIncludeFilterSoftware = doFilterState = false;
 	includeStateC = includeStateM = includeStateI = includeStateN = includeStateU = true;
-	exactMatch = exactMatchSoftware = false;
+	exactMatch = exactMatchSoftware = useHashCache = dryRun = false;
 	m_rebuilderDialog = (CollectionRebuilder *)parent;
 	m_checkSumDb = NULL;
 	m_xmlIndex = m_xmlIndexCount = m_checkpoint = -1;
+	m_hashCacheUpdateTime = 0;
 	setListEntityStartPattern("<softwarelist name=\"");
 	if ( m_replacementHash.isEmpty() ) {
 		m_replacementHash.insert("&amp;", "&");
@@ -1684,6 +1726,59 @@ bool CollectionRebuilderThread::evaluateFilters(QString &setKey)
 	return true;
 }
 
+bool CollectionRebuilderThread::checkSumExists(QString sha1, QString crc, quint64 size)
+{
+	if ( useHashCache ) {
+		if ( sha1.isEmpty() ) {
+			if ( m_hashCache.contains(QString("-%1-%2").arg(crc).arg(size)) )
+				return true;
+			else { // rare case so shouldn't hurt
+				QStringList uniqueKeys = m_hashCache.uniqueKeys();
+				return uniqueKeys.indexOf(QRegExp(QString(".*-%1-%2").arg(crc).arg(size))) >= 0;
+			}
+		} else {
+			if ( m_hashCache.contains(QString("%1-%2-%3").arg(sha1).arg(crc).arg(size)) )
+				return true;
+			else
+				return m_hashCache.contains(QString("-%1-%2").arg(crc).arg(size));
+		}
+	} else
+		return checkSumDb()->exists(sha1, crc, size);
+}
+
+void CollectionRebuilderThread::updateHashCache()
+{
+	if ( checkSumDb()->scanTime() > m_hashCacheUpdateTime ) {
+		qint64 row = checkSumDb()->nextRowId(true);
+		emit progressTextChanged(tr("Preparing"));
+		emit progressRangeChanged(0, checkSumDb()->checkSumRowCount() - 1);
+		emit progressChanged(0);
+		int count = 0;
+		emit log(tr("updating hash cache"));
+		m_hashCache.clear();
+		while ( row > 0 && !exitThread && !stopRebuilding ) {
+			emit progressChanged(count++);
+			QString key;
+			if ( !checkSumDb()->pathOfRow(row, &key, true).isEmpty() )
+				m_hashCache[key] = true;
+			row = checkSumDb()->nextRowId();
+			if ( exitThread || stopRebuilding )
+				break;
+		}
+		if ( exitThread || stopRebuilding ) {
+			m_hashCacheUpdateTime = 0;
+			m_hashCache.clear();
+			emit log(tr("hash cache update interrupted"));
+		} else {
+			emit log(tr("hash cache updated") + " - " + tr("%n hash(es) loaded", "", m_hashCache.count()));
+			m_hashCacheUpdateTime = QDateTime::currentDateTime().toTime_t();
+			emit progressRangeChanged(m_xmlIndex, m_xmlIndexCount);
+			emit progressChanged(m_xmlIndex);
+		}
+		emit progressChanged(0);
+	}
+}
+
 void CollectionRebuilderThread::run()
 {
 	emit log(tr("rebuilder thread started"));
@@ -1697,16 +1792,24 @@ void CollectionRebuilderThread::run()
 		isWaiting = false;
 		mutex.unlock();
 		if ( !exitThread && !stopRebuilding ) {
+			if ( useHashCache )
+				updateHashCache();
 			setsProcessed = missingROMs = missingDisks = 0;
 			setSetEntityPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
 			setRomEntityPattern("<" + rebuilderDialog()->lineEditRomEntity->text() + " name=\"");
 			setDiskEntityPattern("<" + rebuilderDialog()->lineEditDiskEntity->text() + " name=\"");
 			setSetEntityStartPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
 			setMerge(!rebuilderDialog()->romAlyzer()->checkBoxSetRewriterSelfContainedSets->isChecked());
-			emit log(tr("rebuilding started"));
+			if ( dryRun )
+				emit log(tr("dry run started"));
+			else
+				emit log(tr("rebuilding started"));
 			emit statusUpdated(0, 0, 0);
 			emit rebuildStarted();
-			emit progressTextChanged(tr("Rebuilding"));
+			if ( dryRun )
+				emit progressTextChanged(tr("Analyzing"));
+			else
+				emit progressTextChanged(tr("Rebuilding"));
 			QTime rebuildTimer, elapsedTime(0, 0, 0, 0);
 			rebuildTimer.start();
 			if ( checkpoint() < 0 )
@@ -1722,47 +1825,62 @@ void CollectionRebuilderThread::run()
 						pauseRequested = false;
 						emit progressTextChanged(tr("Paused"));
 						emit rebuildPaused();
-						emit log(tr("rebuilding paused"));
+						if ( dryRun )
+							emit log(tr("dry run paused"));
+						else
+							emit log(tr("rebuilding paused"));
 					}
 					QTest::qWait(100);
 				}
 				if ( pauseMessageLogged && !exitThread && !stopRebuilding ) {
 					isPaused = false;
-					emit progressTextChanged(tr("Rebuilding"));
+					if ( dryRun )
+						emit progressTextChanged(tr("Analyzing"));
+					else
+						emit progressTextChanged(tr("Rebuilding"));
 					emit rebuildResumed();
-					emit log(tr("rebuilding resumed"));
+					if ( dryRun )
+						emit log(tr("dry run resumed"));
+					else
+						emit log(tr("rebuilding resumed"));
 				}
 				if ( setKey.isEmpty() )
 					continue;
 				if ( !exitThread && !stopRebuilding && (!romNameList.isEmpty() || !diskNameList.isEmpty()) ) {
-					emit log(tr("set rebuilding started for '%1'").arg(setKey));
+					if ( !dryRun )
+						emit log(tr("set rebuilding started for '%1'").arg(setKey));
 					for (int i = 0; i < romNameList.count(); i++) {
-						bool dbStatusGood = checkSumDb()->exists(romSha1List[i], romCrcList[i], romSizeList[i].toULongLong());
-						emit log(tr("required ROM") + ": " + tr("name = '%1', crc = '%2', sha1 = '%3', database status = '%4'").arg(romNameList[i]).arg(romCrcList[i]).arg(romSha1List[i]).arg(dbStatusGood ? tr("available") : tr("not available")));
+						bool dbStatusGood = checkSumExists(romSha1List[i], romCrcList[i], romSizeList[i].toULongLong());
+						if ( !dryRun )
+							emit log(tr("required ROM") + ": " + tr("name = '%1', crc = '%2', sha1 = '%3', database status = '%4'").arg(romNameList[i]).arg(romCrcList[i]).arg(romSha1List[i]).arg(dbStatusGood ? tr("available") : tr("not available")));
 						if ( !dbStatusGood ) {
 							missingROMs++;
 							emit newMissing(setKey, tr("ROM"), romNameList[i], romSizeList[i], romCrcList[i], romSha1List[i], tr("check-sum not available in database"));
 						}
 					}
 					for (int i = 0; i < diskNameList.count(); i++) {
-						bool dbStatusGood = checkSumDb()->exists(diskSha1List[i], QString());
-						emit log(tr("required disk") + ": " + tr("name = '%1', sha1 = '%2', database status = '%3'").arg(diskNameList[i]).arg(diskSha1List[i]).arg(dbStatusGood ? tr("available") : tr("not available")));
+						bool dbStatusGood = checkSumExists(diskSha1List[i], useHashCache ? "0" : QString());
+						if ( !dryRun )
+							emit log(tr("required disk") + ": " + tr("name = '%1', sha1 = '%2', database status = '%3'").arg(diskNameList[i]).arg(diskSha1List[i]).arg(dbStatusGood ? tr("available") : tr("not available")));
 						if ( !dbStatusGood ) {
 							missingDisks++;
 							emit newMissing(setKey, tr("DISK"), diskNameList[i], diskSizeList[i], QString(), diskSha1List[i], tr("check-sum not available in database"));
 						}
 					}
 					emit statusUpdated(setsProcessed, missingROMs, missingDisks);
-					bool rewriteOkay = true;
-					if ( !romNameList.isEmpty() )
-						rewriteOkay = rewriteSet(&setKey, &romNameList, &romSha1List, &romCrcList, &romSizeList, &diskNameList, &diskSha1List);
-					if ( rewriteOkay )
-						emit log(tr("set rebuilding finished for '%1'").arg(setKey));
-					else
-						emit log(tr("set rebuilding failed for '%1'").arg(setKey));
+					if ( !dryRun ) {
+						bool rewriteOkay = true;
+						if ( !romNameList.isEmpty() && !dryRun )
+							rewriteOkay = rewriteSet(&setKey, &romNameList, &romSha1List, &romCrcList, &romSizeList, &diskNameList, &diskSha1List);
+						if ( rewriteOkay )
+							emit log(tr("set rebuilding finished for '%1'").arg(setKey));
+						else
+							emit log(tr("set rebuilding failed for '%1'").arg(setKey));
+					}
 					emit statusUpdated(++setsProcessed, missingROMs, missingDisks);
 					setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
-					QTest::qWait(0);
+					if ( !dryRun )
+						QTest::qWait(1);
 				}
 			}
 			if ( rebuilderDialog()->defaultEmulator() ) {
@@ -1772,7 +1890,10 @@ void CollectionRebuilderThread::run()
 					swlDb()->clearIdAtIndexCache();
 			}
 			elapsedTime = elapsedTime.addMSecs(rebuildTimer.elapsed());
-			emit log(tr("rebuilding finished - total rebuild time = %1, sets processed = %2, missing ROMs = %3, missing disks = %4").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(setsProcessed).arg(missingROMs).arg(missingDisks));
+			if ( dryRun )
+				emit log(tr("dry run finished - total analysis time = %1, sets processed = %2, missing ROMs = %3, missing disks = %4").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(setsProcessed).arg(missingROMs).arg(missingDisks));
+			else
+				emit log(tr("rebuilding finished - total rebuild time = %1, sets processed = %2, missing ROMs = %3, missing disks = %4").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(setsProcessed).arg(missingROMs).arg(missingDisks));
 			emit progressRangeChanged(0, 100);
 			emit progressChanged(0);
 			emit progressTextChanged(tr("Idle"));
