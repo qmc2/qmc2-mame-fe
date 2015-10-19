@@ -310,7 +310,7 @@ bool CheckSumDatabaseManager::getData(QString sha1, QString crc, quint64 *size, 
 			query.bindValue(":sha1", sha1);
 			query.bindValue(":size", *size);
 		} else {
-			query.prepare(QString("SELECT size, path, member, type FROM %1 WHERE (sha1=:sha1 OR crc=:crc) AND size=:size").arg(m_tableBasename));
+			query.prepare(QString("SELECT size, path, member, type FROM %1 WHERE sha1=:sha1 AND crc=:crc AND size=:size").arg(m_tableBasename));
 			query.bindValue(":sha1", sha1);
 			query.bindValue(":crc", crc);
 			query.bindValue(":size", *size);
@@ -323,7 +323,7 @@ bool CheckSumDatabaseManager::getData(QString sha1, QString crc, quint64 *size, 
 			query.prepare(QString("SELECT size, path, member, type FROM %1 WHERE sha1=:sha1").arg(m_tableBasename));
 			query.bindValue(":sha1", sha1);
 		} else {
-			query.prepare(QString("SELECT size, path, member, type FROM %1 WHERE sha1=:sha1 OR crc=:crc").arg(m_tableBasename));
+			query.prepare(QString("SELECT size, path, member, type FROM %1 WHERE sha1=:sha1 AND crc=:crc").arg(m_tableBasename));
 			query.bindValue(":sha1", sha1);
 			query.bindValue(":crc", crc);
 		}
