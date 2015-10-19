@@ -1879,8 +1879,10 @@ void CollectionRebuilderThread::run()
 					}
 					emit statusUpdated(++setsProcessed, missingROMs, missingDisks);
 					setCheckpoint(m_xmlIndex, rebuilderDialog()->comboBoxXmlSource->currentIndex());
-					if ( !dryRun )
+					if ( !dryRun ) {
 						QTest::qWait(1);
+						yieldCurrentThread();
+					}
 				}
 			}
 			if ( rebuilderDialog()->defaultEmulator() ) {
