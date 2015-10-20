@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>538</width>
+    <width>586</width>
     <height>461</height>
    </rect>
   </property>
@@ -229,6 +229,29 @@
         <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
        </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBoxModeSwitch">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Mode switch</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>Rebuild mode</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Dry run mode</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>
@@ -769,6 +792,7 @@
  <tabstops>
   <tabstop>comboBoxXmlSource</tabstop>
   <tabstop>toolButtonRemoveXmlSource</tabstop>
+  <tabstop>comboBoxModeSwitch</tabstop>
   <tabstop>pushButtonStartStop</tabstop>
   <tabstop>pushButtonPauseResume</tabstop>
   <tabstop>checkBoxFilterExpressionSoftwareLists</tabstop>

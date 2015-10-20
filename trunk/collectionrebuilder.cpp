@@ -541,6 +541,7 @@ void CollectionRebuilder::rebuilderThread_rebuildStarted()
 	comboBoxXmlSource->setItemData(comboBoxXmlSource->currentIndex(), true);
 	labelXmlSource->setEnabled(false);
 	toolButtonRemoveXmlSource->setEnabled(false);
+	comboBoxModeSwitch->setEnabled(false);
 	checkBoxFilterExpression->setEnabled(false);
 	checkBoxFilterExpressionSoftwareLists->setEnabled(false);
 	comboBoxFilterSyntax->setEnabled(false);
@@ -623,6 +624,7 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 	comboBoxXmlSource->setEnabled(true);
 	labelXmlSource->setEnabled(true);
 	toolButtonRemoveXmlSource->setEnabled(true);
+	comboBoxModeSwitch->setEnabled(true);
 	checkBoxFilterExpression->setEnabled(true);
 	checkBoxFilterExpressionSoftwareLists->setEnabled(true);
 	comboBoxFilterSyntax->setEnabled(checkBoxFilterExpression->isChecked());
@@ -748,7 +750,7 @@ void CollectionRebuilder::updateMissingList()
 		missingDumpsViewer()->toolButtonExportToDataFile->setEnabled(missingDumpsViewer()->treeWidget->topLevelItemCount() > 0);
 }
 
-void CollectionRebuilder::updateButtonText()
+void CollectionRebuilder::updateModeSetup()
 {
 	if ( active() ) {
 		if ( rebuilderThread()->dryRun ) {
@@ -762,16 +764,35 @@ void CollectionRebuilder::updateButtonText()
 		if ( romAlyzer()->checkBoxCollectionRebuilderDryRun->isChecked() ){
 			pushButtonStartStop->setText(tr("Start dry run"));
 			pushButtonStartStop->setToolTip(tr("Start / stop dry run"));
+			comboBoxModeSwitch->blockSignals(true);
+			comboBoxModeSwitch->setCurrentIndex(1);
+			comboBoxModeSwitch->blockSignals(false);
 		} else {
 			pushButtonStartStop->setText(tr("Start rebuilding"));
 			pushButtonStartStop->setToolTip(tr("Start / stop rebuilding"));
+			comboBoxModeSwitch->blockSignals(true);
+			comboBoxModeSwitch->setCurrentIndex(0);
+			comboBoxModeSwitch->blockSignals(false);
 		}
+	}
+}
+
+void CollectionRebuilder::on_comboBoxModeSwitch_currentIndexChanged(int index)
+{
+	if ( index == 0 ) {
+		romAlyzer()->checkBoxCollectionRebuilderDryRun->setChecked(false);
+		pushButtonStartStop->setText(tr("Start rebuilding"));
+		pushButtonStartStop->setToolTip(tr("Start / stop rebuilding"));
+	} else {
+		romAlyzer()->checkBoxCollectionRebuilderDryRun->setChecked(true);
+		pushButtonStartStop->setText(tr("Start dry run"));
+		pushButtonStartStop->setToolTip(tr("Start / stop dry run"));
 	}
 }
 
 void CollectionRebuilder::showEvent(QShowEvent *e)
 {
-	QTimer::singleShot(0, this, SLOT(updateButtonText()));
+	QTimer::singleShot(0, this, SLOT(updateModeSetup()));
 }
 
 void CollectionRebuilder::hideEvent(QHideEvent *e)

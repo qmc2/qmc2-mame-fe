@@ -201,7 +201,8 @@ class CollectionRebuilder : public QWidget, public Ui::CollectionRebuilder
 		void rebuilderThread_newMissing(QString, QString, QString, QString, QString, QString, QString);
 		void animationTimer_timeout();
 		void updateMissingList();
-		void updateButtonText();
+		void updateModeSetup();
+		void on_comboBoxModeSwitch_currentIndexChanged(int);
 
 	protected:
 		void showEvent(QShowEvent *);
