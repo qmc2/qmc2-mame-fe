@@ -1792,8 +1792,6 @@ void CollectionRebuilderThread::run()
 		isWaiting = false;
 		mutex.unlock();
 		if ( !exitThread && !stopRebuilding ) {
-			if ( useHashCache )
-				updateHashCache();
 			setsProcessed = missingROMs = missingDisks = 0;
 			setSetEntityPattern("<" + rebuilderDialog()->lineEditSetEntity->text() + " name=\"");
 			setRomEntityPattern("<" + rebuilderDialog()->lineEditRomEntity->text() + " name=\"");
@@ -1806,12 +1804,14 @@ void CollectionRebuilderThread::run()
 				emit log(tr("rebuilding started"));
 			emit statusUpdated(0, 0, 0);
 			emit rebuildStarted();
+			QTime rebuildTimer, elapsedTime(0, 0, 0, 0);
+			rebuildTimer.start();
+			if ( useHashCache )
+				updateHashCache();
 			if ( dryRun )
 				emit progressTextChanged(tr("Analyzing"));
 			else
 				emit progressTextChanged(tr("Rebuilding"));
-			QTime rebuildTimer, elapsedTime(0, 0, 0, 0);
-			rebuildTimer.start();
 			if ( checkpoint() < 0 )
 				m_xmlIndex = m_xmlIndexCount = -1;
 			QString setKey;
