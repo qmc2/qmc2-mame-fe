@@ -4782,7 +4782,6 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 			}
 			checkSumDb()->commitTransaction();
 			emit log(tr("%n outdated path(s) removed from database", "", pathsRemoved));
-
 			if ( !exitThread && !stopScan ) {
 				emit progressTextChanged(tr("Preparing"));
 				emit progressRangeChanged(0, 0);
