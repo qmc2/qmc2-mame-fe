@@ -4711,16 +4711,16 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 	// step 1: remove entries from the database that "point to nowhere" (a.k.a. aren't contained in 'fileList'), storing all paths kept in the database
 	//         in the 'pathsInDatabase' hash for use in steps 2 and 3 so we don't need to query the database again
 	QHash<QString, bool> pathsInDatabase;
-	qint64 row = checkSumDb()->nextRowId(true);
 	emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(1).arg(3));
 	emit progressRangeChanged(0, checkSumDb()->checkSumRowCount() - 1);
 	emit progressChanged(0);
 	int count = 0;
 	qint64 pathsRemoved = 0;
-	checkSumDb()->beginTransaction();
 	QHash<QString, bool> fileHash;
 	foreach (QString file, *fileList)
 		fileHash.insert(file, true);
+	qint64 row = checkSumDb()->nextRowId(true);
+	checkSumDb()->beginTransaction();
 	while ( row > 0 && !exitThread && !stopScan ) {
 		emit progressChanged(count++);
 		QString key;
@@ -4736,8 +4736,6 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 			}
 		}
 		row = checkSumDb()->nextRowId();
-		if ( exitThread || stopScan )
-			break;
 	}
 	checkSumDb()->commitTransaction();
 	emit log(tr("%n obsolete path(s) removed from database", "", pathsRemoved));
@@ -4766,20 +4764,26 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 		if ( !exitThread && !stopScan ) {
 			// step 3: remove entries from the database that "point to new stuff" (a.k.a. are still contained in the modified 'fileList')
 			emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(3).arg(3));
-			emit progressRangeChanged(0, pathsInDatabase.count());
+			emit progressRangeChanged(0, checkSumDb()->checkSumRowCount() - 1);
 			emit progressChanged(0);
 			pathsRemoved = 0;
 			count = 0;
+			row = checkSumDb()->nextRowId(true);
 			checkSumDb()->beginTransaction();
-			foreach (QString path, pathsInDatabase.keys()) {
+			while ( row > 0 && !exitThread && !stopScan ) {
 				emit progressChanged(count++);
-				if ( fileHash.contains(path) ) {
-					checkSumDb()->pathRemove(path);
+				if ( fileHash.contains(checkSumDb()->pathOfRow(row)) ) {
+					checkSumDb()->invalidateRow(row);
 					pathsRemoved++;
 				}
-				if ( exitThread || stopScan )
-					break;
+				row = checkSumDb()->nextRowId();
+				if ( count % QMC2_CHECKSUM_DB_MAX_TRANSACTIONS ) {
+					checkSumDb()->removeInvalidatedRows();
+					checkSumDb()->commitTransaction();
+					checkSumDb()->beginTransaction();
+				}
 			}
+			checkSumDb()->removeInvalidatedRows();
 			checkSumDb()->commitTransaction();
 			emit log(tr("%n outdated path(s) removed from database", "", pathsRemoved));
 			if ( !exitThread && !stopScan ) {
