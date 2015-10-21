@@ -41,6 +41,8 @@ class CheckSumDatabaseManager : public QObject
 		void pathRemove(QString path);
 		QString pathOfRow(qint64 row, QString *key = 0, bool simpleKey = false);
 		QString keyOfRow(qint64 row);
+		void invalidateRow(qint64 row);
+		void removeInvalidatedRows();
 
 		int nameToType(QString name);
 		QString typeToName(int type);

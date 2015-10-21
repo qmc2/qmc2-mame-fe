@@ -436,6 +436,23 @@ QString CheckSumDatabaseManager::keyOfRow(qint64 row)
 	}
 }
 
+void CheckSumDatabaseManager::invalidateRow(qint64 row)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("UPDATE %1 SET sha1='I' WHERE rowid=:row").arg(m_tableBasename));
+	query.bindValue(":row", row);
+	if ( !query.exec() )
+		emit log(tr("WARNING: failed to update '%1' in check-sum database: query = '%2', error = '%3'").arg("sha1").arg(query.lastQuery()).arg(m_db.lastError().text()));
+
+}
+
+void CheckSumDatabaseManager::removeInvalidatedRows()
+{
+	QSqlQuery query(m_db);
+	if ( !query.exec(QString("DELETE FROM %1 WHERE sha1='I'").arg(m_tableBasename)) )
+		emit log(tr("WARNING: failed to remove invalidated rows from check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+}
+
 int CheckSumDatabaseManager::nameToType(QString name)
 {
 	return m_fileTypes.indexOf(name);
