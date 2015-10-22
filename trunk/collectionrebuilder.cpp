@@ -657,6 +657,8 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 		qmc2SoftwareList->toolButtonRebuildSoftware->setEnabled(true);
 	}
 	qApp->processEvents();
+	if ( !newMissingList().isEmpty() && missingDumpsViewer() )
+		QTimer::singleShot(0, this, SLOT(updateMissingList()));
 }
 
 void CollectionRebuilder::rebuilderThread_rebuildPaused()
@@ -1891,7 +1893,7 @@ void CollectionRebuilderThread::run()
 					emit statusUpdated(setsProcessed, missingROMs, missingDisks);
 					if ( !dryRun ) {
 						bool rewriteOkay = true;
-						if ( !romNameList.isEmpty() && !dryRun )
+						if ( !romNameList.isEmpty() )
 							rewriteOkay = rewriteSet(&setKey, &romNameList, &romSha1List, &romCrcList, &romSizeList, &diskNameList, &diskSha1List);
 						if ( rewriteOkay )
 							emit log(tr("set rebuilding finished for '%1'").arg(setKey));
