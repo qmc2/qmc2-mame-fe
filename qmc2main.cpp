@@ -402,22 +402,17 @@ void MainWindow::logScrollToEnd(char logTarget)
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent, qmc2TemplateCheck ? Qt::Tool | Qt::FramelessWindowHint : (Qt::WindowFlags)0)
 {
-	if ( qmc2TemplateCheck )
-		setVisible(false);
-
+	setVisible(false);
 	qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "InstanceRunning"), true);
-
 	qmc2StartupDefaultFont = new QFont(qApp->font());
 	desktopGeometry = qApp->desktop()->geometry();
 	isActiveState = launchForeignID = negatedMatch = isCreatingSoftList = searchActive = stopSearch = lastPageSoftware = false;
 	comboBoxEmuSelector = NULL;
 	proxyStyle = NULL;
 	swlDb = NULL;
-
 	videoSnapAllowedFormatExtensions
 		<< ".mp4"
 		<< ".avi";
-
 	FileIconProvider::setCacheSize(QMC2_FILEICONPROVIDER_CACHE_SIZE);
 
 	// remember the default style
@@ -6569,9 +6564,6 @@ void MainWindow::init()
 
 	qmc2EarlyStartup = false;
 
-	setUpdatesEnabled(true);
-	qApp->processEvents();
-
 	qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", 0).toInt();
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	if ( qmc2LastListIndex == QMC2_EMBED_INDEX )
@@ -6583,6 +6575,10 @@ void MainWindow::init()
 		qmc2ComponentSetup->saveComponent(component);
 
 	tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
+
+	setUpdatesEnabled(true);
+	setVisible(true);
+	qApp->processEvents();
 
 	// same for all other tab widgets
 	QTimer::singleShot(0, this, SLOT(updateTabWidgets()));
