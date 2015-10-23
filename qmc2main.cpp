@@ -3424,28 +3424,30 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 #else
 			QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
 #endif
-			switch ( stackedWidgetView->currentIndex() ) {
-				case QMC2_VIEWHIERARCHY_INDEX:
-					treeWidgetHierarchy->activateWindow();
-					treeWidgetHierarchy->setFocus();
-					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetHierarchy_verticalScrollChanged()));
-					break;
-				case QMC2_VIEWCATEGORY_INDEX:
-					treeWidgetCategoryView->activateWindow();
-					treeWidgetCategoryView->setFocus();
-					QTimer::singleShot(0, this, SLOT(viewByCategory()));
-					break;
-				case QMC2_VIEWVERSION_INDEX:
-					treeWidgetVersionView->activateWindow();
-					treeWidgetVersionView->setFocus();
-					QTimer::singleShot(0, this, SLOT(viewByVersion()));
-					break;
-				case QMC2_VIEWMACHINELIST_INDEX:
-				default:
-					treeWidgetMachineList->activateWindow();
-					treeWidgetMachineList->setFocus();
-					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetMachineList_verticalScrollChanged()));
-					break;
+			if ( !qmc2MachineList->initialLoad ) {
+				switch ( stackedWidgetView->currentIndex() ) {
+					case QMC2_VIEWHIERARCHY_INDEX:
+						treeWidgetHierarchy->activateWindow();
+						treeWidgetHierarchy->setFocus();
+						QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetHierarchy_verticalScrollChanged()));
+						break;
+					case QMC2_VIEWCATEGORY_INDEX:
+						treeWidgetCategoryView->activateWindow();
+						treeWidgetCategoryView->setFocus();
+						QTimer::singleShot(0, this, SLOT(viewByCategory()));
+						break;
+					case QMC2_VIEWVERSION_INDEX:
+						treeWidgetVersionView->activateWindow();
+						treeWidgetVersionView->setFocus();
+						QTimer::singleShot(0, this, SLOT(viewByVersion()));
+						break;
+					case QMC2_VIEWMACHINELIST_INDEX:
+					default:
+						treeWidgetMachineList->activateWindow();
+						treeWidgetMachineList->setFocus();
+						QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetMachineList_verticalScrollChanged()));
+						break;
+				}
 			}
 			break;
 
