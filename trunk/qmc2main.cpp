@@ -11056,8 +11056,6 @@ int main(int argc, char *argv[])
 	qmc2Config = qmc2Options->config;
 	qmc2ProcessManager = new ProcessManager(0);
 	qmc2MainWindow = new MainWindow(0);
-
-	// prepare & restore component setup
 	qmc2ComponentSetup = new ComponentSetup(qmc2MainWindow);
 
 	// finalize initial setup
