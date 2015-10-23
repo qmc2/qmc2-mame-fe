@@ -402,10 +402,6 @@ void MainWindow::logScrollToEnd(char logTarget)
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent, qmc2TemplateCheck ? Qt::Tool | Qt::FramelessWindowHint : (Qt::WindowFlags)0)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::MainWindow(QWidget *parent = %1)").arg((qulonglong)parent));
-#endif
-
 	if ( qmc2TemplateCheck )
 		setVisible(false);
 
@@ -6534,6 +6530,9 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 
 void MainWindow::init()
 {
+	if ( qmc2TemplateCheck )
+		return;
+
 	// signal setup requests for style, style-sheet and palette
 	signalStyleSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString());
 	signalStyleSheetSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", QString()).toString());
@@ -6551,10 +6550,7 @@ void MainWindow::init()
 	qmc2ToolBarCustomizer = new ToolBarCustomizer(qmc2Options);
 
 #if defined(QMC2_OS_MAC)
-	bool isShown = qmc2Options->isVisible();
 	qmc2Options->setParent(this, Qt::Dialog);
-	if ( isShown )
-		qmc2Options->show();
 #endif
 
 #if QMC2_USE_PHONON_API
@@ -6573,6 +6569,9 @@ void MainWindow::init()
 
 	qmc2EarlyStartup = false;
 
+	setUpdatesEnabled(true);
+	qApp->processEvents();
+
 	qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", 0).toInt();
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	if ( qmc2LastListIndex == QMC2_EMBED_INDEX )
@@ -6584,11 +6583,6 @@ void MainWindow::init()
 		qmc2ComponentSetup->saveComponent(component);
 
 	tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
-
-	if ( !qmc2TemplateCheck ) {
-		setUpdatesEnabled(true);
-		qApp->processEvents();
-	}
 
 	// same for all other tab widgets
 	QTimer::singleShot(0, this, SLOT(updateTabWidgets()));
