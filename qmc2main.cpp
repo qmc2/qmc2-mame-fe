@@ -176,7 +176,6 @@ bool qmc2LoadingGameInfoDB = false;
 bool qmc2WidgetsEnabled = true;
 bool qmc2ExportingROMStatus = false;
 bool qmc2StatesTogglesEnabled = true;
-bool qmc2VariantSwitchReady = false;
 bool qmc2DestroyingArcadeView = false;
 bool qmc2IgnoreItemActivation = false;
 bool qmc2StartEmbedded = false;
@@ -735,11 +734,6 @@ MainWindow::MainWindow(QWidget *parent)
 		vSplitterSizesSoftwareDetail = splitterSizes;
 		floatToggleButtonSoftwareDetail->setChecked(true);
 	}
-
-	// signal setup requests for style, style-sheet and palette
-	signalStyleSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString());
-	signalStyleSheetSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", QString()).toString());
-	signalPaletteSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString());
 
 	on_actionFullscreenToggle_triggered();
 	update_rebuildRomActions_visibility();
@@ -6540,6 +6534,11 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 
 void MainWindow::init()
 {
+	// signal setup requests for style, style-sheet and palette
+	signalStyleSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString());
+	signalStyleSheetSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", QString()).toString());
+	signalPaletteSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString());
+
 	if ( qmc2SplashScreen ) {
 		qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)), Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
 		qmc2SplashScreen->show();
@@ -6547,8 +6546,6 @@ void MainWindow::init()
 		qmc2SplashScreen->repaint();
 		QTimer::singleShot(QMC2_SPLASH_DURATION, qmc2SplashScreen, SLOT(hide()));
 	}
-
-	qApp->processEvents();
 
 	// tool-bar customization
 	qmc2ToolBarCustomizer = new ToolBarCustomizer(qmc2Options);
@@ -6620,9 +6617,9 @@ void MainWindow::setupStyle(QString styleName)
 		newStyle = QStyleFactory::create(defaultStyle);
 		styleName = "Default";
 	}
-
 	if ( newStyle ) {
-		log(QMC2_LOG_FRONTEND, tr("setting GUI style to '%1'").arg(styleName));
+		if ( qmc2CurrentStyleName != styleName )
+			log(QMC2_LOG_FRONTEND, tr("setting GUI style to '%1'").arg(styleName));
 		if ( !qmc2StandardPalettes.contains(styleName) )
 			qmc2StandardPalettes[styleName] = newStyle->standardPalette();
 		if ( !proxyStyle ) {
@@ -6639,7 +6636,6 @@ void MainWindow::setupStyle(QString styleName)
 void MainWindow::setupStyleSheet(QString styleSheetName)
 {
 	static QString oldStyleSheetName;
-
 	if ( !styleSheetName.isEmpty() ) {
 		QFile f(styleSheetName);
 		if ( f.open(QIODevice::ReadOnly) ) {
@@ -6656,37 +6652,28 @@ void MainWindow::setupStyleSheet(QString styleSheetName)
 			log(QMC2_LOG_FRONTEND, tr("removing current style sheet"));
 		qApp->setStyleSheet(QString());
 	}
-
 	oldStyleSheetName = styleSheetName;
 }
 
 void MainWindow::setupPalette(QString styleName)
 {
 	static QPalette oldPalette;
-
-	if ( qApp->styleSheet().isEmpty() ) { // custom palettes and style sheets are mutually exclusive
-		qmc2Options->loadCustomPalette(styleName);
-
-		QPalette newPalette;
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", true).toBool() ) {
-			newPalette = qmc2StandardPalettes[styleName];
-			if ( oldPalette != newPalette )
-				log(QMC2_LOG_FRONTEND, tr("using default color palette for GUI style '%1'").arg(styleName));
-		} else {
-			newPalette = qmc2CustomPalette;
-			if ( oldPalette != newPalette )
-				log(QMC2_LOG_FRONTEND, tr("using custom color palette"));
-		}
-
-		qApp->setPalette(newPalette);
-
-		// work around for an annoying Qt bug
-		menuBar()->setPalette(newPalette);
-		toolbar->setPalette(newPalette);
-
-		oldPalette = newPalette;
-	} else
-		oldPalette = qApp->palette();
+	qmc2Options->loadCustomPalette(styleName);
+	QPalette newPalette;
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", true).toBool() ) {
+		newPalette = qmc2StandardPalettes[styleName];
+		if ( oldPalette != newPalette )
+			log(QMC2_LOG_FRONTEND, tr("using default color palette for GUI style '%1'").arg(styleName));
+	} else {
+		newPalette = qmc2CustomPalette;
+		if ( oldPalette != newPalette )
+			log(QMC2_LOG_FRONTEND, tr("using custom color palette"));
+	}
+	qApp->setPalette(newPalette);
+	// work around for an annoying Qt bug
+	menuBar()->setPalette(newPalette);
+	toolbar->setPalette(newPalette);
+	oldPalette = newPalette;
 }
 
 void MainWindow::viewFullDetail()
@@ -11068,11 +11055,11 @@ int main(int argc, char *argv[])
 #endif
 	}
 
-	// setup key event filter
+	// setup event filter
 	qmc2MainEventFilter = new MainEventFilter(0);
 	qmc2App.installEventFilter(qmc2MainEventFilter);
 
-	// create mandatory objects and prepare shortcuts
+	// create mandatory objects
 	qmc2Options = new Options(0);
 	qmc2Config = qmc2Options->config;
 	qmc2ProcessManager = new ProcessManager(0);
@@ -11087,11 +11074,6 @@ int main(int argc, char *argv[])
 	qmc2Options->apply();
 	qmc2GuiReady = true;
 	prepareShortcuts();
-	QTimer::singleShot(0, qmc2Options, SLOT(on_pushButtonApply_clicked()));
-	QTimer::singleShot(0, qmc2Options, SLOT(checkShortcuts()));
-#if QMC2_JOYSTICK == 1
-	QTimer::singleShot(0, qmc2Options, SLOT(checkJoystickMappings()));
-#endif
 
 #if QT_VERSION < 0x050000
 	// this effectively enables support for unicode characters in C strings
@@ -11170,6 +11152,11 @@ int main(int argc, char *argv[])
 		qmc2Options->applied = true;
 		qmc2MainWindow->close();
 	} else {
+		QTimer::singleShot(0, qmc2Options, SLOT(on_pushButtonApply_clicked()));
+		QTimer::singleShot(0, qmc2Options, SLOT(checkShortcuts()));
+#if QMC2_JOYSTICK == 1
+		QTimer::singleShot(0, qmc2Options, SLOT(checkJoystickMappings()));
+#endif
 		// if CLI option -cc is set, clear all emulator caches before starting up
 		if ( QMC2_CLI_OPT_CLEAR_ALL_CACHES )
 			qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered();

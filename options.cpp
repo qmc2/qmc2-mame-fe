@@ -107,7 +107,6 @@ extern bool qmc2SuppressQtMessages;
 extern bool qmc2ShowGameName;
 extern bool qmc2ShowGameNameOnlyWhenRequired;
 extern bool qmc2StatesTogglesEnabled;
-extern bool qmc2VariantSwitchReady;
 extern int qmc2MachineListResponsiveness;
 extern int qmc2UpdateDelay;
 extern QTranslator *qmc2Translator;
@@ -191,10 +190,6 @@ Options::Options(QWidget *parent)
 	: QDialog(parent, Qt::Dialog | Qt::SubWindow)
 #endif
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::Options(QWidget *parent = %1)").arg((qulonglong)parent));
-#endif
-
 	qmc2Filter.resize(QMC2_ROMSTATE_COUNT);
 
 	QCoreApplication::setOrganizationName(QMC2_ORGANIZATION_NAME);
@@ -392,10 +387,6 @@ Options::Options(QWidget *parent)
 
 Options::~Options()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::~Options()");
-#endif
-
 	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/FrontendTab", tabWidgetFrontendSettings->currentIndex());
 	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/MAMETab", tabWidgetGlobalMAMESetup->currentIndex());
 	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/OptionsTab", tabWidgetOptions->currentIndex());
@@ -416,10 +407,6 @@ Options::~Options()
 
 void Options::apply()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::apply()");
-#endif
-
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	if ( qmc2MainWindow->tabWidgetMachineList->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() ) {
 		qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -429,7 +416,6 @@ void Options::apply()
 	qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 	qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
 #endif
-
 	QFont f;
 	if ( qmc2StartupDefaultFont )
 		f = *qmc2StartupDefaultFont;
@@ -440,13 +426,11 @@ void Options::apply()
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
 	QSize iconSizeMiddle = iconSize + QSize(2, 2);
 	QSize iconSizeLarge = iconSize + QSize(4, 4);
-
 	foreach (QWidget *widget, QApplication::allWidgets()) {
 		widget->setFont(f);
 		if ( widget->objectName() == "MiniWebBrowser" )
 			QTimer::singleShot(0, (MiniWebBrowser *)widget, SLOT(adjustIconSizes()));
 	}
-
 	if ( qmc2SplashScreen ) {
 		QFont splashFont = f;
 		splashFont.setBold(true);
@@ -568,14 +552,12 @@ void Options::apply()
 	labelExecutableFilePic->setPixmap(reloadPixmap);
 	labelLegend4Pic->setPixmap(reloadPixmap);
 	labelLegend5Pic->setPixmap(reloadPixmap);
-  
 	tableWidgetRegisteredEmulators->resizeRowsToContents();
 	for (int i = 0; i < tableWidgetRegisteredEmulators->rowCount(); i++) {
 		QToolButton *tb = (QToolButton *)tableWidgetRegisteredEmulators->cellWidget(i, QMC2_ADDTLEMUS_COLUMN_ICON);
 		if ( tb )
 			tb->setIconSize(iconSizeMiddle);
 	}
-
 	// global web-browser fonts
 	QWebSettings::globalSettings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
 	QWebSettings::globalSettings()->setFontFamily(QWebSettings::SerifFont, qApp->font().family());
@@ -585,7 +567,6 @@ void Options::apply()
 	QWebSettings::globalSettings()->setFontFamily(QWebSettings::FixedFont, logFont.family());
 	QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFontSize, qApp->font().pointSize() + 1);
 	QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFixedFontSize, logFont.pointSize() + 1);
-
 #if QMC2_JOYSTICK == 1
 	pushButtonRescanJoysticks->setIconSize(iconSize);
 	pushButtonRemapJoystickFunction->setIconSize(iconSize);
@@ -696,7 +677,6 @@ void Options::apply()
 	qmc2MainWindow->treeWidgetDownloads->setIconSize(iconSize);
 	qmc2MainWindow->toolButtonSelectRomFilter->setIconSize(iconSize);
 	qmc2MainWindow->comboBoxViewSelect->setIconSize(iconSize);
-
 	QTabBar *tabBar = qmc2MainWindow->tabWidgetMachineList->findChild<QTabBar *>();
 	if ( tabBar )
 		tabBar->setIconSize(iconSizeMiddle);
@@ -709,9 +689,7 @@ void Options::apply()
 	tabBar = qmc2MainWindow->tabWidgetSoftwareDetail->findChild<QTabBar *>();
 	if ( tabBar )
 		tabBar->setIconSize(iconSizeMiddle);
-
 	qmc2MainWindow->toolbar->setIconSize(iconSizeLarge);
-
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	for (int i = 0; i < qmc2MainWindow->tabWidgetEmbeddedEmulators->count(); i++) {
 		Embedder *embedder = (Embedder *)qmc2MainWindow->tabWidgetEmbeddedEmulators->widget(i);
@@ -724,61 +702,45 @@ void Options::apply()
 	qmc2MainWindow->toolButtonEmbedderAutoPause->setIconSize(iconSizeLarge);
 #endif
 #endif
-
 	if ( qmc2ComponentSetup )
 		if ( qmc2ComponentSetup->isVisible() )
 			QTimer::singleShot(0, qmc2ComponentSetup, SLOT(adjustIconSizes()));
-
 	if ( qmc2ToolBarCustomizer )
 		if ( qmc2ToolBarCustomizer->isVisible() )
 			QTimer::singleShot(0, qmc2ToolBarCustomizer, SLOT(adjustIconSizes()));
-
 	if ( qmc2GlobalEmulatorOptions )
 		QTimer::singleShot(0, qmc2GlobalEmulatorOptions, SLOT(adjustIconSizes()));
-
 	if ( qmc2EmulatorOptions )
 		QTimer::singleShot(0, qmc2EmulatorOptions, SLOT(adjustIconSizes()));
-
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
+
+	// we get an X error / Qt warning here upon qApp->processEvents(), but it seems safe to ignore it
+	qmc2SuppressQtMessages = true;
+	qApp->processEvents();
+	qmc2SuppressQtMessages = config->value(QMC2_FRONTEND_PREFIX + "GUI/SuppressQtMessages", false).toBool();;
+
+	applied = true;
 }
 
 void Options::on_pushButtonOk_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonOk_clicked()");
-#endif
-
 	on_pushButtonApply_clicked();
 }
 
 void Options::on_pushButtonCancel_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonCancel_clicked()");
-#endif
-
 	cancelClicked = true;
 	restoreCurrentConfig();
 }
 
 void Options::on_pushButtonRestore_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonRestore_clicked()");
-#endif
-
 	restoreCurrentConfig();
 }
 
 void Options::on_pushButtonApply_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonApply_clicked()");
-#endif
-
 	static int oldCacheSize = 0;
-	static QString oldStyleName;
-	static QString oldStyleSheet;
 	static bool initialCall = true;
 	QString s;
 	int i;
@@ -1384,9 +1346,7 @@ void Options::on_pushButtonApply_clicked()
 
 	// sync settings (write settings to disk) and apply
 	config->sync();
-	applied = true;
-	if ( qmc2GuiReady )
-		apply();
+	apply();
 
 	if ( invalidateGameInfoDB )
 		qmc2MachineList->datInfoDb()->recreateMachineInfoTable();
@@ -1400,431 +1360,383 @@ void Options::on_pushButtonApply_clicked()
 	if ( needManualReload )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please reload machine list for some changes to take effect"));
 
-		if ( needRestart )
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please restart QMC2 for some changes to take effect"));
+	if ( needRestart )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please restart QMC2 for some changes to take effect"));
 
-		if ( needRecreateTemplateMap )
-			qmc2MainWindow->on_actionRecreateTemplateMap_triggered();
+	if ( needRecreateTemplateMap )
+		qmc2MainWindow->on_actionRecreateTemplateMap_triggered();
 
-		if ( needResort && !needReload ) {
-			bool doResort = true;
-
-			if ( doResort ) {
-				qmc2SortingActive = true;
-				QString sortCriteria = tr("?");
-				switch ( qmc2SortCriteria ) {
-					case QMC2_SORT_BY_DESCRIPTION:
-						sortCriteria = QObject::tr("machine description");
-						break;
-					case QMC2_SORT_BY_ROM_STATE:
-						sortCriteria = QObject::tr("ROM state");
-						break;
-					case QMC2_SORT_BY_TAG:
-						sortCriteria = QObject::tr("tag");
-						break;
-					case QMC2_SORT_BY_YEAR:
-						sortCriteria = QObject::tr("year");
-						break;
-					case QMC2_SORT_BY_MANUFACTURER:
-						sortCriteria = QObject::tr("manufacturer");
-						break;
-					case QMC2_SORT_BY_NAME:
-						sortCriteria = QObject::tr("machine name");
-						break;
-					case QMC2_SORT_BY_ROMTYPES:
-						sortCriteria = QObject::tr("ROM types");
-						break;
-					case QMC2_SORT_BY_PLAYERS:
-						sortCriteria = QObject::tr("players");
-						break;
-					case QMC2_SORT_BY_DRVSTAT:
-						sortCriteria = QObject::tr("driver status");
-						break;
-					case QMC2_SORT_BY_SRCFILE:
-						sortCriteria = QObject::tr("source file");
-						break;
-					case QMC2_SORT_BY_RANK:
-						sortCriteria = QObject::tr("rank");
-						break;
-					case QMC2_SORT_BY_CATEGORY:
-						sortCriteria = QObject::tr("category");
-						break;
-					case QMC2_SORT_BY_VERSION:
-						sortCriteria = QObject::tr("version");
-						break;
-				}
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
-				qApp->processEvents();
-				foreach (QTreeWidgetItem *ti, qmc2ExpandedMachineListItems) {
-					qmc2MainWindow->treeWidgetMachineList->collapseItem(ti);
-					QList<QTreeWidgetItem *> childrenList = ti->takeChildren();
-					foreach (QTreeWidgetItem *ci, ti->takeChildren())
-						delete ci;
-					QTreeWidgetItem *nameItem = new QTreeWidgetItem(ti);
-					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
-					nameItem->setText(QMC2_MACHINELIST_COLUMN_ICON, ti->text(QMC2_MACHINELIST_COLUMN_NAME));
-				}
-				qmc2ExpandedMachineListItems.clear();
-				qApp->processEvents();
-				qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
-				qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
-				qmc2MainWindow->treeWidgetCategoryView->setUpdatesEnabled(false);
-				qmc2MainWindow->treeWidgetVersionView->setUpdatesEnabled(false);
-				if ( qmc2SortCriteria == QMC2_SORT_BY_RANK && !qmc2MachineList->userDataDb()->rankCacheComplete() )
-					qmc2MachineList->userDataDb()->fillUpRankCache();
-				qmc2MainWindow->treeWidgetMachineList->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
-				qApp->processEvents();
-				qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
-				qApp->processEvents();
-				if ( qmc2MainWindow->treeWidgetCategoryView->topLevelItemCount() > 0 ) {
-					qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
-					qApp->processEvents();
-				}
-				if ( qmc2MainWindow->treeWidgetVersionView->topLevelItemCount() > 0 ) {
-					qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
-					qApp->processEvents();
-				}
-				qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
-				qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
-				qmc2MainWindow->treeWidgetCategoryView->setUpdatesEnabled(true);
-				qmc2MainWindow->treeWidgetVersionView->setUpdatesEnabled(true);
-				qmc2SortingActive = false;
-				QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
-			}
-		}
-
+	if ( needResort && !needReload ) {
+		qmc2SortingActive = true;
+		QString sortCriteria = tr("?");
 		switch ( qmc2SortCriteria ) {
 			case QMC2_SORT_BY_DESCRIPTION:
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+				sortCriteria = QObject::tr("machine description");
 				break;
-
+			case QMC2_SORT_BY_ROM_STATE:
+				sortCriteria = QObject::tr("ROM state");
+				break;
 			case QMC2_SORT_BY_TAG:
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_TAG, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_TAG, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_TAG, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_TAG, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+				sortCriteria = QObject::tr("tag");
 				break;
-
 			case QMC2_SORT_BY_YEAR:
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_YEAR, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_YEAR, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_YEAR, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_YEAR, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+				sortCriteria = QObject::tr("year");
 				break;
-
 			case QMC2_SORT_BY_MANUFACTURER:
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MANU, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MANU, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MANU, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MANU, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+				sortCriteria = QObject::tr("manufacturer");
 				break;
-
 			case QMC2_SORT_BY_NAME:
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_NAME, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_NAME, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_NAME, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_NAME, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+				sortCriteria = QObject::tr("machine name");
 				break;
-
 			case QMC2_SORT_BY_ROMTYPES:
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RTYPES, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RTYPES, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RTYPES, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RTYPES, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+				sortCriteria = QObject::tr("ROM types");
 				break;
-
 			case QMC2_SORT_BY_PLAYERS:
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_PLAYERS, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_PLAYERS, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_PLAYERS, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_PLAYERS, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+				sortCriteria = QObject::tr("players");
 				break;
-
 			case QMC2_SORT_BY_DRVSTAT:
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_DRVSTAT, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_DRVSTAT, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_DRVSTAT, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_DRVSTAT, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+				sortCriteria = QObject::tr("driver status");
 				break;
-
 			case QMC2_SORT_BY_SRCFILE:
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_SRCFILE, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_SRCFILE, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_SRCFILE, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_SRCFILE, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+				sortCriteria = QObject::tr("source file");
 				break;
-
 			case QMC2_SORT_BY_RANK:
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RANK, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RANK, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RANK, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RANK, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+				sortCriteria = QObject::tr("rank");
 				break;
-
 			case QMC2_SORT_BY_CATEGORY:
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_CATEGORY, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_CATEGORY, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_CATEGORY, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_CATEGORY, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+				sortCriteria = QObject::tr("category");
 				break;
-
 			case QMC2_SORT_BY_VERSION:
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_VERSION, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_VERSION, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_VERSION, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_VERSION, qmc2SortOrder);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
-				break;
-
-			default:
-				qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(false);
-				qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(false);
-				qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(false);
-				qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(false);
+				sortCriteria = QObject::tr("version");
 				break;
 		}
-
-		if ( needFilter && !needReload ) {
-			qmc2StatesTogglesEnabled = false;
-			qmc2MainWindow->romStateFilter->toolButtonCorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);
-			qmc2MainWindow->romStateFilter->toolButtonMostlyCorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_M]);
-			qmc2MainWindow->romStateFilter->toolButtonIncorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
-			qmc2MainWindow->romStateFilter->toolButtonNotFound->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
-			qmc2MainWindow->romStateFilter->toolButtonUnknown->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
-			qmc2MachineList->filter();
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
+		foreach (QTreeWidgetItem *ti, qmc2ExpandedMachineListItems) {
+			qmc2MainWindow->treeWidgetMachineList->collapseItem(ti);
+			QList<QTreeWidgetItem *> childrenList = ti->takeChildren();
+			foreach (QTreeWidgetItem *ci, ti->takeChildren())
+				delete ci;
+			QTreeWidgetItem *nameItem = new QTreeWidgetItem(ti);
+			nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+			nameItem->setText(QMC2_MACHINELIST_COLUMN_ICON, ti->text(QMC2_MACHINELIST_COLUMN_NAME));
 		}
+		qmc2ExpandedMachineListItems.clear();
+		qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
+		qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
+		qmc2MainWindow->treeWidgetCategoryView->setUpdatesEnabled(false);
+		qmc2MainWindow->treeWidgetVersionView->setUpdatesEnabled(false);
+		if ( qmc2SortCriteria == QMC2_SORT_BY_RANK && !qmc2MachineList->userDataDb()->rankCacheComplete() )
+			qmc2MachineList->userDataDb()->fillUpRankCache();
+		qmc2MainWindow->treeWidgetMachineList->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+		qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+		if ( qmc2MainWindow->treeWidgetCategoryView->topLevelItemCount() > 0 )
+			qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+		if ( qmc2MainWindow->treeWidgetVersionView->topLevelItemCount() > 0 )
+			qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+		qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
+		qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
+		qmc2MainWindow->treeWidgetCategoryView->setUpdatesEnabled(true);
+		qmc2MainWindow->treeWidgetVersionView->setUpdatesEnabled(true);
+		qmc2SortingActive = false;
+		QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
+	}
 
-		QList<ImageWidget *> iwl;
-		iwl << qmc2Preview << qmc2Flyer << qmc2Cabinet << qmc2Controller << qmc2Marquee << qmc2Title << qmc2PCB;
-		foreach (ImageWidget *iw, iwl) {
-			if ( iw ) {
-				bool needReopenFile = false;
-				switch ( iw->imageTypeNumeric() ) {
-					case QMC2_IMGTYPE_PREVIEW:
-						needReopenFile |= needReopenPreviewFile;
-						break;
-					case QMC2_IMGTYPE_FLYER:
-						needReopenFile |= needReopenFlyerFile;
-						break;
-					case QMC2_IMGTYPE_CABINET:
-						needReopenFile |= needReopenCabinetFile;
-						break;
-					case QMC2_IMGTYPE_CONTROLLER:
-						needReopenFile |= needReopenControllerFile;
-						break;
-					case QMC2_IMGTYPE_MARQUEE:
-						needReopenFile |= needReopenMarqueeFile;
-						break;
-					case QMC2_IMGTYPE_TITLE:
-						needReopenFile |= needReopenTitleFile;
-						break;
-					case QMC2_IMGTYPE_PCB:
-						needReopenFile |= needReopenPCBFile;
-						break;
-				}
-				if ( needReopenFile ) {
-					foreach (unzFile imageFile, iw->imageFileMap)
-						unzClose(imageFile);
-					foreach (SevenZipFile *imageFile, iw->imageFileMap7z) {
-						imageFile->close();
-						delete imageFile;
-					}
-					iw->imageFileMap.clear();
-					iw->imageFileMap7z.clear();
-					if ( iw->useZip() ) {
-						foreach (QString filePath, Settings::stResolve(iw->imageZip()).split(";", QString::SkipEmptyParts)) {
-							unzFile imageFile = unzOpen(filePath.toUtf8().constData());
-							if ( imageFile == NULL )
-								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(iw->imageType()).arg(filePath));
-							else
-								iw->imageFileMap[filePath] = imageFile;
-						}
-					} else if ( iw->useSevenZip() ) {
-						foreach (QString filePath, Settings::stResolve(iw->imageZip()).split(";", QString::SkipEmptyParts)) {
-							SevenZipFile *imageFile = new SevenZipFile(filePath);
-							if ( !imageFile->open() ) {
-								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file %2").arg(iw->imageType()).arg(filePath) + " - " + tr("7z error") + ": " + imageFile->lastError());
-								delete imageFile;
-							} else {
-								iw->imageFileMap7z[filePath] = imageFile;
-								connect(imageFile, SIGNAL(dataReady()), iw, SLOT(sevenZipDataReady()));
-							}
-						}
-					}
-				}
-				iw->update();
+	switch ( qmc2SortCriteria ) {
+		case QMC2_SORT_BY_DESCRIPTION:
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+			break;
+
+		case QMC2_SORT_BY_TAG:
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_TAG, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_TAG, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_TAG, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_TAG, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+			break;
+
+		case QMC2_SORT_BY_YEAR:
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_YEAR, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_YEAR, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_YEAR, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_YEAR, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+			break;
+
+		case QMC2_SORT_BY_MANUFACTURER:
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MANU, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MANU, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MANU, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_MANU, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+			break;
+
+		case QMC2_SORT_BY_NAME:
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_NAME, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_NAME, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_NAME, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_NAME, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+			break;
+
+		case QMC2_SORT_BY_ROMTYPES:
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RTYPES, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RTYPES, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RTYPES, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RTYPES, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+			break;
+
+		case QMC2_SORT_BY_PLAYERS:
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_PLAYERS, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_PLAYERS, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_PLAYERS, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_PLAYERS, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+			break;
+
+		case QMC2_SORT_BY_DRVSTAT:
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_DRVSTAT, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_DRVSTAT, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_DRVSTAT, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_DRVSTAT, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+			break;
+
+		case QMC2_SORT_BY_SRCFILE:
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_SRCFILE, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_SRCFILE, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_SRCFILE, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_SRCFILE, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+			break;
+
+		case QMC2_SORT_BY_RANK:
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RANK, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RANK, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RANK, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_RANK, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+			break;
+
+		case QMC2_SORT_BY_CATEGORY:
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_CATEGORY, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_CATEGORY, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_CATEGORY, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_CATEGORY, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+			break;
+
+		case QMC2_SORT_BY_VERSION:
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_VERSION, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_VERSION, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_VERSION, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_MACHINELIST_COLUMN_VERSION, qmc2SortOrder);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+			break;
+
+		default:
+			qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(false);
+			qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(false);
+			qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(false);
+			qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(false);
+			break;
+	}
+
+	if ( needFilter && !needReload ) {
+		qmc2StatesTogglesEnabled = false;
+		qmc2MainWindow->romStateFilter->toolButtonCorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);
+		qmc2MainWindow->romStateFilter->toolButtonMostlyCorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_M]);
+		qmc2MainWindow->romStateFilter->toolButtonIncorrect->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
+		qmc2MainWindow->romStateFilter->toolButtonNotFound->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
+		qmc2MainWindow->romStateFilter->toolButtonUnknown->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
+		qmc2MachineList->filter();
+	}
+
+	QList<ImageWidget *> iwl;
+	iwl << qmc2Preview << qmc2Flyer << qmc2Cabinet << qmc2Controller << qmc2Marquee << qmc2Title << qmc2PCB;
+	foreach (ImageWidget *iw, iwl) {
+		if ( iw ) {
+			bool needReopenFile = false;
+			switch ( iw->imageTypeNumeric() ) {
+				case QMC2_IMGTYPE_PREVIEW:
+					needReopenFile |= needReopenPreviewFile;
+					break;
+				case QMC2_IMGTYPE_FLYER:
+					needReopenFile |= needReopenFlyerFile;
+					break;
+				case QMC2_IMGTYPE_CABINET:
+					needReopenFile |= needReopenCabinetFile;
+					break;
+				case QMC2_IMGTYPE_CONTROLLER:
+					needReopenFile |= needReopenControllerFile;
+					break;
+				case QMC2_IMGTYPE_MARQUEE:
+					needReopenFile |= needReopenMarqueeFile;
+					break;
+				case QMC2_IMGTYPE_TITLE:
+					needReopenFile |= needReopenTitleFile;
+					break;
+				case QMC2_IMGTYPE_PCB:
+					needReopenFile |= needReopenPCBFile;
+					break;
 			}
-		}
-
-		if ( qmc2SoftwareSnap ) {
-			if ( needReopenSoftwareSnapFile ) {
-				foreach (unzFile imageFile, qmc2SoftwareSnap->snapFileMap)
+			if ( needReopenFile ) {
+				foreach (unzFile imageFile, iw->imageFileMap)
 					unzClose(imageFile);
-				foreach (SevenZipFile *imageFile, qmc2SoftwareSnap->snapFileMap7z) {
+				foreach (SevenZipFile *imageFile, iw->imageFileMap7z) {
 					imageFile->close();
 					delete imageFile;
 				}
-				qmc2SoftwareSnap->snapFileMap.clear();
-				qmc2SoftwareSnap->snapFileMap7z.clear();
-				if ( qmc2SoftwareSnap->useZip() ) {
-					foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
+				iw->imageFileMap.clear();
+				iw->imageFileMap7z.clear();
+				if ( iw->useZip() ) {
+					foreach (QString filePath, Settings::stResolve(iw->imageZip()).split(";", QString::SkipEmptyParts)) {
 						unzFile imageFile = unzOpen(filePath.toUtf8().constData());
 						if ( imageFile == NULL )
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(filePath));
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(iw->imageType()).arg(filePath));
 						else
-							qmc2SoftwareSnap->snapFileMap[filePath] = imageFile;
+							iw->imageFileMap[filePath] = imageFile;
 					}
-				} else if ( qmc2SoftwareSnap->useSevenZip() ) {
-					foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
+				} else if ( iw->useSevenZip() ) {
+					foreach (QString filePath, Settings::stResolve(iw->imageZip()).split(";", QString::SkipEmptyParts)) {
 						SevenZipFile *imageFile = new SevenZipFile(filePath);
 						if ( !imageFile->open() ) {
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file %1").arg(filePath) + " - " + tr("7z error") + ": " + imageFile->lastError());
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file %2").arg(iw->imageType()).arg(filePath) + " - " + tr("7z error") + ": " + imageFile->lastError());
 							delete imageFile;
 						} else {
-							qmc2SoftwareSnap->snapFileMap7z[filePath] = imageFile;
-							connect(imageFile, SIGNAL(dataReady()), qmc2SoftwareSnap, SLOT(sevenZipDataReady()));
+							iw->imageFileMap7z[filePath] = imageFile;
+							connect(imageFile, SIGNAL(dataReady()), iw, SLOT(sevenZipDataReady()));
 						}
 					}
 				}
 			}
-			qmc2SoftwareSnap->update();
+			iw->update();
 		}
+	}
 
-		if ( needReopenIconFile ) {
-			foreach (unzFile iconFile, qmc2IconFileMap)
-				unzClose(iconFile);
-			foreach (SevenZipFile *iconFile, qmc2IconFileMap7z) {
-				iconFile->close();
-				delete iconFile;
+	if ( qmc2SoftwareSnap ) {
+		if ( needReopenSoftwareSnapFile ) {
+			foreach (unzFile imageFile, qmc2SoftwareSnap->snapFileMap)
+				unzClose(imageFile);
+			foreach (SevenZipFile *imageFile, qmc2SoftwareSnap->snapFileMap7z) {
+				imageFile->close();
+				delete imageFile;
 			}
-			qmc2IconFileMap.clear();
-			qmc2IconFileMap7z.clear();
-			if ( QMC2_ICON_FILETYPE_ZIP ) {
-				foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
-					unzFile iconFile = unzOpen(filePath.toUtf8().constData());
-					if ( iconFile == NULL )
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(filePath));
+			qmc2SoftwareSnap->snapFileMap.clear();
+			qmc2SoftwareSnap->snapFileMap7z.clear();
+			if ( qmc2SoftwareSnap->useZip() ) {
+				foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
+					unzFile imageFile = unzOpen(filePath.toUtf8().constData());
+					if ( imageFile == NULL )
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(filePath));
 					else
-						qmc2IconFileMap[filePath] = iconFile;
+						qmc2SoftwareSnap->snapFileMap[filePath] = imageFile;
 				}
-			} else if ( QMC2_ICON_FILETYPE_7Z ) {
-				foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
-					SevenZipFile *iconFile = new SevenZipFile(filePath);
-					if ( !iconFile->open() ) {
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("7z error") + ": " + iconFile->lastError());
-						delete iconFile;
-					} else
-						qmc2IconFileMap7z[filePath] = iconFile;
+			} else if ( qmc2SoftwareSnap->useSevenZip() ) {
+				foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
+					SevenZipFile *imageFile = new SevenZipFile(filePath);
+					if ( !imageFile->open() ) {
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file %1").arg(filePath) + " - " + tr("7z error") + ": " + imageFile->lastError());
+						delete imageFile;
+					} else {
+						qmc2SoftwareSnap->snapFileMap7z[filePath] = imageFile;
+						connect(imageFile, SIGNAL(dataReady()), qmc2SoftwareSnap, SLOT(sevenZipDataReady()));
+					}
 				}
 			}
 		}
+		qmc2SoftwareSnap->update();
+	}
 
-		if ( needReload ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("triggering automatic reload of machine list"));
-			qmc2AutomaticReload = true;
-			QTimer::singleShot(0, qmc2MainWindow->actionReload, SLOT(trigger()));
+	if ( needReopenIconFile ) {
+		foreach (unzFile iconFile, qmc2IconFileMap)
+			unzClose(iconFile);
+		foreach (SevenZipFile *iconFile, qmc2IconFileMap7z) {
+			iconFile->close();
+			delete iconFile;
 		}
-
-		if ( !qmc2EarlyStartup ) {
-			// style
-			if ( qmc2StandardPalettes.contains(qmc2CurrentStyleName) )
-				qApp->setPalette(qmc2StandardPalettes[qmc2CurrentStyleName]);
-			if ( oldStyleName.isEmpty() )
-				oldStyleName = qmc2CurrentStyleName;
-			QString styleName = comboBoxStyle->currentText();
-			if ( styleName == QObject::tr("Default") )
-				styleName = "Default";
-			config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Style", styleName);
-			if ( styleName != oldStyleName )
-				qmc2MainWindow->signalStyleSetupRequested(styleName);
-			qmc2CurrentStyleName = oldStyleName = styleName;
-
-			// style sheet
-			QString styleSheetName = lineEditStyleSheet->text();
-			config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", styleSheetName);
-			if ( styleSheetName != oldStyleSheet || styleSheetName.isEmpty() )
-				qmc2MainWindow->signalStyleSheetSetupRequested(styleSheetName);
-			oldStyleSheet = styleSheetName;
-
-			// palette
-			qmc2MainWindow->signalPaletteSetupRequested(styleName);
+		qmc2IconFileMap.clear();
+		qmc2IconFileMap7z.clear();
+		if ( QMC2_ICON_FILETYPE_ZIP ) {
+			foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
+				unzFile iconFile = unzOpen(filePath.toUtf8().constData());
+				if ( iconFile == NULL )
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(filePath));
+				else
+					qmc2IconFileMap[filePath] = iconFile;
+			}
+		} else if ( QMC2_ICON_FILETYPE_7Z ) {
+			foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
+				SevenZipFile *iconFile = new SevenZipFile(filePath);
+				if ( !iconFile->open() ) {
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("7z error") + ": " + iconFile->lastError());
+					delete iconFile;
+				} else
+					qmc2IconFileMap7z[filePath] = iconFile;
+			}
 		}
-
-		pushButtonApply->setEnabled(true);
-		pushButtonRestore->setEnabled(true);
-		pushButtonDefault->setEnabled(true);
-		pushButtonOk->setEnabled(true);
-		pushButtonCancel->setEnabled(true);
-
-		QTimer::singleShot(0, this, SLOT(applyDelayed()));
-		initialCall = false;
+	}
+	if ( needReload ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("triggering automatic reload of machine list"));
+		qmc2AutomaticReload = true;
+		QTimer::singleShot(0, qmc2MainWindow->actionReload, SLOT(trigger()));
+	}
+	pushButtonApply->setEnabled(true);
+	pushButtonRestore->setEnabled(true);
+	pushButtonDefault->setEnabled(true);
+	pushButtonOk->setEnabled(true);
+	pushButtonCancel->setEnabled(true);
+	QTimer::singleShot(0, this, SLOT(applyDelayed()));
+	initialCall = false;
 }
 
 void Options::on_pushButtonDefault_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonDefault_clicked()");
-#endif
-
 	restoreCurrentConfig(true);
 }
 
 void Options::restoreCurrentConfig(bool useDefaultSettings)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::restoreCurrentConfig()");
-#endif
-
 	treeWidgetShortcuts->clear();
 
 	if ( useDefaultSettings ) {
@@ -2256,7 +2168,7 @@ QString Options::configPath()
 void Options::applyDelayed()
 {
 	// paranoia :)
-	if ( qmc2MainWindow == NULL ) {
+	if ( !qmc2MainWindow ) {
 		QTimer::singleShot(0, this, SLOT(applyDelayed()));
 		return;
 	}
@@ -2305,6 +2217,22 @@ void Options::applyDelayed()
 	qmc2MainWindow->on_tabWidgetGameDetail_currentChanged(qmc2MainWindow->tabWidgetGameDetail->currentIndex());
 
 	if ( !cancelClicked ) {
+		if ( qmc2GuiReady ) {
+			// style
+			if ( qmc2StandardPalettes.contains(qmc2CurrentStyleName) )
+				qApp->setPalette(qmc2StandardPalettes[qmc2CurrentStyleName]);
+			QString styleName = comboBoxStyle->currentText();
+			if ( styleName == tr("Default") )
+				styleName = "Default";
+			config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Style", styleName);
+			qmc2MainWindow->signalStyleSetupRequested(styleName);
+			// style sheet
+			QString styleSheetName = lineEditStyleSheet->text();
+			config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", styleSheetName);
+			qmc2MainWindow->signalStyleSheetSetupRequested(styleSheetName);
+			// palette
+			qmc2MainWindow->signalPaletteSetupRequested(styleName);
+		}
 		qmc2MainWindow->treeWidgetForeignIDs->setUpdatesEnabled(false);
 		if ( !qmc2EarlyStartup ) {
 			// save foreign ID selection
@@ -2322,7 +2250,6 @@ void Options::applyDelayed()
 			} else
 				qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedForeignID");
 		}
-
 		// (re)create foreign IDs tree-widget, if applicable
 		qmc2MainWindow->treeWidgetForeignIDs->clear();
 		QString displayFormat = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/DisplayFormat", "$ID$ - $DESCRIPTION$").toString();
@@ -2398,7 +2325,6 @@ void Options::applyDelayed()
 			if ( index >= 0 )
 				qmc2MainWindow->tabWidgetMachineList->removeTab(index);
 		}
-
 		// restore foreign ID selection
 		QStringList foreignIdState = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedForeignID", QStringList()).toStringList();
 		if ( !foreignIdState.isEmpty() ) {
@@ -2421,13 +2347,10 @@ void Options::applyDelayed()
 				}
 			}
 		}
-
 		qmc2MainWindow->treeWidgetForeignIDs->setUpdatesEnabled(true);
 		tableWidgetRegisteredEmulators->resizeRowsToContents();
 	}
-
 	checkPlaceholderStatus();
-  
 	// hide / show the menu bar
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	if ( qmc2MainWindow->tabWidgetMachineList->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
@@ -2435,7 +2358,6 @@ void Options::applyDelayed()
 #else
 	qmc2MainWindow->menuBar()->setVisible(checkBoxShowMenuBar->isChecked());
 #endif
-
 	if ( checkBoxShowLoadingAnimation->isChecked() ) {
 		qmc2MainWindow->labelLoadingMachineList->setMovie(qmc2MainWindow->loadAnimMovie);
 		qmc2MainWindow->labelLoadingHierarchy->setMovie(qmc2MainWindow->loadAnimMovie);
@@ -2447,18 +2369,11 @@ void Options::applyDelayed()
 		qmc2MainWindow->labelCreatingCategoryView->setMovie(qmc2MainWindow->nullMovie);
 		qmc2MainWindow->labelCreatingVersionView->setMovie(qmc2MainWindow->nullMovie);
 	}
-
-	qApp->processEvents();
-	qmc2VariantSwitchReady = true;
 	cancelClicked = false;
 }
 
 void Options::on_pushButtonClearCookieDatabase_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonClearCookieDatabase_clicked()");
-#endif
-
 	if ( qmc2NetworkAccessManager ) {
 		CookieJar *cj = (CookieJar *)qmc2NetworkAccessManager->cookieJar();
 		cj->recreateDatabase();
@@ -2467,40 +2382,24 @@ void Options::on_pushButtonClearCookieDatabase_clicked()
 
 void Options::on_pushButtonManageCookies_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonManageCookies_clicked()");
-#endif
-
 	CookieManager cm(this);
 	cm.exec();
 }
 
 void Options::on_pushButtonAdditionalArtworkSetup_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonAdditionalArtworkSetup_clicked()");
-#endif
-
 	AdditionalArtworkSetup as(this);
 	as.exec();
 }
 
 void Options::on_pushButtonImageFormats_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonImageFormats_clicked()");
-#endif
-
 	ImageFormatSetup ifs(this);
 	ifs.exec();
 }
 
 void Options::on_toolButtonImportGameInfo_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonImportGameInfo_clicked()");
-#endif
-
 	QStringList pathList;
 	QStringList emulatorList;
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() ) {
@@ -2527,10 +2426,6 @@ void Options::on_toolButtonImportGameInfo_clicked()
 
 void Options::on_toolButtonImportMachineInfo_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonImportMachineInfo_clicked()");
-#endif
-
 	QStringList pathList;
 	QStringList emulatorList;
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() ) {
@@ -2557,10 +2452,6 @@ void Options::on_toolButtonImportMachineInfo_clicked()
 
 void Options::on_toolButtonImportMameInfo_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonImportMameInfo_clicked()");
-#endif
-
 	QStringList pathList;
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() )
 		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
@@ -2579,10 +2470,6 @@ void Options::on_toolButtonImportMameInfo_clicked()
 
 void Options::on_toolButtonImportMessInfo_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonImportMessInfo_clicked()");
-#endif
-
 	QStringList pathList;
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() )
 		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
@@ -2601,10 +2488,6 @@ void Options::on_toolButtonImportMessInfo_clicked()
 
 void Options::on_toolButtonImportSoftwareInfo_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonImportSoftwareInfo_clicked()");
-#endif
-
 	qmc2LoadingSoftwareInfoDB = true;
 	toolButtonImportSoftwareInfo->setEnabled(false);
 	qApp->processEvents();
@@ -2616,10 +2499,6 @@ void Options::on_toolButtonImportSoftwareInfo_clicked()
 
 void Options::on_toolButtonBrowseStyleSheet_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseStyleSheet_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose Qt style sheet file"), lineEditStyleSheet->text(), tr("Qt Style Sheets (*.qss)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditStyleSheet->setText(s);
@@ -2628,10 +2507,6 @@ void Options::on_toolButtonBrowseStyleSheet_clicked()
 
 void Options::on_toolButtonBrowseTemporaryFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseTemporaryFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose temporary work file"), lineEditTemporaryFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditTemporaryFile->setText(s);
@@ -2640,10 +2515,6 @@ void Options::on_toolButtonBrowseTemporaryFile_clicked()
 
 void Options::on_toolButtonBrowsePreviewDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowsePreviewDirectory_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose preview directory"), lineEditPreviewDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -2655,10 +2526,6 @@ void Options::on_toolButtonBrowsePreviewDirectory_clicked()
 
 void Options::on_toolButtonBrowseFlyerDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFlyerDirectory_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose flyer directory"), lineEditFlyerDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -2670,10 +2537,6 @@ void Options::on_toolButtonBrowseFlyerDirectory_clicked()
 
 void Options::on_toolButtonBrowseIconDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseIconDirectory_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose icon directory"), lineEditIconDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -2685,10 +2548,6 @@ void Options::on_toolButtonBrowseIconDirectory_clicked()
 
 void Options::on_toolButtonBrowseCabinetDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseCabinetDirectory_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose cabinet directory"), lineEditCabinetDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -2700,10 +2559,6 @@ void Options::on_toolButtonBrowseCabinetDirectory_clicked()
 
 void Options::on_toolButtonBrowseControllerDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseControllerDirectory_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose controller directory"), lineEditControllerDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -2715,10 +2570,6 @@ void Options::on_toolButtonBrowseControllerDirectory_clicked()
 
 void Options::on_toolButtonBrowseMarqueeDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMarqueeDirectory_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose marquee directory"), lineEditMarqueeDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -2730,10 +2581,6 @@ void Options::on_toolButtonBrowseMarqueeDirectory_clicked()
 
 void Options::on_toolButtonBrowseTitleDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseTitleDirectory_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose title directory"), lineEditTitleDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -2745,10 +2592,6 @@ void Options::on_toolButtonBrowseTitleDirectory_clicked()
 
 void Options::on_toolButtonBrowsePCBDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowsePCBDirectory_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose PCB directory"), lineEditPCBDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -2760,10 +2603,6 @@ void Options::on_toolButtonBrowsePCBDirectory_clicked()
 
 void Options::on_toolButtonBrowseOptionsTemplateFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseOptionsTemplateFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose options template file"), lineEditOptionsTemplateFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditOptionsTemplateFile->setText(s);
@@ -2772,10 +2611,6 @@ void Options::on_toolButtonBrowseOptionsTemplateFile_clicked()
 
 void Options::on_toolButtonBrowseExecutableFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseExecutableFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), lineEditExecutableFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditExecutableFile->setText(s);
@@ -2784,10 +2619,6 @@ void Options::on_toolButtonBrowseExecutableFile_clicked()
 
 void Options::on_toolButtonBrowseEmulatorLogFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseEmulatorLogFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose emulator log file"), lineEditEmulatorLogFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditEmulatorLogFile->setText(s);
@@ -2796,10 +2627,6 @@ void Options::on_toolButtonBrowseEmulatorLogFile_clicked()
 
 void Options::on_toolButtonBrowseXmlCacheDatabase_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseXmlCacheDatabase_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose XML cache database file"), lineEditXmlCacheDatabase->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditXmlCacheDatabase->setText(s);
@@ -2808,10 +2635,6 @@ void Options::on_toolButtonBrowseXmlCacheDatabase_clicked()
 
 void Options::on_toolButtonClearUserDataDatabase_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonClearUserDataDatabase_clicked()");
-#endif
-
 	if ( qmc2MachineList->userDataDb()->userDataRowCount() > 0 ) {
 		switch ( QMessageBox::question(this, tr("Confirm"), tr("This will remove <b>all</b> existing user data and recreate the database.\nAre you sure you want to do this?"), tr("&Yes"), tr("&No"), QString(), 0, 1) ) {
 			case 0:
@@ -2834,19 +2657,11 @@ void Options::on_toolButtonClearUserDataDatabase_clicked()
 
 void Options::on_toolButtonCleanupUserDataDatabase_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonCleanupUserDataDatabase_clicked()");
-#endif
-
 	qmc2MachineList->userDataDb()->cleanUp();
 }
 
 void Options::on_toolButtonBrowseUserDataDatabase_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseUserDataDatabase_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose user data database file"), lineEditUserDataDatabase->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditUserDataDatabase->setText(s);
@@ -2855,10 +2670,6 @@ void Options::on_toolButtonBrowseUserDataDatabase_clicked()
 
 void Options::on_toolButtonBrowseCookieDatabase_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseCookieDatabase_clicked()");
-#endif
-
 	QString s = QFileDialog::getSaveFileName(this, tr("Choose cookie database file"), lineEditCookieDatabase->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditCookieDatabase->setText(s);
@@ -2867,10 +2678,6 @@ void Options::on_toolButtonBrowseCookieDatabase_clicked()
 
 void Options::on_toolButtonBrowseZipTool_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseZipTool_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose zip tool"), lineEditZipTool->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditZipTool->setText(s);
@@ -2879,10 +2686,6 @@ void Options::on_toolButtonBrowseZipTool_clicked()
 
 void Options::on_toolButtonBrowseSevenZipTool_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSevenZipTool_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose 7-zip tool"), lineEditSevenZipTool->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditSevenZipTool->setText(s);
@@ -2891,10 +2694,6 @@ void Options::on_toolButtonBrowseSevenZipTool_clicked()
 
 void Options::on_toolButtonBrowseRomTool_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseRomTool_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose ROM tool"), lineEditRomTool->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditRomTool->setText(s);
@@ -2903,10 +2702,6 @@ void Options::on_toolButtonBrowseRomTool_clicked()
 
 void Options::on_toolButtonBrowseRomToolWorkingDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseRomToolWorkingDirectory_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), lineEditRomToolWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() )
 		lineEditRomToolWorkingDirectory->setText(s);
@@ -2915,10 +2710,6 @@ void Options::on_toolButtonBrowseRomToolWorkingDirectory_clicked()
 
 void Options::on_toolButtonBrowseFavoritesFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFavoritesFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose machine favorites file"), lineEditFavoritesFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditFavoritesFile->setText(s);
@@ -2927,10 +2718,6 @@ void Options::on_toolButtonBrowseFavoritesFile_clicked()
 
 void Options::on_toolButtonBrowseHistoryFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseHistoryFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose play history file"), lineEditHistoryFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditHistoryFile->setText(s);
@@ -2939,10 +2726,6 @@ void Options::on_toolButtonBrowseHistoryFile_clicked()
 
 void Options::on_toolButtonBrowseMachineListCacheFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMachineListCacheFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose machine list cache file"), lineEditMachineListCacheFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -2954,10 +2737,6 @@ void Options::on_toolButtonBrowseMachineListCacheFile_clicked()
 
 void Options::on_toolButtonBrowseROMStateCacheFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseROMStateCacheFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose ROM state cache file"), lineEditROMStateCacheFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditROMStateCacheFile->setText(s);
@@ -2966,10 +2745,6 @@ void Options::on_toolButtonBrowseROMStateCacheFile_clicked()
 
 void Options::on_toolButtonBrowseSlotInfoCacheFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSlotInfoCacheFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose slot info cache file"), lineEditSlotInfoCacheFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditSlotInfoCacheFile->setText(s);
@@ -2978,10 +2753,6 @@ void Options::on_toolButtonBrowseSlotInfoCacheFile_clicked()
 
 void Options::on_toolButtonBrowseWorkingDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseWorkingDirectory_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), lineEditWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -2993,10 +2764,6 @@ void Options::on_toolButtonBrowseWorkingDirectory_clicked()
 
 void Options::on_toolButtonBrowseSoftwareListCacheDb_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareListCacheDb_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose software list cache database file"), lineEditSoftwareListCacheDb->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditSoftwareListCacheDb->setText(s);
@@ -3005,10 +2772,6 @@ void Options::on_toolButtonBrowseSoftwareListCacheDb_clicked()
 
 void Options::on_toolButtonBrowseSoftwareStateCache_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareStateCache_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose software state cache directory"), lineEditSoftwareStateCache->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isEmpty() ) {
 		if ( !s.endsWith("/") )
@@ -3020,10 +2783,6 @@ void Options::on_toolButtonBrowseSoftwareStateCache_clicked()
 
 void Options::on_toolButtonBrowseGeneralSoftwareFolder_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseGeneralSoftwareFolder_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose general software folder"), lineEditGeneralSoftwareFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -3035,10 +2794,6 @@ void Options::on_toolButtonBrowseGeneralSoftwareFolder_clicked()
 
 void Options::on_toolButtonBrowseFrontendLogFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFrontendLogFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose front end log file"), lineEditFrontendLogFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditFrontendLogFile->setText(s);
@@ -3047,10 +2802,6 @@ void Options::on_toolButtonBrowseFrontendLogFile_clicked()
 
 void Options::on_toolButtonBrowseDataDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseDataDirectory_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose data directory"), lineEditDataDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -3062,10 +2813,6 @@ void Options::on_toolButtonBrowseDataDirectory_clicked()
 
 void Options::on_toolButtonBrowseDatInfoDatabase_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseDatInfoDatabase_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose dat-info database file"), lineEditDatInfoDatabase->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditDatInfoDatabase->setText(s);
@@ -3074,10 +2821,6 @@ void Options::on_toolButtonBrowseDatInfoDatabase_clicked()
 
 void Options::on_toolButtonBrowseMameHistoryDat_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMameHistoryDat_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose MAME machine info DB"), lineEditMameHistoryDat->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditMameHistoryDat->setText(s);
@@ -3086,10 +2829,6 @@ void Options::on_toolButtonBrowseMameHistoryDat_clicked()
 
 void Options::on_toolButtonBrowseMessSysinfoDat_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMessSysinfoDat_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose MESS machine info DB"), lineEditMessSysinfoDat->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditMessSysinfoDat->setText(s);
@@ -3098,10 +2837,6 @@ void Options::on_toolButtonBrowseMessSysinfoDat_clicked()
 
 void Options::on_toolButtonBrowseMameInfoDat_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMameInfoDat_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose MAME emulator info DB"), lineEditMameInfoDat->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditMameInfoDat->setText(s);
@@ -3110,10 +2845,6 @@ void Options::on_toolButtonBrowseMameInfoDat_clicked()
 
 void Options::on_toolButtonBrowseMessInfoDat_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMessInfoDat_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose MESS emulator info DB"), lineEditMessInfoDat->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditMessInfoDat->setText(s);
@@ -3122,10 +2853,6 @@ void Options::on_toolButtonBrowseMessInfoDat_clicked()
 
 void Options::on_toolButtonBrowseSoftwareInfoDB_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareInfoDB_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose software info DB"), lineEditSoftwareInfoDB->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditSoftwareInfoDB->setText(s);
@@ -3134,10 +2861,6 @@ void Options::on_toolButtonBrowseSoftwareInfoDB_clicked()
 
 void Options::on_toolButtonBrowseCatverIniFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseCatverIniFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose catver.ini file"), lineEditCatverIniFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditCatverIniFile->setText(s);
@@ -3146,10 +2869,6 @@ void Options::on_toolButtonBrowseCatverIniFile_clicked()
 
 void Options::on_toolButtonBrowseCategoryIniFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseCategoryIniFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose category.ini file"), lineEditCategoryIniFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditCategoryIniFile->setText(s);
@@ -3158,10 +2877,6 @@ void Options::on_toolButtonBrowseCategoryIniFile_clicked()
 
 void Options::on_toolButtonBrowseFont_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFont_clicked()");
-#endif
-
 	bool ok;
 	QFont currentFont;
 	if ( lineEditFont->text().isEmpty() )
@@ -3182,10 +2897,6 @@ void Options::on_toolButtonBrowseFont_clicked()
 
 void Options::on_toolButtonBrowseLogFont_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseLogFont_clicked()");
-#endif
-
 	bool ok;
 	QFont currentFont;
 	if ( lineEditLogFont->text().isEmpty() )
@@ -3206,10 +2917,6 @@ void Options::on_toolButtonBrowseLogFont_clicked()
 
 void Options::moveEvent(QMoveEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::moveEvent(QMoveEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
 		config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Position", pos());
 
@@ -3218,10 +2925,6 @@ void Options::moveEvent(QMoveEvent *e)
 
 void Options::resizeEvent(QResizeEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
 		config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Size", size());
 
@@ -3230,10 +2933,6 @@ void Options::resizeEvent(QResizeEvent *e)
 
 void Options::on_radioButtonPreviewSelect_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonPreviewSelect_clicked()");
-#endif
-
 	bool currentUsePreviewFile = (stackedWidgetPreview->currentIndex() == 1);
 	stackedWidgetPreview->setCurrentIndex(!currentUsePreviewFile);
 	radioButtonPreviewSelect->setText(!currentUsePreviewFile ? tr("Preview file") : tr("Preview directory"));
@@ -3241,10 +2940,6 @@ void Options::on_radioButtonPreviewSelect_clicked()
 
 void Options::on_radioButtonFlyerSelect_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonFlyerSelect_clicked()");
-#endif
-
 	bool currentUseFlyerFile = (stackedWidgetFlyer->currentIndex() == 1);
 	stackedWidgetFlyer->setCurrentIndex(!currentUseFlyerFile);
 	radioButtonFlyerSelect->setText(!currentUseFlyerFile ? tr("Flyer file") : tr("Flyer directory"));
@@ -3252,10 +2947,6 @@ void Options::on_radioButtonFlyerSelect_clicked()
 
 void Options::on_radioButtonIconSelect_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonIconSelect_clicked()");
-#endif
-
 	bool currentUseIconFile = (stackedWidgetIcon->currentIndex() == 1);
 	stackedWidgetIcon->setCurrentIndex(!currentUseIconFile);
 	radioButtonIconSelect->setText(!currentUseIconFile ? tr("Icon file") : tr("Icon directory"));
@@ -3263,10 +2954,6 @@ void Options::on_radioButtonIconSelect_clicked()
 
 void Options::on_radioButtonCabinetSelect_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonCabinetSelect_clicked()");
-#endif
-
 	bool currentUseCabinetFile = (stackedWidgetCabinet->currentIndex() == 1);
 	stackedWidgetCabinet->setCurrentIndex(!currentUseCabinetFile);
 	radioButtonCabinetSelect->setText(!currentUseCabinetFile ? tr("Cabinet file") : tr("Cabinet directory"));
@@ -3274,10 +2961,6 @@ void Options::on_radioButtonCabinetSelect_clicked()
 
 void Options::on_radioButtonControllerSelect_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonControllerSelect_clicked()");
-#endif
-
 	bool currentUseControllerFile = (stackedWidgetController->currentIndex() == 1);
 	stackedWidgetController->setCurrentIndex(!currentUseControllerFile);
 	radioButtonControllerSelect->setText(!currentUseControllerFile ? tr("Controller file") : tr("Controller directory"));
@@ -3285,10 +2968,6 @@ void Options::on_radioButtonControllerSelect_clicked()
 
 void Options::on_radioButtonMarqueeSelect_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonMarqueeSelect_clicked()");
-#endif
-
 	bool currentUseMarqueeFile = (stackedWidgetMarquee->currentIndex() == 1);
 	stackedWidgetMarquee->setCurrentIndex(!currentUseMarqueeFile);
 	radioButtonMarqueeSelect->setText(!currentUseMarqueeFile ? tr("Marquee file") : tr("Marquee directory"));
@@ -3296,10 +2975,6 @@ void Options::on_radioButtonMarqueeSelect_clicked()
 
 void Options::on_radioButtonTitleSelect_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonTitleSelect_clicked()");
-#endif
-
 	bool currentUseTitleFile = (stackedWidgetTitle->currentIndex() == 1);
 	stackedWidgetTitle->setCurrentIndex(!currentUseTitleFile);
 	radioButtonTitleSelect->setText(!currentUseTitleFile ? tr("Title file") : tr("Title directory"));
@@ -3307,10 +2982,6 @@ void Options::on_radioButtonTitleSelect_clicked()
 
 void Options::on_radioButtonPCBSelect_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonPCBSelect_clicked()");
-#endif
-
 	bool currentUsePCBFile = (stackedWidgetPCB->currentIndex() == 1);
 	stackedWidgetPCB->setCurrentIndex(!currentUsePCBFile);
 	radioButtonPCBSelect->setText(!currentUsePCBFile ? tr("PCB file") : tr("PCB directory"));
@@ -3318,10 +2989,6 @@ void Options::on_radioButtonPCBSelect_clicked()
 
 void Options::on_radioButtonSoftwareSnapSelect_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonSoftwareSnapSelect_clicked()");
-#endif
-
 	bool currentUseSoftwareSnapFile = (stackedWidgetSWSnap->currentIndex() == 1);
 	stackedWidgetSWSnap->setCurrentIndex(!currentUseSoftwareSnapFile);
 	radioButtonSoftwareSnapSelect->setText(!currentUseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
@@ -3329,10 +2996,6 @@ void Options::on_radioButtonSoftwareSnapSelect_clicked()
 
 void Options::on_toolButtonBrowsePreviewFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowsePreviewFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed preview file"), lineEditPreviewFile->text(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditPreviewFile->setText(s);
@@ -3346,10 +3009,6 @@ void Options::on_toolButtonBrowsePreviewFile_clicked()
 
 void Options::on_toolButtonBrowseFlyerFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFlyerFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed flyer file"), lineEditFlyerFile->text(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditFlyerFile->setText(s);
@@ -3363,10 +3022,6 @@ void Options::on_toolButtonBrowseFlyerFile_clicked()
 
 void Options::on_toolButtonBrowseIconFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseIconFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed icon file"), lineEditIconFile->text(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditIconFile->setText(s);
@@ -3380,10 +3035,6 @@ void Options::on_toolButtonBrowseIconFile_clicked()
 
 void Options::on_toolButtonBrowseCabinetFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseCabinetFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed cabinet file"), lineEditCabinetFile->text(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditCabinetFile->setText(s);
@@ -3397,10 +3048,6 @@ void Options::on_toolButtonBrowseCabinetFile_clicked()
 
 void Options::on_toolButtonBrowseControllerFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseControllerFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed controller file"), lineEditControllerFile->text(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditControllerFile->setText(s);
@@ -3414,10 +3061,6 @@ void Options::on_toolButtonBrowseControllerFile_clicked()
 
 void Options::on_toolButtonBrowseMarqueeFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMarqueeFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed marquee file"), lineEditMarqueeFile->text(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditMarqueeFile->setText(s);
@@ -3431,10 +3074,6 @@ void Options::on_toolButtonBrowseMarqueeFile_clicked()
 
 void Options::on_toolButtonBrowseTitleFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseTitleFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed title file"), lineEditTitleFile->text(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditTitleFile->setText(s);
@@ -3448,10 +3087,6 @@ void Options::on_toolButtonBrowseTitleFile_clicked()
 
 void Options::on_toolButtonBrowsePCBFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowsePCBFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed PCB file"), lineEditPCBFile->text(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditPCBFile->setText(s);
@@ -3465,10 +3100,6 @@ void Options::on_toolButtonBrowsePCBFile_clicked()
 
 void Options::on_toolButtonBrowseSoftwareSnapDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareSnapDirectory_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose software snap directory"), lineEditSoftwareSnapDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -3480,10 +3111,6 @@ void Options::on_toolButtonBrowseSoftwareSnapDirectory_clicked()
 
 void Options::on_toolButtonBrowseSoftwareSnapFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareSnapFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed software snap file"), lineEditSoftwareSnapFile->text(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditSoftwareSnapFile->setText(s);
@@ -3497,10 +3124,6 @@ void Options::on_toolButtonBrowseSoftwareSnapFile_clicked()
 
 void Options::on_toolButtonBrowseSoftwareNotesFolder_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareNotesFolder_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose software notes folder"), lineEditSoftwareNotesFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -3512,10 +3135,6 @@ void Options::on_toolButtonBrowseSoftwareNotesFolder_clicked()
 
 void Options::on_toolButtonBrowseSoftwareNotesTemplate_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareNotesTemplate_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose software notes template"), lineEditSoftwareNotesTemplate->text(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditSoftwareNotesTemplate->setText(s);
@@ -3524,10 +3143,6 @@ void Options::on_toolButtonBrowseSoftwareNotesTemplate_clicked()
 
 void Options::on_toolButtonBrowseSystemNotesFolder_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSystemNotesFolder_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose system notes folder"), lineEditSystemNotesFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -3539,10 +3154,6 @@ void Options::on_toolButtonBrowseSystemNotesFolder_clicked()
 
 void Options::on_toolButtonBrowseSystemNotesTemplate_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSystemNotesTemplate_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose system notes template"), lineEditSystemNotesTemplate->text(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditSystemNotesTemplate->setText(s);
@@ -3551,10 +3162,6 @@ void Options::on_toolButtonBrowseSystemNotesTemplate_clicked()
 
 void Options::on_toolButtonBrowseVideoSnapFolder_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseVideoSnapFolder_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose video snap folder"), lineEditVideoSnapFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") )
@@ -3566,10 +3173,6 @@ void Options::on_toolButtonBrowseVideoSnapFolder_clicked()
 
 void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
-#endif
-
 	if ( !item )
 		return;
 
@@ -3617,10 +3220,6 @@ void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
 
 void Options::on_treeWidgetShortcuts_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_treeWidgetShortcuts_itemSelectionChanged()");
-#endif
-
 	QList<QTreeWidgetItem *> selItems = treeWidgetShortcuts->selectedItems();
 	if ( selItems.count() > 0 ) {
 		pushButtonRedefineKeySequence->setEnabled(true);
@@ -3633,10 +3232,6 @@ void Options::on_treeWidgetShortcuts_itemSelectionChanged()
 
 void Options::on_pushButtonRedefineKeySequence_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonRedefineKeySequence_clicked()");
-#endif
-
 	QList<QTreeWidgetItem *> selItems = treeWidgetShortcuts->selectedItems();
 	if ( selItems.count() > 0 )
 		on_treeWidgetShortcuts_itemActivated(selItems[0]);
@@ -3644,10 +3239,6 @@ void Options::on_pushButtonRedefineKeySequence_clicked()
 
 void Options::on_pushButtonResetShortcut_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonResetShortcut_clicked()");
-#endif
-
 	QList<QTreeWidgetItem *> selItems = treeWidgetShortcuts->selectedItems();
 	if ( selItems.count() > 0 ) {
 		QStringList words = selItems[0]->text(1).split("+");
@@ -3710,10 +3301,6 @@ void Options::on_pushButtonCustomizeToolBar_clicked()
 
 void Options::on_pushButtonEditPalette_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonEditPalette_clicked()");
-#endif
-
 	QPalette currentPalette = qApp->palette();
 	if ( !qmc2PaletteEditor )
 		qmc2PaletteEditor = new PaletteEditor(this);
@@ -3794,10 +3381,6 @@ void Options::checkShortcuts()
 
 void Options::setupShortcutActions()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::setupShortcutActions()");
-#endif
-
 	QHashIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutHash);
 	while ( it.hasNext() ) {
 		it.next();
@@ -3839,10 +3422,6 @@ void Options::on_toolButtonBrowseAdditionalEmulatorWorkingDirectory_clicked()
 
 void Options::on_toolButtonAddEmulator_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonAddEmulator_clicked()");
-#endif
-
 	tableWidgetRegisteredEmulators->setSortingEnabled(false);
 	int row = tableWidgetRegisteredEmulators->rowCount();
 	tableWidgetRegisteredEmulators->insertRow(row);
@@ -3879,10 +3458,6 @@ void Options::on_toolButtonAddEmulator_clicked()
 
 void Options::on_toolButtonSaveEmulator_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonSaveEmulator_clicked()");
-#endif
-
 	tableWidgetRegisteredEmulators->setSortingEnabled(false);
 	QString name = lineEditAdditionalEmulatorName->text();
 	if ( !name.isEmpty() ) {
@@ -3912,10 +3487,6 @@ void Options::on_toolButtonSaveEmulator_clicked()
 
 void Options::on_toolButtonRemoveEmulator_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonRemoveEmulator_clicked()");
-#endif
-
 	QList<QTableWidgetItem *> sl = tableWidgetRegisteredEmulators->selectedItems();
 	if ( !sl.isEmpty() ) {
 		int row = sl[0]->row();
@@ -3926,10 +3497,6 @@ void Options::on_toolButtonRemoveEmulator_clicked()
 
 void Options::on_toolButtonCustomIDs_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonCustomIDs_clicked()");
-#endif
-
 	QList<QTableWidgetItem *> sl = tableWidgetRegisteredEmulators->selectedItems();
 	if ( !sl.isEmpty() ) {
 		int row = sl[0]->row();
@@ -3943,10 +3510,6 @@ void Options::on_toolButtonCustomIDs_clicked()
 
 void Options::checkPlaceholderStatus()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::checkPlaceholderStatus()");
-#endif
-
 	QPalette pal = labelIDStatus->palette();
 	QString text = lineEditAdditionalEmulatorArguments->text();
 	if ( lineEditAdditionalEmulatorName->text().isEmpty() )
@@ -3962,10 +3525,6 @@ void Options::checkPlaceholderStatus()
 
 void Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()");
-#endif
-
 	QList<QTableWidgetItem *> sl = tableWidgetRegisteredEmulators->selectedItems();
 	if ( !sl.isEmpty() ) {
 		int row = sl[0]->row();
@@ -4003,10 +3562,6 @@ void Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()
 
 void Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &text)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &text = %1)").arg(text));
-#endif
-
 	if ( !text.isEmpty() ) {
 		if ( text == tr("Default") ) {
 			// this name isn't allowed!
@@ -4032,19 +3587,12 @@ void Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &text)
 
 void Options::on_lineEditAdditionalEmulatorArguments_textChanged(const QString &)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_lineEditAdditionalEmulatorArguments_textChanged(const QString &)");
-#endif
-
 	checkPlaceholderStatus();
 }
 
 void Options::setupCustomIDsClicked()
 {
 	QToolButton *tb = (QToolButton *)sender();
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::setupCustomIDsClicked() : tb = %1)").arg((qulonglong)tb));
-#endif
 	if ( tb ) {
 		if ( !tb->objectName().isEmpty() ) {
 			CustomIDSetup cidSetup(tb->objectName(), this);
@@ -4057,9 +3605,6 @@ void Options::setupCustomIDsClicked()
 void Options::chooseEmuIconClicked()
 {
 	QToolButton *tb = (QToolButton *)sender();
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::chooseEmuIconClicked() : tb = %1)").arg((qulonglong)tb));
-#endif
 	if ( tb ) {
 		QString emuIcon = tb->whatsThis();
 		if ( emuIcon.startsWith(":") )
@@ -4081,9 +3626,6 @@ void Options::chooseEmuIconClicked()
 void Options::actionDefaultEmuIconTriggered()
 {
 	QAction *action = (QAction *)sender();
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::actionDefaultEmuIconTriggered() : action = %1)").arg((qulonglong)action));
-#endif
 	if ( action ) {
 		QToolButton *tb = (QToolButton *)action->parentWidget()->parentWidget();
 		if ( tb ) {
@@ -4096,9 +3638,6 @@ void Options::actionDefaultEmuIconTriggered()
 void Options::actionNoEmuIconTriggered()
 {
 	QAction *action = (QAction *)sender();
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::actionNoEmuIconTriggered() : action = %1)").arg((qulonglong)action));
-#endif
 	if ( action ) {
 		QToolButton *tb = (QToolButton *)action->parentWidget()->parentWidget();
 		if ( tb ) {
@@ -4110,10 +3649,6 @@ void Options::actionNoEmuIconTriggered()
 
 void Options::loadCustomPalette(QString styleName)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::loadCustomPalette(QString styleName = %1)").arg(styleName));
-#endif
-
 	qmc2CustomPalette = qmc2StandardPalettes[styleName];
 	QStringList activeColors, inactiveColors, disabledColors;
 	if ( config->contains(QMC2_FRONTEND_PREFIX + "Layout/CustomPalette/ActiveColors") )
@@ -4138,10 +3673,6 @@ void Options::loadCustomPalette(QString styleName)
 
 void Options::saveCustomPalette()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::saveCustomPalette()");
-#endif
-
 	QStringList activeColors, inactiveColors, disabledColors;
 	for (int i = 0; i < PaletteEditor::colorNames.count(); i++) {
 		QPalette::ColorRole colorRole = PaletteEditor::colorNameToRole(PaletteEditor::colorNames[i]);
@@ -4157,10 +3688,6 @@ void Options::saveCustomPalette()
 #if QMC2_JOYSTICK == 1
 void Options::on_pushButtonRescanJoysticks_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonRescanJoysticks_clicked()");
-#endif
-
 	toolButtonMapJoystick->setChecked(true);
 	on_toolButtonMapJoystick_clicked();
 
@@ -4187,10 +3714,6 @@ void Options::on_pushButtonRescanJoysticks_clicked()
 
 void Options::on_toolButtonCalibrateAxes_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonCalibrateAxes_clicked()");
-#endif
-
 	qmc2JoystickIsCalibrating = false;
 
 	if ( comboBoxSelectJoysticks->currentText() == tr("No joysticks found") || comboBoxSelectJoysticks->currentIndex() < 0 ) {
@@ -4243,10 +3766,6 @@ void Options::on_toolButtonCalibrateAxes_clicked()
 
 void Options::on_toolButtonTestJoystick_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonTestJoystick_clicked()");
-#endif
-
 	qmc2JoystickIsCalibrating = false;
 
 	if ( comboBoxSelectJoysticks->currentText() == tr("No joysticks found") || comboBoxSelectJoysticks->currentIndex() < 0 ) {
@@ -4298,10 +3817,6 @@ void Options::on_toolButtonTestJoystick_clicked()
 
 void Options::on_toolButtonMapJoystick_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonMapJoystick_clicked()");
-#endif
-
 	qmc2JoystickIsCalibrating = false;
 
 	bool relayout = ( joystickCalibrationWidget || joystickTestWidget );
@@ -4334,10 +3849,6 @@ void Options::on_toolButtonMapJoystick_clicked()
 
 void Options::on_comboBoxSelectJoysticks_currentIndexChanged(int index)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_comboBoxSelectJoysticks_currentIndexChanged(int index = %1)").arg(index));
-#endif
-
 	if ( comboBoxSelectJoysticks->currentText() == tr("No joysticks found") || index < 0 ) {
 		labelJoystickAxesNum->setText("0");
 		labelJoystickButtonsNum->setText("0");
@@ -4365,40 +3876,24 @@ void Options::on_comboBoxSelectJoysticks_currentIndexChanged(int index)
 
 void Options::on_checkBoxEnableJoystickControl_toggled(bool enable)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_checkBoxEnableJoystickControl_toggled(bool enable = %1)").arg(enable));
-#endif
-
 	toolButtonMapJoystick->setChecked(true);
 	on_toolButtonMapJoystick_clicked();
 }
 
 void Options::on_checkBoxJoystickAutoRepeat_toggled(bool repeat)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_checkBoxJoystickAutoRepeat_toggled(bool repeat = %1)").arg(repeat));
-#endif
-
 	if ( joystick )
 		joystick->autoRepeat = repeat;
 }
 
 void Options::on_spinBoxJoystickAutoRepeatTimeout_valueChanged(int value)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_spinBoxJoystickAutoRepeatTimeout_valueChanged(int value = %1)").arg(value));
-#endif
-
 	if ( joystick )
 		joystick->autoRepeatDelay = value;
 }
 
 void Options::on_spinBoxJoystickEventTimeout_valueChanged(int value)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_spinBoxJoystickEventTimeout_valueChanged(int value = %1)").arg(value));
-#endif
-
 	if ( joystick ) {
 		joystick->eventTimeout = value;
 		if ( joystick->isOpen() )
@@ -4408,10 +3903,6 @@ void Options::on_spinBoxJoystickEventTimeout_valueChanged(int value)
 
 void Options::on_treeWidgetJoystickMappings_itemActivated(QTreeWidgetItem *item)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_treeWidgetJoystickMappings_itemActivated(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
-#endif
-
 	if ( !item )
 		return;
 
@@ -4436,10 +3927,6 @@ void Options::on_treeWidgetJoystickMappings_itemActivated(QTreeWidgetItem *item)
 
 void Options::on_treeWidgetJoystickMappings_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_treeWidgetJoystickMappings_itemSelectionChanged()");
-#endif
-
 	QList<QTreeWidgetItem *> selItems = treeWidgetJoystickMappings->selectedItems();
 	if ( selItems.count() > 0 ) {
 		pushButtonRemapJoystickFunction->setEnabled(true);
@@ -4452,10 +3939,6 @@ void Options::on_treeWidgetJoystickMappings_itemSelectionChanged()
 
 void Options::on_pushButtonRemapJoystickFunction_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonRemapJoystickFunction_clicked()");
-#endif
-
 	QList<QTreeWidgetItem *> selItems = treeWidgetJoystickMappings->selectedItems();
 	if ( selItems.count() > 0 )
 		on_treeWidgetJoystickMappings_itemActivated(selItems[0]);
@@ -4463,10 +3946,6 @@ void Options::on_pushButtonRemapJoystickFunction_clicked()
 
 void Options::on_pushButtonRemoveJoystickMapping_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonRemapJoystickFunction_clicked()");
-#endif
-
 	QList<QTreeWidgetItem *> selItems = treeWidgetJoystickMappings->selectedItems();
 	if ( selItems.count() > 0 ) {
 		QList<QString> valueList = qmc2JoystickFunctionHash.values(selItems[0]->text(1));
@@ -4522,10 +4001,6 @@ void Options::checkJoystickMappings()
 JoystickCalibrationWidget::JoystickCalibrationWidget(Joystick *joystick, QWidget *parent)
 	: QWidget(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickCalibrationWidget::JoystickCalibrationWidget(Joystick *joystick = %1, QWidget *parent = %2)").arg((qulonglong)joystick).arg((qulonglong)parent));
-#endif
-
 	myJoystick = joystick;
 
 	int i;
@@ -4605,10 +4080,6 @@ JoystickCalibrationWidget::JoystickCalibrationWidget(Joystick *joystick, QWidget
 
 JoystickCalibrationWidget::~JoystickCalibrationWidget()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: JoystickCalibrationWidget::~JoystickCalibrationWidget()");
-#endif
-
 	// ignore destruction when we are already cleaning up the application...
 	if ( !qmc2Options->frameCalibrationAndTest->layout() )
 		return;
@@ -4638,10 +4109,6 @@ JoystickCalibrationWidget::~JoystickCalibrationWidget()
 
 void JoystickCalibrationWidget::on_joystickAxisValueChanged(int axis, int value)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickCalibrationWidget::on_joystickAxisValueChanged(int axis = %1, int value = %2)").arg(axis).arg(value));
-#endif
-
 	int joyIndex = qmc2Options->comboBoxSelectJoysticks->currentIndex();
 
 	if ( value > axesMaximums[axis] ) {
@@ -4660,36 +4127,19 @@ void JoystickCalibrationWidget::on_joystickAxisValueChanged(int axis, int value)
 
 void JoystickCalibrationWidget::on_joystickButtonValueChanged(int button, bool value)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickCalibrationWidget::on_joystickButtonValueChanged(int button = %1, bool value = %2)").arg(button).arg(value));
-#endif
-
 }
 
 void JoystickCalibrationWidget::on_joystickHatValueChanged(int hat, int value)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickCalibrationWidget::on_joystickHatValueChanged(int hat = %1, int value = %2)").arg(hat).arg(value));
-#endif
-
 }
 
 void JoystickCalibrationWidget::on_joystickTrackballValueChanged(int trackball, int deltaX, int deltaY)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickCalibrationWidget::on_joystickTrackballValueChanged(int trackball = %1, int deltaX = %2, int deltaY = %3)").arg(trackball).arg(deltaX).arg(deltaY));
-#endif
-
 }
 
 void JoystickCalibrationWidget::on_resetAxisCalibration()
 {
 	QToolButton *pressedButton = (QToolButton *)sender();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: JoystickCalibrationWidget::on_resetAxisCalibration()");
-#endif
-
 	QList<QToolButton *> buttonList = axesButtons.values();
 	int i;
 	for (i = 0; i < buttonList.count() && buttonList[i] != pressedButton; i++) ;
@@ -4711,11 +4161,6 @@ void JoystickCalibrationWidget::on_resetAxisCalibration()
 void JoystickCalibrationWidget::on_deadzoneValueChanged(int value)
 {
 	QSpinBox *spinBox = (QSpinBox *)sender();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickCalibrationWidget::on_deadzoneValueChanged(int value = %1)").arg(value));
-#endif
-
 	QList<QSpinBox *> spinBoxList = axesDeadzones.values();
 	int i;
 	for (i = 0; i < spinBoxList.count() && spinBoxList[i] != spinBox; i++) ;
@@ -4729,11 +4174,6 @@ void JoystickCalibrationWidget::on_deadzoneValueChanged(int value)
 void JoystickCalibrationWidget::on_sensitivityValueChanged(int value)
 {
 	QSpinBox *spinBox = (QSpinBox *)sender();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickCalibrationWidget::on_sensitivityValueChanged(int value = %1)").arg(value));
-#endif
-
 	QList<QSpinBox *> spinBoxList = axesSensitivities.values();
 	int i;
 	for (i = 0; i < spinBoxList.count() && spinBoxList[i] != spinBox; i++) ;
@@ -4747,11 +4187,6 @@ void JoystickCalibrationWidget::on_sensitivityValueChanged(int value)
 void JoystickCalibrationWidget::on_axisEnablerStateChanged(int state)
 {
 	QCheckBox *checkBox = (QCheckBox *)sender();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickCalibrationWidget::on_axisEnablerStateChanged(int state = %1)").arg(state));
-#endif
-
 	QList<QCheckBox *> checkBoxList = axesEnablers.values();
 	int i;
 	for (i = 0; i < checkBoxList.count() && checkBoxList[i] != checkBox; i++) ;
@@ -4770,10 +4205,6 @@ void JoystickCalibrationWidget::on_axisEnablerStateChanged(int state)
 JoystickTestWidget::JoystickTestWidget(Joystick *joystick, QWidget *parent)
 	: QWidget(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickTestWidget::JoystickTestWidget(Joystick *joystick = %1, QWidget *parent = %2)").arg((qulonglong)joystick).arg((qulonglong)parent));
-#endif
-
 	myJoystick = joystick;
 
 	int joyIndex = qmc2Options->comboBoxSelectJoysticks->currentIndex();
@@ -4857,10 +4288,6 @@ JoystickTestWidget::JoystickTestWidget(Joystick *joystick, QWidget *parent)
 
 JoystickTestWidget::~JoystickTestWidget()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: JoystickTestWidget::~JoystickTestWidget()");
-#endif
-
 	// ignore destruction when we are already cleaning up the application...
 	if ( !qmc2Options->frameCalibrationAndTest->layout() )
 		return;
@@ -4874,19 +4301,11 @@ JoystickTestWidget::~JoystickTestWidget()
 
 void JoystickTestWidget::on_joystickAxisValueChanged(int axis, int value)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickTestWidget::on_joystickAxisValueChanged(int axis = %1, int value = %2)").arg(axis).arg(value));
-#endif
-
 	axesRanges[axis]->setValue(value);
 }
 
 void JoystickTestWidget::on_joystickButtonValueChanged(int button, bool value)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickTestWidget::on_joystickButtonValueChanged(int button = %1, bool value = %2)").arg(button).arg(value));
-#endif
-
 	if ( qApp->styleSheet().isEmpty() ) {
 		QPalette greenPalette(QApplication::palette());
 		greenPalette.setBrush(QPalette::Window, QColor(0, 255, 0));
@@ -4905,10 +4324,6 @@ void JoystickTestWidget::on_joystickButtonValueChanged(int button, bool value)
 
 void JoystickTestWidget::on_joystickHatValueChanged(int hat, int value)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickTestWidget::on_joystickHatValueChanged(int hat = %1, int value = %2)").arg(hat).arg(value));
-#endif
-
 	if ( qApp->styleSheet().isEmpty() ) {
 		QPalette greenPalette(QApplication::palette());
 		greenPalette.setBrush(QPalette::Window, QColor(0, 255, 0));
@@ -4929,10 +4344,6 @@ void JoystickTestWidget::on_joystickHatValueChanged(int hat, int value)
 
 void JoystickTestWidget::on_joystickTrackballValueChanged(int trackball, int deltaX, int deltaY)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickTestWidget::on_joystickTrackballValueChanged(int trackball = %1, int deltaX = %2, int deltaY = %3)").arg(trackball).arg(deltaX).arg(deltaY));
-#endif
-
 	if ( qApp->styleSheet().isEmpty() ) {
 		QPalette greenPalette(QApplication::palette());
 		greenPalette.setBrush(QPalette::Window, QColor(0, 255, 0));
@@ -4964,10 +4375,6 @@ void JoystickTestWidget::on_joystickTrackballValueChanged(int trackball, int del
 
 void JoystickTestWidget::cleanupPalette()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: JoystickTestWidget::cleanupPalette()");
-#endif
-
 	if ( qApp->styleSheet().isEmpty() ) {
 		for (int i = 0; i < buttonLabels.count(); i++)
 			buttonLabels[i]->setPalette(QApplication::palette());
