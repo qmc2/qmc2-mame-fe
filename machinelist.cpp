@@ -1386,10 +1386,6 @@ void MachineList::parse()
 				QStringList lines = readBuffer.split("\n", QString::SkipEmptyParts);
 				int lc = endsWithNewLine ? lines.count() : lines.count() - 1;
 				for (int l = 0; l < lc; l++) {
-					if ( numGames % qmc2MachineListResponsiveness == 0 ) {
-						qmc2MainWindow->progressBarMachineList->setValue(numGames);
-						qmc2MainWindow->labelMachineListStatus->setText(status());
-					}
 					QStringList machineData = lines[l].split("\t");
 					QString machineName(machineData[QMC2_GLC_INDEX_NAME]);
 					QString machineCloneOf(machineData[QMC2_GLC_INDEX_CLONEOF]);
@@ -1580,6 +1576,10 @@ void MachineList::parse()
 					loadIcon(machineName, machineItem);
 					numGames++;
 					itemList << machineItem;
+					if ( numGames % qmc2MachineListResponsiveness == 0 ) {
+						qmc2MainWindow->progressBarMachineList->setValue(numGames);
+						qmc2MainWindow->labelMachineListStatus->setText(status());
+					}
 				}
 				if ( endsWithNewLine )
 					readBuffer.clear();
