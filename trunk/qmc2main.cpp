@@ -6620,8 +6620,11 @@ void MainWindow::setupStyle(QString styleName)
 			proxyStyle = new ProxyStyle;
 			proxyStyle->setBaseStyle(newStyle);
 			qApp->setStyle(proxyStyle);
-		} else
+		} else {
+			QStyle *oldBaseStyle = proxyStyle->baseStyle();
 			proxyStyle->setBaseStyle(newStyle);
+			delete oldBaseStyle;
+		}
 		qmc2CurrentStyleName = styleName;
 	} else
 		log(QMC2_LOG_FRONTEND, tr("WARNING: GUI style '%1' not found").arg(styleName));
