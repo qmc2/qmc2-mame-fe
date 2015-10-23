@@ -402,7 +402,9 @@ void MainWindow::logScrollToEnd(char logTarget)
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent, qmc2TemplateCheck ? Qt::Tool | Qt::FramelessWindowHint : (Qt::WindowFlags)0)
 {
+	setUpdatesEnabled(false);
 	setVisible(false);
+
 	qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "InstanceRunning"), true);
 	qmc2StartupDefaultFont = new QFont(qApp->font());
 	desktopGeometry = qApp->desktop()->geometry();
@@ -422,9 +424,6 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(this, SIGNAL(styleSetupRequested(QString)), this, SLOT(setupStyle(QString)));
 	connect(this, SIGNAL(styleSheetSetupRequested(QString)), this, SLOT(setupStyleSheet(QString)));
 	connect(this, SIGNAL(paletteSetupRequested(QString)), this, SLOT(setupPalette(QString)));
-
-	// update later when all initialization is finished
-	setUpdatesEnabled(false);
 
 	setupUi(this);
 
@@ -6575,22 +6574,20 @@ void MainWindow::init()
 		qmc2ComponentSetup->saveComponent(component);
 
 	tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
+	updateTabWidgets();
 
 	setUpdatesEnabled(true);
 	setVisible(true);
 	qApp->processEvents();
-
-	// same for all other tab widgets
-	QTimer::singleShot(0, this, SLOT(updateTabWidgets()));
-
-	// trigger initial load
-	QTimer::singleShot(0, this, SLOT(on_actionReload_triggered()));
 
 	activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 
 	// make sure the logs are scrolled to their maxima
 	logScrollToEnd(QMC2_LOG_FRONTEND);
 	logScrollToEnd(QMC2_LOG_EMULATOR);
+
+	// trigger initial load
+	QTimer::singleShot(0, this, SLOT(on_actionReload_triggered()));
 }
 
 void MainWindow::setupStyle(QString styleName)
@@ -11060,8 +11057,6 @@ int main(int argc, char *argv[])
 
 	// prepare & restore component setup
 	qmc2ComponentSetup = new ComponentSetup(qmc2MainWindow);
-	foreach (QString component, qmc2ComponentSetup->components())
-		qmc2ComponentSetup->saveComponent(component);
 
 	// finalize initial setup
 	qmc2Options->apply();
