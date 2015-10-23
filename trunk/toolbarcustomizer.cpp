@@ -35,7 +35,7 @@ ToolBarCustomizer::ToolBarCustomizer(QWidget *parent)
 	separatorAction->setObjectName("--");
 
 	activeActions.clear();
-	QTimer::singleShot(0, this, SLOT(refreshAvailableActions()));
+	refreshAvailableActions();
 }
 
 ToolBarCustomizer::~ToolBarCustomizer()
@@ -83,7 +83,7 @@ void ToolBarCustomizer::refreshAvailableActions()
 	item->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
 	availableToolBarActions[item] = qmc2MainWindow->widgetActionToolbarSearch;
 	availableActionsByName[qmc2MainWindow->widgetActionToolbarSearch->objectName()] = qmc2MainWindow->widgetActionToolbarSearch;
-	QTimer::singleShot(0, this, SLOT(refreshActiveActions()));
+	refreshActiveActions();
 }
 
 void ToolBarCustomizer::refreshActiveActions()
