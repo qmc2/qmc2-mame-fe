@@ -296,10 +296,10 @@ Options::Options(QWidget *parent)
 	qmc2ShortcutHash["Ctrl+Shift+Z"] = QPair<QString, QAction *>(tr("Invert visible tags"), NULL);
 	qmc2ShortcutHash["F2"] = QPair<QString, QAction *>(tr("Rebuild current machine"), NULL);
 	qmc2ShortcutHash["Ctrl+Shift+F2"] = QPair<QString, QAction *>(tr("Rebuild tagged machines"), NULL);
-	qmc2ShortcutHash["F5"] = QPair<QString, QAction *>(tr("Machine list with full detail"), NULL);
-	qmc2ShortcutHash["F6"] = QPair<QString, QAction *>(tr("Parent / clone hierarchy"), NULL);
-	qmc2ShortcutHash["F7"] = QPair<QString, QAction *>(tr("View machines by category"), NULL);
-	qmc2ShortcutHash["F8"] = QPair<QString, QAction *>(tr("View machines by version"), NULL);
+	qmc2ShortcutHash["F5"] = QPair<QString, QAction *>(tr("Full detail view"), NULL);
+	qmc2ShortcutHash["F6"] = QPair<QString, QAction *>(tr("Hierarchal view"), NULL);
+	qmc2ShortcutHash["F7"] = QPair<QString, QAction *>(tr("Category view"), NULL);
+	qmc2ShortcutHash["F8"] = QPair<QString, QAction *>(tr("Version view"), NULL);
 	qmc2ShortcutHash["F9"] = QPair<QString, QAction *>(tr("Run external ROM tool"), NULL);
 	qmc2ShortcutHash["Ctrl+Shift+F9"] = QPair<QString, QAction *>(tr("Run ROM tool for tagged sets"), NULL);
 	qmc2ShortcutHash["F10"] = QPair<QString, QAction *>(tr("Check software-states"), NULL);
@@ -1033,9 +1033,9 @@ void Options::on_pushButtonApply_clicked()
 			comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
 		}
 		if ( qmc2MainWindow->comboBoxViewSelect->count() - 1 < QMC2_VIEWCATEGORY_INDEX ) {
-			qmc2MainWindow->comboBoxViewSelect->insertItem(QMC2_VIEWCATEGORY_INDEX, tr("View machines by category (not filtered)"));
+			qmc2MainWindow->comboBoxViewSelect->insertItem(QMC2_VIEWCATEGORY_INDEX, tr("Category view"));
 			qmc2MainWindow->comboBoxViewSelect->setItemIcon(QMC2_VIEWCATEGORY_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
-			qmc2MainWindow->comboBoxViewSelect->insertItem(QMC2_VIEWVERSION_INDEX, tr("View machines by emulator version (not filtered)"));
+			qmc2MainWindow->comboBoxViewSelect->insertItem(QMC2_VIEWVERSION_INDEX, tr("Version view"));
 			qmc2MainWindow->comboBoxViewSelect->setItemIcon(QMC2_VIEWVERSION_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
 		}
 	} else {
