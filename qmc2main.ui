@@ -706,14 +706,17 @@
               </sizepolicy>
              </property>
              <property name="toolTip">
-              <string>Switch between detailed machine list and parent / clone hierarchy</string>
+              <string>Switch machine list view</string>
              </property>
              <property name="statusTip">
-              <string>Switch between detailed machine list and parent / clone hierarchy</string>
+              <string>Switch machine list view</string>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
              </property>
              <item>
               <property name="text">
-               <string>Machine list with full detail (filtered)</string>
+               <string>Full detail view</string>
               </property>
               <property name="icon">
                <iconset resource="qmc2.qrc">
@@ -722,7 +725,7 @@
              </item>
              <item>
               <property name="text">
-               <string>Parent / clone hierarchy (not filtered)</string>
+               <string>Hierarchal view</string>
               </property>
               <property name="icon">
                <iconset resource="qmc2.qrc">
@@ -3109,7 +3112,7 @@
      <normaloff>:/data/img/clone.png</normaloff>:/data/img/clone.png</iconset>
    </property>
    <property name="text">
-    <string>Parent / clones</string>
+    <string>Hierarchical</string>
    </property>
    <property name="toolTip">
     <string>View parent / clone hierarchy</string>
