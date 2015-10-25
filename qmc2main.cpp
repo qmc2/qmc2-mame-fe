@@ -2192,10 +2192,9 @@ void MainWindow::on_actionReload_triggered(bool)
 			} else
 				qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedGame");
 		}
-		if ( !qmc2StopParser ) {
-			qApp->processEvents();
+		if ( !qmc2StopParser )
 			qmc2MachineList->load();
-		} else
+		else
 			qmc2MachineList->enableWidgets(true);
 	}
 
