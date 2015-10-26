@@ -681,7 +681,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="964"/>
         <source>Rank filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro de classificação</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="1065"/>
@@ -882,12 +882,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="388"/>
         <source>Video snaps</source>
-        <translation type="unfinished"></translation>
+        <translation>Snaps de vídeo</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="395"/>
         <source>Enable (on) / disable (off)  the use of video snaps</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar (ligar) / desabilitar (desligar) o uso de snaps de vídeo</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="413"/>
@@ -994,13 +994,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="62"/>
         <source>Select the rank a machine must at least have to be included (or none to ignore the rank)</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione a classificação mínima de uma máquina para ser inclusa (ou nenhum para ignorar a classificação)</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="66"/>
         <location filename="../../arcademodesetup.cpp" line="207"/>
         <source>Machine rank ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>Classificação de máquina ignorada</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="85"/>
@@ -1015,7 +1015,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="209"/>
         <source>Machine rank must be %1 at least</source>
-        <translation type="unfinished"></translation>
+        <translation>Classificação de máquina deve ser ao menos %1</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="220"/>
@@ -1031,7 +1031,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="534"/>
         <source>System / BIOS</source>
-        <translation type="unfinished">Sistema / BIOS</translation>
+        <translation>Sistema / BIOS</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="540"/>
@@ -1469,7 +1469,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../checksumdbmgr.cpp" line="453"/>
         <source>WARNING: failed to remove invalidated rows from check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao remover linhas invalidadas da base de dados de códigos de verificação. query = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../checksumdbmgr.cpp" line="480"/>
@@ -1974,17 +1974,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.ui" line="243"/>
         <source>Mode switch</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha de modo</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="247"/>
         <source>Rebuild mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo reconstrução</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="252"/>
         <source>Dry run mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo teste</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="266"/>
@@ -2191,7 +2191,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../collectionrebuilder.cpp" line="529"/>
         <location filename="../../collectionrebuilder.cpp" line="759"/>
         <source>Stop dry run</source>
-        <translation type="unfinished"></translation>
+        <translation>Parar teste</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="530"/>
@@ -2200,7 +2200,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../collectionrebuilder.cpp" line="768"/>
         <location filename="../../collectionrebuilder.cpp" line="791"/>
         <source>Start / stop dry run</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar / parar teste</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="532"/>
@@ -2213,7 +2213,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../collectionrebuilder.cpp" line="767"/>
         <location filename="../../collectionrebuilder.cpp" line="790"/>
         <source>Start dry run</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar teste</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="666"/>
@@ -2449,29 +2449,29 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1776"/>
         <source>Preparing</source>
-        <translation type="unfinished">Preparando</translation>
+        <translation>Preparando</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1780"/>
         <source>updating hash cache</source>
-        <translation type="unfinished"></translation>
+        <translation>atualizando cache de hash</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1794"/>
         <source>hash cache update interrupted</source>
-        <translation type="unfinished"></translation>
+        <translation>atualização de cache de hash interrompida</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1796"/>
         <source>hash cache updated</source>
-        <translation type="unfinished"></translation>
+        <translation>cache de hash atualizado</translation>
     </message>
     <message numerus="yes">
         <location filename="../../collectionrebuilder.cpp" line="1796"/>
         <source>%n hash(es) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n hash carregado</numerusform>
+            <numerusform>%n hashes carregados</numerusform>
         </translation>
     </message>
     <message>
@@ -2487,7 +2487,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1825"/>
         <source>dry run started</source>
-        <translation type="unfinished"></translation>
+        <translation>teste iniciado</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1827"/>
@@ -2498,7 +2498,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../collectionrebuilder.cpp" line="1835"/>
         <location filename="../../collectionrebuilder.cpp" line="1861"/>
         <source>Analyzing</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisando</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1837"/>
@@ -2514,7 +2514,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1852"/>
         <source>dry run paused</source>
-        <translation type="unfinished"></translation>
+        <translation>teste pausado</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1854"/>
@@ -2524,7 +2524,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1866"/>
         <source>dry run resumed</source>
-        <translation type="unfinished"></translation>
+        <translation>teste resumido</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1868"/>
@@ -2592,7 +2592,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1919"/>
         <source>dry run finished - total analysis time = %1, sets processed = %2, missing ROMs = %3, missing disks = %4</source>
-        <translation type="unfinished"></translation>
+        <translation>teste finalizado - tempo total de análise = %1, conjuntos processados = %2, ROMs faltantes = %3, discos faltantes = %4</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1921"/>
@@ -3536,7 +3536,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../datinfodbmgr.cpp" line="1002"/>
         <location filename="../../datinfodbmgr.cpp" line="1004"/>
         <source>WARNING: failed to alter %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao alterar tabela %1: query = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../datinfodbmgr.cpp" line="488"/>
@@ -9932,17 +9932,17 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="709"/>
         <location filename="../../qmc2main.ui" line="712"/>
         <source>Switch machine list view</source>
-        <translation type="unfinished"></translation>
+        <translation>Alterar visualização de máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="719"/>
         <source>Full detail view</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualização detalhada</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="728"/>
         <source>Hierarchal view</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualização hierárquica</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1472"/>
@@ -10619,7 +10619,7 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="807"/>
         <location filename="../../qmc2main.ui" line="810"/>
         <source>Number of matches</source>
-        <translation type="unfinished"></translation>
+        <translation>Número de correspondências</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1439"/>
@@ -11333,13 +11333,13 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
     <message>
         <location filename="../../qmc2main.ui" line="4185"/>
         <source>Homepage...</source>
-        <translation type="unfinished"></translation>
+        <translation>Página inicial...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4188"/>
         <location filename="../../qmc2main.ui" line="4191"/>
         <source>Open the QMC2 homepage in the default browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir a página inicial do QMC2 no browser padrão</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4200"/>
@@ -11717,7 +11717,7 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
     <message>
         <location filename="../../qmc2main.ui" line="3115"/>
         <source>Hierarchical</source>
-        <translation type="unfinished"></translation>
+        <translation>Hierárquico</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3222"/>
@@ -13229,24 +13229,24 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../options.cpp" line="299"/>
         <source>Full detail view</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualização detalhada</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="300"/>
         <source>Hierarchal view</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualização hierárquica</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="301"/>
         <location filename="../../options.cpp" line="1036"/>
         <source>Category view</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualização por categoria</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="302"/>
         <location filename="../../options.cpp" line="1038"/>
         <source>Version view</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualização por versão</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1636"/>
@@ -14815,12 +14815,12 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../options.ui" line="808"/>
         <source>Show animation when loading, filtering or tagging the machine list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar animações quando carregando, filtrando ou etiquetando a lista de máquinas?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="811"/>
         <source>Show loading animation</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar animação de carregamento</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1002"/>
@@ -16438,12 +16438,12 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../softwarelist.cpp" line="5171"/>
         <source>Requirement:</source>
-        <translation type="unfinished"></translation>
+        <translation>Requisito:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5177"/>
         <source>Compatibility:</source>
-        <translation type="unfinished"></translation>
+        <translation>Compatibilidade:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5187"/>
@@ -16572,7 +16572,7 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../arcade/keysequences.h" line="20"/>
         <source>[global] Toggle video playback</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] alternar reprodução de vídeo</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="53"/>
@@ -18645,12 +18645,12 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../romalyzer.ui" line="373"/>
         <source>Enable set rewriter / collection rebuilder</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar reescritor de conjunto / reconstrutor de coleção</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="384"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Collection rebuilder specific flags&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Flags específicas para o reconstrutor de coleção&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="476"/>
@@ -18665,22 +18665,22 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../romalyzer.ui" line="690"/>
         <source>Enabling this will speed up hash lookups during rebuild operations (requires about 35 MB per 100K hash keys which are pre-loaded from the database)</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitando isto melhorará a velocidade de procura de hashes durante operações de reconstrução (requer aproximadamente 35 MB para cada 100K chaves que são pré-carregadas da base de dados)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="693"/>
         <source>Use hash cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar cache de hashes</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="700"/>
         <source>In dry run mode the collection rebuilder will not create any output (good for checking &quot;what if&quot; and to quickly create a fix.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>O reconstrutor de coleção não irá criar nenhuma saída no modo de teste (bom para verificar o &quot;e se&quot; e para criar um fix.dat)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="703"/>
         <source>Dry run mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo de teste</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="865"/>
@@ -18739,12 +18739,12 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../romalyzer.ui" line="1595"/>
         <source>If enabled, scanned hashes are cached during the scan which will improve scanning speed enormously but will consume additional memory (about 35 MB per 100K scanned objects)</source>
-        <translation type="unfinished"></translation>
+        <translation>Se habilitado, os hashes examinados serão armazenados em cache durante a verificação que vai aumentar muito a velocidade de verificação mas vai consumir um pouco mais de memória (35MB para cada 100K objetos examinados)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1598"/>
         <source>Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1677"/>
