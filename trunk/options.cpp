@@ -297,7 +297,7 @@ Options::Options(QWidget *parent)
 	qmc2ShortcutHash["F2"] = QPair<QString, QAction *>(tr("Rebuild current machine"), NULL);
 	qmc2ShortcutHash["Ctrl+Shift+F2"] = QPair<QString, QAction *>(tr("Rebuild tagged machines"), NULL);
 	qmc2ShortcutHash["F5"] = QPair<QString, QAction *>(tr("Full detail view"), NULL);
-	qmc2ShortcutHash["F6"] = QPair<QString, QAction *>(tr("Hierarchal view"), NULL);
+	qmc2ShortcutHash["F6"] = QPair<QString, QAction *>(tr("Hierarchical view"), NULL);
 	qmc2ShortcutHash["F7"] = QPair<QString, QAction *>(tr("Category view"), NULL);
 	qmc2ShortcutHash["F8"] = QPair<QString, QAction *>(tr("Version view"), NULL);
 	qmc2ShortcutHash["F9"] = QPair<QString, QAction *>(tr("Run external ROM tool"), NULL);
