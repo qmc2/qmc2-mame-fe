@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.57, 27-OCT-2015</h3>
+<h3>CHANGES - v0.57, 28-OCT-2015</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.57, 27-OCT-2015:</b></p>
+<p><b>v0.57, 28-OCT-2015:</b></p>
 <ul>
 	<li>fix: qchdman: corrected the size adjustment of the about dialog to make the credits text fit</li>
 	<li>fix: arcade mode setup: hide the category filter when neither catver.ini nor category.ini are used</li>
@@ -22,7 +22,7 @@ inf: informational only
 	<li>fix: collection rebuilder: corrected dump mapping for cases where only the SHA-1 is unique</li>
 	<li>fix: collection rebuilder: the missing dumps viewer wasn't updated correctly under certain circumstances</li>
 	<li>fix: corrected style sheet handling in order to allow for overwriting fonts through style sheets -- see also <a href="http://tracker.batcom-it.net/view.php?id=120" target="_blank">bug tracker ID #120</a></li>
-	<li>imp: updated category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MAME 'git latest'</li>
+	<li>imp: updated category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MAME 0.167</li>
  	<li>imp: help menu: added QMC2 homepage link (opened in the default browser)</li>
 	<li>imp: welcome dialog: provide a history of previously selected emulator binaries to choose from (on <code>-r</code>)</li>
 	<li>imp: notes-templates: prepend <code>doc($xmlDocument)</code> when an XML query misses this variable binding completely (<code>qmc2NEO.queryLocalXml()</code>)</li>
@@ -31,6 +31,7 @@ inf: informational only
 	<li>imp: updated the alternative system-notes template contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
 	<li>imp: ROMAlyzer / check-sum scanner: greatly improved the performance of incremental scan preparation (3rd step) in worst case scenarios (most/all files have been updated, or touched)</li>
 	<li>imp: slightly improved startup performance (UI initialization)</li>
+	<li>imp: emulator configuration templates updated to MAME 0.167 (added new vector game options 'beam_intensity_weight', 'beam_width_max' and 'beam_width_min', removed 'beam')</li>
 	<li>new: added an option to enable/disable the loading animation</li>
 	<li>new: software-lists: added display of software compatibility and requirements</li>
 	<li>new: arcade mode setup: added filtering by machine rank</li>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<template emulator="MAME" format="0.2.8" version="0.166">
+<template emulator="MAME" format="0.2.8" version="0.167">
 	<section name="search_paths">
 		<description lang="us" text="Search paths"/>
 		<description lang="de" text="Suchpfade"/>
@@ -533,13 +533,17 @@
 			<description lang="pt" text="Usar antialiasing quando desenhar vetores"/>
 			<description lang="es" text="Usar suavizado al dibujar vectores"/>
 		</option>
-		<option default="1.0" name="beam" type="float">
-			<description lang="us" text="Set vector beam width"/>
-			<description lang="de" text="Strahlen-Breite der Vektoren"/>
-			<description lang="pl" text="Ustaw rozmiar wiązki wektora"/>
-			<description lang="fr" text="Sélectionner la taille du rayon"/>
-			<description lang="pt" text="Definir tamanho do vetor"/>
-			<description lang="es" text="Definir el tamaño del vector"/>
+		<option default="0" name="beam_intensity_weight" type="float">
+			<description lang="us" text="Set vector beam intensity weight"/>
+			<description lang="de" text="Gewichtung der Strahlen-Intensität"/>
+		</option>
+		<option default="1.0" name="beam_width_max" type="float">
+			<description lang="us" text="Set vector beam width maximum"/>
+			<description lang="de" text="Maximale Strahlen-Breite"/>
+		</option>
+		<option default="1.0" name="beam_width_min" type="float">
+			<description lang="us" text="Set vector beam width minimum"/>
+			<description lang="de" text="Minimale Strahlen-Breite"/>
 		</option>
 		<option default="0.0" name="flicker" type="float">
 			<description lang="us" text="Set vector flicker effect"/>
