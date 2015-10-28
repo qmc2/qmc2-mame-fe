@@ -725,7 +725,7 @@
              </item>
              <item>
               <property name="text">
-               <string>Hierarchal view</string>
+               <string>Hierarchical view</string>
               </property>
               <property name="icon">
                <iconset resource="qmc2.qrc">
