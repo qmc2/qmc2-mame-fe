@@ -4729,6 +4729,8 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 			if ( !fileHash.contains(path) ) {
 				checkSumDb()->pathRemove(path);
 				pathsRemoved++;
+				if ( useHashCache )
+					m_hashCache.remove(key);
 			} else {
 				pathsInDatabase[path] = true;
 				if ( useHashCache )
@@ -4772,9 +4774,12 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 			checkSumDb()->beginTransaction();
 			while ( row > 0 && !exitThread && !stopScan ) {
 				emit progressChanged(count++);
-				if ( fileHash.contains(checkSumDb()->pathOfRow(row)) ) {
+				QString key;
+				if ( fileHash.contains(checkSumDb()->pathOfRow(row, &key)) ) {
 					checkSumDb()->invalidateRow(row);
 					pathsRemoved++;
+					if ( useHashCache )
+						m_hashCache.remove(key);
 				}
 				row = checkSumDb()->nextRowId();
 				if ( count % QMC2_CHECKSUM_DB_MAX_TRANSACTIONS ) {
