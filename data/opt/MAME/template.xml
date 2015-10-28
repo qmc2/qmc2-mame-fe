@@ -658,6 +658,10 @@
 			<description lang="pt" text="Habilitar pistola laser dupla"/>
 			<description lang="es" text="Activar pistolas de luz dobles"/>
 		</option>
+		<option default="false" name="global_inputs" type="bool">
+			<description lang="us" text="Enable global inputs"/>
+			<description lang="de" text="Globale Eingaben aktivieren"/>
+		</option>
 		<option default="false" name="multikeyboard" type="bool">
 			<description lang="us" text="Enable separate input from each keyboard device (if present)"/>
 			<description lang="de" text="Eingabe von mehreren Tastaturen aktivieren (falls vorhanden)"/>
@@ -1606,22 +1610,26 @@
 			<description lang="us" text="Shadow mask texture offset in V direction"/>
 			<description lang="de" text="Textur-Offset der Shadow Mask in V Richtung"/>
 		</option>
-		<option default="0.03" name="curvature" type="float">
+		<option default="0" name="curvature" type="float">
 			<description lang="us" text="Screen curvature amount"/>
 			<description lang="de" text="Betrag der Bildschirmkrümmung"/>
 			<description lang="fr" text="Taux de courbure de l'écran"/>
 			<description lang="pt" text="Quantidade de curvatura da tela"/>
 			<description lang="es" text="Cantidad de curvatura de la pantalla"/>
 		</option>
-		<option default="0.03" name="reflection" type="float">
+		<option default="0" name="reflection" type="float">
 			<description lang="us" text="Screen reflection amount"/>
 			<description lang="de" text="Betrag der Bildschirmreflexion"/>
 		</option>
-		<option default="0.03" name="round_corner" type="float">
+		<option default="0" name="round_corner" type="float">
 			<description lang="us" text="Screen round corner amount"/>
 			<description lang="de" text="Betrag der Bildschirmabrundung"/>
 		</option>
-		<option default="0.03" name="vignetting" type="float">
+		<option default="0" name="smooth_border" type="float">
+			<description lang="us" text="Screen smooth border amount"/>
+			<description lang="de" text="Betrag der Bildkantenglättung"/>
+		</option>
+		<option default="0" name="vignetting" type="float">
 			<description lang="us" text="Image vignetting amount"/>
 			<description lang="de" text="Betrag der Bildvignettierung"/>
 		</option>
@@ -1857,13 +1865,13 @@
 			<description lang="us" text="Vector fade length (4.0 means vectors fade the most at and above 4 pixels, etc.)"/>
 			<description lang="de" text="Vektor-Fade Länge (4.0 bedeutet, dass Vektoren am Meisten bei und oberhald von 4 Pixeln ein-/ausgeblendet werden)"/>
 		</option>
-		<option default="0.3" name="vector_bloom_scale" type="float">
-			<description lang="us" text="Intensity factor for vector bloom"/>
-			<description lang="de" text="Intensitätsfaktor für Vektor-Bloom"/>
+		<option default="0.25" name="bloom_scale" type="float">
+			<description lang="us" text="Intensity factor for bloom"/>
+			<description lang="de" text="Intensitätsfaktor für Glanz"/>
 		</option>
-		<option default="0.225" name="raster_bloom_scale" type="float">
-			<description lang="us" text="Intensity factor for raster bloom"/>
-			<description lang="de" text="Intensitätsfaktor für Raster-Bloom"/>
+		<option default="0.0,0.0,0.0" name="bloom_overdrive" type="float3">
+			<description lang="us" text="Overdrive factor for bloom"/>
+			<description lang="de" text="Übersteuerungsfaktor für Glanz"/>
 		</option>
 		<option default="1.0" name="bloom_lvl0_weight" type="float">
 			<description lang="us" text="Bloom level 0 (full-size target) weight"/>
