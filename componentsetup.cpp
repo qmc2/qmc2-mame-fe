@@ -305,18 +305,18 @@ void ComponentSetup::loadComponent(QString name, bool fromSettings)
 	}
 	if ( name == "Component1" ) {
 		switch ( qmc2MainWindow->comboBoxViewSelect->currentIndex() ) {
-		       case QMC2_VIEWMACHINELIST_INDEX:
-			       componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
-			       break;
-		       case QMC2_VIEWHIERARCHY_INDEX:
-			       componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
-			       break;
-		       case QMC2_VIEWCATEGORY_INDEX:
-			       componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
-			       break;
-		       case QMC2_VIEWVERSION_INDEX:
-			       componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
-			       break;
+			case QMC2_VIEWMACHINELIST_INDEX:
+				componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
+				break;
+			case QMC2_VIEWHIERARCHY_INDEX:
+				componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
+				break;
+			case QMC2_VIEWCATEGORY_INDEX:
+				componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
+				break;
+			case QMC2_VIEWVERSION_INDEX:
+				componentInfo->setIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
+				break;
 	       }
 	}
 	foreach (int index, componentInfo->availableFeatureList()) {
