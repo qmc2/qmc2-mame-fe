@@ -80,6 +80,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QMenu *menuCategoryHeader;
 		QAction *actionMenuMachineListHeaderCategory;
 		QAction *actionMenuHierarchyHeaderCategory;
+		QAction *actionMenuCategoryHeaderVersion;
+		QAction *actionMenuVersionHeaderCategory;
 		QMenu *menuVersionHeader;
 		QAction *actionMenuMachineListHeaderVersion;
 		QAction *actionMenuHierarchyHeaderVersion;

@@ -1007,7 +1007,7 @@ void Options::on_pushButtonApply_clicked()
 	qmc2CategoryInfoUsed = catverUsed | categoryUsed;
 	qmc2VersionInfoUsed = catverUsed;
 
-	if ( catverUsed || categoryUsed ) {
+	if ( qmc2CategoryInfoUsed ) {
 		if ( !qmc2MainWindow->treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY) )
 			qmc2MainWindow->treeWidgetMachineList->showColumn(QMC2_MACHINELIST_COLUMN_CATEGORY);
 		if ( !qmc2MainWindow->treeWidgetHierarchy->isColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY) )
@@ -1018,25 +1018,16 @@ void Options::on_pushButtonApply_clicked()
 		qmc2MainWindow->actionMenuMachineListHeaderCategory->setEnabled(true);
 		qmc2MainWindow->actionMenuHierarchyHeaderCategory->setVisible(true);
 		qmc2MainWindow->actionMenuHierarchyHeaderCategory->setEnabled(true);
-		if ( !qmc2MainWindow->treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION) )
-			qmc2MainWindow->treeWidgetMachineList->showColumn(QMC2_MACHINELIST_COLUMN_VERSION);
-		if ( !qmc2MainWindow->treeWidgetHierarchy->isColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION) )
-			qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_MACHINELIST_COLUMN_VERSION);
-		qmc2MainWindow->actionViewByVersion->setVisible(true);
-		qmc2MainWindow->actionViewByVersion->setEnabled(true);
-		qmc2MainWindow->actionMenuMachineListHeaderVersion->setVisible(true);
-		qmc2MainWindow->actionMenuMachineListHeaderVersion->setEnabled(true);
-		qmc2MainWindow->actionMenuHierarchyHeaderVersion->setVisible(true);
-		qmc2MainWindow->actionMenuHierarchyHeaderVersion->setEnabled(true);
-		if ( comboBoxSortCriteria->count() - 1 < QMC2_SORTCRITERIA_CATEGORY ) {
-			comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
-			comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
-		}
-		if ( qmc2MainWindow->comboBoxViewSelect->count() - 1 < QMC2_VIEWCATEGORY_INDEX ) {
-			qmc2MainWindow->comboBoxViewSelect->insertItem(QMC2_VIEWCATEGORY_INDEX, tr("Category view"));
-			qmc2MainWindow->comboBoxViewSelect->setItemIcon(QMC2_VIEWCATEGORY_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
-			qmc2MainWindow->comboBoxViewSelect->insertItem(QMC2_VIEWVERSION_INDEX, tr("Version view"));
-			qmc2MainWindow->comboBoxViewSelect->setItemIcon(QMC2_VIEWVERSION_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
+		qmc2MainWindow->actionMenuVersionHeaderCategory->setVisible(true);
+		qmc2MainWindow->actionMenuVersionHeaderCategory->setEnabled(true);
+		int index = comboBoxSortCriteria->findText(tr("Category"));
+		if ( index < 0 )
+			comboBoxSortCriteria->insertItem(comboBoxSortCriteria->count(), tr("Category"));
+		index = qmc2MainWindow->comboBoxViewSelect->findText(tr("Category view"));
+		if ( index < 0 ) {
+			index = qmc2MainWindow->comboBoxViewSelect->count();
+			qmc2MainWindow->comboBoxViewSelect->insertItem(index, tr("Category view"));
+			qmc2MainWindow->comboBoxViewSelect->setItemIcon(index, QIcon(QString::fromUtf8(":/data/img/category.png")));
 		}
 	} else {
 		qmc2MainWindow->treeWidgetMachineList->hideColumn(QMC2_MACHINELIST_COLUMN_CATEGORY);
@@ -1047,6 +1038,39 @@ void Options::on_pushButtonApply_clicked()
 		qmc2MainWindow->actionMenuMachineListHeaderCategory->setEnabled(false);
 		qmc2MainWindow->actionMenuHierarchyHeaderCategory->setVisible(false);
 		qmc2MainWindow->actionMenuHierarchyHeaderCategory->setEnabled(false);
+		qmc2MainWindow->actionMenuVersionHeaderCategory->setVisible(false);
+		qmc2MainWindow->actionMenuVersionHeaderCategory->setEnabled(false);
+		int index = comboBoxSortCriteria->findText(tr("Category"));
+		if ( index >= 0 )
+			comboBoxSortCriteria->removeItem(index);
+		index = qmc2MainWindow->comboBoxViewSelect->findText(tr("Category view"));
+		if ( index >= 0 )
+			qmc2MainWindow->comboBoxViewSelect->removeItem(index);
+	}
+
+	if ( qmc2VersionInfoUsed ) {
+		if ( !qmc2MainWindow->treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION) )
+			qmc2MainWindow->treeWidgetMachineList->showColumn(QMC2_MACHINELIST_COLUMN_VERSION);
+		if ( !qmc2MainWindow->treeWidgetHierarchy->isColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION) )
+			qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_MACHINELIST_COLUMN_VERSION);
+		qmc2MainWindow->actionViewByVersion->setVisible(true);
+		qmc2MainWindow->actionViewByVersion->setEnabled(true);
+		qmc2MainWindow->actionMenuMachineListHeaderVersion->setVisible(true);
+		qmc2MainWindow->actionMenuMachineListHeaderVersion->setEnabled(true);
+		qmc2MainWindow->actionMenuHierarchyHeaderVersion->setVisible(true);
+		qmc2MainWindow->actionMenuHierarchyHeaderVersion->setEnabled(true);
+		qmc2MainWindow->actionMenuCategoryHeaderVersion->setVisible(true);
+		qmc2MainWindow->actionMenuCategoryHeaderVersion->setEnabled(true);
+		int index = comboBoxSortCriteria->findText(tr("Version"));
+		if ( index < 0 )
+			comboBoxSortCriteria->insertItem(comboBoxSortCriteria->count(), tr("Version"));
+		index = qmc2MainWindow->comboBoxViewSelect->findText(tr("Version view"));
+		if ( index < 0 ) {
+			index = qmc2MainWindow->comboBoxViewSelect->count();
+			qmc2MainWindow->comboBoxViewSelect->insertItem(index, tr("Version view"));
+			qmc2MainWindow->comboBoxViewSelect->setItemIcon(index, QIcon(QString::fromUtf8(":/data/img/version.png")));
+		}
+	} else {
 		qmc2MainWindow->treeWidgetMachineList->hideColumn(QMC2_MACHINELIST_COLUMN_VERSION);
 		qmc2MainWindow->treeWidgetHierarchy->hideColumn(QMC2_MACHINELIST_COLUMN_VERSION);
 		qmc2MainWindow->actionViewByVersion->setVisible(false);
@@ -1055,14 +1079,14 @@ void Options::on_pushButtonApply_clicked()
 		qmc2MainWindow->actionMenuMachineListHeaderVersion->setEnabled(false);
 		qmc2MainWindow->actionMenuHierarchyHeaderVersion->setVisible(false);
 		qmc2MainWindow->actionMenuHierarchyHeaderVersion->setEnabled(false);
-		if ( comboBoxSortCriteria->count() > QMC2_SORTCRITERIA_CATEGORY ) {
-			comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_CATEGORY);
-			comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_VERSION);
-		}
-		if ( qmc2MainWindow->comboBoxViewSelect->count() > QMC2_VIEWCATEGORY_INDEX ) {
-			qmc2MainWindow->comboBoxViewSelect->removeItem(QMC2_VIEWCATEGORY_INDEX);
-			qmc2MainWindow->comboBoxViewSelect->removeItem(QMC2_VIEWVERSION_INDEX);
-		}
+		qmc2MainWindow->actionMenuCategoryHeaderVersion->setVisible(false);
+		qmc2MainWindow->actionMenuCategoryHeaderVersion->setEnabled(false);
+		int index = comboBoxSortCriteria->findText(tr("Version"));
+		if ( index >= 0 )
+			comboBoxSortCriteria->removeItem(index);
+		index = qmc2MainWindow->comboBoxViewSelect->findText(tr("Version view"));
+		if ( index >= 0 )
+			qmc2MainWindow->comboBoxViewSelect->removeItem(index);
 	}
 
 	if ( qmc2ToolBarCustomizer )
