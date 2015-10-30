@@ -1188,6 +1188,7 @@ MainWindow::MainWindow(QWidget *parent)
 	action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_MACHINELIST_COLUMN_RANK));
 	action = menuCategoryHeader->addAction(tr("Version"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_VERSION);
 	action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION));
+	actionMenuCategoryHeaderVersion = action;
 	menuCategoryHeader->addSeparator();
 	action = menuCategoryHeader->addAction(QIcon(":data/img/reset.png"), tr("Reset"), this, SLOT(actionCategoryHeader_triggered())); action->setData(QMC2_MACHINELIST_RESET);
 	header->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -1219,6 +1220,7 @@ MainWindow::MainWindow(QWidget *parent)
 	action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_MACHINELIST_COLUMN_RANK));
 	action = menuVersionHeader->addAction(tr("Category"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_CATEGORY);
 	action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY));
+	actionMenuVersionHeaderCategory = action;
 	menuVersionHeader->addSeparator();
 	action = menuVersionHeader->addAction(QIcon(":data/img/reset.png"), tr("Reset"), this, SLOT(actionVersionHeader_triggered())); action->setData(QMC2_MACHINELIST_RESET);
 	header->setContextMenuPolicy(Qt::CustomContextMenu);
