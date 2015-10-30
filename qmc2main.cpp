@@ -3425,8 +3425,8 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 #else
 			QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
 #endif
+			on_comboBoxViewSelect_currentIndexChanged(comboBoxViewSelect->currentIndex());
 			if ( !qmc2MachineList->initialLoad ) {
-				stackedWidgetView->setCurrentIndex(comboBoxViewSelect->currentIndex());
 				switch ( stackedWidgetView->currentIndex() ) {
 					case QMC2_VIEWHIERARCHY_INDEX:
 						treeWidgetHierarchy->activateWindow();
