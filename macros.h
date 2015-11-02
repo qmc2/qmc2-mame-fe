@@ -451,6 +451,9 @@
 // responsiveness while loading catver.ini
 #define QMC2_CATVERINI_LOAD_RESPONSE		15000
 
+// responsiveness when creating a fix.dat
+#define QMC2_FIXDAT_EXPORT_RESPONSE		1000
+
 // delay in milliseconds before an automatic ROM check gets triggered
 #define QMC2_AUTOROMCHECK_DELAY			250
 
