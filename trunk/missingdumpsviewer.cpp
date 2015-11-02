@@ -29,6 +29,7 @@ MissingDumpsViewer::MissingDumpsViewer(QString settingsKey, QWidget *parent)
 	setVisible(false);
 	setDefaultEmulator(false);
 	setupUi(this);
+	progressBar->hide();
 }
 
 void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
@@ -59,12 +60,22 @@ void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 			ts << "\t</header>\n";
 			QString mainEntityName = "machine";
 			QMultiMap<QString, DumpRecord *> dumpMap;
+			progressBar->show();
+			progressBar->setRange(0, treeWidget->topLevelItemCount());
+			progressBar->setValue(0);
 			for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
 				QTreeWidgetItem *item = treeWidget->topLevelItem(i);
 				if ( !checkBoxSelectedDumpsOnly->isChecked() || item->isSelected() )
 					dumpMap.insertMulti(item->text(QMC2_MDV_COLUMN_ID), new DumpRecord(item->text(QMC2_MDV_COLUMN_NAME), item->text(QMC2_MDV_COLUMN_TYPE), item->text(QMC2_MDV_COLUMN_SIZE), item->text(QMC2_MDV_COLUMN_CRC), item->text(QMC2_MDV_COLUMN_SHA1)));
+				if ( i % QMC2_FIXDAT_EXPORT_RESPONSE == 0 ) {
+					progressBar->setValue(i);
+					qApp->processEvents();
+				}
 			}
-			foreach (QString id, dumpMap.uniqueKeys()) {
+			QStringList dumpKeys = dumpMap.uniqueKeys();
+			progressBar->setRange(0, dumpKeys.count());
+			for (int i = 0; i < dumpKeys.count(); i++) {
+				QString id = dumpKeys[i];
 				if ( defaultEmulator() ) {
 					QString sourcefile, isbios, cloneof, romof, sampleof, description, year, manufacturer, merge;
 					QByteArray xmlDocument(ROMAlyzer::getXmlData(id, true).toUtf8());
@@ -146,10 +157,15 @@ void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 				} else {
 					// FIXME "non-default emulator"
 				}
+				if ( i % QMC2_FIXDAT_EXPORT_RESPONSE == 0 ) {
+					progressBar->setValue(i);
+					qApp->processEvents();
+				}
 			}
 			dumpMap.clear();
 			ts << "</datafile>\n";
 			dataFile.close();
+			progressBar->hide();
 		} else {
 			// FIXME "file error"
 		}
