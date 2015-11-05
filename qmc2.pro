@@ -315,7 +315,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 				QMAKE_LIBS_QT_ENTRY =
 				QMAKE_LFLAGS_CONSOLE =
 				greaterThan(SDL, 1) {
-					LIBS += -lSDLmain -lSDL2.dll -lSDL2 -lole32 -lpsapi $$QMC2_LIBS
+					LIBS += -lSDL2.dll -lSDL2 -lole32 -lpsapi $$QMC2_LIBS
 				} else {
 					LIBS += -lSDLmain -lSDL.dll -lSDL -lole32 -lpsapi $$QMC2_LIBS
 				}

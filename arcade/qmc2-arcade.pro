@@ -197,7 +197,7 @@ macx {
         contains(DEFINES, QMC2_ARCADE_MINGW) {
             CONFIG += windows
             greaterThan(SDL, 1) {
-                LIBS += -lSDLmain -lSDL2.dll -lSDL2 -lole32 -lpsapi
+                LIBS += -lSDL2.dll -lSDL2 -lole32 -lpsapi
             } else {
                 LIBS += -lSDLmain -lSDL.dll -lSDL -lole32 -lpsapi
             }
