@@ -844,22 +844,6 @@
 			<description lang="us" text="LUA script to execute after machine boot"/>
 			<description lang="de" text="Nach dem Boot der Maschine auszuführendes LUA-Skript"/>
 		</option>
-		<option default="false" name="http" type="bool">
-			<description lang="us" text="Enable local http server"/>
-			<description lang="de" text="Lokalen HTTP Server aktivieren"/>
-		</option>
-		<option default="8080" name="http_port" type="int">
-			<description lang="us" text="HTTP server's listen port"/>
-			<description lang="de" text="Listen Port des HTTP Servers"/>
-		</option>
-		<option default="web" name="http_path" type="directory">
-			<description lang="us" text="Path to web files"/>
-			<description lang="de" text="Pfad zu Web-Dateien"/>
-		</option>
-		<option default="false" name="console" type="bool">
-			<description lang="us" text="Enable emulator LUA console"/>
-			<description lang="de" text="LUA Konsole aktivieren"/>
-		</option>
 	</section>
 	<section name="configuration">
 		<description lang="es" text="Configuración"/>
