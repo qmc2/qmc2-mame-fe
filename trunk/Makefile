@@ -500,9 +500,7 @@ endif
 endif
 endif
 else
-ifndef SDL
-SDL = 1
-endif
+SDL = 2
 endif
 
 # >>> END OF MAKE OPTIONS -- PLEASE DO NOT CHANGE ANYTHING AFTER THIS LINE <<<
@@ -720,7 +718,7 @@ endif
 
 # setup library and include paths for MinGW environment
 ifeq '$(ARCH)' 'Windows'
-TEST_FILE=$(shell gcc -print-file-name=libSDL.a)
+TEST_FILE=$(shell gcc -print-file-name=libSDL2.a)
 MINGW_LIBDIR=$(shell arch\Windows\dirname.bat $(TEST_FILE))
 ifeq '$(SDL)' '2'
 QMAKE_CONF += QMC2_LIBS+=-L$(MINGW_LIBDIR) QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL2
