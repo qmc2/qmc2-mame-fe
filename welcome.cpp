@@ -7,6 +7,7 @@
 #include <QFile>
 #include <QDir>
 #include <QMap>
+#include <QStyleFactory>
 
 #include "welcome.h"
 #include "macros.h"
@@ -32,6 +33,15 @@ Welcome::Welcome(QWidget *parent)
 		if ( index >= 0 )
 			comboBoxLanguage->setCurrentIndex(index);
 		comboBoxLanguage->blockSignals(false);
+		comboBoxStyle->blockSignals(true);
+		comboBoxStyle->addItem(QObject::tr("Default"));
+		comboBoxStyle->addItems(QStyleFactory::keys());
+		QString myStyle = QObject::tr((const char *)startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString().toUtf8());
+		int styleIndex = comboBoxStyle->findText(myStyle, Qt::MatchFixedString);
+		if ( styleIndex < 0 )
+			styleIndex = 0;
+		comboBoxStyle->setCurrentIndex(styleIndex);
+		comboBoxStyle->blockSignals(false);
 		QStringList emuHistory = startupConfig->value(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", QStringList()).toStringList();
 		emuHistory.sort();
 		for (int i = 0; i < emuHistory.count(); i++) {
@@ -90,6 +100,10 @@ void Welcome::on_pushButtonOkay_clicked()
 				startupConfig->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath", lineEditSamplePath->text());
 			if ( !lineEditHashPath->text().isEmpty() )
 				startupConfig->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", lineEditHashPath->text());
+			QString styleName = comboBoxStyle->currentText();
+			if ( styleName == tr("Default") )
+				styleName = "Default";
+			startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/Style", styleName);
 			startupConfig->sync();
 			emit accept();
 		} else
@@ -205,7 +219,6 @@ void Welcome::setupLanguage()
 		}
 		startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", lang);
 	}
-
 	QString directory = startupConfig->value("FilesAndDirectories/DataDirectory", "data/").toString() + "lng/";
 	if ( qmc2QtTranslator ) {
 		qApp->removeTranslator(qmc2QtTranslator);
@@ -249,7 +262,6 @@ bool Welcome::checkConfig()
 	setupLanguage();
 
 	startupConfig->beginGroup(QMC2_FRONTEND_PREFIX);
-
 	if ( startupConfig->value("GUI/CheckSingleInstance", true).toBool() ) {
 		if ( startupConfig->value(QString("InstanceRunning")).toBool() ) {
 			switch ( QMessageBox::question(0, tr("Single-instance check"),
@@ -270,35 +282,12 @@ bool Welcome::checkConfig()
 			}
 		}
 	}
-
 	startupConfig->endGroup();
 
 	QStringList verList = startupConfig->value("Version").toString().split(".", QString::SkipEmptyParts);
 	if ( verList.count() > 1 ) {
 		int omv = verList[1].toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 54, osr, 6810) ) {
-			QStringList oldKeys = QStringList() << "/Frontend/MachineList/EnableRomStateFilter"
-							    << "/Frontend/MachineList/ShowC"
-							    << "/Frontend/MachineList/ShowM"
-							    << "/Frontend/MachineList/ShowI"
-							    << "/Frontend/MachineList/ShowN"
-							    << "/Frontend/MachineList/ShowU";
-			QStringList newKeys = QStringList() << "/Frontend/RomStateFilter/Enabled"
-							    << "/Frontend/RomStateFilter/ShowCorrect"
-							    << "/Frontend/RomStateFilter/ShowMostlyCorrect"
-							    << "/Frontend/RomStateFilter/ShowIncorrect"
-							    << "/Frontend/RomStateFilter/ShowNotFound"
-							    << "/Frontend/RomStateFilter/ShowUnknown";
-			for (int i = 0; i < oldKeys.count(); i++) {
-				QString oldKey = oldKeys[i];
-				QString newKey = newKeys[i];
-				if ( startupConfig->contains(oldKey) ) {
-					startupConfig->setValue(newKey, startupConfig->value(oldKey));
-					startupConfig->remove(oldKey);
-				}
-			}
-		}
 		if ( QMC2_TEST_VERSION(omv, 56, osr, 6907) )
 			startupConfig->remove("/Frontend/GUI/MemoryIndicator");
 		if ( QMC2_TEST_VERSION(omv, 57, osr, 6989) ) {
