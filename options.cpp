@@ -1806,11 +1806,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	checkBoxScaledTitle->setChecked(qmc2ScaledTitle);
 	qmc2ScaledPCB = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledPCB", true).toBool();
 	checkBoxScaledPCB->setChecked(qmc2ScaledPCB);
-	qmc2SmoothScaling = config->value(QMC2_FRONTEND_PREFIX + "GUI/SmoothScaling", false).toBool();
+	qmc2SmoothScaling = config->value(QMC2_FRONTEND_PREFIX + "GUI/SmoothScaling", true).toBool();
 	checkBoxSmoothScaling->setChecked(qmc2SmoothScaling);
 	qmc2RetryLoadingImages = config->value(QMC2_FRONTEND_PREFIX + "GUI/RetryLoadingImages", true).toBool();
 	checkBoxRetryLoadingImages->setChecked(qmc2RetryLoadingImages);
-	qmc2ParentImageFallback = config->value(QMC2_FRONTEND_PREFIX + "GUI/ParentImageFallback", false).toBool();
+	qmc2ParentImageFallback = config->value(QMC2_FRONTEND_PREFIX + "GUI/ParentImageFallback", true).toBool();
 	checkBoxParentImageFallback->setChecked(qmc2ParentImageFallback);
 	comboBoxLanguage->setCurrentIndex(comboBoxLanguage->findText(config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString().toUpper(), Qt::MatchContains | Qt::MatchCaseSensitive));
 	comboBoxStyle->clear();
@@ -1845,9 +1845,9 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 		QDir::setCurrent(QCoreApplication::applicationDirPath());
 	else
 		QDir::setCurrent(qmc2StandardWorkDir);
-	checkBoxGameStatusIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", false).toBool());
-	checkBoxGameStatusIndicatorOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", true).toBool());
-	checkBoxShowGameName->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName", false).toBool());
+	checkBoxGameStatusIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", true).toBool());
+	checkBoxGameStatusIndicatorOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", false).toBool());
+	checkBoxShowGameName->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName", true).toBool());
 	qmc2ShowGameName = checkBoxShowGameName->isChecked();
 	checkBoxShowGameNameOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameNameOnlyWhenRequired", false).toBool());
 	qmc2ShowGameNameOnlyWhenRequired = checkBoxShowGameNameOnlyWhenRequired->isChecked();
