@@ -2334,7 +2334,6 @@ void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			}
 		}
 	}
-	qApp->processEvents();
 }
 
 void MachineList::loadReadyReadStandardOutput()
