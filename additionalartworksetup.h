@@ -3,16 +3,18 @@
 
 #include "ui_additionalartworksetup.h"
 
-#define QMC2_ADDITIONALARTWORK_COLUMN_SELECT		0
-#define QMC2_ADDITIONALARTWORK_COLUMN_NAME		1
-#define QMC2_ADDITIONALARTWORK_COLUMN_ICON		2
-#define QMC2_ADDITIONALARTWORK_COLUMN_CACHE_PREFIX	3
-#define QMC2_ADDITIONALARTWORK_COLUMN_TARGET		4
-#define QMC2_ADDITIONALARTWORK_COLUMN_TYPE		5
-#define QMC2_ADDITIONALARTWORK_COLUMN_FOLDER_OR_ZIP	6
+#define QMC2_ADDITIONALARTWORK_COLUMN_SELECT			0
+#define QMC2_ADDITIONALARTWORK_COLUMN_NAME			1
+#define QMC2_ADDITIONALARTWORK_COLUMN_ICON			2
+#define QMC2_ADDITIONALARTWORK_COLUMN_TARGET			3
+#define QMC2_ADDITIONALARTWORK_COLUMN_TYPE			4
+#define QMC2_ADDITIONALARTWORK_COLUMN_FOLDER_OR_ARCHIVE		5
 
-#define QMC2_ADDITIONALARTWORK_INDEX_FOLDER		0
-#define QMC2_ADDITIONALARTWORK_INDEX_ZIP		1
+#define QMC2_ADDITIONALARTWORK_INDEX_SYSTEM			0
+#define QMC2_ADDITIONALARTWORK_INDEX_SOFTWARE			1
+
+#define QMC2_ADDITIONALARTWORK_INDEX_FOLDER			0
+#define QMC2_ADDITIONALARTWORK_INDEX_ARCHIVE			1
 
 class AdditionalArtworkSetup : public QDialog, public Ui::AdditionalArtworkSetup
 {
@@ -31,10 +33,11 @@ class AdditionalArtworkSetup : public QDialog, public Ui::AdditionalArtworkSetup
 		void on_toolButtonRemove_clicked();
 		void selectionFlagsChanged(bool checked = false);
 		void chooseIcon();
+		void load();
+		void save();
 
 	protected:
 		void showEvent(QShowEvent *);
-		void resizeEvent(QResizeEvent *);
 		void hideEvent(QHideEvent *);
 };
 

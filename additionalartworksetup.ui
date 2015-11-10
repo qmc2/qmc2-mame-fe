@@ -48,11 +48,6 @@
      </column>
      <column>
       <property name="text">
-       <string>Cache prefix</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
        <string>Target</string>
       </property>
      </column>
@@ -63,7 +58,7 @@
      </column>
      <column>
       <property name="text">
-       <string>Folder / Zip</string>
+       <string>Folder / Archive</string>
       </property>
      </column>
     </widget>
