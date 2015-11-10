@@ -1119,12 +1119,10 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/UpdateDelay", qmc2UpdateDelay);
 	i = comboBoxSortCriteria->currentIndex();
 	needResort = (i != qmc2SortCriteria);
-	int oldSortCriteria = qmc2SortCriteria;
 	qmc2SortCriteria = i;
 	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/SortCriteria", qmc2SortCriteria);
 	i = comboBoxSortOrder->currentIndex();
 	needResort = needResort || (i == 0 ? qmc2SortOrder != Qt::AscendingOrder : qmc2SortOrder != Qt::DescendingOrder);
-	Qt::SortOrder oldSortOrder = qmc2SortOrder; 
 	qmc2SortOrder = (i == 0 ? Qt::AscendingOrder : Qt::DescendingOrder);
 	config->setValue(QMC2_FRONTEND_PREFIX + "MachineList/SortOrder", qmc2SortOrder);
 	QBitArray newFilter(QMC2_ROMSTATE_COUNT);
