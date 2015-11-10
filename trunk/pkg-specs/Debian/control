@@ -8,37 +8,14 @@ Homepage: http://qmc2.batcom-it.net
 
 Package: qmc2-sdlmame
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, qmc2-data (>= 0.57), qmc2-runonce, libqtgui4 (>= 4.8.0), libphonon4, libqtwebkit4, libqt4-test, libqt4-sql-sqlite, sdlmame (>= 0.162) | mame (>= 0.162)
+Depends: ${shlibs:Depends}, ${misc:Depends}, qmc2-data (>= 0.57), libqtgui4 (>= 4.8.0), libphonon4, libqtwebkit4, libqt4-test, libqt4-sql-sqlite, sdlmame (>= 0.162) | mame (>= 0.162)
 Replaces: qmc2 (<= 0.34), qmc2-sdlmess (<= 0.51), qmc2-sdlume (<= 0.51), qmc2-runonce (<= 0.51)
 Description: M.A.M.E. Catalog / Launcher II
- QMC2 is a Qt 4 based multi-platform GUI front end for several MAME, MESS and
- UME variants. This package provides the MAME variant of QMC2.
-
-Package: qmc2-sdlmess
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, qmc2-data, qmc2-runonce, libqtgui4 (>= 4.8.0), libphonon4, libqtwebkit4, libqt4-test, libqt4-sql-sqlite, sdlmess (>= 0.144) | mess (>= 0.144)
-Description: M.E.S.S. Catalog / Launcher II
- QMC2 is a Qt 4 based multi-platform GUI front end for several MAME, MESS and
- UME variants. This package provides the MESS variant of QMC2.
-
-Package: qmc2-sdlume
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, qmc2-data, qmc2-runonce, libqtgui4 (>= 4.8.0), libphonon4, libqtwebkit4, libqt4-test, libqt4-sql-sqlite, sdlume (>= 0.144) | ume (>= 0.144)
-Replaces: qmc2 (<= 0.34)
-Description: U.M.E. Catalog / Launcher II
- QMC2 is a Qt 4 based multi-platform GUI front end for several MAME, MESS and
- UME variants. This package provides the UME variant of QMC2.
-
-Package: qmc2-runonce
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: QMC2 Variant Launcher Utility
- Runonce is a small application used to switch
- between QMC2 variants.
+ QMC2 is a feature-rich Qt 4 based multi-platform GUI front end for M.A.M.E.
 
 Package: qmc2-arcade
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-declarative-shaders, qmc2-sdlmame | qmc2-sdlmess | qmc2-sdlume
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-declarative-shaders, qmc2-sdlmame
 Description: QMC2 Arcade Mode
  An Arcade like user interface for QMC2
 
