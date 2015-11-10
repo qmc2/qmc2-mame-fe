@@ -2078,7 +2078,6 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
 #endif
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
 	if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) != tabWidgetMachineList->currentIndex() || (tabWidgetMachineList->indexOf(tabEmbeddedEmus) == tabWidgetMachineList->currentIndex() && !toolButtonEmbedderMaximizeToggle->isChecked()) ) {
 		hSplitterSizes = hSplitter->sizes();
 	} else if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) == tabWidgetMachineList->currentIndex() && toolButtonEmbedderMaximizeToggle->isChecked() ) {
@@ -3396,13 +3395,12 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 	}
 
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	if ( componentInfo->appliedFeatureList().count() <= currentIndex || currentIndex < 0 )
+		return;
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	if ( hSplitterSizes.count() > 1 && componentInfo->appliedFeatureList()[currentIndex] != QMC2_EMBED_INDEX )
 		hSplitter->setSizes(hSplitterSizes);
-#endif
-
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( embedIndex >= 0 && embedIndex <= currentIndex )
 		if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 )
@@ -3417,8 +3415,9 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			actionToggleTagCursorDown->setVisible(true);
 			actionToggleTagCursorUp->setVisible(true);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-			if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
-				QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
+			if ( lastTabWidgetMachineListIndex >= 0 )
+				if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
+					QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 			toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
@@ -3457,8 +3456,9 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			actionToggleTagCursorDown->setVisible(false);
 			actionToggleTagCursorUp->setVisible(false);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-			if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
-				QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
+			if ( lastTabWidgetMachineListIndex >= 0 )
+				if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
+					QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 			toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
@@ -3478,8 +3478,9 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			actionToggleTagCursorDown->setVisible(false);
 			actionToggleTagCursorUp->setVisible(false);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-			if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
-				QTimer::singleShot(0, this, SLOT(checkCurrentFavoritesSelection()));
+			if ( lastTabWidgetMachineListIndex >= 0 )
+				if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
+					QTimer::singleShot(0, this, SLOT(checkCurrentFavoritesSelection()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 			toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
@@ -3496,8 +3497,9 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			actionToggleTagCursorDown->setVisible(false);
 			actionToggleTagCursorUp->setVisible(false);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-			if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
-				QTimer::singleShot(0, this, SLOT(checkCurrentPlayedSelection()));
+			if ( lastTabWidgetMachineListIndex >= 0 )
+				if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
+					QTimer::singleShot(0, this, SLOT(checkCurrentPlayedSelection()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 			toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
@@ -3578,6 +3580,8 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 void MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int currentIndex)
 {
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component3"];
+	if ( componentInfo->appliedFeatureList().count() <= currentIndex || currentIndex < 0 )
+		return;
 	switch ( componentInfo->appliedFeatureList()[currentIndex] ) {
 		case QMC2_FRONTENDLOG_INDEX:
 			logScrollToEnd(QMC2_LOG_FRONTEND);
@@ -6536,6 +6540,10 @@ void MainWindow::init()
 	signalStyleSheetSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", QString()).toString());
 	signalPaletteSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString());
 
+	// recreate all components
+	foreach (QString component, qmc2ComponentSetup->components())
+		qmc2ComponentSetup->saveComponent(component);
+
 	if ( qmc2SplashScreen ) {
 		qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)), Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
 		qmc2SplashScreen->show();
@@ -6560,22 +6568,19 @@ void MainWindow::init()
 
 	createFifo();
 
-	tabWidgetMachineList->setCurrentIndex(qmc2LastListIndex);
-	on_tabWidgetMachineList_currentChanged(qmc2LastListIndex);
-	floatToggleButtonSoftwareDetail_toggled(floatToggleButtonSoftwareDetail->isChecked());
-	reloadImageFormats();
-
-	qmc2EarlyStartup = false;
-
 	qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", 0).toInt();
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	if ( qmc2LastListIndex == QMC2_EMBED_INDEX )
 		qmc2LastListIndex = 0;
 #endif
+	tabWidgetMachineList->blockSignals(true);
+	tabWidgetMachineList->setCurrentIndex(qmc2LastListIndex);
+	tabWidgetMachineList->blockSignals(false);
+	on_tabWidgetMachineList_currentChanged(qmc2LastListIndex);
+	floatToggleButtonSoftwareDetail_toggled(floatToggleButtonSoftwareDetail->isChecked());
+	reloadImageFormats();
 
-	// recreate all components
-	foreach (QString component, qmc2ComponentSetup->components())
-		qmc2ComponentSetup->saveComponent(component);
+	qmc2EarlyStartup = false;
 
 	tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
 	updateTabWidgets();
@@ -6596,7 +6601,9 @@ void MainWindow::init()
 
 void MainWindow::setupStyle(QString styleName)
 {
-	QStyle *newStyle;
+	if ( qmc2CurrentStyleName == styleName )
+		return;
+	QStyle *newStyle = 0;
 	if ( styleName != "Default" ) {
 		if ( QStyleFactory::keys().contains(styleName) )
 			newStyle = QStyleFactory::create(styleName);
@@ -6609,8 +6616,7 @@ void MainWindow::setupStyle(QString styleName)
 		styleName = "Default";
 	}
 	if ( newStyle ) {
-		if ( qmc2CurrentStyleName != styleName )
-			log(QMC2_LOG_FRONTEND, tr("setting GUI style to '%1'").arg(styleName));
+		log(QMC2_LOG_FRONTEND, tr("setting GUI style to '%1'").arg(styleName));
 		if ( !qmc2StandardPalettes.contains(styleName) )
 			qmc2StandardPalettes[styleName] = newStyle->standardPalette();
 		if ( !proxyStyle ) {
@@ -10136,7 +10142,6 @@ void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
 
 void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
 {
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
 	if ( tabWidgetMachineList->indexOf(tabSearch) == tabWidgetMachineList->currentIndex() )
 		comboBoxSearch->lineEdit()->setText(text);
 }

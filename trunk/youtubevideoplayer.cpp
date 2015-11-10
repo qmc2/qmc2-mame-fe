@@ -1970,6 +1970,8 @@ bool VideoEventFilter::eventFilter(QObject *object, QEvent *event)
 			case Qt::RightButton:
 				mPlayer->videoPlayer_customContextMenuRequested(e->pos());
 				break;
+			default:
+				break;
 		}
 	}
 	return QObject::eventFilter(object, event);
