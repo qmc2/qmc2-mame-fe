@@ -355,9 +355,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>-213</y>
             <width>702</width>
-            <height>771</height>
+            <height>776</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayoutScrollAreeaSettings" rowstretch="0,0,0,1,0">
@@ -1450,73 +1450,6 @@
                   </property>
                  </widget>
                 </item>
-                <item row="2" column="0" rowspan="8" colspan="2">
-                 <widget class="QListWidget" name="listWidgetCheckSumDbScannedPaths">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="contextMenuPolicy">
-                   <enum>Qt::CustomContextMenu</enum>
-                  </property>
-                  <property name="toolTip">
-                   <string>List of scanned paths</string>
-                  </property>
-                  <property name="dragDropMode">
-                   <enum>QAbstractItemView::InternalMove</enum>
-                  </property>
-                  <property name="selectionMode">
-                   <enum>QAbstractItemView::ExtendedSelection</enum>
-                  </property>
-                  <property name="textElideMode">
-                   <enum>Qt::ElideMiddle</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="2" rowspan="8">
-                 <layout class="QVBoxLayout" name="verticalLayout_3">
-                  <item>
-                   <widget class="QToolButton" name="toolButtonCheckSumDbAddPath">
-                    <property name="toolTip">
-                     <string>Add a path</string>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="qmc2.qrc">
-                      <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_2">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>0</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item>
-                   <widget class="QToolButton" name="toolButtonCheckSumDbRemovePath">
-                    <property name="enabled">
-                     <bool>false</bool>
-                    </property>
-                    <property name="toolTip">
-                     <string>Remove selected paths</string>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="qmc2.qrc">
-                      <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
                 <item row="0" column="0" colspan="3">
                  <layout class="QHBoxLayout" name="horizontalLayout">
                   <item>
@@ -1538,6 +1471,38 @@
                      </size>
                     </property>
                    </spacer>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButtonCheckSumDbAddPath">
+                    <property name="toolTip">
+                     <string>Add a path</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="qmc2.qrc">
+                      <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButtonCheckSumDbRemovePath">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>Remove selected paths</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="qmc2.qrc">
+                      <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="Line" name="line_22">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                   </widget>
                   </item>
                   <item>
                    <widget class="QToolButton" name="toolButtonCheckSumDbScanIncrementally">
@@ -1606,6 +1571,31 @@
                    </widget>
                   </item>
                  </layout>
+                </item>
+                <item row="2" column="0" rowspan="8" colspan="3">
+                 <widget class="QListWidget" name="listWidgetCheckSumDbScannedPaths">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="contextMenuPolicy">
+                   <enum>Qt::CustomContextMenu</enum>
+                  </property>
+                  <property name="toolTip">
+                   <string>List of scanned paths</string>
+                  </property>
+                  <property name="dragDropMode">
+                   <enum>QAbstractItemView::InternalMove</enum>
+                  </property>
+                  <property name="selectionMode">
+                   <enum>QAbstractItemView::ExtendedSelection</enum>
+                  </property>
+                  <property name="textElideMode">
+                   <enum>Qt::ElideMiddle</enum>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </item>
@@ -2032,15 +2022,15 @@
   <tabstop>checkBoxCollectionRebuilderHashCache</tabstop>
   <tabstop>checkBoxCollectionRebuilderDryRun</tabstop>
   <tabstop>groupBoxCheckSumDatabase</tabstop>
+  <tabstop>toolButtonCheckSumDbAddPath</tabstop>
+  <tabstop>toolButtonCheckSumDbRemovePath</tabstop>
   <tabstop>toolButtonCheckSumDbScanIncrementally</tabstop>
   <tabstop>toolButtonCheckSumDbDeepScan</tabstop>
   <tabstop>toolButtonCheckSumDbHashCache</tabstop>
   <tabstop>listWidgetCheckSumDbScannedPaths</tabstop>
-  <tabstop>toolButtonCheckSumDbAddPath</tabstop>
   <tabstop>lineEditCheckSumDbDatabasePath</tabstop>
   <tabstop>toolButtonBrowseCheckSumDbDatabasePath</tabstop>
   <tabstop>toolButtonCheckSumDbViewLog</tabstop>
-  <tabstop>toolButtonCheckSumDbRemovePath</tabstop>
   <tabstop>pushButtonCheckSumDbScan</tabstop>
   <tabstop>pushButtonCheckSumDbPauseResumeScan</tabstop>
   <tabstop>comboBoxChecksumWizardHashType</tabstop>
