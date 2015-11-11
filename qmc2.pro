@@ -137,6 +137,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			movierecordersetup.cpp \
 			cryptedbytearray.cpp \
 			romstatefilter.cpp \
+			customartwork.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -260,6 +261,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			movierecordersetup.h \
 			cryptedbytearray.h \
 			romstatefilter.h \
+			customartwork.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h

@@ -11,6 +11,7 @@
 #if QMC2_OPENGL == 1
 #include <QGLWidget>
 #endif
+
 #include "unzip.h"
 #include "sevenzipfile.h"
 #include "macros.h"

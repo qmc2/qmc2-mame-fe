@@ -80,6 +80,8 @@ void AdditionalArtworkSetup::save()
 				qmc2Config->setValue(QString("%1/Icon").arg(name), toolButtonIcon->whatsThis());
 			QComboBox *comboBoxTarget = (QComboBox *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_TARGET);
 			qmc2Config->setValue(QString("%1/Target").arg(name), comboBoxTarget->currentIndex());
+			QComboBox *comboBoxScaled = (QComboBox *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_SCALED);
+			qmc2Config->setValue(QString("%1/Scaled").arg(name), comboBoxScaled->currentIndex());
 			QComboBox *comboBoxType = (QComboBox *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_TYPE);
 			qmc2Config->setValue(QString("%1/Type").arg(name), comboBoxType->currentIndex());
 			QStackedWidget *stackedWidgetFolderOrArchive = (QStackedWidget *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_FOLDER_OR_ARCHIVE);
@@ -135,6 +137,15 @@ void AdditionalArtworkSetup::load()
 			comboBoxTarget->setCurrentIndex(index);
 		connect(comboBoxTarget, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
 		treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_TARGET, comboBoxTarget);
+		QComboBox *comboBoxScaled = new QComboBox(this);
+		comboBoxScaled->addItem(tr("On"));
+		comboBoxScaled->addItem(tr("Off"));
+		comboBoxScaled->setToolTip(tr("Choose if images of this artwork class are scaled or not"));
+		index = qmc2Config->value(QString("%1/Scaled").arg(name), 0).toInt();
+		if ( index >= 0 && index < 2 )
+			comboBoxScaled->setCurrentIndex(index);
+		connect(comboBoxScaled, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
+		treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_SCALED, comboBoxScaled);
 		QComboBox *comboBoxType = new QComboBox(this);
 		comboBoxType->addItem(tr("Folder"));
 		comboBoxType->addItem(tr("Archive"));
@@ -198,6 +209,12 @@ void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
 	comboBoxTarget->setToolTip(tr("Select system or software as <i>target</i> for this artwork class"));
 	connect(comboBoxTarget, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
 	treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_TARGET, comboBoxTarget);
+	QComboBox *comboBoxScaled = new QComboBox(this);
+	comboBoxScaled->addItem(tr("On"));
+	comboBoxScaled->addItem(tr("Off"));
+	comboBoxScaled->setToolTip(tr("Choose if images of this artwork class are scaled or not"));
+	connect(comboBoxScaled, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
+	treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_SCALED, comboBoxScaled);
 	QComboBox *comboBoxType = new QComboBox(this);
 	comboBoxType->addItem(tr("Folder"));
 	comboBoxType->addItem(tr("Archive"));
