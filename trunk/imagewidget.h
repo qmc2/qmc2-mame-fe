@@ -119,6 +119,7 @@ class ImageWidget : public QWidget
 		virtual void contextMenuEvent(QContextMenuEvent *);
 
 	public slots:
+		void init();
 		void drawCenteredImage(QPixmap *, QPainter *);
 		void drawScaledImage(QPixmap *, QPainter *);
 		bool loadImage(QString, QString, bool checkOnly = false, QString *fileName = NULL, bool loadImages = true);

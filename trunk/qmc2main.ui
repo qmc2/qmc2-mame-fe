@@ -1450,7 +1450,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QTabWidget" name="tabWidgetGameDetail">
+          <widget class="QTabWidget" name="tabWidgetMachineDetail">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
              <horstretch>0</horstretch>
@@ -4740,7 +4740,7 @@
   <tabstop>listWidgetFavorites</tabstop>
   <tabstop>listWidgetPlayed</tabstop>
   <tabstop>tabWidgetEmbeddedEmulators</tabstop>
-  <tabstop>tabWidgetGameDetail</tabstop>
+  <tabstop>tabWidgetMachineDetail</tabstop>
   <tabstop>textBrowserGameInfo</tabstop>
   <tabstop>textBrowserEmuInfo</tabstop>
   <tabstop>tabWidgetLogsAndEmulators</tabstop>

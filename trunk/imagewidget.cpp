@@ -4,6 +4,7 @@
 #include <QDir>
 #include <QByteArray>
 #include <QBuffer>
+#include <QTimer>
 #include <QMap>
 #include <QClipboard>
 #include <QCache>
@@ -41,21 +42,36 @@ ImageWidget::ImageWidget(QWidget *parent)
 	: QWidget(parent)
 #endif
 {
+	if ( formatNames.isEmpty() )
+		formatNames << "PNG" << "BMP" << "GIF" << "JPG" << "PBM" << "PGM" << "PPM" << "TIFF" << "XBM" << "XPM" << "SVG" << "TGA";
+	if ( formatExtensions.isEmpty() )
+		formatExtensions << "png" << "bmp" << "gif" << "jpg, jpeg" << "pbm" << "pgm" << "ppm" << "tif, tiff" << "xbm" << "xpm" << "svg" << "tga";
+	if ( formatDescriptions.isEmpty() )
+		formatDescriptions << tr("Portable Network Graphics") << tr("Windows Bitmap") << tr("Graphic Interchange Format") << tr("Joint Photographic Experts Group") << tr("Portable Bitmap")
+				   << tr("Portable Graymap") << tr("Portable Pixmap") << tr("Tagged Image File Format") << tr("X11 Bitmap") << tr("X11 Pixmap") << tr("Scalable Vector Graphics") << tr("Targa Image Format");
+	QTimer::singleShot(0, this, SLOT(init()));
+}
+
+ImageWidget::~ImageWidget()
+{
+	if ( useZip() ) {
+		foreach (unzFile imageFile, imageFileMap)
+			unzClose(imageFile);
+	} else if ( useSevenZip() ) {
+		foreach (SevenZipFile *imageFile, imageFileMap7z) {
+			imageFile->close();
+			delete imageFile;
+		}
+	}
+}
+
+void ImageWidget::init()
+{
 	contextMenu = new QMenu(this);
 	contextMenu->hide();
 
 	QString s;
 	QAction *action;
-
-	if ( formatNames.isEmpty() )
-		formatNames << "PNG" << "BMP" << "GIF" << "JPG" << "PBM" << "PGM" << "PPM" << "TIFF" << "XBM" << "XPM" << "SVG" << "TGA";
-
-	if ( formatExtensions.isEmpty() )
-		formatExtensions << "png" << "bmp" << "gif" << "jpg, jpeg" << "pbm" << "pgm" << "ppm" << "tif, tiff" << "xbm" << "xpm" << "svg" << "tga";
-
-	if ( formatDescriptions.isEmpty() )
-		formatDescriptions << tr("Portable Network Graphics") << tr("Windows Bitmap") << tr("Graphic Interchange Format") << tr("Joint Photographic Experts Group") << tr("Portable Bitmap")
-				   << tr("Portable Graymap") << tr("Portable Pixmap") << tr("Tagged Image File Format") << tr("X11 Bitmap") << tr("X11 Pixmap") << tr("Scalable Vector Graphics") << tr("Targa Image Format");
 
 	s = tr("Copy image to clipboard");
 	action = contextMenu->addAction(s);
@@ -79,7 +95,7 @@ ImageWidget::ImageWidget(QWidget *parent)
 	connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
 
 	if ( useZip() ) {
-		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
+		foreach (QString filePath, this->imageZip().split(";", QString::SkipEmptyParts)) {
 			unzFile imageFile = unzOpen(filePath.toUtf8().constData());
 			if ( imageFile == NULL )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
@@ -99,19 +115,6 @@ ImageWidget::ImageWidget(QWidget *parent)
 	}
 
 	reloadActiveFormats();
-}
-
-ImageWidget::~ImageWidget()
-{
-	if ( useZip() ) {
-		foreach (unzFile imageFile, imageFileMap)
-			unzClose(imageFile);
-	} else if ( useSevenZip() ) {
-		foreach (SevenZipFile *imageFile, imageFileMap7z) {
-			imageFile->close();
-			delete imageFile;
-		}
-	}
 }
 
 void ImageWidget::updateArtwork()

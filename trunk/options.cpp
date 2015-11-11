@@ -680,7 +680,7 @@ void Options::apply()
 	QTabBar *tabBar = qmc2MainWindow->tabWidgetMachineList->findChild<QTabBar *>();
 	if ( tabBar )
 		tabBar->setIconSize(iconSizeMiddle);
-	tabBar = qmc2MainWindow->tabWidgetGameDetail->findChild<QTabBar *>();
+	tabBar = qmc2MainWindow->tabWidgetMachineDetail->findChild<QTabBar *>();
 	if ( tabBar )
 		tabBar->setIconSize(iconSizeMiddle);
 	tabBar = qmc2MainWindow->tabWidgetLogsAndEmulators->findChild<QTabBar *>();
@@ -2236,7 +2236,7 @@ void Options::applyDelayed()
 	tableWidgetRegisteredEmulators->resizeRowsToContents();
 
 	// redraw detail if setup changed
-	qmc2MainWindow->on_tabWidgetGameDetail_currentChanged(qmc2MainWindow->tabWidgetGameDetail->currentIndex());
+	qmc2MainWindow->on_tabWidgetMachineDetail_currentChanged(qmc2MainWindow->tabWidgetMachineDetail->currentIndex());
 
 	if ( !cancelClicked ) {
 		if ( qmc2GuiReady ) {

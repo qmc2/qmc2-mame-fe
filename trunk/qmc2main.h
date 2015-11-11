@@ -119,7 +119,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QWidget *hSplitterWidget0;
 		QWidget *vSplitterWidget0;
 		QTimer activityCheckTimer;
-		int retry_tabWidgetGameDetail_currentIndex;
+		int retry_tabWidgetMachineDetail_currentIndex;
 		QString urlSectionRegExp;
 		QString foreignEmuName;
 		QString foreignID;
@@ -261,7 +261,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_listWidgetPlayed_customContextMenuRequested(const QPoint &);
 		void on_treeWidgetEmulators_customContextMenuRequested(const QPoint &);
 		void on_tabWidgetMachineList_customContextMenuRequested(const QPoint &);
-		void on_tabWidgetGameDetail_customContextMenuRequested(const QPoint &);
+		void on_tabWidgetMachineDetail_customContextMenuRequested(const QPoint &);
 		void on_tabWidgetLogsAndEmulators_customContextMenuRequested(const QPoint &);
 		void on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPoint &p);
 
@@ -330,10 +330,10 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void menuTabWidgetSoftwareDetail_Setup_activated();
 
 		// other
-		void on_tabWidgetGameDetail_currentChanged(int);
-		void retry_tabWidgetGameDetail_currentChanged() { on_tabWidgetGameDetail_currentChanged(retry_tabWidgetGameDetail_currentIndex); };
+		void on_tabWidgetMachineDetail_currentChanged(int);
+		void retry_tabWidgetMachineDetail_currentChanged() { on_tabWidgetMachineDetail_currentChanged(retry_tabWidgetMachineDetail_currentIndex); };
 		void tabWidgetMachineList_tabMoved(int, int);
-		void tabWidgetGameDetail_tabMoved(int, int);
+		void tabWidgetMachineDetail_tabMoved(int, int);
 		void tabWidgetLogsAndEmulators_tabMoved(int, int);
 		void tabWidgetSoftwareDetail_tabMoved(int, int);
 		void on_tabWidgetMachineList_currentChanged(int);
