@@ -23,12 +23,12 @@ QString CustomArtwork::imageDir()
 
 bool CustomArtwork::useZip()
 {
-	return qmc2Config->value(QString("Artwork/%1/Type").arg(m_name), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE; // FIXME
+	return qmc2Config->value(QString("Artwork/%1/Type").arg(m_name), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE && qmc2Config->value(QString("Artwork/%1/Format").arg(m_name), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_FORMAT_ZIP;
 }
 
 bool CustomArtwork::useSevenZip()
 {
-	return qmc2Config->value(QString("Artwork/%1/Type").arg(m_name), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE; // FIXME
+	return qmc2Config->value(QString("Artwork/%1/Type").arg(m_name), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE && qmc2Config->value(QString("Artwork/%1/Format").arg(m_name), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_FORMAT_7Z;
 }
 
 
