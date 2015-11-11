@@ -29,6 +29,7 @@ class FileEditWidget : public QWidget, public Ui::FileEditWidget
 
 	signals:
 		void dataChanged(QWidget *);
+		void pathBrowsed(QString);
 
 	private:
 		bool m_comboBoxMode;

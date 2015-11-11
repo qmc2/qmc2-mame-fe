@@ -168,7 +168,7 @@ void AdditionalArtworkSetup::load()
 		comboBoxType->addItem(tr("Folder"));
 		comboBoxType->addItem(tr("Archive"));
 		comboBoxType->setToolTip(tr("Choose if images are loaded from a folder or an archive for this artwork class"));
-		comboBoxType->setWhatsThis(QString::number(m_seq++));
+		comboBoxType->setWhatsThis(QString::number(m_seq));
 		index = qmc2Config->value(QString("%1/Type").arg(name), 0).toInt();
 		if ( index >= 0 && index < 2 )
 			comboBoxType->setCurrentIndex(index);
@@ -189,6 +189,8 @@ void AdditionalArtworkSetup::load()
 		fewFolderOrArchive->lineEditFile->setToolTip(tr("Image archive for this artwork class (required)"));
 		fewFolderOrArchive->toolButtonBrowse->setToolTip(tr("Browse image archive"));
 		fewFolderOrArchive->lineEditFile->setText(qmc2Config->value(QString("%1/Archive").arg(name), QString()).toString());
+		fewFolderOrArchive->setWhatsThis(QString::number(m_seq));
+		connect(fewFolderOrArchive, SIGNAL(pathBrowsed(QString)), this, SLOT(pathBrowsed(QString)));
 		connect(fewFolderOrArchive->lineEditFile, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged(const QString &)));
 		DirectoryEditWidget *dewFolderOrArchive = new DirectoryEditWidget(QString(), this);
 		dewFolderOrArchive->lineEditDirectory->setPlaceholderText(tr("Image folder"));
@@ -205,22 +207,12 @@ void AdditionalArtworkSetup::load()
 		treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_FOLDER_OR_ARCHIVE, stackedWidgetFolderOrArchive);
 		connect(comboBoxType, SIGNAL(currentIndexChanged(int)), stackedWidgetFolderOrArchive, SLOT(setCurrentIndex(int)));
 		connect(comboBoxType, SIGNAL(currentIndexChanged(int)), this, SLOT(toggleFormatEnabled(int)));
+		m_seq++;
 	}
 	qmc2Config->endGroup();
 	for (int i = 0; i < treeWidget->columnCount(); i++)
 		treeWidget->resizeColumnToContents(i);
 	pushButtonRestore->setEnabled(false);
-}
-
-void AdditionalArtworkSetup::toggleFormatEnabled(int index)
-{
-	QComboBox *cb = (QComboBox *)sender();
-	if ( !cb )
-		return;
-	QTreeWidgetItem *item = m_itemHash[cb->whatsThis().toInt()];
-	if ( !item )
-		return;
-	treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_FORMAT)->setEnabled(cb->currentIndex() == QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE);
 }
 
 void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
@@ -263,7 +255,7 @@ void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
 	comboBoxType->addItem(tr("Folder"));
 	comboBoxType->addItem(tr("Archive"));
 	comboBoxType->setToolTip(tr("Choose if images are loaded from a folder or an archive for this artwork class"));
-	comboBoxType->setWhatsThis(QString::number(m_seq++));
+	comboBoxType->setWhatsThis(QString::number(m_seq));
 	connect(comboBoxType, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
 	treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_TYPE, comboBoxType);
 	QComboBox *comboBoxFormat = new QComboBox(this);
@@ -277,6 +269,8 @@ void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
 	fewFolderOrArchive->lineEditFile->setPlaceholderText(tr("Image archive"));
 	fewFolderOrArchive->lineEditFile->setToolTip(tr("Image archive for this artwork class (required)"));
 	fewFolderOrArchive->toolButtonBrowse->setToolTip(tr("Browse image archive"));
+	fewFolderOrArchive->setWhatsThis(QString::number(m_seq));
+	connect(fewFolderOrArchive, SIGNAL(pathBrowsed(QString)), this, SLOT(pathBrowsed(QString)));
 	connect(fewFolderOrArchive->lineEditFile, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged(const QString &)));
 	DirectoryEditWidget *dewFolderOrArchive = new DirectoryEditWidget(QString(), this);
 	dewFolderOrArchive->lineEditDirectory->setPlaceholderText(tr("Image folder"));
@@ -289,9 +283,38 @@ void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
 	treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_FOLDER_OR_ARCHIVE, stackedWidgetFolderOrArchive);
 	connect(comboBoxType, SIGNAL(currentIndexChanged(int)), stackedWidgetFolderOrArchive, SLOT(setCurrentIndex(int)));
 	connect(comboBoxType, SIGNAL(currentIndexChanged(int)), this, SLOT(toggleFormatEnabled(int)));
+	m_seq++;
 	for (int i = 0; i < treeWidget->columnCount(); i++)
 		treeWidget->resizeColumnToContents(i);
 	dataChanged();
+}
+
+void AdditionalArtworkSetup::toggleFormatEnabled(int index)
+{
+	QComboBox *cb = (QComboBox *)sender();
+	if ( !cb )
+		return;
+	QTreeWidgetItem *item = m_itemHash[cb->whatsThis().toInt()];
+	if ( !item )
+		return;
+	treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_FORMAT)->setEnabled(cb->currentIndex() == QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE);
+}
+
+void AdditionalArtworkSetup::pathBrowsed(QString path)
+{
+	FileEditWidget *few = (FileEditWidget *)sender();
+	if ( !few )
+		return;
+	QTreeWidgetItem *item = m_itemHash[few->whatsThis().toInt()];
+	if ( !item )
+		return;
+	QComboBox *cb = (QComboBox *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_FORMAT);
+	if ( !cb )
+		return;
+	if ( path.toLower().endsWith(".zip") )
+		cb->setCurrentIndex(QMC2_ADDITIONALARTWORK_INDEX_FORMAT_ZIP);
+	else if ( path.toLower().endsWith(".7z") )
+		cb->setCurrentIndex(QMC2_ADDITIONALARTWORK_INDEX_FORMAT_7Z);
 }
 
 void AdditionalArtworkSetup::on_toolButtonRemove_clicked()
