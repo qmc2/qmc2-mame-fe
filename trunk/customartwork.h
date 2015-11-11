@@ -10,7 +10,7 @@ class CustomArtwork : public ImageWidget
 	Q_OBJECT 
 
 	public:
-		CustomArtwork(QWidget *parent);
+		CustomArtwork(QWidget *parent, QString name);
 
 		virtual QString cachePrefix() { return m_cachePrefix; }
 		virtual QString imageZip();
@@ -22,6 +22,7 @@ class CustomArtwork : public ImageWidget
 		virtual bool scaledImage();
 
 	private:
+		QString m_name;
 		QString m_cachePrefix;
 		QString m_imageType;
 		int m_imageTypeNumeric;

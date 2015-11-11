@@ -5,38 +5,34 @@
 // external global variables
 extern Settings *qmc2Config;
 
-CustomArtwork::CustomArtwork(QWidget *parent)
+CustomArtwork::CustomArtwork(QWidget *parent, QString name)
 	: ImageWidget(parent)
 {
+	m_name = name;
 }
 
 QString CustomArtwork::imageZip()
 {
-	// FIXME
-	return QString();
+	return qmc2Config->value(qmc2Config->value(QString("Artwork/%1/Archive").arg(m_name), QString()).toString(), QString()).toString();
 }
 
 QString CustomArtwork::imageDir()
 {
-	// FIXME
-	return QString();
+	return qmc2Config->value(qmc2Config->value(QString("Artwork/%1/Folder").arg(m_name), QString()).toString(), QString()).toString();
 }
 
 bool CustomArtwork::useZip()
 {
-	// FIXME
-	return false;
+	return qmc2Config->value(QString("Artwork/%1/Type").arg(m_name), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE; // FIXME
 }
 
 bool CustomArtwork::useSevenZip()
 {
-	// FIXME
-	return false;
+	return qmc2Config->value(QString("Artwork/%1/Type").arg(m_name), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE; // FIXME
 }
 
 
 bool CustomArtwork::scaledImage()
 {
-	// FIXME
-	return true;
+	return qmc2Config->value(QString("Artwork/%1/Scaled").arg(m_name), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_SCALED_ON;
 }

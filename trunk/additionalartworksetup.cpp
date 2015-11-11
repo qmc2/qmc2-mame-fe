@@ -84,11 +84,13 @@ void AdditionalArtworkSetup::save()
 			qmc2Config->setValue(QString("%1/Scaled").arg(name), comboBoxScaled->currentIndex());
 			QComboBox *comboBoxType = (QComboBox *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_TYPE);
 			qmc2Config->setValue(QString("%1/Type").arg(name), comboBoxType->currentIndex());
+			QComboBox *comboBoxFormat = (QComboBox *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_FORMAT);
+			qmc2Config->setValue(QString("%1/Format").arg(name), comboBoxFormat->currentIndex());
 			QStackedWidget *stackedWidgetFolderOrArchive = (QStackedWidget *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_FOLDER_OR_ARCHIVE);
-			DirectoryEditWidget *dewFolderOrArchive = (DirectoryEditWidget *)stackedWidgetFolderOrArchive->widget(QMC2_ADDITIONALARTWORK_INDEX_FOLDER);
+			DirectoryEditWidget *dewFolderOrArchive = (DirectoryEditWidget *)stackedWidgetFolderOrArchive->widget(QMC2_ADDITIONALARTWORK_INDEX_TYPE_FOLDER);
 			if ( !dewFolderOrArchive->lineEditDirectory->text().isEmpty() )
 				qmc2Config->setValue(QString("%1/Folder").arg(name), dewFolderOrArchive->lineEditDirectory->text());
-			FileEditWidget *fewFolderOrArchive = (FileEditWidget *)stackedWidgetFolderOrArchive->widget(QMC2_ADDITIONALARTWORK_INDEX_ARCHIVE);
+			FileEditWidget *fewFolderOrArchive = (FileEditWidget *)stackedWidgetFolderOrArchive->widget(QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE);
 			if ( !fewFolderOrArchive->lineEditFile->text().isEmpty() )
 				qmc2Config->setValue(QString("%1/Archive").arg(name), fewFolderOrArchive->lineEditFile->text());
 		}
@@ -104,8 +106,11 @@ void AdditionalArtworkSetup::load()
 	QFontMetrics fm(f);
 	QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
 	qmc2Config->beginGroup("Artwork");
+	m_seq = 0;
+	m_itemHash.clear();
 	foreach (QString name, qmc2Config->childGroups()) {
 		QTreeWidgetItem *newItem = new QTreeWidgetItem(treeWidget);
+		m_itemHash[m_seq] = newItem;
 		QCheckBox *checkBoxSelect = new QCheckBox(this);
 		checkBoxSelect->setToolTip(tr("Select / deselect this artwork class for removal"));
 		connect(checkBoxSelect, SIGNAL(toggled(bool)), this, SLOT(selectionFlagsChanged(bool)));
@@ -150,11 +155,22 @@ void AdditionalArtworkSetup::load()
 		comboBoxType->addItem(tr("Folder"));
 		comboBoxType->addItem(tr("Archive"));
 		comboBoxType->setToolTip(tr("Choose if images are loaded from a folder or an archive for this artwork class"));
+		comboBoxType->setWhatsThis(QString::number(m_seq++));
 		index = qmc2Config->value(QString("%1/Type").arg(name), 0).toInt();
 		if ( index >= 0 && index < 2 )
 			comboBoxType->setCurrentIndex(index);
 		connect(comboBoxType, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
 		treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_TYPE, comboBoxType);
+		QComboBox *comboBoxFormat = new QComboBox(this);
+		comboBoxFormat->addItem(QIcon(":/data/img/compressed.png"), tr("ZIP"));
+		comboBoxFormat->addItem(QIcon(":/data/img/7z-compressed.png"), tr("7z"));
+		comboBoxFormat->setToolTip(tr("Select archive format"));
+		index = qmc2Config->value(QString("%1/Format").arg(name), 0).toInt();
+		if ( index >= 0 && index < 2 )
+			comboBoxFormat->setCurrentIndex(index);
+		comboBoxFormat->setEnabled(comboBoxType->currentIndex() == QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE);
+		connect(comboBoxFormat, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
+		treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_FORMAT, comboBoxFormat);
 		FileEditWidget *fewFolderOrArchive = new FileEditWidget(QString(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files (*)"), QString(), this, false);
 		fewFolderOrArchive->lineEditFile->setPlaceholderText(tr("Image archive"));
 		fewFolderOrArchive->lineEditFile->setToolTip(tr("Image archive for this artwork class (required)"));
@@ -168,16 +184,30 @@ void AdditionalArtworkSetup::load()
 		dewFolderOrArchive->lineEditDirectory->setText(qmc2Config->value(QString("%1/Folder").arg(name), QString()).toString());
 		connect(dewFolderOrArchive->lineEditDirectory, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged(const QString &)));
 		QStackedWidget *stackedWidgetFolderOrArchive = new QStackedWidget(this);
-		stackedWidgetFolderOrArchive->insertWidget(QMC2_ADDITIONALARTWORK_INDEX_FOLDER, dewFolderOrArchive);
-		stackedWidgetFolderOrArchive->insertWidget(QMC2_ADDITIONALARTWORK_INDEX_ARCHIVE, fewFolderOrArchive);
+		stackedWidgetFolderOrArchive->insertWidget(QMC2_ADDITIONALARTWORK_INDEX_TYPE_FOLDER, dewFolderOrArchive);
+		stackedWidgetFolderOrArchive->insertWidget(QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE, fewFolderOrArchive);
+		index = qmc2Config->value(QString("%1/Type").arg(name), 0).toInt();
 		if ( index >= 0 && index < 2 )
 			stackedWidgetFolderOrArchive->setCurrentIndex(index);
 		treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_FOLDER_OR_ARCHIVE, stackedWidgetFolderOrArchive);
 		connect(comboBoxType, SIGNAL(currentIndexChanged(int)), stackedWidgetFolderOrArchive, SLOT(setCurrentIndex(int)));
+		connect(comboBoxType, SIGNAL(currentIndexChanged(int)), this, SLOT(toggleFormatEnabled(int)));
 	}
 	qmc2Config->endGroup();
-	treeWidget->resizeColumnToContents(QMC2_ADDITIONALARTWORK_COLUMN_SELECT);
+	for (int i = 0; i < treeWidget->columnCount(); i++)
+		treeWidget->resizeColumnToContents(i);
 	pushButtonRestore->setEnabled(false);
+}
+
+void AdditionalArtworkSetup::toggleFormatEnabled(int index)
+{
+	QComboBox *cb = (QComboBox *)sender();
+	if ( !cb )
+		return;
+	QTreeWidgetItem *item = m_itemHash[cb->whatsThis().toInt()];
+	if ( !item )
+		return;
+	treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_FORMAT)->setEnabled(cb->currentIndex() == QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE);
 }
 
 void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
@@ -187,6 +217,7 @@ void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
 	QFontMetrics fm(f);
 	QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
 	QTreeWidgetItem *newItem = new QTreeWidgetItem(treeWidget);
+	m_itemHash[m_seq] = newItem;
 	QCheckBox *checkBoxSelect = new QCheckBox(this);
 	checkBoxSelect->setToolTip(tr("Select / deselect this artwork class for removal"));
 	connect(checkBoxSelect, SIGNAL(toggled(bool)), this, SLOT(selectionFlagsChanged(bool)));
@@ -219,8 +250,16 @@ void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
 	comboBoxType->addItem(tr("Folder"));
 	comboBoxType->addItem(tr("Archive"));
 	comboBoxType->setToolTip(tr("Choose if images are loaded from a folder or an archive for this artwork class"));
+	comboBoxType->setWhatsThis(QString::number(m_seq++));
 	connect(comboBoxType, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
 	treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_TYPE, comboBoxType);
+	QComboBox *comboBoxFormat = new QComboBox(this);
+	comboBoxFormat->addItem(QIcon(":/data/img/compressed.png"), tr("ZIP"));
+	comboBoxFormat->addItem(QIcon(":/data/img/7z-compressed.png"), tr("7z"));
+	comboBoxFormat->setToolTip(tr("Select archive format"));
+	comboBoxFormat->setEnabled(false);
+	connect(comboBoxFormat, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
+	treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_FORMAT, comboBoxFormat);
 	FileEditWidget *fewFolderOrArchive = new FileEditWidget(QString(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files (*)"), QString(), this, false);
 	fewFolderOrArchive->lineEditFile->setPlaceholderText(tr("Image archive"));
 	fewFolderOrArchive->lineEditFile->setToolTip(tr("Image archive for this artwork class (required)"));
@@ -232,11 +271,13 @@ void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
 	dewFolderOrArchive->toolButtonBrowse->setToolTip(tr("Browse image folder"));
 	connect(dewFolderOrArchive->lineEditDirectory, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged(const QString &)));
 	QStackedWidget *stackedWidgetFolderOrArchive = new QStackedWidget(this);
-	stackedWidgetFolderOrArchive->insertWidget(QMC2_ADDITIONALARTWORK_INDEX_FOLDER, dewFolderOrArchive);
-	stackedWidgetFolderOrArchive->insertWidget(QMC2_ADDITIONALARTWORK_INDEX_ARCHIVE, fewFolderOrArchive);
+	stackedWidgetFolderOrArchive->insertWidget(QMC2_ADDITIONALARTWORK_INDEX_TYPE_FOLDER, dewFolderOrArchive);
+	stackedWidgetFolderOrArchive->insertWidget(QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE, fewFolderOrArchive);
 	treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_FOLDER_OR_ARCHIVE, stackedWidgetFolderOrArchive);
 	connect(comboBoxType, SIGNAL(currentIndexChanged(int)), stackedWidgetFolderOrArchive, SLOT(setCurrentIndex(int)));
-	treeWidget->resizeColumnToContents(QMC2_ADDITIONALARTWORK_COLUMN_SELECT);
+	connect(comboBoxType, SIGNAL(currentIndexChanged(int)), this, SLOT(toggleFormatEnabled(int)));
+	for (int i = 0; i < treeWidget->columnCount(); i++)
+		treeWidget->resizeColumnToContents(i);
 	dataChanged(0);
 }
 
@@ -291,7 +332,8 @@ void AdditionalArtworkSetup::showEvent(QShowEvent *e)
 {
 	adjustIconSizes();
 	adjustSize();
-	treeWidget->resizeColumnToContents(QMC2_ADDITIONALARTWORK_COLUMN_SELECT);
+	for (int i = 0; i < treeWidget->columnCount(); i++)
+		treeWidget->resizeColumnToContents(i);
 	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/AdditionalArtworkSetup/Geometry", QByteArray()).toByteArray());
 	if ( e )
 		QDialog::showEvent(e);
