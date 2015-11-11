@@ -102,6 +102,7 @@ class ImageWidget : public QWidget
 		void reloadActiveFormats();
 		void enableWidgets(bool enable = true);
 		static void updateArtwork();
+		static void reloadArtworkFormats();
 
 		// these virtual functions MUST be reimplemented in the concrete image classes
 		virtual QString cachePrefix() { return QString(); }

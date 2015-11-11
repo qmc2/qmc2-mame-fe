@@ -6,10 +6,13 @@
 #include "qmc2main.h"
 #include "options.h"
 #include "macros.h"
+#include "softwarelist.h"
 
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
+extern SoftwareSnap *qmc2SoftwareSnap;
+extern SoftwareSnapshot *qmc2SoftwareSnapshot;
 
 QStringList ImageFormatSetup::artworkClassPrefixes;
 QStringList ImageFormatSetup::artworkClassNames;
@@ -116,7 +119,13 @@ void ImageFormatSetup::on_pushButtonOk_clicked()
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(it.key()), prioList);
 	}
 
-	qmc2MainWindow->reloadImageFormats();
+	ImageWidget::reloadArtworkFormats();
+	// FIXME: begin: integrate this in ImageWidget::reloadArtworkFormats()
+	if ( qmc2SoftwareSnap )
+		qmc2SoftwareSnap->reloadActiveFormats();
+	if ( qmc2SoftwareSnapshot )
+		qmc2SoftwareSnapshot->reloadActiveFormats();
+	// FIXME: end
 
 	accept();
 }
