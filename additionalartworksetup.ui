@@ -63,6 +63,11 @@
      </column>
      <column>
       <property name="text">
+       <string>Format</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
        <string>Folder / Archive</string>
       </property>
      </column>

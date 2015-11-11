@@ -1,24 +1,10 @@
 #ifndef _ADDITIONALARTWORKSETUP_H_
 #define _ADDITIONALARTWORKSETUP_H_
 
+#include <QHash>
+#include <QTreeWidgetItem>
+
 #include "ui_additionalartworksetup.h"
-
-#define QMC2_ADDITIONALARTWORK_COLUMN_SELECT			0
-#define QMC2_ADDITIONALARTWORK_COLUMN_NAME			1
-#define QMC2_ADDITIONALARTWORK_COLUMN_ICON			2
-#define QMC2_ADDITIONALARTWORK_COLUMN_TARGET			3
-#define QMC2_ADDITIONALARTWORK_COLUMN_SCALED			4
-#define QMC2_ADDITIONALARTWORK_COLUMN_TYPE			5
-#define QMC2_ADDITIONALARTWORK_COLUMN_FOLDER_OR_ARCHIVE		6
-
-#define QMC2_ADDITIONALARTWORK_INDEX_SYSTEM			0
-#define QMC2_ADDITIONALARTWORK_INDEX_SOFTWARE			1
-
-#define QMC2_ADDITIONALARTWORK_INDEX_SCALED_ON			0
-#define QMC2_ADDITIONALARTWORK_INDEX_SCALED_OFF			1
-
-#define QMC2_ADDITIONALARTWORK_INDEX_FOLDER			0
-#define QMC2_ADDITIONALARTWORK_INDEX_ARCHIVE			1
 
 class AdditionalArtworkSetup : public QDialog, public Ui::AdditionalArtworkSetup
 {
@@ -36,6 +22,7 @@ class AdditionalArtworkSetup : public QDialog, public Ui::AdditionalArtworkSetup
 		void on_toolButtonAdd_clicked();
 		void on_toolButtonRemove_clicked();
 		void selectionFlagsChanged(bool checked = false);
+		void toggleFormatEnabled(int);
 		void dataChanged(const QString &);
 		void dataChanged(int);
 		void chooseIcon();
@@ -45,6 +32,10 @@ class AdditionalArtworkSetup : public QDialog, public Ui::AdditionalArtworkSetup
 	protected:
 		void showEvent(QShowEvent *);
 		void hideEvent(QHideEvent *);
+
+	private:
+		QHash<int, QTreeWidgetItem *> m_itemHash;
+		int m_seq;
 };
 
 #endif
