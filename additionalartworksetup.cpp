@@ -102,10 +102,13 @@ void AdditionalArtworkSetup::save()
 				qmc2Config->setValue(QString("%1/Archive").arg(name), fewFolderOrArchive->lineEditFile->text());
 			int featureIndex = QMC2_USEROFFSET_INDEX + i;
 			QString nameCopy = name;
-			componentInfo->setShortTitle(featureIndex, name);
-			componentInfo->setLongTitle(featureIndex, nameCopy.replace("&", QString()));
-			componentInfo->setIcon(featureIndex, QIcon(toolButtonIcon->whatsThis()));
-			componentInfo->availableFeatureList() << featureIndex;
+			if ( qmc2Config->value(QString("%1/Target").arg(name), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_TARGET_SYSTEM ) {
+				componentInfo->setShortTitle(featureIndex, name);
+				componentInfo->setLongTitle(featureIndex, nameCopy.replace("&", QString()));
+				componentInfo->setIcon(featureIndex, QIcon(toolButtonIcon->whatsThis()));
+				componentInfo->availableFeatureList() << featureIndex;
+				// FIXME
+			}
 		}
 	}
 	qmc2Config->endGroup();
