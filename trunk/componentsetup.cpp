@@ -175,15 +175,17 @@ ComponentInfo *ComponentSetup::initComponent2()
 	int num = 0;
 	qmc2Config->beginGroup("Artwork");
 	foreach (QString name, qmc2Config->childGroups()) {
-		int featureIndex = QMC2_USEROFFSET_INDEX + num;
-		QString nameCopy = name;
-		componentInfo->setShortTitle(featureIndex, name);
-		componentInfo->setLongTitle(featureIndex, nameCopy.replace("&", QString()));
-		componentInfo->setIcon(featureIndex, QIcon(qmc2Config->value(QString("%1/Icon").arg(name), QString()).toString()));
-		componentInfo->availableFeatureList() << featureIndex;
-		qmc2MainWindow->tabWidgetMachineDetail->insertTab(featureIndex, new CustomArtwork(qmc2MainWindow->tabWidgetMachineDetail, name, num), QIcon(qmc2Config->value(QString("%1/Icon").arg(name), QString()).toString()), name);
-		componentInfo->setWidget(featureIndex, qmc2MainWindow->tabWidgetMachineDetail->widget(featureIndex));
-		num++;
+		if ( qmc2Config->value(QString("%1/Target").arg(name), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_TARGET_SYSTEM ) {
+			int featureIndex = QMC2_USEROFFSET_INDEX + num;
+			QString nameCopy = name;
+			componentInfo->setShortTitle(featureIndex, name);
+			componentInfo->setLongTitle(featureIndex, nameCopy.replace("&", QString()));
+			componentInfo->setIcon(featureIndex, QIcon(qmc2Config->value(QString("%1/Icon").arg(name), QString()).toString()));
+			componentInfo->availableFeatureList() << featureIndex;
+			qmc2MainWindow->tabWidgetMachineDetail->insertTab(featureIndex, new CustomArtwork(qmc2MainWindow->tabWidgetMachineDetail, name, num), QIcon(qmc2Config->value(QString("%1/Icon").arg(name), QString()).toString()), name);
+			componentInfo->setWidget(featureIndex, qmc2MainWindow->tabWidgetMachineDetail->widget(featureIndex));
+			num++;
+		}
 	}
 	qmc2Config->endGroup();
 
