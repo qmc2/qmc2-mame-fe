@@ -153,24 +153,24 @@ ComponentInfo *ComponentSetup::initComponent2()
 #else
 	componentInfo->availableFeatureList() << QMC2_SYSTEM_NOTES_INDEX;
 #endif
-	componentInfo->setWidget(QMC2_PREVIEW_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX));
-	componentInfo->setWidget(QMC2_FLYER_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX));
-	componentInfo->setWidget(QMC2_GAMEINFO_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_GAMEINFO_INDEX));
-	componentInfo->setWidget(QMC2_EMUINFO_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_EMUINFO_INDEX));
-	componentInfo->setWidget(QMC2_CONFIG_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONFIG_INDEX));
-	componentInfo->setWidget(QMC2_DEVICE_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_DEVICE_INDEX));
-	componentInfo->setWidget(QMC2_PROJECTMESS_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PROJECTMESS_INDEX));
-	componentInfo->setWidget(QMC2_CABINET_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CABINET_INDEX));
-	componentInfo->setWidget(QMC2_CONTROLLER_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONTROLLER_INDEX));
-	componentInfo->setWidget(QMC2_MARQUEE_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MARQUEE_INDEX));
-	componentInfo->setWidget(QMC2_TITLE_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_TITLE_INDEX));
-	componentInfo->setWidget(QMC2_PCB_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX));
-	componentInfo->setWidget(QMC2_SOFTWARE_LIST_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SOFTWARE_LIST_INDEX));
+	componentInfo->setWidget(QMC2_PREVIEW_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_PREVIEW_INDEX));
+	componentInfo->setWidget(QMC2_FLYER_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_FLYER_INDEX));
+	componentInfo->setWidget(QMC2_GAMEINFO_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_GAMEINFO_INDEX));
+	componentInfo->setWidget(QMC2_EMUINFO_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_EMUINFO_INDEX));
+	componentInfo->setWidget(QMC2_CONFIG_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_CONFIG_INDEX));
+	componentInfo->setWidget(QMC2_DEVICE_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_DEVICE_INDEX));
+	componentInfo->setWidget(QMC2_PROJECTMESS_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_PROJECTMESS_INDEX));
+	componentInfo->setWidget(QMC2_CABINET_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_CABINET_INDEX));
+	componentInfo->setWidget(QMC2_CONTROLLER_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_CONTROLLER_INDEX));
+	componentInfo->setWidget(QMC2_MARQUEE_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_MARQUEE_INDEX));
+	componentInfo->setWidget(QMC2_TITLE_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_TITLE_INDEX));
+	componentInfo->setWidget(QMC2_PCB_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_PCB_INDEX));
+	componentInfo->setWidget(QMC2_SOFTWARE_LIST_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_SOFTWARE_LIST_INDEX));
 #if QMC2_YOUTUBE_ENABLED
-	componentInfo->setWidget(QMC2_YOUTUBE_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX));
+	componentInfo->setWidget(QMC2_YOUTUBE_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_YOUTUBE_INDEX));
 	componentInfo->configurableFeatureList() << QMC2_YOUTUBE_INDEX;
 #endif
-	componentInfo->setWidget(QMC2_SYSTEM_NOTES_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SYSTEM_NOTES_INDEX));
+	componentInfo->setWidget(QMC2_SYSTEM_NOTES_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_SYSTEM_NOTES_INDEX));
 
 	int num = 0;
 	qmc2Config->beginGroup("Artwork");
@@ -181,8 +181,8 @@ ComponentInfo *ComponentSetup::initComponent2()
 		componentInfo->setLongTitle(featureIndex, nameCopy.replace("&", QString()));
 		componentInfo->setIcon(featureIndex, QIcon(qmc2Config->value(QString("%1/Icon").arg(name), QString()).toString()));
 		componentInfo->availableFeatureList() << featureIndex;
-		qmc2MainWindow->tabWidgetGameDetail->insertTab(featureIndex, new CustomArtwork(qmc2MainWindow->tabWidgetGameDetail, name, num), QIcon(qmc2Config->value(QString("%1/Icon").arg(name), QString()).toString()), name);
-		componentInfo->setWidget(featureIndex, qmc2MainWindow->tabWidgetGameDetail->widget(featureIndex));
+		qmc2MainWindow->tabWidgetMachineDetail->insertTab(featureIndex, new CustomArtwork(qmc2MainWindow->tabWidgetMachineDetail, name, num), QIcon(qmc2Config->value(QString("%1/Icon").arg(name), QString()).toString()), name);
+		componentInfo->setWidget(featureIndex, qmc2MainWindow->tabWidgetMachineDetail->widget(featureIndex));
 		num++;
 	}
 	qmc2Config->endGroup();
@@ -199,7 +199,7 @@ ComponentInfo *ComponentSetup::initComponent2()
 				componentInfo->activeFeatureList() << index;
 		}
 	}
-	m_componentToWidgetHash[components().last()] = qmc2MainWindow->tabWidgetGameDetail;
+	m_componentToWidgetHash[components().last()] = qmc2MainWindow->tabWidgetMachineDetail;
 	m_componentToSplitterHash[components().last()] = qmc2MainWindow->vSplitter;
 	m_componentToSplitterIndexHash[components().last()] = 0;
 	return componentInfo;
