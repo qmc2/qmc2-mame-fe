@@ -278,7 +278,7 @@ void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
 	connect(comboBoxType, SIGNAL(currentIndexChanged(int)), this, SLOT(toggleFormatEnabled(int)));
 	for (int i = 0; i < treeWidget->columnCount(); i++)
 		treeWidget->resizeColumnToContents(i);
-	dataChanged(0);
+	dataChanged();
 }
 
 void AdditionalArtworkSetup::on_toolButtonRemove_clicked()
@@ -293,7 +293,7 @@ void AdditionalArtworkSetup::on_toolButtonRemove_clicked()
 		}
 	}
 	selectionFlagsChanged();
-	dataChanged(0);
+	dataChanged();
 }
 
 void AdditionalArtworkSetup::selectionFlagsChanged(bool)
@@ -307,16 +307,6 @@ void AdditionalArtworkSetup::selectionFlagsChanged(bool)
 	toolButtonRemove->setEnabled(enable);
 }
 
-void AdditionalArtworkSetup::dataChanged(const QString &)
-{
-	pushButtonRestore->setEnabled(true);
-}
-
-void AdditionalArtworkSetup::dataChanged(int)
-{
-	pushButtonRestore->setEnabled(true);
-}
-
 void AdditionalArtworkSetup::chooseIcon()
 {
 	QToolButton *tb = (QToolButton *)sender();
@@ -324,7 +314,7 @@ void AdditionalArtworkSetup::chooseIcon()
 	if ( !fileName.isEmpty() ) {
 		tb->setIcon(QIcon(fileName));
 		tb->setWhatsThis(fileName);
-		dataChanged(0);
+		dataChanged();
 	}
 }
 
