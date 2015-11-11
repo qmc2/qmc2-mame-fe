@@ -101,8 +101,9 @@ void AdditionalArtworkSetup::save()
 			if ( !fewFolderOrArchive->lineEditFile->text().isEmpty() )
 				qmc2Config->setValue(QString("%1/Archive").arg(name), fewFolderOrArchive->lineEditFile->text());
 			int featureIndex = QMC2_USEROFFSET_INDEX + i;
+			QString nameCopy = name;
 			componentInfo->setShortTitle(featureIndex, name);
-			componentInfo->setLongTitle(featureIndex, name);
+			componentInfo->setLongTitle(featureIndex, nameCopy.replace("&", QString()));
 			componentInfo->setIcon(featureIndex, QIcon(toolButtonIcon->whatsThis()));
 			componentInfo->availableFeatureList() << featureIndex;
 		}

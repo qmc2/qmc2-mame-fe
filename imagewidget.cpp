@@ -255,7 +255,6 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 		// try loading image from (semicolon-separated) ZIP archive(s)
 		QByteArray imageData;
 		int len;
-
 		foreach (int format, activeFormats) {
 			QString formatName = formatNames[format];
 			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
@@ -317,7 +316,6 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 	} else if ( useSevenZip() ) {
 		// try loading image from (semicolon-separated) 7z archive(s)
 		QByteArray imageData;
-
 		foreach (int format, activeFormats) {
 			QString formatName = formatNames[format];
 			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
@@ -405,7 +403,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 	} else {
 		// try loading image from (semicolon-separated) folder(s)
 		foreach (QString baseDirectory, imageDir().split(";", QString::SkipEmptyParts)) {
-			QString imgDir = baseDirectory + gameName;
+			QString imgDir = QDir::cleanPath(baseDirectory + "/" + gameName);
 			foreach (int format, activeFormats) {
 				QString formatName = formatNames[format];
 				foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
