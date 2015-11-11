@@ -32,6 +32,8 @@ class AdditionalArtworkSetup : public QDialog, public Ui::AdditionalArtworkSetup
 		void on_toolButtonAdd_clicked();
 		void on_toolButtonRemove_clicked();
 		void selectionFlagsChanged(bool checked = false);
+		void dataChanged(const QString &);
+		void dataChanged(int);
 		void chooseIcon();
 		void load();
 		void save();
