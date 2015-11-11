@@ -126,6 +126,15 @@ void ImageWidget::updateArtwork()
 	}
 }
 
+void ImageWidget::reloadArtworkFormats()
+{
+	QHashIterator<int, ImageWidget *> it(artworkHash);
+	while ( it.hasNext() ) {
+		it.next();
+		it.value()->reloadActiveFormats();
+	}
+}
+
 void ImageWidget::reloadActiveFormats()
 {
 	activeFormats.clear();

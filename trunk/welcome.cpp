@@ -304,6 +304,18 @@ bool Welcome::checkConfig()
 				}
 			}
 		}
+		if ( QMC2_TEST_VERSION(omv, 58, osr, 7054) ) {
+			QStringList oldKeys = QStringList() << "/Frontemd/Layout/MainWidget/GameDetailTab";
+			QStringList newKeys = QStringList() << "/Frontend/Layout/MainWidget/MachineDetailTab";
+			for (int i = 0; i < oldKeys.count(); i++) {
+				QString oldKey = oldKeys[i];
+				QString newKey = newKeys[i];
+				if ( startupConfig->contains(oldKey) ) {
+					startupConfig->setValue(newKey, startupConfig->value(oldKey));
+					startupConfig->remove(oldKey);
+				}
+			}
+		}
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

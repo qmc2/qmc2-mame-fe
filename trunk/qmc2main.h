@@ -448,7 +448,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void negateSearchTriggered(bool);
 		void searchIncludeBiosSetsTriggered(bool);
 		void searchIncludeDeviceSetsTriggered(bool);
-		void reloadImageFormats();
 		void updateTabWidgets();
 		void viewPdf(QString filePath = QString());
 		void viewHtml(QString filePath = QString());

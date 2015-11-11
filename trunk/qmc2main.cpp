@@ -6239,7 +6239,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #else
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", tabWidgetMachineList->currentIndex());
 #endif
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", tabWidgetMachineDetail->currentIndex());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineDetailTab", tabWidgetMachineDetail->currentIndex());
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", tabWidgetLogsAndEmulators->currentIndex());
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailTab", tabWidgetSoftwareDetail->currentIndex());
 		// save toolbar state
@@ -6561,12 +6561,9 @@ void MainWindow::init()
 	tabWidgetMachineList->blockSignals(false);
 	on_tabWidgetMachineList_currentChanged(qmc2LastListIndex);
 	floatToggleButtonSoftwareDetail_toggled(floatToggleButtonSoftwareDetail->isChecked());
-	reloadImageFormats();
-
-	qmc2EarlyStartup = false;
-
-	tabWidgetMachineDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
 	updateTabWidgets();
+	ImageWidget::reloadArtworkFormats();
+	qmc2EarlyStartup = false;
 
 	setUpdatesEnabled(true);
 	setVisible(true);
@@ -10758,32 +10755,9 @@ void MainWindow::searchIncludeDeviceSetsTriggered(bool includeDevices)
 	searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
-void MainWindow::reloadImageFormats()
-{
-	if ( qmc2Preview )
-		qmc2Preview->reloadActiveFormats();
-	if ( qmc2Flyer )
-		qmc2Flyer->reloadActiveFormats();
-	if ( qmc2Cabinet )
-		qmc2Cabinet->reloadActiveFormats();
-	if ( qmc2Controller )
-		qmc2Controller->reloadActiveFormats();
-	if ( qmc2Marquee )
-		qmc2Marquee->reloadActiveFormats();
-	if ( qmc2Title )
-		qmc2Title->reloadActiveFormats();
-	if ( qmc2PCB )
-		qmc2PCB->reloadActiveFormats();
-	if ( qmc2SoftwareSnap )
-		qmc2SoftwareSnap->reloadActiveFormats();
-	if ( qmc2SoftwareSnapshot )
-		qmc2SoftwareSnapshot->reloadActiveFormats();
-
-	// FIXME: add support for additional artwork classes
-}
-
 void MainWindow::updateTabWidgets()
 {
+	tabWidgetMachineDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineDetailTab", 0).toInt());
 	tabWidgetLogsAndEmulators->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", 0).toInt());
 	on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex());
 	tabWidgetMachineList->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", 0).toInt());
