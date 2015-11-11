@@ -95,6 +95,7 @@ void FileEditWidget::on_toolButtonBrowse_clicked()
 			comboBox->lineEdit()->setText(s);
 		else
 			lineEditFile->setText(s);
+		emit pathBrowsed(s);
 	}
 }
 
