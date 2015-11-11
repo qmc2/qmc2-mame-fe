@@ -353,8 +353,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="41"/>
-        <location filename="../../additionalartworksetup.cpp" line="112"/>
-        <location filename="../../additionalartworksetup.cpp" line="178"/>
+        <location filename="../../additionalartworksetup.cpp" line="114"/>
+        <location filename="../../additionalartworksetup.cpp" line="195"/>
         <source>Artwork name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -370,182 +370,205 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="56"/>
+        <source>Scaled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.ui" line="61"/>
         <source>Type</source>
         <translation type="unfinished">Type</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.ui" line="61"/>
+        <location filename="../../additionalartworksetup.ui" line="66"/>
         <source>Folder / Archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.ui" line="75"/>
+        <location filename="../../additionalartworksetup.ui" line="80"/>
         <source>Apply additional artwork setup and close dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.ui" line="78"/>
+        <location filename="../../additionalartworksetup.ui" line="83"/>
         <source>&amp;Ok</source>
         <translation type="unfinished">&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.ui" line="98"/>
+        <location filename="../../additionalartworksetup.ui" line="103"/>
         <source>Cancel additional artwork editing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.ui" line="101"/>
+        <location filename="../../additionalartworksetup.ui" line="106"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished">&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.ui" line="124"/>
+        <location filename="../../additionalartworksetup.ui" line="129"/>
         <source>Restore additional artwork from currently active setup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.ui" line="127"/>
+        <location filename="../../additionalartworksetup.ui" line="132"/>
         <source>&amp;Restore</source>
         <translation type="unfinished">&amp;Restaurer</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.ui" line="160"/>
+        <location filename="../../additionalartworksetup.ui" line="165"/>
         <source>Add a new artwork class</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.ui" line="180"/>
+        <location filename="../../additionalartworksetup.ui" line="185"/>
         <source>Remove selected artwork classes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="108"/>
-        <location filename="../../additionalartworksetup.cpp" line="174"/>
+        <location filename="../../additionalartworksetup.cpp" line="110"/>
+        <location filename="../../additionalartworksetup.cpp" line="191"/>
         <source>Select / deselect this artwork class for removal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="113"/>
-        <location filename="../../additionalartworksetup.cpp" line="179"/>
+        <location filename="../../additionalartworksetup.cpp" line="115"/>
+        <location filename="../../additionalartworksetup.cpp" line="196"/>
         <source>Enter a name for this artwork class (required)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="118"/>
-        <location filename="../../additionalartworksetup.cpp" line="183"/>
+        <location filename="../../additionalartworksetup.cpp" line="121"/>
+        <location filename="../../additionalartworksetup.cpp" line="201"/>
         <source>Choose...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="120"/>
-        <location filename="../../additionalartworksetup.cpp" line="185"/>
+        <location filename="../../additionalartworksetup.cpp" line="123"/>
+        <location filename="../../additionalartworksetup.cpp" line="203"/>
         <source>Choose an icon file to be used for this artwork class (optional)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="129"/>
-        <location filename="../../additionalartworksetup.cpp" line="189"/>
+        <location filename="../../additionalartworksetup.cpp" line="132"/>
+        <location filename="../../additionalartworksetup.cpp" line="207"/>
         <source>System</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="130"/>
-        <location filename="../../additionalartworksetup.cpp" line="190"/>
+        <location filename="../../additionalartworksetup.cpp" line="133"/>
+        <location filename="../../additionalartworksetup.cpp" line="208"/>
         <source>Software</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="131"/>
-        <location filename="../../additionalartworksetup.cpp" line="191"/>
+        <location filename="../../additionalartworksetup.cpp" line="134"/>
+        <location filename="../../additionalartworksetup.cpp" line="209"/>
         <source>Select system or software as &lt;i&gt;target&lt;/i&gt; for this artwork class</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="137"/>
-        <location filename="../../additionalartworksetup.cpp" line="194"/>
+        <location filename="../../additionalartworksetup.cpp" line="141"/>
+        <location filename="../../additionalartworksetup.cpp" line="213"/>
+        <source>On</source>
+        <translation type="unfinished">Activé</translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="142"/>
+        <location filename="../../additionalartworksetup.cpp" line="214"/>
+        <source>Off</source>
+        <translation type="unfinished">Désactivé</translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="143"/>
+        <location filename="../../additionalartworksetup.cpp" line="215"/>
+        <source>Choose if images of this artwork class are scaled or not</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="150"/>
+        <location filename="../../additionalartworksetup.cpp" line="219"/>
         <source>Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="138"/>
-        <location filename="../../additionalartworksetup.cpp" line="195"/>
+        <location filename="../../additionalartworksetup.cpp" line="151"/>
+        <location filename="../../additionalartworksetup.cpp" line="220"/>
         <source>Archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="139"/>
-        <location filename="../../additionalartworksetup.cpp" line="196"/>
+        <location filename="../../additionalartworksetup.cpp" line="152"/>
+        <location filename="../../additionalartworksetup.cpp" line="221"/>
         <source>Choose if images are loaded from a folder or an archive for this artwork class</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="144"/>
-        <location filename="../../additionalartworksetup.cpp" line="198"/>
+        <location filename="../../additionalartworksetup.cpp" line="158"/>
+        <location filename="../../additionalartworksetup.cpp" line="224"/>
         <source>Supported archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="144"/>
-        <location filename="../../additionalartworksetup.cpp" line="198"/>
+        <location filename="../../additionalartworksetup.cpp" line="158"/>
+        <location filename="../../additionalartworksetup.cpp" line="224"/>
         <source>ZIP archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="144"/>
-        <location filename="../../additionalartworksetup.cpp" line="198"/>
+        <location filename="../../additionalartworksetup.cpp" line="158"/>
+        <location filename="../../additionalartworksetup.cpp" line="224"/>
         <source>7z archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="145"/>
-        <location filename="../../additionalartworksetup.cpp" line="199"/>
+        <location filename="../../additionalartworksetup.cpp" line="159"/>
+        <location filename="../../additionalartworksetup.cpp" line="225"/>
         <source>Image archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="146"/>
-        <location filename="../../additionalartworksetup.cpp" line="200"/>
+        <location filename="../../additionalartworksetup.cpp" line="160"/>
+        <location filename="../../additionalartworksetup.cpp" line="226"/>
         <source>Image archive for this artwork class (required)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="147"/>
-        <location filename="../../additionalartworksetup.cpp" line="201"/>
+        <location filename="../../additionalartworksetup.cpp" line="161"/>
+        <location filename="../../additionalartworksetup.cpp" line="227"/>
         <source>Browse image archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="144"/>
-        <location filename="../../additionalartworksetup.cpp" line="198"/>
-        <location filename="../../additionalartworksetup.cpp" line="242"/>
+        <location filename="../../additionalartworksetup.cpp" line="158"/>
+        <location filename="../../additionalartworksetup.cpp" line="224"/>
+        <location filename="../../additionalartworksetup.cpp" line="282"/>
         <source>All files (*)</source>
         <translation type="unfinished">Tous les fichiers (*)</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="150"/>
-        <location filename="../../additionalartworksetup.cpp" line="203"/>
+        <location filename="../../additionalartworksetup.cpp" line="165"/>
+        <location filename="../../additionalartworksetup.cpp" line="230"/>
         <source>Image folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="151"/>
-        <location filename="../../additionalartworksetup.cpp" line="204"/>
+        <location filename="../../additionalartworksetup.cpp" line="166"/>
+        <location filename="../../additionalartworksetup.cpp" line="231"/>
         <source>Image folder for this artwork class (required)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="152"/>
-        <location filename="../../additionalartworksetup.cpp" line="205"/>
+        <location filename="../../additionalartworksetup.cpp" line="167"/>
+        <location filename="../../additionalartworksetup.cpp" line="232"/>
         <source>Browse image folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="242"/>
+        <location filename="../../additionalartworksetup.cpp" line="282"/>
         <source>Choose icon file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="242"/>
+        <location filename="../../additionalartworksetup.cpp" line="282"/>
         <source>PNG files (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
