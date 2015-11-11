@@ -635,36 +635,33 @@ MainWindow::MainWindow(QWidget *parent)
 		    *titleLayout = new QHBoxLayout,
 		    *pcbLayout = new QHBoxLayout;
 
-	int left, top, right, bottom;
-	gridLayout->getContentsMargins(&left, &top, &right, &bottom);
-
 	qmc2Preview = new Preview(tabPreview);
 	previewLayout->addWidget(qmc2Preview);
-	previewLayout->setContentsMargins(left, top, right, bottom);
+	previewLayout->setContentsMargins(0, 0, 0, 0);
 	tabPreview->setLayout(previewLayout);
 	qmc2Flyer = new Flyer(tabFlyer);
 	flyerLayout->addWidget(qmc2Flyer);
-	flyerLayout->setContentsMargins(left, top, right, bottom);
+	flyerLayout->setContentsMargins(0, 0, 0, 0);
 	tabFlyer->setLayout(flyerLayout);
 	qmc2Cabinet = new Cabinet(tabCabinet);
 	cabinetLayout->addWidget(qmc2Cabinet);
-	cabinetLayout->setContentsMargins(left, top, right, bottom);
+	cabinetLayout->setContentsMargins(0, 0, 0, 0);
 	tabCabinet->setLayout(cabinetLayout);
 	qmc2Controller = new Controller(tabController);
 	controllerLayout->addWidget(qmc2Controller);
-	controllerLayout->setContentsMargins(left, top, right, bottom);
+	controllerLayout->setContentsMargins(0, 0, 0, 0);
 	tabController->setLayout(controllerLayout);
 	qmc2Marquee = new Marquee(tabMarquee);
 	marqueeLayout->addWidget(qmc2Marquee);
-	marqueeLayout->setContentsMargins(left, top, right, bottom);
+	marqueeLayout->setContentsMargins(0, 0, 0, 0);
 	tabMarquee->setLayout(marqueeLayout);
 	qmc2Title = new Title(tabTitle);
 	titleLayout->addWidget(qmc2Title);
-	titleLayout->setContentsMargins(left, top, right, bottom);
+	titleLayout->setContentsMargins(0, 0, 0, 0);
 	tabTitle->setLayout(titleLayout);
 	qmc2PCB = new PCB(tabPCB);
 	pcbLayout->addWidget(qmc2PCB);
-	pcbLayout->setContentsMargins(left, top, right, bottom);
+	pcbLayout->setContentsMargins(0, 0, 0, 0);
 	tabPCB->setLayout(pcbLayout);
 
 	// remove column-width restrictions

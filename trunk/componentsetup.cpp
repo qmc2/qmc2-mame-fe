@@ -5,6 +5,7 @@
 #include <QMessageBox>
 
 #include "componentsetup.h"
+#include "customartwork.h"
 #include "qmc2main.h"
 #include "options.h"
 #include "macros.h"
@@ -170,6 +171,22 @@ ComponentInfo *ComponentSetup::initComponent2()
 	componentInfo->configurableFeatureList() << QMC2_YOUTUBE_INDEX;
 #endif
 	componentInfo->setWidget(QMC2_SYSTEM_NOTES_INDEX, qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SYSTEM_NOTES_INDEX));
+
+	int num = 0;
+	qmc2Config->beginGroup("Artwork");
+	foreach (QString name, qmc2Config->childGroups()) {
+		int featureIndex = QMC2_USEROFFSET_INDEX + num;
+		QString nameCopy = name;
+		componentInfo->setShortTitle(featureIndex, name);
+		componentInfo->setLongTitle(featureIndex, nameCopy.replace("&", QString()));
+		componentInfo->setIcon(featureIndex, QIcon(qmc2Config->value(QString("%1/Icon").arg(name), QString()).toString()));
+		componentInfo->availableFeatureList() << featureIndex;
+		qmc2MainWindow->tabWidgetGameDetail->insertTab(featureIndex, new CustomArtwork(qmc2MainWindow->tabWidgetGameDetail, name, num), QIcon(qmc2Config->value(QString("%1/Icon").arg(name), QString()).toString()), name);
+		componentInfo->setWidget(featureIndex, qmc2MainWindow->tabWidgetGameDetail->widget(featureIndex));
+		num++;
+	}
+	qmc2Config->endGroup();
+
 	components() << "Component2";
 	if ( !qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/" + components().last() + "/ActiveFeatures") ) {
 		foreach (int index, componentInfo->availableFeatureList())

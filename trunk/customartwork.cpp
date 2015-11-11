@@ -2,9 +2,11 @@
 
 #include "settings.h"
 #include "customartwork.h"
+#include "qmc2main.h"
 #include "macros.h"
 
 // external global variables
+extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 
 CustomArtwork::CustomArtwork(QWidget *parent, QString name, int num)
@@ -23,12 +25,12 @@ CustomArtwork::~CustomArtwork()
 
 QString CustomArtwork::imageZip()
 {
-	return qmc2Config->value(qmc2Config->value(QString("Artwork/%1/Archive").arg(m_name), QString()).toString(), QString()).toString();
+	return qmc2Config->value(QString("Artwork/%1/Archive").arg(m_name), QString()).toString();
 }
 
 QString CustomArtwork::imageDir()
 {
-	return qmc2Config->value(qmc2Config->value(QString("Artwork/%1/Folder").arg(m_name), QString()).toString(), QString()).toString();
+	return qmc2Config->value(QString("Artwork/%1/Folder").arg(m_name), QString()).toString();
 }
 
 bool CustomArtwork::useZip()
