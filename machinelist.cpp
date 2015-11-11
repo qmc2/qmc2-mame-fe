@@ -22,6 +22,7 @@
 #include <QCryptographicHash>
 
 #include "machinelist.h"
+#include "imagewidget.h"
 #include "emuopt.h"
 #include "qmc2main.h"
 #include "options.h"
@@ -511,14 +512,7 @@ void MachineList::load()
 	}
 #endif
 
-	qmc2Preview->update();
-	qmc2Flyer->update();
-	qmc2Cabinet->update();
-	qmc2Controller->update();
-	qmc2Marquee->update();
-	qmc2Title->update();
-	qmc2PCB->update();
-
+	ImageWidget::updateArtwork();
 	qApp->processEvents();
 
 	QTreeWidgetItem *dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetMachineList);

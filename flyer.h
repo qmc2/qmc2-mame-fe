@@ -9,6 +9,7 @@ class Flyer : public ImageWidget
 
 	public:
 		Flyer(QWidget *parent);
+		~Flyer();
 
 		virtual QString cachePrefix() { return "fly"; }
 		virtual QString imageZip();

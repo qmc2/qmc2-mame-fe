@@ -91,8 +91,10 @@
 #if defined(QMC2_YOUTUBE_ENABLED)
 #define QMC2_YOUTUBE_INDEX			13
 #define QMC2_SYSTEM_NOTES_INDEX			14
+#define QMC2_USEROFFSET_INDEX			15
 #else
 #define QMC2_SYSTEM_NOTES_INDEX			13
+#define QMC2_USEROFFSET_INDEX			14
 #endif
 
 // index positions of special front end tabs (lower right)
@@ -742,6 +744,7 @@
 #define QMC2_IMGTYPE_TITLE			5
 #define QMC2_IMGTYPE_PCB			6
 #define QMC2_IMGTYPE_SWSNAP			7
+#define QMC2_IMGTYPE_USER			100
 
 // image checker image types
 #define QMC2_IMGCHK_INDEX_NONE			-1

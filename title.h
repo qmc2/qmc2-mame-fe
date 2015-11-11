@@ -9,6 +9,7 @@ class Title : public ImageWidget
 
 	public:
 		Title(QWidget *parent);
+		~Title();
 
 		virtual QString cachePrefix() { return "ttl"; }
 		virtual QString imageZip();

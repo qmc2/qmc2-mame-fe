@@ -10,6 +10,12 @@ extern bool qmc2ScaledFlyer;
 Flyer::Flyer(QWidget *parent)
 	: ImageWidget(parent)
 {
+	artworkHash.insert(imageTypeNumeric(), this);
+}
+
+Flyer::~Flyer()
+{
+	artworkHash.remove(imageTypeNumeric());
 }
 
 QString Flyer::imageZip()

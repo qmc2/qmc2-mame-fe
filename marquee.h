@@ -9,6 +9,7 @@ class Marquee : public ImageWidget
 
 	public:
 		Marquee(QWidget *parent);
+		~Marquee();
 
 		virtual QString cachePrefix() { return "mrq"; }
 		virtual QString imageZip();

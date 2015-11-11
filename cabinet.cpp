@@ -10,6 +10,12 @@ extern bool qmc2ScaledCabinet;
 Cabinet::Cabinet(QWidget *parent)
 	: ImageWidget(parent)
 {
+	artworkHash.insert(imageTypeNumeric(), this);
+}
+
+Cabinet::~Cabinet()
+{
+	artworkHash.remove(imageTypeNumeric());
 }
 
 QString Cabinet::imageZip()

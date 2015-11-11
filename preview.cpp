@@ -10,6 +10,12 @@ extern bool qmc2ScaledPreview;
 Preview::Preview(QWidget *parent)
 	: ImageWidget(parent)
 {
+	artworkHash.insert(imageTypeNumeric(), this);
+}
+
+Preview::~Preview()
+{
+	artworkHash.remove(imageTypeNumeric());
 }
 
 QString Preview::imageZip()

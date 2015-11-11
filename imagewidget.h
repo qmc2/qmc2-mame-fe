@@ -2,6 +2,7 @@
 #define _IMAGEWIDGET_H_
 
 #include <QMap>
+#include <QHash>
 #include <QMenu>
 #include <QWidget>
 #include <QPixmap>
@@ -89,6 +90,7 @@ class ImageWidget : public QWidget
 		static QStringList formatNames;
 		static QStringList formatExtensions;
 		static QStringList formatDescriptions;
+		static QHash<int, ImageWidget *> artworkHash;
 
 		ImageWidget(QWidget *parent);
 		~ImageWidget();
@@ -99,6 +101,7 @@ class ImageWidget : public QWidget
 		QString primaryPathFor(QString);
 		void reloadActiveFormats();
 		void enableWidgets(bool enable = true);
+		static void updateArtwork();
 
 		// these virtual functions MUST be reimplemented in the concrete image classes
 		virtual QString cachePrefix() { return QString(); }
