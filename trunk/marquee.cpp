@@ -10,6 +10,12 @@ extern bool qmc2ScaledMarquee;
 Marquee::Marquee(QWidget *parent)
 	: ImageWidget(parent)
 {
+	artworkHash.insert(imageTypeNumeric(), this);
+}
+
+Marquee::~Marquee()
+{
+	artworkHash.remove(imageTypeNumeric());
 }
 
 QString Marquee::imageZip()

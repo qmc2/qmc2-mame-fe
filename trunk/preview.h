@@ -9,6 +9,7 @@ class Preview : public ImageWidget
 
 	public:
 		Preview(QWidget *parent);
+		~Preview();
 
 		virtual QString cachePrefix() { return "prv"; }
 		virtual QString imageZip();

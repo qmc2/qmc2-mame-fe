@@ -32,6 +32,7 @@ extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 QStringList ImageWidget::formatNames;
 QStringList ImageWidget::formatExtensions;
 QStringList ImageWidget::formatDescriptions;
+QHash<int, ImageWidget *> ImageWidget::artworkHash;
 
 ImageWidget::ImageWidget(QWidget *parent)
 #if QMC2_OPENGL == 1
@@ -110,6 +111,15 @@ ImageWidget::~ImageWidget()
 			imageFile->close();
 			delete imageFile;
 		}
+	}
+}
+
+void ImageWidget::updateArtwork()
+{
+	QHashIterator<int, ImageWidget *> it(artworkHash);
+	while ( it.hasNext() ) {
+		it.next();
+		it.value()->update();
 	}
 }
 

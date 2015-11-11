@@ -10,6 +10,12 @@ extern bool qmc2ScaledController;
 Controller::Controller(QWidget *parent)
 	: ImageWidget(parent)
 {
+	artworkHash.insert(imageTypeNumeric(), this);
+}
+
+Controller::~Controller()
+{
+	artworkHash.remove(imageTypeNumeric());
 }
 
 QString Controller::imageZip()

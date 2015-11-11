@@ -15,11 +15,14 @@
 #include "direditwidget.h"
 #include "qmc2main.h"
 #include "options.h"
+#include "componentsetup.h"
+#include "customartwork.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
+extern ComponentSetup *qmc2ComponentSetup;
 
 AdditionalArtworkSetup::AdditionalArtworkSetup(QWidget *parent)
 	: QDialog(parent)
@@ -68,6 +71,10 @@ void AdditionalArtworkSetup::on_pushButtonRestore_clicked()
 
 void AdditionalArtworkSetup::save()
 {
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component2"];
+	int deleteAfterIndex = componentInfo->availableFeatureList().indexOf(QMC2_SYSTEM_NOTES_INDEX);
+	for (int i = componentInfo->availableFeatureList().count(); i > deleteAfterIndex; i--)
+		componentInfo->availableFeatureList().removeAt(i);
 	qmc2Config->remove("Artwork");
 	qmc2Config->beginGroup("Artwork");
 	for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
@@ -93,6 +100,11 @@ void AdditionalArtworkSetup::save()
 			FileEditWidget *fewFolderOrArchive = (FileEditWidget *)stackedWidgetFolderOrArchive->widget(QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE);
 			if ( !fewFolderOrArchive->lineEditFile->text().isEmpty() )
 				qmc2Config->setValue(QString("%1/Archive").arg(name), fewFolderOrArchive->lineEditFile->text());
+			int featureIndex = QMC2_USEROFFSET_INDEX + i;
+			componentInfo->setShortTitle(featureIndex, name);
+			componentInfo->setLongTitle(featureIndex, name);
+			componentInfo->setIcon(featureIndex, QIcon(toolButtonIcon->whatsThis()));
+			componentInfo->availableFeatureList() << featureIndex;
 		}
 	}
 	qmc2Config->endGroup();

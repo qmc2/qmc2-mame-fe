@@ -10,13 +10,14 @@ class CustomArtwork : public ImageWidget
 	Q_OBJECT 
 
 	public:
-		CustomArtwork(QWidget *parent, QString name);
+		CustomArtwork(QWidget *parent, QString name, int num);
+		~CustomArtwork();
 
 		virtual QString cachePrefix() { return m_cachePrefix; }
 		virtual QString imageZip();
 		virtual QString imageDir();
-		virtual QString imageType() { return m_imageType; }
-		virtual int imageTypeNumeric() { return m_imageTypeNumeric; }
+		virtual QString imageType() { return m_name; }
+		virtual int imageTypeNumeric() { return m_num; }
 		virtual bool useZip();
 		virtual bool useSevenZip();
 		virtual bool scaledImage();
@@ -24,8 +25,7 @@ class CustomArtwork : public ImageWidget
 	private:
 		QString m_name;
 		QString m_cachePrefix;
-		QString m_imageType;
-		int m_imageTypeNumeric;
+		int m_num;
 };
 
 #endif

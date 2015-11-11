@@ -1,3 +1,5 @@
+#include <QUuid>
+
 #include "settings.h"
 #include "customartwork.h"
 #include "macros.h"
@@ -5,10 +7,18 @@
 // external global variables
 extern Settings *qmc2Config;
 
-CustomArtwork::CustomArtwork(QWidget *parent, QString name)
+CustomArtwork::CustomArtwork(QWidget *parent, QString name, int num)
 	: ImageWidget(parent)
 {
 	m_name = name;
+	m_num = QMC2_IMGTYPE_USER + num;
+	m_cachePrefix = QUuid::createUuid().toString();
+	artworkHash.insert(imageTypeNumeric(), this);
+}
+
+CustomArtwork::~CustomArtwork()
+{
+	artworkHash.remove(imageTypeNumeric());
 }
 
 QString CustomArtwork::imageZip()

@@ -9,6 +9,7 @@ class Cabinet : public ImageWidget
 
 	public:
 		Cabinet(QWidget *parent);
+		~Cabinet();
 
 		virtual QString cachePrefix() { return "cab"; }
 		virtual QString imageZip();

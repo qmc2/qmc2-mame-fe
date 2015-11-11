@@ -9,6 +9,7 @@ class Controller : public ImageWidget
 
 	public:
 		Controller(QWidget *parent);
+		~Controller();
 
 		virtual QString cachePrefix() { return "ctl"; }
 		virtual QString imageZip();

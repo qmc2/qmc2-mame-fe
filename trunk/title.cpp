@@ -10,6 +10,12 @@ extern bool qmc2ScaledTitle;
 Title::Title(QWidget *parent)
 	: ImageWidget(parent)
 {
+	artworkHash.insert(imageTypeNumeric(), this);
+}
+
+Title::~Title()
+{
+	artworkHash.remove(imageTypeNumeric());
 }
 
 QString Title::imageZip()

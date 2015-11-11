@@ -3552,13 +3552,7 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			break;
 	}
 
-	qmc2Preview->update();
-	qmc2Flyer->update();
-	qmc2Cabinet->update();
-	qmc2Controller->update();
-	qmc2Marquee->update();
-	qmc2Title->update();
-	qmc2PCB->update();
+	ImageWidget::updateArtwork();
 
 	// show / hide game status indicator
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
@@ -5059,15 +5053,7 @@ void MainWindow::treeWidgetMachineList_itemSelectionChanged_delayed()
 			topLevelItem = topLevelItem->parent();
 		if ( topLevelItem ) {
 			qmc2CurrentItem = topLevelItem;
-
-			qmc2Preview->update();
-			qmc2Flyer->update();
-			qmc2Cabinet->update();
-			qmc2Controller->update();
-			qmc2Marquee->update();
-			qmc2Title->update();
-			qmc2PCB->update();
-
+			ImageWidget::updateArtwork();
 			on_tabWidgetGameDetail_currentChanged(tabWidgetGameDetail->currentIndex());
 		}
 	} else

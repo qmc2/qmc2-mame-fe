@@ -10,6 +10,12 @@ extern bool qmc2ScaledPCB;
 PCB::PCB(QWidget *parent)
 	: ImageWidget(parent)
 {
+	artworkHash.insert(imageTypeNumeric(), this);
+}
+
+PCB::~PCB()
+{
+	artworkHash.remove(imageTypeNumeric());
 }
 
 QString PCB::imageZip()
