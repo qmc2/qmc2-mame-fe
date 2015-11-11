@@ -112,6 +112,7 @@ void AdditionalArtworkSetup::load()
 		lineEditName->setPlaceholderText(tr("Artwork name"));
 		lineEditName->setToolTip(tr("Enter a name for this artwork class (required)"));
 		lineEditName->setText(name);
+		connect(lineEditName, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged(const QString &)));
 		treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_NAME, lineEditName);
 		QToolButton *toolButtonIcon = new QToolButton(this);
 		toolButtonIcon->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
@@ -132,6 +133,7 @@ void AdditionalArtworkSetup::load()
 		int index = qmc2Config->value(QString("%1/Target").arg(name), 0).toInt();
 		if ( index >= 0 && index < 2 )
 			comboBoxTarget->setCurrentIndex(index);
+		connect(comboBoxTarget, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
 		treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_TARGET, comboBoxTarget);
 		QComboBox *comboBoxType = new QComboBox(this);
 		comboBoxType->addItem(tr("Folder"));
@@ -140,17 +142,20 @@ void AdditionalArtworkSetup::load()
 		index = qmc2Config->value(QString("%1/Type").arg(name), 0).toInt();
 		if ( index >= 0 && index < 2 )
 			comboBoxType->setCurrentIndex(index);
+		connect(comboBoxType, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
 		treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_TYPE, comboBoxType);
 		FileEditWidget *fewFolderOrArchive = new FileEditWidget(QString(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files (*)"), QString(), this, false);
 		fewFolderOrArchive->lineEditFile->setPlaceholderText(tr("Image archive"));
 		fewFolderOrArchive->lineEditFile->setToolTip(tr("Image archive for this artwork class (required)"));
 		fewFolderOrArchive->toolButtonBrowse->setToolTip(tr("Browse image archive"));
 		fewFolderOrArchive->lineEditFile->setText(qmc2Config->value(QString("%1/Archive").arg(name), QString()).toString());
+		connect(fewFolderOrArchive->lineEditFile, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged(const QString &)));
 		DirectoryEditWidget *dewFolderOrArchive = new DirectoryEditWidget(QString(), this);
 		dewFolderOrArchive->lineEditDirectory->setPlaceholderText(tr("Image folder"));
 		dewFolderOrArchive->lineEditDirectory->setToolTip(tr("Image folder for this artwork class (required)"));
 		dewFolderOrArchive->toolButtonBrowse->setToolTip(tr("Browse image folder"));
 		dewFolderOrArchive->lineEditDirectory->setText(qmc2Config->value(QString("%1/Folder").arg(name), QString()).toString());
+		connect(dewFolderOrArchive->lineEditDirectory, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged(const QString &)));
 		QStackedWidget *stackedWidgetFolderOrArchive = new QStackedWidget(this);
 		stackedWidgetFolderOrArchive->insertWidget(QMC2_ADDITIONALARTWORK_INDEX_FOLDER, dewFolderOrArchive);
 		stackedWidgetFolderOrArchive->insertWidget(QMC2_ADDITIONALARTWORK_INDEX_ARCHIVE, fewFolderOrArchive);
@@ -161,6 +166,7 @@ void AdditionalArtworkSetup::load()
 	}
 	qmc2Config->endGroup();
 	treeWidget->resizeColumnToContents(QMC2_ADDITIONALARTWORK_COLUMN_SELECT);
+	pushButtonRestore->setEnabled(false);
 }
 
 void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
@@ -177,6 +183,7 @@ void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
 	QLineEdit *lineEditName = new QLineEdit(this);
 	lineEditName->setPlaceholderText(tr("Artwork name"));
 	lineEditName->setToolTip(tr("Enter a name for this artwork class (required)"));
+	connect(lineEditName, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged(const QString &)));
 	treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_NAME, lineEditName);
 	QToolButton *toolButtonIcon = new QToolButton(this);
 	toolButtonIcon->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
@@ -189,26 +196,31 @@ void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
 	comboBoxTarget->addItem(tr("System"));
 	comboBoxTarget->addItem(tr("Software"));
 	comboBoxTarget->setToolTip(tr("Select system or software as <i>target</i> for this artwork class"));
+	connect(comboBoxTarget, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
 	treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_TARGET, comboBoxTarget);
 	QComboBox *comboBoxType = new QComboBox(this);
 	comboBoxType->addItem(tr("Folder"));
 	comboBoxType->addItem(tr("Archive"));
 	comboBoxType->setToolTip(tr("Choose if images are loaded from a folder or an archive for this artwork class"));
+	connect(comboBoxType, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
 	treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_TYPE, comboBoxType);
 	FileEditWidget *fewFolderOrArchive = new FileEditWidget(QString(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files (*)"), QString(), this, false);
 	fewFolderOrArchive->lineEditFile->setPlaceholderText(tr("Image archive"));
 	fewFolderOrArchive->lineEditFile->setToolTip(tr("Image archive for this artwork class (required)"));
 	fewFolderOrArchive->toolButtonBrowse->setToolTip(tr("Browse image archive"));
+	connect(fewFolderOrArchive->lineEditFile, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged(const QString &)));
 	DirectoryEditWidget *dewFolderOrArchive = new DirectoryEditWidget(QString(), this);
 	dewFolderOrArchive->lineEditDirectory->setPlaceholderText(tr("Image folder"));
 	dewFolderOrArchive->lineEditDirectory->setToolTip(tr("Image folder for this artwork class (required)"));
 	dewFolderOrArchive->toolButtonBrowse->setToolTip(tr("Browse image folder"));
+	connect(dewFolderOrArchive->lineEditDirectory, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged(const QString &)));
 	QStackedWidget *stackedWidgetFolderOrArchive = new QStackedWidget(this);
 	stackedWidgetFolderOrArchive->insertWidget(QMC2_ADDITIONALARTWORK_INDEX_FOLDER, dewFolderOrArchive);
 	stackedWidgetFolderOrArchive->insertWidget(QMC2_ADDITIONALARTWORK_INDEX_ARCHIVE, fewFolderOrArchive);
 	treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_FOLDER_OR_ARCHIVE, stackedWidgetFolderOrArchive);
 	connect(comboBoxType, SIGNAL(currentIndexChanged(int)), stackedWidgetFolderOrArchive, SLOT(setCurrentIndex(int)));
 	treeWidget->resizeColumnToContents(QMC2_ADDITIONALARTWORK_COLUMN_SELECT);
+	dataChanged(0);
 }
 
 void AdditionalArtworkSetup::on_toolButtonRemove_clicked()
@@ -223,6 +235,7 @@ void AdditionalArtworkSetup::on_toolButtonRemove_clicked()
 		}
 	}
 	selectionFlagsChanged();
+	dataChanged(0);
 }
 
 void AdditionalArtworkSetup::selectionFlagsChanged(bool)
@@ -236,6 +249,16 @@ void AdditionalArtworkSetup::selectionFlagsChanged(bool)
 	toolButtonRemove->setEnabled(enable);
 }
 
+void AdditionalArtworkSetup::dataChanged(const QString &)
+{
+	pushButtonRestore->setEnabled(true);
+}
+
+void AdditionalArtworkSetup::dataChanged(int)
+{
+	pushButtonRestore->setEnabled(true);
+}
+
 void AdditionalArtworkSetup::chooseIcon()
 {
 	QToolButton *tb = (QToolButton *)sender();
@@ -243,6 +266,7 @@ void AdditionalArtworkSetup::chooseIcon()
 	if ( !fileName.isEmpty() ) {
 		tb->setIcon(QIcon(fileName));
 		tb->setWhatsThis(fileName);
+		dataChanged(0);
 	}
 }
 
