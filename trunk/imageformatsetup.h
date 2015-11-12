@@ -14,9 +14,9 @@ class ImageFormatSetup : public QDialog, public Ui::ImageFormatSetup
        	public:
 		ImageFormatSetup(QWidget *parent = 0);
 
-		static QStringList artworkClassPrefixes;
-		static QStringList artworkClassNames;
-		static QStringList artworkClassIcons;
+		QStringList artworkClassPrefixes;
+		QStringList artworkClassNames;
+		QStringList artworkClassIcons;
 
 	public slots:
 		void adjustIconSizes();
@@ -33,8 +33,8 @@ class ImageFormatSetup : public QDialog, public Ui::ImageFormatSetup
 	private:
 		void restoreActiveFormats(bool init = false);
 
-		QMap<QString, QList<int> > mActiveFormats;
-		int mPreviousClassIndex;
+		QMap<QString, QList<int> > m_activeFormats;
+		int m_previousClassIndex;
 
 	private slots:
 		void checkForModifications();

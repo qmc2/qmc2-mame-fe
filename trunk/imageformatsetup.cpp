@@ -14,47 +14,46 @@ extern Options *qmc2Options;
 extern SoftwareSnap *qmc2SoftwareSnap;
 extern SoftwareSnapshot *qmc2SoftwareSnapshot;
 
-QStringList ImageFormatSetup::artworkClassPrefixes;
-QStringList ImageFormatSetup::artworkClassNames;
-QStringList ImageFormatSetup::artworkClassIcons;
-
 ImageFormatSetup::ImageFormatSetup(QWidget *parent)
 	: QDialog(parent)
 {
 	setupUi(this);
-
-	mPreviousClassIndex = -1;
-
+	m_previousClassIndex = -1;
 #if QT_VERSION < 0x050000
 	treeWidget->header()->setMovable(false);
 #else
 	treeWidget->header()->setSectionsMovable(false);
 #endif
-
-	if ( artworkClassPrefixes.isEmpty() ) {
-		artworkClassPrefixes << "prv" << "fly" << "cab" << "ctl" << "mrq" << "ttl" << "pcb" << "sws";
-		artworkClassNames << tr("Previews") << tr("Flyers") << tr("Cabinets") << tr("Controllers") << tr("Marquees") << tr("Titles") << tr("PCBs") << tr("Software snaps");
-		artworkClassIcons << ":/data/img/camera.png" << ":/data/img/thumbnail.png" << ":/data/img/arcadecabinet.png" << ":/data/img/joystick.png" << ":/data/img/marquee.png" << ":/data/img/arcademode.png" << ":/data/img/circuit.png" << ":/data/img/pacman.png";
+	artworkClassPrefixes << "prv" << "fly" << "cab" << "ctl" << "mrq" << "ttl" << "pcb" << "sws";
+	artworkClassNames << tr("Preview") << tr("Flyer") << tr("Cabinet") << tr("Controller") << tr("Marquee") << tr("Title") << tr("PCB") << tr("Software snap");
+	artworkClassIcons << ":/data/img/camera.png" << ":/data/img/thumbnail.png" << ":/data/img/arcadecabinet.png" << ":/data/img/joystick.png" << ":/data/img/marquee.png" << ":/data/img/arcademode.png" << ":/data/img/circuit.png" << ":/data/img/pacman.png";
+	qmc2Config->beginGroup("Artwork");
+	foreach (QString name, qmc2Config->childGroups()) {
+		QString nameCopy = name;
+		artworkClassPrefixes << "aw:" + name;
+		artworkClassNames << nameCopy.replace("&", QString());
+		artworkClassIcons << qmc2Config->value(QString("%1/Icon").arg(name), QString()).toString();
 	}
-
+	qmc2Config->endGroup();
 	restoreActiveFormats(true);
 	connect(treeWidget->model(), SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(rowsInserted(const QModelIndex &, int, int)));
 }
 
 void ImageFormatSetup::restoreActiveFormats(bool init)
 {
-	foreach (QString fmt, mActiveFormats.keys())
-		mActiveFormats[fmt].clear();
-	mActiveFormats.clear();
-
-	// FIXME: add support for additional artwork classes
-
+	foreach (QString fmt, m_activeFormats.keys())
+		m_activeFormats[fmt].clear();
+	m_activeFormats.clear();
 	for (int i = 0; i < artworkClassPrefixes.count(); i++) {
-		QStringList imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(artworkClassPrefixes[i]), QStringList()).toStringList();
+		QStringList imgFmts;
+		if ( artworkClassPrefixes[i].startsWith("aw:") )
+			imgFmts = qmc2Config->value(QString("Artwork/%1/ActiveFormats").arg(artworkClassPrefixes[i].split(":")[1]), QStringList()).toStringList();
+		else
+			imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(artworkClassPrefixes[i]), QStringList()).toStringList();
 		if ( imgFmts.isEmpty() )
-			mActiveFormats[artworkClassPrefixes[i]] << QMC2_IMAGE_FORMAT_INDEX_PNG;
+			m_activeFormats[artworkClassPrefixes[i]] << QMC2_IMAGE_FORMAT_INDEX_PNG;
 		else for (int j = 0; j < imgFmts.count(); j++)
-			mActiveFormats[artworkClassPrefixes[i]] << imgFmts[j].toInt();
+			m_activeFormats[artworkClassPrefixes[i]] << imgFmts[j].toInt();
 		if ( init )
 			comboBoxImageType->addItem(QIcon(artworkClassIcons[i]), artworkClassNames[i], artworkClassPrefixes[i]);
 	}
@@ -65,12 +64,16 @@ void ImageFormatSetup::checkForModifications()
 	bool modified = false;
 	for (int i = 0; i < artworkClassPrefixes.count() && !modified; i++) {
 		QList<int> storedFormats;
-		QStringList imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(artworkClassPrefixes[i]), QStringList()).toStringList();
+		QStringList imgFmts;
+		if ( artworkClassPrefixes[i].startsWith("aw:") )
+			imgFmts = qmc2Config->value(QString("Artwork/%1/ActiveFormats").arg(artworkClassPrefixes[i].split(":")[1]), QStringList()).toStringList();
+		else
+			imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(artworkClassPrefixes[i]), QStringList()).toStringList();
 		if ( imgFmts.isEmpty() )
 			storedFormats << QMC2_IMAGE_FORMAT_INDEX_PNG;
 		else for (int j = 0; j < imgFmts.count(); j++)
 			storedFormats << imgFmts[j].toInt();
-		modified = (mActiveFormats[artworkClassPrefixes[i]] != storedFormats);
+		modified = (m_activeFormats[artworkClassPrefixes[i]] != storedFormats);
 	}
 	pushButtonRestore->setEnabled(modified);
 }
@@ -78,11 +81,11 @@ void ImageFormatSetup::checkForModifications()
 void ImageFormatSetup::rowsInserted(const QModelIndex &, int, int)
 {
 	QString artworkClass = comboBoxImageType->itemData(comboBoxImageType->currentIndex()).toString();
-	mActiveFormats[artworkClass].clear();
+	m_activeFormats[artworkClass].clear();
 	for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
 		QTreeWidgetItem *tlItem = treeWidget->topLevelItem(i);
 		if ( tlItem->checkState(QMC2_IMGFMT_SETUP_COLUMN_ACT) == Qt::Checked )
-			mActiveFormats[artworkClass] << ImageWidget::formatNames.indexOf(tlItem->text(QMC2_IMGFMT_SETUP_COLUMN_NAME));
+			m_activeFormats[artworkClass] << ImageWidget::formatNames.indexOf(tlItem->text(QMC2_IMGFMT_SETUP_COLUMN_NAME));
 	}
 	QTimer::singleShot(0, this, SLOT(checkForModifications()));
 }
@@ -93,7 +96,6 @@ void ImageFormatSetup::adjustIconSizes()
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
 	QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
-
 	pushButtonOk->setIconSize(iconSize);
 	pushButtonCancel->setIconSize(iconSize);
 	pushButtonRestore->setIconSize(iconSize);
@@ -103,22 +105,23 @@ void ImageFormatSetup::adjustIconSizes()
 void ImageFormatSetup::on_pushButtonOk_clicked()
 {
 	QString artworkClass = comboBoxImageType->itemData(comboBoxImageType->currentIndex()).toString();
-	mActiveFormats[artworkClass].clear();
+	m_activeFormats[artworkClass].clear();
 	for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
 		QTreeWidgetItem *tlItem = treeWidget->topLevelItem(i);
 		if ( tlItem->checkState(QMC2_IMGFMT_SETUP_COLUMN_ACT) == Qt::Checked )
-			mActiveFormats[artworkClass] << ImageWidget::formatNames.indexOf(tlItem->text(QMC2_IMGFMT_SETUP_COLUMN_NAME));
+			m_activeFormats[artworkClass] << ImageWidget::formatNames.indexOf(tlItem->text(QMC2_IMGFMT_SETUP_COLUMN_NAME));
 	}
-
-	QMapIterator<QString, QList<int> > it(mActiveFormats);
+	QMapIterator<QString, QList<int> > it(m_activeFormats);
 	while ( it.hasNext() ) {
 		it.next();
 		QStringList prioList;
 		foreach (int format, it.value())
 			prioList << QString::number(format);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(it.key()), prioList);
+		if ( it.key().startsWith("aw:") )
+			qmc2Config->setValue(QString("Artwork/%1/ActiveFormats").arg(it.key().split(":")[1]), prioList);
+		else
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(it.key()), prioList);
 	}
-
 	ImageWidget::reloadArtworkFormats();
 	// FIXME: begin: integrate this in ImageWidget::reloadArtworkFormats()
 	if ( qmc2SoftwareSnap )
@@ -126,7 +129,6 @@ void ImageFormatSetup::on_pushButtonOk_clicked()
 	if ( qmc2SoftwareSnapshot )
 		qmc2SoftwareSnapshot->reloadActiveFormats();
 	// FIXME: end
-
 	accept();
 }
 
@@ -138,27 +140,27 @@ void ImageFormatSetup::on_pushButtonCancel_clicked()
 void ImageFormatSetup::on_pushButtonRestore_clicked()
 {
 	restoreActiveFormats();
-	mPreviousClassIndex = -1;
+	m_previousClassIndex = -1;
 	on_comboBoxImageType_currentIndexChanged(comboBoxImageType->currentIndex());
 	QTimer::singleShot(0, this, SLOT(checkForModifications()));
 }
 
 void ImageFormatSetup::on_comboBoxImageType_currentIndexChanged(int index)
 {
-	if ( mPreviousClassIndex > -1 ) {
-		QString previousArtworkClass = comboBoxImageType->itemData(mPreviousClassIndex).toString();
-		mActiveFormats[previousArtworkClass].clear();
+	if ( m_previousClassIndex > -1 ) {
+		QString previousArtworkClass = comboBoxImageType->itemData(m_previousClassIndex).toString();
+		m_activeFormats[previousArtworkClass].clear();
 		for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
 			QTreeWidgetItem *tlItem = treeWidget->topLevelItem(i);
 			if ( tlItem->checkState(QMC2_IMGFMT_SETUP_COLUMN_ACT) == Qt::Checked )
-				mActiveFormats[previousArtworkClass] << ImageWidget::formatNames.indexOf(tlItem->text(QMC2_IMGFMT_SETUP_COLUMN_NAME));
+				m_activeFormats[previousArtworkClass] << ImageWidget::formatNames.indexOf(tlItem->text(QMC2_IMGFMT_SETUP_COLUMN_NAME));
 		}
 	}
 
 	treeWidget->clear();
 
 	QList<QTreeWidgetItem *> insertItems;
-	QList<int> activeFormats = mActiveFormats[artworkClassPrefixes[index]];
+	QList<int> activeFormats = m_activeFormats[artworkClassPrefixes[index]];
 	for (int i = 0; i < QMC2_IMAGE_FORMAT_COUNT; i++) {
 		QTreeWidgetItem *item = new QTreeWidgetItem();
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsDragEnabled | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
@@ -192,7 +194,7 @@ void ImageFormatSetup::on_comboBoxImageType_currentIndexChanged(int index)
 	for (int i = 0; i < treeWidget->columnCount(); i++)
 		treeWidget->resizeColumnToContents(i);
 
-	mPreviousClassIndex = index;
+	m_previousClassIndex = index;
 }
 
 void ImageFormatSetup::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
@@ -206,11 +208,11 @@ void ImageFormatSetup::on_treeWidget_itemClicked(QTreeWidgetItem *item, int colu
 			item->setCheckState(QMC2_IMGFMT_SETUP_COLUMN_ACT, Qt::Checked);
 		}
 		QString artworkClass = comboBoxImageType->itemData(comboBoxImageType->currentIndex()).toString();
-		mActiveFormats[artworkClass].clear();
+		m_activeFormats[artworkClass].clear();
 		for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
 			QTreeWidgetItem *tlItem = treeWidget->topLevelItem(i);
 			if ( tlItem->checkState(QMC2_IMGFMT_SETUP_COLUMN_ACT) == Qt::Checked )
-				mActiveFormats[artworkClass] << ImageWidget::formatNames.indexOf(tlItem->text(QMC2_IMGFMT_SETUP_COLUMN_NAME));
+				m_activeFormats[artworkClass] << ImageWidget::formatNames.indexOf(tlItem->text(QMC2_IMGFMT_SETUP_COLUMN_NAME));
 		}
 		QTimer::singleShot(0, this, SLOT(checkForModifications()));
 	}

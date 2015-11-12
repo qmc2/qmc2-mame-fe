@@ -27,6 +27,9 @@ class CustomArtwork : public ImageWidget
 		int num() { return m_num; }
 		void setNum(int num);
 
+	protected:
+		virtual bool customArtwork() { return true; }
+
 	private:
 		QString m_name;
 		QString m_cachePrefix;
