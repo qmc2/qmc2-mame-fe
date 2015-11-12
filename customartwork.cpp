@@ -40,16 +40,16 @@ QString CustomArtwork::imageDir()
 
 bool CustomArtwork::useZip()
 {
-	return qmc2Config->value(QString("Artwork/%1/Type").arg(name()), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE && qmc2Config->value(QString("Artwork/%1/Format").arg(name()), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_FORMAT_ZIP;
+	return qmc2Config->value(QString("Artwork/%1/Type").arg(name()), 0).toInt() == QMC2_AW_INDEX_TYPE_ARCHIVE && qmc2Config->value(QString("Artwork/%1/Format").arg(name()), 0).toInt() == QMC2_AW_INDEX_FORMAT_ZIP;
 }
 
 bool CustomArtwork::useSevenZip()
 {
-	return qmc2Config->value(QString("Artwork/%1/Type").arg(name()), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE && qmc2Config->value(QString("Artwork/%1/Format").arg(name()), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_FORMAT_7Z;
+	return qmc2Config->value(QString("Artwork/%1/Type").arg(name()), 0).toInt() == QMC2_AW_INDEX_TYPE_ARCHIVE && qmc2Config->value(QString("Artwork/%1/Format").arg(name()), 0).toInt() == QMC2_AW_INDEX_FORMAT_7Z;
 }
 
 
 bool CustomArtwork::scaledImage()
 {
-	return qmc2Config->value(QString("Artwork/%1/Scaled").arg(name()), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_SCALED_ON;
+	return qmc2Config->value(QString("Artwork/%1/Scaled").arg(name()), 0).toInt() == QMC2_AW_INDEX_SCALED_ON;
 }
