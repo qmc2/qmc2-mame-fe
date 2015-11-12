@@ -111,7 +111,11 @@ void AdditionalArtworkSetup::save()
 					customArtwork->setName(name);
 					customArtwork->setNum(i);
 					customArtwork->reopenSource();
-					qmc2MainWindow->tabWidgetMachineDetail->setTabText(featureIndex, name);
+					featureIndex = componentInfo->appliedFeatureList().indexOf(featureIndex);
+					if ( featureIndex >= 0 ) {
+						qmc2MainWindow->tabWidgetMachineDetail->setTabText(featureIndex, name);
+						qmc2MainWindow->tabWidgetMachineDetail->setTabIcon(featureIndex, QIcon(qmc2Config->value(QString("Artwork/%1/Icon").arg(name), QString()).toString()));
+					}
 				} else {
 					qmc2MainWindow->tabWidgetMachineDetail->insertTab(featureIndex, new CustomArtwork(qmc2MainWindow->tabWidgetMachineDetail, name, i), QIcon(qmc2Config->value(QString("Artwork/%1/Icon").arg(name), QString()).toString()), name);
 					componentInfo->setWidget(featureIndex, qmc2MainWindow->tabWidgetMachineDetail->widget(featureIndex));
