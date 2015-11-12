@@ -175,7 +175,7 @@ ComponentInfo *ComponentSetup::initComponent2()
 	int num = 0;
 	qmc2Config->beginGroup("Artwork");
 	foreach (QString name, qmc2Config->childGroups()) {
-		if ( qmc2Config->value(QString("%1/Target").arg(name), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_TARGET_SYSTEM ) {
+		if ( qmc2Config->value(QString("%1/Target").arg(name), 0).toInt() == QMC2_AW_INDEX_TARGET_SYSTEM ) {
 			int featureIndex = QMC2_USEROFFSET_INDEX + num;
 			QString nameCopy = name;
 			componentInfo->setShortTitle(featureIndex, name);
