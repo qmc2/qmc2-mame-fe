@@ -213,11 +213,6 @@ Options::Options(QWidget *parent)
 
 	cancelClicked = false;
 
-#if !defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when "additional artwork support" is working
-	pushButtonAdditionalArtworkSetup->setVisible(false);
-#endif
-
 	qmc2StandardWorkDir = QDir::currentPath();
 
 #if !defined(QMC2_OS_MAC)

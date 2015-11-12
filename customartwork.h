@@ -22,6 +22,11 @@ class CustomArtwork : public ImageWidget
 		virtual bool useSevenZip();
 		virtual bool scaledImage();
 
+		QString name() { return m_name; }
+		void setName(QString name) { m_name = name; }
+		int num() { return m_num; }
+		void setNum(int num);
+
 	private:
 		QString m_name;
 		QString m_cachePrefix;

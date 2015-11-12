@@ -101,18 +101,21 @@ class ImageWidget : public QWidget
 		QString primaryPathFor(QString);
 		void reloadActiveFormats();
 		void enableWidgets(bool enable = true);
+		void openSource();
+		void closeSource();
+		void reopenSource() { closeSource(); openSource(); }
 		static void updateArtwork();
 		static void reloadArtworkFormats();
 
-		// these virtual functions MUST be reimplemented in the concrete image classes
-		virtual QString cachePrefix() { return QString(); }
-		virtual QString imageZip() { return QString(); }
-		virtual QString imageDir() { return QString(); }
-		virtual QString imageType() { return QString(); }
-		virtual int imageTypeNumeric() { return 0; }
-		virtual bool useZip() { return false; }
-		virtual bool useSevenZip() { return false; }
-		virtual bool scaledImage() { return false; }
+		// these pure virtual functions MUST be reimplemented in the concrete image classes
+		virtual QString cachePrefix() = 0;
+		virtual QString imageZip() = 0;
+		virtual QString imageDir() = 0;
+		virtual QString imageType() = 0;
+		virtual int imageTypeNumeric() = 0;
+		virtual bool useZip() = 0;
+		virtual bool useSevenZip() = 0;
+		virtual bool scaledImage() = 0;
 
 	protected:
 		// events CAN be reimplemented in the concrete image classes
