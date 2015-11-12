@@ -6561,7 +6561,6 @@ void MainWindow::init()
 	tabWidgetMachineList->blockSignals(false);
 	on_tabWidgetMachineList_currentChanged(qmc2LastListIndex);
 	floatToggleButtonSoftwareDetail_toggled(floatToggleButtonSoftwareDetail->isChecked());
-	updateTabWidgets();
 	ImageWidget::reloadArtworkFormats();
 	qmc2EarlyStartup = false;
 
@@ -6577,6 +6576,7 @@ void MainWindow::init()
 
 	// trigger initial load
 	QTimer::singleShot(0, this, SLOT(on_actionReload_triggered()));
+	QTimer::singleShot(50, this, SLOT(updateTabWidgets()));
 }
 
 void MainWindow::setupStyle(QString styleName)
