@@ -121,6 +121,7 @@ class ImageWidget : public QWidget
 		// events CAN be reimplemented in the concrete image classes
 		virtual void paintEvent(QPaintEvent *);
 		virtual void contextMenuEvent(QContextMenuEvent *);
+		virtual bool customArtwork() { return false; }
 
 	public slots:
 		void init();

@@ -151,7 +151,11 @@ void ImageWidget::closeSource()
 void ImageWidget::reloadActiveFormats()
 {
 	activeFormats.clear();
-	QStringList imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(cachePrefix()), QStringList()).toStringList();
+	QStringList imgFmts;
+	if ( customArtwork() )
+		imgFmts = qmc2Config->value(QString("Artwork/%1/ActiveFormats").arg(imageType()), QStringList()).toStringList();
+	else
+		imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(cachePrefix()), QStringList()).toStringList();
 	if ( imgFmts.isEmpty() )
 		activeFormats << QMC2_IMAGE_FORMAT_INDEX_PNG;
 	else for (int i = 0; i < imgFmts.count(); i++)

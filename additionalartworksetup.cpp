@@ -75,6 +75,13 @@ void AdditionalArtworkSetup::save()
 	int deleteAfterIndex = componentInfo->availableFeatureList().indexOf(QMC2_SYSTEM_NOTES_INDEX);
 	for (int i = componentInfo->availableFeatureList().count(); i > deleteAfterIndex; i--)
 		componentInfo->availableFeatureList().removeAt(i);
+	QHash<QString, QStringList> savedActiveFormats;
+	qmc2Config->beginGroup("Artwork");
+	foreach (QString name, qmc2Config->childGroups()) {
+		if ( qmc2Config->contains(QString("%1/ActiveFormats").arg(name)) )
+			savedActiveFormats.insert(name, qmc2Config->value(QString("%1/ActiveFormats").arg(name), QStringList()).toStringList());
+	}
+	qmc2Config->endGroup();
 	qmc2Config->remove("Artwork");
 	for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
 		QTreeWidgetItem *item = treeWidget->topLevelItem(i);
@@ -99,6 +106,8 @@ void AdditionalArtworkSetup::save()
 			FileEditWidget *fewFolderOrArchive = (FileEditWidget *)stackedWidgetFolderOrArchive->widget(QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE);
 			if ( !fewFolderOrArchive->lineEditFile->text().isEmpty() )
 				qmc2Config->setValue(QString("Artwork/%1/Archive").arg(name), fewFolderOrArchive->lineEditFile->text());
+			if ( savedActiveFormats.contains(name) )
+				qmc2Config->setValue(QString("Artwork/%1/ActiveFormats").arg(name), savedActiveFormats[name]);
 			if ( comboBoxTarget->currentIndex() == QMC2_ADDITIONALARTWORK_INDEX_TARGET_SYSTEM ) {
 				QString nameCopy = name;
 				int featureIndex = QMC2_USEROFFSET_INDEX + i;
@@ -132,9 +141,9 @@ void AdditionalArtworkSetup::load()
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
 	QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
-	qmc2Config->beginGroup("Artwork");
 	m_seq = 0;
 	m_itemHash.clear();
+	qmc2Config->beginGroup("Artwork");
 	foreach (QString name, qmc2Config->childGroups()) {
 		QTreeWidgetItem *newItem = new QTreeWidgetItem(treeWidget);
 		m_itemHash[m_seq] = newItem;
