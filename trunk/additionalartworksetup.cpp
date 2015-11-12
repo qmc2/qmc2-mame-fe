@@ -76,7 +76,6 @@ void AdditionalArtworkSetup::save()
 	for (int i = componentInfo->availableFeatureList().count(); i > deleteAfterIndex; i--)
 		componentInfo->availableFeatureList().removeAt(i);
 	qmc2Config->remove("Artwork");
-	qmc2Config->beginGroup("Artwork");
 	for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
 		QTreeWidgetItem *item = treeWidget->topLevelItem(i);
 		QLineEdit *lineEditName = (QLineEdit *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_NAME);
@@ -84,34 +83,42 @@ void AdditionalArtworkSetup::save()
 		if ( !name.isEmpty() ) {
 			QToolButton *toolButtonIcon = (QToolButton *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_ICON);
 			if ( !toolButtonIcon->whatsThis().isEmpty() )
-				qmc2Config->setValue(QString("%1/Icon").arg(name), toolButtonIcon->whatsThis());
+				qmc2Config->setValue(QString("Artwork/%1/Icon").arg(name), toolButtonIcon->whatsThis());
 			QComboBox *comboBoxTarget = (QComboBox *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_TARGET);
-			qmc2Config->setValue(QString("%1/Target").arg(name), comboBoxTarget->currentIndex());
+			qmc2Config->setValue(QString("Artwork/%1/Target").arg(name), comboBoxTarget->currentIndex());
 			QComboBox *comboBoxScaled = (QComboBox *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_SCALED);
-			qmc2Config->setValue(QString("%1/Scaled").arg(name), comboBoxScaled->currentIndex());
+			qmc2Config->setValue(QString("Artwork/%1/Scaled").arg(name), comboBoxScaled->currentIndex());
 			QComboBox *comboBoxType = (QComboBox *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_TYPE);
-			qmc2Config->setValue(QString("%1/Type").arg(name), comboBoxType->currentIndex());
+			qmc2Config->setValue(QString("Artwork/%1/Type").arg(name), comboBoxType->currentIndex());
 			QComboBox *comboBoxFormat = (QComboBox *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_FORMAT);
-			qmc2Config->setValue(QString("%1/Format").arg(name), comboBoxFormat->currentIndex());
+			qmc2Config->setValue(QString("Artwork/%1/Format").arg(name), comboBoxFormat->currentIndex());
 			QStackedWidget *stackedWidgetFolderOrArchive = (QStackedWidget *)treeWidget->itemWidget(item, QMC2_ADDITIONALARTWORK_COLUMN_FOLDER_OR_ARCHIVE);
 			DirectoryEditWidget *dewFolderOrArchive = (DirectoryEditWidget *)stackedWidgetFolderOrArchive->widget(QMC2_ADDITIONALARTWORK_INDEX_TYPE_FOLDER);
 			if ( !dewFolderOrArchive->lineEditDirectory->text().isEmpty() )
-				qmc2Config->setValue(QString("%1/Folder").arg(name), dewFolderOrArchive->lineEditDirectory->text());
+				qmc2Config->setValue(QString("Artwork/%1/Folder").arg(name), dewFolderOrArchive->lineEditDirectory->text());
 			FileEditWidget *fewFolderOrArchive = (FileEditWidget *)stackedWidgetFolderOrArchive->widget(QMC2_ADDITIONALARTWORK_INDEX_TYPE_ARCHIVE);
 			if ( !fewFolderOrArchive->lineEditFile->text().isEmpty() )
-				qmc2Config->setValue(QString("%1/Archive").arg(name), fewFolderOrArchive->lineEditFile->text());
-			int featureIndex = QMC2_USEROFFSET_INDEX + i;
-			QString nameCopy = name;
-			if ( qmc2Config->value(QString("%1/Target").arg(name), 0).toInt() == QMC2_ADDITIONALARTWORK_INDEX_TARGET_SYSTEM ) {
+				qmc2Config->setValue(QString("Artwork/%1/Archive").arg(name), fewFolderOrArchive->lineEditFile->text());
+			if ( comboBoxTarget->currentIndex() == QMC2_ADDITIONALARTWORK_INDEX_TARGET_SYSTEM ) {
+				QString nameCopy = name;
+				int featureIndex = QMC2_USEROFFSET_INDEX + i;
 				componentInfo->setShortTitle(featureIndex, name);
 				componentInfo->setLongTitle(featureIndex, nameCopy.replace("&", QString()));
 				componentInfo->setIcon(featureIndex, QIcon(toolButtonIcon->whatsThis()));
 				componentInfo->availableFeatureList() << featureIndex;
-				// FIXME
+				CustomArtwork *customArtwork = (CustomArtwork *)componentInfo->widget(featureIndex);
+				if ( customArtwork ) {
+					customArtwork->setName(name);
+					customArtwork->setNum(i);
+					customArtwork->reopenSource();
+					qmc2MainWindow->tabWidgetMachineDetail->setTabText(featureIndex, name);
+				} else {
+					qmc2MainWindow->tabWidgetMachineDetail->insertTab(featureIndex, new CustomArtwork(qmc2MainWindow->tabWidgetMachineDetail, name, i), QIcon(qmc2Config->value(QString("Artwork/%1/Icon").arg(name), QString()).toString()), name);
+					componentInfo->setWidget(featureIndex, qmc2MainWindow->tabWidgetMachineDetail->widget(featureIndex));
+				}
 			}
 		}
 	}
-	qmc2Config->endGroup();
 }
 
 void AdditionalArtworkSetup::load()

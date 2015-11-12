@@ -54,15 +54,7 @@ ImageWidget::ImageWidget(QWidget *parent)
 
 ImageWidget::~ImageWidget()
 {
-	if ( useZip() ) {
-		foreach (unzFile imageFile, imageFileMap)
-			unzClose(imageFile);
-	} else if ( useSevenZip() ) {
-		foreach (SevenZipFile *imageFile, imageFileMap7z) {
-			imageFile->close();
-			delete imageFile;
-		}
-	}
+	closeSource();
 }
 
 void ImageWidget::init()
@@ -94,27 +86,7 @@ void ImageWidget::init()
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
 
-	if ( useZip() ) {
-		foreach (QString filePath, this->imageZip().split(";", QString::SkipEmptyParts)) {
-			unzFile imageFile = unzOpen(filePath.toUtf8().constData());
-			if ( imageFile == NULL )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
-			else
-				imageFileMap[filePath] = imageFile;
-		}
-	} else if ( useSevenZip() ) {
-		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
-			SevenZipFile *imageFile = new SevenZipFile(filePath);
-			if ( !imageFile->open() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
-			else {
-				connect(imageFile, SIGNAL(dataReady()), this, SLOT(sevenZipDataReady()));
-				imageFileMap7z[filePath] = imageFile;
-			}
-		}
-	}
-
-	reloadActiveFormats();
+	openSource();
 }
 
 void ImageWidget::updateArtwork()
@@ -133,6 +105,47 @@ void ImageWidget::reloadArtworkFormats()
 		it.next();
 		it.value()->reloadActiveFormats();
 	}
+}
+
+void ImageWidget::openSource()
+{
+	if ( useZip() ) {
+		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
+			unzFile imageFile = unzOpen(filePath.toUtf8().constData());
+			if ( imageFile == NULL )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
+			else
+				imageFileMap[filePath] = imageFile;
+		}
+	} else if ( useSevenZip() ) {
+		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
+			SevenZipFile *imageFile = new SevenZipFile(filePath);
+			if ( !imageFile->open() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
+			else {
+				connect(imageFile, SIGNAL(dataReady()), this, SLOT(sevenZipDataReady()));
+				imageFileMap7z[filePath] = imageFile;
+			}
+		}
+	}
+	reloadActiveFormats();
+}
+
+void ImageWidget::closeSource()
+{
+	QMapIterator<QString, unzFile> itZip(imageFileMap);
+	while ( itZip.hasNext() ) {
+		itZip.next();
+		unzClose(itZip.value());
+	}
+	imageFileMap.clear();
+	QMapIterator<QString, SevenZipFile*> it7z(imageFileMap7z);
+	while ( it7z.hasNext() ) {
+		it7z.next();
+		it7z.value()->close();
+		delete it7z.value();
+	}
+	imageFileMap7z.clear();
 }
 
 void ImageWidget::reloadActiveFormats()
