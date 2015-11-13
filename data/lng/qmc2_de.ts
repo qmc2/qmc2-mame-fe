@@ -6826,22 +6826,22 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Warte auf Daten...</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="394"/>
+        <location filename="../../imagewidget.cpp" line="396"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Dekomprimiere Archiv, bitte warten...</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="531"/>
+        <location filename="../../imagewidget.cpp" line="533"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>FATAL: kann Backup der existierenden Bild-Datei &apos;%1&apos; nicht unter &apos;%2&apos; erstellen</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="546"/>
+        <location filename="../../imagewidget.cpp" line="548"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
         <translation>FATAL: kann Bild-Datei &apos;%1&apos; nicht erstellen</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="552"/>
+        <location filename="../../imagewidget.cpp" line="554"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
         <translation>FATAL: kann den primären Pfad für Bild-Typ &apos;%1&apos; nicht ermitteln</translation>
     </message>
@@ -20162,37 +20162,28 @@ Bist Du sicher, dass Du das tun willst?</translation>
 <context>
     <name>SoftwareImageWidget</name>
     <message>
-        <location filename="../../softwaresnapshot.cpp" line="56"/>
+        <location filename="../../softwareimagewidget.cpp" line="46"/>
         <source>Copy image to clipboard</source>
         <translation>Bild in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwaresnapshot.cpp" line="62"/>
+        <location filename="../../softwareimagewidget.cpp" line="52"/>
         <source>Copy file path to clipboard</source>
         <translation>Datei-Pfad in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwaresnapshot.cpp" line="71"/>
+        <location filename="../../softwareimagewidget.cpp" line="61"/>
         <source>Refresh cache slot</source>
         <translation>Cache-Slot aktualisieren</translation>
     </message>
     <message>
-        <location filename="../../softwaresnapshot.cpp" line="166"/>
-        <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
-        <translation>FATAL: kann Software Snapshot Datei nicht öffnen; bitte Zugriffsrechte für %1 überprüfen</translation>
+        <location filename="../../softwareimagewidget.cpp" line="94"/>
+        <location filename="../../softwareimagewidget.cpp" line="102"/>
+        <source>FATAL: can&apos;t open %1 file, please check access permissions for %2</source>
+        <translation>FATAL: kann %1-Datei nicht öffnen, bitte Zugriffsrechte für %2 überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwaresnapshot.cpp" line="215"/>
-        <source>FATAL: can&apos;t open software snap-shot file %1</source>
-        <translation>FATAL: kann Software Snapshot Datei %1 nicht öffnen</translation>
-    </message>
-    <message>
-        <location filename="../../softwaresnapshot.cpp" line="215"/>
-        <source>7z error</source>
-        <translation>7z Fehler</translation>
-    </message>
-    <message>
-        <location filename="../../softwaresnapshot.cpp" line="248"/>
+        <location filename="../../softwareimagewidget.cpp" line="279"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Dekomprimiere Archiv, bitte warten...</translation>
     </message>
@@ -21502,9 +21493,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwaresnapshot.h" line="69"/>
-        <source>Snapshot</source>
-        <translation>Schnappschuss</translation>
+        <location filename="../../softwaresnapshot.h" line="17"/>
+        <source>software snapshot</source>
+        <translation>Software Schnappschuss</translation>
     </message>
 </context>
 <context>
