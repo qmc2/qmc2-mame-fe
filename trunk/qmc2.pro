@@ -92,6 +92,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			swlistexport.cpp \
 			deviceconfigurator.cpp \
 			softwarelist.cpp \
+			softwaresnapshot.cpp \
 			direditwidget.cpp \
 			fileeditwidget.cpp \
 			floateditwidget.cpp \
@@ -214,6 +215,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			swlistexport.h \
 			deviceconfigurator.h \
 			softwarelist.h \
+			softwaresnapshot.h \
 			direditwidget.h \
 			fileeditwidget.h \
 			filesystemmodel.h \

@@ -63,6 +63,7 @@
 #include "title.h"
 #include "pcb.h"
 #include "softwarelist.h"
+#include "softwaresnapshot.h"
 #include "machinelist.h"
 #include "romalyzer.h"
 #include "qmc2main.h"
