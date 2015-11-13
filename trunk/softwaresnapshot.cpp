@@ -23,9 +23,29 @@ extern bool qmc2ShowGameName;
 extern bool qmc2SmoothScaling;
 extern bool qmc2ParentImageFallback;
 extern bool qmc2RetryLoadingImages;
+extern bool qmc2ScaledSoftwareSnapshot;
 
-SoftwareSnapshot::SoftwareSnapshot(QWidget *parent)
+SoftwareImageWidget::SoftwareImageWidget(QWidget *parent)
 	: QWidget(parent)
+{
+	QTimer::singleShot(0, this, SLOT(init()));
+}
+
+SoftwareImageWidget::~SoftwareImageWidget()
+{
+	if ( qmc2UseSoftwareSnapFile ) {
+		foreach (unzFile snapFile, qmc2SoftwareSnap->snapFileMap)
+			unzClose(snapFile);
+		foreach (SevenZipFile *snapFile, qmc2SoftwareSnap->snapFileMap7z) {
+			snapFile->close();
+			delete snapFile;
+		}
+		qmc2SoftwareSnap->snapFileMap.clear();
+		qmc2SoftwareSnap->snapFileMap7z.clear();
+	}
+}
+
+void SoftwareImageWidget::init()
 {
 	contextMenu = new QMenu(this);
 	contextMenu->hide();
@@ -57,21 +77,7 @@ SoftwareSnapshot::SoftwareSnapshot(QWidget *parent)
 	reloadActiveFormats();
 }
 
-SoftwareSnapshot::~SoftwareSnapshot()
-{
-	if ( qmc2UseSoftwareSnapFile ) {
-		foreach (unzFile snapFile, qmc2SoftwareSnap->snapFileMap)
-			unzClose(snapFile);
-		foreach (SevenZipFile *snapFile, qmc2SoftwareSnap->snapFileMap7z) {
-			snapFile->close();
-			delete snapFile;
-		}
-		qmc2SoftwareSnap->snapFileMap.clear();
-		qmc2SoftwareSnap->snapFileMap7z.clear();
-	}
-}
-
-void SoftwareSnapshot::paintEvent(QPaintEvent *e)
+void SoftwareImageWidget::paintEvent(QPaintEvent *e)
 {
 	QPainter p(this);
 
@@ -93,10 +99,13 @@ void SoftwareSnapshot::paintEvent(QPaintEvent *e)
 		currentSnapshotPixmap.imagePath = cpm->imagePath;
 	}
 
-	drawScaledImage(&currentSnapshotPixmap, &p);
+	if ( scaledImage() || currentSnapshotPixmap.isGhost )
+		drawScaledImage(&currentSnapshotPixmap, &p);
+	else
+		drawCenteredImage(&currentSnapshotPixmap, &p);
 }
 
-QString SoftwareSnapshot::toBase64()
+QString SoftwareImageWidget::toBase64()
 {
 	ImagePixmap pm;
 	if ( !currentSnapshotPixmap.isNull() )
@@ -109,7 +118,7 @@ QString SoftwareSnapshot::toBase64()
 	return QString(imageData.toBase64());
 }
 
-void SoftwareSnapshot::refresh()
+void SoftwareImageWidget::refresh()
 {
 	if ( !myCacheKey.isEmpty() ) {
 		qmc2ImagePixmapCache.remove(myCacheKey);
@@ -117,13 +126,13 @@ void SoftwareSnapshot::refresh()
 	}
 }
 
-void SoftwareSnapshot::sevenZipDataReady()
+void SoftwareImageWidget::sevenZipDataReady()
 {
 	update();
 	enableWidgets(true);
 }
 
-void SoftwareSnapshot::enableWidgets(bool enable)
+void SoftwareImageWidget::enableWidgets(bool enable)
 {
 	qmc2Options->radioButtonSoftwareSnapSelect->setEnabled(enable);
 	qmc2Options->lineEditSoftwareSnapFile->setEnabled(enable);
@@ -131,7 +140,7 @@ void SoftwareSnapshot::enableWidgets(bool enable)
 	qmc2Options->toolButtonBrowseSoftwareSnapFile->setEnabled(enable);
 }
 
-bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName, bool fromParent)
+bool SoftwareImageWidget::loadSnapshot(QString listName, QString entryName, bool fromParent)
 {
 	ImagePixmap pm;
 	bool fileOk = true;
@@ -313,7 +322,7 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName, bool fr
 	return fileOk;
 }
 
-void SoftwareSnapshot::drawCenteredImage(QPixmap *pm, QPainter *p)
+void SoftwareImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 {
 	p->eraseRect(rect());
 
@@ -357,7 +366,7 @@ void SoftwareSnapshot::drawCenteredImage(QPixmap *pm, QPainter *p)
 	p->end();
 }
 
-void SoftwareSnapshot::drawScaledImage(QPixmap *pm, QPainter *p)
+void SoftwareImageWidget::drawScaledImage(QPixmap *pm, QPainter *p)
 {
 	if ( pm == NULL ) {
 		p->eraseRect(rect());
@@ -398,25 +407,25 @@ void SoftwareSnapshot::drawScaledImage(QPixmap *pm, QPainter *p)
 	drawCenteredImage(&pmScaled, p);
 }
 
-void SoftwareSnapshot::copyToClipboard()
+void SoftwareImageWidget::copyToClipboard()
 {
 	qApp->clipboard()->setPixmap(currentSnapshotPixmap);
 }
 
-void SoftwareSnapshot::copyPathToClipboard()
+void SoftwareImageWidget::copyPathToClipboard()
 {
 	if ( !currentSnapshotPixmap.imagePath.isEmpty() )
 		qApp->clipboard()->setText(currentSnapshotPixmap.imagePath);
 }
 
-void SoftwareSnapshot::contextMenuEvent(QContextMenuEvent *e)
+void SoftwareImageWidget::contextMenuEvent(QContextMenuEvent *e)
 {
 	actionCopyPathToClipboard->setVisible(!currentSnapshotPixmap.imagePath.isEmpty());
 	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
 	contextMenu->show();
 }
 
-void SoftwareSnapshot::reloadActiveFormats()
+void SoftwareImageWidget::reloadActiveFormats()
 {
 	activeFormats.clear();
 	QStringList imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ActiveImageFormats/sws", QStringList()).toStringList();
@@ -424,4 +433,46 @@ void SoftwareSnapshot::reloadActiveFormats()
 		activeFormats << QMC2_IMAGE_FORMAT_INDEX_PNG;
 	else for (int i = 0; i < imgFmts.count(); i++)
 		activeFormats << imgFmts[i].toInt();
+}
+
+QString SoftwareImageWidget::cleanDir(QString dirs)
+{
+	QStringList dirList;
+	foreach (QString dir, dirs.split(";", QString::SkipEmptyParts)) {
+		if ( !dir.endsWith("/") )
+			dir += "/";
+		dirList << dir;
+	}
+	return dirList.join(";");
+}
+
+SoftwareSnapshot::SoftwareSnapshot(QWidget *parent)
+	: SoftwareImageWidget(parent)
+{
+	// NOP
+}
+
+QString SoftwareSnapshot::imageZip()
+{
+	return qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile", QString()).toString();
+}
+
+QString SoftwareSnapshot::imageDir()
+{
+	return cleanDir(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapDirectory", QString()).toString());
+}
+
+bool SoftwareSnapshot::useZip()
+{
+	return qmc2UseSoftwareSnapFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFileType").toInt() == QMC2_IMG_FILETYPE_ZIP;
+}
+
+bool SoftwareSnapshot::useSevenZip()
+{
+	return qmc2UseSoftwareSnapFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
+}
+
+bool SoftwareSnapshot::scaledImage()
+{
+	return qmc2ScaledSoftwareSnapshot;
 }

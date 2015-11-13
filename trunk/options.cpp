@@ -87,6 +87,7 @@ extern bool qmc2ScaledController;
 extern bool qmc2ScaledMarquee;
 extern bool qmc2ScaledTitle;
 extern bool qmc2ScaledPCB;
+extern bool qmc2ScaledSoftwareSnapshot;
 extern bool qmc2SmoothScaling;
 extern bool qmc2RetryLoadingImages;
 extern bool qmc2ParentImageFallback;
@@ -826,6 +827,8 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ScaledTitle", qmc2ScaledTitle);
 	qmc2ScaledPCB = checkBoxScaledPCB->isChecked();
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ScaledPCB", qmc2ScaledPCB);
+	qmc2ScaledSoftwareSnapshot = checkBoxScaledSoftwareSnapshot->isChecked();
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ScaledSoftwareSnapshot", qmc2ScaledSoftwareSnapshot);
 	qmc2SmoothScaling = checkBoxSmoothScaling->isChecked();
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SmoothScaling", qmc2SmoothScaling);
 	qmc2RetryLoadingImages = checkBoxRetryLoadingImages->isChecked();
@@ -1799,6 +1802,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	checkBoxScaledTitle->setChecked(qmc2ScaledTitle);
 	qmc2ScaledPCB = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledPCB", true).toBool();
 	checkBoxScaledPCB->setChecked(qmc2ScaledPCB);
+	qmc2ScaledSoftwareSnapshot = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledSoftwareSnapshot", true).toBool();
+	checkBoxScaledSoftwareSnapshot->setChecked(qmc2ScaledSoftwareSnapshot);
 	qmc2SmoothScaling = config->value(QMC2_FRONTEND_PREFIX + "GUI/SmoothScaling", true).toBool();
 	checkBoxSmoothScaling->setChecked(qmc2SmoothScaling);
 	qmc2RetryLoadingImages = config->value(QMC2_FRONTEND_PREFIX + "GUI/RetryLoadingImages", true).toBool();

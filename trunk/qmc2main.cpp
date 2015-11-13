@@ -158,6 +158,7 @@ bool qmc2ScaledController = true;
 bool qmc2ScaledMarquee = true;
 bool qmc2ScaledTitle = true;
 bool qmc2ScaledPCB = true;
+bool qmc2ScaledSoftwareSnapshot = true;
 bool qmc2SmoothScaling = false;
 bool qmc2RetryLoadingImages = true;
 bool qmc2ParentImageFallback = false;
