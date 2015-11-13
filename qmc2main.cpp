@@ -65,6 +65,7 @@
 #include "embedder.h"
 #include "demomode.h"
 #include "softwarelist.h"
+#include "softwaresnapshot.h"
 #include "toolbarcustomizer.h"
 #include "paletteeditor.h"
 #include "brusheditor.h"

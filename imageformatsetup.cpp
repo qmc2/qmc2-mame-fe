@@ -7,6 +7,7 @@
 #include "options.h"
 #include "macros.h"
 #include "softwarelist.h"
+#include "softwaresnapshot.h"
 
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
