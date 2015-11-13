@@ -6845,22 +6845,22 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation>Esperando datos...</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="394"/>
+        <location filename="../../imagewidget.cpp" line="396"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Descomprimiendo archivo, por favor espera...</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="531"/>
+        <location filename="../../imagewidget.cpp" line="533"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>ERROR: no se puede crear el respaldo del archivo de imagen &apos;%1&apos; como &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="546"/>
+        <location filename="../../imagewidget.cpp" line="548"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
         <translation>ERROR: no se puede creae el archivo de imagen &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="552"/>
+        <location filename="../../imagewidget.cpp" line="554"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
         <translation>ERROR: no se puede determinar la ruta principal para el tipo de imagen &apos;%1&apos;</translation>
     </message>
@@ -20177,37 +20177,28 @@ Are you sure you want to do this?</source>
 <context>
     <name>SoftwareImageWidget</name>
     <message>
-        <location filename="../../softwaresnapshot.cpp" line="56"/>
+        <location filename="../../softwareimagewidget.cpp" line="46"/>
         <source>Copy image to clipboard</source>
         <translation type="unfinished">Copiar imagen al portapapeles</translation>
     </message>
     <message>
-        <location filename="../../softwaresnapshot.cpp" line="62"/>
+        <location filename="../../softwareimagewidget.cpp" line="52"/>
         <source>Copy file path to clipboard</source>
         <translation type="unfinished">Copiar la ruta del archivo al portapapeles</translation>
     </message>
     <message>
-        <location filename="../../softwaresnapshot.cpp" line="71"/>
+        <location filename="../../softwareimagewidget.cpp" line="61"/>
         <source>Refresh cache slot</source>
         <translation type="unfinished">Actualizar el slot de caché</translation>
     </message>
     <message>
-        <location filename="../../softwaresnapshot.cpp" line="166"/>
-        <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
-        <translation type="unfinished">ERROR: no se puede abrir el archivo de captura de software, por favor comprueba los permisos de acceso para &apos;%1&apos;</translation>
+        <location filename="../../softwareimagewidget.cpp" line="94"/>
+        <location filename="../../softwareimagewidget.cpp" line="102"/>
+        <source>FATAL: can&apos;t open %1 file, please check access permissions for %2</source>
+        <translation type="unfinished">ERROR: no se puede abrir el archivo &apos;%1&apos;, por favor comprueba los permisos de acceso para %2</translation>
     </message>
     <message>
-        <location filename="../../softwaresnapshot.cpp" line="215"/>
-        <source>FATAL: can&apos;t open software snap-shot file %1</source>
-        <translation type="unfinished">ERROR: no se puede abrir archivo de instantánea de software %1</translation>
-    </message>
-    <message>
-        <location filename="../../softwaresnapshot.cpp" line="215"/>
-        <source>7z error</source>
-        <translation type="unfinished">error 7z</translation>
-    </message>
-    <message>
-        <location filename="../../softwaresnapshot.cpp" line="248"/>
+        <location filename="../../softwareimagewidget.cpp" line="279"/>
         <source>Decompressing archive, please wait...</source>
         <translation type="unfinished">Descomprimiendo archivo, por favor espera...</translation>
     </message>
@@ -21517,9 +21508,9 @@ Are you sure you want to do this?</source>
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwaresnapshot.h" line="69"/>
-        <source>Snapshot</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../softwaresnapshot.h" line="17"/>
+        <source>software snapshot</source>
+        <translation type="unfinished">captura de software</translation>
     </message>
 </context>
 <context>

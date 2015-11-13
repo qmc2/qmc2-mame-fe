@@ -92,6 +92,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			swlistexport.cpp \
 			deviceconfigurator.cpp \
 			softwarelist.cpp \
+			softwareimagewidget.cpp \
 			softwaresnapshot.cpp \
 			direditwidget.cpp \
 			fileeditwidget.cpp \
@@ -139,6 +140,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			cryptedbytearray.cpp \
 			romstatefilter.cpp \
 			customartwork.cpp \
+			customsoftwareartwork.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -215,6 +217,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			swlistexport.h \
 			deviceconfigurator.h \
 			softwarelist.h \
+			softwareimagewidget.h \
 			softwaresnapshot.h \
 			direditwidget.h \
 			fileeditwidget.h \
@@ -264,6 +267,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			cryptedbytearray.h \
 			romstatefilter.h \
 			customartwork.h \
+			customsoftwareartwork.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h
