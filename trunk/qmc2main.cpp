@@ -3600,6 +3600,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 		return;
 	int left, top, right, bottom;
 	gridLayout->getContentsMargins(&left, &top, &right, &bottom);
+	SoftwareImageWidget::updateArtwork();
 	switch ( componentInfo->appliedFeatureList()[currentIndex] ) {
 		case QMC2_SWINFO_SNAPSHOT_PAGE:
 			if ( qmc2SoftwareNotesEditor )
@@ -3611,7 +3612,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				layout->setContentsMargins(0, 0, 0, 0);
 				tabSnapshot->setLayout(layout);
 			}
-			qmc2SoftwareSnapshot->update();
 			break;
 		case QMC2_SWINFO_PROJECTMESS_PAGE:
 			if ( qmc2SoftwareNotesEditor )

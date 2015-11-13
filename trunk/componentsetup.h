@@ -96,6 +96,7 @@ class ComponentSetup : public QDialog, public Ui::ComponentSetup
 		QStringList m_components;
 		QSplitter *splitter0, *splitter1;
 		QWidget *widget00, *widget01, *widget10, *widget11;
+		int m_artworkIndex;
 
 		ComponentInfo *initComponent1();
 		ComponentInfo *initComponent2();
