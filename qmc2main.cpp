@@ -3919,55 +3919,6 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 
 	if ( !qmc2CurrentItem || qmc2EarlyReloadActive ) {
 		qmc2LastGameInfoItem = qmc2LastEmuInfoItem = qmc2LastSoftwareInfoItem = qmc2LastConfigItem = qmc2LastDeviceConfigItem = qmc2LastSoftwareListItem = NULL;
-#if QMC2_OPENGL == 1
-		// images painted through OpenGL need extra "clear()'s", otherwise garbage is displayed
-		switch ( componentInfo->appliedFeatureList()[currentIndex] ) {
-			case QMC2_PREVIEW_INDEX: {
-				QPainter pPreview(qmc2Preview);
-				qmc2Preview->drawCenteredImage(0, &pPreview);
-				break;
-			}
-
-			case QMC2_FLYER_INDEX: {
-				QPainter pFlyer(qmc2Flyer);
-				qmc2Flyer->drawCenteredImage(0, &pFlyer);
-				break;
-			}
-
-			case QMC2_CABINET_INDEX: {
-				QPainter pCabinet(qmc2Cabinet);
-				qmc2Cabinet->drawCenteredImage(0, &pCabinet);
-				break;
-			}
-
-			case QMC2_CONTROLLER_INDEX: {
-				QPainter pController(qmc2Controller);
-				qmc2Controller->drawCenteredImage(0, &pController);
-				break;
-			}
-
-			case QMC2_MARQUEE_INDEX: {
-				QPainter pMarquee(qmc2Marquee);
-				qmc2Marquee->drawCenteredImage(0, &pMarquee);
-				break;
-			}
-
-			case QMC2_TITLE_INDEX: {
-				QPainter pTitle(qmc2Title);
-				qmc2Title->drawCenteredImage(0, &pTitle);
-				break;
-			}
-
-			case QMC2_PCB_INDEX: {
-				QPainter pPCB(qmc2PCB);
-				qmc2PCB->drawCenteredImage(0, &pPCB);
-				break;
-			}
-
-			default:
-				break;
-		}
-#endif
 		return;
 	}
 
@@ -11043,10 +10994,6 @@ int main(int argc, char *argv[])
 			   " (Qt " + qVersion() + ", " + QMC2_EMU_NAME_VARIANT + ", " + qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString() + ")";
 	qmc2StartupTimer.start();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, greeting);
-
-#if QMC2_OPENGL == 1
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("OpenGL features enabled"));
-#endif
 
 #if QMC2_USE_PHONON_API
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("Phonon features enabled - using Phonon v%1").arg(Phonon::phononVersion()));

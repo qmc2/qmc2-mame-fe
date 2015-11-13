@@ -5,17 +5,10 @@
 #include <QMenu>
 #include <QString>
 #include <QList>
-#if QMC2_OPENGL == 1
-#include <QGLWidget>
-#endif
 
 #include "imagewidget.h"
 
-#if QMC2_OPENGL == 1
-class SoftwareSnapshot : public QGLWidget
-#else
 class SoftwareSnapshot : public QWidget
-#endif
 {
 	Q_OBJECT
 

@@ -9,9 +9,6 @@
 #include <QPainter>
 #include <QAction>
 #include <QStringList>
-#if QMC2_OPENGL == 1
-#include <QGLWidget>
-#endif
 
 #include "unzip.h"
 #include "sevenzipfile.h"
@@ -70,11 +67,7 @@ class ImagePixmap : public QPixmap
 		}
 };
 
-#if QMC2_OPENGL == 1
-class ImageWidget : public QGLWidget
-#else
 class ImageWidget : public QWidget
-#endif
 {
 	Q_OBJECT 
 

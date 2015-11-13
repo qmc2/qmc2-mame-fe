@@ -25,11 +25,7 @@ extern bool qmc2ParentImageFallback;
 extern bool qmc2RetryLoadingImages;
 
 SoftwareSnapshot::SoftwareSnapshot(QWidget *parent)
-#if QMC2_OPENGL == 1
-	: QGLWidget(parent)
-#else
 	: QWidget(parent)
-#endif
 {
 	contextMenu = new QMenu(this);
 	contextMenu->hide();

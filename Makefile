@@ -212,20 +212,6 @@ ifndef JOYSTICK
 JOYSTICK = 1
 endif
 
-# >>> OPENGL <<<
-#
-# Enable OpenGL based features (1) or use standard features only (0).
-#
-# Requires OpenGL if enabled (hardware acceleration recommended).
-#
-# Note that this is currently only used to enable drawing of images through
-# OpenGL, which may actually be a bit slower than the standard 2D paint engine.
-# This was just added as an experiment -- though a successful one :).
-#
-ifndef OPENGL
-OPENGL = 0
-endif
-
 # >>> WIP <<<
 #
 # Enable (1) or disable (0) unfinished 'work in progress' code.
@@ -618,7 +604,7 @@ blank =
 space = $(blank) $(blank)
 
 # pre-compiler definitions (passed to qmake)
-DEFINES = DEFINES+=QMC2_$(QMC2_EMULATOR) QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED)
+DEFINES = DEFINES+=QMC2_$(QMC2_EMULATOR) QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED)
 
 # available translations
 QMC2_TRANSLATIONS = de es el fr it pl pt ro sv us
@@ -741,10 +727,6 @@ endif
 # setup additional Qt configuration options
 ifdef QT_CONF
 undef QT_CONF
-endif
-
-ifeq '$(OPENGL)' '1'
-QT_CONF += QT+=opengl
 endif
 
 ifeq '$(PHONON)' '1'
@@ -1407,7 +1389,6 @@ endif
 	@$(ECHO) "MKDIR                  UNIX command mkdir                            $(MKDIR)"
 	@$(ECHO) "MKSPEC                 Qt mkspec to be used (empty = default)        $(MKSPEC)"
 	@$(ECHO) "MV                     UNIX command mv                               $(MV)"
-	@$(ECHO) "OPENGL                 Enable miscellaneous OpenGL features (0, 1)   $(OPENGL)"
 	@$(ECHO) "OSCFG                  Use global OS configuration (0, 1)            $(OSCFG)"
 	@$(ECHO) "OSNAME                 Target system's OS name                       $(OSNAME)"
 	@$(ECHO) "OSREL                  Target system's OS release                    $(OSREL)"
