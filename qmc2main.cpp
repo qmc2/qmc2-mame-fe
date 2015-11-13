@@ -3607,7 +3607,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2SoftwareSnapshot = new SoftwareSnapshot(tabSnapshot);
 				QHBoxLayout *layout = new QHBoxLayout;
 				layout->addWidget(qmc2SoftwareSnapshot);
-				layout->setContentsMargins(left, top, right, bottom);
+				layout->setContentsMargins(0, 0, 0, 0);
 				tabSnapshot->setLayout(layout);
 			}
 			qmc2SoftwareSnapshot->update();
@@ -3704,7 +3704,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					qmc2SoftwareSnapshot = new SoftwareSnapshot(tabSnapshot);
 					QHBoxLayout *layout = new QHBoxLayout;
 					layout->addWidget(qmc2SoftwareSnapshot);
-					layout->setContentsMargins(left, top, right, bottom);
+					layout->setContentsMargins(0, 0, 0, 0);
 					tabSnapshot->setLayout(layout);
 				}
 				qmc2SoftwareSnapshot->loadSnapshot(listName, entryName);
