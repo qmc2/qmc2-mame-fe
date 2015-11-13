@@ -134,6 +134,8 @@ void SoftwareImageWidget::sevenZipDataReady()
 
 void SoftwareImageWidget::enableWidgets(bool enable)
 {
+	if ( customArtwork() )
+		return;
 	qmc2Options->radioButtonSoftwareSnapSelect->setEnabled(enable);
 	qmc2Options->lineEditSoftwareSnapFile->setEnabled(enable);
 	qmc2Options->comboBoxSoftwareSnapFileType->setEnabled(enable);

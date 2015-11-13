@@ -218,6 +218,8 @@ void ImageWidget::sevenZipDataReady()
 
 void ImageWidget::enableWidgets(bool enable)
 {
+	if ( customArtwork() )
+		return;
 	switch ( imageTypeNumeric() ) {
 		case QMC2_IMGTYPE_PREVIEW:
 			qmc2Options->radioButtonPreviewSelect->setEnabled(enable);
