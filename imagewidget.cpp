@@ -196,7 +196,7 @@ void ImageWidget::paintEvent(QPaintEvent *e)
 	} else
 		currentPixmap = *cpm;
 
-	if ( scaledImage() )
+	if ( scaledImage() || currentPixmap.isGhost )
 		drawScaledImage(&currentPixmap, &p);
 	else
 		drawCenteredImage(&currentPixmap, &p);
