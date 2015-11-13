@@ -699,6 +699,7 @@
 #define QMC2_SWINFO_PROJECTMESS_PAGE		1
 #define QMC2_SWINFO_NOTES_PAGE			2
 #define QMC2_SWINFO_INFO_PAGE			3
+#define QMC2_SWINFO_USEROFFSET_PAGE		4
 
 // size-/count-thresholds for displaying alternate label when loading or checking software-lists
 #define QMC2_SWLIST_SIZE_THRESHOLD		QMC2_1M

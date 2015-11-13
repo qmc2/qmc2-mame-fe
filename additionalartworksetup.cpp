@@ -17,6 +17,7 @@
 #include "options.h"
 #include "componentsetup.h"
 #include "customartwork.h"
+#include "customsoftwareartwork.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
@@ -71,10 +72,14 @@ void AdditionalArtworkSetup::on_pushButtonRestore_clicked()
 
 void AdditionalArtworkSetup::save()
 {
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component2"];
-	int deleteAfterIndex = componentInfo->availableFeatureList().indexOf(QMC2_SYSTEM_NOTES_INDEX);
-	for (int i = componentInfo->availableFeatureList().count(); i > deleteAfterIndex; i--)
-		componentInfo->availableFeatureList().removeAt(i);
+	ComponentInfo *component2Info = qmc2ComponentSetup->componentInfoHash()["Component2"];
+	int deleteAfterIndex = component2Info->availableFeatureList().indexOf(QMC2_SYSTEM_NOTES_INDEX);
+	for (int i = component2Info->availableFeatureList().count(); i > deleteAfterIndex; i--)
+		component2Info->availableFeatureList().removeAt(i);
+	ComponentInfo *component4Info = qmc2ComponentSetup->componentInfoHash()["Component4"];
+	deleteAfterIndex = component4Info->availableFeatureList().indexOf(QMC2_SWINFO_INFO_PAGE);
+	for (int i = component4Info->availableFeatureList().count(); i > deleteAfterIndex; i--)
+		component4Info->availableFeatureList().removeAt(i);
 	QHash<QString, QStringList> savedActiveFormats;
 	qmc2Config->beginGroup("Artwork");
 	foreach (QString name, qmc2Config->childGroups()) {
@@ -83,6 +88,7 @@ void AdditionalArtworkSetup::save()
 	}
 	qmc2Config->endGroup();
 	qmc2Config->remove("Artwork");
+	int systemArtworkIndex = 0, softwareArtworkIndex = 0;
 	for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
 		QTreeWidgetItem *item = treeWidget->topLevelItem(i);
 		QLineEdit *lineEditName = (QLineEdit *)treeWidget->itemWidget(item, QMC2_AW_COLUMN_NAME);
@@ -108,26 +114,48 @@ void AdditionalArtworkSetup::save()
 				qmc2Config->setValue(QString("Artwork/%1/Archive").arg(name), fewFolderOrArchive->lineEditFile->text());
 			if ( savedActiveFormats.contains(name) )
 				qmc2Config->setValue(QString("Artwork/%1/ActiveFormats").arg(name), savedActiveFormats[name]);
+			QString nameCopy = name;
 			if ( comboBoxTarget->currentIndex() == QMC2_AW_INDEX_TARGET_SYSTEM ) {
-				QString nameCopy = name;
-				int featureIndex = QMC2_USEROFFSET_INDEX + i;
-				componentInfo->setShortTitle(featureIndex, name);
-				componentInfo->setLongTitle(featureIndex, nameCopy.replace("&", QString()));
-				componentInfo->setIcon(featureIndex, QIcon(toolButtonIcon->whatsThis()));
-				componentInfo->availableFeatureList() << featureIndex;
-				CustomArtwork *customArtwork = (CustomArtwork *)componentInfo->widget(featureIndex);
+				int featureIndex = QMC2_USEROFFSET_INDEX + systemArtworkIndex;
+				systemArtworkIndex++;
+				component2Info->setShortTitle(featureIndex, name);
+				component2Info->setLongTitle(featureIndex, nameCopy.replace("&", QString()));
+				component2Info->setIcon(featureIndex, QIcon(toolButtonIcon->whatsThis()));
+				component2Info->availableFeatureList() << featureIndex;
+				CustomArtwork *customArtwork = (CustomArtwork *)component2Info->widget(featureIndex);
 				if ( customArtwork ) {
 					customArtwork->setName(name);
 					customArtwork->setNum(i);
 					customArtwork->reopenSource();
-					featureIndex = componentInfo->appliedFeatureList().indexOf(featureIndex);
+					featureIndex = component2Info->appliedFeatureList().indexOf(featureIndex);
 					if ( featureIndex >= 0 ) {
 						qmc2MainWindow->tabWidgetMachineDetail->setTabText(featureIndex, name);
 						qmc2MainWindow->tabWidgetMachineDetail->setTabIcon(featureIndex, QIcon(qmc2Config->value(QString("Artwork/%1/Icon").arg(name), QString()).toString()));
 					}
 				} else {
 					qmc2MainWindow->tabWidgetMachineDetail->insertTab(featureIndex, new CustomArtwork(qmc2MainWindow->tabWidgetMachineDetail, name, i), QIcon(qmc2Config->value(QString("Artwork/%1/Icon").arg(name), QString()).toString()), name);
-					componentInfo->setWidget(featureIndex, qmc2MainWindow->tabWidgetMachineDetail->widget(featureIndex));
+					component2Info->setWidget(featureIndex, qmc2MainWindow->tabWidgetMachineDetail->widget(featureIndex));
+				}
+			} else {
+				int featureIndex = QMC2_SWINFO_USEROFFSET_PAGE + softwareArtworkIndex;
+				softwareArtworkIndex++;
+				component4Info->setShortTitle(featureIndex, name);
+				component4Info->setLongTitle(featureIndex, nameCopy.replace("&", QString()));
+				component4Info->setIcon(featureIndex, QIcon(toolButtonIcon->whatsThis()));
+				component4Info->availableFeatureList() << featureIndex;
+				CustomSoftwareArtwork *customArtwork = (CustomSoftwareArtwork *)component4Info->widget(featureIndex);
+				if ( customArtwork ) {
+					customArtwork->setName(name);
+					customArtwork->setNum(i);
+					customArtwork->reopenSource();
+					featureIndex = component4Info->appliedFeatureList().indexOf(featureIndex);
+					if ( featureIndex >= 0 ) {
+						qmc2MainWindow->tabWidgetSoftwareDetail->setTabText(featureIndex, name);
+						qmc2MainWindow->tabWidgetSoftwareDetail->setTabIcon(featureIndex, QIcon(qmc2Config->value(QString("Artwork/%1/Icon").arg(name), QString()).toString()));
+					}
+				} else {
+					qmc2MainWindow->tabWidgetSoftwareDetail->insertTab(featureIndex, new CustomSoftwareArtwork(qmc2MainWindow->tabWidgetSoftwareDetail, name, i), QIcon(qmc2Config->value(QString("Artwork/%1/Icon").arg(name), QString()).toString()), name);
+					component4Info->setWidget(featureIndex, qmc2MainWindow->tabWidgetSoftwareDetail->widget(featureIndex));
 				}
 			}
 		}

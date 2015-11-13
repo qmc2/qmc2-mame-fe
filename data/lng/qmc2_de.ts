@@ -334,8 +334,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="41"/>
-        <location filename="../../additionalartworksetup.cpp" line="155"/>
-        <location filename="../../additionalartworksetup.cpp" line="254"/>
+        <location filename="../../additionalartworksetup.cpp" line="183"/>
+        <location filename="../../additionalartworksetup.cpp" line="282"/>
         <source>Artwork name</source>
         <translation>Name der Bildklasse</translation>
     </message>
@@ -410,169 +410,169 @@ p, li { white-space: pre-wrap; }
         <translation>Ausgewählte Bildklassen entfernen</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="151"/>
-        <location filename="../../additionalartworksetup.cpp" line="250"/>
+        <location filename="../../additionalartworksetup.cpp" line="179"/>
+        <location filename="../../additionalartworksetup.cpp" line="278"/>
         <source>Select / deselect this artwork class for removal</source>
         <translation>Diese Bildklasse zum Entfernen selektieren / deselektieren</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="156"/>
-        <location filename="../../additionalartworksetup.cpp" line="255"/>
+        <location filename="../../additionalartworksetup.cpp" line="184"/>
+        <location filename="../../additionalartworksetup.cpp" line="283"/>
         <source>Enter a name for this artwork class (required)</source>
         <translation>Name dieser Bildklasse (erforderlich)</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="162"/>
-        <location filename="../../additionalartworksetup.cpp" line="260"/>
+        <location filename="../../additionalartworksetup.cpp" line="190"/>
+        <location filename="../../additionalartworksetup.cpp" line="288"/>
         <source>Choose...</source>
         <translation>Auswählen...</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="164"/>
-        <location filename="../../additionalartworksetup.cpp" line="262"/>
+        <location filename="../../additionalartworksetup.cpp" line="192"/>
+        <location filename="../../additionalartworksetup.cpp" line="290"/>
         <source>Choose an icon file to be used for this artwork class (optional)</source>
         <translation>Auswahl einer Icon Datei zur Verwendung für diese Bildklasse (optional)</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="173"/>
-        <location filename="../../additionalartworksetup.cpp" line="266"/>
+        <location filename="../../additionalartworksetup.cpp" line="201"/>
+        <location filename="../../additionalartworksetup.cpp" line="294"/>
         <source>System</source>
         <translation>System</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="174"/>
-        <location filename="../../additionalartworksetup.cpp" line="267"/>
+        <location filename="../../additionalartworksetup.cpp" line="202"/>
+        <location filename="../../additionalartworksetup.cpp" line="295"/>
         <source>Software</source>
         <translation>Software</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="175"/>
-        <location filename="../../additionalartworksetup.cpp" line="268"/>
+        <location filename="../../additionalartworksetup.cpp" line="203"/>
+        <location filename="../../additionalartworksetup.cpp" line="296"/>
         <source>Select system or software as &lt;i&gt;target&lt;/i&gt; for this artwork class</source>
         <translation>Auswahl des &lt;i&gt;Ziels&lt;/i&gt; (System oder Software) für Bilder dieser Klasse</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="182"/>
-        <location filename="../../additionalartworksetup.cpp" line="272"/>
+        <location filename="../../additionalartworksetup.cpp" line="210"/>
+        <location filename="../../additionalartworksetup.cpp" line="300"/>
         <source>On</source>
         <translation>An</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="183"/>
-        <location filename="../../additionalartworksetup.cpp" line="273"/>
+        <location filename="../../additionalartworksetup.cpp" line="211"/>
+        <location filename="../../additionalartworksetup.cpp" line="301"/>
         <source>Off</source>
         <translation>Aus</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="184"/>
-        <location filename="../../additionalartworksetup.cpp" line="274"/>
+        <location filename="../../additionalartworksetup.cpp" line="212"/>
+        <location filename="../../additionalartworksetup.cpp" line="302"/>
         <source>Choose if images of this artwork class are scaled or not</source>
         <translation>Legt fest ob Bilder dieser Klasse skaliert werden oder nicht</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="191"/>
-        <location filename="../../additionalartworksetup.cpp" line="278"/>
+        <location filename="../../additionalartworksetup.cpp" line="219"/>
+        <location filename="../../additionalartworksetup.cpp" line="306"/>
         <source>Folder</source>
         <translation>Ordner</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="192"/>
-        <location filename="../../additionalartworksetup.cpp" line="279"/>
+        <location filename="../../additionalartworksetup.cpp" line="220"/>
+        <location filename="../../additionalartworksetup.cpp" line="307"/>
         <source>Archive</source>
         <translation>Archiv</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="193"/>
-        <location filename="../../additionalartworksetup.cpp" line="280"/>
+        <location filename="../../additionalartworksetup.cpp" line="221"/>
+        <location filename="../../additionalartworksetup.cpp" line="308"/>
         <source>Choose if images are loaded from a folder or an archive for this artwork class</source>
         <translation>Legt fest ob Bilder dieser Klasse aus einem Verzeichnis oder aus einem Archiv geladen werden</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="201"/>
-        <location filename="../../additionalartworksetup.cpp" line="285"/>
+        <location filename="../../additionalartworksetup.cpp" line="229"/>
+        <location filename="../../additionalartworksetup.cpp" line="313"/>
         <source>ZIP</source>
         <translation>ZIP</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="202"/>
-        <location filename="../../additionalartworksetup.cpp" line="286"/>
+        <location filename="../../additionalartworksetup.cpp" line="230"/>
+        <location filename="../../additionalartworksetup.cpp" line="314"/>
         <source>7z</source>
         <translation>7z</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="203"/>
-        <location filename="../../additionalartworksetup.cpp" line="287"/>
+        <location filename="../../additionalartworksetup.cpp" line="231"/>
+        <location filename="../../additionalartworksetup.cpp" line="315"/>
         <source>Select archive format</source>
         <translation>Archivformat auswählen</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="210"/>
-        <location filename="../../additionalartworksetup.cpp" line="291"/>
+        <location filename="../../additionalartworksetup.cpp" line="238"/>
+        <location filename="../../additionalartworksetup.cpp" line="319"/>
         <source>Supported archives</source>
         <translation>Unterstützte Archive</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="210"/>
-        <location filename="../../additionalartworksetup.cpp" line="291"/>
+        <location filename="../../additionalartworksetup.cpp" line="238"/>
+        <location filename="../../additionalartworksetup.cpp" line="319"/>
         <source>ZIP archives</source>
         <translation>ZIP Archive</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="210"/>
-        <location filename="../../additionalartworksetup.cpp" line="291"/>
+        <location filename="../../additionalartworksetup.cpp" line="238"/>
+        <location filename="../../additionalartworksetup.cpp" line="319"/>
         <source>7z archives</source>
         <translation>7z Archive</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="211"/>
-        <location filename="../../additionalartworksetup.cpp" line="292"/>
+        <location filename="../../additionalartworksetup.cpp" line="239"/>
+        <location filename="../../additionalartworksetup.cpp" line="320"/>
         <source>Image archive</source>
         <translation>Bild Archiv</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="212"/>
-        <location filename="../../additionalartworksetup.cpp" line="293"/>
+        <location filename="../../additionalartworksetup.cpp" line="240"/>
+        <location filename="../../additionalartworksetup.cpp" line="321"/>
         <source>Image archive for this artwork class (required)</source>
         <translation>Archivdatei für diese Bildklasse (erforderlich)</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="213"/>
-        <location filename="../../additionalartworksetup.cpp" line="294"/>
+        <location filename="../../additionalartworksetup.cpp" line="241"/>
+        <location filename="../../additionalartworksetup.cpp" line="322"/>
         <source>Browse image archive</source>
         <translation>Bild Archiv auswählen</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="210"/>
-        <location filename="../../additionalartworksetup.cpp" line="291"/>
-        <location filename="../../additionalartworksetup.cpp" line="372"/>
+        <location filename="../../additionalartworksetup.cpp" line="238"/>
+        <location filename="../../additionalartworksetup.cpp" line="319"/>
+        <location filename="../../additionalartworksetup.cpp" line="400"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="219"/>
-        <location filename="../../additionalartworksetup.cpp" line="299"/>
+        <location filename="../../additionalartworksetup.cpp" line="247"/>
+        <location filename="../../additionalartworksetup.cpp" line="327"/>
         <source>Image folder</source>
         <translation>Bild Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="220"/>
-        <location filename="../../additionalartworksetup.cpp" line="300"/>
+        <location filename="../../additionalartworksetup.cpp" line="248"/>
+        <location filename="../../additionalartworksetup.cpp" line="328"/>
         <source>Image folder for this artwork class (required)</source>
         <translation>Verzeichnis für diese Bildklasse (erforderlich)</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="221"/>
-        <location filename="../../additionalartworksetup.cpp" line="301"/>
+        <location filename="../../additionalartworksetup.cpp" line="249"/>
+        <location filename="../../additionalartworksetup.cpp" line="329"/>
         <source>Browse image folder</source>
         <translation>Bild Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="372"/>
+        <location filename="../../additionalartworksetup.cpp" line="400"/>
         <source>Choose icon file</source>
         <translation>Icon Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="372"/>
+        <location filename="../../additionalartworksetup.cpp" line="400"/>
         <source>PNG files (*.png)</source>
         <translation>PNG Dateien (*.png)</translation>
     </message>
@@ -2870,318 +2870,318 @@ p, li { white-space: pre-wrap; }
         <translation>Abbre&amp;chen</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="56"/>
+        <location filename="../../componentsetup.cpp" line="59"/>
         <source>&amp;Search</source>
         <translation>Sucher&amp;gebnis</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="57"/>
+        <location filename="../../componentsetup.cpp" line="60"/>
         <source>Search systems</source>
         <translation>Suche in Systemen</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="60"/>
+        <location filename="../../componentsetup.cpp" line="63"/>
         <source>Favo&amp;rites</source>
         <translation>Favo&amp;riten</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="61"/>
+        <location filename="../../componentsetup.cpp" line="64"/>
         <source>Favorite list</source>
         <translation>Favoritenliste</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="64"/>
+        <location filename="../../componentsetup.cpp" line="67"/>
         <source>Pl&amp;ayed</source>
         <translation>Ges&amp;pielt</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="65"/>
+        <location filename="../../componentsetup.cpp" line="68"/>
         <source>Played list</source>
         <translation>Liste gespielter Systeme</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="68"/>
+        <location filename="../../componentsetup.cpp" line="71"/>
         <source>&amp;Foreign emulators</source>
         <translation>&amp;Fremde Emulatoren</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="69"/>
+        <location filename="../../componentsetup.cpp" line="72"/>
         <source>Foreign emulator list</source>
         <translation>Liste fremder Emulatoren</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="73"/>
-        <location filename="../../componentsetup.cpp" line="74"/>
+        <location filename="../../componentsetup.cpp" line="76"/>
+        <location filename="../../componentsetup.cpp" line="77"/>
         <source>Embedded emulators</source>
         <translation>Eingebettete Emulatoren</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="102"/>
+        <location filename="../../componentsetup.cpp" line="105"/>
         <source>Pre&amp;view</source>
         <translation>&amp;Vorschau</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="105"/>
+        <location filename="../../componentsetup.cpp" line="108"/>
         <source>Fl&amp;yer</source>
         <translation>Fl&amp;yer</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="111"/>
+        <location filename="../../componentsetup.cpp" line="114"/>
         <source>Em&amp;ulator info</source>
         <translation>Em&amp;ulator Info</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="112"/>
+        <location filename="../../componentsetup.cpp" line="115"/>
         <source>Emulator information</source>
         <translation>Emulator Informationen</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="114"/>
+        <location filename="../../componentsetup.cpp" line="117"/>
         <source>&amp;Configuration</source>
         <translation>&amp;Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="115"/>
+        <location filename="../../componentsetup.cpp" line="118"/>
         <source>Emulator configuration</source>
         <translation>Emulator Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="124"/>
+        <location filename="../../componentsetup.cpp" line="127"/>
         <source>Ca&amp;binet</source>
         <translation>Geh&amp;äuse</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="125"/>
+        <location filename="../../componentsetup.cpp" line="128"/>
         <source>Arcade cabinet image</source>
         <translation>Arcade-Gehäuse Bild</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="127"/>
+        <location filename="../../componentsetup.cpp" line="130"/>
         <source>C&amp;ontroller</source>
         <translation>C&amp;ontroller</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="128"/>
+        <location filename="../../componentsetup.cpp" line="131"/>
         <source>Control panel image</source>
         <translation>Controller Bild</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="130"/>
+        <location filename="../../componentsetup.cpp" line="133"/>
         <source>Mar&amp;quee</source>
         <translation>Mar&amp;quee</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="131"/>
+        <location filename="../../componentsetup.cpp" line="134"/>
         <source>Marquee image</source>
         <translation>Marquee Bild</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="133"/>
+        <location filename="../../componentsetup.cpp" line="136"/>
         <source>Titl&amp;e</source>
         <translation>Tit&amp;el</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="134"/>
+        <location filename="../../componentsetup.cpp" line="137"/>
         <source>Title screen image</source>
         <translation>Titel Bild</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="136"/>
+        <location filename="../../componentsetup.cpp" line="139"/>
         <source>&amp;PCB</source>
         <translation>&amp;PCB</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="137"/>
+        <location filename="../../componentsetup.cpp" line="140"/>
         <source>PCB image</source>
         <translation>PCB Bild</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="139"/>
+        <location filename="../../componentsetup.cpp" line="142"/>
         <source>Softwar&amp;e list</source>
         <translation>Softwar&amp;e Liste</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="140"/>
+        <location filename="../../componentsetup.cpp" line="143"/>
         <source>Software list</source>
         <translation>Software Liste</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="143"/>
+        <location filename="../../componentsetup.cpp" line="146"/>
         <source>&amp;YouTube</source>
         <translation>&amp;YouTube</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="144"/>
+        <location filename="../../componentsetup.cpp" line="147"/>
         <source>YouTube videos</source>
         <translation>YouTube Videos</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="147"/>
+        <location filename="../../componentsetup.cpp" line="150"/>
         <source>&amp;Notes</source>
         <translation>No&amp;tizen</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="148"/>
+        <location filename="../../componentsetup.cpp" line="151"/>
         <source>System notes</source>
         <translation>System-Notizen</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="263"/>
+        <location filename="../../componentsetup.cpp" line="267"/>
         <source>Snapshot</source>
         <translation>Schnappschuss</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="268"/>
+        <location filename="../../componentsetup.cpp" line="272"/>
         <source>ProjectMESS</source>
         <translation>ProjectMESS</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="118"/>
+        <location filename="../../componentsetup.cpp" line="121"/>
         <source>De&amp;vices</source>
         <translation>&amp;Geräte</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="52"/>
+        <location filename="../../componentsetup.cpp" line="55"/>
         <source>Machine &amp;list</source>
         <translation>Maschinen&amp;liste</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="53"/>
+        <location filename="../../componentsetup.cpp" line="56"/>
         <source>Machine list</source>
         <translation>Maschinenliste</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="103"/>
+        <location filename="../../componentsetup.cpp" line="106"/>
         <source>Machine preview image</source>
         <translation>Maschinen-Vorschaubild</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="106"/>
+        <location filename="../../componentsetup.cpp" line="109"/>
         <source>Machine flyer image</source>
         <translation>Maschinen Flyer-Bild</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="108"/>
+        <location filename="../../componentsetup.cpp" line="111"/>
         <source>Machine &amp;info</source>
         <translation>Maschinen &amp;Info</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="109"/>
+        <location filename="../../componentsetup.cpp" line="112"/>
         <source>Machine information</source>
         <translation>Maschinen Informationen</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="119"/>
+        <location filename="../../componentsetup.cpp" line="122"/>
         <source>Device configuration</source>
         <translation>Geräte Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="121"/>
+        <location filename="../../componentsetup.cpp" line="124"/>
         <source>Pr&amp;ojectMESS</source>
         <translation>Pr&amp;ojectMESS</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="122"/>
+        <location filename="../../componentsetup.cpp" line="125"/>
         <source>ProjectMESS (web lookup)</source>
         <translation>ProjectMESS (Web-Lookup)</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="214"/>
+        <location filename="../../componentsetup.cpp" line="218"/>
         <source>&amp;Front end log</source>
         <translation>&amp;Frontend Log</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="215"/>
+        <location filename="../../componentsetup.cpp" line="219"/>
         <source>Front end log</source>
         <translation>Frontend Log</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="218"/>
+        <location filename="../../componentsetup.cpp" line="222"/>
         <source>Emulator &amp;log</source>
         <translation>Emulator &amp;Log</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="219"/>
+        <location filename="../../componentsetup.cpp" line="223"/>
         <source>Emulator log</source>
         <translation>Emulator Log</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="222"/>
+        <location filename="../../componentsetup.cpp" line="226"/>
         <source>E&amp;mulator control</source>
         <translation>E&amp;mulator Kontrolle</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="223"/>
+        <location filename="../../componentsetup.cpp" line="227"/>
         <source>Emulator control panel</source>
         <translation>Emulator Kontrolle</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="227"/>
+        <location filename="../../componentsetup.cpp" line="231"/>
         <source>&amp;Audio player</source>
         <translation>&amp;Audio Player</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="228"/>
+        <location filename="../../componentsetup.cpp" line="232"/>
         <source>Audio player</source>
         <translation>Audio Player</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="232"/>
+        <location filename="../../componentsetup.cpp" line="236"/>
         <source>Do&amp;wnloads</source>
         <translation>Dow&amp;nloads</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="233"/>
+        <location filename="../../componentsetup.cpp" line="237"/>
         <source>Downloads</source>
         <translation>Downloads</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="264"/>
+        <location filename="../../componentsetup.cpp" line="268"/>
         <source>Software snapshot</source>
         <translation>Software Schnappschuss</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="269"/>
+        <location filename="../../componentsetup.cpp" line="273"/>
         <source>ProjectMESS web lookup</source>
         <translation>ProjectMESS Web-Lookup</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="273"/>
+        <location filename="../../componentsetup.cpp" line="277"/>
         <source>Notes</source>
         <translation>Notizen</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="274"/>
+        <location filename="../../componentsetup.cpp" line="278"/>
         <source>Software notes</source>
         <translation>Software Notizen</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="278"/>
+        <location filename="../../componentsetup.cpp" line="282"/>
         <source>Software info</source>
         <translation>Software Info</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="279"/>
+        <location filename="../../componentsetup.cpp" line="283"/>
         <source>Software info entry</source>
         <translation>Software Info Eintrag</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="679"/>
+        <location filename="../../componentsetup.cpp" line="702"/>
         <source>Choose the YouTube cache directory</source>
         <translation>YouTube Cache Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="689"/>
+        <location filename="../../componentsetup.cpp" line="712"/>
         <source>FATAL: can&apos;t create new YouTube cache directory, path = %1</source>
         <translation>FATAL: kann neues YouTube Cache Verzeichnis nicht anlegen, Pfad = %1</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="771"/>
+        <location filename="../../componentsetup.cpp" line="794"/>
         <source>Question</source>
         <translation>Frage</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="771"/>
+        <location filename="../../componentsetup.cpp" line="794"/>
         <source>The current component&apos;s setup hasn&apos;t been applied yet. Apply it now?</source>
         <translation>Die Änderungen an der aktuellen Komponente wurde noch nicht angewendet. Jetzt anwenden?</translation>
     </message>
