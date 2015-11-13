@@ -36,11 +36,7 @@ QStringList ImageWidget::formatDescriptions;
 QHash<int, ImageWidget *> ImageWidget::artworkHash;
 
 ImageWidget::ImageWidget(QWidget *parent)
-#if QMC2_OPENGL == 1
-	: QGLWidget(parent)
-#else
 	: QWidget(parent)
-#endif
 {
 	if ( formatNames.isEmpty() )
 		formatNames << "PNG" << "BMP" << "GIF" << "JPG" << "PBM" << "PGM" << "PPM" << "TIFF" << "XBM" << "XPM" << "SVG" << "TGA";
