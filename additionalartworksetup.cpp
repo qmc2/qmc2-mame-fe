@@ -132,10 +132,8 @@ void AdditionalArtworkSetup::save()
 						qmc2MainWindow->tabWidgetMachineDetail->setTabText(featureIndex, name);
 						qmc2MainWindow->tabWidgetMachineDetail->setTabIcon(featureIndex, QIcon(qmc2Config->value(QString("Artwork/%1/Icon").arg(name), QString()).toString()));
 					}
-				} else {
-					qmc2MainWindow->tabWidgetMachineDetail->insertTab(featureIndex, new CustomArtwork(qmc2MainWindow->tabWidgetMachineDetail, name, i), QIcon(qmc2Config->value(QString("Artwork/%1/Icon").arg(name), QString()).toString()), name);
-					component2Info->setWidget(featureIndex, qmc2MainWindow->tabWidgetMachineDetail->widget(featureIndex));
-				}
+				} else
+					component2Info->setWidget(featureIndex, new CustomArtwork(qmc2MainWindow->tabWidgetMachineDetail, name, i));
 			} else {
 				int featureIndex = QMC2_SWINFO_USEROFFSET_PAGE + softwareArtworkIndex;
 				softwareArtworkIndex++;
@@ -153,10 +151,8 @@ void AdditionalArtworkSetup::save()
 						qmc2MainWindow->tabWidgetSoftwareDetail->setTabText(featureIndex, name);
 						qmc2MainWindow->tabWidgetSoftwareDetail->setTabIcon(featureIndex, QIcon(qmc2Config->value(QString("Artwork/%1/Icon").arg(name), QString()).toString()));
 					}
-				} else {
-					qmc2MainWindow->tabWidgetSoftwareDetail->insertTab(featureIndex, new CustomSoftwareArtwork(qmc2MainWindow->tabWidgetSoftwareDetail, name, i), QIcon(qmc2Config->value(QString("Artwork/%1/Icon").arg(name), QString()).toString()), name);
-					component4Info->setWidget(featureIndex, qmc2MainWindow->tabWidgetSoftwareDetail->widget(featureIndex));
-				}
+				} else
+					component4Info->setWidget(featureIndex, new CustomSoftwareArtwork(qmc2MainWindow->tabWidgetSoftwareDetail, name, i));
 			}
 		}
 	}
