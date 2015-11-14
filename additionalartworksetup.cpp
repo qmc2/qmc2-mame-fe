@@ -156,6 +156,8 @@ void AdditionalArtworkSetup::save()
 			}
 		}
 	}
+	qmc2ComponentSetup->saveComponent("Component2");
+	qmc2ComponentSetup->saveComponent("Component4");
 }
 
 void AdditionalArtworkSetup::load()
