@@ -16,6 +16,8 @@ CustomArtwork::CustomArtwork(QWidget *parent, QString name, int num)
 	setNum(num);
 	m_cachePrefix = QUuid::createUuid().toString();
 	artworkHash.insert(imageTypeNumeric(), this);
+	if ( !parent )
+		hide();
 }
 
 CustomArtwork::~CustomArtwork()

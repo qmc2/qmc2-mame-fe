@@ -133,7 +133,7 @@ void AdditionalArtworkSetup::save()
 						qmc2MainWindow->tabWidgetMachineDetail->setTabIcon(featureIndex, QIcon(qmc2Config->value(QString("Artwork/%1/Icon").arg(name), QString()).toString()));
 					}
 				} else
-					component2Info->setWidget(featureIndex, new CustomArtwork(qmc2MainWindow->tabWidgetMachineDetail, name, i));
+					component2Info->setWidget(featureIndex, new CustomArtwork(0, name, i));
 			} else {
 				int featureIndex = QMC2_SWINFO_USEROFFSET_PAGE + softwareArtworkIndex;
 				softwareArtworkIndex++;
@@ -152,7 +152,7 @@ void AdditionalArtworkSetup::save()
 						qmc2MainWindow->tabWidgetSoftwareDetail->setTabIcon(featureIndex, QIcon(qmc2Config->value(QString("Artwork/%1/Icon").arg(name), QString()).toString()));
 					}
 				} else
-					component4Info->setWidget(featureIndex, new CustomSoftwareArtwork(qmc2MainWindow->tabWidgetSoftwareDetail, name, i));
+					component4Info->setWidget(featureIndex, new CustomSoftwareArtwork(0, name, i));
 			}
 		}
 	}
