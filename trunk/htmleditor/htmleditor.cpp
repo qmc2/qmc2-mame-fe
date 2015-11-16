@@ -1373,12 +1373,12 @@ QString HtmlEditor::customSystemArtworkUrl(QString id, QString artworkName)
 		}
 	}
 	QString filePath;
+	QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
+	QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
 	if ( imw ) {
 		QString cacheKey = imw->cachePrefix() + "_" + id;
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 		if ( !cpm ) {
-			QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
-			QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
 			if ( imw->loadImage(id, id, true, &filePath, false) )
 				filePath = QDir::fromNativeSeparators(filePath);
 			else
@@ -1386,6 +1386,8 @@ QString HtmlEditor::customSystemArtworkUrl(QString id, QString artworkName)
 		} else
 			filePath = cpm->imagePath;
 	}
+	if ( filePath.isEmpty() )
+		filePath = ghostPath;
 #if defined(QMC2_OS_WIN)
 	return QString("file:///%1").arg(QDir::fromNativeSeparators(filePath));
 #else
@@ -1426,12 +1428,12 @@ QString HtmlEditor::customSoftwareArtworkUrl(QString listName, QString softwareN
 		}
 	}
 	QString filePath;
+	QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
+	QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
 	if ( imw ) {
 		QString cacheKey = imw->cachePrefix() + "_" + listName + "_" + softwareName;
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 		if ( !cpm ) {
-			QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
-			QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
 			if ( imw->loadImage(listName, softwareName) )
 				filePath = imw->currentPixmap.imagePath;
 			else
@@ -1439,6 +1441,8 @@ QString HtmlEditor::customSoftwareArtworkUrl(QString listName, QString softwareN
 		} else
 			filePath = cpm->imagePath;
 	}
+	if ( filePath.isEmpty() )
+		filePath = ghostPath;
 #if defined(QMC2_OS_WIN)
 	return QString("file:///%1").arg(QDir::fromNativeSeparators(filePath));
 #else
