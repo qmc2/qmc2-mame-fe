@@ -21,14 +21,12 @@ class CustomSoftwareArtwork : public SoftwareImageWidget
 		virtual bool useZip();
 		virtual bool useSevenZip();
 		virtual bool scaledImage();
+		virtual bool customArtwork() { return true; }
 
 		QString name() { return m_name; }
 		void setName(QString name) { m_name = name; }
 		int num() { return m_num; }
 		void setNum(int num);
-
-	protected:
-		virtual bool customArtwork() { return true; }
 
 	private:
 		QString m_name;

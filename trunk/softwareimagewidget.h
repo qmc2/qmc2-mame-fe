@@ -49,6 +49,9 @@ class SoftwareImageWidget : public QWidget
 		virtual bool useSevenZip() = 0;
 		virtual bool scaledImage() = 0;
 
+		// these virtual functions CANbe reimplemented in the concrete image classes
+		virtual bool customArtwork() { return false; }
+
 	public slots:
 		void init();
 		void drawCenteredImage(QPixmap *, QPainter *);
@@ -63,7 +66,6 @@ class SoftwareImageWidget : public QWidget
 		// events CAN be reimplemented in the concrete image classes
 		virtual void paintEvent(QPaintEvent *);
 		virtual void contextMenuEvent(QContextMenuEvent *);
-		virtual bool customArtwork() { return false; }
 
 	private:
 		bool m_async;
