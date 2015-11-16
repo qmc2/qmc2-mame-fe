@@ -28,9 +28,10 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *paren
 #endif
 {
     mImageTypes << "prv" << "fly" << "cab" << "ctl" << "mrq" << "ttl" << "pcb" << "sws" << "ico";
+    mCustomImageTypes << globalConfig->customSystemArtworkNames() << globalConfig->customSoftwareArtworkNames();
     mImageCache.setMaxCost(QMC2_ARCADE_IMGCACHE_SIZE);
     mPixmapCache.setMaxCost(QMC2_ARCADE_IMGCACHE_SIZE);
-    foreach (QString imageType, mImageTypes) {
+    foreach (QString imageType, QStringList() << mImageTypes << mCustomImageTypes) {
         foreach (QString imagePath, imageTypeToFile(imageType).split(";", QString::SkipEmptyParts)) {
             if ( isZippedImageType(imageType) ) {
                 mFileMapZip[imagePath] = unzOpen(imagePath.toUtf8().constData());
@@ -55,7 +56,11 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *paren
                 mFileTypeMap[imagePath] = imageType;
             }
         }
-        QStringList activeFormats = globalConfig->activeImageFormats(imageType);
+        QStringList activeFormats;
+        if ( mCustomImageTypes.contains(imageType) )
+            activeFormats = globalConfig->customArtworkFormats(imageType);
+        else
+            activeFormats = globalConfig->activeImageFormats(imageType);
         if ( activeFormats.isEmpty() )
             mActiveFormatsMap[imageType] << QMC2_ARCADE_IMAGE_FORMAT_INDEX_PNG;
         else for (int i = 0; i < activeFormats.count(); i++)
@@ -73,7 +78,6 @@ ImageProvider::~ImageProvider()
 {
     foreach (unzFile zipFile, mFileMapZip)
         unzClose(zipFile);
-
     foreach (SevenZipFile *sevenZipFile, mFileMap7z) {
         sevenZipFile->close();
         delete sevenZipFile;
@@ -463,7 +467,10 @@ QString ImageProvider::imageTypeToFile(QString type)
         case QMC2_ARCADE_IMGTYPE_ICON:
             return globalConfig->iconFile();
         default:
-            return QString();
+            if ( mCustomImageTypes.contains(type) )
+                return globalConfig->customArtworkFile(type);
+            else
+                return QString();
         }
     } else {
         switch ( mImageTypes.indexOf(type) ) {
@@ -486,7 +493,10 @@ QString ImageProvider::imageTypeToFile(QString type)
         case QMC2_ARCADE_IMGTYPE_ICON:
             return globalConfig->iconFolder();
         default:
-            return QString();
+            if ( mCustomImageTypes.contains(type) )
+                return globalConfig->customArtworkFolder(type);
+            else
+                return QString();
         }
     }
 }
@@ -513,7 +523,10 @@ QString ImageProvider::imageTypeToLongName(QString type)
     case QMC2_ARCADE_IMGTYPE_ICON:
         return QObject::tr("icon");
     default:
-        return QString();
+        if ( mCustomImageTypes.contains(type) )
+            return type.replace("&", QString());
+        else
+            return QString();
     }
 }
 
@@ -539,7 +552,10 @@ bool ImageProvider::isZippedImageType(QString type)
     case QMC2_ARCADE_IMGTYPE_ICON:
         return globalConfig->iconsZipped();
     default:
-        return false;
+        if ( mCustomImageTypes.contains(type) )
+            return globalConfig->customArtworkZipped(type);
+        else
+            return false;
     }
 }
 
@@ -565,7 +581,10 @@ bool ImageProvider::isSevenZippedImageType(QString type)
     case QMC2_ARCADE_IMGTYPE_ICON:
         return globalConfig->iconsSevenZipped();
     default:
-        return false;
+        if ( mCustomImageTypes.contains(type) )
+            return globalConfig->customArtworkSevenZipped(type);
+        else
+            return false;
     }
 }
 
@@ -591,7 +610,10 @@ QString ImageProvider::imageFolder(QString type)
     case QMC2_ARCADE_IMGTYPE_ICON:
         return globalConfig->iconFolder();
     default:
-        return QString();
+        if ( mCustomImageTypes.contains(type) )
+            return globalConfig->customArtworkFolder(type);
+        else
+            return QString();
     }
 }
 

@@ -57,6 +57,7 @@ private:
     bool isAsync(QString);
 
     QStringList mImageTypes;
+    QStringList mCustomImageTypes;
     QMap<QString, QString> mFileTypeMap;
     QMap<QString, unzFile> mFileMapZip;
     QMap<QString, SevenZipFile *> mFileMap7z;
@@ -100,6 +101,7 @@ private:
     bool isAsync(QString);
 
     QStringList mImageTypes;
+    QStringList mCustomImageTypes;
     QMap<QString, QString> mFileTypeMap;
     QMap<QString, unzFile> mFileMapZip;
     QMap<QString, SevenZipFile *> mFileMap7z;

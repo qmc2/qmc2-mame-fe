@@ -227,6 +227,15 @@ public slots:
     void setMachineInfoImportDates(QStringList &);
     void removeMachineInfoImportDates();
 
+    // custom artwork related
+    QStringList customSystemArtworkNames();
+    QStringList customSoftwareArtworkNames();
+    QString customArtworkFile(QString);
+    QString customArtworkFolder(QString);
+    bool customArtworkZipped(QString);
+    bool customArtworkSevenZipped(QString);
+    QStringList customArtworkFormats(QString);
+
 private:
     QMap<QString, QMap<QString, QVariant> > m_themeDefaults;
 };
