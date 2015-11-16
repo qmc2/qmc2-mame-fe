@@ -124,9 +124,9 @@
         <location filename="../datinfodbmgr.cpp" line="492"/>
         <location filename="../datinfodbmgr.cpp" line="499"/>
         <location filename="../datinfodbmgr.cpp" line="504"/>
-        <location filename="../datinfodbmgr.cpp" line="968"/>
-        <location filename="../datinfodbmgr.cpp" line="970"/>
-        <location filename="../datinfodbmgr.cpp" line="972"/>
+        <location filename="../datinfodbmgr.cpp" line="967"/>
+        <location filename="../datinfodbmgr.cpp" line="969"/>
+        <location filename="../datinfodbmgr.cpp" line="971"/>
         <source>machine-info</source>
         <translation>Maschinen-Info</translation>
     </message>
@@ -146,22 +146,22 @@
         <location filename="../datinfodbmgr.cpp" line="779"/>
         <location filename="../datinfodbmgr.cpp" line="781"/>
         <location filename="../datinfodbmgr.cpp" line="786"/>
-        <location filename="../datinfodbmgr.cpp" line="792"/>
-        <location filename="../datinfodbmgr.cpp" line="796"/>
-        <location filename="../datinfodbmgr.cpp" line="860"/>
-        <location filename="../datinfodbmgr.cpp" line="923"/>
-        <location filename="../datinfodbmgr.cpp" line="926"/>
-        <location filename="../datinfodbmgr.cpp" line="929"/>
-        <location filename="../datinfodbmgr.cpp" line="933"/>
-        <location filename="../datinfodbmgr.cpp" line="938"/>
-        <location filename="../datinfodbmgr.cpp" line="942"/>
+        <location filename="../datinfodbmgr.cpp" line="791"/>
+        <location filename="../datinfodbmgr.cpp" line="795"/>
+        <location filename="../datinfodbmgr.cpp" line="859"/>
+        <location filename="../datinfodbmgr.cpp" line="922"/>
+        <location filename="../datinfodbmgr.cpp" line="925"/>
+        <location filename="../datinfodbmgr.cpp" line="928"/>
+        <location filename="../datinfodbmgr.cpp" line="932"/>
+        <location filename="../datinfodbmgr.cpp" line="937"/>
+        <location filename="../datinfodbmgr.cpp" line="941"/>
         <source>DAT-info database</source>
         <translation>DAT-Info Datenbank</translation>
     </message>
     <message>
         <location filename="../datinfodbmgr.cpp" line="581"/>
         <location filename="../datinfodbmgr.cpp" line="722"/>
-        <location filename="../datinfodbmgr.cpp" line="860"/>
+        <location filename="../datinfodbmgr.cpp" line="859"/>
         <source>importing %1 from &apos;%2&apos;</source>
         <translation>Importiere %1 von &apos;%2&apos;</translation>
     </message>
@@ -174,7 +174,7 @@
     <message>
         <location filename="../datinfodbmgr.cpp" line="651"/>
         <location filename="../datinfodbmgr.cpp" line="786"/>
-        <location filename="../datinfodbmgr.cpp" line="933"/>
+        <location filename="../datinfodbmgr.cpp" line="932"/>
         <source>done (importing %1 from &apos;%2&apos;)</source>
         <translation>Fertig (Importiere %1 von &apos;%2&apos;)</translation>
     </message>
@@ -213,12 +213,12 @@
         <translation>WARNUNG: &apos;$info&apos; fehlt in Emulator Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="792"/>
+        <location filename="../datinfodbmgr.cpp" line="791"/>
         <source>WARNING: can&apos;t open emulator info file %1</source>
         <translation>WARNUNG: kann Emulator Info Datei &apos;%1&apos; nicht öffnen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../datinfodbmgr.cpp" line="796"/>
+        <location filename="../datinfodbmgr.cpp" line="795"/>
         <source>%n emulator info record(s) imported</source>
         <translation>
             <numerusform>%n Emulator Info Datensatz importiert</numerusform>
@@ -226,33 +226,33 @@
         </translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="860"/>
-        <location filename="../datinfodbmgr.cpp" line="933"/>
+        <location filename="../datinfodbmgr.cpp" line="859"/>
+        <location filename="../datinfodbmgr.cpp" line="932"/>
         <source>system info-texts</source>
         <translation>System Info-Texte</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="923"/>
+        <location filename="../datinfodbmgr.cpp" line="922"/>
         <source>WARNING: missing &apos;$end&apos; in machine info file %1</source>
         <translation>WARNUNG: &apos;$end&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="926"/>
+        <location filename="../datinfodbmgr.cpp" line="925"/>
         <source>WARNING: missing &apos;$bio&apos; in machine info file %1</source>
         <translation>WARNUNG: &apos;$bio&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="929"/>
+        <location filename="../datinfodbmgr.cpp" line="928"/>
         <source>WARNING: missing &apos;$info&apos; in machine info file %1</source>
         <translation>WARNUNG: &apos;$info&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="938"/>
+        <location filename="../datinfodbmgr.cpp" line="937"/>
         <source>WARNING: can&apos;t open machine info file %1</source>
         <translation>WARNUNG: kann Maschinen Info Datei &apos;%1&apos; nicht öffnen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../datinfodbmgr.cpp" line="942"/>
+        <location filename="../datinfodbmgr.cpp" line="941"/>
         <source>%n machine info record(s) imported</source>
         <translation>
             <numerusform>%n Maschinen Info Datensatz importiert</numerusform>
@@ -260,9 +260,9 @@
         </translation>
     </message>
     <message>
-        <location filename="../datinfodbmgr.cpp" line="968"/>
-        <location filename="../datinfodbmgr.cpp" line="970"/>
-        <location filename="../datinfodbmgr.cpp" line="972"/>
+        <location filename="../datinfodbmgr.cpp" line="967"/>
+        <location filename="../datinfodbmgr.cpp" line="969"/>
+        <location filename="../datinfodbmgr.cpp" line="971"/>
         <source>WARNING: failed to alter %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: %1 Tabelle konnte nicht geändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
@@ -270,8 +270,8 @@
 <context>
     <name>ImageProvider</name>
     <message>
-        <location filename="../imageprovider.cpp" line="101"/>
-        <location filename="../imageprovider.cpp" line="167"/>
+        <location filename="../imageprovider.cpp" line="107"/>
+        <location filename="../imageprovider.cpp" line="173"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Dekomprimiere Archiv, bitte warten...</translation>
     </message>
@@ -523,59 +523,59 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../imageprovider.cpp" line="254"/>
-        <location filename="../imageprovider.cpp" line="256"/>
+        <location filename="../imageprovider.cpp" line="260"/>
+        <location filename="../imageprovider.cpp" line="262"/>
         <source>WARNING: ImageProvider::loadImage(): invalid image ID &apos;%1&apos; requested</source>
         <translation>WARNUNG: ImageProvider::loadImage(): Falsche Bild ID &apos;%1&apos; angefragt</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="280"/>
-        <location filename="../imageprovider.cpp" line="364"/>
+        <location filename="../imageprovider.cpp" line="286"/>
+        <location filename="../imageprovider.cpp" line="370"/>
         <source>WARNING: ImageProvider::loadImage(): unable to load image file &apos;%1&apos; from ZIP</source>
         <translation>WARNUNG: ImageProvider::loadImage(): Kann  Bild Datei &apos;%1&apos; nicht aus ZIP laden</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="498"/>
+        <location filename="../imageprovider.cpp" line="513"/>
         <source>preview</source>
         <translation>Vorschau</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="500"/>
+        <location filename="../imageprovider.cpp" line="515"/>
         <source>flyer</source>
         <translation>Flyer</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="502"/>
+        <location filename="../imageprovider.cpp" line="517"/>
         <source>cabinet</source>
         <translation>Gehäuse</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="504"/>
+        <location filename="../imageprovider.cpp" line="519"/>
         <source>controller</source>
         <translation>Controller</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="506"/>
+        <location filename="../imageprovider.cpp" line="521"/>
         <source>marquee</source>
         <translation>Marquee</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="508"/>
+        <location filename="../imageprovider.cpp" line="523"/>
         <source>title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="510"/>
+        <location filename="../imageprovider.cpp" line="525"/>
         <source>PCB</source>
         <translation>PCB</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="512"/>
+        <location filename="../imageprovider.cpp" line="527"/>
         <source>software snapshot</source>
         <translation>Software Snapshot</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="514"/>
+        <location filename="../imageprovider.cpp" line="529"/>
         <source>icon</source>
         <translation>Icon</translation>
     </message>
@@ -585,67 +585,67 @@
         <translation>QMC2 Arcade</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="261"/>
+        <location filename="../main.cpp" line="284"/>
         <source>%1 is not a valid graphics-system - available graphics-systems: %2</source>
         <translation>%1 ist kein gültiges Grafik-System - verfügare Grafik-Systeme: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="277"/>
+        <location filename="../main.cpp" line="300"/>
         <source>%1 is not a valid emulator-mode - available emulator-modes: %2</source>
         <translation>%1 ist kein gültiger Emulator-Modus - verfügare Emulator-Modi: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="295"/>
+        <location filename="../main.cpp" line="318"/>
         <source>%1 is not a valid console-mode - available console-modes: %2</source>
         <translation>%1 ist kein gültiger Konsolen-Modus - verfügare Konsolen-Modi: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="318"/>
+        <location filename="../main.cpp" line="341"/>
         <source>%1 is not valid theme - available themes: %2</source>
         <translation>%1 ist kein gültiger Theme - verfügare Themes: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="333"/>
+        <location filename="../main.cpp" line="356"/>
         <source>%1 is not a valid %2 theme - available %2 themes: %3</source>
         <translation>%1 ist kein gültiger %2 Theme - verfügare %2 Themes: %3</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="333"/>
+        <location filename="../main.cpp" line="356"/>
         <source>(none)</source>
         <translation>(keine)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="388"/>
+        <location filename="../main.cpp" line="412"/>
         <source>emulator-mode: %1</source>
         <translation>Emulator-Modus: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="393"/>
+        <location filename="../main.cpp" line="417"/>
         <source>language: %1</source>
         <translation>Sprache: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="394"/>
+        <location filename="../main.cpp" line="418"/>
         <source>theme: %1</source>
         <translation>Theme: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="391"/>
+        <location filename="../main.cpp" line="415"/>
         <source>graphics-system: %1</source>
         <translation>Grafik-System: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="389"/>
+        <location filename="../main.cpp" line="413"/>
         <source>console-mode: %1</source>
         <translation>Konsolen-Modus: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="426"/>
+        <location filename="../main.cpp" line="450"/>
         <source>Starting QML viewer using theme &apos;%1&apos;</source>
         <translation>Starte QML Anzeige unter Verwendung des Themes &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="468"/>
+        <location filename="../main.cpp" line="492"/>
         <source>QML viewer not started - please close the console window to exit</source>
         <translation>QML Anzeige nicht gestartet - bitte Konsolenfenster schließen um das Programm zu beenden</translation>
     </message>
@@ -991,44 +991,44 @@
         <translation>ROM Status</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="139"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="139"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="143"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="143"/>
         <source>Flyer image</source>
         <translation>Flyer Bild</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="142"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="142"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="146"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="146"/>
         <source>Cabinet image</source>
         <translation>Gehäuse Bild</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="145"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="145"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="149"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="149"/>
         <source>Controller image</source>
         <translation>Controller Bild</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="148"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="148"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="152"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="152"/>
         <source>Marquee image</source>
         <translation>Marquee Bild</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="151"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="151"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="155"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="155"/>
         <source>Title image</source>
         <translation>Titel Bild</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="154"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="154"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="158"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="158"/>
         <source>PCB image</source>
         <translation>PCB Bild</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="158"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="158"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="161"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="161"/>
         <source>Preview image</source>
         <translation>Vorschau Bild</translation>
     </message>
@@ -1430,126 +1430,126 @@ QMC2 Arcade neu starten!</translation>
 <context>
     <name>TweakedQmlApplicationViewer</name>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="94"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="95"/>
         <source>Theme</source>
         <translation>Theme</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="96"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="97"/>
         <source>Graphics system</source>
         <translation>Grafik-System</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="98"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="99"/>
         <source>Console mode</source>
         <translation>Konsolen-Modus</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="99"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="100"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="100"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="101"/>
         <source>Video snaps</source>
         <translation>Video Snaps</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="183"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="184"/>
         <source>Loading global and theme-specific settings</source>
         <translation>Lade globale und Themen-spezifische Einstellungen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="247"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="253"/>
         <source>Saving global and theme-specific settings</source>
         <translation>Speichere globale und Themen-spezifische Einstellungen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="318"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="324"/>
         <source>Activating full-screen display</source>
         <translation>Aktiviere Vollbild-Darstellung</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="335"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="341"/>
         <source>Activating windowed display</source>
         <translation>Aktiviere Fenster-Darstellung</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="352"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="358"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="354"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="360"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="356"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="362"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="358"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="364"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="361"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="367"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="391"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="397"/>
         <source>WARNING: filtered list file &apos;%1&apos; doesn&apos;t exist or isn&apos;t accessible, falling back to the full %2</source>
         <translation>WARNUNG: Die gefilterte Listen-Datei &apos;%1&apos; existiert nicht oder kann nicht geöffnet werden, verwende stattdessen die volle %2</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="391"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="399"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="440"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="442"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="451"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="397"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="405"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="446"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="448"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="457"/>
         <source>machine list</source>
         <translation>Maschinenliste</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="456"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="462"/>
         <source>machine</source>
         <translation>Maschine</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="399"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="405"/>
         <source>Loading %1 from &apos;%2&apos;</source>
         <translation>Lade %1 von &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="417"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="423"/>
         <source>WARNING: Can&apos;t open ROM state cache file &apos;%1&apos;, please check permissions</source>
         <translation>WARNUNG: Kann ROM Status Cache Datei &apos;%1&apos; nicht öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="419"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="425"/>
         <source>WARNING: The ROM state cache file &apos;%1&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>WARNUNG: Die ROM Status Cache Datei &apos;%1&apos; existiert nicht, bitte Haupt-Frontend ausführen um diese zu erstellen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="440"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="446"/>
         <source>FATAL: Can&apos;t open %1 cache file &apos;%2&apos;, please check permissions</source>
         <translation>FATAL: Kann die %1-Cache Datei &apos;%2&apos; nicht öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="442"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="448"/>
         <source>FATAL: The %1 cache file &apos;%2&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>FATAL: Die %1-Cache Datei &apos;%2&apos; existiert nicht, bitte Haupt-Frontend ausführen um diese zu erstellen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="451"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="457"/>
         <source>Done (loading %1 from &apos;%2&apos;)</source>
         <translation>Fertig (Lade &apos;%1&apos; von &apos;%2&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tweakedqmlappviewer.cpp" line="451"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="457"/>
         <source>%n non-device set(s) loaded</source>
         <translation>
             <numerusform>%n unterstütztes Set (ohne Geräte-Sets)</numerusform>
@@ -1557,30 +1557,30 @@ QMC2 Arcade neu starten!</translation>
         </translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="456"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="462"/>
         <source>Starting emulator #%1 for %2 ID &apos;%3&apos;</source>
         <translation>Starte Emulator #%1 für %2 mit der ID &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="480"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="486"/>
         <source>WARNING: TweakedQmlApplicationViewer::requestInfo(): unsupported info class &apos;%1&apos;</source>
         <translation>WARNUNG: TweakedQmlApplicationViewer::requestInfo(): Nicht unterstützte Info-Klasse &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="481"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="502"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="487"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="508"/>
         <source>no info available</source>
         <translation>Keine Daten verfügbar</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="674"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="696"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="754"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="776"/>
         <source>Stopping QML viewer</source>
         <translation>Beende QML Viewer</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="677"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="699"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="757"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="779"/>
         <source>QML viewer stopped - please close the console window to exit</source>
         <translation>QML Viewer gestoppt - bitte zum Beenden Konsolenfenster schließen</translation>
     </message>

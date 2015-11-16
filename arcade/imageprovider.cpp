@@ -57,9 +57,11 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *paren
             }
         }
         QStringList activeFormats;
-        if ( mCustomImageTypes.contains(imageType) )
+        if ( mCustomImageTypes.contains(imageType) ) {
             activeFormats = globalConfig->customArtworkFormats(imageType);
-        else
+            mCustomCachePrefixes.insert(imageType, QUuid::createUuid().toString());
+            imageType = mCustomCachePrefixes[imageType];
+        } else
             activeFormats = globalConfig->activeImageFormats(imageType);
         if ( activeFormats.isEmpty() )
             mActiveFormatsMap[imageType] << QMC2_ARCADE_IMAGE_FORMAT_INDEX_PNG;
@@ -446,6 +448,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 
 QString ImageProvider::imageTypeToFile(QString type)
 {
+    QString realType;
     if ( isZippedImageType(type) || isSevenZippedImageType(type) ) {
         switch ( mImageTypes.indexOf(type) ) {
         case QMC2_ARCADE_IMGTYPE_PREVIEW:
@@ -467,8 +470,9 @@ QString ImageProvider::imageTypeToFile(QString type)
         case QMC2_ARCADE_IMGTYPE_ICON:
             return globalConfig->iconFile();
         default:
-            if ( mCustomImageTypes.contains(type) )
-                return globalConfig->customArtworkFile(type);
+            realType = mCustomCachePrefixes.key(type);
+            if ( mCustomImageTypes.contains(realType) )
+                return globalConfig->customArtworkFile(realType);
             else
                 return QString();
         }
@@ -493,8 +497,9 @@ QString ImageProvider::imageTypeToFile(QString type)
         case QMC2_ARCADE_IMGTYPE_ICON:
             return globalConfig->iconFolder();
         default:
-            if ( mCustomImageTypes.contains(type) )
-                return globalConfig->customArtworkFolder(type);
+            realType = mCustomCachePrefixes.key(type);
+            if ( mCustomImageTypes.contains(realType) )
+                return globalConfig->customArtworkFolder(realType);
             else
                 return QString();
         }
@@ -586,6 +591,14 @@ bool ImageProvider::isSevenZippedImageType(QString type)
         else
             return false;
     }
+}
+
+QString ImageProvider::customCachePrefix(QString name)
+{
+    if ( mCustomCachePrefixes.contains(name) )
+        return mCustomCachePrefixes[name];
+    else
+        return QString();
 }
 
 QString ImageProvider::imageFolder(QString type)

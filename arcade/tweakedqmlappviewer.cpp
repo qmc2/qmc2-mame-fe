@@ -53,6 +53,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
 #endif
 {
     m_initialized = m_initialFullScreen = m_videoEnabled = windowModeSwitching = false;
+    m_currentSystemArtworkIndex = m_currentSoftwareArtworkIndex = -2;
     numFrames = 0;
 
     QStringList keySequences;
@@ -185,6 +186,8 @@ void TweakedQmlApplicationViewer::loadSettings()
     // load global arcade settings
     rootObject()->setProperty("version", globalConfig->applicationVersion());
     rootObject()->setProperty("qtVersion", qVersion());
+    QStringList systemArtworkList = customSystemArtwork();
+    int systemArtworkIndex = -1;
 
     // load theme-specific arcade settings
     switch ( themeIndex() ) {
@@ -195,6 +198,9 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("animateInForeground", globalConfig->animateInForeground());
         rootObject()->setProperty("fullScreen", globalConfig->fullScreen());
         rootObject()->setProperty("secondaryImageType", globalConfig->secondaryImageType());
+        systemArtworkIndex = systemArtworkList.indexOf(globalConfig->secondaryImageType());
+        if ( systemArtworkIndex >= 0 )
+            m_currentSystemArtworkIndex = systemArtworkIndex;
         rootObject()->setProperty("cabinetFlipped", globalConfig->cabinetFlipped());
         rootObject()->setProperty("lastIndex", globalConfig->lastIndex() < gameList.count() ? globalConfig->lastIndex() : 0);
         rootObject()->setProperty("menuHidden", globalConfig->menuHidden());
@@ -666,6 +672,80 @@ QString TweakedQmlApplicationViewer::parentId(QString id)
         return m_parentHash[id];
     else
         return QString();
+}
+
+QStringList TweakedQmlApplicationViewer::customSystemArtwork()
+{
+    return globalConfig->customSystemArtworkNames();
+}
+
+QStringList TweakedQmlApplicationViewer::customSoftwareArtwork()
+{
+    return globalConfig->customSoftwareArtworkNames();
+}
+
+QString TweakedQmlApplicationViewer::nextCustomSytemArtwork()
+{
+    QString artwork;
+    QStringList artworkList = customSystemArtwork();
+    if ( m_currentSystemArtworkIndex == -2 )
+        m_currentSystemArtworkIndex = 0;
+    else
+        m_currentSystemArtworkIndex++;
+    if ( m_currentSystemArtworkIndex >= 0 && m_currentSystemArtworkIndex < artworkList.count() )
+        artwork = artworkList[m_currentSystemArtworkIndex];
+    else {
+        m_currentSystemArtworkIndex = -2;
+        return QString();
+    }
+    return artwork;
+}
+
+QString TweakedQmlApplicationViewer::previousCustomSytemArtwork()
+{
+    QString artwork;
+    QStringList artworkList = customSystemArtwork();
+    if ( m_currentSystemArtworkIndex == -2 )
+        m_currentSystemArtworkIndex = artworkList.count() - 1;
+    else
+        m_currentSystemArtworkIndex--;
+    if ( m_currentSystemArtworkIndex >= 0 && m_currentSystemArtworkIndex < artworkList.count() )
+        artwork = artworkList[m_currentSystemArtworkIndex];
+    else {
+        m_currentSystemArtworkIndex = -2;
+        return QString();
+    }
+    return artwork;
+}
+
+QString TweakedQmlApplicationViewer::nextCustomSoftwareArtwork()
+{
+    QStringList artworkList = customSoftwareArtwork();
+    if ( m_currentSoftwareArtworkIndex == -2 )
+        m_currentSoftwareArtworkIndex = 0;
+    else
+        m_currentSoftwareArtworkIndex++;
+    if ( m_currentSoftwareArtworkIndex >= 0 && m_currentSoftwareArtworkIndex < artworkList.count() )
+        return artworkList[m_currentSoftwareArtworkIndex];
+    else {
+        m_currentSoftwareArtworkIndex = -2;
+        return QString();
+    }
+}
+
+QString TweakedQmlApplicationViewer::previousCustomSoftwareArtwork()
+{
+    QStringList artworkList = customSoftwareArtwork();
+    if ( m_currentSoftwareArtworkIndex == -2 )
+        m_currentSoftwareArtworkIndex = artworkList.count() - 1;
+    else
+        m_currentSoftwareArtworkIndex--;
+    if ( m_currentSoftwareArtworkIndex >= 0 && m_currentSoftwareArtworkIndex < artworkList.count() )
+        return artworkList[m_currentSoftwareArtworkIndex];
+    else {
+        m_currentSoftwareArtworkIndex = -2;
+        return QString();
+    }
 }
 
 #if QT_VERSION >= 0x050000

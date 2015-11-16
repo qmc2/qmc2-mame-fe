@@ -77,6 +77,9 @@ function gameCardHeader() {
 function nextImageType(imageType) {
     var nextType;
     switch ( imageType ) {
+    case "preview":
+        nextType = "flyer";
+        break;
     case "flyer":
         nextType = "cabinet";
         break;
@@ -93,11 +96,10 @@ function nextImageType(imageType) {
         nextType = "pcb";
         break;
     case "pcb":
-        nextType = "preview";
-        break;
-    case "preview":
     default:
-        nextType = "flyer";
+        nextType = viewer.nextCustomSytemArtwork();
+        if ( nextType === "" )
+            nextType = "preview";
         break;
     }
     return nextType;
@@ -126,7 +128,9 @@ function previousImageType(imageType) {
         break;
     case "preview":
     default:
-        previousType = "pcb";
+        previousType = viewer.previousCustomSytemArtwork();
+        if ( previousType === "" )
+            previousType = "pcb";
         break;
     }
     return previousType;
@@ -154,16 +158,21 @@ function gameImageType(imageType) {
         typeName = qsTr("PCB image");
         break;
     case "preview":
-    default:
         typeName = qsTr("Preview image");
+        break;
+    default:
+        typeName = imageType.replace("&", "");
         break;
     }
     return typeName;
 }
 
 function cachePrefix(imageType) {
-    var prefix = "prv";
+    var prefix;
     switch ( imageType ) {
+    case "preview":
+        prefix = "prv";
+        break;
     case "flyer":
         prefix = "fly";
         break;
@@ -185,9 +194,8 @@ function cachePrefix(imageType) {
     case "icon":
         prefix = "ico";
         break;
-    case "preview":
     default:
-        prefix = "prv";
+        prefix = viewer.customCachePrefix(imageType);
         break;
     }
     return prefix;

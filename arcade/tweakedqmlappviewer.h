@@ -135,6 +135,13 @@ public slots:
     bool isSevenZippedImageType(QString type) { return imageProvider->isSevenZippedImageType(type); }
     bool isZippedImageType(QString type) { return imageProvider->isZippedImageType(type); }
     QString parentId(QString id);
+    QStringList customSystemArtwork();
+    QStringList customSoftwareArtwork();
+    QString nextCustomSytemArtwork();
+    QString previousCustomSytemArtwork();
+    QString nextCustomSoftwareArtwork();
+    QString previousCustomSoftwareArtwork();
+    QString customCachePrefix(QString name) { return imageProvider->customCachePrefix(name); }
 
 private:
     bool m_initialized;
@@ -142,6 +149,8 @@ private:
     bool m_initialFullScreen;
     QHash<QString, QString> m_parentHash;
     QHash<QString, QString> m_videoSnapUrlCache;
+    int m_currentSystemArtworkIndex;
+    int m_currentSoftwareArtworkIndex;
 
 #if QT_VERSION < 0x050000
 protected:
