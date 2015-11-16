@@ -178,7 +178,7 @@ class HtmlEditor : public QMainWindow
 		QString customSystemArtworkUrl(QString id, QString artworkName);
 		QString customSystemArtworkData(QString id, QString artworkName);
 		QString customSoftwareArtworkUrl(QString listName, QString softwareName, QString artworkName);
-		QString customSoftwareArtworkData(QString listname, QString softwareName, QString artworkName);
+		QString customSoftwareArtworkData(QString listName, QString softwareName, QString artworkName);
 
 	private:
 		Ui_HTMLEditorMainWindow *ui;

@@ -1374,13 +1374,12 @@ QString HtmlEditor::customSystemArtworkUrl(QString id, QString artworkName)
 	}
 	QString filePath;
 	if ( imw ) {
-		QString machineName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-		QString cacheKey = imw->cachePrefix() + "_" + machineName;
+		QString cacheKey = imw->cachePrefix() + "_" + id;
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 		if ( !cpm ) {
 			QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
 			QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
-			if ( imw->loadImage(machineName, machineName, true, &filePath, false) )
+			if ( imw->loadImage(id, id, true, &filePath, false) )
 				filePath = QDir::fromNativeSeparators(filePath);
 			else
 				filePath = ghostPath;
@@ -1406,11 +1405,10 @@ QString HtmlEditor::customSystemArtworkData(QString id, QString artworkName)
 		}
 	}
 	if ( imw ) {
-		QString machineName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-		QString cacheKey = imw->cachePrefix() + "_" + machineName;
+		QString cacheKey = imw->cachePrefix() + "_" + id;
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 		if ( !cpm )
-			imw->loadImage(machineName, machineName, true, NULL, false);
+			imw->loadImage(id, id, true, NULL, false);
 		return imw->toBase64();
 	} else
 		return QString();
@@ -1418,14 +1416,55 @@ QString HtmlEditor::customSystemArtworkData(QString id, QString artworkName)
 
 QString HtmlEditor::customSoftwareArtworkUrl(QString listName, QString softwareName, QString artworkName)
 {
-	// FIXME
-	return QString();
+	QHashIterator<int, SoftwareImageWidget *> it(SoftwareImageWidget::artworkHash);
+	SoftwareImageWidget *imw = 0;
+	while ( it.hasNext() && !imw ) {
+		it.next();
+		if ( it.value()->customArtwork() ) {
+			if ( ((CustomSoftwareArtwork *)it.value())->name() == artworkName )
+				imw = it.value();
+		}
+	}
+	QString filePath;
+	if ( imw ) {
+		QString cacheKey = imw->cachePrefix() + "_" + listName + "_" + softwareName;
+		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
+		if ( !cpm ) {
+			QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
+			QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
+			if ( imw->loadImage(listName, softwareName) )
+				filePath = imw->currentPixmap.imagePath;
+			else
+				filePath = ghostPath;
+		} else
+			filePath = cpm->imagePath;
+	}
+#if defined(QMC2_OS_WIN)
+	return QString("file:///%1").arg(QDir::fromNativeSeparators(filePath));
+#else
+	return QString("file://%1").arg(QDir::fromNativeSeparators(filePath));
+#endif
 }
 
-QString HtmlEditor::customSoftwareArtworkData(QString listname, QString softwareName, QString artworkName)
+QString HtmlEditor::customSoftwareArtworkData(QString listName, QString softwareName, QString artworkName)
 {
-	// FIXME
-	return QString();
+	QHashIterator<int, SoftwareImageWidget *> it(SoftwareImageWidget::artworkHash);
+	SoftwareImageWidget *imw = 0;
+	while ( it.hasNext() && !imw ) {
+		it.next();
+		if ( it.value()->customArtwork() ) {
+			if ( ((CustomSoftwareArtwork *)it.value())->name() == artworkName )
+				imw = it.value();
+		}
+	}
+	if ( imw ) {
+		QString cacheKey = imw->cachePrefix() + "_" + listName + "_" + softwareName;
+		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
+		if ( !cpm )
+			imw->loadImage(listName, softwareName);
+		return imw->toBase64();
+	} else
+		return QString();
 }
 
 void HtmlEditor::closeXmlBuffer()
