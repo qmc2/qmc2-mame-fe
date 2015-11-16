@@ -195,10 +195,8 @@ bool SoftwareImageWidget::loadImage(QString listName, QString entryName, bool fr
 {
 	ImagePixmap pm;
 	bool fileOk = true;
-
 	absoluteImagePath().clear();
 	myCacheKey = cachePrefix() + "_" + listName + "_" + entryName;
-
 	if ( fromParent ) {
 		QString parentKey = softwareParentHash[listName + ":" + entryName];
 		if ( !parentKey.isEmpty() && parentKey != "<no_parent>" ) {
@@ -206,7 +204,6 @@ bool SoftwareImageWidget::loadImage(QString listName, QString entryName, bool fr
 			entryName = parentName;
 		}
 	}
-
 	if ( useZip() ) {
 		// try loading image from (semicolon-separated) ZIP archive(s)
 		foreach (unzFile snapFile, imageFileMap) {
@@ -228,7 +225,6 @@ bool SoftwareImageWidget::loadImage(QString listName, QString entryName, bool fr
 								fileOk = false;
 						} else
 							fileOk = false;
-
 						if ( fileOk ) {
 							if ( pm.loadFromData(imageData, formatName.toUtf8().constData()) ) {
 								qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
@@ -236,16 +232,13 @@ bool SoftwareImageWidget::loadImage(QString listName, QString entryName, bool fr
 							} else
 								fileOk = false;
 						}
-
 						if ( fileOk )
 							break;
 					}
-
 					if ( fileOk )
 						break;
 				}
 			}
-
 			if ( fileOk )
 				break;
 		}
@@ -271,7 +264,6 @@ bool SoftwareImageWidget::loadImage(QString listName, QString entryName, bool fr
 								fileOk = !snapFile->hasError();
 						} else
 							fileOk = false;
-
 						if ( fileOk ) {
 							if ( isFillingDictionary ) {
 								currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
@@ -300,47 +292,49 @@ bool SoftwareImageWidget::loadImage(QString listName, QString entryName, bool fr
 								fileOk = false;
 						}
 					}
-
 					if ( fileOk )
 						break;
 				}
 			}
-
 			if ( fileOk )
 				break;
 		}
 	} else {
 		// try loading image from (semicolon-separated) software-snapshot folder(s)
 		fileOk = false;
-		foreach (QString baseDirectory, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapDirectory").toString().split(";", QString::SkipEmptyParts)) {
-			QDir snapDir(baseDirectory + "/" + listName);
+		foreach (QString baseDirectory, imageDir().split(";", QString::SkipEmptyParts)) {
+			QDir imgDir(QDir::cleanPath(baseDirectory + "/" + listName));
 			foreach (int format, activeFormats) {
 				foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-					QString fullEntryName = entryName + "." + extension;
-					if ( snapDir.exists(fullEntryName) ) {
-						QString filePath = snapDir.absoluteFilePath(fullEntryName);
-						if ( pm.load(filePath) ) {
-							fileOk = true;
-							currentPixmap = pm;
-							currentPixmap.imagePath = filePath;
-							qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
-						} else
-							fileOk = false;
+					QString filePath = imgDir.absoluteFilePath(entryName + "." + extension);
+					QFile f(filePath);
+					if ( !f.exists() ) {
+						QDir imgDir(QDir::cleanPath(baseDirectory + "/" + listName + "/" + entryName));
+						if ( imgDir.exists() ) {
+							QStringList nameFilter;
+							nameFilter << "*." + extension;
+							QStringList dirEntries = imgDir.entryList(nameFilter, QDir::Files | QDir::NoDotAndDotDot | QDir::Readable | QDir::CaseSensitive, QDir::Name | QDir::Reversed);
+							if ( dirEntries.count() > 0 )
+								filePath = imgDir.absoluteFilePath(dirEntries[0]);
+						}
 					}
-
+					if ( pm.load(filePath) ) {
+						fileOk = true;
+						currentPixmap = pm;
+						currentPixmap.imagePath = filePath;
+						qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
+					} else
+						fileOk = false;
 					if ( fileOk )
 						break;
 				}
-
 				if ( fileOk )
 					break;
 			}
-
 			if ( fileOk )
 				break;
 		}
 	}
-
 	if ( !fileOk ) {
 		if ( qmc2ParentImageFallback && !fromParent )
 			return loadImage(listName, entryName, true);
@@ -348,7 +342,6 @@ bool SoftwareImageWidget::loadImage(QString listName, QString entryName, bool fr
 		if ( !qmc2RetryLoadingImages )
 			qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount());
         }
-
 	return fileOk;
 }
 
