@@ -11656,7 +11656,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <location filename="../../qmc2main.ui" line="746"/>
         <location filename="../../qmc2main.ui" line="749"/>
         <source>Toggle individual ROM states</source>
-        <translation>Indiviuelle ROM Stati ein-/ausblenden</translation>
+        <translation>Individuelle ROM Stati ein-/ausblenden</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3522"/>
