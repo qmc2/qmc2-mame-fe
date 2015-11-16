@@ -941,3 +941,52 @@ void ArcadeSettings::removeMachineInfoImportDates()
 {
     remove(QString("%1/DatInfoDatabase/MachineInfoImportDates").arg(emulatorPrefix));
 }
+
+QStringList ArcadeSettings::customSystemArtworkNames()
+{
+    beginGroup("Artwork");
+    QStringList artworkNames;
+    foreach (QString name, childGroups()) {
+        if ( value(QString("%1/Target").arg(name), 0).toInt() == QMC2_ARCADE_AW_TARGET_SYSTEM )
+            artworkNames << name;
+    }
+    endGroup();
+    return artworkNames;
+}
+
+QStringList ArcadeSettings::customSoftwareArtworkNames()
+{
+    beginGroup("Artwork");
+    QStringList artworkNames;
+    foreach (QString name, childGroups()) {
+        if ( value(QString("%1/Target").arg(name), 0).toInt() == QMC2_ARCADE_AW_TARGET_SOFTWARE )
+            artworkNames << name;
+    }
+    endGroup();
+    return artworkNames;
+}
+
+QString ArcadeSettings::customArtworkFile(QString name)
+{
+    return value(QString("Artwork/%1/Archive").arg(name), QString()).toString();
+}
+
+QString ArcadeSettings::customArtworkFolder(QString name)
+{
+    return value(QString("Artwork/%1/Folder").arg(name), QString()).toString();
+}
+
+bool ArcadeSettings::customArtworkZipped(QString name)
+{
+    return value(QString("Artwork/%1/Format").arg(name), 0).toInt() == QMC2_ARCADE_AW_FORMAT_ZIP;
+}
+
+bool ArcadeSettings::customArtworkSevenZipped(QString name)
+{
+    return value(QString("Artwork/%1/Format").arg(name), 0).toInt() == QMC2_ARCADE_AW_FORMAT_7Z;
+}
+
+QStringList ArcadeSettings::customArtworkFormats(QString name)
+{
+    return value(QString("Artwork/%1/ActiveFormats").arg(name), QStringList()).toStringList();
+}

@@ -189,6 +189,12 @@
 #define QMC2_ARCADE_IMG_FILETYPE_ZIP    0
 #define QMC2_ARCADE_IMG_FILETYPE_7Z     1
 
+// custom artwork related
+#define QMC2_ARCADE_AW_TARGET_SYSTEM    0
+#define QMC2_ARCADE_AW_TARGET_SOFTWARE  1
+#define QMC2_ARCADE_AW_FORMAT_ZIP       0
+#define QMC2_ARCADE_AW_FORMAT_7Z        1
+
 // responsiveness when loading data from files (game/machine info DBs, ROM state cache and game/machine list caches)
 #define QMC2_ARCADE_LOAD_RESPONSE       500
 
