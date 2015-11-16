@@ -110,11 +110,13 @@ class ImageWidget : public QWidget
 		virtual bool useSevenZip() = 0;
 		virtual bool scaledImage() = 0;
 
+		// these virtual functions CAN be reimplemented in the concrete image classes
+		virtual bool customArtwork() { return false; }
+
 	protected:
 		// events CAN be reimplemented in the concrete image classes
 		virtual void paintEvent(QPaintEvent *);
 		virtual void contextMenuEvent(QContextMenuEvent *);
-		virtual bool customArtwork() { return false; }
 
 	public slots:
 		void init();

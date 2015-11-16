@@ -35,6 +35,7 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QCache>
+#include <QHash>
 #include <QRegExp>
 #include <QDesktopServices>
 #if QT_VERSION >= 0x050000
@@ -67,6 +68,10 @@
 #include "machinelist.h"
 #include "romalyzer.h"
 #include "qmc2main.h"
+#include "imagewidget.h"
+#include "softwareimagewidget.h"
+#include "customartwork.h"
+#include "customsoftwareartwork.h"
 #include "ui_htmleditor.h"
 #include "ui_inserthtmldialog.h"
 #include "ui_tablepropertydialog.h"
@@ -1327,6 +1332,100 @@ QString HtmlEditor::softwareInfo(QString list, QString id)
 void HtmlEditor::openLinkInDefaultBrowser(QString linkUrl)
 {
 	QDesktopServices::openUrl(QUrl::fromUserInput(linkUrl));
+}
+
+QStringList HtmlEditor::customSystemArtwork()
+{
+	QStringList artworkList;
+	qmc2Config->beginGroup("Artwork");
+	foreach (QString name, qmc2Config->childGroups())
+		if ( qmc2Config->value(QString("%1/Target").arg(name), 0).toInt() == QMC2_AW_INDEX_TARGET_SYSTEM )
+			artworkList << name;
+	qmc2Config->endGroup();
+	return artworkList;
+}
+
+QStringList HtmlEditor::customSoftwareArtwork()
+{
+	QStringList artworkList;
+	qmc2Config->beginGroup("Artwork");
+	foreach (QString name, qmc2Config->childGroups())
+		if ( qmc2Config->value(QString("%1/Target").arg(name), 0).toInt() == QMC2_AW_INDEX_TARGET_SOFTWARE )
+			artworkList << name;
+	qmc2Config->endGroup();
+	return artworkList;
+}
+
+bool HtmlEditor::customArtworkZipped(QString artworkName)
+{
+	return qmc2Config->value(QString("Artwork/%1/Type").arg(artworkName), 0).toInt() == QMC2_AW_INDEX_TYPE_ARCHIVE;
+}
+
+QString HtmlEditor::customSystemArtworkUrl(QString id, QString artworkName)
+{
+	QHashIterator<int, ImageWidget *> it(ImageWidget::artworkHash);
+	ImageWidget *imw = 0;
+	while ( it.hasNext() && !imw ) {
+		it.next();
+		if ( it.value()->customArtwork() ) {
+			if ( ((CustomArtwork *)it.value())->name() == artworkName )
+				imw = it.value();
+		}
+	}
+	QString filePath;
+	if ( imw ) {
+		QString machineName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+		QString cacheKey = imw->cachePrefix() + "_" + machineName;
+		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
+		if ( !cpm ) {
+			QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
+			QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
+			if ( imw->loadImage(machineName, machineName, true, &filePath, false) )
+				filePath = QDir::fromNativeSeparators(filePath);
+			else
+				filePath = ghostPath;
+		} else
+			filePath = cpm->imagePath;
+	}
+#if defined(QMC2_OS_WIN)
+	return QString("file:///%1").arg(QDir::fromNativeSeparators(filePath));
+#else
+	return QString("file://%1").arg(QDir::fromNativeSeparators(filePath));
+#endif
+}
+
+QString HtmlEditor::customSystemArtworkData(QString id, QString artworkName)
+{
+	QHashIterator<int, ImageWidget *> it(ImageWidget::artworkHash);
+	ImageWidget *imw = 0;
+	while ( it.hasNext() && !imw ) {
+		it.next();
+		if ( it.value()->customArtwork() ) {
+			if ( ((CustomArtwork *)it.value())->name() == artworkName )
+				imw = it.value();
+		}
+	}
+	if ( imw ) {
+		QString machineName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+		QString cacheKey = imw->cachePrefix() + "_" + machineName;
+		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
+		if ( !cpm )
+			imw->loadImage(machineName, machineName, true, NULL, false);
+		return imw->toBase64();
+	} else
+		return QString();
+}
+
+QString HtmlEditor::customSoftwareArtworkUrl(QString listName, QString softwareName, QString artworkName)
+{
+	// FIXME
+	return QString();
+}
+
+QString HtmlEditor::customSoftwareArtworkData(QString listname, QString softwareName, QString artworkName)
+{
+	// FIXME
+	return QString();
 }
 
 void HtmlEditor::closeXmlBuffer()

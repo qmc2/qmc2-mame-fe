@@ -459,6 +459,42 @@
 		</tr>
 	</tbody>
 </table>
+<script>
+	var customArtworkNames = qmc2NEO.customSystemArtwork();
+	if ( customArtworkNames.length > 0 ) {
+		document.write("<table border=\"0\" cellspacing=\"5\" width=\"100%\">");
+		for (var i = 0; i < customArtworkNames.length;) {
+			document.write("<tr>");
+			for (var col = 0; col < 3 && i + col < customArtworkNames.length; col++) {
+				var artworkName = customArtworkNames[i + col].replace("&", "");
+				document.write("<td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + artworkName + "</td>");
+			}
+			document.write("</tr>");
+			document.write("<tr>");
+			for (var col = 0; col < 3 && i < customArtworkNames.length; col++) {
+				var artworkName = customArtworkNames[i];
+				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
+					if ( qmc2NEO.customArtworkZipped(artworkName) ) {
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.customSystemArtworkData('$ID$', artworkName) + "\"></td>");
+					} else {
+						var imageUrl = qmc2NEO.customSystemArtworkUrl('$ID$', artworkName);
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"" + imageUrl + "\">", imageUrl) + "</td>");
+					}
+				} else {
+					if ( qmc2NEO.customArtworkZipped(artworkName) ) {
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.customSystemArtworkData('$ID$', artworkName) + "\"></td>");
+					} else {
+						var imageUrl = qmc2NEO.customSystemArtworkUrl('$ID$', artworkName);
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"" + imageUrl + "\">", imageUrl) + "</td>");
+					}
+				}
+				i++;
+			}
+			document.write("</tr>");
+		}
+		document.write("</table>");
+	}
+</script>
 <h3><script>document.write(tr('System info'));</script></h3>
 <p>$GAME_INFO$</p>
 <h3><script>document.write(tr('Emulator info'));</script></h3>
