@@ -142,23 +142,23 @@ void SoftwareImageWidget::paintEvent(QPaintEvent *e)
 
 	ImagePixmap *cpm = qmc2ImagePixmapCache.object(myCacheKey);
 	if ( !cpm )
-		loadSnapshot(listName, entryName);
+		loadImage(listName, entryName);
 	else {
-		currentSnapshotPixmap = *cpm;
-		currentSnapshotPixmap.imagePath = cpm->imagePath;
+		currentPixmap = *cpm;
+		currentPixmap.imagePath = cpm->imagePath;
 	}
 
-	if ( scaledImage() || currentSnapshotPixmap.isGhost )
-		drawScaledImage(&currentSnapshotPixmap, &p);
+	if ( scaledImage() || currentPixmap.isGhost )
+		drawScaledImage(&currentPixmap, &p);
 	else
-		drawCenteredImage(&currentSnapshotPixmap, &p);
+		drawCenteredImage(&currentPixmap, &p);
 }
 
 QString SoftwareImageWidget::toBase64()
 {
 	ImagePixmap pm;
-	if ( !currentSnapshotPixmap.isNull() )
-		pm = currentSnapshotPixmap;
+	if ( !currentPixmap.isNull() )
+		pm = currentPixmap;
 	else
 		pm = qmc2MainWindow->qmc2GhostImagePixmap;
 	QByteArray imageData;
@@ -191,12 +191,12 @@ void SoftwareImageWidget::enableWidgets(bool enable)
 	qmc2Options->toolButtonBrowseSoftwareSnapFile->setEnabled(enable);
 }
 
-bool SoftwareImageWidget::loadSnapshot(QString listName, QString entryName, bool fromParent)
+bool SoftwareImageWidget::loadImage(QString listName, QString entryName, bool fromParent)
 {
 	ImagePixmap pm;
 	bool fileOk = true;
 
-	currentSnapshotPixmap.imagePath.clear();
+	absoluteImagePath().clear();
 	myCacheKey = cachePrefix() + "_" + listName + "_" + entryName;
 
 	if ( fromParent ) {
@@ -274,10 +274,10 @@ bool SoftwareImageWidget::loadSnapshot(QString listName, QString entryName, bool
 
 						if ( fileOk ) {
 							if ( isFillingDictionary ) {
-								currentSnapshotPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
+								currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
 								QPainter p;
 								QString message = tr("Decompressing archive, please wait...");
-								p.begin(&currentSnapshotPixmap);
+								p.begin(&currentPixmap);
 								p.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
 								QFont f(qApp->font());
 								f.setWeight(QFont::Bold);
@@ -285,12 +285,12 @@ bool SoftwareImageWidget::loadSnapshot(QString listName, QString entryName, bool
 								QFontMetrics fm(f);
 								int adjustment = fm.height() / 2;
 								p.setFont(f);
-								QRect outerRect = p.boundingRect(currentSnapshotPixmap.rect(), Qt::AlignCenter | Qt::TextWordWrap, message).adjusted(-adjustment, -adjustment, adjustment, adjustment);
+								QRect outerRect = p.boundingRect(currentPixmap.rect(), Qt::AlignCenter | Qt::TextWordWrap, message).adjusted(-adjustment, -adjustment, adjustment, adjustment);
 								QPainterPath pp;
 								pp.addRoundedRect(outerRect, 5, 5);
 								p.fillPath(pp, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
 								p.setPen(QColor(255, 255, 0, 255));
-								p.drawText(currentSnapshotPixmap.rect(), Qt::AlignCenter | Qt::TextWordWrap, message);
+								p.drawText(currentPixmap.rect(), Qt::AlignCenter | Qt::TextWordWrap, message);
 								p.end();
 								enableWidgets(false);
 							} else if ( pm.loadFromData(imageData, formatName.toUtf8().constData()) ) {
@@ -321,9 +321,9 @@ bool SoftwareImageWidget::loadSnapshot(QString listName, QString entryName, bool
 						QString filePath = snapDir.absoluteFilePath(fullEntryName);
 						if ( pm.load(filePath) ) {
 							fileOk = true;
-							currentSnapshotPixmap = pm;
-							currentSnapshotPixmap.imagePath = filePath;
-							qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(currentSnapshotPixmap), currentSnapshotPixmap.toImage().byteCount()); 
+							currentPixmap = pm;
+							currentPixmap.imagePath = filePath;
+							qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
 						} else
 							fileOk = false;
 					}
@@ -343,10 +343,10 @@ bool SoftwareImageWidget::loadSnapshot(QString listName, QString entryName, bool
 
 	if ( !fileOk ) {
 		if ( qmc2ParentImageFallback && !fromParent )
-			return loadSnapshot(listName, entryName, true);
-		currentSnapshotPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
+			return loadImage(listName, entryName, true);
+		currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
 		if ( !qmc2RetryLoadingImages )
-			qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(currentSnapshotPixmap), currentSnapshotPixmap.toImage().byteCount());
+			qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount());
         }
 
 	return fileOk;
@@ -439,18 +439,18 @@ void SoftwareImageWidget::drawScaledImage(QPixmap *pm, QPainter *p)
 
 void SoftwareImageWidget::copyToClipboard()
 {
-	qApp->clipboard()->setPixmap(currentSnapshotPixmap);
+	qApp->clipboard()->setPixmap(currentPixmap);
 }
 
 void SoftwareImageWidget::copyPathToClipboard()
 {
-	if ( !currentSnapshotPixmap.imagePath.isEmpty() )
-		qApp->clipboard()->setText(currentSnapshotPixmap.imagePath);
+	if ( !absoluteImagePath().isEmpty() )
+		qApp->clipboard()->setText(absoluteImagePath());
 }
 
 void SoftwareImageWidget::contextMenuEvent(QContextMenuEvent *e)
 {
-	actionCopyPathToClipboard->setVisible(!currentSnapshotPixmap.imagePath.isEmpty());
+	actionCopyPathToClipboard->setVisible(!absoluteImagePath().isEmpty());
 	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
 	contextMenu->show();
 }

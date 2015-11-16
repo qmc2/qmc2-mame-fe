@@ -89,7 +89,7 @@ class ImageWidget : public QWidget
 		~ImageWidget();
 
 		QString cleanDir(QString);
-		QString absoluteImagePath() { return currentPixmap.imagePath; }
+		QString &absoluteImagePath() { return currentPixmap.imagePath; }
 		QString toBase64();
 		QString primaryPathFor(QString);
 		void reloadActiveFormats();

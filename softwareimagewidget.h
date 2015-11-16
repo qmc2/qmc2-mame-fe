@@ -17,7 +17,7 @@ class SoftwareImageWidget : public QWidget
 	public:
 		QMap<QString, unzFile> imageFileMap;
 		QMap<QString, SevenZipFile*> imageFileMap7z;
-		ImagePixmap currentSnapshotPixmap;
+		ImagePixmap currentPixmap;
 		QMenu *contextMenu;
 		QString myCacheKey;
 		QAction *actionCopyPathToClipboard;
@@ -29,7 +29,7 @@ class SoftwareImageWidget : public QWidget
 		~SoftwareImageWidget();
 
 		QString cleanDir(QString);
-		QString absoluteImagePath() { return currentSnapshotPixmap.imagePath; }
+		QString &absoluteImagePath() { return currentPixmap.imagePath; }
 		QString toBase64();
 		void reloadActiveFormats();
 		void enableWidgets(bool enable = true);
@@ -53,7 +53,7 @@ class SoftwareImageWidget : public QWidget
 		void init();
 		void drawCenteredImage(QPixmap *, QPainter *);
 		void drawScaledImage(QPixmap *, QPainter *);
-		bool loadSnapshot(QString, QString, bool fromParent = false);
+		bool loadImage(QString, QString, bool fromParent = false);
 		void copyToClipboard();
 		void copyPathToClipboard();
 		void refresh();

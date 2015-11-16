@@ -854,13 +854,13 @@ void ImageWidget::copyToClipboard()
 
 void ImageWidget::copyPathToClipboard()
 {
-	if ( !currentPixmap.imagePath.isEmpty() )
-		qApp->clipboard()->setText(currentPixmap.imagePath);
+	if ( !absoluteImagePath().isEmpty() )
+		qApp->clipboard()->setText(absoluteImagePath());
 }
 
 void ImageWidget::contextMenuEvent(QContextMenuEvent *e)
 {
-	actionCopyPathToClipboard->setVisible(!currentPixmap.imagePath.isEmpty());
+	actionCopyPathToClipboard->setVisible(!absoluteImagePath().isEmpty());
 	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
 	contextMenu->show();
 }
