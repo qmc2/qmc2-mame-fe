@@ -193,8 +193,10 @@ void ImageWidget::paintEvent(QPaintEvent *e)
 	if ( !cpm ) {
 		qmc2CurrentItem = topLevelItem;
 		loadImage(gameName, gameName);
-	} else
+	} else {
 		currentPixmap = *cpm;
+		currentPixmap.imagePath = cpm->imagePath;
+	}
 
 	if ( scaledImage() || currentPixmap.isGhost )
 		drawScaledImage(&currentPixmap, &p);
@@ -270,14 +272,10 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 {
 	ImagePixmap pm;
 	char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
-
 	if ( fileName )
 		*fileName = "";
-
 	bool fileOk = true;
-
 	QString cacheKey = cachePrefix() + "_" + onBehalfOf;
-
 	if ( useZip() ) {
 		// try loading image from (semicolon-separated) ZIP archive(s)
 		QByteArray imageData;
@@ -286,10 +284,8 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 			QString formatName = formatNames[format];
 			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
 				QString gameFile = gameName + "." + extension;
-
 				if ( fileName )
 					*fileName = gameFile;
-
 				foreach (unzFile imageFile, imageFileMap) {
 					if ( unzLocateFile(imageFile, gameFile.toUtf8().constData(), 0) == UNZ_OK ) {
 						if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
@@ -307,10 +303,8 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 					else
 						imageData.clear();
 				}
-
 				if ( fileOk )
 					fileOk = pm.loadFromData(imageData, formatName.toUtf8().constData());
-
 				if ( !checkOnly ) {
 					if ( fileOk ) {
 #if defined(QMC2_DEBUG)
@@ -332,11 +326,9 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 						}
 					}
 				}
-
 				if ( fileOk )
 					break;
 			}
-
 			if ( fileOk )
 				break;
 		}
@@ -435,10 +427,8 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 				QString formatName = formatNames[format];
 				foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
 					QString imagePath = imgDir + "." + extension;
-
 					if ( fileName )
 						*fileName = imagePath;
-
 					QFile f(imagePath);
 					if ( !f.exists() ) {
 						QDir dir(imgDir);
@@ -453,7 +443,6 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 							}
 						}
 					}
-
 					if ( checkOnly ) {
 						if ( loadImages )
 							fileOk = pm.load(imagePath, formatName.toUtf8().constData());
@@ -490,20 +479,16 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 							}
 						}
 					}
-
 					if ( fileOk )
 						break;
 				}
-
 				if ( fileOk )
 					break;
 			}
-
 			if ( fileOk )
 				break;
 		}
 	}
-
 	return fileOk;
 }
 
