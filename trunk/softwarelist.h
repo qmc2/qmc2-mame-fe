@@ -149,7 +149,7 @@ class SoftwareSnap : public QWidget
 		bool useSevenZip();
 
 	public slots:
-		void loadSnapshot(bool fromParent = false);
+		void loadImage(bool fromParent = false);
 		bool replaceImage(QString, QString, QPixmap &);
 		void resetSnapForced();
 		void copyToClipboard();

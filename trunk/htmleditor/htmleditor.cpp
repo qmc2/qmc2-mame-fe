@@ -1162,9 +1162,9 @@ QString HtmlEditor::getImageData(QString imageType)
 				QString cacheKey = "sws_" + listName + "_" + entryName;
 				ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 				if ( !cpm )
-					qmc2SoftwareSnapshot->loadSnapshot(listName, entryName);
+					qmc2SoftwareSnapshot->loadImage(listName, entryName);
 				else
-					qmc2SoftwareSnapshot->currentSnapshotPixmap = *cpm;
+					qmc2SoftwareSnapshot->currentPixmap = *cpm;
 				return qmc2SoftwareSnapshot->toBase64();
 			}
 			break;

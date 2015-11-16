@@ -3708,21 +3708,21 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					layout->setContentsMargins(0, 0, 0, 0);
 					tabSnapshot->setLayout(layout);
 				}
-				qmc2SoftwareSnapshot->loadSnapshot(listName, entryName);
+				qmc2SoftwareSnapshot->loadImage(listName, entryName);
 				QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
 				QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
 #if defined(QMC2_OS_WIN)
 	      			qmc2SoftwareNotesEditor->templateMap["$GHOST_IMAGE$"] = "file:///" + ghostPath;
-				if ( qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath.isEmpty() )
+				if ( qmc2SoftwareSnapshot->absolteImagePath().isEmpty() )
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file:///" + ghostPath;
 				else
-					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file:///" + QDir::fromNativeSeparators(qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath);
+					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file:///" + QDir::fromNativeSeparators(qmc2SoftwareSnapshot->absolteImagePath());
 #else
 	      			qmc2SoftwareNotesEditor->templateMap["$GHOST_IMAGE$"] = "file://" + ghostPath;
-				if ( qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath.isEmpty() )
+				if ( qmc2SoftwareSnapshot->absoluteImagePath().isEmpty() )
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file://" + ghostPath;
 				else
-					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file://" + QDir::fromNativeSeparators(qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath);
+					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file://" + QDir::fromNativeSeparators(qmc2SoftwareSnapshot->absoluteImagePath());
 #endif
 				QString swInfo = qmc2MachineList->datInfoDb()->softwareInfo(listName, entryName);
 				if ( !swInfo.isEmpty() ) {

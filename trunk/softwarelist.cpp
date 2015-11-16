@@ -87,7 +87,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 	qmc2SoftwareSnap->hide();
 	snapTimer.setSingleShot(true);
-	connect(&snapTimer, SIGNAL(timeout()), qmc2SoftwareSnap, SLOT(loadSnapshot()));
+	connect(&snapTimer, SIGNAL(timeout()), qmc2SoftwareSnap, SLOT(loadImage()));
 
 	systemName = sysName;
 	loadProc = verifyProc = NULL;
@@ -4502,12 +4502,12 @@ void SoftwareSnap::leaveEvent(QEvent *e)
 void SoftwareSnap::paintEvent(QPaintEvent *)
 {
 	QPainter p(this);
-	loadSnapshot();
+	loadImage();
 	p.eraseRect(rect());
 	p.end();
 }
 
-void SoftwareSnap::loadSnapshot(bool fromParent)
+void SoftwareSnap::loadImage(bool fromParent)
 {
 	ctxMenuRequested = false;
 
@@ -4528,7 +4528,7 @@ void SoftwareSnap::loadSnapshot(bool fromParent)
 	}
 
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::loadSnapshot(): snapForced = '%1'").arg(qmc2SoftwareList->snapForced ? "true" : "false"));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::loadImage(): snapForced = '%1'").arg(qmc2SoftwareList->snapForced ? "true" : "false"));
 #endif
 
 	// check if the mouse cursor is still on a software item
@@ -4823,7 +4823,7 @@ void SoftwareSnap::loadSnapshot(bool fromParent)
 	}
 
 	if ( !pmLoaded && qmc2ParentImageFallback && !fromParent ) {
-		loadSnapshot(true);
+		loadImage(true);
 		return;
 	}
 
