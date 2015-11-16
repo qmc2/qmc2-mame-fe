@@ -86,10 +86,23 @@
 </table>
 <h3>Snapshot</h3>
 <script>
-	if ( qmc2NotesEditorObject.isZippedImage('sws') )
-		document.write("<img width=\"50%\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('sws') + "\">");
+	if ( qmc2NEO.isZippedImage('sws') )
+		document.write("<img width=\"50%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('sws') + "\">");
 	else
 		document.write("<img width=\"50%\" src=\"$SOFTWARE_SNAPSHOT$\">");
+	var customArtworkNames = qmc2NEO.customSoftwareArtwork();
+	if ( customArtworkNames.length > 0 ) {
+		document.write("<table border=\"0\" cellspacing=\"5\" width=\"100%\">");
+		for (var i = 0; i < customArtworkNames.length; i++) {
+			var artworkName = customArtworkNames[i];
+			var readableArtworkname = artworkName.replace("&", "");
+			document.write("<h3>" + readableArtworkname + "</h3>");
+			if ( qmc2NEO.customArtworkZipped(artworkName) )
+				document.write("<img width=\"50%\" src=\"data:image/png;base64," + qmc2NEO.customSoftwareArtworkData('$SOFTWARE_LIST$', '$SOFTWARE_NAME$', artworkName) + "\">");
+			else
+				document.write("<img width=\"50%\" src=\"" + qmc2NEO.customSoftwareArtworkUrl('$SOFTWARE_LIST$', '$SOFTWARE_NAME$', artworkName) + "\">");
+		}
+	}
 </script>
 <h3>Software info</h3>
 $SOFTWARE_INFO$
