@@ -6,6 +6,7 @@
 #include <QCache>
 #include <QList>
 #include <QString>
+#include <QUuid>
 
 #define QMC2_ARCADE_IMAGE_FORMAT_INDEX_PNG     0
 #define QMC2_ARCADE_IMAGE_FORMAT_INDEX_BMP     1
@@ -40,6 +41,7 @@ public:
     QString loadImage(const QString &);
     bool isZippedImageType(QString);
     bool isSevenZippedImageType(QString);
+    QString customCachePrefix(QString);
 
     enum CacheClass { CacheClassImage, CacheClassPixmap };
 
@@ -58,6 +60,7 @@ private:
 
     QStringList mImageTypes;
     QStringList mCustomImageTypes;
+    QMap<QString, QString> mCustomCachePrefixes;
     QMap<QString, QString> mFileTypeMap;
     QMap<QString, unzFile> mFileMapZip;
     QMap<QString, SevenZipFile *> mFileMap7z;
@@ -84,6 +87,7 @@ public:
     QString loadImage(const QString &);
     bool isZippedImageType(QString);
     bool isSevenZippedImageType(QString);
+    QString customCachePrefix(QString);
 
     enum CacheClass { CacheClassImage, CacheClassPixmap };
 
@@ -102,6 +106,7 @@ private:
 
     QStringList mImageTypes;
     QStringList mCustomImageTypes;
+    QMap<QString, QString> mCustomCachePrefixes;
     QMap<QString, QString> mFileTypeMap;
     QMap<QString, unzFile> mFileMapZip;
     QMap<QString, SevenZipFile *> mFileMap7z;
