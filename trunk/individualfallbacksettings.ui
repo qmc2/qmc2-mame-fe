@@ -16,6 +16,9 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="4">
     <widget class="QTreeWidget" name="treeWidget">
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
      <property name="selectionMode">
       <enum>QAbstractItemView::NoSelection</enum>
      </property>
