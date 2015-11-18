@@ -529,7 +529,7 @@ QString TweakedQmlApplicationViewer::videoSnapUrl(const QString &id)
             }
         }
         // parent fallback
-        if ( globalConfig->parentImageFallback() ) {
+        if ( globalConfig->parentFallback("vdo") ) {
             QString pI = parentId(id);
             if ( !pI.isEmpty() ) {
                 foreach (QString formatExtension, videoSnapAllowedFormatExtensions) {
