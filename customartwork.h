@@ -22,6 +22,7 @@ class CustomArtwork : public ImageWidget
 		virtual bool useSevenZip();
 		virtual bool scaledImage();
 		virtual bool customArtwork() { return true; }
+		virtual QString fallbackSettingsKey() { return QString("Artwork/%1/Fallback").arg(name()); }
 
 		QString name() { return m_name; }
 		void setName(QString name) { m_name = name; }

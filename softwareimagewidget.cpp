@@ -126,6 +126,11 @@ void SoftwareImageWidget::closeSource()
 	imageFileMap7z.clear();
 }
 
+bool SoftwareImageWidget::parentFallback()
+{
+	return qmc2ParentImageFallback && qmc2Config->value(fallbackSettingsKey(), 0).toInt() == 0;
+}
+
 void SoftwareImageWidget::paintEvent(QPaintEvent *e)
 {
 	QPainter p(this);
@@ -336,7 +341,7 @@ bool SoftwareImageWidget::loadImage(QString listName, QString entryName, bool fr
 		}
 	}
 	if ( !fileOk ) {
-		if ( qmc2ParentImageFallback && !fromParent )
+		if ( parentFallback() && !fromParent )
 			return loadImage(listName, entryName, true);
 		currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
 		if ( !qmc2RetryLoadingImages )

@@ -61,6 +61,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			missingdumpsviewer.ui \
 			movierecordersetup.ui \
 			romstatefilter.ui \
+			individualfallbacksettings.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
 			htmleditor/tablepropertydialog.ui
@@ -141,6 +142,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			romstatefilter.cpp \
 			customartwork.cpp \
 			customsoftwareartwork.cpp \
+			individualfallbacksettings.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -268,6 +270,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			romstatefilter.h \
 			customartwork.h \
 			customsoftwareartwork.h \
+			individualfallbacksettings.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h

@@ -817,6 +817,10 @@
 #define QMC2_AW_INDEX_FORMAT_ZIP		0
 #define QMC2_AW_INDEX_FORMAT_7Z			1
 
+// column indexes for individual fallback settings
+#define QMC2_IFS_COLUMN_ARTWORK			0
+#define QMC2_IFS_COLUMN_FALLBACK		1
+
 // tests the (minor) version 'v' against the minimum (minor) version 'mv', and the SVN rev. 'r' against the minimum SVN rev. 'mr' (true if 'v' or 'r' are in the relevant ranges)
 #define QMC2_TEST_VERSION(v, mv, r, mr)		((v) < mv || ((r) > 0 && (r) < (mr)))
 

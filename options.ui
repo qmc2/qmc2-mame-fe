@@ -56,14 +56,30 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-58</y>
+                <y>-83</y>
                 <width>521</width>
-                <height>598</height>
+                <height>623</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_1">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_2">
+                 <item row="3" column="1" colspan="5">
+                  <widget class="QLineEdit" name="lineEditLogFont">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Font used in logs (= application font if empty)</string>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="3" column="6">
                   <widget class="QToolButton" name="toolButtonBrowseLogFont">
                    <property name="sizePolicy">
@@ -91,7 +107,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="24" column="0" colspan="7">
+                 <item row="25" column="0" colspan="7">
                   <spacer name="spacer4">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -257,19 +273,13 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="1" colspan="5">
-                  <widget class="QLineEdit" name="lineEditLogFont">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
+                 <item row="15" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxStatusbar">
                    <property name="toolTip">
-                    <string>Font used in logs (= application font if empty)</string>
+                    <string>Show status bar</string>
                    </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
+                   <property name="text">
+                    <string>Show status bar</string>
                    </property>
                   </widget>
                  </item>
@@ -320,7 +330,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="25" column="0" colspan="7">
+                 <item row="26" column="0" colspan="7">
                   <layout class="QHBoxLayout" name="layout3">
                    <item>
                     <widget class="QLabel" name="labelLegend1Pic">
@@ -576,16 +586,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="15" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxStatusbar">
-                   <property name="toolTip">
-                    <string>Show status bar</string>
-                   </property>
-                   <property name="text">
-                    <string>Show status bar</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="16" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxShowMenuBar">
                    <property name="enabled">
@@ -822,13 +822,26 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="13" column="3" colspan="4">
+                 <item row="23" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxSetWorkDirFromExec">
                    <property name="toolTip">
                     <string>Force QMC2's working directory to be the same as the executable's path</string>
                    </property>
                    <property name="text">
                     <string>Set working directory from executable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="13" column="3" colspan="4">
+                  <widget class="QPushButton" name="pushButtonIndividualFallbackSettings">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="toolTip">
+                    <string>Select individual fallback settings per artwork class</string>
+                   </property>
+                   <property name="text">
+                    <string>Individual fallback settings...</string>
                    </property>
                   </widget>
                  </item>
@@ -5803,7 +5816,7 @@
   <tabstop>checkBoxSmoothScaling</tabstop>
   <tabstop>checkBoxRetryLoadingImages</tabstop>
   <tabstop>checkBoxParentImageFallback</tabstop>
-  <tabstop>checkBoxSetWorkDirFromExec</tabstop>
+  <tabstop>pushButtonIndividualFallbackSettings</tabstop>
   <tabstop>checkBoxStandardColorPalette</tabstop>
   <tabstop>pushButtonEditPalette</tabstop>
   <tabstop>checkBoxStatusbar</tabstop>
@@ -5823,6 +5836,7 @@
   <tabstop>checkBoxShowLoadingAnimation</tabstop>
   <tabstop>checkBoxOneEmulatorOnly</tabstop>
   <tabstop>checkBoxKillEmulatorsOnExit</tabstop>
+  <tabstop>checkBoxSetWorkDirFromExec</tabstop>
   <tabstop>lineEditTemporaryFile</tabstop>
   <tabstop>toolButtonBrowseTemporaryFile</tabstop>
   <tabstop>lineEditFrontendLogFile</tabstop>
@@ -6052,7 +6066,7 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>491</x>
+     <x>476</x>
      <y>635</y>
     </hint>
     <hint type="destinationlabel">
@@ -6068,7 +6082,7 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>576</x>
+     <x>561</x>
      <y>635</y>
     </hint>
     <hint type="destinationlabel">
@@ -6088,7 +6102,7 @@
      <y>79</y>
     </hint>
     <hint type="destinationlabel">
-     <x>560</x>
+     <x>545</x>
      <y>81</y>
     </hint>
    </hints>
@@ -6164,12 +6178,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>187</x>
-     <y>460</y>
+     <x>197</x>
+     <y>435</y>
     </hint>
     <hint type="destinationlabel">
-     <x>546</x>
-     <y>460</y>
+     <x>531</x>
+     <y>435</y>
     </hint>
    </hints>
   </connection>
@@ -6180,12 +6194,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>196</x>
-     <y>485</y>
+     <x>206</x>
+     <y>460</y>
     </hint>
     <hint type="destinationlabel">
-     <x>546</x>
-     <y>485</y>
+     <x>531</x>
+     <y>460</y>
     </hint>
    </hints>
   </connection>
@@ -6200,7 +6214,7 @@
      <y>225</y>
     </hint>
     <hint type="destinationlabel">
-     <x>538</x>
+     <x>376</x>
      <y>232</y>
     </hint>
    </hints>
@@ -6212,8 +6226,8 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>149</x>
-     <y>225</y>
+     <x>131</x>
+     <y>232</y>
     </hint>
     <hint type="destinationlabel">
      <x>243</x>
@@ -6228,12 +6242,28 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>263</x>
-     <y>360</y>
+     <x>255</x>
+     <y>335</y>
     </hint>
     <hint type="destinationlabel">
-     <x>546</x>
-     <y>360</y>
+     <x>531</x>
+     <y>335</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxParentImageFallback</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>pushButtonIndividualFallbackSettings</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>136</x>
+     <y>299</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>299</y>
     </hint>
    </hints>
   </connection>
