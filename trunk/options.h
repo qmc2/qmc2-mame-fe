@@ -187,6 +187,7 @@ class Options : public QDialog, public Ui::Options
 		void on_pushButtonResetShortcut_clicked();
 		void on_pushButtonComponentSetup_clicked();
 		void on_pushButtonCustomizeToolBar_clicked();
+		void on_pushButtonIndividualFallbackSettings_clicked();
 		void on_pushButtonEditPalette_clicked();
 		void on_toolButtonBrowseAdditionalEmulatorExecutable_clicked();
 		void on_toolButtonBrowseAdditionalEmulatorWorkingDirectory_clicked();

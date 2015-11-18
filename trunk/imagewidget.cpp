@@ -144,6 +144,11 @@ void ImageWidget::closeSource()
 	imageFileMap7z.clear();
 }
 
+bool ImageWidget::parentFallback()
+{
+	return qmc2ParentImageFallback && qmc2Config->value(fallbackSettingsKey(), 0).toInt() == 0;
+}
+
 void ImageWidget::reloadActiveFormats()
 {
 	activeFormats.clear();
@@ -314,7 +319,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 						currentPixmap = pm;
 					} else {
 						QString parentName = qmc2ParentHash[gameName];
-						if ( qmc2ParentImageFallback && !parentName.isEmpty() ) {
+						if ( parentFallback() && !parentName.isEmpty() ) {
 							fileOk = loadImage(parentName, onBehalfOf);
 						} else {
 							currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
@@ -377,7 +382,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 						currentPixmap = pm;
 					} else {
 						QString parentName = qmc2ParentHash[gameName];
-						if ( qmc2ParentImageFallback && !parentName.isEmpty() ) {
+						if ( parentFallback() && !parentName.isEmpty() ) {
 							fileOk = loadImage(parentName, onBehalfOf);
 						} else {
 							currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
@@ -451,7 +456,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 							fileOk = f.exists();
 							if ( !fileOk ) {
 								QString parentName = qmc2ParentHash[gameName];
-								if ( qmc2ParentImageFallback && !parentName.isEmpty() )
+								if ( parentFallback() && !parentName.isEmpty() )
 									fileOk = loadImage(parentName, onBehalfOf, checkOnly, fileName, false);
 							}
 						}
@@ -466,7 +471,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 							fileOk = true;
 						} else {
 							QString parentName = qmc2ParentHash[gameName];
-							if ( qmc2ParentImageFallback && !parentName.isEmpty() ) {
+							if ( parentFallback() && !parentName.isEmpty() ) {
 								fileOk = loadImage(parentName, onBehalfOf);
 							} else {
 								currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;

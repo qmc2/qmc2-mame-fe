@@ -19,6 +19,7 @@ class Title : public ImageWidget
 		virtual bool useZip();
 		virtual bool useSevenZip();
 		virtual bool scaledImage();
+		virtual QString fallbackSettingsKey() { return QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleFallback"; }
 };
 
 #endif

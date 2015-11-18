@@ -4581,7 +4581,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 						}
 					}
 					if ( videoSnapUrl.isEmpty() ) { // parent fallback
-						if ( qmc2ParentImageFallback ) {
+						if ( qmc2ParentImageFallback && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/VideoFallback", 0).toInt() == 0 ) {
 							QString parentId = qmc2ParentHash[gameName];
 							if ( !parentId.isEmpty() ) {
 								foreach (QString formatExtension, videoSnapAllowedFormatExtensions) {

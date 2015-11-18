@@ -97,6 +97,7 @@ class ImageWidget : public QWidget
 		void openSource();
 		void closeSource();
 		void reopenSource() { closeSource(); openSource(); }
+		bool parentFallback();
 		static void updateArtwork();
 		static void reloadArtworkFormats();
 
@@ -109,6 +110,7 @@ class ImageWidget : public QWidget
 		virtual bool useZip() = 0;
 		virtual bool useSevenZip() = 0;
 		virtual bool scaledImage() = 0;
+		virtual QString fallbackSettingsKey() = 0;
 
 		// these virtual functions CAN be reimplemented in the concrete image classes
 		virtual bool customArtwork() { return false; }

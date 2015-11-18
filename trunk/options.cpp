@@ -71,6 +71,7 @@
 #include "rankitemwidget.h"
 #include "componentsetup.h"
 #include "cryptedbytearray.h"
+#include "individualfallbacksettings.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -3319,6 +3320,12 @@ void Options::on_pushButtonCustomizeToolBar_clicked()
 		qmc2ToolBarCustomizer = new ToolBarCustomizer(this);
 
 	qmc2ToolBarCustomizer->exec();
+}
+
+void Options::on_pushButtonIndividualFallbackSettings_clicked()
+{
+	IndividualFallbackSettings ifs(this);
+	ifs.exec();
 }
 
 void Options::on_pushButtonEditPalette_clicked()

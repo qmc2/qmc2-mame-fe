@@ -870,7 +870,7 @@ void YouTubeVideoPlayer::init()
 			}
 		}
 		if ( videoSnapCounter == 0 ) { // parent fallback
-			if ( qmc2ParentImageFallback ) {
+			if ( qmc2ParentImageFallback && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/VideoFallback", 0).toInt() == 0 ) {
 				QString parentId = qmc2ParentHash[mySetID];
 				if ( !parentId.isEmpty() ) {
 					foreach (QString formatExtension, qmc2MainWindow->videoSnapAllowedFormatExtensions) {

@@ -81,10 +81,13 @@ void AdditionalArtworkSetup::save()
 	for (int i = component4Info->availableFeatureList().count(); i > deleteAfterIndex; i--)
 		component4Info->availableFeatureList().removeAt(i);
 	QHash<QString, QStringList> savedActiveFormats;
+	QHash<QString, int> savedFallbackSettings;
 	qmc2Config->beginGroup("Artwork");
 	foreach (QString name, qmc2Config->childGroups()) {
 		if ( qmc2Config->contains(QString("%1/ActiveFormats").arg(name)) )
 			savedActiveFormats.insert(name, qmc2Config->value(QString("%1/ActiveFormats").arg(name), QStringList()).toStringList());
+		if ( qmc2Config->contains(QString("%1/Fallback").arg(name)) )
+			savedFallbackSettings.insert(name, qmc2Config->value(QString("%1/Fallback").arg(name), 0).toInt());
 	}
 	qmc2Config->endGroup();
 	qmc2Config->remove("Artwork");
@@ -114,6 +117,8 @@ void AdditionalArtworkSetup::save()
 				qmc2Config->setValue(QString("Artwork/%1/Archive").arg(name), fewFolderOrArchive->lineEditFile->text());
 			if ( savedActiveFormats.contains(name) )
 				qmc2Config->setValue(QString("Artwork/%1/ActiveFormats").arg(name), savedActiveFormats[name]);
+			if ( savedFallbackSettings.contains(name) )
+				qmc2Config->setValue(QString("Artwork/%1/Fallback").arg(name), savedFallbackSettings[name]);
 			QString nameCopy = name;
 			if ( comboBoxTarget->currentIndex() == QMC2_AW_INDEX_TARGET_SYSTEM ) {
 				int featureIndex = QMC2_USEROFFSET_INDEX + systemArtworkIndex;

@@ -36,6 +36,7 @@ class SoftwareImageWidget : public QWidget
 		void openSource();
 		void closeSource();
 		void reopenSource() { closeSource(); openSource(); }
+		bool parentFallback();
 		static void updateArtwork();
 		static void reloadArtworkFormats();
 
@@ -48,6 +49,7 @@ class SoftwareImageWidget : public QWidget
 		virtual bool useZip() = 0;
 		virtual bool useSevenZip() = 0;
 		virtual bool scaledImage() = 0;
+		virtual QString fallbackSettingsKey() = 0;
 
 		// these virtual functions CANbe reimplemented in the concrete image classes
 		virtual bool customArtwork() { return false; }

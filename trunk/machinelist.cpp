@@ -339,6 +339,8 @@ void MachineList::enableWidgets(bool enable)
 	qmc2Options->toolButtonBrowseAdditionalEmulatorExecutable->setEnabled(enable);
 	qmc2Options->toolButtonBrowseAdditionalEmulatorWorkingDirectory->setEnabled(enable);
 	qmc2Options->pushButtonCustomizeToolBar->setEnabled(enable);
+	qmc2Options->checkBoxParentImageFallback->setEnabled(enable);
+	qmc2Options->pushButtonIndividualFallbackSettings->setEnabled(enable && qmc2Options->checkBoxParentImageFallback->isChecked());
 	qmc2Options->checkBoxStandardColorPalette->setEnabled(enable);
 	qmc2Options->pushButtonEditPalette->setEnabled(enable && !qmc2Options->checkBoxStandardColorPalette->isChecked());
 	qmc2Options->pushButtonAdditionalArtworkSetup->setEnabled(enable);
@@ -1821,6 +1823,7 @@ void MachineList::parse()
 	QHashIterator<QString, QStringList> i(qmc2HierarchyHash);
 	QList<QTreeWidgetItem *> itemList, hideList;
 	int counter = numGames;
+	bool iconFallback = qmc2ParentImageFallback && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFallback", 0).toInt() == 0;
 	while ( i.hasNext() && !qmc2StopParser ) {
 		i.next();
 		if ( counter++ % qmc2MachineListResponsiveness == 0 ) {
@@ -1890,7 +1893,7 @@ void MachineList::parse()
 				hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->icon(QMC2_MACHINELIST_COLUMN_MACHINE));
 			QIcon icon = baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON);
 			if ( icon.isNull() ) {
-				if ( qmc2ParentImageFallback ) {
+				if ( iconFallback ) {
 					icon = qmc2IconHash[iValue]; // parent icon
 					if ( !icon.isNull() ) {
 						baseItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
