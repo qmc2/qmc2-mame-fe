@@ -3138,7 +3138,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../componentsetup.cpp" line="268"/>
         <source>Software snapshot</source>
-        <translation>Software Schnappschuss</translation>
+        <translation>Software Snap</translation>
     </message>
     <message>
         <location filename="../../componentsetup.cpp" line="273"/>
@@ -6656,7 +6656,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     <message>
         <location filename="../../imageformatsetup.cpp" line="29"/>
         <source>Software snap</source>
-        <translation>Software Schnappschuss</translation>
+        <translation>Software Snap</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="172"/>
@@ -6911,7 +6911,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="26"/>
         <source>Software snap</source>
-        <translation>Software Schnappschuss</translation>
+        <translation>Software Snap</translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="27"/>
@@ -13091,7 +13091,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
     <message>
         <location filename="../../options.ui" line="791"/>
         <source>Scaled software snapshot</source>
-        <translation>Software Schnappschuss skalieren</translation>
+        <translation>Software Snap skalieren</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="841"/>
@@ -20203,7 +20203,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../embedderopt.cpp" line="276"/>
         <location filename="../../embedderopt.cpp" line="375"/>
         <source>Software snapshot</source>
-        <translation>Software Schnappschuss</translation>
+        <translation>Software Snap</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="263"/>
@@ -21585,7 +21585,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
     <message>
         <location filename="../../softwarelist.cpp" line="4440"/>
         <source>software snapshot</source>
-        <translation>Software Schnappschuss</translation>
+        <translation>Software Snap</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4761"/>
@@ -21598,7 +21598,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
     <message>
         <location filename="../../softwaresnapshot.h" line="17"/>
         <source>software snapshot</source>
-        <translation>Software Schnappschuss</translation>
+        <translation>Software Snap</translation>
     </message>
 </context>
 <context>
