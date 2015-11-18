@@ -28,6 +28,17 @@ ArcadeSettings::ArcadeSettings(QString theme)
 
     // theme-specific default values (add only if different from global default)
     m_themeDefaults["darkone"]["sortByName"] = true;
+
+    m_parentFallbackKeys["prv"] = emulatorPrefix + "/FilesAndDirectories/PreviewFallback";
+    m_parentFallbackKeys["fly"] = emulatorPrefix + "/FilesAndDirectories/FlyerFallback";
+    m_parentFallbackKeys["cab"] = emulatorPrefix + "/FilesAndDirectories/CabinetFallback";
+    m_parentFallbackKeys["ctl"] = emulatorPrefix + "/FilesAndDirectories/ControllerFallback";
+    m_parentFallbackKeys["mrq"] = emulatorPrefix + "/FilesAndDirectories/MarqueeFallback";
+    m_parentFallbackKeys["ttl"] = emulatorPrefix + "/FilesAndDirectories/TitleFallback";
+    m_parentFallbackKeys["pcb"] = emulatorPrefix + "/FilesAndDirectories/PCBFallback";
+    m_parentFallbackKeys["sws"] = emulatorPrefix + "/FilesAndDirectories/SoftwareSnapFallback";
+    m_parentFallbackKeys["vdo"] = emulatorPrefix + "/FilesAndDirectories/VideoFallback";
+    m_parentFallbackKeys["ico"] = emulatorPrefix + "/FilesAndDirectories/IconFallback";
 }
 
 ArcadeSettings::~ArcadeSettings()
@@ -785,9 +796,20 @@ QStringList ArcadeSettings::activeImageFormats(QString imageType)
     return value(QString("%1/ActiveImageFormats/%2").arg(frontEndPrefix).arg(imageType)).toStringList();
 }
 
-bool ArcadeSettings::parentImageFallback()
+bool ArcadeSettings::parentFallback()
 {
     return value(QString("%1/GUI/ParentImageFallback").arg(frontEndPrefix)).toBool();
+}
+
+bool ArcadeSettings::parentFallback(QString imageType)
+{
+    if ( parentFallback() ) {
+        if ( m_parentFallbackKeys.contains(imageType) )
+            return value(m_parentFallbackKeys[imageType], 0).toInt() == 0;
+        else
+            return value(QString("Artwork/%1/Fallback").arg(imageType), 0).toInt() == 0;
+    } else
+        return false;
 }
 
 QString ArcadeSettings::videoSnapFolder()

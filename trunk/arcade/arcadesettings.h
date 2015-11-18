@@ -4,6 +4,8 @@
 #include <qglobal.h>
 #include <QLocale>
 #include <QSize>
+#include <QHash>
+#include <QMap>
 #include <QStringList>
 
 #include "../settings.h"
@@ -189,7 +191,8 @@ public slots:
     QString messInfoDat();
     QString softwareInfoDat();
     QStringList activeImageFormats(QString);
-    bool parentImageFallback();
+    bool parentFallback();
+    bool parentFallback(QString);
     QString videoSnapFolder();
 
     // joystick related
@@ -238,6 +241,7 @@ public slots:
 
 private:
     QMap<QString, QMap<QString, QVariant> > m_themeDefaults;
+    QHash<QString, QString> m_parentFallbackKeys;
 };
 
 #endif

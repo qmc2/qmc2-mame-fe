@@ -438,7 +438,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
     }
 
     if ( validCacheKey.isEmpty() ) {
-        if ( globalConfig->parentImageFallback() && !parentId.isEmpty() && !imageType.isEmpty() )
+        if ( globalConfig->parentFallback(imageType) && !parentId.isEmpty() && !imageType.isEmpty() )
             return loadImage(imageType + "/" + parentId, cacheClass);
         else
             return QString();
