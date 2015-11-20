@@ -1297,49 +1297,6 @@ MainWindow::MainWindow(QWidget *parent)
 	joyIndex = -1;
 #endif
 
-#if !(QMC2_USE_PHONON_API)
-	tabWidgetLogsAndEmulators->removeTab(tabWidgetLogsAndEmulators->indexOf(tabAudioPlayer));
-	menuTools->removeAction(menuAudioPlayer->menuAction());
-#else
-	audioState = Phonon::StoppedState;
-	phononAudioPlayer = new Phonon::MediaObject(this);
-	phononAudioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
-	phononAudioPath = Phonon::createPath(phononAudioPlayer, phononAudioOutput);
-	listWidgetAudioPlaylist->setTextElideMode(Qt::ElideMiddle);
-	listWidgetAudioPlaylist->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	QStringList psl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList").toStringList();
-	listWidgetAudioPlaylist->addItems(psl);
-	QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->findItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/LastTrack", QString()).toString(), Qt::MatchExactly);
-	if ( sl.count() > 0 ) {
-		listWidgetAudioPlaylist->setCurrentItem(sl[0]);
-		listWidgetAudioPlaylist->scrollToItem(sl[0], qmc2CursorPositioningMode);
-		qmc2AudioLastIndividualTrack = sl[0]->text();
-	}
-	checkBoxAudioPlayOnStart->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayOnStart", false).toBool());
-	checkBoxAudioShuffle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Shuffle", false).toBool());
-	checkBoxAudioPause->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Pause", true).toBool());
-	checkBoxAudioFade->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Fade", true).toBool());
-	dialAudioVolume->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Volume", 50).toInt());
-	phononAudioOutput->setVolume((qreal)dialAudioVolume->value()/100.0);
-	toolButtonAudioPreviousTrack->setDefaultAction(actionAudioPreviousTrack);
-	toolButtonAudioNextTrack->setDefaultAction(actionAudioNextTrack);
-	toolButtonAudioStopTrack->setDefaultAction(actionAudioStopTrack);
-	toolButtonAudioPauseTrack->setDefaultAction(actionAudioPauseTrack);
-	toolButtonAudioPlayTrack->setDefaultAction(actionAudioPlayTrack);
-	phononAudioPlayer->setTickInterval(1000);
-	connect(phononAudioPlayer, SIGNAL(tick(qint64)), this, SLOT(audioTick(qint64)));
-	connect(phononAudioPlayer, SIGNAL(totalTimeChanged(qint64)), this, SLOT(audioTotalTimeChanged(qint64)));
-	connect(phononAudioPlayer, SIGNAL(finished()), this, SLOT(audioFinished()));
-	connect(phononAudioPlayer, SIGNAL(metaDataChanged()), this, SLOT(audioMetaDataChanged()));
-	connect(phononAudioPlayer, SIGNAL(bufferStatus(int)), this, SLOT(audioBufferStatus(int)));
-	audioFastForwarding = audioFastBackwarding = audioSkippingTracks = false;
-	if ( checkBoxAudioPlayOnStart->isChecked() ) {
-		audioState = Phonon::PlayingState;
-		QTimer::singleShot(0, this, SLOT(on_actionAudioPlayTrack_triggered()));
-	} else
-		QTimer::singleShot(0, this, SLOT(on_actionAudioStopTrack_triggered()));
-#endif
-
 	// download manager widget
 	checkBoxRemoveFinishedDownloads->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", false).toBool());
 
@@ -6470,6 +6427,49 @@ void MainWindow::init()
 {
 	if ( qmc2TemplateCheck )
 		return;
+
+#if !(QMC2_USE_PHONON_API)
+	tabWidgetLogsAndEmulators->removeTab(tabWidgetLogsAndEmulators->indexOf(tabAudioPlayer));
+	menuTools->removeAction(menuAudioPlayer->menuAction());
+#else
+	audioState = Phonon::StoppedState;
+	phononAudioPlayer = new Phonon::MediaObject(this);
+	phononAudioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+	phononAudioPath = Phonon::createPath(phononAudioPlayer, phononAudioOutput);
+	listWidgetAudioPlaylist->setTextElideMode(Qt::ElideMiddle);
+	listWidgetAudioPlaylist->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	QStringList psl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList").toStringList();
+	listWidgetAudioPlaylist->addItems(psl);
+	QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->findItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/LastTrack", QString()).toString(), Qt::MatchExactly);
+	if ( sl.count() > 0 ) {
+		listWidgetAudioPlaylist->setCurrentItem(sl[0]);
+		listWidgetAudioPlaylist->scrollToItem(sl[0], qmc2CursorPositioningMode);
+		qmc2AudioLastIndividualTrack = sl[0]->text();
+	}
+	checkBoxAudioPlayOnStart->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayOnStart", false).toBool());
+	checkBoxAudioShuffle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Shuffle", false).toBool());
+	checkBoxAudioPause->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Pause", true).toBool());
+	checkBoxAudioFade->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Fade", true).toBool());
+	dialAudioVolume->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Volume", 50).toInt());
+	phononAudioOutput->setVolume((qreal)dialAudioVolume->value()/100.0);
+	toolButtonAudioPreviousTrack->setDefaultAction(actionAudioPreviousTrack);
+	toolButtonAudioNextTrack->setDefaultAction(actionAudioNextTrack);
+	toolButtonAudioStopTrack->setDefaultAction(actionAudioStopTrack);
+	toolButtonAudioPauseTrack->setDefaultAction(actionAudioPauseTrack);
+	toolButtonAudioPlayTrack->setDefaultAction(actionAudioPlayTrack);
+	phononAudioPlayer->setTickInterval(1000);
+	connect(phononAudioPlayer, SIGNAL(tick(qint64)), this, SLOT(audioTick(qint64)));
+	connect(phononAudioPlayer, SIGNAL(totalTimeChanged(qint64)), this, SLOT(audioTotalTimeChanged(qint64)));
+	connect(phononAudioPlayer, SIGNAL(finished()), this, SLOT(audioFinished()));
+	connect(phononAudioPlayer, SIGNAL(metaDataChanged()), this, SLOT(audioMetaDataChanged()));
+	connect(phononAudioPlayer, SIGNAL(bufferStatus(int)), this, SLOT(audioBufferStatus(int)));
+	audioFastForwarding = audioFastBackwarding = audioSkippingTracks = false;
+	if ( checkBoxAudioPlayOnStart->isChecked() ) {
+		audioState = Phonon::PlayingState;
+		QTimer::singleShot(0, this, SLOT(on_actionAudioPlayTrack_triggered()));
+	} else
+		QTimer::singleShot(0, this, SLOT(on_actionAudioStopTrack_triggered()));
+#endif
 
 	// signal setup requests for style, style-sheet and palette
 	signalStyleSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString());
