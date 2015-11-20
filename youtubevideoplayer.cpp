@@ -1954,7 +1954,6 @@ bool YouTubeXmlHandler::fatalError(const QXmlParseException &exception)
 
 	return false;
 }
-#endif
 
 bool VideoEventFilter::eventFilter(QObject *object, QEvent *event)
 {
@@ -1976,3 +1975,5 @@ bool VideoEventFilter::eventFilter(QObject *object, QEvent *event)
 	}
 	return QObject::eventFilter(object, event);
 }
+
+#endif
