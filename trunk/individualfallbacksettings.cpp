@@ -16,6 +16,7 @@ IndividualFallbackSettings::IndividualFallbackSettings(QWidget *parent)
 	: QDialog(parent)
 {
 	setupUi(this);
+	treeWidget->setFocusPolicy(Qt::NoFocus);
 	artworkClassNames << tr("Preview")
 			  << tr("Flyer")
 			  << tr("Cabinet")
