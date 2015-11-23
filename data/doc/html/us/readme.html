@@ -21,28 +21,25 @@
     <p><a href="#4.">Machine list statistics, ROM status and the ROMAlyzer</a></p>
   </li>
   <li>
-    <p><a href="#5.">GUI style plugins and Qt style sheets</a></p>
+    <p><a href="#5.">Short cuts, GUI control keys and joystick support</a></p>
   </li>
   <li>
-    <p><a href="#6.">Short cuts, GUI control keys and joystick support</a></p>
+    <p><a href="#6.">External tools and tool argument syntax</a></p>
   </li>
   <li>
-    <p><a href="#7.">External tools and tool argument syntax</a></p>
+    <p><a href="#7.">Multi-platform support</a></p>
   </li>
   <li>
-    <p><a href="#8.">Multi-platform support</a></p>
+    <p><a href="#8.">Contact</a></p>
   </li>
   <li>
-    <p><a href="#9.">Contact</a></p>
+    <p><a href="#9.">Contributing</a></p>
   </li>
   <li>
-    <p><a href="#10.">Contributing</a></p>
+    <p><a href="#10.">License and copyright</a></p>
   </li>
   <li>
-    <p><a href="#11.">License and copyright</a></p>
-  </li>
-  <li>
-    <p><a href="#12.">Legal notice</a></p>
+    <p><a href="#11.">Legal notice</a></p>
   </li>
 </ol>
 <h3><a name="1."></a>1. What is the M.A.M.E. Catalog / Launcher II?</h3>
@@ -181,58 +178,8 @@ of their parents. The optional views 'by version' and 'by category' (which are o
 and/or <i>MESS category.ini</i> has been enabled) are also not filtered.</p>
 <p><b>ROMAlyzer</b></p>
 <p>Since v0.2.b1, there is also a so called <i>ROMAlyzer</i> which allows to deeply scan individual (or multiple) machines for their exact ROM state. This work was inspired by <a href="credits.html#Carsten">Carsten Engel's</a> romalyzer.pl Perl script (see scripts/romalyzer.pl in the source distribution) - he also offered very helpful comments on ROM identification and how to handle CHDs. Thanks!</p>
-<p>ROMAlyzer features, tips and restrictions:</p>
-<ul>
-  <li>Imitates the emulator's way of finding ROMs, using their CRCs to identify the individual ROM files (in ZIP or 7z archives).</li>
-  <li>Uses the XML machine data to compare (expected) checksums and sizes as well as to know which ROM &amp; CHD files are required, if they need to be merged from other sets etc.</li>
-  <li>ZIP- and 7z-archived ROMs will be decompressed and their checksums will be recalculated on-the-fly (this will also identify ZIP-/7z-archives with invalid file integrity).</li>
-  <li>ROMs which are stored in machine-directories (not ZIP- or 7z-archived) will be loaded to calculate their hashes.</li>
-  <li>All required hash algorithms are supported: CRC(-32), SHA1 and MD5.</li>
-  <li>CHD verification is accomplished through the comparison of the header checksums with the expected hash values; you can optionally enable deeper file integrity verifications through the CHD manager (<i>chdman</i>) which is thus required to use this feature (slow).</li>
-  <li>The CHD manager will allow you to optionally <i>update</i> your CHDs on-the-fly if applicable -- <b>backup your CHDs before enabling automatic updates!</b> Also, make absolutely sure you're using the latest version of <i>chdman</i>, that is, the version that came with your current MAME release (the minimum required version is 0.145u1!). QMC2 assumes that CHD version 5 is the latest and greatest format, and it will only try to update a CHD if its version is less than that.</li>
-  <li>For best performance, choose a temporary working directory for the CHD manager which is on the same file system as the CHDs you're analysing (i.e. your ROM path). The reason for this is that in the final step we simply rename/move the updated chdman's output to replace the old CHD.</li>
-  <li>If QMC2 is unable to replace an updated CHD (for instance due to missing write permission on the ROM path) it will keep the updated file in the CHD manager's temporary working directory and you'll need to copy/move it manually.</li>
-  <li>ROM and CHD files will never be fully loaded into memory while analyzing, only small blocks (or hunks) of data are read for hash calculation and dropped directly afterwards. However, the 'set rewriter' (see below!) <b>will</b> load all (uncompressed) data of a set into memory -- so if you want to use that function, a system with at least 4 GB RAM is recommended (it actually only depends on the largest ROM set available in MAME, not counting any CHDs here). </li>
-  <li>Long ROMAlyzer runs can be paused / resumed or interrupted at nearly any time. Except when a set is currently rewritten, interruptions take place immediatly, and any running external process (like <i>chdman</i> for example) will be terminated. Pausing the analysis is <i>nicer</i> and takes place asynchronously, waiting for the current set to finish its analysis.</li>
-  <li>ROM sets that use <i>merged</i> files will also be checked for their <i>merge-states</i>. Possible states include:
-    <ul>
-      <li>OK (green) -- all merged files are at their expected places and are taken from the parent set</li>
-      <li>WARNING (yellow) -- one or more files to be merged are taken from the child set, but if the parent set already has the files (needs it anyway), they can be considered obsolete within the child set (it's OK, but you can free some space by reorganizing your sets)</li>
-      <li>CRITICAL (red) -- one or more files to be merged are not found or otherwise 'bad' in both the parent and the child sets</li>
-    </ul>
-  </li>
-  <li>The <i>checksum wizard</i> will allow you to search for an SHA1 or CRC checksum in all sets. You can use it to qualify the states and locations of the respective files and to automatically repair 'bad' sets when 'good' sets exist.</li>
-  <li>You can enable the so called <i>set rewriter</i> to recreate clean new ZIPs (or sets in sub-directories, reproduction in 7z format is not supported). Things to note about the <i>set rewriter</i>:
-    <ul>
-      <li><b>Take backups of your primary ROM data before you replace it with the ZIPs created by the <i>set rewriter</i>!</b></li>
-      <li><b>NEVER use one of your primary ROM paths as the output directory for the <i>set rewriter</i>!</b></li>
-      <li>When you have update ROMs, you can point the set rewriter to them (see 'additional ROM path'). You can enter a semicolon-separated list in the way as MAME <i>rompath</i> parameter accepts it to specify multiple paths!</b></li>
-      <li>When the source data is bad and/or incomplete, the results will not be better. First get your ROM sets <i>working</i> before you dare to run the set rewriter in order to clean them up!</li>
-      <li>CHDs are not included.</li>
-    </ul>
-  <li>Take a look at the ROMAlyzer's log for a more detailed analysis report.</li>
-</ul>
-<h3><a name="5."></a>5. GUI style plugins and Qt style sheets</h3>
-<p>GUI styles can be switched on-the-fly by explicitly selecting available style plugins from the respective combo-box in the setup dialog (see <i>Front end</i> -&gt; <i>GUI</i>). If you installed additional style plugins to Qt, these will be available here as well.</p>
-<p>The <i>Default</i> GUI style is the desktop's default style.</p>
-<p>KDE styles are supported if they were made for KDE 4 (Qt 4)!</p>
-<p>Since v0.1.b11, support for style-specific custom color palettes (which can be setup with <i>qtconfig</i>) has been added. The default behavior of QMC2 is to use the default palette. You can disable this via the <i>StandardColorPalette</i> setting to use the customized color palette instead - if applicable (see <i>Front end</i> -&gt; <i>GUI</i> in the configuration dialog).</p>
-<p>Note that some add-on GUI styles may look ugly or be even buggy (older versions of the Oxygen style, for example, were known to raise an X11 bug when the ROMAlyzer was opened initially). Don't ask for support if you know that this is the cause of your troubles! Please contact the style's developer(s) instead.</p>
-<p><b>Qt style sheets</b></p>
-<p>Qt style sheets can be used in conjunction with any GUI style to gain more theme'ing power.</p>
-<p>Since v0.2.b10, QMC2 supports dynamic loading of style sheets from within the GUI.
-   It loads the style sheet before the GUI style is set up, so the GUI style may overload parts of the theme with its settings.
-   This means that not every combination might look as expected, others may fit better.</p>
-<p>Compatible style sheets can be found here: <a href="http://qmc2.batcom-it.net/index.php/style-sheets/" target="_blank">http://qmc2.batcom-it.net/index.php/style-sheets/</a>.</p>
-<p>To install a style sheet, simply unpack the archive somewhere in your file system.
-   Then select the style sheet (.qss file) from within QMC2 to activate it.
-   See <i>Tools</i> -&gt; <i>Options</i> -&gt; <i>GUI</i> -&gt; <i>Style sheet</i>.</p>
-<p>Note that due to a pending Qt bug we have to change the current working directory of the running application to the style sheet's
-   path to make sure that relative URLs (in the .qss file) are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead!
-   <b>Update:</b> since version 0.2.b16 we support the specification of the <i>working directory</i> that's used when the emulator is launched in play- or demo-mode;
-   we strongly recommend to set this option as it cleanly works around this issue.</p>
-<p>Read more about Qt style sheets here: <a href="http://doc.qt.io/qt-4.8/stylesheet.html" target="_blank">http://doc.qt.io/qt-4.8/stylesheet.html</a></p>
-<h3><a name="6."></a>6. Short cuts, GUI control keys and joystick support</h3>
+Please refer to the <a href="http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Analyzing_sets_with_the_ROMAlyzer" target="_blank">ROMAlyzer section in our wiki</a> for detailed information! 
+<h3><a name="5."></a>5. Short cuts, GUI control keys and joystick support</h3>
 <p>Many functions in QMC2 can be accessed via short cut key-sequences which can be remapped freely. See <a href="http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Key_sequences_.2F_short_cuts" target="_blank">this section in our wiki</a> for a list of the available short cuts and their default key sequences.</p>
 <p>Beside this list, remapping includes some special keys (like all cursor keys, page up/down, tab, +/-, ...) that are required for GUI control through key-strokes. The ability to remap key sequences should be very handy for users of MAME cabinets with sticks that map their controls to key-strokes (X-Arcade controls for example). Of course, we hope it's useful for others as well :).</p>
 <p><b>Joystick control</b></p>
@@ -244,7 +191,7 @@ and/or <i>MESS category.ini</i> has been enabled) are also not filtered.</p>
 	<li>For embedded emulators, mixing / sharing the joystick control between QMC2 and an emulator is <b>not supported</b> (well, <i>not recommended</i>)</li>
 	<li>When QMC2 is in joystick test- or calibration-mode, it will not only receive all joystick events, but also react on them with widget updates. This is not really a problem and could be used for debugging purposes, but should normally be avoided because it eats some CPU cycles for no real use.</li>
 </ul>
-<h3><a name="7."></a>7. External tools and tool argument syntax</h3>
+<h3><a name="6."></a>6. External tools and tool argument syntax</h3>
 <p>External tools are used for specific operations which aren't natively built into QMC2.</p>
 <p>For instance, to remove obsolete or corrupt image files from ZIP or 7z archives, QMC2 uses an external program (zip or 7za) and passes the files to be removed on the argument list when the tool is started.</p>
 <p>A third and more <i>generic</i> tool - the so called <i>ROM tool</i> - can be used to call any program or script which does some external processing based on the machine's ID and/or its long name (description). It's completely up to you what this tool might do... ideally, it should have some ROM management / ROM related functionality, though :).</p> 
@@ -281,7 +228,7 @@ and/or <i>MESS category.ini</i> has been enabled) are also not filtered.</p>
 </table>
 <p>Everything else will be passed as <i>literal text</i> at the position where it's specified (see <i>Front end</i> -&gt; <i>Network / Tools</i> in the setup dialog).</p>
 <p>When external tools are started by QMC2, a simple tool-executor dialog will pop up to display the command and its output.</p>
-<h3><a name="8."></a>8. Multi-platform support</h3>
+<h3><a name="7."></a>7. Multi-platform support</h3>
 <p>As the front end code has been designed with portability in mind, QMC2 should work on any UNIX or UNIX-like
 platform, on Mac OS X and meanwhile also on Windows, provided Qt 4 and (SDL)MAME are supported on this platform as well.</p>
 <p>
@@ -305,14 +252,9 @@ This means that only differences to the global OS configuration need to be place
 <p>Of course, this mechanism requires that a specific configuration file for your OS / distribution exists. If not, the build
 will fail. Create the required file (see output from <i>make</i> or run <i>make os-detect</i> to figure out the expected name of the
 configuration file) and try again!<p>
-<p>In case of any trouble, feel free to contact us (see <a href="#9.">section 9.</a>). Please attach the output of
-<i>make os-detect</i> in this case!</p>
-<p>Also, please send us your configuration file if you try QMC2 on other platforms / distributions than the ones included in the
-<i>arch/</i> or <i>arch/&lt;os-name&gt;/</i> directories. Regardless if you are successful or not, any help is greatly
-appreciated (see <a href="#10.">section 10.</a>).</p>
-<p>Since v0.2.b7, QMC2 is also supported on Mac OS X -- thanks to <a href="credits.html#Vas">Vas Crabb</a> who ported it in the first place and maintains the port now.</p>
-<p>Since v0.2.b8, QMC2 is also supported on Windows using the original MAME variant.</p>
-<h3><a name="9."></a>9. Contact</h3>
+<p>In case of any trouble, feel free to contact us (see <a href="#8.">section 8.</a>). Please attach the output of <code>make os-detect</code> in this case!</p>
+<p>Also, please send us your configuration file if you try QMC2 on other platforms / distributions than the ones included in the <code>arch/</code> or <code>arch/&lt;os-name&gt;/</code> directories. Regardless if you are successful or not, any help is greatly appreciated (see <a href="#9.">section 9.</a>).</p>
+<h3><a name="8."></a>8. Contact</h3>
 <p>Project homepage:</p>
 <ul>
 <li><a href="http://qmc2.batcom-it.net/" target="_blank">http://qmc2.batcom-it.net/</a></li>
@@ -334,7 +276,7 @@ appreciated (see <a href="#10.">section 10.</a>).</p>
 <ul>
 <li><a href="http://wiki.batcom-it.net/index.php?title=Development_team_and_contributors"target="_blank">http://wiki.batcom-it.net/index.php?title=Development_team_and_contributors</a></li>
 </ul>
-<h3><a name="10."></a>10. Contributing</h3>
+<h3><a name="9."></a>9. Contributing</h3>
 <p>Help and contributions are greatly appreciated. Following are the most important areas where we need your support:</p>
 <ul>
   <li>Beta testing, bug hunting</li>
@@ -349,8 +291,8 @@ note that you're required to use SVN (<i>Subversion</i>).</p>
 <p>See <a href="credits.html">credits.html</a> for a list of contributers.</p>
 <ul>
 </ul>
-<h3><a name="11."></a>11. License and copyright</h3>
-<p><i>QMC2 - M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II</i><br>
+<h3><a name="10."></a>10. License and copyright</h3>
+<p><i>QMC2 - M.A.M.E. Catalog / Launcher II</i><br>
 Copyright &copy; 2006 - 2015 R. Reucher, Germany. All rights reserved.</p>
 <p>This program is free
 software; you can redistribute it and/or modify it under the terms of
@@ -397,7 +339,7 @@ Copyright &copy; 1999 - 2012 Igor Pavlov. All rights reserved.<br>
 Copyright &copy; 2012 - 2013 Digia Plc. All rights reserved.<br>
 <a href="http://qt.gitorious.org/qt/qtftp/source/src/qftp" target="_blank">http://qt.gitorious.org/qt/qtftp/source/src/qftp</a>
 </p>
-<h3><a name="12."></a>12. Legal notice</h3>
+<h3><a name="11."></a>11. Legal notice</h3>
 <p>Please note that you are required to have permission to use or to be the legal owner of any ROM images you are going to run through an emulator and / or this front end.
    The goal of emulators and its surrounding projects is educational and academic (of course, it's also fun :).</p>
 <p><b>We do NOT and will NEVER encourage or support any type of illegal use!</b></p>
