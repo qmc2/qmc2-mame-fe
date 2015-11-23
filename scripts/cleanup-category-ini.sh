@@ -24,7 +24,15 @@ for i in $(cat /tmp/category.ini | grep -v "^\\[" | grep -v "^tr\\[" | grep "^[0
 		grep -v "^${i}$" /tmp/category.ini > /tmp/category.ini.new
 		rm /tmp/category.ini
 		mv /tmp/category.ini.new /tmp/category.ini
-		echo "Removed invalid machine name '$i'"
+		echo "Removed invalid machine '$i'"
+	else
+		j=$(sqlite3 ~/.qmc2/mame-xml-cache.db "select xml from mame_xml_cache where id='$i'" | grep cloneof)
+		if [ "$j" != "" ]; then
+			grep -v "^${i}$" /tmp/category.ini > /tmp/category.ini.new
+			rm /tmp/category.ini
+			mv /tmp/category.ini.new /tmp/category.ini
+			echo "Removed clone '$i'"
+		fi
 	fi
 done
 unix2dos -q /tmp/category.ini
