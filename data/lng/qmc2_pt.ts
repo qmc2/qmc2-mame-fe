@@ -16137,83 +16137,88 @@ Tem certeza que deseja fazer isso?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="388"/>
+        <location filename="../../processmanager.cpp" line="374"/>
+        <source>timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../processmanager.cpp" line="390"/>
         <source>FATAL: failed to start emulator #%1</source>
         <translation>FATAL: falha ao iniciar o emulador #%1</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="394"/>
+        <location filename="../../processmanager.cpp" line="396"/>
         <source>WARNING: emulator #%1 crashed</source>
         <translation>AVISO: emulador #%1 quebrou</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="397"/>
+        <location filename="../../processmanager.cpp" line="399"/>
         <source>WARNING: failed to write to emulator #%1</source>
         <translation>AVISO: falha ao escrever para emulador #%1</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="400"/>
+        <location filename="../../processmanager.cpp" line="402"/>
         <source>WARNING: failed to read from emulator #%1</source>
         <translation>AVISO: falha para ler do emulador #%1</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="403"/>
+        <location filename="../../processmanager.cpp" line="405"/>
         <source>WARNING: unhandled error for emulator #%1, error code = %2</source>
         <translation>AVISO: erro não tratado para o emulador #%1, código de erro = %2</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="420"/>
+        <location filename="../../processmanager.cpp" line="422"/>
         <source>no error</source>
         <translation>nenhum erro</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="421"/>
+        <location filename="../../processmanager.cpp" line="423"/>
         <source>failed validity checks</source>
         <translation>checagens de validade falharam</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="422"/>
+        <location filename="../../processmanager.cpp" line="424"/>
         <source>missing files</source>
         <translation>arquivos faltantes</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="423"/>
+        <location filename="../../processmanager.cpp" line="425"/>
         <source>fatal error</source>
         <translation>erro fatal</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="424"/>
+        <location filename="../../processmanager.cpp" line="426"/>
         <source>device initialization error</source>
         <translation>erro na inicialização do dispositivo</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="425"/>
+        <location filename="../../processmanager.cpp" line="427"/>
         <source>machine doesn&apos;t exist</source>
         <translation>máquina não existe</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="426"/>
+        <location filename="../../processmanager.cpp" line="428"/>
         <source>invalid configuration</source>
         <translation>configuração inválida</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="427"/>
+        <location filename="../../processmanager.cpp" line="429"/>
         <source>identified all non-ROM files</source>
         <translation>todos os arquivos não-ROM identificados</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="428"/>
+        <location filename="../../processmanager.cpp" line="430"/>
         <source>identified some files but not all</source>
         <translation>nem todos os arquivos foram identificados</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="429"/>
+        <location filename="../../processmanager.cpp" line="431"/>
         <source>identified no files</source>
         <translation>nenhum arquivo identificado</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="374"/>
-        <location filename="../../processmanager.cpp" line="430"/>
+        <location filename="../../processmanager.cpp" line="376"/>
+        <location filename="../../processmanager.cpp" line="432"/>
         <source>unknown error</source>
         <translation>erro desconhecido</translation>
     </message>

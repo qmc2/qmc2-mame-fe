@@ -16165,83 +16165,88 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="388"/>
+        <location filename="../../processmanager.cpp" line="374"/>
+        <source>timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../processmanager.cpp" line="390"/>
         <source>FATAL: failed to start emulator #%1</source>
         <translation>FATAL: pornire emulator esuata #%1</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="394"/>
+        <location filename="../../processmanager.cpp" line="396"/>
         <source>WARNING: emulator #%1 crashed</source>
         <translation>AVERTIZARE: emulator #%1 picat</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="397"/>
+        <location filename="../../processmanager.cpp" line="399"/>
         <source>WARNING: failed to write to emulator #%1</source>
         <translation>AVERTIZARE: scriere emulator esuata #%1</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="400"/>
+        <location filename="../../processmanager.cpp" line="402"/>
         <source>WARNING: failed to read from emulator #%1</source>
         <translation>AVERTIZARE: citire din emulator esuata #%1</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="403"/>
+        <location filename="../../processmanager.cpp" line="405"/>
         <source>WARNING: unhandled error for emulator #%1, error code = %2</source>
         <translation>AVERTIZARE: eroare netratata pentru emulatorul %1, cod eroare = %2</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="420"/>
+        <location filename="../../processmanager.cpp" line="422"/>
         <source>no error</source>
         <translation>nicio eroare</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="421"/>
+        <location filename="../../processmanager.cpp" line="423"/>
         <source>failed validity checks</source>
         <translation>verificare de valabilitate esuata</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="422"/>
+        <location filename="../../processmanager.cpp" line="424"/>
         <source>missing files</source>
         <translation>fisiere lipsa</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="423"/>
+        <location filename="../../processmanager.cpp" line="425"/>
         <source>fatal error</source>
         <translation>eroare fatala</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="424"/>
+        <location filename="../../processmanager.cpp" line="426"/>
         <source>device initialization error</source>
         <translation>eroare de initializare dispozitiv</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="425"/>
+        <location filename="../../processmanager.cpp" line="427"/>
         <source>machine doesn&apos;t exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="426"/>
+        <location filename="../../processmanager.cpp" line="428"/>
         <source>invalid configuration</source>
         <translation>configuratie invalida</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="427"/>
+        <location filename="../../processmanager.cpp" line="429"/>
         <source>identified all non-ROM files</source>
         <translation>toate fisierele non-ROM indentificate</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="428"/>
+        <location filename="../../processmanager.cpp" line="430"/>
         <source>identified some files but not all</source>
         <translation>identificat cateva fisiere dar nu toate</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="429"/>
+        <location filename="../../processmanager.cpp" line="431"/>
         <source>identified no files</source>
         <translation>identificat niciun fisier</translation>
     </message>
     <message>
-        <location filename="../../processmanager.cpp" line="374"/>
-        <location filename="../../processmanager.cpp" line="430"/>
+        <location filename="../../processmanager.cpp" line="376"/>
+        <location filename="../../processmanager.cpp" line="432"/>
         <source>unknown error</source>
         <translation>eroare necunoscuta</translation>
     </message>

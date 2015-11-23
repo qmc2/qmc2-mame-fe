@@ -370,6 +370,8 @@ QString ProcessManager::errorText(QProcess::ProcessError processError)
 			return tr("write error");
 		case QProcess::ReadError:
 			return tr("read error");
+		case QProcess::Timedout:
+			return tr("timeout");
 		default:
 			return tr("unknown error");
 	}
