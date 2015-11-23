@@ -10823,7 +10823,7 @@ void prepareShortcuts()
 	qmc2ShortcutHash["F6"].second = qmc2MainWindow->actionViewParentClones;
 	qmc2ShortcutHash["F7"].second = qmc2MainWindow->actionViewByCategory;
 	qmc2ShortcutHash["F8"].second = qmc2MainWindow->actionViewByVersion;
-	qmc2ShortcutHash["F9"].second = qmc2MainWindow->actionRunRomTool;
+	qmc2ShortcutHash["Shift+F9"].second = qmc2MainWindow->actionRunRomTool;
 	qmc2ShortcutHash["Ctrl+Shift+F9"].second = qmc2MainWindow->actionRunRomToolTagged;
 	qmc2ShortcutHash["F10"].second = NULL; // for "check software-states"
 	qmc2ShortcutHash["F11"].second = qmc2MainWindow->actionFullscreenToggle;

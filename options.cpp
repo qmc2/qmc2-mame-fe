@@ -297,7 +297,7 @@ Options::Options(QWidget *parent)
 	qmc2ShortcutHash["F6"] = QPair<QString, QAction *>(tr("Hierarchical view"), NULL);
 	qmc2ShortcutHash["F7"] = QPair<QString, QAction *>(tr("Category view"), NULL);
 	qmc2ShortcutHash["F8"] = QPair<QString, QAction *>(tr("Version view"), NULL);
-	qmc2ShortcutHash["F9"] = QPair<QString, QAction *>(tr("Run external ROM tool"), NULL);
+	qmc2ShortcutHash["Shift+F9"] = QPair<QString, QAction *>(tr("Run external ROM tool"), NULL);
 	qmc2ShortcutHash["Ctrl+Shift+F9"] = QPair<QString, QAction *>(tr("Run ROM tool for tagged sets"), NULL);
 	qmc2ShortcutHash["F10"] = QPair<QString, QAction *>(tr("Check software-states"), NULL);
 	qmc2ShortcutHash["F11"] = QPair<QString, QAction *>(tr("Toggle full screen"), NULL);
