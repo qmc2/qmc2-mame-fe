@@ -4515,8 +4515,8 @@ Einen anderen Namen wählen?</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="216"/>
-        <source>error code = %1</source>
-        <translation>Fehler-Code = %1</translation>
+        <source>error text = %1</source>
+        <translation>Fehler Text = %1</translation>
     </message>
 </context>
 <context>
@@ -4969,8 +4969,8 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     <message>
         <location filename="../../emuopt.cpp" line="1292"/>
         <location filename="../../emuopt.cpp" line="1295"/>
-        <source>error code = %1</source>
-        <translation>Fehler-Code = %1</translation>
+        <source>error text = %1</source>
+        <translation>Fehler Text = %1</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1348"/>
@@ -8263,12 +8263,6 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Schnappschuss</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="606"/>
-        <location filename="../../machinelist.cpp" line="678"/>
-        <source>error code = %1</source>
-        <translation>Fehler-Code = %1</translation>
-    </message>
-    <message>
         <location filename="../../machinelist.cpp" line="729"/>
         <source>WARNING: the output from -listfull changed, forcing a refresh of all emulator caches</source>
         <translation>WARNUNG: die Ausgabe von -listfull hat sich geändert, erzwinge Aktualisierung aller Emulators-Caches</translation>
@@ -8332,6 +8326,12 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../machinelist.cpp" line="159"/>
         <source>compatible</source>
         <translation>kompatibel</translation>
+    </message>
+    <message>
+        <location filename="../../machinelist.cpp" line="606"/>
+        <location filename="../../machinelist.cpp" line="678"/>
+        <source>error text = %1</source>
+        <translation>Fehler Text = %1</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="613"/>
@@ -19976,11 +19976,6 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>FATAL: kann ausführbare Emulator Datei nicht in einem angemessenen Zeitraum starten, gebe auf</translation>
     </message>
     <message>
-        <location filename="../../samplechecker.cpp" line="276"/>
-        <source>error code = %1</source>
-        <translation>Fehler-Code = %1</translation>
-    </message>
-    <message>
         <location filename="../../samplechecker.cpp" line="298"/>
         <source>Good: %1</source>
         <translation>Gut: %1</translation>
@@ -20070,6 +20065,11 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../samplechecker.cpp" line="224"/>
         <source>WARNING: XML bug: the following machine is referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
         <translation>WARNUNG: XML Bug: die folgende Maschine referenziert ein Sample-Set, welches nicht gebraucht wird (sampleof=&quot;%1&quot;): %2 -- bitte MAME Entwickler informieren</translation>
+    </message>
+    <message>
+        <location filename="../../samplechecker.cpp" line="276"/>
+        <source>error text = %1</source>
+        <translation>Fehler Text = %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="396"/>
@@ -20776,6 +20776,12 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>FATAL: kann ausführbare Emulator Datei nicht in einem angemessenen Zeitraum starten, gebe auf</translation>
     </message>
     <message>
+        <location filename="../../softwarelist.cpp" line="889"/>
+        <location filename="../../softwarelist.cpp" line="1913"/>
+        <source>error text = %1</source>
+        <translation>Fehler Text = %1</translation>
+    </message>
+    <message>
         <location filename="../../softwarelist.cpp" line="923"/>
         <location filename="../../softwarelist.cpp" line="928"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
@@ -20964,12 +20970,6 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.cpp" line="219"/>
         <source>Rebuild all relevant software-lists for the current system with the ROMAlyzer</source>
         <translation>Alle für das aktuelle System relevanten Software-Listen mit dem ROMAlyzer neu erzeugen</translation>
-    </message>
-    <message>
-        <location filename="../../softwarelist.cpp" line="889"/>
-        <location filename="../../softwarelist.cpp" line="1913"/>
-        <source>error code = %1</source>
-        <translation>Fehler-Code = %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1102"/>

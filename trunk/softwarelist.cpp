@@ -886,7 +886,7 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 			commandProcRunning = (commandProc.state() == QProcess::Running);
 		}
 	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up") + " (" + tr("error code = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 		qmc2CriticalSection = false;
 		return xmlBuffer;
 	}
@@ -1910,7 +1910,7 @@ void SoftwareList::checkSoftwareStates()
 			}
 			verifyProc->waitForFinished();
 		} else {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up") + " (" + tr("error code = %1").arg(ProcessManager::errorText(verifyProc->error())) + ")");
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(verifyProc->error())) + ")");
 			break;
 		}
 	}

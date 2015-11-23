@@ -4534,7 +4534,7 @@ Você quer escolher um nome diferente?</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="216"/>
-        <source>error code = %1</source>
+        <source>error text = %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4998,7 +4998,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../emuopt.cpp" line="1292"/>
         <location filename="../../emuopt.cpp" line="1295"/>
-        <source>error code = %1</source>
+        <source>error text = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7606,12 +7606,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <translation>Aguardando dados...</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="606"/>
-        <location filename="../../machinelist.cpp" line="678"/>
-        <source>error code = %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../machinelist.cpp" line="613"/>
         <source>FATAL: can&apos;t start %1 executable, file &apos;%2&apos; does not exist</source>
         <translation>FATAL: impossível iniciar o executável %1, arquivo &apos;%2&apos; não existe</translation>
@@ -7729,6 +7723,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../machinelist.cpp" line="1038"/>
         <source>ROM</source>
         <translation>ROM</translation>
+    </message>
+    <message>
+        <location filename="../../machinelist.cpp" line="606"/>
+        <location filename="../../machinelist.cpp" line="678"/>
+        <source>error text = %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="644"/>
@@ -19985,11 +19985,6 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>FATAL: impossível iniciar o executável do emulador dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
-        <location filename="../../samplechecker.cpp" line="276"/>
-        <source>error code = %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../samplechecker.cpp" line="298"/>
         <source>Good: %1</source>
         <translation>Bom: %1</translation>
@@ -20079,6 +20074,11 @@ Tem certeza que deseja fazer isso?</translation>
         <location filename="../../samplechecker.cpp" line="224"/>
         <source>WARNING: XML bug: the following machine is referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
         <translation>AVISO: Defeito do XML: as máquinas a seguir referenciam um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MAME</translation>
+    </message>
+    <message>
+        <location filename="../../samplechecker.cpp" line="276"/>
+        <source>error text = %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="396"/>
@@ -20795,6 +20795,12 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>FATAL: impossível iniciar o executável do emulador dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
+        <location filename="../../softwarelist.cpp" line="889"/>
+        <location filename="../../softwarelist.cpp" line="1913"/>
+        <source>error text = %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../softwarelist.cpp" line="923"/>
         <location filename="../../softwarelist.cpp" line="928"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
@@ -20983,12 +20989,6 @@ Tem certeza que deseja fazer isso?</translation>
         <location filename="../../softwarelist.cpp" line="219"/>
         <source>Rebuild all relevant software-lists for the current system with the ROMAlyzer</source>
         <translation>Reconstruir todas as listas de software relevantes para o sistema atual com o ROMAlyzer</translation>
-    </message>
-    <message>
-        <location filename="../../softwarelist.cpp" line="889"/>
-        <location filename="../../softwarelist.cpp" line="1913"/>
-        <source>error code = %1</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1102"/>
