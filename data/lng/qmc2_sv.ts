@@ -4534,7 +4534,7 @@ Vill du välja ett annat namn?</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="216"/>
-        <source>error code = %1</source>
+        <source>error text = %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4997,7 +4997,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="1292"/>
         <location filename="../../emuopt.cpp" line="1295"/>
-        <source>error code = %1</source>
+        <source>error text = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7616,12 +7616,6 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="606"/>
-        <location filename="../../machinelist.cpp" line="678"/>
-        <source>error code = %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../machinelist.cpp" line="613"/>
         <source>FATAL: can&apos;t start %1 executable, file &apos;%2&apos; does not exist</source>
         <translation type="unfinished"></translation>
@@ -7754,6 +7748,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1038"/>
         <source>ROM</source>
         <translation>ROM</translation>
+    </message>
+    <message>
+        <location filename="../../machinelist.cpp" line="606"/>
+        <location filename="../../machinelist.cpp" line="678"/>
+        <source>error text = %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="644"/>
@@ -19967,11 +19967,6 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../samplechecker.cpp" line="276"/>
-        <source>error code = %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../samplechecker.cpp" line="298"/>
         <source>Good: %1</source>
         <translation type="unfinished">Bra: %1</translation>
@@ -20060,6 +20055,11 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../samplechecker.cpp" line="224"/>
         <source>WARNING: XML bug: the following machine is referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../samplechecker.cpp" line="276"/>
+        <source>error text = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -20766,6 +20766,12 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../softwarelist.cpp" line="889"/>
+        <location filename="../../softwarelist.cpp" line="1913"/>
+        <source>error text = %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../softwarelist.cpp" line="923"/>
         <location filename="../../softwarelist.cpp" line="928"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
@@ -20953,12 +20959,6 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwarelist.cpp" line="219"/>
         <source>Rebuild all relevant software-lists for the current system with the ROMAlyzer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../softwarelist.cpp" line="889"/>
-        <location filename="../../softwarelist.cpp" line="1913"/>
-        <source>error code = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

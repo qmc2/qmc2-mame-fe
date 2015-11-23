@@ -1289,10 +1289,10 @@ void EmulatorOptions::checkTemplateMap()
 		}
 	} else {
 		if ( qmc2TemplateCheck ) {
-			printf("%s\n", QString(tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error code = %1").arg(ProcessManager::errorText(commandProc.error())) + ")").toUtf8().constData());
+			printf("%s\n", QString(tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(commandProc.error())) + ")").toUtf8().constData());
 			fflush(stdout);
 		} else
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error code = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 		return;
 	}
 
