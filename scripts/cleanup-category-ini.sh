@@ -7,35 +7,46 @@
 #
 # 2) It *requires* the command 'sqlite3', so make sure it's available!
 #
+
+SQLITE3=sqlite3
+XMLDB=~/.qmc2/mame-xml-cache.db
+UNIX2DOS="unix2dos -q"
+DOS2UNIX="dos2unix -q"
+CP=cp
+TMPCAT=/tmp/category.ini
+TMPCATNEW=/tmp/category.ini.new
+SRCCAT=data/cat/category.ini
+
+function replaceCategoryIni {
+	rm ${TMPCAT}
+	mv ${TMPCATNEW} ${TMPCAT}
+}
+
 echo "Cleaning up category.ini, please wait..."
-cp data/cat/category.ini /tmp/category.ini
-dos2unix -q /tmp/category.ini
-sed 's/\s*$//g' /tmp/category.ini > /tmp/category.ini.new
-rm /tmp/category.ini
-mv /tmp/category.ini.new /tmp/category.ini
-emuVersion=$(sqlite3 ~/.qmc2/mame-xml-cache.db "select emu_version from mame_xml_cache_metadata")
-dateString="'Updated $(date "+%d-%b-%Y" | tr "[a-z]" "[A-Z]") (MAME $emuVersion)'"
-sed "1s/^.*$/$dateString/g" /tmp/category.ini > /tmp/category.ini.new
-rm /tmp/category.ini
-mv /tmp/category.ini.new /tmp/category.ini
+${CP} ${SRCCAT} ${TMPCAT}
+${DOS2UNIX} ${TMPCAT}
+sed 's/\s*$//g' ${TMPCAT} > ${TMPCATNEW}
+replaceCategoryIni
+emuVersion=$(${SQLITE3} ${XMLDB} "select emu_version from mame_xml_cache_metadata")
+dateString="'Updated $(date "+%d-%b-%Y" | tr "[a-z]" "[A-Z]") (MAME ${emuVersion})'"
+sed "1s/^.*$/${dateString}/g" ${TMPCAT} > ${TMPCATNEW}
+replaceCategoryIni
 for i in $(cat /tmp/category.ini | grep -v "^\\[" | grep -v "^tr\\[" | grep "^[0-9a-z]"); do
-	j=$(sqlite3 ~/.qmc2/mame-xml-cache.db "select id from mame_xml_cache where id='$i'")
-	if [ "$j" != "$i" ]; then
-		grep -v "^${i}$" /tmp/category.ini > /tmp/category.ini.new
-		rm /tmp/category.ini
-		mv /tmp/category.ini.new /tmp/category.ini
-		echo "Removed invalid machine '$i'"
+	id=$(${SQLITE3} ${XMLDB} "select id from mame_xml_cache where id='${i}'")
+	if [ "${id}" != "${i}" ]; then
+		grep -v "^${i}$" ${TMPCAT} > ${TMPCATNEW}
+		replaceCategoryIni
+		echo "Removed invalid machine '${i}'"
 	else
-		j=$(sqlite3 ~/.qmc2/mame-xml-cache.db "select xml from mame_xml_cache where id='$i'" | grep cloneof)
-		if [ "$j" != "" ]; then
-			grep -v "^${i}$" /tmp/category.ini > /tmp/category.ini.new
-			rm /tmp/category.ini
-			mv /tmp/category.ini.new /tmp/category.ini
-			echo "Removed clone '$i'"
+		cloneCheck=$(${SQLITE3} ${XMLDB} "select xml from mame_xml_cache where id='${i}'" | grep "cloneof")
+		if [ "${cloneCheck}" != "" ]; then
+			grep -v "^${i}$" ${TMPCAT} > ${TMPCATNEW}
+			replaceCategoryIni
+			echo "Removed clone '${i}'"
 		fi
 	fi
 done
-unix2dos -q /tmp/category.ini
-cp /tmp/category.ini data/cat/category.ini
-rm /tmp/category.ini
+${UNIX2DOS} -q ${TMPCAT}
+${CP} ${TMPCAT} ${SRCCAT}
+rm -f ${TMPCAT} ${TMPCATNEW}
 echo "Done"
