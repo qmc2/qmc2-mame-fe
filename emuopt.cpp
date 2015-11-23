@@ -25,6 +25,7 @@
 #include "emuoptactions.h"
 #include "macros.h"
 #include "demomode.h"
+#include "processmanager.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -1288,10 +1289,10 @@ void EmulatorOptions::checkTemplateMap()
 		}
 	} else {
 		if ( qmc2TemplateCheck ) {
-			printf("%s\n", tr("FATAL: can't start MAME executable within a reasonable time frame, giving up").toUtf8().constData());
+			printf("%s\n", QString(tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error code = %1").arg(ProcessManager::errorText(commandProc.error())) + ")").toUtf8().constData());
 			fflush(stdout);
 		} else
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up"));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error code = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 		return;
 	}
 

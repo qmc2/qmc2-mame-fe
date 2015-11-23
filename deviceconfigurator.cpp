@@ -17,6 +17,7 @@
 #include "fileeditwidget.h"
 #include "iconlineedit.h"
 #include "fileiconprovider.h"
+#include "processmanager.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -212,7 +213,7 @@ void DeviceItemDelegate::loadMidiInterfaces()
 
 		DeviceConfigurator::reloadMidiInterfaces = false;
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up"));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up") + " (" + tr("error code = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 }
 
 DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent)
