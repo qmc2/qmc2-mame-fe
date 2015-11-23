@@ -359,6 +359,22 @@ void ProcessManager::started()
 #endif
 }
 
+QString ProcessManager::errorText(QProcess::ProcessError processError)
+{
+	switch ( processError ) {
+		case QProcess::FailedToStart:
+			return tr("failed to start");
+		case QProcess::Crashed:
+			return tr("crashed");
+		case QProcess::WriteError:
+			return tr("write error");
+		case QProcess::ReadError:
+			return tr("read error");
+		default:
+			return tr("unknown error");
+	}
+}
+
 void ProcessManager::error(QProcess::ProcessError processError)
 {
 	QProcess *proc = (QProcess *)sender();

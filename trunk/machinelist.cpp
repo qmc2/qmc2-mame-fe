@@ -47,6 +47,7 @@
 #endif
 #include "htmleditor/htmleditor.h"
 #include "aspectratiolabel.h"
+#include "processmanager.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -602,7 +603,7 @@ void MachineList::load()
 				commandProcRunning = (commandProc.state() == QProcess::Running);
 			}
 		} else {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up"));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error code = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 			qmc2ReloadActive = qmc2EarlyReloadActive = false;
 			qmc2StopParser = true;
 			enableWidgets(true);
@@ -674,7 +675,7 @@ void MachineList::load()
 			commandProcRunning = (commandProc.state() == QProcess::Running);
 		}
 	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up"));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error code = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 		qmc2ReloadActive = qmc2EarlyReloadActive = false;
 		qmc2StopParser = true;
 		return;

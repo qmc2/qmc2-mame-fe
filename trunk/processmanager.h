@@ -43,6 +43,8 @@ class ProcessManager : public QObject
 		QString &exitCodeString(int, bool textOnly = false);
 		Q_PID getPid(int);
 
+		static QString errorText(QProcess::ProcessError);
+
 	public slots:
 		void started();
 		void finished(int, QProcess::ExitStatus);
