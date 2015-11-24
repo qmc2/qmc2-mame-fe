@@ -2661,8 +2661,9 @@ if (localStorage['SystemNotesTemplate/PrevImageMode'] != 'no')
    {
       for (var cont=0; cont < customArtworkNames.length; cont++) 
 	  {
+         var artworkKey = customArtworkNames[cont];
          var artworkName = customArtworkNames[cont].replace("&", "");
-         var imageUrl = qmc2NEO.customSystemArtworkUrl('$ID$', artworkName);
+         var imageUrl = qmc2NEO.customSystemArtworkUrl('$ID$', artworkKey);
          
          document.write("<b>"+artworkName+":</b><br>");
          if (imageUrl != "$GHOST_IMAGE$")
