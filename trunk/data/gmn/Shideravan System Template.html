@@ -1938,13 +1938,13 @@ if (localStorage['SystemNotesTemplate/InfoXML'] == 'true')
    {
       if (device=="0")
       {   
-         document.write(":<br></b><button title=\"Click here to see the source code in GitHub\" style= \"color:black;background-color:#009FFF;height:17\" onclick=\"qmc2NEO.openLinkInDefaultBrowser('https://github.com/mamedev/mame/blob/master/src/mame/drivers/$SOURCE_FILE$')\">$SOURCE_FILE$</button>");
+         document.write(":<br></b><button title=\"Click here to see the source code in GitHub\" style= \"vertical-align:center;font-size:8px;color:black;background-color:#009FFF;height:19\" onclick=\"qmc2NEO.openLinkInDefaultBrowser('https://github.com/mamedev/mame/blob/master/src/mame/drivers/$SOURCE_FILE$')\">$SOURCE_FILE$</button>");
       }   
 
       /*For devices, all source are stored in same place*/
       else
       { 
-         document.write(":<br></b><button title=\"Click here to see the source code of this device in GitHub\" style= \"color:white;background-color:#007095;height:17\" onclick=\"qmc2NEO.openLinkInDefaultBrowser('https://github.com/mamedev/mame/blob/8e4ced4b531ac52fb764d9374a7c215bc62a890a/$SOURCE_FILE$')\">$SOURCE_FILE$</button>");
+         document.write(":<br></b><button title=\"Click here to see the source code of this device in GitHub\" style= \"vertical-align:center;font-size:8px;color:white;background-color:#007095;height:19\" onclick=\"qmc2NEO.openLinkInDefaultBrowser('https://github.com/mamedev/mame/blob/master/$SOURCE_FILE$')\">$SOURCE_FILE$</button>");
       }
    }
    
