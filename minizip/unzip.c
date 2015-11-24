@@ -198,6 +198,7 @@ local int unz64local_getByte(const zlib_filefunc64_32_def* pzlib_filefunc_def, v
         *pi = (int)c;
         return UNZ_OK;
     }
+    *pi = 0;
     if (ZERROR64(*pzlib_filefunc_def, filestream))
         return UNZ_ERRNO;
     return UNZ_EOF;
@@ -1198,7 +1199,7 @@ extern int ZEXPORT unzOpenCurrentFile3(unzFile file, int* method, int* level, in
                 return err;
             }
 #else
-            pfile_in_zip_read_info->raw=1;
+            pfile_in_zip_read_info->raw = 1;
 #endif
         }
         else if (compression_method == Z_DEFLATED)
@@ -1233,6 +1234,7 @@ extern int ZEXPORT unzOpenCurrentFile3(unzFile file, int* method, int* level, in
     pfile_in_zip_read_info->stream.avail_in = (uInt)0;
 
     s->pfile_in_zip_read = pfile_in_zip_read_info;
+    s->pcrc_32_tab = NULL;
 
 #ifndef NOUNCRYPT
     if ((password != NULL) && ((s->cur_file_info.flag & 1) != 0))
@@ -1345,14 +1347,14 @@ extern int ZEXPORT unzReadCurrentFile(unzFile file, voidp buf, unsigned len)
             pfile_in_zip_read_info->stream.avail_out = (uInt)pfile_in_zip_read_info->rest_read_uncompressed;
     }
 
-    while (pfile_in_zip_read_info->stream.avail_out>0)
+    while (pfile_in_zip_read_info->stream.avail_out > 0)
     {
         if (pfile_in_zip_read_info->stream.avail_in == 0)
         {
-            uInt bytes_to_read = UNZ_BUFSIZE;
-            uInt bytes_not_read = 0;
-            uInt bytes_read = 0;
-            uInt total_bytes_read = 0;
+            uLong bytes_to_read = UNZ_BUFSIZE;
+            uLong bytes_not_read = 0;
+            uLong bytes_read = 0;
+            uLong total_bytes_read = 0;
 
             if (pfile_in_zip_read_info->stream.next_in != NULL)
                 bytes_not_read = pfile_in_zip_read_info->read_buffer + UNZ_BUFSIZE -
@@ -1401,6 +1403,7 @@ extern int ZEXPORT unzReadCurrentFile(unzFile file, voidp buf, unsigned len)
                 }
                 else
 #endif
+                if (s->pcrc_32_tab != NULL)
                 {
                     uInt i;
                     for(i = 0; i < total_bytes_read; i++)
@@ -1412,12 +1415,12 @@ extern int ZEXPORT unzReadCurrentFile(unzFile file, voidp buf, unsigned len)
 
             pfile_in_zip_read_info->rest_read_compressed -= total_bytes_read;
             pfile_in_zip_read_info->stream.next_in = (Bytef*)pfile_in_zip_read_info->read_buffer;
-            pfile_in_zip_read_info->stream.avail_in = (uInt)bytes_not_read + total_bytes_read;
+            pfile_in_zip_read_info->stream.avail_in = (uInt)(bytes_not_read + total_bytes_read);
         }
 
         if ((pfile_in_zip_read_info->compression_method == 0) || (pfile_in_zip_read_info->raw))
         {
-            uInt copy,i;
+            uInt copy, i;
 
             if ((pfile_in_zip_read_info->stream.avail_in == 0) &&
                 (pfile_in_zip_read_info->rest_read_compressed == 0))
@@ -1453,19 +1456,23 @@ extern int ZEXPORT unzReadCurrentFile(unzFile file, voidp buf, unsigned len)
 
             pfile_in_zip_read_info->bstream.next_in        = (char*)pfile_in_zip_read_info->stream.next_in;
             pfile_in_zip_read_info->bstream.avail_in       = pfile_in_zip_read_info->stream.avail_in;
-            pfile_in_zip_read_info->bstream.total_in_lo32  = pfile_in_zip_read_info->stream.total_in;
-            pfile_in_zip_read_info->bstream.total_in_hi32  = 0;
+            pfile_in_zip_read_info->bstream.total_in_lo32  = (uInt)pfile_in_zip_read_info->stream.total_in;
+            pfile_in_zip_read_info->bstream.total_in_hi32  = pfile_in_zip_read_info->stream.total_in >> 32;
+            
             pfile_in_zip_read_info->bstream.next_out       = (char*)pfile_in_zip_read_info->stream.next_out;
             pfile_in_zip_read_info->bstream.avail_out      = pfile_in_zip_read_info->stream.avail_out;
-            pfile_in_zip_read_info->bstream.total_out_lo32 = pfile_in_zip_read_info->stream.total_out;
-            pfile_in_zip_read_info->bstream.total_out_hi32 = 0;
+            pfile_in_zip_read_info->bstream.total_out_lo32 = (uInt)pfile_in_zip_read_info->stream.total_out;
+            pfile_in_zip_read_info->bstream.total_out_hi32 = pfile_in_zip_read_info->stream.total_out >> 32;
 
-            total_out_before = pfile_in_zip_read_info->bstream.total_out_lo32;
+            total_out_before = pfile_in_zip_read_info->bstream.total_out_lo32 + 
+                (((uLong)pfile_in_zip_read_info->bstream.total_out_hi32) << 32);
             buf_before = (const Bytef *)pfile_in_zip_read_info->bstream.next_out;
 
             err = BZ2_bzDecompress(&pfile_in_zip_read_info->bstream);
 
-            total_out_after = pfile_in_zip_read_info->bstream.total_out_lo32;
+            total_out_after = pfile_in_zip_read_info->bstream.total_out_lo32 + 
+                (((uLong)pfile_in_zip_read_info->bstream.total_out_hi32) << 32);
+
             out_bytes = total_out_after-total_out_before;
 
             pfile_in_zip_read_info->total_out_64 = pfile_in_zip_read_info->total_out_64 + out_bytes;
