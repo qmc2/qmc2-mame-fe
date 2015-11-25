@@ -1,6 +1,6 @@
 <!--
 SHIDERAVAN SOFTWARE TEMPLATE
-LAST MODIFICATION: 30/September/2015
+LAST MODIFICATION: 24/November/2015
 
 Copyright (c) 2015 Jose Marcio Rezende Franco
 
@@ -18,6 +18,9 @@ Copyright (c) 2015 Jose Marcio Rezende Franco
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
   
 Whatsnew:
+24/Nov/2015: -Support for additional artwork classes.
+             -Fixed some small bugs.
+			 -Cleared a huge amount of blank spaces in the code.
 30/Sep/2015: -Some updates in Italian language (thanks criccroc).
 27/Sep/2015: -Changed "No image available" for "Not available" (for standarization with System Template).
              -Updated French languages giving them the status of "full support" as of now (thanks remax with the help for this update).
@@ -27,7 +30,7 @@ Whatsnew:
 10/Jan/2015: -Updates and Cleanups  
 10/Sep/2012: -First version of Softwarelist template.
 
-Recommended for use with QMC2 0.56 and beyond.
+Recommended for use with QMC2 0.58 and beyond.
 
 This code are distributed under GPLv2 license.
 http://www.gnu.org/licenses/gpl-2.0.html
@@ -81,14 +84,14 @@ status of the languages supported:
 
 <!--CSS/Style (basead in suggestions from René)-->
 <style type="text/css">
-    html, body 
+    html, body
     {
        height: 100%;
        width: 100%;
        position: relative;
        margin: 0;
     }
-    #content 
+    #content
     {
        position: absolute;
        top: 32;
@@ -96,7 +99,7 @@ status of the languages supported:
        width: 100%;
        overflow: auto;
     }
-    #contentno 
+    #contentno
     {
        position: absolute;
        top: 32;
@@ -104,20 +107,20 @@ status of the languages supported:
        width: 100%;
        overflow: auto;
     }    
-    #footer 
+    #footer
     {
        position: absolute;
        bottom: 0;
        height: 169;
        width: 100%;
     }
-    #footerno 
+    #footerno
     {
        position: absolute;
        bottom: 0;
        height: 21;
        width: 100%;
-    }      
+    }
 </style>
 
 <script language="JavaScript">
@@ -133,36 +136,35 @@ switch ("$GUI_LANGUAGE$")
       trMap['Image source'] = 'Fonte da imagem';
       trMap['your default directory'] = 'seu diretório padrão';
       trMap['Not available'] = 'Não disponível';
-    
+
       trMap['ZIP File'] = 'Arquivo ZIP';
       trMap['file not zipped'] = 'arquivo não compactado';
-          
+
       /*PT:infobar*/
       trMap['Software-list'] = 'Lista de software';
       trMap['Publisher'] = 'Fabricante';
       trMap['Release date'] = 'Lançamento';
       trMap['Clone of'] = 'Clone de';
-      trMap['MAIN SOFTWARE'] = 'SISTEMA PAI';      
-    
+      trMap['MAIN SOFTWARE'] = 'SISTEMA PAI';
+
       /*PT:options*/
       trMap['SHOW OPTIONS'] = 'MOSTRAR OPÇÕES';
-      
-      trMap['General Options'] = 'Opções Gerais';   
-      trMap['Show Sources'] = 'Mostrar Fontes?';      
-                   
+      trMap['General Options'] = 'Opções Gerais';
+      trMap['Show Sources'] = 'Mostrar Fontes?';
+
       trMap['Header Options'] = 'Opções do Header';
       trMap['Left Snapshot'] = 'Foto do jogo a esquerda';
-      trMap['Info Bar'] = 'Barra de Informações';      
-      trMap['Right Snapshot'] = 'Foto do jogo a direita';      
-           
+      trMap['Info Bar'] = 'Barra de Informações';
+      trMap['Right Snapshot'] = 'Foto do jogo a direita';
+
       trMap['Image Options'] = 'Opções de Imagem';      
       trMap['TV Mode'] = 'Modo TV';
       trMap['Scaled Images'] = 'Imagens Esticadas';       
       trMap['Image Transition'] = 'Transição de Imagens';
-      
+
       trMap['Shadows'] = 'Sombras';
       trMap['Use images from ZIP (may be slow)'] = 'Usar imagens de ZIP (pode ficar lento)';
-      
+
       /*BG Mode*/
       trMap['BG mode'] = 'Fundo';
       trMap['SoftInfo/BG'] = 'Fundo SoftInfo';
@@ -171,7 +173,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Color'] = 'Cor';
       trMap['Image'] = 'Imagem';
       trMap['scaled'] = 'extendida';
-      trMap['tiled'] = 'lado a lado';           
+      trMap['tiled'] = 'lado a lado';
       break;
    }            
 
@@ -192,41 +194,40 @@ switch ("$GUI_LANGUAGE$")
       trMap['Publisher'] = 'Herausgeber';
       trMap['Release date'] = 'Erscheinungsdatum';
       trMap['Clone of'] = 'Klon von';
-      trMap['MAIN SOFTWARE'] = 'Hauptsystem';  
-    
+      trMap['MAIN SOFTWARE'] = 'Hauptsystem';
+
       /*DE :options*/
       trMap['SHOW OPTIONS'] = 'OPTIONEN ANZEIGEN';
-      
-      trMap['General Options'] = 'Allgemeine Optionen';   
-      trMap['Show Sources'] = 'Quellen';      
-                   
+      trMap['General Options'] = 'Allgemeine Optionen';
+      trMap['Show Sources'] = 'Quellen';
+
       trMap['Header Options'] = 'Optionen der Kopfzeile';
       trMap['Left Snapshot'] = 'Linker Schnappschuss';
-      trMap['Info Bar'] = 'Info-Zeile';      
+      trMap['Info Bar'] = 'Info-Zeile';
       trMap['Right Snapshot'] = 'Rechter Schnappschuss';
-           
-      trMap['Image Options'] = 'Bild-Optionen';      
+
+      trMap['Image Options'] = 'Bild-Optionen';
       trMap['TV Mode'] = 'TV-Modus';
       trMap['Scaled Images'] = 'Bilder skalieren';
       trMap['Image Transition'] = 'Bildübergang';
-      
+
       trMap['Shadows'] = 'Schatten';
-      trMap['Use images from ZIP (may be slow)'] = 'Bilder aus ZIPs vewenden (u.U. langsam)'; 
-      
+      trMap['Use images from ZIP (may be slow)'] = 'Bilder aus ZIPs vewenden (u.U. langsam)';
+
       /*BG Mode*/
       trMap['BG mode'] = 'HG Modus';
       trMap['SoftInfo/BG'] = 'SW-Info/HG';
-      trMap['None'] = 'Kein(e)'; /* if the last 'e' is required or not depends on the context where this is used! */ 
+      trMap['None'] = 'Kein(e)'; /* if the last 'e' is required or not depends on the context where this is used! */
       trMap['Default'] = 'Standard';
       trMap['Color'] = 'Farbe';
       trMap['Image'] = 'Bild';
       trMap['scaled'] = 'skaliert';
-      trMap['tiled'] = 'gekachelt';    
+      trMap['tiled'] = 'gekachelt';
       break;
-  }           
+  }
 
   case "fr":
-  {     
+  {
       /*LANGUAGE: FR*/
       trMap['File Status'] = 'Statut du Fichier';
       trMap['Support'] = 'Support';
@@ -235,34 +236,33 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not available'] = 'Indisponible';
 
       trMap['ZIP File'] = 'Fichier ZIP';
-      trMap['file not zipped'] = 'fichier non compressé';      
-      
+      trMap['file not zipped'] = 'fichier non compressé';
+
       /*FR:infobar*/
       trMap['Software-list'] = 'Liste des logiciels';
       trMap['Publisher'] = 'Editeur';
       trMap['Release date'] = 'Année';
       trMap['Clone of'] = 'Clone de';
-      trMap['MAIN SOFTWARE'] = 'LOGICIEL PRINCIPAL';        
-            
+      trMap['MAIN SOFTWARE'] = 'LOGICIEL PRINCIPAL';
+
       /*FR :options*/
       trMap['SHOW OPTIONS'] = 'MONTRER OPTIONS';
-      
       trMap['General Options'] = 'Options générales';
-      trMap['Show sources'] = 'Voir les sources';      
-                   
+      trMap['Show sources'] = 'Voir les sources';
+
       trMap['Header Options'] = 'Options d\'en-tête';
       trMap['Left Snapshot'] = 'Capture d\'écran gauche';
       trMap['Info Bar'] = 'Barre d\'info';      
-      trMap['Right Snapshot'] = 'Capture d\'écran droite';      
-           
-      trMap['Image Options'] = 'Options Images';      
+      trMap['Right Snapshot'] = 'Capture d\'écran droite';
+
+      trMap['Image Options'] = 'Options Images';
       trMap['TV Mode'] = 'Mode TV';
-      trMap['Scaled Images'] = 'Images redimensionnées';       
+      trMap['Scaled Images'] = 'Images redimensionnées';
       trMap['Image Transition'] = 'Transition d\'image';
-      
+
       trMap['Shadows'] = 'Ombres';
       trMap['Use images from ZIP (may be slow)'] = 'Utiliser images compressées (peut-être lent)';
-      
+
       /*BG Mode*/
       trMap['BG mode'] = 'Arrière Plan';
       trMap['SoftInfo/BG'] = 'Info Logiciel/Arrière Plan';
@@ -271,14 +271,14 @@ switch ("$GUI_LANGUAGE$")
       trMap['Color'] = 'Couleur';
       trMap['Image'] = 'Image';
       trMap['scaled'] = 'etiré';
-      trMap['tiled'] = 'mosaïque';                
+      trMap['tiled'] = 'mosaïque';
       break;
-   }            
+   }
 
    case "es":
    { 
         /*LANGUAGE: ES*/ 
-        trMap['File Status'] = 'Estado del archivo'; 
+        trMap['File Status'] = 'Estado del archivo';
         trMap['Support'] = 'Soporte';
         trMap['Image source'] = 'Origen de la imagen';
         trMap['your default directory'] = 'tu directorio por defecto';
@@ -296,7 +296,6 @@ switch ("$GUI_LANGUAGE$")
 
         /*ES :options*/
         trMap['SHOW OPTIONS'] = 'MOSTRAR OPICIONES';
-
         trMap['General Options'] = 'Opiciones Generales';
         trMap['Show Sources'] = 'Mostrar fuentes';
 
@@ -321,9 +320,9 @@ switch ("$GUI_LANGUAGE$")
         trMap['Color'] = 'Color';
         trMap['Image'] = 'Imagen';
         trMap['scaled'] = 'escalado';
-        trMap['tiled'] = 'mosaico';        
-        break; 
-     }                  
+        trMap['tiled'] = 'mosaico';
+        break;
+     }
 
   case "sv":
   {       
@@ -335,98 +334,96 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not available'] = '???';
 
       trMap['ZIP File'] = '???';
-      trMap['file not zipped'] = '???';            
-      
+      trMap['file not zipped'] = '???';
+
       /*SV :infobar*/
       trMap['Software-list'] = 'Mjukvarulista';
       trMap['Publisher'] = 'Förlag';
-      trMap['Release date'] = 'Årtal';   
+      trMap['Release date'] = 'Årtal';
       trMap['Clone of'] = '???';
       trMap['MAIN SOFTWARE'] = '???';
-     
+
       /*SV :options*/
       trMap['SHOW OPTIONS'] = '???';
-      
-      trMap['General Options'] = '???';  
-      trMap['Show Sources'] = '???';      
-                   
+      trMap['General Options'] = '???';
+      trMap['Show Sources'] = '???'; 
+
       trMap['Header Options'] = '???';
       trMap['Left Snapshot'] = '???';
-      trMap['Info Bar'] = '???';      
-      trMap['Right Snapshot'] = '???';      
-           
-      trMap['Image Options'] = '???';      
+      trMap['Info Bar'] = '???';
+      trMap['Right Snapshot'] = '???';
+
+      trMap['Image Options'] = '???';    
       trMap['TV Mode'] = '???';
-      trMap['Scaled Images'] = '???';       
+      trMap['Scaled Images'] = '???';
       trMap['Image Transition'] = '???';
-      
+
       trMap['Shadows'] = '???';
       trMap['Use images from ZIP (may be slow)'] = '???';
-      
+
       /*BG Mode*/
       trMap['BG mode'] = '???';
-      trMap['SoftInfo/BG'] = '???';   
+      trMap['SoftInfo/BG'] = '???';
       trMap['None'] = '???';
       trMap['Default'] = '???';
       trMap['Color'] = '???';
       trMap['Image'] = '???';
       trMap['scaled'] = '???';
-      trMap['tiled'] = '???';    
+      trMap['tiled'] = '???';
       break;
-  }                  
+  }
 
   case "it":
-  {       
+  {
       /*LANGUAGE: IT*/
       trMap['File Status'] = '???';
       trMap['Support'] = '???';
       trMap['Image source'] = '???';
       trMap['your default directory'] = 'la tua cartella di default';
-      trMap['Not available'] = 'Non disponibile'; 
+      trMap['Not available'] = 'Non disponibile';
 
       trMap['ZIP File'] = '???';
-      trMap['file not zipped'] = '???';           
-      
+      trMap['file not zipped'] = '???';
+
       /*IT:infobar*/
       trMap['Software-list'] = 'Lista software';
       trMap['Publisher'] = 'Editore';
-      trMap['Release date'] = 'Data di rilascio';   
+      trMap['Release date'] = 'Data di rilascio';
       trMap['Clone of'] = 'Clone di';
-      trMap['MAIN SOFTWARE'] = '???';  
-      
+      trMap['MAIN SOFTWARE'] = '???';
+
       /*IT:options*/
       trMap['SHOW OPTIONS'] = '???';
-      
-      trMap['General Options'] = 'Opzioni generali';   
-      trMap['Show sources'] = 'Visualizza sorgenti';      
-                   
+      trMap['General Options'] = 'Opzioni generali';
+      trMap['Show sources'] = 'Visualizza sorgenti';
+
       trMap['Header Options'] = '???';
       trMap['Left Snapshot'] = '???';
-      trMap['Info Bar'] = '???';      
-      trMap['Right Snapshot'] = '???';      
-           
-      trMap['Image Options'] = 'Opzioni Immagine';      
+      trMap['Info Bar'] = '???';
+      trMap['Right Snapshot'] = '???';
+
+      trMap['Image Options'] = 'Opzioni Immagine';
       trMap['TV Mode'] = 'Modalità TV';
-      trMap['Scaled Images'] = '???';       
+      trMap['Scaled Images'] = '???';
       trMap['Image Transition'] = 'Transizione Immagine';
-      
+
       trMap['Shadows'] = 'Ombre';
       trMap['Use images from ZIP (may be slow)'] = 'Usa immagini dal file ZIP (potrebbe essere lento)';
-      
+
       /*BG Mode*/
       trMap['BG mode'] = '???';
-      trMap['SoftInfo/BG'] = '???';   
+      trMap['SoftInfo/BG'] = '???';
       trMap['None'] = '???';
       trMap['Default'] = 'Predefinito';
       trMap['Color'] = '???';
       trMap['Image'] = 'Immagine';
       trMap['scaled'] = 'In scala';
-      trMap['tiled'] = 'Piastrellato';     
+      trMap['tiled'] = 'Piastrellato';
       break;
-  }      
+  }
 
   <!--case "pl":
-  {       
+  {
       /*LANGUAGE: PL*/
       trMap['File Status'] = '???';
       trMap['Support'] = '???';
@@ -435,46 +432,45 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not available'] = '???';
 
       trMap['ZIP File'] = '???';
-      trMap['file not zipped'] = '???';            
-      
+      trMap['file not zipped'] = '???';
+
       /*infobar*/
       trMap['Software-list'] = '???';
       trMap['Publisher'] = '???';
-      trMap['Release date'] = '???';   
+      trMap['Release date'] = '???';
       trMap['Clone of'] = '???';
-      trMap['MAIN SOFTWARE'] = '???';  
-      
+      trMap['MAIN SOFTWARE'] = '???';
+
       /*options*/
       trMap['SHOW OPTIONS'] = '???';
-      
       trMap['General Options'] = '???'; 
-      trMap['Show Sources'] = '???';      
-                   
+      trMap['Show Sources'] = '???';
+
       trMap['Header Options'] = '???';
       trMap['Left Snapshot'] = '???';
-      trMap['Info Bar'] = '???';      
-      trMap['Right Snapshot'] = '???';      
-           
-      trMap['Image Options'] = '???';      
+      trMap['Info Bar'] = '???';
+      trMap['Right Snapshot'] = '???';
+
+      trMap['Image Options'] = '???';
       trMap['TV Mode'] = '???';
-      trMap['Scaled Images'] = '???';       
+      trMap['Scaled Images'] = '???';
       trMap['Image Transition'] = '???';
-      
+
       trMap['Shadows'] = '???';
       trMap['Use images from ZIP (may be slow)'] = '???';
-      
+
       /*BG Mode*/
       trMap['BG mode'] = '???';
-      trMap['SoftInfo/BG'] = '???';   
+      trMap['SoftInfo/BG'] = '???';
       trMap['None'] = '???';
       trMap['Default'] = '???';
       trMap['Color'] = '???';
       trMap['Image'] = '???';
       trMap['scaled'] = '???';
-      trMap['tiled'] = '???';           
+      trMap['tiled'] = '???';
       break;
-  }        
-  
+  }
+
   case "ro":
   {       
       /*LANGUAGE: RO*/
@@ -485,48 +481,47 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not available'] = '???'; 
 
       trMap['ZIP File'] = '???';
-      trMap['file not zipped'] = '???';           
-      
+      trMap['file not zipped'] = '???';
+
       /*infobar*/
       trMap['Software-list'] = '???';
       trMap['Publisher'] = '???';
-      trMap['Release date'] = '???';   
+      trMap['Release date'] = '???';
       trMap['Clone of'] = '???';
-      trMap['MAIN SOFTWARE'] = '???';  
-      
+      trMap['MAIN SOFTWARE'] = '???';
+
       /*options*/
       trMap['SHOW OPTIONS'] = '???';
-      
-      trMap['General Options'] = '???'; 
-      trMap['Show Sources'] = '???';      
-                   
+      trMap['General Options'] = '???';
+      trMap['Show Sources'] = '???';
+
       trMap['Header Options'] = '???';
       trMap['Left Snapshot'] = '???';
-      trMap['Info Bar'] = '???';      
-      trMap['Right Snapshot'] = '???';      
-           
-      trMap['Image Options'] = '???';      
+      trMap['Info Bar'] = '???';
+      trMap['Right Snapshot'] = '???';
+
+      trMap['Image Options'] = '???';
       trMap['TV Mode'] = '???';
-      trMap['Scaled Images'] = '???';       
+      trMap['Scaled Images'] = '???';
       trMap['Image Transition'] = '???';
-      
+
       trMap['Shadows'] = '???';
       trMap['Use images from ZIP (may be slow)'] = '???';
-      
+
       /*BG Mode*/
       trMap['BG mode'] = '???';
-      trMap['SoftInfo/BG'] = '???';   
+      trMap['SoftInfo/BG'] = '???';
       trMap['None'] = '???';
       trMap['Default'] = '???';
       trMap['Color'] = '???';
       trMap['Image'] = '???';
       trMap['scaled'] = '???';
-      trMap['tiled'] = '???';         
+      trMap['tiled'] = '???';
       break;
-  }    
+  }
   
   case "el":
-  {       
+  {
       /*LANGUAGE: EL*/
       trMap['File Status'] = '???';
       trMap['Support'] = '???';
@@ -535,34 +530,33 @@ switch ("$GUI_LANGUAGE$")
       trMap['Not available'] = '???';
 
       trMap['ZIP File'] = '???';
-      trMap['file not zipped'] = '???';            
-      
+      trMap['file not zipped'] = '???';
+
       /*infobar*/
       trMap['Software-list'] = '???';
       trMap['Publisher'] = '???';
       trMap['Release date'] = '???';   
       trMap['Clone of'] = '???';
       trMap['MAIN SOFTWARE'] = '???';  
-      
+
       /*options*/
       trMap['SHOW OPTIONS'] = '???';
-      
       trMap['General Options'] = '???'; 
-      trMap['Show Sources'] = '???';      
-                   
+      trMap['Show Sources'] = '???';
+
       trMap['Header Options'] = '???';
       trMap['Left Snapshot'] = '???';
       trMap['Info Bar'] = '???';      
-      trMap['Right Snapshot'] = '???';      
-           
+      trMap['Right Snapshot'] = '???';
+
       trMap['Image Options'] = '???';      
       trMap['TV Mode'] = '???';
       trMap['Scaled Images'] = '???';       
       trMap['Image Transition'] = '???';
-      
+
       trMap['Shadows'] = '???';
       trMap['Use images from ZIP (may be slow)'] = '???';
-      
+
       /*BG Mode*/
       trMap['BG mode'] = '???';
       trMap['SoftInfo/BG'] = '???';   
@@ -571,7 +565,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Color'] = '???';
       trMap['Image'] = '???';
       trMap['scaled'] = '???';
-      trMap['tiled'] = '???';           
+      trMap['tiled'] = '???';
       break;
   }-->   
 }
@@ -983,111 +977,30 @@ else
 document.write("<tbody style=\""+corFun+";color:"+textCor+";\">");  
 document.write("<tr>");
    
-<!--First image-->
+<!--Custom images-->
 if (localStorage['SoftwareNotesTemplate/ToggleSnap'] == 'true')
-{
-   document.write("<td valign=\"middle\" align=\"center\">");
-   if ("$SOFTWARE_SNAPSHOT$"!="$GHOST_IMAGE$")
+{   
+   <!--Additional artwork classes-->
+   var customArtworkNames = qmc2NEO.customSoftwareArtwork();
+   if (customArtworkNames.length > 0) 
    {
-      mostraImagem("$SOFTWARE_SNAPSHOT$", "local");
-   }
+      for (var cont=0; cont < customArtworkNames.length; cont++) 
+	  {
+	     <!--artworkKey includes "&"; artworkName don't-->
+         var artworkKey = customArtworkNames[cont];
+         var artworkName = customArtworkNames[cont].replace("&", "");
+         var imageUrl = qmc2NEO.customSoftwareArtworkUrl('$SOFTWARE_LIST$', '$SOFTWARE_NAME$', artworkKey);
 
-   else
-   {
-      if (localStorage['SoftwareNotesTemplate/UseProjectMess'] == 'true')
-      {
-         switch (true)
-         {        
-            <!--Gioloi-->
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_NAME$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_NAME$.png", "pmess"); 
-               break;
-            }           
-        
-            <!--Tafoid-->   
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_NAME$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_NAME$.png", "pmess");         
-               break;
-            }            
-         
-            <!--Various For--> 
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_NAME$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_NAME$.png", "pmess"); 
-               break;  
-            }
-                   
-            <!--Title Tafoid-->
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_NAME$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_NAME$.png", "pmess");    
-               break;
-            }     
-            
-            <!--Scoure-->
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scuore/$SOFTWARE_NAME$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scuore/$SOFTWARE_NAME$.png", "pmess");   
-               break;
-            }
-                        
-            <!--Covers LusSpaceMine-->
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_NAME$.jpg")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_NAME$.jpg", "pmess");  
-               break;
-            }              
-            
-            <!--Clones-->
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_PARENT_ID$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_PARENT_ID$.png", "pmess"); 
-               break;
-            }
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_PARENT_ID$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_PARENT_ID$.png", "pmess"); 
-               break;
-            }
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_PARENT_ID$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_PARENT_ID$.png", "pmess"); 
-               break;
-            }
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_PARENT_ID$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_PARENT_ID$.png", "pmess"); 
-               break;
-            } 
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scoure/$SOFTWARE_PARENT_ID$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scoure/$SOFTWARE_PARENT_ID$.png", "pmess"); 
-               break;
-            }            
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_PARENT_ID$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_PARENT_ID$.png", "pmess"); 
-               break;
-            }
-                                                                  
-            default:
-            {
-               document.write("SOFTWARE SNAPSHOT:<BR>");
-               mostraFonte("miss", "n","n");      
-            }    
+         if (imageUrl != "$GHOST_IMAGE$")
+         {
+            document.write("<td valign=\"middle\" align=\"center\">");
+            document.write("<b>"+artworkName+":</b><br>");
+            document.write("<a href=\""+imageUrl+"\"><img onload=\"this.style.opacity='1';\" style=\"max-width : 100%;max-height : 250;\" title=\"Custom image\" src=\""+imageUrl+"\"></a>");
+            mostraFonte("local", 1);
+            document.write("</td>");
          }
       }
-   
-      else
-      {
-         document.write("<b>SOFTWARE SNAPSHOT:</b><BR>");
-         mostraFonte("miss", "n","n");   
-         document.write("<br><br>Try to activate P.MESS mode"); 
-      }   
-   }  
-   document.write("</font></td>");
+   }
 }
 
 <!--Information column-->
@@ -1117,7 +1030,8 @@ if (localStorage['SoftwareNotesTemplate/ToggleInfo'] == 'true')
 <!--Second image-->
 if (localStorage['SoftwareNotesTemplate/Toggle2Snap'] == 'true')
 {
-   document.write("<td valign=\"middle\" align=\"center\">");  
+   document.write("<td valign=\"middle\" align=\"center\">");
+   document.write("<b>Snapshot image:</b><br>");
 
    if ("$SOFTWARE_SNAPSHOT$"!="$GHOST_IMAGE$")
    {
@@ -1206,16 +1120,14 @@ if (localStorage['SoftwareNotesTemplate/Toggle2Snap'] == 'true')
                                                                   
             default:
             {
-               document.write("SOFTWARE SNAPSHOT:<BR>");
-               mostraFonte("miss", "n","n");      
+               mostraFonte("miss", 0);      
             }    
          }
       }
    
       else
       {
-         document.write("<b>SOFTWARE SNAPSHOT:</b><BR>");
-         mostraFonte("miss", "n","n");   
+         mostraFonte("miss", 0);   
          document.write("<br><br>Try to activate P.MESS mode"); 
       }   
    }  
