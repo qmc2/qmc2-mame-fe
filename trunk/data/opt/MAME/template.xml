@@ -1551,7 +1551,7 @@
 			<description lang="pt" text="Valor da máscara de sombras de mistura alpha (1.0 mistura total, 0.0 sem máscara)"/>
 			<description lang="es" text="Valor de shadow mask alpha-blend (1.0 es completo, 0.0 es sin máscara)"/>
 		</option>
-		<option default="aperture.png" name="shadow_mask_texture" type="string">
+		<option default="shadow-mask.png" name="shadow_mask_texture" type="string">
 			<description lang="us" text="Shadow mask texture name"/>
 			<description lang="de" text="Name der Shadow Mask Textur"/>
 			<description lang="fr" text="Nom de la texture du masque d'ombrage"/>
@@ -1565,7 +1565,7 @@
 			<description lang="pt" text="Comprimento da máscara de sombras, em pontos de fósforo"/>
 			<description lang="es" text="Ancho de shadow mask, en 'phosphor dots'"/>
 		</option>
-		<option default="6" name="shadow_mask_y_count" type="int">
+		<option default="4" name="shadow_mask_y_count" type="int">
 			<description lang="us" text="Shadow mask height, in phosphor dots"/>
 			<description lang="de" text="Höhe der Shadow Mask, in 'Phosphor-Dots'"/>
 			<description lang="fr" text="Hauteur du masque d'ombrage, en 'phosphor dots'"/>
@@ -1579,7 +1579,7 @@
 			<description lang="pt" text="Tamanho da textura da máscara de sombras na direção U"/>
 			<description lang="es" text="Tamaño de textura de shadow mask en dirección U"/>
 		</option>
-		<option default="0.1875" name="shadow_mask_vsize" type="float">
+		<option default="0.25" name="shadow_mask_vsize" type="float">
 			<description lang="us" text="Shadow mask texture size in V direction"/>
 			<description lang="de" text="Größe der Shadow Mask Textur in V-Richtung"/>
 			<description lang="fr" text="Taille de la texture du masque d'ombrage en direction V"/>
@@ -1659,21 +1659,21 @@
 			<description lang="pt" text="Valor da escala de variação de interlace geral para scanlines"/>
 			<description lang="es" text="Valor global de entrelazado 'jitter' de scanlines"/>
 		</option>
-		<option default="0.000000,0.000000" name="defocus" type="float2">
+		<option default="1.000000,0.000000" name="defocus" type="float2">
 			<description lang="us" text="Overall defocus scaling in screen-relative coordinates"/>
 			<description lang="de" text="Allgemeiner Skalierungsfaktor der Defokussierung in Bildschirm-relativen Koordinaten"/>
 			<description lang="fr" text="Echelle globale d'étirement 'defocus' pour les coordonnées relatives à l'écran"/>
 			<description lang="pt" text="Escala de desfocagem geral nas coordenadas relativas à tela"/>
 			<description lang="es" text="Valor global de escalado 'defocus' en coordenadas relativas a la pantalla"/>
 		</option>
-		<option default="0.300000,0.000000,-0.300000" name="converge_x" type="float3">
+		<option default="0.250000,0.000000,-0.250000" name="converge_x" type="float3">
 			<description lang="us" text="Convergence in screen-relative X direction"/>
 			<description lang="de" text="Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
 			<description lang="fr" text="Convergence en direction X relative à l'écran"/>
 			<description lang="pt" text="Convergência do vermelho na direção X relativa"/>
 			<description lang="es" text="Convergencia en dirección X relativa a la pantalla"/>
 		</option>
-		<option default="0.000000,0.300000,-0.300000" name="converge_y" type="float3">
+		<option default="0.000000,0.250000,-0.250000" name="converge_y" type="float3">
 			<description lang="us" text="Convergence in screen-relative Y direction"/>
 			<description lang="de" text="Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
 			<description lang="fr" text="Convergence en direction Y relative à l'écran"/>
@@ -1841,7 +1841,7 @@
 			<description lang="pt" text="Valor de contagem de fase para o processamento de sinal NTSC"/>
 			<description lang="es" text="Valor de fase para procesado de señal NTSC"/>
 		</option>
-		<option default="0.8" name="vector_length_scale" type="float">
+		<option default="0.5" name="vector_length_scale" type="float">
 			<description lang="us" text="How much length affects vector fade"/>
 			<description lang="de" text="Einfluss der Länge auf den Vektor-Fade"/>
 		</option>
@@ -1853,7 +1853,7 @@
 			<description lang="us" text="Intensity factor for bloom"/>
 			<description lang="de" text="Intensitätsfaktor für Glanz"/>
 		</option>
-		<option default="0.0,0.0,0.0" name="bloom_overdrive" type="float3">
+		<option default="1.0,1.0,1.0" name="bloom_overdrive" type="float3">
 			<description lang="us" text="Overdrive factor for bloom"/>
 			<description lang="de" text="Übersteuerungsfaktor für Glanz"/>
 		</option>
@@ -1861,43 +1861,43 @@
 			<description lang="us" text="Bloom level 0 (full-size target) weight"/>
 			<description lang="de" text="Glanz-Level 0 Gewichtung (Maßstab 1:1)"/>
 		</option>
-		<option default="0.21" name="bloom_lvl1_weight" type="float">
+		<option default="0.64" name="bloom_lvl1_weight" type="float">
 			<description lang="us" text="Bloom level 1 (half-size target) weight"/>
 			<description lang="de" text="Glanz-Level 1 Gewichtung (Maßstab 1:2)"/>
 		</option>
-		<option default="0.19" name="bloom_lvl2_weight" type="float">
+		<option default="0.32" name="bloom_lvl2_weight" type="float">
 			<description lang="us" text="Bloom level 2 (quarter-size target) weight"/>
 			<description lang="de" text="Glanz-Level 2 Gewichtung (Maßstab 1:4)"/>
 		</option>
-		<option default="0.17" name="bloom_lvl3_weight" type="float">
+		<option default="0.16" name="bloom_lvl3_weight" type="float">
 			<description lang="us" text="Bloom level 3 (.) weight"/>
 			<description lang="de" text="Glanz-Level 3 Gewichtung"/>
 		</option>
-		<option default="0.15" name="bloom_lvl4_weight" type="float">
+		<option default="0.08" name="bloom_lvl4_weight" type="float">
 			<description lang="us" text="Bloom level 4 (.) weight"/>
 			<description lang="de" text="Glanz-Level 4 Gewichtung"/>
 		</option>
-		<option default="0.14" name="bloom_lvl5_weight" type="float">
+		<option default="0.04" name="bloom_lvl5_weight" type="float">
 			<description lang="us" text="Bloom level 5 (.) weight"/>
 			<description lang="de" text="Glanz-Level 5 Gewichtung"/>
 		</option>
-		<option default="0.13" name="bloom_lvl6_weight" type="float">
+		<option default="0.04" name="bloom_lvl6_weight" type="float">
 			<description lang="us" text="Bloom level 6 (.) weight"/>
 			<description lang="de" text="Glanz-Level 6 Gewichtung"/>
 		</option>
-		<option default="0.12" name="bloom_lvl7_weight" type="float">
+		<option default="0.02" name="bloom_lvl7_weight" type="float">
 			<description lang="us" text="Bloom level 7 (.) weight"/>
 			<description lang="de" text="Glanz-Level 7 Gewichtung"/>
 		</option>
-		<option default="0.11" name="bloom_lvl8_weight" type="float">
+		<option default="0.02" name="bloom_lvl8_weight" type="float">
 			<description lang="us" text="Bloom level 8 (.) weight"/>
 			<description lang="de" text="Glanz-Level 8 Gewichtung"/>
 		</option>
-		<option default="0.10" name="bloom_lvl9_weight" type="float">
+		<option default="0.01" name="bloom_lvl9_weight" type="float">
 			<description lang="us" text="Bloom level 9 (.) weight"/>
 			<description lang="de" text="Glanz-Level 9 Gewichtung"/>
 		</option>
-		<option default="0.09" name="bloom_lvl10_weight" type="float">
+		<option default="0.01" name="bloom_lvl10_weight" type="float">
 			<description lang="us" text="Bloom level 10 (1x1 target) weight"/>
 			<description lang="de" text="Glanz-Level 10 Gewichtung"/>
 		</option>
