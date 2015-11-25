@@ -1516,13 +1516,6 @@
 			<description lang="pt" text="Fator de substituição da pré-escala do HLSL para Y (0 para automático)"/>
 			<description lang="es" text="Factor de sustitución de pre-escala HLSL para Y (0 para auto)"/>
 		</option>
-		<option default="-1" name="hlsl_preset" type="int">
-			<description lang="us" text="HLSL preset to use (0-5)"/>
-			<description lang="de" text="HLSL Voreinstellung (0-5)"/>
-			<description lang="fr" text="Paramètres HLSL à utiliser (0-5)"/>
-			<description lang="pt" text="Preset HLSL a ser utilizado (0-5)"/>
-			<description lang="es" text="Parámetro HLSL a utilizar (0-5)"/>
-		</option>
 		<option default="" name="hlsl_write" ignore="true" type="file" relativeTo="snapshot_directory">
 			<description lang="es" text="Activar la escritura de AVI HLSL al especificar un archivo de salida (se recomienda un disco rápido)"/>
 			<description lang="us" text="Enable HLSL AVI writing by specifying an output file (huge disk bandwidth suggested)"/>
