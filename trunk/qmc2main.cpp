@@ -2733,6 +2733,8 @@ void MainWindow::on_actionClearSoftwareListCache_triggered(bool)
 		swlDb->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
 	}
 	swlDb->recreateDatabase();
+	if ( qmc2ImageChecker )
+		QTimer::singleShot(0, qmc2ImageChecker, SLOT(updateCornerWidget()));
 }
 
 void MainWindow::on_actionClearAllEmulatorCaches_triggered(bool)
