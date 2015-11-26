@@ -12,6 +12,7 @@
 
 #include "ui_imagechecker.h"
 #include "imagewidget.h"
+#include "softwareimagewidget.h"
 #include "unzip.h"
 #include "sevenzipfile.h"
 
@@ -35,15 +36,19 @@ class ImageCheckerThread : public QThread
 		QStringList badList;
 		QStringList badFileList;
 		ImageWidget *imageWidget;
+		SoftwareImageWidget *softwareImageWidget;
 		QMutex workUnitMutex;
 		QMutex mutex;
 		QWaitCondition waitCondition;
 
-		ImageCheckerThread(int, ImageWidget *, QObject *parent = 0);
+		ImageCheckerThread(int, ImageWidget *, SoftwareImageWidget *, QObject *parent = 0);
 		~ImageCheckerThread();
 
 		QString humanReadable(quint64);
 		bool isFillingDictionary() { return m_isFillingDictionary; }
+
+		void runSystemArtworkCheck();
+		void runSoftwareArtworkCheck();
 
 	public slots:
 		void sevenZipDataReady();

@@ -46,11 +46,12 @@ extern PCB *qmc2PCB;
 extern QMap<QString, unzFile> qmc2IconFileMap;
 extern QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
 
-ImageCheckerThread::ImageCheckerThread(int tNum, ImageWidget *imgWidget, QObject *parent)
+ImageCheckerThread::ImageCheckerThread(int tNum, ImageWidget *imgWidget, SoftwareImageWidget *swImgWidget, QObject *parent)
 	: QThread(parent)
 {
 	threadNumber = tNum;
 	imageWidget = imgWidget;
+	softwareImageWidget = swImgWidget;
 	isActive = exitThread = isWaiting = false;
 	scanCount = foundCount = missingCount = 0;
 	m_async = false;
@@ -98,10 +99,8 @@ QString ImageCheckerThread::humanReadable(quint64 value)
 	return humanReadableString;
 }
 
-void ImageCheckerThread::run()
+void ImageCheckerThread::runSystemArtworkCheck()
 {
-	emit log(tr("Thread[%1]: started").arg(threadNumber));
-
 	if ( imageWidget->useZip() ) {
 		foreach (QString zipFileName, imageWidget->imageZip().split(";", QString::SkipEmptyParts)) {
 			zipMap[zipFileName] = unzOpen(zipFileName.toUtf8().constData());
@@ -129,10 +128,8 @@ void ImageCheckerThread::run()
 		m_isFillingDictionary = true;
 	} else
 		m_isFillingDictionary = false;
-
 	while ( !exitThread && !qmc2StopParser ) {
 		emit log(tr("Thread[%1]: waiting for work").arg(threadNumber));
-
 		mutex.lock();
 		isWaiting = true;
 		isActive = false;
@@ -140,7 +137,6 @@ void ImageCheckerThread::run()
 		isActive = true;
 		isWaiting = false;
 		mutex.unlock();
-
 		if ( !exitThread && !qmc2StopParser ) {
 			if ( workUnitMutex.tryLock(QMC2_IMGCHK_WU_MUTEX_LOCK_TIMEOUT) ) {
 				emit log(tr("Thread[%1]: processing work unit with %n entries", "", workUnit.count()).arg(threadNumber));
@@ -247,7 +243,6 @@ void ImageCheckerThread::run()
 						}
 					}
 					scanCount++;
-
 					// it's possible that the work-unit grows above the 'limit' so we need to report our intermediate results in order to update the GUI
 					if ( foundList.count() > QMC2_IMGCHK_WORKUNIT_SIZE || missingList.count() > QMC2_IMGCHK_WORKUNIT_SIZE ) {
 						emit resultsReady(foundList, missingList, badList, badFileList);
@@ -259,7 +254,6 @@ void ImageCheckerThread::run()
 				}
 				workUnit.clear();
 				workUnitMutex.unlock();
-
 				if ( !foundList.isEmpty() || !missingList.isEmpty() ) {
 					emit resultsReady(foundList, missingList, badList, badFileList);
 					foundList.clear();
@@ -270,6 +264,21 @@ void ImageCheckerThread::run()
 			}
 		}
 	}
+}
+
+void ImageCheckerThread::runSoftwareArtworkCheck()
+{
+	// FIXME
+}
+
+void ImageCheckerThread::run()
+{
+	emit log(tr("Thread[%1]: started").arg(threadNumber));
+
+	if ( imageWidget )
+		runSystemArtworkCheck();
+	else if ( softwareImageWidget )
+		runSoftwareArtworkCheck();
 
 	foreach (unzFile zip, zipMap) {
 		unzClose(zip);
@@ -512,7 +521,8 @@ void ImageChecker::startStop()
 		threadMap.clear();
 		passNumber = 0;
 		plainTextEditLog->clear();
-		ImageWidget *imageWidget;
+		ImageWidget *imageWidget = 0;
+		SoftwareImageWidget *softwareImageWidget = 0;
 		currentImageType = comboBoxImageType->currentIndex();
 		QString imageType;
 		switch ( currentImageType ) {
@@ -546,7 +556,7 @@ void ImageChecker::startStop()
 				break;
 			case QMC2_IMGCHK_INDEX_ICON:
 			default:
-				imageWidget = NULL;
+				imageWidget = 0;
 				break;
 		}
 		qmc2StopParser = false;
@@ -554,7 +564,7 @@ void ImageChecker::startStop()
 		log(tr("%1 check started").arg(imageWidget ? tr("Image") : tr("Icon")));
 		if ( imageWidget ) {
 			for (int t = 0; t < spinBoxThreads->value(); t++) {
-				ImageCheckerThread *thread = new ImageCheckerThread(t, imageWidget, this);
+				ImageCheckerThread *thread = new ImageCheckerThread(t, imageWidget, softwareImageWidget, this);
 				connect(thread, SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
 				connect(thread, SIGNAL(resultsReady(const QStringList &, const QStringList &, const QStringList &, const QStringList &)), this, SLOT(resultsReady(const QStringList &, const QStringList &, const QStringList &, const QStringList &)));
 				threadMap[t] = thread;
@@ -580,7 +590,7 @@ void ImageChecker::startStop()
 		avgScanSpeed = 0.0;
 		foundCount = missingCount = badCount = 0;
 		passNumber = 1;
-		labelStatus->setText(imageWidget ? tr("Checking %1 images").arg(imageType) : tr("Checking icons"));
+		labelStatus->setText(imageWidget || softwareImageWidget ? tr("Checking %1 images").arg(imageType) : tr("Checking icons"));
 		bufferedFoundList.clear();
 		bufferedMissingList.clear();
 		bufferedBadList.clear();
@@ -862,7 +872,8 @@ void ImageChecker::on_toolButtonRemoveBad_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonRemoveBad_clicked()");
 #endif
 
-	ImageWidget *imageWidget;
+	ImageWidget *imageWidget = 0;
+	SoftwareImageWidget *softwareImageWidget = 0;
 	switch ( currentImageType ) {
 		case QMC2_IMGCHK_INDEX_PREVIEW:
 			imageWidget = qmc2Preview;
@@ -887,7 +898,7 @@ void ImageChecker::on_toolButtonRemoveBad_clicked()
 			break;
 		case QMC2_IMGCHK_INDEX_ICON:
 		default:
-			imageWidget = NULL;
+			imageWidget = 0;
 			break;
 	}
 
@@ -1083,7 +1094,8 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonRemoveObsolete_clicked()");
 #endif
 
-	ImageWidget *imageWidget;
+	ImageWidget *imageWidget = 0;
+	SoftwareImageWidget *softwareImageWidget = 0;
 	switch ( currentImageType ) {
 		case QMC2_IMGCHK_INDEX_PREVIEW:
 			imageWidget = qmc2Preview;
@@ -1108,7 +1120,7 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 			break;
 		case QMC2_IMGCHK_INDEX_ICON:
 		default:
-			imageWidget = NULL;
+			imageWidget = 0;
 			break;
 	}
 
@@ -1488,7 +1500,8 @@ void ImageChecker::checkObsoleteFiles()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::checkObsoleteFiles()");
 #endif
 
-	ImageWidget *imageWidget;
+	ImageWidget *imageWidget = 0;
+	SoftwareImageWidget *softwareImageWidget = 0;
 	log(tr("Checking for obsolete files"));
 	switch ( currentImageType ) {
 		case QMC2_IMGCHK_INDEX_PREVIEW:
@@ -1514,7 +1527,7 @@ void ImageChecker::checkObsoleteFiles()
 			break;
 		case QMC2_IMGCHK_INDEX_ICON:
 		default:
-			imageWidget = NULL;
+			imageWidget = 0;
 			break;
 	}
 
