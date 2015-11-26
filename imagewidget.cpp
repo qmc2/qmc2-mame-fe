@@ -14,6 +14,7 @@
 #include "settings.h"
 #include "options.h"
 #include "imagewidget.h"
+#include "customartwork.h"
 #include "qmc2main.h"
 #include "macros.h"
 
@@ -51,6 +52,15 @@ ImageWidget::ImageWidget(QWidget *parent)
 ImageWidget::~ImageWidget()
 {
 	closeSource();
+}
+
+ImageWidget *ImageWidget::customArtworkWidget(QString name)
+{
+	foreach (ImageWidget *imw, artworkHash)
+		if ( imw->customArtwork() )
+			if ( ((CustomArtwork *)imw)->name() == name )
+				return imw;
+	return 0;
 }
 
 void ImageWidget::init()

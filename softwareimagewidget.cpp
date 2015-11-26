@@ -6,6 +6,7 @@
 
 #include "softwarelist.h"
 #include "softwaresnapshot.h"
+#include "customsoftwareartwork.h"
 #include "qmc2main.h"
 #include "options.h"
 #include "settings.h"
@@ -33,6 +34,15 @@ SoftwareImageWidget::SoftwareImageWidget(QWidget *parent)
 SoftwareImageWidget::~SoftwareImageWidget()
 {
 	closeSource();
+}
+
+SoftwareImageWidget *SoftwareImageWidget::customArtworkWidget(QString name)
+{
+	foreach (SoftwareImageWidget *imw, artworkHash)
+		if ( imw->customArtwork() )
+			if ( ((CustomSoftwareArtwork *)imw)->name() == name )
+				return imw;
+	return 0;
 }
 
 void SoftwareImageWidget::init()
