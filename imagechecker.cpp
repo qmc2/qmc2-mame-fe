@@ -19,6 +19,7 @@
 #include "toolexec.h"
 #include "unzip.h"
 #include "sevenzipfile.h"
+#include "softwarelist.h"
 #include "macros.h"
 
 // external global variables
@@ -45,6 +46,9 @@ extern Title *qmc2Title;
 extern PCB *qmc2PCB;
 extern QMap<QString, unzFile> qmc2IconFileMap;
 extern QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
+extern SoftwareList *qmc2SoftwareList;
+
+#define swlDb qmc2MainWindow->swlDb
 
 ImageCheckerThread::ImageCheckerThread(int tNum, ImageWidget *imgWidget, SoftwareImageWidget *swImgWidget, QObject *parent)
 	: QThread(parent)
@@ -311,10 +315,6 @@ ImageChecker::ImageChecker(QWidget *parent)
 	: QDialog(parent, Qt::Dialog | Qt::SubWindow)
 #endif
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::ImageChecker(QWidget *parent = %1)").arg((qulonglong)parent));
-#endif
-
 	setupUi(this);
 
 	labelStatus->setText(tr("Idle"));
@@ -343,6 +343,25 @@ ImageChecker::ImageChecker(QWidget *parent)
 	connect(&listWidgetFoundSelectionTimer, SIGNAL(timeout()), this, SLOT(listWidgetFound_itemSelectionChanged_delayed()));
 	listWidgetMissingSelectionTimer.setSingleShot(true);
 	connect(&listWidgetMissingSelectionTimer, SIGNAL(timeout()), this, SLOT(listWidgetMissing_itemSelectionChanged_delayed()));
+ 
+	if ( !swlDb ) {
+		swlDb = new SoftwareListXmlDatabaseManager(qmc2MainWindow);
+		swlDb->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
+		swlDb->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
+	}
+
+	QStringList softwareLists = swlDb->uniqueSoftwareLists();
+	if ( softwareLists.isEmpty() )
+		comboBoxWidgetSoftwareLists = new ComboBoxWidget(QStringList(), tr("No software information"), QString(), tr("Update database"), tr("Click to update the software list XML database now"));
+	else
+		comboBoxWidgetSoftwareLists = new ComboBoxWidget(softwareLists, tr("Select software list"), tr("Select the software list for which the image check should run"), QString(), QString());
+	connect(comboBoxWidgetSoftwareLists->pushButton, SIGNAL(clicked()), this, SLOT(updateSoftwareLists()));
+	tabWidget->setCornerWidget(comboBoxWidgetSoftwareLists);
+
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME
+	comboBoxWidgetSoftwareLists->setVisible(false);
+#endif
 
 	comboBoxImageType->clear();
 	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_PREVIEW, QIcon(QString::fromUtf8(":/data/img/camera.png")), tr("Previews"));
@@ -356,20 +375,50 @@ ImageChecker::ImageChecker(QWidget *parent)
 	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_ICON, QIcon(QString::fromUtf8(":/data/img/icon.png")), tr("Icons"));
 }
 
-ImageChecker::~ImageChecker()
+void ImageChecker::updateSoftwareLists()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::~ImageChecker()");
-#endif
+	if ( !qmc2SoftwareList ) {
+		QLayout *vbl = qmc2MainWindow->tabSoftwareList->layout();
+		if ( vbl )
+			delete vbl;
+		int left, top, right, bottom;
+		qmc2MainWindow->gridLayout->getContentsMargins(&left, &top, &right, &bottom);
+		QVBoxLayout *layout = new QVBoxLayout;
+		layout->setContentsMargins(left, top, right, bottom);
+		qmc2SoftwareList = new SoftwareList("qmc2_imagechecker_dummy", qmc2MainWindow->tabSoftwareList);
+		layout->addWidget(qmc2SoftwareList);
+		qmc2MainWindow->tabSoftwareList->setLayout(layout);
+	}
+	qmc2MainWindow->isCreatingSoftList = false;
+	setEnabled(false);
+	disconnect(qmc2SoftwareList);
+	connect(qmc2SoftwareList, SIGNAL(loadFinished(bool)), this, SLOT(softwareListLoadFinished(bool)));
+	comboBoxWidgetSoftwareLists->clearAll();
+	comboBoxWidgetSoftwareLists->setLabel(tr("Updating software information, please wait..."));
+	QTimer::singleShot(0, qmc2SoftwareList, SLOT(load()));
+}
 
+void ImageChecker::updateCornerWidget()
+{
+	comboBoxWidgetSoftwareLists->clearAll();
+	QStringList softwareLists = swlDb->uniqueSoftwareLists();
+	if ( softwareLists.isEmpty() ) {
+		comboBoxWidgetSoftwareLists->setLabel(tr("No software information"));
+		comboBoxWidgetSoftwareLists->setPushButton(tr("Update database"), tr("Click to update the software list XML database now"));
+	} else {
+		comboBoxWidgetSoftwareLists->setLabel(tr("Select software list"));
+		comboBoxWidgetSoftwareLists->setComboBox(softwareLists, tr("Select the software list for which the image check should run"));
+	}
+}
+
+void ImageChecker::softwareListLoadFinished(bool /* success */)
+{
+	QTimer::singleShot(0, this, SLOT(updateCornerWidget()));
+	setEnabled(true);
 }
 
 void ImageChecker::adjustIconSizes()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::adjustIconSizes()");
-#endif
-
 	QFont f;
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
@@ -394,10 +443,6 @@ void ImageChecker::adjustIconSizes()
 
 void ImageChecker::on_toolButtonBad_toggled(bool checked)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::on_toolButtonBad_toggled(bool checked = %1)").arg(checked ? "true" : "false"));
-#endif
-
 	int row = listWidgetMissing->currentItem() ? listWidgetMissing->currentRow() : 0;
 	for (int i = listWidgetMissing->count() - 1; i >= 0; i--) {
 		QListWidgetItem *item = listWidgetMissing->item(i);
@@ -414,19 +459,11 @@ void ImageChecker::on_toolButtonBad_toggled(bool checked)
 
 void ImageChecker::on_listWidgetFound_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_listWidgetFound_itemSelectionChanged()");
-#endif
-
 	listWidgetFoundSelectionTimer.start(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UpdateDelay", 10).toInt());
 }
 
 void ImageChecker::listWidgetFound_itemSelectionChanged_delayed()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::listWidgetFound_itemSelectionChanged_delayed()");
-#endif
-
 	if ( toolButtonSelectSets->isChecked() ) {
 		QList<QListWidgetItem *> items = listWidgetFound->selectedItems();
 		if ( items.count() > 0 )
@@ -436,19 +473,11 @@ void ImageChecker::listWidgetFound_itemSelectionChanged_delayed()
 
 void ImageChecker::on_listWidgetMissing_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_listWidgetMissing_itemSelectionChanged()");
-#endif
-
 	listWidgetMissingSelectionTimer.start(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UpdateDelay", 10).toInt());
 }
 
 void ImageChecker::listWidgetMissing_itemSelectionChanged_delayed()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::listWidgetMissing_itemSelectionChanged_delayed()");
-#endif
-
 	if ( toolButtonSelectSets->isChecked() ) {
 		QList<QListWidgetItem *> items = listWidgetMissing->selectedItems();
 		if ( items.count() > 0 )
@@ -458,10 +487,6 @@ void ImageChecker::listWidgetMissing_itemSelectionChanged_delayed()
 
 void ImageChecker::startStop()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::startStop()");
-#endif
-
 	if ( isRunning ) {
 		foreach (ImageCheckerThread *thread, threadMap) {
 			thread->exitThread = true;
@@ -603,10 +628,6 @@ void ImageChecker::startStop()
 
 void ImageChecker::on_toolButtonStartStop_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonStartStop_clicked()");
-#endif
-
 	startStopClicked = true;
 	startStop();
 	startStopClicked = false;
@@ -614,10 +635,6 @@ void ImageChecker::on_toolButtonStartStop_clicked()
 
 void ImageChecker::enableWidgets(bool enable)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::enableWidgets(bool enable = %1)").arg(enable ? "true" : "false"));
-#endif
-
 	switch ( currentImageType ) {
 		case QMC2_IMGCHK_INDEX_PREVIEW:
 			qmc2Options->stackedWidgetPreview->setEnabled(enable);
@@ -667,10 +684,6 @@ void ImageChecker::enableWidgets(bool enable)
 
 void ImageChecker::feedWorkerThreads()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::feedWorkerThreads()");
-#endif
-
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	int lastThreadID = -1;
 #ifdef QMC2_DEBUG
@@ -816,10 +829,6 @@ void ImageChecker::feedWorkerThreads()
 
 void ImageChecker::on_toolButtonClear_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonClear_clicked()");
-#endif
-
 	listWidgetFound->clear();
 	labelFound->setText(tr("Found:") + " 0");
 	listWidgetMissing->clear();
@@ -844,10 +853,6 @@ void ImageChecker::on_toolButtonClear_clicked()
 
 void ImageChecker::on_toolButtonSaveLog_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonSaveLog_clicked()");
-#endif
-
 	QString fileName = QFileDialog::getSaveFileName(this, tr("Choose file to store the image checker log"), "qmc2-imagechecker.log", tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !fileName.isEmpty() ) {
 		QFile f(fileName);
@@ -868,10 +873,6 @@ void ImageChecker::on_toolButtonSaveLog_clicked()
 
 void ImageChecker::on_toolButtonRemoveBad_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonRemoveBad_clicked()");
-#endif
-
 	ImageWidget *imageWidget = 0;
 	SoftwareImageWidget *softwareImageWidget = 0;
 	switch ( currentImageType ) {
@@ -1090,10 +1091,6 @@ void ImageChecker::on_toolButtonRemoveBad_clicked()
 
 void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonRemoveObsolete_clicked()");
-#endif
-
 	ImageWidget *imageWidget = 0;
 	SoftwareImageWidget *softwareImageWidget = 0;
 	switch ( currentImageType ) {
@@ -1466,10 +1463,6 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 
 void ImageChecker::on_comboBoxImageType_currentIndexChanged(int index)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::on_comboBoxImageType_currentIndexChanged(int index = %1)").arg(index));
-#endif
-
 	spinBoxThreads->setEnabled(index != QMC2_IMGCHK_INDEX_ICON);
 	toolButtonBad->setVisible(index != QMC2_IMGCHK_INDEX_ICON);
 	toolButtonRemoveBad->setVisible(index != QMC2_IMGCHK_INDEX_ICON);
@@ -1482,10 +1475,6 @@ void ImageChecker::log(const QString &message)
 
 void ImageChecker::resultsReady(const QStringList &foundList, const QStringList &missingList, const QStringList &badList, const QStringList &badFileList)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::resultsReady(const QStringList &foundList = ..., const QStringList &missingList = ..., const QStringList &badList = ..., const QStringList &badFileList = ...)");
-#endif
-
 	bufferedFoundList += foundList;
 	bufferedMissingList += missingList;
 	bufferedBadList += badList;
@@ -1496,10 +1485,6 @@ void ImageChecker::resultsReady(const QStringList &foundList, const QStringList 
 
 void ImageChecker::checkObsoleteFiles()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::checkObsoleteFiles()");
-#endif
-
 	ImageWidget *imageWidget = 0;
 	SoftwareImageWidget *softwareImageWidget = 0;
 	log(tr("Checking for obsolete files"));
@@ -1746,10 +1731,6 @@ void ImageChecker::checkObsoleteFiles()
 
 void ImageChecker::updateResults()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::updateResults()");
-#endif
-
 	listWidgetFound->insertItems(listWidgetFound->count(), bufferedFoundList);
 	listWidgetMissing->insertItems(listWidgetMissing->count(), bufferedMissingList);
 	listWidgetObsolete->insertItems(listWidgetObsolete->count(), bufferedObsoleteList);
@@ -1798,10 +1779,6 @@ void ImageChecker::updateResults()
 
 void ImageChecker::selectItem(QString setName)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::selectItem(QString setName = %1)").arg(setName));
-#endif
-
 	switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 		case QMC2_VIEWMACHINELIST_INDEX: {
 			QTreeWidgetItem *gameItem = qmc2MachineListItemHash[setName];
@@ -1848,10 +1825,6 @@ void ImageChecker::selectItem(QString setName)
 
 void ImageChecker::closeEvent(QCloseEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Geometry", saveGeometry());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ImageChecker/ImageType", comboBoxImageType->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ImageChecker/Threads", spinBoxThreads->value());
@@ -1863,36 +1836,23 @@ void ImageChecker::closeEvent(QCloseEvent *e)
 
 void ImageChecker::hideEvent(QHideEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	closeEvent(NULL);
 	QDialog::hideEvent(e);
 }
 
 void ImageChecker::showEvent(QShowEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	adjustIconSizes();
-
 	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Geometry", QByteArray()).toByteArray());
 	comboBoxImageType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/ImageType", QMC2_IMGCHK_INDEX_PREVIEW).toInt());
 	spinBoxThreads->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/Threads", 1).toInt());
 	toolButtonSelectSets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/SelectSets", true).toBool());
-
+	QTimer::singleShot(0, this, SLOT(updateCornerWidget()));
 	QDialog::showEvent(e);
 }
 
 void ImageChecker::recursiveFileList(const QString &sDir, QStringList *fileNames)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::recursiveFileList(const QString& sDir = %1, QStringList *fileNames = %2)").arg(sDir).arg((qulonglong)fileNames));
-#endif
-
 	QDir dir(sDir);
 	foreach (QFileInfo info, dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden | QDir::System)) {
 		QString path = QDir::toNativeSeparators(info.filePath());
@@ -1911,10 +1871,6 @@ void ImageChecker::recursiveFileList(const QString &sDir, QStringList *fileNames
 
 void ImageChecker::recursiveZipList(unzFile zip, QStringList *fileNames, QString prependString)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::recursiveZipList(unzFile zip = %1, QStringList *fileNames = %2, QString prependString = %3)").arg((qulonglong)zip).arg((qulonglong)fileNames).arg(prependString));
-#endif
-
 	if ( zip ) {
 		unz_global_info unzGlobalInfo;
 		int i = 0;
@@ -1937,10 +1893,6 @@ void ImageChecker::recursiveZipList(unzFile zip, QStringList *fileNames, QString
 
 void ImageChecker::recursiveSevenZipList(SevenZipFile *sevenZipFile, QStringList *fileNames, QString prependString)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::recursiveSevenZipList(SevenZipFile *sevenZipFile = %1, QStringList *fileNames = %2, QString prependString = %3)").arg((qulonglong)sevenZipFile).arg((qulonglong)fileNames).arg(prependString));
-#endif
-
 	if ( sevenZipFile ) {
 		for (int index = 0; index < sevenZipFile->itemList().count(); index++) {
 			fileNames->append(prependString + sevenZipFile->itemList()[index].name());

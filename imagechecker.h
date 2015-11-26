@@ -15,6 +15,7 @@
 #include "softwareimagewidget.h"
 #include "unzip.h"
 #include "sevenzipfile.h"
+#include "comboboxwidget.h"
 
 class ImageCheckerThread : public QThread
 {
@@ -91,9 +92,9 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		QRegExp rxFourDigits;
 		QRegExp rxCharsToEscape;
 		QRegExp rxColonSepStr;
+		ComboBoxWidget *comboBoxWidgetSoftwareLists;
 
 		ImageChecker(QWidget *parent = 0);
-		~ImageChecker();
 
 		void recursiveFileList(const QString &, QStringList *);
 		void recursiveZipList(unzFile, QStringList *, QString prependString = QString());
@@ -120,6 +121,9 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		void checkObsoleteFiles();
 		void enableWidgets(bool);
 		void startStop();
+		void updateSoftwareLists();
+		void updateCornerWidget();
+		void softwareListLoadFinished(bool);
 
 	protected:
 		void closeEvent(QCloseEvent *);

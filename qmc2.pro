@@ -36,6 +36,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			fileeditwidget.ui \
 			floateditwidget.ui \
 			comboeditwidget.ui \
+			comboboxwidget.ui \
 			componentsetup.ui \
 			miniwebbrowser.ui \
 			youtubevideoplayer.ui \
@@ -99,6 +100,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			fileeditwidget.cpp \
 			floateditwidget.cpp \
 			comboeditwidget.cpp \
+			comboboxwidget.cpp \
 			componentsetup.cpp \
 			miniwebbrowser.cpp \
 			youtubevideoplayer.cpp \
@@ -226,6 +228,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			filesystemmodel.h \
 			floateditwidget.h \
 			comboeditwidget.h \
+			comboboxwidget.h \
 			componentsetup.h \
 			miniwebbrowser.h \
 			youtubevideoplayer.h \
