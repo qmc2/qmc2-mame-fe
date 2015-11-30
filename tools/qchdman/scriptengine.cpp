@@ -221,6 +221,18 @@ int ScriptEngine::runShellCommand(QString command, bool detached)
         return QProcess::execute(command);
 }
 
+bool ScriptEngine::createPath(QString path)
+{
+    QDir dir(path);
+    return dir.mkpath(dir.absolutePath());
+}
+
+bool ScriptEngine::removePath(QString path)
+{
+    QDir dir(path);
+    return dir.rmpath(dir.absolutePath());
+}
+
 QString ScriptEngine::inputGetFilePath(QString initialPath, QString filter, QString windowTitle)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::inputGetFilePath(QString initialPath = %1, QString filter = %2, QString windowTitle = %3)").arg(initialPath).arg(filter).arg(windowTitle)));

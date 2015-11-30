@@ -52,6 +52,10 @@ public slots:
     // determine OS name
     QString operatingSystemName() { return QCHDMAN_OS_NAME; }
 
+    // create / remove a path
+    bool createPath(QString path);
+    bool removePath(QString path);
+
     // number of CPUs
     int numberOfCPUs() { return QThread::idealThreadCount(); }
 
