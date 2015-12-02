@@ -6,11 +6,11 @@
 #include <QThread>
 #include <QMutex>
 #include <QWaitCondition>
-#include <QStringList>
 #include <QTime>
 #include <QTimer>
 #include <QHash>
 #include <QPixmap>
+#include <QStringList>
 
 #include "macros.h"
 #include "checksumdbmgr.h"
@@ -170,6 +170,7 @@ class CheckSumScannerThread : public QThread
 		bool deepScan;
 		bool useHashCache;
 		QMutex mutex;
+		QMutex logSyncMutex;
 		QWaitCondition waitCondition;
 		QStringList scannedPaths;
 		QTime scanTimer;
@@ -184,6 +185,7 @@ class CheckSumScannerThread : public QThread
 		int fileType(QString);
 		void prepareIncrementalScan(QStringList *fileList);
 		QString scanTime();
+		void emitlog(QString);
 
 	public slots:
 		void pause();
@@ -209,6 +211,7 @@ class CheckSumScannerThread : public QThread
 		bool m_preparingIncrementalScan;
 		QString m_settingsKey;
 		QHash<QString, bool> m_hashCache;
+		QStringList m_queuedMessages;
 		bool checkSumExists(QString sha1, QString crc, quint64 size = 0);
 		void recursiveFileList(const QString &, QStringList *);
 		bool scanZip(QString, QStringList *, QList<quint64> *, QStringList *, QStringList *);
