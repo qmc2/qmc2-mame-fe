@@ -2,6 +2,7 @@
 #define _CHECKSUMSCANNERLOG_H_
 
 #include <QString>
+#include <QMutex>
 
 #include "ui_checksumscannerlog.h"
 
@@ -12,6 +13,7 @@ class CheckSumScannerLog : public QDialog, public Ui::CheckSumScannerLog
        	public:
 		CheckSumScannerLog(QString settingsKey, QWidget *parent = 0);
 
+		void setLogSyncMutex(QMutex *mtx) { m_logSyncMutex = mtx; }
 		qreal progress() { return m_progress; }
 
 	public slots:
@@ -36,6 +38,7 @@ class CheckSumScannerLog : public QDialog, public Ui::CheckSumScannerLog
 	private:
 		qreal m_progress;
 		QString m_settingsKey;
+		QMutex *m_logSyncMutex;
 };
 
 #endif

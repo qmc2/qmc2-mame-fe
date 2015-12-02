@@ -194,6 +194,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	m_checkSumDb = new CheckSumDatabaseManager(this, m_settingsKey);
 	connect(checkSumDb(), SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
 	m_checkSumScannerThread = new CheckSumScannerThread(checkSumScannerLog(), m_settingsKey, this);
+	checkSumScannerLog()->setLogSyncMutex(&checkSumScannerThread()->logSyncMutex);
 	connect(checkSumScannerThread(), SIGNAL(log(const QString &)), checkSumScannerLog(), SLOT(log(const QString &)));
 	connect(checkSumScannerThread(), SIGNAL(scanStarted()), this, SLOT(checkSumScannerThread_scanStarted()));
 	connect(checkSumScannerThread(), SIGNAL(scanFinished()), this, SLOT(checkSumScannerThread_scanFinished()));
@@ -4707,7 +4708,7 @@ QString CheckSumScannerThread::status()
 void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 {
 	m_preparingIncrementalScan = true;
-	emit log(tr("preparing incremental scan"));
+	emitlog(tr("preparing incremental scan"));
 	// step 1: remove entries from the database that "point to nowhere" (a.k.a. aren't contained in 'fileList'), storing all paths kept in the database
 	//         in the 'pathsInDatabase' hash for use in steps 2 and 3 so we don't need to query the database again
 	QHash<QString, bool> pathsInDatabase;
@@ -4740,7 +4741,7 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 		row = checkSumDb()->nextRowId();
 	}
 	checkSumDb()->commitTransaction();
-	emit log(tr("%n obsolete path(s) removed from database", "", pathsRemoved));
+	emitlog(tr("%n obsolete path(s) removed from database", "", pathsRemoved));
 	if ( !exitThread && !stopScan ) {
 		// step 2: remove entries from 'fileList' where 'scanTime' is later than the file's modification time *and* the database has entries for it
 		emit progressTextChanged(tr("Preparing") + " - " + tr("Step %1 of %2").arg(2).arg(3));
@@ -4759,7 +4760,7 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 				i--;
 			}
 		}
-		emit log(tr("%n unchanged file(s) removed from scan", "", filesRemoved));
+		emitlog(tr("%n unchanged file(s) removed from scan", "", filesRemoved));
 		fileHash.clear();
 		foreach (QString file, *fileList)
 			fileHash.insert(file, true);
@@ -4790,12 +4791,12 @@ void CheckSumScannerThread::prepareIncrementalScan(QStringList *fileList)
 			}
 			checkSumDb()->removeInvalidatedRows();
 			checkSumDb()->commitTransaction();
-			emit log(tr("%n outdated path(s) removed from database", "", pathsRemoved));
+			emitlog(tr("%n outdated path(s) removed from database", "", pathsRemoved));
 			if ( !exitThread && !stopScan ) {
 				emit progressTextChanged(tr("Preparing"));
 				emit progressRangeChanged(0, 0);
 				emit progressChanged(-1);
-				emit log(tr("freeing unused space previously occupied by database"));
+				emitlog(tr("freeing unused space previously occupied by database"));
 				checkSumDb()->vacuum();
 			}
 		}
@@ -4843,11 +4844,23 @@ QString CheckSumScannerThread::scanTime()
 		return elapsedTime.toString("mm:ss");
 }
 
+void CheckSumScannerThread::emitlog(QString message)
+{
+	m_queuedMessages << message;
+	if ( logSyncMutex.tryLock(1) ) {
+		moveToThread(this);
+		for (int i = 0; i < m_queuedMessages.count(); i++)
+			emit log(m_queuedMessages[i]);
+		logSyncMutex.unlock();
+		m_queuedMessages.clear();
+	}
+}
+
 void CheckSumScannerThread::run()
 {
-	emit log(tr("scanner thread started"));
+	emitlog(tr("scanner thread started"));
 	while ( !exitThread ) {
-		emit log(tr("waiting for work"));
+		emitlog(tr("waiting for work"));
 		mutex.lock();
 		isWaiting = true;
 		isActive = stopScan = isPaused = false;
@@ -4864,11 +4877,11 @@ void CheckSumScannerThread::run()
 			emit progressRangeChanged(0, 0);
 			emit progressChanged(-1);
 			foreach (QString path, scannedPaths) {
-				emit log(tr("searching available files for path '%1'").arg(path));
+				emitlog(tr("searching available files for path '%1'").arg(path));
 				QStringList pathFileList;
 				recursiveFileList(path, &pathFileList);
 				fileList.append(pathFileList);
-				emit log(tr("found %n file(s) for path '%1'", "", pathFileList.count()).arg(path));
+				emitlog(tr("found %n file(s) for path '%1'", "", pathFileList.count()).arg(path));
 				QTest::qWait(0);
 				if ( exitThread || stopScan )
 					break;
@@ -4880,11 +4893,11 @@ void CheckSumScannerThread::run()
 			emit progressTextChanged(tr("Scanning"));
 			emit progressRangeChanged(0, fileList.count());
 			emit progressChanged(0);
-			emit log(tr("starting database transaction"));
+			emitlog(tr("starting database transaction"));
 			checkSumDb()->beginTransaction();
 			int counter = 0;
 			foreach (QString filePath, fileList) {
-				emit log(tr("scan started for file '%1'").arg(filePath));
+				emitlog(tr("scan started for file '%1'").arg(filePath));
 				emit progressChanged(counter++);
 				QStringList memberList, sha1List, crcList;
 				QString sha1, crc;
@@ -4895,31 +4908,31 @@ void CheckSumScannerThread::run()
 				switch ( type ) {
 					case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
 						if ( !scanZip(filePath, &memberList, &sizeList, &sha1List, &crcList) ) {
-							emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+							emitlog(tr("WARNING: scan failed for file '%1'").arg(filePath));
 							doDbUpdate = false;
 						}
 						break;
 					case QMC2_CHECKSUM_SCANNER_FILE_7Z:
 						if ( !scanSevenZip(filePath, &memberList, &sizeList, &sha1List, &crcList) ) {
-							emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+							emitlog(tr("WARNING: scan failed for file '%1'").arg(filePath));
 							doDbUpdate = false;
 						}
 						break;
 					case QMC2_CHECKSUM_SCANNER_FILE_CHD:
 						if ( !scanChd(filePath, &size, &sha1) ) {
-							emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+							emitlog(tr("WARNING: scan failed for file '%1'").arg(filePath));
 							doDbUpdate = false;
 						}
 						break;
 					case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
 						if ( !scanRegularFile(filePath, &size, &sha1, &crc) ) {
-							emit log(tr("WARNING: scan failed for file '%1'").arg(filePath));
+							emitlog(tr("WARNING: scan failed for file '%1'").arg(filePath));
 							doDbUpdate = false;
 						}
 						break;
 					default:
 					case QMC2_CHECKSUM_SCANNER_FILE_NO_ACCESS:
-						emit log(tr("WARNING: can't access file '%1', please check permissions").arg(filePath));
+						emitlog(tr("WARNING: can't access file '%1', please check permissions").arg(filePath));
 						doDbUpdate = false;
 						break;
 				}
@@ -4931,53 +4944,53 @@ void CheckSumScannerThread::run()
 						case QMC2_CHECKSUM_SCANNER_FILE_7Z:
 							for (int i = 0; i < memberList.count(); i++) {
 								if ( !checkSumExists(sha1List[i], crcList[i], sizeList[i]) ) {
-									emit log(tr("database update") + ": " + tr("adding member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' to database").arg(memberList[i]).arg(filePath).arg(sha1List[i]).arg(crcList[i]));
+									emitlog(tr("database update") + ": " + tr("adding member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' to database").arg(memberList[i]).arg(filePath).arg(sha1List[i]).arg(crcList[i]));
 									checkSumDb()->setData(sha1List[i], crcList[i], sizeList[i], filePath, memberList[i], checkSumDb()->typeToName(type));
 									if ( useHashCache )
 										m_hashCache[QString("%1-%2-%3").arg(sha1List[i]).arg(crcList[i]).arg(sizeList[i])] = true;
 									m_pendingUpdates++;
 								} else
-									emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1List[i]).arg(crcList[i]) + ", " + tr("member '%1' from archive '%2' ignored").arg(memberList[i]).arg(filePath));
+									emitlog(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1List[i]).arg(crcList[i]) + ", " + tr("member '%1' from archive '%2' ignored").arg(memberList[i]).arg(filePath));
 								if ( m_pendingUpdates >= QMC2_CHECKSUM_DB_MAX_TRANSACTIONS ) {
-									emit log(tr("committing database transaction"));
+									emitlog(tr("committing database transaction"));
 									checkSumDb()->setScanTime(QDateTime::currentDateTime().toTime_t());
 									checkSumDb()->commitTransaction();
 									m_pendingUpdates = 0;
-									emit log(tr("starting database transaction"));
+									emitlog(tr("starting database transaction"));
 									checkSumDb()->beginTransaction();
 								}
 							}
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_CHD:
 							if ( !checkSumExists(sha1, crc, size) ) {
-								emit log(tr("database update") + ": " + tr("adding CHD '%1' with SHA-1 '%2' to database").arg(filePath).arg(sha1));
+								emitlog(tr("database update") + ": " + tr("adding CHD '%1' with SHA-1 '%2' to database").arg(filePath).arg(sha1));
 								checkSumDb()->setData(sha1, QString(), size, filePath, QString(), checkSumDb()->typeToName(type));
 								if ( useHashCache )
 									m_hashCache[QString("%1--%2").arg(sha1).arg(size)] = true;
 								m_pendingUpdates++;
 							} else
-								emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("CHD '%1' ignored").arg(filePath));
+								emitlog(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("CHD '%1' ignored").arg(filePath));
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_REGULAR:
 							if ( !checkSumExists(sha1, crc, size) ) {
-								emit log(tr("database update") + ": " + tr("adding file '%1' with SHA-1 '%2' and CRC '%3' to database").arg(filePath).arg(sha1).arg(crc));
+								emitlog(tr("database update") + ": " + tr("adding file '%1' with SHA-1 '%2' and CRC '%3' to database").arg(filePath).arg(sha1).arg(crc));
 								checkSumDb()->setData(sha1, crc, size, filePath, QString(), checkSumDb()->typeToName(type));
 								if ( useHashCache )
 									m_hashCache[QString("%1-%2-%3").arg(sha1).arg(crc).arg(size)] = true;
 								m_pendingUpdates++;
 							} else
-								emit log(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("file '%1' ignored").arg(filePath));
+								emitlog(tr("database update") + ": " + tr("an object with SHA-1 '%1' and CRC '%2' already exists in the database").arg(sha1).arg(crc) + ", " + tr("file '%1' ignored").arg(filePath));
 							break;
 						default:
 							break;
 					}
 				}
 				if ( m_pendingUpdates >= QMC2_CHECKSUM_DB_MAX_TRANSACTIONS ) {
-					emit log(tr("committing database transaction"));
+					emitlog(tr("committing database transaction"));
 					checkSumDb()->setScanTime(QDateTime::currentDateTime().toTime_t());
 					checkSumDb()->commitTransaction();
 					m_pendingUpdates = 0;
-					emit log(tr("starting database transaction"));
+					emitlog(tr("starting database transaction"));
 					checkSumDb()->beginTransaction();
 				}
 				bool pauseMessageLogged = false;
@@ -4987,29 +5000,28 @@ void CheckSumScannerThread::run()
 						isPaused = true;
 						pauseRequested = false;
 						emit scanPaused();
-						emit log(tr("scanner paused"));
+						emitlog(tr("scanner paused"));
 						emit progressTextChanged(tr("Paused"));
 					}
 					QTest::qWait(100);
+					yieldCurrentThread();
 				}
 				if ( pauseMessageLogged && !exitThread && !stopScan ) {
 					isPaused = false;
 					emit scanResumed();
-					emit log(tr("scanner resumed"));
+					emitlog(tr("scanner resumed"));
 					emit progressTextChanged(tr("Scanning"));
 				}
 				if ( exitThread || stopScan )
 					break;
 				else
-					emit log(tr("scan finished for file '%1'").arg(filePath));
-				QTest::qWait(1);
-				yieldCurrentThread();
+					emitlog(tr("scan finished for file '%1'").arg(filePath));
 				if ( exitThread || stopScan )
 					break;
 			}
 			if ( exitThread || stopScan )
-				emit log(tr("scanner interrupted"));
-			emit log(tr("committing database transaction"));
+				emitlog(tr("scanner interrupted"));
+			emitlog(tr("committing database transaction"));
 			checkSumDb()->setScanTime(QDateTime::currentDateTime().toTime_t());
 			checkSumDb()->commitTransaction();
 			if ( useHashCache ) {
@@ -5021,11 +5033,11 @@ void CheckSumScannerThread::run()
 			emit progressRangeChanged(0, 100);
 			emit progressChanged(0);
 			elapsedTime = elapsedTime.addMSecs(scanTimer.elapsed());
-			emit log(tr("scan finished - total scanning time = %1, objects in database = %2, database size = %3").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(checkSumDb()->checkSumRowCount()).arg(ROMAlyzer::humanReadable(checkSumDb()->databaseSize())));
+			emitlog(tr("scan finished - total scanning time = %1, objects in database = %2, database size = %3").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(checkSumDb()->checkSumRowCount()).arg(ROMAlyzer::humanReadable(checkSumDb()->databaseSize())));
 			emit scanFinished();
 		}
 	}
-	emit log(tr("scanner thread ended"));
+	emitlog(tr("scanner thread ended"));
 }
 
 void CheckSumScannerThread::recursiveFileList(const QString &sDir, QStringList *fileNames)
@@ -5127,15 +5139,15 @@ bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, Q
 						sizeList->append(memberSize);
 						sha1List->append(sha1Hash.result().toHex());
 						crcList->append(crcToString(crc1));
-						emit log(tr("ZIP scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(fn).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
+						emitlog(tr("ZIP scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(fn).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
 					} else
-						emit log(tr("ZIP scan") + ": " + tr("WARNING: can't open member '%1' from archive '%2'").arg(fn).arg(fileName));
+						emitlog(tr("ZIP scan") + ": " + tr("WARNING: can't open member '%1' from archive '%2'").arg(fn).arg(fileName));
 				} else {
 					memberList->append(fn);
 					sizeList->append(zipInfo.uncompressed_size);
 					sha1List->append(QString());
 					crcList->append(crcToString(zipInfo.crc));
-					emit log(tr("ZIP scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(fn).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
+					emitlog(tr("ZIP scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(fn).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
 				}
 			}
 		} while ( unzGoToNextFile(zipFile) == UNZ_OK );
@@ -5166,15 +5178,15 @@ bool CheckSumScannerThread::scanSevenZip(QString fileName, QStringList *memberLi
 					ulong crc = crc32(0, NULL, 0);
 					crc = crc32(crc, (const Bytef *)fileData.data(), fileData.size());
 					crcList->append(crcToString(crc));
-					emit log(tr("7Z scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
+					emitlog(tr("7Z scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
 				} else
-					emit log(tr("7Z scan") + ": " + tr("WARNING: can't read member '%1' from archive '%2'").arg(metaData.name()).arg(fileName));
+					emitlog(tr("7Z scan") + ": " + tr("WARNING: can't read member '%1' from archive '%2'").arg(metaData.name()).arg(fileName));
 			} else {
 				memberList->append(metaData.name());
 				sizeList->append(metaData.size());
 				sha1List->append(QString());
 				crcList->append(metaData.crc());
-				emit log(tr("7Z scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
+				emitlog(tr("7Z scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
 			}
 		}
 		sevenZipFile.close();
@@ -5193,7 +5205,7 @@ bool CheckSumScannerThread::scanChd(QString fileName, quint64 *size, QString *sh
 		quint32 chdVersion = 0;
 		if ( (len = file.read(ioBuffer, QMC2_CHD_HEADER_V3_LENGTH)) > 0 ) {
 			if ( len < QMC2_CHD_HEADER_V3_LENGTH ) {
-				emit log(tr("CHD scan") + ": " + tr("WARNING: can't read CHD '%1'").arg(fileName));
+				emitlog(tr("CHD scan") + ": " + tr("WARNING: can't read CHD '%1'").arg(fileName));
 				success = false;
 			} else {
 				chdVersion = QMC2_TO_UINT32(ioBuffer + QMC2_CHD_HEADER_VERSION_OFFSET);
@@ -5214,7 +5226,7 @@ bool CheckSumScannerThread::scanChd(QString fileName, quint64 *size, QString *sh
 						break;
 					}
 					default: {
-						emit log(tr("CHD scan") + ": " + tr("WARNING: version '%1' of CHD '%2' unknown").arg(fileName));
+						emitlog(tr("CHD scan") + ": " + tr("WARNING: version '%1' of CHD '%2' unknown").arg(fileName));
 						success = false;
 						break;
 					}
@@ -5222,7 +5234,7 @@ bool CheckSumScannerThread::scanChd(QString fileName, quint64 *size, QString *sh
 				*size = file.size();
 			}
 		} else {
-			emit log(tr("CHD scan") + ": " + tr("WARNING: can't read CHD '%1'").arg(fileName));
+			emitlog(tr("CHD scan") + ": " + tr("WARNING: can't read CHD '%1'").arg(fileName));
 			success = false;
 		}
 		file.close();
@@ -5230,7 +5242,7 @@ bool CheckSumScannerThread::scanChd(QString fileName, quint64 *size, QString *sh
 			return false;
 		if ( exitThread || stopScan )
 			return true;
-		emit log(tr("CHD scan") + ": " + tr("CHD '%1' has SHA-1 '%2' (CHD v%3)").arg(fileName).arg(*sha1).arg(chdVersion));
+		emitlog(tr("CHD scan") + ": " + tr("CHD '%1' has SHA-1 '%2' (CHD v%3)").arg(fileName).arg(*sha1).arg(chdVersion));
 		return true;
 	} else
 		return false;
@@ -5262,7 +5274,7 @@ bool CheckSumScannerThread::scanRegularFile(QString fileName, quint64 *size, QSt
 			return true;
 		*sha1 = sha1Hash.result().toHex();
 		*crc = crcToString(crc1);
-		emit log(tr("file scan") + ": " + tr("file '%1' has SHA-1 '%2' and CRC '%3'").arg(fileName).arg(*sha1).arg(*crc));
+		emitlog(tr("file scan") + ": " + tr("file '%1' has SHA-1 '%2' and CRC '%3'").arg(fileName).arg(*sha1).arg(*crc));
 		return true;
 	} else
 		return false;
