@@ -2,7 +2,6 @@
 #include <QScrollBar>
 #include <QString>
 #include <QFont>
-#include <QDateTime>
 
 #include "checksumscannerlog.h"
 #include "settings.h"
@@ -36,9 +35,24 @@ void CheckSumScannerLog::on_spinBoxMaxLogSize_valueChanged(int value)
 void CheckSumScannerLog::log(const QString &message)
 {
 	if ( checkBoxEnableLog->isChecked() ) {
+		m_messageQueue << message;
+		if ( m_logSyncMutex->tryLock(1) ) {
+			for (int i = 0; i < m_messageQueue.count(); i++)
+				plainTextEditLog->appendPlainText(m_messageQueue[i]);
+			m_logSyncMutex->unlock();
+			m_messageQueue.clear();
+		}
+	}
+}
+
+void CheckSumScannerLog::flushMessageQueue()
+{
+	if ( checkBoxEnableLog->isChecked() ) {
 		m_logSyncMutex->lock();
-		plainTextEditLog->appendPlainText(QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + message);
+		for (int i = 0; i < m_messageQueue.count(); i++)
+			plainTextEditLog->appendPlainText(m_messageQueue[i]);
 		m_logSyncMutex->unlock();
+		m_messageQueue.clear();
 	}
 }
 
