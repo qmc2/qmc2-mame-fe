@@ -186,6 +186,7 @@ class CheckSumScannerThread : public QThread
 		void prepareIncrementalScan(QStringList *fileList);
 		QString scanTime();
 		void emitlog(QString);
+		void flushMessageQueue();
 
 	public slots:
 		void pause();
