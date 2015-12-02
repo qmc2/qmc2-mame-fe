@@ -297,7 +297,7 @@ ComponentInfo *ComponentSetup::initComponent4()
 			componentInfo->setLongTitle(featureIndex, nameCopy.replace("&", QString()));
 			componentInfo->setIcon(featureIndex, QIcon(qmc2Config->value(QString("%1/Icon").arg(name), QString()).toString()));
 			componentInfo->availableFeatureList() << featureIndex;
-			qmc2MainWindow->tabWidgetMachineDetail->insertTab(featureIndex, new CustomSoftwareArtwork(qmc2MainWindow->tabWidgetMachineDetail, name, m_artworkIndex), QIcon(qmc2Config->value(QString("%1/Icon").arg(name), QString()).toString()), name);
+			qmc2MainWindow->tabWidgetMachineDetail->insertTab(featureIndex, new CustomSoftwareArtwork(qmc2MainWindow->tabWidgetMachineDetail, name, m_artworkIndex++), QIcon(qmc2Config->value(QString("%1/Icon").arg(name), QString()).toString()), name);
 			componentInfo->setWidget(featureIndex, qmc2MainWindow->tabWidgetMachineDetail->widget(featureIndex));
 			num++;
 		}
