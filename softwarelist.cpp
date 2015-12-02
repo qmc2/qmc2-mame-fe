@@ -2749,6 +2749,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 	toolButtonPlayEmbedded->setEnabled(enable);
 	toolButtonAddToFavorites->setEnabled(enable);
 	if ( enable && qmc2SoftwareSnap ) {
+		SoftwareImageWidget::updateArtwork();
 		SoftwareItem *item = (SoftwareItem *)selectedItems[0];
 		qmc2SoftwareSnap->snapForcedResetTimer.stop();
 		snapForced = true;
@@ -2785,6 +2786,7 @@ void SoftwareList::on_treeWidgetKnownSoftwareTree_itemSelectionChanged()
 	toolButtonPlayEmbedded->setEnabled(enable);
 	toolButtonAddToFavorites->setEnabled(enable);
 	if ( enable && qmc2SoftwareSnap ) {
+		SoftwareImageWidget::updateArtwork();
 		SoftwareItem *item = (SoftwareItem *)selectedItems[0];
 		qmc2SoftwareSnap->snapForcedResetTimer.stop();
 		snapForced = true;
@@ -2822,6 +2824,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 	toolButtonRemoveFromFavorites->setEnabled(enable);
 	toolButtonAddToFavorites->setEnabled(enable);
 	if ( enable && qmc2SoftwareSnap ) {
+		SoftwareImageWidget::updateArtwork();
 		SoftwareItem *item = (SoftwareItem *)selectedItems[0];
 		qmc2SoftwareSnap->snapForcedResetTimer.stop();
 		snapForced = true;
