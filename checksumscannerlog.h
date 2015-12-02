@@ -1,6 +1,7 @@
 #ifndef _CHECKSUMSCANNERLOG_H_
 #define _CHECKSUMSCANNERLOG_H_
 
+#include <QStringList>
 #include <QString>
 #include <QMutex>
 
@@ -19,6 +20,7 @@ class CheckSumScannerLog : public QDialog, public Ui::CheckSumScannerLog
 	public slots:
 		void on_spinBoxMaxLogSize_valueChanged(int);
 		void log(const QString &);
+		void flushMessageQueue();
 		void clear() { plainTextEditLog->clear(); }
 		void scrollToEnd();
 		void progressTextChanged(const QString &);
@@ -38,6 +40,7 @@ class CheckSumScannerLog : public QDialog, public Ui::CheckSumScannerLog
 	private:
 		qreal m_progress;
 		QString m_settingsKey;
+		QStringList m_messageQueue;
 		QMutex *m_logSyncMutex;
 };
 
