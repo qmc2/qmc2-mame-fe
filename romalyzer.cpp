@@ -4856,6 +4856,18 @@ void CheckSumScannerThread::emitlog(QString message)
 	}
 }
 
+void CheckSumScannerThread::flushMessageQueue()
+{
+	if ( !m_queuedMessages.isEmpty() ) {
+		logSyncMutex.lock();
+		moveToThread(this);
+		for (int i = 0; i < m_queuedMessages.count(); i++)
+			emit log(m_queuedMessages[i]);
+		logSyncMutex.unlock();
+		m_queuedMessages.clear();
+	}
+}
+
 void CheckSumScannerThread::run()
 {
 	emitlog(tr("scanner thread started"));
@@ -5002,6 +5014,7 @@ void CheckSumScannerThread::run()
 						emit scanPaused();
 						emitlog(tr("scanner paused"));
 						emit progressTextChanged(tr("Paused"));
+						flushMessageQueue();
 					}
 					QTest::qWait(100);
 					yieldCurrentThread();
@@ -5035,6 +5048,7 @@ void CheckSumScannerThread::run()
 			elapsedTime = elapsedTime.addMSecs(scanTimer.elapsed());
 			emitlog(tr("scan finished - total scanning time = %1, objects in database = %2, database size = %3").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(checkSumDb()->checkSumRowCount()).arg(ROMAlyzer::humanReadable(checkSumDb()->databaseSize())));
 			emit scanFinished();
+			flushMessageQueue();
 		}
 	}
 	emitlog(tr("scanner thread ended"));
