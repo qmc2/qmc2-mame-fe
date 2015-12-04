@@ -12,9 +12,15 @@ if [ "${OS}" = "Linux" ] ; then
     NAME=$(cat /etc/os-release | egrep "\bNAME\b" | sed 's/NAME=//g' | sed 's/\"//g' | tr ' ' '_' | tr '/' '_')
     if [ "${NAME}" = "Fedora" ] ; then
     	NAME="Fedora_release"
-    fi
-    if [ "${VERSION}" != "" ] ; then
-        DIST="$(echo ${NAME})_$(echo ${VERSION})"
+    	DIST="$(echo ${NAME})_$(echo ${VERSION_ID})"
+    elif [ "${NAME}" = "Ubuntu" ] ; then
+    	DIST="$(echo ${NAME})_$(echo ${VERSION_ID})"
+    elif [ "${NAME}" = "openSUSE" ] ; then
+        if [ "${VERSION}" != "" ] ; then
+            DIST="$(echo ${NAME})_$(echo ${VERSION})"
+        else
+            DIST="$(echo ${NAME})_$(echo ${VERSION_ID})"
+        fi
     else
     	DIST="$(echo ${NAME})_$(echo ${VERSION_ID})"
     fi
