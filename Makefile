@@ -82,8 +82,7 @@ endif
 # 0 .... Generate no debugging code at all (default, recommended)
 # 1 .... Add symbols for the debugger, show compiler warnings (ok)
 # 2 .... Add symbols for the debugger, show compiler warnings and include QMC2's
-#        debugging code (not recommended, only for developers or if explicitly
-#        asked to do so by a developer)
+#        debugging code (not recommended)
 #
 ifndef DEBUG
 DEBUG = 0
