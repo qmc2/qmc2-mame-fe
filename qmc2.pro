@@ -292,6 +292,11 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		QMAKE_MAKEFILE = Makefile.qmake
 		DEFINES += _7ZIP_PPMD_SUPPORT _7ZIP_ST
 
+		contains(DEFINES, QMC2_LIBARCHIVE_ENABLED) {
+			SOURCES += archivefile.cpp
+			HEADERS += archivefile.h
+		}
+
 		# platform specific stuff
 		macx {
 			QMAKESPEC = macx-xcode
