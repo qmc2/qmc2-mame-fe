@@ -343,6 +343,20 @@ FADER_SPEED = 500
 endif
 endif
 
+# >>> LIBARCHIVE <<<
+#
+# Use libarchive instead of the built-in zip/7-zip support for accessing
+# archived data?
+#
+# THIS IS *EXPERIMENTAL* RIGHT NOW SO *DON'T* USE IT!
+#
+# LIBARCHIVE = 0 .... Use built-in zip/7-zip support (default)
+# LIBARCHIVE = 1 .... Use external libarchive library
+#
+ifndef LIBARCHIVE
+LIBARCHIVE = 0
+endif
+
 # >>> CC_FLAGS <<<
 #
 # Specify additional flags passed to the C compiler.
@@ -614,7 +628,6 @@ ifeq '$(DEBUG)' '2'
 DEFINES += QMC2_DEBUG
 endif
 
-
 ifeq '$(ARCH)' 'Darwin'
 DEFINES += QMC2_MAC_UNIVERSAL=$(MAC_UNIVERSAL)
 endif
@@ -655,6 +668,10 @@ endif
 
 ifeq '$(WIP)' '1'
 DEFINES += QMC2_WIP_ENABLED
+endif
+
+ifeq '$(LIBARCHIVE)' '1'
+DEFINES += QMC2_LIBARCHIVE_ENABLED
 endif
 
 # setup SDL library and include paths
@@ -901,6 +918,10 @@ ifeq '$(MAC_UNIVERSAL)' '1'
 ARCADE_DEFINES += QMC2_ARCADE_MAC_UNIVERSAL
 endif
 endif
+ifeq '$(LIBARCHIVE)' '1'
+ARCADE_DEFINES += QMC2_ARCADE_LIBARCHIVE_ENABLED
+endif
+
 ARCADE_VERSION=$(shell $(GREP) "VERSION =" arcade/qmc2-arcade.pro | $(AWK) '{ print $$3 }')
 ARCADE_QMAKE_DEFS = QMC2_ARCADE_QML_IMPORT_PATH=$(LOCAL_QML_IMPORT_PATH) QMC2_ARCADE_JOYSTICK=$(JOYSTICK) SDL=$(SDL) $(ARCADE_QMAKE_CONF)
 

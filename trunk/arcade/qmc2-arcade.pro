@@ -111,6 +111,11 @@ HEADERS += \
     ../settings.h \
     ../sevenzipfile.h
 
+contains(DEFINES, QMC2_ARCADE_LIBARCHIVE_ENABLED) {
+    SOURCES += ../archivefile.cpp
+    HEADERS += ../archivefile.h
+}
+
 DEFINES += _7ZIP_PPMD_SUPPORT _7ZIP_ST QMC2_ARCADE_VERSION=$$VERSION QMC2_ARCADE_MAIN_UI_VERSION=$$MAIN_UI_VERSION
 
 RESOURCES += qmc2-arcade-common.qrc
