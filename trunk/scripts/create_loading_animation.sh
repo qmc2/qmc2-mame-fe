@@ -13,5 +13,5 @@ done
 command="$command data/tmp/animation.png"
 eval $command
 frames=$(for i in $(seq 0 72); do echo data/tmp/animation-${i}.png; done)
-convert -delete 0 -loop 0 -dispose 3 -delay 5 ${frames} data/img/classic/loadanim.gif
+convert -loop 0 -dispose 3 -delay 5 ${frames} -delete 0 -layers trim-bounds data/img/classic/loadanim.gif
 rm -f ${frames}
