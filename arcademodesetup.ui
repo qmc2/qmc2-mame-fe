@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>391</width>
-    <height>427</height>
+    <width>466</width>
+    <height>538</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -327,6 +327,11 @@
          <item>
           <property name="text">
            <string notr="true">opengl1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">opengl2</string>
           </property>
          </item>
          <item>

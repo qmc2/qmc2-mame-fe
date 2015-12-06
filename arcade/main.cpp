@@ -236,7 +236,7 @@ int main(int argc, char *argv[])
     mameThemes << "ToxicWaste" << "darkone";
     consoleModes << "terminal" << "window" << "window-minimized";
 #if QT_VERSION < 0x050000
-    graphicsSystems << "raster" << "native" << "opengl" << "opengl1" << "openvg";
+    graphicsSystems << "raster" << "native" << "opengl" << "opengl1" << "opengl2" << "openvg";
 #endif
 
     // we have to make a copy of the command line arguments since QApplication's constructor "eats"
