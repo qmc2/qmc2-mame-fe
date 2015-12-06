@@ -22,7 +22,7 @@ void AspectRatioLabel::adjustMovieSize()
 	int frame = movie()->currentFrameNumber();
 	movie()->setFileName(movie()->fileName());
 	QSize sz(250, 250);
-	sz.scale(size() * 0.8, Qt::KeepAspectRatio);
+	sz.scale(size() * 0.5, Qt::KeepAspectRatio);
 	movie()->setScaledSize(sz);
 	movie()->jumpToFrame(frame);
 	switch ( state ) {
