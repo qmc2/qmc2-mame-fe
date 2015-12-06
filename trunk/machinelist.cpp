@@ -422,6 +422,8 @@ void MachineList::load()
 	machineStatusHash.clear();
 	qmc2MachineListItemHash.clear();
 	qmc2HierarchyItemHash.clear();
+	qmc2CategoryItemHash.clear();
+	qmc2VersionItemHash.clear();
 	qmc2ExpandedMachineListItems.clear();
 	biosSets.clear();
 	deviceSets.clear();
@@ -436,9 +438,7 @@ void MachineList::load()
 	numTaggedSets = numSearchGames = 0;
 	qmc2MainWindow->treeWidgetMachineList->clear();
 	qmc2MainWindow->treeWidgetHierarchy->clear();
-	qmc2CategoryItemHash.clear();
 	qmc2MainWindow->treeWidgetCategoryView->clear();
-	qmc2VersionItemHash.clear();
 	qmc2MainWindow->treeWidgetVersionView->clear();
 	qmc2MainWindow->listWidgetSearch->clear();
 	qmc2MainWindow->listWidgetFavorites->clear();
@@ -514,18 +514,6 @@ void MachineList::load()
 		qmc2YouTubeWidget = NULL;
 	}
 #endif
-
-	ImageWidget::updateArtwork();
-	qApp->processEvents();
-
-	QTreeWidgetItem *dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetMachineList);
-	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
-	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetHierarchy);
-	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
-	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetCategoryView);
-	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
-	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetVersionView);
-	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
 	if ( qmc2EmulatorOptions ) {
 		qmc2EmulatorOptions->save();
 		QLayout *vbl = qmc2MainWindow->tabConfiguration->layout();
@@ -546,6 +534,19 @@ void MachineList::load()
 		delete qmc2MainWindow->pushButtonCurrentEmulatorOptionsImportFromFile;
 		qmc2EmulatorOptions = NULL;
 	}
+
+	ImageWidget::updateArtwork();
+
+	QTreeWidgetItem *dummyItem;
+	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetMachineList);
+	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetHierarchy);
+	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetCategoryView);
+	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetVersionView);
+	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 
 	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
