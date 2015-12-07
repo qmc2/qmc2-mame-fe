@@ -55,7 +55,7 @@ class MachineList : public QObject
 		QTime verifyTimer;
 		QTime parseTimer;
 		QTime miscTimer;
-		QFile romCache;
+		QFile romStateCache;
 		QFile machineListCache;
 		QTextStream tsRomCache;
 		QTextStream tsMachineListCache;
@@ -71,9 +71,9 @@ class MachineList : public QObject
 		QHash<QString, QString *> categoryHash;
 		QHash<QString, QString *> versionNames;
 		QHash<QString, QString *> versionHash;
-		QTreeWidgetItem *checkedItem;
 		QHash<QString, bool> biosSets;
 		QHash<QString, bool> deviceSets;
+		QTreeWidgetItem *checkedItem;
 
 		static QStringList romTypeNames;
 		static QStringList phraseTranslatorList;

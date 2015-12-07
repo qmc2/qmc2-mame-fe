@@ -878,15 +878,15 @@ void MachineList::verify(bool currentOnly)
 	numVerifyRoms = 0;
 	if ( verifyCurrentOnly ) {
 		checkedItem = qmc2CurrentItem;
-		romCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile").toString());
-		romCache.open(QIODevice::WriteOnly | QIODevice::Text);
-		if ( !romCache.isOpen() ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open ROM state cache for writing, path = %1").arg(romCache.fileName()));
+		romStateCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile").toString());
+		romStateCache.open(QIODevice::WriteOnly | QIODevice::Text);
+		if ( !romStateCache.isOpen() ) {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open ROM state cache for writing, path = %1").arg(romStateCache.fileName()));
 			qmc2VerifyActive = false;
 			enableWidgets(true);
 			return;
 		} else {
-			tsRomCache.setDevice(&romCache);
+			tsRomCache.setDevice(&romStateCache);
 			tsRomCache.reset();
 			tsRomCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
 		}
@@ -920,15 +920,15 @@ void MachineList::verify(bool currentOnly)
 		}
 	} else {
 		checkedItem = NULL;
-		romCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile").toString());
-		romCache.open(QIODevice::WriteOnly | QIODevice::Text);
-		if ( !romCache.isOpen() ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open ROM state cache for writing, path = %1").arg(romCache.fileName()));
+		romStateCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile").toString());
+		romStateCache.open(QIODevice::WriteOnly | QIODevice::Text);
+		if ( !romStateCache.isOpen() ) {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open ROM state cache for writing, path = %1").arg(romStateCache.fileName()));
 			qmc2VerifyActive = false;
 			enableWidgets(true);
 			return;
 		} else {
-			tsRomCache.setDevice(&romCache);
+			tsRomCache.setDevice(&romStateCache);
 			tsRomCache.reset();
 			tsRomCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
 		}
@@ -1295,9 +1295,9 @@ void MachineList::parse()
 	bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
 	QTime elapsedTime(0, 0, 0, 0);
 	qmc2MainWindow->progressBarMachineList->setRange(0, numTotalGames);
-	romCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile").toString());
-	romCache.open(QIODevice::ReadOnly | QIODevice::Text);
-	if ( !romCache.isOpen() ) {
+	romStateCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile").toString());
+	romStateCache.open(QIODevice::ReadOnly | QIODevice::Text);
+	if ( !romStateCache.isOpen() ) {
 		if ( !autoRomCheck )
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open ROM state cache, please check ROMs"));
 	} else {
@@ -1309,7 +1309,7 @@ void MachineList::parse()
 			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 		qmc2MainWindow->progressBarMachineList->reset();
 		qApp->processEvents();
-		tsRomCache.setDevice(&romCache);
+		tsRomCache.setDevice(&romStateCache);
 		tsRomCache.reset();
 		cachedGamesCounter = 0;
 		tsRomCache.readLine(); // ignore first line
@@ -1328,7 +1328,7 @@ void MachineList::parse()
 		elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading ROM state from cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n cached ROM state(s) loaded", "", cachedGamesCounter));
-		romCache.close();
+		romStateCache.close();
 		qApp->processEvents();
 	}
 	QTime processMachineListElapsedTimer(0, 0, 0, 0);
@@ -2298,8 +2298,8 @@ void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( loadProc )
 		delete loadProc;
 	loadProc = NULL;
-	if ( romCache.isOpen() )
-		romCache.close();
+	if ( romStateCache.isOpen() )
+		romStateCache.close();
 	xmlDb()->commitTransaction();
 	uncommittedXmlDbRows = 0;
 	if ( invalidateListXmlCache ) {
@@ -2514,7 +2514,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					machineStatusHash[machineName] = 'U';
 					bool isBIOS = isBios(machineName);
 					bool isDevice = this->isDevice(machineName);
-					if ( romCache.isOpen() )
+					if ( romStateCache.isOpen() )
 						tsRomCache << machineName << " U\n";
 					numUnknownGames++;
 					if ( isBIOS ) {
@@ -2592,7 +2592,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 						romRequired = (romCounter > 0);
 				}
 				if ( romItem && hierarchyItem ) {
-					if ( romCache.isOpen() ) {
+					if ( romStateCache.isOpen() ) {
 						if ( romRequired ) {
 							tsRomCache << machineName << " N\n";
 							numNotFoundGames++;
@@ -2718,7 +2718,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			qmc2MainWindow->labelMachineListStatus->setText(status());
 		} else if ( checkedItem )
 			machineName = checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-		if ( romCache.isOpen() ) {
+		if ( romStateCache.isOpen() ) {
 			QHashIterator<QString, char> it(machineStatusHash);
 			while ( it.hasNext() ) {
 				it.next();
@@ -2766,9 +2766,9 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		delete verifyProc;
 	verifyProc = NULL;
 	qmc2VerifyActive = false;
-	if ( romCache.isOpen() ) {
+	if ( romStateCache.isOpen() ) {
 		tsRomCache.flush();
-		romCache.close();
+		romStateCache.close();
 	}
 	if ( qmc2SortCriteria == QMC2_SORT_BY_ROM_STATE ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(tr("ROM state")).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
@@ -3009,13 +3009,13 @@ void MachineList::verifyReadyReadStandardOutput()
 					if ( verifyCurrentOnly ) {
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM status for '%1' is '%2'").arg(checkedItem->text(QMC2_MACHINELIST_COLUMN_MACHINE)).arg(romStateLong));
 						numUnknownGames--;
-					} else if ( romCache.isOpen() )
+					} else if ( romStateCache.isOpen() )
 						tsRomCache << romName << " " << romState << "\n";
 				}
 			}
 		}
 	}
-	if ( romCache.isOpen() && !verifyCurrentOnly )
+	if ( romStateCache.isOpen() && !verifyCurrentOnly )
 		tsRomCache.flush();
 	if ( qmc2StopParser && verifyProc )
 		verifyProc->kill();
