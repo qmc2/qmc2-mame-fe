@@ -48,6 +48,9 @@
 #include "htmleditor/htmleditor.h"
 #include "aspectratiolabel.h"
 #include "processmanager.h"
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+#include "archivefile.h"
+#endif
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -94,6 +97,9 @@ extern Qt::SortOrder qmc2SortOrder;
 extern QBitArray qmc2Filter;
 extern QMap<QString, unzFile> qmc2IconFileMap;
 extern QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+extern QMap<QString, ArchiveFile *> qmc2IconArchiveMap;
+#endif
 extern QHash<QString, QIcon> qmc2IconHash;
 extern QTreeWidgetItem *qmc2LastProjectMESSItem;
 extern MiniWebBrowser *qmc2ProjectMESSLookup;
@@ -182,6 +188,17 @@ MachineList::MachineList(QObject *parent)
 	emulatorIdentifiers << "MAME" << "M.A.M.E." << "HB.M.A.M.E." << "MESS" << "M.E.S.S.";
 
 	if ( QMC2_ICON_FILETYPE_ZIP ) {
+#if defined(QMC2_LIBARCHIVE_ENABLED) // FIXME: experimental use
+		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
+			ArchiveFile *archiveFile = new ArchiveFile(filePath);
+			if ( !archiveFile->open() ) {
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("libarchive error") + ": " + archiveFile->errorString());
+				delete archiveFile;
+			} else
+				qmc2IconArchiveMap[filePath] = archiveFile;
+
+		}
+#else
 		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
 			unzFile iconFile = unzOpen(filePath.toUtf8().constData());
 			if ( iconFile == NULL )
@@ -189,6 +206,7 @@ MachineList::MachineList(QObject *parent)
 			else
 				qmc2IconFileMap[filePath] = iconFile;
 		}
+#endif
 	} else if ( QMC2_ICON_FILETYPE_7Z ) {
 		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
 			SevenZipFile *iconFile = new SevenZipFile(filePath);
@@ -224,8 +242,15 @@ MachineList::~MachineList()
 	clearVersionNames();
 	versionHash.clear();
 
+#if defined(QMC2_LIBARCHIVE_ENABLED) // FIXME: experimental use
+	foreach (ArchiveFile *iconFile, qmc2IconArchiveMap) {
+		iconFile->close();
+		delete iconFile;
+	}
+#else
 	foreach (unzFile iconFile, qmc2IconFileMap)
 		unzClose(iconFile);
+#endif
 
 	foreach (SevenZipFile *iconFile, qmc2IconFileMap7z) {
 		iconFile->close();
@@ -3052,6 +3077,46 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 			preloadTimer.start();
 			if ( QMC2_ICON_FILETYPE_ZIP ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from ZIP archive"));
+#if defined(QMC2_LIBARCHIVE_ENABLED) // FIXME: experimental use
+				foreach (ArchiveFile *archiveFile, qmc2IconArchiveMap) {
+					int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
+					QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
+					if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+						qmc2MainWindow->progressBarMachineList->setFormat(tr("Icon cache - %p%"));
+					else
+						qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+					qmc2MainWindow->progressBarMachineList->setRange(0, archiveFile->entryList().count());
+					qmc2MainWindow->progressBarMachineList->reset();
+					qApp->processEvents();
+					QString gameFileName;
+					ArchiveEntryMetaData metaData;
+					bool reset = true;
+					int index = 0;
+					while ( archiveFile->seekNextEntry(&metaData, &reset) ) {
+						QFileInfo fi(metaData.name());
+						gameFileName = fi.fileName();
+						QByteArray ba;
+						while ( archiveFile->readBlock(&ba) >= 0 )
+							imageData.append(ba);
+						QPixmap iconPixmap;
+						if ( iconPixmap.loadFromData(imageData) ) {
+							QFileInfo fi(gameFileName.toLower());
+							qmc2IconHash[fi.baseName()] = QIcon(iconPixmap);
+							iconCount++;
+						}
+						if ( index++ % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
+							qmc2MainWindow->progressBarMachineList->setValue(index);
+							qApp->processEvents();
+						}
+						imageData.clear();
+					}
+					qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
+					if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+						qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
+					else
+						qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+				}
+#else
 				foreach (unzFile iconFile, qmc2IconFileMap) {
 					unz_global_info unzGlobalInfo;
 					if ( unzGetGlobalInfo(iconFile, &unzGlobalInfo) == UNZ_OK ) {
@@ -3100,6 +3165,7 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 							qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 					}
 				}
+#endif
 				elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from ZIP archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n icon(s) loaded", "", iconCount));
@@ -3130,7 +3196,7 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 								iconCount++;
 							}
 						}
-						if ( index++ % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
+						if ( index % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
 							qmc2MainWindow->progressBarMachineList->setValue(index);
 							qApp->processEvents();
 						}
