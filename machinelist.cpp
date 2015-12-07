@@ -1597,7 +1597,6 @@ void MachineList::parse()
 			foreach (QTreeWidgetItem *hiddenItem, hideList)
 				hiddenItem->setHidden(true);
 			qmc2MainWindow->progressBarMachineList->setValue(numGames);
-			qApp->processEvents();
 			loadedFromCache = true;
 		}
 	} 
@@ -1836,10 +1835,8 @@ void MachineList::parse()
 	bool iconFallback = qmc2ParentImageFallback && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFallback", 0).toInt() == 0;
 	while ( i.hasNext() && !qmc2StopParser ) {
 		i.next();
-		if ( counter++ % qmc2MachineListResponsiveness == 0 ) {
+		if ( counter++ % qmc2MachineListResponsiveness == 0 )
 			qmc2MainWindow->progressBarMachineList->setValue(counter);
-			qApp->processEvents();
-		}
 		QString iValue = i.key();
 		QTreeWidgetItem *baseItem = qmc2MachineListItemHash[iValue];
 		if ( !baseItem )
