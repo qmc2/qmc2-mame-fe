@@ -3,80 +3,151 @@
 #include "archivefile.h"
 
 ArchiveFile::ArchiveFile(QString fileName, QObject *parent)
-	: QObject(parent)
+    : QObject(parent)
 {
-	m_fileName = fileName;
-	m_isOpen = false;
+    m_fileName = fileName;
+    m_archive = 0;
+    m_fd = -1;
+}
+
+ArchiveFile::~ArchiveFile()
+{
+    if ( isOpen() )
+        close();
 }
 
 bool ArchiveFile::open(QString fileName)
 {
-	// FIXME
-	return false;
+    if ( isOpen() )
+        close();
+    if ( !fileName.isEmpty() )
+        m_fileName = fileName;
+    m_file.setFileName(m_fileName);
+    if ( !m_file.open(QIODevice::ReadOnly) )
+        return false;
+    m_fd = m_file.handle();
+    m_archive = archive_read_new();
+    archive_read_support_filter_all(m_archive);
+    archive_read_support_format_all(m_archive);
+    int result = archive_read_open_fd(m_archive, m_fd, QMC2_ARCHIVE_BLOCK_SIZE);
+    if ( result != ARCHIVE_OK) {
+        archive_read_free(m_archive);
+        m_archive = 0;
+        m_file.close();
+        m_fd = -1;
+        return false;
+    } else {
+        createItemList();
+        return true;
+    }
 }
 
 void ArchiveFile::close()
 {
-	// FIXME
+    m_entryList.clear();
+    if ( isOpen() ) {
+        archive_read_free(m_archive);
+        m_file.close();
+    }
+    m_archive = 0;
+    m_fd = -1;
 }
 
-bool ArchiveFile::openItem(QString name)
+bool ArchiveFile::seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset)
 {
-	// FIXME
-	return false;
+    if ( !isOpen() )
+        return false;
+    if ( *reset ) {
+        archive_read_free(m_archive);
+        m_file.close();
+        m_file.open(QIODevice::ReadOnly);
+        m_fd = m_file.handle();
+        m_archive = archive_read_new();
+        archive_read_support_filter_all(m_archive);
+        archive_read_support_format_all(m_archive);
+        archive_read_open_fd(m_archive, m_fd, QMC2_ARCHIVE_BLOCK_SIZE);
+        *reset = false;
+    }
+    struct archive_entry *entry;
+    if ( archive_read_next_header(m_archive, &entry) == ARCHIVE_OK ) {
+        *metaData = ArchiveEntryMetaData(archive_entry_pathname(entry), archive_entry_size(entry), QDateTime::fromTime_t(archive_entry_mtime(entry)));
+        return true;
+    } else
+        return false;
 }
 
-bool ArchiveFile::openItem(uint index)
+bool ArchiveFile::seekEntry(QString name)
 {
-	// FIXME
-	return false;
+    return seekEntry(indexOfName(name));
 }
 
-void ArchiveFile::closeItem()
+bool ArchiveFile::seekEntry(uint index)
 {
-	// FIXME
+    if ( !isOpen() )
+        return false;
+    struct archive_entry *entry;
+    ArchiveEntryMetaData metadata = entryList()[index];
+    archive_read_free(m_archive);
+    lseek(m_fd, 0, SEEK_SET);
+    m_archive = archive_read_new();
+    archive_read_support_filter_all(m_archive);
+    archive_read_support_format_all(m_archive);
+    archive_read_open_fd(m_archive, m_fd, QMC2_ARCHIVE_BLOCK_SIZE);
+    while ( archive_read_next_header(m_archive, &entry) == ARCHIVE_OK )
+        if ( metadata.name().compare(archive_entry_pathname(entry), Qt::CaseSensitive) == 0 )
+            return true;
+    return false;
 }
 
-int ArchiveFile::indexOfName(QString name)
+qint64 ArchiveFile::readBlock(QByteArray *buffer)
 {
-	// FIXME
-	return -1;
+    if ( !isOpen() )
+        return 0;
+    off_t offset;
+    size_t size;
+    int result = archive_read_data_block(m_archive, &m_buffer, &size, &offset);
+    if ( result == ARCHIVE_EOF || result == ARCHIVE_OK ) {
+        buffer->setRawData((const char *)m_buffer, size);
+        if ( result == ARCHIVE_EOF )
+            return -1;
+        else
+            return size;
+    } else
+        return -1;
 }
 
-int ArchiveFile::indexOfCrc(QString crc)
+QString ArchiveFile::errorString()
 {
-	// FIXME
-	return -1;
+    if ( isOpen() )
+        return QString(archive_error_string(m_archive));
+    else
+        return QString();
 }
 
-quint64 ArchiveFile::readItem(uint len, QByteArray *buffer)
+int ArchiveFile::errorCode()
 {
-	// FIXME
-	return 0;
+    if ( isOpen() )
+        return archive_errno(m_archive);
+    else
+        return ARCHIVE_OK;
 }
 
 void ArchiveFile::createItemList()
 {
-	itemList().clear();
-	if ( !isOpen() )
-		return;
-	// FIXME
+    entryList().clear();
+    if ( !isOpen() )
+        return;
+    struct archive_entry *entry;
+    while ( archive_read_next_header(m_archive, &entry) == ARCHIVE_OK ) {
+        entryList() << ArchiveEntryMetaData(archive_entry_pathname(entry), archive_entry_size(entry), QDateTime::fromTime_t(archive_entry_mtime(entry)));
+        archive_read_data_skip(m_archive);
+    }
 }
 
-QString ArchiveFile::errorCodeToString(int errorCode)
+int ArchiveFile::indexOfName(QString name)
 {
-	switch ( errorCode ) {
-		case ARCHIVE_EOF:
-			return tr("end of file");
-		case ARCHIVE_OK:
-			return tr("operation completed successfully");
-		case ARCHIVE_WARN:
-			return tr("operation completed with warnings");
-		case ARCHIVE_FAILED:
-			return tr("operation failed");
-		case ARCHIVE_FATAL:
-			return tr("fatal error");
-		default:
-			return tr("unknown error");
-	}
+    for (int i = 0; i < entryList().count(); i++)
+            if ( entryList()[i].name() == name )
+                    return i;
+    return -1;
 }

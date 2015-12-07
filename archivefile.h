@@ -2,6 +2,7 @@
 #define ARCHIVEFILE_H
 
 #include <QObject>
+#include <QFile>
 #include <QString>
 #include <QList>
 #include <QStringList>
@@ -10,69 +11,61 @@
 
 #include <archive.h>
 
-class ArchiveItemMetaData
+#define QMC2_ARCHIVE_BLOCK_SIZE    65536
+
+class ArchiveEntryMetaData
 {
-	public:
-		explicit ArchiveItemMetaData(QString name = QString(), quint64 size = 0, QDateTime date = QDateTime(), QString crc = QString())
-		{
-			setName(name);
-			setSize(size);
-			setDate(date);
-			setCrc(crc);
-		}
+public:
+    explicit ArchiveEntryMetaData(QString name = QString(), quint64 size = 0, QDateTime date = QDateTime())
+    {
+        setName(name);
+        setSize(size);
+        setDate(date);
+    }
 
-		void setName(QString name) { m_name = name; }
-		QString name() { return m_name; }
-		void setSize(quint64 size) { m_size = size; }
-		quint64 size() { return m_size; }
-		void setDate(QDateTime date) { m_date = date; }
-		QDateTime date() { return m_date; }
-		void setCrc(QString crc) { m_crc = crc; }
-		QString crc() { return m_crc; }
+    void setName(QString name) { m_name = name; }
+    QString name() { return m_name; }
+    void setSize(quint64 size) { m_size = size; }
+    quint64 size() { return m_size; }
+    void setDate(QDateTime date) { m_date = date; }
+    QDateTime date() { return m_date; }
 
-	private:
-		QString m_name;
-		quint64 m_size;
-		QDateTime m_date;
-		QString m_crc;
+private:
+    QString m_name;
+    quint64 m_size;
+    QDateTime m_date;
 };
 
 class ArchiveFile : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	public:
-		explicit ArchiveFile(QString fileName = QString(), QObject *parent = 0);
+public:
+    explicit ArchiveFile(QString fileName = QString(), QObject *parent = 0);
+    ~ArchiveFile();
 
-		QString fileName() { return m_fileName; }
-		QString lastError() { return m_lastError; }
-		QList<ArchiveItemMetaData> &itemList() { return m_itemList; }
-		bool hasError() { return !m_lastError.isEmpty(); }
-		bool isOpen() { return m_isOpen; }
-		bool open(QString fileName = QString());
-		void close();
-		bool openItem(QString name);
-		bool openItem(uint index);
-		void closeItem();
-		int indexOfName(QString name);
-		int indexOfCrc(QString crc);
-		quint64 readItem(uint len, QByteArray *buffer);
+    QString fileName() { return m_fileName; }
+    QList<ArchiveEntryMetaData> &entryList() { return m_entryList; }
+    bool isOpen() { return m_fd >= 0; }
+    bool open(QString fileName = QString());
+    void close();
+    bool seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset);
+    bool seekEntry(QString name);
+    bool seekEntry(uint index);
+    qint64 readBlock(QByteArray *buffer);
+    QString errorString();
+    int errorCode();
 
-	signals:
-		void opened();
-		void closed();
-		void itemOpened(uint);
-		void itemClosed(uint);
-		void error(QString);
+private:
+    void createItemList();
+    int indexOfName(QString name);
 
-	private:
-		void createItemList();
-		QString errorCodeToString(int errorCode);
-
-		QList<ArchiveItemMetaData> m_itemList;
-		QString m_fileName;
-		QString m_lastError;
-		bool m_isOpen;
+    struct archive *m_archive;
+    int m_fd;
+    const void *m_buffer;
+    QFile m_file;
+    QList<ArchiveEntryMetaData> m_entryList;
+    QString m_fileName;
 };
 
 #endif

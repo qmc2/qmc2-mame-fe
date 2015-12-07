@@ -295,6 +295,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		contains(DEFINES, QMC2_LIBARCHIVE_ENABLED) {
 			SOURCES += archivefile.cpp
 			HEADERS += archivefile.h
+			LIBS += -larchive
 		}
 
 		# platform specific stuff
