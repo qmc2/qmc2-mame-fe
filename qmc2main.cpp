@@ -94,6 +94,9 @@
 #include "arcademodesetup.h"
 #include "fileiconprovider.h"
 #include "aspectratiolabel.h"
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+#include "archivefile.h"
+#endif
 
 #if defined(QMC2_OS_MAC)
 #include <ApplicationServices/ApplicationServices.h>
@@ -247,6 +250,9 @@ bool qmc2SortingActive = false;
 QBitArray qmc2Filter;
 QMap<QString, unzFile> qmc2IconFileMap;
 QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+QMap<QString, ArchiveFile *> qmc2IconArchiveMap;
+#endif
 MainEventFilter *qmc2MainEventFilter = NULL;
 QHash<QString, QKeySequence> qmc2QtKeyHash;
 #if QMC2_JOYSTICK == 1
