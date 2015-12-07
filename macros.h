@@ -438,6 +438,9 @@
 #define QMC2_GENERAL_LOADING_UPDATES		100
 #define QMC2_TAGGING_UPDATES			200
 
+// default machine list responsiveness
+#define QMC2_DEFAULT_MACHINELIST_RESPONSE	1000
+
 // responsiveness while reading the XML machine list cache
 #define QMC2_XMLCACHE_RESPONSIVENESS		50
 
