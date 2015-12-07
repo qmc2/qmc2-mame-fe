@@ -2,12 +2,9 @@
 #define _GAMELIST_H_
 
 #include <QtGui>
-#if QT_VERSION >= 0x050000
 #include <QIcon>
 #include <QTreeWidgetItem>
-#endif
 #include <QHash>
-#include <QMap>
 
 #include "xmldbmgr.h"
 #include "userdatadbmgr.h"
@@ -80,7 +77,8 @@ class MachineList : public QObject
 
 		static QStringList romTypeNames;
 		static QStringList phraseTranslatorList;
-		static QMap<QString, QString> reverseTranslation;
+		static QHash<QString, QString> reverseTranslation;
+		static QHash<QString, QString> machineStateTranslations;
 		static bool creatingCatView;
 		static bool creatingVerView;
 

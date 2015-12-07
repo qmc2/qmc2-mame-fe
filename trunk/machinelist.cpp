@@ -114,7 +114,8 @@ extern QTime qmc2StartupTimer;
 
 QStringList MachineList::phraseTranslatorList;
 QStringList MachineList::romTypeNames;
-QMap<QString, QString> MachineList::reverseTranslation;
+QHash<QString, QString> MachineList::reverseTranslation;
+QHash<QString, QString> MachineList::machineStateTranslations;
 QHash<QString, QStringList> qmc2HierarchyHash;
 bool MachineList::creatingCatView = false;
 bool MachineList::creatingVerView = false;
@@ -166,6 +167,13 @@ MachineList::MachineList(QObject *parent)
 		reverseTranslation[QObject::tr("yes")] = "yes";
 		reverseTranslation[QObject::tr("no")] = "no";
 		reverseTranslation[QObject::tr("partially")] = "partially";
+	}
+
+	if ( machineStateTranslations.isEmpty() ) {
+		machineStateTranslations["good"] = tr("good");
+		machineStateTranslations["preliminary"] = tr("preliminary");
+		machineStateTranslations["imperfect"] = tr("imperfect");
+		machineStateTranslations["N/A"] = tr("N/A");
 	}
 
 	if ( romTypeNames.isEmpty() )
@@ -1567,7 +1575,7 @@ void MachineList::parse()
 							break;
 					}
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, machinePlayers);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr(machineDrvStat.toUtf8().constData()));
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, machineStateTranslations[machineDrvStat]);
 					QTreeWidgetItem *nameItem = new QTreeWidgetItem(machineItem);
 					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
 					nameItem->setText(QMC2_MACHINELIST_COLUMN_ICON, machineName);
@@ -1699,7 +1707,7 @@ void MachineList::parse()
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr("N/A"));
 					} else {
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, machinePlayers);
-						machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr(machineDrvStat.toUtf8().constData()));
+						machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, machineStateTranslations[machineDrvStat]);
 					}
 					if ( useCategories ) {
 						if ( isBIOS )
