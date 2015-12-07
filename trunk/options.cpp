@@ -1960,7 +1960,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	comboBoxSoftwareSnapPosition->setCurrentIndex(qmc2SoftwareSnapPosition);
 	checkBoxSoftwareSnapOnMouseHover->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapOnMouseHover", false).toBool());
 	checkBoxAutoDisableSoftwareSnap->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AutoDisableSoftwareSnap", true).toBool());
-	spinBoxResponsiveness->setValue(config->value(QMC2_FRONTEND_PREFIX + "MachineList/Responsiveness", 1000).toInt());
+	spinBoxResponsiveness->setValue(config->value(QMC2_FRONTEND_PREFIX + "MachineList/Responsiveness", QMC2_DEFAULT_MACHINELIST_RESPONSE).toInt());
 	qmc2MachineListResponsiveness = spinBoxResponsiveness->value();
 	spinBoxUpdateDelay->setValue(config->value(QMC2_FRONTEND_PREFIX + "MachineList/UpdateDelay", 10).toInt());
 	qmc2UpdateDelay = spinBoxUpdateDelay->value();
