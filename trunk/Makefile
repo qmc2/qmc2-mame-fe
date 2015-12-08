@@ -1395,7 +1395,7 @@ endif
 	@$(ECHO) "L_LIBS                 Additional libraries passed to the linker     $(L_LIBS)"
 	@$(ECHO) "L_LIBDIRS              Additional library paths for the linker       $(L_LIBDIRS)"
 	@$(ECHO) "L_LIBDIRFLAGS          Optional value for QMAKE_LIBDIR_FLAGS         $(L_LIBDIRFLAGS)"
-	@$(ECHO) "LIBARCHIVE             Use libarchive (1) or not (0, default)        $(LIBARCHIVE)"
+	@$(ECHO) "LIBARCHIVE             Build with support for libarchive (0, 1)      $(LIBARCHIVE)"
 	@$(ECHO) "LINKER                 The linker to be used (empty = default)       $(LINKER)"
 	@$(ECHO) "LN                     UNIX command ln                               $(LN)"
 	@$(ECHO) "LOCAL_QML_IMPORT_PATH  Additional QML import path to use             $(LOCAL_QML_IMPORT_PATH)"
