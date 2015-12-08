@@ -38,6 +38,11 @@ bool Title::useSevenZip()
 	return qmc2UseTitleFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
 }
 
+bool Title::useArchive()
+{
+	return qmc2UseTitleFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleFileType").toInt() == QMC2_IMG_FILETYPE_ARCHIVE;
+}
+
 bool Title::scaledImage()
 {
 	return qmc2ScaledTitle;

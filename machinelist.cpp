@@ -3188,7 +3188,7 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 						QFileInfo fi(metaData.name());
 						gameFileName = fi.fileName();
 						QByteArray ba;
-						while ( archiveFile->readBlock(&ba) >= 0 )
+						while ( archiveFile->readBlock(&ba) > 0 )
 							imageData.append(ba);
 						QPixmap iconPixmap;
 						if ( iconPixmap.loadFromData(imageData) ) {

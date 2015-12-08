@@ -116,6 +116,17 @@ void SoftwareImageWidget::openSource()
 			}
 		}
 	}
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	else if ( useArchive() ) {
+		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
+			ArchiveFile *imageFile = new ArchiveFile(filePath);
+			if ( !imageFile->open() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
+			else
+				imageArchiveMap[filePath] = imageFile;
+		}
+	}
+#endif
 	reloadActiveFormats();
 }
 
@@ -134,6 +145,15 @@ void SoftwareImageWidget::closeSource()
 		delete it7z.value();
 	}
 	imageFileMap7z.clear();
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	QMapIterator<QString, ArchiveFile*> itArchive(imageArchiveMap);
+	while ( itArchive.hasNext() ) {
+		itArchive.next();
+		itArchive.value()->close();
+		delete itArchive.value();
+	}
+	imageArchiveMap.clear();
+#endif
 }
 
 bool SoftwareImageWidget::parentFallback()
@@ -314,7 +334,46 @@ bool SoftwareImageWidget::loadImage(QString listName, QString entryName, bool fr
 			if ( fileOk )
 				break;
 		}
-	} else {
+	}
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	else if ( useArchive() ) {
+		// try loading image from (semicolon-separated) archive(s)
+		foreach (ArchiveFile *snapFile, imageArchiveMap) {
+			if ( snapFile ) {
+				QByteArray imageData;
+				foreach (int format, activeFormats) {
+					QString formatName = ImageWidget::formatNames[format];
+					foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+						QString pathInArchive = listName + "/" + entryName + "." + extension;
+						if ( snapFile->seekEntry(pathInArchive) ) {
+							QByteArray ba;
+							while ( snapFile->readBlock(&ba) > 0 )
+								imageData.append(ba);
+							fileOk = !snapFile->hasError();
+						} else
+							fileOk = false;
+						if ( fileOk ) {
+							if ( pm.loadFromData(imageData, formatName.toUtf8().constData()) ) {
+								qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
+								break;
+							} else
+								fileOk = false;
+						}
+						if ( fileOk )
+							break;
+						else
+							imageData.clear();
+					}
+					if ( fileOk )
+						break;
+				}
+			}
+			if ( fileOk )
+				break;
+		}
+	}
+#endif
+	else {
 		// try loading image from (semicolon-separated) software-snapshot folder(s)
 		fileOk = false;
 		foreach (QString baseDirectory, imageDir().split(";", QString::SkipEmptyParts)) {

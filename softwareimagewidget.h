@@ -17,6 +17,9 @@ class SoftwareImageWidget : public QWidget
 	public:
 		QMap<QString, unzFile> imageFileMap;
 		QMap<QString, SevenZipFile*> imageFileMap7z;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		QMap<QString, ArchiveFile*> imageArchiveMap;
+#endif
 		ImagePixmap currentPixmap;
 		QMenu *contextMenu;
 		QString myCacheKey;
@@ -49,6 +52,7 @@ class SoftwareImageWidget : public QWidget
 		virtual int imageTypeNumeric() = 0;
 		virtual bool useZip() = 0;
 		virtual bool useSevenZip() = 0;
+		virtual bool useArchive() = 0;
 		virtual bool scaledImage() = 0;
 		virtual QString fallbackSettingsKey() = 0;
 

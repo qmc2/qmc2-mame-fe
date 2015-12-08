@@ -50,6 +50,10 @@ bool CustomSoftwareArtwork::useSevenZip()
 	return qmc2Config->value(QString("Artwork/%1/Type").arg(name()), 0).toInt() == QMC2_AW_INDEX_TYPE_ARCHIVE && qmc2Config->value(QString("Artwork/%1/Format").arg(name()), 0).toInt() == QMC2_AW_INDEX_FORMAT_7Z;
 }
 
+bool CustomSoftwareArtwork::useArchive()
+{
+	return qmc2Config->value(QString("Artwork/%1/Type").arg(name()), 0).toInt() == QMC2_AW_INDEX_TYPE_ARCHIVE && qmc2Config->value(QString("Artwork/%1/Format").arg(name()), 0).toInt() == QMC2_AW_INDEX_FORMAT_ARCHIVE;
+}
 
 bool CustomSoftwareArtwork::scaledImage()
 {

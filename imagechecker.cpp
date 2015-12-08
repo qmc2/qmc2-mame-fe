@@ -46,6 +46,9 @@ extern Title *qmc2Title;
 extern PCB *qmc2PCB;
 extern QMap<QString, unzFile> qmc2IconFileMap;
 extern QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+extern QMap<QString, ArchiveFile *> qmc2IconArchiveMap;
+#endif
 extern SoftwareList *qmc2SoftwareList;
 
 #define swlDb qmc2MainWindow->swlDb
@@ -105,6 +108,7 @@ QString ImageCheckerThread::humanReadable(quint64 value)
 
 void ImageCheckerThread::runSystemArtworkCheck()
 {
+	m_isFillingDictionary = false;
 	if ( imageWidget->useZip() ) {
 		foreach (QString zipFileName, imageWidget->imageZip().split(";", QString::SkipEmptyParts)) {
 			zipMap[zipFileName] = unzOpen(zipFileName.toUtf8().constData());
@@ -115,7 +119,6 @@ void ImageCheckerThread::runSystemArtworkCheck()
 				exitThread = true;
 			}
 		}
-		m_isFillingDictionary = false;
 	} else if ( imageWidget->useSevenZip() ) {
 		foreach (QString sevenZipFileName, imageWidget->imageZip().split(";", QString::SkipEmptyParts)) {
 			SevenZipFile *sevenZipFile = new SevenZipFile(sevenZipFileName);
@@ -130,8 +133,22 @@ void ImageCheckerThread::runSystemArtworkCheck()
 			}
 		}
 		m_isFillingDictionary = true;
-	} else
-		m_isFillingDictionary = false;
+	}
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	else if ( imageWidget->useArchive() ) {
+		foreach (QString archiveFileName, imageWidget->imageZip().split(";", QString::SkipEmptyParts)) {
+			ArchiveFile *archiveFile = new ArchiveFile(archiveFileName);
+			if ( !archiveFile->open() ) {
+				emit log(tr("Thread[%1]: failed opening archive file '%2'").arg(threadNumber).arg(archiveFileName));
+				delete archiveFile;
+				exitThread = true;
+			} else {
+				archiveMap[archiveFileName] = archiveFile;
+				emit log(tr("Thread[%1]: archive file '%2' successfully opened").arg(threadNumber).arg(archiveFileName));
+			}
+		}
+	}
+#endif
 	while ( !exitThread && !qmc2StopParser ) {
 		emit log(tr("Thread[%1]: waiting for work").arg(threadNumber));
 		mutex.lock();
@@ -160,7 +177,12 @@ void ImageCheckerThread::runSystemArtworkCheck()
 							zlCount++;
 							QString zipFilePath = zipMap.key(zip);
 							readerError.clear();
-							if ( imageWidget->checkImage(gameName, zip, NULL, &imageSize, &byteCount, &fileName, &readerError) ) {
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+							bool ok = imageWidget->checkImage(gameName, zip, NULL, NULL, &imageSize, &byteCount, &fileName, &readerError);
+#else
+							bool ok = imageWidget->checkImage(gameName, zip, NULL, &imageSize, &byteCount, &fileName, &readerError);
+#endif
+							if ( ok ) {
 								foundList << gameName;
 								emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(zipFilePath + ": " + fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
 								foundCount++;
@@ -194,10 +216,19 @@ void ImageCheckerThread::runSystemArtworkCheck()
 							m_async = true;
 							bool checkReturn = false;
 							int waitCounter = 0;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+							if ( !m_isFillingDictionary )
+								checkReturn = imageWidget->checkImage(gameName, NULL, sevenZipFile, NULL, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
+#else
 							if ( !m_isFillingDictionary )
 								checkReturn = imageWidget->checkImage(gameName, NULL, sevenZipFile, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
+#endif
 							else while ( m_async && m_isFillingDictionary && !exitThread ) {
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+								checkReturn = imageWidget->checkImage(gameName, NULL, sevenZipFile, NULL, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
+#else
 								checkReturn = imageWidget->checkImage(gameName, NULL, sevenZipFile, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
+#endif
 								if ( checkReturn && m_isFillingDictionary && m_async ) {
 									if ( waitCounter++ % 100 == 0 )
 										emit log(tr("Thread[%1]: decompressing archive").arg(threadNumber));
@@ -229,9 +260,49 @@ void ImageCheckerThread::runSystemArtworkCheck()
 								}
 							}
 						}
-					} else {
+					}
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+					else if ( imageWidget->useArchive() ) {
+						// archived images
+						int alCount = 0;
+						foreach (ArchiveFile *archiveFile, archiveMap) {
+							alCount++;
+							QString archiveFilePath = archiveMap.key(archiveFile);
+							readerError.clear();
+							if ( imageWidget->checkImage(gameName, NULL, NULL, archiveFile, &imageSize, &byteCount, &fileName, &readerError) ) {
+								foundList << gameName;
+								emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(archiveFilePath + ": " + fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
+								foundCount++;
+								break;
+							} else {
+								if ( alCount < archiveMap.count() ) {
+									if ( !readerError.isEmpty() ) {
+										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(archiveFilePath + ": " + fileName).arg(readerError));
+										badList << gameName;
+										badFileList << archiveFilePath + ": " + fileName;
+									}
+								} else {
+									missingList << gameName;
+									if ( !readerError.isEmpty() ) {
+										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(archiveFilePath + ": " + fileName).arg(readerError));
+										badList << gameName;
+										badFileList << archiveFilePath + ": " + fileName;
+									} else
+										emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
+									missingCount++;
+								}
+							}
+						}
+					}
+#endif
+					else {
 						// unzipped images
-						if ( imageWidget->checkImage(gameName, NULL, NULL, &imageSize, &byteCount, &fileName, &readerError) ) {
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+						bool ok = imageWidget->checkImage(gameName, NULL, NULL, NULL, &imageSize, &byteCount, &fileName, &readerError);
+#else
+						bool ok = imageWidget->checkImage(gameName, NULL, NULL, &imageSize, &byteCount, &fileName, &readerError);
+#endif
+						if ( ok ) {
 							foundList << gameName;
 							emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
 							foundCount++;
@@ -278,26 +349,28 @@ void ImageCheckerThread::runSoftwareArtworkCheck()
 void ImageCheckerThread::run()
 {
 	emit log(tr("Thread[%1]: started").arg(threadNumber));
-
 	if ( imageWidget )
 		runSystemArtworkCheck();
 	else if ( softwareImageWidget )
 		runSoftwareArtworkCheck();
-
 	foreach (unzFile zip, zipMap) {
 		unzClose(zip);
 		emit log(tr("Thread[%1]: ZIP file '%2' closed").arg(threadNumber).arg(zipMap.key(zip)));
 	}
-
 	foreach (SevenZipFile *sevenZipFile, sevenZipMap) {
 		sevenZipFile->close();
 		emit log(tr("Thread[%1]: 7z file '%2' closed").arg(threadNumber).arg(sevenZipMap.key(sevenZipFile)));
 		delete sevenZipFile;
 	}
-
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	foreach (ArchiveFile *archiveFile, archiveMap) {
+		archiveFile->close();
+		emit log(tr("Thread[%1]: archive file '%2' closed").arg(threadNumber).arg(archiveMap.key(archiveFile)));
+		delete archiveFile;
+	}
+#endif
 	emit log(tr("Thread[%1]: ended").arg(threadNumber));
 }
-
 
 void ImageCheckerThread::sevenZipDataReady()
 {
@@ -1533,7 +1606,15 @@ void ImageChecker::checkObsoleteFiles()
 			log(tr("Reading 7z directory recursively"));
 			foreach (SevenZipFile *imageFile, imageWidget->imageFileMap7z)
 				recursiveSevenZipList(imageFile, &fileList, imageWidget->imageFileMap7z.key(imageFile) + ": ");
-		} else {
+		}
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		else if ( imageWidget->useArchive() ) {
+			log(tr("Reading archive directory recursively"));
+			foreach (ArchiveFile *imageFile, imageWidget->imageArchiveMap)
+				recursiveArchiveList(imageFile, &fileList, imageWidget->imageArchiveMap.key(imageFile) + ": ");
+		}
+#endif
+		else {
 			dirList = imageWidget->imageDir().split(";", QString::SkipEmptyParts);
 			foreach (QString path, dirList) {
 				log(tr("Reading image directory '%1' recursively").arg(QDir::toNativeSeparators(path)));
@@ -1550,7 +1631,15 @@ void ImageChecker::checkObsoleteFiles()
 			log(tr("Reading 7z directory recursively"));
 			foreach (SevenZipFile *imageFile, qmc2IconFileMap7z)
 				recursiveSevenZipList(imageFile, &fileList, qmc2IconFileMap7z.key(imageFile) + ": ");
-		} else {
+		}
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		else if ( QMC2_ICON_FILETYPE_ARCHIVE ) {
+			log(tr("Reading archive directory recursively"));
+			foreach (ArchiveFile *imageFile, qmc2IconArchiveMap)
+				recursiveArchiveList(imageFile, &fileList, qmc2IconArchiveMap.key(imageFile) + ": ");
+		}
+#endif
+		else {
 			dirList = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconDirectory").toString().split(";", QString::SkipEmptyParts);
 			foreach (QString path, dirList) {
 				log(tr("Reading icon directory '%1' recursively").arg(QDir::toNativeSeparators(path)));
@@ -1558,9 +1647,7 @@ void ImageChecker::checkObsoleteFiles()
 			}
 		}
 	}
-
 	log(tr("%n directory entries to check", "", fileList.count()));
-
 	progressBar->setRange(0, fileList.count());
 	int itemCount = 0;
 	int obsoleteCount = 0;
@@ -1575,12 +1662,11 @@ void ImageChecker::checkObsoleteFiles()
 		bool isValidPath = false;
 		if ( imageWidget ) {
 			// images
-			if ( imageWidget->useZip() || imageWidget->useSevenZip() ) {
-				// zipped and 7-zipped images
+			if ( imageWidget->useZip() || imageWidget->useSevenZip() || imageWidget->useArchive() ) {
+				// archived images
 				QString pathCopy = path;
 				pathCopy.remove(rxColonSepStr);
 				fi.setFile(pathCopy);
-
 				foreach (int format, imageWidget->activeFormats) {
 					foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
 #if defined(Q_OS_WIN)
@@ -1674,8 +1760,8 @@ void ImageChecker::checkObsoleteFiles()
 			}
 		} else {
 			// icons
-			if ( QMC2_ICON_FILETYPE_ZIP || QMC2_ICON_FILETYPE_7Z ) {
-				// for zipped and 7-zipped icons, only the lower-case basenames and image-type suffixes count (.ico, .png, ...)
+			if ( QMC2_ICON_FILETYPE_ZIP || QMC2_ICON_FILETYPE_7Z || QMC2_ICON_FILETYPE_ARCHIVE ) {
+				// for archived icons, only the lower-case basenames and image-type suffixes count (.ico, .png, ...)
 				QString pathCopy = path;
 				pathCopy.remove(rxColonSepStr);
 				fi.setFile(pathCopy);
@@ -1901,3 +1987,16 @@ void ImageChecker::recursiveSevenZipList(SevenZipFile *sevenZipFile, QStringList
 		}
 	}
 }
+
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+void ImageChecker::recursiveArchiveList(ArchiveFile *archiveFile, QStringList *fileNames, QString prependString)
+{
+	if ( archiveFile ) {
+		for (int index = 0; index < archiveFile->entryList().count(); index++) {
+			fileNames->append(prependString + archiveFile->entryList()[index].name());
+			if ( index % 25 == 0 )
+				qApp->processEvents();
+		}
+	}
+}
+#endif

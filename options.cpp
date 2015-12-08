@@ -213,7 +213,7 @@ Options::Options(QWidget *parent)
 
 	setupUi(this);
 
-	// FIXME
+#if !defined(QMC2_LIBARCHIVE_ENABLED)
 	comboBoxPreviewFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
 	comboBoxFlyerFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
 	comboBoxCabinetFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
@@ -221,9 +221,8 @@ Options::Options(QWidget *parent)
 	comboBoxMarqueeFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
 	comboBoxTitleFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
 	comboBoxPCBFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
-	comboBoxSoftwareSnapFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
-#if !defined(QMC2_LIBARCHIVE_ENABLED)
 	comboBoxIconFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
+	comboBoxSoftwareSnapFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
 #endif
 
 	cancelClicked = false;
@@ -3094,6 +3093,10 @@ void Options::on_toolButtonBrowsePreviewFile_clicked()
 			comboBoxPreviewFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
 		else if ( s.toLower().endsWith(".7z") )
 			comboBoxPreviewFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		else
+			comboBoxPreviewFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ARCHIVE);
+#endif
 	}
 	raise();
 }
@@ -3107,6 +3110,10 @@ void Options::on_toolButtonBrowseFlyerFile_clicked()
 			comboBoxFlyerFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
 		else if ( s.toLower().endsWith(".7z") )
 			comboBoxFlyerFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		else
+			comboBoxFlyerFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ARCHIVE);
+#endif
 	}
 	raise();
 }
@@ -3120,6 +3127,10 @@ void Options::on_toolButtonBrowseIconFile_clicked()
 			comboBoxIconFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
 		else if ( s.toLower().endsWith(".7z") )
 			comboBoxIconFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		else
+			comboBoxIconFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ARCHIVE);
+#endif
 	}
 	raise();
 }
@@ -3133,6 +3144,10 @@ void Options::on_toolButtonBrowseCabinetFile_clicked()
 			comboBoxCabinetFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
 		else if ( s.toLower().endsWith(".7z") )
 			comboBoxCabinetFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		else
+			comboBoxCabinetFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ARCHIVE);
+#endif
 	}
 	raise();
 }
@@ -3146,6 +3161,10 @@ void Options::on_toolButtonBrowseControllerFile_clicked()
 			comboBoxControllerFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
 		else if ( s.toLower().endsWith(".7z") )
 			comboBoxControllerFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		else
+			comboBoxControllerFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ARCHIVE);
+#endif
 	}
 	raise();
 }
@@ -3159,6 +3178,10 @@ void Options::on_toolButtonBrowseMarqueeFile_clicked()
 			comboBoxMarqueeFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
 		else if ( s.toLower().endsWith(".7z") )
 			comboBoxMarqueeFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		else
+			comboBoxMarqueeFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ARCHIVE);
+#endif
 	}
 	raise();
 }
@@ -3172,6 +3195,10 @@ void Options::on_toolButtonBrowseTitleFile_clicked()
 			comboBoxTitleFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
 		else if ( s.toLower().endsWith(".7z") )
 			comboBoxTitleFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		else
+			comboBoxTitleFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ARCHIVE);
+#endif
 	}
 	raise();
 }
@@ -3185,6 +3212,10 @@ void Options::on_toolButtonBrowsePCBFile_clicked()
 			comboBoxPCBFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
 		else if ( s.toLower().endsWith(".7z") )
 			comboBoxPCBFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		else
+			comboBoxPCBFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ARCHIVE);
+#endif
 	}
 	raise();
 }
@@ -3209,6 +3240,10 @@ void Options::on_toolButtonBrowseSoftwareSnapFile_clicked()
 			comboBoxSoftwareSnapFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
 		else if ( s.toLower().endsWith(".7z") )
 			comboBoxSoftwareSnapFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		else
+			comboBoxSoftwareSnapFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ARCHIVE);
+#endif
 	}
 	raise();
 }

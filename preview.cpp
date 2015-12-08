@@ -38,6 +38,11 @@ bool Preview::useSevenZip()
 	return qmc2UsePreviewFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
 }
 
+bool Preview::useArchive()
+{
+	return qmc2UsePreviewFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFileType").toInt() == QMC2_IMG_FILETYPE_ARCHIVE;
+}
+
 bool Preview::scaledImage()
 {
 	return qmc2ScaledPreview;

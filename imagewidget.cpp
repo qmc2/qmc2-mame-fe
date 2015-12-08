@@ -134,6 +134,17 @@ void ImageWidget::openSource()
 			}
 		}
 	}
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	else if ( useArchive() ) {
+		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
+			ArchiveFile *imageFile = new ArchiveFile(filePath);
+			if ( !imageFile->open() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
+			else
+				imageArchiveMap[filePath] = imageFile;
+		}
+	}
+#endif
 	reloadActiveFormats();
 }
 
@@ -152,6 +163,15 @@ void ImageWidget::closeSource()
 		delete it7z.value();
 	}
 	imageFileMap7z.clear();
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	QMapIterator<QString, ArchiveFile*> itArchive(imageArchiveMap);
+	while ( itArchive.hasNext() ) {
+		itArchive.next();
+		itArchive.value()->close();
+		delete itArchive.value();
+	}
+	imageArchiveMap.clear();
+#endif
 }
 
 bool ImageWidget::parentFallback()
@@ -354,10 +374,8 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 			QString formatName = formatNames[format];
 			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
 				QString gameFile = gameName + "." + extension;
-
 				if ( fileName )
 					*fileName = gameFile;
-
 				bool isFillingDictionary = false;
 				foreach (SevenZipFile *imageFile, imageFileMap7z) {
 					int index = imageFile->indexOfName(gameFile);
@@ -379,10 +397,8 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 					else
 						imageData.clear();
 				}
-
 				if ( fileOk )
 					fileOk = pm.loadFromData(imageData, formatName.toUtf8().constData());
-
 				if ( !checkOnly ) {
 					if ( fileOk ) {
 #if defined(QMC2_DEBUG)
@@ -426,15 +442,68 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 						}
 					}
 				}
-
 				if ( fileOk )
 					break;
 			}
-
 			if ( fileOk )
 				break;
 		}
-	} else {
+        }
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	else if ( useArchive() ) {
+		// try loading image from (semicolon-separated) archive(s)
+		QByteArray imageData;
+		foreach (int format, activeFormats) {
+			QString formatName = formatNames[format];
+			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+				QString gameFile = gameName + "." + extension;
+				if ( fileName )
+					*fileName = gameFile;
+				foreach (ArchiveFile *imageFile, imageArchiveMap) {
+					if ( imageFile->seekEntry(gameFile) ) {
+						QByteArray ba;
+						while ( imageFile->readBlock(&ba) > 0 )
+							imageData.append(ba);
+						fileOk = !imageFile->hasError();
+					} else
+						fileOk = false;
+					if ( fileOk )
+						break;
+					else
+						imageData.clear();
+				}
+				if ( fileOk )
+					fileOk = pm.loadFromData(imageData, formatName.toUtf8().constData());
+				if ( !checkOnly ) {
+					if ( fileOk ) {
+#if defined(QMC2_DEBUG)
+						QMC2_PRINT_STRTXT(QString("Archive: Image loaded for %1").arg(cacheKey));
+#endif
+						qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
+						currentPixmap = pm;
+					} else {
+						QString parentName = qmc2ParentHash[gameName];
+						if ( parentFallback() && !parentName.isEmpty() ) {
+							fileOk = loadImage(parentName, onBehalfOf);
+						} else {
+							currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
+							if ( !qmc2RetryLoadingImages )
+								qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
+#if defined(QMC2_DEBUG)
+							QMC2_PRINT_STRTXT(QString("Archive: Using ghost image for %1").arg(cacheKey));
+#endif
+						}
+					}
+				}
+				if ( fileOk )
+					break;
+			}
+			if ( fileOk )
+				break;
+		}
+	}
+#endif
+	else {
 		// try loading image from (semicolon-separated) folder(s)
 		foreach (QString baseDirectory, imageDir().split(";", QString::SkipEmptyParts)) {
 			QString imgDir = QDir::cleanPath(baseDirectory + "/" + gameName);
@@ -558,29 +627,28 @@ bool ImageWidget::replaceImage(QString gameName, QPixmap &pixmap)
 		return false;
 }
 
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZip, ArchiveFile *archiveFile, QSize *sizeReturn, int *bytesUsed, QString *fileName, QString *readerError, bool *async, bool *isFillingDict)
+#else
 bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZip, QSize *sizeReturn, int *bytesUsed, QString *fileName, QString *readerError, bool *async, bool *isFillingDict)
+#endif
 {
 	QImage image;
 	char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
 
 	if ( fileName )
 		fileName->clear();
-
 	bool fileOk = true;
-
 	if ( useZip() ) {
 		// try loading image from (semicolon-separated) ZIP archive(s)
 		QByteArray imageData;
 		int len;
-
 		foreach (int format, activeFormats) {
 			QString formatName = formatNames[format];
 			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
 				QString gameFile = gameName + "." + extension;
-
 				if ( fileName )
 					*fileName = gameFile;
-
 				if ( zip == NULL ) {
 					foreach (unzFile imageFile, imageFileMap) {
 						if ( unzLocateFile(imageFile, gameFile.toUtf8().constData(), 0) == UNZ_OK ) {
@@ -593,7 +661,6 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 								fileOk = false;
 						} else
 							fileOk = false;
-
 						if ( fileOk )
 							break;
 						else
@@ -611,7 +678,6 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 					} else
 						fileOk = false;
 				}
-
 				if ( fileOk ) {
 					QBuffer buffer(&imageData);
 					QImageReader imageReader(&buffer, formatName.toUtf8().constData());
@@ -624,11 +690,9 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 					} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
 						*readerError = imageReader.errorString();
 				}
-
 				if ( fileOk )
 					break;
 			}
-
 			if ( fileOk )
 				break;
 		}
@@ -639,13 +703,10 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 			QString formatName = formatNames[format];
 			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
 				QString gameFile = gameName + "." + extension;
-
 				if ( fileName )
 					*fileName = gameFile;
-
 				if ( isFillingDict )
 					*isFillingDict = false;
-
 				if ( sevenZip == NULL ) {
 					foreach (SevenZipFile *imageFile, imageFileMap7z) {
 						int index = imageFile->indexOfName(gameFile);
@@ -660,7 +721,6 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 								fileOk = !imageFile->hasError();
 						} else
 							fileOk = false;
-
 						if ( fileOk )
 							break;
 						else
@@ -680,13 +740,9 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 							fileOk = !sevenZip->hasError();
 					} else
 						fileOk = false;
-
-					if ( fileOk )
-						break;
-					else
+					if ( !fileOk )
 						imageData.clear();
 				}
-
 				bool ifd = isFillingDict ? *isFillingDict : false;
 				if ( fileOk && !ifd ) {
 					QBuffer buffer(&imageData);
@@ -700,15 +756,69 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 					} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
 						*readerError = imageReader.errorString();
 				}
-
 				if ( fileOk )
 					break;
 			}
-
 			if ( fileOk )
 				break;
 		}
-	} else {
+	}
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	else if ( useArchive() ) {
+		// try loading image from (semicolon-separated) archive(s)
+		QByteArray imageData;
+		foreach (int format, activeFormats) {
+			QString formatName = formatNames[format];
+			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+				QString gameFile = gameName + "." + extension;
+				if ( fileName )
+					*fileName = gameFile;
+				if ( archiveFile == NULL ) {
+					foreach (ArchiveFile *imageFile, imageArchiveMap) {
+						if ( imageFile->seekEntry(gameFile) ) {
+							QByteArray ba;
+							while ( imageFile->readBlock(&ba) > 0 )
+								imageData.append(ba);
+							fileOk = !imageFile->hasError();
+						} else
+							fileOk = false;
+						if ( fileOk )
+							break;
+						else
+							imageData.clear();
+					}
+				} else {
+					if ( archiveFile->seekEntry(gameFile) ) {
+						QByteArray ba;
+						while ( archiveFile->readBlock(&ba) > 0 )
+							imageData.append(ba);
+						fileOk = !archiveFile->hasError();
+					} else
+						fileOk = false;
+					if ( !fileOk )
+						imageData.clear();
+				}
+				if ( fileOk ) {
+					QBuffer buffer(&imageData);
+					QImageReader imageReader(&buffer, formatName.toUtf8().constData());
+					fileOk = imageReader.read(&image);
+					if ( fileOk ) {
+						if ( sizeReturn )
+							*sizeReturn = image.size();
+						if ( bytesUsed )
+							*bytesUsed = image.byteCount();
+					} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
+						*readerError = imageReader.errorString();
+				}
+				if ( fileOk )
+					break;
+			}
+			if ( fileOk )
+				break;
+		}
+	}
+#endif
+	else {
 		// try loading image from (semicolon-separated) folder(s)
 		foreach (QString baseDirectory, imageDir().split(";", QString::SkipEmptyParts)) {
 			QString imgDir = baseDirectory + gameName;
@@ -716,13 +826,10 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 				QString formatName = formatNames[format];
 				foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
 					QString localImagePath = imgDir + "." + extension;
-
 					if ( fileName )
 						*fileName = QDir::toNativeSeparators(localImagePath);
-
 					QImageReader imageReader(localImagePath, formatName.toUtf8().constData());
 					fileOk = imageReader.read(&image);
-
 					if ( fileOk ) {
 						if ( sizeReturn )
 							*sizeReturn = image.size();
@@ -731,20 +838,16 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 						break;
 					} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
 						*readerError = imageReader.errorString();
-
 					if ( fileOk )
 						break;
 				}
-
 				if ( fileOk )
 					break;
 			}
-
 			if ( fileOk )
 				break;
 		}
 	}
-
 	return fileOk;
 }
 
