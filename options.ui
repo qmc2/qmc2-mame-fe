@@ -57,8 +57,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>521</width>
-                <height>623</height>
+                <width>507</width>
+                <height>725</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_1">
@@ -880,8 +880,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>348</width>
-                <height>839</height>
+                <width>507</width>
+                <height>1103</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
@@ -1347,6 +1347,15 @@
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
                         </property>
                        </item>
+                       <item>
+                        <property name="text">
+                         <string>Archive</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item>
@@ -1463,6 +1472,15 @@
                         <property name="icon">
                          <iconset resource="qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>Archive</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
                       </widget>
@@ -1611,6 +1629,15 @@
                         <property name="icon">
                          <iconset resource="qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>Archive</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
                       </widget>
@@ -1953,6 +1980,15 @@
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
                         </property>
                        </item>
+                       <item>
+                        <property name="text">
+                         <string>Archive</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item>
@@ -2069,6 +2105,15 @@
                         <property name="icon">
                          <iconset resource="qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>Archive</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
                       </widget>
@@ -2217,6 +2262,15 @@
                         <property name="icon">
                          <iconset resource="qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>Archive</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
                       </widget>
@@ -2479,6 +2533,15 @@
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
                         </property>
                        </item>
+                       <item>
+                        <property name="text">
+                         <string>Archive</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item>
@@ -2595,6 +2658,15 @@
                         <property name="icon">
                          <iconset resource="qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>Archive</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
                       </widget>
@@ -2726,6 +2798,15 @@
                         <property name="icon">
                          <iconset resource="qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>Archive</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
                       </widget>
@@ -2987,8 +3068,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>499</width>
-                <height>245</height>
+                <width>579</width>
+                <height>487</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
@@ -3643,8 +3724,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>252</width>
-                <height>39</height>
+                <width>527</width>
+                <height>507</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -3765,8 +3846,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>332</width>
-                <height>211</height>
+                <width>527</width>
+                <height>507</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
@@ -4234,8 +4315,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>374</width>
-                <height>548</height>
+                <width>507</width>
+                <height>698</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_16">
@@ -4775,8 +4856,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>429</width>
-                <height>402</height>
+                <width>471</width>
+                <height>519</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_23">
@@ -5377,8 +5458,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>314</width>
-                <height>216</height>
+                <width>362</width>
+                <height>272</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_26">

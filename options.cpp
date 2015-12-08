@@ -213,6 +213,19 @@ Options::Options(QWidget *parent)
 
 	setupUi(this);
 
+	// FIXME
+	comboBoxPreviewFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
+	comboBoxFlyerFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
+	comboBoxCabinetFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
+	comboBoxControllerFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
+	comboBoxMarqueeFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
+	comboBoxTitleFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
+	comboBoxPCBFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
+	comboBoxSoftwareSnapFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
+#if !defined(QMC2_LIBARCHIVE_ENABLED)
+	comboBoxIconFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
+#endif
+
 	cancelClicked = false;
 
 	qmc2StandardWorkDir = QDir::currentPath();
@@ -1859,6 +1872,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
 
 	// Files / Directories
+	int curIdx;
 #if defined(QMC2_YOUTUBE_ENABLED)
 	QDir youTubeCacheDir(config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", userScopePath + "/youtube/").toString());
 	if ( !youTubeCacheDir.exists() )
@@ -1876,55 +1890,100 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
 	lineEditPreviewDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
 	lineEditPreviewFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PreviewFile", QMC2_DEFAULT_DATA_PATH + "/prv/previews.zip").toString());
-	comboBoxPreviewFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PreviewFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	curIdx = QMC2_MIN(0, QMC2_MAX(2, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PreviewFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#else
+	curIdx = QMC2_MIN(0, QMC2_MAX(1, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PreviewFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#endif
+	comboBoxPreviewFileType->setCurrentIndex(curIdx);
 	qmc2UsePreviewFile = config->value("MAME/FilesAndDirectories/UsePreviewFile", false).toBool();
 	stackedWidgetPreview->setCurrentIndex(qmc2UsePreviewFile ? 1 : 0);
 	radioButtonPreviewSelect->setText(qmc2UsePreviewFile ? tr("Preview file") : tr("Preview directory"));
 	lineEditFlyerDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
 	lineEditFlyerFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/FlyerFile", QMC2_DEFAULT_DATA_PATH + "/fly/flyers.zip").toString());
-	comboBoxFlyerFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/FlyerFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	curIdx = QMC2_MIN(0, QMC2_MAX(2, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/FlyerFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#else
+	curIdx = QMC2_MIN(0, QMC2_MAX(1, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/FlyerFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#endif
+	comboBoxFlyerFileType->setCurrentIndex(curIdx);
 	qmc2UseFlyerFile = config->value("MAME/FilesAndDirectories/UseFlyerFile", false).toBool();
 	stackedWidgetFlyer->setCurrentIndex(qmc2UseFlyerFile ? 1 : 0);
 	radioButtonFlyerSelect->setText(qmc2UseFlyerFile ? tr("Flyer file") : tr("Flyer directory"));
 	lineEditIconDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
 	lineEditIconFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/IconFile", QMC2_DEFAULT_DATA_PATH + "/ico/icons.zip").toString());
-	comboBoxIconFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/IconFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	curIdx = QMC2_MIN(0, QMC2_MAX(2, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/IconFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#else
+	curIdx = QMC2_MIN(0, QMC2_MAX(1, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/IconFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#endif
+	comboBoxIconFileType->setCurrentIndex(curIdx);
 	qmc2UseIconFile = config->value("MAME/FilesAndDirectories/UseIconFile", false).toBool();
 	stackedWidgetIcon->setCurrentIndex(qmc2UseIconFile ? 1 : 0);
 	radioButtonIconSelect->setText(qmc2UseIconFile ? tr("Icon file") : tr("Icon directory"));
 	lineEditCabinetDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
 	lineEditCabinetFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CabinetFile", QMC2_DEFAULT_DATA_PATH + "/cab/cabinets.zip").toString());
-	comboBoxCabinetFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CabinetFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	curIdx = QMC2_MIN(0, QMC2_MAX(2, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CabinetFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#else
+	curIdx = QMC2_MIN(0, QMC2_MAX(1, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CabinetFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#endif
+	comboBoxCabinetFileType->setCurrentIndex(curIdx);
 	qmc2UseCabinetFile = config->value("MAME/FilesAndDirectories/UseCabinetFile", false).toBool();
 	stackedWidgetCabinet->setCurrentIndex(qmc2UseCabinetFile ? 1 : 0);
 	radioButtonCabinetSelect->setText(qmc2UseCabinetFile ? tr("Cabinet file") : tr("Cabinet directory"));
 	lineEditControllerDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
 	lineEditControllerFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ControllerFile", QMC2_DEFAULT_DATA_PATH + "/ctl/controllers.zip").toString());
-	comboBoxControllerFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ControllerFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	curIdx = QMC2_MIN(0, QMC2_MAX(2, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ControllerFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#else
+	curIdx = QMC2_MIN(0, QMC2_MAX(1, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ControllerFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#endif
+	comboBoxControllerFileType->setCurrentIndex(curIdx);
 	qmc2UseControllerFile = config->value("MAME/FilesAndDirectories/UseControllerFile", false).toBool();
 	stackedWidgetController->setCurrentIndex(qmc2UseControllerFile ? 1 : 0);
 	radioButtonControllerSelect->setText(qmc2UseControllerFile ? tr("Controller file") : tr("Controller directory"));
 	lineEditMarqueeDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
 	lineEditMarqueeFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/marquees.zip").toString());
-	comboBoxMarqueeFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MarqueeFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	curIdx = QMC2_MIN(0, QMC2_MAX(2, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MarqueeFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#else
+	curIdx = QMC2_MIN(0, QMC2_MAX(1, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MarqueeFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#endif
+	comboBoxMarqueeFileType->setCurrentIndex(curIdx);
 	qmc2UseMarqueeFile = config->value("MAME/FilesAndDirectories/UseMarqueeFile", false).toBool();
 	stackedWidgetMarquee->setCurrentIndex(qmc2UseMarqueeFile ? 1 : 0);
 	radioButtonMarqueeSelect->setText(qmc2UseMarqueeFile ? tr("Marquee file") : tr("Marquee directory"));
 	lineEditTitleDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
 	lineEditTitleFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/TitleFile", QMC2_DEFAULT_DATA_PATH + "/ttl/titles.zip").toString());
-	comboBoxTitleFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/TitleFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	curIdx = QMC2_MIN(0, QMC2_MAX(2, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/TitleFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#else
+	curIdx = QMC2_MIN(0, QMC2_MAX(1, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/TitleFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#endif
+	comboBoxTitleFileType->setCurrentIndex(curIdx);
 	qmc2UseTitleFile = config->value("MAME/FilesAndDirectories/UseTitleFile", false).toBool();
 	stackedWidgetTitle->setCurrentIndex(qmc2UseTitleFile ? 1 : 0);
 	radioButtonTitleSelect->setText(qmc2UseTitleFile ? tr("Title file") : tr("Title directory"));
 	lineEditPCBDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
 	lineEditPCBFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
-	comboBoxPCBFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PCBFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	curIdx = QMC2_MIN(0, QMC2_MAX(2, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PCBFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#else
+	curIdx = QMC2_MIN(0, QMC2_MAX(1, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PCBFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#endif
+	comboBoxPCBFileType->setCurrentIndex(curIdx);
 	qmc2UsePCBFile = config->value("MAME/FilesAndDirectories/UsePCBFile", false).toBool();
 	stackedWidgetPCB->setCurrentIndex(qmc2UsePCBFile ? 1 : 0);
 	radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
 	lineEditSoftwareSnapDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareSnapDirectory", QMC2_DEFAULT_DATA_PATH + "/sws/").toString());
 	lineEditSoftwareSnapFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareSnapFile", QMC2_DEFAULT_DATA_PATH + "/sws/swsnaps.zip").toString());
-	comboBoxSoftwareSnapFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareSnapFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	curIdx = QMC2_MIN(0, QMC2_MAX(2, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareSnapFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#else
+	curIdx = QMC2_MIN(0, QMC2_MAX(1, QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareSnapFileType", QMC2_IMG_FILETYPE_ZIP).toInt()));
+#endif
+	comboBoxSoftwareSnapFileType->setCurrentIndex(curIdx);
 	qmc2UseSoftwareSnapFile = config->value("MAME/FilesAndDirectories/UseSoftwareSnapFile", false).toBool();
 	stackedWidgetSWSnap->setCurrentIndex(qmc2UseSoftwareSnapFile ? 1 : 0);
 	radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));

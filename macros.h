@@ -371,6 +371,7 @@
 // indexes in compressed image file type selectors
 #define QMC2_IMG_FILETYPE_ZIP			0
 #define QMC2_IMG_FILETYPE_7Z			1
+#define QMC2_IMG_FILETYPE_ARCHIVE		2
 
 // retry loading images from 7z archives every how many milliseconds (when the dictionary is being filled up)
 #define QMC2_IMG_7Z_DICT_FILL_DELAY		250
@@ -819,6 +820,7 @@
 #define QMC2_AW_INDEX_TYPE_ARCHIVE		1
 #define QMC2_AW_INDEX_FORMAT_ZIP		0
 #define QMC2_AW_INDEX_FORMAT_7Z			1
+#define QMC2_AW_INDEX_FORMAT_ARCHIVE		2
 
 // column indexes for individual fallback settings
 #define QMC2_IFS_COLUMN_ARTWORK			0
@@ -830,6 +832,7 @@
 // macros to determine ZIP / 7z compressed icon file type to use
 #define QMC2_ICON_FILETYPE_ZIP			(qmc2UseIconFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFileType").toInt() == QMC2_IMG_FILETYPE_ZIP)
 #define QMC2_ICON_FILETYPE_7Z			(qmc2UseIconFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFileType").toInt() == QMC2_IMG_FILETYPE_7Z)
+#define QMC2_ICON_FILETYPE_ARCHIVE		(qmc2UseIconFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFileType").toInt() == QMC2_IMG_FILETYPE_ARCHIVE)
 
 // debugging macros
 #define QMC2_PRINT_TXT(t)			printf("%s\n", #t)
