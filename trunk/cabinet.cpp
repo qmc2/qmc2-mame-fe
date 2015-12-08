@@ -38,6 +38,11 @@ bool Cabinet::useSevenZip()
 	return qmc2UseCabinetFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CabinetFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
 }
 
+bool Cabinet::useArchive()
+{
+	return qmc2UseCabinetFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CabinetFileType").toInt() == QMC2_IMG_FILETYPE_ARCHIVE;
+}
+
 bool Cabinet::scaledImage()
 {
 	return qmc2ScaledCabinet;

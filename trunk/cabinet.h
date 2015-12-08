@@ -18,6 +18,7 @@ class Cabinet : public ImageWidget
 		virtual int imageTypeNumeric() { return QMC2_IMGTYPE_CABINET; }
 		virtual bool useZip();
 		virtual bool useSevenZip();
+		virtual bool useArchive();
 		virtual bool scaledImage();
 		virtual QString fallbackSettingsKey() { return QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CabinetFallback"; }
 };

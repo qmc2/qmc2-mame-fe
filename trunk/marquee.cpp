@@ -38,6 +38,11 @@ bool Marquee::useSevenZip()
 	return qmc2UseMarqueeFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
 }
 
+bool Marquee::useArchive()
+{
+	return qmc2UseMarqueeFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeFileType").toInt() == QMC2_IMG_FILETYPE_ARCHIVE;
+}
+
 bool Marquee::scaledImage()
 {
 	return qmc2ScaledMarquee;

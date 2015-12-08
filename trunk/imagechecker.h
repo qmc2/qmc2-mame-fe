@@ -15,6 +15,9 @@
 #include "softwareimagewidget.h"
 #include "unzip.h"
 #include "sevenzipfile.h"
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+#include "archivefile.h"
+#endif
 #include "comboboxwidget.h"
 
 class ImageCheckerThread : public QThread
@@ -31,6 +34,9 @@ class ImageCheckerThread : public QThread
 		quint64 missingCount;
 		QMap<QString, unzFile> zipMap;
 		QMap<QString, SevenZipFile *> sevenZipMap;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		QMap<QString, ArchiveFile *> archiveMap;
+#endif
 		QStringList workUnit;
 		QStringList foundList;
 		QStringList missingList;
@@ -99,6 +105,9 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		void recursiveFileList(const QString &, QStringList *);
 		void recursiveZipList(unzFile, QStringList *, QString prependString = QString());
 		void recursiveSevenZipList(SevenZipFile *, QStringList *, QString prependString = QString());
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		void recursiveArchiveList(ArchiveFile *, QStringList *, QString prependString = QString());
+#endif
 
 	public slots:
 		void on_listWidgetFound_itemSelectionChanged();

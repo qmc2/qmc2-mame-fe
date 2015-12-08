@@ -231,10 +231,18 @@ void AdditionalArtworkSetup::load()
 		QComboBox *comboBoxFormat = new QComboBox(this);
 		comboBoxFormat->addItem(QIcon(":/data/img/compressed.png"), tr("ZIP"));
 		comboBoxFormat->addItem(QIcon(":/data/img/7z-compressed.png"), tr("7z"));
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		comboBoxFormat->addItem(QIcon(":/data/img/archive.png"), tr("Archive"));
+#endif
 		comboBoxFormat->setToolTip(tr("Select archive format"));
 		index = qmc2Config->value(QString("%1/Format").arg(name), 0).toInt();
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		if ( index >= 0 && index < 3 )
+			comboBoxFormat->setCurrentIndex(index);
+#else
 		if ( index >= 0 && index < 2 )
 			comboBoxFormat->setCurrentIndex(index);
+#endif
 		comboBoxFormat->setEnabled(comboBoxType->currentIndex() == QMC2_AW_INDEX_TYPE_ARCHIVE);
 		connect(comboBoxFormat, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
 		treeWidget->setItemWidget(newItem, QMC2_AW_COLUMN_FORMAT, comboBoxFormat);
@@ -315,6 +323,9 @@ void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
 	QComboBox *comboBoxFormat = new QComboBox(this);
 	comboBoxFormat->addItem(QIcon(":/data/img/compressed.png"), tr("ZIP"));
 	comboBoxFormat->addItem(QIcon(":/data/img/7z-compressed.png"), tr("7z"));
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	comboBoxFormat->addItem(QIcon(":/data/img/archive.png"), tr("Archive"));
+#endif
 	comboBoxFormat->setToolTip(tr("Select archive format"));
 	comboBoxFormat->setEnabled(false);
 	connect(comboBoxFormat, SIGNAL(currentIndexChanged(int)), this, SLOT(dataChanged(int)));
@@ -369,6 +380,10 @@ void AdditionalArtworkSetup::pathBrowsed(QString path)
 		cb->setCurrentIndex(QMC2_AW_INDEX_FORMAT_ZIP);
 	else if ( path.toLower().endsWith(".7z") )
 		cb->setCurrentIndex(QMC2_AW_INDEX_FORMAT_7Z);
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	else
+		cb->setCurrentIndex(QMC2_AW_INDEX_FORMAT_ARCHIVE);
+#endif
 }
 
 void AdditionalArtworkSetup::on_toolButtonRemove_clicked()

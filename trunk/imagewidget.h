@@ -12,6 +12,9 @@
 
 #include "unzip.h"
 #include "sevenzipfile.h"
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+#include "archivefile.h"
+#endif
 #include "macros.h"
 
 class ImagePixmap : public QPixmap
@@ -74,6 +77,9 @@ class ImageWidget : public QWidget
 	public:
 		QMap<QString, unzFile> imageFileMap;
 		QMap<QString, SevenZipFile*> imageFileMap7z;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		QMap<QString, ArchiveFile*> imageArchiveMap;
+#endif
 		ImagePixmap currentPixmap;
 		QMenu *contextMenu;
 		QString cacheKey;
@@ -110,6 +116,7 @@ class ImageWidget : public QWidget
 		virtual int imageTypeNumeric() = 0;
 		virtual bool useZip() = 0;
 		virtual bool useSevenZip() = 0;
+		virtual bool useArchive() = 0;
 		virtual bool scaledImage() = 0;
 		virtual QString fallbackSettingsKey() = 0;
 
@@ -127,7 +134,11 @@ class ImageWidget : public QWidget
 		void drawScaledImage(QPixmap *, QPainter *);
 		bool loadImage(QString, QString, bool checkOnly = false, QString *fileName = NULL, bool loadImages = true);
 		bool replaceImage(QString, QPixmap &);
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		bool checkImage(QString, unzFile zip = NULL, SevenZipFile *sevenZip = NULL, ArchiveFile *archiveFile = NULL, QSize *sizeReturn = NULL, int *bytesUsed = NULL, QString *fileName = NULL, QString *readerError = NULL, bool *async = NULL, bool *isFillingDict = NULL);
+#else
 		bool checkImage(QString, unzFile zip = NULL, SevenZipFile *sevenZip = NULL, QSize *sizeReturn = NULL, int *bytesUsed = NULL, QString *fileName = NULL, QString *readerError = NULL, bool *async = NULL, bool *isFillingDict = NULL);
+#endif
 		void copyToClipboard();
 		void copyPathToClipboard();
 		void refresh();

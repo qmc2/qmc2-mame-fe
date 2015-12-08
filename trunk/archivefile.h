@@ -10,8 +10,7 @@
 #include <QByteArray>
 
 #include <archive.h>
-
-#define QMC2_ARCHIVE_BLOCK_SIZE	65536
+#include "macros.h"
 
 class ArchiveEntryMetaData
 {
@@ -52,6 +51,8 @@ class ArchiveFile : public QObject
 		bool seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset);
 		bool seekEntry(QString name);
 		bool seekEntry(uint index);
+		bool hasError() { return errorCode() == ARCHIVE_FATAL; }
+		bool hasWarning() { return errorCode() == ARCHIVE_WARN; }
 		qint64 readBlock(QByteArray *buffer);
 		QString errorString();
 		int errorCode();

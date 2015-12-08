@@ -20,6 +20,7 @@ class CustomSoftwareArtwork : public SoftwareImageWidget
 		virtual int imageTypeNumeric() { return m_num; }
 		virtual bool useZip();
 		virtual bool useSevenZip();
+		virtual bool useArchive();
 		virtual bool scaledImage();
 		virtual bool customArtwork() { return true; }
 		virtual QString fallbackSettingsKey() { return QString("Artwork/%1/Fallback").arg(name()); }

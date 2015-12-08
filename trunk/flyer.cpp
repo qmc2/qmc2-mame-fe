@@ -38,6 +38,11 @@ bool Flyer::useSevenZip()
 	return qmc2UseFlyerFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
 }
 
+bool Flyer::useArchive()
+{
+	return qmc2UseFlyerFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerFileType").toInt() == QMC2_IMG_FILETYPE_ARCHIVE;
+}
+
 bool Flyer::scaledImage()
 {
 	return qmc2ScaledFlyer;

@@ -38,6 +38,11 @@ bool Controller::useSevenZip()
 	return qmc2UseControllerFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ControllerFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
 }
 
+bool Controller::useArchive()
+{
+	return qmc2UseControllerFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ControllerFileType").toInt() == QMC2_IMG_FILETYPE_ARCHIVE;
+}
+
 bool Controller::scaledImage()
 {
 	return qmc2ScaledController;

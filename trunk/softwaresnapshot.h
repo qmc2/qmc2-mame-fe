@@ -18,6 +18,7 @@ class SoftwareSnapshot : public SoftwareImageWidget
 		virtual int imageTypeNumeric() { return QMC2_IMGTYPE_SWSNAP; }
 		virtual bool useZip();
 		virtual bool useSevenZip();
+		virtual bool useArchive();
 		virtual bool scaledImage();
 		virtual QString fallbackSettingsKey() { return QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFallback"; }
 };

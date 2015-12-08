@@ -37,6 +37,11 @@ bool SoftwareSnapshot::useSevenZip()
 	return qmc2UseSoftwareSnapFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
 }
 
+bool SoftwareSnapshot::useArchive()
+{
+	return qmc2UseSoftwareSnapFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFileType").toInt() == QMC2_IMG_FILETYPE_ARCHIVE;
+}
+
 bool SoftwareSnapshot::scaledImage()
 {
 	return qmc2ScaledSoftwareSnapshot;

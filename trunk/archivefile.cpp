@@ -78,7 +78,11 @@ bool ArchiveFile::seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset)
 
 bool ArchiveFile::seekEntry(QString name)
 {
-	return seekEntry(indexOfName(name));
+	int index = indexOfName(name);
+	if ( index >= 0 )
+		return seekEntry(index);
+	else
+		return false;
 }
 
 bool ArchiveFile::seekEntry(uint index)
