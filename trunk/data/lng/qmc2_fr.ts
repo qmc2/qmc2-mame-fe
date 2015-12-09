@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>About</name>
     <message>
@@ -31,49 +31,49 @@
     <message>
         <location filename="../../about.cpp" line="127"/>
         <source>Project homepage:</source>
-        <translation>Site Web du projet:</translation>
+        <translation>Site Web du projet :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="128"/>
         <source>Development site:</source>
-        <translation>Site Web de développement:</translation>
+        <translation>Site Web de développement :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="129"/>
         <source>QMC2 development mailing list:</source>
-        <translation>mailing-list de développement de QMC2:</translation>
+        <translation>Liste de diffusion du développement de QMC2 :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="130"/>
         <source>List subscription:</source>
-        <translation>Souscrire à la liste:</translation>
+        <translation>Abonnement à la liste :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="131"/>
         <source>Bug tracking system:</source>
-        <translation>Système de débug:</translation>
+        <translation>Système de suivi des bogues :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="141"/>
         <source>Build OS:</source>
-        <translation>Système:</translation>
+        <translation>Système de compilation :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="148"/>
         <source>Emulator version:</source>
-        <translation>Version de l&apos;émulateur:</translation>
+        <translation>Version de l&apos;émulateur :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="150"/>
         <source>Qt version:</source>
-        <translation>Version de QT:</translation>
+        <translation>Version de QT :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="150"/>
         <location filename="../../about.cpp" line="159"/>
         <location filename="../../about.cpp" line="161"/>
         <source>Compile-time:</source>
-        <translation>Compilation:</translation>
+        <translation>Temps de compilation :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="150"/>
@@ -81,39 +81,39 @@
         <location filename="../../about.cpp" line="161"/>
         <location filename="../../about.cpp" line="165"/>
         <source>Run-time:</source>
-        <translation>Exécution:</translation>
+        <translation>Environnement d&apos;exécution :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="154"/>
         <source>Build key:</source>
-        <translation>Clef de compilation:</translation>
+        <translation>Clef de compilation :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="156"/>
         <source>Qt library paths:</source>
-        <translation>chemins des libs Qt:</translation>
+        <translation>Emplacement de la bibliothèque Qt :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="165"/>
         <source>Phonon backend / supported MIME types:</source>
-        <translation>Phonon backend / Types MIME supportés:</translation>
+        <translation>Structure logicielle Phonon / Types MIME supportés :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="176"/>
         <source>Environment variables:</source>
-        <translation>Variables d&apos;environnement:</translation>
+        <translation>Variables d&apos;environnement :</translation>
     </message>
     <message>
         <location filename="../../about.ui" line="15"/>
         <source>About QMC2</source>
-        <translation>A propos de QMC2</translation>
+        <translation>À propos de QMC2</translation>
     </message>
     <message>
         <location filename="../../about.ui" line="59"/>
         <source>Project details</source>
-        <translation>Détails du projet</translation>
+        <translation>Informations sur le projet</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -126,7 +126,7 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;QMC2 - M.A.M.E. Catalog / Launcher II&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Front-end multi-émulateur pour UNIX, basé sur Qt 4&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Frontal UNIX multi-émulateurs reposant sur Qt 4&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version X.Y[.bZ], compilé pour SDLMAME&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2006 - 2008 R. Reucher, Allemagne&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -149,47 +149,47 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Site web du projet:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Site Web du projet :&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;http://www.mameworld.net/mamecat&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Site Web de développement:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Site Web de développement :&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;http://sourceforge.net/projects/qmc2&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;mailing-list de développement de QMC2:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Liste de diffusion du développement de QMC2 :&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;qmc2-devel@lists.sourceforge.net (Inscrits uniquement)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Souscrire à la liste:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Abonnement à la liste :&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;https://lists.sourceforge.net/lists/listinfo/qmc2-devel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../about.ui" line="123"/>
         <source>System information</source>
-        <translation>Informations système</translation>
+        <translation>Informations sur le système</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="174"/>
         <source>Total: %1 MB</source>
-        <translation>Total: %1 MB</translation>
+        <translation>Total : %1 Mo</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="174"/>
         <source>Free: %1 MB</source>
-        <translation>Libre: %1 MB</translation>
+        <translation>Libre : %1 Mo</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="174"/>
         <source>Used: %1 MB</source>
-        <translation>Utilisé: %1 MB</translation>
+        <translation>Utilisé : %1 Mo</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="174"/>
         <source>Physical memory:</source>
-        <translation>Mémoire physique:</translation>
+        <translation>Mémoire physique :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="176"/>
         <source>Number of CPUs:</source>
-        <translation>Nombre de CPUs:</translation>
+        <translation>Nombre de cœurs :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="176"/>
@@ -199,12 +199,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="149"/>
         <source>Template information:</source>
-        <translation>Information du template:</translation>
+        <translation>Informations sur le modèle :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="50"/>
         <source>Mac OS X 10.7</source>
-        <translation type="unfinished">Mac OS X 10.7</translation>
+        <translation>Mac OS X 10.7</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="69"/>
@@ -214,38 +214,38 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="71"/>
         <source>Windows 8 (Windows 6.2)</source>
-        <translation type="unfinished">Windows 2000 (Windows 5.0) {8 ?} {6.2)?}</translation>
+        <translation>Windows 8 (Windows 6.2)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="74"/>
         <source>Windows 8.1 (Windows 6.3)</source>
-        <translation type="unfinished">Windows 2000 (Windows 5.0) {8.1 ?} {6.3)?}</translation>
+        <translation>Windows 8.1 (Windows 6.3)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="79"/>
         <source>Windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Windows</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="149"/>
         <source>Emulator:</source>
-        <translation>Emulateur:</translation>
+        <translation>Émulateur :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="149"/>
         <source>Version:</source>
-        <translation>Version:</translation>
+        <translation>Version :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="149"/>
         <source>Format:</source>
-        <translation>Format:</translation>
+        <translation>Format :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="159"/>
         <location filename="../../about.cpp" line="161"/>
         <source>SDL version:</source>
-        <translation>Version SDL:</translation>
+        <translation>Version SDL :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="46"/>
@@ -270,22 +270,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="52"/>
         <source>Mac OS X 10.8</source>
-        <translation type="unfinished">Mac OS X 10.8</translation>
+        <translation>OS X 10.8</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="55"/>
         <source>Mac OS X 10.9</source>
-        <translation type="unfinished">Mac OS X 10.9</translation>
+        <translation>OS X 10.9</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="58"/>
         <source>Mac OS X 10.10</source>
-        <translation type="unfinished">Mac OS X 10.10</translation>
+        <translation>OS X 10.10</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="60"/>
         <source>Mac OS X</source>
-        <translation type="unfinished"></translation>
+        <translation>OS X</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="64"/>
@@ -310,33 +310,33 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="68"/>
         <source>Windows Vista or Windows Server 2008 (Windows 6.0)</source>
-        <translation>Windows Vista or Windows Server 2008 (Windows 6.0)</translation>
+        <translation>Windows Vista ou Windows Server 2008 (Windows 6.0)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="77"/>
         <source>Windows 10 (Windows 10.0)</source>
-        <translation type="unfinished">Windows 2000 (Windows 5.0) {10 ?} {10.0)?}</translation>
+        <translation>Windows 10 (Windows 10.0)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="117"/>
         <source>Qt based multi-platform/multi-emulator front end</source>
-        <translation>Front-end multi-plateformes/multi-émulateurs en Qt</translation>
+        <translation>Frontal multi-plateformes et multi-émulateurs reposant sur Qt</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="129"/>
         <source>subscription required</source>
-        <translation>inscription requise</translation>
+        <translation>abonnement requis</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="144"/>
         <location filename="../../about.cpp" line="146"/>
         <source>Running OS:</source>
-        <translation>Système d&apos;exploitation:</translation>
+        <translation>Système d&apos;exploitation :</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="165"/>
         <source>Phonon version:</source>
-        <translation>version de Phonon: </translation>
+        <translation>Version de Phonon : </translation>
     </message>
 </context>
 <context>
@@ -349,7 +349,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="36"/>
         <source>X</source>
-        <translation type="unfinished"></translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="41"/>
@@ -366,17 +366,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="51"/>
         <source>Target</source>
-        <translation type="unfinished"></translation>
+        <translation>Cible</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="56"/>
         <source>Scaled</source>
-        <translation type="unfinished"></translation>
+        <translation>Échelle</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="61"/>
         <source>Type</source>
-        <translation type="unfinished">Type</translation>
+        <translation>Type</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="66"/>
@@ -386,7 +386,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="71"/>
         <source>Folder / Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Dossier / Archive</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="85"/>
@@ -406,7 +406,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="111"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Annuler</translation>
+        <translation>&amp;Annuler</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="134"/>
@@ -432,7 +432,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="182"/>
         <location filename="../../additionalartworksetup.cpp" line="281"/>
         <source>Select / deselect this artwork class for removal</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sélectionner ou déselectionner cette classe d&apos;illustration en vue de sa suppression</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="187"/>
@@ -456,19 +456,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="204"/>
         <location filename="../../additionalartworksetup.cpp" line="297"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Système</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="205"/>
         <location filename="../../additionalartworksetup.cpp" line="298"/>
         <source>Software</source>
-        <translation type="unfinished"></translation>
+        <translation>Logiciel</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="206"/>
         <location filename="../../additionalartworksetup.cpp" line="299"/>
         <source>Select system or software as &lt;i&gt;target&lt;/i&gt; for this artwork class</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sélectionner le système ou le logiciel &lt;i&gt;cible&lt;/i&gt; de cette classe d&apos;illustration</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="213"/>
@@ -492,13 +492,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="222"/>
         <location filename="../../additionalartworksetup.cpp" line="309"/>
         <source>Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Dossier</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="223"/>
         <location filename="../../additionalartworksetup.cpp" line="310"/>
         <source>Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Archive</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="224"/>
@@ -510,37 +510,37 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="232"/>
         <location filename="../../additionalartworksetup.cpp" line="316"/>
         <source>ZIP</source>
-        <translation type="unfinished"></translation>
+        <translation>ZIP</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="233"/>
         <location filename="../../additionalartworksetup.cpp" line="317"/>
         <source>7z</source>
-        <translation type="unfinished">7z</translation>
+        <translation>7z</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="234"/>
         <location filename="../../additionalartworksetup.cpp" line="318"/>
         <source>Select archive format</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner le format de compression</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="241"/>
         <location filename="../../additionalartworksetup.cpp" line="322"/>
         <source>Supported archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Formats gérés</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="241"/>
         <location filename="../../additionalartworksetup.cpp" line="322"/>
         <source>ZIP archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Archives ZIP</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="241"/>
         <location filename="../../additionalartworksetup.cpp" line="322"/>
         <source>7z archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Archives 7z</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="242"/>
@@ -565,7 +565,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="322"/>
         <location filename="../../additionalartworksetup.cpp" line="403"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tous les fichiers (*)</translation>
+        <translation>Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="250"/>
@@ -593,7 +593,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.cpp" line="403"/>
         <source>PNG files (*.png)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers PNG (*.png)</translation>
     </message>
 </context>
 <context>
@@ -784,7 +784,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="700"/>
         <source>Year</source>
-        <translation type="unfinished">Année</translation>
+        <translation>Année</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="705"/>
@@ -1076,7 +1076,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="96"/>
         <source>Version</source>
-        <translation type="unfinished">Version​‎</translation>
+        <translation>Version​‎</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="209"/>
@@ -1188,49 +1188,49 @@ p, li { white-space: pre-wrap; }
         <location filename="../../audioeffects.cpp" line="194"/>
         <location filename="../../audioeffects.cpp" line="199"/>
         <source>Enable effect &apos;%1&apos;</source>
-        <translation>Active l&apos;effet &apos;%1&apos;</translation>
+        <translation type="unfinished">Activer l&apos;effet &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="52"/>
         <source>Setup effect &apos;%1&apos;</source>
-        <translation>Paramètrer l&apos;effet &apos;%1&apos;</translation>
+        <translation type="unfinished">Paramètrer l&apos;effet &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="186"/>
         <location filename="../../audioeffects.cpp" line="207"/>
         <source>Disable effect &apos;%1&apos;</source>
-        <translation>Désactive l&apos;effet &apos;%1&apos;</translation>
+        <translation type="unfinished">Désactive l&apos;effet &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="195"/>
         <source>WARNING: audio player: can&apos;t insert effect &apos;%1&apos;</source>
-        <translation>ATTENTION: lecteur audio: ne peut insérer l&apos;effet &apos;%1&apos;</translation>
+        <translation type="unfinished">ATTENTION: lecteur audio: ne peut insérer l&apos;effet &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="208"/>
         <source>WARNING: audio player: can&apos;t remove effect &apos;%1&apos;</source>
-        <translation>ATTENTION: lecteur audio: ne peut enlever l&apos;effet &apos;%1&apos;</translation>
+        <translation type="unfinished">ATTENTION: lecteur audio: ne peut enlever l&apos;effet &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="14"/>
         <source>Audio effects</source>
-        <translation>Effets Audio</translation>
+        <translation type="unfinished">Effets Audio</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="36"/>
         <source>Close audio effects dialog</source>
-        <translation>Fermer la fenêtre d&apos;effets Audio</translation>
+        <translation type="unfinished">Fermer la fenêtre d&apos;effets Audio</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="39"/>
         <source>Close</source>
-        <translation>Fermer</translation>
+        <translation type="unfinished">Fermer</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="59"/>
         <location filename="../../audioeffects.ui" line="62"/>
         <source>List of available audio effects</source>
-        <translation>Liste des effets audio disponibles</translation>
+        <translation type="unfinished">Liste des effets audio disponibles</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="81"/>
@@ -1240,17 +1240,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../audioeffects.ui" line="86"/>
         <source>Description</source>
-        <translation>Description</translation>
+        <translation type="unfinished">Description</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="91"/>
         <source>Enable</source>
-        <translation>Actif</translation>
+        <translation type="unfinished">Actif</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="96"/>
         <source>Setup</source>
-        <translation>Configurer</translation>
+        <translation type="unfinished">Configurer</translation>
     </message>
 </context>
 <context>
@@ -1401,7 +1401,7 @@ p, li { white-space: pre-wrap; }
         <source>Angle</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation type="unfinished"></translation>
@@ -1467,7 +1467,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cabinet.h" line="17"/>
         <source>cabinet</source>
-        <translation type="unfinished"></translation>
+        <translation>meuble</translation>
     </message>
 </context>
 <context>
@@ -3210,7 +3210,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../controller.h" line="17"/>
         <source>controller</source>
-        <translation type="unfinished"></translation>
+        <translation>Manette</translation>
     </message>
 </context>
 <context>
@@ -3331,22 +3331,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../customidsetup.ui" line="14"/>
         <source>Setup custom IDs</source>
-        <translation>Configurer les IDs personnalisés</translation>
+        <translation type="unfinished">Configurer les IDs personnalisés</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="28"/>
         <source>Display format</source>
-        <translation>Format d&apos;affichage</translation>
+        <translation type="unfinished">Format d&apos;affichage</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="35"/>
         <source>Choose / edit the format used to display the IDs in menu items -- valid placeholder macros are $ID$ and $DESCRIPTION$</source>
-        <translation>Choisir / éditer le format utilisé pour afficher les IDs dans le objets de menu - les macros valides de remplacement sont $ID$ et $DESCRIPTION$</translation>
+        <translation type="unfinished">Choisir / éditer le format utilisé pour afficher les IDs dans le objets de menu - les macros valides de remplacement sont $ID$ et $DESCRIPTION$</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="168"/>
         <source>Edit custom IDs for this emulator (double-click an item to edit)</source>
-        <translation>Éditer les IDs personnalisés pour cet émulateur ( doucble-clic pour éditer )</translation>
+        <translation type="unfinished">Éditer les IDs personnalisés pour cet émulateur ( doucble-clic pour éditer )</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="199"/>
@@ -3356,62 +3356,62 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../customidsetup.ui" line="204"/>
         <source>ID</source>
-        <translation>ID</translation>
+        <translation type="unfinished">ID</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="209"/>
         <source>Description</source>
-        <translation>Description</translation>
+        <translation type="unfinished">Description</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="236"/>
         <source>Cancel ID customization and close dialog</source>
-        <translation>Annuler la personnalisation et fermer la fenêtre</translation>
+        <translation type="unfinished">Annuler la personnalisation et fermer la fenêtre</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="239"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Annuler</translation>
+        <translation type="unfinished">&amp;Annuler</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="134"/>
         <source>Remove the currently selected ID</source>
-        <translation>Enlever l&apos;ID actuellement sélectionné</translation>
+        <translation type="unfinished">Enlever l&apos;ID actuellement sélectionné</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="154"/>
         <source>Add a new ID</source>
-        <translation>Ajouter un nouvel ID</translation>
+        <translation type="unfinished">Ajouter un nouvel ID</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="256"/>
         <source>Accept customized IDs and close dialog</source>
-        <translation>Accepter la personnalisation et fermer la fenêtre</translation>
+        <translation type="unfinished">Accepter la personnalisation et fermer la fenêtre</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="259"/>
         <source>&amp;Ok</source>
-        <translation>&amp;Ok</translation>
+        <translation type="unfinished">&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="86"/>
         <source>Copy IDs from another foreign emulator (if any)</source>
-        <translation>Copier les IDs depuis un autre émulateur ( si il y a)</translation>
+        <translation type="unfinished">Copier les IDs depuis un autre émulateur ( si il y a)</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="89"/>
         <source>Copy IDs</source>
-        <translation>Copier IDs</translation>
+        <translation type="unfinished">Copier IDs</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="108"/>
         <source>Enable / disable sorting</source>
-        <translation>Active / désactive le tri</translation>
+        <translation type="unfinished">Active / désactive le tri</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="34"/>
         <source>Setup custom IDs for &apos;%1&apos;</source>
-        <translation>Configurer la personnalisation IDs pour &apos;%1&apos;</translation>
+        <translation type="unfinished">Configurer la personnalisation IDs pour &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="169"/>
@@ -3735,19 +3735,19 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.cpp" line="179"/>
         <source>demo mode stopped</source>
-        <translation>Mode démo stoppé</translation>
+        <translation type="unfinished">Mode démo stoppé</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="290"/>
         <location filename="../../demomode.cpp" line="181"/>
         <source>Run &amp;demo</source>
-        <translation>Jouer la &amp;démo</translation>
+        <translation type="unfinished">Jouer la &amp;démo</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="287"/>
         <location filename="../../demomode.cpp" line="182"/>
         <source>Run demo now</source>
-        <translation>Jouer la démo maintenant</translation>
+        <translation type="unfinished">Jouer la démo maintenant</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="129"/>
@@ -3760,12 +3760,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.cpp" line="199"/>
         <source>please wait for reload to finish and try again</source>
-        <translation>merci de patienter pendant le rechargement puis ré-essayer</translation>
+        <translation type="unfinished">merci de patienter pendant le rechargement puis ré-essayer</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="203"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation>Patientez SVP durant la vérification des ROMS puis recommencez</translation>
+        <translation type="unfinished">Patientez SVP durant la vérification des ROMS puis recommencez</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="236"/>
@@ -3793,22 +3793,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.cpp" line="299"/>
         <source>Stop &amp;demo</source>
-        <translation>Stopper la &amp;démo</translation>
+        <translation type="unfinished">Stopper la &amp;démo</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="300"/>
         <source>Stop demo now</source>
-        <translation>Stopper la démo maintenant</translation>
+        <translation type="unfinished">Stopper la démo maintenant</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="368"/>
         <source>starting emulation in demo mode for &apos;%1&apos;</source>
-        <translation>démarrage de l&apos;émulation de &apos;%1&apos; en mode démo</translation>
+        <translation type="unfinished">démarrage de l&apos;émulation de &apos;%1&apos; en mode démo</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="14"/>
         <source>Demo mode</source>
-        <translation>Mode démo</translation>
+        <translation type="unfinished">Mode démo</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="102"/>
@@ -3818,7 +3818,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="26"/>
         <source>ROM state filter</source>
-        <translation>filtre d&apos;état de ROM</translation>
+        <translation type="unfinished">filtre d&apos;état de ROM</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="79"/>
@@ -3843,27 +3843,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="360"/>
         <source>Select ROM state C (correct)?</source>
-        <translation>Sélectionner l&apos;état de ROM C (correct) ?</translation>
+        <translation type="unfinished">Sélectionner l&apos;état de ROM C (correct) ?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="383"/>
         <source>Select ROM state M (mostly correct)?</source>
-        <translation>Sélectionner l&apos;état de ROM M (presque correct) ?</translation>
+        <translation type="unfinished">Sélectionner l&apos;état de ROM M (presque correct) ?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="406"/>
         <source>Select ROM state I (incorrect)?</source>
-        <translation>Sélectionner l&apos;état de ROM I (incorrect) ?</translation>
+        <translation type="unfinished">Sélectionner l&apos;état de ROM I (incorrect) ?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="426"/>
         <source>Select ROM state N (not found)?</source>
-        <translation>Sélectionner l&apos;état de ROM N (non trouvé) ?</translation>
+        <translation type="unfinished">Sélectionner l&apos;état de ROM N (non trouvé) ?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="446"/>
         <source>Select ROM state U (unknown)?</source>
-        <translation>Sélectionner l&apos;état de ROM U (inconnu) ?</translation>
+        <translation type="unfinished">Sélectionner l&apos;état de ROM U (inconnu) ?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="113"/>
@@ -3878,27 +3878,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="226"/>
         <source>Seconds to run</source>
-        <translation>Nombre de secondes à jouer</translation>
+        <translation type="unfinished">Nombre de secondes à jouer</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="233"/>
         <source>Number of seconds to run an emulator in demo mode</source>
-        <translation>Nombre de secondes à jouer un émulateur en mode démo</translation>
+        <translation type="unfinished">Nombre de secondes à jouer un émulateur en mode démo</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="43"/>
         <source>Tagged</source>
-        <translation>Taggés</translation>
+        <translation type="unfinished">Taggés</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="255"/>
         <source>Pause (seconds)</source>
-        <translation>Pause (secondes)</translation>
+        <translation type="unfinished">Pause (secondes)</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="262"/>
         <source>Number of seconds to pause between emulator runs</source>
-        <translation>Nombre de secondes de pause entre les sessions d&apos;émulateurs</translation>
+        <translation type="unfinished">Nombre de secondes de pause entre les sessions d&apos;émulateurs</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="319"/>
@@ -3930,12 +3930,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="171"/>
         <source>Start emulators in full screen mode (otherwise use windowed mode)</source>
-        <translation>Démarrer les émulateurs en plein écran (écrase le mode fenêtré)</translation>
+        <translation type="unfinished">Démarrer les émulateurs en plein écran (écrase le mode fenêtré)</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="174"/>
         <source>Full screen</source>
-        <translation>Plein écran</translation>
+        <translation type="unfinished">Plein écran</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="210"/>
@@ -3975,22 +3975,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="187"/>
         <source>Maximize emulators when in windowed mode</source>
-        <translation>Maximiser l&apos;émulation en mode fenêtré</translation>
+        <translation type="unfinished">Maximiser l&apos;émulation en mode fenêtré</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="190"/>
         <source>Maximized</source>
-        <translation>Maximisé</translation>
+        <translation type="unfinished">Maximisé</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="200"/>
         <source>Embed windowed emulators</source>
-        <translation>Embarquer les émulateurs en fenêtre</translation>
+        <translation type="unfinished">Embarquer les émulateurs en fenêtre</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="203"/>
         <source>Embedded</source>
-        <translation>Embarqué</translation>
+        <translation type="unfinished">Embarqué</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="236"/>
@@ -4006,12 +4006,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="303"/>
         <source>Close this dialog (and stop running demo)</source>
-        <translation>Fermer cette fenêtre (et stopper la démo)</translation>
+        <translation type="unfinished">Fermer cette fenêtre (et stopper la démo)</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="306"/>
         <source>&amp;Close</source>
-        <translation>&amp;Fermer</translation>
+        <translation type="unfinished">&amp;Fermer</translation>
     </message>
 </context>
 <context>
@@ -4019,12 +4019,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../deviceconfigurator.ui" line="15"/>
         <source>MESS device configuration</source>
-        <translation>configuration de périphérique MESS</translation>
+        <translation type="unfinished">configuration de périphérique MESS</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="50"/>
         <source>Active device configuration</source>
-        <translation>configuration de périphérique active</translation>
+        <translation type="unfinished">configuration de périphérique active</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="337"/>
@@ -4053,50 +4053,50 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.ui" line="638"/>
         <location filename="../../deviceconfigurator.ui" line="641"/>
         <source>Device configuration menu</source>
-        <translation>Menu de configuration de périphérique</translation>
+        <translation type="unfinished">Menu de configuration de périphérique</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="40"/>
         <location filename="../../deviceconfigurator.ui" line="43"/>
         <source>Name of device configuration</source>
-        <translation>Nom de la configuration de périphérique</translation>
+        <translation type="unfinished">Nom de la configuration de périphérique</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="84"/>
         <source>Device mappings</source>
-        <translation>Mappage de périphérique</translation>
+        <translation type="unfinished">Mappage de périphérique</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="96"/>
         <location filename="../../deviceconfigurator.ui" line="99"/>
         <source>Device setup of current configuration</source>
-        <translation>Paramétrage du périphérique de la configuration actuelle</translation>
+        <translation type="unfinished">Paramétrage du périphérique de la configuration actuelle</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="117"/>
         <source>Brief name</source>
-        <translation>Nom court</translation>
+        <translation type="unfinished">Nom court</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="146"/>
         <source>Slot options</source>
-        <translation>Options de slot</translation>
+        <translation type="unfinished">Options de slot</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="158"/>
         <location filename="../../deviceconfigurator.ui" line="161"/>
         <source>Available slot options</source>
-        <translation>Options de slot disponibles</translation>
+        <translation type="unfinished">Options de slot disponibles</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="171"/>
         <source>Slot</source>
-        <translation>Slot</translation>
+        <translation type="unfinished">Slot</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="176"/>
         <source>Option</source>
-        <translation>Option</translation>
+        <translation type="unfinished">Option</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="181"/>
@@ -4106,25 +4106,25 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../deviceconfigurator.ui" line="190"/>
         <source>File chooser</source>
-        <translation>Sélectionneur de fichier</translation>
+        <translation type="unfinished">Sélectionneur de fichier</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="226"/>
         <location filename="../../deviceconfigurator.ui" line="229"/>
         <source>Save selected instance / file as a new device configuration</source>
-        <translation>Sauvegarde de l&apos;instance / fichier sélectionné comme nouvelle configuration de périphérique</translation>
+        <translation type="unfinished">Sauvegarde de l&apos;instance / fichier sélectionné comme nouvelle configuration de périphérique</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="249"/>
         <location filename="../../deviceconfigurator.ui" line="252"/>
         <source>Select the device instance the file is mapped to</source>
-        <translation>Sélectionner l&apos;instance de périphérique pour le fichier</translation>
+        <translation type="unfinished">Sélectionner l&apos;instance de périphérique pour le fichier</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="268"/>
         <location filename="../../deviceconfigurator.ui" line="271"/>
         <source>Automatically select the first matching device instance when selecting a file with a valid extension</source>
-        <translation>Choisir automatiquement le premier périphérique correspondant en sélectionnant le fichier avec une extension valide</translation>
+        <translation type="unfinished">Choisir automatiquement le premier périphérique correspondant en sélectionnant le fichier avec une extension valide</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="291"/>
@@ -4136,7 +4136,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.ui" line="314"/>
         <location filename="../../deviceconfigurator.ui" line="317"/>
         <source>Filter files by allowed extensions for the current device instance</source>
-        <translation>Extensions de fichiers de filtres autorisées pour l&apos;instance de périphérique en cours</translation>
+        <translation type="unfinished">Extensions de fichiers de filtres autorisées pour l&apos;instance de périphérique en cours</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="360"/>
@@ -4147,37 +4147,37 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.ui" line="380"/>
         <location filename="../../deviceconfigurator.ui" line="383"/>
         <source>Enter search string (case-insensitive)</source>
-        <translation>Entrer une chaîne de recherche (sensible à la casse)</translation>
+        <translation type="unfinished">Entrer une chaîne de recherche (sensible à la casse)</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="399"/>
         <location filename="../../deviceconfigurator.ui" line="402"/>
         <source>Clear search string</source>
-        <translation>Nettoyer la chaîne de recherche</translation>
+        <translation type="unfinished">Nettoyer la chaîne de recherche</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="419"/>
         <location filename="../../deviceconfigurator.ui" line="422"/>
         <source>Number of files scanned</source>
-        <translation>Nombre de fichiers scannés</translation>
+        <translation type="unfinished">Nombre de fichiers scannés</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="441"/>
         <location filename="../../deviceconfigurator.ui" line="444"/>
         <source>Reload directory contents</source>
-        <translation>Recharger les contenus des répertoires</translation>
+        <translation type="unfinished">Recharger les contenus des répertoires</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="461"/>
         <location filename="../../deviceconfigurator.ui" line="464"/>
         <source>Play the selected configuration</source>
-        <translation>Jouer la configuration sélectionnée</translation>
+        <translation type="unfinished">Jouer la configuration sélectionnée</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="481"/>
         <location filename="../../deviceconfigurator.ui" line="484"/>
         <source>Play the selected configuration (embedded)</source>
-        <translation>Jouer la configuration sélectionnée (embarqué)</translation>
+        <translation type="unfinished">Jouer la configuration sélectionnée (embarqué)</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="661"/>
@@ -4188,51 +4188,51 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../deviceconfigurator.ui" line="112"/>
         <source>Device instance</source>
-        <translation>Instance du périphérique</translation>
+        <translation type="unfinished">Instance du périphérique</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="122"/>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="unfinished">Type</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="127"/>
         <source>Tag</source>
-        <translation>Tag</translation>
+        <translation type="unfinished">Tag</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="132"/>
         <source>Extensions</source>
-        <translation>Extensions</translation>
+        <translation type="unfinished">Extensions</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="137"/>
         <source>File</source>
-        <translation>Fichier</translation>
+        <translation type="unfinished">Fichier</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="63"/>
         <location filename="../../deviceconfigurator.ui" line="66"/>
         <source>Create a new device configuration</source>
-        <translation>Créer une nouvelle configuration de périphérique</translation>
+        <translation type="unfinished">Créer une nouvelle configuration de périphérique</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="552"/>
         <location filename="../../deviceconfigurator.ui" line="555"/>
         <source>Clone current device configuration</source>
-        <translation>Cloner la configuration de périphérique actuelle</translation>
+        <translation type="unfinished">Cloner la configuration de périphérique actuelle</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="1637"/>
         <location filename="../../deviceconfigurator.cpp" line="1639"/>
         <source>%1. copy of </source>
-        <translation>%1. copie de </translation>
+        <translation type="unfinished">%1. copie de </translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="2009"/>
         <location filename="../../deviceconfigurator.cpp" line="2579"/>
         <source>%1. variant of </source>
-        <translation>%1. variante de </translation>
+        <translation type="unfinished">%1. variante de </translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="246"/>
@@ -4240,34 +4240,34 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.cpp" line="716"/>
         <location filename="../../deviceconfigurator.cpp" line="717"/>
         <source>Reading slot info, please wait...</source>
-        <translation>Lecture des infos de slot, patientez svp...</translation>
+        <translation type="unfinished">Lecture des infos de slot, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="252"/>
         <source>Enter configuration name</source>
-        <translation>Entrer le nom de configuration</translation>
+        <translation type="unfinished">Entrer le nom de configuration</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="250"/>
         <location filename="../../deviceconfigurator.cpp" line="1383"/>
         <source>Enter search string</source>
-        <translation>Entrer une chaîne de recherche</translation>
+        <translation type="unfinished">Entrer une chaîne de recherche</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="335"/>
         <location filename="../../deviceconfigurator.cpp" line="386"/>
         <source>&amp;Play</source>
-        <translation>&amp;Jouer</translation>
+        <translation type="unfinished">&amp;Jouer</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="325"/>
         <source>Select default device directory</source>
-        <translation>Sélectionner le répertoire du périphérique par défaut </translation>
+        <translation type="unfinished">Sélectionner le répertoire du périphérique par défaut </translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="326"/>
         <source>&amp;Default device directory for &apos;%1&apos;...</source>
-        <translation>&amp;Répertoire du périphérique par défaut pour &apos;%1&apos;...</translation>
+        <translation type="unfinished">&amp;Répertoire du périphérique par défaut pour &apos;%1&apos;...</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="334"/>
@@ -4279,7 +4279,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.cpp" line="341"/>
         <location filename="../../deviceconfigurator.cpp" line="393"/>
         <source>Play &amp;embedded</source>
-        <translation>Jouer &amp;embarqué</translation>
+        <translation type="unfinished">Jouer &amp;embarqué</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="347"/>
@@ -4294,27 +4294,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../deviceconfigurator.cpp" line="353"/>
         <source>Remove configuration</source>
-        <translation>Enlever la configuration</translation>
+        <translation type="unfinished">Enlever la configuration</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="354"/>
         <source>&amp;Remove configuration</source>
-        <translation>&amp;Enlever la configuration</translation>
+        <translation type="unfinished">&amp;Enlever la configuration</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="362"/>
         <source>Select a file to be mapped to this device instance</source>
-        <translation>Sélectionner un fichier à mapper avec l&apos;instance de ce périphérique</translation>
+        <translation type="unfinished">Sélectionner un fichier à mapper avec l&apos;instance de ce périphérique</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="363"/>
         <source>Select file...</source>
-        <translation>Choisir le fichier...</translation>
+        <translation type="unfinished">Choisir le fichier...</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="374"/>
         <source>Use as default directory</source>
-        <translation>Utiliser comme répertoire par défaut</translation>
+        <translation type="unfinished">Utiliser comme répertoire par défaut</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="400"/>
@@ -4325,7 +4325,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.cpp" line="410"/>
         <location filename="../../deviceconfigurator.cpp" line="2359"/>
         <source>&amp;Open archive</source>
-        <translation>&amp;Ouvrir l&apos;archive</translation>
+        <translation type="unfinished">&amp;Ouvrir l&apos;archive</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="419"/>
@@ -4369,7 +4369,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.cpp" line="2135"/>
         <location filename="../../deviceconfigurator.cpp" line="2569"/>
         <source>No devices available</source>
-        <translation>Pas de périphériques disponibles</translation>
+        <translation type="unfinished">Pas de périphériques disponibles</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="651"/>
@@ -4385,7 +4385,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.cpp" line="340"/>
         <location filename="../../deviceconfigurator.cpp" line="392"/>
         <source>Play selected machine (embedded)</source>
-        <translation>Jouer la machine sélectionnée (embarqué)</translation>
+        <translation type="unfinished">Jouer la machine sélectionnée (embarqué)</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="736"/>
@@ -4400,7 +4400,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.cpp" line="874"/>
         <location filename="../../deviceconfigurator.cpp" line="876"/>
         <source>Failed to read slot info</source>
-        <translation>Echec de lecture de l&apos;info de slot</translation>
+        <translation type="unfinished">Echec de lecture de l&apos;info de slot</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="769"/>
@@ -4410,7 +4410,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../deviceconfigurator.cpp" line="778"/>
         <source>WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete</source>
-        <translation>ATTENTION: la commande externe utilisée pour lire les slots système disponibles a crashé, les options de slot ne sont peut-être pas complètes</translation>
+        <translation type="unfinished">ATTENTION: la commande externe utilisée pour lire les slots système disponibles a crashé, les options de slot ne sont peut-être pas complètes</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="883"/>
@@ -4420,7 +4420,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../deviceconfigurator.cpp" line="1076"/>
         <source>FATAL: error while parsing XML data for &apos;%1&apos;</source>
-        <translation>FATAL: erreur d&apos;analyse des données XML pour &apos;%1&apos;</translation>
+        <translation type="unfinished">FATAL: erreur d&apos;analyse des données XML pour &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="916"/>
@@ -4428,7 +4428,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.cpp" line="1480"/>
         <location filename="../../deviceconfigurator.cpp" line="1490"/>
         <source>not used</source>
-        <translation>non utilisé</translation>
+        <translation type="unfinished">non utilisé</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="674"/>
@@ -4481,34 +4481,34 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../deviceconfigurator.cpp" line="2079"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
-        <translation>Choisir le répertoire du périphérique par défaut pour &apos;%1&apos;</translation>
+        <translation type="unfinished">Choisir le répertoire du périphérique par défaut pour &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="2359"/>
         <source>&amp;Close archive</source>
-        <translation>&amp;Fermer l&apos;archive</translation>
+        <translation type="unfinished">&amp;Fermer l&apos;archive</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="2581"/>
         <source>Choose a unique configuration name</source>
-        <translation>Choisir un nom unique de configuration</translation>
+        <translation type="unfinished">Choisir un nom unique de configuration</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="2581"/>
         <source>Unique configuration name:</source>
-        <translation>Nom unique de configuration:</translation>
+        <translation type="unfinished">Nom unique de configuration:</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="2584"/>
         <source>Name conflict</source>
-        <translation>Confit de nom</translation>
+        <translation type="unfinished">Confit de nom</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="2584"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>
-        <translation>Une configuration nommée &apos;%1&apos; existe déjà.
+        <translation type="unfinished">Une configuration nommée &apos;%1&apos; existe déjà.
 
 Voulez-vous choisir un nom différent?</translation>
     </message>
@@ -4519,13 +4519,13 @@ Voulez-vous choisir un nom différent?</translation>
         <location filename="../../deviceconfigurator.cpp" line="56"/>
         <location filename="../../deviceconfigurator.cpp" line="76"/>
         <source>All files</source>
-        <translation>Tous les fichiers</translation>
+        <translation type="unfinished">Tous les fichiers</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="59"/>
         <location filename="../../deviceconfigurator.cpp" line="61"/>
         <source>Valid device files</source>
-        <translation>Fichiers de périphériques valides</translation>
+        <translation type="unfinished">Fichiers de périphériques valides</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="216"/>
@@ -4551,12 +4551,12 @@ Voulez-vous choisir un nom différent?</translation>
     <message>
         <location filename="../../filesystemmodel.h" line="46"/>
         <source>Drives / Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Lecteurs / Dossiers</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="48"/>
         <source>Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Dossiers</translation>
     </message>
 </context>
 <context>
@@ -4568,7 +4568,7 @@ Voulez-vous choisir un nom différent?</translation>
         <location filename="../../docbrowser.cpp" line="65"/>
         <location filename="../../docbrowser.cpp" line="68"/>
         <source>MiniWebBrowser</source>
-        <translation>MiniNavigateurWeb</translation>
+        <translation>Mini navigateur Web</translation>
     </message>
 </context>
 <context>
@@ -4577,7 +4577,7 @@ Voulez-vous choisir un nom différent?</translation>
         <location filename="../../embedder.cpp" line="181"/>
         <location filename="../../embedder.cpp" line="199"/>
         <source>emulator #%1 released, window ID = %2</source>
-        <translation>émulateur #%1 relâché, ID de fenêtre = %2</translation>
+        <translation type="unfinished">émulateur #%1 relâché, ID de fenêtre = %2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="444"/>
@@ -4592,33 +4592,33 @@ Voulez-vous choisir un nom différent?</translation>
     <message>
         <location filename="../../embedder.cpp" line="469"/>
         <source>window ID for emulator #%1 lost, looking for replacement</source>
-        <translation>ID de fenêtre pour l&apos;émulateur #%1 perdue, cherche un remplacement</translation>
+        <translation type="unfinished">ID de fenêtre pour l&apos;émulateur #%1 perdue, cherche un remplacement</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="489"/>
         <source>using replacement window ID %1 for emulator #%2</source>
-        <translation>utilise la fenêtre de remplacement ID %1 pour l&apos;émulateur #%2</translation>
+        <translation type="unfinished">utilise la fenêtre de remplacement ID %1 pour l&apos;émulateur #%2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="497"/>
         <source>no replacement window ID found for emulator #%1, closing embedder</source>
-        <translation>pas de fenêtre de remplacement ID trouvé pour l&apos;émulateur #%1, fermeture</translation>
+        <translation type="unfinished">pas de fenêtre de remplacement ID trouvé pour l&apos;émulateur #%1, fermeture</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="507"/>
         <source>embedded emulator #%1 is returning from full-screen</source>
-        <translation>l&apos;émulateur embarqué #%1 revient du mode plein écran</translation>
+        <translation type="unfinished">l&apos;émulateur embarqué #%1 revient du mode plein écran</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="517"/>
         <source>embedded emulator #%1 is switching to full-screen, using desktop-resolution %2x%3</source>
-        <translation>l&apos;émulateur embarqué #%1 passe en plein écran, utilisa la résolution du bureau %2x%3</translation>
+        <translation type="unfinished">l&apos;émulateur embarqué #%1 passe en plein écran, utilisa la résolution du bureau %2x%3</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="164"/>
         <location filename="../../embedder.cpp" line="422"/>
         <source>emulator #%1 embedded, window ID = %2</source>
-        <translation>émulateur #%1 embarqué, ID de fenêtre = %2</translation>
+        <translation type="unfinished">émulateur #%1 embarqué, ID de fenêtre = %2</translation>
     </message>
 </context>
 <context>
@@ -4626,17 +4626,17 @@ Voulez-vous choisir un nom différent?</translation>
     <message>
         <location filename="../../embedderopt.ui" line="14"/>
         <source>Embedder options</source>
-        <translation>Options d&apos;embarquement</translation>
+        <translation type="unfinished">Options d&apos;embarquement</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="29"/>
         <source>Take a snapshot of the current window content -- hold to take snapshots repeatedly (every 100ms)</source>
-        <translation>Prendre une capture d&apos;écran de la fenêtre actuelle - maintenir pour prendre en mode rafale (chaque 100ms)</translation>
+        <translation type="unfinished">Prendre une capture d&apos;écran de la fenêtre actuelle - maintenir pour prendre en mode rafale (chaque 100ms)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="32"/>
         <source>Take snapshot</source>
-        <translation>Prendre une capture</translation>
+        <translation type="unfinished">Prendre une capture</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="53"/>
@@ -4667,12 +4667,12 @@ Voulez-vous choisir un nom différent?</translation>
     <message>
         <location filename="../../embedderopt.ui" line="162"/>
         <source>Clear snapshots</source>
-        <translation>Nettoyer les captures d&apos;écran</translation>
+        <translation type="unfinished">Nettoyer les captures d&apos;écran</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="165"/>
         <source>Clear</source>
-        <translation>Nettoyer</translation>
+        <translation type="unfinished">Nettoyer</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="188"/>
@@ -4774,13 +4774,13 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="155"/>
         <source>All files (*)</source>
-        <translation>Tous les fichiers (*)</translation>
+        <translation type="unfinished">Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="160"/>
         <location filename="../../emuopt.cpp" line="172"/>
         <source>Browse: </source>
-        <translation>Parcourir:</translation>
+        <translation type="unfinished">Parcourir:</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="208"/>
@@ -4806,39 +4806,39 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../emuopt.cpp" line="1220"/>
         <location filename="../../emuopt.cpp" line="1222"/>
         <source>unknown</source>
-        <translation>inconnu</translation>
+        <translation type="unfinished">inconnu</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="416"/>
         <source>Global emulator configuration</source>
-        <translation>Configuration globale de l&apos;émulateur</translation>
+        <translation type="unfinished">Configuration globale de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="425"/>
         <source>Option / Attribute</source>
-        <translation>Option / Attribut</translation>
+        <translation type="unfinished">Option / Attribut</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="426"/>
         <source>Value</source>
-        <translation>Valeur</translation>
+        <translation type="unfinished">Valeur</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="484"/>
         <location filename="../../emuopt.cpp" line="1016"/>
         <source>true</source>
-        <translation>vrai</translation>
+        <translation type="unfinished">vrai</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1018"/>
         <source>false</source>
-        <translation>faux</translation>
+        <translation type="unfinished">faux</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="480"/>
         <location filename="../../emuopt.cpp" line="963"/>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="unfinished">Type</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="427"/>
@@ -4848,49 +4848,49 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="966"/>
         <source>bool</source>
-        <translation>bool</translation>
+        <translation type="unfinished">bool</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="970"/>
         <source>int</source>
-        <translation>int</translation>
+        <translation type="unfinished">int</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="974"/>
         <source>float</source>
-        <translation>float</translation>
+        <translation type="unfinished">float</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="978"/>
         <source>float2</source>
-        <translation>float2</translation>
+        <translation type="unfinished">float2</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="982"/>
         <source>float3</source>
-        <translation>float3</translation>
+        <translation type="unfinished">float3</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="994"/>
         <source>choice</source>
-        <translation>choix</translation>
+        <translation type="unfinished">choix</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="998"/>
         <source>string</source>
-        <translation>chaîne</translation>
+        <translation type="unfinished">chaîne</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1008"/>
         <source>Short name</source>
-        <translation>Nom court</translation>
+        <translation type="unfinished">Nom court</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="478"/>
         <location filename="../../emuopt.cpp" line="1013"/>
         <location filename="../../emuopt.cpp" line="1023"/>
         <source>Default</source>
-        <translation>Par défaut</translation>
+        <translation type="unfinished">Par défaut</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="413"/>
@@ -4908,17 +4908,17 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="1033"/>
         <source>Description</source>
-        <translation>Description</translation>
+        <translation type="unfinished">Description</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1117"/>
         <source>creating template configuration map</source>
-        <translation>Création d&apos;un template de configuration</translation>
+        <translation type="unfinished">Création d&apos;un template de configuration</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1146"/>
         <source>FATAL: XML error reading template: &apos;%1&apos; in file &apos;%2&apos; at line %3, column %4</source>
-        <translation>FATAL: erreur XML en lisant le template: &apos;%1&apos; dans le fichier &apos;%2&apos; ligne %3, colonne %4</translation>
+        <translation type="unfinished">FATAL: erreur XML en lisant le template: &apos;%1&apos; dans le fichier &apos;%2&apos; ligne %3, colonne %4</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1197"/>
@@ -4933,38 +4933,38 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="1209"/>
         <source>template info: emulator = %1, version = %2, format = %3</source>
-        <translation>Template info: emulateur = %1, version = %2, format = %3</translation>
+        <translation type="unfinished">Template info: emulateur = %1, version = %2, format = %3</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1216"/>
         <source>FATAL: can&apos;t open options template file</source>
-        <translation>FATAL: Ne peut pas ouvrir le fichier template d&apos;options</translation>
+        <translation type="unfinished">FATAL: Ne peut pas ouvrir le fichier template d&apos;options</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1219"/>
         <source>WARNING: couldn&apos;t determine emulator type of template</source>
-        <translation>ATTENTION: N&apos;a pas pu déterminer le type de template de l&apos;émulateur</translation>
+        <translation type="unfinished">ATTENTION: N&apos;a pas pu déterminer le type de template de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1221"/>
         <source>WARNING: couldn&apos;t determine template version</source>
-        <translation>ATTENTION: N&apos;a pas pu déterminer la version du template</translation>
+        <translation type="unfinished">ATTENTION: N&apos;a pas pu déterminer la version du template</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1223"/>
         <source>WARNING: couldn&apos;t determine template format</source>
-        <translation>ATTENTION: N&apos;a pas pu déterminer le format du template</translation>
+        <translation type="unfinished">ATTENTION: N&apos;a pas pu déterminer le format du template</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1229"/>
         <source>please wait for reload to finish and try again</source>
-        <translation>merci de patienter pendant le rechargement puis ré-essayer</translation>
+        <translation type="unfinished">merci de patienter pendant le rechargement puis ré-essayer</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1239"/>
         <location filename="../../emuopt.cpp" line="1242"/>
         <source>checking template configuration map against selected emulator</source>
-        <translation>vérification de la configuration du template pour l&apos;émulateur sélectionné</translation>
+        <translation type="unfinished">vérification de la configuration du template pour l&apos;émulateur sélectionné</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1247"/>
@@ -4982,7 +4982,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../emuopt.cpp" line="1292"/>
         <location filename="../../emuopt.cpp" line="1295"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
-        <translation>FATAL: impossible de démarrer MAME en un temps raisonnable, abandon</translation>
+        <translation type="unfinished">FATAL: impossible de démarrer MAME en un temps raisonnable, abandon</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1292"/>
@@ -4994,7 +4994,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../emuopt.cpp" line="1348"/>
         <location filename="../../emuopt.cpp" line="1351"/>
         <source>FATAL: can&apos;t create temporary file, please check emulator executable and permissions</source>
-        <translation>FATAL: impossible de créer un fichier temporaire, vérifiez l&apos;exécutable et ses permissions</translation>
+        <translation type="unfinished">FATAL: impossible de créer un fichier temporaire, vérifiez l&apos;exécutable et ses permissions</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1370"/>
@@ -5010,31 +5010,31 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../emuopt.cpp" line="1454"/>
         <location filename="../../emuopt.cpp" line="1457"/>
         <source>emulator uses a different default value for option &apos;%1&apos; (&apos;%2&apos; vs. &apos;%3&apos;); assumed option type is &apos;%4&apos;</source>
-        <translation>l&apos;émulateur utilise une valeur par défaut différente pour l&apos;option &apos;%1&apos; (&apos;%2&apos; vs. &apos;%3&apos;); type d&apos;option &apos;%4&apos;</translation>
+        <translation type="unfinished">l&apos;émulateur utilise une valeur par défaut différente pour l&apos;option &apos;%1&apos; (&apos;%2&apos; vs. &apos;%3&apos;); type d&apos;option &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1464"/>
         <location filename="../../emuopt.cpp" line="1467"/>
         <source>template option &apos;%1&apos; is unknown to the emulator</source>
-        <translation>l&apos;option &apos;%1&apos; du template est inconnue de l&apos;émulateur</translation>
+        <translation type="unfinished">l&apos;option &apos;%1&apos; du template est inconnue de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1479"/>
         <location filename="../../emuopt.cpp" line="1482"/>
         <source>emulator option &apos;%1&apos; with default value &apos;%2&apos; is unknown to the template</source>
-        <translation>l&apos;option &apos;%1&apos; avec pour valeur par défaut &apos;%2&apos; est inconnue du template</translation>
+        <translation type="unfinished">l&apos;option &apos;%1&apos; avec pour valeur par défaut &apos;%2&apos; est inconnue du template</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1487"/>
         <location filename="../../emuopt.cpp" line="1491"/>
         <source>done (checking template configuration map against selected emulator)</source>
-        <translation>fait (vérification du template pour l&apos;émulateur sélectionné)</translation>
+        <translation type="unfinished">fait (vérification du template pour l&apos;émulateur sélectionné)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../emuopt.cpp" line="1488"/>
         <location filename="../../emuopt.cpp" line="1492"/>
         <source>check results: %n difference(s)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>résultats de test:  %n difference</numerusform>
             <numerusform>résultats de test:  %n differences</numerusform>
         </translation>
@@ -5047,39 +5047,39 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="1588"/>
         <source>WARNING: ini-export: no writable ini-paths found</source>
-        <translation>ATTENTION: ini-export: aucun répertoire ini accessible en écriture trouvé</translation>
+        <translation type="unfinished">ATTENTION: ini-export: aucun répertoire ini accessible en écriture trouvé</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1592"/>
         <location filename="../../emuopt.cpp" line="1729"/>
         <source>Path selection</source>
-        <translation>Sélection de répertoire</translation>
+        <translation type="unfinished">Sélection de répertoire</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1593"/>
         <source>Multiple ini-paths detected. Select path(s) to export to:</source>
-        <translation>Plusieurs répertoires ini détectés. Choisir le(s) répertoire(s) vers le(s)quel(s) exporter:</translation>
+        <translation type="unfinished">Plusieurs répertoires ini détectés. Choisir le(s) répertoire(s) vers le(s)quel(s) exporter:</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1613"/>
         <source>WARNING: ini-export: no path selected (or invalid inipath)</source>
-        <translation>ATTENTION: ini-export: Aucun répertoire sélectionné (ou invalide)</translation>
+        <translation type="unfinished">ATTENTION: ini-export: Aucun répertoire sélectionné (ou invalide)</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1621"/>
         <location filename="../../emuopt.cpp" line="1758"/>
         <source>Waiting for data...</source>
-        <translation>En attente de données...</translation>
+        <translation type="unfinished">En attente de données...</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1636"/>
         <source>FATAL: can&apos;t open export file for writing, path = %1</source>
-        <translation>FATAL: Ne peut ouvrir le fichier d&apos;export pour écriture, répertoire = %1</translation>
+        <translation type="unfinished">FATAL: Ne peut ouvrir le fichier d&apos;export pour écriture, répertoire = %1</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1641"/>
         <source>exporting %1 MAME configuration to %2</source>
-        <translation>Exportation %1 configuration de MAME vers %2</translation>
+        <translation type="unfinished">Exportation %1 configuration de MAME vers %2</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1641"/>
@@ -5087,7 +5087,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../emuopt.cpp" line="1778"/>
         <location filename="../../emuopt.cpp" line="1873"/>
         <source>global</source>
-        <translation>global</translation>
+        <translation type="unfinished">global</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1641"/>
@@ -5100,57 +5100,57 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="1689"/>
         <source>done (exporting %1 MAME configuration to %2, elapsed time = %3)</source>
-        <translation>fait (export %1 configuration de MAME vers %2, temps écoulé = %3)</translation>
+        <translation type="unfinished">fait (export %1 configuration de MAME vers %2, temps écoulé = %3)</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1725"/>
         <source>WARNING: ini-import: no readable ini-paths found</source>
-        <translation>ATTENTION: ini-import: aucun répertoire ini en lecture trouvé</translation>
+        <translation type="unfinished">ATTENTION: ini-import: aucun répertoire ini en lecture trouvé</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1730"/>
         <source>Multiple ini-paths detected. Select path(s) to import from:</source>
-        <translation>Plusieurs répertoires ini détectés. Choisir le(s) répertoire(s) depuis le(s)quel(s) importer:</translation>
+        <translation type="unfinished">Plusieurs répertoires ini détectés. Choisir le(s) répertoire(s) depuis le(s)quel(s) importer:</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1750"/>
         <source>WARNING: ini-import: no path selected (or invalid inipath)</source>
-        <translation>ATTENTION: ini-import: Aucun répertoire sélectionné (ou invalide)</translation>
+        <translation type="unfinished">ATTENTION: ini-import: Aucun répertoire sélectionné (ou invalide)</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1773"/>
         <source>FATAL: can&apos;t open import file for reading, path = %1</source>
-        <translation>FATAL: Ne peut ouvrir le fichier d&apos;import pour lecture, répertoire = %1</translation>
+        <translation type="unfinished">FATAL: Ne peut ouvrir le fichier d&apos;import pour lecture, répertoire = %1</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1778"/>
         <source>importing %1 MAME configuration from %2</source>
-        <translation>importe %1 configuration de MAME depuis %2</translation>
+        <translation type="unfinished">importe %1 configuration de MAME depuis %2</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1866"/>
         <source>WARNING: unknown option &apos;%1&apos; at line %2 (%3) ignored</source>
-        <translation>ATTENTION: option &apos;%1&apos; inconnue, ligne %2 (%3) ignoré</translation>
+        <translation type="unfinished">ATTENTION: option &apos;%1&apos; inconnue, ligne %2 (%3) ignoré</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1868"/>
         <source>WARNING: invalid syntax at line %1 (%2) ignored</source>
-        <translation>ATTENTION: syntaxe non valide ligne %1 (%2) ignoré</translation>
+        <translation type="unfinished">ATTENTION: syntaxe non valide ligne %1 (%2) ignoré</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1873"/>
         <source>done (importing %1 MAME configuration from %2, elapsed time = %3)</source>
-        <translation>fait (importation %1 MAME configuration depuis %2, temps écoulé = %3)</translation>
+        <translation type="unfinished">fait (importation %1 MAME configuration depuis %2, temps écoulé = %3)</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="986"/>
         <source>file</source>
-        <translation>fichier</translation>
+        <translation type="unfinished">fichier</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="990"/>
         <source>directory</source>
-        <translation>répertoire</translation>
+        <translation type="unfinished">répertoire</translation>
     </message>
 </context>
 <context>
@@ -5159,7 +5159,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../fileeditwidget.cpp" line="72"/>
         <location filename="../../fileeditwidget.cpp" line="74"/>
         <source>Choose file</source>
-        <translation>Choisir le fichier</translation>
+        <translation type="unfinished">Choisir le fichier</translation>
     </message>
 </context>
 <context>
@@ -5167,40 +5167,40 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../filesystemmodel.h" line="373"/>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation type="unfinished">Nom</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="373"/>
         <source>Size</source>
-        <translation>Taille</translation>
+        <translation type="unfinished">Taille</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="557"/>
         <location filename="../../filesystemmodel.h" line="571"/>
         <source> KB</source>
-        <translation> KB</translation>
+        <translation type="unfinished"> KB</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="560"/>
         <location filename="../../filesystemmodel.h" line="574"/>
         <source> MB</source>
-        <translation> MB</translation>
+        <translation type="unfinished"> MB</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="563"/>
         <location filename="../../filesystemmodel.h" line="577"/>
         <source> GB</source>
-        <translation> GB</translation>
+        <translation type="unfinished"> GB</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="566"/>
         <source> TB</source>
-        <translation> TB</translation>
+        <translation type="unfinished"> TB</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="373"/>
         <source>Date modified</source>
-        <translation>Date modifiée</translation>
+        <translation type="unfinished">Date modifiée</translation>
     </message>
 </context>
 <context>
@@ -5208,7 +5208,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../flyer.h" line="17"/>
         <source>flyer</source>
-        <translation type="unfinished"></translation>
+        <translation>prospectus</translation>
     </message>
 </context>
 <context>
@@ -5259,74 +5259,74 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="14"/>
         <source>HTML Editor</source>
-        <translation>Editeur HTML</translation>
+        <translation type="unfinished">Editeur HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="37"/>
         <source>WYSIWYG</source>
-        <translation>WYSIWYG</translation>
+        <translation type="unfinished">WYSIWYG</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="47"/>
         <source>about:blank</source>
-        <translation>about:blank</translation>
+        <translation type="unfinished">about:blank</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="56"/>
         <source>HTML</source>
-        <translation>HTML</translation>
+        <translation type="unfinished">HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="86"/>
         <source>&amp;File</source>
-        <translation>&amp;Fichier</translation>
+        <translation type="unfinished">&amp;Fichier</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="100"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Editer</translation>
+        <translation type="unfinished">&amp;Editer</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="104"/>
         <source>Insert &amp;image</source>
-        <translation>Insérer une &amp;image</translation>
+        <translation type="unfinished">Insérer une &amp;image</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="129"/>
         <source>F&amp;ormat</source>
-        <translation>F&amp;ormat</translation>
+        <translation type="unfinished">F&amp;ormat</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="133"/>
         <source>St&amp;yle</source>
-        <translation>St&amp;yle</translation>
+        <translation type="unfinished">St&amp;yle</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="147"/>
         <source>&amp;Align</source>
-        <translation>&amp;Alignement</translation>
+        <translation type="unfinished">&amp;Alignement</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="180"/>
         <source>Standard tool-bar</source>
-        <translation>Barre d&apos;outils standard</translation>
+        <translation type="unfinished">Barre d&apos;outils standard</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="206"/>
         <source>Formatting tool-bar</source>
-        <translation>Barre d&apos;outils de formattage</translation>
+        <translation type="unfinished">Barre d&apos;outils de formattage</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="241"/>
         <source>&amp;New</source>
-        <translation>&amp;Nouveau</translation>
+        <translation type="unfinished">&amp;Nouveau</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="244"/>
         <location filename="../../htmleditor/htmleditor.ui" line="247"/>
         <location filename="../../htmleditor/htmleditor.ui" line="250"/>
         <source>New file</source>
-        <translation>Nouveau fichier</translation>
+        <translation type="unfinished">Nouveau fichier</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="259"/>
@@ -5363,38 +5363,38 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="295"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Ouvrir...</translation>
+        <translation type="unfinished">&amp;Ouvrir...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="298"/>
         <location filename="../../htmleditor/htmleditor.ui" line="301"/>
         <location filename="../../htmleditor/htmleditor.ui" line="304"/>
         <source>Open file</source>
-        <translation>Ouvrir le fichier</translation>
+        <translation type="unfinished">Ouvrir le fichier</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="313"/>
         <source>&amp;Save</source>
-        <translation>&amp;Sauvegarder</translation>
+        <translation type="unfinished">&amp;Sauvegarder</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="316"/>
         <location filename="../../htmleditor/htmleditor.ui" line="319"/>
         <location filename="../../htmleditor/htmleditor.ui" line="322"/>
         <source>Save file</source>
-        <translation>Sauvegarder le fichier</translation>
+        <translation type="unfinished">Sauvegarder le fichier</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="330"/>
         <source>Save &amp;copy...</source>
-        <translation>Sauvegarder une &amp;copie...</translation>
+        <translation type="unfinished">Sauvegarder une &amp;copie...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="333"/>
         <location filename="../../htmleditor/htmleditor.ui" line="336"/>
         <location filename="../../htmleditor/htmleditor.ui" line="339"/>
         <source>Save file under a different name</source>
-        <translation>Sauvegarder le fichier sous un nom différent</translation>
+        <translation type="unfinished">Sauvegarder le fichier sous un nom différent</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="347"/>
@@ -5415,332 +5415,332 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="365"/>
         <source>&amp;Undo</source>
-        <translation>Ann&amp;uler</translation>
+        <translation type="unfinished">Ann&amp;uler</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="368"/>
         <source>Undo</source>
-        <translation>Annuler</translation>
+        <translation type="unfinished">Annuler</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="377"/>
         <source>&amp;Redo</source>
-        <translation>&amp;Refaire</translation>
+        <translation type="unfinished">&amp;Refaire</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="380"/>
         <source>Redo</source>
-        <translation>Refaire</translation>
+        <translation type="unfinished">Refaire</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="389"/>
         <source>Cu&amp;t</source>
-        <translation>Coupe&amp;r</translation>
+        <translation type="unfinished">Coupe&amp;r</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="392"/>
         <source>Cut</source>
-        <translation>Couper</translation>
+        <translation type="unfinished">Couper</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="401"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Copier</translation>
+        <translation type="unfinished">&amp;Copier</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="404"/>
         <source>Copy</source>
-        <translation>Copier</translation>
+        <translation type="unfinished">Copier</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="413"/>
         <source>&amp;Paste</source>
-        <translation>Co&amp;ller</translation>
+        <translation type="unfinished">Co&amp;ller</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="416"/>
         <source>Paste</source>
-        <translation>Coller</translation>
+        <translation type="unfinished">Coller</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="425"/>
         <source>Select a&amp;ll</source>
-        <translation>Sélectionn&amp;er tout</translation>
+        <translation type="unfinished">Sélectionn&amp;er tout</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="428"/>
         <source>Select all</source>
-        <translation>Sélectionner tout</translation>
+        <translation type="unfinished">Sélectionner tout</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="440"/>
         <source>&amp;Bold</source>
-        <translation>&amp;Gras</translation>
+        <translation type="unfinished">&amp;Gras</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="443"/>
         <source>Bold</source>
-        <translation>Gras</translation>
+        <translation type="unfinished">Gras</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="455"/>
         <source>&amp;Italic</source>
-        <translation>&amp;Itallique</translation>
+        <translation type="unfinished">&amp;Itallique</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="458"/>
         <source>Italic</source>
-        <translation>Itallique</translation>
+        <translation type="unfinished">Itallique</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="470"/>
         <source>&amp;Underline</source>
-        <translation>&amp;Souligné</translation>
+        <translation type="unfinished">&amp;Souligné</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="473"/>
         <source>Underline</source>
-        <translation>Souligné</translation>
+        <translation type="unfinished">Souligné</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="485"/>
         <source>&amp;Strikethrough</source>
-        <translation>&amp;Barré</translation>
+        <translation type="unfinished">&amp;Barré</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="488"/>
         <source>Strikethrough</source>
-        <translation>Barré</translation>
+        <translation type="unfinished">Barré</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="497"/>
         <source>Align &amp;left</source>
-        <translation>Aligner à &amp;gauche</translation>
+        <translation type="unfinished">Aligner à &amp;gauche</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="500"/>
         <source>Align left</source>
-        <translation>Aligner à gauche</translation>
+        <translation type="unfinished">Aligner à gauche</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="509"/>
         <source>Align &amp;center</source>
-        <translation>Aligner au &amp;centre</translation>
+        <translation type="unfinished">Aligner au &amp;centre</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="512"/>
         <source>Align center</source>
-        <translation>Aligner au centre</translation>
+        <translation type="unfinished">Aligner au centre</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="521"/>
         <source>Align &amp;right</source>
-        <translation>Aligner à &amp;droite</translation>
+        <translation type="unfinished">Aligner à &amp;droite</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="524"/>
         <source>Align right</source>
-        <translation>Aligner à droite</translation>
+        <translation type="unfinished">Aligner à droite</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="533"/>
         <source>Align &amp;justied</source>
-        <translation>Aligner &amp;justifié</translation>
+        <translation type="unfinished">Aligner &amp;justifié</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="536"/>
         <source>Align justied</source>
-        <translation>Aligner justifié</translation>
+        <translation type="unfinished">Aligner justifié</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="545"/>
         <source>I&amp;ncrease indent</source>
-        <translation>Augme&amp;nter le retrait</translation>
+        <translation type="unfinished">Augme&amp;nter le retrait</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="548"/>
         <source>Increase indent</source>
-        <translation>Augmenter le retrait</translation>
+        <translation type="unfinished">Augmenter le retrait</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="557"/>
         <source>&amp;Decrease indent</source>
-        <translation>Ré&amp;duire le retrait</translation>
+        <translation type="unfinished">Ré&amp;duire le retrait</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="560"/>
         <source>Decrease indent</source>
-        <translation>Réduire le retrait</translation>
+        <translation type="unfinished">Réduire le retrait</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="572"/>
         <source>Bulle&amp;ted list</source>
-        <translation>Lis&amp;te à puces</translation>
+        <translation type="unfinished">Lis&amp;te à puces</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="575"/>
         <source>Bulleted list</source>
-        <translation>Liste à puces</translation>
+        <translation type="unfinished">Liste à puces</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="587"/>
         <source>&amp;Numbered list</source>
-        <translation>Liste &amp;numérotée</translation>
+        <translation type="unfinished">Liste &amp;numérotée</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="590"/>
         <source>Numbered list</source>
-        <translation>Liste numérotée</translation>
+        <translation type="unfinished">Liste numérotée</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="599"/>
         <source>From &amp;file...</source>
-        <translation>Depuis un &amp;fichier...</translation>
+        <translation type="unfinished">Depuis un &amp;fichier...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="602"/>
         <source>Insert image from file</source>
-        <translation>Insérer une image depuis un fichier</translation>
+        <translation type="unfinished">Insérer une image depuis un fichier</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="611"/>
         <source>From &amp;URL...</source>
-        <translation>Depuis une &amp;URL...</translation>
+        <translation type="unfinished">Depuis une &amp;URL...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="614"/>
         <source>Insert image from URL</source>
-        <translation>Insérer une image depuis une URL</translation>
+        <translation type="unfinished">Insérer une image depuis une URL</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="623"/>
         <source>Create &amp;link...</source>
-        <translation>Créer un &amp;lien...</translation>
+        <translation type="unfinished">Créer un &amp;lien...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="626"/>
         <source>Create link</source>
-        <translation>Créer un lien</translation>
+        <translation type="unfinished">Créer un lien</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="635"/>
         <location filename="../../htmleditor/htmleditor.ui" line="638"/>
         <source>Zoom out</source>
-        <translation>Zoom -</translation>
+        <translation type="unfinished">Zoom -</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="647"/>
         <location filename="../../htmleditor/htmleditor.ui" line="650"/>
         <source>Zoom in</source>
-        <translation>Zoom +</translation>
+        <translation type="unfinished">Zoom +</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="655"/>
         <source>&amp;Paragraph</source>
-        <translation>&amp;Paragraphe</translation>
+        <translation type="unfinished">&amp;Paragraphe</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="660"/>
         <source>Heading &amp;1</source>
-        <translation>Entête &amp;1</translation>
+        <translation type="unfinished">Entête &amp;1</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="665"/>
         <source>Heading &amp;2</source>
-        <translation>Entête &amp;2</translation>
+        <translation type="unfinished">Entête &amp;2</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="670"/>
         <source>Heading &amp;3</source>
-        <translation>Entête &amp;3</translation>
+        <translation type="unfinished">Entête &amp;3</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="675"/>
         <source>Heading &amp;4</source>
-        <translation>Entête &amp;4</translation>
+        <translation type="unfinished">Entête &amp;4</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="680"/>
         <source>Heading &amp;5</source>
-        <translation>Entête &amp;5</translation>
+        <translation type="unfinished">Entête &amp;5</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="685"/>
         <source>Heading &amp;6</source>
-        <translation>Entête &amp;6</translation>
+        <translation type="unfinished">Entête &amp;6</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="690"/>
         <source>Pre&amp;formatted</source>
-        <translation>Pré&amp;formaté</translation>
+        <translation type="unfinished">Pré&amp;formaté</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="695"/>
         <source>&amp;Address</source>
-        <translation>&amp;Adresse</translation>
+        <translation type="unfinished">&amp;Adresse</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="700"/>
         <source>&amp;Font name...</source>
-        <translation>Nom de la poli&amp;ce...</translation>
+        <translation type="unfinished">Nom de la poli&amp;ce...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="703"/>
         <source>Font name</source>
-        <translation>Nom de la police</translation>
+        <translation type="unfinished">Nom de la police</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="708"/>
         <source>Text &amp;color...</source>
-        <translation>&amp;Couleur de texte...</translation>
+        <translation type="unfinished">&amp;Couleur de texte...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="711"/>
         <source>Text color</source>
-        <translation>Couleur de texte</translation>
+        <translation type="unfinished">Couleur de texte</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="716"/>
         <source>Bac&amp;kground color...</source>
-        <translation>Couleur de f&amp;ond...</translation>
+        <translation type="unfinished">Couleur de f&amp;ond...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="719"/>
         <source>Background color</source>
-        <translation>Couleur de fond</translation>
+        <translation type="unfinished">Couleur de fond</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="724"/>
         <source>Font si&amp;ze...</source>
-        <translation>Taille &amp;de police...</translation>
+        <translation type="unfinished">Taille &amp;de police...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="727"/>
         <source>Font size</source>
-        <translation>Taille de police</translation>
+        <translation type="unfinished">Taille de police</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="736"/>
         <source>Insert &amp;HTML...</source>
-        <translation>Insérer &amp;HTML...</translation>
+        <translation type="unfinished">Insérer &amp;HTML...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="739"/>
         <location filename="../../htmleditor/htmleditor.ui" line="742"/>
         <location filename="../../htmleditor/htmleditor.ui" line="745"/>
         <source>Insert HTML</source>
-        <translation>Insérer HTML</translation>
+        <translation type="unfinished">Insérer HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="754"/>
         <location filename="../../htmleditor/htmleditor.ui" line="762"/>
         <source>Insert &amp;table...</source>
-        <translation>Insérer &amp;tableau...</translation>
+        <translation type="unfinished">Insérer &amp;tableau...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="757"/>
         <source>Insert table</source>
-        <translation>Insérer tableau</translation>
+        <translation type="unfinished">Insérer tableau</translation>
     </message>
 </context>
 <context>
@@ -5749,27 +5749,27 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../htmleditor/htmleditor.cpp" line="148"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="364"/>
         <source>HTML</source>
-        <translation>HTML</translation>
+        <translation type="unfinished">HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="585"/>
         <source>Common graphics formats (*.png *.jpg *.jpeg *.gif);;</source>
-        <translation>Fichier graphiques communs (*.png *.jpg *.jpeg *.gif);;</translation>
+        <translation type="unfinished">Fichier graphiques communs (*.png *.jpg *.jpeg *.gif);;</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="586"/>
         <source>Portable Network Graphics (PNG) (*.png);;</source>
-        <translation>Portable Network Graphics (PNG) (*.png);;</translation>
+        <translation type="unfinished">Portable Network Graphics (PNG) (*.png);;</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="587"/>
         <source>Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</source>
-        <translation>Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</translation>
+        <translation type="unfinished">Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="588"/>
         <source>Graphics Interchange Format (GIF) (*.gif);;</source>
-        <translation>Graphics Interchange Format (GIF) (*.gif);;</translation>
+        <translation type="unfinished">Graphics Interchange Format (GIF) (*.gif);;</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="485"/>
@@ -5777,12 +5777,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../htmleditor/htmleditor.cpp" line="589"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="1203"/>
         <source>All files (*)</source>
-        <translation>Tous les fichiers (*)</translation>
+        <translation type="unfinished">Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="147"/>
         <source>WYSIWYG</source>
-        <translation>WYSIWYG</translation>
+        <translation type="unfinished">WYSIWYG</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="151"/>
@@ -5832,7 +5832,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../htmleditor/htmleditor.cpp" line="485"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="554"/>
         <source>HTML files (*.html *.htm)</source>
-        <translation>Fichiers HTML (*.html *.htm)</translation>
+        <translation type="unfinished">Fichiers HTML (*.html *.htm)</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="485"/>
@@ -5847,84 +5847,84 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="554"/>
         <source>Save a copy</source>
-        <translation>Sauvegarder une copie</translation>
+        <translation type="unfinished">Sauvegarder une copie</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="591"/>
         <source>Open image...</source>
-        <translation>Ouvrir une image...</translation>
+        <translation type="unfinished">Ouvrir une image...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="605"/>
         <source>Insert image from URL</source>
-        <translation>Insérer une image depuis une URL</translation>
+        <translation type="unfinished">Insérer une image depuis une URL</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="605"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="649"/>
         <source>Enter URL:</source>
-        <translation>Saisir l&apos;URL:</translation>
+        <translation type="unfinished">Saisir l&apos;URL:</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="649"/>
         <source>Create link</source>
-        <translation>Créer un lien</translation>
+        <translation type="unfinished">Créer un lien</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="873"/>
         <source>Font</source>
-        <translation>Police</translation>
+        <translation type="unfinished">Police</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="873"/>
         <source>Select font:</source>
-        <translation>Choisir la police:</translation>
+        <translation type="unfinished">Choisir la police:</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="882"/>
         <source>XS</source>
-        <translation>XS</translation>
+        <translation type="unfinished">XS</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="882"/>
         <source>S</source>
-        <translation>S</translation>
+        <translation type="unfinished">S</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="882"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="884"/>
         <source>M</source>
-        <translation>M</translation>
+        <translation type="unfinished">M</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="882"/>
         <source>L</source>
-        <translation>L</translation>
+        <translation type="unfinished">L</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="882"/>
         <source>XL</source>
-        <translation>XL</translation>
+        <translation type="unfinished">XL</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="882"/>
         <source>XXL</source>
-        <translation>XXL</translation>
+        <translation type="unfinished">XXL</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="884"/>
         <source>Font size</source>
-        <translation>Taille de police</translation>
+        <translation type="unfinished">Taille de police</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="884"/>
         <source>Font size:</source>
-        <translation>Taille de police:</translation>
+        <translation type="unfinished">Taille de police:</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="980"/>
         <source>Zoom: %1%</source>
-        <translation>Zoom: %1%</translation>
+        <translation type="unfinished">Zoom: %1%</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="1194"/>
@@ -5949,7 +5949,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.ui" line="14"/>
         <source>Check images</source>
-        <translation>Vérifier les images</translation>
+        <translation type="unfinished">Vérifier les images</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="22"/>
@@ -7008,12 +7008,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../htmleditor/inserthtmldialog.ui" line="14"/>
         <source>Insert HTML</source>
-        <translation>Insérer HTML</translation>
+        <translation>Insérer du code HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/inserthtmldialog.ui" line="20"/>
         <source>HTML Code:</source>
-        <translation>Code HTML:</translation>
+        <translation>Code HTML :</translation>
     </message>
 </context>
 <context>
@@ -7026,7 +7026,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../downloaditem.cpp" line="101"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing</source>
-        <translation>FATAL: Ne peut ouvrir &apos;%1&apos; pour écriture</translation>
+        <translation type="unfinished">FATAL: Ne peut ouvrir &apos;%1&apos; pour écriture</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="117"/>
@@ -7034,12 +7034,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../downloaditem.cpp" line="232"/>
         <location filename="../../downloaditem.cpp" line="266"/>
         <source>Source URL: %1</source>
-        <translation>URL source : %1</translation>
+        <translation type="unfinished">URL source : %1</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="118"/>
         <source>Local path: %2</source>
-        <translation>Chemin local: %2</translation>
+        <translation type="unfinished">Chemin local: %2</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="119"/>
@@ -7047,12 +7047,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../downloaditem.cpp" line="235"/>
         <location filename="../../downloaditem.cpp" line="274"/>
         <source>Status: %1</source>
-        <translation>Statut: %1</translation>
+        <translation type="unfinished">Statut: %1</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="119"/>
         <source>initializing download</source>
-        <translation>initialisation du téléchargement</translation>
+        <translation type="unfinished">initialisation du téléchargement</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="120"/>
@@ -7060,12 +7060,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../downloaditem.cpp" line="236"/>
         <location filename="../../downloaditem.cpp" line="275"/>
         <source>Total size: %1</source>
-        <translation>Taille totale: %1</translation>
+        <translation type="unfinished">Taille totale: %1</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="120"/>
         <source>unknown</source>
-        <translation>inconnu</translation>
+        <translation type="unfinished">inconnu</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="121"/>
@@ -7073,22 +7073,22 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../downloaditem.cpp" line="237"/>
         <location filename="../../downloaditem.cpp" line="276"/>
         <source>Downloaded: %1 (%2%)</source>
-        <translation>Téléchargé: %1 (%2)</translation>
+        <translation type="unfinished">Téléchargé: %1 (%2)</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="122"/>
         <source>download started: URL = %1, local path = %2, reply ID = %3</source>
-        <translation>téléchargement démarré: URL = %1, chemin local = %2, ID réponse = %3</translation>
+        <translation type="unfinished">téléchargement démarré: URL = %1, chemin local = %2, ID réponse = %3</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="190"/>
         <source>Error #%1: </source>
-        <translation>Erreur #%1: </translation>
+        <translation type="unfinished">Erreur #%1: </translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="196"/>
         <source>download aborted: reason = %1, URL = %2, local path = %3, reply ID = %4</source>
-        <translation>téléchargement annulé: raison = %1, URL = %2, chemin local = %3, ID réponse = %4</translation>
+        <translation type="unfinished">téléchargement annulé: raison = %1, URL = %2, chemin local = %3, ID réponse = %4</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="204"/>
@@ -7100,22 +7100,22 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../downloaditem.cpp" line="207"/>
         <source>download aborted</source>
-        <translation>téléchargement annulé</translation>
+        <translation type="unfinished">téléchargement annulé</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="235"/>
         <source>downloading</source>
-        <translation>téléchargement en cours</translation>
+        <translation type="unfinished">téléchargement en cours</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="264"/>
         <source>download finished: URL = %1, local path = %2, reply ID = %3</source>
-        <translation>téléchargement fini: URL = %1, chemin local = %2, ID réponse = %3</translation>
+        <translation type="unfinished">téléchargement fini: URL = %1, chemin local = %2, ID réponse = %3</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="274"/>
         <source>download finished</source>
-        <translation>téléchargement fini</translation>
+        <translation type="unfinished">téléchargement fini</translation>
     </message>
 </context>
 <context>
@@ -7123,28 +7123,28 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../itemselect.ui" line="15"/>
         <source>Item selection</source>
-        <translation>Sélection d&apos;objet</translation>
+        <translation type="unfinished">Sélection d&apos;objet</translation>
     </message>
     <message>
         <location filename="../../itemselect.ui" line="21"/>
         <source>Select item(s)</source>
-        <translation>Sélectionner un(des) objet(s)</translation>
+        <translation type="unfinished">Sélectionner un(des) objet(s)</translation>
     </message>
     <message>
         <location filename="../../itemselect.ui" line="54"/>
         <source>Confirm selection</source>
-        <translation>Confirmer la sélection</translation>
+        <translation type="unfinished">Confirmer la sélection</translation>
     </message>
     <message>
         <location filename="../../itemselect.ui" line="57"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation type="unfinished">Ok</translation>
     </message>
     <message>
         <location filename="../../itemselect.ui" line="67"/>
         <location filename="../../itemselect.ui" line="70"/>
         <source>Cancel</source>
-        <translation>Annuler</translation>
+        <translation type="unfinished">Annuler</translation>
     </message>
 </context>
 <context>
@@ -7165,42 +7165,42 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../options.cpp" line="4058"/>
         <source>Axis %1:</source>
-        <translation>Axe %1:</translation>
+        <translation type="unfinished">Axe %1:</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4067"/>
         <source>Current value of axis %1</source>
-        <translation>Valeur actuelle de l&apos;axe %1</translation>
+        <translation type="unfinished">Valeur actuelle de l&apos;axe %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4071"/>
         <source>DZ:</source>
-        <translation>DZ:</translation>
+        <translation type="unfinished">DZ:</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4073"/>
         <source>Deadzone of axis %1</source>
-        <translation>Zone Morte de l&apos;axe %1</translation>
+        <translation type="unfinished">Zone Morte de l&apos;axe %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4079"/>
         <source>S:</source>
-        <translation>S:</translation>
+        <translation type="unfinished">S:</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4081"/>
         <source>Sensitivity of axis %1</source>
-        <translation>Sensibilité de l&apos;axe %1</translation>
+        <translation type="unfinished">Sensibilité de l&apos;axe %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4059"/>
         <source>Reset calibration of axis %1</source>
-        <translation>Ré-initialiser la calibration de l&apos;axe %1</translation>
+        <translation type="unfinished">Ré-initialiser la calibration de l&apos;axe %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4054"/>
         <source>Enable/disable axis %1</source>
-        <translation>Active/Désactive l&apos;axe %1</translation>
+        <translation type="unfinished">Active/Désactive l&apos;axe %1</translation>
     </message>
 </context>
 <context>
@@ -7211,32 +7211,32 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../joyfuncscan.cpp" line="28"/>
         <location filename="../../joyfuncscan.cpp" line="29"/>
         <source>Scanning joystick function</source>
-        <translation>Scanne les fonctions de joystick</translation>
+        <translation type="unfinished">Scanne les fonctions de joystick</translation>
     </message>
     <message>
         <location filename="../../joyfuncscan.ui" line="43"/>
         <source>&lt;&lt;&lt;&gt;&gt;&gt;</source>
-        <translation>&lt;&lt;&lt;&gt;&gt;&gt;</translation>
+        <translation type="unfinished">&lt;&lt;&lt;&gt;&gt;&gt;</translation>
     </message>
     <message>
         <location filename="../../joyfuncscan.ui" line="61"/>
         <source>Accept joystick function</source>
-        <translation>Accepte la fonction joystick</translation>
+        <translation type="unfinished">Accepte la fonction joystick</translation>
     </message>
     <message>
         <location filename="../../joyfuncscan.ui" line="64"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation type="unfinished">Ok</translation>
     </message>
     <message>
         <location filename="../../joyfuncscan.ui" line="77"/>
         <source>Cancel remapping of joystick function</source>
-        <translation>Annule le remappage du joystick</translation>
+        <translation type="unfinished">Annule le remappage du joystick</translation>
     </message>
     <message>
         <location filename="../../joyfuncscan.ui" line="80"/>
         <source>Cancel</source>
-        <translation>Annuler</translation>
+        <translation type="unfinished">Annuler</translation>
     </message>
     <message>
         <location filename="../../joyfuncscan.ui" line="93"/>
@@ -7254,67 +7254,67 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../options.cpp" line="4254"/>
         <source>A%1: %v</source>
-        <translation>A%1: %v</translation>
+        <translation type="unfinished">A%1: %v</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4255"/>
         <source>Current value of axis %1</source>
-        <translation>Valeur actuelle de l&apos;axe %1</translation>
+        <translation type="unfinished">Valeur actuelle de l&apos;axe %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4265"/>
         <source>B%1</source>
-        <translation>B%1</translation>
+        <translation type="unfinished">B%1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4266"/>
         <source>Current state of button %1</source>
-        <translation>Valeur actuelle du bouton %1</translation>
+        <translation type="unfinished">Valeur actuelle du bouton %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4276"/>
         <source>H%1: 0</source>
-        <translation>H%1: 0</translation>
+        <translation type="unfinished">H%1: 0</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4277"/>
         <source>Current value of hat %1</source>
-        <translation>Valeur actuelle du hat %1</translation>
+        <translation type="unfinished">Valeur actuelle du hat %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4287"/>
         <source>T%1 DX: 0</source>
-        <translation>T%1 DX: 0</translation>
+        <translation type="unfinished">T%1 DX: 0</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4288"/>
         <source>Current X-delta of trackball %1</source>
-        <translation>Valeur actuelle X-delta du trackball %1</translation>
+        <translation type="unfinished">Valeur actuelle X-delta du trackball %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4298"/>
         <source>T%1 DY: 0</source>
-        <translation>T%1 DY: 0</translation>
+        <translation type="unfinished">T%1 DY: 0</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4299"/>
         <source>Current Y-delta of trackball %1</source>
-        <translation>Valeur actuelle Y-delta du trackball %1</translation>
+        <translation type="unfinished">Valeur actuelle Y-delta du trackball %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4371"/>
         <source>H%1: %2</source>
-        <translation>H%1: %2</translation>
+        <translation type="unfinished">H%1: %2</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4401"/>
         <source>T%1 DX: %2</source>
-        <translation>T%1 DX: %2</translation>
+        <translation type="unfinished">T%1 DX: %2</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4402"/>
         <source>T%1 DY: %2</source>
-        <translation>T%1 DY: %2</translation>
+        <translation type="unfinished">T%1 DY: %2</translation>
     </message>
 </context>
 <context>
@@ -7323,7 +7323,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../keyseqscan.cpp" line="21"/>
         <location filename="../../keyseqscan.cpp" line="22"/>
         <source>Scanning special key</source>
-        <translation>Scanne la touche spéciale</translation>
+        <translation type="unfinished">Scanne la touche spéciale</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="15"/>
@@ -7331,27 +7331,28 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../keyseqscan.cpp" line="24"/>
         <location filename="../../keyseqscan.cpp" line="25"/>
         <source>Scanning shortcut</source>
-        <translation>Scanne les raccourcis</translation>
+        <translation type="unfinished">Scanne les raccourcis</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="43"/>
         <source>&lt;&lt;&lt;&gt;&gt;&gt;</source>
+        <translatorcomment>&lt;&lt;&lt;&gt;&gt;&gt;</translatorcomment>
         <translation>&lt;&lt;&lt;&gt;&gt;&gt;</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="61"/>
         <source>Accept key sequence</source>
-        <translation>Accepter la séquence de touches</translation>
+        <translation type="unfinished">Accepter la séquence de touches</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="64"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="77"/>
         <source>Cancel redefinition of key sequence</source>
-        <translation>Annuler la redéfinition de la séquence de touches</translation>
+        <translation type="unfinished">Annuler la redéfinition de la séquence de touches</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="80"/>
@@ -7381,112 +7382,112 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="709"/>
         <location filename="../../machinelist.cpp" line="3669"/>
         <source>unknown</source>
-        <translation>inconnu</translation>
+        <translation type="unfinished">inconnu</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="150"/>
         <source>good</source>
-        <translation>bon</translation>
+        <translation type="unfinished">bon</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="150"/>
         <source>bad</source>
-        <translation>mauvais</translation>
+        <translation type="unfinished">mauvais</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="150"/>
         <source>preliminary</source>
-        <translation>préliminaire</translation>
+        <translation type="unfinished">préliminaire</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="150"/>
         <source>supported</source>
-        <translation>supporté</translation>
+        <translation type="unfinished">supporté</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="150"/>
         <source>unsupported</source>
-        <translation>non supporté</translation>
+        <translation type="unfinished">non supporté</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="151"/>
         <source>imperfect</source>
-        <translation>imparfait</translation>
+        <translation type="unfinished">imparfait</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="151"/>
         <source>yes</source>
-        <translation>oui</translation>
+        <translation type="unfinished">oui</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="151"/>
         <source>no</source>
-        <translation>non</translation>
+        <translation type="unfinished">non</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="151"/>
         <source>baddump</source>
-        <translation>mauvais dump</translation>
+        <translation type="unfinished">mauvais dump</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="151"/>
         <source>nodump</source>
-        <translation>pas de dump</translation>
+        <translation type="unfinished">pas de dump</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="152"/>
         <source>vertical</source>
-        <translation>vertical</translation>
+        <translation type="unfinished">vertical</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="152"/>
         <source>horizontal</source>
-        <translation>horizontal</translation>
+        <translation type="unfinished">horizontal</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="152"/>
         <source>raster</source>
-        <translation>raster bitmap</translation>
+        <translation type="unfinished">raster bitmap</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="152"/>
         <source>Unknown</source>
-        <translation>Inconnu</translation>
+        <translation type="unfinished">Inconnu</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="153"/>
         <source>On</source>
-        <translation>Activé</translation>
+        <translation type="unfinished">Activé</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="153"/>
         <source>Off</source>
-        <translation>Désactivé</translation>
+        <translation type="unfinished">Désactivé</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="153"/>
         <source>audio</source>
-        <translation>audio</translation>
+        <translation type="unfinished">audio</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="153"/>
         <source>Unused</source>
-        <translation>Inutilisé</translation>
+        <translation type="unfinished">Inutilisé</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="158"/>
         <source>original</source>
-        <translation>original</translation>
+        <translation type="unfinished">original</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="159"/>
         <source>compatible</source>
-        <translation>compatible</translation>
+        <translation type="unfinished">compatible</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="180"/>
         <source>FATAL: can&apos;t open icon file, please check access permissions for %1</source>
-        <translation>FATAL: Impossible d&apos;ouvrir le fichier des icônes, vérifiez les permissions d&apos;accès pour %1</translation>
+        <translation type="unfinished">FATAL: Impossible d&apos;ouvrir le fichier des icônes, vérifiez les permissions d&apos;accès pour %1</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="188"/>
@@ -7507,7 +7508,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1790"/>
         <location filename="../../machinelist.cpp" line="2774"/>
         <source>Waiting for data...</source>
-        <translation>En attente de données...</translation>
+        <translation type="unfinished">En attente de données...</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="613"/>
@@ -7518,7 +7519,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="653"/>
         <location filename="../../machinelist.cpp" line="706"/>
         <source>FATAL: can&apos;t create temporary file, please check emulator executable and permissions</source>
-        <translation>FATAL: impossible de créer un fichier temporaire, vérifiez l&apos;exécutable et ses permissions</translation>
+        <translation type="unfinished">FATAL: impossible de créer un fichier temporaire, vérifiez l&apos;exécutable et ses permissions</translation>
     </message>
     <message numerus="yes">
         <location filename="../../machinelist.cpp" line="719"/>
@@ -7546,12 +7547,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="829"/>
         <source>XML data - %p%</source>
-        <translation>données XML - %p%</translation>
+        <translation type="unfinished">données XML - %p%</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="884"/>
         <source>verifying ROM status for &apos;%1&apos;</source>
-        <translation>vérification du statut de ROM pour &apos;%1&apos;</translation>
+        <translation type="unfinished">vérification du statut de ROM pour &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1006"/>
@@ -7561,32 +7562,32 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="1015"/>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation type="unfinished">Nom</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1015"/>
         <source>Source file</source>
-        <translation>Fichier source</translation>
+        <translation type="unfinished">Fichier source</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1015"/>
         <source>Clone of</source>
-        <translation>Clone de</translation>
+        <translation type="unfinished">Clone de</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1015"/>
         <source>ROM of</source>
-        <translation>ROM de</translation>
+        <translation type="unfinished">ROM de</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1015"/>
         <source>Sample of</source>
-        <translation>Sample de</translation>
+        <translation type="unfinished">Sample de</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1015"/>
         <source>Is device?</source>
-        <translation>Est un périphérique ?</translation>
+        <translation type="unfinished">Est un périphérique ?</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1026"/>
@@ -7596,13 +7597,13 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="1033"/>
         <source>Manufacturer</source>
-        <translation>Fabricant</translation>
+        <translation type="unfinished">Fabricant</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="172"/>
         <location filename="../../machinelist.cpp" line="1038"/>
         <source>ROM</source>
-        <translation>ROM</translation>
+        <translation type="unfinished">ROM</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="606"/>
@@ -7618,34 +7619,34 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="1043"/>
         <source>BIOS</source>
-        <translation>BIOS</translation>
+        <translation type="unfinished">BIOS</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1043"/>
         <source>Size</source>
-        <translation>Taille</translation>
+        <translation type="unfinished">Taille</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1043"/>
         <source>CRC</source>
-        <translation>CRC</translation>
+        <translation type="unfinished">CRC</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1043"/>
         <location filename="../../machinelist.cpp" line="1173"/>
         <source>Merge</source>
-        <translation>Merge</translation>
+        <translation type="unfinished">Merge</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1043"/>
         <location filename="../../machinelist.cpp" line="1173"/>
         <source>Region</source>
-        <translation>Région</translation>
+        <translation type="unfinished">Région</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1043"/>
         <source>Offset</source>
-        <translation>Offset</translation>
+        <translation type="unfinished">Offset</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1043"/>
@@ -7653,94 +7654,94 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1173"/>
         <location filename="../../machinelist.cpp" line="1193"/>
         <source>Status</source>
-        <translation>Statut</translation>
+        <translation type="unfinished">Statut</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1048"/>
         <source>Device reference</source>
-        <translation>Périphérique de référence</translation>
+        <translation type="unfinished">Périphérique de référence</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1053"/>
         <source>Chip</source>
-        <translation>Chip</translation>
+        <translation type="unfinished">Chip</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1058"/>
         <location filename="../../machinelist.cpp" line="1067"/>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="unfinished">Type</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1058"/>
         <source>Clock</source>
-        <translation>Horloge</translation>
+        <translation type="unfinished">Horloge</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1067"/>
         <source>Width</source>
-        <translation>Largeur</translation>
+        <translation type="unfinished">Largeur</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1067"/>
         <source>Height</source>
-        <translation>Hauteur</translation>
+        <translation type="unfinished">Hauteur</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1067"/>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="unfinished">Rafraîchir</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1072"/>
         <location filename="../../machinelist.cpp" line="1148"/>
         <source>Sound</source>
-        <translation>Son</translation>
+        <translation type="unfinished">Son</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1076"/>
         <source>Channels</source>
-        <translation>Canaux</translation>
+        <translation type="unfinished">Canaux</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1081"/>
         <source>Input</source>
-        <translation>Entrée</translation>
+        <translation type="unfinished">Entrée</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1085"/>
         <source>Service</source>
-        <translation>Service</translation>
+        <translation type="unfinished">Service</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1085"/>
         <source>Tilt</source>
-        <translation>Tilt</translation>
+        <translation type="unfinished">Tilt</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1085"/>
         <source>Players</source>
-        <translation>Joueurs</translation>
+        <translation type="unfinished">Joueurs</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1085"/>
         <source>Buttons</source>
-        <translation>Boutons</translation>
+        <translation type="unfinished">Boutons</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1085"/>
         <source>Coins</source>
-        <translation>Pièces</translation>
+        <translation type="unfinished">Pièces</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1103"/>
         <source>DIP switch</source>
-        <translation>DIP switch</translation>
+        <translation type="unfinished">DIP switch</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1109"/>
         <source>DIP value</source>
-        <translation>DIP valeur</translation>
+        <translation type="unfinished">DIP valeur</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1327"/>
@@ -7859,7 +7860,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1707"/>
         <location filename="../../machinelist.cpp" line="3323"/>
         <source>System / Device</source>
-        <translation>Système / Dispositif</translation>
+        <translation type="unfinished">Système / Dispositif</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3661"/>
@@ -7890,7 +7891,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1209"/>
         <location filename="../../machinelist.cpp" line="1259"/>
         <source>Default</source>
-        <translation>Défaut</translation>
+        <translation type="unfinished">Défaut</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="644"/>
@@ -7931,142 +7932,142 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="1121"/>
         <source>Configuration</source>
-        <translation>Configuration</translation>
+        <translation type="unfinished">Configuration</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1126"/>
         <source>Mask</source>
-        <translation>Masque</translation>
+        <translation type="unfinished">Masque</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1132"/>
         <source>Setting</source>
-        <translation>Paramètre</translation>
+        <translation type="unfinished">Paramètre</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1137"/>
         <source>Value</source>
-        <translation>Valeur</translation>
+        <translation type="unfinished">Valeur</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1144"/>
         <source>Driver</source>
-        <translation>Pilote</translation>
+        <translation type="unfinished">Pilote</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1148"/>
         <source>Emulation</source>
-        <translation>Emulation</translation>
+        <translation type="unfinished">Emulation</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1148"/>
         <source>Color</source>
-        <translation>Couleur</translation>
+        <translation type="unfinished">Couleur</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1148"/>
         <source>Graphic</source>
-        <translation>Graphique</translation>
+        <translation type="unfinished">Graphique</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1148"/>
         <source>Cocktail</source>
-        <translation>Cocktail</translation>
+        <translation type="unfinished">Cocktail</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1148"/>
         <source>Protection</source>
-        <translation>Protection</translation>
+        <translation type="unfinished">Protection</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1148"/>
         <source>Save state</source>
-        <translation>Sauvegarde d&apos;état</translation>
+        <translation type="unfinished">Sauvegarde d&apos;état</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1148"/>
         <source>Palette size</source>
-        <translation>Dimension de palette</translation>
+        <translation type="unfinished">Dimension de palette</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1153"/>
         <source>BIOS set</source>
-        <translation>BIOS set</translation>
+        <translation type="unfinished">BIOS set</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1158"/>
         <source>Description</source>
-        <translation>Description</translation>
+        <translation type="unfinished">Description</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1163"/>
         <source>Sample</source>
-        <translation>Samples</translation>
+        <translation type="unfinished">Samples</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1168"/>
         <source>Disk</source>
-        <translation>Disque</translation>
+        <translation type="unfinished">Disque</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1173"/>
         <source>MD5</source>
-        <translation>MD5</translation>
+        <translation type="unfinished">MD5</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1173"/>
         <source>Index</source>
-        <translation>Index</translation>
+        <translation type="unfinished">Index</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1178"/>
         <source>Adjuster</source>
-        <translation>Ajuster</translation>
+        <translation type="unfinished">Ajuster</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1188"/>
         <source>Software list</source>
-        <translation>Liste des logiciels</translation>
+        <translation type="unfinished">Liste des logiciels</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1198"/>
         <source>Category</source>
-        <translation>Catégorie</translation>
+        <translation type="unfinished">Catégorie</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1204"/>
         <source>Item</source>
-        <translation>Objet</translation>
+        <translation type="unfinished">Objet</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1221"/>
         <source>Interface</source>
-        <translation>Interface</translation>
+        <translation type="unfinished">Interface</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1293"/>
         <source>WARNING: can&apos;t open ROM state cache, please check ROMs</source>
-        <translation>ATTENTION: impossible d&apos;ouvrir le cache d&apos;état de ROM, vérifiez les ROMS</translation>
+        <translation type="unfinished">ATTENTION: impossible d&apos;ouvrir le cache d&apos;état de ROM, vérifiez les ROMS</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1296"/>
         <source>loading ROM state from cache</source>
-        <translation>chargement des états de ROM depuis le cache</translation>
+        <translation type="unfinished">chargement des états de ROM depuis le cache</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1298"/>
         <source>ROM states - %p%</source>
-        <translation>Etats de ROM - %p%</translation>
+        <translation type="unfinished">Etats de ROM - %p%</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1320"/>
         <source>done (loading ROM state from cache, elapsed time = %1)</source>
-        <translation>fait (chargement d&apos;état de ROM depuis le cache, temps écoulé = %1)</translation>
+        <translation type="unfinished">fait (chargement d&apos;état de ROM depuis le cache, temps écoulé = %1)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../machinelist.cpp" line="1321"/>
         <source>%n cached ROM state(s) loaded</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>%n état de ROM chargé depuis le cache</numerusform>
             <numerusform>%n états de ROM chargés depuis le cache</numerusform>
         </translation>
@@ -8076,12 +8077,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1697"/>
         <location filename="../../machinelist.cpp" line="1698"/>
         <source>N/A</source>
-        <translation>N/D</translation>
+        <translation type="unfinished">N/D</translation>
     </message>
     <message numerus="yes">
         <location filename="../../machinelist.cpp" line="2002"/>
         <source> and %n device(s) loaded</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform> et %n périphérique chargé</numerusform>
             <numerusform> et %n périphériques chargés</numerusform>
         </translation>
@@ -8089,7 +8090,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message numerus="yes">
         <location filename="../../machinelist.cpp" line="2002"/>
         <source>, %n BIOS set(s)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>, %n set BIOS</numerusform>
             <numerusform>, %n sets BIOS</numerusform>
         </translation>
@@ -8098,27 +8099,27 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="2020"/>
         <location filename="../../machinelist.cpp" line="2754"/>
         <source>ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</source>
-        <translation>Infor de statut ROM: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</translation>
+        <translation type="unfinished">Infor de statut ROM: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2030"/>
         <source>WARNING: ROM state cache is incomplete or not up to date, triggering an automatic ROM check</source>
-        <translation>ATTENTION: le cache de ROM est incomplet ou périmé, lancement d&apos;une vérification de ROM automatique</translation>
+        <translation type="unfinished">ATTENTION: le cache de ROM est incomplet ou périmé, lancement d&apos;une vérification de ROM automatique</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2033"/>
         <source>WARNING: ROM state cache is incomplete or not up to date, please re-check ROMs</source>
-        <translation>ATTENTION: le cache de ROM est incomplet ou périmé, re-vérifiez les ROMS</translation>
+        <translation type="unfinished">ATTENTION: le cache de ROM est incomplet ou périmé, re-vérifiez les ROMS</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="172"/>
         <source>ROM, CHD</source>
-        <translation>ROM, CHD</translation>
+        <translation type="unfinished">ROM, CHD</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="172"/>
         <source>CHD</source>
-        <translation>CHD</translation>
+        <translation type="unfinished">CHD</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1408"/>
@@ -8154,192 +8155,192 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="2752"/>
         <location filename="../../machinelist.cpp" line="2753"/>
         <source>?</source>
-        <translation>?</translation>
+        <translation type="unfinished">?</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1960"/>
         <location filename="../../machinelist.cpp" line="2765"/>
         <source>ascending</source>
-        <translation>ascendant</translation>
+        <translation type="unfinished">ascendant</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1960"/>
         <location filename="../../machinelist.cpp" line="2765"/>
         <source>descending</source>
-        <translation>descendant</translation>
+        <translation type="unfinished">descendant</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2047"/>
         <source>ROM state filter already active</source>
-        <translation>Le filtre d&apos;état de ROM est déjà actif</translation>
+        <translation type="unfinished">Le filtre d&apos;état de ROM est déjà actif</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2051"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation>Patientez SVP durant la vérification des ROMS puis recommencez</translation>
+        <translation type="unfinished">Patientez SVP durant la vérification des ROMS puis recommencez</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2055"/>
         <source>please wait for reload to finish and try again</source>
-        <translation>attendez SVP la fin du rechargement puis recommencez</translation>
+        <translation type="unfinished">attendez SVP la fin du rechargement puis recommencez</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2074"/>
         <source>applying ROM state filter</source>
-        <translation>Application du filtre d&apos;état de ROM</translation>
+        <translation type="unfinished">Application du filtre d&apos;état de ROM</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2077"/>
         <source>State filter - %p%</source>
-        <translation>Filtre d&apos;état - %p%</translation>
+        <translation type="unfinished">Filtre d&apos;état - %p%</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2160"/>
         <source>done (applying ROM state filter, elapsed time = %1)</source>
-        <translation>fait (application du filtre d&apos;état de ROMS, temps écoulé = %1)</translation>
+        <translation type="unfinished">fait (application du filtre d&apos;état de ROMS, temps écoulé = %1)</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2169"/>
         <source>loading favorites</source>
-        <translation>chargement des favoris</translation>
+        <translation type="unfinished">chargement des favoris</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2190"/>
         <source>done (loading favorites)</source>
-        <translation>fait (chargement des favoris)</translation>
+        <translation type="unfinished">fait (chargement des favoris)</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2199"/>
         <source>saving favorites</source>
-        <translation>sauvegarde des favoris</translation>
+        <translation type="unfinished">sauvegarde des favoris</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2207"/>
         <source>FATAL: can&apos;t open favorites file for writing, path = %1</source>
-        <translation>FATAL: impossible d&apos;ouvrir le fichier des favoris en écriture, répertoire = %1</translation>
+        <translation type="unfinished">FATAL: impossible d&apos;ouvrir le fichier des favoris en écriture, répertoire = %1</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2208"/>
         <source>done (saving favorites)</source>
-        <translation>fait (sauvegarde des favoris)</translation>
+        <translation type="unfinished">fait (sauvegarde des favoris)</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2213"/>
         <source>loading play history</source>
-        <translation>chargement de l&apos;historique des jeux joués</translation>
+        <translation type="unfinished">chargement de l&apos;historique des jeux joués</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2233"/>
         <source>done (loading play history)</source>
-        <translation>fait (chargement de l&apos;historique des jeux joués)</translation>
+        <translation type="unfinished">fait (chargement de l&apos;historique des jeux joués)</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2242"/>
         <source>saving play history</source>
-        <translation>sauvegarde de l&apos;historique des jeux joués</translation>
+        <translation type="unfinished">sauvegarde de l&apos;historique des jeux joués</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2250"/>
         <source>FATAL: can&apos;t open play history file for writing, path = %1</source>
-        <translation>FATAL: impossible d&apos;ouvrir l&apos;historique des jeux joués en écriture, répertoire = %1</translation>
+        <translation type="unfinished">FATAL: impossible d&apos;ouvrir l&apos;historique des jeux joués en écriture, répertoire = %1</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2251"/>
         <source>done (saving play history)</source>
-        <translation>fait (sauvegarde de l&apos;historique des jeux joués)</translation>
+        <translation type="unfinished">fait (sauvegarde de l&apos;historique des jeux joués)</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2258"/>
         <source>L:</source>
-        <translation>L:</translation>
+        <translation type="unfinished">L:</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2259"/>
         <source>C:</source>
-        <translation>C:</translation>
+        <translation type="unfinished">C:</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2260"/>
         <source>M:</source>
-        <translation>M:</translation>
+        <translation type="unfinished">M:</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2261"/>
         <source>I:</source>
-        <translation>I:</translation>
+        <translation type="unfinished">I:</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2262"/>
         <source>N:</source>
-        <translation>N:</translation>
+        <translation type="unfinished">N:</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2263"/>
         <source>U:</source>
-        <translation>U:</translation>
+        <translation type="unfinished">U:</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2264"/>
         <source>S:</source>
-        <translation>S:</translation>
+        <translation type="unfinished">S:</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="875"/>
         <location filename="../../machinelist.cpp" line="917"/>
         <source>ERROR: can&apos;t open ROM state cache for writing, path = %1</source>
-        <translation>ERREUR: impossible d&apos;ouvrir le cache d&apos;état de ROM en écriture, répertoire = %1</translation>
+        <translation type="unfinished">ERREUR: impossible d&apos;ouvrir le cache d&apos;état de ROM en écriture, répertoire = %1</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="930"/>
         <location filename="../../machinelist.cpp" line="2487"/>
         <location filename="../../machinelist.cpp" line="2831"/>
         <source>ROM check - %p%</source>
-        <translation>vérification de ROM - %p%</translation>
+        <translation type="unfinished">vérification de ROM - %p%</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2265"/>
         <source>T:</source>
-        <translation>T:</translation>
+        <translation type="unfinished">T:</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2745"/>
         <source>done (verifying ROM status for &apos;%1&apos;, elapsed time = %2)</source>
-        <translation>fait (vérification du statut de ROM pour &apos;%1&apos;, temps écoulé = %2)</translation>
+        <translation type="unfinished">fait (vérification du statut de ROM pour &apos;%1&apos;, temps écoulé = %2)</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2765"/>
         <source>ROM state</source>
-        <translation>statut de ROM</translation>
+        <translation type="unfinished">statut de ROM</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2672"/>
         <location filename="../../machinelist.cpp" line="3001"/>
         <source>ROM status for &apos;%1&apos; is &apos;%2&apos;</source>
-        <translation>Le statut de ROM pour &apos;%1&apos; est &apos;%2&apos;</translation>
+        <translation type="unfinished">Le statut de ROM pour &apos;%1&apos; est &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3048"/>
         <source>pre-caching icons from ZIP archive</source>
-        <translation>mise en cache des icônes depuis l&apos;archive ZIP</translation>
+        <translation type="unfinished">mise en cache des icônes depuis l&apos;archive ZIP</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3055"/>
         <location filename="../../machinelist.cpp" line="3107"/>
         <location filename="../../machinelist.cpp" line="3162"/>
         <source>Icon cache - %p%</source>
-        <translation>Cache d&apos;icônes - %p%</translation>
+        <translation type="unfinished">Cache d&apos;icônes - %p%</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3098"/>
         <source>done (pre-caching icons from ZIP archive, elapsed time = %1)</source>
-        <translation>fait (mise en cache des icônes depuis l&apos;archive ZIP, temps écoulé = %1)</translation>
+        <translation type="unfinished">fait (mise en cache des icônes depuis l&apos;archive ZIP, temps écoulé = %1)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../machinelist.cpp" line="3099"/>
         <location filename="../../machinelist.cpp" line="3140"/>
         <location filename="../../machinelist.cpp" line="3190"/>
         <source>%n icon(s) loaded</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>%n icône chargé</numerusform>
             <numerusform>%n icônes chargés</numerusform>
         </translation>
@@ -8347,12 +8348,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="3153"/>
         <source>pre-caching icons from directory</source>
-        <translation>mise en cache des icônes depuis le répertoire</translation>
+        <translation type="unfinished">mise en cache des icônes depuis le répertoire</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3189"/>
         <source>done (pre-caching icons from directory, elapsed time = %1)</source>
-        <translation>fait (mise en cache des icônes depuis le répertoire, temps écoulé = %1)</translation>
+        <translation type="unfinished">fait (mise en cache des icônes depuis le répertoire, temps écoulé = %1)</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3212"/>
@@ -8377,32 +8378,32 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="3432"/>
         <source>loading catver.ini</source>
-        <translation>Chargement de catver.ini</translation>
+        <translation type="unfinished">Chargement de catver.ini</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3437"/>
         <source>Catver.ini - %p%</source>
-        <translation>Catver.ini - %p%</translation>
+        <translation type="unfinished">Catver.ini - %p%</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3502"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
-        <translation>ERREUR: impossible d&apos;ouvrir &apos;%1&apos; en liecture - pas de données catver.ini disponibles</translation>
+        <translation type="unfinished">ERREUR: impossible d&apos;ouvrir &apos;%1&apos; en liecture - pas de données catver.ini disponibles</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3509"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
-        <translation>fait (Chargement de catver.ini, temps écoulé = %1)</translation>
+        <translation type="unfinished">fait (Chargement de catver.ini, temps écoulé = %1)</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3510"/>
         <source>%1 category / %2 version records loaded</source>
-        <translation>categorie %1 / %2 enregistrements de version chargés</translation>
+        <translation type="unfinished">categorie %1 / %2 enregistrements de version chargés</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3296"/>
         <source>Category view - %p%</source>
-        <translation>Vue par catégorie - %p%</translation>
+        <translation type="unfinished">Vue par catégorie - %p%</translation>
     </message>
     <message numerus="yes">
         <location filename="../../machinelist.cpp" line="3270"/>
@@ -8415,184 +8416,184 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="3536"/>
         <source>Version view - %p%</source>
-        <translation>Vue par version - %p%</translation>
+        <translation type="unfinished">Vue par version - %p%</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="153"/>
         <source>unused</source>
-        <translation>inutilisé</translation>
+        <translation type="unfinished">inutilisé</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="153"/>
         <source>cpu</source>
-        <translation>CPU</translation>
+        <translation type="unfinished">CPU</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="154"/>
         <source>vector</source>
-        <translation>vecteur</translation>
+        <translation type="unfinished">vecteur</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="154"/>
         <source>lcd</source>
-        <translation>lcd</translation>
+        <translation type="unfinished">lcd</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1015"/>
         <source>Is BIOS?</source>
-        <translation>est BIOS ?</translation>
+        <translation type="unfinished">est BIOS ?</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1015"/>
         <source>Runnable</source>
-        <translation>Jouable</translation>
+        <translation type="unfinished">Jouable</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1063"/>
         <source>Display</source>
-        <translation>Affichage</translation>
+        <translation type="unfinished">Affichage</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1067"/>
         <source>Rotate</source>
-        <translation>Rotation</translation>
+        <translation type="unfinished">Rotation</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1067"/>
         <source>Flip-X</source>
-        <translation>Flip-X</translation>
+        <translation type="unfinished">Flip-X</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1067"/>
         <source>Pixel clock</source>
-        <translation>Horloge de Pixel</translation>
+        <translation type="unfinished">Horloge de Pixel</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1067"/>
         <source>H-Total</source>
-        <translation>H-Total</translation>
+        <translation type="unfinished">H-Total</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1067"/>
         <source>H-Bend</source>
-        <translation>H-Bend</translation>
+        <translation type="unfinished">H-Bend</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1067"/>
         <source>HB-Start</source>
-        <translation>HB-Start</translation>
+        <translation type="unfinished">HB-Start</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1067"/>
         <source>V-Total</source>
-        <translation>V-Total</translation>
+        <translation type="unfinished">V-Total</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1067"/>
         <source>V-Bend</source>
-        <translation>V-Bend</translation>
+        <translation type="unfinished">V-Bend</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1067"/>
         <source>VB-Start</source>
-        <translation>VB-Start</translation>
+        <translation type="unfinished">VB-Start</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1058"/>
         <location filename="../../machinelist.cpp" line="1126"/>
         <location filename="../../machinelist.cpp" line="1221"/>
         <source>Tag</source>
-        <translation>Tag</translation>
+        <translation type="unfinished">Tag</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1091"/>
         <source>Control</source>
-        <translation>Contrôle</translation>
+        <translation type="unfinished">Contrôle</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1096"/>
         <source>Minimum</source>
-        <translation>Minimum</translation>
+        <translation type="unfinished">Minimum</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1096"/>
         <source>Maximum</source>
-        <translation>Maximum</translation>
+        <translation type="unfinished">Maximum</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1096"/>
         <source>Sensitivity</source>
-        <translation>Sensibilité</translation>
+        <translation type="unfinished">Sensibilité</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1096"/>
         <source>Key Delta</source>
-        <translation>Key Delta</translation>
+        <translation type="unfinished">Key Delta</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1096"/>
         <source>Reverse</source>
-        <translation>Inversé</translation>
+        <translation type="unfinished">Inversé</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="154"/>
         <source>joy4way</source>
-        <translation>joy4way</translation>
+        <translation type="unfinished">joy4way</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="154"/>
         <source>joy8way</source>
-        <translation>joy8way</translation>
+        <translation type="unfinished">joy8way</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="154"/>
         <source>trackball</source>
-        <translation>trackball</translation>
+        <translation type="unfinished">trackball</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="155"/>
         <source>joy2way</source>
-        <translation>joy2way</translation>
+        <translation type="unfinished">joy2way</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="155"/>
         <source>doublejoy8way</source>
-        <translation>doublejoy8way</translation>
+        <translation type="unfinished">doublejoy8way</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="155"/>
         <source>dial</source>
-        <translation>dial</translation>
+        <translation type="unfinished">dial</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="155"/>
         <source>paddle</source>
-        <translation>paddle</translation>
+        <translation type="unfinished">paddle</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="155"/>
         <source>pedal</source>
-        <translation>pedal</translation>
+        <translation type="unfinished">pedal</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="156"/>
         <source>stick</source>
-        <translation>stick</translation>
+        <translation type="unfinished">stick</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="156"/>
         <source>vjoy2way</source>
-        <translation>vjoy2way</translation>
+        <translation type="unfinished">vjoy2way</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="156"/>
         <source>lightgun</source>
-        <translation>lightgun</translation>
+        <translation type="unfinished">lightgun</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="156"/>
         <source>doublejoy4way</source>
-        <translation>doublejoy4way</translation>
+        <translation type="unfinished">doublejoy4way</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="156"/>
@@ -8602,109 +8603,109 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="157"/>
         <source>doublejoy2way</source>
-        <translation>doublejoy2way</translation>
+        <translation type="unfinished">doublejoy2way</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="157"/>
         <source>printer</source>
-        <translation>imprimante</translation>
+        <translation type="unfinished">imprimante</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="157"/>
         <source>cdrom</source>
-        <translation>cdrom</translation>
+        <translation type="unfinished">cdrom</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="157"/>
         <source>cartridge</source>
-        <translation>carte</translation>
+        <translation type="unfinished">carte</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="157"/>
         <source>cassette</source>
-        <translation>cassette</translation>
+        <translation type="unfinished">cassette</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="158"/>
         <source>quickload</source>
-        <translation>quickload</translation>
+        <translation type="unfinished">quickload</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="158"/>
         <source>floppydisk</source>
-        <translation>floppydisk</translation>
+        <translation type="unfinished">floppydisk</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="158"/>
         <source>serial</source>
-        <translation>serial</translation>
+        <translation type="unfinished">serial</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="158"/>
         <source>snapshot</source>
-        <translation>snapshot</translation>
+        <translation type="unfinished">snapshot</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="565"/>
         <source>determining emulator version and supported sets</source>
-        <translation>Détermine la version de l&apos;émulateur et les sets supportés</translation>
+        <translation type="unfinished">Détermine la version de l&apos;émulateur et les sets supportés</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="704"/>
         <source>done (determining emulator version and supported sets, elapsed time = %1)</source>
-        <translation>fait (détermine la version de l&apos;émulateur et les sets supportés, temps écoulé = %1)</translation>
+        <translation type="unfinished">fait (détermine la version de l&apos;émulateur et les sets supportés, temps écoulé = %1)</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="721"/>
         <source>FATAL: couldn&apos;t determine the number of supported sets</source>
-        <translation>FATAL: impossible de déterminer le nombre de sets supportés</translation>
+        <translation type="unfinished">FATAL: impossible de déterminer le nombre de sets supportés</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1216"/>
         <source>Device</source>
-        <translation>Device</translation>
+        <translation type="unfinished">Device</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1228"/>
         <source>Instance</source>
-        <translation>Instance</translation>
+        <translation type="unfinished">Instance</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1233"/>
         <source>Brief name</source>
-        <translation>Nom court</translation>
+        <translation type="unfinished">Nom court</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1240"/>
         <source>Extension</source>
-        <translation>Extension</translation>
+        <translation type="unfinished">Extension</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1221"/>
         <source>Mandatory</source>
-        <translation>Mandatory</translation>
+        <translation type="unfinished">Mandatory</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="606"/>
         <location filename="../../machinelist.cpp" line="678"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
-        <translation>FATAL: impossible de démarrer MAME en un temps raisonnable, abandon</translation>
+        <translation type="unfinished">FATAL: impossible de démarrer MAME en un temps raisonnable, abandon</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="710"/>
         <source>emulator info: type = %1, version = %2</source>
-        <translation>info émulateur: type = %1, version = %2</translation>
+        <translation type="unfinished">info émulateur: type = %1, version = %2</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="712"/>
         <source>FATAL: couldn&apos;t determine emulator type and version</source>
-        <translation>FATAL: n&apos;a pas pu déterminer le type et version de l&apos;émulateur</translation>
+        <translation type="unfinished">FATAL: n&apos;a pas pu déterminer le type et version de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1043"/>
         <location filename="../../machinelist.cpp" line="1173"/>
         <source>Optional</source>
-        <translation>Optionnel</translation>
+        <translation type="unfinished">Optionnel</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1637"/>
@@ -8719,7 +8720,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message numerus="yes">
         <location filename="../../machinelist.cpp" line="2545"/>
         <source>checking real status of %n set(s) not mentioned during full audit</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>Vérification du vrai statut de %n set non signalé durant l&apos;audit complet</numerusform>
             <numerusform>Vérification du vrai statut de %n sets non signalés durant l&apos;audit complet</numerusform>
         </translation>
@@ -8727,7 +8728,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message numerus="yes">
         <location filename="../../machinelist.cpp" line="2660"/>
         <source>done (checking real status of %n set(s) not mentioned during full audit)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>fait (vérification du vrai statut de %n set non signalé durant l&apos;audit complet)</numerusform>
             <numerusform>fait (vérification du vrai statut de %n sets non signalés durant l&apos;audit complet)</numerusform>
         </translation>
@@ -8735,30 +8736,30 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="1247"/>
         <source>RAM options</source>
-        <translation>options de RAM</translation>
+        <translation type="unfinished">options de RAM</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1251"/>
         <source>Option</source>
-        <translation>Option</translation>
+        <translation type="unfinished">Option</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2280"/>
         <location filename="../../machinelist.cpp" line="2480"/>
         <source>WARNING: emulator audit call didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation>ATTENTION: l&apos;audit de test de l&apos;émulateur n&apos;a pas fini proprement -- exitCode = %1, exitStatus = %2</translation>
+        <translation type="unfinished">ATTENTION: l&apos;audit de test de l&apos;émulateur n&apos;a pas fini proprement -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2280"/>
         <location filename="../../machinelist.cpp" line="2480"/>
         <source>normal</source>
-        <translation>normal</translation>
+        <translation type="unfinished">normal</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2280"/>
         <location filename="../../machinelist.cpp" line="2480"/>
         <source>crashed</source>
-        <translation>crashé</translation>
+        <translation type="unfinished">crashé</translation>
     </message>
 </context>
 <context>
@@ -8771,12 +8772,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../qmc2main.cpp" line="4712"/>
         <location filename="../../qmc2main.cpp" line="6231"/>
         <source>Default</source>
-        <translation>Par défaut</translation>
+        <translation type="unfinished">Par défaut</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="563"/>
         <source>Toggle maximization of embedded emulator windows</source>
-        <translation>Bascule la maximisation de fenêtre de l&apos;émulateur embarqué</translation>
+        <translation type="unfinished">Bascule la maximisation de fenêtre de l&apos;émulateur embarqué</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="446"/>
@@ -8806,32 +8807,32 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../qmc2main.cpp" line="739"/>
         <source>Embed emulator widget</source>
-        <translation>Embarquement de l&apos;émulateur</translation>
+        <translation type="unfinished">Embarquement de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="740"/>
         <source>&amp;Embed</source>
-        <translation>&amp;Embarqué</translation>
+        <translation type="unfinished">&amp;Embarqué</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="746"/>
         <source>Terminate selected emulator(s) (sends TERM signal to emulator process(es))</source>
-        <translation>Terminer l&apos;émulateur sélectionné (envoie le signal TERM aux processus de l&apos;émulateur)</translation>
+        <translation type="unfinished">Terminer l&apos;émulateur sélectionné (envoie le signal TERM aux processus de l&apos;émulateur)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="747"/>
         <source>&amp;Terminate</source>
-        <translation>&amp;Terminer</translation>
+        <translation type="unfinished">&amp;Terminer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="751"/>
         <source>Kill selected emulator(s) (sends KILL signal to emulator process(es))</source>
-        <translation>Tue l&apos;émulateur sélectionné (envoit un signal KILL aux processus de l&apos;émulateur)</translation>
+        <translation type="unfinished">Tue l&apos;émulateur sélectionné (envoit un signal KILL aux processus de l&apos;émulateur)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="752"/>
         <source>&amp;Kill</source>
-        <translation>&amp;Tuer</translation>
+        <translation type="unfinished">&amp;Tuer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2892"/>
@@ -8841,7 +8842,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../qmc2main.cpp" line="868"/>
         <location filename="../../qmc2main.cpp" line="922"/>
         <source>&amp;Play</source>
-        <translation>&amp;Jouer</translation>
+        <translation type="unfinished">&amp;Jouer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3616"/>
@@ -8851,7 +8852,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../qmc2main.cpp" line="875"/>
         <location filename="../../qmc2main.cpp" line="929"/>
         <source>Play &amp;embedded</source>
-        <translation>Jouer &amp;embarqué</translation>
+        <translation type="unfinished">Jouer &amp;embarqué</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3073"/>
@@ -8860,7 +8861,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../qmc2main.cpp" line="936"/>
         <location filename="../../qmc2main.cpp" line="5161"/>
         <source>To &amp;favorites</source>
-        <translation>Ajouter le jeu aux &amp;favoris</translation>
+        <translation type="unfinished">Ajouter le jeu aux &amp;favoris</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="801"/>
@@ -8868,7 +8869,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../qmc2main.cpp" line="883"/>
         <location filename="../../qmc2main.cpp" line="942"/>
         <source>Check &amp;ROM state</source>
-        <translation>Vérifie l&apos;état de &amp;ROM</translation>
+        <translation type="unfinished">Vérifie l&apos;état de &amp;ROM</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="805"/>
@@ -8884,7 +8885,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../qmc2main.cpp" line="888"/>
         <location filename="../../qmc2main.cpp" line="947"/>
         <source>&amp;Analyse ROM...</source>
-        <translation>&amp;Analyse ROM...</translation>
+        <translation type="unfinished">&amp;Analyse ROM...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="811"/>
@@ -8897,50 +8898,50 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../qmc2main.cpp" line="904"/>
         <source>Remove from favorites</source>
-        <translation>Retirer des favoris</translation>
+        <translation type="unfinished">Retirer des favoris</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="905"/>
         <location filename="../../qmc2main.cpp" line="964"/>
         <source>&amp;Remove</source>
-        <translation>&amp;Retirer</translation>
+        <translation type="unfinished">&amp;Retirer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="909"/>
         <source>Clear all favorites</source>
-        <translation>Vide tous les favoris</translation>
+        <translation type="unfinished">Vide tous les favoris</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="910"/>
         <location filename="../../qmc2main.cpp" line="969"/>
         <source>&amp;Clear</source>
-        <translation>&amp;Nettoyer</translation>
+        <translation type="unfinished">&amp;Nettoyer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="914"/>
         <source>Save favorites now</source>
-        <translation>Enregistre les favoris maintenant</translation>
+        <translation type="unfinished">Enregistre les favoris maintenant</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="915"/>
         <location filename="../../qmc2main.cpp" line="974"/>
         <source>&amp;Save</source>
-        <translation>&amp;Sauvegarder</translation>
+        <translation type="unfinished">&amp;Sauvegarder</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="963"/>
         <source>Remove from played</source>
-        <translation>Retirer de la liste des jeux joués</translation>
+        <translation type="unfinished">Retirer de la liste des jeux joués</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="968"/>
         <source>Clear all played</source>
-        <translation>Vider toute la liste des jeux joués</translation>
+        <translation type="unfinished">Vider toute la liste des jeux joués</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="973"/>
         <source>Save play-history now</source>
-        <translation>Enregistrer l&apos;historique des jeux joués maintenant</translation>
+        <translation type="unfinished">Enregistrer l&apos;historique des jeux joués maintenant</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="152"/>
@@ -8972,34 +8973,34 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../qmc2main.cpp" line="10353"/>
         <location filename="../../qmc2main.cpp" line="10362"/>
         <source>Waiting for data...</source>
-        <translation>En attente de données...</translation>
+        <translation type="unfinished">En attente de données...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2102"/>
         <location filename="../../qmc2main.cpp" line="2180"/>
         <location filename="../../qmc2main.cpp" line="2204"/>
         <source>please wait for ROM state filter to finish and try again</source>
-        <translation>patientez SVP durant le filtrage par état des ROMS puis recommencez</translation>
+        <translation type="unfinished">patientez SVP durant le filtrage par état des ROMS puis recommencez</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2107"/>
         <location filename="../../qmc2main.cpp" line="2628"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation>patientez SVP durant la vérification des ROMS puis recommencez</translation>
+        <translation type="unfinished">patientez SVP durant la vérification des ROMS puis recommencez</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2112"/>
         <location filename="../../qmc2main.cpp" line="2186"/>
         <location filename="../../qmc2main.cpp" line="2210"/>
         <source>please wait for image check to finish and try again</source>
-        <translation>patientez SVP durant la vérification des images puis recommencez</translation>
+        <translation type="unfinished">patientez SVP durant la vérification des images puis recommencez</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2117"/>
         <location filename="../../qmc2main.cpp" line="2188"/>
         <location filename="../../qmc2main.cpp" line="2212"/>
         <source>please wait for sample check to finish and try again</source>
-        <translation>patientez SVP durant la vérification des samples puis recommencez</translation>
+        <translation type="unfinished">patientez SVP durant la vérification des samples puis recommencez</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2122"/>
@@ -9010,13 +9011,13 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../qmc2main.cpp" line="2216"/>
         <location filename="../../qmc2main.cpp" line="2480"/>
         <source>please wait for ROMAlyzer to finish the current analysis and try again</source>
-        <translation>patientez pendant que ROMAlyzer finit l&apos;analyse en cours et recommencez</translation>
+        <translation type="unfinished">patientez pendant que ROMAlyzer finit l&apos;analyse en cours et recommencez</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2182"/>
         <location filename="../../qmc2main.cpp" line="2206"/>
         <source>ROM verification already active</source>
-        <translation>vérification de ROM déjà en cours</translation>
+        <translation type="unfinished">vérification de ROM déjà en cours</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2184"/>
@@ -9028,7 +9029,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../qmc2main.cpp" line="2725"/>
         <location filename="../../qmc2main.cpp" line="4862"/>
         <source>please wait for reload to finish and try again</source>
-        <translation>patientez SVP durant le rechargement puis recommencez</translation>
+        <translation type="unfinished">patientez SVP durant le rechargement puis recommencez</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2220"/>
@@ -9038,7 +9039,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../qmc2main.cpp" line="5962"/>
         <location filename="../../qmc2main.cpp" line="5993"/>
         <source>Confirm</source>
-        <translation>Confirmer</translation>
+        <translation type="unfinished">Confirmer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2221"/>
@@ -9046,7 +9047,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 It will overwrite existing cached data.
 
 Do you really want to check all ROM states now?</source>
-        <translation>La vérification de ROMS peut durer un bon moment.
+        <translation type="unfinished">La vérification de ROMS peut durer un bon moment.
 Ceci effacera toutes les données existantes en cache.
 
 Etes-vous sûr(e) de vouloir vérifier les ROMS ?</translation>
@@ -9054,84 +9055,84 @@ Etes-vous sûr(e) de vouloir vérifier les ROMS ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2232"/>
         <source>automatic ROM check triggered</source>
-        <translation>vérification automatique des ROMS</translation>
+        <translation type="unfinished">vérification automatique des ROMS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2564"/>
         <source>image cache cleared</source>
-        <translation>cache d&apos;images nettoyé</translation>
+        <translation type="unfinished">cache d&apos;images nettoyé</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2575"/>
         <source>icon cache cleared</source>
-        <translation>cache d&apos;icônes nettoyé</translation>
+        <translation type="unfinished">cache d&apos;icônes nettoyé</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2958"/>
         <location filename="../../qmc2main.cpp" line="2968"/>
         <source>About Qt</source>
-        <translation>A propos de Qt</translation>
+        <translation type="unfinished">A propos de Qt</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3295"/>
         <source>ERROR: no match found (?)</source>
-        <translation>ERREUR: pas de correspondance trouvée (?)</translation>
+        <translation type="unfinished">ERREUR: pas de correspondance trouvée (?)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4231"/>
         <source>Export to...</source>
-        <translation>Exporter vers...</translation>
+        <translation type="unfinished">Exporter vers...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4243"/>
         <location filename="../../qmc2main.cpp" line="4247"/>
         <source>&lt;inipath&gt;/%1.ini</source>
-        <translation>&lt;inipath&gt;/%1.ini</translation>
+        <translation type="unfinished">&lt;inipath&gt;/%1.ini</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4244"/>
         <location filename="../../qmc2main.cpp" line="4248"/>
         <source>Select file...</source>
-        <translation>Choisir le fichier...</translation>
+        <translation type="unfinished">Choisir le fichier...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4303"/>
         <location filename="../../qmc2main.cpp" line="4305"/>
         <source>&lt;p&gt;No data available&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Aucune donnée disponible&lt;/p&gt;</translation>
+        <translation type="unfinished">&lt;p&gt;Aucune donnée disponible&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="958"/>
         <location filename="../../qmc2main.cpp" line="5114"/>
         <source>Embedded emulators</source>
-        <translation>Emulateurs embarqués</translation>
+        <translation type="unfinished">Emulateurs embarqués</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5139"/>
         <source>Release emulator</source>
-        <translation>Relâcher l&apos;émulateur</translation>
+        <translation type="unfinished">Relâcher l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5191"/>
         <source>WARNING: no matching window for emulator #%1 found</source>
-        <translation>ATTENTION: pas de fenêtre correspondante à l&apos;émulateur #%1</translation>
+        <translation type="unfinished">ATTENTION: pas de fenêtre correspondante à l&apos;émulateur #%1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5197"/>
         <source>Embedding failed</source>
-        <translation>Embarquement échoué</translation>
+        <translation type="unfinished">Embarquement échoué</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5223"/>
         <location filename="../../qmc2main.cpp" line="5224"/>
         <source>Scanning pause key</source>
-        <translation>En attente de la touche Pause</translation>
+        <translation type="unfinished">En attente de la touche Pause</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5739"/>
         <location filename="../../qmc2main.cpp" line="5788"/>
         <source>Choose export file</source>
-        <translation>Choisir le fichier d&apos;export</translation>
+        <translation type="unfinished">Choisir le fichier d&apos;export</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5739"/>
@@ -9141,126 +9142,126 @@ Etes-vous sûr(e) de vouloir vérifier les ROMS ?</translation>
         <location filename="../../qmc2main.cpp" line="7249"/>
         <location filename="../../qmc2main.cpp" line="8367"/>
         <source>All files (*)</source>
-        <translation>Tous les fichiers (*)</translation>
+        <translation type="unfinished">Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5760"/>
         <location filename="../../qmc2main.cpp" line="5820"/>
         <source>Choose import file</source>
-        <translation>Choisir le fichier d&apos;import</translation>
+        <translation type="unfinished">Choisir le fichier d&apos;import</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5786"/>
         <location filename="../../qmc2main.cpp" line="5817"/>
         <source>WARNING: invalid inipath</source>
-        <translation>ATTENTION: répetoire ini non valide</translation>
+        <translation type="unfinished">ATTENTION: répetoire ini non valide</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5934"/>
         <location filename="../../qmc2main.cpp" line="5941"/>
         <source>stopping current processing upon user request</source>
-        <translation>Arrêt du processus en cours à la demande de l&apos;utilisateur</translation>
+        <translation type="unfinished">Arrêt du processus en cours à la demande de l&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5948"/>
         <source>Your configuration changes have not been applied yet.
 Really quit?</source>
-        <translation>Vos changements de configuration n&apos;ont pas encore été appliqués.
+        <translation type="unfinished">Vos changements de configuration n&apos;ont pas encore été appliqués.
 Voulez-vous vraiment quitter ?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5963"/>
         <source>There are one or more emulators still running.
 Should they be killed on exit?</source>
-        <translation>Il y a un ou plusieurs émulateurs encore en fonctionnement.
+        <translation type="unfinished">Il y a un ou plusieurs émulateurs encore en fonctionnement.
 Faut-il les tuer à la sortie ?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5994"/>
         <source>There are one or more running downloads. Quit anyway?</source>
-        <translation>Il y a un ou plusieurs téléchargements en cours. Quitter quand même?</translation>
+        <translation type="unfinished">Il y a un ou plusieurs téléchargements en cours. Quitter quand même?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6008"/>
         <source>cleaning up</source>
-        <translation>nettoyage</translation>
+        <translation type="unfinished">nettoyage</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6012"/>
         <source>aborting running downloads</source>
-        <translation>annulation des téléchargements en cours</translation>
+        <translation type="unfinished">annulation des téléchargements en cours</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6024"/>
         <source>saving YouTube video info map</source>
-        <translation>sauvegarde des infos de la vidéo YouTube</translation>
+        <translation type="unfinished">sauvegarde des infos de la vidéo YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6043"/>
         <source>done (saving YouTube video info map)</source>
-        <translation>fait (sauvegarde des infos de la vidéo YouTube)</translation>
+        <translation type="unfinished">fait (sauvegarde des infos de la vidéo YouTube)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6045"/>
         <location filename="../../qmc2main.cpp" line="6047"/>
         <source>failed (saving YouTube video info map)</source>
-        <translation>échec (sauvegarde des infos de la vidéo YouTube)</translation>
+        <translation type="unfinished">échec (sauvegarde des infos de la vidéo YouTube)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6106"/>
         <source>saving main widget layout</source>
-        <translation>sauvegarde du layout principal</translation>
+        <translation type="unfinished">sauvegarde du layout principal</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6238"/>
         <source>destroying global emulator options</source>
-        <translation>destruction des option globales de l&apos;émulateur</translation>
+        <translation type="unfinished">destruction des option globales de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6245"/>
         <source>destroying preview</source>
-        <translation>destruction de la capture</translation>
+        <translation type="unfinished">destruction de la capture</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6249"/>
         <source>destroying flyer</source>
-        <translation>destruction du flyer</translation>
+        <translation type="unfinished">destruction du flyer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6269"/>
         <source>destroying PCB</source>
-        <translation>destruction du PCB</translation>
+        <translation type="unfinished">destruction du PCB</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6273"/>
         <source>destroying about dialog</source>
-        <translation>destruction de la fenêtre &apos;A propos&apos;</translation>
+        <translation type="unfinished">destruction de la fenêtre &apos;A propos&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6286"/>
         <source>destroying image checker</source>
-        <translation>destruction du vérificateur d&apos;images</translation>
+        <translation type="unfinished">destruction du vérificateur d&apos;images</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6291"/>
         <source>destroying sample checker</source>
-        <translation>destruction du vérificateur de samples</translation>
+        <translation type="unfinished">destruction du vérificateur de samples</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6296"/>
         <location filename="../../qmc2main.cpp" line="6301"/>
         <source>destroying ROMAlyzer</source>
-        <translation>destruction de ROMAlyzer</translation>
+        <translation type="unfinished">destruction de ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6321"/>
         <source>destroying demo mode dialog</source>
-        <translation>destruction de la fenêtre du mode Démo</translation>
+        <translation type="unfinished">destruction de la fenêtre du mode Démo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6052"/>
         <source>disconnecting audio source from audio sink</source>
-        <translation>déconnecte l&apos;audio du mixer audio</translation>
+        <translation type="unfinished">déconnecte l&apos;audio du mixer audio</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="764"/>
@@ -9283,17 +9284,17 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="6063"/>
         <source>destroying YouTube video widget</source>
-        <translation>destruction du widget de vidéo YouTube</translation>
+        <translation type="unfinished">destruction du widget de vidéo YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6326"/>
         <source>destroying process manager</source>
-        <translation>destruction du manager de processus</translation>
+        <translation type="unfinished">destruction du manager de processus</translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="6336"/>
         <source>killing %n running emulator(s) on exit</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>tue %n émulateur(s) en fonctionnement à la sortie        </numerusform>
             <numerusform>tue %n émulateur(s) en fonctionnement à la sortie</numerusform>
         </translation>
@@ -9301,7 +9302,7 @@ Faut-il les tuer à la sortie ?</translation>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="6339"/>
         <source>keeping %n running emulator(s) alive</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>conserve %n émulateur(s) en fonctionnement        </numerusform>
             <numerusform>conserve %n émulateur(s) en fonctionnement</numerusform>
         </translation>
@@ -9309,19 +9310,19 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="6355"/>
         <source>destroying network access manager</source>
-        <translation>destruction du manager de connection réseau</translation>
+        <translation type="unfinished">destruction du manager de connection réseau</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6359"/>
         <source>so long and thanks for all the fish</source>
-        <translation>Salut, et encore merci pour le poisson</translation>
+        <translation type="unfinished">Salut, et encore merci pour le poisson</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="15"/>
         <location filename="../../macros.h" line="581"/>
         <location filename="../../macros.h" line="584"/>
         <source>M.A.M.E. Catalog / Launcher II</source>
-        <translation>M.A.M.E. Catalog / Launcher II</translation>
+        <translation type="unfinished">M.A.M.E. Catalog / Launcher II</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="92"/>
@@ -9333,13 +9334,13 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1168"/>
         <location filename="../../qmc2main.cpp" line="1200"/>
         <source>Tag</source>
-        <translation>Tag</translation>
+        <translation type="unfinished">Tag</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="97"/>
         <location filename="../../qmc2main.cpp" line="1100"/>
         <source>Icon / Value</source>
-        <translation>Icône / Valeur</translation>
+        <translation type="unfinished">Icône / Valeur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="102"/>
@@ -9351,7 +9352,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1172"/>
         <location filename="../../qmc2main.cpp" line="1204"/>
         <source>Year</source>
-        <translation>Année</translation>
+        <translation type="unfinished">Année</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="107"/>
@@ -9363,7 +9364,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1174"/>
         <location filename="../../qmc2main.cpp" line="1206"/>
         <source>Manufacturer</source>
-        <translation>Fabricant</translation>
+        <translation type="unfinished">Fabricant</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="127"/>
@@ -9375,7 +9376,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1182"/>
         <location filename="../../qmc2main.cpp" line="1214"/>
         <source>Driver status</source>
-        <translation>Statut du driver</translation>
+        <translation type="unfinished">Statut du driver</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="242"/>
@@ -9385,114 +9386,114 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1170"/>
         <location filename="../../qmc2main.cpp" line="1202"/>
         <source>Icon</source>
-        <translation>Icône</translation>
+        <translation type="unfinished">Icône</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="770"/>
         <source>&amp;Search</source>
-        <translation>&amp;Recherche</translation>
+        <translation type="unfinished">&amp;Recherche</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="832"/>
         <location filename="../../qmc2main.ui" line="835"/>
         <source>Search result</source>
-        <translation>Résultat de recherche</translation>
+        <translation type="unfinished">Résultat de recherche</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="860"/>
         <source>Favo&amp;rites</source>
-        <translation>Favo&amp;ris</translation>
+        <translation type="unfinished">Favo&amp;ris</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="980"/>
         <source>Emulator</source>
-        <translation>Emulateur</translation>
+        <translation type="unfinished">Emulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="671"/>
         <location filename="../../qmc2main.ui" line="674"/>
         <source>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search - T:Tagged</source>
-        <translation>L:Listé - C:Correct - M:à peu près correct - I:Incorrect - N:Non trouvé - U:Inconnu - S:Recherche - T:Taggé</translation>
+        <translation type="unfinished">L:Listé - C:Correct - M:à peu près correct - I:Incorrect - N:Non trouvé - U:Inconnu - S:Recherche - T:Taggé</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1481"/>
         <source>Fl&amp;yer</source>
-        <translation>Fl&amp;yer</translation>
+        <translation type="unfinished">Fl&amp;yer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1562"/>
         <source>&amp;Configuration</source>
-        <translation>&amp;Configuration</translation>
+        <translation type="unfinished">&amp;Configuration</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1571"/>
         <source>&amp;Devices</source>
-        <translation>&amp;Périphériques</translation>
+        <translation type="unfinished">&amp;Périphériques</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1598"/>
         <source>Mar&amp;quee</source>
-        <translation>Mar&amp;quee</translation>
+        <translation type="unfinished">Mar&amp;quee</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1616"/>
         <source>MA&amp;WS</source>
-        <translation>MA&amp;WS</translation>
+        <translation type="unfinished">MA&amp;WS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1625"/>
         <source>&amp;PCB</source>
-        <translation>&amp;PCB</translation>
+        <translation type="unfinished">&amp;PCB</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1634"/>
         <source>Softwar&amp;e list</source>
-        <translation>Liste des logici&amp;els</translation>
+        <translation type="unfinished">Liste des logici&amp;els</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1643"/>
         <source>&amp;YouTube</source>
-        <translation>&amp;YouTube</translation>
+        <translation type="unfinished">&amp;YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1703"/>
         <location filename="../../qmc2main.ui" line="1706"/>
         <source>Frontend log</source>
-        <translation>log du Frontend</translation>
+        <translation type="unfinished">log du Frontend</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1733"/>
         <source>Emulator &amp;log</source>
-        <translation>&amp;Log de l&apos;émulateur</translation>
+        <translation type="unfinished">&amp;Log de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1748"/>
         <location filename="../../qmc2main.ui" line="1751"/>
         <source>Emulator log</source>
-        <translation>log de l&apos;émulateur</translation>
+        <translation type="unfinished">log de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1878"/>
         <location filename="../../qmc2main.ui" line="1881"/>
         <source>Playlist (move items by dragging &amp; dropping them)</source>
-        <translation>Liste de lecture (déplacer les objets par glisser &amp; déposer)</translation>
+        <translation type="unfinished">Liste de lecture (déplacer les objets par glisser &amp; déposer)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2131"/>
         <location filename="../../qmc2main.ui" line="2134"/>
         <source>Enter URL to add to playlist</source>
-        <translation>Entrer une URL à ajouter à la liste de lecture</translation>
+        <translation type="unfinished">Entrer une URL à ajouter à la liste de lecture</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2174"/>
         <location filename="../../qmc2main.ui" line="2177"/>
         <source>Setup available audio effects</source>
-        <translation>Configurer les effets audio disponibles</translation>
+        <translation type="unfinished">Configurer les effets audio disponibles</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2421"/>
         <source>Automatically remove successfully finished downloads from this list</source>
-        <translation>Automatiquement supprimer les téléchargements réussis de cette liste</translation>
+        <translation type="unfinished">Automatiquement supprimer les téléchargements réussis de cette liste</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2496"/>
@@ -9508,68 +9509,68 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2547"/>
         <source>&amp;Help</source>
-        <translation>&amp;Aide</translation>
+        <translation type="unfinished">&amp;Aide</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2561"/>
         <source>&amp;Tools</source>
-        <translation>&amp;Outils</translation>
+        <translation type="unfinished">&amp;Outils</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2735"/>
         <source>&amp;Check</source>
-        <translation>Vérifi&amp;cation</translation>
+        <translation type="unfinished">Vérifi&amp;cation</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2630"/>
         <source>&amp;View</source>
-        <translation>&amp;Vue</translation>
+        <translation type="unfinished">&amp;Vue</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2658"/>
         <source>&amp;Tag</source>
-        <translation>&amp;Tag</translation>
+        <translation type="unfinished">&amp;Tag</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2803"/>
         <source>Toolbar</source>
-        <translation>Barre d&apos;outils</translation>
+        <translation type="unfinished">Barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2850"/>
         <source>Check &amp;samples...</source>
-        <translation>Verifier les &amp;samples...</translation>
+        <translation type="unfinished">Verifier les &amp;samples...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2859"/>
         <source>Ctrl+2</source>
-        <translation>Ctrl+2</translation>
+        <translation type="unfinished">Ctrl+2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2880"/>
         <source>Ctrl+3</source>
-        <translation>Ctrl+3</translation>
+        <translation type="unfinished">Ctrl+3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2901"/>
         <source>Ctrl+P</source>
-        <translation>Ctrl+P</translation>
+        <translation type="unfinished">Ctrl+P</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3198"/>
         <source>Analyse ROM (tagged)...</source>
-        <translation>Analyse de ROM (taggée)...</translation>
+        <translation type="unfinished">Analyse de ROM (taggée)...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3201"/>
         <source>Analyse ROM (tagged)</source>
-        <translation>Analyse de ROM (taggée)</translation>
+        <translation type="unfinished">Analyse de ROM (taggée)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3204"/>
         <location filename="../../qmc2main.ui" line="3207"/>
         <source>Analyse all tagged sets with ROMAlyzer</source>
-        <translation>Analyse tous les jeux taggés avec ROMAlyzer</translation>
+        <translation type="unfinished">Analyse tous les jeux taggés avec ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2779"/>
@@ -9718,7 +9719,7 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3604"/>
         <source>Ctrl+Shift+C</source>
-        <translation>Ctrl+Shift+C</translation>
+        <translation type="unfinished">Ctrl+Shift+C</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3619"/>
@@ -9741,18 +9742,18 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3718"/>
         <source>Run external ROM tool (tagged)...</source>
-        <translation>Lancer un outil de ROM externe (taggé)...</translation>
+        <translation type="unfinished">Lancer un outil de ROM externe (taggé)...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3721"/>
         <location filename="../../qmc2main.ui" line="3724"/>
         <source>Run tool to process ROM data externally for all tagged sets</source>
-        <translation>Lancer l&apos;outil pour analyser les données de roms en externe pour tous les sets taggés</translation>
+        <translation type="unfinished">Lancer l&apos;outil pour analyser les données de roms en externe pour tous les sets taggés</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3727"/>
         <source>Ctrl+Shift+F9</source>
-        <translation>Ctrl+Shift+F9</translation>
+        <translation type="unfinished">Ctrl+Shift+F9</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3763"/>
@@ -9779,17 +9780,17 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3837"/>
         <source>Play (tagged)</source>
-        <translation>Jouer (taggé)</translation>
+        <translation type="unfinished">Jouer (taggé)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3855"/>
         <source>Play embedded (tagged)</source>
-        <translation>Jouer embarqué (taggé)</translation>
+        <translation type="unfinished">Jouer embarqué (taggé)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3873"/>
         <source>To favorites (tagged)</source>
-        <translation>Ajouter aux favoris (taggé)</translation>
+        <translation type="unfinished">Ajouter aux favoris (taggé)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3882"/>
@@ -9799,82 +9800,82 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3894"/>
         <source>ROM state (tagged)</source>
-        <translation>Statut de ROM (taggé)</translation>
+        <translation type="unfinished">Statut de ROM (taggé)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3897"/>
         <location filename="../../qmc2main.ui" line="3900"/>
         <source>Check ROM states of all tagged sets</source>
-        <translation>Vérifier les états de toutes les sets taggés</translation>
+        <translation type="unfinished">Vérifier les états de toutes les sets taggés</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3903"/>
         <source>Ctrl+Shift+S</source>
-        <translation>Ctrl+Shift+S</translation>
+        <translation type="unfinished">Ctrl+Shift+S</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3915"/>
         <source>E&amp;xit / Stop</source>
-        <translation>Quitter / St&amp;op</translation>
+        <translation type="unfinished">Quitter / St&amp;op</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3918"/>
         <location filename="../../qmc2main.ui" line="3921"/>
         <source>Exit program / Stop any active processing</source>
-        <translation>Quitter le programme / Arrêter tout processus actif</translation>
+        <translation type="unfinished">Quitter le programme / Arrêter tout processus actif</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3924"/>
         <source>Ctrl+X</source>
-        <translation>Ctrl+X</translation>
+        <translation type="unfinished">Ctrl+X</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3936"/>
         <source>Set tag</source>
-        <translation>Placer le tag</translation>
+        <translation type="unfinished">Placer le tag</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3939"/>
         <location filename="../../qmc2main.ui" line="3942"/>
         <source>Set tag mark</source>
-        <translation>Placer la marque de tag</translation>
+        <translation type="unfinished">Placer la marque de tag</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3945"/>
         <source>Ctrl+Shift+T</source>
-        <translation>Ctrl+Shift+T</translation>
+        <translation type="unfinished">Ctrl+Shift+T</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3957"/>
         <source>Unset tag</source>
-        <translation>Enlever le tag</translation>
+        <translation type="unfinished">Enlever le tag</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3960"/>
         <location filename="../../qmc2main.ui" line="3963"/>
         <source>Unset tag mark</source>
-        <translation>Enlever la marque de tag</translation>
+        <translation type="unfinished">Enlever la marque de tag</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3966"/>
         <source>Ctrl+Shift+U</source>
-        <translation>Ctrl+Shift+U</translation>
+        <translation type="unfinished">Ctrl+Shift+U</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3978"/>
         <source>Toggle tag</source>
-        <translation>Bascule le Tag</translation>
+        <translation type="unfinished">Bascule le Tag</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3981"/>
         <location filename="../../qmc2main.ui" line="3984"/>
         <source>Toggle tag mark</source>
-        <translation>Bascule la marque de tag</translation>
+        <translation type="unfinished">Bascule la marque de tag</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3987"/>
         <source>Ctrl+Shift+G</source>
-        <translation>Ctrl+Shift+G</translation>
+        <translation type="unfinished">Ctrl+Shift+G</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3999"/>
@@ -9911,50 +9912,50 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="4041"/>
         <source>Tag all</source>
-        <translation>Tagger tout</translation>
+        <translation type="unfinished">Tagger tout</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4044"/>
         <location filename="../../qmc2main.ui" line="4047"/>
         <source>Set tag mark for all sets</source>
-        <translation>Placer la marque de tag pour tous les sets</translation>
+        <translation type="unfinished">Placer la marque de tag pour tous les sets</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4050"/>
         <source>Ctrl+Shift+L</source>
-        <translation>Ctrl+Shift+L</translation>
+        <translation type="unfinished">Ctrl+Shift+L</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4062"/>
         <source>Untag all</source>
-        <translation>Enlever le tag pour tout</translation>
+        <translation type="unfinished">Enlever le tag pour tout</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4065"/>
         <location filename="../../qmc2main.ui" line="4068"/>
         <source>Unset all tag marks</source>
-        <translation>Enlever la marque de tag pour tout</translation>
+        <translation type="unfinished">Enlever la marque de tag pour tout</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4071"/>
         <source>Ctrl+Shift+N</source>
-        <translation>Ctrl+Shift+N</translation>
+        <translation type="unfinished">Ctrl+Shift+N</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4083"/>
         <source>Invert all tags</source>
-        <translation>Inverser tous les tags</translation>
+        <translation type="unfinished">Inverser tous les tags</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4086"/>
         <location filename="../../qmc2main.ui" line="4089"/>
         <source>Invert all tag marks</source>
-        <translation>Inverser toutes les marques de tags</translation>
+        <translation type="unfinished">Inverser toutes les marques de tags</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4092"/>
         <source>Ctrl+Shift+I</source>
-        <translation>Ctrl+Shift+I</translation>
+        <translation type="unfinished">Ctrl+Shift+I</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4104"/>
@@ -10359,7 +10360,7 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2913"/>
         <source>&amp;Documentation...</source>
-        <translation>&amp;Documentation...</translation>
+        <translation type="unfinished">&amp;Documentation...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="49"/>
@@ -10481,60 +10482,60 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2922"/>
         <source>Ctrl+H</source>
-        <translation>Ctrl+H</translation>
+        <translation type="unfinished">Ctrl+H</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2937"/>
         <location filename="../../qmc2main.ui" line="2940"/>
         <source>About M.A.M.E. Catalog / Launcher II</source>
-        <translation>A propos de M.A.M.E. Catalog / Launcher II</translation>
+        <translation type="unfinished">A propos de M.A.M.E. Catalog / Launcher II</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2961"/>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation type="unfinished">Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2973"/>
         <source>Check &amp;ROMs...</source>
-        <translation>Vérifier les &amp;ROMs...</translation>
+        <translation type="unfinished">Vérifier les &amp;ROMs...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2976"/>
         <location filename="../../qmc2main.ui" line="2979"/>
         <source>Check ROM collection</source>
-        <translation>Vérifier la collection de ROMS</translation>
+        <translation type="unfinished">Vérifier la collection de ROMS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2982"/>
         <source>Ctrl+1</source>
-        <translation>Ctrl+1</translation>
+        <translation type="unfinished">Ctrl+1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2994"/>
         <source>&amp;Options...</source>
-        <translation>&amp;Options...</translation>
+        <translation type="unfinished">&amp;Options...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2997"/>
         <source>Options</source>
-        <translation>Options</translation>
+        <translation type="unfinished">Options</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3000"/>
         <location filename="../../qmc2main.ui" line="3003"/>
         <source>Frontend setup and global emulator configuration</source>
-        <translation>Configuration du Frontend et de l&apos;émulateur</translation>
+        <translation type="unfinished">Configuration du Frontend et de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3006"/>
         <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
+        <translation type="unfinished">Ctrl+O</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3018"/>
         <source>&amp;Reload</source>
-        <translation>&amp;Recharger la liste des jeux</translation>
+        <translation type="unfinished">&amp;Recharger la liste des jeux</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3021"/>
@@ -10545,24 +10546,24 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3027"/>
         <source>Ctrl+R</source>
-        <translation>Ctrl+R</translation>
+        <translation type="unfinished">Ctrl+R</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3035"/>
         <location filename="../../qmc2main.ui" line="3038"/>
         <location filename="../../qmc2main.ui" line="3041"/>
         <source>Clear image cache</source>
-        <translation>Nettoyer le cache d&apos;images</translation>
+        <translation type="unfinished">Nettoyer le cache d&apos;images</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3044"/>
         <source>Ctrl+I</source>
-        <translation>Ctrl+I</translation>
+        <translation type="unfinished">Ctrl+I</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3061"/>
         <source>Ctrl+T</source>
-        <translation>Ctrl+T</translation>
+        <translation type="unfinished">Ctrl+T</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3076"/>
@@ -10587,29 +10588,29 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3103"/>
         <source>F5</source>
-        <translation>F5</translation>
+        <translation type="unfinished">F5</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3124"/>
         <source>F6</source>
-        <translation>F6</translation>
+        <translation type="unfinished">F6</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3132"/>
         <location filename="../../qmc2main.ui" line="3135"/>
         <source>Clear icon cache</source>
-        <translation>Nettoyer le cache d&apos;icônes</translation>
+        <translation type="unfinished">Nettoyer le cache d&apos;icônes</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3138"/>
         <source>Ctrl+N</source>
-        <translation>Ctrl+N</translation>
+        <translation type="unfinished">Ctrl+N</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3150"/>
         <location filename="../../qmc2main.ui" line="3153"/>
         <source>ROM state</source>
-        <translation>statut de ROM</translation>
+        <translation type="unfinished">statut de ROM</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3156"/>
@@ -10624,12 +10625,12 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3162"/>
         <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <translation type="unfinished">Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3177"/>
         <source>Analyse ROM</source>
-        <translation>Analyse ROM</translation>
+        <translation type="unfinished">Analyse ROM</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3180"/>
@@ -10640,49 +10641,49 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3186"/>
         <source>Ctrl+D</source>
-        <translation>Ctrl+D</translation>
+        <translation type="unfinished">Ctrl+D</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3231"/>
         <source>Ctrl+Z</source>
-        <translation>Ctrl+Z</translation>
+        <translation type="unfinished">Ctrl+Z</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3303"/>
         <source>F11</source>
-        <translation>F11</translation>
+        <translation type="unfinished">F11</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3595"/>
         <source>Check template map</source>
-        <translation>Vérifier le template</translation>
+        <translation type="unfinished">Vérifier le template</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3598"/>
         <location filename="../../qmc2main.ui" line="3601"/>
         <source>Check template map against the configuration options of the currently selected emulator</source>
-        <translation>Vérifier le template avec les options de configuration de l&apos;émulateur actuel</translation>
+        <translation type="unfinished">Vérifier le template avec les options de configuration de l&apos;émulateur actuel</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3625"/>
         <source>Ctrl+Shift+P</source>
-        <translation>Ctrl+Shift+P</translation>
+        <translation type="unfinished">Ctrl+Shift+P</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3637"/>
         <source>&amp;Demo mode...</source>
-        <translation>mode &amp;Démo...</translation>
+        <translation type="unfinished">mode &amp;Démo...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3640"/>
         <location filename="../../qmc2main.ui" line="3643"/>
         <source>Open the demo mode dialog</source>
-        <translation>Ouvrir la fenêtre du mode démo</translation>
+        <translation type="unfinished">Ouvrir la fenêtre du mode démo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3210"/>
         <source>Ctrl+Shift+D</source>
-        <translation>Ctrl+Shift+D</translation>
+        <translation type="unfinished">Ctrl+Shift+D</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2934"/>
@@ -10697,93 +10698,93 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3655"/>
         <source>By category</source>
-        <translation>Par catégorie</translation>
+        <translation type="unfinished">Par catégorie</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3664"/>
         <source>F7</source>
-        <translation>F7</translation>
+        <translation type="unfinished">F7</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3676"/>
         <source>By version</source>
-        <translation>Par version​‎</translation>
+        <translation type="unfinished">Par version​‎</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3685"/>
         <source>F8</source>
-        <translation>F8</translation>
+        <translation type="unfinished">F8</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3697"/>
         <source>Run external ROM tool...</source>
-        <translation>Lancer un outil de ROM externe...</translation>
+        <translation type="unfinished">Lancer un outil de ROM externe...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3700"/>
         <location filename="../../qmc2main.ui" line="3703"/>
         <source>Run tool to process ROM data externally</source>
-        <translation>Lancer l&apos;outil pour analyser les données de roms en externe</translation>
+        <translation type="unfinished">Lancer l&apos;outil pour analyser les données de roms en externe</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3706"/>
         <source>F9</source>
-        <translation>F9</translation>
+        <translation type="unfinished">F9</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3735"/>
         <location filename="../../qmc2main.ui" line="3738"/>
         <source>Clear YouTube cache</source>
-        <translation>Nettoyer le cache YouTube</translation>
+        <translation type="unfinished">Nettoyer le cache YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3741"/>
         <source>Ctrl+Y</source>
-        <translation>Ctrl+Y</translation>
+        <translation type="unfinished">Ctrl+Y</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3749"/>
         <source>Clear ROM state cache</source>
-        <translation>Nettoyer le cache des statuts de ROM</translation>
+        <translation type="unfinished">Nettoyer le cache des statuts de ROM</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3752"/>
         <location filename="../../qmc2main.ui" line="3755"/>
         <source>Forcedly clear (remove) the ROM state cache</source>
-        <translation>Nettoyage forcé (suppression) du cache de statut de ROM</translation>
+        <translation type="unfinished">Nettoyage forcé (suppression) du cache de statut de ROM</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3777"/>
         <source>Clear XML cache</source>
-        <translation>Nettoyer le cache XML</translation>
+        <translation type="unfinished">Nettoyer le cache XML</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3780"/>
         <location filename="../../qmc2main.ui" line="3783"/>
         <source>Forcedly clear (remove) the XML cache</source>
-        <translation>Nettoyage forcé (suppression) du cache XML</translation>
+        <translation type="unfinished">Nettoyage forcé (suppression) du cache XML</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3805"/>
         <source>Clear software list cache</source>
-        <translation>Nettoyer le cache de la liste des logiciels</translation>
+        <translation type="unfinished">Nettoyer le cache de la liste des logiciels</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3808"/>
         <location filename="../../qmc2main.ui" line="3811"/>
         <source>Forcedly clear (remove) the software list cache</source>
-        <translation>Nettoyage forcé (suppression) du cache de la liste des logiciels</translation>
+        <translation type="unfinished">Nettoyage forcé (suppression) du cache de la liste des logiciels</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3819"/>
         <source>Clear ALL emulator caches</source>
-        <translation>Nettoyer TOUS les caches des émulateurs</translation>
+        <translation type="unfinished">Nettoyer TOUS les caches des émulateurs</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3822"/>
         <location filename="../../qmc2main.ui" line="3825"/>
         <source>Forcedly clear (remove) ALL emulator related caches</source>
-        <translation>Nettoyage forcé (suppression) de TOUS les caches des émulateurs</translation>
+        <translation type="unfinished">Nettoyage forcé (suppression) de TOUS les caches des émulateurs</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="112"/>
@@ -10795,17 +10796,17 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1176"/>
         <location filename="../../qmc2main.cpp" line="1208"/>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation type="unfinished">Nom</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5491"/>
         <source>Are you sure you want to clear the favorites list?</source>
-        <translation>Etes-vous sûr(e) de vouloir vider la liste des favoris ?</translation>
+        <translation type="unfinished">Etes-vous sûr(e) de vouloir vider la liste des favoris ?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5536"/>
         <source>Are you sure you want to clear the play history?</source>
-        <translation>Etes-vous sûr(e) de vouloir vider l&apos;historique des jeux joués ?</translation>
+        <translation type="unfinished">Etes-vous sûr(e) de vouloir vider l&apos;historique des jeux joués ?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3691"/>
@@ -10817,7 +10818,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="4579"/>
         <location filename="../../qmc2main.cpp" line="4583"/>
         <source>No data available</source>
-        <translation>Pas de données disponibles</translation>
+        <translation type="unfinished">Pas de données disponibles</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1864"/>
@@ -10863,22 +10864,22 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.ui" line="1541"/>
         <location filename="../../qmc2main.ui" line="1544"/>
         <source>Detailed emulator information</source>
-        <translation>Informations détaillées d&apos;émulateur</translation>
+        <translation type="unfinished">Informations détaillées d&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1778"/>
         <source>E&amp;mulator control</source>
-        <translation>Contrôle de l&apos;é&amp;mulateur</translation>
+        <translation type="unfinished">Contrôle de l&apos;é&amp;mulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3279"/>
         <source>F12</source>
-        <translation>F12</translation>
+        <translation type="unfinished">F12</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1472"/>
         <source>Pre&amp;view</source>
-        <translation>&amp;Capture d&apos;écran</translation>
+        <translation type="unfinished">&amp;Capture d&apos;écran</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="117"/>
@@ -10890,7 +10891,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1178"/>
         <location filename="../../qmc2main.cpp" line="1210"/>
         <source>ROM types</source>
-        <translation>types de ROM</translation>
+        <translation type="unfinished">types de ROM</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="122"/>
@@ -10902,7 +10903,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1180"/>
         <location filename="../../qmc2main.cpp" line="1212"/>
         <source>Players</source>
-        <translation>Joueurs</translation>
+        <translation type="unfinished">Joueurs</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="142"/>
@@ -10913,7 +10914,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1153"/>
         <location filename="../../qmc2main.cpp" line="1220"/>
         <source>Category</source>
-        <translation>Catégorie</translation>
+        <translation type="unfinished">Catégorie</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="147"/>
@@ -10924,105 +10925,105 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1156"/>
         <location filename="../../qmc2main.cpp" line="1188"/>
         <source>Version</source>
-        <translation>Version​‎</translation>
+        <translation type="unfinished">Version​‎</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="890"/>
         <source>Pl&amp;ayed</source>
-        <translation>J&amp;oués</translation>
+        <translation type="unfinished">J&amp;oués</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1905"/>
         <location filename="../../qmc2main.ui" line="1908"/>
         <location filename="../../qmc2main.ui" line="3315"/>
         <source>Previous track</source>
-        <translation>Piste précédente</translation>
+        <translation type="unfinished">Piste précédente</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1925"/>
         <location filename="../../qmc2main.ui" line="1928"/>
         <location filename="../../qmc2main.ui" line="3336"/>
         <source>Next track</source>
-        <translation>Piste suivante</translation>
+        <translation type="unfinished">Piste suivante</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1945"/>
         <location filename="../../qmc2main.ui" line="1948"/>
         <location filename="../../qmc2main.ui" line="3357"/>
         <source>Fast backward</source>
-        <translation>Retour rapide</translation>
+        <translation type="unfinished">Retour rapide</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1974"/>
         <location filename="../../qmc2main.ui" line="1977"/>
         <location filename="../../qmc2main.ui" line="3375"/>
         <source>Fast forward</source>
-        <translation>Avance rapide</translation>
+        <translation type="unfinished">Avance rapide</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2207"/>
         <location filename="../../qmc2main.ui" line="2210"/>
         <source>Start playing automatically when QMC2 has started</source>
-        <translation>Commencer la lecture automatiquement au démarrage de QMC2</translation>
+        <translation type="unfinished">Commencer la lecture automatiquement au démarrage de QMC2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2213"/>
         <source>Play on start</source>
-        <translation>Jouer au démarrage</translation>
+        <translation type="unfinished">Jouer au démarrage</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2226"/>
         <location filename="../../qmc2main.ui" line="2229"/>
         <source>Select random tracks from playlist</source>
-        <translation>Choisir une piste au hazard dans la liste</translation>
+        <translation type="unfinished">Choisir une piste au hazard dans la liste</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2232"/>
         <source>Shuffle</source>
-        <translation>Aléatoire</translation>
+        <translation type="unfinished">Aléatoire</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2245"/>
         <location filename="../../qmc2main.ui" line="2248"/>
         <source>Automatically pause audio playback when at least one emulator is running</source>
-        <translation>Met automatiquement en pause la lecture audio quand un émulateur est en fonctionnement</translation>
+        <translation type="unfinished">Met automatiquement en pause la lecture audio quand un émulateur est en fonctionnement</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2251"/>
         <source>Pause</source>
-        <translation>Pause</translation>
+        <translation type="unfinished">Pause</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2273"/>
         <source>Fade in/out</source>
-        <translation>Fondu entrée/sortie</translation>
+        <translation type="unfinished">Fondu entrée/sortie</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2424"/>
         <source>Remove finished</source>
-        <translation>Retirer les finis</translation>
+        <translation type="unfinished">Retirer les finis</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2469"/>
         <source>Snapsh&amp;ot</source>
-        <translation>Capt&amp;ure d&apos;écran</translation>
+        <translation type="unfinished">Capt&amp;ure d&apos;écran</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2478"/>
         <source>Project&amp;MESS</source>
-        <translation>Projet&amp;MESS</translation>
+        <translation type="unfinished">Projet&amp;MESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1652"/>
         <location filename="../../qmc2main.ui" line="2487"/>
         <location filename="../../qmc2main.cpp" line="4349"/>
         <source>&amp;Notes</source>
-        <translation>&amp;Notes</translation>
+        <translation type="unfinished">&amp;Notes</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2775"/>
         <source>&amp;Display</source>
-        <translation>&amp;Affichage</translation>
+        <translation type="unfinished">&amp;Affichage</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2871"/>
@@ -11038,407 +11039,407 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3321"/>
         <source>Ctrl+Alt+Left</source>
-        <translation>Ctrl+Alt+Left</translation>
+        <translation type="unfinished">Ctrl+Alt+Left</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3342"/>
         <source>Ctrl+Alt+Right</source>
-        <translation>Ctrl+Alt+Right</translation>
+        <translation type="unfinished">Ctrl+Alt+Right</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3363"/>
         <source>Ctrl+Alt+B</source>
-        <translation>Ctrl+Alt+B</translation>
+        <translation type="unfinished">Ctrl+Alt+B</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3381"/>
         <source>Ctrl+Alt+F</source>
-        <translation>Ctrl+Alt+F</translation>
+        <translation type="unfinished">Ctrl+Alt+F</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3402"/>
         <source>Ctrl+Alt+S</source>
-        <translation>Ctrl+Alt+S</translation>
+        <translation type="unfinished">Ctrl+Alt+S</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3450"/>
         <source>Ctrl+Alt+P</source>
-        <translation>Ctrl+Alt+P</translation>
+        <translation type="unfinished">Ctrl+Alt+P</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2066"/>
         <location filename="../../qmc2main.ui" line="2069"/>
         <source>Progress indicator for current track</source>
-        <translation>Indicateur de progression de la piste actuelle</translation>
+        <translation type="unfinished">Indicateur de progression de la piste actuelle</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2075"/>
         <location filename="../../qmc2main.cpp" line="7409"/>
         <location filename="../../qmc2main.cpp" line="7421"/>
         <source>%vs (%ms total)</source>
-        <translation>%vs (%ms total)</translation>
+        <translation type="unfinished">%vs (%ms total)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3426"/>
         <source>Ctrl+Alt+#</source>
-        <translation>Ctrl+Alt+#</translation>
+        <translation type="unfinished">Ctrl+Alt+#</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2003"/>
         <location filename="../../qmc2main.ui" line="2006"/>
         <location filename="../../qmc2main.ui" line="3396"/>
         <source>Stop track</source>
-        <translation>Stopper la piste</translation>
+        <translation type="unfinished">Stopper la piste</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2026"/>
         <location filename="../../qmc2main.ui" line="2029"/>
         <location filename="../../qmc2main.ui" line="3420"/>
         <source>Pause track</source>
-        <translation>Mettre en pause la piste</translation>
+        <translation type="unfinished">Mettre en pause la piste</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2049"/>
         <location filename="../../qmc2main.ui" line="2052"/>
         <location filename="../../qmc2main.ui" line="3444"/>
         <source>Play track</source>
-        <translation>Lire la piste</translation>
+        <translation type="unfinished">Lire la piste</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1796"/>
         <location filename="../../qmc2main.ui" line="1799"/>
         <source>Emulator control panel</source>
-        <translation>Panneau de contrôle de l&apos;émulateur</translation>
+        <translation type="unfinished">Panneau de contrôle de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1809"/>
         <source>#</source>
-        <translation>#</translation>
+        <translation type="unfinished">#</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1839"/>
         <source>PID</source>
-        <translation>PID</translation>
+        <translation type="unfinished">PID</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1819"/>
         <location filename="../../qmc2main.ui" line="2333"/>
         <source>Status</source>
-        <translation>Statut</translation>
+        <translation type="unfinished">Statut</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1824"/>
         <source>LED0</source>
-        <translation>LED0</translation>
+        <translation type="unfinished">LED0</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1829"/>
         <source>LED1</source>
-        <translation>LED1</translation>
+        <translation type="unfinished">LED1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1844"/>
         <source>Command</source>
-        <translation>Commande</translation>
+        <translation type="unfinished">Commande</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7663"/>
         <location filename="../../qmc2main.cpp" line="7730"/>
         <location filename="../../qmc2main.cpp" line="7740"/>
         <source>running</source>
-        <translation>en fonctionnement</translation>
+        <translation type="unfinished">en fonctionnement</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7679"/>
         <source>stopped</source>
-        <translation>stoppé</translation>
+        <translation type="unfinished">stoppé</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5120"/>
         <location filename="../../qmc2main.cpp" line="7724"/>
         <location filename="../../qmc2main.cpp" line="7738"/>
         <source>paused</source>
-        <translation>en pause</translation>
+        <translation type="unfinished">en pause</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="757"/>
         <location filename="../../qmc2main.cpp" line="5177"/>
         <source>Copy emulator command line to clipboard</source>
-        <translation>Copier la ligne de commande de l&apos;émulateur dans le presse-papier</translation>
+        <translation type="unfinished">Copier la ligne de commande de l&apos;émulateur dans le presse-papier</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="758"/>
         <location filename="../../qmc2main.cpp" line="5178"/>
         <source>&amp;Copy command</source>
-        <translation>&amp;Copier la commande</translation>
+        <translation type="unfinished">&amp;Copier la commande</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7595"/>
         <source>WARNING: can&apos;t create SDLMAME output notifier FIFO, path = %1</source>
-        <translation>ATTENTION: impossible de créer la notification de sortie FIFO pour SDLMAME, répertoire = %1</translation>
+        <translation type="unfinished">ATTENTION: impossible de créer la notification de sortie FIFO pour SDLMAME, répertoire = %1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7609"/>
         <source>SDLMAME output notifier FIFO created</source>
-        <translation>notification de sortie FIFO pour SDLMAME créée</translation>
+        <translation type="unfinished">notification de sortie FIFO pour SDLMAME créée</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7613"/>
         <source>WARNING: can&apos;t open SDLMAME output notifier FIFO for reading, path = %1</source>
-        <translation>ATTENTION: impossible de lire la notification de sortie FIFO pour SDLMAME, répertoire = %1</translation>
+        <translation type="unfinished">ATTENTION: impossible de lire la notification de sortie FIFO pour SDLMAME, répertoire = %1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7695"/>
         <location filename="../../qmc2main.cpp" line="7766"/>
         <source>unhandled MAME output notification: game = %1, class = %2, what = %3, state = %4</source>
-        <translation>notification de sortie MAME inattendue: jeu = %1, classe = %2, quoi = %3, état = %4</translation>
+        <translation type="unfinished">notification de sortie MAME inattendue: jeu = %1, classe = %2, quoi = %3, état = %4</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2565"/>
         <source>&amp;Clean up</source>
-        <translation>&amp;Nettoyer</translation>
+        <translation type="unfinished">&amp;Nettoyer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1857"/>
         <location filename="../../qmc2main.ui" line="2589"/>
         <source>&amp;Audio player</source>
-        <translation>&amp;Lecteur audio</translation>
+        <translation type="unfinished">&amp;Lecteur audio</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2955"/>
         <source>About &amp;Qt...</source>
-        <translation>Au sujet de &amp;Qt...</translation>
+        <translation type="unfinished">Au sujet de &amp;Qt...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3052"/>
         <source>Recreate template map</source>
-        <translation>Re-créer le template</translation>
+        <translation type="unfinished">Re-créer le template</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3094"/>
         <source>Full detail</source>
-        <translation>Liste détaillée</translation>
+        <translation type="unfinished">Liste détaillée</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3174"/>
         <source>Analyse ROM...</source>
-        <translation>Analyse de ROM...</translation>
+        <translation type="unfinished">Analyse de ROM...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="225"/>
         <source>Parent / clone hierarchy</source>
-        <translation>Hiérarchie parent / clone</translation>
+        <translation type="unfinished">Hiérarchie parent / clone</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3118"/>
         <location filename="../../qmc2main.ui" line="3121"/>
         <source>View parent / clone hierarchy</source>
-        <translation>Voir la hiérarchie parent / clone</translation>
+        <translation type="unfinished">Voir la hiérarchie parent / clone</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3318"/>
         <source>Play previous track</source>
-        <translation>Jouer le morceau précédent</translation>
+        <translation type="unfinished">Jouer le morceau précédent</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3339"/>
         <source>Play next track</source>
-        <translation>Jouer le morceau suivant</translation>
+        <translation type="unfinished">Jouer le morceau suivant</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3360"/>
         <source>Fast backward within track</source>
-        <translation>Retour rapide dans le morceau</translation>
+        <translation type="unfinished">Retour rapide dans le morceau</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3399"/>
         <source>Stop current track</source>
-        <translation>Stopper la lecture</translation>
+        <translation type="unfinished">Stopper la lecture</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3423"/>
         <source>Pause current track</source>
-        <translation>Mettre en pause</translation>
+        <translation type="unfinished">Mettre en pause</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3447"/>
         <source>Play current track</source>
-        <translation>Lecture du morceau</translation>
+        <translation type="unfinished">Lecture du morceau</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3378"/>
         <source>Fast forward within track</source>
-        <translation>Avance rapide dans le morceau</translation>
+        <translation type="unfinished">Avance rapide dans le morceau</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7249"/>
         <source>Select one or more audio files</source>
-        <translation>Sélectionner un ou plusieurs fichiers audio</translation>
+        <translation type="unfinished">Sélectionner un ou plusieurs fichiers audio</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2111"/>
         <location filename="../../qmc2main.ui" line="2114"/>
         <source>Browse for tracks to add to playlist</source>
-        <translation>Parcourir pour des morceaux à ajouter dans la liste de lecture</translation>
+        <translation type="unfinished">Parcourir pour des morceaux à ajouter dans la liste de lecture</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2154"/>
         <location filename="../../qmc2main.ui" line="2157"/>
         <source>Remove selected tracks from playlist</source>
-        <translation>Enlever les morceaux sélectionnés de la liste de lecture</translation>
+        <translation type="unfinished">Enlever les morceaux sélectionnés de la liste de lecture</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2084"/>
         <location filename="../../qmc2main.ui" line="2087"/>
         <source>Audio player volume</source>
-        <translation>Volume du lecteur audio</translation>
+        <translation type="unfinished">Volume du lecteur audio</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2267"/>
         <location filename="../../qmc2main.ui" line="2270"/>
         <source>Fade in and out on pause / resume</source>
-        <translation>Baisser / Monter le volume sur pause / reprise</translation>
+        <translation type="unfinished">Baisser / Monter le volume sur pause / reprise</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7519"/>
         <source>audio player: track info: title = &apos;%1&apos;, artist = &apos;%2&apos;, album = &apos;%3&apos;, genre = &apos;%4&apos;</source>
-        <translation>lecteur audio: info du morceau: titre = &apos;%1&apos;, artiste = &apos;%2&apos;, album = &apos;%3&apos;, genre = &apos;%4&apos;</translation>
+        <translation type="unfinished">lecteur audio: info du morceau: titre = &apos;%1&apos;, artiste = &apos;%2&apos;, album = &apos;%3&apos;, genre = &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3465"/>
         <source>Raise volume</source>
-        <translation>Monter le volume</translation>
+        <translation type="unfinished">Monter le volume</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3468"/>
         <source>Raise audio player volume</source>
-        <translation>Monter le volume du lecteur audio</translation>
+        <translation type="unfinished">Monter le volume du lecteur audio</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3471"/>
         <source>Ctrl+Alt+PgUp</source>
-        <translation>Ctrl+Alt+PgHaut</translation>
+        <translation type="unfinished">Ctrl+Alt+PgHaut</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3483"/>
         <source>Lower volume</source>
-        <translation>Baisser le volume</translation>
+        <translation type="unfinished">Baisser le volume</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3486"/>
         <source>Lower audio player volume</source>
-        <translation>Baisser le volume du lecteur audio</translation>
+        <translation type="unfinished">Baisser le volume du lecteur audio</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3489"/>
         <source>Ctrl+Alt+PgDown</source>
-        <translation>Ctrl+Alt+PgBas</translation>
+        <translation type="unfinished">Ctrl+Alt+PgBas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3501"/>
         <source>&amp;Export ROM status...</source>
-        <translation>&amp;Exporter le statut de ROM...</translation>
+        <translation type="unfinished">&amp;Exporter le statut de ROM...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3504"/>
         <location filename="../../qmc2main.ui" line="3507"/>
         <source>Export ROM status</source>
-        <translation>Exporter le statut de ROM</translation>
+        <translation type="unfinished">Exporter le statut de ROM</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3510"/>
         <source>Ctrl+E</source>
-        <translation>Ctrl+E</translation>
+        <translation type="unfinished">Ctrl+E</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6306"/>
         <source>destroying ROM status exporter</source>
-        <translation>destruction de l&apos;export de statut de ROM</translation>
+        <translation type="unfinished">destruction de l&apos;export de statut de ROM</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3055"/>
         <location filename="../../qmc2main.ui" line="3058"/>
         <source>Recreate template configuration map</source>
-        <translation>reCréation du template de configuration</translation>
+        <translation type="unfinished">reCréation du template de configuration</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="677"/>
         <source>&lt;b&gt;&lt;font color=black&gt;L:?&lt;/font&gt; &lt;font color=#00cc00&gt;C:?&lt;/font&gt; &lt;font color=#a2c743&gt;M:?&lt;/font&gt; &lt;font color=#f90000&gt;I:?&lt;/font&gt; &lt;font color=#7f7f7f&gt;N:?&lt;/font&gt; &lt;font color=#0000f9&gt;U:?&lt;/font&gt; &lt;font color=chocolate&gt;S:?&lt;/font&gt;&lt;/b&gt;</source>
-        <translation>&lt;b&gt;&lt;font color=black&gt;L:?&lt;/font&gt; &lt;font color=#00cc00&gt;C:?&lt;/font&gt; &lt;font color=#a2c743&gt;M:?&lt;/font&gt; &lt;font color=#f90000&gt;I:?&lt;/font&gt; &lt;font color=#7f7f7f&gt;N:?&lt;/font&gt; &lt;font color=#0000f9&gt;U:?&lt;/font&gt; &lt;font color=chocolate&gt;S:?&lt;/font&gt;&lt;/b&gt;</translation>
+        <translation type="unfinished">&lt;b&gt;&lt;font color=black&gt;L:?&lt;/font&gt; &lt;font color=#00cc00&gt;C:?&lt;/font&gt; &lt;font color=#a2c743&gt;M:?&lt;/font&gt; &lt;font color=#f90000&gt;I:?&lt;/font&gt; &lt;font color=#7f7f7f&gt;N:?&lt;/font&gt; &lt;font color=#0000f9&gt;U:?&lt;/font&gt; &lt;font color=chocolate&gt;S:?&lt;/font&gt;&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="746"/>
         <location filename="../../qmc2main.ui" line="749"/>
         <source>Toggle individual ROM states</source>
-        <translation>Bascule l&apos;état de ROM individuel</translation>
+        <translation type="unfinished">Bascule l&apos;état de ROM individuel</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3522"/>
         <source>QMC2 for SDLMAME</source>
-        <translation>QMC2 pour SDLMAME</translation>
+        <translation type="unfinished">QMC2 pour SDLMAME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3525"/>
         <location filename="../../qmc2main.ui" line="3528"/>
         <source>Launch QMC2 for SDLMAME</source>
-        <translation>Démarrer QMC2 pour SDLMAME</translation>
+        <translation type="unfinished">Démarrer QMC2 pour SDLMAME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3543"/>
         <source>QMC2 for SDLMESS</source>
-        <translation>QMC2 pour SDLMESS</translation>
+        <translation type="unfinished">QMC2 pour SDLMESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3546"/>
         <location filename="../../qmc2main.ui" line="3549"/>
         <source>Launch QMC2 for SDLMESS</source>
-        <translation>Démarrer QMC2 pour SDLMESS</translation>
+        <translation type="unfinished">Démarrer QMC2 pour SDLMESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3531"/>
         <source>Ctrl+Alt+1</source>
-        <translation>Ctrl+Alt+1</translation>
+        <translation type="unfinished">Ctrl+Alt+1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3552"/>
         <source>Ctrl+Alt+2</source>
-        <translation>Ctrl+Alt+2</translation>
+        <translation type="unfinished">Ctrl+Alt+2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3243"/>
         <source>&amp;Setup...</source>
-        <translation>&amp;Configurer...</translation>
+        <translation type="unfinished">&amp;Configurer...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3246"/>
         <location filename="../../qmc2main.ui" line="3249"/>
         <source>Setup arcade mode</source>
-        <translation>Configurer le mode arcade</translation>
+        <translation type="unfinished">Configurer le mode arcade</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3255"/>
         <source>Ctrl+Shift+A</source>
-        <translation>Ctrl+Shift+A</translation>
+        <translation type="unfinished">Ctrl+Shift+A</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1688"/>
         <source>&amp;Front end log</source>
-        <translation>&amp;Front end log</translation>
+        <translation type="unfinished">&amp;Front end log</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3294"/>
         <source>Toggle &amp;full screen</source>
-        <translation>Basculer en &amp;Plein écran</translation>
+        <translation type="unfinished">Basculer en &amp;Plein écran</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3297"/>
         <source>Toggle full screen</source>
-        <translation>Basculer en plein écran</translation>
+        <translation type="unfinished">Basculer en plein écran</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3300"/>
         <source>Toggle full screen / windowed mode</source>
-        <translation>Basculer en plein écran / fenêtre</translation>
+        <translation type="unfinished">Basculer en plein écran / fenêtre</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="981"/>
@@ -11446,7 +11447,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1037"/>
         <location filename="../../qmc2main.cpp" line="1065"/>
         <source>Set tab position north</source>
-        <translation>Positionner le nord</translation>
+        <translation type="unfinished">Positionner le nord</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="982"/>
@@ -11454,7 +11455,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1038"/>
         <location filename="../../qmc2main.cpp" line="1066"/>
         <source>&amp;North</source>
-        <translation>&amp;Nord</translation>
+        <translation type="unfinished">&amp;Nord</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="986"/>
@@ -11462,7 +11463,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1042"/>
         <location filename="../../qmc2main.cpp" line="1070"/>
         <source>Set tab position south</source>
-        <translation>Positionner le sud</translation>
+        <translation type="unfinished">Positionner le sud</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="987"/>
@@ -11470,7 +11471,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1043"/>
         <location filename="../../qmc2main.cpp" line="1071"/>
         <source>&amp;South</source>
-        <translation>&amp;Sud</translation>
+        <translation type="unfinished">&amp;Sud</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="991"/>
@@ -11478,7 +11479,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1047"/>
         <location filename="../../qmc2main.cpp" line="1075"/>
         <source>Set tab position west</source>
-        <translation>Positionner l&apos;ouest</translation>
+        <translation type="unfinished">Positionner l&apos;ouest</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="992"/>
@@ -11486,7 +11487,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1048"/>
         <location filename="../../qmc2main.cpp" line="1076"/>
         <source>&amp;West</source>
-        <translation>&amp;Ouest</translation>
+        <translation type="unfinished">&amp;Ouest</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="996"/>
@@ -11494,7 +11495,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1052"/>
         <location filename="../../qmc2main.cpp" line="1080"/>
         <source>Set tab position east</source>
-        <translation>Positionner l&apos;est</translation>
+        <translation type="unfinished">Positionner l&apos;est</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="997"/>
@@ -11502,7 +11503,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1053"/>
         <location filename="../../qmc2main.cpp" line="1081"/>
         <source>&amp;East</source>
-        <translation>&amp;Est</translation>
+        <translation type="unfinished">&amp;Est</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2132"/>
@@ -11548,47 +11549,47 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="6253"/>
         <source>destroying cabinet</source>
-        <translation>destruction du cabinet</translation>
+        <translation type="unfinished">destruction du cabinet</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6257"/>
         <source>destroying controller</source>
-        <translation>destruction du contrôleur</translation>
+        <translation type="unfinished">destruction du contrôleur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1526"/>
         <source>Em&amp;ulator info</source>
-        <translation>mamein&amp;fo.dat</translation>
+        <translation type="unfinished">mamein&amp;fo.dat</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1580"/>
         <source>Ca&amp;binet</source>
-        <translation>&amp;Borne (cabinet)</translation>
+        <translation type="unfinished">&amp;Borne (cabinet)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1589"/>
         <source>C&amp;ontroller</source>
-        <translation>&amp;Contrôleur</translation>
+        <translation type="unfinished">&amp;Contrôleur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1607"/>
         <source>Titl&amp;e</source>
-        <translation>Titr&amp;e</translation>
+        <translation type="unfinished">Titr&amp;e</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6261"/>
         <source>destroying marquee</source>
-        <translation>destruction du marquee</translation>
+        <translation type="unfinished">destruction du marquee</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6265"/>
         <source>destroying title</source>
-        <translation>destruction du titre</translation>
+        <translation type="unfinished">destruction du titre</translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="2584"/>
         <source>freed %n byte(s) in %1</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>%n bit libéré en %1</numerusform>
             <numerusform>%n bits libérés en %1</numerusform>
         </translation>
@@ -11596,7 +11597,7 @@ Faut-il les tuer à la sortie ?</translation>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="2584"/>
         <source>%n entry(s)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>%n entrée</numerusform>
             <numerusform>%n entrées</numerusform>
         </translation>
@@ -11604,12 +11605,12 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3587"/>
         <source>Ctrl+M</source>
-        <translation>Ctrl+M</translation>
+        <translation type="unfinished">Ctrl+M</translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="2611"/>
         <source>removed %n byte(s) in %1</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>%n bit supprimé en %1</numerusform>
             <numerusform>%n bits supprimés en %1</numerusform>
         </translation>
@@ -11617,7 +11618,7 @@ Faut-il les tuer à la sortie ?</translation>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="2611"/>
         <source>%n file(s)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>%n fichier</numerusform>
             <numerusform>%n fichiers</numerusform>
         </translation>
@@ -11626,56 +11627,56 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.ui" line="2305"/>
         <location filename="../../qmc2main.ui" line="2308"/>
         <source>List of active/inactive downloads</source>
-        <translation>Liste des téléchargements actifs/inactifs</translation>
+        <translation type="unfinished">Liste des téléchargements actifs/inactifs</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2338"/>
         <source>Progress</source>
-        <translation>Progression</translation>
+        <translation type="unfinished">Progression</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2352"/>
         <location filename="../../qmc2main.ui" line="2355"/>
         <source>Clear finished / stopped downloads from list</source>
-        <translation>Nettoyer les téléchargements finis/stoppés de la liste</translation>
+        <translation type="unfinished">Nettoyer les téléchargements finis/stoppés de la liste</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2375"/>
         <location filename="../../qmc2main.ui" line="2378"/>
         <source>Reload selected downloads</source>
-        <translation>Recharger les téléchargements sélectionnés</translation>
+        <translation type="unfinished">Recharger les téléchargements sélectionnés</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2398"/>
         <location filename="../../qmc2main.ui" line="2401"/>
         <source>Stop selected downloads</source>
-        <translation>Stopper les téléchargements sélectionnés</translation>
+        <translation type="unfinished">Stopper les téléchargements sélectionnés</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6277"/>
         <source>destroying MiniWebBrowser</source>
-        <translation>destruction du MiniWebBrowser</translation>
+        <translation type="unfinished">destruction du MiniWebBrowser</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8367"/>
         <source>Choose file to store download</source>
-        <translation>Choisir le fichier pour stocker le téléchargement</translation>
+        <translation type="unfinished">Choisir le fichier pour stocker le téléchargement</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6578"/>
         <source>loading style sheet &apos;%1&apos;</source>
-        <translation>chargement de la feuille de style &apos;%1&apos;</translation>
+        <translation type="unfinished">chargement de la feuille de style &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6587"/>
         <source>removing current style sheet</source>
-        <translation>enlever la feuille de style actuelle</translation>
+        <translation type="unfinished">enlever la feuille de style actuelle</translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="313"/>
         <location filename="../../qmc2main.cpp" line="328"/>
         <source>last message repeated %n time(s)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>dernier message répété %n fois</numerusform>
             <numerusform>dernier message répété %n fois</numerusform>
         </translation>
@@ -11683,17 +11684,17 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="541"/>
         <source>Toggle automatic pausing of embedded emulators (hold down for menu)</source>
-        <translation>Bascule la pause automatique des émulateurs embarqués (maintenir pour menu)</translation>
+        <translation type="unfinished">Bascule la pause automatique des émulateurs embarqués (maintenir pour menu)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="550"/>
         <source>Scan the pause key used by the emulator</source>
-        <translation>En attente de la touche Pause utilisée par l&apos;émulateur</translation>
+        <translation type="unfinished">En attente de la touche Pause utilisée par l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="551"/>
         <source>Scan pause key...</source>
-        <translation>En attente de la touche Pause...</translation>
+        <translation type="unfinished">En attente de la touche Pause...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3581"/>
@@ -11705,12 +11706,12 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="463"/>
         <location filename="../../qmc2main.cpp" line="1238"/>
         <source>Enter search string</source>
-        <translation>Entrer une chaîne de recherche</translation>
+        <translation type="unfinished">Entrer une chaîne de recherche</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="593"/>
         <source>Dock / undock this widget</source>
-        <translation>Accroche / Décroche ce widget</translation>
+        <translation type="unfinished">Accroche / Décroche ce widget</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="466"/>
@@ -11734,12 +11735,12 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="1638"/>
         <source>sorry, devices cannot run standalone</source>
-        <translation>désolé, les périphériques ne peuvent fonctionner seuls</translation>
+        <translation type="unfinished">désolé, les périphériques ne peuvent fonctionner seuls</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1786"/>
         <source>No devices available</source>
-        <translation>Pas de périphériques disponibles</translation>
+        <translation type="unfinished">Pas de périphériques disponibles</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1803"/>
@@ -11824,17 +11825,17 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2612"/>
         <source>YouTube on-disk cache cleared (%1)</source>
-        <translation>Cache disque YouTube nettoyé (%1)</translation>
+        <translation type="unfinished">Cache disque YouTube nettoyé (%1)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2641"/>
         <source>WARNING: cannot remove the ROM state cache file &apos;%1&apos;, please check permissions</source>
-        <translation>ATTENTION: n&apos;a pas pu enlever le fichier de cache d&apos;état de ROM &apos;%1&apos;, vérifiez les permissions</translation>
+        <translation type="unfinished">ATTENTION: n&apos;a pas pu enlever le fichier de cache d&apos;état de ROM &apos;%1&apos;, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2646"/>
         <source>triggering an automatic ROM check on next reload</source>
-        <translation>actionner la vérification automatique de ROM au prochain rafraîchissement</translation>
+        <translation type="unfinished">actionner la vérification automatique de ROM au prochain rafraîchissement</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2713"/>
@@ -11859,12 +11860,12 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3591"/>
         <source>ProjectMESS page for &apos;%1&apos; / &apos;%2&apos;</source>
-        <translation>page ProjectMESS de &apos;%1&apos; / &apos;%2&apos;</translation>
+        <translation type="unfinished">page ProjectMESS de &apos;%1&apos; / &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3596"/>
         <source>Fetching ProjectMESS page for &apos;%1&apos; / &apos;%2&apos;, please wait...</source>
-        <translation>Récupération de la page ProjectMESS de &apos;%1&apos; / &apos;%2&apos;, patientez svp...</translation>
+        <translation type="unfinished">Récupération de la page ProjectMESS de &apos;%1&apos; / &apos;%2&apos;, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4187"/>
@@ -11880,32 +11881,32 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="5152"/>
         <location filename="../../qmc2main.cpp" line="5153"/>
         <source>Toggle embedder options (hold down for menu)</source>
-        <translation>Basculer les options d&apos;embarquement (maintenir pour le menu)</translation>
+        <translation type="unfinished">Basculer les options d&apos;embarquement (maintenir pour le menu)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5160"/>
         <source>To favorites</source>
-        <translation>Ajouter aux favoris</translation>
+        <translation type="unfinished">Ajouter aux favoris</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5166"/>
         <source>Terminate emulator</source>
-        <translation>Arrêter l&apos;émulateur</translation>
+        <translation type="unfinished">Arrêter l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5167"/>
         <source>&amp;Terminate emulator</source>
-        <translation>Arrê&amp;ter l&apos;émulateur</translation>
+        <translation type="unfinished">Arrê&amp;ter l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5171"/>
         <source>Kill emulator</source>
-        <translation>Tuer l&apos;émulateur</translation>
+        <translation type="unfinished">Tuer l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5172"/>
         <source>&amp;Kill emulator</source>
-        <translation>Tu&amp;er l&apos;émulateur</translation>
+        <translation type="unfinished">Tu&amp;er l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5198"/>
@@ -11913,7 +11914,7 @@ Faut-il les tuer à la sortie ?</translation>
 emulator(s) within a reasonable timeframe.
 
 Retry embedding?</source>
-        <translation>Impossible de trouver l&apos;ID de fenêtre de un
+        <translation type="unfinished">Impossible de trouver l&apos;ID de fenêtre de un
 ou plusieurs émulateurs dans un délai raisonnable.
 
 Re-essayer l&apos;embarquement?</translation>
@@ -11921,17 +11922,17 @@ Re-essayer l&apos;embarquement?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5208"/>
         <source>Information</source>
-        <translation>Information</translation>
+        <translation type="unfinished">Information</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5208"/>
         <source>Sorry, the emulator meanwhile died a sorrowful death :(.</source>
-        <translation>Désolé, l&apos;émulateur est mort durant ce temps :(.</translation>
+        <translation type="unfinished">Désolé, l&apos;émulateur est mort durant ce temps :(.</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6055"/>
         <source>destroying audio effects dialog</source>
-        <translation>destruction de la fenêtre des effets audio</translation>
+        <translation type="unfinished">destruction de la fenêtre des effets audio</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6282"/>
@@ -11961,7 +11962,7 @@ Re-essayer l&apos;embarquement?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="6486"/>
         <source>Welcome to QMC2 v%1!</source>
-        <translation>Bienvenue dans QMC2 v%1!</translation>
+        <translation type="unfinished">Bienvenue dans QMC2 v%1!</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6584"/>
@@ -11981,22 +11982,22 @@ Re-essayer l&apos;embarquement?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="6857"/>
         <source>loading YouTube video info map</source>
-        <translation>chargement de la carte d&apos;info de vidéo YouTube</translation>
+        <translation type="unfinished">chargement de la carte d&apos;info de vidéo YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6873"/>
         <source>YouTube index - %p%</source>
-        <translation>YouTube index - %p%</translation>
+        <translation type="unfinished">YouTube index - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6904"/>
         <source>done (loading YouTube video info map)</source>
-        <translation>fait (chargement de la carte d&apos;info de vidéo YouTube)</translation>
+        <translation type="unfinished">fait (chargement de la carte d&apos;info de vidéo YouTube)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="6905"/>
         <source>%n video info record(s) loaded</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>%n information de vidéo chargée</numerusform>
             <numerusform>%n informations de vidéo chargées</numerusform>
         </translation>
@@ -12004,29 +12005,29 @@ Re-essayer l&apos;embarquement?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="7261"/>
         <source>Add URL</source>
-        <translation>
+        <translation type="unfinished">
 Ajouter une URL</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7261"/>
         <source>Enter valid MP3 stream URL:</source>
-        <translation>Entrer une URL de stream MP3 valide:</translation>
+        <translation type="unfinished">Entrer une URL de stream MP3 valide:</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7533"/>
         <source>Buffering %p%</source>
-        <translation>Mise en cache %p%</translation>
+        <translation type="unfinished">Mise en cache %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8898"/>
         <location filename="../../qmc2main.cpp" line="8932"/>
         <source>Play tagged - %p%</source>
-        <translation>Jouer taggé - %p%</translation>
+        <translation type="unfinished">Jouer taggé - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8968"/>
         <source>Add favorites - %p%</source>
-        <translation>Ajouter aux favoris - %p%</translation>
+        <translation type="unfinished">Ajouter aux favoris - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9001"/>
@@ -12034,18 +12035,18 @@ Ajouter une URL</translation>
         <location filename="../../qmc2main.cpp" line="9075"/>
         <location filename="../../qmc2main.cpp" line="9731"/>
         <source>please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)</source>
-        <translation>merci de patienter pendant l&apos;activité en cours et tenter de nouveau (cette opération ne peut fonctionner qu&apos;exclusivement)</translation>
+        <translation type="unfinished">merci de patienter pendant l&apos;activité en cours et tenter de nouveau (cette opération ne peut fonctionner qu&apos;exclusivement)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9081"/>
         <source>ROM tool tagged - %p%</source>
-        <translation>outil de ROM taggé - %p%</translation>
+        <translation type="unfinished">outil de ROM taggé - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9326"/>
         <location filename="../../qmc2main.cpp" line="9491"/>
         <source>Tag - %p%</source>
-        <translation>Tagger - %p%</translation>
+        <translation type="unfinished">Tagger - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9330"/>
@@ -12057,7 +12058,7 @@ Ajouter une URL</translation>
         <location filename="../../qmc2main.cpp" line="9380"/>
         <location filename="../../qmc2main.cpp" line="9545"/>
         <source>Untag - %p%</source>
-        <translation>Enlever le tag - %p%</translation>
+        <translation type="unfinished">Enlever le tag - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9384"/>
@@ -12069,7 +12070,7 @@ Ajouter une URL</translation>
         <location filename="../../qmc2main.cpp" line="9434"/>
         <location filename="../../qmc2main.cpp" line="9599"/>
         <source>Invert tag - %p%</source>
-        <translation>Inverser le tag - %p%</translation>
+        <translation type="unfinished">Inverser le tag - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9438"/>
@@ -12091,7 +12092,7 @@ Ajouter une URL</translation>
         <location filename="../../qmc2main.cpp" line="9958"/>
         <location filename="../../qmc2main.cpp" line="10036"/>
         <source>Software detail</source>
-        <translation>Détail du logiciel</translation>
+        <translation type="unfinished">Détail du logiciel</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10425"/>
@@ -12134,19 +12135,19 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../qmc2main.cpp" line="5063"/>
         <source>emulator #%1 is already embedded</source>
-        <translation>l&apos;émulateur #%1 est déjà embarqué</translation>
+        <translation type="unfinished">l&apos;émulateur #%1 est déjà embarqué</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5098"/>
         <location filename="../../qmc2main.cpp" line="5101"/>
         <source>WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding</source>
-        <translation>ATTENTION: plusieurs fenêtres trouvées pour l&apos;émulateur #%1, choix de la fenêtre ID %2 pour embarquement</translation>
+        <translation type="unfinished">ATTENTION: plusieurs fenêtres trouvées pour l&apos;émulateur #%1, choix de la fenêtre ID %2 pour embarquement</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5119"/>
         <location filename="../../qmc2main.cpp" line="5122"/>
         <source>embedding emulator #%1, window ID = %2</source>
-        <translation>embarquement de l&apos;émulateur #%1, ID de fenêtre = %2</translation>
+        <translation type="unfinished">embarquement de l&apos;émulateur #%1, ID de fenêtre = %2</translation>
     </message>
 </context>
 <context>
@@ -12154,7 +12155,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../marquee.h" line="17"/>
         <source>marquee</source>
-        <translation type="unfinished"></translation>
+        <translation>auvent</translation>
     </message>
 </context>
 <context>
@@ -12162,39 +12163,39 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../miniwebbrowser.ui" line="15"/>
         <source>Mini Web Browser</source>
-        <translation>Mini Navigateur Web</translation>
+        <translation type="unfinished">Mini Navigateur Web</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="189"/>
         <location filename="../../miniwebbrowser.ui" line="192"/>
         <location filename="../../miniwebbrowser.cpp" line="126"/>
         <source>Go back</source>
-        <translation>Précédent</translation>
+        <translation type="unfinished">Précédent</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="212"/>
         <location filename="../../miniwebbrowser.ui" line="215"/>
         <location filename="../../miniwebbrowser.cpp" line="128"/>
         <source>Go forward</source>
-        <translation>Suivant</translation>
+        <translation type="unfinished">Suivant</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="235"/>
         <location filename="../../miniwebbrowser.ui" line="238"/>
         <source>Reload current URL</source>
-        <translation>Recharger l&apos;adresse URL actuelle</translation>
+        <translation type="unfinished">Recharger l&apos;adresse URL actuelle</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="258"/>
         <location filename="../../miniwebbrowser.ui" line="261"/>
         <source>Stop loading of current URL</source>
-        <translation>Arrêter le chargement de l&apos;adresse URL</translation>
+        <translation type="unfinished">Arrêter le chargement de l&apos;adresse URL</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="352"/>
         <location filename="../../miniwebbrowser.ui" line="355"/>
         <source>Enter current URL</source>
-        <translation>Entrer sur l&apos;adresse URL actuelle</translation>
+        <translation type="unfinished">Entrer sur l&apos;adresse URL actuelle</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="332"/>
@@ -12233,24 +12234,24 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <location filename="../../miniwebbrowser.ui" line="377"/>
         <location filename="../../miniwebbrowser.ui" line="380"/>
         <source>Load URL</source>
-        <translation>Charger l&apos;URL</translation>
+        <translation type="unfinished">Charger l&apos;URL</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="301"/>
         <location filename="../../miniwebbrowser.ui" line="304"/>
         <source>Set zoom factor</source>
-        <translation>Choisir le facteur de zoom</translation>
+        <translation type="unfinished">Choisir le facteur de zoom</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="307"/>
         <source> %</source>
-        <translation> %</translation>
+        <translation type="unfinished"> %</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="281"/>
         <location filename="../../miniwebbrowser.ui" line="284"/>
         <source>Go home (first page)</source>
-        <translation>Aller à l&apos;accueil (première page)</translation>
+        <translation type="unfinished">Aller à l&apos;accueil (première page)</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="69"/>
@@ -12260,7 +12261,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../miniwebbrowser.cpp" line="111"/>
         <source>Open link</source>
-        <translation>Ouvrir le lien</translation>
+        <translation type="unfinished">Ouvrir le lien</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="113"/>
@@ -12275,22 +12276,22 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../miniwebbrowser.cpp" line="117"/>
         <source>Save link as...</source>
-        <translation>Sauvegarder le lien sous...</translation>
+        <translation type="unfinished">Sauvegarder le lien sous...</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="119"/>
         <source>Copy link</source>
-        <translation>Copier le lien</translation>
+        <translation type="unfinished">Copier le lien</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="121"/>
         <source>Save image as...</source>
-        <translation>Sauvegarder l&apos;image sous...</translation>
+        <translation type="unfinished">Sauvegarder l&apos;image sous...</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="123"/>
         <source>Copy image</source>
-        <translation>Copier l&apos;image</translation>
+        <translation type="unfinished">Copier l&apos;image</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="125"/>
@@ -12300,27 +12301,27 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../miniwebbrowser.cpp" line="130"/>
         <source>Reload</source>
-        <translation>Recharger</translation>
+        <translation type="unfinished">Recharger</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="132"/>
         <source>Stop</source>
-        <translation>Stop</translation>
+        <translation type="unfinished">Stop</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="134"/>
         <source>Copy</source>
-        <translation>Copier</translation>
+        <translation type="unfinished">Copier</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="137"/>
         <source>Inspect</source>
-        <translation>Inspecter</translation>
+        <translation type="unfinished">Inspecter</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="656"/>
         <source>WARNING: invalid network reply and/or network error</source>
-        <translation>ATTENTION: réponse réseau invalide et/ou erreur réseau</translation>
+        <translation type="unfinished">ATTENTION: réponse réseau invalide et/ou erreur réseau</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="686"/>
@@ -12450,84 +12451,84 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="237"/>
         <source>Check all ROM states</source>
-        <translation>Vérifier l&apos;état de toutes les ROMS</translation>
+        <translation type="unfinished">Vérifier l&apos;état de toutes les ROMS</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="238"/>
         <source>Check all sample sets</source>
-        <translation>Vérifier tous les samples</translation>
+        <translation type="unfinished">Vérifier tous les samples</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="240"/>
         <source>About QMC2</source>
-        <translation>A propos de QMC2</translation>
+        <translation type="unfinished">A propos de QMC2</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="246"/>
         <source>Online documentation</source>
-        <translation>Documention en ligne</translation>
+        <translation type="unfinished">Documention en ligne</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="247"/>
         <source>Clear image cache</source>
-        <translation>Nettoyer le cache d&apos;images</translation>
+        <translation type="unfinished">Nettoyer le cache d&apos;images</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="250"/>
         <source>Clear icon cache</source>
-        <translation>Nettoyer le cache des icônes</translation>
+        <translation type="unfinished">Nettoyer le cache des icônes</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="252"/>
         <location filename="../../options.cpp" line="254"/>
         <source>Open options dialog</source>
-        <translation>Ouvrir la fenêtre d&apos;options</translation>
+        <translation type="unfinished">Ouvrir la fenêtre d&apos;options</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="261"/>
         <source>About Qt</source>
-        <translation>A propos de Qt</translation>
+        <translation type="unfinished">A propos de Qt</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="265"/>
         <source>Check states of tagged ROMs</source>
-        <translation>Vérifier les états des ROMS taggées</translation>
+        <translation type="unfinished">Vérifier les états des ROMS taggées</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="266"/>
         <source>Recreate template map</source>
-        <translation>Re-créer le template</translation>
+        <translation type="unfinished">Re-créer le template</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="267"/>
         <source>Check template map</source>
-        <translation>Vérifier le template</translation>
+        <translation type="unfinished">Vérifier le template</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="269"/>
         <location filename="../../options.cpp" line="271"/>
         <source>Stop processing / exit QMC2</source>
-        <translation>Arrêter le processus / quitter QMC2</translation>
+        <translation type="unfinished">Arrêter le processus / quitter QMC2</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="274"/>
         <source>Clear YouTube cache</source>
-        <translation>Nettoyer le cache YouTube</translation>
+        <translation type="unfinished">Nettoyer le cache YouTube</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="283"/>
         <source>Tag current set</source>
-        <translation>Tagger le set actuel</translation>
+        <translation type="unfinished">Tagger le set actuel</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="284"/>
         <source>Untag current set</source>
-        <translation>Enlever le tag du set actuel</translation>
+        <translation type="unfinished">Enlever le tag du set actuel</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="285"/>
         <source>Toggle tag mark</source>
-        <translation>Bascule la marque de tag</translation>
+        <translation type="unfinished">Bascule la marque de tag</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="286"/>
@@ -12542,17 +12543,17 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="288"/>
         <source>Tag all sets</source>
-        <translation>Tagger tous les sets</translation>
+        <translation type="unfinished">Tagger tous les sets</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="289"/>
         <source>Untag all sets</source>
-        <translation>Enlever le tag de tous les sets</translation>
+        <translation type="unfinished">Enlever le tag de tous les sets</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="290"/>
         <source>Invert all tags</source>
-        <translation>Inverser tous les tags</translation>
+        <translation type="unfinished">Inverser tous les tags</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="291"/>
@@ -12593,12 +12594,12 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="300"/>
         <source>Run external ROM tool</source>
-        <translation>Lancer un outil de ROM externe</translation>
+        <translation type="unfinished">Lancer un outil de ROM externe</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="301"/>
         <source>Run ROM tool for tagged sets</source>
-        <translation>Exécuter l&apos;outil de ROM pour les sets taggés</translation>
+        <translation type="unfinished">Exécuter l&apos;outil de ROM pour les sets taggés</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="305"/>
@@ -12613,47 +12614,47 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="322"/>
         <source>Plus (+)</source>
-        <translation>Plus (+)</translation>
+        <translation type="unfinished">Plus (+)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="323"/>
         <source>Minus (-)</source>
-        <translation>Moins (-)</translation>
+        <translation type="unfinished">Moins (-)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="324"/>
         <source>Cursor down</source>
-        <translation>Curseur Bas</translation>
+        <translation type="unfinished">Curseur Bas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="325"/>
         <source>End</source>
-        <translation>Fin</translation>
+        <translation type="unfinished">Fin</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="327"/>
         <source>Escape</source>
-        <translation>Echap</translation>
+        <translation type="unfinished">Echap</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="328"/>
         <source>Cursor left</source>
-        <translation>Curseur gauche</translation>
+        <translation type="unfinished">Curseur gauche</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="329"/>
         <source>Home</source>
-        <translation>Home</translation>
+        <translation type="unfinished">Home</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="330"/>
         <source>Page down</source>
-        <translation>Page Bas</translation>
+        <translation type="unfinished">Page Bas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="331"/>
         <source>Page up</source>
-        <translation>Page Haut</translation>
+        <translation type="unfinished">Page Haut</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5557"/>
@@ -12703,7 +12704,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="326"/>
         <source>Enter key</source>
-        <translation>Appuyer sur la touche</translation>
+        <translation type="unfinished">Appuyer sur la touche</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="241"/>
@@ -12778,17 +12779,17 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="333"/>
         <source>Cursor right</source>
-        <translation>Curseur Droit</translation>
+        <translation type="unfinished">Curseur Droit</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="334"/>
         <source>Tabulator</source>
-        <translation>Tabulation</translation>
+        <translation type="unfinished">Tabulation</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="335"/>
         <source>Cursor up</source>
-        <translation>Curseur Haut</translation>
+        <translation type="unfinished">Curseur Haut</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="337"/>
@@ -12798,24 +12799,24 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="341"/>
         <source>WARNING: configuration is not writeable, please check access permissions for </source>
-        <translation>ATTENTION: la configuration n&apos;est pas accessible en écriture, vérifiez les permissions de </translation>
+        <translation type="unfinished">ATTENTION: la configuration n&apos;est pas accessible en écriture, vérifiez les permissions de </translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="345"/>
         <location filename="../../options.cpp" line="352"/>
         <source>Reset to default font</source>
-        <translation>Revenir à la police par défaut</translation>
+        <translation type="unfinished">Revenir à la police par défaut</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="857"/>
         <source>image cache size set to %1 MB</source>
-        <translation>taille du cache d&apos;images réglé à %1 MB</translation>
+        <translation type="unfinished">taille du cache d&apos;images réglé à %1 MB</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1283"/>
         <location filename="../../options.cpp" line="2662"/>
         <source>Confirm</source>
-        <translation>Confirmer</translation>
+        <translation type="unfinished">Confirmer</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1284"/>
@@ -12826,17 +12827,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="1285"/>
         <source>&amp;Local</source>
-        <translation>Config. &amp;Locale</translation>
+        <translation type="unfinished">Config. &amp;Locale</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1285"/>
         <source>&amp;Overwrite</source>
-        <translation>&amp;Ecraser</translation>
+        <translation type="unfinished">&amp;Ecraser</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1285"/>
         <source>Do&amp;n&apos;t apply</source>
-        <translation>&amp;Ne pas appliquer</translation>
+        <translation type="unfinished">&amp;Ne pas appliquer</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1392"/>
@@ -12846,12 +12847,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="1434"/>
         <source>ascending</source>
-        <translation>ascendant</translation>
+        <translation type="unfinished">ascendant</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1434"/>
         <source>descending</source>
-        <translation>descendant</translation>
+        <translation type="unfinished">descendant</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1434"/>
@@ -12861,7 +12862,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="1441"/>
         <source>Waiting for data...</source>
-        <translation>En attente de données...</translation>
+        <translation type="unfinished">En attente de données...</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1665"/>
@@ -12878,7 +12879,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="1692"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
-        <translation>FATAL: impossible d&apos;ouvrir le fichier des captures logiciel, vérifiez les permissions de %1</translation>
+        <translation type="unfinished">FATAL: impossible d&apos;ouvrir le fichier des captures logiciel, vérifiez les permissions de %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1700"/>
@@ -12888,7 +12889,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="1725"/>
         <source>FATAL: can&apos;t open icon file, please check access permissions for %1</source>
-        <translation>FATAL: Impossible d&apos;ouvrir l&apos;icône, vérifiez les permissions d&apos;accès pour %1</translation>
+        <translation type="unfinished">FATAL: Impossible d&apos;ouvrir l&apos;icône, vérifiez les permissions d&apos;accès pour %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1733"/>
@@ -12904,14 +12905,14 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="1930"/>
         <location filename="../../options.cpp" line="3017"/>
         <source>SW snap file</source>
-        <translation>fichier SW snap</translation>
+        <translation type="unfinished">fichier SW snap</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5560"/>
         <location filename="../../options.cpp" line="2131"/>
         <location filename="../../options.cpp" line="3464"/>
         <source>Custom IDs...</source>
-        <translation>IDs personnalisés...</translation>
+        <translation type="unfinished">IDs personnalisés...</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2653"/>
@@ -12952,14 +12953,14 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="2720"/>
         <source>Choose ROM tool</source>
-        <translation>Choisir l&apos;outil de ROM</translation>
+        <translation type="unfinished">Choisir l&apos;outil de ROM</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2728"/>
         <location filename="../../options.cpp" line="2779"/>
         <location filename="../../options.cpp" line="3442"/>
         <source>Choose working directory</source>
-        <translation>Choisir le répertoire de travail</translation>
+        <translation type="unfinished">Choisir le répertoire de travail</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2736"/>
@@ -12984,7 +12985,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="2809"/>
         <source>Choose general software folder</source>
-        <translation>Choisir le répertoire des logiciels général</translation>
+        <translation type="unfinished">Choisir le répertoire des logiciels général</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2839"/>
@@ -13014,7 +13015,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="2887"/>
         <source>Choose catver.ini file</source>
-        <translation>Choisir le fichier catver.ini</translation>
+        <translation type="unfinished">Choisir le fichier catver.ini</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3022"/>
@@ -13120,18 +13121,18 @@ Are you sure you want to do this?</source>
         <location filename="../../options.cpp" line="2248"/>
         <location filename="../../options.cpp" line="3595"/>
         <source>Default</source>
-        <translation>Défaut</translation>
+        <translation type="unfinished">Défaut</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1882"/>
         <location filename="../../options.cpp" line="2961"/>
         <source>Preview file</source>
-        <translation>Fichier Capture</translation>
+        <translation type="unfinished">Fichier Capture</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="230"/>
         <source>Minimize when launching (non-embedded) emulators?</source>
-        <translation>Minimiser lors de l&apos;exécution d&apos;émulateurs (non embarqués) ?</translation>
+        <translation type="unfinished">Minimiser lors de l&apos;exécution d&apos;émulateurs (non embarqués) ?</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="233"/>
@@ -13139,7 +13140,7 @@ Are you sure you want to do this?</source>
         <location filename="../../options.cpp" line="1024"/>
         <location filename="../../options.cpp" line="1042"/>
         <source>Category</source>
-        <translation>Catégorie</translation>
+        <translation type="unfinished">Catégorie</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="234"/>
@@ -13147,7 +13148,7 @@ Are you sure you want to do this?</source>
         <location filename="../../options.cpp" line="1065"/>
         <location filename="../../options.cpp" line="1083"/>
         <source>Version</source>
-        <translation>Version​‎</translation>
+        <translation type="unfinished">Version​‎</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="239"/>
@@ -13157,12 +13158,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="242"/>
         <source>Analyze tagged sets</source>
-        <translation>Analyse des sets taggés</translation>
+        <translation type="unfinished">Analyse des sets taggés</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="245"/>
         <source>Copy tagged sets to favorites</source>
-        <translation>Ajouter les jeux taggés aux favoris</translation>
+        <translation type="unfinished">Ajouter les jeux taggés aux favoris</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="249"/>
@@ -13172,18 +13173,18 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="256"/>
         <source>Play (independent)</source>
-        <translation>Jouer (indépendant)</translation>
+        <translation type="unfinished">Jouer (indépendant)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="258"/>
         <source>Play (embedded)</source>
-        <translation>Jouer (embarqué)</translation>
+        <translation type="unfinished">Jouer (embarqué)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="360"/>
         <location filename="../../options.cpp" line="366"/>
         <source>No style sheet</source>
-        <translation>Pas de feuille de style</translation>
+        <translation type="unfinished">Pas de feuille de style</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1657"/>
@@ -13195,61 +13196,61 @@ Are you sure you want to do this?</source>
         <location filename="../../options.cpp" line="1882"/>
         <location filename="../../options.cpp" line="2961"/>
         <source>Preview directory</source>
-        <translation>Répertoire des captures</translation>
+        <translation type="unfinished">Répertoire des captures</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1888"/>
         <location filename="../../options.cpp" line="2968"/>
         <source>Flyer file</source>
-        <translation>fichier Flyer</translation>
+        <translation type="unfinished">fichier Flyer</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="991"/>
         <location filename="../../options.cpp" line="1888"/>
         <location filename="../../options.cpp" line="2968"/>
         <source>Flyer directory</source>
-        <translation>Répertoire des flyers</translation>
+        <translation type="unfinished">Répertoire des flyers</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1894"/>
         <location filename="../../options.cpp" line="2975"/>
         <source>Icon file</source>
-        <translation>Fichier des icônes</translation>
+        <translation type="unfinished">Fichier des icônes</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1679"/>
         <location filename="../../options.cpp" line="1894"/>
         <location filename="../../options.cpp" line="2975"/>
         <source>Icon directory</source>
-        <translation>Répertoire des icônes</translation>
+        <translation type="unfinished">Répertoire des icônes</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1924"/>
         <location filename="../../options.cpp" line="3010"/>
         <source>PCB file</source>
-        <translation>Fichier des PCB</translation>
+        <translation type="unfinished">Fichier des PCB</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1111"/>
         <location filename="../../options.cpp" line="1924"/>
         <location filename="../../options.cpp" line="3010"/>
         <source>PCB directory</source>
-        <translation>Répertoire des PCB</translation>
+        <translation type="unfinished">Répertoire des PCB</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2525"/>
         <source>Choose Qt style sheet file</source>
-        <translation>Choisir le fichier de style QT</translation>
+        <translation type="unfinished">Choisir le fichier de style QT</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2525"/>
         <source>Qt Style Sheets (*.qss)</source>
-        <translation>fichiers Qt Style (*.qss)</translation>
+        <translation type="unfinished">fichiers Qt Style (*.qss)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2533"/>
         <source>Choose temporary work file</source>
-        <translation>Choisir le fichier de travail temporaire</translation>
+        <translation type="unfinished">Choisir le fichier de travail temporaire</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2533"/>
@@ -13282,58 +13283,58 @@ Are you sure you want to do this?</source>
         <location filename="../../options.cpp" line="3426"/>
         <location filename="../../options.cpp" line="3644"/>
         <source>All files (*)</source>
-        <translation>Tous les fichiers (*)</translation>
+        <translation type="unfinished">Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2541"/>
         <source>Choose preview directory</source>
-        <translation>Choisir le répertoire des captures</translation>
+        <translation type="unfinished">Choisir le répertoire des captures</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2552"/>
         <source>Choose flyer directory</source>
-        <translation>Choisir le répertoire des flyers</translation>
+        <translation type="unfinished">Choisir le répertoire des flyers</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2563"/>
         <source>Choose icon directory</source>
-        <translation>Choisir le répertoire des icônes</translation>
+        <translation type="unfinished">Choisir le répertoire des icônes</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2618"/>
         <source>Choose PCB directory</source>
-        <translation>Choisir le répertoire des PCB</translation>
+        <translation type="unfinished">Choisir le répertoire des PCB</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2629"/>
         <source>Choose options template file</source>
-        <translation>Choisir les options du fichier template</translation>
+        <translation type="unfinished">Choisir les options du fichier template</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2637"/>
         <location filename="../../options.cpp" line="3426"/>
         <source>Choose emulator executable file</source>
-        <translation>Choisir l&apos;exécutable de l&apos;émulateur</translation>
+        <translation type="unfinished">Choisir l&apos;exécutable de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2645"/>
         <source>Choose emulator log file</source>
-        <translation>Choisir le fichier log de l&apos;émulateur</translation>
+        <translation type="unfinished">Choisir le fichier log de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2704"/>
         <source>Choose zip tool</source>
-        <translation>Choisir l&apos;outil zip</translation>
+        <translation type="unfinished">Choisir l&apos;outil zip</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2744"/>
         <source>Choose play history file</source>
-        <translation>Choisir le fichier de l&apos;historique des jeux joués</translation>
+        <translation type="unfinished">Choisir le fichier de l&apos;historique des jeux joués</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2763"/>
         <source>Choose ROM state cache file</source>
-        <translation>Choisir le fichier cache d&apos;état de ROM</translation>
+        <translation type="unfinished">Choisir le fichier cache d&apos;état de ROM</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2790"/>
@@ -13343,7 +13344,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="2828"/>
         <source>Choose data directory</source>
-        <translation>Choisir le répertoire des données</translation>
+        <translation type="unfinished">Choisir le répertoire des données</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2847"/>
@@ -13358,23 +13359,23 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="3126"/>
         <source>Choose software snap directory</source>
-        <translation>Choisir le répertoire des captures des logiciels</translation>
+        <translation type="unfinished">Choisir le répertoire des captures des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3150"/>
         <source>Choose software notes folder</source>
-        <translation>Choisir le répertoire des notes des logiciels</translation>
+        <translation type="unfinished">Choisir le répertoire des notes des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3161"/>
         <source>Choose software notes template</source>
-        <translation>Choisir le template des notes des logiciels</translation>
+        <translation type="unfinished">Choisir le template des notes des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3161"/>
         <location filename="../../options.cpp" line="3180"/>
         <source>HTML files (*.html *.htm)</source>
-        <translation>fichiers HTML (*.html *.htm)</translation>
+        <translation type="unfinished">fichiers HTML (*.html *.htm)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3169"/>
@@ -13394,92 +13395,92 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="3404"/>
         <source>shortcut map is clean</source>
-        <translation>La carte des raccourcis est propre</translation>
+        <translation type="unfinished">La carte des raccourcis est propre</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3406"/>
         <source>WARNING: shortcut map contains duplicates</source>
-        <translation>ATTENTION: la carte des raccourcis contient des doublons</translation>
+        <translation type="unfinished">ATTENTION: la carte des raccourcis contient des doublons</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="15"/>
         <source>Options</source>
-        <translation>Options</translation>
+        <translation type="unfinished">Options</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="41"/>
         <source>&amp;GUI</source>
-        <translation>&amp;GUI</translation>
+        <translation type="unfinished">&amp;GUI</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="528"/>
         <source>Application language</source>
-        <translation>Langue de l&apos;application</translation>
+        <translation type="unfinished">Langue de l&apos;application</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="532"/>
         <source>DE (German)</source>
-        <translation>DE (Allemand)</translation>
+        <translation type="unfinished">DE (Allemand)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="577"/>
         <source>US (English)</source>
-        <translation>US (Anglais)</translation>
+        <translation type="unfinished">US (Anglais)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="557"/>
         <source>PL (Polish)</source>
-        <translation>PL (Polonais)</translation>
+        <translation type="unfinished">PL (Polonais)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="496"/>
         <source>Language</source>
-        <translation>Langue</translation>
+        <translation type="unfinished">Langue</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="426"/>
         <source>Image cache size in MB</source>
-        <translation>Taille du cache d&apos;images en MB</translation>
+        <translation type="unfinished">Taille du cache d&apos;images en MB</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="429"/>
         <source> MB</source>
-        <translation> MB</translation>
+        <translation type="unfinished"> MB</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="413"/>
         <source>Image cache size</source>
-        <translation>Taille du cache d&apos;images</translation>
+        <translation type="unfinished">Taille du cache d&apos;images</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="242"/>
         <source>Application font</source>
-        <translation>Police de l&apos;application</translation>
+        <translation type="unfinished">Police de l&apos;application</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="465"/>
         <source>Show short description of current processing in progress bar</source>
-        <translation>Affiche une courte description du processus en cours dans la barre de progression</translation>
+        <translation type="unfinished">Affiche une courte description du processus en cours dans la barre de progression</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="801"/>
         <source>Smooth image scaling (nicer, but slower)</source>
-        <translation>Redimensionnement doux des images (plus joli, mais plus lent)</translation>
+        <translation type="unfinished">Redimensionnement doux des images (plus joli, mais plus lent)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="804"/>
         <source>Smooth scaling</source>
-        <translation>Redimensionnement doux</translation>
+        <translation type="unfinished">Redimensionnement doux</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="811"/>
         <source>Retry loading images which weren&apos;t found before?</source>
-        <translation>Retenter de charger les images qui n&apos;ont pas été trouvées précédemment?</translation>
+        <translation type="unfinished">Retenter de charger les images qui n&apos;ont pas été trouvées précédemment?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="814"/>
         <source>Retry loading images</source>
-        <translation>Retente de charger les images</translation>
+        <translation type="unfinished">Retente de charger les images</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="126"/>
@@ -13491,289 +13492,289 @@ Are you sure you want to do this?</source>
         <location filename="../../options.ui" line="781"/>
         <location filename="../../options.ui" line="791"/>
         <source>Scale image to fit frame size (otherwise use original size)</source>
-        <translation>Redimensionner l&apos;image pour remplir la frame (sinon, utilise la taille d&apos;origine)</translation>
+        <translation type="unfinished">Redimensionner l&apos;image pour remplir la frame (sinon, utilise la taille d&apos;origine)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="315"/>
         <source>Scaled preview</source>
-        <translation>Captures redimensionnées</translation>
+        <translation type="unfinished">Captures redimensionnées</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="748"/>
         <source>Use standard or custom color palette?</source>
-        <translation>Utiliser la palette standard ou personnalisée?</translation>
+        <translation type="unfinished">Utiliser la palette standard ou personnalisée?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="285"/>
         <source>Scaled flyer</source>
-        <translation>Flyers redimensionnés</translation>
+        <translation type="unfinished">Flyers redimensionnés</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="585"/>
         <source>GUI style</source>
-        <translation>style du GUI</translation>
+        <translation type="unfinished">style du GUI</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="611"/>
         <source>Application font (= system default if empty)</source>
-        <translation>Police de l&apos;application (= défaut système si vide)</translation>
+        <translation type="unfinished">Police de l&apos;application (= défaut système si vide)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="328"/>
         <source>Browse application font</source>
-        <translation>Parcourir pour la police de l&apos;application</translation>
+        <translation type="unfinished">Parcourir pour la police de l&apos;application</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="864"/>
         <location filename="../../options.ui" line="4759"/>
         <source>F&amp;iles / Directories</source>
-        <translation>F&amp;ichiers / Répertoires</translation>
+        <translation type="unfinished">F&amp;ichiers / Répertoires</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1247"/>
         <source>Browse frontend data directory</source>
-        <translation>Parcourir pour le répertoire de données du frontend</translation>
+        <translation type="unfinished">Parcourir pour le répertoire de données du frontend</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1754"/>
         <source>Frontend data directory (read)</source>
-        <translation>Répertoire de données du frontend (lecture)</translation>
+        <translation type="unfinished">Répertoire de données du frontend (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="926"/>
         <source>Data directory</source>
-        <translation>Répertoire de données</translation>
+        <translation type="unfinished">Répertoire de données</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4933"/>
         <source>Browse ROM state cache file</source>
-        <translation>Parcourir le cache d&apos;état de ROM</translation>
+        <translation type="unfinished">Parcourir le cache d&apos;état de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5279"/>
         <source>ROM state cache file (write)</source>
-        <translation>Cache d&apos;état de ROM (écriture)</translation>
+        <translation type="unfinished">Cache d&apos;état de ROM (écriture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4920"/>
         <source>ROM state cache</source>
-        <translation>Cache d&apos;état de ROM</translation>
+        <translation type="unfinished">Cache d&apos;état de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2366"/>
         <source>Play history file (write)</source>
-        <translation>Fichier historique des jeux joués (écriture)</translation>
+        <translation type="unfinished">Fichier historique des jeux joués (écriture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1131"/>
         <source>Temporary file</source>
-        <translation>Fichier temporaire</translation>
+        <translation type="unfinished">Fichier temporaire</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="933"/>
         <source>Favorites file</source>
-        <translation>Fichier des favoris</translation>
+        <translation type="unfinished">Fichier des favoris</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1018"/>
         <source>Play history file</source>
-        <translation>Fichier historique des jeux joués</translation>
+        <translation type="unfinished">Fichier historique des jeux joués</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1513"/>
         <source>Browse play history file</source>
-        <translation>Parcourir pour le fichier historique des jeux joués</translation>
+        <translation type="unfinished">Parcourir pour le fichier historique des jeux joués</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2632"/>
         <source>Temporary work file (write)</source>
-        <translation>Fichier de travail temporaire (écriture)</translation>
+        <translation type="unfinished">Fichier de travail temporaire (écriture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1853"/>
         <source>Browse temporary work file</source>
-        <translation>Parcourir pour le fichier temporaire de travail</translation>
+        <translation type="unfinished">Parcourir pour le fichier temporaire de travail</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2530"/>
         <source>Icon directory (read)</source>
-        <translation>Répertoire d&apos;icônes (lecture)</translation>
+        <translation type="unfinished">Répertoire d&apos;icônes (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2543"/>
         <source>Browse icon directory</source>
-        <translation>Parcourir pour le répertoire d&apos;icônes</translation>
+        <translation type="unfinished">Parcourir pour le répertoire d&apos;icônes</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2412"/>
         <source>Flyer directory (read)</source>
-        <translation>Répertoire de flyers (lecture)</translation>
+        <translation type="unfinished">Répertoire de flyers (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2425"/>
         <source>Browse flyer directory</source>
-        <translation>Parcourir pour le répertoire de flyers</translation>
+        <translation type="unfinished">Parcourir pour le répertoire de flyers</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2152"/>
         <source>Preview directory (read)</source>
-        <translation>Répertoire des captures (lecture)</translation>
+        <translation type="unfinished">Répertoire des captures (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2165"/>
         <source>Browse preview directory</source>
-        <translation>Parcourir pour le répertoire de captures</translation>
+        <translation type="unfinished">Parcourir pour le répertoire de captures</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3573"/>
         <source>Auto-trigger ROM check</source>
-        <translation>Vérification automatique de ROM</translation>
+        <translation type="unfinished">Vérification automatique de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3063"/>
         <source>Update delay</source>
-        <translation>Délai de mise à jour</translation>
+        <translation type="unfinished">Délai de mise à jour</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3291"/>
         <source>immediate</source>
-        <translation>immédiat</translation>
+        <translation type="unfinished">immédiat</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3518"/>
         <source> ms</source>
-        <translation> ms</translation>
+        <translation type="unfinished"> ms</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3275"/>
         <source>Responsiveness</source>
-        <translation>Répondant</translation>
+        <translation type="unfinished">Répondant</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3171"/>
         <source>Select sort order</source>
-        <translation>Sélectionner l&apos;ordre de tri</translation>
+        <translation type="unfinished">Sélectionner l&apos;ordre de tri</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3175"/>
         <source>Ascending</source>
-        <translation>Ascendant</translation>
+        <translation type="unfinished">Ascendant</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3184"/>
         <source>Descending</source>
-        <translation>Descendant</translation>
+        <translation type="unfinished">Descendant</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3086"/>
         <source>Select sort criteria</source>
-        <translation>Sélectionner le critère de tri</translation>
+        <translation type="unfinished">Sélectionner le critère de tri</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3095"/>
         <source>ROM state</source>
-        <translation>statut de ROM</translation>
+        <translation type="unfinished">statut de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3105"/>
         <source>Year</source>
-        <translation>Année</translation>
+        <translation type="unfinished">Année</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3110"/>
         <source>Manufacturer</source>
-        <translation>Fabricant</translation>
+        <translation type="unfinished">Fabricant</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3158"/>
         <source>Sort order</source>
-        <translation>Ordre de tri</translation>
+        <translation type="unfinished">Ordre de tri</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3426"/>
         <source>Sort criteria</source>
-        <translation>Critère de tri</translation>
+        <translation type="unfinished">Critère de tri</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3003"/>
         <source>ROM state filter</source>
-        <translation>filtre d&apos;état de ROM</translation>
+        <translation type="unfinished">filtre d&apos;état de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3315"/>
         <source>Show ROM state C (correct)?</source>
-        <translation>Affiche l&apos;état de ROM C (correct)?</translation>
+        <translation type="unfinished">Affiche l&apos;état de ROM C (correct)?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3338"/>
         <source>Show ROM state M (mostly correct)?</source>
-        <translation>Affiche l&apos;état de ROM M (presque correct)?</translation>
+        <translation type="unfinished">Affiche l&apos;état de ROM M (presque correct)?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3361"/>
         <source>Show ROM state I (incorrect)?</source>
-        <translation>Affiche l&apos;état de ROM I (incorrect)?</translation>
+        <translation type="unfinished">Affiche l&apos;état de ROM I (incorrect)?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3384"/>
         <source>Show ROM state N (not found)?</source>
-        <translation>Affiche l&apos;état de ROM N (non trouvé)?</translation>
+        <translation type="unfinished">Affiche l&apos;état de ROM N (non trouvé)?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3407"/>
         <source>Show ROM state U (unknown)?</source>
-        <translation>Affiche l&apos;état de ROM U (inconnu)?</translation>
+        <translation type="unfinished">Affiche l&apos;état de ROM U (inconnu)?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3627"/>
         <source>&amp;Shortcuts / Keys</source>
-        <translation>&amp;Raccourcis / Touches</translation>
+        <translation type="unfinished">&amp;Raccourcis / Touches</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3679"/>
         <source>Reset key sequence to default</source>
-        <translation>Ré-initialiser la séquence de touche par défaut</translation>
+        <translation type="unfinished">Ré-initialiser la séquence de touche par défaut</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3682"/>
         <source>Reset</source>
-        <translation>Ré-initialise</translation>
+        <translation type="unfinished">Ré-initialise</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3659"/>
         <location filename="../../options.ui" line="3662"/>
         <source>Redefine key sequence</source>
-        <translation>Redéfinir la séquence de touches</translation>
+        <translation type="unfinished">Redéfinir la séquence de touches</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3702"/>
         <source>Active shortcut definitions; double-click to redefine key sequence</source>
-        <translation>Définitions des raccourcis actifs: double-clic pour redéfinir la séquence de touches</translation>
+        <translation type="unfinished">Définitions des raccourcis actifs: double-clic pour redéfinir la séquence de touches</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3734"/>
         <source>Custom</source>
-        <translation>Personnalisé</translation>
+        <translation type="unfinished">Personnalisé</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4247"/>
         <source>Zip tool</source>
-        <translation>outil ZIP</translation>
+        <translation type="unfinished">outil ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4266"/>
         <source>External zip tool, i.e. &quot;zip&quot; (read and execute)</source>
-        <translation>Outil ZIP externe, ex: &quot;zip&quot; (lecture et exécution)</translation>
+        <translation type="unfinished">Outil ZIP externe, ex: &quot;zip&quot; (lecture et exécution)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4279"/>
         <source>Browse for zip tool</source>
-        <translation>Parcourir pour l&apos;outil zip</translation>
+        <translation type="unfinished">Parcourir pour l&apos;outil zip</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4303"/>
         <source>Zip tool argument list to remove entries from the ZIP archive (i. e. &quot;$ARCHIVE$ -d $FILELIST$&quot;)</source>
-        <translation>Liste d&apos;arguments de l&apos;outil zip pour supprimer des entrées depuis l&apos;archive ZIP (ex &quot;$ARCHIVE$ -d $FILELIST$&quot;)</translation>
+        <translation type="unfinished">Liste d&apos;arguments de l&apos;outil zip pour supprimer des entrées depuis l&apos;archive ZIP (ex &quot;$ARCHIVE$ -d $FILELIST$&quot;)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4290"/>
@@ -13782,361 +13783,361 @@ Are you sure you want to do this?</source>
         <location filename="../../options.ui" line="5442"/>
         <location filename="../../options.ui" line="5668"/>
         <source>Arguments</source>
-        <translation>Arguments</translation>
+        <translation type="unfinished">Arguments</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4559"/>
         <source>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</source>
-        <translation>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;ATTENTION: les mots de passe enregistrés sont &lt;u&gt;faiblement&lt;/u&gt; encryptés!&lt;/b&gt;&lt;/font&gt;</translation>
+        <translation type="unfinished">&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;ATTENTION: les mots de passe enregistrés sont &lt;u&gt;faiblement&lt;/u&gt; encryptés!&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4744"/>
         <source>E&amp;mulator</source>
-        <translation>E&amp;mulateur</translation>
+        <translation type="unfinished">E&amp;mulateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4754"/>
         <source>&amp;Global configuration</source>
-        <translation>Confi&amp;guration globale</translation>
+        <translation type="unfinished">Confi&amp;guration globale</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4848"/>
         <source>Browse emulator log file</source>
-        <translation>Parcourir pour le fichier de log de l&apos;émulateur</translation>
+        <translation type="unfinished">Parcourir pour le fichier de log de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5240"/>
         <source>Emulator log file (write)</source>
-        <translation>Fichier de log de l&apos;émulateur (écriture)</translation>
+        <translation type="unfinished">Fichier de log de l&apos;émulateur (écriture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4835"/>
         <source>Emulator log file</source>
-        <translation>Fichier de log de l&apos;émulateur</translation>
+        <translation type="unfinished">Fichier de log de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4824"/>
         <location filename="../../options.ui" line="5612"/>
         <source>Browse emulator executable file</source>
-        <translation>Parcourir pour l&apos;exécutable de l&apos;émulateur</translation>
+        <translation type="unfinished">Parcourir pour l&apos;exécutable de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5266"/>
         <source>Emulator executable file (read and execute)</source>
-        <translation>Exécutable de l&apos;émulateur (lecture et exécution)</translation>
+        <translation type="unfinished">Exécutable de l&apos;émulateur (lecture et exécution)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4809"/>
         <location filename="../../options.ui" line="5586"/>
         <source>Executable file</source>
-        <translation>Exécutable</translation>
+        <translation type="unfinished">Exécutable</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4872"/>
         <source>Browse options template file</source>
-        <translation>Parcourir pour le fichier template d&apos;options</translation>
+        <translation type="unfinished">Parcourir pour le fichier template d&apos;options</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5227"/>
         <source>Options template file (read)</source>
-        <translation>Fichier template d&apos;options (lecture)</translation>
+        <translation type="unfinished">Fichier template d&apos;options (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="562"/>
         <source>PT (Portuguese)</source>
-        <translation>PT (Portuguais)</translation>
+        <translation type="unfinished">PT (Portuguais)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="468"/>
         <source>Show progress texts</source>
-        <translation>Afficher les textes de progression</translation>
+        <translation type="unfinished">Afficher les textes de progression</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="784"/>
         <source>Scaled PCB</source>
-        <translation>PCB redimensionnés</translation>
+        <translation type="unfinished">PCB redimensionnés</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="458"/>
         <source>Style sheet</source>
-        <translation>Feuille de style</translation>
+        <translation type="unfinished">Feuille de style</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="275"/>
         <source>Qt style sheet file (*.qss, leave empty for no style sheet)</source>
-        <translation>Feuille de style Qt ($.qss, laisser vide pour ne pas utiliser de feuille de style)</translation>
+        <translation type="unfinished">Feuille de style Qt ($.qss, laisser vide pour ne pas utiliser de feuille de style)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="662"/>
         <source>Browse Qt style sheet file</source>
-        <translation>Parcourir pour un fichier Feuille de style Qt</translation>
+        <translation type="unfinished">Parcourir pour un fichier Feuille de style Qt</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="515"/>
         <source>Log font</source>
-        <translation>Police de log</translation>
+        <translation type="unfinished">Police de log</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="76"/>
         <source>Font used in logs (= application font if empty)</source>
-        <translation>Police utilisée dans les logs (= police de l&apos;application si vide)</translation>
+        <translation type="unfinished">Police utilisée dans les logs (= police de l&apos;application si vide)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="92"/>
         <source>Browse font used in logs</source>
-        <translation>Parcourir pour la police utilisée dans les logs</translation>
+        <translation type="unfinished">Parcourir pour la police utilisée dans les logs</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1280"/>
         <source>PCB directory (read)</source>
-        <translation>Répertoire des PCB (lecture)</translation>
+        <translation type="unfinished">Répertoire des PCB (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1293"/>
         <source>Browse PCB directory</source>
-        <translation>Parcourir pour le répertoire des PCB</translation>
+        <translation type="unfinished">Parcourir pour le répertoire des PCB</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="940"/>
         <source>Enable the use of catver.ini -- get the newest version from http://www.progettoemma.net/?catlist</source>
-        <translation>Active l&apos;utilisation de catver.ini - Trouvez la nouvelle version sur http://www.progettoemma.net/?catlist</translation>
+        <translation type="unfinished">Active l&apos;utilisation de catver.ini - Trouvez la nouvelle version sur http://www.progettoemma.net/?catlist</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="943"/>
         <source>Use catver.ini</source>
-        <translation>Utilise catver.ini</translation>
+        <translation type="unfinished">Utilise catver.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1810"/>
         <source>Path to catver.ini (read)</source>
-        <translation>Chemin de catver.ini (lecture)</translation>
+        <translation type="unfinished">Chemin de catver.ini (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1823"/>
         <source>Browse path to catver.ini</source>
-        <translation>Parcourir pour le répertoire de catver.ini</translation>
+        <translation type="unfinished">Parcourir pour le répertoire de catver.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3120"/>
         <source>ROM types</source>
-        <translation>types de ROM</translation>
+        <translation type="unfinished">types de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3550"/>
         <source>SW snap position</source>
-        <translation>Position du SW snap</translation>
+        <translation type="unfinished">Position du SW snap</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3468"/>
         <source>Above / Left</source>
-        <translation>Dessus / Gauche</translation>
+        <translation type="unfinished">Dessus / Gauche</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3473"/>
         <source>Above / Center</source>
-        <translation>Dessus / Centre</translation>
+        <translation type="unfinished">Dessus / Centre</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3478"/>
         <source>Above / Right</source>
-        <translation>Dessus / Droite</translation>
+        <translation type="unfinished">Dessus / Droite</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3483"/>
         <source>Below / Left</source>
-        <translation>Dessous / Gauche</translation>
+        <translation type="unfinished">Dessous / Gauche</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3488"/>
         <source>Below / Center</source>
-        <translation>Dessous / Centre</translation>
+        <translation type="unfinished">Dessous / Centre</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3493"/>
         <source>Below / Right</source>
-        <translation>Dessous / Droite</translation>
+        <translation type="unfinished">Dessous / Droite</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5331"/>
         <source>Directory used as the default software folder for the MESS device configurator (if a sub-folder named as the current machine exists, that folder will be selected instead)</source>
-        <translation>Répertoire utilisé comme répertoire par défaut des logiciels pour le configurateur de périphériques MESS (si un sous-répertoire nommé comme la machine actuelle existe, il sera sinon sélectionné)</translation>
+        <translation type="unfinished">Répertoire utilisé comme répertoire par défaut des logiciels pour le configurateur de périphériques MESS (si un sous-répertoire nommé comme la machine actuelle existe, il sera sinon sélectionné)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3202"/>
         <source>Launch emulation directly when an item is activated in the search-, favorites- or played-lists (instead of jumping to the master list)</source>
-        <translation>Démarrer l&apos;émulation directement quand un élément est sélectionné dans la recherche, les favoris ou la liste des jeux joués (plutôt que basculer à la liste principale)</translation>
+        <translation type="unfinished">Démarrer l&apos;émulation directement quand un élément est sélectionné dans la recherche, les favoris ou la liste des jeux joués (plutôt que basculer à la liste principale)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1164"/>
         <location filename="../../options.cpp" line="1930"/>
         <location filename="../../options.cpp" line="3017"/>
         <source>SW snap folder</source>
-        <translation>Répertoire SW snap</translation>
+        <translation type="unfinished">Répertoire SW snap</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1398"/>
         <source>Software snap-shot directory (read)</source>
-        <translation>Répertoire pour les captures d&apos;écran (lecture)</translation>
+        <translation type="unfinished">Répertoire pour les captures d&apos;écran (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1411"/>
         <source>Browse software snap-shot directory</source>
-        <translation>Parcourir pour le répertoire des captures d&apos;écran</translation>
+        <translation type="unfinished">Parcourir pour le répertoire des captures d&apos;écran</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3125"/>
         <source>Players</source>
-        <translation>Joueurs</translation>
+        <translation type="unfinished">Joueurs</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3205"/>
         <source>Play on sub-list activation</source>
-        <translation>Lancer les jeux dans les sous-listes</translation>
+        <translation type="unfinished">Lancer les jeux dans les sous-listes</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3245"/>
         <source>Select the cursor position QMC2 uses when auto-scrolling to the current item (this setting applies to all views and lists!)</source>
-        <translation>Sélectionner la position du curseur que QMC2 utilise lors du défilement automatique vers l&apos;élément actuel (ce paramètre s&apos;applique à toutes les vues et listes!)</translation>
+        <translation type="unfinished">Sélectionner la position du curseur que QMC2 utilise lors du défilement automatique vers l&apos;élément actuel (ce paramètre s&apos;applique à toutes les vues et listes!)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3252"/>
         <source>Visible</source>
-        <translation>Visible</translation>
+        <translation type="unfinished">Visible</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3257"/>
         <source>Top</source>
-        <translation>Haut</translation>
+        <translation type="unfinished">Haut</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3262"/>
         <source>Bottom</source>
-        <translation>Bas</translation>
+        <translation type="unfinished">Bas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3267"/>
         <source>Center</source>
-        <translation>Centre</translation>
+        <translation type="unfinished">Centre</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3232"/>
         <source>Cursor position</source>
-        <translation>Position du curseur</translation>
+        <translation type="unfinished">Position du curseur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="708"/>
         <source>Use a unifed tool- and title-bar on Mac OS X</source>
-        <translation>Utiliser un outil unifié- et une barre d&apos;outils sur Mac OS X</translation>
+        <translation type="unfinished">Utiliser un outil unifié- et une barre d&apos;outils sur Mac OS X</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="711"/>
         <source>Unify with title</source>
-        <translation>Unifier avec le titre</translation>
+        <translation type="unfinished">Unifier avec le titre</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="673"/>
         <source>Minimize when launching emulators?</source>
-        <translation>Minimiser au lancement d&apos;émulateurs?</translation>
+        <translation type="unfinished">Minimiser au lancement d&apos;émulateurs?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="676"/>
         <source>Minimize on emulator launch</source>
-        <translation>Minimiser au lancement d&apos;émulateur</translation>
+        <translation type="unfinished">Minimiser au lancement d&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="202"/>
         <source>Suppress all messages sent through either the QDebug class or one of the qDebug() / qCritical() / qWarning() / qFatal() functions</source>
-        <translation>Supprimer tous les messages envoyés vers la classe QDedug ou autre fonction qDebug() / qCritical() / qWarning() / qFatal()</translation>
+        <translation type="unfinished">Supprimer tous les messages envoyés vers la classe QDedug ou autre fonction qDebug() / qCritical() / qWarning() / qFatal()</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="205"/>
         <source>Suppress Qt messages</source>
-        <translation>Supprimer les messages de QT</translation>
+        <translation type="unfinished">Supprimer les messages de QT</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="339"/>
         <source>Show splash screen when starting up?</source>
-        <translation>Afficher l&apos;écran de démarrage au lancement?</translation>
+        <translation type="unfinished">Afficher l&apos;écran de démarrage au lancement?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="342"/>
         <source>Show splash screen</source>
-        <translation>Afficher l&apos;écran de démarrage</translation>
+        <translation type="unfinished">Afficher l&apos;écran de démarrage</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="919"/>
         <source>Software notes folder</source>
-        <translation>Répertoire des notes logicels</translation>
+        <translation type="unfinished">Répertoire des notes logicels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1767"/>
         <source>Folder used to store personal notes about any software titles (write)</source>
-        <translation>Répertoire utilisé pour stocker les notes personnelles au sujet de tout les titres de logiciels (écriture)</translation>
+        <translation type="unfinished">Répertoire utilisé pour stocker les notes personnelles au sujet de tout les titres de logiciels (écriture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1780"/>
         <source>Browse software notes folder</source>
-        <translation>Parcourir pour le répertoire des notes logiciels</translation>
+        <translation type="unfinished">Parcourir pour le répertoire des notes logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3100"/>
         <source>Tag</source>
-        <translation>Tag</translation>
+        <translation type="unfinished">Tag</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3130"/>
         <source>Driver status</source>
-        <translation>Statut du driver</translation>
+        <translation type="unfinished">Statut du driver</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3218"/>
         <source>Display ROM status icons in master lists?</source>
-        <translation>Afficher les icônes de statut de ROM dans les listes?</translation>
+        <translation type="unfinished">Afficher les icônes de statut de ROM dans les listes?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3221"/>
         <source>Show ROM status icons</source>
-        <translation>Afficher l&apos;icône de statut ROM</translation>
+        <translation type="unfinished">Afficher l&apos;icône de statut ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3464"/>
         <source>Select the position where sofware snap-shots are displayed within software lists</source>
-        <translation>Sélectionner la position où les captures d&apos;écran des logiciels sont affichées dans les listes des logiciels</translation>
+        <translation type="unfinished">Sélectionner la position où les captures d&apos;écran des logiciels sont affichées dans les listes des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3498"/>
         <source>Disable snaps</source>
-        <translation>Désactive les captures</translation>
+        <translation type="unfinished">Désactive les captures</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3148"/>
         <source>Display software snap-shots when hovering the software list with the mouse cursor</source>
-        <translation>Afficher les captures d&apos;écran des logiciels par survol de la souris sur la liste des logiciels</translation>
+        <translation type="unfinished">Afficher les captures d&apos;écran des logiciels par survol de la souris sur la liste des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3151"/>
         <source>SW snaps on mouse hover</source>
-        <translation>snaps SW sur survol de souris</translation>
+        <translation type="unfinished">snaps SW sur survol de souris</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3000"/>
         <source>Enable ROM state filtering?</source>
-        <translation>Activer le filtrage d&apos;état de ROM?</translation>
+        <translation type="unfinished">Activer le filtrage d&apos;état de ROM?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="537"/>
         <source>ES (Spanish)</source>
-        <translation>ES (Espagnol)</translation>
+        <translation type="unfinished">ES (Espagnol)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="552"/>
         <source>IT (Italian)</source>
-        <translation>IT (Italien)</translation>
+        <translation type="unfinished">IT (Italien)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="567"/>
         <source>RO (Romanian)</source>
-        <translation>RO (Roumain)</translation>
+        <translation type="unfinished">RO (Roumain)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="572"/>
@@ -14375,22 +14376,22 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.ui" line="954"/>
         <source>Enable the use of a template for (empty) software notes</source>
-        <translation>Active l&apos;utilisation d&apos;un template pour les notes logiciels (vide)</translation>
+        <translation type="unfinished">Active l&apos;utilisation d&apos;un template pour les notes logiciels (vide)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="957"/>
         <source>Software notes template</source>
-        <translation>Template des notes logiciels</translation>
+        <translation type="unfinished">Template des notes logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1797"/>
         <source>HTML file used as a template for software-notes (read)</source>
-        <translation>fichier HTML utilisé comme template pour les notes de logiciels (lecture)</translation>
+        <translation type="unfinished">fichier HTML utilisé comme template pour les notes de logiciels (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2313"/>
         <source>Browse software notes template</source>
-        <translation>Parcourir pour le template des notes logiciels</translation>
+        <translation type="unfinished">Parcourir pour le template des notes logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1004"/>
@@ -14660,12 +14661,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.ui" line="3070"/>
         <source>Automatically disable SW snaps when software-detail is visible (may be annoying)</source>
-        <translation>Désactive automatiquement les snaps SW quand les détails des logciels sont visibles (peut être dérangeant)</translation>
+        <translation type="unfinished">Désactive automatiquement les snaps SW quand les détails des logciels sont visibles (peut être dérangeant)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3073"/>
         <source>No SW snaps for visible details</source>
-        <translation>Pas de snaps SW pour les détails visibles</translation>
+        <translation type="unfinished">Pas de snaps SW pour les détails visibles</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3090"/>
@@ -14695,17 +14696,17 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.ui" line="3433"/>
         <source>Select the default launch-mode (independent or embedded window) used when emulation is started by activating an entry in any list</source>
-        <translation>Choisir le mode de lancement par défaut (indépendant ou embarqué) à utiliser lorsque l&apos;émulation est démarrée par l&apos;activation d&apos;une entrée dans une liste</translation>
+        <translation type="unfinished">Choisir le mode de lancement par défaut (indépendant ou embarqué) à utiliser lorsque l&apos;émulation est démarrée par l&apos;activation d&apos;une entrée dans une liste</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3437"/>
         <source>independent</source>
-        <translation>indépendant</translation>
+        <translation type="unfinished">indépendant</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3446"/>
         <source>embedded</source>
-        <translation>embarqué</translation>
+        <translation type="unfinished">embarqué</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3512"/>
@@ -14715,72 +14716,72 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.ui" line="3557"/>
         <source>Default launch-mode</source>
-        <translation>Mode de lancement</translation>
+        <translation type="unfinished">Mode de lancement</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3586"/>
         <source>Display (or hide) device sets in master lists?</source>
-        <translation>Afficher (ou masquer) les sets de périphériques dans les listes?</translation>
+        <translation type="unfinished">Afficher (ou masquer) les sets de périphériques dans les listes?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3589"/>
         <source>Show device sets</source>
-        <translation>Voir les sets de périphériques</translation>
+        <translation type="unfinished">Voir les sets de périphériques</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3606"/>
         <source>Display (or hide) BIOS sets in master lists?</source>
-        <translation>Afficher (ou masquer) les sets BIOS dans les listes?</translation>
+        <translation type="unfinished">Afficher (ou masquer) les sets BIOS dans les listes?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3609"/>
         <source>Show BIOS sets</source>
-        <translation>Afficher les sets BIOS</translation>
+        <translation type="unfinished">Afficher les sets BIOS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4326"/>
         <source>ROM tool</source>
-        <translation>outil de ROM</translation>
+        <translation type="unfinished">outil de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4345"/>
         <source>External ROM tool (it&apos;s completely up to you...)</source>
-        <translation>outil de ROM externe (c&apos;est totalement sous votre contrôle...)</translation>
+        <translation type="unfinished">outil de ROM externe (c&apos;est totalement sous votre contrôle...)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4358"/>
         <source>Browse ROM tool</source>
-        <translation>Parcourir pour l&apos;outil de ROM</translation>
+        <translation type="unfinished">Parcourir pour l&apos;outil de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4382"/>
         <source>ROM tool argument list (i. e. &quot;$ID$ $DESCRIPTION$&quot;)</source>
-        <translation>liste d&apos;arguments de l&apos;outil de ROM (ex. &quot;$ID$ $DESCRIPTION$&quot;)</translation>
+        <translation type="unfinished">liste d&apos;arguments de l&apos;outil de ROM (ex. &quot;$ID$ $DESCRIPTION$&quot;)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4415"/>
         <source>Browse working directory of the ROM tool</source>
-        <translation>Parcourir pour le répertoire de travail de l&apos;outil de ROM</translation>
+        <translation type="unfinished">Parcourir pour le répertoire de travail de l&apos;outil de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4432"/>
         <source>Copy the tool&apos;s output to the front end log (keeping it for debugging)</source>
-        <translation>Copier la sortie de l&apos;outil vers le log du Front-End (conservé pour débug)</translation>
+        <translation type="unfinished">Copier la sortie de l&apos;outil vers le log du Front-End (conservé pour débug)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4435"/>
         <source>Copy tool output to front end log</source>
-        <translation>Copier la sortie de l&apos;outil dans le log du Front-End</translation>
+        <translation type="unfinished">Copier la sortie de l&apos;outil dans le log du Front-End</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4442"/>
         <source>Automatically close the tool-executor dialog when the external process finished</source>
-        <translation>Fermer automatiquement la fenêtre de l&apos;outil quand le processus externe est terminé</translation>
+        <translation type="unfinished">Fermer automatiquement la fenêtre de l&apos;outil quand le processus externe est terminé</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4445"/>
         <source>Close dialog automatically</source>
-        <translation>Fermer la fenêtre automatiquement</translation>
+        <translation type="unfinished">Fermer la fenêtre automatiquement</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4569"/>
@@ -14835,7 +14836,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.ui" line="4859"/>
         <source>Options template file</source>
-        <translation>Fichier template d&apos;options</translation>
+        <translation type="unfinished">Fichier template d&apos;options</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5184"/>
@@ -14905,17 +14906,17 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.ui" line="5675"/>
         <source>Indicates if the $ID$ placeholder is missing on the supplied command line (yellow) or not (green)</source>
-        <translation>Indique si l&apos;$ID$ est manquant dans la ligne de commande envoyée (jaune) or pas (vert) </translation>
+        <translation type="unfinished">Indique si l&apos;$ID$ est manquant dans la ligne de commande envoyée (jaune) or pas (vert) </translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5521"/>
         <source>Replace</source>
-        <translation>Remplacer</translation>
+        <translation type="unfinished">Remplacer</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5696"/>
         <source>Arguments passed to the emulator -- use $ID$ as placeholder for the unique set ID, $DESCRIPTION$ for its description</source>
-        <translation>Arguments passés à l&apos;émulateur -- utiliser $ID$ comme base pour un set unique ID, $DESCRIPTION$ pour sa description</translation>
+        <translation type="unfinished">Arguments passés à l&apos;émulateur -- utiliser $ID$ comme base pour un set unique ID, $DESCRIPTION$ pour sa description</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4389"/>
@@ -14923,29 +14924,29 @@ Are you sure you want to do this?</source>
         <location filename="../../options.ui" line="5437"/>
         <location filename="../../options.ui" line="5626"/>
         <source>Working directory</source>
-        <translation>Répertoire de travail</translation>
+        <translation type="unfinished">Répertoire de travail</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5253"/>
         <location filename="../../options.ui" line="5639"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
-        <translation>Répertoire de travail utilisé quand l&apos;émulateur est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
+        <translation type="unfinished">Répertoire de travail utilisé quand l&apos;émulateur est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5041"/>
         <location filename="../../options.ui" line="5652"/>
         <source>Browse working directory</source>
-        <translation>Parcourir pour le répertoire de travail</translation>
+        <translation type="unfinished">Parcourir pour le répertoire de travail</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5004"/>
         <source>General software folder</source>
-        <translation>Répertoire général des logiciels</translation>
+        <translation type="unfinished">Répertoire général des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4402"/>
         <source>Working directory that&apos;s used when the ROM tool is executed (if empty, QMC2&apos;s current working directory is used)</source>
-        <translation>Répertoire de travail utilisé quand l&apos;outil de ROM est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
+        <translation type="unfinished">Répertoire de travail utilisé quand l&apos;outil de ROM est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4980"/>
@@ -14960,7 +14961,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.ui" line="5017"/>
         <source>Browse general software folder</source>
-        <translation>Parcourir pour le répertoire général des logiciels</translation>
+        <translation type="unfinished">Parcourir pour le répertoire général des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5305"/>
@@ -14977,22 +14978,22 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.ui" line="5427"/>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation type="unfinished">Nom</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5432"/>
         <source>Executable</source>
-        <translation>Exécutable</translation>
+        <translation type="unfinished">Exécutable</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5447"/>
         <source>Custom IDs</source>
-        <translation>IDs personnalisés</translation>
+        <translation type="unfinished">IDs personnalisés</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5466"/>
         <source>Register emulator</source>
-        <translation>Enregistrer l&apos;émulateur</translation>
+        <translation type="unfinished">Enregistrer l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5469"/>
@@ -15002,22 +15003,22 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.ui" line="5492"/>
         <source>Deregister emulator</source>
-        <translation>Retire l&apos;émulateur</translation>
+        <translation type="unfinished">Retire l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5579"/>
         <source>Registered emulator&apos;s name</source>
-        <translation>nom des émulateurs enregistrés</translation>
+        <translation type="unfinished">nom des émulateurs enregistrés</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5599"/>
         <source>Command to execute the emulator (path to the executable file)</source>
-        <translation>Commande pour exécuter l&apos;émulateur (chemin vers l&apos;exécutable)</translation>
+        <translation type="unfinished">Commande pour exécuter l&apos;émulateur (chemin vers l&apos;exécutable)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5518"/>
         <source>Replace emulator registration</source>
-        <translation>Retirer l&apos;enregistrement de l&apos;émulateur</translation>
+        <translation type="unfinished">Retirer l&apos;enregistrement de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4218"/>
@@ -15062,12 +15063,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.ui" line="5572"/>
         <source>Emulator name</source>
-        <translation>Nom de l&apos;émulateur</translation>
+        <translation type="unfinished">Nom de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5495"/>
         <source> Remove</source>
-        <translation>Enlever</translation>
+        <translation type="unfinished">Enlever</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4883"/>
@@ -15092,57 +15093,57 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.ui" line="5717"/>
         <source>Apply settings</source>
-        <translation>Appliquer les paramètres</translation>
+        <translation type="unfinished">Appliquer les paramètres</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5720"/>
         <source>&amp;Apply</source>
-        <translation>&amp;Appliquer</translation>
+        <translation type="unfinished">&amp;Appliquer</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5734"/>
         <source>Restore currently applied settings</source>
-        <translation>Restaurer les paramètres appliqués en cours</translation>
+        <translation type="unfinished">Restaurer les paramètres appliqués en cours</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5737"/>
         <source>&amp;Restore</source>
-        <translation>&amp;Restaurer</translation>
+        <translation type="unfinished">&amp;Restaurer</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5751"/>
         <source>Reset to default settings (click &lt;i&gt;Restore&lt;/i&gt; to restore currently applied settings!)</source>
-        <translation>Remettre au paramètres par défaut (cliquer &lt;i&gt;Restaurer&lt;/i&gt; pour restaurer les paramètres appliqués en cours)</translation>
+        <translation type="unfinished">Remettre au paramètres par défaut (cliquer &lt;i&gt;Restaurer&lt;/i&gt; pour restaurer les paramètres appliqués en cours)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5754"/>
         <source>&amp;Default</source>
-        <translation>Par &amp;défaut</translation>
+        <translation type="unfinished">Par &amp;défaut</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5781"/>
         <source>Close and apply settings</source>
-        <translation>Fermer et appliquer les paramètres</translation>
+        <translation type="unfinished">Fermer et appliquer les paramètres</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5784"/>
         <source>&amp;Ok</source>
-        <translation>&amp;Ok</translation>
+        <translation type="unfinished">&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5798"/>
         <source>Close and discard changes</source>
-        <translation>Fermer et annuler les changements</translation>
+        <translation type="unfinished">Fermer et annuler les changements</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5801"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Annuler</translation>
+        <translation type="unfinished">&amp;Annuler</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="547"/>
         <source>FR (French)</source>
-        <translation>FR (Français)</translation>
+        <translation type="unfinished">FR (Français)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="106"/>
@@ -15247,37 +15248,37 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.ui" line="3749"/>
         <source>&amp;Joystick</source>
-        <translation>&amp;Joystick</translation>
+        <translation type="unfinished">&amp;Joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3778"/>
         <source>Enable GUI control via joystick</source>
-        <translation>Active le contrôle du GUI par le joystick</translation>
+        <translation type="unfinished">Active le contrôle du GUI par le joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3781"/>
         <source>Enable joystick control</source>
-        <translation>Active le contrôle au joystick</translation>
+        <translation type="unfinished">Active le contrôle au joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3797"/>
         <source>Rescan available joysticks</source>
-        <translation>Rescanne les joysticks disponibles</translation>
+        <translation type="unfinished">Rescanne les joysticks disponibles</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3800"/>
         <source>Rescan joysticks</source>
-        <translation>Rescanne les joysticks</translation>
+        <translation type="unfinished">Rescanne les joysticks</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3823"/>
         <source>Select joystick</source>
-        <translation>Choisir le joystick</translation>
+        <translation type="unfinished">Choisir le joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3833"/>
         <source>List of available joysticks - select the one you want to use for GUI control</source>
-        <translation>Liste des joysticks disponibles - sélectionnez celui que vous voulez pour contrôler le GUI</translation>
+        <translation type="unfinished">Liste des joysticks disponibles - sélectionnez celui que vous voulez pour contrôler le GUI</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3837"/>
@@ -15286,17 +15287,17 @@ Are you sure you want to do this?</source>
         <location filename="../../options.cpp" line="3800"/>
         <location filename="../../options.cpp" line="3881"/>
         <source>No joysticks found</source>
-        <translation>Aucun joystick détecté</translation>
+        <translation type="unfinished">Aucun joystick détecté</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3848"/>
         <source>Joystick information and settings</source>
-        <translation>Informations et paramètres du joystick</translation>
+        <translation type="unfinished">Informations et paramètres du joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3865"/>
         <source>Number of joystick axes</source>
-        <translation>Nombre d&apos;axes du joystick</translation>
+        <translation type="unfinished">Nombre d&apos;axes du joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3868"/>
@@ -15304,139 +15305,139 @@ Are you sure you want to do this?</source>
         <location filename="../../options.ui" line="3910"/>
         <location filename="../../options.ui" line="3931"/>
         <source>0</source>
-        <translation>0</translation>
+        <translation type="unfinished">0</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3879"/>
         <source>Buttons:</source>
-        <translation>Boutons:</translation>
+        <translation type="unfinished">Boutons:</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3886"/>
         <source>Number of joystick buttons</source>
-        <translation>Nombre de boutons du joystick</translation>
+        <translation type="unfinished">Nombre de boutons du joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3900"/>
         <source>Hats:</source>
-        <translation>Hats:</translation>
+        <translation type="unfinished">Hats:</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3907"/>
         <source>Number of coolie hats</source>
-        <translation>Nombre coolie hats</translation>
+        <translation type="unfinished">Nombre coolie hats</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3921"/>
         <source>Trackballs:</source>
-        <translation>Trackballs:</translation>
+        <translation type="unfinished">Trackballs:</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3928"/>
         <source>Number of trackballs</source>
-        <translation>Nombre de trackballs</translation>
+        <translation type="unfinished">Nombre de trackballs</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4047"/>
         <source>Calibrate joystick axes</source>
-        <translation>Calibrer les axes du joystick</translation>
+        <translation type="unfinished">Calibrer les axes du joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4069"/>
         <source>Test all joystick functions</source>
-        <translation>Tester toutes les fonctions du joystick</translation>
+        <translation type="unfinished">Tester toutes les fonctions du joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3858"/>
         <source>Axes:</source>
-        <translation>Axes:</translation>
+        <translation type="unfinished">Axes:</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3957"/>
         <source>Automatically repeat joystick functions after specified delay</source>
-        <translation>Répète automatiquement les fonctions de joystick après le délai spécifié</translation>
+        <translation type="unfinished">Répète automatiquement les fonctions de joystick après le délai spécifié</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3960"/>
         <source>Auto repeat after</source>
-        <translation>Recommencer automatiquement après</translation>
+        <translation type="unfinished">Recommencer automatiquement après</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3976"/>
         <source>Repeat all joystick functions after how many milliseconds?</source>
-        <translation>Répète automatiquement les fonctions de tous les joysticks après combien de millisecondes ?</translation>
+        <translation type="unfinished">Répète automatiquement les fonctions de tous les joysticks après combien de millisecondes ?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3979"/>
         <location filename="../../options.ui" line="4024"/>
         <source>ms</source>
-        <translation>ms</translation>
+        <translation type="unfinished">ms</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4005"/>
         <source>Event timeout</source>
-        <translation>Temps pour l&apos;évènement écoulé</translation>
+        <translation type="unfinished">Temps pour l&apos;évènement écoulé</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4021"/>
         <source>Process joystick events after how many milliseconds?</source>
-        <translation>Exécute les évènements de joystick après combien de millisecondes ?</translation>
+        <translation type="unfinished">Exécute les évènements de joystick après combien de millisecondes ?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3724"/>
         <location filename="../../options.ui" line="4192"/>
         <source>Function / Key</source>
-        <translation>Fonction / Touche</translation>
+        <translation type="unfinished">Fonction / Touche</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4050"/>
         <source>Calibrate</source>
-        <translation>Calibrer</translation>
+        <translation type="unfinished">Calibrer</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4072"/>
         <source>Test</source>
-        <translation>Tester</translation>
+        <translation type="unfinished">Tester</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4094"/>
         <source>Map</source>
-        <translation>Carte</translation>
+        <translation type="unfinished">Carte</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4130"/>
         <source>Remap</source>
-        <translation>Re-mapper</translation>
+        <translation type="unfinished">Re-mapper</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4150"/>
         <source>Remove</source>
-        <translation>Enlever</translation>
+        <translation type="unfinished">Enlever</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4170"/>
         <source>Active joystick mappings; double-click to remap joystick function</source>
-        <translation>Active le mapping de joystick: double-clic pour remapper les fonctions joystick</translation>
+        <translation type="unfinished">Active le mapping de joystick: double-clic pour remapper les fonctions joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4197"/>
         <source>Joystick function</source>
-        <translation>Fonction joystick</translation>
+        <translation type="unfinished">Fonction joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4091"/>
         <source>Map joystick functions to GUI functions</source>
-        <translation>Mapper les fonctions de joystick pour les fonctions du GUI</translation>
+        <translation type="unfinished">Mapper les fonctions de joystick pour les fonctions du GUI</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4127"/>
         <source>Remap a joystick function to the selected GUI function</source>
-        <translation>Remapper une fonction du joystick pour la fonction du GUI sélectionnée</translation>
+        <translation type="unfinished">Remapper une fonction du joystick pour la fonction du GUI sélectionnée</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4147"/>
         <source>Remove joystick mapping from selected GUI function</source>
-        <translation>Enlever une fonction du joystick pour la fonction du GUI sélectionnée</translation>
+        <translation type="unfinished">Enlever une fonction du joystick pour la fonction du GUI sélectionnée</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3736"/>
@@ -15446,217 +15447,217 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="4023"/>
         <source>joystick map is clean</source>
-        <translation>Mapping de joystick nettoyé</translation>
+        <translation type="unfinished">Mapping de joystick nettoyé</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4025"/>
         <source>WARNING: joystick map contains duplicates</source>
-        <translation>ATTENTION: La carte de joystick contient des doublons</translation>
+        <translation type="unfinished">ATTENTION: La carte de joystick contient des doublons</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1385"/>
         <source>please restart QMC2 for some changes to take effect</source>
-        <translation>SVP redémarrer QMC2 pour appliquer les changements</translation>
+        <translation type="unfinished">SVP redémarrer QMC2 pour appliquer les changements</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="357"/>
         <location filename="../../options.ui" line="373"/>
         <source>Option requires a restart of QMC2 to take effect</source>
-        <translation>L&apos;option nécessite un redémarrage de QMC2 pour prendre effet</translation>
+        <translation type="unfinished">L&apos;option nécessite un redémarrage de QMC2 pour prendre effet</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="376"/>
         <source>restart required</source>
-        <translation>redémarrage requis</translation>
+        <translation type="unfinished">redémarrage requis</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2351"/>
         <location filename="../../options.ui" line="3054"/>
         <location filename="../../options.ui" line="4971"/>
         <source>reload required</source>
-        <translation>rechargement requis</translation>
+        <translation type="unfinished">rechargement requis</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3515"/>
         <source>none</source>
-        <translation>aucun</translation>
+        <translation type="unfinished">aucun</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="394"/>
         <location filename="../../options.ui" line="637"/>
         <source>unlimited</source>
-        <translation>illimité</translation>
+        <translation type="unfinished">illimité</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="397"/>
         <location filename="../../options.ui" line="640"/>
         <source> lines</source>
-        <translation> lignes</translation>
+        <translation type="unfinished"> lignes</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="621"/>
         <source>Emulator log size</source>
-        <translation>Taille du log de l&apos;émulateur</translation>
+        <translation type="unfinished">Taille du log de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="634"/>
         <source>Maximum number of lines to keep in emulator log browser</source>
-        <translation>Nombre maximum de lignes à garder dans le navigateur du fichier log de l&apos;émulateur</translation>
+        <translation type="unfinished">Nombre maximum de lignes à garder dans le navigateur du fichier log de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="308"/>
         <source>Previous track (audio player)</source>
-        <translation>Piste précédente (lecteur audio)</translation>
+        <translation type="unfinished">Piste précédente (lecteur audio)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="309"/>
         <source>Next track (audio player)</source>
-        <translation>Piste suivante (lecteur audio)</translation>
+        <translation type="unfinished">Piste suivante (lecteur audio)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="310"/>
         <source>Fast backward (audio player)</source>
-        <translation>Retour rapide (lecteur audio)</translation>
+        <translation type="unfinished">Retour rapide (lecteur audio)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="311"/>
         <source>Fast forward (audio player)</source>
-        <translation>Avance rapide (lecteur audio)</translation>
+        <translation type="unfinished">Avance rapide (lecteur audio)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="312"/>
         <source>Stop track (audio player)</source>
-        <translation>Stopper la piste (lecteur audio)</translation>
+        <translation type="unfinished">Stopper la piste (lecteur audio)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="313"/>
         <source>Pause track (audio player)</source>
-        <translation>Mettre en pause la piste (lecteur audio)</translation>
+        <translation type="unfinished">Mettre en pause la piste (lecteur audio)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="314"/>
         <source>Play track (audio player)</source>
-        <translation>Lire la piste (lecteur audio)</translation>
+        <translation type="unfinished">Lire la piste (lecteur audio)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="315"/>
         <source>Raise volume (audio player)</source>
-        <translation>Monter le volume (lecteur audio)</translation>
+        <translation type="unfinished">Monter le volume (lecteur audio)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="316"/>
         <source>Lower volume (audio player)</source>
-        <translation>Baisser le volume (lecteur audio)</translation>
+        <translation type="unfinished">Baisser le volume (lecteur audio)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="243"/>
         <source>Export ROM Status</source>
-        <translation>Exporte le statut de ROM</translation>
+        <translation type="unfinished">Exporte le statut de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="185"/>
         <location filename="../../options.ui" line="255"/>
         <source>Only when required</source>
-        <translation>Uniquement si nécessaire</translation>
+        <translation type="unfinished">Uniquement si nécessaire</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="595"/>
         <source>Show the menu bar</source>
-        <translation>Affiche la barre de menus</translation>
+        <translation type="unfinished">Affiche la barre de menus</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="598"/>
         <source>Show menu bar</source>
-        <translation>Affiche la barre de menus</translation>
+        <translation type="unfinished">Affiche la barre de menus</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="292"/>
         <location filename="../../options.ui" line="295"/>
         <source>Show status bar</source>
-        <translation>Affiche la barre de statut</translation>
+        <translation type="unfinished">Affiche la barre de statut</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="689"/>
         <location filename="../../options.ui" line="692"/>
         <source>Show tool bar</source>
-        <translation>Affiche la barre d&apos;outils</translation>
+        <translation type="unfinished">Affiche la barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="278"/>
         <source>Toggle ROM state C</source>
-        <translation>Basculer en ROM state C</translation>
+        <translation type="unfinished">Basculer en ROM state C</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="279"/>
         <source>Toggle ROM state M</source>
-        <translation>Basculer en ROM state M</translation>
+        <translation type="unfinished">Basculer en ROM state M</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="280"/>
         <source>Toggle ROM state I</source>
-        <translation>Basculer en ROM state I</translation>
+        <translation type="unfinished">Basculer en ROM state I</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="281"/>
         <source>Toggle ROM state N</source>
-        <translation>Basculer en ROM state N</translation>
+        <translation type="unfinished">Basculer en ROM state N</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="282"/>
         <source>Toggle ROM state U</source>
-        <translation>Basculer en ROM state U</translation>
+        <translation type="unfinished">Basculer en ROM state U</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="192"/>
         <source>Check for other instances of this QMC2 variant on startup</source>
-        <translation>Tester pour d&apos;autres instances de cette variante QMC2 au démarrage</translation>
+        <translation type="unfinished">Tester pour d&apos;autres instances de cette variante QMC2 au démarrage</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="195"/>
         <source>Check single instance</source>
-        <translation>Tester l&apos;instance unique</translation>
+        <translation type="unfinished">Tester l&apos;instance unique</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="248"/>
         <source>Setup arcade mode</source>
-        <translation>Configurer le mode arcade</translation>
+        <translation type="unfinished">Configurer le mode arcade</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="25"/>
         <source>&amp;Front end</source>
-        <translation>&amp;Front end</translation>
+        <translation type="unfinished">&amp;Front end</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="451"/>
         <source>Application style (Default = use system&apos;s default style)</source>
-        <translation>Style d&apos;application (Défaut = utiliser le style par défaut du système)</translation>
+        <translation type="unfinished">Style d&apos;application (Défaut = utiliser le style par défaut du système)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3570"/>
         <source>Automatically trigger a ROM check if necessary</source>
-        <translation>Effectue automatiquement une vérification de ROM si nécessaire</translation>
+        <translation type="unfinished">Effectue automatiquement une vérification de ROM si nécessaire</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4253"/>
         <location filename="../../options.ui" line="4332"/>
         <location filename="../../options.ui" line="4673"/>
         <source>Command</source>
-        <translation>Commande</translation>
+        <translation type="unfinished">Commande</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3540"/>
         <source>Launch emulation on double-click events (may be annoying)</source>
-        <translation>Lancer l&apos;émulation par double-clic (peut-être ennuyeux)</translation>
+        <translation type="unfinished">Lancer l&apos;émulation par double-clic (peut-être ennuyeux)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3543"/>
         <source>Double-click activation</source>
-        <translation>Activation du double-clic</translation>
+        <translation type="unfinished">Activation du double-clic</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="303"/>
         <source>Toggle full screen</source>
-        <translation>Basculer en plein écran</translation>
+        <translation type="unfinished">Basculer en plein écran</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1382"/>
@@ -15667,213 +15668,213 @@ Are you sure you want to do this?</source>
         <location filename="../../options.cpp" line="1900"/>
         <location filename="../../options.cpp" line="2982"/>
         <source>Cabinet file</source>
-        <translation>Fichier Borne (cabinet)</translation>
+        <translation type="unfinished">Fichier Borne (cabinet)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="896"/>
         <location filename="../../options.cpp" line="1900"/>
         <location filename="../../options.cpp" line="2982"/>
         <source>Cabinet directory</source>
-        <translation>Répertoire des bornes</translation>
+        <translation type="unfinished">Répertoire des bornes</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1906"/>
         <location filename="../../options.cpp" line="2989"/>
         <source>Controller file</source>
-        <translation>Fichier Contrôleur</translation>
+        <translation type="unfinished">Fichier Contrôleur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2251"/>
         <location filename="../../options.cpp" line="1906"/>
         <location filename="../../options.cpp" line="2989"/>
         <source>Controller directory</source>
-        <translation>Répertoire des contrôleurs</translation>
+        <translation type="unfinished">Répertoire des contrôleurs</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2574"/>
         <source>Choose cabinet directory</source>
-        <translation>Choisir le répertoire des bornes</translation>
+        <translation type="unfinished">Choisir le répertoire des bornes</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2585"/>
         <source>Choose controller directory</source>
-        <translation>Choisir le répertoire des contrôleurs</translation>
+        <translation type="unfinished">Choisir le répertoire des contrôleurs</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="129"/>
         <source>Scaled cabinet</source>
-        <translation>Bornes redimensionnées</translation>
+        <translation type="unfinished">Bornes redimensionnées</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="139"/>
         <source>Scaled controller</source>
-        <translation>Contrôleurs redimensionnés</translation>
+        <translation type="unfinished">Contrôleurs redimensionnés</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1546"/>
         <source>Cabinet directory (read)</source>
-        <translation>Répertoire des bornes (lecture)</translation>
+        <translation type="unfinished">Répertoire des bornes (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1559"/>
         <source>Browse cabinet directory</source>
-        <translation>Parcourir pour le répertoire de bornes</translation>
+        <translation type="unfinished">Parcourir pour le répertoire de bornes</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2661"/>
         <source>Controller directory (read)</source>
-        <translation>Répertoire de contrôleurs (lecture)</translation>
+        <translation type="unfinished">Répertoire de contrôleurs (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2674"/>
         <source>Browse controller directory</source>
-        <translation>Parcourir pour le répertoire de contrôleurs</translation>
+        <translation type="unfinished">Parcourir pour le répertoire de contrôleurs</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1912"/>
         <location filename="../../options.cpp" line="2996"/>
         <source>Marquee file</source>
-        <translation>Fichier Marquee</translation>
+        <translation type="unfinished">Fichier Marquee</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1141"/>
         <location filename="../../options.cpp" line="1912"/>
         <location filename="../../options.cpp" line="2996"/>
         <source>Marquee directory</source>
-        <translation>Répertoire des marquees</translation>
+        <translation type="unfinished">Répertoire des marquees</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1918"/>
         <location filename="../../options.cpp" line="3003"/>
         <source>Title file</source>
-        <translation>Fichier titre</translation>
+        <translation type="unfinished">Fichier titre</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1045"/>
         <location filename="../../options.cpp" line="1918"/>
         <location filename="../../options.cpp" line="3003"/>
         <source>Title directory</source>
-        <translation>Répertoire des titres</translation>
+        <translation type="unfinished">Répertoire des titres</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2596"/>
         <source>Choose marquee directory</source>
-        <translation>Choisir le répertoire des marquees</translation>
+        <translation type="unfinished">Choisir le répertoire des marquees</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2607"/>
         <source>Choose title directory</source>
-        <translation>Choisir le répertoire des titres</translation>
+        <translation type="unfinished">Choisir le répertoire des titres</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="149"/>
         <source>Scaled marquee</source>
-        <translation>Marquees redimensionnés</translation>
+        <translation type="unfinished">Marquees redimensionnés</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="159"/>
         <source>Scaled title</source>
-        <translation>Titres redimensionnés</translation>
+        <translation type="unfinished">Titres redimensionnés</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1886"/>
         <source>Marquee directory (read)</source>
-        <translation>Répertoire des marquees (lecture)</translation>
+        <translation type="unfinished">Répertoire des marquees (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1899"/>
         <source>Browse marquee directory</source>
-        <translation>Parcourir pour le répertoire de marquees</translation>
+        <translation type="unfinished">Parcourir pour le répertoire de marquees</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2004"/>
         <source>Title directory (read)</source>
-        <translation>Répertoire des titres (lecture)</translation>
+        <translation type="unfinished">Répertoire des titres (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2017"/>
         <source>Browse title directory</source>
-        <translation>Parcourir pour le répertoire de titres</translation>
+        <translation type="unfinished">Parcourir pour le répertoire de titres</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="262"/>
         <source>Front end log size</source>
-        <translation>Taille du log du Frontend</translation>
+        <translation type="unfinished">Taille du log du Frontend</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="391"/>
         <source>Maximum number of lines to keep in front end log browser</source>
-        <translation>Nombre maximum de lignes à garder dans le navigateur du fichier log du front-end</translation>
+        <translation type="unfinished">Nombre maximum de lignes à garder dans le navigateur du fichier log du front-end</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="964"/>
         <source>Front end log file</source>
-        <translation>Fichier de log du front-end</translation>
+        <translation type="unfinished">Fichier de log du front-end</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1728"/>
         <source>Front end log file (write)</source>
-        <translation>Fichier de log du front-end (écriture)</translation>
+        <translation type="unfinished">Fichier de log du front-end (écriture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2379"/>
         <source>Browse front end log file</source>
-        <translation>Parcourir pour le fichier de log du front-end</translation>
+        <translation type="unfinished">Parcourir pour le fichier de log du front-end</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2820"/>
         <source>Choose front end log file</source>
-        <translation>Choisir le fichier log du front-end</translation>
+        <translation type="unfinished">Choisir le fichier log du front-end</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4458"/>
         <source>Use HTTP proxy</source>
-        <translation>Utiliser un proxy HTTP</translation>
+        <translation type="unfinished">Utiliser un proxy HTTP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4470"/>
         <source>Host / IP</source>
-        <translation>Hôte/IP</translation>
+        <translation type="unfinished">Hôte/IP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4483"/>
         <source>Hostname or IP address of the HTTP proxy server</source>
-        <translation>Nom d&apos;hôte ou adresse IP du serveur proxy HTTP</translation>
+        <translation type="unfinished">Nom d&apos;hôte ou adresse IP du serveur proxy HTTP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4490"/>
         <source>Port</source>
-        <translation>Port</translation>
+        <translation type="unfinished">Port</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4503"/>
         <source>Port to access the HTTP proxy service</source>
-        <translation>Port pour l&apos;accès au service du proxy HTTP</translation>
+        <translation type="unfinished">Port pour l&apos;accès au service du proxy HTTP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4516"/>
         <source>User ID</source>
-        <translation>Compte Utilisateur</translation>
+        <translation type="unfinished">Compte Utilisateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4529"/>
         <source>User ID to access the HTTP proxy service (empty = no authentication)</source>
-        <translation>Compte Utilisateur pour accéder au service de proxy HTTP (vide = pas d&apos;authentification)</translation>
+        <translation type="unfinished">Compte Utilisateur pour accéder au service de proxy HTTP (vide = pas d&apos;authentification)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4536"/>
         <source>Password</source>
-        <translation>Mot de passe</translation>
+        <translation type="unfinished">Mot de passe</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4455"/>
         <source>Enable / disable the use of an HTTP proxy on any web lookups</source>
-        <translation>Active / Désactive l&apos;utilisation d&apos;un proxy HTTP pour tout accès web</translation>
+        <translation type="unfinished">Active / Désactive l&apos;utilisation d&apos;un proxy HTTP pour tout accès web</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4549"/>
         <source>Password to access the HTTP proxy service (empty = no authentication)</source>
-        <translation>Mot de passe pour accéder au service de proxy HTTP (vide = pas d&apos;authentification)</translation>
+        <translation type="unfinished">Mot de passe pour accéder au service de proxy HTTP (vide = pas d&apos;authentification)</translation>
     </message>
 </context>
 <context>
@@ -15881,7 +15882,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../pcb.h" line="17"/>
         <source>PCB</source>
-        <translation type="unfinished">PCB</translation>
+        <translation>Circuit imprimé</translation>
     </message>
 </context>
 <context>
@@ -16068,7 +16069,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../preview.h" line="17"/>
         <source>preview</source>
-        <translation type="unfinished">capture d&apos;écran</translation>
+        <translation>aperçu</translation>
     </message>
 </context>
 <context>
@@ -16076,59 +16077,59 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../processmanager.cpp" line="81"/>
         <source>WARNING: ProcessManager::start(): the specified working directory &apos;%1&apos; is not a directory -- ignored</source>
-        <translation>ATTENTION: ProcessManager::start(): le répertoire de travail &apos;%1&apos; n&apos;est pas un répertoire -- ignoré</translation>
+        <translation type="unfinished">ATTENTION: ProcessManager::start(): le répertoire de travail &apos;%1&apos; n&apos;est pas un répertoire -- ignoré</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="83"/>
         <source>WARNING: ProcessManager::start(): the specified working directory &apos;%1&apos; does not exist -- ignored</source>
-        <translation>ATTENTION: ProcessManager::start(): le répertoire de travail &apos;%1&apos; n&apos;existe pas -- ignoré</translation>
+        <translation type="unfinished">ATTENTION: ProcessManager::start(): le répertoire de travail &apos;%1&apos; n&apos;existe pas -- ignoré</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="120"/>
         <location filename="../../processmanager.cpp" line="122"/>
         <source>starting emulator #%1, command = %2</source>
-        <translation>lancement de l&apos;émulateur #%1, commande = %2</translation>
+        <translation type="unfinished">lancement de l&apos;émulateur #%1, commande = %2</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="153"/>
         <source>terminating emulator #%1, PID = %2</source>
-        <translation>Sortie de l&apos;émulateur #%1, PID = %2</translation>
+        <translation type="unfinished">Sortie de l&apos;émulateur #%1, PID = %2</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="185"/>
         <source>killing emulator #%1, PID = %2</source>
-        <translation>tue l&apos;émulateur  #%1, PID = %2</translation>
+        <translation type="unfinished">tue l&apos;émulateur  #%1, PID = %2</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="216"/>
         <source>stdout[#%1]:</source>
-        <translation>stdout[#%1]:</translation>
+        <translation type="unfinished">stdout[#%1]:</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="234"/>
         <source>stderr[#%1]:</source>
-        <translation>stderr[#%1]:</translation>
+        <translation type="unfinished">stderr[#%1]:</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="264"/>
         <source>emulator #%1 finished, exit code = %2, exit status = %3, remaining emulators = %4</source>
-        <translation>sortie de l&apos;emulateur #%1, code de sortie = %2, statut de sortie = %3, emulateurs restants = %4</translation>
+        <translation type="unfinished">sortie de l&apos;emulateur #%1, code de sortie = %2, statut de sortie = %3, emulateurs restants = %4</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="264"/>
         <source>normal</source>
-        <translation>normal</translation>
+        <translation type="unfinished">normal</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="264"/>
         <location filename="../../processmanager.cpp" line="368"/>
         <source>crashed</source>
-        <translation>crashé</translation>
+        <translation type="unfinished">crashé</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="332"/>
         <source>emulator #%1 started, PID = %2, running emulators = %3</source>
-        <translation>emulateur #%1 démarré, PID = %2, emulateurs en fonctionnement = %3</translation>
+        <translation type="unfinished">emulateur #%1 démarré, PID = %2, emulateurs en fonctionnement = %3</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="366"/>
@@ -16153,52 +16154,52 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../processmanager.cpp" line="390"/>
         <source>FATAL: failed to start emulator #%1</source>
-        <translation>FATAL: échec de lancement de l&apos;émulateur #%1</translation>
+        <translation type="unfinished">FATAL: échec de lancement de l&apos;émulateur #%1</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="396"/>
         <source>WARNING: emulator #%1 crashed</source>
-        <translation>ATTENTION: l&apos;émulateur #%1 a crashé</translation>
+        <translation type="unfinished">ATTENTION: l&apos;émulateur #%1 a crashé</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="399"/>
         <source>WARNING: failed to write to emulator #%1</source>
-        <translation>ATTENTION: échec d&apos;écriture pour l&apos;émulateur #%1</translation>
+        <translation type="unfinished">ATTENTION: échec d&apos;écriture pour l&apos;émulateur #%1</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="402"/>
         <source>WARNING: failed to read from emulator #%1</source>
-        <translation>ATTENTION: échec de lecture pour l&apos;émulateur #%1</translation>
+        <translation type="unfinished">ATTENTION: échec de lecture pour l&apos;émulateur #%1</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="405"/>
         <source>WARNING: unhandled error for emulator #%1, error code = %2</source>
-        <translation>ATTENTION: erreur non gérée pour l&apos;émulateir #%1, code d&apos;erreur = %2</translation>
+        <translation type="unfinished">ATTENTION: erreur non gérée pour l&apos;émulateir #%1, code d&apos;erreur = %2</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="422"/>
         <source>no error</source>
-        <translation>pas d&apos;erreur</translation>
+        <translation type="unfinished">pas d&apos;erreur</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="423"/>
         <source>failed validity checks</source>
-        <translation>échec des tests de validité</translation>
+        <translation type="unfinished">échec des tests de validité</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="424"/>
         <source>missing files</source>
-        <translation>fichiers manquants</translation>
+        <translation type="unfinished">fichiers manquants</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="425"/>
         <source>fatal error</source>
-        <translation>erreur fatale</translation>
+        <translation type="unfinished">erreur fatale</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="426"/>
         <source>device initialization error</source>
-        <translation>erreur d&apos;initialisation de périphérique</translation>
+        <translation type="unfinished">erreur d&apos;initialisation de périphérique</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="427"/>
@@ -16208,43 +16209,43 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../processmanager.cpp" line="428"/>
         <source>invalid configuration</source>
-        <translation>configuration invalide</translation>
+        <translation type="unfinished">configuration invalide</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="429"/>
         <source>identified all non-ROM files</source>
-        <translation>tous les fichiers non-ROM identifié</translation>
+        <translation type="unfinished">tous les fichiers non-ROM identifié</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="430"/>
         <source>identified some files but not all</source>
-        <translation>certains fichiers identifiés mais pas tous</translation>
+        <translation type="unfinished">certains fichiers identifiés mais pas tous</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="431"/>
         <source>identified no files</source>
-        <translation>aucun fichier identifié</translation>
+        <translation type="unfinished">aucun fichier identifié</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="376"/>
         <location filename="../../processmanager.cpp" line="432"/>
         <source>unknown error</source>
-        <translation>erreur inconnue</translation>
+        <translation type="unfinished">erreur inconnue</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="176"/>
         <source>WARNING: ProcessManager::terminate(ushort index = %1): trying to terminate a null process</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="199"/>
         <source>WARNING: ProcessManager::kill(ushort index = %1): trying to kill a null process</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="261"/>
         <source>WARNING: ProcessManager::finished(...): trying to remove a null item</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -16350,25 +16351,25 @@ Are you sure you want to do this?</source>
         <location filename="../../machinelist.cpp" line="1942"/>
         <location filename="../../options.cpp" line="1416"/>
         <source>players</source>
-        <translation>joueurs</translation>
+        <translation type="unfinished">joueurs</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1954"/>
         <location filename="../../options.cpp" line="1428"/>
         <source>category</source>
-        <translation>catégorie</translation>
+        <translation type="unfinished">catégorie</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1957"/>
         <location filename="../../options.cpp" line="1431"/>
         <source>version</source>
-        <translation>version</translation>
+        <translation type="unfinished">version</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1939"/>
         <location filename="../../options.cpp" line="1413"/>
         <source>ROM types</source>
-        <translation>type de ROM</translation>
+        <translation type="unfinished">type de ROM</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1921"/>
@@ -16380,25 +16381,25 @@ Are you sure you want to do this?</source>
         <location filename="../../machinelist.cpp" line="1924"/>
         <location filename="../../options.cpp" line="1398"/>
         <source>ROM state</source>
-        <translation>statut de ROM</translation>
+        <translation type="unfinished">statut de ROM</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1927"/>
         <location filename="../../options.cpp" line="1401"/>
         <source>tag</source>
-        <translation>tag</translation>
+        <translation type="unfinished">tag</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1930"/>
         <location filename="../../options.cpp" line="1404"/>
         <source>year</source>
-        <translation>année</translation>
+        <translation type="unfinished">année</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1933"/>
         <location filename="../../options.cpp" line="1407"/>
         <source>manufacturer</source>
-        <translation>fabricant</translation>
+        <translation type="unfinished">fabricant</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1936"/>
@@ -16410,7 +16411,7 @@ Are you sure you want to do this?</source>
         <location filename="../../machinelist.cpp" line="1945"/>
         <location filename="../../options.cpp" line="1419"/>
         <source>driver status</source>
-        <translation>statut du driver</translation>
+        <translation type="unfinished">statut du driver</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1948"/>
@@ -16428,22 +16429,22 @@ Are you sure you want to do this?</source>
         <location filename="../../machinelist.cpp" line="2672"/>
         <location filename="../../machinelist.cpp" line="2849"/>
         <source>correct</source>
-        <translation>correct</translation>
+        <translation type="unfinished">correct</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2879"/>
         <source>incorrect</source>
-        <translation>incorrect</translation>
+        <translation type="unfinished">incorrect</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2909"/>
         <source>mostly correct</source>
-        <translation>à peu près correct</translation>
+        <translation type="unfinished">à peu près correct</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2939"/>
         <source>not found</source>
-        <translation>non trouvé</translation>
+        <translation type="unfinished">non trouvé</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2969"/>
@@ -16451,19 +16452,19 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="4629"/>
         <location filename="../../romalyzer.cpp" line="4641"/>
         <source>unknown</source>
-        <translation>inconnu</translation>
+        <translation type="unfinished">inconnu</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1816"/>
         <location filename="../../welcome.cpp" line="37"/>
         <source>Default</source>
-        <translation>Par défaut</translation>
+        <translation type="unfinished">Par défaut</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4234"/>
         <location filename="../../qmc2main.cpp" line="11029"/>
         <source>Import from...</source>
-        <translation>Importer depuis...</translation>
+        <translation type="unfinished">Importer depuis...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4232"/>
@@ -16480,103 +16481,103 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="10961"/>
         <source>Setting up the GUI, please wait...</source>
-        <translation>Configuration du GUI, patientez svp...</translation>
+        <translation type="unfinished">Configuration du GUI, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10992"/>
         <source>M.A.M.E. Catalog / Launcher II v</source>
-        <translation>M.A.M.E. Catalog / Launcher II v</translation>
+        <translation type="unfinished">M.A.M.E. Catalog / Launcher II v</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10995"/>
         <source>SVN r%1</source>
-        <translation>SVN r%1</translation>
+        <translation type="unfinished">SVN r%1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11017"/>
         <source>processing global emulator configuration</source>
-        <translation>traitement de la configuration globale de l&apos;émulateur </translation>
+        <translation type="unfinished">traitement de la configuration globale de l&apos;émulateur </translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11026"/>
         <source>Export to...</source>
-        <translation>Exporter vers...</translation>
+        <translation type="unfinished">Exporter vers...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11027"/>
         <location filename="../../qmc2main.cpp" line="11028"/>
         <source>Export global MAME configuration</source>
-        <translation>Exporter la configuration globale de MAME</translation>
+        <translation type="unfinished">Exporter la configuration globale de MAME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11030"/>
         <location filename="../../qmc2main.cpp" line="11031"/>
         <source>Import global MAME configuration</source>
-        <translation>Importer la configuration globale de MAME</translation>
+        <translation type="unfinished">Importer la configuration globale de MAME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11038"/>
         <location filename="../../qmc2main.cpp" line="11042"/>
         <source>&lt;inipath&gt;/mame.ini</source>
-        <translation>&lt;rep.ini&gt;/mame.ini</translation>
+        <translation type="unfinished">&lt;rep.ini&gt;/mame.ini</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11039"/>
         <location filename="../../qmc2main.cpp" line="11043"/>
         <source>Select file...</source>
-        <translation>Choisir le fichier...</translation>
+        <translation type="unfinished">Choisir le fichier...</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4568"/>
         <source>ROM</source>
-        <translation>ROM</translation>
+        <translation type="unfinished">ROM</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="991"/>
         <location filename="../../romalyzer.cpp" line="4568"/>
         <source>CHD</source>
-        <translation>CHD</translation>
+        <translation type="unfinished">CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4572"/>
         <location filename="../../romalyzer.cpp" line="4626"/>
         <location filename="../../romalyzer.cpp" line="4645"/>
         <source>good</source>
-        <translation>bon</translation>
+        <translation type="unfinished">bon</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="993"/>
         <location filename="../../romalyzer.cpp" line="4576"/>
         <location filename="../../romalyzer.cpp" line="4635"/>
         <source>no dump</source>
-        <translation>pas de dump</translation>
+        <translation type="unfinished">pas de dump</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4580"/>
         <location filename="../../romalyzer.cpp" line="4638"/>
         <source>bad dump</source>
-        <translation>mauvais dump</translation>
+        <translation type="unfinished">mauvais dump</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4632"/>
         <source>no / bad dump</source>
-        <translation>pas de / mauvais dump</translation>
+        <translation type="unfinished">pas de / mauvais dump</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11008"/>
         <location filename="../../qmc2main.cpp" line="11012"/>
         <source>SDL joystick support enabled - using SDL v%1.%2.%3</source>
-        <translation>Support du joystick SDL activé - Utilise SDL v%1.%2.%3</translation>
+        <translation type="unfinished">Support du joystick SDL activé - Utilise SDL v%1.%2.%3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11002"/>
         <source>Phonon features enabled - using Phonon v%1</source>
-        <translation>Phonon actif - Utilise Phonon v%1</translation>
+        <translation type="unfinished">Phonon actif - Utilise Phonon v%1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1953"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
-        <translation>lecteur vidéo: erreur XML: erreur fatal ligne %1, colonne %2: %3</translation>
+        <translation type="unfinished">lecteur vidéo: erreur XML: erreur fatal ligne %1, colonne %2: %3</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1144"/>
@@ -16584,7 +16585,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="3698"/>
         <location filename="../../softwarelist.cpp" line="5139"/>
         <source>Auto mount</source>
-        <translation>Monter automatiquement</translation>
+        <translation type="unfinished">Monter automatiquement</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1149"/>
@@ -16595,7 +16596,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="5144"/>
         <location filename="../../softwarelist.cpp" line="5148"/>
         <source>Not mounted</source>
-        <translation>Non monté</translation>
+        <translation type="unfinished">Non monté</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1151"/>
@@ -16603,14 +16604,14 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="3706"/>
         <location filename="../../softwarelist.cpp" line="5150"/>
         <source>Mounted on:</source>
-        <translation>Monté sur:</translation>
+        <translation type="unfinished">Monté sur:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1143"/>
         <location filename="../../softwarelist.cpp" line="3659"/>
         <location filename="../../softwarelist.cpp" line="5138"/>
         <source>Don&apos;t mount</source>
-        <translation>Ne pas monter</translation>
+        <translation type="unfinished">Ne pas monter</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1523"/>
@@ -16618,35 +16619,35 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="1570"/>
         <location filename="../../softwarelist.cpp" line="4133"/>
         <source>Waiting for data...</source>
-        <translation>En attente de données...</translation>
+        <translation type="unfinished">En attente de données...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5102"/>
         <location filename="../../softwarelist.cpp" line="5104"/>
         <source>Searching</source>
-        <translation>Recherche</translation>
+        <translation type="unfinished">Recherche</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5116"/>
         <source>Updating</source>
-        <translation>Mise à jour</translation>
+        <translation type="unfinished">Mise à jour</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5128"/>
         <source>Part:</source>
-        <translation>Partie:</translation>
+        <translation type="unfinished">Partie:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1153"/>
         <location filename="../../softwarelist.cpp" line="5155"/>
         <source>No mount device</source>
-        <translation>Pas de périphérique de montage</translation>
+        <translation type="unfinished">Pas de périphérique de montage</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1154"/>
         <location filename="../../softwarelist.cpp" line="5156"/>
         <source>Unmanaged</source>
-        <translation>Non géré</translation>
+        <translation type="unfinished">Non géré</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1317"/>
@@ -16681,29 +16682,29 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwarelist.cpp" line="5192"/>
         <source>Data area:</source>
-        <translation>Zone de données:</translation>
+        <translation type="unfinished">Zone de données:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5195"/>
         <location filename="../../softwarelist.cpp" line="5207"/>
         <location filename="../../softwarelist.cpp" line="5221"/>
         <source>Size:</source>
-        <translation>Taille:</translation>
+        <translation type="unfinished">Taille:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5204"/>
         <source>Disk area:</source>
-        <translation>Zone de disque:</translation>
+        <translation type="unfinished">Zone de disque:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5224"/>
         <source>CRC:</source>
-        <translation>CRC:</translation>
+        <translation type="unfinished">CRC:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5239"/>
         <source>SHA1:</source>
-        <translation>SHA1:</translation>
+        <translation type="unfinished">SHA1:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5248"/>
@@ -16930,7 +16931,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="4094"/>
         <source>repaired</source>
-        <translation>réparé</translation>
+        <translation type="unfinished">réparé</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="3885"/>
@@ -17536,7 +17537,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="2541"/>
         <source>Choose CHD manager executable file</source>
-        <translation>Choisir l&apos;exécutable du manager de CHD</translation>
+        <translation type="unfinished">Choisir l&apos;exécutable du manager de CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2541"/>
@@ -17545,17 +17546,17 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="4161"/>
         <location filename="../../romalyzer.cpp" line="4229"/>
         <source>All files (*)</source>
-        <translation>Tous les fichiers (*)</translation>
+        <translation type="unfinished">Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2553"/>
         <source>Choose temporary working directory</source>
-        <translation>Choisir le répertoire de travail temporaire</translation>
+        <translation type="unfinished">Choisir le répertoire de travail temporaire</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2592"/>
         <source>CHD manager: external process started</source>
-        <translation>manager CHD: processus externe démarré</translation>
+        <translation type="unfinished">manager CHD: processus externe démarré</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1975"/>
@@ -17563,119 +17564,119 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="2892"/>
         <location filename="../../romalyzer.cpp" line="2939"/>
         <source>unknown</source>
-        <translation>inconnu</translation>
+        <translation type="unfinished">inconnu</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2606"/>
         <source>normal</source>
-        <translation>normal</translation>
+        <translation type="unfinished">normal</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2609"/>
         <source>crashed</source>
-        <translation>crashé</translation>
+        <translation type="unfinished">crashé</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2612"/>
         <source>CHD manager: external process finished (exit code = %1, exit status = %2)</source>
-        <translation>manager CHD: processus externe terminé (code de sortie = %1, statut de sortie = %2)</translation>
+        <translation type="unfinished">manager CHD: processus externe terminé (code de sortie = %1, statut de sortie = %2)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2628"/>
         <source>CHD manager: stdout: %1</source>
-        <translation>manager CHD: stdout: %1</translation>
+        <translation type="unfinished">manager CHD: stdout: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2650"/>
         <source>CHD manager: stderr: %1</source>
-        <translation>manager CHD: stderr: %1</translation>
+        <translation type="unfinished">manager CHD: stderr: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2692"/>
         <source>CHD manager: failed to start</source>
-        <translation>manager CHD: échec de lancement</translation>
+        <translation type="unfinished">manager CHD: échec de lancement</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2696"/>
         <source>CHD manager: crashed</source>
-        <translation>manager CHD: crashé</translation>
+        <translation type="unfinished">manager CHD: crashé</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2700"/>
         <source>CHD manager: write error</source>
-        <translation>manager CHD: erreur d&apos;écriture</translation>
+        <translation type="unfinished">manager CHD: erreur d&apos;écriture</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2704"/>
         <source>CHD manager: read error</source>
-        <translation>manager CHD: erreur de lecture</translation>
+        <translation type="unfinished">manager CHD: erreur de lecture</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2708"/>
         <source>CHD manager: unknown error %1</source>
-        <translation>manager CHD: erreur inconnue %1</translation>
+        <translation type="unfinished">manager CHD: erreur inconnue %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="105"/>
         <source>none</source>
-        <translation>aucun</translation>
+        <translation type="unfinished">aucun</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="105"/>
         <source>zlib</source>
-        <translation>zlib</translation>
+        <translation type="unfinished">zlib</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="105"/>
         <source>zlib+</source>
-        <translation>zlib+</translation>
+        <translation type="unfinished">zlib+</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="105"/>
         <source>A/V codec</source>
-        <translation>A/V codec</translation>
+        <translation type="unfinished">A/V codec</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="319"/>
         <source>please wait for reload to finish and try again</source>
-        <translation>merci de patienter durant le rechargement puis recommencez</translation>
+        <translation type="unfinished">merci de patienter durant le rechargement puis recommencez</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="325"/>
         <source>stopping analysis</source>
-        <translation>Arrêt de l&apos;analyse</translation>
+        <translation type="unfinished">Arrêt de l&apos;analyse</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="329"/>
         <source>starting analysis</source>
-        <translation>Démarrage de l&apos;analyse</translation>
+        <translation type="unfinished">Démarrage de l&apos;analyse</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="343"/>
         <source>pausing analysis</source>
-        <translation>mettre en pause l&apos;analyse</translation>
+        <translation type="unfinished">mettre en pause l&apos;analyse</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="346"/>
         <source>resuming analysis</source>
-        <translation>reprendre l&apos;analyse</translation>
+        <translation type="unfinished">reprendre l&apos;analyse</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="98"/>
         <location filename="../../romalyzer.cpp" line="347"/>
         <location filename="../../romalyzer.cpp" line="698"/>
         <source>&amp;Pause</source>
-        <translation>&amp;Pause</translation>
+        <translation type="unfinished">&amp;Pause</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="695"/>
         <source>&amp;Stop</source>
-        <translation>&amp;Stop</translation>
+        <translation type="unfinished">&amp;Stop</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="706"/>
         <source>analysis started</source>
-        <translation>analyse démarrée</translation>
+        <translation type="unfinished">analyse démarrée</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1910"/>
@@ -17686,22 +17687,22 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="3400"/>
         <location filename="../../romalyzer.cpp" line="4106"/>
         <source>Idle</source>
-        <translation>Idle</translation>
+        <translation type="unfinished">Idle</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="847"/>
         <source>analysis paused</source>
-        <translation>analyse en pause</translation>
+        <translation type="unfinished">analyse en pause</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="848"/>
         <source>&amp;Resume</source>
-        <translation>&amp;Reprendre</translation>
+        <translation type="unfinished">&amp;Reprendre</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="851"/>
         <source>Paused</source>
-        <translation>Pause</translation>
+        <translation type="unfinished">Pause</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="868"/>
@@ -17714,32 +17715,32 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="886"/>
         <source>analyzing &apos;%1&apos;</source>
-        <translation>analyse de &apos;%1&apos;</translation>
+        <translation type="unfinished">analyse de &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="888"/>
         <source>Analyzing &apos;%1&apos;</source>
-        <translation>Analyse de &apos;%1&apos;</translation>
+        <translation type="unfinished">Analyse de &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="908"/>
         <source>parsing XML data for &apos;%1&apos;</source>
-        <translation>analyse les données XML pour &apos;%1&apos;</translation>
+        <translation type="unfinished">analyse les données XML pour &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="915"/>
         <source>done (parsing XML data for &apos;%1&apos;)</source>
-        <translation>fait (analyse les données XML pour &apos;%1&apos;)</translation>
+        <translation type="unfinished">fait (analyse les données XML pour &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="917"/>
         <source>error (parsing XML data for &apos;%1&apos;)</source>
-        <translation>erreur (analyse les données XML pour &apos;%1&apos;)</translation>
+        <translation type="unfinished">erreur (analyse les données XML pour &apos;%1&apos;)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="930"/>
         <source>checking %n file(s) for &apos;%1&apos;</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>checking %n file(s) for &apos;%1&apos;</numerusform>
             <numerusform>vérification de %n fichier(s) pour &apos;%1&apos;</numerusform>
         </translation>
@@ -17754,7 +17755,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="3896"/>
         <location filename="../../romalyzer.cpp" line="3947"/>
         <source>ROM</source>
-        <translation>ROM</translation>
+        <translation type="unfinished">ROM</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="980"/>
@@ -17764,7 +17765,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="3366"/>
         <location filename="../../romalyzer.cpp" line="3445"/>
         <source>not found</source>
-        <translation>non trouvé</translation>
+        <translation type="unfinished">non trouvé</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="966"/>
@@ -17772,12 +17773,12 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="1026"/>
         <location filename="../../romalyzer.cpp" line="1275"/>
         <source>skipped</source>
-        <translation>passé</translation>
+        <translation type="unfinished">passé</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1029"/>
         <source>error</source>
-        <translation>erreur</translation>
+        <translation type="unfinished">erreur</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1093"/>
@@ -17787,7 +17788,7 @@ Are you sure you want to do this?</source>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1301"/>
         <source>interrupted (checking %n file(s) for &apos;%1&apos;)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>interrompu (vérification de %n fichier(s) pour &apos;%1&apos;)</numerusform>
             <numerusform>interrompu (vérification de %n fichier(s) pour &apos;%1&apos;)</numerusform>
         </translation>
@@ -17795,17 +17796,17 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="1318"/>
         <source>good / not found / skipped</source>
-        <translation>bon / non trouvé / passé</translation>
+        <translation type="unfinished">bon / non trouvé / passé</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1320"/>
         <source>good / not found</source>
-        <translation>bon / non trouvé</translation>
+        <translation type="unfinished">bon / non trouvé</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1331"/>
         <source>good / skipped</source>
-        <translation>bon / passé</translation>
+        <translation type="unfinished">bon / passé</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1181"/>
@@ -17814,22 +17815,22 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="3525"/>
         <location filename="../../romalyzer.cpp" line="3871"/>
         <source>good</source>
-        <translation>bon</translation>
+        <translation type="unfinished">bon</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1339"/>
         <source>bad / not found / skipped</source>
-        <translation>mauvais / non trouvé / passé</translation>
+        <translation type="unfinished">mauvais / non trouvé / passé</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1341"/>
         <source>bad / not found</source>
-        <translation>mauvais / non trouvé</translation>
+        <translation type="unfinished">mauvais / non trouvé</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1351"/>
         <source>bad / skipped</source>
-        <translation>mauvais / passé</translation>
+        <translation type="unfinished">mauvais / passé</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1045"/>
@@ -17840,7 +17841,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="3527"/>
         <location filename="../../romalyzer.cpp" line="3867"/>
         <source>bad</source>
-        <translation>mauvais</translation>
+        <translation type="unfinished">mauvais</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="156"/>
@@ -17850,7 +17851,7 @@ Are you sure you want to do this?</source>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1376"/>
         <source>done (checking %n file(s) for &apos;%1&apos;)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>done (checking %n file(s) for &apos;%1&apos;)</numerusform>
             <numerusform>fait (vérification de %n fichier(s) pour &apos;%1&apos;)</numerusform>
         </translation>
@@ -17858,83 +17859,83 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="1392"/>
         <source>done (analyzing &apos;%1&apos;)</source>
-        <translation>fait (analyse de &apos;%1&apos;)</translation>
+        <translation type="unfinished">fait (analyse de &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="81"/>
         <location filename="../../romalyzer.cpp" line="1398"/>
         <source>&amp;Analyze</source>
-        <translation>&amp;Analyse</translation>
+        <translation type="unfinished">&amp;Analyse</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1412"/>
         <source>analysis ended</source>
-        <translation>fin de l&apos;analyse</translation>
+        <translation type="unfinished">fin de l&apos;analyse</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1526"/>
         <source>loading &apos;%1&apos;%2</source>
-        <translation>chargement &apos;%1&apos;%2</translation>
+        <translation type="unfinished">chargement &apos;%1&apos;%2</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1526"/>
         <location filename="../../romalyzer.cpp" line="2006"/>
         <location filename="../../romalyzer.cpp" line="2122"/>
         <source> (merged)</source>
-        <translation>(mergé)</translation>
+        <translation type="unfinished">(mergé)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1562"/>
         <source>CHD header information:</source>
-        <translation>information d&apos;entête du CHD:</translation>
+        <translation type="unfinished">information d&apos;entête du CHD:</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1566"/>
         <source>  version: %1</source>
-        <translation>  version: %1</translation>
+        <translation type="unfinished">  version: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1567"/>
         <location filename="../../romalyzer.cpp" line="1801"/>
         <source>CHD v%1</source>
-        <translation>CHD v%1</translation>
+        <translation type="unfinished">CHD v%1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1572"/>
         <location filename="../../romalyzer.cpp" line="1597"/>
         <source>  compression: %1</source>
-        <translation>  compression: %1</translation>
+        <translation type="unfinished">  compression: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1576"/>
         <location filename="../../romalyzer.cpp" line="1601"/>
         <source>  number of total hunks: %1</source>
-        <translation>  nombre total de segments: %1</translation>
+        <translation type="unfinished">  nombre total de segments: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1578"/>
         <location filename="../../romalyzer.cpp" line="1603"/>
         <location filename="../../romalyzer.cpp" line="1633"/>
         <source>  number of bytes per hunk: %1</source>
-        <translation>  nombre de bits par segment: %1</translation>
+        <translation type="unfinished">  nombre de bits par segment: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1904"/>
         <location filename="../../romalyzer.cpp" line="1910"/>
         <source>WARNING: can&apos;t read CHD header information</source>
-        <translation>ATTENTION: impossible de lire l&apos;information d&apos;entête du CHD</translation>
+        <translation type="unfinished">ATTENTION: impossible de lire l&apos;information d&apos;entête du CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1958"/>
         <source>WARNING: found &apos;%1&apos; but can&apos;t read from it although permissions seem okay - check file integrity</source>
-        <translation>ATTENTION: &apos;%1&apos; trouvé mais impossible de le lire malgré que les permissions soient bonnes - vérifiez l&apos;intégrité du fichier</translation>
+        <translation type="unfinished">ATTENTION: &apos;%1&apos; trouvé mais impossible de le lire malgré que les permissions soient bonnes - vérifiez l&apos;intégrité du fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1961"/>
         <location filename="../../romalyzer.cpp" line="2068"/>
         <location filename="../../romalyzer.cpp" line="2200"/>
         <source>WARNING: found &apos;%1&apos; but can&apos;t read from it - check permission</source>
-        <translation>ATTENTION: &apos;%1&apos; trouvé mais impossible de le lire - vérifiez les permissions du fichier</translation>
+        <translation type="unfinished">ATTENTION: &apos;%1&apos; trouvé mais impossible de le lire - vérifiez les permissions du fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2062"/>
@@ -17951,52 +17952,52 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="170"/>
         <source>Copy to clipboard</source>
-        <translation>Copier dans le presse-papier</translation>
+        <translation type="unfinished">Copier dans le presse-papier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2194"/>
         <source>WARNING: unable to decompress &apos;%1&apos; from &apos;%2&apos; - check file integrity</source>
-        <translation>ATTENTION: impossible de décompresser &apos;%1&apos; de &apos;%2&apos; - vérifiez l&apos;intégrité du fichier</translation>
+        <translation type="unfinished">ATTENTION: impossible de décompresser &apos;%1&apos; de &apos;%2&apos; - vérifiez l&apos;intégrité du fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2066"/>
         <location filename="../../romalyzer.cpp" line="2198"/>
         <source>WARNING: found &apos;%1&apos; but can&apos;t open it for decompression - check file integrity</source>
-        <translation>ATTENTION: &apos;%1&apos; trouvé mais impossible de l&apos;ouvrir pour décompression - vérifiez l&apos;intégrité du fichier</translation>
+        <translation type="unfinished">ATTENTION: &apos;%1&apos; trouvé mais impossible de l&apos;ouvrir pour décompression - vérifiez l&apos;intégrité du fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2483"/>
         <location filename="../../romalyzer.cpp" line="2497"/>
         <source> KB</source>
-        <translation> KB</translation>
+        <translation type="unfinished"> KB</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="804"/>
         <location filename="../../romalyzer.cpp" line="2486"/>
         <location filename="../../romalyzer.cpp" line="2500"/>
         <source> MB</source>
-        <translation> MB</translation>
+        <translation type="unfinished"> MB</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2489"/>
         <location filename="../../romalyzer.cpp" line="2503"/>
         <source> GB</source>
-        <translation> GB</translation>
+        <translation type="unfinished"> GB</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2492"/>
         <source> TB</source>
-        <translation> TB</translation>
+        <translation type="unfinished"> TB</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2565"/>
         <source>Choose output directory</source>
-        <translation>Choisir le répertoire de sortie</translation>
+        <translation type="unfinished">Choisir le répertoire de sortie</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2577"/>
         <source>Choose additional ROM path</source>
-        <translation>Choisir le répertoire de ROMS additionnel</translation>
+        <translation type="unfinished">Choisir le répertoire de ROMS additionnel</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3035"/>
@@ -18059,7 +18060,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="3187"/>
         <source>Writing &apos;%1&apos; - %2</source>
-        <translation>Ecrit &apos;%1&apos; - &apos;%2&apos;</translation>
+        <translation type="unfinished">Ecrit &apos;%1&apos; - &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3190"/>
@@ -18123,7 +18124,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="3087"/>
         <source>Reading &apos;%1&apos; - %2</source>
-        <translation>Lit &apos;%1&apos; - &apos;%2&apos;</translation>
+        <translation type="unfinished">Lit &apos;%1&apos; - &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3122"/>
@@ -18163,7 +18164,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="4098"/>
         <source>repair failed</source>
-        <translation>réparation échouée</translation>
+        <translation type="unfinished">réparation échouée</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4161"/>
@@ -18193,94 +18194,94 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="2359"/>
         <location filename="../../romalyzer.cpp" line="2372"/>
         <source>ROMAlyzer</source>
-        <translation>ROMAlyzer</translation>
+        <translation type="unfinished">ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="95"/>
         <source>Pause / resume active analysis</source>
-        <translation>Pauser / Reprendre l&apos;analyse</translation>
+        <translation type="unfinished">Pauser / Reprendre l&apos;analyse</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="128"/>
         <source>Report</source>
-        <translation>Rapport</translation>
+        <translation type="unfinished">Rapport</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="143"/>
         <source>Analysis report</source>
-        <translation>Rapport d&apos;analyse</translation>
+        <translation type="unfinished">Rapport d&apos;analyse</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="158"/>
         <location filename="../../romalyzer.cpp" line="3414"/>
         <source>Merge</source>
-        <translation>Merge</translation>
+        <translation type="unfinished">Merge</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="163"/>
         <location filename="../../romalyzer.ui" line="1804"/>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="unfinished">Type</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="168"/>
         <location filename="../../romalyzer.cpp" line="3414"/>
         <source>Emu status</source>
-        <translation>Statut d&apos;émulateur</translation>
+        <translation type="unfinished">Statut d&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="173"/>
         <location filename="../../romalyzer.cpp" line="3414"/>
         <source>File status</source>
-        <translation>Statut de Fichier</translation>
+        <translation type="unfinished">Statut de Fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="178"/>
         <source>Size</source>
-        <translation>Taille</translation>
+        <translation type="unfinished">Taille</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="183"/>
         <location filename="../../romalyzer.cpp" line="1145"/>
         <source>CRC</source>
-        <translation>CRC</translation>
+        <translation type="unfinished">CRC</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="193"/>
         <location filename="../../romalyzer.ui" line="788"/>
         <location filename="../../romalyzer.cpp" line="1201"/>
         <source>MD5</source>
-        <translation>MD5</translation>
+        <translation type="unfinished">MD5</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="206"/>
         <source>Log</source>
-        <translation>Log</translation>
+        <translation type="unfinished">Log</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="306"/>
         <source>Analysis log</source>
-        <translation>log d&apos;analyse</translation>
+        <translation type="unfinished">log d&apos;analyse</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="290"/>
         <source>Search string</source>
-        <translation>Chaîne de recherche</translation>
+        <translation type="unfinished">Chaîne de recherche</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="264"/>
         <source>Search string forward</source>
-        <translation>Recherche la chaîne suivante</translation>
+        <translation type="unfinished">Recherche la chaîne suivante</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="267"/>
         <source>&amp;Forward</source>
-        <translation>&amp;Suivant</translation>
+        <translation type="unfinished">&amp;Suivant</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="218"/>
         <source>Search string backward</source>
-        <translation>Recherche la chaîne précédente</translation>
+        <translation type="unfinished">Recherche la chaîne précédente</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="45"/>
@@ -18300,12 +18301,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="221"/>
         <source>&amp;Backward</source>
-        <translation>&amp;Précédent</translation>
+        <translation type="unfinished">&amp;Précédent</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="244"/>
         <source>Save the current log contents to a file</source>
-        <translation>Sauvegarder le contenu de log dans un fichier</translation>
+        <translation type="unfinished">Sauvegarder le contenu de log dans un fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="293"/>
@@ -18315,47 +18316,47 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="337"/>
         <source>Settings</source>
-        <translation>Paramètres</translation>
+        <translation type="unfinished">Paramètres</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1108"/>
         <source>Enable CHD manager (may be slow)</source>
-        <translation>Active le manager CHD (peut être lent)</translation>
+        <translation type="unfinished">Active le manager CHD (peut être lent)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1203"/>
         <source>CHD manager (chdman)</source>
-        <translation>manager CHD (chdman)</translation>
+        <translation type="unfinished">manager CHD (chdman)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1135"/>
         <source>CHD manager executable file (read and execute)</source>
-        <translation>fichier exécutable du manager CHD (lecture et exécution)</translation>
+        <translation type="unfinished">fichier exécutable du manager CHD (lecture et exécution)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1178"/>
         <source>Browse CHD manager executable file</source>
-        <translation>Parcourir pour l&apos;exécutable du manager CHD</translation>
+        <translation type="unfinished">Parcourir pour l&apos;exécutable du manager CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1196"/>
         <source>Temporary working directory</source>
-        <translation>Répertoire de travail temporaire</translation>
+        <translation type="unfinished">Répertoire de travail temporaire</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1122"/>
         <source>Verify CHDs</source>
-        <translation>Vérification des CHDs</translation>
+        <translation type="unfinished">Vérification des CHDs</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1213"/>
         <source>Update CHDs</source>
-        <translation>Mettre à jour les CHDs</translation>
+        <translation type="unfinished">Mettre à jour les CHDs</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="943"/>
         <source>If set, analysis output is appended (otherwise the report is cleared before the analysis)</source>
-        <translation>Si activé, le rapport d&apos;analyse est ajouté à la suite (sinon, le rapport est vidé avant l&apos;analyse)</translation>
+        <translation type="unfinished">Si activé, le rapport d&apos;analyse est ajouté à la suite (sinon, le rapport est vidé avant l&apos;analyse)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="627"/>
@@ -18420,12 +18421,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="953"/>
         <source>Automatically expand file info</source>
-        <translation>Etendre automatiquement l&apos;information du fichier</translation>
+        <translation type="unfinished">Etendre automatiquement l&apos;information du fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="785"/>
         <source>Calculate MD5 hash</source>
-        <translation>Calculer le hash MD5</translation>
+        <translation type="unfinished">Calculer le hash MD5</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1148"/>
@@ -18445,7 +18446,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="851"/>
         <source>File size</source>
-        <translation>Taille du fichier</translation>
+        <translation type="unfinished">Taille du fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="798"/>
@@ -18455,12 +18456,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="750"/>
         <source>Log size</source>
-        <translation>Taille du log</translation>
+        <translation type="unfinished">Taille du log</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1016"/>
         <source>Reports</source>
-        <translation>Rapports</translation>
+        <translation type="unfinished">Rapports</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="823"/>
@@ -18470,7 +18471,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="558"/>
         <source>Output directory</source>
-        <translation>Répertoire de sortie</translation>
+        <translation type="unfinished">Répertoire de sortie</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="507"/>
@@ -18648,7 +18649,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="1702"/>
         <source>Search</source>
-        <translation>Recherche</translation>
+        <translation type="unfinished">Recherche</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1764"/>
@@ -18658,17 +18659,17 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="1789"/>
         <source>ID</source>
-        <translation>ID</translation>
+        <translation type="unfinished">ID</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1799"/>
         <source>Status</source>
-        <translation>Statut</translation>
+        <translation type="unfinished">Statut</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1809"/>
         <source>Path</source>
-        <translation>Chemin</translation>
+        <translation type="unfinished">Chemin</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1866"/>
@@ -18679,7 +18680,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="1744"/>
         <source>Repair bad sets</source>
-        <translation>Réparer les mauvais sets</translation>
+        <translation type="unfinished">Réparer les mauvais sets</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="489"/>
@@ -18950,80 +18951,80 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.ui" line="1884"/>
         <source>Close ROMAlyzer</source>
-        <translation>Fermer ROMAlyzer</translation>
+        <translation type="unfinished">Fermer ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1887"/>
         <source>&amp;Close</source>
-        <translation>&amp;Fermer</translation>
+        <translation type="unfinished">&amp;Fermer</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1907"/>
         <source>Current ROMAlyzer status</source>
-        <translation>Statut actuel de ROMAlyzer</translation>
+        <translation type="unfinished">Statut actuel de ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1926"/>
         <source>Analysis progress indicator</source>
-        <translation>Indication de progression d&apos;analyse</translation>
+        <translation type="unfinished">Indication de progression d&apos;analyse</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1945"/>
         <source>File I/O progress indicator</source>
-        <translation>Indicateur de progression de fichier E/S</translation>
+        <translation type="unfinished">Indicateur de progression de fichier E/S</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="878"/>
         <source>Maximum number of lines in log (0 = no limit)</source>
-        <translation>Nombre max de ligne dans le fichier log (0 = pas de limite)</translation>
+        <translation type="unfinished">Nombre max de ligne dans le fichier log (0 = pas de limite)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="884"/>
         <source> lines</source>
-        <translation> lignes</translation>
+        <translation type="unfinished"> lignes</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="801"/>
         <location filename="../../romalyzer.ui" line="826"/>
         <location filename="../../romalyzer.ui" line="881"/>
         <source>unlimited</source>
-        <translation>illimité</translation>
+        <translation type="unfinished">illimité</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1564"/>
         <source>  tag: %1</source>
-        <translation>(sp)(sp)tag: %1</translation>
+        <translation type="unfinished">(sp)(sp)tag: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1574"/>
         <location filename="../../romalyzer.cpp" line="1599"/>
         <source>  flags: %1, %2</source>
-        <translation>  flags: %1, %2</translation>
+        <translation type="unfinished">  flags: %1, %2</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="115"/>
         <source>zlib (Deflate)</source>
-        <translation>zlib (Deflate)</translation>
+        <translation type="unfinished">zlib (Deflate)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="114"/>
         <source>lzma (LZMA)</source>
-        <translation>lzma (LZMA)</translation>
+        <translation type="unfinished">lzma (LZMA)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="113"/>
         <source>huff (Huffman)</source>
-        <translation>huff (Huffman)</translation>
+        <translation type="unfinished">huff (Huffman)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="109"/>
         <source>cdfl (CD FLAC)</source>
-        <translation>cdfl (CD FLAC)</translation>
+        <translation type="unfinished">cdfl (CD FLAC)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="108"/>
         <source>avhu (A/V Huffman)</source>
-        <translation>avhu (A/V Huffman)</translation>
+        <translation type="unfinished">avhu (A/V Huffman)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1119"/>
@@ -19038,7 +19039,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="3366"/>
         <location filename="../../romalyzer.cpp" line="3445"/>
         <source>no dump</source>
-        <translation>pas de dump</translation>
+        <translation type="unfinished">pas de dump</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1325"/>
@@ -19064,25 +19065,25 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="1574"/>
         <location filename="../../romalyzer.cpp" line="1599"/>
         <source>has parent</source>
-        <translation>a un parent</translation>
+        <translation type="unfinished">a un parent</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1574"/>
         <location filename="../../romalyzer.cpp" line="1599"/>
         <source>no parent</source>
-        <translation>sans parent</translation>
+        <translation type="unfinished">sans parent</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1574"/>
         <location filename="../../romalyzer.cpp" line="1599"/>
         <source>allows writes</source>
-        <translation>autorise l&apos;écriture</translation>
+        <translation type="unfinished">autorise l&apos;écriture</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1574"/>
         <location filename="../../romalyzer.cpp" line="1599"/>
         <source>read only</source>
-        <translation>lecture seule</translation>
+        <translation type="unfinished">lecture seule</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1626"/>
@@ -19107,28 +19108,28 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="1681"/>
         <source>Verify - %p%</source>
-        <translation>Vérification - %p%</translation>
+        <translation type="unfinished">Vérification - %p%</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1683"/>
         <location filename="../../romalyzer.cpp" line="1686"/>
         <source>CHD manager: verifying CHD</source>
-        <translation>manager CHD: vérification de CHD</translation>
+        <translation type="unfinished">manager CHD: vérification de CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1696"/>
         <source>Update - %p%</source>
-        <translation>Mise à jour - %p%</translation>
+        <translation type="unfinished">Mise à jour - %p%</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1697"/>
         <source>CHD manager: updating CHD (v%1 -&gt; v%2)</source>
-        <translation>manager CHD: mise à jour de CHD (v%1 -&gt; v%2)</translation>
+        <translation type="unfinished">manager CHD: mise à jour de CHD (v%1 -&gt; v%2)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1762"/>
         <source>CHD manager: terminating external process</source>
-        <translation>manager CHD: fin de processus externe</translation>
+        <translation type="unfinished">manager CHD: fin de processus externe</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1785"/>
@@ -19144,32 +19145,32 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romalyzer.cpp" line="1792"/>
         <source>CHD manager: replacing CHD</source>
-        <translation>manager CHD: remplacement de CHD</translation>
+        <translation type="unfinished">manager CHD: remplacement de CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1794"/>
         <source>Copy</source>
-        <translation>Copier</translation>
+        <translation type="unfinished">Copier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1800"/>
         <source>CHD manager: CHD replaced</source>
-        <translation>manager CHD: CHD remplacé</translation>
+        <translation type="unfinished">manager CHD: CHD remplacé</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1814"/>
         <source>CHD manager: FATAL: failed to replace CHD -- updated CHD preserved as &apos;%1&apos;, please copy it to &apos;%2&apos; manually!</source>
-        <translation>manager CHD: FATAL: échec de remplacement du CHD - CHD mis à jour préservé comme &apos;%1&apos;, copiez-le en &apos;%2&apos; manuellement svp!</translation>
+        <translation type="unfinished">manager CHD: FATAL: échec de remplacement du CHD - CHD mis à jour préservé comme &apos;%1&apos;, copiez-le en &apos;%2&apos; manuellement svp!</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1855"/>
         <source>CHD manager: cleaning up</source>
-        <translation>manager CHD: nettoyage</translation>
+        <translation type="unfinished">manager CHD: nettoyage</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1976"/>
         <source>WARNING: CHD file &apos;%1&apos; not found</source>
-        <translation>ATTENTION: fichier CHD &apos;%1&apos; non trouvé</translation>
+        <translation type="unfinished">ATTENTION: fichier CHD &apos;%1&apos; non trouvé</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1093"/>
@@ -19179,28 +19180,28 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="2881"/>
         <location filename="../../romalyzer.cpp" line="2928"/>
         <source>CHD</source>
-        <translation>CHD</translation>
+        <translation type="unfinished">CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1412"/>
         <source>elapsed time = %1</source>
-        <translation>temps écoulé = %1</translation>
+        <translation type="unfinished">temps écoulé = %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="78"/>
         <source>Start / stop analysis</source>
-        <translation>Démarrage / Arrêt de l&apos;analyse</translation>
+        <translation type="unfinished">Démarrage / Arrêt de l&apos;analyse</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1517"/>
         <source>size of &apos;%1&apos; is greater than allowed maximum -- skipped</source>
-        <translation>la taille de &apos;%1&apos; est supérieure au maximum autorisé -- passé</translation>
+        <translation type="unfinished">la taille de &apos;%1&apos; est supérieure au maximum autorisé -- passé</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1998"/>
         <location filename="../../romalyzer.cpp" line="2112"/>
         <source>size of &apos;%1&apos; from &apos;%2&apos; is greater than allowed maximum -- skipped</source>
-        <translation>la taille de &apos;%1&apos; pour &apos;%2&apos; est supérieure au maximum autorisé -- passé</translation>
+        <translation type="unfinished">la taille de &apos;%1&apos; pour &apos;%2&apos; est supérieure au maximum autorisé -- passé</translation>
     </message>
 </context>
 <context>
@@ -19208,23 +19209,23 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romstatusexport.ui" line="15"/>
         <source>ROM status export</source>
-        <translation>Export du statut de ROM</translation>
+        <translation type="unfinished">Export du statut de ROM</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="23"/>
         <location filename="../../romstatusexport.ui" line="36"/>
         <source>Select output format</source>
-        <translation>Choisir le format de sortie</translation>
+        <translation type="unfinished">Choisir le format de sortie</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="40"/>
         <source>ASCII</source>
-        <translation>ASCII</translation>
+        <translation type="unfinished">ASCII</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="45"/>
         <source>CSV</source>
-        <translation>CSV</translation>
+        <translation type="unfinished">CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="198"/>
@@ -19266,207 +19267,207 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../romstatusexport.ui" line="349"/>
         <source>Browse ASCII export file</source>
-        <translation>Parcourir pour le fichier d&apos;export ASCII</translation>
+        <translation type="unfinished">Parcourir pour le fichier d&apos;export ASCII</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="352"/>
         <source>ASCII file</source>
-        <translation>fichier ASCII</translation>
+        <translation type="unfinished">fichier ASCII</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="372"/>
         <source>ASCII export file</source>
-        <translation>fichier d&apos;export ASCII</translation>
+        <translation type="unfinished">fichier d&apos;export ASCII</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="379"/>
         <source>Column width</source>
-        <translation>Largeur de colonne</translation>
+        <translation type="unfinished">Largeur de colonne</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="410"/>
         <source>Maximum column width for ASCII export (0 = unlimited)</source>
-        <translation>Largeur max de colonne pour l&apos;export ASCII (0 = illimité)</translation>
+        <translation type="unfinished">Largeur max de colonne pour l&apos;export ASCII (0 = illimité)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="413"/>
         <source>unlimited</source>
-        <translation>illimité</translation>
+        <translation type="unfinished">illimité</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="458"/>
         <source>Browse CSV export file</source>
-        <translation>Parcourir pour le fichier d&apos;export CSV</translation>
+        <translation type="unfinished">Parcourir pour le fichier d&apos;export CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="461"/>
         <source>CSV file</source>
-        <translation>fichier CSV</translation>
+        <translation type="unfinished">fichier CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="481"/>
         <source>CSV export file</source>
-        <translation>fichier d&apos;export CSV</translation>
+        <translation type="unfinished">fichier d&apos;export CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="488"/>
         <source>Separator</source>
-        <translation>Séparateur</translation>
+        <translation type="unfinished">Séparateur</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="529"/>
         <source>Field separator for CSV export</source>
-        <translation>Champ séparateur pour l&apos;export CSV</translation>
+        <translation type="unfinished">Champ séparateur pour l&apos;export CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="532"/>
         <source>;</source>
-        <translation>;</translation>
+        <translation type="unfinished">;</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="545"/>
         <source>Delimiter</source>
-        <translation>Délimiteur</translation>
+        <translation type="unfinished">Délimiteur</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="573"/>
         <source>Text delimiter for CSV export</source>
-        <translation>Délimiteur texte pour l&apos;export CSV</translation>
+        <translation type="unfinished">Délimiteur texte pour l&apos;export CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="576"/>
         <source>&quot;</source>
-        <translation>&quot;</translation>
+        <translation type="unfinished">&quot;</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="81"/>
         <source>Export ROM state C (correct)?</source>
-        <translation>Exporter le ROM state C (correct) ?</translation>
+        <translation type="unfinished">Exporter le ROM state C (correct) ?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="98"/>
         <source>Export ROM state M (mostly correct)?</source>
-        <translation>Exporter le ROM state M (presque correct) ?</translation>
+        <translation type="unfinished">Exporter le ROM state M (presque correct) ?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="115"/>
         <source>Export ROM state I (incorrect)?</source>
-        <translation>Exporter le ROM state I (incorrect) ?</translation>
+        <translation type="unfinished">Exporter le ROM state I (incorrect) ?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="132"/>
         <source>Export ROM state N (not found)?</source>
-        <translation>Exporter le ROM state N (non trouvé) ?</translation>
+        <translation type="unfinished">Exporter le ROM state N (non trouvé) ?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="149"/>
         <source>Export ROM state U (unknown)?</source>
-        <translation>Exporter le ROM state U (inconnu) ?</translation>
+        <translation type="unfinished">Exporter le ROM state U (inconnu) ?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="279"/>
         <source>Include some header information in export</source>
-        <translation>Inclure de l&apos;information d&apos;entête dans l&apos;export</translation>
+        <translation type="unfinished">Inclure de l&apos;information d&apos;entête dans l&apos;export</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="282"/>
         <source>Include header</source>
-        <translation>Inclure l&apos;entête</translation>
+        <translation type="unfinished">Inclure l&apos;entête</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="292"/>
         <source>Include statistical overview of the ROM state in export</source>
-        <translation>Inclure des données statistiques sur les statuts de ROM dans l&apos;export</translation>
+        <translation type="unfinished">Inclure des données statistiques sur les statuts de ROM dans l&apos;export</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="295"/>
         <source>Include ROM statistics</source>
-        <translation>Inclure les statistiques de ROM</translation>
+        <translation type="unfinished">Inclure les statistiques de ROM</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="746"/>
         <source>Close ROM status export</source>
-        <translation>Fermer l&apos;export de statut de ROM</translation>
+        <translation type="unfinished">Fermer l&apos;export de statut de ROM</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="749"/>
         <source>&amp;Close</source>
-        <translation>&amp;Fermer</translation>
+        <translation type="unfinished">&amp;Fermer</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="732"/>
         <source>Export now!</source>
-        <translation>Exporter maintenant !</translation>
+        <translation type="unfinished">Exporter maintenant !</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="760"/>
         <source>Export progress indicator</source>
-        <translation>Indicateur de progession de l&apos;export</translation>
+        <translation type="unfinished">Indicateur de progession de l&apos;export</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="766"/>
         <source>%p%</source>
-        <translation>%p%</translation>
+        <translation type="unfinished">%p%</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="735"/>
         <source>&amp;Export</source>
-        <translation>&amp;Exporter</translation>
+        <translation type="unfinished">&amp;Exporter</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="72"/>
         <source>Exported ROM states</source>
-        <translation>Statut de(s) ROM(s) exportée(s)</translation>
+        <translation type="unfinished">Statut de(s) ROM(s) exportée(s)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="50"/>
         <source>HTML</source>
-        <translation>HTML</translation>
+        <translation type="unfinished">HTML</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="305"/>
         <source>Export to the system clipboard instead of a file</source>
-        <translation>Exporter vers le presse-papier plutôt que vers un fichier</translation>
+        <translation type="unfinished">Exporter vers le presse-papier plutôt que vers un fichier</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="308"/>
         <source>Export to clipboard</source>
-        <translation>Exporter vers le presse-papier</translation>
+        <translation type="unfinished">Exporter vers le presse-papier</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="318"/>
         <source>Overwrite existing files without asking what to do</source>
-        <translation>Ecraser les fichiers existants sans rien demander</translation>
+        <translation type="unfinished">Ecraser les fichiers existants sans rien demander</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="321"/>
         <source>Overwrite blindly</source>
-        <translation>Ecraser à l&apos;aveugle</translation>
+        <translation type="unfinished">Ecraser à l&apos;aveugle</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="632"/>
         <source>Browse HTML export file</source>
-        <translation>Parcourir pour le fichier d&apos;export HTML</translation>
+        <translation type="unfinished">Parcourir pour le fichier d&apos;export HTML</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="635"/>
         <source>HTML file</source>
-        <translation>fichier HTML</translation>
+        <translation type="unfinished">fichier HTML</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="655"/>
         <source>HTML export file</source>
-        <translation>fichier d&apos;export HTML</translation>
+        <translation type="unfinished">fichier d&apos;export HTML</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="181"/>
         <source>Sort criteria</source>
-        <translation>Critère de tri</translation>
+        <translation type="unfinished">Critère de tri</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="194"/>
         <source>Select sort criteria</source>
-        <translation>Sélectionner le critère de tri</translation>
+        <translation type="unfinished">Sélectionner le critère de tri</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="208"/>
@@ -19475,7 +19476,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="541"/>
         <location filename="../../romstatusexport.cpp" line="792"/>
         <source>Year</source>
-        <translation>Année</translation>
+        <translation type="unfinished">Année</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="213"/>
@@ -19484,78 +19485,78 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="542"/>
         <location filename="../../romstatusexport.cpp" line="792"/>
         <source>Manufacturer</source>
-        <translation>Fabricant</translation>
+        <translation type="unfinished">Fabricant</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="241"/>
         <source>Sort order</source>
-        <translation>Ordre de tri</translation>
+        <translation type="unfinished">Ordre de tri</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="254"/>
         <source>Select sort order</source>
-        <translation>Sélectionner l&apos;ordre de tri</translation>
+        <translation type="unfinished">Sélectionner l&apos;ordre de tri</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="258"/>
         <source>Ascending</source>
-        <translation>Ascendant</translation>
+        <translation type="unfinished">Ascendant</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="267"/>
         <source>Descending</source>
-        <translation>Descendant</translation>
+        <translation type="unfinished">Descendant</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="902"/>
         <source>Choose ASCII export file</source>
-        <translation>Choisir le fichier d&apos;export ASCII</translation>
+        <translation type="unfinished">Choisir le fichier d&apos;export ASCII</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="902"/>
         <location filename="../../romstatusexport.cpp" line="910"/>
         <location filename="../../romstatusexport.cpp" line="918"/>
         <source>All files (*)</source>
-        <translation>Tous les fichiers (*)</translation>
+        <translation type="unfinished">Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="910"/>
         <source>Choose CSV export file</source>
-        <translation>Choisir le fichier d&apos;export CSV</translation>
+        <translation type="unfinished">Choisir le fichier d&apos;export CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="918"/>
         <source>Choose HTML export file</source>
-        <translation>Choisir le fichier d&apos;export HTML</translation>
+        <translation type="unfinished">Choisir le fichier d&apos;export HTML</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="118"/>
         <location filename="../../romstatusexport.cpp" line="425"/>
         <location filename="../../romstatusexport.cpp" line="652"/>
         <source>Confirm</source>
-        <translation>Confirmer</translation>
+        <translation type="unfinished">Confirmer</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="119"/>
         <location filename="../../romstatusexport.cpp" line="426"/>
         <location filename="../../romstatusexport.cpp" line="653"/>
         <source>Overwrite existing file?</source>
-        <translation>Ecraser le fichier existant ?</translation>
+        <translation type="unfinished">Ecraser le fichier existant ?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="133"/>
         <source>exporting ROM status in ASCII format to &apos;%1&apos;</source>
-        <translation>export du statut de ROM au format ASCII vers &apos;%1&apos;</translation>
+        <translation type="unfinished">export du statut de ROM au format ASCII vers &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="135"/>
         <source>WARNING: can&apos;t open ASCII export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation>ATTENTION: n&apos;a pu ouvrir le fichier d&apos;export  ASCII &apos;%1&apos; en écriture, vérifiez les permissions</translation>
+        <translation type="unfinished">ATTENTION: n&apos;a pu ouvrir le fichier d&apos;export  ASCII &apos;%1&apos; en écriture, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="141"/>
         <source>exporting ROM status in ASCII format to clipboard</source>
-        <translation>export du statut de ROM au format ASCII dans le presse-papier</translation>
+        <translation type="unfinished">export du statut de ROM au format ASCII dans le presse-papier</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="166"/>
@@ -19566,7 +19567,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="700"/>
         <location filename="../../romstatusexport.cpp" line="870"/>
         <source>unknown</source>
-        <translation>inconnu</translation>
+        <translation type="unfinished">inconnu</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="152"/>
@@ -19574,12 +19575,12 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="471"/>
         <location filename="../../romstatusexport.cpp" line="706"/>
         <source>Emulator</source>
-        <translation>Emulateur</translation>
+        <translation type="unfinished">Emulateur</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="33"/>
         <source>All formats</source>
-        <translation>Tous les formats</translation>
+        <translation type="unfinished">Tous les formats</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="152"/>
@@ -19587,7 +19588,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="472"/>
         <location filename="../../romstatusexport.cpp" line="708"/>
         <source>Date</source>
-        <translation>Date</translation>
+        <translation type="unfinished">Date</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="152"/>
@@ -19595,7 +19596,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="473"/>
         <location filename="../../romstatusexport.cpp" line="710"/>
         <source>Time</source>
-        <translation>Heure</translation>
+        <translation type="unfinished">Heure</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="152"/>
@@ -19603,7 +19604,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="480"/>
         <location filename="../../romstatusexport.cpp" line="724"/>
         <source>Correct</source>
-        <translation>Correct</translation>
+        <translation type="unfinished">Correct</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="152"/>
@@ -19611,7 +19612,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="481"/>
         <location filename="../../romstatusexport.cpp" line="726"/>
         <source>Mostly correct</source>
-        <translation>à peu près correct</translation>
+        <translation type="unfinished">à peu près correct</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="152"/>
@@ -19619,7 +19620,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="482"/>
         <location filename="../../romstatusexport.cpp" line="728"/>
         <source>Incorrect</source>
-        <translation>Incorrect</translation>
+        <translation type="unfinished">Incorrect</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="152"/>
@@ -19627,7 +19628,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="483"/>
         <location filename="../../romstatusexport.cpp" line="730"/>
         <source>Not found</source>
-        <translation>Non trouvé</translation>
+        <translation type="unfinished">Non trouvé</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="152"/>
@@ -19635,21 +19636,21 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="484"/>
         <location filename="../../romstatusexport.cpp" line="732"/>
         <source>Unknown</source>
-        <translation>Inconnu</translation>
+        <translation type="unfinished">Inconnu</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="162"/>
         <location filename="../../romstatusexport.cpp" line="465"/>
         <location filename="../../romstatusexport.cpp" line="696"/>
         <source>SDLMAME</source>
-        <translation>SDLMAME</translation>
+        <translation type="unfinished">SDLMAME</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="164"/>
         <location filename="../../romstatusexport.cpp" line="467"/>
         <location filename="../../romstatusexport.cpp" line="698"/>
         <source>MAME</source>
-        <translation>MAME</translation>
+        <translation type="unfinished">MAME</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="223"/>
@@ -19658,22 +19659,22 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="543"/>
         <location filename="../../romstatusexport.cpp" line="792"/>
         <source>ROM types</source>
-        <translation>types de ROM</translation>
+        <translation type="unfinished">types de ROM</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="408"/>
         <source>done (exporting ROM status in ASCII format to clipboard)</source>
-        <translation>fait (export du statut de ROM au format ASCII dans le presse-papier)</translation>
+        <translation type="unfinished">fait (export du statut de ROM au format ASCII dans le presse-papier)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="411"/>
         <source>done (exporting ROM status in ASCII format to &apos;%1&apos;)</source>
-        <translation>fait (export du statut de ROM au format ASCII vers &apos;%1&apos;)</translation>
+        <translation type="unfinished">fait (export du statut de ROM au format ASCII vers &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="927"/>
         <source>gamelist is not ready, please wait</source>
-        <translation>la liste des jeux n&apos;est pas prête, patientez SVP</translation>
+        <translation type="unfinished">la liste des jeux n&apos;est pas prête, patientez SVP</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="190"/>
@@ -19681,7 +19682,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="538"/>
         <location filename="../../romstatusexport.cpp" line="792"/>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation type="unfinished">Nom</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="189"/>
@@ -19689,7 +19690,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="540"/>
         <location filename="../../romstatusexport.cpp" line="792"/>
         <source>Description</source>
-        <translation>Description</translation>
+        <translation type="unfinished">Description</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="209"/>
@@ -19697,7 +19698,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="565"/>
         <location filename="../../romstatusexport.cpp" line="813"/>
         <source>correct</source>
-        <translation>correct</translation>
+        <translation type="unfinished">correct</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="216"/>
@@ -19705,7 +19706,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="578"/>
         <location filename="../../romstatusexport.cpp" line="827"/>
         <source>mostly correct</source>
-        <translation>à peu près correct</translation>
+        <translation type="unfinished">à peu près correct</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="223"/>
@@ -19713,7 +19714,7 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="591"/>
         <location filename="../../romstatusexport.cpp" line="841"/>
         <source>incorrect</source>
-        <translation>incorrect</translation>
+        <translation type="unfinished">incorrect</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="230"/>
@@ -19721,12 +19722,12 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="604"/>
         <location filename="../../romstatusexport.cpp" line="855"/>
         <source>not found</source>
-        <translation>non trouvé</translation>
+        <translation type="unfinished">non trouvé</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="187"/>
         <source>sorting, filtering and analyzing export data</source>
-        <translation>tri, filtrage et analyse des données exportées</translation>
+        <translation type="unfinished">tri, filtrage et analyse des données exportées</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="152"/>
@@ -19734,57 +19735,57 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="479"/>
         <location filename="../../romstatusexport.cpp" line="722"/>
         <source>Total sets</source>
-        <translation>Sets au total</translation>
+        <translation type="unfinished">Sets au total</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="303"/>
         <source>done (sorting, filtering and analyzing export data)</source>
-        <translation>fait (tri, filtrage et analyse des données exportées)</translation>
+        <translation type="unfinished">fait (tri, filtrage et analyse des données exportées)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="304"/>
         <location filename="../../romstatusexport.cpp" line="536"/>
         <location filename="../../romstatusexport.cpp" line="788"/>
         <source>writing export data</source>
-        <translation>écriture des données exportées</translation>
+        <translation type="unfinished">écriture des données exportées</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="404"/>
         <location filename="../../romstatusexport.cpp" line="631"/>
         <location filename="../../romstatusexport.cpp" line="886"/>
         <source>done (writing export data)</source>
-        <translation>fait (écriture des données exportées)</translation>
+        <translation type="unfinished">fait (écriture des données exportées)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="441"/>
         <source>exporting ROM status in CSV format to &apos;%1&apos;</source>
-        <translation>export du statut de ROM au format CSV vers &apos;%1&apos;</translation>
+        <translation type="unfinished">export du statut de ROM au format CSV vers &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="443"/>
         <source>WARNING: can&apos;t open CSV export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation>ATTENTION: n&apos;a pu ouvrir le fichier d&apos;export  CSV &apos;%1&apos; en écriture, vérifiez les permissions</translation>
+        <translation type="unfinished">ATTENTION: n&apos;a pu ouvrir le fichier d&apos;export  CSV &apos;%1&apos; en écriture, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="449"/>
         <source>exporting ROM status in CSV format to clipboard</source>
-        <translation>export du statut de ROM au format CSV dans le presse-papier</translation>
+        <translation type="unfinished">export du statut de ROM au format CSV dans le presse-papier</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="490"/>
         <location filename="../../romstatusexport.cpp" line="742"/>
         <source>sorting and filtering export data</source>
-        <translation>tri et filtrage des données exportées</translation>
+        <translation type="unfinished">tri et filtrage des données exportées</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="635"/>
         <source>done (exporting ROM status in CSV format to clipboard)</source>
-        <translation>fait (export du statut de ROM au format CSV dans le presse-papier)</translation>
+        <translation type="unfinished">fait (export du statut de ROM au format CSV dans le presse-papier)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="638"/>
         <source>done (exporting ROM status in CSV format to &apos;%1&apos;)</source>
-        <translation>fait (export du statut de ROM au format CSV vers &apos;%1&apos;)</translation>
+        <translation type="unfinished">fait (export du statut de ROM au format CSV vers &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="160"/>
@@ -19792,62 +19793,62 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatusexport.cpp" line="690"/>
         <location filename="../../romstatusexport.cpp" line="702"/>
         <source>ROM Status Export - created by QMC2 %1</source>
-        <translation>Export du Statut de ROM - créé par QMC2 %1</translation>
+        <translation type="unfinished">Export du Statut de ROM - créé par QMC2 %1</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="667"/>
         <source>exporting ROM status in HTML format to &apos;%1&apos;</source>
-        <translation>export du statut de ROM au format HTML vers &apos;%1&apos;</translation>
+        <translation type="unfinished">export du statut de ROM au format HTML vers &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="669"/>
         <source>WARNING: can&apos;t open HTML export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation>ATTENTION: n&apos;a pu ouvrir le fichier d&apos;export  HTML &apos;%1&apos; en écriture, vérifiez les permissions</translation>
+        <translation type="unfinished">ATTENTION: n&apos;a pu ouvrir le fichier d&apos;export  HTML &apos;%1&apos; en écriture, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="675"/>
         <source>exporting ROM status in HTML format to clipboard</source>
-        <translation>export du statut de ROM au format HTML dans le presse-papier</translation>
+        <translation type="unfinished">export du statut de ROM au format HTML dans le presse-papier</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="890"/>
         <source>done (exporting ROM status in HTML format to clipboard)</source>
-        <translation>fait (export du statut de ROM au format HTML dans le presse-papier)</translation>
+        <translation type="unfinished">fait (export du statut de ROM au format HTML dans le presse-papier)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="893"/>
         <source>done (exporting ROM status in HTML format to &apos;%1&apos;)</source>
-        <translation>fait (export du statut de ROM au format HTML vers &apos;%1&apos;)</translation>
+        <translation type="unfinished">fait (export du statut de ROM au format HTML vers &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="662"/>
         <source>Border width</source>
-        <translation>Largeur de bordure</translation>
+        <translation type="unfinished">Largeur de bordure</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="693"/>
         <source>Border line width for tables (0 = no border)</source>
-        <translation>Taille de bordure des tableaux (0 = sans bordure)</translation>
+        <translation type="unfinished">Taille de bordure des tableaux (0 = sans bordure)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="175"/>
         <location filename="../../romstatusexport.cpp" line="478"/>
         <location filename="../../romstatusexport.cpp" line="718"/>
         <source>Overall ROM Status</source>
-        <translation>Statut de ROM général</translation>
+        <translation type="unfinished">Statut de ROM général</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="184"/>
         <location filename="../../romstatusexport.cpp" line="487"/>
         <location filename="../../romstatusexport.cpp" line="738"/>
         <source>Detailed ROM Status</source>
-        <translation>Statut de ROM détaillé</translation>
+        <translation type="unfinished">Statut de ROM détaillé</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="535"/>
         <location filename="../../romstatusexport.cpp" line="787"/>
         <source>done (sorting and filtering export data)</source>
-        <translation>fait (tri et filtrage des données exportées)</translation>
+        <translation type="unfinished">fait (tri et filtrage des données exportées)</translation>
     </message>
 </context>
 <context>
@@ -19893,7 +19894,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../samplechecker.cpp" line="121"/>
         <source>verifying samples</source>
-        <translation>Vérification des samples</translation>
+        <translation type="unfinished">Vérification des samples</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="52"/>
@@ -19913,13 +19914,13 @@ Are you sure you want to do this?</source>
         <location filename="../../samplechecker.ui" line="73"/>
         <location filename="../../samplechecker.cpp" line="127"/>
         <source>Good: 0</source>
-        <translation>Bon: 0</translation>
+        <translation type="unfinished">Bon: 0</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="86"/>
         <location filename="../../samplechecker.cpp" line="129"/>
         <source>Bad: 0</source>
-        <translation>Mauvais: 0</translation>
+        <translation type="unfinished">Mauvais: 0</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="99"/>
@@ -19931,7 +19932,7 @@ Are you sure you want to do this?</source>
         <location filename="../../samplechecker.ui" line="114"/>
         <location filename="../../samplechecker.cpp" line="133"/>
         <source>Obsolete: 0</source>
-        <translation>Obsolète: 0</translation>
+        <translation type="unfinished">Obsolète: 0</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="130"/>
@@ -19943,7 +19944,7 @@ Are you sure you want to do this?</source>
         <location filename="../../samplechecker.cpp" line="436"/>
         <location filename="../../samplechecker.cpp" line="451"/>
         <source>Obsolete: %1</source>
-        <translation>Obsolète: %1</translation>
+        <translation type="unfinished">Obsolète: %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="208"/>
@@ -19956,7 +19957,7 @@ Are you sure you want to do this?</source>
         <location filename="../../samplechecker.cpp" line="204"/>
         <location filename="../../samplechecker.cpp" line="328"/>
         <source>&amp;Check samples</source>
-        <translation>&amp;Check samples</translation>
+        <translation type="unfinished">&amp;Check samples</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="136"/>
@@ -20078,7 +20079,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../samplechecker.cpp" line="390"/>
         <source>stopping sample check upon user request</source>
-        <translation>Arrêt de la vérification des samples à la demande de l&apos;utilisateur</translation>
+        <translation type="unfinished">Arrêt de la vérification des samples à la demande de l&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="188"/>
@@ -20108,17 +20109,17 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../samplechecker.cpp" line="400"/>
         <source>&amp;Stop check</source>
-        <translation>&amp;Stop vérification</translation>
+        <translation type="unfinished">&amp;Stop vérification</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="15"/>
         <source>Check samples</source>
-        <translation>Vérifier les samples</translation>
+        <translation type="unfinished">Vérifier les samples</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="29"/>
         <source>Check samples / stop check</source>
-        <translation>Vérifier les samples / Stopper</translation>
+        <translation type="unfinished">Vérifier les samples / Stopper</translation>
     </message>
 </context>
 <context>
@@ -20242,7 +20243,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../embedderopt.cpp" line="219"/>
         <source>Snapshot viewer</source>
-        <translation>Visualiseur de Captures</translation>
+        <translation type="unfinished">Visualiseur de Captures</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="235"/>
@@ -20262,12 +20263,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../embedderopt.cpp" line="255"/>
         <source>Save as...</source>
-        <translation>Sauvegarder sous...</translation>
+        <translation type="unfinished">Sauvegarder sous...</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="227"/>
         <source>Copy to clipboard</source>
-        <translation>Copier dans le presse-papier</translation>
+        <translation type="unfinished">Copier dans le presse-papier</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="263"/>
@@ -20327,17 +20328,17 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../embedderopt.cpp" line="523"/>
         <source>Choose PNG file to store image</source>
-        <translation>Choisir le fichier PNG à enregistrer</translation>
+        <translation type="unfinished">Choisir le fichier PNG à enregistrer</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="523"/>
         <source>PNG images (*.png)</source>
-        <translation>images PNG (*.png)</translation>
+        <translation type="unfinished">images PNG (*.png)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="528"/>
         <source>FATAL: couldn&apos;t save snapshot image to &apos;%1&apos;</source>
-        <translation>FATAL: échec de sauvegarde de l&apos;image en &apos;%1&apos;</translation>
+        <translation type="unfinished">FATAL: échec de sauvegarde de l&apos;image en &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
@@ -20374,13 +20375,13 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwarelist.ui" line="18"/>
         <source>Software list</source>
-        <translation>Liste des logiciels</translation>
+        <translation type="unfinished">Liste des logiciels</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="35"/>
         <location filename="../../softwarelist.ui" line="38"/>
         <source>Reload all information</source>
-        <translation>Recharger toutes les informations</translation>
+        <translation type="unfinished">Recharger toutes les informations</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="187"/>
@@ -20392,25 +20393,25 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.ui" line="203"/>
         <location filename="../../softwarelist.ui" line="206"/>
         <source>Select a pre-defined device configuration to be added to the software setup</source>
-        <translation>Sélectionner une configuration pré-définie à ajouter au paramétrage des logiciels</translation>
+        <translation type="unfinished">Sélectionner une configuration pré-définie à ajouter au paramétrage des logiciels</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="300"/>
         <location filename="../../softwarelist.ui" line="303"/>
         <source>Remove the currently selected favorite software configuration</source>
-        <translation>Enlever la configuration favorite des logiciels actuellement sélectionnée</translation>
+        <translation type="unfinished">Enlever la configuration favorite des logiciels actuellement sélectionnée</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="320"/>
         <location filename="../../softwarelist.ui" line="323"/>
         <source>Play the selected software configuration</source>
-        <translation>Jouer la configuration des logiciels sélectionnée</translation>
+        <translation type="unfinished">Jouer la configuration des logiciels sélectionnée</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="340"/>
         <location filename="../../softwarelist.ui" line="343"/>
         <source>Play the selected software configuration (embedded)</source>
-        <translation>Jouer la configuration des logiciels sélectionnée (embarqué)</translation>
+        <translation type="unfinished">Jouer la configuration des logiciels sélectionnée (embarqué)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="375"/>
@@ -20419,22 +20420,22 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="1268"/>
         <location filename="../../softwarelist.cpp" line="1468"/>
         <source>Known software</source>
-        <translation>Logiciel connu</translation>
+        <translation type="unfinished">Logiciel connu</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="378"/>
         <source>Complete list of known software for the current system</source>
-        <translation>Liste complète des logiciels connus pour le système actuel</translation>
+        <translation type="unfinished">Liste complète des logiciels connus pour le système actuel</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="560"/>
         <source>View / manage your favorite software list for the current system</source>
-        <translation>Voir / Gérer votre liste des logiciels favoris pour le système actuel</translation>
+        <translation type="unfinished">Voir / Gérer votre liste des logiciels favoris pour le système actuel</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="658"/>
         <source>Search within the list of known software for the current system</source>
-        <translation>Chercher dans la liste des logiciels connus pour le système actuel</translation>
+        <translation type="unfinished">Chercher dans la liste des logiciels connus pour le système actuel</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="403"/>
@@ -20442,19 +20443,19 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.ui" line="478"/>
         <location filename="../../softwarelist.ui" line="481"/>
         <source>List of known software</source>
-        <translation>Liste des logiciels connus</translation>
+        <translation type="unfinished">Liste des logiciels connus</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="55"/>
         <location filename="../../softwarelist.ui" line="58"/>
         <source>Toggle filtering of compatible software titles</source>
-        <translation>Basculer le filtrage des titres des logiciels compatibles</translation>
+        <translation type="unfinished">Basculer le filtrage des titres des logiciels compatibles</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="78"/>
         <location filename="../../softwarelist.ui" line="81"/>
         <source>Toggle detailed software information</source>
-        <translation>Basculer les informations détaillées du logiciel</translation>
+        <translation type="unfinished">Basculer les informations détaillées du logiciel</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="101"/>
@@ -20487,23 +20488,23 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwarelist.ui" line="237"/>
         <source>Export the current software-list to an ASCII or CSV formatted file (or the clipboard)</source>
-        <translation>Exporter la liste des logiciels actuelle vers un fichier au format ASCII ou CSV formaté (ou le presse-papier)</translation>
+        <translation type="unfinished">Exporter la liste des logiciels actuelle vers un fichier au format ASCII ou CSV formaté (ou le presse-papier)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="240"/>
         <source>Export</source>
-        <translation>Exporter</translation>
+        <translation type="unfinished">Exporter</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="260"/>
         <source>Open options menu for the favorites list</source>
-        <translation>Ouvrir le menu des options pour la liste des favoris</translation>
+        <translation type="unfinished">Ouvrir le menu des options pour la liste des favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="280"/>
         <location filename="../../softwarelist.ui" line="283"/>
         <source>Add the currently selected software and device setup to the favorites list (or overwrite existing favorite)</source>
-        <translation>Ajouter le paramétrage de périphérique et le logiciel actuellement sélection à la liste des favoris (ou écrase les favoris existants)</translation>
+        <translation type="unfinished">Ajouter le paramétrage de périphérique et le logiciel actuellement sélection à la liste des favoris (ou écrase les favoris existants)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="422"/>
@@ -20514,7 +20515,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="346"/>
         <location filename="../../softwarelist.cpp" line="371"/>
         <source>Title</source>
-        <translation>Titre</translation>
+        <translation type="unfinished">Titre</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="427"/>
@@ -20525,7 +20526,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="348"/>
         <location filename="../../softwarelist.cpp" line="373"/>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation type="unfinished">Nom</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="432"/>
@@ -20536,7 +20537,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="350"/>
         <location filename="../../softwarelist.cpp" line="375"/>
         <source>Publisher</source>
-        <translation>Editeur</translation>
+        <translation type="unfinished">Editeur</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="437"/>
@@ -20547,7 +20548,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="352"/>
         <location filename="../../softwarelist.cpp" line="377"/>
         <source>Year</source>
-        <translation>Année</translation>
+        <translation type="unfinished">Année</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="442"/>
@@ -20558,7 +20559,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="354"/>
         <location filename="../../softwarelist.cpp" line="379"/>
         <source>Part</source>
-        <translation>Partie</translation>
+        <translation type="unfinished">Partie</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="447"/>
@@ -20569,7 +20570,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="356"/>
         <location filename="../../softwarelist.cpp" line="381"/>
         <source>Interface</source>
-        <translation>Interface</translation>
+        <translation type="unfinished">Interface</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="452"/>
@@ -20580,7 +20581,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="358"/>
         <location filename="../../softwarelist.cpp" line="383"/>
         <source>List</source>
-        <translation>Liste</translation>
+        <translation type="unfinished">Liste</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="457"/>
@@ -20599,19 +20600,19 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="1269"/>
         <location filename="../../softwarelist.cpp" line="1469"/>
         <source>Favorites</source>
-        <translation>Favoris</translation>
+        <translation type="unfinished">Favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="575"/>
         <location filename="../../softwarelist.ui" line="578"/>
         <source>Favorite software configurations</source>
-        <translation>Configurations logiciel favories</translation>
+        <translation type="unfinished">Configurations logiciel favories</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="634"/>
         <location filename="../../softwarelist.cpp" line="362"/>
         <source>Device configuration</source>
-        <translation>Configuration de périphérique</translation>
+        <translation type="unfinished">Configuration de périphérique</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="655"/>
@@ -20619,19 +20620,19 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="1270"/>
         <location filename="../../softwarelist.cpp" line="1470"/>
         <source>Search</source>
-        <translation>Recherche</translation>
+        <translation type="unfinished">Recherche</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="673"/>
         <location filename="../../softwarelist.ui" line="676"/>
         <source>Search for known software (not case-sensitive)</source>
-        <translation>Recherche de logiciels connus (insensible à la casse min/MAJ)</translation>
+        <translation type="unfinished">Recherche de logiciels connus (insensible à la casse min/MAJ)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="692"/>
         <location filename="../../softwarelist.ui" line="695"/>
         <source>Search results</source>
-        <translation>Résultats de recherche</translation>
+        <translation type="unfinished">Résultats de recherche</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="754"/>
@@ -20648,7 +20649,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.ui" line="786"/>
         <location filename="../../softwarelist.cpp" line="1211"/>
         <source>Loading software-lists, please wait...</source>
-        <translation>Chargement des listes des logiciels, patientez svp...</translation>
+        <translation type="unfinished">Chargement des listes des logiciels, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="804"/>
@@ -20665,47 +20666,47 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwarelist.cpp" line="109"/>
         <source>Enter search string</source>
-        <translation>Entrer une chaîne de recherche</translation>
+        <translation type="unfinished">Entrer une chaîne de recherche</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="156"/>
         <source>Play selected software</source>
-        <translation>Jouer le logiciel sélectionné</translation>
+        <translation type="unfinished">Jouer le logiciel sélectionné</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="157"/>
         <source>&amp;Play</source>
-        <translation>&amp;Jouer</translation>
+        <translation type="unfinished">&amp;Jouer</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="162"/>
         <source>Play selected software (embedded)</source>
-        <translation>Jouer le logiciel sélectionné (embarqué)</translation>
+        <translation type="unfinished">Jouer le logiciel sélectionné (embarqué)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="163"/>
         <source>Play &amp;embedded</source>
-        <translation>Jouer &amp;embarqué</translation>
+        <translation type="unfinished">Jouer &amp;embarqué</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="169"/>
         <source>Add to favorite software list</source>
-        <translation>Ajouter à la liste des logiciels favoris</translation>
+        <translation type="unfinished">Ajouter à la liste des logiciels favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="170"/>
         <source>&amp;Add to favorites</source>
-        <translation>&amp;Ajouter aux favoris</translation>
+        <translation type="unfinished">&amp;Ajouter aux favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="174"/>
         <source>Remove from favorite software list</source>
-        <translation>Retirer de la liste des logiciels favoris</translation>
+        <translation type="unfinished">Retirer de la liste des logiciels favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="175"/>
         <source>&amp;Remove from favorites</source>
-        <translation>&amp;Retirer des favoris</translation>
+        <translation type="unfinished">&amp;Retirer des favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="186"/>
@@ -20735,12 +20736,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwarelist.cpp" line="239"/>
         <source>Load favorites from a file...</source>
-        <translation>Charger les favoris depuis un fichier...</translation>
+        <translation type="unfinished">Charger les favoris depuis un fichier...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="244"/>
         <source>Save favorites to a file...</source>
-        <translation>Sauvegarder les favoris dans un fichier...</translation>
+        <translation type="unfinished">Sauvegarder les favoris dans un fichier...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="254"/>
@@ -20836,17 +20837,17 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="1219"/>
         <location filename="../../softwarelist.cpp" line="1678"/>
         <source>SWL data - %p%</source>
-        <translation>données SWL - %p%</translation>
+        <translation type="unfinished">données SWL - %p%</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1300"/>
         <source>Loading software-list &apos;%1&apos;, please wait...</source>
-        <translation>Chargement de la liste des logiciels &apos;%1&apos;, patientez svp...</translation>
+        <translation type="unfinished">Chargement de la liste des logiciels &apos;%1&apos;, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1315"/>
         <source>FATAL: error while parsing XML data for software list &apos;%1&apos;</source>
-        <translation>FATAL: erreur durant la lecture de la liste des logiciels XML &apos;%1&apos;</translation>
+        <translation type="unfinished">FATAL: erreur durant la lecture de la liste des logiciels XML &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1391"/>
@@ -20858,7 +20859,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="3271"/>
         <location filename="../../softwarelist.cpp" line="3767"/>
         <source>Waiting for data...</source>
-        <translation>En attente de données...</translation>
+        <translation type="unfinished">En attente de données...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1426"/>
@@ -20878,19 +20879,19 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwarelist.cpp" line="1690"/>
         <source>WARNING: the external process called to load the MAME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation>ATTENTION: le processus externe appelé pour charger les listes des logiciels MAME n&apos;a pas fini proprement -- exitCode = %1, exitStatus = %2</translation>
+        <translation type="unfinished">ATTENTION: le processus externe appelé pour charger les listes des logiciels MAME n&apos;a pas fini proprement -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1690"/>
         <location filename="../../softwarelist.cpp" line="1946"/>
         <source>normal</source>
-        <translation>normal</translation>
+        <translation type="unfinished">normal</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1690"/>
         <location filename="../../softwarelist.cpp" line="1946"/>
         <source>crashed</source>
-        <translation>crashé</translation>
+        <translation type="unfinished">crashé</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1771"/>
@@ -20900,12 +20901,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwarelist.cpp" line="1811"/>
         <source>WARNING: the currently selected MAME emulator doesn&apos;t support software lists</source>
-        <translation>ATTENTION: l&apos;émulateur MAME actuellement sélectionné ne supporte pas les listes de logiciels</translation>
+        <translation type="unfinished">ATTENTION: l&apos;émulateur MAME actuellement sélectionné ne supporte pas les listes de logiciels</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1818"/>
         <source>WARNING: the external process called to load the MAME software lists caused an error -- processError = %1</source>
-        <translation>ATTENTION: le processus externe appelé pour charger les listes des logiciels MAME a provoqué une erreur -- processError = %1</translation>
+        <translation type="unfinished">ATTENTION: le processus externe appelé pour charger les listes des logiciels MAME a provoqué une erreur -- processError = %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1878"/>
@@ -21070,7 +21071,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="2677"/>
         <location filename="../../softwarelist.cpp" line="2706"/>
         <source>Searching</source>
-        <translation>Recherche</translation>
+        <translation type="unfinished">Recherche</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2624"/>
@@ -21078,73 +21079,73 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="2682"/>
         <location filename="../../softwarelist.cpp" line="2711"/>
         <source>FATAL: error while parsing XML data for software list entry &apos;%1:%2&apos;</source>
-        <translation>FATAL: erreur durant la lecture de la liste des logiciels XML &apos;%1:%2&apos; </translation>
+        <translation type="unfinished">FATAL: erreur durant la lecture de la liste des logiciels XML &apos;%1:%2&apos; </translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3736"/>
         <source>Choose file to merge favorites from</source>
-        <translation>Choisir le fichier pour fusionner les favoris</translation>
+        <translation type="unfinished">Choisir le fichier pour fusionner les favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3736"/>
         <location filename="../../softwarelist.cpp" line="3816"/>
         <source>All files (*)</source>
-        <translation>Tous les fichiers (*)</translation>
+        <translation type="unfinished">Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3749"/>
         <source>loading software-favorites for &apos;%1&apos; from &apos;%2&apos;</source>
-        <translation>Chargement des logiciels favoris de &apos;%1&apos; depuis &apos;%2&apos;</translation>
+        <translation type="unfinished">Chargement des logiciels favoris de &apos;%1&apos; depuis &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3793"/>
         <source>entry &apos;%1:%2&apos; successfully imported</source>
-        <translation>entrée &apos;%1:%2&apos; importée avec succès</translation>
+        <translation type="unfinished">entrée &apos;%1:%2&apos; importée avec succès</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3795"/>
         <source>WARNING: entry &apos;%1:%2&apos; cannot be associated with any known software for this system (line %3 ignored)</source>
-        <translation>ATTENTION: l&apos;entrée &apos;%1:%2&apos; ne peut être associée avec aucun logiciel connu pour ce système (ligne %3 ignorée)</translation>
+        <translation type="unfinished">ATTENTION: l&apos;entrée &apos;%1:%2&apos; ne peut être associée avec aucun logiciel connu pour ce système (ligne %3 ignorée)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3797"/>
         <source>WARNING: a favorite entry for &apos;%1:%2&apos; already exists (line %3 ignored)</source>
-        <translation>ATTENTION: une entrée de favoris pour &apos;%1:%2&apos; existe déjà (ligne %3 ignorée)</translation>
+        <translation type="unfinished">ATTENTION: une entrée de favoris pour &apos;%1:%2&apos; existe déjà (ligne %3 ignorée)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3799"/>
         <source>WARNING: syntax error on line %1 (ignored)</source>
-        <translation>ATTENTION: erreur de syntaxe à la ligne %1 (ignoré)</translation>
+        <translation type="unfinished">ATTENTION: erreur de syntaxe à la ligne %1 (ignoré)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3803"/>
         <source>done (loading software-favorites for &apos;%1&apos; from &apos;%2&apos;)</source>
-        <translation>fait (chargement des logiciels favoris de &apos;%1&apos; depuis &apos;%2&apos;)</translation>
+        <translation type="unfinished">fait (chargement des logiciels favoris de &apos;%1&apos; depuis &apos;%2&apos;)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3805"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for reading, please check permissions</source>
-        <translation>FATAL: impossible d&apos;ouvrir &apos;%1&apos; en lecture, vérifiez les permissions</translation>
+        <translation type="unfinished">FATAL: impossible d&apos;ouvrir &apos;%1&apos; en lecture, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3816"/>
         <source>Choose file to store favorites to</source>
-        <translation>Choisir le fichier pour enregistrer les favoris</translation>
+        <translation type="unfinished">Choisir le fichier pour enregistrer les favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3827"/>
         <source>saving software-favorites for &apos;%1&apos; to &apos;%2&apos;</source>
-        <translation>sauvegarde des logiciels favoris pour &apos;%1&apos; à &apos;%2&apos;</translation>
+        <translation type="unfinished">sauvegarde des logiciels favoris pour &apos;%1&apos; à &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3842"/>
         <source>done (saving software-favorites for &apos;%1&apos; to &apos;%2&apos;)</source>
-        <translation>fait (sauvegarde des logiciels favoris pour &apos;%1&apos; à &apos;%2&apos;)</translation>
+        <translation type="unfinished">fait (sauvegarde des logiciels favoris pour &apos;%1&apos; à &apos;%2&apos;)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3844"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing, please check permissions</source>
-        <translation>FATAL: impossible d&apos;ouvrir &apos;%1&apos; en écriture, vérifiez les permissions</translation>
+        <translation type="unfinished">FATAL: impossible d&apos;ouvrir &apos;%1&apos; en écriture, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3855"/>
@@ -21185,131 +21186,131 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../swlistexport.ui" line="33"/>
         <source>Browse ASCII export file</source>
-        <translation>Parcourir pour le fichier d&apos;export ASCII</translation>
+        <translation type="unfinished">Parcourir pour le fichier d&apos;export ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="36"/>
         <source>ASCII file</source>
-        <translation>fichier ASCII</translation>
+        <translation type="unfinished">fichier ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="56"/>
         <source>ASCII export file -- use $ID$ as a placeholder for the current driver</source>
-        <translation>fichier ASCII d&apos;export - utiliser $ID$ comme base pour le driver actuel</translation>
+        <translation type="unfinished">fichier ASCII d&apos;export - utiliser $ID$ comme base pour le driver actuel</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="63"/>
         <source>Column width</source>
-        <translation>Largeur de colonne</translation>
+        <translation type="unfinished">Largeur de colonne</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="79"/>
         <source>Maximum column width for ASCII export (0 = unlimited)</source>
-        <translation>Largeur max de colonne pour l&apos;export ASCII (0 = illimité)</translation>
+        <translation type="unfinished">Largeur max de colonne pour l&apos;export ASCII (0 = illimité)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="82"/>
         <source>unlimited</source>
-        <translation>illimité</translation>
+        <translation type="unfinished">illimité</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="134"/>
         <source>Browse CSV export file</source>
-        <translation>Parcourir pour le fichier d&apos;export CSV</translation>
+        <translation type="unfinished">Parcourir pour le fichier d&apos;export CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="137"/>
         <source>CSV file</source>
-        <translation>fichier CSV</translation>
+        <translation type="unfinished">fichier CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="157"/>
         <source>CSV export file -- use $ID$ as a placeholder for the current driver</source>
-        <translation>fichier CSV d&apos;export - utiliser $ID$ comme base pour le driver actuel</translation>
+        <translation type="unfinished">fichier CSV d&apos;export - utiliser $ID$ comme base pour le driver actuel</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="164"/>
         <source>Separator</source>
-        <translation>Séparateur</translation>
+        <translation type="unfinished">Séparateur</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="192"/>
         <source>Field separator for CSV export</source>
-        <translation>Champ séparateur pour l&apos;export CSV</translation>
+        <translation type="unfinished">Champ séparateur pour l&apos;export CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="195"/>
         <source>;</source>
-        <translation>;</translation>
+        <translation type="unfinished">;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="221"/>
         <source>Delimiter</source>
-        <translation>Délimiteur</translation>
+        <translation type="unfinished">Délimiteur</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="249"/>
         <source>Text delimiter for CSV export</source>
-        <translation>Délimiteur texte pour l&apos;export CSV</translation>
+        <translation type="unfinished">Délimiteur texte pour l&apos;export CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="252"/>
         <source>&quot;</source>
-        <translation>&quot;</translation>
+        <translation type="unfinished">&quot;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="301"/>
         <source>Select the columns you want to export and the order in which they are to be listed (drag &amp; drop entries around)</source>
-        <translation>Sélectionner les colonnes à exporter et l&apos;ordre dans lequel elles seront listées (glisser &amp; déposer les éléments)</translation>
+        <translation type="unfinished">Sélectionner les colonnes à exporter et l&apos;ordre dans lequel elles seront listées (glisser &amp; déposer les éléments)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="314"/>
         <location filename="../../swlistexport.ui" line="505"/>
         <location filename="../../swlistexport.cpp" line="24"/>
         <source>Title</source>
-        <translation>Titre</translation>
+        <translation type="unfinished">Titre</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="319"/>
         <location filename="../../swlistexport.ui" line="510"/>
         <location filename="../../swlistexport.cpp" line="24"/>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation type="unfinished">Nom</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="324"/>
         <location filename="../../swlistexport.ui" line="515"/>
         <location filename="../../swlistexport.cpp" line="24"/>
         <source>Publisher</source>
-        <translation>Publieur</translation>
+        <translation type="unfinished">Publieur</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="329"/>
         <location filename="../../swlistexport.ui" line="520"/>
         <location filename="../../swlistexport.cpp" line="24"/>
         <source>Year</source>
-        <translation>Année</translation>
+        <translation type="unfinished">Année</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="334"/>
         <location filename="../../swlistexport.ui" line="525"/>
         <location filename="../../swlistexport.cpp" line="24"/>
         <source>Part</source>
-        <translation>Partie</translation>
+        <translation type="unfinished">Partie</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="339"/>
         <location filename="../../swlistexport.ui" line="530"/>
         <location filename="../../swlistexport.cpp" line="24"/>
         <source>Interface</source>
-        <translation>Interface</translation>
+        <translation type="unfinished">Interface</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="344"/>
         <location filename="../../swlistexport.ui" line="535"/>
         <location filename="../../swlistexport.cpp" line="24"/>
         <source>List</source>
-        <translation>Liste</translation>
+        <translation type="unfinished">Liste</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="349"/>
@@ -21321,200 +21322,200 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../swlistexport.ui" line="359"/>
         <source>Export now!</source>
-        <translation>Exporter maintenant !</translation>
+        <translation type="unfinished">Exporter maintenant !</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="362"/>
         <source>&amp;Export</source>
-        <translation>&amp;Exporter</translation>
+        <translation type="unfinished">&amp;Exporter</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="373"/>
         <source>Close software-list export</source>
-        <translation>Fermer l&apos;export de la liste des logiciels</translation>
+        <translation type="unfinished">Fermer l&apos;export de la liste des logiciels</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="376"/>
         <source>&amp;Close</source>
-        <translation>&amp;Fermer</translation>
+        <translation type="unfinished">&amp;Fermer</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="387"/>
         <source>Export progress indicator</source>
-        <translation>Indicateur de progession de l&apos;export</translation>
+        <translation type="unfinished">Indicateur de progession de l&apos;export</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="393"/>
         <source>%p%</source>
-        <translation>%p%</translation>
+        <translation type="unfinished">%p%</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="408"/>
         <source>Sort criteria</source>
-        <translation>Critère de tri</translation>
+        <translation type="unfinished">Critère de tri</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="421"/>
         <source>Sort order</source>
-        <translation>Ordre de tri</translation>
+        <translation type="unfinished">Ordre de tri</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="434"/>
         <source>Output format</source>
-        <translation>Format de sortie</translation>
+        <translation type="unfinished">Format de sortie</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="447"/>
         <source>Select output format</source>
-        <translation>Choisir le format de sortie</translation>
+        <translation type="unfinished">Choisir le format de sortie</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="451"/>
         <source>ASCII</source>
-        <translation>ASCII</translation>
+        <translation type="unfinished">ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="456"/>
         <source>CSV</source>
-        <translation>CSV</translation>
+        <translation type="unfinished">CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="470"/>
         <source>Select sort order</source>
-        <translation>Sélectionner l&apos;ordre de tri</translation>
+        <translation type="unfinished">Sélectionner l&apos;ordre de tri</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="474"/>
         <source>Ascending</source>
-        <translation>Ascendant</translation>
+        <translation type="unfinished">Ascendant</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="483"/>
         <source>Descending</source>
-        <translation>Descendant</translation>
+        <translation type="unfinished">Descendant</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="501"/>
         <source>Select sort criteria</source>
-        <translation>Sélectionner le critère de tri</translation>
+        <translation type="unfinished">Sélectionner le critère de tri</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="548"/>
         <source>Overwrite existing files without asking what to do</source>
-        <translation>Ecraser les fichiers existants sans rien demander</translation>
+        <translation type="unfinished">Ecraser les fichiers existants sans rien demander</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="551"/>
         <source>Overwrite files blindly</source>
-        <translation>Ecraser les fichiers à l&apos;aveugle</translation>
+        <translation type="unfinished">Ecraser les fichiers à l&apos;aveugle</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="561"/>
         <source>Export to the system clipboard instead of a file</source>
-        <translation>Exporter vers le presse-papier plutôt que vers un fichier</translation>
+        <translation type="unfinished">Exporter vers le presse-papier plutôt que vers un fichier</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="564"/>
         <source>Export to clipboard</source>
-        <translation>Exporter vers le presse-papier</translation>
+        <translation type="unfinished">Exporter vers le presse-papier</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="574"/>
         <source>Include column header texts</source>
-        <translation>Inclure les textes d&apos;entête de colonne</translation>
+        <translation type="unfinished">Inclure les textes d&apos;entête de colonne</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="577"/>
         <source>Include column headers</source>
-        <translation>Inclure les entêtes de colonne</translation>
+        <translation type="unfinished">Inclure les entêtes de colonne</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="29"/>
         <source>Both formats</source>
-        <translation>Tous les formats</translation>
+        <translation type="unfinished">Tous les formats</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="31"/>
         <source>Export software-list for &apos;%1&apos;</source>
-        <translation>Exporter la liste des logiciels pour &apos;%1&apos;</translation>
+        <translation type="unfinished">Exporter la liste des logiciels pour &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="156"/>
         <location filename="../../swlistexport.cpp" line="287"/>
         <source>Confirm</source>
-        <translation>Confirmer</translation>
+        <translation type="unfinished">Confirmer</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="156"/>
         <location filename="../../swlistexport.cpp" line="287"/>
         <source>Overwrite existing file?</source>
-        <translation>Ecraser le fichier existant ?</translation>
+        <translation type="unfinished">Ecraser le fichier existant ?</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="168"/>
         <source>exporting current software-list in ASCII format to &apos;%1&apos;</source>
-        <translation>export de la liste des logiciels actuelle au format ASCII vers &apos;%1&apos;</translation>
+        <translation type="unfinished">export de la liste des logiciels actuelle au format ASCII vers &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="170"/>
         <source>WARNING: can&apos;t open ASCII export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation>ATTENTION: n&apos;a pu ouvrir le fichier d&apos;export  ASCII &apos;%1&apos; en écriture, vérifiez les permissions</translation>
+        <translation type="unfinished">ATTENTION: n&apos;a pu ouvrir le fichier d&apos;export  ASCII &apos;%1&apos; en écriture, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="175"/>
         <source>exporting current software-list in ASCII format to clipboard</source>
-        <translation>export de la liste des logiciels actuelle au format ASCII vers le presse-papier</translation>
+        <translation type="unfinished">export de la liste des logiciels actuelle au format ASCII vers le presse-papier</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="253"/>
         <source>done (exporting current software-list in ASCII format to clipboard)</source>
-        <translation>fait (export de la liste des logiciels actuelle au format ASCII vers le presse-papier)</translation>
+        <translation type="unfinished">fait (export de la liste des logiciels actuelle au format ASCII vers le presse-papier)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="256"/>
         <source>done (exporting current software-list in ASCII format to &apos;%1&apos;)</source>
-        <translation>fait (export de la liste des logiciels actuelle au format ASCII vers &apos;%1&apos;)</translation>
+        <translation type="unfinished">fait (export de la liste des logiciels actuelle au format ASCII vers &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="299"/>
         <source>exporting current software-list in CSV format to &apos;%1&apos;</source>
-        <translation>export de la liste des logiciels actuelle au format CSV vers &apos;%1&apos;</translation>
+        <translation type="unfinished">export de la liste des logiciels actuelle au format CSV vers &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="301"/>
         <source>WARNING: can&apos;t open CSV export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation>ATTENTION: n&apos;a pu ouvrir le fichier d&apos;export  CSV &apos;%1&apos; en écriture, vérifiez les permissions</translation>
+        <translation type="unfinished">ATTENTION: n&apos;a pu ouvrir le fichier d&apos;export  CSV &apos;%1&apos; en écriture, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="306"/>
         <source>exporting current software-list in CSV format to clipboard</source>
-        <translation>export de la liste des logiciels actuelle au format CSV vers le presse-papier</translation>
+        <translation type="unfinished">export de la liste des logiciels actuelle au format CSV vers le presse-papier</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="367"/>
         <source>done (exporting current software-list in CSV format to clipboard)</source>
-        <translation>fait (export de la liste des logiciels actuelle au format CSV vers le presse-papier)</translation>
+        <translation type="unfinished">fait (export de la liste des logiciels actuelle au format CSV vers le presse-papier)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="370"/>
         <source>done (exporting current software-list in CSV format to &apos;%1&apos;)</source>
-        <translation>fait (export de la liste des logiciels actuelle au format CSV vers &apos;%1&apos;)</translation>
+        <translation type="unfinished">fait (export de la liste des logiciels actuelle au format CSV vers &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="378"/>
         <source>Choose ASCII export file</source>
-        <translation>Choisir le fichier d&apos;export ASCII</translation>
+        <translation type="unfinished">Choisir le fichier d&apos;export ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="378"/>
         <location filename="../../swlistexport.cpp" line="386"/>
         <source>All files (*)</source>
-        <translation>Tous les fichiers (*)</translation>
+        <translation type="unfinished">Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="386"/>
         <source>Choose CSV export file</source>
-        <translation>Choisir le fichier d&apos;export CSV</translation>
+        <translation type="unfinished">Choisir le fichier d&apos;export CSV</translation>
     </message>
 </context>
 <context>
@@ -21636,7 +21637,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="4368"/>
         <location filename="../../softwarelist.cpp" line="4683"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
-        <translation>FATAL: impossible d&apos;ouvrir le fichier de captures du logiciel, vérifiez les permissions de %1</translation>
+        <translation type="unfinished">FATAL: impossible d&apos;ouvrir le fichier de captures du logiciel, vérifiez les permissions de %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4374"/>
@@ -21749,22 +21750,22 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../htmleditor/tablepropertydialog.ui" line="14"/>
         <source>Table properties</source>
-        <translation>Propriétés du tableau</translation>
+        <translation type="unfinished">Propriétés du tableau</translation>
     </message>
     <message>
         <location filename="../../htmleditor/tablepropertydialog.ui" line="20"/>
         <source>Rows:</source>
-        <translation>Lignes:</translation>
+        <translation type="unfinished">Lignes:</translation>
     </message>
     <message>
         <location filename="../../htmleditor/tablepropertydialog.ui" line="46"/>
         <source>Columns:</source>
-        <translation>Colonnes:</translation>
+        <translation type="unfinished">Colonnes:</translation>
     </message>
     <message>
         <location filename="../../htmleditor/tablepropertydialog.ui" line="72"/>
         <source>Properties:</source>
-        <translation>Propriétés:</translation>
+        <translation type="unfinished">Propriétés:</translation>
     </message>
 </context>
 <context>
@@ -21772,7 +21773,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../title.h" line="17"/>
         <source>title</source>
-        <translation type="unfinished">titre</translation>
+        <translation>titre</translation>
     </message>
 </context>
 <context>
@@ -21896,72 +21897,72 @@ Are you sure you want to do this?</source>
         <location filename="../../toolexec.cpp" line="64"/>
         <location filename="../../toolexec.cpp" line="66"/>
         <source>### tool started, output below ###</source>
-        <translation>### outil démarré, sortie ci-dessous ###</translation>
+        <translation type="unfinished">### outil démarré, sortie ci-dessous ###</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="66"/>
         <location filename="../../toolexec.cpp" line="87"/>
         <location filename="../../toolexec.cpp" line="134"/>
         <source>tool control: </source>
-        <translation>contrôle de l&apos;outil:</translation>
+        <translation type="unfinished">contrôle de l&apos;outil:</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="85"/>
         <location filename="../../toolexec.cpp" line="87"/>
         <source>### tool finished, exit code = %1, exit status = %2 ###</source>
-        <translation>### outil terminé, code de sortie = %1, statut de sortie = %2 ###</translation>
+        <translation type="unfinished">### outil terminé, code de sortie = %1, statut de sortie = %2 ###</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="106"/>
         <location filename="../../toolexec.cpp" line="122"/>
         <source>tool output: </source>
-        <translation>sortie de l&apos;outil: </translation>
+        <translation type="unfinished">sortie de l&apos;outil: </translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="106"/>
         <source>stdout: %1</source>
-        <translation>stdout: %1</translation>
+        <translation type="unfinished">stdout: %1</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="122"/>
         <source>stderr: %1</source>
-        <translation>stderr: %1</translation>
+        <translation type="unfinished">stderr: %1</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="132"/>
         <location filename="../../toolexec.cpp" line="134"/>
         <source>### tool error, process error = %1 ###</source>
-        <translation>### erreur d&apos;outil, erreur de processus = %1 ###</translation>
+        <translation type="unfinished">### erreur d&apos;outil, erreur de processus = %1 ###</translation>
     </message>
     <message>
         <location filename="../../toolexec.ui" line="15"/>
         <source>Executing tool</source>
-        <translation>outil en exécution</translation>
+        <translation type="unfinished">outil en exécution</translation>
     </message>
     <message>
         <location filename="../../toolexec.ui" line="29"/>
         <source>Command</source>
-        <translation>Commande</translation>
+        <translation type="unfinished">Commande</translation>
     </message>
     <message>
         <location filename="../../toolexec.ui" line="42"/>
         <source>Executed command</source>
-        <translation>Commande exécutée</translation>
+        <translation type="unfinished">Commande exécutée</translation>
     </message>
     <message>
         <location filename="../../toolexec.ui" line="91"/>
         <source>Close tool execution dialog</source>
-        <translation>Fermer la fenêtre d&apos;exécution d&apos;outil</translation>
+        <translation type="unfinished">Fermer la fenêtre d&apos;exécution d&apos;outil</translation>
     </message>
     <message>
         <location filename="../../toolexec.ui" line="94"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation type="unfinished">Ok</translation>
     </message>
     <message>
         <location filename="../../toolexec.ui" line="54"/>
         <source>Output from tool</source>
-        <translation>Sortie de l&apos;outil</translation>
+        <translation type="unfinished">Sortie de l&apos;outil</translation>
     </message>
 </context>
 <context>
@@ -22109,34 +22110,34 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../videoitemwidget.cpp" line="128"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Chemin :</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="130"/>
         <source>Title:</source>
-        <translation>Titre:</translation>
+        <translation>Titre :</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="135"/>
         <location filename="../../videoitemwidget.cpp" line="137"/>
         <source>Author:</source>
-        <translation>Auteur:</translation>
+        <translation>Auteur :</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="135"/>
         <source>Open author URL with the default browser</source>
-        <translation>Ouvrir l&apos;URL de l&apos;auteur avec le navigateur par défaut</translation>
+        <translation>Ouvrir l&apos;U.R.L. de l&apos;auteur avec le navigateur par défaut</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="143"/>
         <source>Open video URL with the default browser</source>
-        <translation>Ouvrir l&apos;URL de la vidéo avec le navigateur par défaut</translation>
+        <translation>Ouvrir l&apos;U.R.L. de la vidéo avec le navigateur par défaut</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="143"/>
         <location filename="../../videoitemwidget.cpp" line="145"/>
         <source>Video:</source>
-        <translation>Vidéo:</translation>
+        <translation>Vidéo :</translation>
     </message>
 </context>
 <context>
@@ -22154,13 +22155,13 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../welcome.cpp" line="110"/>
         <source>The specified file isn&apos;t executable!</source>
-        <translation>Le fichier spécifié n&apos;est pas exécutable!</translation>
+        <translation type="unfinished">Le fichier spécifié n&apos;est pas un exécutable !</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="119"/>
         <location filename="../../welcome.cpp" line="122"/>
         <source>Choose emulator executable file</source>
-        <translation>Choisir l&apos;exécutable de l&apos;émulateur</translation>
+        <translation type="unfinished">Choisir l&apos;exécutable de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="119"/>
@@ -22171,22 +22172,22 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../welcome.cpp" line="138"/>
         <source>Choose working directory</source>
-        <translation>Choisir le répertoire de travail</translation>
+        <translation type="unfinished">Choisir le répertoire de travail</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="146"/>
         <source>Choose ROM path</source>
-        <translation>Choisir le répertoire de ROMS</translation>
+        <translation type="unfinished">Choisir le répertoire de ROMS</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="154"/>
         <source>Choose sample path</source>
-        <translation>Choisir le répertoire de samples</translation>
+        <translation type="unfinished">Choisir le répertoire de samples</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="162"/>
         <source>Choose hash path</source>
-        <translation>Choisir le répertoire de Hash</translation>
+        <translation type="unfinished">Choisir le répertoire de Hash</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="268"/>
@@ -22194,7 +22195,7 @@ Are you sure you want to do this?</source>
 However, this can also be the leftover of a previous crash.
 
 Exit now, accept once or ignore completely?</source>
-        <translation>Une autre instance de %1 est déjà en fonctionnement.
+        <translation type="unfinished">Une autre instance de %1 est déjà en fonctionnement.
 Cependant, cela peut également être un résidu d&apos;un crash précédent.
 
 Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
@@ -22207,12 +22208,12 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     <message>
         <location filename="../../welcome.ui" line="30"/>
         <source>Browse sample path</source>
-        <translation>Parcourir pour le répertoire de samples</translation>
+        <translation type="unfinished">Parcourir pour le répertoire de samples</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="195"/>
         <source>Browse ROM path</source>
-        <translation>Parcourir pour le répertoire de ROMS</translation>
+        <translation type="unfinished">Parcourir pour le répertoire de ROMS</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="251"/>
@@ -22222,27 +22223,31 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     <message>
         <location filename="../../welcome.ui" line="326"/>
         <source>Language</source>
-        <translation type="unfinished">Langue</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="104"/>
         <source>&lt;h1&gt;Welcome to QMC2!&lt;/h1&gt;&lt;font size=&quot;+1&quot;&gt;&lt;p&gt;This appears to be your first start of QMC2 because no valid configuration was found. In order to use QMC2 as a front end for an emulator, you must specify the path to the emulator&apos;s executable file below.&lt;/p&gt;&lt;p&gt;The paths below the executable file are optional, but you should specify as many of them as you can right now to avoid problems or confusion later (of course, you can change the paths in the emulator&apos;s global configuration at any time later).&lt;/p&gt;&lt;p&gt;&lt;b&gt;It&apos;s strongly recommended that you specify the ROM path you are going to use at least!&lt;/b&gt;&lt;/p&gt;&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Cela semble être votre premier départ de QMC2 car aucune configuration valide n&apos;a été trouvé.
+Pour utiliser QMC2 comme un front end pour un émulateur, vous devez spécifier le chemin vers le fichier exécutable de l&apos;émulateur ci-dessous.
+Les chemins ci-dessous le fichier exécutable sont facultatives, mais vous devez spécifier que beaucoup d&apos;entre eux que vous pouvez dès à présent pour éviter des problèmes ou confusion plus tard (bien sûr, vous pouvez modifier les chemins dans la configuration globale de l&apos;émulateur à tout moment plus tard).
+Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez utiliser au moins!</translatorcomment>
+        <translation>&lt;h1&gt;Bienvenue dans QMC2 !&lt;/h1&gt;&lt;font size=&quot;+1&quot;&gt;&lt;p&gt;Il nous semble que vous démarrez QMC2 pour la première fois, car nous n&apos;avons pas trouvé de fichier de configuration valide. Afin de pouvoir utiliser QMC2 comme frontal d&apos;un émulateur, vous devez renseigner ci-dessous le chemin d&apos;accès à l&apos;exécutable de l&apos;émulateur.&lt;/p&gt;&lt;p&gt;Les autres chemins d&apos;accès sont facultatifs, mais vous devriez en renseigner maintenant autant que possible afin d&apos;éviter d&apos;éventuels problèmes plus tard (bien évidemment, vous pourrez modifier les chemins d&apos;accès dans la configuration globale de l&apos;émulateur à tout moment).&lt;/p&gt;&lt;p&gt;&lt;b&gt;Nous vous recommandons vivement d&apos;au moins renseigner le chemin d&apos;accès vers le répertoire des ROM que vous comptez utiliser !&lt;/b&gt;&lt;/p&gt;&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="185"/>
         <source>Hash path</source>
-        <translation>Répertoire de Hash</translation>
+        <translation type="unfinished">Répertoire de Hash</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="120"/>
         <source>Path to hash files</source>
-        <translation>Chemin vers les fichiers Hash</translation>
+        <translation type="unfinished">Chemin vers les fichiers Hash</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="127"/>
         <source>Browse hash path</source>
-        <translation>Parcourir pour le répertoire de Hash</translation>
+        <translation type="unfinished">Parcourir pour le répertoire de Hash</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="265"/>
@@ -22252,37 +22257,37 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     <message>
         <location filename="../../welcome.ui" line="258"/>
         <source>&amp;Ok</source>
-        <translation>&amp;Ok</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="54"/>
         <source>Browse working directory</source>
-        <translation>Parcourir le répertoire de travail</translation>
+        <translation type="unfinished">Parcourir le répertoire de travail</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="47"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
-        <translation>Répertoire de travail utilisé quand l&apos;émulateur est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
+        <translation type="unfinished">Répertoire de travail utilisé quand l&apos;émulateur est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="175"/>
         <source>Working directory</source>
-        <translation>Répertoire de travail</translation>
+        <translation type="unfinished">Dossier de travail</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="235"/>
         <source>Emulator executable file</source>
-        <translation>Exécutable de l&apos;émulateur</translation>
+        <translation>Fichier exécutable de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="164"/>
         <source>Browse emulator executable file</source>
-        <translation>Parcourir pour l&apos;exécutable de l&apos;émulateur</translation>
+        <translation type="unfinished">Parcourir pour l&apos;exécutable de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="267"/>
         <source>Single-instance check</source>
-        <translation>Test d&apos;instance unique</translation>
+        <translation type="unfinished">Test d&apos;instance unique</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="269"/>
@@ -22292,7 +22297,7 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     <message>
         <location filename="../../welcome.cpp" line="269"/>
         <source>&amp;Once</source>
-        <translation>&amp;Une fois</translation>
+        <translation type="unfinished">&amp;Une fois</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="269"/>
@@ -22302,12 +22307,12 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     <message>
         <location filename="../../welcome.ui" line="157"/>
         <source>Path to ROM images</source>
-        <translation>Chemin vers les images ROM</translation>
+        <translation type="unfinished">Chemin vers les images ROM</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="222"/>
         <source>Path to samples</source>
-        <translation>Chemin vers les samples</translation>
+        <translation type="unfinished">Chemin vers les samples</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="88"/>
@@ -22317,12 +22322,12 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     <message>
         <location filename="../../welcome.ui" line="65"/>
         <source>ROM path</source>
-        <translation>Répertoire de ROMS</translation>
+        <translation type="unfinished">Chemin d&apos;accès aux ROM</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="206"/>
         <source>Sample path</source>
-        <translation>Répertoire de samples</translation>
+        <translation type="unfinished">Chemin d&apos;accès aux échantillons</translation>
     </message>
 </context>
 <context>
@@ -22409,110 +22414,110 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="46"/>
         <source>Attached videos</source>
-        <translation>Vidéos attachées</translation>
+        <translation type="unfinished">Vidéos attachées</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="74"/>
         <source>Start playing / select next video automatically</source>
-        <translation>Commencer à jouer / sélectionner la vidéo suivante automatiquement</translation>
+        <translation type="unfinished">Commencer à jouer / sélectionner la vidéo suivante automatiquement</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="77"/>
         <source>Play-O-Matic</source>
-        <translation>Play-O-Matic</translation>
+        <translation type="unfinished">Play-O-Matic</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="87"/>
         <source>Mode:</source>
-        <translation>Mode:</translation>
+        <translation type="unfinished">Mode:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="100"/>
         <source>Choose the video selection mode</source>
-        <translation>Choisir le mode de sélection de vidéo</translation>
+        <translation type="unfinished">Choisir le mode de sélection de vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="104"/>
         <source>sequential</source>
-        <translation>séquentiel</translation>
+        <translation type="unfinished">séquentiel</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="109"/>
         <source>random</source>
-        <translation>au hasard</translation>
+        <translation type="unfinished">au hasard</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="120"/>
         <source>Allow videos to be repeated (otherwise stop after last video)</source>
-        <translation>Autorise les vidéos à être revisionnées (sinon stoppe la lecture à la dernière vidéo)</translation>
+        <translation type="unfinished">Autorise les vidéos à être revisionnées (sinon stoppe la lecture à la dernière vidéo)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="123"/>
         <source>Allow repeat</source>
-        <translation>Autorise la répétition</translation>
+        <translation type="unfinished">Autorise la répétition</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="156"/>
         <source>Video player</source>
-        <translation>Lecteur vidéo</translation>
+        <translation type="unfinished">Lecteur vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="191"/>
         <source>Select the preferred video format (automatically falls back to the next available format)</source>
-        <translation>Choisir le format vidéo préfére (bascule automatiquement vers le format vidéo disponible suivant)</translation>
+        <translation type="unfinished">Choisir le format vidéo préfére (bascule automatiquement vers le format vidéo disponible suivant)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="201"/>
         <location filename="../../youtubevideoplayer.cpp" line="111"/>
         <source>FLV 240P</source>
-        <translation>FLV 240P</translation>
+        <translation type="unfinished">FLV 240P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="210"/>
         <location filename="../../youtubevideoplayer.cpp" line="112"/>
         <source>FLV 360P</source>
-        <translation>FLV 360P</translation>
+        <translation type="unfinished">FLV 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="219"/>
         <location filename="../../youtubevideoplayer.cpp" line="113"/>
         <source>MP4 360P</source>
-        <translation>MP4 360P</translation>
+        <translation type="unfinished">MP4 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="228"/>
         <location filename="../../youtubevideoplayer.cpp" line="114"/>
         <source>FLV 480P</source>
-        <translation>FLV 480P</translation>
+        <translation type="unfinished">FLV 480P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="237"/>
         <location filename="../../youtubevideoplayer.cpp" line="115"/>
         <source>MP4 720P</source>
-        <translation>MP4 720P</translation>
+        <translation type="unfinished">MP4 720P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="246"/>
         <location filename="../../youtubevideoplayer.cpp" line="116"/>
         <source>MP4 1080P</source>
-        <translation>MP4 1080P</translation>
+        <translation type="unfinished">MP4 1080P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="255"/>
         <location filename="../../youtubevideoplayer.cpp" line="117"/>
         <source>MP4 3072P</source>
-        <translation>MP4 3072P</translation>
+        <translation type="unfinished">MP4 3072P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="273"/>
         <location filename="../../youtubevideoplayer.cpp" line="192"/>
         <source>Start / pause / resume video playback</source>
-        <translation>Joue / pause / reprise de la lecture vidéo</translation>
+        <translation type="unfinished">Joue / pause / reprise de la lecture vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="302"/>
         <source>Current buffer fill level</source>
-        <translation>Niveau de cache actuel</translation>
+        <translation type="unfinished">Niveau de cache actuel</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="323"/>
@@ -22536,47 +22541,47 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="394"/>
         <source>Search videos</source>
-        <translation>Recherche de vidéos</translation>
+        <translation type="unfinished">Recherche de vidéos</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="409"/>
         <source>Search pattern -- use the &apos;hint&apos; button to get a suggestion</source>
-        <translation>Pattern de recherche - utilise le bouton &apos;hint&apos; pour des suggestions</translation>
+        <translation type="unfinished">Pattern de recherche - utilise le bouton &apos;hint&apos; pour des suggestions</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="422"/>
         <source>Search YouTube videos using the specified search pattern</source>
-        <translation>Recherche dans les vidéos YouTube en utilisante le pattern spécifié</translation>
+        <translation type="unfinished">Recherche dans les vidéos YouTube en utilisante le pattern spécifié</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="466"/>
         <source>Maximum number of results per search request</source>
-        <translation>Nombre maximum de résultats par recherche</translation>
+        <translation type="unfinished">Nombre maximum de résultats par recherche</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="497"/>
         <source>Start index for the search request</source>
-        <translation>Commencer l&apos;index pour la requête de recherche</translation>
+        <translation type="unfinished">Commencer l&apos;index pour la requête de recherche</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="522"/>
         <source>SI:</source>
-        <translation>SI:</translation>
+        <translation type="unfinished">SI:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="529"/>
         <source>R:</source>
-        <translation>R:</translation>
+        <translation type="unfinished">R:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="449"/>
         <source>Suggest a search pattern (hold down for menu)</source>
-        <translation>Suggérer un pattern de recherche (laisser appuyé pour le menu)</translation>
+        <translation type="unfinished">Suggérer un pattern de recherche (laisser appuyé pour le menu)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="94"/>
         <source>Mute / unmute audio output</source>
-        <translation>Coupe / Ouvre la sortie audio</translation>
+        <translation type="unfinished">Coupe / Ouvre la sortie audio</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="131"/>
@@ -22586,7 +22591,7 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="132"/>
         <source>Video progress</source>
-        <translation>Progression de la vidéo</translation>
+        <translation type="unfinished">Progression de la vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="136"/>
@@ -22597,20 +22602,20 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
         <location filename="../../youtubevideoplayer.cpp" line="1044"/>
         <location filename="../../youtubevideoplayer.cpp" line="1086"/>
         <source>Current buffer fill level: %1%</source>
-        <translation>Niveau de cache actuel: %1%</translation>
+        <translation type="unfinished">Niveau de cache actuel: %1%</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="143"/>
         <location filename="../../youtubevideoplayer.cpp" line="249"/>
         <source>Play this video</source>
-        <translation>Joue cette vidéo</translation>
+        <translation type="unfinished">Joue cette vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="150"/>
         <location filename="../../youtubevideoplayer.cpp" line="207"/>
         <location filename="../../youtubevideoplayer.cpp" line="260"/>
         <source>Copy video URL</source>
-        <translation>Copier l&apos;URL de la vidéo</translation>
+        <translation type="unfinished">Copier l&apos;URL de la vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="156"/>
@@ -22624,13 +22629,13 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
         <location filename="../../youtubevideoplayer.cpp" line="219"/>
         <location filename="../../youtubevideoplayer.cpp" line="270"/>
         <source>Copy author URL</source>
-        <translation>Copier l&apos;URL de l&apos;auteur</translation>
+        <translation type="unfinished">Copier l&apos;URL de l&apos;auteur</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="171"/>
         <location filename="../../youtubevideoplayer.cpp" line="228"/>
         <source>Paste video URL</source>
-        <translation>Coller l&apos;URL de la vidéo</translation>
+        <translation type="unfinished">Coller l&apos;URL de la vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="178"/>
@@ -22641,55 +22646,55 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="184"/>
         <source>Remove selected videos</source>
-        <translation>Enlever les vidéos sélectionnées</translation>
+        <translation type="unfinished">Enlever les vidéos sélectionnées</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="200"/>
         <location filename="../../youtubevideoplayer.cpp" line="1587"/>
         <location filename="../../youtubevideoplayer.cpp" line="1601"/>
         <source>Full screen (return with toggle-key)</source>
-        <translation>Plein écran (retour avec la touche de bascul)</translation>
+        <translation type="unfinished">Plein écran (retour avec la touche de bascul)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="241"/>
         <location filename="../../youtubevideoplayer.cpp" line="254"/>
         <source>Attach this video</source>
-        <translation>Attacher cette vidéo</translation>
+        <translation type="unfinished">Attacher cette vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="277"/>
         <source>Auto-suggest a search pattern?</source>
-        <translation>Suggérer automatique un pattern de recherche?</translation>
+        <translation type="unfinished">Suggérer automatique un pattern de recherche?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="278"/>
         <source>Auto-suggest</source>
-        <translation>Auto-suggestion</translation>
+        <translation type="unfinished">Auto-suggestion</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="283"/>
         <source>Enter string to be appended</source>
-        <translation>Entrer la chaîne qui sera ajoutée</translation>
+        <translation type="unfinished">Entrer la chaîne qui sera ajoutée</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="284"/>
         <source>Append...</source>
-        <translation>Ajouter...</translation>
+        <translation type="unfinished">Ajouter...</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="292"/>
         <source>Enter search string</source>
-        <translation>Entrer la chaîne de recherche</translation>
+        <translation type="unfinished">Entrer la chaîne de recherche</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="414"/>
         <source>Appended string</source>
-        <translation>Ajouter une chaîne</translation>
+        <translation type="unfinished">Ajouter une chaîne</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="415"/>
         <source>Enter the string to be appended when suggesting a pattern:</source>
-        <translation>Entrer la chaîne à ajouter quand un pattern est suggéré:</translation>
+        <translation type="unfinished">Entrer la chaîne à ajouter quand un pattern est suggéré:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="416"/>
@@ -22712,13 +22717,13 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
         <location filename="../../youtubevideoplayer.cpp" line="738"/>
         <location filename="../../youtubevideoplayer.cpp" line="756"/>
         <source>Full-screen mode -- press %1 to return to windowed mode</source>
-        <translation>Mode plein écran - presser %1 pour retourner au mode fenêtré</translation>
+        <translation type="unfinished">Mode plein écran - presser %1 pour retourner au mode fenêtré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="740"/>
         <location filename="../../youtubevideoplayer.cpp" line="758"/>
         <source>Full-screen mode -- press toggle-key to return to windowed mode</source>
-        <translation>Mode plein écran - presser la touche de bacul pour retourner au mode fenêtré</translation>
+        <translation type="unfinished">Mode plein écran - presser la touche de bacul pour retourner au mode fenêtré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="791"/>
@@ -22728,61 +22733,61 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="795"/>
         <source>video player: a video with the ID &apos;%1&apos; is already attached, ignored</source>
-        <translation>lecteur vidéo: une vidéo avec l&apos;ID &apos;%1&apos; est déjà attachée, ignoré</translation>
+        <translation type="unfinished">lecteur vidéo: une vidéo avec l&apos;ID &apos;%1&apos; est déjà attachée, ignoré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="971"/>
         <source>Buffering: %1%</source>
-        <translation>Mise en cache: %1%</translation>
+        <translation type="unfinished">Mise en cache: %1%</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="985"/>
         <source>Loading</source>
-        <translation>Chargement</translation>
+        <translation type="unfinished">Chargement</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1001"/>
         <location filename="../../youtubevideoplayer.cpp" line="1059"/>
         <source>Playing</source>
-        <translation>En lecture</translation>
+        <translation type="unfinished">En lecture</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1012"/>
         <location filename="../../youtubevideoplayer.cpp" line="1070"/>
         <source>Paused</source>
-        <translation>En pause</translation>
+        <translation type="unfinished">En pause</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1015"/>
         <source>video player: playback error: %1</source>
-        <translation>lecteur vidéo: erreur de lecture: %1</translation>
+        <translation type="unfinished">lecteur vidéo: erreur de lecture: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1016"/>
         <source>Video playback error: %1</source>
-        <translation>Erreur de lecture vidéo: %1</translation>
+        <translation type="unfinished">Erreur de lecture vidéo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1135"/>
         <source>Fetching info for video ID &apos;%1&apos;</source>
-        <translation>Récupération des informations de la vidéo ID &apos;%1&apos;</translation>
+        <translation type="unfinished">Récupération des informations de la vidéo ID &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1227"/>
         <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
-        <translation>lecteur vidéo: info erreur vidéo ID = &apos;%1&apos;, statut = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</translation>
+        <translation type="unfinished">lecteur vidéo: info erreur vidéo ID = &apos;%1&apos;, statut = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1228"/>
         <location filename="../../youtubevideoplayer.cpp" line="1354"/>
         <location filename="../../youtubevideoplayer.cpp" line="1785"/>
         <source>Video info error: %1</source>
-        <translation>Info de l&apos;erreur vidéo: %1</translation>
+        <translation type="unfinished">Info de l&apos;erreur vidéo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1323"/>
         <source>video player: video info error: timeout occurred</source>
-        <translation>lecteur vidéo: info de l&apos;erreur vidéo: délai expiré</translation>
+        <translation type="unfinished">lecteur vidéo: info de l&apos;erreur vidéo: délai expiré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1324"/>
@@ -22797,7 +22802,7 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1353"/>
         <source>video player: video info error: %1</source>
-        <translation>lecteur vidéo: info de l&apos;erreur vidéo: %1</translation>
+        <translation type="unfinished">lecteur vidéo: info de l&apos;erreur vidéo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1578"/>
@@ -22809,52 +22814,52 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
         <location filename="../../youtubevideoplayer.cpp" line="1585"/>
         <location filename="../../youtubevideoplayer.cpp" line="1599"/>
         <source>Full screen (press %1 to return)</source>
-        <translation>Plein écran (presser %1 pour revenir)</translation>
+        <translation type="unfinished">Plein écran (presser %1 pour revenir)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1784"/>
         <source>video player: video image info error: %1</source>
-        <translation>lecteur vidéo: info de l&apos;erreur d&apos;image vidéo: %1</translation>
+        <translation type="unfinished">lecteur vidéo: info de l&apos;erreur d&apos;image vidéo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1804"/>
         <source>video player: search request error: %1</source>
-        <translation>lecteur vidéo: erreur de recherche: %1</translation>
+        <translation type="unfinished">lecteur vidéo: erreur de recherche: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1829"/>
         <source>video player: search error: can&apos;t parse XML data</source>
-        <translation>lecteur vidéo: erreur de recherche: n&apos;a pas pu parcourir les données XML</translation>
+        <translation type="unfinished">lecteur vidéo: erreur de recherche: n&apos;a pas pu parcourir les données XML</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1857"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
-        <translation>lecteur vidéo: impossible de déterminer l&apos;ID de la vidéo depuis l&apos;URL &apos;%1&apos; - merci d&apos;informer les développeurs</translation>
+        <translation type="unfinished">lecteur vidéo: impossible de déterminer l&apos;ID de la vidéo depuis l&apos;URL &apos;%1&apos; - merci d&apos;informer les développeurs</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1863"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
-        <translation>lecteur vidéo: impossible d&apos;associer l&apos;image retournée pour la vidéo ID &apos;%1&apos; - merci d&apos;informer les développeurs</translation>
+        <translation type="unfinished">lecteur vidéo: impossible d&apos;associer l&apos;image retournée pour la vidéo ID &apos;%1&apos; - merci d&apos;informer les développeurs</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1880"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
-        <translation>lecteur vidéo: impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos; dans le répertoire de cache Youtube &apos;%2&apos; - vérifiez les permissions svp</translation>
+        <translation type="unfinished">lecteur vidéo: impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos; dans le répertoire de cache Youtube &apos;%2&apos; - vérifiez les permissions svp</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1882"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
-        <translation>lecteur vidéo: impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos;, le répertoire de cache Youtube &apos;%2&apos; n&apos;existe pas - merci de corriger</translation>
+        <translation type="unfinished">lecteur vidéo: impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos;, le répertoire de cache Youtube &apos;%2&apos; n&apos;existe pas - merci de corriger</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1884"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
-        <translation>lecteur vidéo: le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, l&apos;image reçu n&apos;est pas valide</translation>
+        <translation type="unfinished">lecteur vidéo: le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, l&apos;image reçu n&apos;est pas valide</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1886"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
-        <translation>lecteur vidéo: le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, texte de l&apos;&apos;erreur = &apos;%2&apos;</translation>
+        <translation type="unfinished">lecteur vidéo: le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, texte de l&apos;&apos;erreur = &apos;%2&apos;</translation>
     </message>
 </context>
 </TS>
