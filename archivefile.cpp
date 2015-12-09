@@ -7,7 +7,6 @@ ArchiveFile::ArchiveFile(QString fileName, QObject *parent)
 {
 	m_fileName = fileName;
 	m_archive = 0;
-	m_fd = -1;
 }
 
 ArchiveFile::~ArchiveFile()
@@ -22,19 +21,13 @@ bool ArchiveFile::open(QString fileName)
 		close();
 	if ( !fileName.isEmpty() )
 		m_fileName = fileName;
-	m_file.setFileName(m_fileName);
-	if ( !m_file.open(QIODevice::ReadOnly) )
-		return false;
-	m_fd = m_file.handle();
 	m_archive = archive_read_new();
 	archive_read_support_filter_all(m_archive);
 	archive_read_support_format_all(m_archive);
-	int result = archive_read_open_fd(m_archive, m_fd, QMC2_ARCHIVE_BLOCK_SIZE);
+	int result = archive_read_open_filename(m_archive, m_fileName.toUtf8().constData(), QMC2_ARCHIVE_BLOCK_SIZE);
 	if ( result != ARCHIVE_OK) {
 		archive_read_free(m_archive);
 		m_archive = 0;
-		m_file.close();
-		m_fd = -1;
 		return false;
 	} else {
 		createEntryList();
@@ -47,10 +40,8 @@ void ArchiveFile::close()
 	m_entryList.clear();
 	if ( isOpen() ) {
 		archive_read_free(m_archive);
-		m_file.close();
+		m_archive = 0;
 	}
-	m_archive = 0;
-	m_fd = -1;
 }
 
 bool ArchiveFile::seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset)
@@ -59,13 +50,10 @@ bool ArchiveFile::seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset)
 		return false;
 	if ( *reset ) {
 		archive_read_free(m_archive);
-		m_file.close();
-		m_file.open(QIODevice::ReadOnly);
-		m_fd = m_file.handle();
 		m_archive = archive_read_new();
 		archive_read_support_filter_all(m_archive);
 		archive_read_support_format_all(m_archive);
-		archive_read_open_fd(m_archive, m_fd, QMC2_ARCHIVE_BLOCK_SIZE);
+		archive_read_open_filename(m_archive, m_fileName.toUtf8().constData(), QMC2_ARCHIVE_BLOCK_SIZE);
 		*reset = false;
 	}
 	struct archive_entry *entry;
@@ -92,11 +80,10 @@ bool ArchiveFile::seekEntry(uint index)
 	struct archive_entry *entry;
 	ArchiveEntryMetaData metadata = entryList()[index];
 	archive_read_free(m_archive);
-	lseek(m_fd, 0, SEEK_SET);
 	m_archive = archive_read_new();
 	archive_read_support_filter_all(m_archive);
 	archive_read_support_format_all(m_archive);
-	archive_read_open_fd(m_archive, m_fd, QMC2_ARCHIVE_BLOCK_SIZE);
+	archive_read_open_filename(m_archive, m_fileName.toUtf8().constData(), QMC2_ARCHIVE_BLOCK_SIZE);
 	while ( archive_read_next_header(m_archive, &entry) == ARCHIVE_OK )
 		if ( metadata.name().compare(archive_entry_pathname(entry), Qt::CaseSensitive) == 0 )
 			return true;
