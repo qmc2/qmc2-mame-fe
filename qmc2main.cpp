@@ -6374,6 +6374,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
 	delete qmc2MainEventFilter;
 	delete qmc2Options;
 	e->accept();
+
+	// remove possible left-overs
+	QApplication::closeAllWindows();
 }
 
 void MainWindow::showEvent(QShowEvent *e)
@@ -11079,9 +11082,6 @@ int main(int argc, char *argv[])
 
 	// wait for all application threads to finish
 	QThreadPool::globalInstance()->waitForDone();
-
-	// remove possible left-overs
-	QApplication::closeAllWindows();
 
 	return retCode;
 }
