@@ -58,7 +58,7 @@ class ArchiveFile : public QObject
 		int errorCode();
 
 	private:
-		void createItemList();
+		void createEntryList();
 		int indexOfName(QString name);
 
 		struct archive *m_archive;

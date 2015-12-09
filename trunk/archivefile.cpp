@@ -37,7 +37,7 @@ bool ArchiveFile::open(QString fileName)
 		m_fd = -1;
 		return false;
 	} else {
-		createItemList();
+		createEntryList();
 		return true;
 	}
 }
@@ -136,7 +136,7 @@ int ArchiveFile::errorCode()
 		return ARCHIVE_OK;
 }
 
-void ArchiveFile::createItemList()
+void ArchiveFile::createEntryList()
 {
 	entryList().clear();
 	if ( !isOpen() )
