@@ -1,6 +1,6 @@
 Name:           qmc2
 Version:        0.59
-Release:        1
+Release:        2
 Summary:        M.A.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
 License:        GPL-2.0
@@ -17,9 +17,10 @@ BuildRequires:  rsync
 BuildRequires:  desktop-file-utils
 BuildRequires:  openSUSE-release
 BuildRequires:  fdupes
+BuildRequires:  libarchive-devel
 
 %description
-QMC2 is a Qt 4 based multi-platform GUI front end for several MAME, MESS and UME variants.
+QMC2 is a Qt based multi-platform GUI front-end for MAME.
 
 %prep
 %setup -qcT
@@ -35,30 +36,22 @@ mv %{name} manpages
 %build
 pushd sdlmame
 make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
-    CXX_FLAGS=-O3 CC_FLAGS=-O3
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 PHONON=1 WIP=0 LIBARCHIVE=1 CXX_FLAGS=-O3 CC_FLAGS=-O3 qmc2
 popd
 
 pushd arcade
 make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    JOYSTICK=1 WIP=0 \
-    CXX_FLAGS=-O3 CC_FLAGS=-O3 arcade
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 WIP=0 LIBARCHIVE=1 CXX_FLAGS=-O3 CC_FLAGS=-O3 arcade
 popd
 
 pushd qchdman
 make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    JOYSTICK=1 WIP=0 \
-    CXX_FLAGS=-O3 CC_FLAGS=-O3 qchdman
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} WIP=0 CXX_FLAGS=-O3 CC_FLAGS=-O3 qchdman
 popd
 
 pushd manpages
 make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    JOYSTICK=1 WIP=0 \
-    CXX_FLAGS=-O3 CC_FLAGS=-O3 man
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} man
 popd
 
 %install
@@ -66,30 +59,22 @@ rm -rf $RPM_BUILD_ROOT
 
 pushd sdlmame
 make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
-    CXX_FLAGS=-O3 CC_FLAGS=-O3
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 PHONON=1 WIP=0 LIBARCHIVE=1
 popd
 
 pushd arcade
 make arcade-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    JOYSTICK=1 WIP=0 \
-    CXX_FLAGS=-O3 CC_FLAGS=-O3
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 WIP=0 LIBARCHIVE=1
 popd
 
 pushd qchdman
 make qchdman-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    JOYSTICK=1 WIP=0 \
-    CXX_FLAGS=-O3 CC_FLAGS=-O3
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} WIP=0
 popd
 
 pushd manpages
 make man-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT MAN_DIR=/usr/share/man DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    JOYSTICK=1 WIP=0 \
-    CXX_FLAGS=-O3 CC_FLAGS=-O3
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 popd
 
 # manually install doc files in order to avoid "files-duplicate" warning
@@ -131,6 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/qchdman.6.gz
 
 %changelog
+* Wed Dec  9 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.59-2
+- added libarchive support / revised description
+
 * Thu Nov 26 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.59-1
 - updated spec to QMC2 0.59
 
