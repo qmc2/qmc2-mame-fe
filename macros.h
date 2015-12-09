@@ -356,7 +356,6 @@
 #define QMC2_FILE_BUFFER_SIZE			QMC2_256K
 
 // block size used with libarchive
-
 #define QMC2_ARCHIVE_BLOCK_SIZE			QMC2_64K
 
 // process timeouts in msecs
