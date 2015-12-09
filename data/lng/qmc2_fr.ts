@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>About</name>
     <message>
@@ -113,7 +113,7 @@
         <source>Project details</source>
         <translation>Informations sur le projet</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -361,7 +361,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="46"/>
         <source>Icon</source>
-        <translation type="unfinished">Icône</translation>
+        <translation>Icône</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="51"/>
@@ -381,7 +381,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="66"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Format</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="71"/>
@@ -396,12 +396,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="88"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="108"/>
         <source>Cancel additional artwork editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuler l&apos;édition des illustrations supplémentaires</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="111"/>
@@ -411,12 +411,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="134"/>
         <source>Restore additional artwork from currently active setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Rétablir les illustrations supplémentaires depuis la configuration active</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="137"/>
         <source>&amp;Restore</source>
-        <translation type="unfinished">&amp;Restaurer</translation>
+        <translation>&amp;Rétablir</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="170"/>
@@ -444,7 +444,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="193"/>
         <location filename="../../additionalartworksetup.cpp" line="299"/>
         <source>Choose...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner...</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="195"/>
@@ -548,7 +548,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="250"/>
         <location filename="../../additionalartworksetup.cpp" line="334"/>
         <source>Image archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Archive des images</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="251"/>
@@ -573,7 +573,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="258"/>
         <location filename="../../additionalartworksetup.cpp" line="341"/>
         <source>Image folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Dossier des images</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="259"/>
@@ -590,7 +590,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.cpp" line="418"/>
         <source>Choose icon file</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir une icône</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="418"/>
@@ -1190,7 +1190,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../audioeffects.cpp" line="194"/>
         <location filename="../../audioeffects.cpp" line="199"/>
         <source>Enable effect &apos;%1&apos;</source>
-        <translation type="unfinished">Activer l&apos;effet &apos;%1&apos;</translation>
+        <translation>Activer l&apos;effet &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="52"/>
@@ -1201,7 +1201,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../audioeffects.cpp" line="186"/>
         <location filename="../../audioeffects.cpp" line="207"/>
         <source>Disable effect &apos;%1&apos;</source>
-        <translation type="unfinished">Désactive l&apos;effet &apos;%1&apos;</translation>
+        <translation>Désactiver l&apos;effet &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="195"/>
@@ -1216,17 +1216,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../audioeffects.ui" line="14"/>
         <source>Audio effects</source>
-        <translation type="unfinished">Effets Audio</translation>
+        <translation>Effets audio</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="36"/>
         <source>Close audio effects dialog</source>
-        <translation type="unfinished">Fermer la fenêtre d&apos;effets Audio</translation>
+        <translation>Fermer la fenêtre des effets audio</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="39"/>
         <source>Close</source>
-        <translation type="unfinished">Fermer</translation>
+        <translation>Fermer</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="59"/>
@@ -1247,7 +1247,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../audioeffects.ui" line="91"/>
         <source>Enable</source>
-        <translation type="unfinished">Actif</translation>
+        <translation>Activer</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="96"/>
@@ -1403,7 +1403,7 @@ p, li { white-space: pre-wrap; }
         <source>Angle</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation type="unfinished"></translation>
