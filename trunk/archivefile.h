@@ -2,7 +2,6 @@
 #define ARCHIVEFILE_H
 
 #include <QObject>
-#include <QFile>
 #include <QString>
 #include <QList>
 #include <QStringList>
@@ -45,7 +44,7 @@ class ArchiveFile : public QObject
 
 		QString fileName() { return m_fileName; }
 		QList<ArchiveEntryMetaData> &entryList() { return m_entryList; }
-		bool isOpen() { return m_fd >= 0; }
+		bool isOpen() { return m_archive != 0; }
 		bool open(QString fileName = QString());
 		void close();
 		bool seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset);
@@ -62,9 +61,7 @@ class ArchiveFile : public QObject
 		int indexOfName(QString name);
 
 		struct archive *m_archive;
-		int m_fd;
 		const void *m_buffer;
-		QFile m_file;
 		QList<ArchiveEntryMetaData> m_entryList;
 		QString m_fileName;
 };
