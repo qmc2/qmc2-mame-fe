@@ -4361,6 +4361,12 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 
 	zoom = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapZoom", 100).toInt();
 
+
+	reloadActiveFormats();
+}
+
+void SoftwareSnap::openSource()
+{
 	if ( useZip() ) {
 		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
 			snapFileMap[filePath] = unzOpen(filePath.toUtf8().constData());
@@ -4379,8 +4385,44 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 			}
 		}
 	}
-
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	else if ( useArchive() ) {
+		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
+			ArchiveFile *snapFile = new ArchiveFile(filePath);
+			if ( !snapFile->open() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file %1").arg(filePath) + " - " + tr("libarchive error") + ": " + snapFile->errorString());
+			else
+				snapArchiveMap[filePath] = snapFile;
+		}
+	}
+#endif
 	reloadActiveFormats();
+}
+
+void SoftwareSnap::closeSource()
+{
+	QMapIterator<QString, unzFile> itZip(snapFileMap);
+	while ( itZip.hasNext() ) {
+		itZip.next();
+		unzClose(itZip.value());
+	}
+	snapFileMap.clear();
+	QMapIterator<QString, SevenZipFile*> it7z(snapFileMap7z);
+	while ( it7z.hasNext() ) {
+		it7z.next();
+		it7z.value()->close();
+		delete it7z.value();
+	}
+	snapFileMap7z.clear();
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	QMapIterator<QString, ArchiveFile*> itArchive(snapArchiveMap);
+	while ( itArchive.hasNext() ) {
+		itArchive.next();
+		itArchive.value()->close();
+		delete itArchive.value();
+	}
+	snapArchiveMap.clear();
+#endif
 }
 
 SoftwareSnap::~SoftwareSnap()
@@ -5077,6 +5119,11 @@ bool SoftwareSnap::useZip()
 bool SoftwareSnap::useSevenZip()
 {
 	return qmc2UseSoftwareSnapFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
+}
+
+bool SoftwareSnap::useArchive()
+{
+	return qmc2UseSoftwareSnapFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFileType").toInt() == QMC2_IMG_FILETYPE_ARCHIVE;
 }
 
 SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item, bool viewTree)

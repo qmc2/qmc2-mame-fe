@@ -214,7 +214,6 @@ MachineList::MachineList(QObject *parent)
 				delete archiveFile;
 			} else
 				qmc2IconArchiveMap[filePath] = archiveFile;
-
 		}
 	}
 #endif
