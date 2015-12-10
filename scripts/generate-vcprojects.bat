@@ -19,8 +19,8 @@ set SDL_LIB_PATH_64=c:\sdl2\lib\x64\sdl2.lib
 set SDLMAIN_LIB_PATH=c:\sdl2\lib\x86\sdl2main.lib
 set SDLMAIN_LIB_PATH_64=c:\sdl2\lib\x64\sdl2main.lib
 set LIBARCHIVE_INC_PATH=d:\libarchive\libarchive
-set LIBARCHIVE_LIB_PATH=d:\libarchive\lib\x86\libarchive.lib
-set LIBARCHIVE_LIB_PATH_64=d:\libarchive\lib\x64\libarchive.lib
+set LIBARCHIVE_LIB_PATH=d:\libarchive\lib\x86\archive.lib
+set LIBARCHIVE_LIB_PATH_64=d:\libarchive\lib\x64\archive.lib
 
 REM #####################################################################
 REM # !!! FOR VS2010, QMAKESPEC NEEDS TO BE SET TO "win32-msvc2010" !!! #
