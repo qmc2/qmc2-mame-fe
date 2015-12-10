@@ -11,9 +11,9 @@ ArcadeSettings::ArcadeSettings(QString theme)
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
     default:
-        frontEndPrefix = "Frontend";
-        emulatorPrefix = "MAME";
-        break;
+	frontEndPrefix = "Frontend";
+	emulatorPrefix = "MAME";
+	break;
     }
     languageMap["de"] = QLocale::German;
     languageMap["es"] = QLocale::Spanish;
@@ -50,17 +50,17 @@ QString ArcadeSettings::languageToString(QLocale::Language lang)
 {
     QString langStr = languageMap.key(lang);
     if ( !langStr.isEmpty() )
-        return langStr;
+	return langStr;
     else
-        return "us";
+	return "us";
 }
 
 QLocale::Language ArcadeSettings::languageFromString(QString lang)
 {
     if ( languageMap.contains(lang) )
-        return languageMap[lang];
+	return languageMap[lang];
     else
-        return QLocale::English;
+	return QLocale::English;
 }
 
 QString ArcadeSettings::keySequenceMapBaseKey()
@@ -80,7 +80,7 @@ QString ArcadeSettings::emulatorName()
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
     default:
-        return QString("MAME");
+	return QString("MAME");
     }
 }
 
@@ -578,7 +578,12 @@ bool ArcadeSettings::previewsZipped()
 
 bool ArcadeSettings::previewsSevenZipped()
 {
-    return value(QString("%1/FilesAndDirectories/UsePreviewFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/PreviewFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+	return value(QString("%1/FilesAndDirectories/UsePreviewFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/PreviewFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+}
+
+bool ArcadeSettings::previewsArchived()
+{
+	return value(QString("%1/FilesAndDirectories/UsePreviewFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/PreviewFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_ARCHIVE);
 }
 
 QString ArcadeSettings::previewFile()
@@ -598,7 +603,12 @@ bool ArcadeSettings::flyersZipped()
 
 bool ArcadeSettings::flyersSevenZipped()
 {
-    return value(QString("%1/FilesAndDirectories/UseFlyerFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/FlyerFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+	return value(QString("%1/FilesAndDirectories/UseFlyerFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/FlyerFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+}
+
+bool ArcadeSettings::flyersArchived()
+{
+	return value(QString("%1/FilesAndDirectories/UseFlyerFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/FlyerFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_ARCHIVE);
 }
 
 QString ArcadeSettings::flyerFile()
@@ -618,7 +628,12 @@ bool ArcadeSettings::cabinetsZipped()
 
 bool ArcadeSettings::cabinetsSevenZipped()
 {
-    return value(QString("%1/FilesAndDirectories/UseCabinetFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/CabinetFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+	return value(QString("%1/FilesAndDirectories/UseCabinetFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/CabinetFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+}
+
+bool ArcadeSettings::cabinetsArchived()
+{
+	return value(QString("%1/FilesAndDirectories/UseCabinetFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/CabinetFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_ARCHIVE);
 }
 
 QString ArcadeSettings::cabinetFile()
@@ -638,7 +653,12 @@ bool ArcadeSettings::controllersZipped()
 
 bool ArcadeSettings::controllersSevenZipped()
 {
-    return value(QString("%1/FilesAndDirectories/UseControllerFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/ControllerFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+	return value(QString("%1/FilesAndDirectories/UseControllerFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/ControllerFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+}
+
+bool ArcadeSettings::controllersArchived()
+{
+	return value(QString("%1/FilesAndDirectories/UseControllerFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/ControllerFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_ARCHIVE);
 }
 
 QString ArcadeSettings::controllerFile()
@@ -658,7 +678,12 @@ bool ArcadeSettings::marqueesZipped()
 
 bool ArcadeSettings::marqueesSevenZipped()
 {
-    return value(QString("%1/FilesAndDirectories/UseMarqueeFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/MarqueeFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+	return value(QString("%1/FilesAndDirectories/UseMarqueeFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/MarqueeFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+}
+
+bool ArcadeSettings::marqueesArchived()
+{
+	return value(QString("%1/FilesAndDirectories/UseMarqueeFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/MarqueeFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_ARCHIVE);
 }
 
 QString ArcadeSettings::marqueeFile()
@@ -678,7 +703,12 @@ bool ArcadeSettings::titlesZipped()
 
 bool ArcadeSettings::titlesSevenZipped()
 {
-    return value(QString("%1/FilesAndDirectories/UseTitleFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/TitleFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+	return value(QString("%1/FilesAndDirectories/UseTitleFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/TitleFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+}
+
+bool ArcadeSettings::titlesArchived()
+{
+	return value(QString("%1/FilesAndDirectories/UseTitleFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/TitleFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_ARCHIVE);
 }
 
 QString ArcadeSettings::titleFile()
@@ -698,7 +728,12 @@ bool ArcadeSettings::pcbsZipped()
 
 bool ArcadeSettings::pcbsSevenZipped()
 {
-    return value(QString("%1/FilesAndDirectories/UsePCBFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/PCBFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+	return value(QString("%1/FilesAndDirectories/UsePCBFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/PCBFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+}
+
+bool ArcadeSettings::pcbsArchived()
+{
+	return value(QString("%1/FilesAndDirectories/UsePCBFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/PCBFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_ARCHIVE);
 }
 
 QString ArcadeSettings::pcbFile()
@@ -718,7 +753,12 @@ bool ArcadeSettings::swSnapsZipped()
 
 bool ArcadeSettings::swSnapsSevenZipped()
 {
-    return value(QString("%1/FilesAndDirectories/UseSoftwareSnapFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/SoftwareSnapFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+	return value(QString("%1/FilesAndDirectories/UseSoftwareSnapFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/SoftwareSnapFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+}
+
+bool ArcadeSettings::swSnapsArchived()
+{
+	return value(QString("%1/FilesAndDirectories/UseSoftwareSnapFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/SoftwareSnapFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_ARCHIVE);
 }
 
 QString ArcadeSettings::swSnapFile()
@@ -738,7 +778,12 @@ bool ArcadeSettings::iconsZipped()
 
 bool ArcadeSettings::iconsSevenZipped()
 {
-    return value(QString("%1/FilesAndDirectories/UseIconFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/IconFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+	return value(QString("%1/FilesAndDirectories/UseIconFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/IconFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+}
+
+bool ArcadeSettings::iconsArchived()
+{
+	return value(QString("%1/FilesAndDirectories/UseIconFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/IconFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_ARCHIVE);
 }
 
 QString ArcadeSettings::iconFile()
@@ -804,12 +849,12 @@ bool ArcadeSettings::parentFallback()
 bool ArcadeSettings::parentFallback(QString imageType)
 {
     if ( parentFallback() ) {
-        if ( m_parentFallbackKeys.contains(imageType) )
-            return value(m_parentFallbackKeys[imageType], 0).toInt() == 0;
-        else
-            return value(QString("Artwork/%1/Fallback").arg(imageType), 0).toInt() == 0;
+	if ( m_parentFallbackKeys.contains(imageType) )
+	    return value(m_parentFallbackKeys[imageType], 0).toInt() == 0;
+	else
+	    return value(QString("Artwork/%1/Fallback").arg(imageType), 0).toInt() == 0;
     } else
-        return false;
+	return false;
 }
 
 QString ArcadeSettings::videoSnapFolder()
@@ -969,8 +1014,8 @@ QStringList ArcadeSettings::customSystemArtworkNames()
     beginGroup("Artwork");
     QStringList artworkNames;
     foreach (QString name, childGroups()) {
-        if ( value(QString("%1/Target").arg(name), 0).toInt() == QMC2_ARCADE_AW_TARGET_SYSTEM )
-            artworkNames << name;
+	if ( value(QString("%1/Target").arg(name), 0).toInt() == QMC2_ARCADE_AW_TARGET_SYSTEM )
+	    artworkNames << name;
     }
     endGroup();
     return artworkNames;
@@ -981,8 +1026,8 @@ QStringList ArcadeSettings::customSoftwareArtworkNames()
     beginGroup("Artwork");
     QStringList artworkNames;
     foreach (QString name, childGroups()) {
-        if ( value(QString("%1/Target").arg(name), 0).toInt() == QMC2_ARCADE_AW_TARGET_SOFTWARE )
-            artworkNames << name;
+	if ( value(QString("%1/Target").arg(name), 0).toInt() == QMC2_ARCADE_AW_TARGET_SOFTWARE )
+	    artworkNames << name;
     }
     endGroup();
     return artworkNames;
@@ -1005,7 +1050,12 @@ bool ArcadeSettings::customArtworkZipped(QString name)
 
 bool ArcadeSettings::customArtworkSevenZipped(QString name)
 {
-    return value(QString("Artwork/%1/Format").arg(name), 0).toInt() == QMC2_ARCADE_AW_FORMAT_7Z;
+	return value(QString("Artwork/%1/Format").arg(name), 0).toInt() == QMC2_ARCADE_AW_FORMAT_7Z;
+}
+
+bool ArcadeSettings::customArtworkArchived(QString name)
+{
+	return value(QString("Artwork/%1/Format").arg(name), 0).toInt() == QMC2_ARCADE_AW_FORMAT_ARCHIVE;
 }
 
 QStringList ArcadeSettings::customArtworkFormats(QString name)
