@@ -5,6 +5,7 @@
 #include <QStringList>
 #include <QList>
 #include <QMap>
+#include <QHash>
 #include <QString>
 #include <QDateTime>
 #include <QByteArray>
@@ -107,8 +108,8 @@ class SevenZipFile : public QObject
 		QList<SevenZipMetaData> &itemList() { return m_itemList; }
 		quint64 read(QString name, QByteArray *buffer);
 		quint64 read(uint index, QByteArray *buffer, bool *async = 0);
-		int indexOfName(QString name);
-		int indexOfCrc(QString crc);
+		int indexOfName(QString name) { if ( m_nameToIndexCache.contains(name) ) return m_nameToIndexCache[name]; else return -1; }
+		int indexOfCrc(QString crc) { if ( m_crcToIndexCache.contains(crc) ) return m_crcToIndexCache[crc]; else return -1; }
 		QString userData() { return m_userData; }
 		void setUserData(QString data) { m_userData = data; }
 
@@ -149,6 +150,8 @@ class SevenZipFile : public QObject
 		bool m_firstExtraction;
 		bool m_fillingDictionary;
 		QString m_userData;
+		QHash<QString, int> m_nameToIndexCache;
+		QHash<QString, int> m_crcToIndexCache;
 };
 
 #endif

@@ -1,6 +1,8 @@
+#include <QApplication>
 #include <archive_entry.h>
-
 #include "archivefile.h"
+
+#define QMC2_ARCHIVE_DB_READ_RESPONSE	50
 
 ArchiveFile::ArchiveFile(QString fileName, QObject *parent)
 	: QObject(parent)
@@ -135,7 +137,9 @@ void ArchiveFile::createEntryList()
 	while ( archive_read_next_header(m_archive, &entry) == ARCHIVE_OK ) {
 		QString entryName(archive_entry_pathname(entry));
 		entryList() << ArchiveEntryMetaData(entryName, archive_entry_size(entry), QDateTime::fromTime_t(archive_entry_mtime(entry)));
-		m_nameToIndexCache[entryName] = counter++;
+		m_nameToIndexCache[entryName] = counter;
 		archive_read_data_skip(m_archive);
+		if ( counter++ % QMC2_ARCHIVE_DB_READ_RESPONSE == 0 )
+			qApp->processEvents();
 	}
 }

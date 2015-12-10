@@ -126,22 +126,6 @@ quint64 SevenZipFile::read(uint index, QByteArray *buffer, bool *async)
 	}
 }
 
-int SevenZipFile::indexOfName(QString name)
-{
-	for (int i = 0; i < itemList().count(); i++)
-		if ( itemList()[i].name() == name )
-			return i;
-	return -1;
-}
-
-int SevenZipFile::indexOfCrc(QString crc)
-{
-	for (int i = 0; i < itemList().count(); i++)
-		if ( itemList()[i].crc() == crc )
-			return i;
-	return -1;
-}
-
 QString SevenZipFile::errorCodeToString(SRes errorCode)
 {
 	switch ( errorCode ) {
@@ -234,6 +218,8 @@ void SevenZipFile::close()
 	}
 
 	itemList().clear();
+	m_nameToIndexCache.clear();
+	m_crcToIndexCache.clear();
 	m_isOpen = false;
 	m_firstExtraction = true;
 }
@@ -299,11 +285,13 @@ QDateTime SevenZipFile::convertFileTime(const CNtfsFileTime *ft)
 void SevenZipFile::createItemList()
 {
 	itemList().clear();
+	m_nameToIndexCache.clear();
+	m_crcToIndexCache.clear();
 
 	if ( !isOpen() )
 		return;
 
-	for (uint i = 0; i < db()->db.NumFiles; i++)
+	for (int i = 0; i < db()->db.NumFiles; i++)
 	{
 		const CSzFileItem *fileItem = db()->db.Files + i;
 		if ( fileItem->IsDir )
@@ -312,13 +300,16 @@ void SevenZipFile::createItemList()
 		UInt16 *tempFileName = (UInt16 *)SzAlloc(NULL, fileItemLength * sizeof(UInt16));
 		SzArEx_GetFileNameUtf16(db(), i, tempFileName);
 		QString fileItemName = QString::fromUtf16(tempFileName, fileItemLength - 1);
+		m_nameToIndexCache[fileItemName] = i;
 		SzFree(NULL, tempFileName);
 		QDateTime dateTime;
 		if ( fileItem->MTimeDefined )
 			dateTime = convertFileTime(&fileItem->MTime);
 		QString crc = "00000000";
-		if ( fileItem->CrcDefined )
+		if ( fileItem->CrcDefined ) {
 			crc = QString::number(fileItem->Crc, 16).rightJustified(8, '0');
+			m_crcToIndexCache[crc] = i;
+		}
 		itemList() << SevenZipMetaData(fileItemName, fileItem->Size, dateTime, crc);
 		if ( i % QMC2_SEVENZIP_DB_READ_RESPONSE == 0 )
 			qApp->processEvents();
