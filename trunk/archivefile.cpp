@@ -1,4 +1,4 @@
-#include <QApplication>
+#include <QCoreApplication>
 #include <archive_entry.h>
 #include "archivefile.h"
 

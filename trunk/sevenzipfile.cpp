@@ -1,4 +1,4 @@
-#include <QApplication>
+#include <QCoreApplication>
 #include <QTest>
 
 #include "sevenzipfile.h"
