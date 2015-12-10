@@ -791,7 +791,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="710"/>
         <source>Manufacturer</source>
-        <translation type="unfinished">Fabricant</translation>
+        <translation>Fabricant</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="715"/>
@@ -909,12 +909,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="768"/>
         <source>Ascending</source>
-        <translation type="unfinished">Ascendant</translation>
+        <translation>Ascendant</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="777"/>
         <source>Descending</source>
-        <translation type="unfinished">Descendant</translation>
+        <translation>Descendant</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="792"/>
@@ -970,7 +970,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="646"/>
         <source>Export</source>
-        <translation type="unfinished">Exporter</translation>
+        <translation>Exporter</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="574"/>
@@ -1047,12 +1047,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="33"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="40"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Annuler</translation>
+        <translation>&amp;Annuler</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="53"/>
@@ -1073,7 +1073,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="85"/>
         <source>Category</source>
-        <translation type="unfinished">Catégorie</translation>
+        <translation>Catégorie</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="96"/>
@@ -1106,7 +1106,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.cpp" line="542"/>
         <location filename="../../arcademodesetup.cpp" line="560"/>
         <source>?</source>
-        <translation type="unfinished">?</translation>
+        <translation>?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="650"/>
@@ -1117,7 +1117,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.cpp" line="650"/>
         <location filename="../../arcademodesetup.cpp" line="671"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tous les fichiers (*)</translation>
+        <translation>Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="657"/>
@@ -1167,12 +1167,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="815"/>
         <source>ROM</source>
-        <translation type="unfinished">ROM</translation>
+        <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="816"/>
         <source>CHD</source>
-        <translation type="unfinished">CHD</translation>
+        <translation>CHD</translation>
     </message>
     <message numerus="yes">
         <location filename="../../arcademodesetup.cpp" line="827"/>
@@ -5169,40 +5169,40 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../filesystemmodel.h" line="373"/>
         <source>Name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="373"/>
         <source>Size</source>
-        <translation type="unfinished">Taille</translation>
+        <translation>Taille</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="557"/>
         <location filename="../../filesystemmodel.h" line="571"/>
         <source> KB</source>
-        <translation type="unfinished"> KB</translation>
+        <translation> Ko</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="560"/>
         <location filename="../../filesystemmodel.h" line="574"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> Mo</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="563"/>
         <location filename="../../filesystemmodel.h" line="577"/>
         <source> GB</source>
-        <translation type="unfinished"> GB</translation>
+        <translation> Go</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="566"/>
         <source> TB</source>
-        <translation type="unfinished"> TB</translation>
+        <translation> To</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="373"/>
         <source>Date modified</source>
-        <translation type="unfinished">Date modifiée</translation>
+        <translation>Date de modification</translation>
     </message>
 </context>
 <context>
@@ -5223,37 +5223,37 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../ftpreply.cpp" line="105"/>
         <source>Name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="105"/>
         <source>Type</source>
-        <translation type="unfinished">Type</translation>
+        <translation>Type</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="105"/>
         <source>Size</source>
-        <translation type="unfinished">Taille</translation>
+        <translation>Taille</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="110"/>
         <source>Parent directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Dossier parent</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="127"/>
         <source>File</source>
-        <translation type="unfinished">Fichier</translation>
+        <translation>Fichier</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="129"/>
         <source>Folder</source>
-        <translation type="unfinished">Dossier</translation>
+        <translation>Dossier</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="131"/>
         <source>Unknown</source>
-        <translation type="unfinished">Inconnu</translation>
+        <translation>Inconnu</translation>
     </message>
 </context>
 <context>
