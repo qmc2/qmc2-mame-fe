@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QString>
 #include <QList>
+#include <QHash>
 #include <QStringList>
 #include <QDateTime>
 #include <QByteArray>
@@ -58,11 +59,12 @@ class ArchiveFile : public QObject
 
 	private:
 		void createEntryList();
-		int indexOfName(QString name);
+		int indexOfName(QString name) { if ( m_nameToIndexCache.contains(name) ) return m_nameToIndexCache[name]; else return -1; }
 
 		struct archive *m_archive;
 		const void *m_buffer;
 		QList<ArchiveEntryMetaData> m_entryList;
+		QHash<QString, int> m_nameToIndexCache;
 		QString m_fileName;
 };
 

@@ -345,20 +345,14 @@ endif
 
 # >>> LIBARCHIVE <<<
 #
-# Use libarchive instead of the built-in zip/7-zip support for accessing
+# Use libarchive additionally to the built-in zip/7-zip support for accessing
 # archived data?
 #
-# THIS IS *EXPERIMENTAL* RIGHT NOW SO *DON'T* USE IT!
-#
-# LIBARCHIVE = 0 .... Use built-in zip/7-zip support (default)
-# LIBARCHIVE = 1 .... Use external libarchive library
+# LIBARCHIVE = 0 .... Use only built-in zip/7-zip support (default)
+# LIBARCHIVE = 1 .... Additionally use the external libarchive library
 #
 ifndef LIBARCHIVE
 LIBARCHIVE = 0
-else
-ifeq '$(LIBARCHIVE)' '1'
-$(warning *** WARNING: The use of libarchive is experimental and not recommended yet! ***)
-endif
 endif
 
 # >>> CC_FLAGS <<<
