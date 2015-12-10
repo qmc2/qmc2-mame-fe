@@ -129,6 +129,9 @@ class SoftwareSnap : public QWidget
 		QPoint position;
 		QMap<QString, unzFile> snapFileMap;
 		QMap<QString, SevenZipFile *> snapFileMap7z;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		QMap<QString, ArchiveFile *> snapArchiveMap;
+#endif
 		SoftwareItem *myItem;
 		QTimer snapForcedResetTimer;
 		QMenu *contextMenu;
@@ -147,6 +150,10 @@ class SoftwareSnap : public QWidget
 
 		bool useZip();
 		bool useSevenZip();
+		bool useArchive();
+		void openSource();
+		void closeSource();
+		void reopenSource() { closeSource(); openSource(); }
 
 	public slots:
 		void loadImage(bool fromParent = false);

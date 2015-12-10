@@ -135,6 +135,9 @@ extern Settings *qmc2Config;
 extern QBitArray qmc2Filter;
 extern QMap<QString, unzFile> qmc2IconFileMap;
 extern QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+extern QMap<QString, ArchiveFile *> qmc2IconArchiveMap;
+#endif
 extern QHash<QString, QPair<QString, QAction *> > qmc2ShortcutHash;
 extern QHash<QString, QString> qmc2CustomShortcutHash;
 extern MainEventFilter *qmc2MainEventFilter;
@@ -1653,83 +1656,34 @@ void Options::on_pushButtonApply_clicked()
 					needReopenFile |= needReopenPCBFile;
 					break;
 			}
-			if ( needReopenFile ) {
-				foreach (unzFile imageFile, iw->imageFileMap)
-					unzClose(imageFile);
-				foreach (SevenZipFile *imageFile, iw->imageFileMap7z) {
-					imageFile->close();
-					delete imageFile;
-				}
-				iw->imageFileMap.clear();
-				iw->imageFileMap7z.clear();
-				if ( iw->useZip() ) {
-					foreach (QString filePath, Settings::stResolve(iw->imageZip()).split(";", QString::SkipEmptyParts)) {
-						unzFile imageFile = unzOpen(filePath.toUtf8().constData());
-						if ( imageFile == NULL )
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(iw->imageType()).arg(filePath));
-						else
-							iw->imageFileMap[filePath] = imageFile;
-					}
-				} else if ( iw->useSevenZip() ) {
-					foreach (QString filePath, Settings::stResolve(iw->imageZip()).split(";", QString::SkipEmptyParts)) {
-						SevenZipFile *imageFile = new SevenZipFile(filePath);
-						if ( !imageFile->open() ) {
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file %2").arg(iw->imageType()).arg(filePath) + " - " + tr("7z error") + ": " + imageFile->lastError());
-							delete imageFile;
-						} else {
-							iw->imageFileMap7z[filePath] = imageFile;
-							connect(imageFile, SIGNAL(dataReady()), iw, SLOT(sevenZipDataReady()));
-						}
-					}
-				}
-			}
+			if ( needReopenFile )
+				iw->reopenSource();
 			iw->update();
 		}
 	}
 
 	if ( qmc2SoftwareSnap ) {
-		if ( needReopenSoftwareSnapFile ) {
-			foreach (unzFile imageFile, qmc2SoftwareSnap->snapFileMap)
-				unzClose(imageFile);
-			foreach (SevenZipFile *imageFile, qmc2SoftwareSnap->snapFileMap7z) {
-				imageFile->close();
-				delete imageFile;
-			}
-			qmc2SoftwareSnap->snapFileMap.clear();
-			qmc2SoftwareSnap->snapFileMap7z.clear();
-			if ( qmc2SoftwareSnap->useZip() ) {
-				foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
-					unzFile imageFile = unzOpen(filePath.toUtf8().constData());
-					if ( imageFile == NULL )
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(filePath));
-					else
-						qmc2SoftwareSnap->snapFileMap[filePath] = imageFile;
-				}
-			} else if ( qmc2SoftwareSnap->useSevenZip() ) {
-				foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
-					SevenZipFile *imageFile = new SevenZipFile(filePath);
-					if ( !imageFile->open() ) {
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file %1").arg(filePath) + " - " + tr("7z error") + ": " + imageFile->lastError());
-						delete imageFile;
-					} else {
-						qmc2SoftwareSnap->snapFileMap7z[filePath] = imageFile;
-						connect(imageFile, SIGNAL(dataReady()), qmc2SoftwareSnap, SLOT(sevenZipDataReady()));
-					}
-				}
-			}
-		}
+		if ( needReopenSoftwareSnapFile )
+			qmc2SoftwareSnap->reopenSource();
 		qmc2SoftwareSnap->update();
 	}
 
 	if ( needReopenIconFile ) {
 		foreach (unzFile iconFile, qmc2IconFileMap)
 			unzClose(iconFile);
+		qmc2IconFileMap.clear();
 		foreach (SevenZipFile *iconFile, qmc2IconFileMap7z) {
 			iconFile->close();
 			delete iconFile;
 		}
-		qmc2IconFileMap.clear();
 		qmc2IconFileMap7z.clear();
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		foreach (ArchiveFile *iconFile, qmc2IconArchiveMap) {
+			iconFile->close();
+			delete iconFile;
+		}
+		qmc2IconArchiveMap.clear();
+#endif
 		if ( QMC2_ICON_FILETYPE_ZIP ) {
 			foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
 				unzFile iconFile = unzOpen(filePath.toUtf8().constData());
@@ -1748,6 +1702,18 @@ void Options::on_pushButtonApply_clicked()
 					qmc2IconFileMap7z[filePath] = iconFile;
 			}
 		}
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		else if ( QMC2_ICON_FILETYPE_ARCHIVE ) {
+			foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
+				ArchiveFile *archiveFile = new ArchiveFile(filePath);
+				if ( !archiveFile->open() ) {
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("libarchive error") + ": " + archiveFile->errorString());
+					delete archiveFile;
+				} else
+					qmc2IconArchiveMap[filePath] = archiveFile;
+			}
+		}
+#endif
 	}
 	if ( needReload ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("triggering automatic reload of machine list"));
