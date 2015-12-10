@@ -344,7 +344,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="14"/>
         <source>Additional artwork classes</source>
-        <translation type="unfinished"></translation>
+        <translation>Catégories supplémentaires d&apos;illustrations</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="36"/>
@@ -356,7 +356,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="186"/>
         <location filename="../../additionalartworksetup.cpp" line="293"/>
         <source>Artwork name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom de l&apos;illustration</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="46"/>
@@ -391,7 +391,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="85"/>
         <source>Apply additional artwork setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Valider la configuration des illustrations supplémentaires et fermer la fenêtre</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="88"/>
@@ -421,24 +421,24 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="170"/>
         <source>Add a new artwork class</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter une nouvelle catégorie d&apos;illustrations</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="190"/>
         <source>Remove selected artwork classes</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer les catégories d&apos;illustrations sélectionnées</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="182"/>
         <location filename="../../additionalartworksetup.cpp" line="289"/>
         <source>Select / deselect this artwork class for removal</source>
-        <translation type="unfinished">Sélectionner ou déselectionner cette classe d&apos;illustration en vue de sa suppression</translation>
+        <translation>Sélectionner ou déselectionner cette catégorie d&apos;illustrations en vue de sa suppression</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="187"/>
         <location filename="../../additionalartworksetup.cpp" line="294"/>
         <source>Enter a name for this artwork class (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrer un nom pour cette catégorie d&apos;illustrations (requis)</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="193"/>
@@ -450,7 +450,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="195"/>
         <location filename="../../additionalartworksetup.cpp" line="301"/>
         <source>Choose an icon file to be used for this artwork class (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir une icône à utiliser avec cette catégorie d&apos;illustrations (optionnel)</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="204"/>
@@ -468,25 +468,25 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="206"/>
         <location filename="../../additionalartworksetup.cpp" line="307"/>
         <source>Select system or software as &lt;i&gt;target&lt;/i&gt; for this artwork class</source>
-        <translation type="unfinished">Sélectionner le système ou le logiciel &lt;i&gt;cible&lt;/i&gt; de cette classe d&apos;illustration</translation>
+        <translation>Sélectionner le système ou le logiciel &lt;i&gt;cible&lt;/i&gt; de cette catégorie d&apos;illustrations</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="213"/>
         <location filename="../../additionalartworksetup.cpp" line="311"/>
         <source>On</source>
-        <translation type="unfinished">Activé</translation>
+        <translation>Activé</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="214"/>
         <location filename="../../additionalartworksetup.cpp" line="312"/>
         <source>Off</source>
-        <translation type="unfinished">Désactivé</translation>
+        <translation>Désactivé</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="215"/>
         <location filename="../../additionalartworksetup.cpp" line="313"/>
         <source>Choose if images of this artwork class are scaled or not</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer ou désactiver la mise à l&apos;échelle des images de cette catégorie d&apos;illustrations</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="222"/>
@@ -506,7 +506,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="224"/>
         <location filename="../../additionalartworksetup.cpp" line="319"/>
         <source>Choose if images are loaded from a folder or an archive for this artwork class</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger les images de cette catégorie d&apos;illustrations depuis un dossier ou une archive</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="232"/>
@@ -554,13 +554,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="251"/>
         <location filename="../../additionalartworksetup.cpp" line="335"/>
         <source>Image archive for this artwork class (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archive d&apos;images pour cette catégorie d&apos;illustrations (requis)</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="252"/>
         <location filename="../../additionalartworksetup.cpp" line="336"/>
         <source>Browse image archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir l&apos;archive d&apos;images</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="249"/>
@@ -579,13 +579,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="259"/>
         <location filename="../../additionalartworksetup.cpp" line="342"/>
         <source>Image folder for this artwork class (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dossier d&apos;images pour cette catégorie d&apos;illustrations (requis)</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="260"/>
         <location filename="../../additionalartworksetup.cpp" line="343"/>
         <source>Browse image folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir le dossier d&apos;images</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="418"/>
