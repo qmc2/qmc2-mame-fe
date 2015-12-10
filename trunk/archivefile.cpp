@@ -37,7 +37,8 @@ bool ArchiveFile::open(QString fileName)
 
 void ArchiveFile::close()
 {
-	m_entryList.clear();
+	entryList().clear();
+	m_nameToIndexCache.clear();
 	if ( isOpen() ) {
 		archive_read_free(m_archive);
 		m_archive = 0;
@@ -126,19 +127,15 @@ int ArchiveFile::errorCode()
 void ArchiveFile::createEntryList()
 {
 	entryList().clear();
+	m_nameToIndexCache.clear();
 	if ( !isOpen() )
 		return;
 	struct archive_entry *entry;
+	int counter = 0;
 	while ( archive_read_next_header(m_archive, &entry) == ARCHIVE_OK ) {
-		entryList() << ArchiveEntryMetaData(archive_entry_pathname(entry), archive_entry_size(entry), QDateTime::fromTime_t(archive_entry_mtime(entry)));
+		QString entryName(archive_entry_pathname(entry));
+		entryList() << ArchiveEntryMetaData(entryName, archive_entry_size(entry), QDateTime::fromTime_t(archive_entry_mtime(entry)));
+		m_nameToIndexCache[entryName] = counter++;
 		archive_read_data_skip(m_archive);
 	}
-}
-
-int ArchiveFile::indexOfName(QString name)
-{
-	for (int i = 0; i < entryList().count(); i++)
-		if ( entryList()[i].name() == name )
-			return i;
-	return -1;
 }
