@@ -97,7 +97,11 @@ qint64 ArchiveFile::readBlock(QByteArray *buffer)
 {
 	if ( !isOpen() )
 		return 0;
-	long int offset;
+#if defined(QMC2_OS_WIN)
+	__int64 offset;
+#else
+	int64_t offset;
+#endif
 	size_t size;
 	int result = archive_read_data_block(m_archive, &m_buffer, &size, &offset);
 	if ( result == ARCHIVE_EOF || result == ARCHIVE_OK ) {
