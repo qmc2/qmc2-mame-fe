@@ -270,8 +270,23 @@
 <context>
     <name>ImageProvider</name>
     <message>
-        <location filename="../imageprovider.cpp" line="107"/>
-        <location filename="../imageprovider.cpp" line="173"/>
+        <location filename="../imageprovider.cpp" line="39"/>
+        <source>WARNING: Can&apos;t open %1 ZIP file &apos;%2&apos;</source>
+        <translation>WARNUNG: kann %1 ZIP Datei &apos;%2&apos; nicht öffnen</translation>
+    </message>
+    <message>
+        <location filename="../imageprovider.cpp" line="51"/>
+        <source>WARNING: Can&apos;t open %1 7z file &apos;%2&apos;</source>
+        <translation>WARNUNG: kann %1 7z Datei &apos;%2&apos; nicht öffnen</translation>
+    </message>
+    <message>
+        <location filename="../imageprovider.cpp" line="62"/>
+        <source>WARNING: Can&apos;t open %1 archive file &apos;%2&apos;</source>
+        <translation>WARNUNG: kann %1 Archiv Datei &apos;%2&apos; nicht öffnen</translation>
+    </message>
+    <message>
+        <location filename="../imageprovider.cpp" line="120"/>
+        <location filename="../imageprovider.cpp" line="186"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Dekomprimiere Archiv, bitte warten...</translation>
     </message>
@@ -523,59 +538,59 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../imageprovider.cpp" line="260"/>
-        <location filename="../imageprovider.cpp" line="262"/>
+        <location filename="../imageprovider.cpp" line="273"/>
+        <location filename="../imageprovider.cpp" line="275"/>
         <source>WARNING: ImageProvider::loadImage(): invalid image ID &apos;%1&apos; requested</source>
         <translation>WARNUNG: ImageProvider::loadImage(): Falsche Bild ID &apos;%1&apos; angefragt</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="286"/>
-        <location filename="../imageprovider.cpp" line="370"/>
+        <location filename="../imageprovider.cpp" line="299"/>
+        <location filename="../imageprovider.cpp" line="411"/>
         <source>WARNING: ImageProvider::loadImage(): unable to load image file &apos;%1&apos; from ZIP</source>
         <translation>WARNUNG: ImageProvider::loadImage(): Kann  Bild Datei &apos;%1&apos; nicht aus ZIP laden</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="513"/>
+        <location filename="../imageprovider.cpp" line="554"/>
         <source>preview</source>
         <translation>Vorschau</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="515"/>
+        <location filename="../imageprovider.cpp" line="556"/>
         <source>flyer</source>
         <translation>Flyer</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="517"/>
+        <location filename="../imageprovider.cpp" line="558"/>
         <source>cabinet</source>
         <translation>Gehäuse</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="519"/>
+        <location filename="../imageprovider.cpp" line="560"/>
         <source>controller</source>
         <translation>Controller</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="521"/>
+        <location filename="../imageprovider.cpp" line="562"/>
         <source>marquee</source>
         <translation>Marquee</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="523"/>
+        <location filename="../imageprovider.cpp" line="564"/>
         <source>title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="525"/>
+        <location filename="../imageprovider.cpp" line="566"/>
         <source>PCB</source>
         <translation>PCB</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="527"/>
+        <location filename="../imageprovider.cpp" line="568"/>
         <source>software snapshot</source>
         <translation>Software Snapshot</translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="529"/>
+        <location filename="../imageprovider.cpp" line="570"/>
         <source>icon</source>
         <translation>Icon</translation>
     </message>
@@ -879,93 +894,93 @@
         <translation>Extraktion der Datei &apos;%1&apos; (Index %2) fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="149"/>
+        <location filename="../../sevenzipfile.cpp" line="133"/>
         <source>no error</source>
         <translation>kein Fehler</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="151"/>
+        <location filename="../../sevenzipfile.cpp" line="135"/>
         <source>incorrect data</source>
         <translation>ungültige Daten</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="153"/>
+        <location filename="../../sevenzipfile.cpp" line="137"/>
         <source>out of memory</source>
         <translation>Speicherplatz reicht nicht aus</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="155"/>
+        <location filename="../../sevenzipfile.cpp" line="139"/>
         <source>incorrect CRC</source>
         <translation>CRC ungültig</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="157"/>
+        <location filename="../../sevenzipfile.cpp" line="141"/>
         <source>unsupported compression</source>
         <translation>nicht unterstützte Kompression</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="159"/>
+        <location filename="../../sevenzipfile.cpp" line="143"/>
         <source>incorrect properties</source>
         <translation>ungültige Eigenschaften</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="161"/>
+        <location filename="../../sevenzipfile.cpp" line="145"/>
         <source>premature end-of-file (input)</source>
         <translation>vorzeitiges Dateiende (Eingabe)</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="163"/>
+        <location filename="../../sevenzipfile.cpp" line="147"/>
         <source>premature end-of-file (output)</source>
         <translation>vorzeitiges Dateiende (Ausgabe)</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="165"/>
+        <location filename="../../sevenzipfile.cpp" line="149"/>
         <source>failed reading</source>
         <translation>Lesen fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="167"/>
+        <location filename="../../sevenzipfile.cpp" line="151"/>
         <source>failed writing</source>
         <translation>Schreiben fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="169"/>
+        <location filename="../../sevenzipfile.cpp" line="153"/>
         <source>failed signalling progress</source>
         <translation>Fortschritts-Signalisierung fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="171"/>
+        <location filename="../../sevenzipfile.cpp" line="155"/>
         <source>fatal error</source>
         <translation>fataler Fehler</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="173"/>
+        <location filename="../../sevenzipfile.cpp" line="157"/>
         <source>thread error</source>
         <translation>Thread Fehler</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="175"/>
+        <location filename="../../sevenzipfile.cpp" line="159"/>
         <source>invalid archive structure</source>
         <translation>falsche Archiv Struktur</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="177"/>
+        <location filename="../../sevenzipfile.cpp" line="161"/>
         <source>invalid header structure</source>
         <translation>falsche Header Struktur</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="179"/>
+        <location filename="../../sevenzipfile.cpp" line="163"/>
         <source>unknown error</source>
         <translation>unbekannter Fehler</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="194"/>
+        <location filename="../../sevenzipfile.cpp" line="178"/>
         <source>no file name specified</source>
         <translation>kein Dateiname angegeben</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="200"/>
-        <location filename="../../sevenzipfile.cpp" line="220"/>
+        <location filename="../../sevenzipfile.cpp" line="184"/>
+        <location filename="../../sevenzipfile.cpp" line="204"/>
         <source>can&apos;t open archive &apos;%1&apos;</source>
         <translation>kann Archiv &apos;%1&apos; nicht öffnen</translation>
     </message>

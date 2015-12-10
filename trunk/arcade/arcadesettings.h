@@ -22,7 +22,7 @@ public:
 
     explicit ArcadeSettings(QString theme = QString());
     virtual ~ArcadeSettings();
-    
+
     QString languageToString(QLocale::Language);
     QLocale::Language languageFromString(QString);
     QString keySequenceMapBaseKey();
@@ -33,7 +33,7 @@ public:
     static QString configPath();
 
 signals:
-    
+
 public slots:
     // global settings
     void setApplicationVersion(QString);
@@ -148,38 +148,47 @@ public slots:
     QString romStateCacheFile();
     bool previewsZipped();
     bool previewsSevenZipped();
+    bool previewsArchived();
     QString previewFile();
     QString previewFolder();
     bool flyersZipped();
     bool flyersSevenZipped();
+    bool flyersArchived();
     QString flyerFile();
     QString flyerFolder();
     bool cabinetsZipped();
     bool cabinetsSevenZipped();
+    bool cabinetsArchived();
     QString cabinetFile();
     QString cabinetFolder();
     bool controllersZipped();
     bool controllersSevenZipped();
+    bool controllersArchived();
     QString controllerFile();
     QString controllerFolder();
     bool marqueesZipped();
     bool marqueesSevenZipped();
+    bool marqueesArchived();
     QString marqueeFile();
     QString marqueeFolder();
     bool titlesZipped();
     bool titlesSevenZipped();
+    bool titlesArchived();
     QString titleFile();
     QString titleFolder();
     bool pcbsZipped();
     bool pcbsSevenZipped();
+    bool pcbsArchived();
     QString pcbFile();
     QString pcbFolder();
     bool swSnapsZipped();
     bool swSnapsSevenZipped();
+    bool swSnapsArchived();
     QString swSnapFile();
     QString swSnapFolder();
     bool iconsZipped();
     bool iconsSevenZipped();
+    bool iconsArchived();
     QString iconFile();
     QString iconFolder();
     QString optionsTemplateFile();
@@ -237,6 +246,7 @@ public slots:
     QString customArtworkFolder(QString);
     bool customArtworkZipped(QString);
     bool customArtworkSevenZipped(QString);
+    bool customArtworkArchived(QString);
     QStringList customArtworkFormats(QString);
 
 private:
