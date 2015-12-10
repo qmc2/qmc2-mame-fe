@@ -391,7 +391,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="85"/>
         <source>Apply additional artwork setup and close dialog</source>
-        <translation>Valider la configuration des illustrations supplémentaires et fermer la fenêtre</translation>
+        <translation>Valider les paramètres des illustrations supplémentaires et fermer la fenêtre</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="88"/>
@@ -411,7 +411,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="134"/>
         <source>Restore additional artwork from currently active setup</source>
-        <translation>Rétablir les illustrations supplémentaires depuis la configuration active</translation>
+        <translation>Rétablir les illustrations supplémentaires depuis les paramètres actifs</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="137"/>
@@ -1195,7 +1195,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../audioeffects.cpp" line="52"/>
         <source>Setup effect &apos;%1&apos;</source>
-        <translation type="unfinished">Paramètrer l&apos;effet &apos;%1&apos;</translation>
+        <translation>Paramétrer l&apos;effet &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="186"/>
@@ -1206,12 +1206,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../audioeffects.cpp" line="195"/>
         <source>WARNING: audio player: can&apos;t insert effect &apos;%1&apos;</source>
-        <translation type="unfinished">ATTENTION: lecteur audio: ne peut insérer l&apos;effet &apos;%1&apos;</translation>
+        <translation>ATTENTION : lecteur audio: impossible d&apos;insérer l&apos;effet &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="208"/>
         <source>WARNING: audio player: can&apos;t remove effect &apos;%1&apos;</source>
-        <translation type="unfinished">ATTENTION: lecteur audio: ne peut enlever l&apos;effet &apos;%1&apos;</translation>
+        <translation>ATTENTION : lecteur audio: impossible d&apos;enlever l&apos;effet &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="14"/>
@@ -1232,7 +1232,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../audioeffects.ui" line="59"/>
         <location filename="../../audioeffects.ui" line="62"/>
         <source>List of available audio effects</source>
-        <translation type="unfinished">Liste des effets audio disponibles</translation>
+        <translation>Liste des effets audio disponibles</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="81"/>
@@ -1242,7 +1242,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../audioeffects.ui" line="86"/>
         <source>Description</source>
-        <translation type="unfinished">Description</translation>
+        <translation>Description</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="91"/>
@@ -1252,7 +1252,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../audioeffects.ui" line="96"/>
         <source>Setup</source>
-        <translation type="unfinished">Configurer</translation>
+        <translation>Paramétrer</translation>
     </message>
 </context>
 <context>
@@ -1477,7 +1477,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../checksumdbmgr.cpp" line="37"/>
         <source>WARNING: failed to open check-sum database &apos;%1&apos;: error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible d&apos;ouvrir la base de données des sommes de contrôle &apos;%1&apos; : erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../checksumdbmgr.cpp" line="57"/>
@@ -1494,7 +1494,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../checksumdbmgr.cpp" line="417"/>
         <location filename="../../checksumdbmgr.cpp" line="434"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from check-sum database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible de rapporter &apos;%1&apos; depuis la base de données des sommes de contrôle : requête = &apos;%2&apos;, erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../checksumdbmgr.cpp" line="71"/>
@@ -1502,7 +1502,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../checksumdbmgr.cpp" line="145"/>
         <location filename="../../checksumdbmgr.cpp" line="297"/>
         <source>WARNING: failed to add &apos;%1&apos; to check-sum database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible d&apos;ajouter &apos;%1&apos; à la base de données des sommes de contrôle : requête = &apos;%2&apos;, erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../checksumdbmgr.cpp" line="77"/>
@@ -1510,53 +1510,53 @@ p, li { white-space: pre-wrap; }
         <location filename="../../checksumdbmgr.cpp" line="151"/>
         <location filename="../../checksumdbmgr.cpp" line="445"/>
         <source>WARNING: failed to update &apos;%1&apos; in check-sum database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible de mettre à jour &apos;%1&apos; dans la base de données des sommes de contrôle : requête = &apos;%2&apos;, erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../checksumdbmgr.cpp" line="167"/>
         <source>WARNING: failed to fetch row count from check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible de rapporter le nombre de lignes de la base de données des sommes de contrôle : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../checksumdbmgr.cpp" line="186"/>
         <source>WARNING: failed to fetch row IDs from check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible de rapporter les identifiants des lignes depuis la base de données des somme de contrôle : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../checksumdbmgr.cpp" line="224"/>
         <location filename="../../checksumdbmgr.cpp" line="234"/>
         <location filename="../../checksumdbmgr.cpp" line="244"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the check-sum database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible de changer le paramètre &apos;%1&apos; depuis la base de données des sommes de contrôle : requête = &apos;%2&apos;, erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../checksumdbmgr.cpp" line="384"/>
         <source>WARNING: failed to remove path &apos;%1&apos; from check-sum database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible de supprimer le chemin &apos;%1&apos; depuis la base de données des sommes de contrôle : requête = &apos;%2&apos;, erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../checksumdbmgr.cpp" line="453"/>
         <source>WARNING: failed to remove invalidated rows from check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible de supprimer les lignes invalidées depuis la base de données des sommes de contrôle : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../checksumdbmgr.cpp" line="480"/>
         <location filename="../../checksumdbmgr.cpp" line="485"/>
         <location filename="../../checksumdbmgr.cpp" line="490"/>
         <source>WARNING: failed to remove check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible de supprimer la base de données des sommes de contrôle : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../checksumdbmgr.cpp" line="498"/>
         <location filename="../../checksumdbmgr.cpp" line="503"/>
         <location filename="../../checksumdbmgr.cpp" line="508"/>
         <source>WARNING: failed to create check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible de créer la base de données des sommes de contrôle : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../checksumdbmgr.cpp" line="514"/>
         <source>check-sum database &apos;%1&apos; initialized</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de données des sommes de contrôle &apos;%1&apos; initialisée</translation>
     </message>
 </context>
 <context>
@@ -21812,22 +21812,22 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../htmleditor/tablepropertydialog.ui" line="14"/>
         <source>Table properties</source>
-        <translation type="unfinished">Propriétés du tableau</translation>
+        <translation>Propriétés du tableau</translation>
     </message>
     <message>
         <location filename="../../htmleditor/tablepropertydialog.ui" line="20"/>
         <source>Rows:</source>
-        <translation type="unfinished">Lignes:</translation>
+        <translation>Lignes :</translation>
     </message>
     <message>
         <location filename="../../htmleditor/tablepropertydialog.ui" line="46"/>
         <source>Columns:</source>
-        <translation type="unfinished">Colonnes:</translation>
+        <translation>Colonnes :</translation>
     </message>
     <message>
         <location filename="../../htmleditor/tablepropertydialog.ui" line="72"/>
         <source>Properties:</source>
-        <translation type="unfinished">Propriétés:</translation>
+        <translation>Propriétés :</translation>
     </message>
 </context>
 <context>
