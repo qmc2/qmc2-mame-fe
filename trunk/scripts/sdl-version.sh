@@ -20,9 +20,9 @@ if [ "$(uname)" == "Darwin" ]; then
 			exit 1
 		fi
 	else
-		SDL_VERSION=$(grep '#define SDL_MAJOR_VERSION' /Library/Frameworks/SDL.framework/Headers/SDL_version.h | awk '{print $3}')
+		SDL_VERSION=$(grep '#define SDL_MAJOR_VERSION' /Library/Frameworks/SDL2.framework/Headers/SDL_version.h | awk '{print $3}')
 		if [ "$?" != "0" ]; then
-			SDL_VERSION=$(grep '#define SDL_MAJOR_VERSION' /Library/Frameworks/SDL2.framework/Headers/SDL_version.h | awk '{print $3}')
+			SDL_VERSION=$(grep '#define SDL_MAJOR_VERSION' /Library/Frameworks/SDL.framework/Headers/SDL_version.h | awk '{print $3}')
 			if [ "$?" != "0" ]; then
 				echo "### WARNING: can't determine SDL version -- no SDL/SDL2 framework found!"
 				exit 1
@@ -48,9 +48,9 @@ else
 			exit 1
 		fi
 	else
-		SDL_VERSION=$(sdl-config --version)
+		SDL_VERSION=$(sdl2-config --version)
 		if [ "$?" != "0" ]; then
-			SDL_VERSION=$(sdl2-config --version)
+			SDL_VERSION=$(sdl-config --version)
 			if [ "$?" != "0" ]; then
 				echo "### WARNING: can't determine SDL version -- no sdl-config or sdl2-config found in \$PATH ($PATH)!"
 				exit 1
