@@ -7190,42 +7190,42 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 <context>
     <name>JoystickCalibrationWidget</name>
     <message>
-        <location filename="../../options.cpp" line="4157"/>
+        <location filename="../../options.cpp" line="4123"/>
         <source>Enable/disable axis %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4161"/>
+        <location filename="../../options.cpp" line="4127"/>
         <source>Axis %1:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4162"/>
+        <location filename="../../options.cpp" line="4128"/>
         <source>Reset calibration of axis %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4170"/>
+        <location filename="../../options.cpp" line="4136"/>
         <source>Current value of axis %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4174"/>
+        <location filename="../../options.cpp" line="4140"/>
         <source>DZ:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4176"/>
+        <location filename="../../options.cpp" line="4142"/>
         <source>Deadzone of axis %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4182"/>
+        <location filename="../../options.cpp" line="4148"/>
         <source>S:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4184"/>
+        <location filename="../../options.cpp" line="4150"/>
         <source>Sensitivity of axis %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7279,67 +7279,67 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 <context>
     <name>JoystickTestWidget</name>
     <message>
-        <location filename="../../options.cpp" line="4357"/>
+        <location filename="../../options.cpp" line="4323"/>
         <source>A%1: %v</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4358"/>
+        <location filename="../../options.cpp" line="4324"/>
         <source>Current value of axis %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4368"/>
+        <location filename="../../options.cpp" line="4334"/>
         <source>B%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4369"/>
+        <location filename="../../options.cpp" line="4335"/>
         <source>Current state of button %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4379"/>
+        <location filename="../../options.cpp" line="4345"/>
         <source>H%1: 0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4380"/>
+        <location filename="../../options.cpp" line="4346"/>
         <source>Current value of hat %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4390"/>
+        <location filename="../../options.cpp" line="4356"/>
         <source>T%1 DX: 0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4391"/>
+        <location filename="../../options.cpp" line="4357"/>
         <source>Current X-delta of trackball %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4401"/>
+        <location filename="../../options.cpp" line="4367"/>
         <source>T%1 DY: 0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4402"/>
+        <location filename="../../options.cpp" line="4368"/>
         <source>Current Y-delta of trackball %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4474"/>
+        <location filename="../../options.cpp" line="4440"/>
         <source>H%1: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4504"/>
+        <location filename="../../options.cpp" line="4470"/>
         <source>T%1 DX: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4505"/>
+        <location filename="../../options.cpp" line="4471"/>
         <source>T%1 DY: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7401,12 +7401,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="136"/>
         <location filename="../../machinelist.cpp" line="159"/>
+        <location filename="../../machinelist.cpp" line="682"/>
         <location filename="../../machinelist.cpp" line="683"/>
-        <location filename="../../machinelist.cpp" line="684"/>
+        <location filename="../../machinelist.cpp" line="687"/>
         <location filename="../../machinelist.cpp" line="688"/>
-        <location filename="../../machinelist.cpp" line="689"/>
-        <location filename="../../machinelist.cpp" line="743"/>
-        <location filename="../../machinelist.cpp" line="3743"/>
+        <location filename="../../machinelist.cpp" line="742"/>
+        <location filename="../../machinelist.cpp" line="3742"/>
         <source>unknown</source>
         <translation>sconosciuto</translation>
     </message>
@@ -7654,400 +7654,400 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="575"/>
-        <location filename="../../machinelist.cpp" line="577"/>
-        <location filename="../../machinelist.cpp" line="579"/>
-        <location filename="../../machinelist.cpp" line="581"/>
-        <location filename="../../machinelist.cpp" line="1605"/>
-        <location filename="../../machinelist.cpp" line="1823"/>
-        <location filename="../../machinelist.cpp" line="2805"/>
+        <location filename="../../machinelist.cpp" line="574"/>
+        <location filename="../../machinelist.cpp" line="576"/>
+        <location filename="../../machinelist.cpp" line="578"/>
+        <location filename="../../machinelist.cpp" line="580"/>
+        <location filename="../../machinelist.cpp" line="1604"/>
+        <location filename="../../machinelist.cpp" line="1822"/>
+        <location filename="../../machinelist.cpp" line="2804"/>
         <source>Waiting for data...</source>
         <translation>Aspettando i dati...</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="599"/>
+        <location filename="../../machinelist.cpp" line="598"/>
         <source>determining emulator version and supported sets</source>
         <translation>determinando versione emulatore e set supportati</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="640"/>
-        <location filename="../../machinelist.cpp" line="712"/>
+        <location filename="../../machinelist.cpp" line="639"/>
+        <location filename="../../machinelist.cpp" line="711"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
         <translation>FATALE: impossibile avviare eseguibile MAME in un tempo ragionevole, mi arrendo</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="687"/>
-        <location filename="../../machinelist.cpp" line="740"/>
+        <location filename="../../machinelist.cpp" line="686"/>
+        <location filename="../../machinelist.cpp" line="739"/>
         <source>FATAL: can&apos;t create temporary file, please check emulator executable and permissions</source>
         <translation>FATALE: impossibile creare file temporaneo, controlla eseguibile emulatore e permessi</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="738"/>
+        <location filename="../../machinelist.cpp" line="737"/>
         <source>done (determining emulator version and supported sets, elapsed time = %1)</source>
         <translation>terminato (determinazione versione emulatore e set supportati, tempo impiegato = %1)</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="744"/>
+        <location filename="../../machinelist.cpp" line="743"/>
         <source>emulator info: type = %1, version = %2</source>
         <translation>info emulatore: tipo = %1, versione = %2</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="746"/>
+        <location filename="../../machinelist.cpp" line="745"/>
         <source>FATAL: couldn&apos;t determine emulator type and version</source>
         <translation>FATALE: impossibile determinare tipo e versione emulatore</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="755"/>
+        <location filename="../../machinelist.cpp" line="754"/>
         <source>FATAL: couldn&apos;t determine the number of supported sets</source>
         <translation>FATALE: impossibile determinare il numero di set supportati</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="795"/>
-        <location filename="../../machinelist.cpp" line="798"/>
-        <location filename="../../machinelist.cpp" line="3353"/>
-        <location filename="../../machinelist.cpp" line="3593"/>
+        <location filename="../../machinelist.cpp" line="794"/>
+        <location filename="../../machinelist.cpp" line="797"/>
+        <location filename="../../machinelist.cpp" line="3352"/>
+        <location filename="../../machinelist.cpp" line="3592"/>
         <source>Loading, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="812"/>
-        <location filename="../../machinelist.cpp" line="2338"/>
+        <location filename="../../machinelist.cpp" line="811"/>
+        <location filename="../../machinelist.cpp" line="2337"/>
         <source>total start-up time: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="863"/>
+        <location filename="../../machinelist.cpp" line="862"/>
         <source>XML data - %p%</source>
         <translation>dati XML - %p%</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="918"/>
+        <location filename="../../machinelist.cpp" line="917"/>
         <source>verifying ROM status for &apos;%1&apos;</source>
         <translation>verifica stato ROM per &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="909"/>
-        <location filename="../../machinelist.cpp" line="951"/>
+        <location filename="../../machinelist.cpp" line="908"/>
+        <location filename="../../machinelist.cpp" line="950"/>
         <source>ERROR: can&apos;t open ROM state cache for writing, path = %1</source>
         <translation>ERRORE: impossibile aprire cache stato ROM in scrittura, percorso = %1</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="647"/>
+        <location filename="../../machinelist.cpp" line="646"/>
         <source>FATAL: can&apos;t start %1 executable, file &apos;%2&apos; does not exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2328"/>
+        <location filename="../../machinelist.cpp" line="2327"/>
         <source>WARNING: XML data cache is incomplete, invalidating XML data cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="964"/>
-        <location filename="../../machinelist.cpp" line="2518"/>
-        <location filename="../../machinelist.cpp" line="2862"/>
+        <location filename="../../machinelist.cpp" line="963"/>
+        <location filename="../../machinelist.cpp" line="2517"/>
+        <location filename="../../machinelist.cpp" line="2861"/>
         <source>ROM check - %p%</source>
         <translation>controllo ROM - %p%</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1049"/>
+        <location filename="../../machinelist.cpp" line="1048"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1049"/>
+        <location filename="../../machinelist.cpp" line="1048"/>
         <source>Source file</source>
         <translation>File origina</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1049"/>
+        <location filename="../../machinelist.cpp" line="1048"/>
         <source>Is BIOS?</source>
         <translation>È un BIOS?</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1049"/>
+        <location filename="../../machinelist.cpp" line="1048"/>
         <source>Is device?</source>
         <translation>È un device?</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1049"/>
+        <location filename="../../machinelist.cpp" line="1048"/>
         <source>Runnable</source>
         <translation>Eseguibile</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1049"/>
+        <location filename="../../machinelist.cpp" line="1048"/>
         <source>Clone of</source>
         <translation>Clone di</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1049"/>
+        <location filename="../../machinelist.cpp" line="1048"/>
         <source>ROM of</source>
         <translation>ROM di</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1049"/>
+        <location filename="../../machinelist.cpp" line="1048"/>
         <source>Sample of</source>
         <translation>Esempio di</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1060"/>
+        <location filename="../../machinelist.cpp" line="1059"/>
         <source>Year</source>
         <translation>Anno</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1067"/>
+        <location filename="../../machinelist.cpp" line="1066"/>
         <source>Manufacturer</source>
         <translation>Produttore</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="186"/>
-        <location filename="../../machinelist.cpp" line="1072"/>
+        <location filename="../../machinelist.cpp" line="1071"/>
         <source>ROM</source>
         <translation>ROM</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="640"/>
-        <location filename="../../machinelist.cpp" line="712"/>
+        <location filename="../../machinelist.cpp" line="639"/>
+        <location filename="../../machinelist.cpp" line="711"/>
         <source>error text = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1036"/>
+        <location filename="../../machinelist.cpp" line="1035"/>
         <source>WARNING: couldn&apos;t find machine information for &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1077"/>
+        <location filename="../../machinelist.cpp" line="1076"/>
         <source>BIOS</source>
         <translation>BIOS</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1077"/>
+        <location filename="../../machinelist.cpp" line="1076"/>
         <source>Size</source>
         <translation>Dimensione</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1077"/>
+        <location filename="../../machinelist.cpp" line="1076"/>
         <source>CRC</source>
         <translation>CRC</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1077"/>
-        <location filename="../../machinelist.cpp" line="1207"/>
+        <location filename="../../machinelist.cpp" line="1076"/>
+        <location filename="../../machinelist.cpp" line="1206"/>
         <source>Merge</source>
         <translation>Merge</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1077"/>
-        <location filename="../../machinelist.cpp" line="1207"/>
+        <location filename="../../machinelist.cpp" line="1076"/>
+        <location filename="../../machinelist.cpp" line="1206"/>
         <source>Region</source>
         <translation>Regione</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1077"/>
+        <location filename="../../machinelist.cpp" line="1076"/>
         <source>Offset</source>
         <translation>Offset</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1077"/>
-        <location filename="../../machinelist.cpp" line="1182"/>
-        <location filename="../../machinelist.cpp" line="1207"/>
-        <location filename="../../machinelist.cpp" line="1227"/>
+        <location filename="../../machinelist.cpp" line="1076"/>
+        <location filename="../../machinelist.cpp" line="1181"/>
+        <location filename="../../machinelist.cpp" line="1206"/>
+        <location filename="../../machinelist.cpp" line="1226"/>
         <source>Status</source>
         <translation>Stato</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1077"/>
-        <location filename="../../machinelist.cpp" line="1207"/>
+        <location filename="../../machinelist.cpp" line="1076"/>
+        <location filename="../../machinelist.cpp" line="1206"/>
         <source>Optional</source>
         <translation>Opzionale</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1082"/>
+        <location filename="../../machinelist.cpp" line="1081"/>
         <source>Device reference</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1087"/>
+        <location filename="../../machinelist.cpp" line="1086"/>
         <source>Chip</source>
         <translation>Chip</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1092"/>
-        <location filename="../../machinelist.cpp" line="1160"/>
-        <location filename="../../machinelist.cpp" line="1255"/>
+        <location filename="../../machinelist.cpp" line="1091"/>
+        <location filename="../../machinelist.cpp" line="1159"/>
+        <location filename="../../machinelist.cpp" line="1254"/>
         <source>Tag</source>
         <translation>Tag</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1092"/>
-        <location filename="../../machinelist.cpp" line="1101"/>
+        <location filename="../../machinelist.cpp" line="1091"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
         <source>Type</source>
         <translation>Tipo</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1092"/>
+        <location filename="../../machinelist.cpp" line="1091"/>
         <source>Clock</source>
         <translation>Clock</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1097"/>
+        <location filename="../../machinelist.cpp" line="1096"/>
         <source>Display</source>
         <translation>DIsplay</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1101"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
         <source>Rotate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1101"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
         <source>Flip-X</source>
         <translation>Inverti-X</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1101"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
         <source>Width</source>
         <translation>Larghezza</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1101"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
         <source>Height</source>
         <translation>Altezza</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1101"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
         <source>Refresh</source>
         <translation>Aggiornamento</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1101"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
         <source>Pixel clock</source>
         <translation>Clock pixel</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1101"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
         <source>H-Total</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1101"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
         <source>H-Bend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1101"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
         <source>HB-Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1101"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
         <source>V-Total</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1101"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
         <source>V-Bend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1101"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
         <source>VB-Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1106"/>
-        <location filename="../../machinelist.cpp" line="1182"/>
+        <location filename="../../machinelist.cpp" line="1105"/>
+        <location filename="../../machinelist.cpp" line="1181"/>
         <source>Sound</source>
         <translation>Suono</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1110"/>
+        <location filename="../../machinelist.cpp" line="1109"/>
         <source>Channels</source>
         <translation>Canali</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1115"/>
+        <location filename="../../machinelist.cpp" line="1114"/>
         <source>Input</source>
         <translation>Input</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1119"/>
+        <location filename="../../machinelist.cpp" line="1118"/>
         <source>Service</source>
         <translation>Servizio</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1119"/>
+        <location filename="../../machinelist.cpp" line="1118"/>
         <source>Tilt</source>
         <translation>Tilt</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1119"/>
+        <location filename="../../machinelist.cpp" line="1118"/>
         <source>Players</source>
         <translation>Giocatori</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1119"/>
+        <location filename="../../machinelist.cpp" line="1118"/>
         <source>Buttons</source>
         <translation>Tasti</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1119"/>
+        <location filename="../../machinelist.cpp" line="1118"/>
         <source>Coins</source>
         <translation>Coins</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1125"/>
+        <location filename="../../machinelist.cpp" line="1124"/>
         <source>Control</source>
         <translation>Controllo</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1130"/>
+        <location filename="../../machinelist.cpp" line="1129"/>
         <source>Minimum</source>
         <translation>Minimo</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1130"/>
+        <location filename="../../machinelist.cpp" line="1129"/>
         <source>Maximum</source>
         <translation>Massimo</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1130"/>
+        <location filename="../../machinelist.cpp" line="1129"/>
         <source>Sensitivity</source>
         <translation>Sensibilità</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1130"/>
+        <location filename="../../machinelist.cpp" line="1129"/>
         <source>Key Delta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1130"/>
+        <location filename="../../machinelist.cpp" line="1129"/>
         <source>Reverse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1137"/>
+        <location filename="../../machinelist.cpp" line="1136"/>
         <source>DIP switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1143"/>
+        <location filename="../../machinelist.cpp" line="1142"/>
         <source>DIP value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="558"/>
-        <location filename="../../machinelist.cpp" line="1148"/>
-        <location filename="../../machinelist.cpp" line="1171"/>
-        <location filename="../../machinelist.cpp" line="1192"/>
-        <location filename="../../machinelist.cpp" line="1217"/>
-        <location filename="../../machinelist.cpp" line="1243"/>
-        <location filename="../../machinelist.cpp" line="1293"/>
+        <location filename="../../machinelist.cpp" line="557"/>
+        <location filename="../../machinelist.cpp" line="1147"/>
+        <location filename="../../machinelist.cpp" line="1170"/>
+        <location filename="../../machinelist.cpp" line="1191"/>
+        <location filename="../../machinelist.cpp" line="1216"/>
+        <location filename="../../machinelist.cpp" line="1242"/>
+        <location filename="../../machinelist.cpp" line="1292"/>
         <source>Default</source>
         <translation>Predefinito</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="753"/>
+        <location filename="../../machinelist.cpp" line="752"/>
         <source>%n supported (non-device) set(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8055,193 +8055,193 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="861"/>
+        <location filename="../../machinelist.cpp" line="860"/>
         <source>loading XML data and recreating cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1040"/>
+        <location filename="../../machinelist.cpp" line="1039"/>
         <source>Updating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1077"/>
-        <location filename="../../machinelist.cpp" line="1207"/>
+        <location filename="../../machinelist.cpp" line="1076"/>
+        <location filename="../../machinelist.cpp" line="1206"/>
         <source>SHA-1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1155"/>
+        <location filename="../../machinelist.cpp" line="1154"/>
         <source>Configuration</source>
         <translation>Configurazione</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1160"/>
+        <location filename="../../machinelist.cpp" line="1159"/>
         <source>Mask</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1166"/>
+        <location filename="../../machinelist.cpp" line="1165"/>
         <source>Setting</source>
         <translation>Impostazioni</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1171"/>
+        <location filename="../../machinelist.cpp" line="1170"/>
         <source>Value</source>
         <translation>Valore</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1178"/>
+        <location filename="../../machinelist.cpp" line="1177"/>
         <source>Driver</source>
         <translation>Driver</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1182"/>
+        <location filename="../../machinelist.cpp" line="1181"/>
         <source>Emulation</source>
         <translation>Emulazione</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1182"/>
+        <location filename="../../machinelist.cpp" line="1181"/>
         <source>Color</source>
         <translation>Colore</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1182"/>
+        <location filename="../../machinelist.cpp" line="1181"/>
         <source>Graphic</source>
         <translation>Grafica</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1182"/>
+        <location filename="../../machinelist.cpp" line="1181"/>
         <source>Cocktail</source>
         <translation>Cocktail</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1182"/>
+        <location filename="../../machinelist.cpp" line="1181"/>
         <source>Protection</source>
         <translation>Protezione</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1182"/>
+        <location filename="../../machinelist.cpp" line="1181"/>
         <source>Save state</source>
         <translation>Stato salvataggio</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1182"/>
+        <location filename="../../machinelist.cpp" line="1181"/>
         <source>Palette size</source>
         <translation>Dimensione paletta</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1187"/>
+        <location filename="../../machinelist.cpp" line="1186"/>
         <source>BIOS set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1192"/>
+        <location filename="../../machinelist.cpp" line="1191"/>
         <source>Description</source>
         <translation>Descrizione</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1197"/>
+        <location filename="../../machinelist.cpp" line="1196"/>
         <source>Sample</source>
         <translation>Esempio</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1202"/>
+        <location filename="../../machinelist.cpp" line="1201"/>
         <source>Disk</source>
         <translation>Disco</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1207"/>
+        <location filename="../../machinelist.cpp" line="1206"/>
         <source>MD5</source>
         <translation>MD5</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1207"/>
+        <location filename="../../machinelist.cpp" line="1206"/>
         <source>Index</source>
         <translation>Indice</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1212"/>
+        <location filename="../../machinelist.cpp" line="1211"/>
         <source>Adjuster</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1222"/>
+        <location filename="../../machinelist.cpp" line="1221"/>
         <source>Software list</source>
         <translation>Lista software</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1232"/>
+        <location filename="../../machinelist.cpp" line="1231"/>
         <source>Category</source>
         <translation>Categoria</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1238"/>
+        <location filename="../../machinelist.cpp" line="1237"/>
         <source>Item</source>
         <translation>Oggetto</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1250"/>
+        <location filename="../../machinelist.cpp" line="1249"/>
         <source>Device</source>
         <translation>Device</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1255"/>
+        <location filename="../../machinelist.cpp" line="1254"/>
         <source>Mandatory</source>
         <translation>Obbligatorio</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1255"/>
+        <location filename="../../machinelist.cpp" line="1254"/>
         <source>Interface</source>
         <translation>Interfaccia</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1262"/>
+        <location filename="../../machinelist.cpp" line="1261"/>
         <source>Instance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1267"/>
+        <location filename="../../machinelist.cpp" line="1266"/>
         <source>Brief name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1274"/>
+        <location filename="../../machinelist.cpp" line="1273"/>
         <source>Extension</source>
         <translation>Estensione</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1281"/>
+        <location filename="../../machinelist.cpp" line="1280"/>
         <source>RAM options</source>
         <translation>Opzioni RAM</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1285"/>
+        <location filename="../../machinelist.cpp" line="1284"/>
         <source>Option</source>
         <translation>Opzione</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1327"/>
+        <location filename="../../machinelist.cpp" line="1326"/>
         <source>WARNING: can&apos;t open ROM state cache, please check ROMs</source>
         <translation>ATTENZIONE: impossibile aprire cache stato ROM, per favore controlla la ROM</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1330"/>
+        <location filename="../../machinelist.cpp" line="1329"/>
         <source>loading ROM state from cache</source>
         <translation>caricamento stato ROM dalla cache</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1332"/>
+        <location filename="../../machinelist.cpp" line="1331"/>
         <source>ROM states - %p%</source>
         <translation>Stati ROM - %p%</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1354"/>
+        <location filename="../../machinelist.cpp" line="1353"/>
         <source>done (loading ROM state from cache, elapsed time = %1)</source>
         <translation>completato (caricamento stato ROM dalla cache, tempo impiegato = %1)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="1355"/>
+        <location filename="../../machinelist.cpp" line="1354"/>
         <source>%n cached ROM state(s) loaded</source>
         <translation>
             <numerusform>%n stato(i) ROM caricati</numerusform>
@@ -8261,30 +8261,31 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="166"/>
         <location filename="../../machinelist.cpp" line="182"/>
+        <location filename="../../machinelist.cpp" line="1729"/>
         <location filename="../../machinelist.cpp" line="1730"/>
-        <location filename="../../machinelist.cpp" line="1731"/>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1442"/>
-        <location filename="../../machinelist.cpp" line="1451"/>
-        <location filename="../../machinelist.cpp" line="1482"/>
-        <location filename="../../machinelist.cpp" line="1513"/>
-        <location filename="../../machinelist.cpp" line="1544"/>
-        <location filename="../../machinelist.cpp" line="1576"/>
-        <location filename="../../machinelist.cpp" line="1685"/>
-        <location filename="../../machinelist.cpp" line="1727"/>
-        <location filename="../../machinelist.cpp" line="1743"/>
-        <location filename="../../machinelist.cpp" line="1748"/>
-        <location filename="../../machinelist.cpp" line="1916"/>
-        <location filename="../../machinelist.cpp" line="1949"/>
+        <location filename="../../machinelist.cpp" line="1441"/>
+        <location filename="../../machinelist.cpp" line="1450"/>
+        <location filename="../../machinelist.cpp" line="1481"/>
+        <location filename="../../machinelist.cpp" line="1512"/>
+        <location filename="../../machinelist.cpp" line="1543"/>
+        <location filename="../../machinelist.cpp" line="1575"/>
+        <location filename="../../machinelist.cpp" line="1684"/>
+        <location filename="../../machinelist.cpp" line="1726"/>
+        <location filename="../../machinelist.cpp" line="1742"/>
+        <location filename="../../machinelist.cpp" line="1747"/>
+        <location filename="../../machinelist.cpp" line="1915"/>
+        <location filename="../../machinelist.cpp" line="1948"/>
+        <location filename="../../machinelist.cpp" line="2044"/>
         <location filename="../../machinelist.cpp" line="2045"/>
         <location filename="../../machinelist.cpp" line="2046"/>
         <location filename="../../machinelist.cpp" line="2047"/>
         <location filename="../../machinelist.cpp" line="2048"/>
         <location filename="../../machinelist.cpp" line="2049"/>
-        <location filename="../../machinelist.cpp" line="2050"/>
+        <location filename="../../machinelist.cpp" line="2288"/>
         <location filename="../../machinelist.cpp" line="2289"/>
         <location filename="../../machinelist.cpp" line="2290"/>
         <location filename="../../machinelist.cpp" line="2291"/>
@@ -8292,13 +8293,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="2293"/>
         <location filename="../../machinelist.cpp" line="2294"/>
         <location filename="../../machinelist.cpp" line="2295"/>
-        <location filename="../../machinelist.cpp" line="2296"/>
+        <location filename="../../machinelist.cpp" line="2778"/>
         <location filename="../../machinelist.cpp" line="2779"/>
         <location filename="../../machinelist.cpp" line="2780"/>
         <location filename="../../machinelist.cpp" line="2781"/>
         <location filename="../../machinelist.cpp" line="2782"/>
         <location filename="../../machinelist.cpp" line="2783"/>
-        <location filename="../../machinelist.cpp" line="2784"/>
         <source>?</source>
         <translation>?</translation>
     </message>
@@ -8314,45 +8314,45 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="960"/>
+        <location filename="../../machinelist.cpp" line="959"/>
         <source>verifying ROM status for all sets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1670"/>
+        <location filename="../../machinelist.cpp" line="1669"/>
         <source>WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2481"/>
+        <location filename="../../machinelist.cpp" line="2480"/>
         <source>WARNING: XML bug: the name &apos;%1&apos; is used for multiple sets -- please inform MAME developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="678"/>
-        <location filename="../../machinelist.cpp" line="682"/>
+        <location filename="../../machinelist.cpp" line="677"/>
+        <location filename="../../machinelist.cpp" line="681"/>
         <source>WARNING: the selected emulator executable cannot be identified as MAME</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="763"/>
+        <location filename="../../machinelist.cpp" line="762"/>
         <source>WARNING: the output from -listfull changed, forcing a refresh of all emulator caches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1991"/>
-        <location filename="../../machinelist.cpp" line="2796"/>
+        <location filename="../../machinelist.cpp" line="1990"/>
+        <location filename="../../machinelist.cpp" line="2795"/>
         <source>ascending</source>
         <translation>ascendente</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1991"/>
-        <location filename="../../machinelist.cpp" line="2796"/>
+        <location filename="../../machinelist.cpp" line="1990"/>
+        <location filename="../../machinelist.cpp" line="2795"/>
         <source>descending</source>
         <translation>discendente</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="2033"/>
+        <location filename="../../machinelist.cpp" line="2032"/>
         <source>, %n BIOS set(s)</source>
         <translation>
             <numerusform>, %n set BIOS</numerusform>
@@ -8360,7 +8360,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="2033"/>
+        <location filename="../../machinelist.cpp" line="2032"/>
         <source> and %n device(s) loaded</source>
         <translation>
             <numerusform> e %n periferiche caricate</numerusform>
@@ -8368,166 +8368,166 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2051"/>
-        <location filename="../../machinelist.cpp" line="2785"/>
+        <location filename="../../machinelist.cpp" line="2050"/>
+        <location filename="../../machinelist.cpp" line="2784"/>
         <source>ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2061"/>
+        <location filename="../../machinelist.cpp" line="2060"/>
         <source>WARNING: ROM state cache is incomplete or not up to date, triggering an automatic ROM check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2064"/>
+        <location filename="../../machinelist.cpp" line="2063"/>
         <source>WARNING: ROM state cache is incomplete or not up to date, please re-check ROMs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2078"/>
+        <location filename="../../machinelist.cpp" line="2077"/>
         <source>ROM state filter already active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2082"/>
+        <location filename="../../machinelist.cpp" line="2081"/>
         <source>please wait for ROM verification to finish and try again</source>
         <translation type="unfinished">per favore aspetta la fine della validazione della ROM e riprova</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2086"/>
+        <location filename="../../machinelist.cpp" line="2085"/>
         <source>please wait for reload to finish and try again</source>
         <translation type="unfinished">per favore aspetta la fine del caricamento e riprova</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2105"/>
+        <location filename="../../machinelist.cpp" line="2104"/>
         <source>applying ROM state filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2108"/>
+        <location filename="../../machinelist.cpp" line="2107"/>
         <source>State filter - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2191"/>
+        <location filename="../../machinelist.cpp" line="2190"/>
         <source>done (applying ROM state filter, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2200"/>
+        <location filename="../../machinelist.cpp" line="2199"/>
         <source>loading favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2221"/>
+        <location filename="../../machinelist.cpp" line="2220"/>
         <source>done (loading favorites)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2230"/>
+        <location filename="../../machinelist.cpp" line="2229"/>
         <source>saving favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2238"/>
+        <location filename="../../machinelist.cpp" line="2237"/>
         <source>FATAL: can&apos;t open favorites file for writing, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2239"/>
+        <location filename="../../machinelist.cpp" line="2238"/>
         <source>done (saving favorites)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2244"/>
+        <location filename="../../machinelist.cpp" line="2243"/>
         <source>loading play history</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2264"/>
+        <location filename="../../machinelist.cpp" line="2263"/>
         <source>done (loading play history)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2273"/>
+        <location filename="../../machinelist.cpp" line="2272"/>
         <source>saving play history</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2281"/>
+        <location filename="../../machinelist.cpp" line="2280"/>
         <source>FATAL: can&apos;t open play history file for writing, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2282"/>
+        <location filename="../../machinelist.cpp" line="2281"/>
         <source>done (saving play history)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2289"/>
+        <location filename="../../machinelist.cpp" line="2288"/>
         <source>L:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2290"/>
+        <location filename="../../machinelist.cpp" line="2289"/>
         <source>C:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2291"/>
+        <location filename="../../machinelist.cpp" line="2290"/>
         <source>M:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2292"/>
+        <location filename="../../machinelist.cpp" line="2291"/>
         <source>I:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2293"/>
+        <location filename="../../machinelist.cpp" line="2292"/>
         <source>N:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2294"/>
+        <location filename="../../machinelist.cpp" line="2293"/>
         <source>U:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2295"/>
+        <location filename="../../machinelist.cpp" line="2294"/>
         <source>S:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2296"/>
+        <location filename="../../machinelist.cpp" line="2295"/>
         <source>T:</source>
         <translation type="unfinished">T:</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2311"/>
-        <location filename="../../machinelist.cpp" line="2511"/>
+        <location filename="../../machinelist.cpp" line="2310"/>
+        <location filename="../../machinelist.cpp" line="2510"/>
         <source>WARNING: emulator audit call didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2311"/>
-        <location filename="../../machinelist.cpp" line="2511"/>
+        <location filename="../../machinelist.cpp" line="2310"/>
+        <location filename="../../machinelist.cpp" line="2510"/>
         <source>normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2311"/>
-        <location filename="../../machinelist.cpp" line="2511"/>
+        <location filename="../../machinelist.cpp" line="2310"/>
+        <location filename="../../machinelist.cpp" line="2510"/>
         <source>crashed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2317"/>
+        <location filename="../../machinelist.cpp" line="2316"/>
         <source>done (loading XML data and recreating cache, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="2576"/>
+        <location filename="../../machinelist.cpp" line="2575"/>
         <source>checking real status of %n set(s) not mentioned during full audit</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8535,7 +8535,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="2691"/>
+        <location filename="../../machinelist.cpp" line="2690"/>
         <source>done (checking real status of %n set(s) not mentioned during full audit)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8543,82 +8543,82 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2776"/>
+        <location filename="../../machinelist.cpp" line="2775"/>
         <source>done (verifying ROM status for &apos;%1&apos;, elapsed time = %2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2796"/>
+        <location filename="../../machinelist.cpp" line="2795"/>
         <source>ROM state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2703"/>
-        <location filename="../../machinelist.cpp" line="3032"/>
+        <location filename="../../machinelist.cpp" line="2702"/>
+        <location filename="../../machinelist.cpp" line="3031"/>
         <source>ROM status for &apos;%1&apos; is &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1361"/>
+        <location filename="../../machinelist.cpp" line="1360"/>
         <source>processing machine list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1386"/>
+        <location filename="../../machinelist.cpp" line="1385"/>
         <source>WARNING: couldn&apos;t determine emulator version of machine list cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1388"/>
-        <location filename="../../machinelist.cpp" line="1393"/>
+        <location filename="../../machinelist.cpp" line="1387"/>
+        <location filename="../../machinelist.cpp" line="1392"/>
         <source>INFORMATION: the machine list cache will now be updated due to a new format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1404"/>
+        <location filename="../../machinelist.cpp" line="1403"/>
         <source>loading machine data from machine list cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1406"/>
-        <location filename="../../machinelist.cpp" line="1634"/>
+        <location filename="../../machinelist.cpp" line="1405"/>
+        <location filename="../../machinelist.cpp" line="1633"/>
         <source>Machine data - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1945"/>
+        <location filename="../../machinelist.cpp" line="1944"/>
         <source>done (loading machine data from machine list cache, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1632"/>
+        <location filename="../../machinelist.cpp" line="1631"/>
         <source>parsing machine data and recreating machine list cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1639"/>
+        <location filename="../../machinelist.cpp" line="1638"/>
         <source>ERROR: can&apos;t open machine list cache for writing, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1991"/>
-        <location filename="../../machinelist.cpp" line="2796"/>
+        <location filename="../../machinelist.cpp" line="1990"/>
+        <location filename="../../machinelist.cpp" line="2795"/>
         <source>sorting machine list by %1 in %2 order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2006"/>
-        <location filename="../../machinelist.cpp" line="2019"/>
+        <location filename="../../machinelist.cpp" line="2005"/>
+        <location filename="../../machinelist.cpp" line="2018"/>
         <source>restoring machine selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2032"/>
+        <location filename="../../machinelist.cpp" line="2031"/>
         <source>done (processing machine list, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="2033"/>
+        <location filename="../../machinelist.cpp" line="2032"/>
         <source>%n machine(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8626,51 +8626,51 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2036"/>
+        <location filename="../../machinelist.cpp" line="2035"/>
         <source>WARNING: machine list not fully parsed, invalidating machine list cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2040"/>
+        <location filename="../../machinelist.cpp" line="2039"/>
         <source>WARNING: machine list cache is out of date, invalidating machine list cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2144"/>
+        <location filename="../../machinelist.cpp" line="2143"/>
         <source>Filtering, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3079"/>
+        <location filename="../../machinelist.cpp" line="3078"/>
         <source>pre-caching icons from ZIP archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3086"/>
-        <location filename="../../machinelist.cpp" line="3136"/>
-        <location filename="../../machinelist.cpp" line="3177"/>
-        <location filename="../../machinelist.cpp" line="3236"/>
+        <location filename="../../machinelist.cpp" line="3085"/>
+        <location filename="../../machinelist.cpp" line="3135"/>
+        <location filename="../../machinelist.cpp" line="3176"/>
+        <location filename="../../machinelist.cpp" line="3235"/>
         <source>Icon cache - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3129"/>
+        <location filename="../../machinelist.cpp" line="3128"/>
         <source>done (pre-caching icons from ZIP archive, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3172"/>
+        <location filename="../../machinelist.cpp" line="3171"/>
         <source>pre-caching icons from archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3212"/>
+        <location filename="../../machinelist.cpp" line="3211"/>
         <source>done (pre-caching icons from archive, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="3215"/>
-        <location filename="../../machinelist.cpp" line="3264"/>
+        <location filename="../../machinelist.cpp" line="3214"/>
+        <location filename="../../machinelist.cpp" line="3263"/>
         <source>%n icon(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8678,124 +8678,124 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3131"/>
+        <location filename="../../machinelist.cpp" line="3130"/>
         <source>pre-caching icons from 7z archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3168"/>
+        <location filename="../../machinelist.cpp" line="3167"/>
         <source>done (pre-caching icons from 7z archive, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3227"/>
+        <location filename="../../machinelist.cpp" line="3226"/>
         <source>pre-caching icons from directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3263"/>
+        <location filename="../../machinelist.cpp" line="3262"/>
         <source>done (pre-caching icons from directory, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3286"/>
+        <location filename="../../machinelist.cpp" line="3285"/>
         <source>loading category.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3291"/>
+        <location filename="../../machinelist.cpp" line="3290"/>
         <source>Category.ini - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3336"/>
+        <location filename="../../machinelist.cpp" line="3335"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no category.ini data available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3343"/>
+        <location filename="../../machinelist.cpp" line="3342"/>
         <source>done (loading category.ini, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1461"/>
-        <location filename="../../machinelist.cpp" line="1492"/>
-        <location filename="../../machinelist.cpp" line="1523"/>
-        <location filename="../../machinelist.cpp" line="1554"/>
-        <location filename="../../machinelist.cpp" line="1586"/>
-        <location filename="../../machinelist.cpp" line="1738"/>
-        <location filename="../../machinelist.cpp" line="3395"/>
+        <location filename="../../machinelist.cpp" line="1460"/>
+        <location filename="../../machinelist.cpp" line="1491"/>
+        <location filename="../../machinelist.cpp" line="1522"/>
+        <location filename="../../machinelist.cpp" line="1553"/>
+        <location filename="../../machinelist.cpp" line="1585"/>
+        <location filename="../../machinelist.cpp" line="1737"/>
+        <location filename="../../machinelist.cpp" line="3394"/>
         <source>System / BIOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1470"/>
-        <location filename="../../machinelist.cpp" line="1501"/>
-        <location filename="../../machinelist.cpp" line="1532"/>
-        <location filename="../../machinelist.cpp" line="1563"/>
-        <location filename="../../machinelist.cpp" line="1595"/>
-        <location filename="../../machinelist.cpp" line="1740"/>
-        <location filename="../../machinelist.cpp" line="3397"/>
+        <location filename="../../machinelist.cpp" line="1469"/>
+        <location filename="../../machinelist.cpp" line="1500"/>
+        <location filename="../../machinelist.cpp" line="1531"/>
+        <location filename="../../machinelist.cpp" line="1562"/>
+        <location filename="../../machinelist.cpp" line="1594"/>
+        <location filename="../../machinelist.cpp" line="1739"/>
+        <location filename="../../machinelist.cpp" line="3396"/>
         <source>System / Device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3506"/>
+        <location filename="../../machinelist.cpp" line="3505"/>
         <source>loading catver.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3511"/>
+        <location filename="../../machinelist.cpp" line="3510"/>
         <source>Catver.ini - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3576"/>
+        <location filename="../../machinelist.cpp" line="3575"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3583"/>
+        <location filename="../../machinelist.cpp" line="3582"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3584"/>
+        <location filename="../../machinelist.cpp" line="3583"/>
         <source>%1 category / %2 version records loaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3735"/>
+        <location filename="../../machinelist.cpp" line="3734"/>
         <source>correct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3737"/>
+        <location filename="../../machinelist.cpp" line="3736"/>
         <source>mostly correct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3739"/>
+        <location filename="../../machinelist.cpp" line="3738"/>
         <source>incorrect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3741"/>
+        <location filename="../../machinelist.cpp" line="3740"/>
         <source>not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3370"/>
+        <location filename="../../machinelist.cpp" line="3369"/>
         <source>Category view - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2778"/>
+        <location filename="../../machinelist.cpp" line="2777"/>
         <source>done (verifying ROM status for all sets, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="3344"/>
+        <location filename="../../machinelist.cpp" line="3343"/>
         <source>%n category record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8803,7 +8803,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3610"/>
+        <location filename="../../machinelist.cpp" line="3609"/>
         <source>Version view - %p%</source>
         <translation type="unfinished"></translation>
     </message>
@@ -13006,8 +13006,8 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     </message>
     <message>
         <location filename="../../options.ui" line="1095"/>
-        <location filename="../../options.cpp" line="1901"/>
-        <location filename="../../options.cpp" line="3028"/>
+        <location filename="../../options.cpp" line="1867"/>
+        <location filename="../../options.cpp" line="2994"/>
         <source>Preview directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -13023,8 +13023,8 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     </message>
     <message>
         <location filename="../../options.ui" line="991"/>
-        <location filename="../../options.cpp" line="1913"/>
-        <location filename="../../options.cpp" line="3035"/>
+        <location filename="../../options.cpp" line="1879"/>
+        <location filename="../../options.cpp" line="3001"/>
         <source>Flyer directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -13040,8 +13040,8 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     </message>
     <message>
         <location filename="../../options.ui" line="1706"/>
-        <location filename="../../options.cpp" line="1925"/>
-        <location filename="../../options.cpp" line="3042"/>
+        <location filename="../../options.cpp" line="1891"/>
+        <location filename="../../options.cpp" line="3008"/>
         <source>Icon directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -13057,8 +13057,8 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     </message>
     <message>
         <location filename="../../options.ui" line="896"/>
-        <location filename="../../options.cpp" line="1937"/>
-        <location filename="../../options.cpp" line="3049"/>
+        <location filename="../../options.cpp" line="1903"/>
+        <location filename="../../options.cpp" line="3015"/>
         <source>Cabinet directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -13074,8 +13074,8 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     </message>
     <message>
         <location filename="../../options.ui" line="2305"/>
-        <location filename="../../options.cpp" line="1949"/>
-        <location filename="../../options.cpp" line="3056"/>
+        <location filename="../../options.cpp" line="1915"/>
+        <location filename="../../options.cpp" line="3022"/>
         <source>Controller directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -13091,8 +13091,8 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     </message>
     <message>
         <location filename="../../options.ui" line="1141"/>
-        <location filename="../../options.cpp" line="1961"/>
-        <location filename="../../options.cpp" line="3063"/>
+        <location filename="../../options.cpp" line="1927"/>
+        <location filename="../../options.cpp" line="3029"/>
         <source>Marquee directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -13128,8 +13128,8 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     </message>
     <message>
         <location filename="../../options.ui" line="1045"/>
-        <location filename="../../options.cpp" line="1973"/>
-        <location filename="../../options.cpp" line="3070"/>
+        <location filename="../../options.cpp" line="1939"/>
+        <location filename="../../options.cpp" line="3036"/>
         <source>Title directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -13145,8 +13145,8 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     </message>
     <message>
         <location filename="../../options.ui" line="1111"/>
-        <location filename="../../options.cpp" line="1985"/>
-        <location filename="../../options.cpp" line="3077"/>
+        <location filename="../../options.cpp" line="1951"/>
+        <location filename="../../options.cpp" line="3043"/>
         <source>PCB directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -13179,8 +13179,8 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     </message>
     <message>
         <location filename="../../options.ui" line="1164"/>
-        <location filename="../../options.cpp" line="1997"/>
-        <location filename="../../options.cpp" line="3084"/>
+        <location filename="../../options.cpp" line="1963"/>
+        <location filename="../../options.cpp" line="3050"/>
         <source>SW snap folder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -13741,10 +13741,10 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     </message>
     <message>
         <location filename="../../options.ui" line="3810"/>
-        <location filename="../../options.cpp" line="379"/>
-        <location filename="../../options.cpp" line="380"/>
-        <location filename="../../options.cpp" line="2315"/>
-        <location filename="../../options.cpp" line="3698"/>
+        <location filename="../../options.cpp" line="382"/>
+        <location filename="../../options.cpp" line="383"/>
+        <location filename="../../options.cpp" line="2281"/>
+        <location filename="../../options.cpp" line="3664"/>
         <source>Default</source>
         <translation type="unfinished">Predefinito</translation>
     </message>
@@ -13790,10 +13790,10 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     </message>
     <message>
         <location filename="../../options.ui" line="3918"/>
-        <location filename="../../options.cpp" line="3828"/>
-        <location filename="../../options.cpp" line="3851"/>
-        <location filename="../../options.cpp" line="3903"/>
-        <location filename="../../options.cpp" line="3984"/>
+        <location filename="../../options.cpp" line="3794"/>
+        <location filename="../../options.cpp" line="3817"/>
+        <location filename="../../options.cpp" line="3869"/>
+        <location filename="../../options.cpp" line="3950"/>
         <source>No joysticks found</source>
         <translation type="unfinished"></translation>
     </message>
@@ -14851,1078 +14851,1062 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <translation type="unfinished">&amp;Cancella</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="242"/>
+        <location filename="../../options.cpp" line="245"/>
         <source>Minimize when launching (non-embedded) emulators?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="245"/>
-        <location filename="../../options.cpp" line="1034"/>
-        <location filename="../../options.cpp" line="1036"/>
-        <location filename="../../options.cpp" line="1054"/>
+        <location filename="../../options.cpp" line="248"/>
+        <location filename="../../options.cpp" line="1037"/>
+        <location filename="../../options.cpp" line="1039"/>
+        <location filename="../../options.cpp" line="1057"/>
         <source>Category</source>
         <translation type="unfinished">Categoria</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="246"/>
-        <location filename="../../options.cpp" line="1075"/>
-        <location filename="../../options.cpp" line="1077"/>
-        <location filename="../../options.cpp" line="1095"/>
+        <location filename="../../options.cpp" line="249"/>
+        <location filename="../../options.cpp" line="1078"/>
+        <location filename="../../options.cpp" line="1080"/>
+        <location filename="../../options.cpp" line="1098"/>
         <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="249"/>
+        <location filename="../../options.cpp" line="252"/>
         <source>Check all ROM states</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="250"/>
+        <location filename="../../options.cpp" line="253"/>
         <source>Check all sample sets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="252"/>
+        <location filename="../../options.cpp" line="255"/>
         <source>About QMC2</source>
         <translation type="unfinished">Riguardo QMC2</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="254"/>
+        <location filename="../../options.cpp" line="257"/>
         <source>Analyze tagged sets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="255"/>
+        <location filename="../../options.cpp" line="258"/>
         <source>Export ROM Status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="257"/>
+        <location filename="../../options.cpp" line="260"/>
         <source>Copy tagged sets to favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="258"/>
+        <location filename="../../options.cpp" line="261"/>
         <source>Online documentation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="259"/>
+        <location filename="../../options.cpp" line="262"/>
         <source>Clear image cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="260"/>
+        <location filename="../../options.cpp" line="263"/>
         <source>Setup arcade mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="262"/>
+        <location filename="../../options.cpp" line="265"/>
         <source>Clear icon cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="264"/>
-        <location filename="../../options.cpp" line="266"/>
+        <location filename="../../options.cpp" line="267"/>
+        <location filename="../../options.cpp" line="269"/>
         <source>Open options dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="268"/>
+        <location filename="../../options.cpp" line="271"/>
         <source>Play (independent)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="270"/>
+        <location filename="../../options.cpp" line="273"/>
         <source>Play (embedded)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="273"/>
+        <location filename="../../options.cpp" line="276"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="277"/>
+        <location filename="../../options.cpp" line="280"/>
         <source>Check states of tagged ROMs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="278"/>
+        <location filename="../../options.cpp" line="281"/>
         <source>Recreate template map</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="279"/>
+        <location filename="../../options.cpp" line="282"/>
         <source>Check template map</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="281"/>
-        <location filename="../../options.cpp" line="283"/>
+        <location filename="../../options.cpp" line="284"/>
+        <location filename="../../options.cpp" line="286"/>
         <source>Stop processing / exit QMC2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="286"/>
+        <location filename="../../options.cpp" line="289"/>
         <source>Clear YouTube cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="290"/>
+        <location filename="../../options.cpp" line="293"/>
         <source>Toggle ROM state C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="291"/>
+        <location filename="../../options.cpp" line="294"/>
         <source>Toggle ROM state M</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="292"/>
+        <location filename="../../options.cpp" line="295"/>
         <source>Toggle ROM state I</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="293"/>
+        <location filename="../../options.cpp" line="296"/>
         <source>Toggle ROM state N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="294"/>
+        <location filename="../../options.cpp" line="297"/>
         <source>Toggle ROM state U</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="295"/>
+        <location filename="../../options.cpp" line="298"/>
         <source>Tag current set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="296"/>
+        <location filename="../../options.cpp" line="299"/>
         <source>Untag current set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="297"/>
+        <location filename="../../options.cpp" line="300"/>
         <source>Toggle tag mark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="300"/>
+        <location filename="../../options.cpp" line="303"/>
         <source>Tag all sets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="301"/>
+        <location filename="../../options.cpp" line="304"/>
         <source>Untag all sets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="302"/>
+        <location filename="../../options.cpp" line="305"/>
         <source>Invert all tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="251"/>
+        <location filename="../../options.cpp" line="254"/>
         <source>Check images and icons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="253"/>
+        <location filename="../../options.cpp" line="256"/>
         <source>Analyze current machine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="256"/>
+        <location filename="../../options.cpp" line="259"/>
         <source>Copy machine to favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="261"/>
+        <location filename="../../options.cpp" line="264"/>
         <source>Clear ProjectMESS cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="275"/>
+        <location filename="../../options.cpp" line="278"/>
         <source>Reload machine list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="276"/>
+        <location filename="../../options.cpp" line="279"/>
         <source>Check machine&apos;s ROM state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="298"/>
+        <location filename="../../options.cpp" line="301"/>
         <source>Toggle tag / cursor down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="299"/>
+        <location filename="../../options.cpp" line="302"/>
         <source>Toggle tag / cursor up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="303"/>
+        <location filename="../../options.cpp" line="306"/>
         <source>Tag visible sets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="304"/>
+        <location filename="../../options.cpp" line="307"/>
         <source>Untag visible sets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="305"/>
+        <location filename="../../options.cpp" line="308"/>
         <source>Invert visible tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="312"/>
+        <location filename="../../options.cpp" line="315"/>
         <source>Run external ROM tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="313"/>
+        <location filename="../../options.cpp" line="316"/>
         <source>Run ROM tool for tagged sets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="315"/>
+        <location filename="../../options.cpp" line="318"/>
         <source>Toggle full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="320"/>
+        <location filename="../../options.cpp" line="323"/>
         <source>Previous track (audio player)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="321"/>
+        <location filename="../../options.cpp" line="324"/>
         <source>Next track (audio player)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="322"/>
+        <location filename="../../options.cpp" line="325"/>
         <source>Fast backward (audio player)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="323"/>
+        <location filename="../../options.cpp" line="326"/>
         <source>Fast forward (audio player)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="324"/>
+        <location filename="../../options.cpp" line="327"/>
         <source>Stop track (audio player)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="325"/>
+        <location filename="../../options.cpp" line="328"/>
         <source>Pause track (audio player)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="326"/>
+        <location filename="../../options.cpp" line="329"/>
         <source>Play track (audio player)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="327"/>
+        <location filename="../../options.cpp" line="330"/>
         <source>Raise volume (audio player)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="328"/>
+        <location filename="../../options.cpp" line="331"/>
         <source>Lower volume (audio player)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="334"/>
+        <location filename="../../options.cpp" line="337"/>
         <source>Plus (+)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="335"/>
+        <location filename="../../options.cpp" line="338"/>
         <source>Minus (-)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="336"/>
+        <location filename="../../options.cpp" line="339"/>
         <source>Cursor down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="337"/>
+        <location filename="../../options.cpp" line="340"/>
         <source>End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="339"/>
+        <location filename="../../options.cpp" line="342"/>
         <source>Escape</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="340"/>
+        <location filename="../../options.cpp" line="343"/>
         <source>Cursor left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="341"/>
+        <location filename="../../options.cpp" line="344"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="342"/>
+        <location filename="../../options.cpp" line="345"/>
         <source>Page down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="343"/>
+        <location filename="../../options.cpp" line="346"/>
         <source>Page up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="338"/>
+        <location filename="../../options.cpp" line="341"/>
         <source>Enter key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="288"/>
+        <location filename="../../options.cpp" line="291"/>
         <source>Open ROMAlyzer (system mode)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="289"/>
+        <location filename="../../options.cpp" line="292"/>
         <source>Open ROMAlyzer (software mode)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="308"/>
+        <location filename="../../options.cpp" line="311"/>
         <source>Full detail view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="310"/>
-        <location filename="../../options.cpp" line="1037"/>
+        <location filename="../../options.cpp" line="313"/>
         <location filename="../../options.cpp" line="1040"/>
-        <location filename="../../options.cpp" line="1057"/>
+        <location filename="../../options.cpp" line="1043"/>
+        <location filename="../../options.cpp" line="1060"/>
         <source>Category view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="311"/>
-        <location filename="../../options.cpp" line="1078"/>
+        <location filename="../../options.cpp" line="314"/>
         <location filename="../../options.cpp" line="1081"/>
-        <location filename="../../options.cpp" line="1098"/>
+        <location filename="../../options.cpp" line="1084"/>
+        <location filename="../../options.cpp" line="1101"/>
         <source>Version view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="314"/>
+        <location filename="../../options.cpp" line="317"/>
         <source>Check software-states</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="316"/>
+        <location filename="../../options.cpp" line="319"/>
         <source>Launch arcade mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="317"/>
+        <location filename="../../options.cpp" line="320"/>
         <source>Software-list view-mode flat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="318"/>
+        <location filename="../../options.cpp" line="321"/>
         <source>Software-list view-mode tree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="330"/>
+        <location filename="../../options.cpp" line="333"/>
         <source>Increase rank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="331"/>
+        <location filename="../../options.cpp" line="334"/>
         <source>Decrease rank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="344"/>
+        <location filename="../../options.cpp" line="347"/>
         <source>Return key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="345"/>
+        <location filename="../../options.cpp" line="348"/>
         <source>Cursor right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="346"/>
+        <location filename="../../options.cpp" line="349"/>
         <source>Tabulator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="347"/>
+        <location filename="../../options.cpp" line="350"/>
         <source>Cursor up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="349"/>
+        <location filename="../../options.cpp" line="352"/>
         <source>Activate item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="353"/>
+        <location filename="../../options.cpp" line="356"/>
         <source>WARNING: configuration is not writeable, please check access permissions for </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="357"/>
-        <location filename="../../options.cpp" line="364"/>
+        <location filename="../../options.cpp" line="360"/>
+        <location filename="../../options.cpp" line="367"/>
         <source>Reset to default font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="372"/>
-        <location filename="../../options.cpp" line="378"/>
+        <location filename="../../options.cpp" line="375"/>
+        <location filename="../../options.cpp" line="381"/>
         <source>No style sheet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="869"/>
+        <location filename="../../options.cpp" line="872"/>
         <source>image cache size set to %1 MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1295"/>
-        <location filename="../../options.cpp" line="2729"/>
+        <location filename="../../options.cpp" line="1298"/>
+        <location filename="../../options.cpp" line="2695"/>
         <source>Confirm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1297"/>
+        <location filename="../../options.cpp" line="1300"/>
         <source>&amp;Local</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1297"/>
+        <location filename="../../options.cpp" line="1300"/>
         <source>&amp;Overwrite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1297"/>
+        <location filename="../../options.cpp" line="1300"/>
         <source>Do&amp;n&apos;t apply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1397"/>
+        <location filename="../../options.cpp" line="1400"/>
         <source>please restart QMC2 for some changes to take effect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1404"/>
+        <location filename="../../options.cpp" line="1407"/>
         <source>?</source>
         <translation type="unfinished">?</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1446"/>
+        <location filename="../../options.cpp" line="1449"/>
         <source>ascending</source>
         <translation type="unfinished">ascendente</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1446"/>
+        <location filename="../../options.cpp" line="1449"/>
         <source>descending</source>
         <translation type="unfinished">discendente</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1453"/>
+        <location filename="../../options.cpp" line="1456"/>
         <source>Waiting for data...</source>
         <translation type="unfinished">Aspettando i dati...</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1669"/>
-        <source>FATAL: can&apos;t open %1 file, please check access permissions for %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.cpp" line="1677"/>
-        <source>FATAL: can&apos;t open %1 file %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.cpp" line="1677"/>
-        <location filename="../../options.cpp" line="1712"/>
-        <location filename="../../options.cpp" line="1745"/>
+        <location filename="../../options.cpp" line="1699"/>
         <source>7z error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1704"/>
-        <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.cpp" line="1712"/>
-        <source>FATAL: can&apos;t open software snap-shot file %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.cpp" line="1737"/>
+        <location filename="../../options.cpp" line="1691"/>
         <source>FATAL: can&apos;t open icon file, please check access permissions for %1</source>
         <translation type="unfinished">FATALE: impossibile aprire file icona, per favore controlla permessi d&apos;accesso per %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1745"/>
+        <location filename="../../options.cpp" line="1699"/>
+        <location filename="../../options.cpp" line="1710"/>
         <source>FATAL: can&apos;t open icon file %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1901"/>
-        <location filename="../../options.cpp" line="3028"/>
+        <location filename="../../options.cpp" line="1867"/>
+        <location filename="../../options.cpp" line="2994"/>
         <source>Preview file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1913"/>
-        <location filename="../../options.cpp" line="3035"/>
+        <location filename="../../options.cpp" line="1879"/>
+        <location filename="../../options.cpp" line="3001"/>
         <source>Flyer file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1925"/>
-        <location filename="../../options.cpp" line="3042"/>
+        <location filename="../../options.cpp" line="1891"/>
+        <location filename="../../options.cpp" line="3008"/>
         <source>Icon file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1937"/>
-        <location filename="../../options.cpp" line="3049"/>
+        <location filename="../../options.cpp" line="1903"/>
+        <location filename="../../options.cpp" line="3015"/>
         <source>Cabinet file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1949"/>
-        <location filename="../../options.cpp" line="3056"/>
+        <location filename="../../options.cpp" line="1915"/>
+        <location filename="../../options.cpp" line="3022"/>
         <source>Controller file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1961"/>
-        <location filename="../../options.cpp" line="3063"/>
+        <location filename="../../options.cpp" line="1927"/>
+        <location filename="../../options.cpp" line="3029"/>
         <source>Marquee file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1973"/>
-        <location filename="../../options.cpp" line="3070"/>
+        <location filename="../../options.cpp" line="1939"/>
+        <location filename="../../options.cpp" line="3036"/>
         <source>Title file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1985"/>
-        <location filename="../../options.cpp" line="3077"/>
+        <location filename="../../options.cpp" line="1951"/>
+        <location filename="../../options.cpp" line="3043"/>
         <source>PCB file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1997"/>
-        <location filename="../../options.cpp" line="3084"/>
+        <location filename="../../options.cpp" line="1963"/>
+        <location filename="../../options.cpp" line="3050"/>
         <source>SW snap file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5641"/>
-        <location filename="../../options.cpp" line="2198"/>
-        <location filename="../../options.cpp" line="3567"/>
+        <location filename="../../options.cpp" line="2164"/>
+        <location filename="../../options.cpp" line="3533"/>
         <source>Custom IDs...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="306"/>
+        <location filename="../../options.cpp" line="309"/>
         <source>Rebuild current machine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="307"/>
+        <location filename="../../options.cpp" line="310"/>
         <source>Rebuild tagged machines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="309"/>
+        <location filename="../../options.cpp" line="312"/>
         <source>Hierarchical view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1296"/>
+        <location filename="../../options.cpp" line="1299"/>
         <source>An open machine-specific emulator configuration has been detected.
 Use local machine-settings, overwrite with global settings or don&apos;t apply?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1394"/>
+        <location filename="../../options.cpp" line="1397"/>
         <source>please reload machine list for some changes to take effect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1446"/>
+        <location filename="../../options.cpp" line="1449"/>
         <source>sorting machine list by %1 in %2 order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1753"/>
+        <location filename="../../options.cpp" line="1710"/>
+        <source>libarchive error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.cpp" line="1719"/>
         <source>triggering automatic reload of machine list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2592"/>
+        <location filename="../../options.cpp" line="2558"/>
         <source>Choose Qt style sheet file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2592"/>
+        <location filename="../../options.cpp" line="2558"/>
         <source>Qt Style Sheets (*.qss)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2600"/>
+        <location filename="../../options.cpp" line="2566"/>
         <source>Choose temporary work file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2600"/>
-        <location filename="../../options.cpp" line="2696"/>
-        <location filename="../../options.cpp" line="2704"/>
-        <location filename="../../options.cpp" line="2712"/>
-        <location filename="../../options.cpp" line="2720"/>
-        <location filename="../../options.cpp" line="2755"/>
-        <location filename="../../options.cpp" line="2763"/>
-        <location filename="../../options.cpp" line="2771"/>
-        <location filename="../../options.cpp" line="2779"/>
-        <location filename="../../options.cpp" line="2787"/>
-        <location filename="../../options.cpp" line="2803"/>
-        <location filename="../../options.cpp" line="2811"/>
-        <location filename="../../options.cpp" line="2819"/>
-        <location filename="../../options.cpp" line="2830"/>
-        <location filename="../../options.cpp" line="2838"/>
-        <location filename="../../options.cpp" line="2857"/>
-        <location filename="../../options.cpp" line="2887"/>
-        <location filename="../../options.cpp" line="2906"/>
-        <location filename="../../options.cpp" line="2914"/>
-        <location filename="../../options.cpp" line="2922"/>
-        <location filename="../../options.cpp" line="2930"/>
-        <location filename="../../options.cpp" line="2938"/>
-        <location filename="../../options.cpp" line="2946"/>
-        <location filename="../../options.cpp" line="2954"/>
-        <location filename="../../options.cpp" line="2962"/>
-        <location filename="../../options.cpp" line="3264"/>
-        <location filename="../../options.cpp" line="3283"/>
-        <location filename="../../options.cpp" line="3529"/>
-        <location filename="../../options.cpp" line="3747"/>
+        <location filename="../../options.cpp" line="2566"/>
+        <location filename="../../options.cpp" line="2662"/>
+        <location filename="../../options.cpp" line="2670"/>
+        <location filename="../../options.cpp" line="2678"/>
+        <location filename="../../options.cpp" line="2686"/>
+        <location filename="../../options.cpp" line="2721"/>
+        <location filename="../../options.cpp" line="2729"/>
+        <location filename="../../options.cpp" line="2737"/>
+        <location filename="../../options.cpp" line="2745"/>
+        <location filename="../../options.cpp" line="2753"/>
+        <location filename="../../options.cpp" line="2769"/>
+        <location filename="../../options.cpp" line="2777"/>
+        <location filename="../../options.cpp" line="2785"/>
+        <location filename="../../options.cpp" line="2796"/>
+        <location filename="../../options.cpp" line="2804"/>
+        <location filename="../../options.cpp" line="2823"/>
+        <location filename="../../options.cpp" line="2853"/>
+        <location filename="../../options.cpp" line="2872"/>
+        <location filename="../../options.cpp" line="2880"/>
+        <location filename="../../options.cpp" line="2888"/>
+        <location filename="../../options.cpp" line="2896"/>
+        <location filename="../../options.cpp" line="2904"/>
+        <location filename="../../options.cpp" line="2912"/>
+        <location filename="../../options.cpp" line="2920"/>
+        <location filename="../../options.cpp" line="2928"/>
+        <location filename="../../options.cpp" line="3230"/>
+        <location filename="../../options.cpp" line="3249"/>
+        <location filename="../../options.cpp" line="3495"/>
+        <location filename="../../options.cpp" line="3713"/>
         <source>All files (*)</source>
         <translation type="unfinished">Tutti i file (*)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2608"/>
+        <location filename="../../options.cpp" line="2574"/>
         <source>Choose preview directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2619"/>
+        <location filename="../../options.cpp" line="2585"/>
         <source>Choose flyer directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2630"/>
+        <location filename="../../options.cpp" line="2596"/>
         <source>Choose icon directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2641"/>
+        <location filename="../../options.cpp" line="2607"/>
         <source>Choose cabinet directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2652"/>
+        <location filename="../../options.cpp" line="2618"/>
         <source>Choose controller directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2663"/>
+        <location filename="../../options.cpp" line="2629"/>
         <source>Choose marquee directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2674"/>
+        <location filename="../../options.cpp" line="2640"/>
         <source>Choose title directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2685"/>
+        <location filename="../../options.cpp" line="2651"/>
         <source>Choose PCB directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2696"/>
+        <location filename="../../options.cpp" line="2662"/>
         <source>Choose options template file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2704"/>
-        <location filename="../../options.cpp" line="3529"/>
+        <location filename="../../options.cpp" line="2670"/>
+        <location filename="../../options.cpp" line="3495"/>
         <source>Choose emulator executable file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2712"/>
+        <location filename="../../options.cpp" line="2678"/>
         <source>Choose emulator log file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2720"/>
+        <location filename="../../options.cpp" line="2686"/>
         <source>Choose XML cache database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2729"/>
+        <location filename="../../options.cpp" line="2695"/>
         <source>This will remove &lt;b&gt;all&lt;/b&gt; existing user data and recreate the database.
 Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2729"/>
+        <location filename="../../options.cpp" line="2695"/>
         <source>&amp;Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2729"/>
+        <location filename="../../options.cpp" line="2695"/>
         <source>&amp;No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2755"/>
+        <location filename="../../options.cpp" line="2721"/>
         <source>Choose user data database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2763"/>
+        <location filename="../../options.cpp" line="2729"/>
         <source>Choose cookie database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2771"/>
+        <location filename="../../options.cpp" line="2737"/>
         <source>Choose zip tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2779"/>
+        <location filename="../../options.cpp" line="2745"/>
         <source>Choose 7-zip tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2787"/>
+        <location filename="../../options.cpp" line="2753"/>
         <source>Choose ROM tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2795"/>
-        <location filename="../../options.cpp" line="2846"/>
-        <location filename="../../options.cpp" line="3545"/>
+        <location filename="../../options.cpp" line="2761"/>
+        <location filename="../../options.cpp" line="2812"/>
+        <location filename="../../options.cpp" line="3511"/>
         <source>Choose working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2811"/>
+        <location filename="../../options.cpp" line="2777"/>
         <source>Choose play history file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2830"/>
+        <location filename="../../options.cpp" line="2796"/>
         <source>Choose ROM state cache file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2838"/>
+        <location filename="../../options.cpp" line="2804"/>
         <source>Choose slot info cache file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2865"/>
+        <location filename="../../options.cpp" line="2831"/>
         <source>Choose software state cache directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2876"/>
+        <location filename="../../options.cpp" line="2842"/>
         <source>Choose general software folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2887"/>
+        <location filename="../../options.cpp" line="2853"/>
         <source>Choose front end log file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2895"/>
+        <location filename="../../options.cpp" line="2861"/>
         <source>Choose data directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2906"/>
+        <location filename="../../options.cpp" line="2872"/>
         <source>Choose dat-info database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2914"/>
+        <location filename="../../options.cpp" line="2880"/>
         <source>Choose MAME machine info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2946"/>
+        <location filename="../../options.cpp" line="2912"/>
         <source>Choose software info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2954"/>
+        <location filename="../../options.cpp" line="2920"/>
         <source>Choose catver.ini file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2962"/>
+        <location filename="../../options.cpp" line="2928"/>
         <source>Choose category.ini file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3089"/>
+        <location filename="../../options.cpp" line="3055"/>
         <source>Choose compressed preview file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../options.cpp" line="3055"/>
+        <location filename="../../options.cpp" line="3072"/>
         <location filename="../../options.cpp" line="3089"/>
         <location filename="../../options.cpp" line="3106"/>
         <location filename="../../options.cpp" line="3123"/>
         <location filename="../../options.cpp" line="3140"/>
         <location filename="../../options.cpp" line="3157"/>
         <location filename="../../options.cpp" line="3174"/>
-        <location filename="../../options.cpp" line="3191"/>
-        <location filename="../../options.cpp" line="3208"/>
-        <location filename="../../options.cpp" line="3236"/>
+        <location filename="../../options.cpp" line="3202"/>
         <source>ZIP archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../options.cpp" line="3055"/>
+        <location filename="../../options.cpp" line="3072"/>
         <location filename="../../options.cpp" line="3089"/>
         <location filename="../../options.cpp" line="3106"/>
         <location filename="../../options.cpp" line="3123"/>
         <location filename="../../options.cpp" line="3140"/>
         <location filename="../../options.cpp" line="3157"/>
         <location filename="../../options.cpp" line="3174"/>
-        <location filename="../../options.cpp" line="3191"/>
-        <location filename="../../options.cpp" line="3208"/>
-        <location filename="../../options.cpp" line="3236"/>
+        <location filename="../../options.cpp" line="3202"/>
         <source>7z archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../options.cpp" line="3055"/>
+        <location filename="../../options.cpp" line="3072"/>
         <location filename="../../options.cpp" line="3089"/>
         <location filename="../../options.cpp" line="3106"/>
         <location filename="../../options.cpp" line="3123"/>
         <location filename="../../options.cpp" line="3140"/>
         <location filename="../../options.cpp" line="3157"/>
         <location filename="../../options.cpp" line="3174"/>
-        <location filename="../../options.cpp" line="3191"/>
-        <location filename="../../options.cpp" line="3208"/>
-        <location filename="../../options.cpp" line="3236"/>
+        <location filename="../../options.cpp" line="3202"/>
         <source>All files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../options.cpp" line="3055"/>
+        <location filename="../../options.cpp" line="3072"/>
         <location filename="../../options.cpp" line="3089"/>
         <location filename="../../options.cpp" line="3106"/>
         <location filename="../../options.cpp" line="3123"/>
         <location filename="../../options.cpp" line="3140"/>
         <location filename="../../options.cpp" line="3157"/>
         <location filename="../../options.cpp" line="3174"/>
-        <location filename="../../options.cpp" line="3191"/>
-        <location filename="../../options.cpp" line="3208"/>
-        <location filename="../../options.cpp" line="3236"/>
+        <location filename="../../options.cpp" line="3202"/>
         <source>Supported archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3106"/>
+        <location filename="../../options.cpp" line="3072"/>
         <source>Choose compressed flyer file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3123"/>
+        <location filename="../../options.cpp" line="3089"/>
         <source>Choose compressed icon file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3140"/>
+        <location filename="../../options.cpp" line="3106"/>
         <source>Choose compressed cabinet file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3157"/>
+        <location filename="../../options.cpp" line="3123"/>
         <source>Choose compressed controller file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3174"/>
+        <location filename="../../options.cpp" line="3140"/>
         <source>Choose compressed marquee file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3191"/>
+        <location filename="../../options.cpp" line="3157"/>
         <source>Choose compressed title file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3208"/>
+        <location filename="../../options.cpp" line="3174"/>
         <source>Choose compressed PCB file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3236"/>
+        <location filename="../../options.cpp" line="3202"/>
         <source>Choose compressed software snap file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3225"/>
+        <location filename="../../options.cpp" line="3191"/>
         <source>Choose software snap directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5638"/>
-        <location filename="../../options.cpp" line="2199"/>
-        <location filename="../../options.cpp" line="3568"/>
+        <location filename="../../options.cpp" line="2165"/>
+        <location filename="../../options.cpp" line="3534"/>
         <source>Specify pre-defined foreign IDs for this emulator, launchable from the &apos;foreign emulators&apos; view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2217"/>
-        <location filename="../../options.cpp" line="3576"/>
+        <location filename="../../options.cpp" line="2183"/>
+        <location filename="../../options.cpp" line="3542"/>
         <source>Choose icon for this foreign emulator (hold down for menu)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2219"/>
-        <location filename="../../options.cpp" line="3578"/>
+        <location filename="../../options.cpp" line="2185"/>
+        <location filename="../../options.cpp" line="3544"/>
         <source>Default icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2222"/>
-        <location filename="../../options.cpp" line="3581"/>
+        <location filename="../../options.cpp" line="2188"/>
+        <location filename="../../options.cpp" line="3547"/>
         <source>No icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2364"/>
+        <location filename="../../options.cpp" line="2330"/>
         <source>N/A</source>
         <translation type="unfinished">N/A</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2409"/>
+        <location filename="../../options.cpp" line="2375"/>
         <source>&amp;Foreign emulators</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2803"/>
+        <location filename="../../options.cpp" line="2769"/>
         <source>Choose machine favorites file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2819"/>
+        <location filename="../../options.cpp" line="2785"/>
         <source>Choose machine list cache file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2857"/>
+        <location filename="../../options.cpp" line="2823"/>
         <source>Choose software list cache database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2922"/>
+        <location filename="../../options.cpp" line="2888"/>
         <source>Choose MESS machine info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2930"/>
+        <location filename="../../options.cpp" line="2896"/>
         <source>Choose MAME emulator info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2938"/>
+        <location filename="../../options.cpp" line="2904"/>
         <source>Choose MESS emulator info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3253"/>
+        <location filename="../../options.cpp" line="3219"/>
         <source>Choose software notes folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3264"/>
+        <location filename="../../options.cpp" line="3230"/>
         <source>Choose software notes template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3264"/>
-        <location filename="../../options.cpp" line="3283"/>
+        <location filename="../../options.cpp" line="3230"/>
+        <location filename="../../options.cpp" line="3249"/>
         <source>HTML files (*.html *.htm)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3272"/>
+        <location filename="../../options.cpp" line="3238"/>
         <source>Choose system notes folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3283"/>
+        <location filename="../../options.cpp" line="3249"/>
         <source>Choose system notes template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3291"/>
+        <location filename="../../options.cpp" line="3257"/>
         <source>Choose video snap folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3507"/>
+        <location filename="../../options.cpp" line="3473"/>
         <source>shortcut map is clean</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3509"/>
+        <location filename="../../options.cpp" line="3475"/>
         <source>WARNING: shortcut map contains duplicates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3747"/>
+        <location filename="../../options.cpp" line="3713"/>
         <source>Choose image file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3747"/>
+        <location filename="../../options.cpp" line="3713"/>
         <source>Supported image files (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3839"/>
+        <location filename="../../options.cpp" line="3805"/>
         <source>ERROR: couldn&apos;t initialize SDL joystick support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4126"/>
+        <location filename="../../options.cpp" line="4092"/>
         <source>joystick map is clean</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4128"/>
+        <location filename="../../options.cpp" line="4094"/>
         <source>WARNING: joystick map contains duplicates</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16398,106 +16382,106 @@ Are you sure you want to do this?</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../machinelist.cpp" line="1955"/>
-        <location filename="../../options.cpp" line="1410"/>
+        <location filename="../../machinelist.cpp" line="1954"/>
+        <location filename="../../options.cpp" line="1413"/>
         <source>ROM state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1958"/>
-        <location filename="../../options.cpp" line="1413"/>
+        <location filename="../../machinelist.cpp" line="1957"/>
+        <location filename="../../options.cpp" line="1416"/>
         <source>tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1961"/>
-        <location filename="../../options.cpp" line="1416"/>
+        <location filename="../../machinelist.cpp" line="1960"/>
+        <location filename="../../options.cpp" line="1419"/>
         <source>year</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1964"/>
-        <location filename="../../options.cpp" line="1419"/>
+        <location filename="../../machinelist.cpp" line="1963"/>
+        <location filename="../../options.cpp" line="1422"/>
         <source>manufacturer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1952"/>
-        <location filename="../../options.cpp" line="1407"/>
+        <location filename="../../machinelist.cpp" line="1951"/>
+        <location filename="../../options.cpp" line="1410"/>
         <source>machine description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1967"/>
-        <location filename="../../options.cpp" line="1422"/>
+        <location filename="../../machinelist.cpp" line="1966"/>
+        <location filename="../../options.cpp" line="1425"/>
         <source>machine name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1970"/>
-        <location filename="../../options.cpp" line="1425"/>
+        <location filename="../../machinelist.cpp" line="1969"/>
+        <location filename="../../options.cpp" line="1428"/>
         <source>ROM types</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1973"/>
-        <location filename="../../options.cpp" line="1428"/>
+        <location filename="../../machinelist.cpp" line="1972"/>
+        <location filename="../../options.cpp" line="1431"/>
         <source>players</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1976"/>
-        <location filename="../../options.cpp" line="1431"/>
+        <location filename="../../machinelist.cpp" line="1975"/>
+        <location filename="../../options.cpp" line="1434"/>
         <source>driver status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1979"/>
-        <location filename="../../options.cpp" line="1434"/>
+        <location filename="../../machinelist.cpp" line="1978"/>
+        <location filename="../../options.cpp" line="1437"/>
         <source>source file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1982"/>
-        <location filename="../../options.cpp" line="1437"/>
+        <location filename="../../machinelist.cpp" line="1981"/>
+        <location filename="../../options.cpp" line="1440"/>
         <source>rank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1985"/>
-        <location filename="../../options.cpp" line="1440"/>
+        <location filename="../../machinelist.cpp" line="1984"/>
+        <location filename="../../options.cpp" line="1443"/>
         <source>category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1988"/>
-        <location filename="../../options.cpp" line="1443"/>
+        <location filename="../../machinelist.cpp" line="1987"/>
+        <location filename="../../options.cpp" line="1446"/>
         <source>version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2703"/>
-        <location filename="../../machinelist.cpp" line="2880"/>
+        <location filename="../../machinelist.cpp" line="2702"/>
+        <location filename="../../machinelist.cpp" line="2879"/>
         <source>correct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2910"/>
+        <location filename="../../machinelist.cpp" line="2909"/>
         <source>incorrect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2940"/>
+        <location filename="../../machinelist.cpp" line="2939"/>
         <source>mostly correct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2970"/>
+        <location filename="../../machinelist.cpp" line="2969"/>
         <source>not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3000"/>
+        <location filename="../../machinelist.cpp" line="2999"/>
         <location filename="../../romalyzer.cpp" line="4584"/>
         <location filename="../../romalyzer.cpp" line="4629"/>
         <location filename="../../romalyzer.cpp" line="4641"/>
@@ -16505,7 +16489,7 @@ Are you sure you want to do this?</source>
         <translation type="unfinished">sconosciuto</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1828"/>
+        <location filename="../../options.cpp" line="1794"/>
         <location filename="../../welcome.cpp" line="37"/>
         <source>Default</source>
         <translation type="unfinished">Predefinito</translation>
@@ -16628,7 +16612,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="1144"/>
         <location filename="../../softwarelist.cpp" line="3635"/>
         <location filename="../../softwarelist.cpp" line="3698"/>
-        <location filename="../../softwarelist.cpp" line="5139"/>
+        <location filename="../../softwarelist.cpp" line="5186"/>
         <source>Auto mount</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16638,8 +16622,8 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="3672"/>
         <location filename="../../softwarelist.cpp" line="3678"/>
         <location filename="../../softwarelist.cpp" line="3702"/>
-        <location filename="../../softwarelist.cpp" line="5144"/>
-        <location filename="../../softwarelist.cpp" line="5148"/>
+        <location filename="../../softwarelist.cpp" line="5191"/>
+        <location filename="../../softwarelist.cpp" line="5195"/>
         <source>Not mounted</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16647,14 +16631,14 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="1151"/>
         <location filename="../../softwarelist.cpp" line="3653"/>
         <location filename="../../softwarelist.cpp" line="3706"/>
-        <location filename="../../softwarelist.cpp" line="5150"/>
+        <location filename="../../softwarelist.cpp" line="5197"/>
         <source>Mounted on:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1143"/>
         <location filename="../../softwarelist.cpp" line="3659"/>
-        <location filename="../../softwarelist.cpp" line="5138"/>
+        <location filename="../../softwarelist.cpp" line="5185"/>
         <source>Don&apos;t mount</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16667,30 +16651,30 @@ Are you sure you want to do this?</source>
         <translation type="unfinished">Aspettando i dati...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5102"/>
-        <location filename="../../softwarelist.cpp" line="5104"/>
+        <location filename="../../softwarelist.cpp" line="5149"/>
+        <location filename="../../softwarelist.cpp" line="5151"/>
         <source>Searching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5116"/>
+        <location filename="../../softwarelist.cpp" line="5163"/>
         <source>Updating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5128"/>
+        <location filename="../../softwarelist.cpp" line="5175"/>
         <source>Part:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1153"/>
-        <location filename="../../softwarelist.cpp" line="5155"/>
+        <location filename="../../softwarelist.cpp" line="5202"/>
         <source>No mount device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1154"/>
-        <location filename="../../softwarelist.cpp" line="5156"/>
+        <location filename="../../softwarelist.cpp" line="5203"/>
         <source>Unmanaged</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16715,44 +16699,44 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5176"/>
+        <location filename="../../softwarelist.cpp" line="5223"/>
         <source>Requirement:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5182"/>
+        <location filename="../../softwarelist.cpp" line="5229"/>
         <source>Compatibility:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5192"/>
+        <location filename="../../softwarelist.cpp" line="5239"/>
         <source>Data area:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5195"/>
-        <location filename="../../softwarelist.cpp" line="5207"/>
-        <location filename="../../softwarelist.cpp" line="5221"/>
+        <location filename="../../softwarelist.cpp" line="5242"/>
+        <location filename="../../softwarelist.cpp" line="5254"/>
+        <location filename="../../softwarelist.cpp" line="5268"/>
         <source>Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5204"/>
+        <location filename="../../softwarelist.cpp" line="5251"/>
         <source>Disk area:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5224"/>
+        <location filename="../../softwarelist.cpp" line="5271"/>
         <source>CRC:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5239"/>
+        <location filename="../../softwarelist.cpp" line="5286"/>
         <source>SHA1:</source>
         <translation type="unfinished">SHA1:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5248"/>
+        <location filename="../../softwarelist.cpp" line="5295"/>
         <source>Info:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -20197,93 +20181,93 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="149"/>
+        <location filename="../../sevenzipfile.cpp" line="133"/>
         <source>no error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="151"/>
+        <location filename="../../sevenzipfile.cpp" line="135"/>
         <source>incorrect data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="153"/>
+        <location filename="../../sevenzipfile.cpp" line="137"/>
         <source>out of memory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="155"/>
+        <location filename="../../sevenzipfile.cpp" line="139"/>
         <source>incorrect CRC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="157"/>
+        <location filename="../../sevenzipfile.cpp" line="141"/>
         <source>unsupported compression</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="159"/>
+        <location filename="../../sevenzipfile.cpp" line="143"/>
         <source>incorrect properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="161"/>
+        <location filename="../../sevenzipfile.cpp" line="145"/>
         <source>premature end-of-file (input)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="163"/>
+        <location filename="../../sevenzipfile.cpp" line="147"/>
         <source>premature end-of-file (output)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="165"/>
+        <location filename="../../sevenzipfile.cpp" line="149"/>
         <source>failed reading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="167"/>
+        <location filename="../../sevenzipfile.cpp" line="151"/>
         <source>failed writing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="169"/>
+        <location filename="../../sevenzipfile.cpp" line="153"/>
         <source>failed signalling progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="171"/>
+        <location filename="../../sevenzipfile.cpp" line="155"/>
         <source>fatal error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="173"/>
+        <location filename="../../sevenzipfile.cpp" line="157"/>
         <source>thread error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="175"/>
+        <location filename="../../sevenzipfile.cpp" line="159"/>
         <source>invalid archive structure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="177"/>
+        <location filename="../../sevenzipfile.cpp" line="161"/>
         <source>invalid header structure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="179"/>
+        <location filename="../../sevenzipfile.cpp" line="163"/>
         <source>unknown error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="194"/>
+        <location filename="../../sevenzipfile.cpp" line="178"/>
         <source>no file name specified</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="200"/>
-        <location filename="../../sevenzipfile.cpp" line="220"/>
+        <location filename="../../sevenzipfile.cpp" line="184"/>
+        <location filename="../../sevenzipfile.cpp" line="204"/>
         <source>can&apos;t open archive &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21685,45 +21669,51 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4368"/>
-        <location filename="../../softwarelist.cpp" line="4683"/>
+        <location filename="../../softwarelist.cpp" line="4374"/>
+        <location filename="../../softwarelist.cpp" line="4725"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4374"/>
-        <location filename="../../softwarelist.cpp" line="4730"/>
+        <location filename="../../softwarelist.cpp" line="4380"/>
+        <location filename="../../softwarelist.cpp" line="4393"/>
+        <location filename="../../softwarelist.cpp" line="4772"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4374"/>
-        <location filename="../../softwarelist.cpp" line="4730"/>
+        <location filename="../../softwarelist.cpp" line="4380"/>
+        <location filename="../../softwarelist.cpp" line="4772"/>
         <source>7z error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4423"/>
+        <location filename="../../softwarelist.cpp" line="4393"/>
+        <source>libarchive error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="4465"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4438"/>
+        <location filename="../../softwarelist.cpp" line="4480"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4444"/>
+        <location filename="../../softwarelist.cpp" line="4486"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4444"/>
+        <location filename="../../softwarelist.cpp" line="4486"/>
         <source>software snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4765"/>
+        <location filename="../../softwarelist.cpp" line="4807"/>
         <source>Decompressing archive, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
