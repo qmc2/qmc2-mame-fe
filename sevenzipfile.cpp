@@ -280,8 +280,6 @@ QDateTime SevenZipFile::convertFileTime(const CNtfsFileTime *ft)
 	return dateTime;
 }
 
-#define QMC2_SEVENZIP_DB_READ_RESPONSE    50
-
 void SevenZipFile::createItemList()
 {
 	itemList().clear();
@@ -311,8 +309,6 @@ void SevenZipFile::createItemList()
 			m_crcToIndexCache[crc] = i;
 		}
 		itemList() << SevenZipMetaData(fileItemName, fileItem->Size, dateTime, crc);
-		if ( i % QMC2_SEVENZIP_DB_READ_RESPONSE == 0 )
-			qApp->processEvents();
 	}
 }
 
