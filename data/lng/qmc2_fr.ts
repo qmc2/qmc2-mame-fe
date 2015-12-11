@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>About</name>
     <message>
@@ -113,7 +113,7 @@
         <source>Project details</source>
         <translation>Informations sur le projet</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -336,7 +336,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="165"/>
         <source>Phonon version:</source>
-        <translation>Version de Phonon : </translation>
+        <translation>Version de Phonon :</translation>
     </message>
 </context>
 <context>
@@ -603,7 +603,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="14"/>
         <source>Arcade mode setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Paramétrage du mode arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="347"/>
@@ -1260,85 +1260,85 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../brusheditor.ui" line="14"/>
         <source>Brush editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Éditeur de motif</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="48"/>
         <source>Cancel brush editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuler l&apos;édition de motif</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="51"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Annuler</translation>
+        <translation>&amp;Annuler</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="77"/>
         <source>Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Image</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="89"/>
         <source>Image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier d&apos;image</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="92"/>
         <source>Specify image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Indiquer un fichier d&apos;image</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="105"/>
         <source>Browse image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir les fichiers d&apos;images</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="122"/>
         <source>Image preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Aperçu de l&apos;image</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="140"/>
         <location filename="../../brusheditor.ui" line="316"/>
         <location filename="../../brusheditor.ui" line="441"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Aperçu</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="162"/>
         <source>Pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>Motif</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="174"/>
         <source>Pattern type</source>
-        <translation type="unfinished"></translation>
+        <translation>Type de motif</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="298"/>
         <source>Pattern preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Aperçu du motif</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="262"/>
         <source>Pattern color</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur du motif</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="281"/>
         <location filename="../../brusheditor.cpp" line="307"/>
         <source>Choose pattern color</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir la couleur du motif</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="338"/>
         <source>Gradient</source>
-        <translation type="unfinished"></translation>
+        <translation>Inclinaison</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="477"/>
         <source>Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Actions</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="501"/>
@@ -1347,12 +1347,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../brusheditor.ui" line="695"/>
         <location filename="../../brusheditor.ui" line="956"/>
         <source>Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="530"/>
         <source>Final end point</source>
-        <translation type="unfinished"></translation>
+        <translation>Point final</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="562"/>
@@ -1361,107 +1361,107 @@ p, li { white-space: pre-wrap; }
         <location filename="../../brusheditor.ui" line="753"/>
         <location filename="../../brusheditor.ui" line="911"/>
         <source>X</source>
-        <translation type="unfinished">X</translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="627"/>
         <source>Start point</source>
-        <translation type="unfinished"></translation>
+        <translation>Point de départ</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="663"/>
         <source>Focal point (F)</source>
-        <translation type="unfinished"></translation>
+        <translation>Point de focale (F)</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="798"/>
         <source>Center point (C)</source>
-        <translation type="unfinished"></translation>
+        <translation>Point central (C)</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="814"/>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation>C</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="827"/>
         <source>F</source>
-        <translation type="unfinished"></translation>
+        <translation>F</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="856"/>
         <source>Radius (C, F)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rayon (C, F)</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="879"/>
         <source>Center point</source>
-        <translation type="unfinished"></translation>
+        <translation>Point central</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="895"/>
         <source>Angle</source>
-        <translation type="unfinished"></translation>
+        <translation>Angle</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
-        <translation type="unfinished"></translation>
+        <translation>°</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="350"/>
         <source>Gradient type</source>
-        <translation type="unfinished"></translation>
+        <translation>Type d&apos;inclinaison</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="378"/>
         <source>Spread type</source>
-        <translation type="unfinished"></translation>
+        <translation>Type d&apos;écart</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="406"/>
         <source>Add color-stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter une terminaison colorimétrique</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="423"/>
         <source>Gradient preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Aperçu de l&apos;inclinaison</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="467"/>
         <source>Stop</source>
-        <translation type="unfinished">Stop</translation>
+        <translation>Arrêter</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="472"/>
         <source>Color</source>
-        <translation type="unfinished">Couleur</translation>
+        <translation>Couleur</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="993"/>
         <source>Accept brush</source>
-        <translation type="unfinished"></translation>
+        <translation>Valider le motif</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="996"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="../../brusheditor.cpp" line="295"/>
         <source>Choose image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir un fichier d&apos;image</translation>
     </message>
     <message>
         <location filename="../../brusheditor.cpp" line="295"/>
         <source>Supported image files (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers d&apos;images reconnus (%1)</translation>
     </message>
     <message>
         <location filename="../../brusheditor.cpp" line="295"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tous les fichiers (*)</translation>
+        <translation>Tous les fichiers (*)</translation>
     </message>
 </context>
 <context>
@@ -1564,67 +1564,67 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../checksumscannerlog.ui" line="14"/>
         <source>Check-sum scanner log</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapport de l&apos;analyseur de sommes de contrôle</translation>
     </message>
     <message>
         <location filename="../../checksumscannerlog.ui" line="38"/>
         <source>Enable log output</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer le rapport</translation>
     </message>
     <message>
         <location filename="../../checksumscannerlog.ui" line="41"/>
         <source>Enable log</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer le rapport</translation>
     </message>
     <message>
         <location filename="../../checksumscannerlog.ui" line="58"/>
         <source>Log size</source>
-        <translation type="unfinished">Taille du log</translation>
+        <translation>Taille du rapport</translation>
     </message>
     <message>
         <location filename="../../checksumscannerlog.ui" line="65"/>
         <source>Maximum number of lines in log (0 = no limit)</source>
-        <translation type="unfinished">Nombre max de ligne dans le fichier log (0 = pas de limite)</translation>
+        <translation>Nombre maximum de lignes dans le rapport (0 = illimité)</translation>
     </message>
     <message>
         <location filename="../../checksumscannerlog.ui" line="68"/>
         <source>unlimited</source>
-        <translation type="unfinished">illimité</translation>
+        <translation>illimitée</translation>
     </message>
     <message>
         <location filename="../../checksumscannerlog.ui" line="71"/>
         <source> lines</source>
-        <translation type="unfinished"> lignes</translation>
+        <translation> lignes</translation>
     </message>
     <message>
         <location filename="../../checksumscannerlog.ui" line="96"/>
         <source>Scanner progress indicator</source>
-        <translation type="unfinished"></translation>
+        <translation>Indicateur de progresseur de l&apos;analyseur</translation>
     </message>
     <message>
         <location filename="../../checksumscannerlog.ui" line="102"/>
         <source>Idle</source>
-        <translation type="unfinished">Idle</translation>
+        <translation>Au repos</translation>
     </message>
     <message>
         <location filename="../../checksumscannerlog.ui" line="115"/>
         <source>Clear log</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyer le rapport</translation>
     </message>
     <message>
         <location filename="../../checksumscannerlog.ui" line="131"/>
         <source>Close this window</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer cette fenêtre</translation>
     </message>
     <message>
         <location filename="../../checksumscannerlog.ui" line="118"/>
         <source>Clear</source>
-        <translation type="unfinished">Nettoyer</translation>
+        <translation>Nettoyer</translation>
     </message>
     <message>
         <location filename="../../checksumscannerlog.ui" line="134"/>
         <source>Close</source>
-        <translation type="unfinished">Fermer</translation>
+        <translation>Fermer</translation>
     </message>
 </context>
 <context>
@@ -1632,66 +1632,66 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../romalyzer.cpp" line="4698"/>
         <source>exiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermeture</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4700"/>
         <source>stopping</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrêt</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4704"/>
         <source>scanning</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyse</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4705"/>
         <source>idle</source>
-        <translation type="unfinished"></translation>
+        <translation>Au repos</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="4744"/>
         <source>%n obsolete path(s) removed from database</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n chemin(s) obsolète(s) retirés de la base de données</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="4794"/>
         <source>%n outdated path(s) removed from database</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n chemin(s) périmé(s) retirés de la base de données</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4799"/>
         <source>freeing unused space previously occupied by database</source>
-        <translation type="unfinished"></translation>
+        <translation>Récupération de l&apos;espace libre précédemment occupé par la base de données</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4874"/>
         <source>scanner thread started</source>
-        <translation type="unfinished"></translation>
+        <translation>processus d&apos;analyse démarré</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4876"/>
         <source>waiting for work</source>
-        <translation type="unfinished"></translation>
+        <translation>en attente</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="4897"/>
         <source>found %n file(s) for path &apos;%1&apos;</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n fichier(s) trouvé(s) pour le chemin &apos;%1&apos;</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4913"/>
         <source>scan started for file &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>analyse démarrée pour le fichier &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4960"/>
@@ -1701,81 +1701,81 @@ p, li { white-space: pre-wrap; }
         <location filename="../../romalyzer.cpp" line="4989"/>
         <location filename="../../romalyzer.cpp" line="4995"/>
         <source>database update</source>
-        <translation type="unfinished"></translation>
+        <translation>mise à jour de la base de données</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4960"/>
         <source>adding member &apos;%1&apos; from archive &apos;%2&apos; with SHA-1 &apos;%3&apos; and CRC &apos;%4&apos; to database</source>
-        <translation type="unfinished"></translation>
+        <translation>ajout dans la base de données du membre &apos;%1&apos; depuis l&apos;archive &apos;%2&apos; avec le SHA-1 &apos;%3&apos; et le CRC &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4966"/>
         <location filename="../../romalyzer.cpp" line="4985"/>
         <location filename="../../romalyzer.cpp" line="4995"/>
         <source>an object with SHA-1 &apos;%1&apos; and CRC &apos;%2&apos; already exists in the database</source>
-        <translation type="unfinished"></translation>
+        <translation>un objet avec le SHA-1 &apos;%1&apos; et le CRC &apos;%2&apos; existe déjà dans la base de données</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4966"/>
         <source>member &apos;%1&apos; from archive &apos;%2&apos; ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>membre &apos;%1&apos; de l&apos;archive &apos;%2&apos; ignoré</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4979"/>
         <source>adding CHD &apos;%1&apos; with SHA-1 &apos;%2&apos; to database</source>
-        <translation type="unfinished"></translation>
+        <translation>ajout du CHD &apos;%1&apos; avec le SHA-1 &apos;%2&apos; dans la base de données</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4985"/>
         <source>CHD &apos;%1&apos; ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD &apos;%1&apos; ignoré</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4989"/>
         <source>adding file &apos;%1&apos; with SHA-1 &apos;%2&apos; and CRC &apos;%3&apos; to database</source>
-        <translation type="unfinished"></translation>
+        <translation>ajout du fichier &apos;%1&apos; avec le SHA-1 &apos;%2&apos; et le CRC &apos;%3&apos; dans la base de données</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4995"/>
         <source>file &apos;%1&apos; ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>fichier &apos;%1&apos; ignoré</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5016"/>
         <source>scanner paused</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyseur en pause</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5017"/>
         <source>Paused</source>
-        <translation type="unfinished"></translation>
+        <translation>En pause</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5026"/>
         <source>scanner resumed</source>
-        <translation type="unfinished"></translation>
+        <translation>Reprise de l&apos;analyse</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5032"/>
         <source>scan finished for file &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyse terminée pour le fichier &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5046"/>
         <source>Idle</source>
-        <translation type="unfinished">Idle</translation>
+        <translation>Au repos</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5050"/>
         <source>scan finished - total scanning time = %1, objects in database = %2, database size = %3</source>
-        <translation type="unfinished"></translation>
+        <translation>analyse terminée - temps total d&apos;analyse = %1, objets dans la base de données = %2, taille de la base de données = %3</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5157"/>
         <location filename="../../romalyzer.cpp" line="5159"/>
         <location filename="../../romalyzer.cpp" line="5165"/>
         <source>ZIP scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyse ZIP</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5157"/>
@@ -1783,24 +1783,24 @@ p, li { white-space: pre-wrap; }
         <location filename="../../romalyzer.cpp" line="5196"/>
         <location filename="../../romalyzer.cpp" line="5204"/>
         <source>member &apos;%1&apos; from archive &apos;%2&apos; has SHA-1 &apos;%3&apos; and CRC &apos;%4&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>le membre &apos;%1&apos; de l&apos;archive  &apos;%2&apos; a le SHA-1 &apos;%3&apos; et le CRC &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5159"/>
         <source>WARNING: can&apos;t open member &apos;%1&apos; from archive &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible d&apos;ouvrir le membre &apos;%1&apos; de l&apos;archive &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5196"/>
         <location filename="../../romalyzer.cpp" line="5198"/>
         <location filename="../../romalyzer.cpp" line="5204"/>
         <source>7Z scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyse 7Z</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5198"/>
         <source>WARNING: can&apos;t read member &apos;%1&apos; from archive &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible de lire le membre &apos;%1&apos; de l&apos;archive &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5223"/>
@@ -1808,53 +1808,53 @@ p, li { white-space: pre-wrap; }
         <location filename="../../romalyzer.cpp" line="5252"/>
         <location filename="../../romalyzer.cpp" line="5260"/>
         <source>CHD scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyse CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5244"/>
         <source>WARNING: version &apos;%1&apos; of CHD &apos;%2&apos; unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : version &apos;%1&apos; du CHD &apos;%2&apos; inconnue</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5223"/>
         <location filename="../../romalyzer.cpp" line="5252"/>
         <source>WARNING: can&apos;t read CHD &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible de lire le CHD &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5260"/>
         <source>CHD &apos;%1&apos; has SHA-1 &apos;%2&apos; (CHD v%3)</source>
-        <translation type="unfinished"></translation>
+        <translation>Le CHD &apos;%1&apos; a le SHA-1 &apos;%2&apos; (CHD version %3)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5292"/>
         <source>file scan</source>
-        <translation type="unfinished"></translation>
+        <translation>analyse des fichiers</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5292"/>
         <source>file &apos;%1&apos; has SHA-1 &apos;%2&apos; and CRC &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>le fichier &apos;%1&apos; a le SHA-1 &apos;%2&apos; et le CRC &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5037"/>
         <source>scanner interrupted</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyseur interrompu</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4696"/>
         <source>preparing</source>
-        <translation type="unfinished"></translation>
+        <translation>préparation en cours</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4702"/>
         <source>paused</source>
-        <translation type="unfinished">en pause</translation>
+        <translation>en pause</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4711"/>
         <source>preparing incremental scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Préparation de l&apos;analyse incrémentale</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4715"/>
@@ -1862,20 +1862,20 @@ p, li { white-space: pre-wrap; }
         <location filename="../../romalyzer.cpp" line="4769"/>
         <location filename="../../romalyzer.cpp" line="4796"/>
         <source>Preparing</source>
-        <translation type="unfinished"></translation>
+        <translation>Préparation en cours</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4715"/>
         <location filename="../../romalyzer.cpp" line="4747"/>
         <location filename="../../romalyzer.cpp" line="4769"/>
         <source>Step %1 of %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Étape %1 sur %2</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="4763"/>
         <source>%n unchanged file(s) removed from scan</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n fichier(s) inchangé(s) ignoré(s) durant l&apos;analyse</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -1884,19 +1884,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../../romalyzer.cpp" line="4906"/>
         <location filename="../../romalyzer.cpp" line="5027"/>
         <source>Scanning</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyse en cours</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4893"/>
         <source>searching available files for path &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>recherche des fichiers présents dans le chemin &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4909"/>
         <location filename="../../romalyzer.cpp" line="4972"/>
         <location filename="../../romalyzer.cpp" line="5006"/>
         <source>starting database transaction</source>
-        <translation type="unfinished"></translation>
+        <translation>démarrage de la transaction avec la base de données</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4924"/>
@@ -1904,24 +1904,24 @@ p, li { white-space: pre-wrap; }
         <location filename="../../romalyzer.cpp" line="4936"/>
         <location filename="../../romalyzer.cpp" line="4942"/>
         <source>WARNING: scan failed for file &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;analyse du fichier &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4948"/>
         <source>WARNING: can&apos;t access file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : impossible d&apos;accéder au fichier &apos;%1&apos;, veuillez vérifier les autorisations</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4968"/>
         <location filename="../../romalyzer.cpp" line="5002"/>
         <location filename="../../romalyzer.cpp" line="5038"/>
         <source>committing database transaction</source>
-        <translation type="unfinished"></translation>
+        <translation>Transaction avec la base de données en cours</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5055"/>
         <source>scanner thread ended</source>
-        <translation type="unfinished"></translation>
+        <translation>processus d&apos;analyse terminé</translation>
     </message>
 </context>
 <context>
@@ -2684,23 +2684,23 @@ p, li { white-space: pre-wrap; }
         <location filename="../../colorwidget.ui" line="45"/>
         <location filename="../../colorwidget.cpp" line="51"/>
         <source>Choose color</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir la couleur</translation>
     </message>
     <message>
         <location filename="../../colorwidget.ui" line="62"/>
         <location filename="../../colorwidget.cpp" line="66"/>
         <source>Edit brush</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifier le motif</translation>
     </message>
     <message>
         <location filename="../../colorwidget.cpp" line="51"/>
         <source>Choose color for %1 / %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir la couleur pour %1 / %2</translation>
     </message>
     <message>
         <location filename="../../colorwidget.cpp" line="66"/>
         <source>Edit brush for %1 / %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifier le motif pour %1 / %2</translation>
     </message>
 </context>
 <context>
@@ -12491,7 +12491,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../movierecordersetup.ui" line="14"/>
         <source>Movie recorder setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Paramétrage de l&apos;enregistreur vidéo</translation>
     </message>
 </context>
 <context>
@@ -22197,7 +22197,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../welcome.cpp" line="104"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Défaut</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="110"/>
@@ -22207,13 +22207,13 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../welcome.cpp" line="110"/>
         <source>The specified file isn&apos;t executable!</source>
-        <translation type="unfinished">Le fichier spécifié n&apos;est pas un exécutable !</translation>
+        <translation>Le fichier spécifié n&apos;est pas un exécutable !</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="119"/>
         <location filename="../../welcome.cpp" line="122"/>
         <source>Choose emulator executable file</source>
-        <translation type="unfinished">Choisir l&apos;exécutable de l&apos;émulateur</translation>
+        <translation>Choisir l&apos;exécutable de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="119"/>
@@ -22224,17 +22224,17 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../welcome.cpp" line="138"/>
         <source>Choose working directory</source>
-        <translation type="unfinished">Choisir le répertoire de travail</translation>
+        <translation>Choisir le dossier de travail</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="146"/>
         <source>Choose ROM path</source>
-        <translation type="unfinished">Choisir le répertoire de ROMS</translation>
+        <translation>Choisir le chemin d&apos;accès aux ROMS</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="154"/>
         <source>Choose sample path</source>
-        <translation type="unfinished">Choisir le répertoire de samples</translation>
+        <translation>Choisir le chemin d&apos;accès aux échantillons sonores</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="162"/>
@@ -22247,10 +22247,10 @@ Are you sure you want to do this?</source>
 However, this can also be the leftover of a previous crash.
 
 Exit now, accept once or ignore completely?</source>
-        <translation type="unfinished">Une autre instance de %1 est déjà en fonctionnement.
-Cependant, cela peut également être un résidu d&apos;un crash précédent.
+        <translation>Il semble qu&apos;une autre instance de %1 soit déjà active.
+Cependant, cela peut également être le résidu d&apos;un plantage précédent.
 
-Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
+Quitter maintenant, accepter cette fois-ci ou ignorer complètement ?</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="15"/>
@@ -22270,7 +22270,7 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     <message>
         <location filename="../../welcome.ui" line="251"/>
         <source>GUI style</source>
-        <translation type="unfinished">style du GUI</translation>
+        <translation>Style de l&apos;interface graphique</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="326"/>
@@ -22319,12 +22319,12 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
     <message>
         <location filename="../../welcome.ui" line="47"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
-        <translation type="unfinished">Répertoire de travail utilisé quand l&apos;émulateur est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
+        <translation>Dossier de travail utilisé quand l&apos;émulateur est lancé (si vide, le dossier de travail actuel de QMC2 est alors utilisé)</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="175"/>
         <source>Working directory</source>
-        <translation type="unfinished">Dossier de travail</translation>
+        <translation>Dossier de travail</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="235"/>
@@ -22359,12 +22359,12 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
     <message>
         <location filename="../../welcome.ui" line="157"/>
         <source>Path to ROM images</source>
-        <translation type="unfinished">Chemin vers les images ROM</translation>
+        <translation>Chemin d&apos;accès aux images ROM</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="222"/>
         <source>Path to samples</source>
-        <translation type="unfinished">Chemin vers les samples</translation>
+        <translation>Chemin d&apos;accès aux échantillons sonores</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="88"/>
@@ -22374,12 +22374,12 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
     <message>
         <location filename="../../welcome.ui" line="65"/>
         <source>ROM path</source>
-        <translation type="unfinished">Chemin d&apos;accès aux ROM</translation>
+        <translation>Chemin d&apos;accès aux ROM</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="206"/>
         <source>Sample path</source>
-        <translation type="unfinished">Chemin d&apos;accès aux échantillons</translation>
+        <translation>Chemin d&apos;accès aux échantillons sonores</translation>
     </message>
 </context>
 <context>
