@@ -18,10 +18,6 @@ extern Settings *qmc2Config;
 DownloadItem::DownloadItem(QNetworkReply *reply, QString file, QTreeWidget *parent)
 	: QTreeWidgetItem(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DownloadItem::DownloadItem(QNetworkReply *reply = %1, QString file = %2, QTreeWidget *parent = %3)").arg((qulonglong)reply).arg(file).arg((qulonglong)parent));
-#endif
-
 	progressWidget = NULL;
 	itemDownloader = NULL;
 	treeWidget = parent;
@@ -45,10 +41,6 @@ DownloadItem::DownloadItem(QNetworkReply *reply, QString file, QTreeWidget *pare
 
 DownloadItem::~DownloadItem()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DownloadItem::~DownloadItem()");
-#endif
-
 	if ( progressWidget )
 		delete progressWidget;
 
@@ -58,11 +50,6 @@ DownloadItem::~DownloadItem()
 
 ItemDownloader::ItemDownloader(QNetworkReply *reply, QString file, QProgressBar *progress, DownloadItem *parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemDownloader::ItemDownloader(QNetworkReply *reply = %1, QString file = %2, QProgressBar *progress = %3, DownloadItem *parent = %4)")
-			.arg((qulonglong)reply).arg(file).arg((qulonglong)progress).arg((qulonglong)parent));
-#endif
-
 	networkReply = reply;
 	localPath = file;
 	progressWidget = progress;
@@ -76,10 +63,6 @@ ItemDownloader::ItemDownloader(QNetworkReply *reply, QString file, QProgressBar 
 
 void ItemDownloader::init()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemDownloader::init(): networkReply = %1").arg((qulonglong)networkReply));
-#endif
-
 	if ( !networkReply )
 		return;
 
@@ -136,10 +119,6 @@ void ItemDownloader::init()
 
 void ItemDownloader::checkError()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemDownloader::checkError(): networkReply = %1").arg((qulonglong)networkReply));
-#endif
-
 	if ( networkReply->error() != QNetworkReply::NoError ) {
 		error(networkReply->error());
 		finished();
@@ -157,10 +136,6 @@ void ItemDownloader::checkError()
 
 void ItemDownloader::readyRead()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemDownloader::readyRead(): networkReply = %1").arg((qulonglong)networkReply));
-#endif
-
 	QByteArray buffer = networkReply->readAll();
 	if ( buffer.length() > 0 ) {
 		dataReceived += buffer.length();
@@ -180,10 +155,6 @@ void ItemDownloader::readyRead()
 
 void ItemDownloader::error(QNetworkReply::NetworkError code)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemDownloader::error(QNetworkReply::NetworkError code = %1): networkReply = %2").arg(code).arg((qulonglong)networkReply));
-#endif
-
 	if ( code == QNetworkReply::OperationCanceledError )
 		downloadItem->setIcon(QMC2_DOWNLOAD_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/stop_browser.png")));
 	else {
@@ -214,10 +185,6 @@ void ItemDownloader::error(QNetworkReply::NetworkError code)
 
 void ItemDownloader::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemDownloader::downloadProgress(qint64 bytesReceived = %1, qint64 bytesTotal = %2): networkReply = %3").arg(bytesReceived).arg(bytesTotal).arg((qulonglong)networkReply));
-#endif
-
 	if ( bytesTotal <= 0 )
 		return;
 
@@ -242,18 +209,11 @@ void ItemDownloader::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 
 void ItemDownloader::metaDataChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemDownloader::metaDataChanged(): networkReply = %1").arg((qulonglong)networkReply));
-#endif
-
+    // NOP
 }
 
 void ItemDownloader::finished()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemDownloader::finished(): networkReply = %1").arg((qulonglong)networkReply));
-#endif
-
 	errorCheckTimer.stop();
 
 	if ( downloadItem->whatsThis(0) != "aborted" && downloadItem->whatsThis(0) != "finished" ) {
@@ -289,20 +249,12 @@ void ItemDownloader::finished()
 
 void ItemDownloader::managerFinished(QNetworkReply *reply)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemDownloader::managerFinished(QNetworkReply *reply = %1): networkReply = %2").arg((qulonglong)reply).arg((qulonglong)networkReply));
-#endif
-
 	if ( reply == networkReply )
 		finished();
 }
 
 void ItemDownloader::reload()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemDownloader::reload(): networkReply = %1").arg((qulonglong)networkReply));
-#endif
-
 	networkReply->close();
 	errorCheckTimer.stop();
 	networkReply = qmc2NetworkAccessManager->get(QNetworkRequest(networkReply->url()));

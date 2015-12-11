@@ -15,7 +15,6 @@ class DemoModeDialog : public QDialog, public Ui::DemoModeDialog
 		int seqNum;
 
 		DemoModeDialog(QWidget *parent = 0);
-		~DemoModeDialog();
 
 	public slots:
 		void adjustIconSizes();

@@ -17,7 +17,6 @@ class SampleChecker : public QDialog, public Ui::SampleChecker
 		QStringList sampleSets;
 
 		SampleChecker(QWidget *parent = 0);
-		~SampleChecker();
 
 	public slots:
 		void adjustIconSizes();

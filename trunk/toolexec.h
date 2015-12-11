@@ -16,7 +16,6 @@ class ToolExecutor : public QDialog, public Ui::ToolExecutor
 		QProcess::ExitStatus toolExitStatus;
 
 		ToolExecutor(QWidget *, QString &, QStringList &, QString workDir = QString());
-		~ToolExecutor();
 
 	public slots:
 		void execute();

@@ -37,10 +37,6 @@ extern Options *qmc2Options;
 EmbedderOptions::EmbedderOptions(QWidget *parent)
 	: QWidget(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::EmbedderOptions(QWidget *parent = %1)").arg((qulonglong) parent));
-#endif
-
 	hide();
 	setupUi(this);
 
@@ -59,20 +55,12 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
 
 EmbedderOptions::~EmbedderOptions()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::~EmbedderOptions()");
-#endif
-
 	if ( snapshotViewer )
 		delete snapshotViewer;
 }
 
 void EmbedderOptions::adjustIconSizes()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::adjustIconSizes()");
-#endif
-
 	QFont f;
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
@@ -85,10 +73,6 @@ void EmbedderOptions::adjustIconSizes()
 
 void EmbedderOptions::on_spinBoxZoom_valueChanged(int zoom)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::on_spinBoxZoom_valueChanged(int zoom = %1)").arg(zoom));
-#endif
-
 	quint64 size = QMC2_EMBED_SNAPSHOT_DEFAULT_ITEM_SIZE * (double)zoom / 100.0;
 	listWidgetSnapshots->setIconSize(QSize(size, size));
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Embedder/ItemZoom", zoom);
@@ -96,10 +80,6 @@ void EmbedderOptions::on_spinBoxZoom_valueChanged(int zoom)
 
 void EmbedderOptions::on_toolButtonTakeSnapshot_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::on_toolButtonTakeSnapshot_clicked()");
-#endif
-
 	Embedder *embedder = (Embedder *)parent();
 	QPixmap pm = QPixmap::grabWindow(embedder->embeddedWinId);
 	QRect rect = pm.rect();
@@ -125,19 +105,11 @@ void EmbedderOptions::on_toolButtonTakeSnapshot_clicked()
 
 void EmbedderOptions::on_toolButtonClearSnapshots_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::on_toolButtonClearSnapshots_clicked()");
-#endif
-
 	snapshotMap.clear();
 }
 
 void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item = %1)").arg((qulonglong)item));
-#endif
-
 	if ( !snapshotViewer ) {
 		snapshotViewer = new SnapshotViewer(item, this);
 		connect(snapshotViewer, SIGNAL(scaleRequested(QListWidgetItem *)), this, SLOT(on_listWidgetSnapshots_itemPressed(QListWidgetItem *)));
@@ -191,19 +163,11 @@ void EmbedderOptions::on_listWidgetSnapshots_itemSelectionChanged()
 
 void EmbedderOptions::on_comboBoxScaleMode_currentIndexChanged(int mode)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::on_comboBoxScaleMode_currentIndexChanged(int mode = %1)").arg(mode));
-#endif
-
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Embedder/SnapshotScaleMode", mode);
 }
 
 void EmbedderOptions::on_toolButtonSaveAs_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::on_toolButtonSaveAs_clicked()");
-#endif
-
 	if ( snapshotViewer )
 		snapshotViewer->saveAs();
 }
@@ -211,10 +175,6 @@ void EmbedderOptions::on_toolButtonSaveAs_clicked()
 SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
 	: QWidget(parent, Qt::Tool | Qt::CustomizeWindowHint | Qt::FramelessWindowHint)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::SnapshotViewer(QListWidgetItem *item = %1, QWidget *parent = %2)").arg((qulonglong)item).arg((qulonglong)parent));
-#endif
-
 	myItem = item;
 	setWindowTitle(tr("Snapshot viewer"));
 
@@ -310,20 +270,12 @@ void SnapshotViewer::resetZoom()
 
 void SnapshotViewer::leaveEvent(QEvent *)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::leaveEvent(QEvent *)");
-#endif
-
 	if ( contextMenu->isHidden() )
 		hide();
 }
 
 void SnapshotViewer::mousePressEvent(QMouseEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::mousePressEvent(QMouseEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	if ( e->button() != Qt::RightButton ) {
 		myItem->setSelected(true);
 		hide();
@@ -332,10 +284,6 @@ void SnapshotViewer::mousePressEvent(QMouseEvent *e)
 
 void SnapshotViewer::keyPressEvent(QKeyEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::keyPressEvent(QKeyPressEvent *e)");
-#endif
-
 	if ( e->key() == Qt::Key_Escape ) {
 		myItem->setSelected(true);
 		hide();
@@ -344,10 +292,6 @@ void SnapshotViewer::keyPressEvent(QKeyEvent *e)
 
 void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::contextMenuEvent(QContextMenuEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	Embedder *embedder = (Embedder *)(parent()->parent());
 	EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
 
@@ -444,15 +388,9 @@ void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
 void SnapshotViewer::useAsImage()
 {
 	QAction *action = (QAction *)sender();
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::useAsImage()");
-#endif
-
 	Embedder *embedder = (Embedder *)(parent()->parent());
 	EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
-
 	QStringList dataList = action->data().toString().split("\t", QString::SkipEmptyParts);
-
 	switch ( cachePrefixes.indexOf(dataList[0]) ) {
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_PREVIEW:
 			if ( qmc2Preview )
@@ -498,20 +436,12 @@ void SnapshotViewer::useAsImage()
 
 void SnapshotViewer::copyToClipboard()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::copyToClipboard()");
-#endif
-
 	EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
 	qApp->clipboard()->setPixmap(embedderOptions->snapshotMap[myItem]);
 }
 
 void SnapshotViewer::saveAs()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::saveAs()");
-#endif
-
 	if ( fileName.isEmpty() ) {
 		Embedder *embedder = (Embedder *)(parent()->parent());
 		fileName = embedder->machineName + ".png";

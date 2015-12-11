@@ -1,7 +1,5 @@
 #include <QtCore>
-#if QT_VERSION >= 0x050000
 #include <QMenu>
-#endif
 #include <QApplication>
 #include <QToolButton>
 #include <QFontMetrics>
@@ -12,20 +10,13 @@
 #include "options.h"
 #include "customidsetup.h"
 #include "macros.h"
-#if defined(QMC2_DEBUG)
-#include "qmc2main.h"
-extern MainWindow *qmc2MainWindow;
-#endif
+
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
 
 CustomIDSetup::CustomIDSetup(QString foreignEmulatorName, QWidget *parent)
 	: QDialog(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: CustomIDSetup::CustomIDSetup(QString foreignEmulatorName = %1, QWidget *parent = %2)").arg(foreignEmulatorName).arg((qulonglong) parent));
-#endif
-
 	setupUi(this);
 
 	copyIDsMenu = NULL;
@@ -60,10 +51,6 @@ CustomIDSetup::CustomIDSetup(QString foreignEmulatorName, QWidget *parent)
 
 CustomIDSetup::~CustomIDSetup()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: CustomIDSetup::~CustomIDSetup()");
-#endif
-
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/Size", size());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/IDListHeaderState", tableWidgetCustomIDs->horizontalHeader()->saveState());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/SortingEnabled", toolButtonSort->isChecked());
@@ -72,10 +59,6 @@ CustomIDSetup::~CustomIDSetup()
 
 void CustomIDSetup::adjustFontAndIconSizes()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: CustomIDSetup::adjustFontAndIconSizes()");
-#endif
-
 	QFont f;
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	setFont(f);
@@ -91,10 +74,6 @@ void CustomIDSetup::adjustFontAndIconSizes()
 
 void CustomIDSetup::setupCopyIDsMenu()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: CustomIDSetup::setupCopyIDsMenu()");
-#endif
-
 	qmc2Config->beginGroup(QMC2_EMULATOR_PREFIX + "CustomIDs");
 	QStringList childGroups = qmc2Config->childGroups();
 
@@ -121,10 +100,6 @@ void CustomIDSetup::action_copyIDsMenuItem_triggered()
 {
 	QAction *action = (QAction *)sender();
 	QString emuName = action->iconText();
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: CustomIDSetup::action_copyIDsMenuItem_triggered(): emuName = %1").arg(emuName));
-#endif
-
 	if ( !emuName.isEmpty() ) {
 		bool oldSortingEnabled = tableWidgetCustomIDs->isSortingEnabled();
 		tableWidgetCustomIDs->setSortingEnabled(false);
@@ -150,12 +125,7 @@ void CustomIDSetup::action_copyIDsMenuItem_triggered()
 
 void CustomIDSetup::on_toolButtonAddID_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: CustomIDSetup::on_toolButtonAddID_clicked()");
-#endif
-
 	int row = tableWidgetCustomIDs->rowCount();
-
 	bool oldSortingEnabled = tableWidgetCustomIDs->isSortingEnabled();
 	tableWidgetCustomIDs->setSortingEnabled(false);
 	tableWidgetCustomIDs->insertRow(row);
@@ -182,10 +152,6 @@ void CustomIDSetup::on_toolButtonAddID_clicked()
 
 void CustomIDSetup::on_toolButtonRemoveID_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: CustomIDSetup::on_toolButtonRemoveID_clicked()");
-#endif
-
 	QList<QTableWidgetItem *> selectedItems = tableWidgetCustomIDs->selectedItems();
 	if ( selectedItems.count() > 0 )
 		tableWidgetCustomIDs->removeRow(tableWidgetCustomIDs->row(selectedItems[0]));
@@ -196,34 +162,19 @@ void CustomIDSetup::on_toolButtonRemoveID_clicked()
 void CustomIDSetup::on_tableWidgetCustomIDs_itemSelectionChanged()
 {
 	QList<QTableWidgetItem *> selectedItems = tableWidgetCustomIDs->selectedItems();
-	if ( selectedItems.count() > 0 ) {
-#ifdef QMC2_DEBUG
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: CustomIDSetup::on_tableWidgetCustomIDs_itemSelectionChanged(): item = %1").arg((qulonglong)selectedItems[0]));
-#endif
+	if ( selectedItems.count() > 0 )
 		toolButtonRemoveID->setEnabled(true);
-	} else {
-#ifdef QMC2_DEBUG
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: CustomIDSetup::on_tableWidgetCustomIDs_itemSelectionChanged(): item = NULL"));
-#endif
+	else
 		toolButtonRemoveID->setEnabled(tableWidgetCustomIDs->currentRow() >= 0);
-	}
 }
 
 void CustomIDSetup::on_tableWidgetCustomIDs_currentItemChanged(QTableWidgetItem *current, QTableWidgetItem *previous)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: CustomIDSetup::on_tableWidgetCustomIDs_currentItemChanged(QTableWidgetItem *current = %1, QTableWidgetItem *previous = %2)").arg((qulonglong)current).arg((qulonglong)previous));
-#endif
-
 	on_tableWidgetCustomIDs_itemSelectionChanged();
 }
 
 void CustomIDSetup::on_toolButtonSort_toggled(bool enable)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: CustomIDSetup::on_toolButtonSort_toggled(bool enable = %1)").arg(enable));
-#endif
-
 	tableWidgetCustomIDs->setSortingEnabled(enable);
 	tableWidgetCustomIDs->setDragDropMode(enable ? QAbstractItemView::NoDragDrop : QAbstractItemView::InternalMove);
 	if ( enable )
@@ -232,10 +183,6 @@ void CustomIDSetup::on_toolButtonSort_toggled(bool enable)
 
 void CustomIDSetup::load()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: CustomIDSetup::load()");
-#endif
-
 	QString groupKey = QString(QMC2_EMULATOR_PREFIX + "CustomIDs/%1").arg(foreignEmulator);
 
 	qmc2Config->beginGroup(groupKey);
@@ -302,10 +249,6 @@ void CustomIDSetup::load()
 
 void CustomIDSetup::save()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: CustomIDSetup::save()");
-#endif
-
 	QString groupKey = QString(QMC2_EMULATOR_PREFIX + "CustomIDs/%1").arg(foreignEmulator);
 	qmc2Config->remove(groupKey);
 
@@ -351,9 +294,6 @@ void CustomIDSetup::save()
 void CustomIDSetup::chooseIdIconClicked()
 {
 	QToolButton *tb = (QToolButton *)sender();
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: CustomIDSetup::chooseIdIconClicked() : tb = %1)").arg((qulonglong)tb));
-#endif
 	if ( tb ) {
 		QString idIcon = tb->whatsThis();
 		if ( idIcon.startsWith(":") )
@@ -375,9 +315,6 @@ void CustomIDSetup::chooseIdIconClicked()
 void CustomIDSetup::actionDefaultIdIconTriggered()
 {
 	QAction *action = (QAction *)sender();
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: CustomIDSetup::actionDefaultIdIconTriggered() : action = %1)").arg((qulonglong)action));
-#endif
 	if ( action ) {
 		QToolButton *tb = (QToolButton *)action->parentWidget()->parentWidget();
 		if ( tb ) {
@@ -390,9 +327,6 @@ void CustomIDSetup::actionDefaultIdIconTriggered()
 void CustomIDSetup::actionNoIdIconTriggered()
 {
 	QAction *action = (QAction *)sender();
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: CustomIDSetup::actionNoIdIconTriggered() : action = %1)").arg((qulonglong)action));
-#endif
 	if ( action ) {
 		QToolButton *tb = (QToolButton *)action->parentWidget()->parentWidget();
 		if ( tb ) {

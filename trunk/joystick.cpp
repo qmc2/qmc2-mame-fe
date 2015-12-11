@@ -15,10 +15,6 @@ extern bool qmc2JoystickIsCalibrating;
 Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat, int repeatDelay)
 	: QObject(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Joystick::Joystick(QObject *parent = %1, int joystickEventTimeout = %2, bool doAutoRepeat = %3, int repeatDelay = %4)").arg((qulonglong)parent).arg(joystickEventTimeout).arg(doAutoRepeat).arg(repeatDelay));
-#endif
-
 	if ( SDL_Init(SDL_INIT_JOYSTICK) == 0 ) {
 		QRegExp rx("(\\b.*\\b)\\1");
 		for (int i = 0; i < SDL_NumJoysticks(); i++) {
@@ -45,10 +41,6 @@ Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat,
 
 Joystick::~Joystick()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Joystick::~Joystick()");
-#endif
-
 	if ( isOpen() )
 		close();
 
@@ -57,10 +49,6 @@ Joystick::~Joystick()
 
 bool Joystick::open(int stick)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Joystick::open(int stick = %1)").arg(stick));
-#endif
-
 	static bool firstOpenCall = true;
 	bool doLog = !firstOpenCall;
 	firstOpenCall = false;
@@ -88,10 +76,6 @@ bool Joystick::open(int stick)
 
 void Joystick::close()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Joystick::close()");
-#endif
-
 	static bool firstCloseCall = true;
 	bool doLog = !firstCloseCall;
 	firstCloseCall = false;
@@ -109,10 +93,6 @@ void Joystick::close()
 
 void Joystick::processEvents()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Joystick::processEvents()");
-#endif
-
 	if ( !isOpen() )
 		return;
 
@@ -182,10 +162,6 @@ void Joystick::processEvents()
 
 int Joystick::getAxisValue(int axis)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Joystick::getAxisValue(int axis = %1)").arg(axis));
-#endif
-
 	if ( isOpen() ) {
 		SDL_JoystickUpdate();
 		if ( !qmc2JoystickIsCalibrating )

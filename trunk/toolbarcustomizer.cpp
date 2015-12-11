@@ -10,10 +10,6 @@ extern Settings *qmc2Config;
 ToolBarCustomizer::ToolBarCustomizer(QWidget *parent)
 	: QDialog(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ToolBarCustomizer::ToolBarCustomizer(QWidget *parent = %1)").arg((qulonglong) parent));
-#endif
-
 	setupUi(this);
 
 	resetToDefault = false;
@@ -38,20 +34,8 @@ ToolBarCustomizer::ToolBarCustomizer(QWidget *parent)
 	refreshAvailableActions();
 }
 
-ToolBarCustomizer::~ToolBarCustomizer()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::~ToolBarCustomizer()");
-#endif
-
-}
-
 void ToolBarCustomizer::refreshAvailableActions()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::refreshAvailableActions()");
-#endif
-
 	listWidgetAvailableActions->clear();
 	availableToolBarActions.clear();
 	availableActionsByName.clear();
@@ -88,10 +72,6 @@ void ToolBarCustomizer::refreshAvailableActions()
 
 void ToolBarCustomizer::refreshActiveActions()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::refreshActiveActions()");
-#endif
-
 	listWidgetActiveActions->clear();
 	activeToolBarActions.clear();
 	if ( activeActions.isEmpty() && !resetToDefault ) {
@@ -129,10 +109,6 @@ void ToolBarCustomizer::refreshActiveActions()
 
 void ToolBarCustomizer::adjustIconSizes()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::adjustIconSizes()");
-#endif
-
 	QFont f;
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
@@ -153,30 +129,18 @@ void ToolBarCustomizer::adjustIconSizes()
 
 void ToolBarCustomizer::showEvent(QShowEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ToolBarCustomizer::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	adjustIconSizes();
 	QDialog::showEvent(e);
 }
 
 void ToolBarCustomizer::on_pushButtonOk_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonOk_clicked()");
-#endif
-
 	on_pushButtonApply_clicked();
 	accept();
 }
 
 void ToolBarCustomizer::on_pushButtonApply_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonApply_clicked()");
-#endif
-
 	appliedActions.clear();
 	QToolBar *tb = qmc2MainWindow->toolbar;
 	tb->clear();
@@ -193,10 +157,6 @@ void ToolBarCustomizer::on_pushButtonApply_clicked()
 
 void ToolBarCustomizer::on_pushButtonCancel_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonCancel_clicked()");
-#endif
-
 	activeActions = appliedActions;
 	refreshAvailableActions();
 	reject();
@@ -204,10 +164,6 @@ void ToolBarCustomizer::on_pushButtonCancel_clicked()
 
 void ToolBarCustomizer::on_pushButtonDefault_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonDefault_clicked()");
-#endif
-
 	activeActions.clear();
 	resetToDefault = true;
 	refreshAvailableActions();
@@ -215,10 +171,6 @@ void ToolBarCustomizer::on_pushButtonDefault_clicked()
 
 void ToolBarCustomizer::on_pushButtonActivateActions_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonActivateActions_clicked()");
-#endif
-
 	foreach (QListWidgetItem *item, listWidgetAvailableActions->selectedItems()) {
 		QAction *action = availableToolBarActions[item];
 		if ( !activeToolBarActions.values().contains(action) ) {
@@ -232,10 +184,6 @@ void ToolBarCustomizer::on_pushButtonActivateActions_clicked()
 
 void ToolBarCustomizer::on_pushButtonDeactivateActions_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonDeactivateActions_clicked()");
-#endif
-
 	foreach (QListWidgetItem *item, listWidgetActiveActions->selectedItems()) {
 		QListWidgetItem *deactivateItem = listWidgetActiveActions->takeItem(listWidgetActiveActions->row(item));
 		activeToolBarActions.remove(deactivateItem);
@@ -245,10 +193,6 @@ void ToolBarCustomizer::on_pushButtonDeactivateActions_clicked()
 
 void ToolBarCustomizer::on_pushButtonActionUp_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonActionUp_clicked()");
-#endif
-
 	foreach (QListWidgetItem *item, listWidgetActiveActions->selectedItems()) {
 		if ( item ) {
 			int row = listWidgetActiveActions->row(item);
@@ -266,10 +210,6 @@ void ToolBarCustomizer::on_pushButtonActionUp_clicked()
 
 void ToolBarCustomizer::on_pushButtonActionDown_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonActionDown_clicked()");
-#endif
-
 	foreach (QListWidgetItem *item, listWidgetActiveActions->selectedItems()) {
 		if ( item ) {
 			int row = listWidgetActiveActions->row(item);
@@ -287,10 +227,6 @@ void ToolBarCustomizer::on_pushButtonActionDown_clicked()
 
 void ToolBarCustomizer::on_pushButtonInsertSeparator_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonInsertSeparator_clicked()");
-#endif
-
 	QListWidgetItem *item = new QListWidgetItem(tr("-- Separator --"));
 	if ( listWidgetActiveActions->selectedItems().isEmpty() )
 		listWidgetActiveActions->insertItem(0, item);
@@ -304,19 +240,11 @@ void ToolBarCustomizer::on_pushButtonInsertSeparator_clicked()
 
 void ToolBarCustomizer::on_listWidgetAvailableActions_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_listWidgetAvailableActions_itemSelectionChanged()");
-#endif
-
 	pushButtonActivateActions->setEnabled(listWidgetAvailableActions->selectedItems().count() > 0);
 }
  
 void ToolBarCustomizer::on_listWidgetActiveActions_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_listWidgetActiveActions_itemSelectionChanged()");
-#endif
-
 	if ( listWidgetActiveActions->selectedItems().count() > 0 ) {
 		pushButtonDeactivateActions->setEnabled(true);
 		if ( listWidgetActiveActions->selectedItems().count() == 1 ) {

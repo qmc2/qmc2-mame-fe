@@ -2012,10 +2012,6 @@ void MainWindow::on_actionPlay_triggered(bool)
 
 void MainWindow::on_vSplitter_splitterMoved(int pos, int index)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_vSplitter_splitterMoved(int pos = %1, int index = %2)").arg(pos).arg(index));
-#endif
-
 	if ( qmc2SystemNotesEditor ) {
 		qmc2SystemNotesEditor->move(0, 0);
 		qmc2SystemNotesEditor->resize(qmc2SystemNotesEditor->parentWidget()->size());
@@ -2035,10 +2031,6 @@ void MainWindow::on_vSplitter_splitterMoved(int pos, int index)
 
 void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_hSplitter_splitterMoved(int pos = %1, int index = %2)").arg(pos).arg(index));
-#endif
-
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) != tabWidgetMachineList->currentIndex() || (tabWidgetMachineList->indexOf(tabEmbeddedEmus) == tabWidgetMachineList->currentIndex() && !toolButtonEmbedderMaximizeToggle->isChecked()) ) {
 		hSplitterSizes = hSplitter->sizes();
@@ -2076,10 +2068,6 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
 
 void MainWindow::on_actionToFavorites_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToFavorites_triggered(bool)");
-#endif
-
 	if ( !qmc2CurrentItem )
 		return;
 
@@ -2100,10 +2088,6 @@ void MainWindow::on_actionToFavorites_triggered(bool)
 
 void MainWindow::on_actionReload_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionReload_triggered(bool)");
-#endif
-
 	if ( qmc2FilterActive ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROM state filter to finish and try again"));
 		return;
@@ -2169,19 +2153,11 @@ void MainWindow::on_actionReload_triggered(bool)
 
 void MainWindow::on_actionExitStop_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionExitStop_triggered(bool)");
-#endif
-
 	close();
 }
 
 void MainWindow::on_actionCheckCurrentROM_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckCurrentROM_triggered(bool)");
-#endif
-
 	if ( qmc2FilterActive ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROM state filter to finish and try again"));
 	} else if ( qmc2VerifyActive ) {
@@ -2202,10 +2178,6 @@ void MainWindow::on_actionCheckCurrentROM_triggered(bool)
 
 void MainWindow::on_actionCheckROMs_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckROMs_triggered(bool)");
-#endif
-
 	if ( qmc2FilterActive ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROM state filter to finish and try again"));
 	} else if ( qmc2VerifyActive ) {
@@ -2245,10 +2217,6 @@ void MainWindow::on_actionCheckROMs_triggered(bool)
 
 void MainWindow::on_actionExportROMStatus_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionExportROMStatus_triggered(bool)");
-#endif
-
 	if ( !qmc2ROMStatusExporter )
 		qmc2ROMStatusExporter = new ROMStatusExporter(this);
 
@@ -2264,10 +2232,6 @@ void MainWindow::on_actionExportROMStatus_triggered(bool)
 
 void MainWindow::on_actionDemoMode_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionDemoMode_triggered(bool)");
-#endif
-
 	if ( !qmc2DemoModeDialog )
 		qmc2DemoModeDialog = new DemoModeDialog(this);
 
@@ -2283,19 +2247,11 @@ void MainWindow::on_actionDemoMode_triggered(bool)
 
 void MainWindow::on_actionNewBrowserWindow_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionNewBrowserWindow_triggered(bool)");
-#endif
-
 	viewHtml();
 }
 
 void MainWindow::viewHtml(QString filePath)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::viewHtml(QString filePath = %1)").arg(filePath));
-#endif
-
 	MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
 	webBrowser->setAttribute(Qt::WA_DeleteOnClose);
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry") )
@@ -2321,19 +2277,11 @@ void MainWindow::viewHtml(QString filePath)
 
 void MainWindow::on_actionNewPdfViewer_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionNewPdfViewer_triggered(bool)");
-#endif
-
 	viewPdf();
 }
 
 void MainWindow::viewPdf(QString filePath)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::viewPdf(QString filePath = %1)").arg(filePath));
-#endif
-
 	QString htmlPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "/js/pdfjs/web/viewer.html";
 	QFileInfo fi(htmlPath);
 	if ( fi.isReadable() ) {
@@ -2366,10 +2314,6 @@ void MainWindow::viewPdf(QString filePath)
 
 void MainWindow::on_actionCheckSamples_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckSamples_triggered(bool)");
-#endif
-
 	if ( !qmc2SampleChecker )
 		qmc2SampleChecker = new SampleChecker(this);
 
@@ -2383,10 +2327,6 @@ void MainWindow::on_actionCheckSamples_triggered(bool)
 
 void MainWindow::on_actionCheckImagesAndIcons_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckImagesAndIcons_triggered(bool)");
-#endif
-
 	if ( !qmc2ImageChecker )
 		qmc2ImageChecker = new ImageChecker(this);
 
@@ -2400,10 +2340,6 @@ void MainWindow::on_actionCheckImagesAndIcons_triggered(bool)
 
 void MainWindow::on_actionSystemROMAlyzer_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSystemROMAlyzer_triggered(bool)");
-#endif
-
 	if ( !qmc2SystemROMAlyzer )
 		qmc2SystemROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SYSTEM);
 
@@ -2420,10 +2356,6 @@ void MainWindow::on_actionSystemROMAlyzer_triggered(bool)
 
 void MainWindow::on_actionSoftwareROMAlyzer_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSoftwareROMAlyzer_triggered(bool)");
-#endif
-
 	if ( !swlDb ) {
 		swlDb = new SoftwareListXmlDatabaseManager(qmc2MainWindow);
 		swlDb->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
@@ -2448,10 +2380,6 @@ void MainWindow::on_actionSoftwareROMAlyzer_triggered(bool)
 
 void MainWindow::on_actionRunRomTool_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionRunRomTool_triggered(bool)");
-#endif
-
 	if ( !qmc2CurrentItem )
 		return;
 
@@ -2472,10 +2400,6 @@ void MainWindow::on_actionRunRomTool_triggered(bool)
 
 void MainWindow::on_actionAnalyseCurrentROM_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAnalyseCurrentROM_triggered(bool)");
-#endif
-
 	if ( !qmc2CurrentItem )
 		return;
 
@@ -2562,20 +2486,12 @@ void MainWindow::update_rebuildRomActions_visibility()
 
 void MainWindow::on_actionClearImageCache_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearImageCache_triggered(bool)");
-#endif
-
 	qmc2ImagePixmapCache.clear();
 	log(QMC2_LOG_FRONTEND, tr("image cache cleared"));
 }
 
 void MainWindow::on_actionClearIconCache_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearIconCache_triggered(bool)");
-#endif
-
 	qmc2IconHash.clear();
 	qmc2IconsPreloaded = false;
 	log(QMC2_LOG_FRONTEND, tr("icon cache cleared"));
@@ -2583,10 +2499,6 @@ void MainWindow::on_actionClearIconCache_triggered(bool)
 
 void MainWindow::on_actionClearProjectMESSCache_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearProjectMESSCache_triggered(bool)");
-#endif
-
 	QString cacheStatus = tr("freed %n byte(s) in %1", "", qmc2ProjectMESSCache.totalCost()).arg(tr("%n entry(s)", "", qmc2ProjectMESSCache.count()));
 	qmc2ProjectMESSCache.clear();
 	log(QMC2_LOG_FRONTEND, tr("ProjectMESS in-memory cache cleared (%1)").arg(cacheStatus));
@@ -2595,10 +2507,6 @@ void MainWindow::on_actionClearProjectMESSCache_triggered(bool)
 #if defined(QMC2_YOUTUBE_ENABLED)
 void MainWindow::on_actionClearYouTubeCache_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearYouTubeCache_triggered(bool)");
-#endif
-
 	QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 	quint64 removedBytes = 0;
 	quint64 removedFiles = 0;
@@ -2621,10 +2529,6 @@ void MainWindow::on_actionClearYouTubeCache_triggered(bool)
 
 void MainWindow::on_actionClearROMStateCache_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearROMStateCache_triggered(bool)");
-#endif
-
 	if ( !qmc2ForceCacheRefresh ) {
 		if ( qmc2ReloadActive ) {
 			log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
@@ -2655,10 +2559,6 @@ void MainWindow::on_actionClearROMStateCache_triggered(bool)
 
 void MainWindow::on_actionClearMachineListCache_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearMachineListCache_triggered(bool)");
-#endif
-
 	if ( !qmc2ForceCacheRefresh ) {
 		if ( qmc2ReloadActive ) {
 			log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
@@ -2680,10 +2580,6 @@ void MainWindow::on_actionClearMachineListCache_triggered(bool)
 
 void MainWindow::on_actionClearXMLCache_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearXMLCache_triggered(bool)");
-#endif
-
 	if ( !qmc2ForceCacheRefresh ) {
 		if ( qmc2ReloadActive ) {
 			log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
@@ -2697,10 +2593,6 @@ void MainWindow::on_actionClearXMLCache_triggered(bool)
 
 void MainWindow::on_actionClearSlotInfoCache_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearSlotInfoCache_triggered(bool)");
-#endif
-
 	if ( !qmc2ForceCacheRefresh ) {
 		if ( qmc2ReloadActive ) {
 			log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
@@ -2722,10 +2614,6 @@ void MainWindow::on_actionClearSlotInfoCache_triggered(bool)
 
 void MainWindow::on_actionClearSoftwareListCache_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearSoftwareListCache_triggered(bool)");
-#endif
-
 	if ( !qmc2ForceCacheRefresh ) {
 		if ( qmc2ReloadActive ) {
 			log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
@@ -2745,10 +2633,6 @@ void MainWindow::on_actionClearSoftwareListCache_triggered(bool)
 
 void MainWindow::on_actionClearAllEmulatorCaches_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearAllEmulatorCaches_triggered(bool)");
-#endif
-
 	actionClearROMStateCache->trigger();
 	actionClearMachineListCache->trigger();
 	actionClearXMLCache->trigger();
@@ -2758,10 +2642,6 @@ void MainWindow::on_actionClearAllEmulatorCaches_triggered(bool)
 
 void MainWindow::on_actionRecreateTemplateMap_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionRecreateTemplateMap_triggered(bool)");
-#endif
-
 	if ( qmc2GlobalEmulatorOptions != NULL ) {
 		qmc2GlobalEmulatorOptions->createTemplateMap();
 		qmc2GlobalEmulatorOptions->clear();
@@ -2772,20 +2652,12 @@ void MainWindow::on_actionRecreateTemplateMap_triggered(bool)
 
 void MainWindow::on_actionCheckTemplateMap_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckTemplateMap_triggered(bool)");
-#endif
-
 	if ( qmc2GlobalEmulatorOptions != NULL )
 		qmc2GlobalEmulatorOptions->checkTemplateMap();
 }
 
 void MainWindow::on_actionOptions_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionOptions_triggered(bool)");
-#endif
-
 	if ( qmc2Options->isHidden() )
 		qmc2Options->show();
 	else if ( qmc2Options->isMinimized() )
@@ -2796,10 +2668,6 @@ void MainWindow::on_actionOptions_triggered(bool)
 
 void MainWindow::on_actionFullscreenToggle_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionFullscreenToggle_triggered(bool)");
-#endif
-
 	static quint64 lastFullScreenSwitchTime = 0;
 
 #if defined(QMC2_YOUTUBE_ENABLED)
@@ -2911,10 +2779,6 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
 
 void MainWindow::on_actionDocumentation_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionDocumentation_triggered(bool)");
-#endif
-
 	if ( !qmc2DocBrowser ) {
 		qmc2DocBrowser = new DocBrowser(this);
 		qmc2DocBrowser->browser->spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Zoom", 100).toInt());
@@ -2976,20 +2840,12 @@ void MainWindow::on_actionAboutQt_triggered(bool)
 
 void MainWindow::on_actionArcadeSetup_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionArcadeSetup_triggered(bool)");
-#endif
-
 	ArcadeModeSetup	arcadeModeSetup(this);
 	arcadeModeSetup.exec();
 }
 
 void MainWindow::on_actionLaunchArcade_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionLaunchArcade_triggered(bool)");
-#endif
-
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile").toString().isEmpty() ) {
 		log(QMC2_LOG_FRONTEND, tr("INFORMATION: the arcade mode has to be set up first, launching the respective dialog instead"));
 		on_actionArcadeSetup_triggered(false);
@@ -3028,10 +2884,6 @@ void MainWindow::on_actionLaunchArcade_triggered(bool)
 
 void MainWindow::on_comboBoxSearch_editTextChanged(const QString &text)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_comboBoxSearch_editTextChanged(const QString &text = %1)").arg(text));
-#endif
-
 	comboBoxToolbarSearch->lineEdit()->blockSignals(true);
 	int cPos = comboBoxToolbarSearch->lineEdit()->cursorPosition();
 	comboBoxToolbarSearch->lineEdit()->setText(text);
@@ -3220,10 +3072,6 @@ void MainWindow::on_comboBoxSearch_activated(const QString &/*pattern*/)
 
 void MainWindow::on_listWidgetSearch_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_listWidgetSearch_currentItemChanged(QListWidgetItem *current = %1, QListWidgetItem *previous = %2)").arg((qulonglong)current).arg((qulonglong)previous));
-#endif
-
 	static bool isActive = false;
 	if ( isActive )
 		return;
@@ -3242,19 +3090,11 @@ void MainWindow::on_listWidgetSearch_currentItemChanged(QListWidgetItem *current
 
 void MainWindow::on_listWidgetSearch_itemPressed(QListWidgetItem *current)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_listWidgetSearch_itemPressed(QListWidgetItem *current = %1)").arg((qulonglong)current));
-#endif
-
 	on_listWidgetSearch_currentItemChanged(current, NULL);
 }
 
 void MainWindow::on_listWidgetSearch_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetSearch_itemSelectionChanged()");
-#endif
-
 	QList<QListWidgetItem *> selected = listWidgetSearch->selectedItems();
 	if ( selected.count() > 0 )
 		on_listWidgetSearch_currentItemChanged(selected[0], NULL);
@@ -3262,10 +3102,6 @@ void MainWindow::on_listWidgetSearch_itemSelectionChanged()
 
 void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item = %1)").arg((qulonglong)item));
-#endif
-
 	if ( item == NULL )
 		return;
 
@@ -3303,10 +3139,6 @@ void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
 
 void MainWindow::on_listWidgetFavorites_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetFavorites_itemSelectionChanged()");
-#endif
-
 	QList<QListWidgetItem *> selected = listWidgetFavorites->selectedItems();
 	if ( selected.count() > 0 )
 		on_listWidgetSearch_currentItemChanged(selected[0], NULL);
@@ -3314,19 +3146,11 @@ void MainWindow::on_listWidgetFavorites_itemSelectionChanged()
 
 void MainWindow::on_listWidgetFavorites_itemActivated(QListWidgetItem *item)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_listWidgetFavorites_itemActivated(QListWidgetItem *item = %1)").arg((qulonglong)item));
-#endif
-
 	on_listWidgetSearch_itemActivated(item);
 }
 
 void MainWindow::on_listWidgetPlayed_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetPlayed_itemSelectionChanged()");
-#endif
-
 	QList<QListWidgetItem *> selected = listWidgetPlayed->selectedItems();
 	if ( selected.count() > 0 )
 		on_listWidgetSearch_currentItemChanged(selected[0], NULL);
@@ -3334,19 +3158,11 @@ void MainWindow::on_listWidgetPlayed_itemSelectionChanged()
 
 void MainWindow::on_listWidgetPlayed_itemActivated(QListWidgetItem *item)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_listWidgetPlayed_itemActivated(QListWidgetItem *item = %1)").arg((qulonglong)item));
-#endif
-
 	on_listWidgetSearch_itemActivated(item);
 }
 
 void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetMachineList_currentChanged(int i = " + QString::number(currentIndex) + ")");
-#endif
-
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	static int lastTabWidgetMachineListIndex = -1;
 #endif
@@ -3731,10 +3547,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 
 void MainWindow::scrollToCurrentItem()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::scrollToCurrentItem()");
-#endif
-
 	QTreeWidgetItem *ci = NULL;
 	if ( qmc2CurrentItem )
 		ci = qmc2CurrentItem;
@@ -3784,10 +3596,6 @@ void MainWindow::scrollToCurrentItem()
 
 void MainWindow::checkCurrentSearchSelection()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkCurrentSearchSelection()");
-#endif
-
 	listWidgetSearch->setCurrentIndex(QModelIndex());
 	listWidgetSearch->clearSelection();
 
@@ -3809,10 +3617,6 @@ void MainWindow::checkCurrentSearchSelection()
 
 void MainWindow::checkCurrentFavoritesSelection()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkCurrentFavoritesSelection()");
-#endif
-
 	listWidgetFavorites->setCurrentIndex(QModelIndex());
 	listWidgetFavorites->clearSelection();
 
@@ -3835,10 +3639,6 @@ void MainWindow::checkCurrentFavoritesSelection()
 
 void MainWindow::checkCurrentPlayedSelection()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkCurrentPlayedSelection()");
-#endif
-
 	listWidgetPlayed->setCurrentIndex(QModelIndex());
 	listWidgetPlayed->clearSelection();
 
@@ -3878,10 +3678,6 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 
 	if ( qmc2CleaningUp || componentInfo->appliedFeatureList().isEmpty() || currentIndex == -1 )
 		return;
-
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex = %1)").arg(currentIndex));
-#endif
 
 	if ( !qmc2CurrentItem || qmc2EarlyReloadActive ) {
 		qmc2LastGameInfoItem = qmc2LastEmuInfoItem = qmc2LastSoftwareInfoItem = qmc2LastConfigItem = qmc2LastDeviceConfigItem = qmc2LastSoftwareListItem = NULL;
@@ -4650,10 +4446,6 @@ bool MainWindow::qStringListLessThan(const QString &s1, const QString &s2)
 
 QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, QString optionAttribute, QString *defaultChoice)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: &MainWindow::getXmlChoices(QString gameName = %1, QString optionElement = %2, QString optionAttribute = %3, QString *defaultChoice = %4)").arg(gameName).arg(optionElement).arg(optionAttribute).arg((qulonglong)defaultChoice));
-#endif
-
 	static QStringList xmlChoices;
 	xmlChoices.clear();
 
@@ -4708,10 +4500,6 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 
 void MainWindow::emuSelector_currentIndexChanged(const QString &text)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::emuSelector_currentIndexChanged(const QString &text = %1)").arg(text));
-#endif
-
 	if ( !qmc2EmulatorOptions )
 		return;
 
@@ -4743,10 +4531,6 @@ void MainWindow::emuSelector_currentIndexChanged(const QString &text)
 
 void MainWindow::on_treeWidgetMachineList_itemActivated(QTreeWidgetItem *item, int column)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetMachineList_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
-#endif
-
 	if ( qmc2DemoModeDialog )
 		if ( qmc2DemoModeDialog->demoModeRunning )
 			return;
@@ -4770,10 +4554,6 @@ void MainWindow::on_treeWidgetMachineList_itemActivated(QTreeWidgetItem *item, i
 
 void MainWindow::on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *item, int column)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
-#endif
-
 	if ( qmc2DemoModeDialog )
 		if ( qmc2DemoModeDialog->demoModeRunning )
 			return;
@@ -4809,9 +4589,6 @@ void MainWindow::on_treeWidgetForeignIDs_itemActivated(QTreeWidgetItem *item, in
 			foreignEmuName = foreignInfo[0];
 			foreignID = foreignInfo[1];
 			foreignDescription = foreignInfo[2];
-#ifdef QMC2_DEBUG
-			log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetForeignIDs_itemActivated(): foreignEmuName = %1, foreignID = %2, foreignDescription = %3").arg(foreignEmuName).arg(foreignID).arg(foreignDescription));
-#endif
 			launchForeignID = true;
 			qmc2StartEmbedded = false;
 			switch ( qmc2DefaultLaunchMode ) {
@@ -4875,10 +4652,6 @@ void MainWindow::on_treeWidgetMachineList_itemExpanded(QTreeWidgetItem *item)
 		return;
 	}
 
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetMachineList_itemExpanded(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
-#endif
-
 	if ( item->child(0) ) {
 		treeWidgetMachineList->viewport()->update();
 		qApp->processEvents();
@@ -4892,10 +4665,6 @@ void MainWindow::on_treeWidgetMachineList_itemExpanded(QTreeWidgetItem *item)
 
 void MainWindow::on_treeWidgetMachineList_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetMachineList_currentItemChanged(QTreeWidgetItem *current = %1, QTreeWidgetItem *previous = %2").arg((qulonglong)current).arg((qulonglong)previous));
-#endif
-
 	// workaround for a Qt bug: when POS1/Home is pressed, QTreeWidget & QTreeView don't correctly select the first VISIBLE item,
 	// if the top item is HIDDEN
 	if ( current ) {
@@ -4924,10 +4693,6 @@ void MainWindow::on_treeWidgetMachineList_currentItemChanged(QTreeWidgetItem *cu
 
 void MainWindow::on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *current = %1, QTreeWidgetItem *previous = %2").arg((qulonglong)current).arg((qulonglong)previous));
-#endif
-
 	qmc2CheckItemVisibility = false;
 	if ( qmc2UpdateDelay > 0 )
 		updateTimer.start(qmc2UpdateDelay);
@@ -4937,10 +4702,6 @@ void MainWindow::on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *curr
 
 void MainWindow::on_treeWidgetMachineList_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetMachineList_itemSelectionChanged()");
-#endif
-
 	if ( qmc2UpdateDelay > 0 )
 		updateTimer.start(qmc2UpdateDelay);
 	else
@@ -4949,10 +4710,6 @@ void MainWindow::on_treeWidgetMachineList_itemSelectionChanged()
 
 void MainWindow::treeWidgetMachineList_itemSelectionChanged_delayed()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::treeWidgetMachineList_itemSelectionChanged_delayed()");
-#endif
-
 	updateTimer.stop();
 	QList<QTreeWidgetItem *>selected;
 	if ( qmc2HierarchySelectedItem != NULL )
@@ -4978,10 +4735,6 @@ void MainWindow::treeWidgetMachineList_itemSelectionChanged_delayed()
 
 void MainWindow::on_treeWidgetHierarchy_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetHierarchy_itemSelectionChanged()");
-#endif
-
 	qmc2HierarchySelectedItem = NULL;
 	QList<QTreeWidgetItem *>selected = treeWidgetHierarchy->selectedItems();
 	if ( selected.count() > 0 ) {
@@ -4995,10 +4748,6 @@ void MainWindow::on_treeWidgetHierarchy_itemSelectionChanged()
 
 void MainWindow::on_treeWidgetEmulators_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetEmulators_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	QTreeWidgetItem *item = treeWidgetEmulators->itemAt(p);
 	if ( item ) {
 		treeWidgetEmulators->setItemSelected(item, true);
@@ -5010,10 +4759,6 @@ void MainWindow::on_treeWidgetEmulators_customContextMenuRequested(const QPoint 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 void MainWindow::action_embedEmulator_triggered()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::action_embedEmulator_triggered()");
-#endif
-
 	qmc2StartEmbedded = false;
 
 	QStringList gameList;
@@ -5239,10 +4984,6 @@ void MainWindow::embedderOptions_toggled(bool enabled)
 {
 	// serious hack to access the tab bar ;)
 	QToolButton *optionsButton = (QToolButton *)sender();
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::embedderOptions_toggled(bool enabled = %1)").arg(enabled));
-#endif
-
 	QTabBar *tabBar = (QTabBar *)optionsButton->parent();
 	Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(optionsButton->pos()));
 	if ( embedder )
@@ -5254,10 +4995,6 @@ void MainWindow::embedderOptions_toggled(bool enabled)
 
 void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index = %1)").arg(index));
-#endif
-
 	tabWidgetMachineList->setUpdatesEnabled(false);
 
 	QWidget *widget = NULL;
@@ -5291,20 +5028,12 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
 void MainWindow::closeEmbeddedEmuTab()
 {
 	Embedder *embedder = (Embedder *)sender();
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::closeEmbeddedEmuTab()");
-#endif
-
 	if ( !qmc2CleaningUp )
 		on_tabWidgetEmbeddedEmulators_tabCloseRequested(tabWidgetEmbeddedEmulators->indexOf(embedder));
 }
 
 void MainWindow::toolButtonEmbedderMaximizeToggle_toggled(bool on)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::toolButtonEmbedderMaximizeToggle_toggled(bool on = %1)").arg(on));
-#endif
-
 	if ( on ) {
 		menuBar()->hide();
 		statusBar()->hide();
@@ -5335,10 +5064,6 @@ void MainWindow::embedderOptionsMenu_KillEmulator_activated()
 	QToolButton *toolButton = (QToolButton *)menu->parent();
 	QTabBar *tabBar = (QTabBar *)toolButton->parent();
 	Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(toolButton->pos()));
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::embedderOptionsMenu_KillEmulator_activated()");
-#endif
-
 	if ( embedder )
 		qmc2ProcessManager->kill(embedder->machineId.toInt());
 }
@@ -5351,10 +5076,6 @@ void MainWindow::embedderOptionsMenu_TerminateEmulator_activated()
 	QToolButton *toolButton = (QToolButton *)menu->parent();
 	QTabBar *tabBar = (QTabBar *)toolButton->parent();
 	Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(toolButton->pos()));
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::embedderOptionsMenu_TerminateEmulator_activated()");
-#endif
-
 	if ( embedder )
 		qmc2ProcessManager->terminate(embedder->machineId.toInt());
 }
@@ -5367,10 +5088,6 @@ void MainWindow::embedderOptionsMenu_ToFavorites_activated()
 	QToolButton *toolButton = (QToolButton *)menu->parent();
 	QTabBar *tabBar = (QTabBar *)toolButton->parent();
 	Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(toolButton->pos()));
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::embedderOptionsMenu_ToFavorites_activated()");
-#endif
-
 	if ( embedder ) {
 		QString gameDescription = qmc2MachineListItemHash[embedder->machineName]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 		QList<QListWidgetItem *> matches = listWidgetFavorites->findItems(gameDescription, Qt::MatchExactly);
@@ -5390,10 +5107,6 @@ void MainWindow::embedderOptionsMenu_CopyCommand_activated()
 	QToolButton *toolButton = (QToolButton *)menu->parent();
 	QTabBar *tabBar = (QTabBar *)toolButton->parent();
 	Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(toolButton->pos()));
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::embedderOptionsMenu_CopyCommand_activated()");
-#endif
-
 	if ( embedder ) {
 		QList<QTreeWidgetItem *> il = treeWidgetEmulators->findItems(embedder->machineId, Qt::MatchExactly, QMC2_EMUCONTROL_COLUMN_ID);
 		if ( il.count() > 0 )
@@ -5404,10 +5117,6 @@ void MainWindow::embedderOptionsMenu_CopyCommand_activated()
 
 void MainWindow::action_terminateEmulator_triggered()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::action_terminateEmulator_triggered()");
-#endif
-
 	QList<QTreeWidgetItem *> sl = treeWidgetEmulators->selectedItems();
 	for (int i = 0; i < sl.count(); i++) {
 		QTreeWidgetItem *item = sl[i];
@@ -5427,10 +5136,6 @@ void MainWindow::action_terminateEmulator_triggered()
 
 void MainWindow::action_killEmulator_triggered()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::action_killEmulator_triggered()");
-#endif
-
 	QList<QTreeWidgetItem *> sl = treeWidgetEmulators->selectedItems();
 	for (int i = 0; i < sl.count(); i++) {
 		QTreeWidgetItem *item = sl[i];
@@ -5448,10 +5153,6 @@ void MainWindow::action_killEmulator_triggered()
 
 void MainWindow::action_copyEmulatorCommand_triggered()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::action_copyEmulatorCommand_triggered()");
-#endif
-
 	QString commandString;
 	QList<QTreeWidgetItem *> sl = treeWidgetEmulators->selectedItems();
 	QList<QTreeWidgetItem *> tl;
@@ -5476,10 +5177,6 @@ void MainWindow::action_copyEmulatorCommand_triggered()
 
 void MainWindow::action_removeFromFavorites_triggered()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::action_removeFromFavorites_triggered()");
-#endif
-
 	QListWidgetItem *i = listWidgetFavorites->currentItem();
 	if ( i ) {
 		QListWidgetItem *item = listWidgetFavorites->takeItem(listWidgetFavorites->row(i));
@@ -5489,10 +5186,6 @@ void MainWindow::action_removeFromFavorites_triggered()
 
 void MainWindow::action_clearAllFavorites_triggered()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::action_clearAllFavorites_triggered()");
-#endif
-
 	switch ( QMessageBox::question(this, tr("Confirm"),
 				tr("Are you sure you want to clear the favorites list?"),
 				QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
@@ -5512,19 +5205,11 @@ void MainWindow::action_clearAllFavorites_triggered()
 
 void MainWindow::action_saveFavorites_triggered()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::action_saveFavorites_triggered()");
-#endif
-
 	qmc2MachineList->saveFavorites();
 }
 
 void MainWindow::action_removeFromPlayed_triggered()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::action_removeFromPlayed_triggered()");
-#endif
-
 	QListWidgetItem *i = listWidgetPlayed->currentItem();
 	if ( i ) {
 		QListWidgetItem *item = listWidgetPlayed->takeItem(listWidgetPlayed->row(i));
@@ -5534,10 +5219,6 @@ void MainWindow::action_removeFromPlayed_triggered()
 
 void MainWindow::action_clearAllPlayed_triggered()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::action_clearAllPlayed_triggered()");
-#endif
-
 	switch ( QMessageBox::question(this, tr("Confirm"),
 				tr("Are you sure you want to clear the play history?"),
 				QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
@@ -5557,19 +5238,11 @@ void MainWindow::action_clearAllPlayed_triggered()
 
 void MainWindow::action_savePlayed_triggered()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::action_savePlayed_triggered()");
-#endif
-
 	qmc2MachineList->savePlayHistory();
 }
 
 void MainWindow::on_listWidgetSearch_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetSearch_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	QListWidgetItem *item = listWidgetSearch->itemAt(p);
 	if ( item ) {
 		listWidgetSearch->setItemSelected(item, true);
@@ -5580,10 +5253,6 @@ void MainWindow::on_listWidgetSearch_customContextMenuRequested(const QPoint &p)
 
 void MainWindow::on_listWidgetFavorites_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetFavorites_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	QListWidgetItem *item = listWidgetFavorites->itemAt(p);
 	if ( item ) {
 		listWidgetFavorites->setItemSelected(item, true);
@@ -5594,10 +5263,6 @@ void MainWindow::on_listWidgetFavorites_customContextMenuRequested(const QPoint 
 
 void MainWindow::on_listWidgetPlayed_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetPlayed_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	QListWidgetItem *item = listWidgetPlayed->itemAt(p);
 	if ( item ) {
 		listWidgetPlayed->setItemSelected(item, true);
@@ -5608,10 +5273,6 @@ void MainWindow::on_listWidgetPlayed_customContextMenuRequested(const QPoint &p)
 
 void MainWindow::on_treeWidgetMachineList_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetMachineList_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	QTreeWidgetItem *item = treeWidgetMachineList->itemAt(p);
 	if ( !item )
 		return;
@@ -5624,10 +5285,6 @@ void MainWindow::on_treeWidgetMachineList_customContextMenuRequested(const QPoin
 
 void MainWindow::on_treeWidgetHierarchy_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetHierarchy_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	QTreeWidgetItem *item = treeWidgetHierarchy->itemAt(p);
 	if ( !item )
 		return;
@@ -5642,10 +5299,6 @@ void MainWindow::on_treeWidgetHierarchy_customContextMenuRequested(const QPoint 
 
 void MainWindow::on_stackedWidgetView_currentChanged(int index)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_tackedWidgetView_currentChanged(int index = %1)").arg(index));
-#endif
-
 	if ( !qmc2EarlyStartup ) {
 		menuMachineListHeader->hide();
 		menuHierarchyHeader->hide();
@@ -5737,10 +5390,6 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 
 void MainWindow::pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()");
-#endif
-
 	QString fileName = qmc2Config->value("MAME/Configuration/Global/inipath", QDir::homePath()).toString().replace("~", QDir::homePath()) + "/mame.ini";
 	QString s = QFileDialog::getSaveFileName(qmc2Options, tr("Choose export file"), fileName, tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
@@ -5749,19 +5398,11 @@ void MainWindow::pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()
 
 void MainWindow::pushButtonGlobalEmulatorOptionsExportToFile_clicked(QString useFileName)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::pushButtonGlobalEmulatorOptionsExportToFile_clicked(QString useFileName = %1)").arg(useFileName));
-#endif
-
 	qmc2GlobalEmulatorOptions->exportToIni(true, useFileName);
 }
 
 void MainWindow::pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()");
-#endif
-
 	QString fileName = qmc2Config->value("MAME/Configuration/Global/inipath", QDir::homePath()).toString().replace("~", QDir::homePath()) + "/mame.ini";
 	QString s = QFileDialog::getOpenFileName(qmc2Options, tr("Choose import file"), fileName, tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
@@ -5770,19 +5411,11 @@ void MainWindow::pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()
 
 void MainWindow::pushButtonGlobalEmulatorOptionsImportFromFile_clicked(QString useFileName)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::pushButtonGlobalEmulatorOptionsImportFromFile_clicked(QString useFileName = %1)").arg(useFileName));
-#endif
-
 	qmc2GlobalEmulatorOptions->importFromIni(true, useFileName);
 }
 
 void MainWindow::pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()");
-#endif
-
 	QStringList iniPaths = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/inipath", QDir::homePath()).toString().split(";");
 	QString iniPath;
 	if ( iniPaths.count() > 0 )
@@ -5798,19 +5431,11 @@ void MainWindow::pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()
 
 void MainWindow::pushButtonCurrentEmulatorOptionsExportToFile_clicked(QString useFileName)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::pushButtonCurrentEmulatorOptionsExportToFile_clicked(QString useFileName = %1)").arg(useFileName));
-#endif
-
 	qmc2EmulatorOptions->exportToIni(false, useFileName);
 }
 
 void MainWindow::pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()");
-#endif
-
 	if ( !qmc2CurrentItem )
 		return;
 
@@ -5830,20 +5455,12 @@ void MainWindow::pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()
 
 void MainWindow::pushButtonCurrentEmulatorOptionsImportFromFile_clicked(QString useFileName)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::pushButtonCurrentEmulatorOptionsImportFromFile_clicked(QString useFileName = %1)").arg(useFileName));
-#endif
-
 	qmc2EmulatorOptions->importFromIni(false, useFileName);
 }
 
 #if QMC2_JOYSTICK == 1
 void MainWindow::mapJoystickFunction(QString function)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::mapJoystickFunction(QString function = %1)").arg(function));
-#endif
-
 	if ( qmc2CleaningUp )
 		return;
 
@@ -5884,10 +5501,6 @@ void MainWindow::mapJoystickFunction(QString function)
 
 void MainWindow::joystickAxisValueChanged(int axis, int value)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::joystickAxisValueChanged(int axis = %1, int value = %2)").arg(axis).arg(value));
-#endif
-
 	if ( qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Enabled").arg(joyIndex).arg(axis), true).toBool() ) {
 		if ( value != 0 )
 			mapJoystickFunction(QString("A%1%2").arg(axis).arg(value < 0 ? "-" : "+"));
@@ -5896,40 +5509,24 @@ void MainWindow::joystickAxisValueChanged(int axis, int value)
 
 void MainWindow::joystickButtonValueChanged(int button, bool value)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::joystickButtonValueChanged(int button = %1, bool value = %2)").arg(button).arg(value));
-#endif
-
 	if ( value )
 		mapJoystickFunction(QString("B%1").arg(button));
 }
 
 void MainWindow::joystickHatValueChanged(int hat, int value)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::joystickHatValueChanged(int hat = %1, int value = %2)").arg(hat).arg(value));
-#endif
-
 	if ( value != 0 )
 		mapJoystickFunction(QString("H%1:%2").arg(hat).arg(value));
 }
 
 void MainWindow::joystickTrackballValueChanged(int trackball, int deltaX, int deltaY)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::joystickTrackballValueChanged(int trackball = %1, int deltaX = %2, int deltaY = %3)").arg(trackball).arg(deltaX).arg(deltaY));
-#endif
-
 	mapJoystickFunction(QString("T%1:X%2,Y%3").arg(trackball).arg(deltaX < 0 ? "-" : deltaX > 0 ? "+" : "=").arg(deltaY < 0 ? "-" : deltaY > 0 ? "+" : "="));
 }
 #endif
 
 void MainWindow::closeEvent(QCloseEvent *e)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::closeEvent(QCloseEvent *e = 0x" + QString::number((qulonglong)e, 16) + ")");
-#endif
-
 	if ( qmc2CleaningUp ) {
 		e->ignore();
 		return;
@@ -6360,10 +5957,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
 void MainWindow::showEvent(QShowEvent *e)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	if ( !qmc2AutoMinimizedWidgets.isEmpty() ) {
 		QMapIterator<QWidget *, Qt::WindowStates> it(qmc2AutoMinimizedWidgets);
 		while ( it.hasNext() ) {
@@ -6725,9 +6318,6 @@ bool MainEventFilter::eventFilter(QObject *object, QEvent *event)
 		case QEvent::KeyPress:
 		case QEvent::KeyRelease: {
 			QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-#ifdef QMC2_DEBUG
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MainEventFilter::eventFilter(QObject *object = %1, QEvent *event = %2)").arg((qulonglong)object).arg((qulonglong)event));
-#endif
 			if ( keyEvent->text() == QString("QMC2_EMULATED_KEY") ) {
 				QString emulatedSequence = QKeySequence(keyEvent->key() | keyEvent->modifiers()).toString();
 #ifdef QMC2_DEBUG
@@ -6838,10 +6428,6 @@ bool MainEventFilter::eventFilter(QObject *object, QEvent *event)
 #if defined(QMC2_YOUTUBE_ENABLED)
 void MainWindow::loadYouTubeVideoInfoMap()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadYouTubeVideoInfoMap()");
-#endif
-
 	log(QMC2_LOG_FRONTEND, tr("loading YouTube video info map"));
 	QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 	if ( youTubeCacheDir.exists() ) {
@@ -6897,10 +6483,6 @@ void MainWindow::loadYouTubeVideoInfoMap()
 
 void MainWindow::loadGameInfoDB()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadGameInfoDB()");
-#endif
-
 	QStringList pathList;
 	QStringList emulatorList;
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() ) {
@@ -6928,10 +6510,6 @@ void MainWindow::loadGameInfoDB()
 
 void MainWindow::loadEmuInfoDB()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadEmuInfoDB()");
-#endif
-
 	QStringList pathList;
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() )
 		pathList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
@@ -6951,10 +6529,6 @@ void MainWindow::loadEmuInfoDB()
 
 void MainWindow::loadSoftwareInfoDB()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadSoftwareInfoDB()");
-#endif
-
 	QStringList pathList = QStringList() << qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB").toString();
 	if ( qmc2MachineList->datInfoDb()->softwareInfoImportRequired(pathList) ) {
 		qmc2LoadingSoftwareInfoDB = true;
@@ -6968,10 +6542,6 @@ void MainWindow::loadSoftwareInfoDB()
 #if QMC2_USE_PHONON_API
 void MainWindow::on_actionAudioPreviousTrack_triggered(bool /*checked*/)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioPreviousTrack_triggered(bool checked = ...)");
-#endif
-
 	toolButtonAudioPreviousTrack->setDown(true);
 	QTimer::singleShot(QMC2_BUTTON_ANIMATION_TIMEOUT, this, SLOT(toolButtonAudioPreviousTrack_resetButton()));
 	audioFastForwarding = audioFastBackwarding = false;
@@ -7008,19 +6578,11 @@ void MainWindow::on_actionAudioPreviousTrack_triggered(bool /*checked*/)
 
 void MainWindow::toolButtonAudioPreviousTrack_resetButton()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::toolButtonAudioPreviousTrack_resetButton()");
-#endif
-
 	toolButtonAudioPreviousTrack->setDown(false);
 }
 
 void MainWindow::on_actionAudioNextTrack_triggered(bool /*checked*/)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioNextTrack_triggered(bool checked = ...)");
-#endif
-
 	toolButtonAudioNextTrack->setDown(true);
 	QTimer::singleShot(QMC2_BUTTON_ANIMATION_TIMEOUT, this, SLOT(toolButtonAudioNextTrack_resetButton()));
 	audioFastForwarding = audioFastBackwarding = false;
@@ -7057,19 +6619,11 @@ void MainWindow::on_actionAudioNextTrack_triggered(bool /*checked*/)
 
 void MainWindow::toolButtonAudioNextTrack_resetButton()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::toolButtonAudioNextTrack_resetButton()");
-#endif
-
 	toolButtonAudioNextTrack->setDown(false);
 }
 
 void MainWindow::on_actionAudioFastBackward_triggered(bool checked)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioFastBackward_triggered(bool checked = ...)");
-#endif
-
 	toolButtonAudioFastBackward->setDown(true);
 	QTimer::singleShot(QMC2_BUTTON_ANIMATION_TIMEOUT, this, SLOT(toolButtonAudioFastBackward_resetButton()));
 
@@ -7078,10 +6632,6 @@ void MainWindow::on_actionAudioFastBackward_triggered(bool checked)
 
 void MainWindow::on_toolButtonAudioFastBackward_clicked(bool /*checked*/)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioFastBackward_clicked(bool checked = ...)");
-#endif
-
 	qint64 newTime = phononAudioPlayer->currentTime();
 	if ( newTime > 0 ) {
 		newTime -= QMC2_AUDIOPLAYER_SEEK_OFFSET;
@@ -7093,20 +6643,12 @@ void MainWindow::on_toolButtonAudioFastBackward_clicked(bool /*checked*/)
 
 void MainWindow::toolButtonAudioFastBackward_resetButton()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::toolButtonAudioFastBackward_resetButton()");
-#endif
-
 	toolButtonAudioFastBackward->setDown(false);
 	audioFastForwarding = false;
 }
 
 void MainWindow::on_actionAudioFastForward_triggered(bool checked)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioFastForward_triggered(bool checked = ...)");
-#endif
-
 	toolButtonAudioFastForward->setDown(true);
 	QTimer::singleShot(QMC2_BUTTON_ANIMATION_TIMEOUT, this, SLOT(toolButtonAudioFastForward_resetButton()));
 
@@ -7115,10 +6657,6 @@ void MainWindow::on_actionAudioFastForward_triggered(bool checked)
 
 void MainWindow::on_toolButtonAudioFastForward_clicked(bool /*checked*/)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonFastForward_clicked(bool checked = ...)");
-#endif
-
 	qint64 newTime = phononAudioPlayer->currentTime();
 	if ( newTime > 0 ) {
 		newTime += QMC2_AUDIOPLAYER_SEEK_OFFSET;
@@ -7130,20 +6668,12 @@ void MainWindow::on_toolButtonAudioFastForward_clicked(bool /*checked*/)
 
 void MainWindow::toolButtonAudioFastForward_resetButton()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::toolButtonAudioFastForward_resetButton()");
-#endif
-
 	toolButtonAudioFastForward->setDown(false);
 	audioFastForwarding = false;
 }
 
 void MainWindow::on_actionAudioStopTrack_triggered(bool /*checked*/)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioStopTrack_triggered(bool checked = ...)");
-#endif
-
 	actionAudioStopTrack->setChecked(true);
 	actionAudioPauseTrack->setChecked(false);
 	actionAudioPlayTrack->setChecked(false);
@@ -7158,10 +6688,6 @@ void MainWindow::on_actionAudioStopTrack_triggered(bool /*checked*/)
 
 void MainWindow::on_actionAudioPauseTrack_triggered(bool /*checked*/)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioPauseTrack_triggered(bool checked = ...)");
-#endif
-
 	actionAudioPauseTrack->setChecked(true);
 	actionAudioStopTrack->setChecked(false);
 	actionAudioPlayTrack->setChecked(false);
@@ -7175,10 +6701,6 @@ void MainWindow::on_actionAudioPauseTrack_triggered(bool /*checked*/)
 
 void MainWindow::on_actionAudioPlayTrack_triggered(bool /*checked*/)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioPlayTrack_triggered(bool checked = ...)");
-#endif
-
 	// if this is a URL media source, force a reconnect to the stream...
 	if ( phononAudioPlayer->currentSource().type() == Phonon::MediaSource::Url )
 		phononAudioPlayer->setCurrentSource(phononAudioPlayer->currentSource().url());
@@ -7230,10 +6752,6 @@ void MainWindow::on_actionAudioPlayTrack_triggered(bool /*checked*/)
 
 void MainWindow::on_toolButtonAudioAddTracks_clicked()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioAddTracks_clicked()");
-#endif
-
 	QStringList sl = QFileDialog::getOpenFileNames(this, tr("Select one or more audio files"), QString(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( sl.count() > 0 )
 		listWidgetAudioPlaylist->addItems(sl);
@@ -7241,10 +6759,6 @@ void MainWindow::on_toolButtonAudioAddTracks_clicked()
 
 void MainWindow::on_toolButtonAudioAddURL_clicked()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioAddURL_clicked()");
-#endif
-
 	bool ok;
 	QString streamUrl = QInputDialog::getText(this, tr("Add URL"), tr("Enter valid MP3 stream URL:"), QLineEdit::Normal, "", &ok);
 	if ( ok && !streamUrl.isEmpty() )
@@ -7253,10 +6767,6 @@ void MainWindow::on_toolButtonAudioAddURL_clicked()
 
 void MainWindow::on_toolButtonAudioSetupEffects_clicked()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioSetupEffects_clicked()");
-#endif
-
 	static bool audioSetupEffectsFirstCall = true;
 
 	if ( !qmc2AudioEffectDialog )
@@ -7272,10 +6782,6 @@ void MainWindow::on_toolButtonAudioSetupEffects_clicked()
 
 void MainWindow::on_toolButtonAudioRemoveTracks_clicked()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioRemoveTracks_clicked()");
-#endif
-
 	QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->selectedItems();
 	foreach (QListWidgetItem *item, sl) {
 		item = listWidgetAudioPlaylist->takeItem(listWidgetAudioPlaylist->row(item));
@@ -7285,10 +6791,6 @@ void MainWindow::on_toolButtonAudioRemoveTracks_clicked()
 
 void MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged()");
-#endif
-
 	QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->selectedItems();
 	if ( sl.count() > 0 )
 		toolButtonAudioRemoveTracks->setEnabled(true);
@@ -7319,10 +6821,6 @@ void MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged()
 
 void MainWindow::audioScrollToCurrentItem()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::audioScrollToCurrentItem()");
-#endif
-
 	if ( !qmc2AudioLastIndividualTrack.isEmpty() ) {
 		QList<QListWidgetItem *> itemList = listWidgetAudioPlaylist->findItems(qmc2AudioLastIndividualTrack, Qt::MatchExactly);
 		if ( itemList.count() > 0 ) {
@@ -7335,37 +6833,21 @@ void MainWindow::audioScrollToCurrentItem()
 
 void MainWindow::on_actionAudioRaiseVolume_triggered(bool /*checked*/)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioRaiseVolume_triggered(bool checked = ...)");
-#endif
-
 	dialAudioVolume->setValue(dialAudioVolume->value() + dialAudioVolume->pageStep());
 }
 
 void MainWindow::on_actionAudioLowerVolume_triggered(bool /*checked*/)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioLowerVolume_triggered(bool checked = ...)");
-#endif
-
 	dialAudioVolume->setValue(dialAudioVolume->value() - dialAudioVolume->pageStep());
 }
 
 void MainWindow::on_dialAudioVolume_valueChanged(int value)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_dialAudioVolume_valueChanged(int value = %1)").arg(value));
-#endif
-
 	phononAudioOutput->setVolume((qreal)value/100.0);
 }
 
 void MainWindow::audioFinished()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::audioFinished()");
-#endif
-
 	static QStringList shuffleSelectionList;
 
 	if ( audioFastBackwarding )
@@ -7389,10 +6871,6 @@ void MainWindow::audioFinished()
 
 void MainWindow::audioTick(qint64 newTime)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::audioTick(qint64 newTime = %1)").arg(newTime));
-#endif
-
 	if ( audioState != Phonon::StoppedState ) {
 		progressBarAudioProgress->setFormat(tr("%vs (%ms total)"));
 		progressBarAudioProgress->setValue(newTime/1000);
@@ -7401,10 +6879,6 @@ void MainWindow::audioTick(qint64 newTime)
 
 void MainWindow::audioTotalTimeChanged(qint64 newTotalTime)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::audioTotalTimeChanged(qint64 newTotalTime = %1)").arg(newTotalTime));
-#endif
-
 	if ( newTotalTime > 0 ) {
 		progressBarAudioProgress->setFormat(tr("%vs (%ms total)"));
 		progressBarAudioProgress->setRange(0, newTotalTime/1000);
@@ -7418,10 +6892,6 @@ void MainWindow::audioTotalTimeChanged(qint64 newTotalTime)
 
 void MainWindow::audioFade(int faderFunction)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::audioFade(int faderFunction = %1)").arg(faderFunction));
-#endif
-
 	int currentVolume = dialAudioVolume->value();
 	int updateCounter;
 	double vol;
@@ -7494,11 +6964,6 @@ void MainWindow::audioFade(int faderFunction)
 void MainWindow::audioMetaDataChanged()
 {
 	static QString lastTrackInfo;
-
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::audioMetaDataChanged()");
-#endif
-
 	QString titleMetaData = phononAudioPlayer->metaData(Phonon::TitleMetaData).join(", ");
 	QString artistMetaData = phononAudioPlayer->metaData(Phonon::ArtistMetaData).join(", ");
 	QString albumMetaData = phononAudioPlayer->metaData(Phonon::AlbumMetaData).join(", ");
@@ -7513,10 +6978,6 @@ void MainWindow::audioMetaDataChanged()
 
 void MainWindow::audioBufferStatus(int percentFilled)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::audioBufferStatus(int percentFilled = %1)").arg(percentFilled));
-#endif
-
 	progressBarAudioProgress->setRange(0, 100);
 	progressBarAudioProgress->setFormat(tr("Buffering %p%"));
 	progressBarAudioProgress->setValue(percentFilled);
@@ -7561,19 +7022,11 @@ void MainWindow::audioScrollToCurrentItem() {}
 
 void MainWindow::on_checkBoxRemoveFinishedDownloads_stateChanged(int /*state*/)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_checkBoxRemoveFinishedDownloads_stateChanged(int state = ...)");
-#endif
-
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", checkBoxRemoveFinishedDownloads->isChecked());
 }
 
 void MainWindow::createFifo(bool logFifoCreation)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::createFifo(bool logFifoCreation = ...)");
-#endif
-
 #if defined(QMC2_OS_WIN)
 	// FIXME: implement Windows specific notifier FIFO support
 #elif defined(QMC2_SDLMAME)
@@ -7611,10 +7064,6 @@ void MainWindow::createFifo(bool logFifoCreation)
 
 void MainWindow::processFifoData()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::processFifoData()");
-#endif
-
 	if ( qmc2CleaningUp )
 		return;
 
@@ -7762,10 +7211,6 @@ void MainWindow::processFifoData()
 
 void MainWindow::treeWidgetMachineList_headerSectionClicked(int logicalIndex)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::treeWidgetMachineList_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
-#endif
-
 	qmc2MainWindow->treeWidgetMachineList->header()->setSortIndicatorShown(false);
 	qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(false);
 	qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(false);
@@ -8306,18 +7751,11 @@ void MainWindow::projectMessLoadFinished(bool ok)
 
 void MainWindow::projectMessSystemLoadStarted()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::projectMessSystemLoadStarted()");
-#endif
-
+    // NOP
 }
 
 void MainWindow::projectMessSystemLoadFinished(bool ok)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::projectMessSystemLoadFinished(bool ok = %1)").arg(ok));
-#endif
-
 	if ( ok ) {
 		QByteArray projectMessData = QMC2_COMPRESS(qmc2ProjectMESSLookup->webViewBrowser->page()->mainFrame()->toHtml().toUtf8());
     		QString machName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
@@ -8329,10 +7767,6 @@ void MainWindow::projectMessSystemLoadFinished(bool ok)
 
 void MainWindow::startDownload(QWidget *forParent, QNetworkReply *reply, QString saveAsName, QString savePath)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::startDownload(QWidget *forParent = %1, QNetworkReply *reply = %2, QString saveAsName = %3, QString savePath = %4)").arg((qulonglong)forParent).arg((qulonglong)reply).arg(saveAsName).arg(savePath));
-#endif
-
 	if ( !reply )
 		return;
 
@@ -8369,10 +7803,6 @@ void MainWindow::startDownload(QWidget *forParent, QNetworkReply *reply, QString
 
 void MainWindow::on_pushButtonClearFinishedDownloads_clicked()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_pushButtonClearFinishedDownloads_clicked()");
-#endif
-
 	static bool downloadCleanupActive = false;
 
 	if ( downloadCleanupActive )
@@ -8401,10 +7831,6 @@ void MainWindow::on_pushButtonClearFinishedDownloads_clicked()
 
 void MainWindow::on_pushButtonReloadSelectedDownloads_clicked()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_pushButtonReloadSelectedDownloads_clicked()");
-#endif
-
 	QTreeWidgetItemIterator it(treeWidgetDownloads);
 	while ( *it ) {
 		if ( (*it)->isSelected() )
@@ -8416,10 +7842,6 @@ void MainWindow::on_pushButtonReloadSelectedDownloads_clicked()
 
 void MainWindow::on_pushButtonStopSelectedDownloads_clicked()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_pushButtonStopSelectedDownloads_clicked()");
-#endif
-
 	QTreeWidgetItemIterator it(treeWidgetDownloads);
 	while ( *it ) {
 		if ( (*it)->isSelected() ) {
@@ -8521,20 +7943,12 @@ void MainWindow::enableContextMenuPlayActions(bool enable)
 
 void MainWindow::treeWidgetMachineListHeader_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::treeWidgetMachineListHeader_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	menuMachineListHeader->move(adjustedWidgetPosition(treeWidgetMachineList->header()->viewport()->mapToGlobal(p), menuMachineListHeader));
 	menuMachineListHeader->show();
 }
 
 void MainWindow::actionMachineListHeader_triggered()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::actionMachineListHeader_triggered()");
-#endif
-
 	QAction *action = (QAction *)sender();
 	int visibleColumns = 0;
 	for (int i = 0; i < treeWidgetMachineList->columnCount(); i++)
@@ -8577,20 +7991,12 @@ void MainWindow::actionMachineListHeader_triggered()
 
 void MainWindow::treeWidgetHierarchyHeader_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::treeWidgetHierarchyHeader_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	menuHierarchyHeader->move(adjustedWidgetPosition(treeWidgetHierarchy->header()->viewport()->mapToGlobal(p), menuHierarchyHeader));
 	menuHierarchyHeader->show();
 }
 
 void MainWindow::actionHierarchyHeader_triggered()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::actionHierarchyHeader_triggered()");
-#endif
-
 	QAction *action = (QAction *)sender();
 	int visibleColumns = 0;
 	for (int i = 0; i < treeWidgetHierarchy->columnCount(); i++)
@@ -8773,20 +8179,12 @@ void MainWindow::on_treeWidgetVersionView_itemPressed(QTreeWidgetItem *item, int
 
 void MainWindow::treeWidgetCategoryViewHeader_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::treeWidgetCategoryViewHeader_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	menuCategoryHeader->move(adjustedWidgetPosition(treeWidgetCategoryView->header()->viewport()->mapToGlobal(p), menuCategoryHeader));
 	menuCategoryHeader->show();
 }
 
 void MainWindow::actionCategoryHeader_triggered()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::actionCategoryHeader_triggered()");
-#endif
-
 	QAction *action = (QAction *)sender();
 	int visibleColumns = 0;
 	for (int i = 0; i < treeWidgetCategoryView->columnCount(); i++) if ( !treeWidgetCategoryView->isColumnHidden(i) ) visibleColumns++;
@@ -8825,20 +8223,12 @@ void MainWindow::actionCategoryHeader_triggered()
 
 void MainWindow::treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	menuVersionHeader->move(adjustedWidgetPosition(treeWidgetVersionView->header()->viewport()->mapToGlobal(p), menuVersionHeader));
 	menuVersionHeader->show();
 }
 
 void MainWindow::actionVersionHeader_triggered()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::actionVersionHeader_triggered()");
-#endif
-
 	QAction *action = (QAction *)sender();
 	int visibleColumns = 0;
 	for (int i = 0; i < treeWidgetVersionView->columnCount(); i++) if ( !treeWidgetVersionView->isColumnHidden(i) ) visibleColumns++;
@@ -8877,10 +8267,6 @@ void MainWindow::actionVersionHeader_triggered()
 
 void MainWindow::on_actionPlayTagged_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlayTagged_triggered(bool)");
-#endif
-
 	progressBarMachineList->reset();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarMachineList->setFormat(tr("Play tagged - %p%"));
@@ -8911,10 +8297,6 @@ void MainWindow::on_actionPlayTagged_triggered(bool)
 
 void MainWindow::on_actionPlayEmbeddedTagged_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlayEmbeddedTagged_triggered(bool)");
-#endif
-
 	progressBarMachineList->reset();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarMachineList->setFormat(tr("Play tagged - %p%"));
@@ -8947,10 +8329,6 @@ void MainWindow::on_actionPlayEmbeddedTagged_triggered(bool)
 
 void MainWindow::on_actionToFavoritesTagged_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToFavoritesTagged_triggered(bool)");
-#endif
-
 	progressBarMachineList->reset();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarMachineList->setFormat(tr("Add favorites - %p%"));
@@ -8981,10 +8359,6 @@ void MainWindow::on_actionToFavoritesTagged_triggered(bool)
 
 void MainWindow::on_actionCheckROMStateTagged_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckROMStateTagged_triggered(bool)");
-#endif
-
 	if ( isActiveState ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)"));
 		return;
@@ -9010,10 +8384,6 @@ void MainWindow::on_actionCheckROMStateTagged_triggered(bool)
 
 void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAnalyseROMTagged_triggered(bool)");
-#endif
-
 	if ( qmc2MachineList->numTaggedSets <= 0 )
 		return;
 
@@ -9055,10 +8425,6 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 
 void MainWindow::on_actionRunRomToolTagged_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionRunRomToolTagged_triggered(bool)");
-#endif
-
 	if ( isActiveState ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)"));
 		return;
@@ -9094,10 +8460,6 @@ void MainWindow::on_actionRunRomToolTagged_triggered(bool)
 
 void MainWindow::on_actionSetTag_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSetTag_triggered(bool)");
-#endif
-
 	if ( !qmc2CurrentItem )
 		return;
 
@@ -9125,10 +8487,6 @@ void MainWindow::on_actionSetTag_triggered(bool)
 
 void MainWindow::on_actionUnsetTag_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionUnsetTag_triggered(bool)");
-#endif
-
 	if ( !qmc2CurrentItem )
 		return;
 
@@ -9156,10 +8514,6 @@ void MainWindow::on_actionUnsetTag_triggered(bool)
 
 void MainWindow::on_actionToggleTag_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToggleTag_triggered(bool)");
-#endif
-
 	if ( !qmc2CurrentItem )
 		return;
 
@@ -9188,10 +8542,6 @@ void MainWindow::on_actionToggleTag_triggered(bool)
 
 void MainWindow::on_actionToggleTagCursorDown_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToggleTagCursorDown_triggered(bool)");
-#endif
-
 	if ( !qmc2CurrentItem )
 		return;
 
@@ -9229,10 +8579,6 @@ void MainWindow::on_actionToggleTagCursorDown_triggered(bool)
 
 void MainWindow::on_actionToggleTagCursorUp_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToggleTagCursorUp_triggered(bool)");
-#endif
-
 	if ( !qmc2CurrentItem )
 		return;
 
@@ -9301,10 +8647,6 @@ void MainWindow::showLoadAnim(QString text, bool enable)
 
 void MainWindow::on_actionTagAll_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionTagAll_triggered(bool)");
-#endif
-
 	if ( qmc2ReloadActive )
 		return;
 
@@ -9355,10 +8697,6 @@ void MainWindow::on_actionTagAll_triggered(bool)
 
 void MainWindow::on_actionUntagAll_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionUntagAll_triggered(bool)");
-#endif
-
 	if ( qmc2ReloadActive )
 		return;
 
@@ -9409,10 +8747,6 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 
 void MainWindow::on_actionInvertTags_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionInvertTags_triggered(bool)");
-#endif
-
 	if ( qmc2ReloadActive )
 		return;
 
@@ -9466,10 +8800,6 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 
 void MainWindow::on_actionTagVisible_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionTagVisible_triggered(bool)");
-#endif
-
 	if ( qmc2ReloadActive )
 		return;
 
@@ -9520,10 +8850,6 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 
 void MainWindow::on_actionUntagVisible_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionUntagVisible_triggered(bool)");
-#endif
-
 	if ( qmc2ReloadActive )
 		return;
 
@@ -9574,10 +8900,6 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 
 void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionInvertVisibleTags_triggered(bool)");
-#endif
-
 	if ( qmc2ReloadActive )
 		return;
 
@@ -9667,37 +8989,21 @@ void MainWindow::commonWebSearch(QString baseUrl, QTreeWidgetItem *item)
 
 void MainWindow::on_actionSearchDuckDuckGo_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSearchDuckDuckGo_triggered(bool)");
-#endif
-
 	commonWebSearch("http://duckduckgo.com/?q=", qmc2CurrentItem);
 }
 
 void MainWindow::on_actionSearchGoogle_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSearchGoogle_triggered(bool)");
-#endif
-
 	commonWebSearch("http://www.google.com/search?q=", qmc2CurrentItem);
 }
 
 void MainWindow::on_actionSearchWikipedia_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSearchWikipedia_triggered(bool)");
-#endif
-
 	commonWebSearch("http://en.wikipedia.org/wiki/Special:Search?search=", qmc2CurrentItem);
 }
 
 void MainWindow::on_actionSearchYandex_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSearchYandex_triggered(bool)");
-#endif
-
 	commonWebSearch("http://www.yandex.com/yandsearch?text=", qmc2CurrentItem);
 }
 
@@ -10604,10 +9910,6 @@ QList<RankItemWidget *> *MainWindow::getTaggedRankItemWidgets()
 
 void MainWindow::checkRomPath()
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkRomPath()");
-#endif
-
 	if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "CheckRomPath", true).toBool() )
 		return;
 

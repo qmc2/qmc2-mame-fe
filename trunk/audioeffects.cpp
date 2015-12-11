@@ -12,10 +12,6 @@ extern MainWindow *qmc2MainWindow;
 AudioEffectDialog::AudioEffectDialog(QWidget *parent)
   : QDialog(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: AudioEffectDialog::AudioEffectDialog(QWidget *parent = %1)").arg((qulonglong) parent));
-#endif
-
 	setupUi(this);
 
 	ignoreHideEvent = true;
@@ -85,10 +81,6 @@ AudioEffectDialog::AudioEffectDialog(QWidget *parent)
 
 AudioEffectDialog::~AudioEffectDialog()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: AudioEffectDialog::~AudioEffectDialog()");
-#endif
-
 	saveEffectSettings();
 
 	foreach (Phonon::EffectWidget *widget, effectWidgetMap)
@@ -104,10 +96,6 @@ AudioEffectDialog::~AudioEffectDialog()
 
 void AudioEffectDialog::saveEffectSettings()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: AudioEffectDialog::saveEffectSettings()");
-#endif
-
 	QStringList enabledEffects;
 	
 	foreach (QCheckBox *checkBox, effectEnablerMap) {
@@ -128,10 +116,6 @@ void AudioEffectDialog::saveEffectSettings()
 void AudioEffectDialog::toolButtonClicked()
 {
 	QToolButton *toolButton = (QToolButton *)sender();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: AudioEffectDialog::toolButtonClicked()");
-#endif
 
 	if ( !toolButton )
 		return;
@@ -158,10 +142,6 @@ void AudioEffectDialog::toolButtonClicked()
 void AudioEffectDialog::checkBoxToggled(bool checked)
 {
 	QCheckBox *checkBox = (QCheckBox *)sender();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: AudioEffectDialog::checkBoxToggled(bool checked = %1)").arg(checked));
-#endif
 
 	if ( !checkBox )
 		return;
@@ -214,19 +194,11 @@ void AudioEffectDialog::checkBoxToggled(bool checked)
 
 void AudioEffectDialog::closeEvent(QCloseEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: AudioEffectDialog::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	e->accept();
 }
 
 void AudioEffectDialog::showEvent(QShowEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: AudioEffectDialog::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/Geometry").toByteArray());
 	treeWidgetAudioEffects->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EffectListHeaderState").toByteArray());
 
@@ -239,10 +211,6 @@ void AudioEffectDialog::showEvent(QShowEvent *e)
 
 void AudioEffectDialog::hideEvent(QHideEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: AudioEffectDialog::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	if ( ignoreHideEvent ) {
 		e->accept();
 		return;
@@ -260,10 +228,6 @@ void AudioEffectDialog::hideEvent(QHideEvent *e)
 
 void AudioEffectDialog::adjustIconSizes()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: AudioEffectDialog::adjustIconSizes()");
-#endif
-
 	QFontMetrics fm(qApp->font());
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
 

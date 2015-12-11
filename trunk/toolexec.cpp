@@ -10,10 +10,6 @@ extern Settings *qmc2Config;
 ToolExecutor::ToolExecutor(QWidget *parent, QString &command, QStringList &args, QString workDir)
 	: QDialog(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ToolExecutor::ToolExecutor(QWidget *parent = %1)").arg((qulonglong)parent));
-#endif
-
 	setupUi(this);
 	setAttribute(Qt::WA_ShowWithoutActivating);
 
@@ -45,20 +41,8 @@ ToolExecutor::ToolExecutor(QWidget *parent, QString &command, QStringList &args,
 	QTimer::singleShot(0, this, SLOT(execute()));
 }
 
-ToolExecutor::~ToolExecutor()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolExecutor::~ToolExecutor()");
-#endif
-
-}
-
 void ToolExecutor::execute()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolExecutor::execute()");
-#endif
-
 	pushButtonOk->setEnabled(false);
 	toolProc->start(toolCommand, toolArgs);
 	textBrowserToolOutput->append(tr("### tool started, output below ###"));
@@ -68,18 +52,11 @@ void ToolExecutor::execute()
 
 void ToolExecutor::toolStarted()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolExecutor::toolStarted()");
-#endif
-
+    // NOP
 }
 
 void ToolExecutor::toolFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ToolExecutor::toolFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2)").arg(exitCode).arg(exitStatus));
-#endif
-
 	toolExitCode = exitCode;
 	toolExitStatus = exitStatus;
 	textBrowserToolOutput->append(tr("### tool finished, exit code = %1, exit status = %2 ###").arg(exitCode).arg(exitStatus));
@@ -93,10 +70,6 @@ void ToolExecutor::toolFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
 void ToolExecutor::toolReadyReadStandardOutput()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolExecutor::toolReadyReadStandardOutput()");
-#endif
-
 	QString s = toolProc->readAllStandardOutput();
 	QStringList sl = s.split("\n");
 	foreach (s, sl)
@@ -109,10 +82,6 @@ void ToolExecutor::toolReadyReadStandardOutput()
 
 void ToolExecutor::toolReadyReadStandardError()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolExecutor::toolReadyReadStandardError()");
-#endif
-
 	QString s = toolProc->readAllStandardError();
 	QStringList sl = s.split("\n");
 	foreach (s, sl)
@@ -125,10 +94,6 @@ void ToolExecutor::toolReadyReadStandardError()
 
 void ToolExecutor::toolError(QProcess::ProcessError processError)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ToolExecutor::toolError(QProcess::ProcessError processError = %1)").arg(processError));
-#endif
-
 	textBrowserToolOutput->append(tr("### tool error, process error = %1 ###").arg(processError));
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput").toBool() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("tool control: ") + tr("### tool error, process error = %1 ###").arg(processError));
@@ -140,18 +105,11 @@ void ToolExecutor::toolError(QProcess::ProcessError processError)
 
 void ToolExecutor::toolStateChanged(QProcess::ProcessState processState)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ToolExecutor::toolStateChanged(QProcess::ProcessState processState = %1)").arg(processState));
-#endif
-
+    // NOP
 }
 
 void ToolExecutor::closeEvent(QCloseEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ToolExecutor::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	if ( toolProc->state() != QProcess::NotRunning ) {
 		toolProc->terminate();
 		toolProc->waitForFinished(QMC2_TOOL_KILL_WAIT);

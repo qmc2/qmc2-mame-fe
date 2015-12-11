@@ -31,10 +31,6 @@ QStringList MiniWebBrowser::supportedSchemes;
 MiniWebBrowser::MiniWebBrowser(QWidget *parent, bool useAsPdfViewer)
 	: QWidget(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::MiniWebBrowser(QWidget *parent = %1, bool useAsPdfViewer = %2)").arg((qulonglong)parent).arg(useAsPdfViewer));
-#endif
-
 	setObjectName("MiniWebBrowser");
 	m_isPdfViewer = useAsPdfViewer;
 
@@ -201,10 +197,6 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent, bool useAsPdfViewer)
 
 MiniWebBrowser::~MiniWebBrowser()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::~MiniWebBrowser()");
-#endif
-
 	hideEvent(NULL);
 }
 
@@ -336,10 +328,6 @@ void MiniWebBrowser::postProcessPageActionInspect()
 
 void MiniWebBrowser::on_comboBoxURL_activated(int /*index*/)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_comboBoxURL_activated(int)");
-#endif
-
 	if ( !comboBoxURL->lineEdit()->text().isEmpty() ) {
 		QString text = comboBoxURL->lineEdit()->text();
 		QUrl url(text, QUrl::TolerantMode);
@@ -361,20 +349,12 @@ void MiniWebBrowser::on_comboBoxURL_activated(int /*index*/)
 
 void MiniWebBrowser::on_toolButtonHome_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_toolButtonHome_clicked()");
-#endif
-
 	if ( homeUrl.isValid() )
 		webViewBrowser->load(homeUrl);
 }
 
 void MiniWebBrowser::on_toolButtonLoad_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_toolButtonLoad_clicked()");
-#endif
-
 	if ( !comboBoxURL->lineEdit()->text().isEmpty() ) {
 		QString text = comboBoxURL->lineEdit()->text();
 		QUrl url(text, QUrl::TolerantMode);
@@ -394,10 +374,6 @@ void MiniWebBrowser::on_spinBoxZoom_valueChanged(int zoom)
 
 void MiniWebBrowser::webViewBrowser_linkClicked(const QUrl url)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_linkClicked(const QUrl url = %1)").arg(url.toString()));
-#endif
-
 	if ( url.isValid() ) {
 		if ( isPdfViewer() ) {
 			MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
@@ -426,10 +402,6 @@ void MiniWebBrowser::webViewBrowser_linkClicked(const QUrl url)
 
 void MiniWebBrowser::webViewBrowser_urlChanged(const QUrl url)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_urlChanged(const QUrl url = %1)").arg(url.toString()));
-#endif
-
 	comboBoxURL->setEditText(QString::fromUtf8(webViewBrowser->url().toEncoded()));
 	QString newTitle = webViewBrowser->title();
 	emit titleChanged(newTitle);
@@ -449,10 +421,6 @@ void MiniWebBrowser::webViewBrowser_urlChanged(const QUrl url)
 
 void MiniWebBrowser::webViewBrowser_loadStarted()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::webViewBrowser_loadStarted()");
-#endif
-
 	QString newTitle = webViewBrowser->title();
 	emit titleChanged(newTitle);
 
@@ -492,10 +460,6 @@ void MiniWebBrowser::webViewBrowser_loadStarted()
 
 void MiniWebBrowser::webViewBrowser_loadProgress(int progress)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_loadProgress(int progress = %1)").arg(progress));
-#endif
-
 	QString newTitle = webViewBrowser->title();
 	emit titleChanged(newTitle);
 
@@ -516,10 +480,6 @@ void MiniWebBrowser::webViewBrowser_loadProgress(int progress)
 
 void MiniWebBrowser::webViewBrowser_loadFinished(bool ok)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_loadFinished(bool ok = %1)").arg(ok));
-#endif
-
 	QString newTitle = webViewBrowser->title();
 	if ( newTitle.isEmpty() )
 		newTitle = "QMC2_NO_TITLE";
@@ -540,10 +500,6 @@ void MiniWebBrowser::webViewBrowser_loadFinished(bool ok)
 
 void MiniWebBrowser::webViewBrowser_statusBarMessage(const QString &message)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_statusBarMessage(const QString &message = %1)").arg(message));
-#endif
-
 	if ( !message.isEmpty() ) {
 		statusTimer.stop();
 		setStatus(message);
@@ -555,10 +511,6 @@ void MiniWebBrowser::webViewBrowser_statusBarMessage(const QString &message)
 
 void MiniWebBrowser::webViewBrowser_iconChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::webViewBrowser_iconChanged()");
-#endif
-
 	int i = comboBoxURL->findText(comboBoxURL->lineEdit()->text());
 
 	if ( i >= 0 ) {
@@ -585,10 +537,6 @@ void MiniWebBrowser::webViewBrowser_iconChanged()
 
 void MiniWebBrowser::webViewBrowser_linkHovered(const QString &link, const QString &title, const QString &textContent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_linkHovered(const QString &link = %1, const QString &title = %2, const QString &textContent = %3)").arg(link).arg(title).arg(textContent));
-#endif
-
 	if ( !link.isEmpty() ) {
 		statusTimer.stop();
 		setStatus(link);
@@ -600,28 +548,16 @@ void MiniWebBrowser::webViewBrowser_linkHovered(const QString &link, const QStri
 
 void MiniWebBrowser::webViewBrowser_statusBarVisibilityChangeRequested(bool visible)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_statusBarVisibilityChangeRequested(bool visible = %1)").arg(visible));
-#endif
-
 	progressBar->setVisible(visible);
 }
 
 void MiniWebBrowser::webViewBrowser_frameCreated(QWebFrame *frame)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_frameCreated(QWebFrame *frame = %1)").arg((qulonglong)frame));
-#endif
-
-	// NOP :)
+	// NOP
 }
 
 void MiniWebBrowser::statusTimeout()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::statusTimeout()");
-#endif
-
 	statusTimer.stop();
 	labelStatus->hide();
 	updateGeometry();
@@ -629,23 +565,11 @@ void MiniWebBrowser::statusTimeout()
 
 void MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &request)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &request = ...)");
-#endif
-
 	qmc2MainWindow->startDownload(this, qmc2NetworkAccessManager->get(request));
 }
 
 void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *reply)
 {
-#ifdef QMC2_DEBUG
-	QMap <QNetworkAccessManager::Operation, QString> ops;
-	ops[QNetworkAccessManager::HeadOperation] = "QNetworkAccessManager::HeadOperation";
-	ops[QNetworkAccessManager::GetOperation] = "QNetworkAccessManager::GetOperation";
-	ops[QNetworkAccessManager::PutOperation] = "QNetworkAccessManager::PutOperation";
-	ops[QNetworkAccessManager::PostOperation] = "QNetworkAccessManager::PostOperation";
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *reply = %1 [operation() = %2, url() = %3, ...])").arg((qulonglong)reply).arg(ops[reply->operation()]).arg(reply->url().toString()));
-#endif
 	QMap <QNetworkAccessManager::Operation, QString> opsShort;
 	opsShort[QNetworkAccessManager::HeadOperation] = "HEAD";
 	opsShort[QNetworkAccessManager::GetOperation] = "GET";
@@ -678,10 +602,6 @@ void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *re
 
 void MiniWebBrowser::changeTitle(QString &title)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::changeTitle(QString &title = %1): currentTitle = %2").arg(title).arg(currentTitle));
-#endif
-
 	if ( title == "QMC2_NO_TITLE" ) {
 		setWindowTitle(isPdfViewer() ? tr("PDF viewer") : tr("MiniWebBrowser"));
 		currentTitle = "QMC2_NO_TITLE";

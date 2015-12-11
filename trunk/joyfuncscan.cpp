@@ -14,10 +14,6 @@ extern Settings *qmc2Config;
 JoystickFunctionScanner::JoystickFunctionScanner(Joystick *joystick, bool showClearButton, QWidget *parent)
 	: QDialog(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickFunctionScanner::JoystickFunctionScanner(Joystick *joystick = %1, bool showClearButton = %2, QWidget *parent = %3)").arg((qulonglong)joystick).arg(showClearButton).arg((qulonglong)parent));
-#endif
-
 	setupUi(this);
 
 	if ( !showClearButton )
@@ -47,10 +43,6 @@ JoystickFunctionScanner::~JoystickFunctionScanner()
 
 void JoystickFunctionScanner::animationTimeout()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: JoystickFunctionScanner::animationTimeout()");
-#endif
-
 	switch ( animSeq ) {
 		case 0:
 			labelJoystickFunction->setText("<   >");
@@ -92,10 +84,6 @@ void JoystickFunctionScanner::animationTimeout()
 
 void JoystickFunctionScanner::on_joystickAxisValueChanged(int axis, int value)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickFunctionScanner::on_joystickAxisValueChanged(int axis = %1, int value = %2)").arg(axis).arg(value));
-#endif
-
 	if ( qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Enabled").arg(joyIndex).arg(axis), true).toBool() )
 		if ( value != 0 ) {
 			animTimer->stop();
@@ -109,10 +97,6 @@ void JoystickFunctionScanner::on_joystickAxisValueChanged(int axis, int value)
 
 void JoystickFunctionScanner::on_joystickButtonValueChanged(int button, bool value)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickFunctionScanner::on_joystickButtonValueChanged(int button = %1, bool value = %2)").arg(button).arg(value));
-#endif
-
 	animTimer->stop();
 	labelJoystickFunction->setText(QString("B%1").arg(button));
 	pushButtonOk->setEnabled(true);
@@ -120,10 +104,6 @@ void JoystickFunctionScanner::on_joystickButtonValueChanged(int button, bool val
 
 void JoystickFunctionScanner::on_joystickHatValueChanged(int hat, int value)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickFunctionScanner::on_joystickHatValueChanged(int hat = %1, int value = %2)").arg(hat).arg(value));
-#endif
-
 	if ( value != 0 ) {
 		animTimer->stop();
 		labelJoystickFunction->setText(QString("H%1:%2").arg(hat).arg(value));
@@ -133,10 +113,6 @@ void JoystickFunctionScanner::on_joystickHatValueChanged(int hat, int value)
 
 void JoystickFunctionScanner::on_joystickTrackballValueChanged(int trackball, int deltaX, int deltaY)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickFunctionScanner::on_joystickTrackballValueChanged(int trackball = %1, int deltaX = %2, int deltaY = %3)").arg(trackball).arg(deltaX).arg(deltaY));
-#endif
-
 	animTimer->stop();
 	labelJoystickFunction->setText(QString("T%1:X%2,Y%3").arg(trackball).arg(deltaX < 0 ? "-" : deltaX > 0 ? "+" : "=").arg(deltaY < 0 ? "-" : deltaY > 0 ? "+" : "="));
 	pushButtonOk->setEnabled(true);
@@ -144,10 +120,6 @@ void JoystickFunctionScanner::on_joystickTrackballValueChanged(int trackball, in
 
 void JoystickFunctionScanner::closeEvent(QCloseEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickFunctionScanner::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	e->accept();
 }
 
