@@ -6231,8 +6231,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		QSqlDatabase::removeDatabase(connectionName);
 	}
 
+	log(QMC2_LOG_FRONTEND, tr("destroying emulator configuration instances"));
 	if ( qmc2EmulatorOptions ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying current machine's emulator configuration"));
 		QString selectedEmulator = comboBoxEmuSelector->currentText();
 		if ( selectedEmulator == tr("Default") || selectedEmulator.isEmpty() )
 			qmc2Config->remove(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator");
@@ -6241,90 +6241,69 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		qmc2EmulatorOptions->save();
 		delete qmc2EmulatorOptions;
 	}
-	log(QMC2_LOG_FRONTEND, tr("destroying global emulator options"));
 	qmc2GlobalEmulatorOptions->saveHeaderState();
 	qmc2GlobalEmulatorOptions->setParent(0);
 	log(QMC2_LOG_FRONTEND, tr("destroying machine list"));
 	delete qmc2MachineList;
 
-	if ( qmc2Preview ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying preview"));
+	log(QMC2_LOG_FRONTEND, tr("destroying image widgets"));
+	if ( qmc2Preview )
 		delete qmc2Preview;
-	}
-	if ( qmc2Flyer ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying flyer"));
+	if ( qmc2Flyer )
 		delete qmc2Flyer;
-	}
-	if ( qmc2Cabinet ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying cabinet"));
+	if ( qmc2Cabinet )
 		delete qmc2Cabinet;
-	}
-	if ( qmc2Controller ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying controller"));
+	if ( qmc2Controller )
 		delete qmc2Controller;
-	}
-	if ( qmc2Marquee ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying marquee"));
+	if ( qmc2Marquee )
 		delete qmc2Marquee;
-	}
-	if ( qmc2Title ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying title"));
+	if ( qmc2Title )
 		delete qmc2Title;
-	}
-	if ( qmc2PCB ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying PCB"));
+	if ( qmc2PCB )
 		delete qmc2PCB;
-	}
-	if ( qmc2About ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying about dialog"));
+	if ( qmc2SoftwareSnapshot )
+		delete qmc2SoftwareSnapshot;
+	if ( qmc2SoftwareSnap )
+		delete qmc2SoftwareSnap;
+
+	log(QMC2_LOG_FRONTEND, tr("destroying open dialogs"));
+	if ( qmc2About )
 		delete qmc2About;
-	}
 	if ( qmc2DocBrowser ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying MiniWebBrowser"));
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Zoom", qmc2DocBrowser->browser->spinBoxZoom->value());
 		delete qmc2DocBrowser;
 	}
-	if ( qmc2ProjectMESSLookup ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying ProjectMESS lookup"));
+	if ( qmc2ProjectMESSLookup )
 		delete qmc2ProjectMESSLookup;
-	}
 	if ( qmc2ImageChecker ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying image checker"));
 		qmc2ImageChecker->close();
 		delete qmc2ImageChecker;
 	}
 	if ( qmc2SampleChecker ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying sample checker"));
 		qmc2SampleChecker->close();
 		delete qmc2SampleChecker;
 	}
 	if ( qmc2SystemROMAlyzer ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying ROMAlyzer") + " (" + tr("system mode") + ")");
 		qmc2SystemROMAlyzer->saveState();
 		delete qmc2SystemROMAlyzer;
 	}
 	if ( qmc2SoftwareROMAlyzer ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying ROMAlyzer") + " (" + tr("software mode") + ")");
 		qmc2SoftwareROMAlyzer->saveState();
 		delete qmc2SoftwareROMAlyzer;
 	}
 	if ( qmc2ROMStatusExporter ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying ROM status exporter"));
 		qmc2ROMStatusExporter->close();
 		delete qmc2ROMStatusExporter;
 	}
 	if ( qmc2ComponentSetup ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying component setup"));
 		qmc2ComponentSetup->close();
 		delete qmc2ComponentSetup;
 	}
 	if ( qmc2ToolBarCustomizer ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying tool-bar customization"));
 		qmc2ToolBarCustomizer->close();
 		delete qmc2ToolBarCustomizer;
 	}
 	if ( qmc2DemoModeDialog ) {
-		log(QMC2_LOG_FRONTEND, tr("destroying demo mode dialog"));
 		qmc2DemoModeDialog->close();
 		delete qmc2DemoModeDialog;
 	}
