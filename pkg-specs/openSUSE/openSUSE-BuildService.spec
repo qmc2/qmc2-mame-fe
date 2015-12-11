@@ -1,6 +1,6 @@
 Name:           qmc2
 Version:        0.59
-Release:        2
+Release:        3
 Summary:        M.A.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
 License:        GPL-2.0
@@ -10,7 +10,7 @@ Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
 BuildRequires:  libqt4-devel
 BuildRequires:  libkde4-devel
 BuildRequires:  libqt4-x11
-BuildRequires:  SDL-devel
+BuildRequires:  libSDL2-devel
 BuildRequires:  make
 BuildRequires:  gcc
 BuildRequires:  rsync
@@ -36,12 +36,12 @@ mv %{name} manpages
 %build
 pushd sdlmame
 make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 PHONON=1 WIP=0 LIBARCHIVE=1 CXX_FLAGS=-O3 CC_FLAGS=-O3 qmc2
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 PHONON=1 SDL=2 LIBARCHIVE=1 WIP=0 CXX_FLAGS=-O3 CC_FLAGS=-O3 qmc2
 popd
 
 pushd arcade
 make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 WIP=0 LIBARCHIVE=1 CXX_FLAGS=-O3 CC_FLAGS=-O3 arcade
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 SDL=2 LIBARCHIVE=1 WIP=0 CXX_FLAGS=-O3 CC_FLAGS=-O3 arcade
 popd
 
 pushd qchdman
@@ -59,12 +59,12 @@ rm -rf $RPM_BUILD_ROOT
 
 pushd sdlmame
 make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 PHONON=1 WIP=0 LIBARCHIVE=1
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 PHONON=1 SDL=2 LIBARCHIVE=1 WIP=0
 popd
 
 pushd arcade
 make arcade-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 WIP=0 LIBARCHIVE=1
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 SDL=2 LIBARCHIVE=1 WIP=0
 popd
 
 pushd qchdman
@@ -116,6 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/qchdman.6.gz
 
 %changelog
+* Fri Dec 11 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.59-3
+- switched to SDL2
+
 * Wed Dec  9 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.59-2
 - added libarchive support / revised description
 
@@ -154,63 +157,3 @@ rm -rf $RPM_BUILD_ROOT
 
 * Wed Mar 25 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.51-1
 - updated spec to QMC2 0.51
-
-* Wed Feb 25 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.50-1
-- updated spec to QMC2 0.50
-
-* Thu Jan 29 2015 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.49-1
-- updated spec to QMC2 0.49
-
-* Wed Dec 31 2014 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.48-1
-- updated spec to QMC2 0.48
-
-* Wed Nov 26 2014 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.47-1
-- updated spec to QMC2 0.47
-
-* Thu Oct 16 2014 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.46-1
-- updated spec to QMC2 0.46
-
-* Wed Jul 23 2014 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.45-1
-- updated spec to QMC2 0.45
-
-* Mon Apr 07 2014 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.44-1
-- updated spec to QMC2 0.44
-
-* Tue Dec 24 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.43-1
-- updated spec to QMC2 0.43
-
-* Tue Nov 05 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.42-1
-- updated spec to QMC2 0.42
-
-* Wed Sep 18 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.41-1
-- updated spec to QMC2 0.41
-
-* Wed Aug 21 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.40-2
-- added man-page build rules
-
-* Tue Jun 11 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.40-1
-- updated spec to QMC2 0.40
-
-* Fri Feb 22 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.39-2
-- added build rules for 'Qt CHDMAN GUI' (qchdman)
-
-* Sat Jan 12 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.39-1
-- updated spec to QMC2 0.39
-
-* Fri Dec 14 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.38-2
-- added build rules for 'QMC2 Arcade'
-
-* Mon Sep 17 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.38-1
-- updated spec to QMC2 0.38
-
-* Tue May 22 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.37-1
-- updated spec to QMC2 0.37, added new UME emulator target
-
-* Sun Apr 29 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.36-1
-- updated spec to QMC2 0.36 / added fdupes macro / updated licence name
-
-* Tue Nov 15 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.35-1
-- updated spec to QMC2 0.35
-
-* Wed Jun 29 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.34-1
-- updated spec to QMC2 0.34
