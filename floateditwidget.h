@@ -11,7 +11,6 @@ class FloatEditWidget : public QWidget, public Ui::FloatEditWidget
 		int numValues;
 
 		FloatEditWidget(int nValues = 3, QString sep = ",", QWidget *parent = 0);
-		~FloatEditWidget();
 
 	public slots:
 		void on_doubleSpinBox0_valueChanged(double) { emit dataChanged(this); }

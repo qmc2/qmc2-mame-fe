@@ -27,29 +27,14 @@ extern QSocketNotifier *qmc2FifoNotifier;
 ProcessManager::ProcessManager(QWidget *parent)
 	: QObject(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ProcessManager::ProcessManager(QWidget *parent = %1)").arg((qulonglong)parent));
-#endif
-
 	procCount = 0;
-
 #if QMC2_USE_PHONON_API
 	musicWasPlaying = sentPlaySignal = false;
 #endif
-
 #if defined(QMC2_YOUTUBE_ENABLED)
 	videoWasPlaying = true;
 #endif
-
 	launchForeignID = false;
-}
-
-ProcessManager::~ProcessManager()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::~ProcessManager()");
-#endif
-
 }
 
 int ProcessManager::start(QString &command, QStringList &arguments, bool autoConnect, QString workDir, QStringList softwareLists, QStringList softwareNames)
@@ -146,20 +131,12 @@ QProcess *ProcessManager::process(ushort index)
 
 void ProcessManager::terminate(QProcess *proc)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::terminate(QProcess *proc = 0x" + QString::number((qulonglong)proc, 16) + ")");
-#endif
-
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("terminating emulator #%1, PID = %2").arg(procMap[proc]).arg((quint64)proc->pid()));
 	proc->terminate();
 }
 
 void ProcessManager::terminate(ushort index)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::terminate(ushort index = " + QString::number(index) + ")");
-#endif
-
 	QProcess *proc = process(index);
 	if ( proc ) {
 #if defined(QMC2_OS_WIN)
@@ -178,20 +155,12 @@ void ProcessManager::terminate(ushort index)
 
 void ProcessManager::kill(QProcess *proc)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::kill(QProcess *proc = 0x" + QString::number((qulonglong)proc, 16) + ")");
-#endif
-
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("killing emulator #%1, PID = %2").arg(procMap[proc]).arg((quint64)proc->pid()));
 	proc->kill();
 }
 
 void ProcessManager::kill(ushort index)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::kill(ushort index = " + QString::number(index) + ")");
-#endif
-
 	QProcess *proc = process(index);
 	if ( proc )
 		kill(proc);
@@ -202,11 +171,6 @@ void ProcessManager::kill(ushort index)
 void ProcessManager::readyReadStandardOutput()
 {
 	QProcess *proc = (QProcess *)sender();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::readyReadStandardOutput(): proc = 0x" + QString::number((qulonglong)proc, 16));
-#endif
-
 	QString s = proc->readAllStandardOutput();
 	QStringList sl = s.split("\n");
 	int i;
@@ -220,11 +184,6 @@ void ProcessManager::readyReadStandardOutput()
 void ProcessManager::readyReadStandardError()
 {
 	QProcess *proc = (QProcess *)sender();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::readyReadStandardError(): proc = 0x" + QString::number((qulonglong)proc, 16));
-#endif
-
 	QString s = proc->readAllStandardError();
 	QStringList sl = s.split("\n");
 	int i;
@@ -238,11 +197,6 @@ void ProcessManager::readyReadStandardError()
 void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 {
 	QProcess *proc = (QProcess *)sender();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::finished(int exitCode = " + QString::number(exitCode) + ", QProcess::ExitStatus exitStatus = "+ QString::number(exitStatus) + "): proc = 0x" + QString::number((qulonglong)proc, 16));
-#endif
-
 	QList<QTreeWidgetItem *> il = qmc2MainWindow->treeWidgetEmulators->findItems(QString::number(procMap[proc]), Qt::MatchStartsWith);
 	if ( il.count() > 0 ) {
 		QTreeWidgetItem *item = qmc2MainWindow->treeWidgetEmulators->takeTopLevelItem(qmc2MainWindow->treeWidgetEmulators->indexOfTopLevelItem(il[0]));
@@ -303,11 +257,6 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 void ProcessManager::started()
 {
 	QProcess *proc = (QProcess *)sender();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::started(): proc = 0x" + QString::number((qulonglong)proc, 16));
-#endif
-
 	QTreeWidgetItem *procItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetEmulators);
 	procItem->setText(QMC2_EMUCONTROL_COLUMN_NUMBER, QString::number(procMap[proc]));
 	procItem->setText(QMC2_EMUCONTROL_COLUMN_PID, QString::number((quint64)(proc->pid())));
@@ -380,11 +329,6 @@ QString ProcessManager::errorText(QProcess::ProcessError processError)
 void ProcessManager::error(QProcess::ProcessError processError)
 {
 	QProcess *proc = (QProcess *)sender();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::error(QProcess::ProcessError processError = " + QString::number(processError) + "): proc = 0x" + QString::number((qulonglong)proc, 16));
-#endif
-
 	switch ( processError ) {
 		case QProcess::FailedToStart:
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: failed to start emulator #%1").arg(procMap[proc]));
@@ -409,10 +353,7 @@ void ProcessManager::error(QProcess::ProcessError processError)
 
 void ProcessManager::stateChanged(QProcess::ProcessState processState)
 {
-#ifdef QMC2_DEBUG
-	QProcess *proc = (QProcess *)sender();
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::stateChanged(QProcess::ProcessState processState = " + QString::number(processState) + "): proc = 0x" + QString::number((qulonglong)proc, 16));
-#endif
+    // NOP
 }
 
 QString &ProcessManager::exitCodeString(int exitCode, bool textOnly)

@@ -32,10 +32,6 @@ SampleChecker::SampleChecker(QWidget *parent)
 	: QDialog(parent, Qt::Dialog | Qt::SubWindow)
 #endif
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::SampleChecker(QWidget *parent = %1").arg((qulonglong)parent));
-#endif
-
 	setupUi(this);
 	progressBar->setFormat(tr("Idle"));
 	progressBar->setRange(-1, -1);
@@ -43,20 +39,8 @@ SampleChecker::SampleChecker(QWidget *parent)
 	adjustIconSizes();
 }
 
-SampleChecker::~SampleChecker()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::~SampleChecker()");
-#endif
-
-}
-
 void SampleChecker::adjustIconSizes()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::adjustIconSizes()");
-#endif
-
 	QFont f;
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
@@ -67,10 +51,6 @@ void SampleChecker::adjustIconSizes()
 
 void SampleChecker::restoreLayout()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::restoreLayout()");
-#endif
-
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Position") )
 		move(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Position", pos()).toPoint());
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Size") )
@@ -79,10 +59,6 @@ void SampleChecker::restoreLayout()
 
 void SampleChecker::closeEvent(QCloseEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::closeEvent(QCloseEvent *e = %1").arg((qulonglong)e));
-#endif
-
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Position", pos());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Size", size());
 
@@ -92,32 +68,19 @@ void SampleChecker::closeEvent(QCloseEvent *e)
 
 void SampleChecker::hideEvent(QHideEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::hideEvent(QHideEvent *e = %1").arg((qulonglong)e));
-#endif
-
 	closeEvent(NULL);
 	e->accept();
 }
 
 void SampleChecker::showEvent(QShowEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::showEvent(QShowEvent *e = %1").arg((qulonglong)e));
-#endif
-
 	restoreLayout();
-
 	if ( e )
 		e->accept();
 }
 
 void SampleChecker::verify()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::verify()"));
-#endif
-
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying samples"));
 	qmc2SampleCheckActive = true;
 	qmc2StopParser = false;
@@ -336,10 +299,6 @@ void SampleChecker::verify()
 
 void SampleChecker::verifyObsolete()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::verifyObsolete()");
-#endif
-
 	progressBar->setFormat(tr("Checking for obsolete files / folders"));
 	progressBar->setRange(0, 0);
 	progressBar->setValue(-1);
@@ -382,10 +341,6 @@ void SampleChecker::verifyObsolete()
 
 void SampleChecker::on_pushButtonSamplesCheck_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::on_pushButtonSamplesCheck_clicked()");
-#endif
-
 	if ( qmc2SampleCheckActive ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("stopping sample check upon user request"));
 		qmc2StopParser = true;
@@ -404,10 +359,6 @@ void SampleChecker::on_pushButtonSamplesCheck_clicked()
 
 void SampleChecker::on_toolButtonSamplesRemoveObsolete_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::on_toolButtonSamplesRemoveObsolete_clicked()");
-#endif
-
 	toolButtonSamplesRemoveObsolete->setEnabled(false);
 	pushButtonSamplesCheck->setEnabled(false);
 	QString emuWorkDir = QDir::toNativeSeparators(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString());
@@ -471,10 +422,6 @@ void SampleChecker::on_toolButtonSamplesRemoveObsolete_clicked()
 
 void SampleChecker::recursiveFileList(const QString &sDir, QStringList &fileNames)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::recursiveFileList(const QString& sDir = %1, QStringList &fileNames)").arg(sDir));
-#endif
-
 	QDir dir(sDir);
 	foreach (QFileInfo info, dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden | QDir::System)) {
 		QString path = QDir::toNativeSeparators(info.filePath());

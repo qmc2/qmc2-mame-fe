@@ -28,7 +28,6 @@ class ProcessManager : public QObject
 #endif
 
 		ProcessManager(QWidget *parent = 0);
-		~ProcessManager();
 
 		int start(QString &, QStringList &, bool autoConnect = true, QString workDir = QString(), QStringList softwareLists = QStringList(), QStringList softwareNames = QStringList());
 		QProcess *process(ushort);

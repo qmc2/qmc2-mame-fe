@@ -23,7 +23,6 @@ class ToolBarCustomizer : public QDialog, public Ui::ToolBarCustomizer
 		bool firstRefresh;
 
 		ToolBarCustomizer(QWidget *parent = 0);
-		~ToolBarCustomizer();
 
 	public slots:
 		void adjustIconSizes();

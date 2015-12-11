@@ -14,10 +14,6 @@ DocBrowser::DocBrowser(QWidget *parent)
 	: QDialog(parent, Qt::Dialog | Qt::SubWindow)
 #endif
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DocBrowser::DocBrowser(QWidget *parent = %1)").arg((qulonglong)parent));
-#endif
-
 	setupUi(this);
 
 	browser = new MiniWebBrowser(this);
@@ -38,20 +34,12 @@ DocBrowser::DocBrowser(QWidget *parent)
 
 DocBrowser::~DocBrowser()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DocBrowser::~DocBrowser()");
-#endif
-
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Size", size());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Pos", pos());
 }
 
 void DocBrowser::titleChanged(QString &title)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DocBrowser::titleChanged(QString &title = ...");
-#endif
-
 	static QString currentTitle = "QMC2_NO_TITLE";
 
 	if ( title == "QMC2_NO_TITLE" ) {

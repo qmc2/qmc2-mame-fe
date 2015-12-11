@@ -24,10 +24,6 @@ extern QHash<QString, QString> qmc2ParentHash;
 DemoModeDialog::DemoModeDialog(QWidget *parent)
 	: QDialog(parent)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DemoModeDialog::DemoModeDialog(QWidget *parent = %1").arg((qulonglong) parent));
-#endif
-
 	setupUi(this);
 	demoModeRunning = false;
 	emuProcess = NULL;
@@ -61,20 +57,8 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
 	QTimer::singleShot(0, this, SLOT(updateCategoryFilter()));
 }
 
-DemoModeDialog::~DemoModeDialog()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::~DemoModeDialog()");
-#endif
-
-}
-
 void DemoModeDialog::showEvent(QShowEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DemoModeDialog::showEvent(QShowEvent *e = %1)").arg((qulonglong) e));
-#endif
-
 	// try to "grab" the input focus...
 	activateWindow();
 	setFocus();
@@ -82,10 +66,6 @@ void DemoModeDialog::showEvent(QShowEvent *e)
 
 void DemoModeDialog::closeEvent(QCloseEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DemoModeDialog::closeEvent(QCloseEvent *e = %1)").arg((qulonglong) e));
-#endif
-
 	if ( demoModeRunning )
 		pushButtonRunDemo->animateClick();
 
@@ -117,10 +97,6 @@ void DemoModeDialog::closeEvent(QCloseEvent *e)
 
 void DemoModeDialog::saveCategoryFilter()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::saveCategoryFilter()");
-#endif
-
 	QStringList excludedCategories;
 
 	if ( listWidgetCategoryFilter->count() == 1 ) {
@@ -143,10 +119,6 @@ void DemoModeDialog::saveCategoryFilter()
 
 void DemoModeDialog::updateCategoryFilter()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::updateCategoryFilter()");
-#endif
-
 	QStringList categoryNames;
 	foreach (QString *category, qmc2MachineList->categoryHash.values())
 		if ( category )
@@ -171,10 +143,6 @@ void DemoModeDialog::updateCategoryFilter()
 
 void DemoModeDialog::on_pushButtonRunDemo_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::on_pushButtonRunDemo_clicked()");
-#endif
-
 	if ( demoModeRunning ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode stopped"));
 		demoModeRunning = false;
@@ -311,18 +279,10 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 void DemoModeDialog::emuStarted()
 {
 	emuProcess = (QProcess *)sender();
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::emuStarted()");
-#endif
-
 }
 
 void DemoModeDialog::emuFinished(int /*exitCode*/, QProcess::ExitStatus /*exitStatus*/)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::emuFinished(int exitCode = ..., QProcess::ExitStatus exitStatus = ...)");
-#endif
-
 	// try to "grab" the input focus...
 	activateWindow();
 	setFocus();
@@ -339,10 +299,6 @@ void DemoModeDialog::emuFinished(int /*exitCode*/, QProcess::ExitStatus /*exitSt
 
 void DemoModeDialog::startNextEmu()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::startNextEmu()");
-#endif
-
 	if ( !demoModeRunning )
 		return;
 
@@ -379,10 +335,6 @@ void DemoModeDialog::startNextEmu()
 
 void DemoModeDialog::adjustIconSizes()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::adjustIconSizes()");
-#endif
-
 	QFontMetrics fm(qApp->font());
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
 

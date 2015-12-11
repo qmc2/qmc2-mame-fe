@@ -9,7 +9,6 @@ class ComboBoxEditWidget : public QWidget, public Ui::ComboBoxEditWidget
 
 	public:
 		ComboBoxEditWidget(QStringList, QString, QWidget *parent = 0);
-		~ComboBoxEditWidget();
 
 	public slots:
     		void lineEditValue_textChanged(const QString &) { emit dataChanged(this); }

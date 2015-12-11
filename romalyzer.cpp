@@ -84,10 +84,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	: QDialog(parent, Qt::Dialog | Qt::SubWindow)
 #endif
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::ROMAlyzer(QWidget *parent = %1)").arg((qulonglong)parent));
-#endif
-  
 	setupUi(this);
 	setMode(romalyzerMode);
 	setActive(false);
@@ -242,10 +238,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 
 ROMAlyzer::~ROMAlyzer()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::~ROMAlyzer()");
-#endif
-
 	if ( checkSumDb() )
 		delete checkSumDb();
 	if ( checkSumScannerLog() )
@@ -258,10 +250,6 @@ ROMAlyzer::~ROMAlyzer()
 
 void ROMAlyzer::adjustIconSizes()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::adjustIconSizes()"));
-#endif
-
 	QFont f;
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
@@ -301,20 +289,12 @@ void ROMAlyzer::adjustIconSizes()
 
 void ROMAlyzer::on_pushButtonClose_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonClose_clicked()");
-#endif
-
 	if ( active() )
 		on_pushButtonAnalyze_clicked();
 }
 
 void ROMAlyzer::on_pushButtonAnalyze_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonAnalyze_clicked()");
-#endif
-
 	if ( qmc2ReloadActive ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
 		return;
@@ -334,10 +314,6 @@ void ROMAlyzer::on_pushButtonAnalyze_clicked()
 
 void ROMAlyzer::on_pushButtonPause_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonPause_clicked()");
-#endif
-
 	setPaused(!paused());
 	if ( paused() ) {
 		log(tr("pausing analysis"));
@@ -350,10 +326,6 @@ void ROMAlyzer::on_pushButtonPause_clicked()
 
 void ROMAlyzer::on_pushButtonSearchForward_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonSearchForward_clicked()");
-#endif
-
 	if ( !textBrowserLog->find(lineEditSearchString->text()) ) {
 		lineEditSearchString->setEnabled(false);
 		QTimer::singleShot(QMC2_ROMALYZER_FLASH_TIME, this, SLOT(enableSearchEdit()));
@@ -362,10 +334,6 @@ void ROMAlyzer::on_pushButtonSearchForward_clicked()
 
 void ROMAlyzer::on_pushButtonSearchBackward_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonSearchBackward_clicked()");
-#endif
-
 	if ( !textBrowserLog->find(lineEditSearchString->text(), QTextDocument::FindBackward) ) {
 		lineEditSearchString->setEnabled(false);
 		QTimer::singleShot(QMC2_ROMALYZER_FLASH_TIME, this, SLOT(enableSearchEdit()));
@@ -374,58 +342,34 @@ void ROMAlyzer::on_pushButtonSearchBackward_clicked()
 
 void ROMAlyzer::on_lineEditSoftwareLists_textChanged(QString text)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_lineEditSoftwareLists_textChanged(QString text = %1)").arg(text));
-#endif
-
 	if ( !active() )
 		pushButtonAnalyze->setEnabled(!text.isEmpty() && !lineEditSets->text().isEmpty());
 }
 
 void ROMAlyzer::on_lineEditSets_textChanged(QString text)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_lineEditSets_textChanged(QString text = %1)").arg(text));
-#endif
-
 	if ( !active() )
 		pushButtonAnalyze->setEnabled(mode() == QMC2_ROMALYZER_MODE_SYSTEM ? !text.isEmpty() : !text.isEmpty() && !lineEditSoftwareLists->text().isEmpty());
 }
 
 void ROMAlyzer::on_checkBoxCalculateCRC_toggled(bool enable)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_checkBoxCalculateCRC_toggled(bool enable = %1)").arg(enable));
-#endif
-
 	treeWidgetChecksums->setColumnHidden(QMC2_ROMALYZER_COLUMN_CRC, !enable);
 }
 
 void ROMAlyzer::on_checkBoxCalculateMD5_toggled(bool enable)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_checkBoxCalculateMD5_toggled(bool enable = %1)").arg(enable));
-#endif
-
 	treeWidgetChecksums->setColumnHidden(QMC2_ROMALYZER_COLUMN_MD5, !enable);
 }
 
 void ROMAlyzer::on_checkBoxCalculateSHA1_toggled(bool enable)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_checkBoxCalculateSHA1_toggled(bool enable = %1)").arg(enable));
-#endif
-
 	treeWidgetChecksums->setColumnHidden(QMC2_ROMALYZER_COLUMN_SHA1, !enable);
 	tabChecksumWizard->setEnabled(enable);
 }
 
 void ROMAlyzer::animationTimeout()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::animationTimeout()");
-#endif
-
 	switch ( ++animSeq ) {
 		case 0:
 			pushButtonAnalyze->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer.png")));
@@ -444,10 +388,6 @@ void ROMAlyzer::animationTimeout()
 
 void ROMAlyzer::closeEvent(QCloseEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	if ( e && active() )
 		on_pushButtonAnalyze_clicked();
 
@@ -515,22 +455,13 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 
 void ROMAlyzer::hideEvent(QHideEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	closeEvent(NULL);
-
 	if ( e )
 		e->accept();
 }
 
 void ROMAlyzer::showEvent(QShowEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	static bool initialCall = true;
 
 	QString userScopePath = Options::configPath();
@@ -616,47 +547,28 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 
 void ROMAlyzer::on_spinBoxMaxLogSize_valueChanged(int value)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_spinBoxMaxLogSize_valueChanged(int value = %1)").arg(value));
-#endif
-
 	textBrowserLog->setMaximumBlockCount(spinBoxMaxLogSize->value());
 }
 
 void ROMAlyzer::moveEvent(QMoveEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::moveEvent(QMoveEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Position", pos());
-
 	if ( e )
 		e->accept();
 }
 
 void ROMAlyzer::resizeEvent(QResizeEvent *e)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 	if ( !qmc2CleaningUp && !qmc2EarlyStartup )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey +"/Size", size());
-
 	if ( e )
 		e->accept();
 }
 
 void ROMAlyzer::analyze()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::analyze()");
-#endif
-
 	setActive(true);
-
 	QString myRomPath;
 	if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath") )
 		myRomPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString();
@@ -1432,10 +1344,6 @@ void ROMAlyzer::analyze()
 
 QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::getXmlData(QString gameName = %1, bool includeDTD = %2)").arg(gameName).arg(includeDTD));
-#endif
-
 	static QString xmlBuffer;
 
 	xmlBuffer.clear();
@@ -1451,10 +1359,6 @@ QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 
 QString &ROMAlyzer::getSoftwareXmlData(QString listName, QString setName, bool includeDTD)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::getSoftwareXmlData(QString listName = %1, QString setName = %2, bool includeDTD = %3)").arg(listName).arg(setName).arg(includeDTD));
-#endif
-
 	static QString swlBuffer;
 
 	swlBuffer.clear();
@@ -2380,10 +2284,6 @@ void ROMAlyzer::setMode(int mode)
 
 void ROMAlyzer::on_tabWidgetAnalysis_currentChanged(int index)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_tabWidgetAnalysis_currentChanged(int index = %1)").arg(index));
-#endif
-
 	switch ( index ) {
 		case QMC2_ROMALYZER_PAGE_LOG:
 			textBrowserLog->horizontalScrollBar()->setValue(0);
@@ -2401,10 +2301,6 @@ void ROMAlyzer::on_tabWidgetAnalysis_currentChanged(int index)
 
 void ROMAlyzer::on_treeWidgetChecksums_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_treeWidgetChecksums_itemSelectionChanged()");
-#endif
-
 	if ( checkBoxSelectGame->isChecked() ) {
 		QList<QTreeWidgetItem *> items = treeWidgetChecksums->selectedItems();
 		if ( items.count() > 0 ) {
@@ -2419,10 +2315,6 @@ void ROMAlyzer::on_treeWidgetChecksums_itemSelectionChanged()
 
 void ROMAlyzer::selectItem(QString gameName)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::selectItem(QString gameName = %1)").arg(gameName));
-#endif
-
 	switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 		case QMC2_VIEWMACHINELIST_INDEX: {
 			      QTreeWidgetItem *gameItem = qmc2MachineListItemHash[gameName];
@@ -2469,10 +2361,6 @@ void ROMAlyzer::selectItem(QString gameName)
 
 QString ROMAlyzer::humanReadable(quint64 value, int digits)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::humanReadable(quint64 value = %1, int digits = %2)").arg(value).arg(digits));
-#endif
-
 	static QString humanReadableString;
 	static qreal humanReadableValue;
 	QLocale locale;
@@ -2522,10 +2410,6 @@ void ROMAlyzer::log(const QString &msg)
 
 void ROMAlyzer::on_toolButtonBrowseBackupFolder_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseBackupFolder_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose backup folder"), lineEditBackupFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() )
 		lineEditBackupFolder->setText(s);
@@ -2534,10 +2418,6 @@ void ROMAlyzer::on_toolButtonBrowseBackupFolder_clicked()
 
 void ROMAlyzer::on_toolButtonBrowseCHDManagerExecutableFile_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseCHDManagerExecutableFile_clicked()");
-#endif
-
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD manager executable file"), lineEditCHDManagerExecutableFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditCHDManagerExecutableFile->setText(s);
@@ -2546,10 +2426,6 @@ void ROMAlyzer::on_toolButtonBrowseCHDManagerExecutableFile_clicked()
 
 void ROMAlyzer::on_toolButtonBrowseTemporaryWorkingDirectory_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseTemporaryWorkingDirectory_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose temporary working directory"), lineEditTemporaryWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() )
 		lineEditTemporaryWorkingDirectory->setText(s);
@@ -2558,10 +2434,6 @@ void ROMAlyzer::on_toolButtonBrowseTemporaryWorkingDirectory_clicked()
 
 void ROMAlyzer::on_toolButtonBrowseSetRewriterOutputPath_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseSetRewriterOutputPath_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose output directory"), lineEditSetRewriterOutputPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() )
 		lineEditSetRewriterOutputPath->setText(s);
@@ -2570,10 +2442,6 @@ void ROMAlyzer::on_toolButtonBrowseSetRewriterOutputPath_clicked()
 
 void ROMAlyzer::on_toolButtonBrowseSetRewriterAdditionalRomPath_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseSetRewriterAdditionalRomPath_clicked()");
-#endif
-
 	QString s = QFileDialog::getExistingDirectory(this, tr("Choose additional ROM path"), lineEditSetRewriterAdditionalRomPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !s.isNull() )
 		lineEditSetRewriterAdditionalRomPath->setText(s);
@@ -2582,11 +2450,6 @@ void ROMAlyzer::on_toolButtonBrowseSetRewriterAdditionalRomPath_clicked()
 
 void ROMAlyzer::chdManagerStarted()
 {
-#ifdef QMC2_DEBUG
-	QProcess *proc = (QProcess *)sender();
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerStarted(), proc = %1").arg((qulonglong)proc));
-#endif
-
 	chdManagerRunning = true;
 	chdManagerCurrentHunk = 0;
 	log(tr("CHD manager: external process started"));
@@ -2594,11 +2457,6 @@ void ROMAlyzer::chdManagerStarted()
 
 void ROMAlyzer::chdManagerFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-#ifdef QMC2_DEBUG
-	QProcess *proc = (QProcess *)sender();
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2), proc = %3").arg(exitCode).arg((int)exitStatus).arg((qulonglong)proc));
-#endif
-
 	chdManagerRunning = false;
 	QString statusString = tr("unknown");
 	switch ( exitStatus ) {
@@ -2615,11 +2473,6 @@ void ROMAlyzer::chdManagerFinished(int exitCode, QProcess::ExitStatus exitStatus
 void ROMAlyzer::chdManagerReadyReadStandardOutput()
 {
 	QProcess *proc = (QProcess *)sender();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerReadyReadStandardOutput(), proc = %1").arg((qulonglong)proc));
-#endif
-
 	QString output = proc->readAllStandardOutput();
 	QStringList sl = output.split("\n");
 	foreach (QString s, sl) {
@@ -2637,11 +2490,6 @@ void ROMAlyzer::chdManagerReadyReadStandardOutput()
 void ROMAlyzer::chdManagerReadyReadStandardError()
 {
 	QProcess *proc = (QProcess *)sender();
-
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerReadyReadStandardError(), proc = %1").arg((qulonglong)proc));
-#endif
-
 	QString output = proc->readAllStandardError();
 	QStringList sl = output.split("\n");
 	foreach (QString s, sl) {
@@ -2682,11 +2530,6 @@ void ROMAlyzer::chdManagerReadyReadStandardError()
 
 void ROMAlyzer::chdManagerError(QProcess::ProcessError processError)
 {
-#ifdef QMC2_DEBUG
-	QProcess *proc = (QProcess *)sender();
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerError(QProcess::ProcessError processError = %1), proc = %2").arg((int)processError).arg((qulonglong)proc));
-#endif
-
 	switch ( processError ) {
 		case QProcess::FailedToStart:
 			log(tr("CHD manager: failed to start"));
@@ -2802,10 +2645,6 @@ void ROMAlyzer::on_groupBoxCheckSumDatabase_toggled(bool enable)
 
 void ROMAlyzer::on_comboBoxChecksumWizardHashType_currentIndexChanged(int index)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_comboBoxChecksumWizardHashType_currentIndexChanged(int index)").arg(index));
-#endif
-
 	switch ( index ) {
 		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC:
 			if ( !currentFilesCrcChecksum.isEmpty() && lineEditChecksumWizardHash->text().length() == 40 )
@@ -2826,10 +2665,6 @@ void ROMAlyzer::on_comboBoxChecksumWizardHashType_currentIndexChanged(int index)
 
 void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()");
-#endif
-
 	qmc2StopParser = false;
 
 	treeWidgetChecksumWizardSearchResult->clear();
@@ -2966,10 +2801,6 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 
 void ROMAlyzer::runChecksumWizard()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::runChecksumWizard()");
-#endif
-
 	if ( !currentFilesSHA1Checksum.isEmpty() ) {
 		comboBoxChecksumWizardHashType->setCurrentIndex(QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1);
 		lineEditChecksumWizardHash->setText(currentFilesSHA1Checksum);
@@ -2985,10 +2816,6 @@ void ROMAlyzer::runChecksumWizard()
 
 void ROMAlyzer::runSetRewriter()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::runSetRewriter()");
-#endif
-
 	// when called through the context menu and multiple sets are in the report, rerun the analyzer on the respective set (to make sure that pre-check data is current)
 	if ( setRewriterItem == NULL ) {
 		QList<QTreeWidgetItem *> il = treeWidgetChecksums->selectedItems();
@@ -3222,10 +3049,6 @@ void ROMAlyzer::runSetRewriter()
 
 void ROMAlyzer::analyzeDeviceRefs()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::analyzeDeviceRefs()");
-#endif
-
 	QList<QTreeWidgetItem *> il = treeWidgetChecksums->selectedItems();
 	if ( !il.isEmpty() ) {
 		QStringList deviceRefs = il[0]->whatsThis(QMC2_ROMALYZER_COLUMN_GAME).split(",", QString::SkipEmptyParts);
@@ -3239,10 +3062,6 @@ void ROMAlyzer::analyzeDeviceRefs()
 
 void ROMAlyzer::importFromDataFile()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::importFromDataFile()");
-#endif
-
 	QString storedPath;
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath") )
 		storedPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath").toString();
@@ -3274,10 +3093,6 @@ void ROMAlyzer::importFromDataFile()
 
 void ROMAlyzer::exportToDataFile()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::exportToDataFile()");
-#endif
-
 	QString storedPath;
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath") )
 		storedPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath").toString();
@@ -3407,10 +3222,6 @@ void ROMAlyzer::exportToDataFile()
 
 void ROMAlyzer::copyToClipboard(bool onlyBadOrMissing)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::copyToClipboard(bool onlyBadOrMissing = %1)").arg(onlyBadOrMissing));
-#endif
-
 	static QStringList excludedColumnsBadOrMissing = QStringList() << tr("Merge") << tr("Emu status") << tr("File status");
 
 	QList<QTreeWidgetItem *> il = treeWidgetChecksums->selectedItems();
@@ -3502,19 +3313,11 @@ void ROMAlyzer::copyToClipboard(bool onlyBadOrMissing)
 
 void ROMAlyzer::copyBadToClipboard()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::copyBadToClipboard()");
-#endif
-
 	copyToClipboard(true);
 }
 
 void ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()");
-#endif
-
 	QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->selectedItems();
 	pushButtonChecksumWizardAnalyzeSelectedSets->setEnabled(!il.isEmpty());
 	wizardSelectedSets.clear();
@@ -3536,10 +3339,6 @@ void ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()
 
 void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()");
-#endif
-
 	switch ( mode() ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE: {
 				QStringList lists, sets;
@@ -3857,10 +3656,6 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 
 void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()");
-#endif
-
 	QList<QTreeWidgetItem *> badList;
 	QTreeWidgetItem *goodItem = NULL;
 	foreach (QTreeWidgetItem *item, treeWidgetChecksumWizardSearchResult->selectedItems()) {
@@ -4115,10 +3910,6 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 
 void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &p)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	if ( active() )
 		return;
 
@@ -4154,10 +3945,6 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 
 void ROMAlyzer::on_toolButtonSaveLog_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonSaveLog_clicked()");
-#endif
-
 	QString fileName = QFileDialog::getSaveFileName(this, tr("Choose file to store the ROMAlyzer log"), "qmc2-romalyzer.log", tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !fileName.isEmpty() ) {
 		QFile f(fileName);
@@ -4178,10 +3965,6 @@ void ROMAlyzer::on_toolButtonSaveLog_clicked()
 
 void ROMAlyzer::on_toolButtonCheckSumDbAddPath_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonCheckSumDbAddPath_clicked()");
-#endif
-
 	QString newPath = QFileDialog::getExistingDirectory(this, tr("Choose path to be added to scan-list"), QString(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !newPath.isEmpty() ) {
 		QStringList checkSumDbScannedPaths;
@@ -4199,10 +3982,6 @@ void ROMAlyzer::on_toolButtonCheckSumDbAddPath_clicked()
 
 void ROMAlyzer::on_toolButtonCheckSumDbRemovePath_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonCheckSumDbRemovePath_clicked()");
-#endif
-
 	foreach (QListWidgetItem *item, listWidgetCheckSumDbScannedPaths->selectedItems()) {
 		listWidgetCheckSumDbScannedPaths->takeItem(listWidgetCheckSumDbScannedPaths->row(item));
 		delete item;
@@ -4213,19 +3992,11 @@ void ROMAlyzer::on_toolButtonCheckSumDbRemovePath_clicked()
 
 void ROMAlyzer::on_lineEditCheckSumDbDatabasePath_textChanged(const QString &text)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_lineEditCheckSumDbDatabasePath_textChanged(const QString &text = %1)").arg(text));
-#endif
-
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDatabasePath", text);
 }
 
 void ROMAlyzer::on_toolButtonBrowseCheckSumDbDatabasePath_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseCheckSumDbDatabasePath_clicked()");
-#endif
-
 	QString fileName = QFileDialog::getSaveFileName(this, tr("Choose check-sum database file"), lineEditCheckSumDbDatabasePath->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !fileName.isEmpty() ) {
 		lineEditCheckSumDbDatabasePath->setText(fileName);
@@ -4235,10 +4006,6 @@ void ROMAlyzer::on_toolButtonBrowseCheckSumDbDatabasePath_clicked()
 
 void ROMAlyzer::on_toolButtonCheckSumDbViewLog_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonCheckSumDbViewLog_clicked()");
-#endif
-
 	if ( checkSumScannerLog()->isMinimized() ) {
 		checkSumScannerLog()->showNormal();
 		checkSumScannerLog()->scrollToEnd();
@@ -4254,10 +4021,6 @@ void ROMAlyzer::on_toolButtonCheckSumDbViewLog_clicked()
 
 void ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()");
-#endif
-
 	pushButtonCheckSumDbScan->setEnabled(false);
 	pushButtonCheckSumDbScan->update();
 	pushButtonCheckSumDbPauseResumeScan->setEnabled(false);
@@ -4285,10 +4048,6 @@ void ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()
 
 void ROMAlyzer::on_pushButtonCheckSumDbPauseResumeScan_clicked()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonCheckSumDbPauseResumeScan_clicked()");
-#endif
-
 	pushButtonCheckSumDbPauseResumeScan->setEnabled(false);
 	if ( checkSumScannerThread()->isPaused )
 		QTimer::singleShot(0, checkSumScannerThread(), SLOT(resume()));
@@ -4298,46 +4057,26 @@ void ROMAlyzer::on_pushButtonCheckSumDbPauseResumeScan_clicked()
 
 void ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_customContextMenuRequested(const QPoint &/*p*/)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_customContextMenuRequested(const QPoint &p = ...)");
-#endif
-
 	// FIXME
 }
 
 void ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_itemSelectionChanged()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_listWidgetCheckSumDbScannedPaths_itemSelectionChanged()");
-#endif
-
 	toolButtonCheckSumDbRemovePath->setEnabled(!listWidgetCheckSumDbScannedPaths->selectedItems().isEmpty());
 }
 
 void ROMAlyzer::checkSumScannerLog_windowOpened()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::checkSumScannerLog_windowClosed()");
-#endif
-
 	toolButtonCheckSumDbViewLog->setText(tr("Close log"));
 }
 
 void ROMAlyzer::checkSumScannerLog_windowClosed()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::checkSumScannerLog_windowClosed()");
-#endif
-
 	toolButtonCheckSumDbViewLog->setText(tr("Open log"));
 }
 
 void ROMAlyzer::checkSumScannerThread_scanStarted()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::checkSumScannerThread_scanStarted()");
-#endif
-
 	if ( collectionRebuilder() ) {
 		delete collectionRebuilder();
 		m_collectionRebuilder = NULL;
@@ -4361,10 +4100,6 @@ void ROMAlyzer::checkSumScannerThread_scanStarted()
 
 void ROMAlyzer::checkSumScannerThread_scanFinished()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::checkSumScannerThread_scanFinished()");
-#endif
-
 	pushButtonCheckSumDbScan->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
 	pushButtonCheckSumDbScan->setText(tr("Start scanner"));
 	pushButtonCheckSumDbPauseResumeScan->hide();
@@ -4385,30 +4120,18 @@ void ROMAlyzer::checkSumScannerThread_scanFinished()
 
 void ROMAlyzer::checkSumScannerThread_scanPaused()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::checkSumScannerThread_scanPaused()");
-#endif
-
 	pushButtonCheckSumDbPauseResumeScan->setText(tr("Resume"));
 	pushButtonCheckSumDbPauseResumeScan->setEnabled(true);
 }
 
 void ROMAlyzer::checkSumScannerThread_scanResumed()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::checkSumScannerThread_scanResumed()");
-#endif
-
 	pushButtonCheckSumDbPauseResumeScan->setText(tr("Pause"));
 	pushButtonCheckSumDbPauseResumeScan->setEnabled(true);
 }
 
 void ROMAlyzer::updateCheckSumDbStatus()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::updateCheckSumDbStatus()");
-#endif
-
 	bool isScanning = checkSumScannerThread()->status() == tr("scanning");
 
 	QDateTime now = QDateTime::currentDateTime();
@@ -4506,15 +4229,10 @@ void ROMAlyzer::switchToCollectionRebuilder()
 
 ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, bool scroll, int mode)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent = %1, bool expand = %2, bool scroll = %3, int mode = %4)").arg((qulonglong)parent).arg(expand).arg(scroll).arg(mode));
-#endif
-
 	parentItem = parent;
 	autoExpand = expand;
 	autoScroll = scroll;
 	romalyzerMode = mode;
-
 	redBrush = QBrush(QColor(255, 0, 0));
 	greenBrush = QBrush(QColor(0, 255, 0));
 	blueBrush = QBrush(QColor(0, 0, 255));
@@ -4525,10 +4243,6 @@ ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, b
 
 bool ROMAlyzerXmlHandler::startElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName, const QXmlAttributes &attributes)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::startElement(...)");
-#endif
-
 	QString s;
 	QString mainEntityName;
 
@@ -4600,10 +4314,6 @@ bool ROMAlyzerXmlHandler::startElement(const QString &/*namespaceURI*/, const QS
 
 bool ROMAlyzerXmlHandler::endElement(const QString &/*namespaceURI*/, const QString &/*localName*/, const QString &qName)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::endElement(...)");
-#endif
-
 	QString mainEntityName;
 
 	switch ( romalyzerMode ) {
@@ -4658,10 +4368,6 @@ bool ROMAlyzerXmlHandler::endElement(const QString &/*namespaceURI*/, const QStr
 
 bool ROMAlyzerXmlHandler::characters(const QString &str)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::characters(...)");
-#endif
-
 	currentText += QString::fromUtf8(str.toUtf8());
 	return true;
 }

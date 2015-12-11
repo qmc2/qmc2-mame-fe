@@ -1,9 +1,4 @@
 #include "settings.h"
-#ifndef IOSTREAM_H
-#ifdef QMC2_DEBUG_ENV_RESOLVE
-#include <iostream>
-#endif
-#endif
 
 QStringList Settings::stResolve(const QStringList& qstrl) {
 	QString qstr;
@@ -33,9 +28,6 @@ QString Settings::stResolve(const QString& qstr) {
 		qbaBuf = qrx.cap(2).toUtf8();
 		qbaBuf = qgetenv(qbaBuf.constData());
 		if (!qbaBuf.isNull()) {
-#ifdef QMC2_DEBUG_ENV_RESOLVE
-			std::cout << "match: '" << qrx.cap(1).toStdString() << "', resolve: '" << qbaBuf.constData() << "'" << std::endl;
-#endif
 			qstrFinal += QString::fromLocal8Bit(qbaBuf.constData());
 		} else
 			qstrFinal += qrx.cap(1);  // unresolved, so put it back untouched
@@ -45,9 +37,6 @@ QString Settings::stResolve(const QString& qstr) {
 	}
 	if (posLastEnd < qstr.length())
 		qstrFinal += qstr.midRef(posLastEnd + 1, qstr.length());
-#ifdef QMC2_DEBUG_ENV_RESOLVE
-	std::cout << "input: '" << qstr.toStdString() << "' output: '" << qstrFinal.toStdString() << "'" << std::endl;
-#endif
 	return qstrFinal;
 }
 
