@@ -1705,7 +1705,7 @@ void Options::on_pushButtonApply_clicked()
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 		else if ( QMC2_ICON_FILETYPE_ARCHIVE ) {
 			foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
-				ArchiveFile *archiveFile = new ArchiveFile(filePath);
+				ArchiveFile *archiveFile = new ArchiveFile(filePath, true);
 				if ( !archiveFile->open() ) {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("libarchive error") + ": " + archiveFile->errorString());
 					delete archiveFile;

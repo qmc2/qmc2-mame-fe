@@ -208,7 +208,7 @@ MachineList::MachineList(QObject *parent)
 #if defined(QMC2_LIBARCHIVE_ENABLED)
        	else if ( QMC2_ICON_FILETYPE_ARCHIVE ) {
 		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
-			ArchiveFile *archiveFile = new ArchiveFile(filePath);
+			ArchiveFile *archiveFile = new ArchiveFile(filePath, true);
 			if ( !archiveFile->open() ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("libarchive error") + ": " + archiveFile->errorString());
 				delete archiveFile;
@@ -3176,13 +3176,12 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 						qmc2MainWindow->progressBarMachineList->setFormat(tr("Icon cache - %p%"));
 					else
 						qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-					qmc2MainWindow->progressBarMachineList->setRange(0, archiveFile->entryList().count());
+					qmc2MainWindow->progressBarMachineList->setRange(0, 0);
 					qmc2MainWindow->progressBarMachineList->reset();
-					qApp->processEvents();
 					QString gameFileName;
 					ArchiveEntryMetaData metaData;
 					bool reset = true;
-					int index = 0;
+					int counter = 0;
 					while ( archiveFile->seekNextEntry(&metaData, &reset) ) {
 						QFileInfo fi(metaData.name());
 						gameFileName = fi.fileName();
@@ -3195,10 +3194,8 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 							qmc2IconHash[fi.baseName()] = QIcon(iconPixmap);
 							iconCount++;
 						}
-						if ( index++ % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
-							qmc2MainWindow->progressBarMachineList->setValue(index);
+						if ( counter++ % QMC2_ICONCACHE_RESPONSIVENESS == 0 )
 							qApp->processEvents();
-						}
 						imageData.clear();
 					}
 					qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);

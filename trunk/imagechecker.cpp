@@ -1992,6 +1992,8 @@ void ImageChecker::recursiveSevenZipList(SevenZipFile *sevenZipFile, QStringList
 void ImageChecker::recursiveArchiveList(ArchiveFile *archiveFile, QStringList *fileNames, QString prependString)
 {
 	if ( archiveFile ) {
+		if ( archiveFile->entryList().isEmpty() )
+			archiveFile->createEntryList();
 		for (int index = 0; index < archiveFile->entryList().count(); index++) {
 			fileNames->append(prependString + archiveFile->entryList()[index].name());
 			if ( index % 25 == 0 )

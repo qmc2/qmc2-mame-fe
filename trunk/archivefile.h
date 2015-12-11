@@ -40,7 +40,7 @@ class ArchiveFile : public QObject
 	Q_OBJECT
 
 	public:
-		explicit ArchiveFile(QString fileName = QString(), QObject *parent = 0);
+		explicit ArchiveFile(QString fileName = QString(), bool sequential = false, QObject *parent = 0);
 		~ArchiveFile();
 
 		QString fileName() { return m_fileName; }
@@ -56,9 +56,9 @@ class ArchiveFile : public QObject
 		qint64 readBlock(QByteArray *buffer);
 		QString errorString();
 		int errorCode();
+		void createEntryList();
 
 	private:
-		void createEntryList();
 		int indexOfName(QString name) { if ( m_nameToIndexCache.contains(name) ) return m_nameToIndexCache[name]; else return -1; }
 
 		struct archive *m_archive;
@@ -66,6 +66,7 @@ class ArchiveFile : public QObject
 		QList<ArchiveEntryMetaData> m_entryList;
 		QHash<QString, int> m_nameToIndexCache;
 		QString m_fileName;
+		bool m_sequential;
 };
 
 #endif
