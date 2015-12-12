@@ -39,8 +39,8 @@ void CheckSumScannerLog::log(const QString &message)
 		if ( m_logSyncMutex->tryLock(1) ) {
 			for (int i = 0; i < m_messageQueue.count(); i++)
 				plainTextEditLog->appendPlainText(m_messageQueue[i]);
-			m_logSyncMutex->unlock();
 			m_messageQueue.clear();
+			m_logSyncMutex->unlock();
 		}
 	}
 }
@@ -51,8 +51,8 @@ void CheckSumScannerLog::flushMessageQueue()
 		m_logSyncMutex->lock();
 		for (int i = 0; i < m_messageQueue.count(); i++)
 			plainTextEditLog->appendPlainText(m_messageQueue[i]);
-		m_logSyncMutex->unlock();
 		m_messageQueue.clear();
+		m_logSyncMutex->unlock();
 	}
 }
 
