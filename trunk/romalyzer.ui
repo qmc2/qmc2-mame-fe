@@ -355,9 +355,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-213</y>
-            <width>702</width>
-            <height>776</height>
+            <y>-338</y>
+            <width>692</width>
+            <height>968</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayoutScrollAreeaSettings" rowstretch="0,0,0,1,0">
@@ -1570,6 +1570,20 @@
                     </property>
                    </widget>
                   </item>
+                  <item>
+                   <widget class="QToolButton" name="toolButtonCheckSumDbLibArchive">
+                    <property name="toolTip">
+                     <string>Use libarchive instead of built-in decompressors</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="qmc2.qrc">
+                      <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
                  </layout>
                 </item>
                 <item row="2" column="0" rowspan="8" colspan="3">
@@ -2027,6 +2041,7 @@
   <tabstop>toolButtonCheckSumDbScanIncrementally</tabstop>
   <tabstop>toolButtonCheckSumDbDeepScan</tabstop>
   <tabstop>toolButtonCheckSumDbHashCache</tabstop>
+  <tabstop>toolButtonCheckSumDbLibArchive</tabstop>
   <tabstop>listWidgetCheckSumDbScannedPaths</tabstop>
   <tabstop>lineEditCheckSumDbDatabasePath</tabstop>
   <tabstop>toolButtonBrowseCheckSumDbDatabasePath</tabstop>
@@ -2053,8 +2068,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>79</x>
-     <y>911</y>
+     <x>86</x>
+     <y>651</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
@@ -2069,12 +2084,12 @@
    <slot>animateClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>38</x>
-     <y>872</y>
+     <x>48</x>
+     <y>602</y>
     </hint>
     <hint type="destinationlabel">
-     <x>458</x>
-     <y>872</y>
+     <x>571</x>
+     <y>602</y>
     </hint>
    </hints>
   </connection>
@@ -2101,12 +2116,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>274</x>
-     <y>137</y>
+     <x>324</x>
+     <y>-268</y>
     </hint>
     <hint type="destinationlabel">
-     <x>274</x>
-     <y>163</y>
+     <x>324</x>
+     <y>-233</y>
     </hint>
    </hints>
   </connection>
@@ -2117,12 +2132,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>109</x>
-     <y>451</y>
+     <x>127</x>
+     <y>132</y>
     </hint>
     <hint type="destinationlabel">
-     <x>108</x>
-     <y>476</y>
+     <x>126</x>
+     <y>158</y>
     </hint>
    </hints>
   </connection>
@@ -2133,12 +2148,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>221</x>
-     <y>453</y>
+     <x>251</x>
+     <y>146</y>
     </hint>
     <hint type="destinationlabel">
-     <x>262</x>
-     <y>481</y>
+     <x>295</x>
+     <y>186</y>
     </hint>
    </hints>
   </connection>
@@ -2149,12 +2164,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>125</x>
-     <y>242</y>
+     <x>143</x>
+     <y>-130</y>
     </hint>
     <hint type="destinationlabel">
-     <x>292</x>
-     <y>244</y>
+     <x>496</x>
+     <y>-124</y>
     </hint>
    </hints>
   </connection>
@@ -2165,12 +2180,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>125</x>
-     <y>242</y>
+     <x>143</x>
+     <y>-130</y>
     </hint>
     <hint type="destinationlabel">
-     <x>652</x>
-     <y>244</y>
+     <x>685</x>
+     <y>-124</y>
     </hint>
    </hints>
   </connection>
@@ -2181,12 +2196,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>404</x>
-     <y>481</y>
+     <x>484</x>
+     <y>175</y>
     </hint>
     <hint type="destinationlabel">
-     <x>513</x>
-     <y>483</y>
+     <x>648</x>
+     <y>181</y>
     </hint>
    </hints>
   </connection>
@@ -2197,12 +2212,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>404</x>
-     <y>481</y>
+     <x>484</x>
+     <y>175</y>
     </hint>
     <hint type="destinationlabel">
-     <x>653</x>
-     <y>483</y>
+     <x>686</x>
+     <y>181</y>
     </hint>
    </hints>
   </connection>
@@ -2229,12 +2244,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>221</x>
-     <y>453</y>
+     <x>251</x>
+     <y>146</y>
     </hint>
     <hint type="destinationlabel">
-     <x>279</x>
-     <y>506</y>
+     <x>354</x>
+     <y>212</y>
     </hint>
    </hints>
   </connection>
@@ -2245,12 +2260,28 @@
    <slot>animateClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>265</x>
-     <y>72</y>
+     <x>351</x>
+     <y>115</y>
     </hint>
     <hint type="destinationlabel">
      <x>660</x>
      <y>90</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButtonCheckSumDbDeepScan</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonCheckSumDbLibArchive</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>323</x>
+     <y>307</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>360</x>
+     <y>308</y>
     </hint>
    </hints>
   </connection>

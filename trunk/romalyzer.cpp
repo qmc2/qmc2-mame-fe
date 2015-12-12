@@ -25,11 +25,14 @@
 #include "qmc2main.h"
 #include "options.h"
 #include "machinelist.h"
+#include "softwarelist.h"
 #include "macros.h"
 #include "unzip.h"
 #include "zip.h"
 #include "sevenzipfile.h"
-#include "softwarelist.h"
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+#include "archivefile.h"
+#endif
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -88,6 +91,12 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	setMode(romalyzerMode);
 	setActive(false);
 	setPaused(false);
+
+#if !defined(QMC2_LIBARCHIVE_ENABLED) || !defined(QMC2_WIP_ENABLED)
+	toolButtonCheckSumDbDeepScan->disconnect(toolButtonCheckSumDbLibArchive);
+	toolButtonCheckSumDbLibArchive->setChecked(false);
+	toolButtonCheckSumDbLibArchive->setVisible(false);
+#endif
 
 	m_checkSumDbQueryStatusPixmap = QPixmap(QString::fromUtf8(":/data/img/database.png"));
 
@@ -277,8 +286,9 @@ void ROMAlyzer::adjustIconSizes()
 	treeWidgetChecksumWizardSearchResult->setIconSize(iconSizeTreeWidgets);
 	pushButtonChecksumWizardSearch->setIconSize(iconSize);
 	toolButtonCheckSumDbAddPath->setIconSize(iconSize);
-	toolButtonBrowseCheckSumDbDatabasePath->setIconSize(iconSize);
 	toolButtonCheckSumDbRemovePath->setIconSize(iconSize);
+	toolButtonCheckSumDbLibArchive->setIconSize(iconSize);
+	toolButtonBrowseCheckSumDbDatabasePath->setIconSize(iconSize);
 	pushButtonCheckSumDbScan->setIconSize(iconSize);
 	pushButtonCheckSumDbPauseResumeScan->setIconSize(iconSize);
 	widgetCheckSumDbQueryStatus->setFixedWidth(widgetCheckSumDbQueryStatus->height());
@@ -440,6 +450,9 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScanIncrementally", toolButtonCheckSumDbScanIncrementally->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDeepScan", toolButtonCheckSumDbDeepScan->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbHashCache", toolButtonCheckSumDbHashCache->isChecked());
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbLibArchive", toolButtonCheckSumDbLibArchive->isChecked());
+#endif
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ReportHeaderState", treeWidgetChecksums->header()->saveState());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/AnalysisTab", tabWidgetAnalysis->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/ChecksumWizardHeaderState", treeWidgetChecksumWizardSearchResult->header()->saveState());
@@ -540,6 +553,9 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	toolButtonCheckSumDbScanIncrementally->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScanIncrementally", true).toBool());
 	toolButtonCheckSumDbDeepScan->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDeepScan", true).toBool());
 	toolButtonCheckSumDbHashCache->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbHashCache", false).toBool());
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	toolButtonCheckSumDbLibArchive->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbLibArchive", false).toBool());
+#endif
 	if ( e )
 		e->accept();
 	initialCall = false;
@@ -4041,6 +4057,9 @@ void ROMAlyzer::on_pushButtonCheckSumDbScan_clicked()
 		checkSumScannerThread()->scanIncrementally = toolButtonCheckSumDbScanIncrementally->isChecked();
 		checkSumScannerThread()->deepScan = toolButtonCheckSumDbDeepScan->isChecked();
 		checkSumScannerThread()->useHashCache = toolButtonCheckSumDbHashCache->isChecked();
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		checkSumScannerThread()->useLibArchive = checkSumScannerThread()->deepScan && toolButtonCheckSumDbLibArchive->isChecked();
+#endif
 		checkSumScannerThread()->waitCondition.wakeAll();
 	}
 	qApp->processEvents();
@@ -4376,6 +4395,9 @@ CheckSumScannerThread::CheckSumScannerThread(CheckSumScannerLog *scannerLog, QSt
 	: QThread(parent)
 {
 	isActive = exitThread = isWaiting = isPaused = pauseRequested = stopScan = scanIncrementally = deepScan = useHashCache = false;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	useLibArchive = false;
+#endif
 	m_preparingIncrementalScan = false;
 	m_checkSumDb = NULL;
 	m_scannerLog = scannerLog;
@@ -4647,6 +4669,14 @@ void CheckSumScannerThread::run()
 							doDbUpdate = false;
 						}
 						break;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+					case QMC2_CHECKSUM_SCANNER_FILE_ARCHIVE:
+						if ( !scanArchive(filePath, &memberList, &sizeList, &sha1List, &crcList) ) {
+							emitlog(tr("WARNING: scan failed for file '%1'").arg(filePath));
+							doDbUpdate = false;
+						}
+						break;
+#endif
 					default:
 					case QMC2_CHECKSUM_SCANNER_FILE_NO_ACCESS:
 						emitlog(tr("WARNING: can't access file '%1', please check permissions").arg(filePath));
@@ -4659,6 +4689,9 @@ void CheckSumScannerThread::run()
 					switch ( type ) {
 						case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
 						case QMC2_CHECKSUM_SCANNER_FILE_7Z:
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+						case QMC2_CHECKSUM_SCANNER_FILE_ARCHIVE:
+#endif
 							for (int i = 0; i < memberList.count(); i++) {
 								if ( !checkSumExists(sha1List[i], crcList[i], sizeList[i]) ) {
 									emitlog(tr("database update") + ": " + tr("adding member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' to database").arg(memberList[i]).arg(filePath).arg(sha1List[i]).arg(crcList[i]));
@@ -4803,20 +4836,37 @@ void CheckSumScannerThread::recursiveFileList(const QString &sDir, QStringList *
 
 int CheckSumScannerThread::fileType(QString fileName)
 {
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	static QRegExp archiveRx("[Zz][Ii][Pp]|7[Zz]");
+#endif
 	static QRegExp zipRx("[Zz][Ii][Pp]");
 	static QRegExp sevenZipRx("7[Zz]");
 	static QRegExp chdRx("[Cc][Hh][Dd]");
 
 	QFileInfo fileInfo(fileName);
 	if ( fileInfo.isReadable() ) {
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		if ( useLibArchive ) {
+			if ( fileInfo.suffix().indexOf(archiveRx) == 0 )
+				return QMC2_CHECKSUM_SCANNER_FILE_ARCHIVE;
+		} else {
+			if ( fileInfo.suffix().indexOf(zipRx) == 0 )
+				return QMC2_CHECKSUM_SCANNER_FILE_ZIP;
+			if ( fileInfo.suffix().indexOf(sevenZipRx) == 0 )
+				return QMC2_CHECKSUM_SCANNER_FILE_7Z;
+		}
+		if ( fileInfo.suffix().indexOf(chdRx) == 0 )
+			return QMC2_CHECKSUM_SCANNER_FILE_CHD;
+		return QMC2_CHECKSUM_SCANNER_FILE_REGULAR;
+#else
 		if ( fileInfo.suffix().indexOf(zipRx) == 0 )
 			return QMC2_CHECKSUM_SCANNER_FILE_ZIP;
-		else if ( fileInfo.suffix().indexOf(sevenZipRx) == 0 )
+		if ( fileInfo.suffix().indexOf(sevenZipRx) == 0 )
 			return QMC2_CHECKSUM_SCANNER_FILE_7Z;
-		else if ( fileInfo.suffix().indexOf(chdRx) == 0 )
+		if ( fileInfo.suffix().indexOf(chdRx) == 0 )
 			return QMC2_CHECKSUM_SCANNER_FILE_CHD;
-		else
-			return QMC2_CHECKSUM_SCANNER_FILE_REGULAR;
+		return QMC2_CHECKSUM_SCANNER_FILE_REGULAR;
+#endif
 	} else
 		return QMC2_CHECKSUM_SCANNER_FILE_NO_ACCESS;
 }
@@ -4913,6 +4963,40 @@ bool CheckSumScannerThread::scanSevenZip(QString fileName, QStringList *memberLi
 	} else
 		return false;
 }
+
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+bool CheckSumScannerThread::scanArchive(QString fileName, QStringList *memberList, QList<quint64> *sizeList, QStringList *sha1List, QStringList *crcList)
+{
+	ArchiveFile archiveFile(fileName);
+	if ( archiveFile.open() ) {
+		QByteArray fileData;
+		ArchiveEntryMetaData metaData;
+		bool reset = true;
+		while ( archiveFile.seekNextEntry(&metaData, &reset) ) {
+			if ( exitThread || stopScan )
+				break;
+			QByteArray ba;
+			while ( archiveFile.readBlock(&ba) > 0 )
+				fileData.append(ba);
+			if ( !archiveFile.hasError() ) {
+				memberList->append(metaData.name());
+				sizeList->append(metaData.size());
+				QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
+				sha1Hash.addData(fileData);
+				sha1List->append(sha1Hash.result().toHex());
+				ulong crc = crc32(0, NULL, 0);
+				crc = crc32(crc, (const Bytef *)fileData.data(), fileData.size());
+				crcList->append(crcToString(crc));
+				emitlog(tr("archive scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
+			} else
+				emitlog(tr("archive scan") + ": " + tr("WARNING: can't read member '%1' from archive '%2'").arg(metaData.name()).arg(fileName));
+		}
+		archiveFile.close();
+		return true;
+	} else
+		return false;
+}
+#endif
 
 bool CheckSumScannerThread::scanChd(QString fileName, quint64 *size, QString *sha1)
 {
