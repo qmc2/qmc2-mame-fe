@@ -4970,12 +4970,11 @@ bool CheckSumScannerThread::scanArchive(QString fileName, QStringList *memberLis
 {
 	ArchiveFile archiveFile(fileName, true);
 	if ( archiveFile.open() ) {
-		QByteArray fileData;
 		ArchiveEntryMetaData metaData;
 		while ( archiveFile.seekNextEntry(&metaData) ) {
 			if ( exitThread || stopScan )
 				break;
-			QByteArray ba;
+			QByteArray fileData, ba;
 			while ( archiveFile.readBlock(&ba) > 0 )
 				fileData.append(ba);
 			if ( !archiveFile.hasError() ) {
@@ -4990,7 +4989,6 @@ bool CheckSumScannerThread::scanArchive(QString fileName, QStringList *memberLis
 				emitlog(tr("archive scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
 			} else
 				emitlog(tr("archive scan") + ": " + tr("WARNING: can't read member '%1' from archive '%2'").arg(metaData.name()).arg(fileName));
-			fileData.clear();
 		}
 		archiveFile.close();
 		return true;
