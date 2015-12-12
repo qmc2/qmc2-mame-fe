@@ -68,7 +68,7 @@ QString UserDataDatabaseManager::emulatorVersion()
 			emu_version = query.value(0).toString();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(query.lastError().text()));
 	return emu_version;
 }
 
@@ -82,17 +82,17 @@ void UserDataDatabaseManager::setEmulatorVersion(QString emu_version)
 			query.prepare(QString("INSERT INTO %1_metadata (emu_version, row) VALUES (:emu_version, 0)").arg(m_tableBasename));
 			query.bindValue(":emu_version", emu_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1_metadata SET emu_version=:emu_version WHERE row=0").arg(m_tableBasename));
 			query.bindValue(":emu_version", emu_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 QString UserDataDatabaseManager::qmc2Version()
@@ -105,7 +105,7 @@ QString UserDataDatabaseManager::qmc2Version()
 			qmc2_version = query.value(0).toString();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 	return qmc2_version;
 }
 
@@ -119,17 +119,17 @@ void UserDataDatabaseManager::setQmc2Version(QString qmc2_version)
 			query.prepare(QString("INSERT INTO %1_metadata (qmc2_version, row) VALUES (:qmc2_version, 0)").arg(m_tableBasename));
 			query.bindValue(":qmc2_version", qmc2_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1_metadata SET qmc2_version=:qmc2_version WHERE row=0").arg(m_tableBasename));
 			query.bindValue(":qmc2_version", qmc2_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 int UserDataDatabaseManager::userDataVersion()
@@ -142,7 +142,7 @@ int UserDataDatabaseManager::userDataVersion()
 			userdata_version = query.value(0).toInt();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("userdata_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("userdata_version").arg(query.lastQuery()).arg(query.lastError().text()));
 	return userdata_version;
 }
 
@@ -156,17 +156,17 @@ void UserDataDatabaseManager::setUserDataVersion(int userdata_version)
 			query.prepare(QString("INSERT INTO %1_metadata (userdata_version, row) VALUES (:userdata_version, 0)").arg(m_tableBasename));
 			query.bindValue(":userdata_version", userdata_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("userdata_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("userdata_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1_metadata SET userdata_version=:userdata_version WHERE row=0").arg(m_tableBasename));
 			query.bindValue(":userdata_version", userdata_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("userdata_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("userdata_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("userdata_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("userdata_version").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 int UserDataDatabaseManager::rank(QString id)
@@ -183,7 +183,7 @@ int UserDataDatabaseManager::rank(QString id)
 			rank = query.value(0).toInt();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("rank").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("rank").arg(query.lastQuery()).arg(query.lastError().text()));
 	return rank;
 }
 
@@ -198,7 +198,7 @@ int UserDataDatabaseManager::rank(int rowid)
 			rank = query.value(0).toInt();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("rank").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("rank").arg(query.lastQuery()).arg(query.lastError().text()));
 	return rank;
 }
 
@@ -220,18 +220,18 @@ void UserDataDatabaseManager::setRank(QString id, int rank)
 			query.bindValue(":id", id);
 			query.bindValue(":rank", rank);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("rank").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("rank").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET rank=:rank WHERE id=:id").arg(m_tableBasename));
 			query.bindValue(":id", id);
 			query.bindValue(":rank", rank);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("rank").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("rank").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("rank").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("rank").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 QString UserDataDatabaseManager::comment(QString id)
@@ -248,7 +248,7 @@ QString UserDataDatabaseManager::comment(QString id)
 			comment = query.value(0).toString();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("comment").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("comment").arg(query.lastQuery()).arg(query.lastError().text()));
 	return comment;
 }
 
@@ -263,7 +263,7 @@ QString UserDataDatabaseManager::comment(int rowid)
 			comment = query.value(0).toString();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("comment").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("comment").arg(query.lastQuery()).arg(query.lastError().text()));
 	return comment;
 }
 
@@ -285,18 +285,18 @@ void UserDataDatabaseManager::setComment(QString id, QString comment)
 			query.bindValue(":id", id);
 			query.bindValue(":comment", comment);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("comment").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("comment").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET comment=:comment WHERE id=:id").arg(m_tableBasename));
 			query.bindValue(":id", id);
 			query.bindValue(":comment", comment);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("comment").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("comment").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("comment").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("comment").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 qint64 UserDataDatabaseManager::userDataRowCount()
@@ -308,7 +308,7 @@ qint64 UserDataDatabaseManager::userDataRowCount()
 		else
 			return -1;
 	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 	}	return -1;
 }
 
@@ -327,7 +327,7 @@ qint64 UserDataDatabaseManager::nextRowId(bool refreshRowIds)
 				return m_rowIdList[0];
 			}
 		} else {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row IDs from user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row IDs from user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 			return -1;
 		}
 	} else if ( m_lastRowId > -1 ) {
@@ -351,7 +351,7 @@ QString UserDataDatabaseManager::id(int rowid)
 		else
 			return QString();
 	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(query.lastError().text()));
 		return QString();
 	}
 }
@@ -364,7 +364,7 @@ bool UserDataDatabaseManager::exists(QString id)
 	if ( query.exec() )
 		return query.first();
 	else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(query.lastError().text()));
 		return false;
 	}
 }
@@ -386,7 +386,7 @@ void UserDataDatabaseManager::cleanUp()
 					query.finish();
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("removed obsolete ID '%1'").arg(idOfCurrentRow));
 				} else
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(idOfCurrentRow).arg(query.lastQuery()).arg(m_db.lastError().text()));
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(idOfCurrentRow).arg(query.lastQuery()).arg(query.lastError().text()));
 			} else if ( rank(idOfCurrentRow) == 0 && comment(idOfCurrentRow).isEmpty() ) {
 				QSqlQuery query(m_db);
 				query.prepare(QString("DELETE FROM %1 WHERE rowid=:row").arg(m_tableBasename));
@@ -395,7 +395,7 @@ void UserDataDatabaseManager::cleanUp()
 					query.finish();
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("removed ID '%1' due to no data").arg(idOfCurrentRow));
 				} else
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(idOfCurrentRow).arg(query.lastQuery()).arg(m_db.lastError().text()));
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(idOfCurrentRow).arg(query.lastQuery()).arg(query.lastError().text()));
 			}
 		}
 		qApp->processEvents();
@@ -415,7 +415,7 @@ void UserDataDatabaseManager::remove(QString id)
 	query.prepare(QString("DELETE FROM %1 WHERE id=:id").arg(m_tableBasename));
 	query.bindValue(":id", id);
 	if ( !query.exec() )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(query.lastError().text()));
 	m_rankCache.remove(id);
 	m_commentCache.remove(id);
 }
@@ -445,7 +445,7 @@ void UserDataDatabaseManager::setCacheSize(quint64 kiloBytes)
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA cache_size = -%1").arg(kiloBytes)) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the user data database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the user data database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void UserDataDatabaseManager::setSyncMode(uint syncMode)
@@ -455,7 +455,7 @@ void UserDataDatabaseManager::setSyncMode(uint syncMode)
 		return;
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA synchronous = %1").arg(dbSyncModes[syncMode])) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the user data database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the user data database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void UserDataDatabaseManager::setJournalMode(uint journalMode)
@@ -465,24 +465,24 @@ void UserDataDatabaseManager::setJournalMode(uint journalMode)
 		return;
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA journal_mode = %1").arg(dbJournalModes[journalMode])) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the user data database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the user data database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void UserDataDatabaseManager::recreateDatabase()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_tableBasename)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_tableBasename)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1_metadata").arg(m_tableBasename)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
@@ -490,17 +490,17 @@ void UserDataDatabaseManager::recreateDatabase()
 	query.exec("VACUUM");
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT PRIMARY KEY, rank INTEGER, comment TEXT, CONSTRAINT %1_unique_id UNIQUE (id))").arg(m_tableBasename)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_tableBasename)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1_metadata (row INTEGER PRIMARY KEY, emu_version TEXT, qmc2_version TEXT, userdata_version INTEGER)").arg(m_tableBasename)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	recreateSoftListVisibilityTable();
@@ -555,18 +555,18 @@ void UserDataDatabaseManager::setHiddenLists(QString id, QStringList hidden_list
 			query.bindValue(":id", id);
 			query.bindValue(":hidden_lists", hidden_lists.join(","));
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET hidden_lists=:hidden_lists WHERE id=:id").arg(m_tableBasenameSL));
 			query.bindValue(":id", id);
 			query.bindValue(":hidden_lists", hidden_lists.join(","));
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(query.lastError().text()));
 
 	if ( hidden_lists.isEmpty() )
 		removeHiddenLists(id);
@@ -583,7 +583,7 @@ QStringList UserDataDatabaseManager::hiddenLists(QString id)
 			hidden_lists = query.value(0).toString().split(",", QString::SkipEmptyParts);
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(query.lastError().text()));
 	return hidden_lists;
 }
 
@@ -593,7 +593,7 @@ void UserDataDatabaseManager::removeHiddenLists(QString id)
 	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (favorites IS NULL OR favorites = '') AND (device_configs IS NULL OR device_configs='')").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( !query.exec() )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void UserDataDatabaseManager::setListFavorites(QString id, QStringList favorites)
@@ -608,18 +608,18 @@ void UserDataDatabaseManager::setListFavorites(QString id, QStringList favorites
 			query.bindValue(":id", id);
 			query.bindValue(":favorites", favorites.join(","));
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("favorites").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("favorites").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET favorites=:favorites WHERE id=:id").arg(m_tableBasenameSL));
 			query.bindValue(":id", id);
 			query.bindValue(":favorites", favorites.join(","));
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("favorites").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("favorites").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("favorites").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("favorites").arg(query.lastQuery()).arg(query.lastError().text()));
 
 	if ( favorites.isEmpty() )
 		removeListFavorites(id);
@@ -636,7 +636,7 @@ QStringList UserDataDatabaseManager::listFavorites(QString id)
 			favorites = query.value(0).toString().split(",", QString::SkipEmptyParts);
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("favorites").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("favorites").arg(query.lastQuery()).arg(query.lastError().text()));
 	return favorites;
 }
 
@@ -646,7 +646,7 @@ void UserDataDatabaseManager::removeListFavorites(QString id)
 	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='') AND (device_configs IS NULL OR device_configs='')").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( !query.exec() )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void UserDataDatabaseManager::setDeviceConfigs(QString id, QStringList device_configs)
@@ -661,18 +661,18 @@ void UserDataDatabaseManager::setDeviceConfigs(QString id, QStringList device_co
 			query.bindValue(":id", id);
 			query.bindValue(":device_configs", device_configs.join(","));
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET device_configs=:device_configs WHERE id=:id").arg(m_tableBasenameSL));
 			query.bindValue(":id", id);
 			query.bindValue(":device_configs", device_configs.join(","));
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(query.lastError().text()));
 
 	if ( device_configs.isEmpty() )
 		removeDeviceConfigs(id);
@@ -689,7 +689,7 @@ QStringList UserDataDatabaseManager::deviceConfigs(QString id)
 			device_configs = query.value(0).toString().split(",");
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(query.lastError().text()));
 	return device_configs;
 }
 
@@ -699,19 +699,19 @@ void UserDataDatabaseManager::removeDeviceConfigs(QString id)
 	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='') AND (favorites IS NULL OR favorites='')").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( !query.exec() )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void UserDataDatabaseManager::recreateSoftListVisibilityTable()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_tableBasenameSL)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_tableBasenameSL)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
@@ -719,12 +719,12 @@ void UserDataDatabaseManager::recreateSoftListVisibilityTable()
 	query.exec("VACUUM");
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT PRIMARY KEY, hidden_lists TEXT, favorites TEXT, device_configs TEXT, CONSTRAINT %1_unique_id UNIQUE (id))").arg(m_tableBasenameSL)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_tableBasenameSL)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 }
@@ -733,21 +733,21 @@ void UserDataDatabaseManager::addSoftListFavoritesColumn()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("ALTER TABLE %1 ADD COLUMN favorites TEXT").arg(m_tableBasenameSL)) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void UserDataDatabaseManager::addSoftListDeviceConfigsColumn()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("ALTER TABLE %1 ADD COLUMN device_configs TEXT").arg(m_tableBasenameSL)) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void UserDataDatabaseManager::renameSoftListTable()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("ALTER TABLE %1 RENAME TO %2").arg(m_oldTableBasenameSL).arg(m_tableBasenameSL)) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 QStringList UserDataDatabaseManager::columnNames(QString tableName)
@@ -763,6 +763,6 @@ QStringList UserDataDatabaseManager::columnNames(QString tableName)
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg(QString("table_info(%1)").arg(tableName)).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg(QString("table_info(%1)").arg(tableName)).arg(query.lastQuery()).arg(query.lastError().text()));
 	return column_names;
 }
