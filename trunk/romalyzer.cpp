@@ -4770,7 +4770,6 @@ void CheckSumScannerThread::run()
 				if ( exitThread || stopScan )
 					break;
 				QTest::qWait(1);
-				yieldCurrentThread();
 			}
 			if ( exitThread || stopScan )
 				emitlog(tr("scanner interrupted"));
