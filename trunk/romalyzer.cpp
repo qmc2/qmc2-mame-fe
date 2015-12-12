@@ -92,7 +92,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	setActive(false);
 	setPaused(false);
 
-#if !defined(QMC2_LIBARCHIVE_ENABLED) || !defined(QMC2_WIP_ENABLED)
+#if !defined(QMC2_LIBARCHIVE_ENABLED)
 	toolButtonCheckSumDbDeepScan->disconnect(toolButtonCheckSumDbLibArchive);
 	toolButtonCheckSumDbLibArchive->setChecked(false);
 	toolButtonCheckSumDbLibArchive->setVisible(false);
@@ -4769,6 +4769,7 @@ void CheckSumScannerThread::run()
 					emitlog(tr("scan finished for file '%1'").arg(filePath));
 				if ( exitThread || stopScan )
 					break;
+				yieldCurrentThread();
 			}
 			if ( exitThread || stopScan )
 				emitlog(tr("scanner interrupted"));
@@ -4967,7 +4968,7 @@ bool CheckSumScannerThread::scanSevenZip(QString fileName, QStringList *memberLi
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 bool CheckSumScannerThread::scanArchive(QString fileName, QStringList *memberList, QList<quint64> *sizeList, QStringList *sha1List, QStringList *crcList)
 {
-	ArchiveFile archiveFile(fileName);
+	ArchiveFile archiveFile(fileName, true);
 	if ( archiveFile.open() ) {
 		QByteArray fileData;
 		ArchiveEntryMetaData metaData;
@@ -4990,6 +4991,7 @@ bool CheckSumScannerThread::scanArchive(QString fileName, QStringList *memberLis
 				emitlog(tr("archive scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
 			} else
 				emitlog(tr("archive scan") + ": " + tr("WARNING: can't read member '%1' from archive '%2'").arg(metaData.name()).arg(fileName));
+			fileData.clear();
 		}
 		archiveFile.close();
 		return true;
