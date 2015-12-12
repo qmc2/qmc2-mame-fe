@@ -55,7 +55,7 @@ QString CheckSumDatabaseManager::qmc2Version()
 			qmc2_version = query.value(0).toString();
 		query.finish();
 	} else
-		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 	return qmc2_version;
 }
 
@@ -69,17 +69,17 @@ void CheckSumDatabaseManager::setQmc2Version(QString qmc2_version)
 			query.prepare(QString("INSERT INTO %1_metadata (qmc2_version, row) VALUES (:qmc2_version, 0)").arg(m_tableBasename));
 			query.bindValue(":qmc2_version", qmc2_version);
 			if ( !query.exec() )
-				emitlog(tr("WARNING: failed to add '%1' to check-sum database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				emitlog(tr("WARNING: failed to add '%1' to check-sum database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1_metadata SET qmc2_version=:qmc2_version WHERE row=0").arg(m_tableBasename));
 			query.bindValue(":qmc2_version", qmc2_version);
 			if ( !query.exec() )
-				emitlog(tr("WARNING: failed to update '%1' in check-sum database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				emitlog(tr("WARNING: failed to update '%1' in check-sum database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 int CheckSumDatabaseManager::checkSumDbVersion()
@@ -92,7 +92,7 @@ int CheckSumDatabaseManager::checkSumDbVersion()
 			checksum_db_version = query.value(0).toInt();
 		query.finish();
 	} else
-		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("checksum_db_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("checksum_db_version").arg(query.lastQuery()).arg(query.lastError().text()));
 	return checksum_db_version;
 }
 
@@ -106,17 +106,17 @@ void CheckSumDatabaseManager::setCheckSumDbVersion(int checksum_db_version)
 			query.prepare(QString("INSERT INTO %1_metadata (checksum_db_version, row) VALUES (:checksum_db_version, 0)").arg(m_tableBasename));
 			query.bindValue(":checksum_db_version", checksum_db_version);
 			if ( !query.exec() )
-				emitlog(tr("WARNING: failed to add '%1' to check-sum database: query = '%2', error = '%3'").arg("checksum_db_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				emitlog(tr("WARNING: failed to add '%1' to check-sum database: query = '%2', error = '%3'").arg("checksum_db_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1_metadata SET checksum_db_version=:checksum_db_version WHERE row=0").arg(m_tableBasename));
 			query.bindValue(":checksum_db_version", checksum_db_version);
 			if ( !query.exec() )
-				emitlog(tr("WARNING: failed to update '%1' in check-sum database: query = '%2', error = '%3'").arg("checksum_db_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				emitlog(tr("WARNING: failed to update '%1' in check-sum database: query = '%2', error = '%3'").arg("checksum_db_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("checksum_db_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("checksum_db_version").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 uint CheckSumDatabaseManager::scanTime()
@@ -129,7 +129,7 @@ uint CheckSumDatabaseManager::scanTime()
 			scan_time = query.value(0).toUInt();
 		query.finish();
 	} else
-		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("scan_time").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("scan_time").arg(query.lastQuery()).arg(query.lastError().text()));
 	return scan_time;
 }
 
@@ -143,17 +143,17 @@ void CheckSumDatabaseManager::setScanTime(uint scan_time)
 			query.prepare(QString("INSERT INTO %1_metadata (scan_time, row) VALUES (:scan_time, 0)").arg(m_tableBasename));
 			query.bindValue(":scan_time", scan_time);
 			if ( !query.exec() )
-				emitlog(tr("WARNING: failed to add '%1' to check-sum database: query = '%2', error = '%3'").arg("scan_time").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				emitlog(tr("WARNING: failed to add '%1' to check-sum database: query = '%2', error = '%3'").arg("scan_time").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1_metadata SET scan_time=:scan_time WHERE row=0").arg(m_tableBasename));
 			query.bindValue(":scan_time", scan_time);
 			if ( !query.exec() )
-				emitlog(tr("WARNING: failed to update '%1' in check-sum database: query = '%2', error = '%3'").arg("scan_time").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				emitlog(tr("WARNING: failed to update '%1' in check-sum database: query = '%2', error = '%3'").arg("scan_time").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("scan_time").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("scan_time").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 qint64 CheckSumDatabaseManager::checkSumRowCount()
@@ -165,7 +165,7 @@ qint64 CheckSumDatabaseManager::checkSumRowCount()
 		else
 			return -1;
 	} else {
-		emitlog(tr("WARNING: failed to fetch row count from check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to fetch row count from check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 	}	return -1;
 }
 
@@ -184,7 +184,7 @@ qint64 CheckSumDatabaseManager::nextRowId(bool refreshRowIds)
 				return m_rowIdList[0];
 			}
 		} else {
-			emitlog(tr("WARNING: failed to fetch row IDs from check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+			emitlog(tr("WARNING: failed to fetch row IDs from check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 			return -1;
 		}
 	} else if ( m_lastRowId > -1 ) {
@@ -222,7 +222,7 @@ void CheckSumDatabaseManager::setCacheSize(quint64 kiloBytes)
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA cache_size = -%1").arg(kiloBytes)) )
-		emitlog(tr("WARNING: failed to change the '%1' setting for the check-sum database: query = '%2', error = '%3'").arg("cache_size").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to change the '%1' setting for the check-sum database: query = '%2', error = '%3'").arg("cache_size").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void CheckSumDatabaseManager::setSyncMode(uint syncMode)
@@ -232,7 +232,7 @@ void CheckSumDatabaseManager::setSyncMode(uint syncMode)
 		return;
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA synchronous = %1").arg(dbSyncModes[syncMode])) )
-		emitlog(tr("WARNING: failed to change the '%1' setting for the check-sum database: query = '%2', error = '%3'").arg("synchronous").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to change the '%1' setting for the check-sum database: query = '%2', error = '%3'").arg("synchronous").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void CheckSumDatabaseManager::setJournalMode(uint journalMode)
@@ -242,7 +242,7 @@ void CheckSumDatabaseManager::setJournalMode(uint journalMode)
 		return;
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA journal_mode = %1").arg(dbJournalModes[journalMode])) )
-		emitlog(tr("WARNING: failed to change the '%1' setting for the check-sum database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to change the '%1' setting for the check-sum database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 bool CheckSumDatabaseManager::exists(QString sha1, QString crc, quint64 size)
@@ -279,7 +279,7 @@ bool CheckSumDatabaseManager::exists(QString sha1, QString crc, quint64 size)
 	if ( query.exec() )
 		return query.first();
 	else {
-		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("sha1, crc").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("sha1, crc").arg(query.lastQuery()).arg(query.lastError().text()));
 		return false;
 	}
 }
@@ -295,7 +295,7 @@ void CheckSumDatabaseManager::setData(QString sha1, QString crc, quint64 size, Q
 	query.bindValue(":member", member);
 	query.bindValue(":type", type);
 	if ( !query.exec() )
-		emitlog(tr("WARNING: failed to add '%1' to check-sum database: query = '%2', error = '%3'").arg("sha1, crc, size, path, member, type").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to add '%1' to check-sum database: query = '%2', error = '%3'").arg("sha1, crc, size, path, member, type").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 bool CheckSumDatabaseManager::getData(QString sha1, QString crc, quint64 *size, QString *path, QString *member, QString *type)
@@ -339,7 +339,7 @@ bool CheckSumDatabaseManager::getData(QString sha1, QString crc, quint64 *size, 
 		} else
 			return false;
 	} else {
-		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("path, member, type").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("path, member, type").arg(query.lastQuery()).arg(query.lastError().text()));
 		return false;
 	}
 }
@@ -355,7 +355,7 @@ QString CheckSumDatabaseManager::getCrc(QString sha1)
 		else
 			return QString();
 	} else {
-		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("crc").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("crc").arg(query.lastQuery()).arg(query.lastError().text()));
 		return QString();
 	}
 }
@@ -371,7 +371,7 @@ QString CheckSumDatabaseManager::getSha1(QString crc)
 		else
 			return QString();
 	} else {
-		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("sha1").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("sha1").arg(query.lastQuery()).arg(query.lastError().text()));
 		return QString();
 	}
 }
@@ -382,7 +382,7 @@ void CheckSumDatabaseManager::pathRemove(QString path)
 	query.prepare(QString("DELETE FROM %1 WHERE path=:path").arg(m_tableBasename));
 	query.bindValue(":path", path);
 	if ( !query.exec() )
-		emitlog(tr("WARNING: failed to remove path '%1' from check-sum database: query = '%2', error = '%3'").arg(path).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to remove path '%1' from check-sum database: query = '%2', error = '%3'").arg(path).arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 QString CheckSumDatabaseManager::pathOfRow(qint64 row, QString *key, bool simpleKey)
@@ -403,7 +403,7 @@ QString CheckSumDatabaseManager::pathOfRow(qint64 row, QString *key, bool simple
 			} else
 				return QString();
 		} else {
-			emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("path, sha1, crc, size").arg(query.lastQuery()).arg(m_db.lastError().text()));
+			emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("path, sha1, crc, size").arg(query.lastQuery()).arg(query.lastError().text()));
 			return QString();
 		}
 	} else {
@@ -415,7 +415,7 @@ QString CheckSumDatabaseManager::pathOfRow(qint64 row, QString *key, bool simple
 			else
 				return QString();
 		} else {
-			emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("path").arg(query.lastQuery()).arg(m_db.lastError().text()));
+			emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("path").arg(query.lastQuery()).arg(query.lastError().text()));
 			return QString();
 		}
 	}
@@ -432,7 +432,7 @@ QString CheckSumDatabaseManager::keyOfRow(qint64 row)
 		else
 			return QString();
 	} else {
-		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("sha1, crc, size").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to fetch '%1' from check-sum database: query = '%2', error = '%3'").arg("sha1, crc, size").arg(query.lastQuery()).arg(query.lastError().text()));
 		return QString();
 	}
 }
@@ -443,7 +443,7 @@ void CheckSumDatabaseManager::invalidateRow(qint64 row)
 	query.prepare(QString("UPDATE %1 SET sha1='I' WHERE rowid=:row").arg(m_tableBasename));
 	query.bindValue(":row", row);
 	if ( !query.exec() )
-		emitlog(tr("WARNING: failed to update '%1' in check-sum database: query = '%2', error = '%3'").arg("sha1").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to update '%1' in check-sum database: query = '%2', error = '%3'").arg("sha1").arg(query.lastQuery()).arg(query.lastError().text()));
 
 }
 
@@ -451,7 +451,7 @@ void CheckSumDatabaseManager::removeInvalidatedRows()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DELETE FROM %1 WHERE sha1='I'").arg(m_tableBasename)) )
-		emitlog(tr("WARNING: failed to remove invalidated rows from check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to remove invalidated rows from check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 int CheckSumDatabaseManager::nameToType(QString name)
@@ -478,17 +478,17 @@ void CheckSumDatabaseManager::recreateDatabase()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_tableBasename)) ) {
-		emitlog(tr("WARNING: failed to remove check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to remove check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_tableBasename)) ) {
-		emitlog(tr("WARNING: failed to remove check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to remove check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1_metadata").arg(m_tableBasename)) ) {
-		emitlog(tr("WARNING: failed to remove check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to remove check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
@@ -496,17 +496,17 @@ void CheckSumDatabaseManager::recreateDatabase()
 	query.exec("VACUUM");
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1 (sha1 TEXT, crc TEXT, size UNSIGNED BIG INT, path TEXT, member TEXT, type TEXT, PRIMARY KEY (sha1, crc), CONSTRAINT %1_unique_checksums UNIQUE (sha1, crc))").arg(m_tableBasename)) ) {
-		emitlog(tr("WARNING: failed to create check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to create check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (sha1, crc)").arg(m_tableBasename)) ) {
-		emitlog(tr("WARNING: failed to create check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to create check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1_metadata (row INTEGER PRIMARY KEY, scan_time UNSIGNED BIG INT, qmc2_version TEXT, checksum_db_version INTEGER)").arg(m_tableBasename)) ) {
-		emitlog(tr("WARNING: failed to create check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		emitlog(tr("WARNING: failed to create check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	setScanTime(QDateTime::currentDateTime().toTime_t());

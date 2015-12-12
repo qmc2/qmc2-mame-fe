@@ -67,7 +67,7 @@ QString DatInfoDatabaseManager::qmc2Version()
 			qmc2_version = query.value(0).toString();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 	return qmc2_version;
 }
 
@@ -81,17 +81,17 @@ void DatInfoDatabaseManager::setQmc2Version(QString qmc2_version)
 			query.prepare(QString("INSERT INTO %1 (qmc2_version, row) VALUES (:qmc2_version, 0)").arg(m_metaDataTableName));
 			query.bindValue(":qmc2_version", qmc2_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET qmc2_version=:qmc2_version WHERE row=0").arg(m_metaDataTableName));
 			query.bindValue(":qmc2_version", qmc2_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 int DatInfoDatabaseManager::datInfoVersion()
@@ -104,7 +104,7 @@ int DatInfoDatabaseManager::datInfoVersion()
 			datinfo_version = query.value(0).toInt();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("datinfo_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("datinfo_version").arg(query.lastQuery()).arg(query.lastError().text()));
 	return datinfo_version;
 }
 
@@ -118,17 +118,17 @@ void DatInfoDatabaseManager::setDatInfoVersion(int datinfo_version)
 			query.prepare(QString("INSERT INTO %1 (datinfo_version, row) VALUES (:datinfo_version, 0)").arg(m_metaDataTableName));
 			query.bindValue(":datinfo_version", datinfo_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("datinfo_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("datinfo_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET datinfo_version=:datinfo_version WHERE row=0").arg(m_metaDataTableName));
 			query.bindValue(":datinfo_version", datinfo_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("datinfo_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("datinfo_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("datinfo_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("datinfo_version").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 QString DatInfoDatabaseManager::softwareInfo(QString list, QString id, bool fromParent)
@@ -148,7 +148,7 @@ QString DatInfoDatabaseManager::softwareInfo(QString list, QString id, bool from
 			infotext = query.value(0).toString();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(query.lastError().text()));
 	if ( infotext.isEmpty() && !fromParent )
 		return softwareInfo(list, id, true);
 	return infotext;
@@ -168,7 +168,7 @@ void DatInfoDatabaseManager::setSoftwareInfo(QString list, QString id, QString i
 			query.bindValue(":id", id);
 			query.bindValue(":infotext", infotext);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET infotext=:infotext WHERE list=:list AND id=:id").arg(m_softwareInfoTableName));
@@ -176,11 +176,11 @@ void DatInfoDatabaseManager::setSoftwareInfo(QString list, QString id, QString i
 			query.bindValue(":id", id);
 			query.bindValue(":infotext", infotext);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 bool DatInfoDatabaseManager::existsSoftwareInfo(QString list, QString id)
@@ -192,7 +192,7 @@ bool DatInfoDatabaseManager::existsSoftwareInfo(QString list, QString id)
 	if ( query.exec() )
 		return query.first();
 	else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("list, id").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("list, id").arg(query.lastQuery()).arg(query.lastError().text()));
 		return false;
 	}
 }
@@ -206,7 +206,7 @@ qint64 DatInfoDatabaseManager::softwareInfoRowCount()
 		else
 			return -1;
 	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from DAT-info database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from DAT-info database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 	}	return -1;
 }
 
@@ -221,7 +221,7 @@ QString DatInfoDatabaseManager::emuInfo(QString id)
 			infotext = query.value(0).toString();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(query.lastError().text()));
 	return infotext;
 }
 
@@ -237,18 +237,18 @@ void DatInfoDatabaseManager::setEmuInfo(QString id, QString infotext)
 			query.bindValue(":id", id);
 			query.bindValue(":infotext", infotext);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET infotext=:infotext WHERE id=:id").arg(m_emuInfoTableName));
 			query.bindValue(":id", id);
 			query.bindValue(":infotext", infotext);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 bool DatInfoDatabaseManager::existsEmuInfo(QString id)
@@ -259,7 +259,7 @@ bool DatInfoDatabaseManager::existsEmuInfo(QString id)
 	if ( query.exec() )
 		return query.first();
 	 else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(query.lastError().text()));
 		return false;
 	}
 }
@@ -273,7 +273,7 @@ qint64 DatInfoDatabaseManager::emuInfoRowCount()
 		else
 			return -1;
 	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from DAT-info database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from DAT-info database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 	}	return -1;
 }
 
@@ -288,7 +288,7 @@ QString DatInfoDatabaseManager::machineInfo(QString id)
 			infotext = query.value(0).toString();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(query.lastError().text()));
 	return infotext;
 }
 
@@ -303,7 +303,7 @@ QString DatInfoDatabaseManager::machineInfoEmulator(QString id)
 			emulator = query.value(0).toString();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("emulator").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("emulator").arg(query.lastQuery()).arg(query.lastError().text()));
 	return emulator;
 }
 
@@ -320,7 +320,7 @@ void DatInfoDatabaseManager::setMachineInfo(QString id, QString infotext, QStrin
 			query.bindValue(":infotext", infotext);
 			query.bindValue(":emulator", emulator);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("infotext, emulator").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("infotext, emulator").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET infotext=:infotext, emulator=:emulator WHERE id=:id").arg(m_machineInfoTableName));
@@ -328,11 +328,11 @@ void DatInfoDatabaseManager::setMachineInfo(QString id, QString infotext, QStrin
 			query.bindValue(":infotext", infotext);
 			query.bindValue(":emulator", emulator);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("infotext, emulator").arg(query.lastQuery()).arg(m_db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("infotext, emulator").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext, emulator").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext, emulator").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 bool DatInfoDatabaseManager::existsMachineInfo(QString id)
@@ -343,7 +343,7 @@ bool DatInfoDatabaseManager::existsMachineInfo(QString id)
 	if ( query.exec() )
 		return query.first();
 	else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(query.lastError().text()));
 		return false;
 	}
 }
@@ -357,7 +357,7 @@ qint64 DatInfoDatabaseManager::machineInfoRowCount()
 		else
 			return -1;
 	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from DAT-info database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from DAT-info database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 	}	return -1;
 }
 
@@ -386,7 +386,7 @@ void DatInfoDatabaseManager::setCacheSize(quint64 kiloBytes)
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA cache_size = -%1").arg(kiloBytes)) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the DAT-info database: query = '%2', error = '%3'").arg("cache_size").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the DAT-info database: query = '%2', error = '%3'").arg("cache_size").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void DatInfoDatabaseManager::setSyncMode(uint syncMode)
@@ -396,7 +396,7 @@ void DatInfoDatabaseManager::setSyncMode(uint syncMode)
 		return;
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA synchronous = %1").arg(dbSyncModes[syncMode])) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the DAT-info database: query = '%2', error = '%3'").arg("synchronous").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the DAT-info database: query = '%2', error = '%3'").arg("synchronous").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void DatInfoDatabaseManager::setJournalMode(uint journalMode)
@@ -406,93 +406,93 @@ void DatInfoDatabaseManager::setJournalMode(uint journalMode)
 		return;
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA journal_mode = %1").arg(dbJournalModes[journalMode])) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the DAT-info database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the DAT-info database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void DatInfoDatabaseManager::recreateSoftwareInfoTable()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_softwareInfoTableName)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("software-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("software-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_softwareInfoTableName)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("software-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("software-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	query.exec("VACUUM");
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1 (list TEXT, id TEXT, infotext TEXT, PRIMARY KEY (list, id))").arg(m_softwareInfoTableName)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("software-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("software-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (list, id)").arg(m_softwareInfoTableName)) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("software-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("software-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void DatInfoDatabaseManager::recreateEmuInfoTable()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_emuInfoTableName)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("emu-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("emu-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_emuInfoTableName)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("emu-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("emu-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	query.exec("VACUUM");
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT, infotext TEXT, PRIMARY KEY (id))").arg(m_emuInfoTableName)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("emu-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("emu-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_emuInfoTableName)) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("emu-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("emu-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void DatInfoDatabaseManager::recreateMachineInfoTable()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_machineInfoTableName)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_machineInfoTableName)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	query.exec("VACUUM");
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT, infotext TEXT, emulator TEXT, PRIMARY KEY (id))").arg(m_machineInfoTableName)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_machineInfoTableName)) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void DatInfoDatabaseManager::recreateMetaDataTable()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_metaDataTableName)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("meta-data")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove %1 table: query = '%2', error = '%3'").arg(tr("meta-data")).arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	query.exec("VACUUM");
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1 (row INTEGER PRIMARY KEY, qmc2_version TEXT, datinfo_version INTEGER)").arg(m_metaDataTableName)) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("meta-data")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("meta-data")).arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void DatInfoDatabaseManager::recreateDatabase()
@@ -997,11 +997,11 @@ void DatInfoDatabaseManager::upgradeDatabaseFormat(int from, int to)
 							setQmc2Version(XSTR(QMC2_VERSION));
 							setDatInfoVersion(QMC2_DATINFO_VERSION);
 						} else
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to alter %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to alter %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 					} else
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to alter %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to alter %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 				} else
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to alter %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to alter %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(query.lastError().text()));
 			}
 			break;
 		default:
