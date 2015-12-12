@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>About</name>
     <message>
@@ -113,7 +113,7 @@
         <source>Project details</source>
         <translation>Informations sur le projet</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1403,7 +1403,7 @@ p, li { white-space: pre-wrap; }
         <source>Angle</source>
         <translation>Angle</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation>°</translation>
@@ -1808,7 +1808,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../romalyzer.cpp" line="4990"/>
         <location filename="../../romalyzer.cpp" line="4992"/>
         <source>archive scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyse de l&apos;archive</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5011"/>
@@ -5170,7 +5170,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../fileeditwidget.cpp" line="72"/>
         <location filename="../../fileeditwidget.cpp" line="74"/>
         <source>Choose file</source>
-        <translation type="unfinished">Choisir le fichier</translation>
+        <translation>Choisir le fichier</translation>
     </message>
 </context>
 <context>
@@ -5227,7 +5227,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../ftpreply.cpp" line="103"/>
         <source>FTP directory listing for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Contenu du dossier FTP pour %1</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="105"/>
@@ -6586,70 +6586,70 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../imagechecker.cpp" line="82"/>
         <location filename="../../imagechecker.cpp" line="96"/>
         <source> KB</source>
-        <translation type="unfinished"> KB</translation>
+        <translation> Ko</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="85"/>
         <location filename="../../imagechecker.cpp" line="99"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> Mo</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="88"/>
         <location filename="../../imagechecker.cpp" line="102"/>
         <source> GB</source>
-        <translation type="unfinished"> GB</translation>
+        <translation> Go</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="91"/>
         <source> TB</source>
-        <translation type="unfinished"> TB</translation>
+        <translation> To</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="351"/>
         <source>Thread[%1]: started</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : démarré</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="116"/>
         <source>Thread[%1]: ZIP file &apos;%2&apos; successfully opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : fichier ZIP  &apos;%2&apos; ouvert avec succès</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="118"/>
         <source>Thread[%1]: failed opening ZIP file &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : échec de l&apos;ouverture du fichier ZIP &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="126"/>
         <source>Thread[%1]: failed opening 7z file &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : échec de l&apos;ouverture du fichier 7z &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="132"/>
         <source>Thread[%1]: 7z file &apos;%2&apos; successfully opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : le fichier 7z &apos;%2&apos; a été ouvert avec succès</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="142"/>
         <source>Thread[%1]: failed opening archive file &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : échec de l&apos;ouverture de l&apos;archive &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="147"/>
         <source>Thread[%1]: archive file &apos;%2&apos; successfully opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : le fichier de l&apos;archive &apos;%2&apos; a été ouvert avec succès</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="153"/>
         <source>Thread[%1]: waiting for work</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : en attente</translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="163"/>
         <source>Thread[%1]: processing work unit with %n entries</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Processus [%1] : traitement de l&apos;unité de travail avec %n entrées</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -6659,7 +6659,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../imagechecker.cpp" line="274"/>
         <location filename="../../imagechecker.cpp" line="307"/>
         <source>Thread[%1]: image for &apos;%2&apos; found, loaded from &apos;%3&apos;, size = %4x%5, bytes = %6</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : l&apos;image pour &apos;%2&apos; a été trouvée, chargée depuis  &apos;%3&apos;, dimensions = %4x%5, octets = %6</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="193"/>
@@ -6670,7 +6670,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../imagechecker.cpp" line="287"/>
         <location filename="../../imagechecker.cpp" line="312"/>
         <source>Thread[%1]: image for &apos;%2&apos; loaded from &apos;%3&apos; is bad, error = &apos;%4&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : l&apos;image pour &apos;%2&apos; chargée depuis &apos;%3&apos; est corrompue, erreur = &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="204"/>
@@ -6678,37 +6678,37 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../imagechecker.cpp" line="291"/>
         <location filename="../../imagechecker.cpp" line="316"/>
         <source>Thread[%1]: image for &apos;%2&apos; is missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : l&apos;image pour &apos;%2&apos; est manquante</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="234"/>
         <source>Thread[%1]: decompressing archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : décompression de l&apos;archive</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="358"/>
         <source>Thread[%1]: ZIP file &apos;%2&apos; closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : fichier ZIP &apos;%2&apos; fermé</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="362"/>
         <source>Thread[%1]: 7z file &apos;%2&apos; closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : le fichier 7z &apos;%2&apos; est fermé</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="368"/>
         <source>Thread[%1]: archive file &apos;%2&apos; closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : le fichier de l&apos;archive &apos;%2&apos; est fermé</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="372"/>
         <source>Thread[%1]: ended</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : terminé</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="380"/>
         <source>Thread[%1]: finished decompressing archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Processus [%1] : décompression de l&apos;archive terminée</translation>
     </message>
 </context>
 <context>
@@ -7160,28 +7160,28 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../itemselect.ui" line="15"/>
         <source>Item selection</source>
-        <translation type="unfinished">Sélection d&apos;objet</translation>
+        <translation>Sélection d&apos;objets</translation>
     </message>
     <message>
         <location filename="../../itemselect.ui" line="21"/>
         <source>Select item(s)</source>
-        <translation type="unfinished">Sélectionner un(des) objet(s)</translation>
+        <translation>Sélectionner un ou plusieurs objets</translation>
     </message>
     <message>
         <location filename="../../itemselect.ui" line="54"/>
         <source>Confirm selection</source>
-        <translation type="unfinished">Confirmer la sélection</translation>
+        <translation>Confirmer la sélection</translation>
     </message>
     <message>
         <location filename="../../itemselect.ui" line="57"/>
         <source>Ok</source>
-        <translation type="unfinished">Ok</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../../itemselect.ui" line="67"/>
         <location filename="../../itemselect.ui" line="70"/>
         <source>Cancel</source>
-        <translation type="unfinished">Annuler</translation>
+        <translation>Annuler</translation>
     </message>
 </context>
 <context>
