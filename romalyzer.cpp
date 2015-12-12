@@ -4709,6 +4709,11 @@ void CheckSumScannerThread::run()
 									emitlog(tr("starting database transaction"));
 									checkSumDb()->beginTransaction();
 								}
+								if ( m_queuedMessages.count() >= QMC2_CHECKSUM_SCANNER_MAX_QUEUED_MSGS ) {
+									flushMessageQueue();
+									yieldCurrentThread();
+									QTest::qWait(10);
+								}
 							}
 							break;
 						case QMC2_CHECKSUM_SCANNER_FILE_CHD:
@@ -4754,8 +4759,8 @@ void CheckSumScannerThread::run()
 						emit progressTextChanged(tr("Paused"));
 						flushMessageQueue();
 					}
-					QTest::qWait(100);
 					yieldCurrentThread();
+					QTest::qWait(100);
 				}
 				if ( pauseMessageLogged && !exitThread && !stopScan ) {
 					isPaused = false;
@@ -4771,10 +4776,9 @@ void CheckSumScannerThread::run()
 					break;
 				if ( m_queuedMessages.count() >= QMC2_CHECKSUM_SCANNER_MAX_QUEUED_MSGS ) {
 					flushMessageQueue();
+					yieldCurrentThread();
 					QTest::qWait(10);
-				} else
-					QTest::qWait(1);
-				yieldCurrentThread();
+				}
 			}
 			if ( exitThread || stopScan )
 				emitlog(tr("scanner interrupted"));
