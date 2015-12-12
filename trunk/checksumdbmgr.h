@@ -46,6 +46,7 @@ class CheckSumDatabaseManager : public QObject
 
 		int nameToType(QString name);
 		QString typeToName(int type);
+		void emitlog(QString);
 
 	signals:
 		void log(const QString &);
