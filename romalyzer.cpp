@@ -4972,8 +4972,7 @@ bool CheckSumScannerThread::scanArchive(QString fileName, QStringList *memberLis
 	if ( archiveFile.open() ) {
 		QByteArray fileData;
 		ArchiveEntryMetaData metaData;
-		bool reset = true;
-		while ( archiveFile.seekNextEntry(&metaData, &reset) ) {
+		while ( archiveFile.seekNextEntry(&metaData) ) {
 			if ( exitThread || stopScan )
 				break;
 			QByteArray ba;

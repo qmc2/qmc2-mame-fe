@@ -48,7 +48,7 @@ class ArchiveFile : public QObject
 		bool isOpen() { return m_archive != 0; }
 		bool open(QString fileName = QString());
 		void close();
-		bool seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset);
+		bool seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset = 0);
 		bool seekEntry(QString name);
 		bool seekEntry(uint index);
 		bool hasError() { return errorCode() == ARCHIVE_FATAL; }

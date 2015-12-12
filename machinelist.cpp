@@ -3180,9 +3180,8 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 					qmc2MainWindow->progressBarMachineList->reset();
 					QString gameFileName;
 					ArchiveEntryMetaData metaData;
-					bool reset = true;
 					int counter = 0;
-					while ( archiveFile->seekNextEntry(&metaData, &reset) ) {
+					while ( archiveFile->seekNextEntry(&metaData) ) {
 						QFileInfo fi(metaData.name());
 						gameFileName = fi.fileName();
 						QByteArray ba;

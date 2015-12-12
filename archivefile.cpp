@@ -51,13 +51,15 @@ bool ArchiveFile::seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset)
 {
 	if ( !isOpen() )
 		return false;
-	if ( *reset ) {
-		archive_read_free(m_archive);
-		m_archive = archive_read_new();
-		archive_read_support_filter_all(m_archive);
-		archive_read_support_format_all(m_archive);
-		archive_read_open_filename(m_archive, m_fileName.toUtf8().constData(), QMC2_ARCHIVE_BLOCK_SIZE);
-		*reset = false;
+	if ( !m_sequential ) {
+		if ( *reset ) {
+			archive_read_free(m_archive);
+			m_archive = archive_read_new();
+			archive_read_support_filter_all(m_archive);
+			archive_read_support_format_all(m_archive);
+			archive_read_open_filename(m_archive, m_fileName.toUtf8().constData(), QMC2_ARCHIVE_BLOCK_SIZE);
+			*reset = false;
+		}
 	}
 	struct archive_entry *entry;
 	if ( archive_read_next_header(m_archive, &entry) == ARCHIVE_OK ) {
