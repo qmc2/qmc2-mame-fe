@@ -43,6 +43,7 @@ extern bool qmc2ReloadActive;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
 extern bool qmc2StopParser;
+extern bool qmc2SuppressQtMessages;
 extern SoftwareList *qmc2SoftwareList;
 extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
@@ -4576,9 +4577,13 @@ void CheckSumScannerThread::emitlog(QString message)
 {
 	m_queuedMessages << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + message;
 	if ( logSyncMutex.tryLock() ) {
+		bool oldSQM = qmc2SuppressQtMessages;
+		qmc2SuppressQtMessages = true;
+		moveToThread(this);
 		for (int i = 0; i < m_queuedMessages.count(); i++)
 			emit log(m_queuedMessages[i]);
 		m_queuedMessages.clear();
+		qmc2SuppressQtMessages = oldSQM;
 		logSyncMutex.unlock();
 	}
 }
