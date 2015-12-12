@@ -37,12 +37,9 @@ void CheckSumScannerLog::log(const QString &message)
 	if ( checkBoxEnableLog->isChecked() ) {
 		m_messageQueue << message;
 		if ( m_logSyncMutex->tryLock(10) ) {
-			plainTextEditLog->setUpdatesEnabled(false);
 			for (int i = 0; i < m_messageQueue.count(); i++)
 				plainTextEditLog->appendPlainText(m_messageQueue[i]);
 			m_messageQueue.clear();
-			plainTextEditLog->setUpdatesEnabled(true);
-			plainTextEditLog->update();
 			m_logSyncMutex->unlock();
 		}
 	}
