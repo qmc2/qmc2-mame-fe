@@ -148,6 +148,7 @@
 #define QMC2_CHECKSUM_SCANNER_FILE_7Z		1
 #define QMC2_CHECKSUM_SCANNER_FILE_CHD		2
 #define QMC2_CHECKSUM_SCANNER_FILE_REGULAR	3
+#define QMC2_CHECKSUM_SCANNER_FILE_ARCHIVE	4
 
 #define QMC2_CHECKSUM_DB_QUERY_STATUS_UNKNOWN	-1
 #define QMC2_CHECKSUM_DB_QUERY_STATUS_GOOD	0
@@ -169,6 +170,9 @@ class CheckSumScannerThread : public QThread
 		bool scanIncrementally;
 		bool deepScan;
 		bool useHashCache;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		bool useLibArchive;
+#endif
 		QMutex mutex;
 		QMutex logSyncMutex;
 		QWaitCondition waitCondition;
@@ -217,6 +221,9 @@ class CheckSumScannerThread : public QThread
 		void recursiveFileList(const QString &, QStringList *);
 		bool scanZip(QString, QStringList *, QList<quint64> *, QStringList *, QStringList *);
 		bool scanSevenZip(QString, QStringList *, QList<quint64> *, QStringList *, QStringList *);
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		bool scanArchive(QString, QStringList *, QList<quint64> *, QStringList *, QStringList *);
+#endif
 		bool scanChd(QString, quint64 *, QString *);
 		bool scanRegularFile(QString, quint64 *, QString *, QString *);
 };
