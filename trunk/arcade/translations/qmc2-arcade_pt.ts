@@ -272,17 +272,17 @@
     <message>
         <location filename="../imageprovider.cpp" line="39"/>
         <source>WARNING: Can&apos;t open %1 ZIP file &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: não foi possível abrir o arquivo ZIP de %1 &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="51"/>
         <source>WARNING: Can&apos;t open %1 7z file &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: não foi possível abrir o arquivo 7z de %1 &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="62"/>
         <source>WARNING: Can&apos;t open %1 archive file &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: não foi possível abrir o arquivo de %1 &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="120"/>
