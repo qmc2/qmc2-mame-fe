@@ -4575,7 +4575,7 @@ QString CheckSumScannerThread::scanTime()
 void CheckSumScannerThread::emitlog(QString message)
 {
 	m_queuedMessages << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + message;
-	if ( logSyncMutex.tryLock(1) ) {
+	if ( logSyncMutex.tryLock() ) {
 		for (int i = 0; i < m_queuedMessages.count(); i++)
 			emit log(m_queuedMessages[i]);
 		m_queuedMessages.clear();
