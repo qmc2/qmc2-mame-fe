@@ -4919,11 +4919,13 @@ bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, Q
 								break;
 						}
 						unzCloseCurrentFile(zipFile);
-						memberList->append(fn);
-						sizeList->append(memberSize);
-						sha1List->append(sha1Hash.result().toHex());
-						crcList->append(crcToString(crc1));
-						emitlog(tr("ZIP scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(fn).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
+						if ( !exitThread && !stopScan ) {
+							memberList->append(fn);
+							sizeList->append(memberSize);
+							sha1List->append(sha1Hash.result().toHex());
+							crcList->append(crcToString(crc1));
+							emitlog(tr("ZIP scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(fn).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
+						}
 					} else
 						emitlog(tr("ZIP scan") + ": " + tr("WARNING: can't open member '%1' from archive '%2'").arg(fn).arg(fileName));
 				} else {
@@ -4988,21 +4990,30 @@ bool CheckSumScannerThread::scanArchive(QString fileName, QStringList *memberLis
 		while ( archiveFile.seekNextEntry(&metaData) ) {
 			if ( exitThread || stopScan )
 				break;
-			QByteArray fileData, ba;
-			while ( archiveFile.readBlock(&ba) > 0 )
-				fileData.append(ba);
-			if ( !archiveFile.hasError() ) {
-				memberList->append(metaData.name());
-				sizeList->append(metaData.size());
-				QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
-				sha1Hash.addData(fileData);
-				sha1List->append(sha1Hash.result().toHex());
-				ulong crc = crc32(0, NULL, 0);
-				crc = crc32(crc, (const Bytef *)fileData.data(), fileData.size());
-				crcList->append(crcToString(crc));
-				emitlog(tr("archive scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
-			} else
-				emitlog(tr("archive scan") + ": " + tr("WARNING: can't read member '%1' from archive '%2'").arg(metaData.name()).arg(fileName));
+			QByteArray ba;
+			QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
+			ulong crc1 = crc32(0, NULL, 0);
+			while ( archiveFile.readBlock(&ba) > 0 ) {
+				sha1Hash.addData(ba);
+				if ( crc1 > 0 ) {
+					ulong crc2 = crc32(0, NULL, 0);
+					crc2 = crc32(crc2, (const Bytef *)ba.data(), ba.size());
+					crc1 = crc32_combine(crc1, crc2, ba.size());
+				} else
+					crc1 = crc32(crc1, (const Bytef *)ba.data(), ba.size());
+				if ( exitThread || stopScan )
+					break;
+			}
+			if ( !exitThread && !stopScan ) {
+				if ( !archiveFile.hasError() ) {
+					memberList->append(metaData.name());
+					sizeList->append(metaData.size());
+					sha1List->append(sha1Hash.result().toHex());
+					crcList->append(crcToString(crc1));
+					emitlog(tr("archive scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
+				} else
+					emitlog(tr("archive scan") + ": " + tr("WARNING: can't read member '%1' from archive '%2'").arg(metaData.name()).arg(fileName));
+			}
 		}
 		archiveFile.close();
 		return true;
