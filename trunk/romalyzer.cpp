@@ -4769,7 +4769,10 @@ void CheckSumScannerThread::run()
 					emitlog(tr("scan finished for file '%1'").arg(filePath));
 				if ( exitThread || stopScan )
 					break;
-				QTest::qWait(1);
+				if ( m_queuedMessages.count() >= QMC2_CHECKSUM_SCANNER_MAX_QUEUED_MSGS ) {
+					flushMessageQueue();
+					QTest::qWait(10);
+				}
 				yieldCurrentThread();
 			}
 			if ( exitThread || stopScan )
