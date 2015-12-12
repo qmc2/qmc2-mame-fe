@@ -4772,7 +4772,8 @@ void CheckSumScannerThread::run()
 				if ( m_queuedMessages.count() >= QMC2_CHECKSUM_SCANNER_MAX_QUEUED_MSGS ) {
 					flushMessageQueue();
 					QTest::qWait(10);
-				}
+				} else
+					QTest::qWait(1);
 				yieldCurrentThread();
 			}
 			if ( exitThread || stopScan )
