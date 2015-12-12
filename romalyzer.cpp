@@ -4575,7 +4575,7 @@ QString CheckSumScannerThread::scanTime()
 void CheckSumScannerThread::emitlog(QString message)
 {
 	m_queuedMessages << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + message;
-	if ( logSyncMutex.tryLock(10) ) {
+	if ( logSyncMutex.tryLock(1) ) {
 		for (int i = 0; i < m_queuedMessages.count(); i++)
 			emit log(m_queuedMessages[i]);
 		m_queuedMessages.clear();
@@ -4769,6 +4769,7 @@ void CheckSumScannerThread::run()
 					emitlog(tr("scan finished for file '%1'").arg(filePath));
 				if ( exitThread || stopScan )
 					break;
+				QTest::qWait(1);
 				yieldCurrentThread();
 			}
 			if ( exitThread || stopScan )
