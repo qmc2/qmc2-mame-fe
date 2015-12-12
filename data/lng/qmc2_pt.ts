@@ -371,7 +371,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="56"/>
         <source>Scaled</source>
-        <translation type="unfinished"></translation>
+        <translation>Esticado</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="61"/>
@@ -381,12 +381,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="66"/>
         <source>Format</source>
-        <translation type="unfinished">Formato</translation>
+        <translation>Formato</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="71"/>
         <source>Folder / Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta / Arquivo</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="85"/>
@@ -474,19 +474,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="213"/>
         <location filename="../../additionalartworksetup.cpp" line="311"/>
         <source>On</source>
-        <translation type="unfinished">Ligado</translation>
+        <translation>Ligado</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="214"/>
         <location filename="../../additionalartworksetup.cpp" line="312"/>
         <source>Off</source>
-        <translation type="unfinished">Desligado</translation>
+        <translation>Desligado</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="215"/>
         <location filename="../../additionalartworksetup.cpp" line="313"/>
         <source>Choose if images of this artwork class are scaled or not</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha se as imagens dessa classe de artworks são esticadas ou não</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="222"/>
@@ -500,67 +500,67 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="318"/>
         <location filename="../../additionalartworksetup.cpp" line="327"/>
         <source>Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="224"/>
         <location filename="../../additionalartworksetup.cpp" line="319"/>
         <source>Choose if images are loaded from a folder or an archive for this artwork class</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha se as imagens são carregadas de uma pasta ou um arquivo para essa classe de artworks</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="232"/>
         <location filename="../../additionalartworksetup.cpp" line="324"/>
         <source>ZIP</source>
-        <translation type="unfinished"></translation>
+        <translation>ZIP</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="233"/>
         <location filename="../../additionalartworksetup.cpp" line="325"/>
         <source>7z</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="237"/>
         <location filename="../../additionalartworksetup.cpp" line="329"/>
         <source>Select archive format</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar um formato de arquivo</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="249"/>
         <location filename="../../additionalartworksetup.cpp" line="333"/>
         <source>Supported archives</source>
-        <translation type="unfinished">Arquivos suportados</translation>
+        <translation>Arquivos suportados</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="249"/>
         <location filename="../../additionalartworksetup.cpp" line="333"/>
         <source>ZIP archives</source>
-        <translation type="unfinished">Arquivos ZIP</translation>
+        <translation>Arquivos ZIP</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="249"/>
         <location filename="../../additionalartworksetup.cpp" line="333"/>
         <source>7z archives</source>
-        <translation type="unfinished">Arquivos 7z</translation>
+        <translation>Arquivos 7z</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="250"/>
         <location filename="../../additionalartworksetup.cpp" line="334"/>
         <source>Image archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de imagem</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="251"/>
         <location filename="../../additionalartworksetup.cpp" line="335"/>
         <source>Image archive for this artwork class (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de imagem para essa classe de artworks (requerido)</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="252"/>
         <location filename="../../additionalartworksetup.cpp" line="336"/>
         <source>Browse image archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar arquivo de imagem</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="249"/>
@@ -1808,7 +1808,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../romalyzer.cpp" line="4990"/>
         <location filename="../../romalyzer.cpp" line="4992"/>
         <source>archive scan</source>
-        <translation type="unfinished"></translation>
+        <translation>scan de arquivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="5011"/>
@@ -4546,7 +4546,7 @@ Você quer escolher um nome diferente?</translation>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="214"/>
         <source>error text = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>texto do erro = %1</translation>
     </message>
 </context>
 <context>
@@ -5010,7 +5010,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../emuopt.cpp" line="1292"/>
         <location filename="../../emuopt.cpp" line="1295"/>
         <source>error text = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>texto do erro = %1</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1348"/>
@@ -6198,36 +6198,36 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../imagechecker.cpp" line="428"/>
         <location filename="../../imagechecker.cpp" line="479"/>
         <source>No software information</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem informação de software</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="428"/>
         <location filename="../../imagechecker.cpp" line="480"/>
         <source>Update database</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar base de dados</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="428"/>
         <location filename="../../imagechecker.cpp" line="480"/>
         <source>Click to update the software list XML database now</source>
-        <translation type="unfinished"></translation>
+        <translation>Clique para atualizar a base de dados XML da lista de software agora</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="430"/>
         <location filename="../../imagechecker.cpp" line="482"/>
         <source>Select software list</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar lista de software</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="430"/>
         <location filename="../../imagechecker.cpp" line="483"/>
         <source>Select the software list for which the image check should run</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar a lista de software para qual a checagem de imagem deverá ser executada</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="470"/>
         <source>Updating software information, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizando informação de software, por favor espere...</translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="583"/>
@@ -6530,7 +6530,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../imagechecker.cpp" line="1612"/>
         <location filename="../../imagechecker.cpp" line="1637"/>
         <source>Reading archive directory recursively</source>
-        <translation type="unfinished"></translation>
+        <translation>Lendo diretório do arquivo recursivamente</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1620"/>
@@ -6634,12 +6634,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../imagechecker.cpp" line="142"/>
         <source>Thread[%1]: failed opening archive file &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]: falha ao abrir arquivo &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="147"/>
         <source>Thread[%1]: archive file &apos;%2&apos; successfully opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]:  Arquivo &apos;%2&apos; aberto com sucesso</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="153"/>
@@ -6699,7 +6699,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../imagechecker.cpp" line="368"/>
         <source>Thread[%1]: archive file &apos;%2&apos; closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]: Arquivo &apos;%2&apos; fechado</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="372"/>
@@ -6722,42 +6722,42 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../imageformatsetup.cpp" line="29"/>
         <source>Preview</source>
-        <translation type="unfinished">Previsualização</translation>
+        <translation>Previsualização</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="29"/>
         <source>Flyer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="29"/>
         <source>Cabinet</source>
-        <translation type="unfinished">Gabinete</translation>
+        <translation>Gabinete</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="29"/>
         <source>Controller</source>
-        <translation type="unfinished">Controle</translation>
+        <translation>Controle</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="29"/>
         <source>Marquee</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="29"/>
         <source>Title</source>
-        <translation type="unfinished">Título</translation>
+        <translation>Título</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="29"/>
         <source>PCB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="29"/>
         <source>Software snap</source>
-        <translation type="unfinished"></translation>
+        <translation>Snap de software</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="172"/>
@@ -6953,92 +6953,92 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../individualfallbacksettings.ui" line="14"/>
         <source>Individual fallback settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações de substituição individuais</translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.ui" line="39"/>
         <source>Artwork class</source>
-        <translation type="unfinished">Classe de arte</translation>
+        <translation>Classe de arte</translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.ui" line="44"/>
         <source>Parent fallback</source>
-        <translation type="unfinished"></translation>
+        <translation>Pai a ser utilizado</translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.ui" line="71"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.ui" line="91"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="20"/>
         <source>Preview</source>
-        <translation type="unfinished">Previsualização</translation>
+        <translation>Previsualização</translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="21"/>
         <source>Flyer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="22"/>
         <source>Cabinet</source>
-        <translation type="unfinished">Gabinete</translation>
+        <translation>Gabinete</translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="23"/>
         <source>Controller</source>
-        <translation type="unfinished">Controle</translation>
+        <translation>Controle</translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="24"/>
         <source>Marquee</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="25"/>
         <source>Title</source>
-        <translation type="unfinished">Título</translation>
+        <translation>Título</translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="26"/>
         <source>PCB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="27"/>
         <source>Software snap</source>
-        <translation type="unfinished"></translation>
+        <translation>Snap de software</translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="28"/>
         <source>Video snap</source>
-        <translation type="unfinished"></translation>
+        <translation>Snaps de vídeo</translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="29"/>
         <source>Icon</source>
-        <translation type="unfinished">Ícone</translation>
+        <translation>Ícone</translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="81"/>
         <source>active</source>
-        <translation type="unfinished"></translation>
+        <translation>ativo</translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="82"/>
         <source>inactive</source>
-        <translation type="unfinished"></translation>
+        <translation>inativo</translation>
     </message>
     <message>
         <location filename="../../individualfallbacksettings.cpp" line="83"/>
         <source>Activate / deactivate parent fallback for this artwork class</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar / desativar utilização de recursos pai para essa classe de artwork</translation>
     </message>
 </context>
 <context>
@@ -7673,7 +7673,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../machinelist.cpp" line="213"/>
         <source>libarchive error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro do libarchive</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="574"/>
@@ -7809,7 +7809,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../machinelist.cpp" line="639"/>
         <location filename="../../machinelist.cpp" line="711"/>
         <source>error text = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>texto do erro = %1</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="677"/>
@@ -8729,12 +8729,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../machinelist.cpp" line="3171"/>
         <source>pre-caching icons from archive</source>
-        <translation type="unfinished"></translation>
+        <translation>fazendo pré-cache dos ícones do arquivo</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3208"/>
         <source>done (pre-caching icons from archive, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (fazendo pré-cache de ícones do arquivo, tempo = %1)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../machinelist.cpp" line="3211"/>
@@ -9657,17 +9657,17 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5831"/>
         <source>destroying emulator configuration instances</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo instâncias de configuração do emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5846"/>
         <source>destroying image widgets</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo widgets de imagens</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5866"/>
         <source>destroying open dialogs</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo diálogos abertos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5908"/>
@@ -12781,7 +12781,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="1710"/>
         <source>libarchive error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro do libarchive</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1719"/>
@@ -14995,17 +14995,17 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../options.ui" line="794"/>
         <source>Scaled software snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Snapshot de software em escala</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="844"/>
         <source>Select individual fallback settings per artwork class</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar configurações de substituição indivíduais por classe de artwork</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="847"/>
         <source>Individual fallback settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações de substituição individuais...</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1031"/>
@@ -15028,7 +15028,7 @@ Tem certeza que deseja fazer isso?</translation>
         <location filename="../../options.ui" line="2665"/>
         <location filename="../../options.ui" line="2805"/>
         <source>Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1518"/>
@@ -16122,22 +16122,22 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../processmanager.cpp" line="315"/>
         <source>failed to start</source>
-        <translation type="unfinished"></translation>
+        <translation>falha ao iniciar</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="319"/>
         <source>write error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro de escrita</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="321"/>
         <source>read error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro de leitura</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="323"/>
         <source>timeout</source>
-        <translation type="unfinished"></translation>
+        <translation>tempo excedido</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="334"/>
@@ -18965,7 +18965,7 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../romalyzer.ui" line="1576"/>
         <source>Use libarchive instead of built-in decompressors</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar libarchive ao invés dos descompressores embutidos</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1681"/>
@@ -20086,7 +20086,7 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../samplechecker.cpp" line="239"/>
         <source>error text = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>texto do erro = %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="351"/>
@@ -20333,29 +20333,29 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../softwareimagewidget.cpp" line="56"/>
         <source>Copy image to clipboard</source>
-        <translation type="unfinished">Copiar imagem para a área de transferência</translation>
+        <translation>Copiar imagem para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../softwareimagewidget.cpp" line="62"/>
         <source>Copy file path to clipboard</source>
-        <translation type="unfinished">Copiar caminho do arquivo para a área de transferência</translation>
+        <translation>Copiar caminho do arquivo para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../softwareimagewidget.cpp" line="71"/>
         <source>Refresh cache slot</source>
-        <translation type="unfinished">Atualizar slot do cache</translation>
+        <translation>Atualizar slot do cache</translation>
     </message>
     <message>
         <location filename="../../softwareimagewidget.cpp" line="104"/>
         <location filename="../../softwareimagewidget.cpp" line="112"/>
         <location filename="../../softwareimagewidget.cpp" line="124"/>
         <source>FATAL: can&apos;t open %1 file, please check access permissions for %2</source>
-        <translation type="unfinished">FATAL: impossível abrir arquivo %1, por favor verifique as permissões de acesso para %2</translation>
+        <translation>FATAL: impossível abrir arquivo %1, por favor verifique as permissões de acesso para %2</translation>
     </message>
     <message>
         <location filename="../../softwareimagewidget.cpp" line="306"/>
         <source>Decompressing archive, please wait...</source>
-        <translation type="unfinished">Descomprimindo arquivo, por favor espere...</translation>
+        <translation>Descomprimindo arquivo, por favor espere...</translation>
     </message>
 </context>
 <context>
@@ -20807,7 +20807,7 @@ Tem certeza que deseja fazer isso?</translation>
         <location filename="../../softwarelist.cpp" line="889"/>
         <location filename="../../softwarelist.cpp" line="1913"/>
         <source>error text = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>texto do erro = %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="923"/>
@@ -21644,7 +21644,7 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../softwarelist.cpp" line="4393"/>
         <source>libarchive error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro do libarchive</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4465"/>
@@ -21677,7 +21677,7 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../softwaresnapshot.h" line="17"/>
         <source>software snapshot</source>
-        <translation type="unfinished">snapshot de software</translation>
+        <translation>snapshot de software</translation>
     </message>
 </context>
 <context>
@@ -22140,7 +22140,7 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../welcome.cpp" line="104"/>
         <source>Default</source>
-        <translation type="unfinished">Padrão</translation>
+        <translation>Padrão</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="110"/>
@@ -22308,7 +22308,7 @@ Sair agora, aceitar uma vez ou ignorar completamente?</translation>
     <message>
         <location filename="../../welcome.ui" line="251"/>
         <source>GUI style</source>
-        <translation type="unfinished">Estilo da interface</translation>
+        <translation>Estilo da interface</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="258"/>
