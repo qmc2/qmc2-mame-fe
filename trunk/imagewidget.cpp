@@ -460,17 +460,12 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 				if ( fileName )
 					*fileName = gameFile;
 				foreach (ArchiveFile *imageFile, imageArchiveMap) {
-					if ( imageFile->seekEntry(gameFile) ) {
-						QByteArray ba;
-						while ( imageFile->readBlock(&ba) > 0 )
-							imageData.append(ba);
-						fileOk = !imageFile->hasError();
-					} else
+					if ( imageFile->seekEntry(gameFile) )
+						fileOk = imageFile->readEntry(imageData) > 0;
+					else
 						fileOk = false;
 					if ( fileOk )
 						break;
-					else
-						imageData.clear();
 				}
 				if ( fileOk )
 					fileOk = pm.loadFromData(imageData, formatName.toUtf8().constData());
@@ -775,28 +770,18 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 					*fileName = gameFile;
 				if ( archiveFile == NULL ) {
 					foreach (ArchiveFile *imageFile, imageArchiveMap) {
-						if ( imageFile->seekEntry(gameFile) ) {
-							QByteArray ba;
-							while ( imageFile->readBlock(&ba) > 0 )
-								imageData.append(ba);
-							fileOk = !imageFile->hasError();
-						} else
+						if ( imageFile->seekEntry(gameFile) )
+							fileOk = imageFile->readEntry(imageData) > 0;
+						else
 							fileOk = false;
 						if ( fileOk )
 							break;
-						else
-							imageData.clear();
 					}
 				} else {
-					if ( archiveFile->seekEntry(gameFile) ) {
-						QByteArray ba;
-						while ( archiveFile->readBlock(&ba) > 0 )
-							imageData.append(ba);
-						fileOk = !archiveFile->hasError();
-					} else
+					if ( archiveFile->seekEntry(gameFile) )
+						fileOk = archiveFile->readEntry(imageData) > 0;
+					else
 						fileOk = false;
-					if ( !fileOk )
-						imageData.clear();
 				}
 				if ( fileOk ) {
 					QBuffer buffer(&imageData);

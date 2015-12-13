@@ -16,6 +16,7 @@ class CheckSumScannerLog : public QDialog, public Ui::CheckSumScannerLog
 
 		void setLogSyncMutex(QMutex *mtx) { m_logSyncMutex = mtx; }
 		qreal progress() { return m_progress; }
+		int queuedMessages() { return m_messageQueue.count(); }
 
 	public slots:
 		void on_spinBoxMaxLogSize_valueChanged(int);

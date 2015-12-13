@@ -3184,18 +3184,16 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 					while ( archiveFile->seekNextEntry(&metaData) ) {
 						QFileInfo fi(metaData.name());
 						gameFileName = fi.fileName();
-						QByteArray ba;
-						while ( archiveFile->readBlock(&ba) > 0 )
-							imageData.append(ba);
-						QPixmap iconPixmap;
-						if ( iconPixmap.loadFromData(imageData) ) {
-							QFileInfo fi(gameFileName.toLower());
-							qmc2IconHash[fi.baseName()] = QIcon(iconPixmap);
-							iconCount++;
+						if ( archiveFile->readEntry(imageData) ) {
+							QPixmap iconPixmap;
+							if ( iconPixmap.loadFromData(imageData) ) {
+								QFileInfo fi(gameFileName.toLower());
+								qmc2IconHash[fi.baseName()] = QIcon(iconPixmap);
+								iconCount++;
+							}
 						}
 						if ( counter++ % QMC2_ICONCACHE_RESPONSIVENESS == 0 )
 							qApp->processEvents();
-						imageData.clear();
 					}
 					qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
 					if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )

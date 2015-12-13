@@ -8,6 +8,7 @@ ArchiveFile::ArchiveFile(QString fileName, bool sequential, QObject *parent)
 	m_fileName = fileName;
 	m_sequential = sequential;
 	m_archive = 0;
+	m_entry = 0;
 }
 
 ArchiveFile::~ArchiveFile()
@@ -25,6 +26,7 @@ bool ArchiveFile::open(QString fileName)
 	m_archive = archive_read_new();
 	archive_read_support_filter_all(m_archive);
 	archive_read_support_format_all(m_archive);
+	m_entry = 0;
 	int result = archive_read_open_filename(m_archive, m_fileName.toUtf8().constData(), QMC2_ARCHIVE_BLOCK_SIZE);
 	if ( result != ARCHIVE_OK) {
 		archive_read_free(m_archive);
@@ -44,6 +46,7 @@ void ArchiveFile::close()
 	if ( isOpen() ) {
 		archive_read_free(m_archive);
 		m_archive = 0;
+		m_entry = 0;
 	}
 }
 
@@ -61,9 +64,8 @@ bool ArchiveFile::seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset)
 			*reset = false;
 		}
 	}
-	struct archive_entry *entry;
-	if ( archive_read_next_header(m_archive, &entry) == ARCHIVE_OK ) {
-		*metaData = ArchiveEntryMetaData(archive_entry_pathname(entry), archive_entry_size(entry), QDateTime::fromTime_t(archive_entry_mtime(entry)));
+	if ( archive_read_next_header(m_archive, &m_entry) == ARCHIVE_OK ) {
+		*metaData = ArchiveEntryMetaData(archive_entry_pathname(m_entry), archive_entry_size(m_entry), QDateTime::fromTime_t(archive_entry_mtime(m_entry)));
 		return true;
 	} else
 		return false;
@@ -82,38 +84,35 @@ bool ArchiveFile::seekEntry(uint index)
 {
 	if ( !isOpen() )
 		return false;
-	struct archive_entry *entry;
 	ArchiveEntryMetaData metadata = entryList()[index];
 	archive_read_free(m_archive);
 	m_archive = archive_read_new();
 	archive_read_support_filter_all(m_archive);
 	archive_read_support_format_all(m_archive);
 	archive_read_open_filename(m_archive, m_fileName.toUtf8().constData(), QMC2_ARCHIVE_BLOCK_SIZE);
-	while ( archive_read_next_header(m_archive, &entry) == ARCHIVE_OK )
-		if ( metadata.name().compare(archive_entry_pathname(entry), Qt::CaseSensitive) == 0 )
+	while ( archive_read_next_header(m_archive, &m_entry) == ARCHIVE_OK )
+		if ( metadata.name().compare(archive_entry_pathname(m_entry), Qt::CaseSensitive) == 0 )
 			return true;
 	return false;
 }
 
-qint64 ArchiveFile::readBlock(QByteArray *buffer)
+qint64 ArchiveFile::readEntry(QByteArray &buffer)
 {
 	if ( !isOpen() )
 		return 0;
 #if defined(QMC2_OS_WIN)
-	__int64 offset;
+	__int64 size = archive_entry_size(m_entry);
 #else
-	int64_t offset;
+	int64_t size = archive_entry_size(m_entry);
 #endif
-	size_t size;
-	int result = archive_read_data_block(m_archive, &m_buffer, &size, &offset);
-	if ( result != ARCHIVE_FATAL ) {
-		buffer->setRawData((const char *)m_buffer, size);
-		if ( result == ARCHIVE_EOF )
-			return -1;
-		else
-			return size;
-	} else
-		return -1;
+	char *data = new char[size];
+	ssize_t len = archive_read_data(m_archive, data, archive_entry_size(m_entry));
+	if ( len > 0 ) {
+		buffer = QByteArray(data, len);
+		delete [] data;
+		return len;
+	}
+	return 0;
 }
 
 QString ArchiveFile::errorString()
