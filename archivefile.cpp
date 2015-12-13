@@ -106,7 +106,7 @@ qint64 ArchiveFile::readEntry(QByteArray &buffer)
 	int64_t size = archive_entry_size(m_entry);
 #endif
 	char *data = new char[size];
-	ssize_t len = archive_read_data(m_archive, data, archive_entry_size(m_entry));
+	ssize_t len = archive_read_data(m_archive, data, size);
 	if ( len > 0 ) {
 		buffer = QByteArray(data, len);
 		delete [] data;
