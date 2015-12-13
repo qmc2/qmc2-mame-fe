@@ -53,7 +53,7 @@ class ArchiveFile : public QObject
 		bool seekEntry(uint index);
 		bool hasError() { return errorCode() == ARCHIVE_FATAL; }
 		bool hasWarning() { return errorCode() == ARCHIVE_WARN; }
-		qint64 readBlock(QByteArray *buffer);
+		qint64 readEntry(QByteArray &buffer);
 		QString errorString();
 		int errorCode();
 		void createEntryList();
@@ -62,7 +62,7 @@ class ArchiveFile : public QObject
 		int indexOfName(QString name) { if ( m_nameToIndexCache.contains(name) ) return m_nameToIndexCache[name]; else return -1; }
 
 		struct archive *m_archive;
-		const void *m_buffer;
+		struct archive_entry *m_entry;
 		QList<ArchiveEntryMetaData> m_entryList;
 		QHash<QString, int> m_nameToIndexCache;
 		QString m_fileName;

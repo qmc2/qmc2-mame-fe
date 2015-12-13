@@ -350,10 +350,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 								QString imageFileName = gameId + "." + extension;
 								if ( archiveFile->seekEntry(imageFileName) ) {
 									QByteArray imageData;
-									QByteArray ba;
-									while ( archiveFile->readBlock(&ba) > 0 )
-										imageData.append(ba);
-									if ( !archiveFile->hasError() ) {
+									if ( archiveFile->readEntry(imageData) > 0 ) {
 										if ( image.loadFromData(imageData, formatName.toUtf8().constData()) ) {
 											mImageCache.insert(cacheKey, new QImage(image));
 											validCacheKey = cacheKey;

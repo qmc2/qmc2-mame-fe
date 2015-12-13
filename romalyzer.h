@@ -188,7 +188,7 @@ class CheckSumScannerThread : public QThread
 		quint64 pendingUpdates() { return m_pendingUpdates; }
 		QString status();
 		void reopenCheckSumDb();
-		int fileType(QString);
+		int fileType(QString, bool &, bool &);
 		void prepareIncrementalScan(QStringList *fileList);
 		QString scanTime();
 		void emitlog(QString);

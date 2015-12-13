@@ -20,7 +20,7 @@ CheckSumDatabaseManager::CheckSumDatabaseManager(QObject *parent, QString settin
 	: QObject(parent)
 {
 	m_settingsKey = settingsKey;
-	m_fileTypes << "ZIP" << "7Z" << "CHD" << "FILE" << "ARCHIVE";
+	m_fileTypes << "ZIP" << "7Z" << "CHD" << "FILE";
 	QString userScopePath = Options::configPath();
 	m_connectionName = QString("checksum-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);

@@ -345,12 +345,9 @@ bool SoftwareImageWidget::loadImage(QString listName, QString entryName, bool fr
 					QString formatName = ImageWidget::formatNames[format];
 					foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
 						QString pathInArchive = listName + "/" + entryName + "." + extension;
-						if ( snapFile->seekEntry(pathInArchive) ) {
-							QByteArray ba;
-							while ( snapFile->readBlock(&ba) > 0 )
-								imageData.append(ba);
-							fileOk = !snapFile->hasError();
-						} else
+						if ( snapFile->seekEntry(pathInArchive) )
+							fileOk = snapFile->readEntry(imageData) > 0;
+						else
 							fileOk = false;
 						if ( fileOk ) {
 							if ( pm.loadFromData(imageData, formatName.toUtf8().constData()) ) {
@@ -361,8 +358,6 @@ bool SoftwareImageWidget::loadImage(QString listName, QString entryName, bool fr
 						}
 						if ( fileOk )
 							break;
-						else
-							imageData.clear();
 					}
 					if ( fileOk )
 						break;

@@ -4577,13 +4577,13 @@ void CheckSumScannerThread::emitlog(QString message)
 {
 	m_queuedMessages << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + message;
 	if ( logSyncMutex.tryLock() ) {
-		bool oldSQM = qmc2SuppressQtMessages;
-		qmc2SuppressQtMessages = true;
-		moveToThread(this);
+		//bool oldSQM = qmc2SuppressQtMessages;
+		//qmc2SuppressQtMessages = true;
+		//moveToThread(this);
 		for (int i = 0; i < m_queuedMessages.count(); i++)
 			emit log(m_queuedMessages[i]);
 		m_queuedMessages.clear();
-		qmc2SuppressQtMessages = oldSQM;
+		//qmc2SuppressQtMessages = oldSQM;
 		logSyncMutex.unlock();
 	}
 }
@@ -4592,13 +4592,19 @@ void CheckSumScannerThread::flushMessageQueue()
 {
 	if ( !m_queuedMessages.isEmpty() ) {
 		logSyncMutex.lock();
+		//bool oldSQM = qmc2SuppressQtMessages;
+		//qmc2SuppressQtMessages = true;
+		//moveToThread(this);
 		for (int i = 0; i < m_queuedMessages.count(); i++)
 			emit log(m_queuedMessages[i]);
 		m_queuedMessages.clear();
+		//qmc2SuppressQtMessages = oldSQM;
 		logSyncMutex.unlock();
 	}
 	QTimer::singleShot(0, m_scannerLog, SLOT(flushMessageQueue()));
 }
+
+#define QMC2_CHECKSUM_SCANNER_MESSAGE_QUEUE_FULL	(m_scannerLog->queuedMessages() >= QMC2_CHECKSUM_SCANNER_MAX_QUEUED_MSGS || m_queuedMessages.count() >= QMC2_CHECKSUM_SCANNER_MAX_QUEUED_MSGS)
 
 void CheckSumScannerThread::run()
 {
@@ -4647,7 +4653,9 @@ void CheckSumScannerThread::run()
 				QString sha1, crc;
 				QList<quint64> sizeList;
 				quint64 size;
-				int type = fileType(filePath);
+				bool isZip = false;
+				bool is7z = false;
+				int type = fileType(filePath, isZip, is7z);
 				bool doDbUpdate = true;
 				switch ( type ) {
 					case QMC2_CHECKSUM_SCANNER_FILE_ZIP:
@@ -4700,7 +4708,11 @@ void CheckSumScannerThread::run()
 							for (int i = 0; i < memberList.count(); i++) {
 								if ( !checkSumExists(sha1List[i], crcList[i], sizeList[i]) ) {
 									emitlog(tr("database update") + ": " + tr("adding member '%1' from archive '%2' with SHA-1 '%3' and CRC '%4' to database").arg(memberList[i]).arg(filePath).arg(sha1List[i]).arg(crcList[i]));
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+									checkSumDb()->setData(sha1List[i], crcList[i], sizeList[i], filePath, memberList[i], isZip ? "ZIP" : (is7z ? "7Z" : "UNKNOWN"));
+#else
 									checkSumDb()->setData(sha1List[i], crcList[i], sizeList[i], filePath, memberList[i], checkSumDb()->typeToName(type));
+#endif
 									if ( useHashCache )
 										m_hashCache[QString("%1-%2-%3").arg(sha1List[i]).arg(crcList[i]).arg(sizeList[i])] = true;
 									m_pendingUpdates++;
@@ -4714,10 +4726,10 @@ void CheckSumScannerThread::run()
 									emitlog(tr("starting database transaction"));
 									checkSumDb()->beginTransaction();
 								}
-								if ( m_queuedMessages.count() >= QMC2_CHECKSUM_SCANNER_MAX_QUEUED_MSGS ) {
+								if ( QMC2_CHECKSUM_SCANNER_MESSAGE_QUEUE_FULL ) {
 									flushMessageQueue();
+									QTest::qWait(100);
 									yieldCurrentThread();
-									QTest::qWait(10);
 								}
 							}
 							break;
@@ -4764,8 +4776,8 @@ void CheckSumScannerThread::run()
 						emit progressTextChanged(tr("Paused"));
 						flushMessageQueue();
 					}
-					yieldCurrentThread();
 					QTest::qWait(100);
+					yieldCurrentThread();
 				}
 				if ( pauseMessageLogged && !exitThread && !stopScan ) {
 					isPaused = false;
@@ -4779,10 +4791,10 @@ void CheckSumScannerThread::run()
 					emitlog(tr("scan finished for file '%1'").arg(filePath));
 				if ( exitThread || stopScan )
 					break;
-				if ( m_queuedMessages.count() >= QMC2_CHECKSUM_SCANNER_MAX_QUEUED_MSGS ) {
+				if ( QMC2_CHECKSUM_SCANNER_MESSAGE_QUEUE_FULL ) {
 					flushMessageQueue();
+					QTest::qWait(100);
 					yieldCurrentThread();
-					QTest::qWait(10);
 				}
 			}
 			if ( exitThread || stopScan )
@@ -4849,11 +4861,8 @@ void CheckSumScannerThread::recursiveFileList(const QString &sDir, QStringList *
 #endif
 }
 
-int CheckSumScannerThread::fileType(QString fileName)
+int CheckSumScannerThread::fileType(QString fileName, bool &isZip, bool &is7z)
 {
-#if defined(QMC2_LIBARCHIVE_ENABLED)
-	static QRegExp archiveRx("[Zz][Ii][Pp]|7[Zz]");
-#endif
 	static QRegExp zipRx("[Zz][Ii][Pp]");
 	static QRegExp sevenZipRx("7[Zz]");
 	static QRegExp chdRx("[Cc][Hh][Dd]");
@@ -4862,8 +4871,14 @@ int CheckSumScannerThread::fileType(QString fileName)
 	if ( fileInfo.isReadable() ) {
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 		if ( useLibArchive ) {
-			if ( fileInfo.suffix().indexOf(archiveRx) == 0 )
+			if ( fileInfo.suffix().indexOf(zipRx) == 0 ) {
+				isZip = true;
 				return QMC2_CHECKSUM_SCANNER_FILE_ARCHIVE;
+			}
+			if ( fileInfo.suffix().indexOf(sevenZipRx) == 0 ) {
+				is7z = true;
+				return QMC2_CHECKSUM_SCANNER_FILE_ARCHIVE;
+			}
 		} else {
 			if ( fileInfo.suffix().indexOf(zipRx) == 0 )
 				return QMC2_CHECKSUM_SCANNER_FILE_ZIP;
@@ -4991,29 +5006,18 @@ bool CheckSumScannerThread::scanArchive(QString fileName, QStringList *memberLis
 			if ( exitThread || stopScan )
 				break;
 			QByteArray ba;
-			QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
-			ulong crc1 = crc32(0, NULL, 0);
-			while ( archiveFile.readBlock(&ba) > 0 ) {
+			if ( archiveFile.readEntry(ba) > 0 ) {
+				QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
 				sha1Hash.addData(ba);
-				if ( crc1 > 0 ) {
-					ulong crc2 = crc32(0, NULL, 0);
-					crc2 = crc32(crc2, (const Bytef *)ba.data(), ba.size());
-					crc1 = crc32_combine(crc1, crc2, ba.size());
-				} else
-					crc1 = crc32(crc1, (const Bytef *)ba.data(), ba.size());
-				if ( exitThread || stopScan )
-					break;
-			}
-			if ( !exitThread && !stopScan ) {
-				if ( !archiveFile.hasError() ) {
-					memberList->append(metaData.name());
-					sizeList->append(metaData.size());
-					sha1List->append(sha1Hash.result().toHex());
-					crcList->append(crcToString(crc1));
-					emitlog(tr("archive scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
-				} else
-					emitlog(tr("archive scan") + ": " + tr("WARNING: can't read member '%1' from archive '%2'").arg(metaData.name()).arg(fileName));
-			}
+				ulong crc = crc32(0, NULL, 0);
+				crc = crc32(crc, (const Bytef *)ba.data(), ba.size());
+				memberList->append(metaData.name());
+				sizeList->append(metaData.size());
+				sha1List->append(sha1Hash.result().toHex());
+				crcList->append(crcToString(crc));
+				emitlog(tr("archive scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
+			} else
+				emitlog(tr("archive scan") + ": " + tr("WARNING: can't read member '%1' from archive '%2'").arg(metaData.name()).arg(fileName));
 		}
 		archiveFile.close();
 		return true;
