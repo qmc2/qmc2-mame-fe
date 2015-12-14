@@ -47,7 +47,7 @@ void CookieJar::recreateDatabase()
 
 	QSqlQuery query(db);
 	if ( !query.exec("DROP TABLE IF EXISTS qmc2_cookies") ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove cookie database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove cookie database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
@@ -55,7 +55,7 @@ void CookieJar::recreateDatabase()
 	query.exec("VACUUM");
 	query.finish();
 	if ( !query.exec("CREATE TABLE qmc2_cookies (id INTEGER PRIMARY KEY, domain TEXT, name TEXT, value TEXT, path TEXT, expiry INTEGER, secure INTEGER, http_only INTEGER, CONSTRAINT qmc2_uniqueid UNIQUE (name, domain, path))") )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create cookie database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create cookie database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 	cookieMap.clear();
 	setAllCookies(QList<QNetworkCookie>());
 }
@@ -120,7 +120,7 @@ void CookieJar::saveCookies()
 					query.bindValue(":path", cookie.path());
 					query.bindValue(":name", cookie.name());
 					if ( !query.exec() )
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove expired cookie from database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove expired cookie from database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 					query.finish();
 					cookieKeysProcessed << cookieKey;
 				} else if ( cookie.expirationDate() < now ) {
@@ -129,7 +129,7 @@ void CookieJar::saveCookies()
 					query.bindValue(":path", cookie.path());
 					query.bindValue(":name", cookie.name());
 					if ( !query.exec() )
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove expired cookie from database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove expired cookie from database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 					query.finish();
 					cookieKeysProcessed << cookieKey;
 				} else if ( !cookie.isSessionCookie() ) {
@@ -139,7 +139,7 @@ void CookieJar::saveCookies()
 					query.bindValue(":path", cookie.path());
 					query.bindValue(":name", cookie.name());
 					if ( !query.exec() )
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update cookie in database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update cookie in database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 					query.finish();
 					cookieKeysProcessed << cookieKey;
 				}
@@ -152,13 +152,13 @@ void CookieJar::saveCookies()
 					query.bindValue(":path", cookie.path());
 					query.bindValue(":name", cookie.name());
 					if ( !query.exec() )
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add cookie to database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add cookie to database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 					query.finish();
 					cookieKeysProcessed << cookieKey;
 				}
 			}
 		} else
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to query cookie database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to query cookie database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 	}
 	db.driver()->commitTransaction();
 }
@@ -180,7 +180,7 @@ bool CookieJar::loadCookies(QList<QNetworkCookie> &cookieList, QString domain, Q
 	query.bindValue(":domain", domain);
 	query.bindValue(":path", path);
 	if ( !query.exec() ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch cookies from database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch cookies from database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return false;
 	}
 	QDateTime now = QDateTime::currentDateTime();
@@ -203,7 +203,7 @@ bool CookieJar::loadCookies(QList<QNetworkCookie> &cookieList, QString domain, Q
 			delquery.bindValue(":path", cookie.path());
 			delquery.bindValue(":name", cookie.name());
 			if ( !delquery.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove expired cookie from database: query = '%1', error = '%2'").arg(delquery.lastQuery()).arg(db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove expired cookie from database: query = '%1', error = '%2'").arg(delquery.lastQuery()).arg(query.lastError().text()));
 		} else {
 			cookieList << cookie;
 			cookieMap.insertMulti(domain + path, cookie);
