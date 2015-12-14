@@ -49,8 +49,8 @@ class ArchiveFile : public QObject
 		bool open(QString fileName = QString());
 		void close();
 		bool seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset = 0);
-		bool seekEntry(QString name);
 		bool seekEntry(uint index);
+		bool seekEntry(QString name) { int index = indexOfName(name); return index >= 0 ? seekEntry(index) : false; }
 		bool hasError() { return errorCode() == ARCHIVE_FATAL; }
 		bool hasWarning() { return errorCode() == ARCHIVE_WARN; }
 		qint64 readEntry(QByteArray &buffer);
@@ -59,7 +59,7 @@ class ArchiveFile : public QObject
 		void createEntryList();
 
 	private:
-		int indexOfName(QString name) { if ( m_nameToIndexCache.contains(name) ) return m_nameToIndexCache[name]; else return -1; }
+		int indexOfName(QString name) { return m_nameToIndexCache.contains(name) ? m_nameToIndexCache[name] : -1; }
 
 		struct archive *m_archive;
 		struct archive_entry *m_entry;
