@@ -55,7 +55,7 @@ bool ArchiveFile::seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset)
 	if ( !isOpen() )
 		return false;
 	if ( !m_sequential ) {
-		if ( *reset ) {
+		if ( reset != 0 && *reset ) {
 			archive_read_free(m_archive);
 			m_archive = archive_read_new();
 			archive_read_support_filter_all(m_archive);
@@ -105,30 +105,17 @@ qint64 ArchiveFile::readEntry(QByteArray &buffer)
 #else
 	int64_t size = archive_entry_size(m_entry);
 #endif
-	char *data = new char[size];
-	ssize_t len = archive_read_data(m_archive, data, size);
-	if ( len > 0 ) {
-		buffer = QByteArray(data, len);
+	if ( size > 0 ) {
+		char *data = new char[size];
+		ssize_t len = archive_read_data(m_archive, data, size);
+		if ( len > 0 ) {
+			buffer = QByteArray(data, len);
+			delete [] data;
+			return len;
+		}
 		delete [] data;
-		return len;
 	}
 	return 0;
-}
-
-QString ArchiveFile::errorString()
-{
-	if ( isOpen() )
-		return QString(archive_error_string(m_archive));
-	else
-		return QString();
-}
-
-int ArchiveFile::errorCode()
-{
-	if ( isOpen() )
-		return archive_errno(m_archive);
-	else
-		return ARCHIVE_OK;
 }
 
 void ArchiveFile::createEntryList()

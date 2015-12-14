@@ -54,8 +54,8 @@ class ArchiveFile : public QObject
 		bool hasError() { return errorCode() == ARCHIVE_FATAL; }
 		bool hasWarning() { return errorCode() == ARCHIVE_WARN; }
 		qint64 readEntry(QByteArray &buffer);
-		QString errorString();
-		int errorCode();
+		QString errorString() { return isOpen() ? QString(archive_error_string(m_archive)) : QString(); }
+		int errorCode() { return isOpen() ? archive_errno(m_archive) : ARCHIVE_OK; }
 		void createEntryList();
 
 	private:
