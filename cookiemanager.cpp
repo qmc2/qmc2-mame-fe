@@ -83,7 +83,7 @@ void CookieManager::on_pushButtonRemove_clicked()
 			query.bindValue(":path", path);
 			query.bindValue(":name", name);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove cookie from database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(cj->db.lastError().text()));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove cookie from database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 			query.finish();
 		}
 		cj->db.driver()->commitTransaction();
