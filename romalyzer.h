@@ -56,6 +56,15 @@
 #define QMC2_ROMALYZER_MERGE_STATUS_WARN	1
 #define QMC2_ROMALYZER_MERGE_STATUS_CRIT	2
 
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+#define QMC2_ROMALYZER_RT_ZIP_BUILTIN		0
+#define QMC2_ROMALYZER_RT_ZIP_LIBARCHIVE	1
+#define QMC2_ROMALYZER_RT_FOLDERS		2
+#else
+#define QMC2_ROMALYZER_RT_ZIP_BUILTIN		0
+#define QMC2_ROMALYZER_RT_FOLDERS		1
+#endif
+
 #define QMC2_ROMALYZER_EMUSTATUS_GOOD		0x00000001
 #define QMC2_ROMALYZER_EMUSTATUS_NODUMP		0x00000020
 #define QMC2_ROMALYZER_EMUSTATUS_BADDUMP	0x00000400
@@ -305,6 +314,9 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		bool readZipFileData(QString, QString, QByteArray *);
 		bool readFileData(QString, QString, QByteArray *);
 		bool writeAllZipData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		bool writeAllArchiveData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
+#endif
 		bool writeAllFileData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
 		static QString humanReadable(quint64, int digits = 2);
 		static QString &getXmlData(QString, bool includeDTD = false);

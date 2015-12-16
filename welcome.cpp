@@ -12,6 +12,7 @@
 #include "welcome.h"
 #include "macros.h"
 #include "options.h"
+#include "romalyzer.h"
 #include "cryptedbytearray.h"
 
 // external global variables
@@ -305,16 +306,56 @@ bool Welcome::checkConfig()
 			}
 		}
 		if ( QMC2_TEST_VERSION(omv, 58, osr, 7054) ) {
-			QStringList oldKeys = QStringList() << "/Frontemd/Layout/MainWidget/GameDetailTab";
+			QStringList oldKeys = QStringList() << "/Frontend/Layout/MainWidget/GameDetailTab";
 			QStringList newKeys = QStringList() << "/Frontend/Layout/MainWidget/MachineDetailTab";
 			for (int i = 0; i < oldKeys.count(); i++) {
 				QString oldKey = oldKeys[i];
 				QString newKey = newKeys[i];
 				if ( startupConfig->contains(oldKey) ) {
-					startupConfig->setValue(newKey, startupConfig->value(oldKey));
+					if ( !startupConfig->contains(newKey) )
+						startupConfig->setValue(newKey, startupConfig->value(oldKey));
 					startupConfig->remove(oldKey);
 				}
 			}
+		}
+		if ( QMC2_TEST_VERSION(omv, 59, osr, 7219) ) {
+			// system mode
+			int index = -1;
+			QString key1("/Frontend/ROMAlyzer/SetRewriterZipArchives");
+			QString key2("/Frontend/ROMAlyzer/SetRewriterIndividualDirectories");
+			QString newkey("/Frontend/ROMAlyzer/SetRewriterReproductionType");
+			if ( startupConfig->contains(key1) ) {
+				if ( startupConfig->value(key1, true).toBool() )
+					index = QMC2_ROMALYZER_RT_ZIP_BUILTIN;
+				startupConfig->remove(key1);
+			}
+			if ( startupConfig->contains(key2) ) {
+				if ( index < 0 && startupConfig->value(key2, false).toBool() )
+					index = QMC2_ROMALYZER_RT_FOLDERS;
+				startupConfig->remove(key2);
+			}
+			if ( index < 0 )
+				index = QMC2_ROMALYZER_RT_ZIP_BUILTIN;
+			startupConfig->setValue(newkey, index);
+
+			// software mode
+			index = -1;
+			key1 = "/Frontend/SoftwareROMAlyzer/SetRewriterZipArchives";
+			key2 = "/Frontend/SoftwareROMAlyzer/SetRewriterIndividualDirectories";
+			newkey = "/Frontend/SoftwareROMAlyzer/SetRewriterReproductionType";
+			if ( startupConfig->contains(key1) ) {
+				if ( startupConfig->value(key1, true).toBool() )
+					index = QMC2_ROMALYZER_RT_ZIP_BUILTIN;
+				startupConfig->remove(key1);
+			}
+			if ( startupConfig->contains(key2) ) {
+				if ( index < 0 && startupConfig->value(key2, false).toBool() )
+					index = QMC2_ROMALYZER_RT_FOLDERS;
+				startupConfig->remove(key2);
+			}
+			if ( index < 0 )
+				index = QMC2_ROMALYZER_RT_ZIP_BUILTIN;
+			startupConfig->setValue(newkey, index);
 		}
 	}
 

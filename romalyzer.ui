@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>732</width>
-    <height>659</height>
+    <width>819</width>
+    <height>674</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -355,8 +355,8 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-338</y>
-            <width>692</width>
+            <y>0</y>
+            <width>779</width>
             <height>968</height>
            </rect>
           </property>
@@ -377,242 +377,7 @@
              </property>
              <layout class="QGridLayout" name="gridLayout_9">
               <item row="0" column="0">
-               <layout class="QGridLayout" name="gridLayoutSetRewriter">
-                <item row="4" column="4" colspan="3">
-                 <widget class="QLabel" name="labelCollectionRebuilderSpecific">
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Collection rebuilder specific flags&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="5" column="4" colspan="3">
-                 <widget class="Line" name="lineCollectionRebuilderSpecific">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="0">
-                 <widget class="QLabel" name="labelSetRewriterFlags">
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Flags&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="4" colspan="3">
-                 <widget class="QLabel" name="labelSetRewriterPaths">
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Paths&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="2">
-                 <widget class="Line" name="line_12">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="2" rowspan="5">
-                 <layout class="QVBoxLayout" name="verticalLayout_2">
-                  <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_2">
-                    <item>
-                     <widget class="QRadioButton" name="radioButtonSetRewriterZipArchives">
-                      <property name="toolTip">
-                       <string>Produce ZIP archived sets (recommended)</string>
-                      </property>
-                      <property name="text">
-                       <string>ZIPs</string>
-                      </property>
-                      <property name="checked">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QSpinBox" name="spinBoxSetRewriterZipLevel">
-                      <property name="toolTip">
-                       <string>Select the ZIP compression level (0 = lowest / fastest, 9 = highest / slowest)</string>
-                      </property>
-                      <property name="specialValueText">
-                       <string>Default</string>
-                      </property>
-                      <property name="prefix">
-                       <string>Level </string>
-                      </property>
-                      <property name="minimum">
-                       <number>-1</number>
-                      </property>
-                      <property name="maximum">
-                       <number>9</number>
-                      </property>
-                      <property name="value">
-                       <number>-1</number>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <widget class="QCheckBox" name="checkBoxSetRewriterUniqueCRCs">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="toolTip">
-                     <string>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</string>
-                    </property>
-                    <property name="text">
-                     <string>Unique CRCs</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QCheckBox" name="checkBoxAddZipComment">
-                    <property name="toolTip">
-                     <string>When enabled, QMC2 will add a comment to the ZIP containing its version and the archive creation- or fixing-date</string>
-                    </property>
-                    <property name="text">
-                     <string>Add ZIP comment</string>
-                    </property>
-                    <property name="checked">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QRadioButton" name="radioButtonSetRewriterIndividualDirectories">
-                    <property name="toolTip">
-                     <string>Produce sets in individual sub-directories (not recommended)</string>
-                    </property>
-                    <property name="text">
-                     <string>Directories</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item row="2" column="5">
-                 <widget class="QLineEdit" name="lineEditSetRewriterOutputPath">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="toolTip">
-                   <string>Output path for the set rewriter (WARNING: existing files will be overwritten!) -- you should NEVER use one of your primary ROM paths here!!!</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="Line" name="line_11">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="6">
-                 <widget class="QToolButton" name="toolButtonBrowseSetRewriterOutputPath">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="toolTip">
-                   <string>Browse output path for the set rewriter</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="qmc2.qrc">
-                    <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="6">
-                 <widget class="QToolButton" name="toolButtonBrowseSetRewriterAdditionalRomPath">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="toolTip">
-                   <string>Browse additional ROM path</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="qmc2.qrc">
-                    <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="4">
-                 <widget class="QLabel" name="labelSetRewriterOutputPath">
-                  <property name="text">
-                   <string>Output directory</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="4">
-                 <widget class="QCheckBox" name="checkBoxSetRewriterUseAdditionalRomPath">
-                  <property name="toolTip">
-                   <string>Use the following additional ROM path</string>
-                  </property>
-                  <property name="text">
-                   <string>Addl. ROM path</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="5">
-                 <widget class="QLineEdit" name="lineEditSetRewriterAdditionalRomPath">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="toolTip">
-                   <string>Specify an additional (source) ROM path used when the set rewriter is active</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="2">
-                 <widget class="QLabel" name="labelSetRewriterReproduction">
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Reproduction&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1" rowspan="7">
-                 <widget class="Line" name="line_14">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="4" colspan="3">
-                 <widget class="Line" name="line_13">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="3" rowspan="7">
-                 <widget class="Line" name="line_15">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                 </widget>
-                </item>
+               <layout class="QGridLayout" name="gridLayoutSetRewriter" columnstretch="0,0,0,0,0,1,0">
                 <item row="2" column="0" rowspan="5">
                  <layout class="QVBoxLayout" name="verticalLayout">
                   <item>
@@ -682,6 +447,78 @@
                   </item>
                  </layout>
                 </item>
+                <item row="0" column="3" rowspan="7">
+                 <widget class="Line" name="line_15">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QLabel" name="labelSetRewriterReproduction">
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Reproduction&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="6">
+                 <widget class="QToolButton" name="toolButtonBrowseSetRewriterAdditionalRomPath">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="toolTip">
+                   <string>Browse additional ROM path</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="qmc2.qrc">
+                    <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="6">
+                 <widget class="QToolButton" name="toolButtonBrowseSetRewriterOutputPath">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="toolTip">
+                   <string>Browse output path for the set rewriter</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="qmc2.qrc">
+                    <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1" rowspan="7">
+                 <widget class="Line" name="line_14">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="2">
+                 <widget class="Line" name="line_12">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="4" colspan="3">
+                 <widget class="QLabel" name="labelCollectionRebuilderSpecific">
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Collection rebuilder specific flags&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
                 <item row="6" column="4" colspan="3">
                  <layout class="QHBoxLayout" name="horizontalLayout_5">
                   <item>
@@ -718,6 +555,277 @@
                    </spacer>
                   </item>
                  </layout>
+                </item>
+                <item row="5" column="4" colspan="3">
+                 <widget class="Line" name="lineCollectionRebuilderSpecific">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="4">
+                 <widget class="QCheckBox" name="checkBoxSetRewriterUseAdditionalRomPath">
+                  <property name="toolTip">
+                   <string>Use the following additional ROM path</string>
+                  </property>
+                  <property name="text">
+                   <string>Addl. ROM path</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="4" colspan="3">
+                 <widget class="QLabel" name="labelSetRewriterPaths">
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Paths&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="labelSetRewriterFlags">
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Flags&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="4">
+                 <widget class="QLabel" name="labelSetRewriterOutputPath">
+                  <property name="text">
+                   <string>Output directory</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="5">
+                 <widget class="QLineEdit" name="lineEditSetRewriterOutputPath">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="toolTip">
+                   <string>Output path for the set rewriter (WARNING: existing files will be overwritten!) -- you should NEVER use one of your primary ROM paths here!!!</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="4" colspan="3">
+                 <widget class="Line" name="line_13">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="Line" name="line_11">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="5">
+                 <widget class="QLineEdit" name="lineEditSetRewriterAdditionalRomPath">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="toolTip">
+                   <string>Specify an additional (source) ROM path used when the set rewriter is active</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="2">
+                 <widget class="QComboBox" name="comboBoxSetRewriterReproductionType">
+                  <property name="toolTip">
+                   <string>Select the reproduction type</string>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>ZIPs (built-in)</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>ZIPs (libarchive)</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Sub-directories</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/view_tree.png</normaloff>:/data/img/view_tree.png</iconset>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="3" column="2" rowspan="4">
+                 <widget class="QStackedWidget" name="stackedWidgetReproductionOptions">
+                  <property name="currentIndex">
+                   <number>0</number>
+                  </property>
+                  <widget class="QWidget" name="pageZipsBuiltIn">
+                   <layout class="QGridLayout" name="gridLayout">
+                    <property name="margin">
+                     <number>0</number>
+                    </property>
+                    <item row="2" column="1">
+                     <widget class="QSpinBox" name="spinBoxSetRewriterZipLevel">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="toolTip">
+                       <string>Select the ZIP compression level (0 = lowest / fastest, 9 = highest / slowest)</string>
+                      </property>
+                      <property name="specialValueText">
+                       <string>Default</string>
+                      </property>
+                      <property name="prefix">
+                       <string>Level </string>
+                      </property>
+                      <property name="minimum">
+                       <number>-1</number>
+                      </property>
+                      <property name="maximum">
+                       <number>9</number>
+                      </property>
+                      <property name="value">
+                       <number>-1</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="0" colspan="2">
+                     <spacer name="verticalSpacer_2">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QLabel" name="labelCompression1">
+                      <property name="text">
+                       <string>Compression</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0" colspan="2">
+                     <widget class="QCheckBox" name="checkBoxAddZipComment">
+                      <property name="toolTip">
+                       <string>When enabled, QMC2 will add a comment to the ZIP containing its version and the archive creation- or fixing-date</string>
+                      </property>
+                      <property name="text">
+                       <string>Add ZIP comment</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0" colspan="2">
+                     <widget class="QCheckBox" name="checkBoxSetRewriterUniqueCRCs">
+                      <property name="toolTip">
+                       <string>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</string>
+                      </property>
+                      <property name="text">
+                       <string>Unique CRCs</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="pageZipsLibArchive">
+                   <layout class="QGridLayout" name="gridLayout_2">
+                    <property name="margin">
+                     <number>0</number>
+                    </property>
+                    <item row="1" column="1">
+                     <widget class="QComboBox" name="comboBoxSetRewriterLibArchiveDeflate">
+                      <property name="toolTip">
+                       <string>Enable / disable ZIP compression</string>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>On</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Off</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                    <item row="2" column="0" colspan="2">
+                     <spacer name="verticalSpacer_3">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="labelCompression2">
+                      <property name="text">
+                       <string>Compression</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0" colspan="2">
+                     <widget class="QCheckBox" name="checkBoxSetRewriterLibArchiveUniqueCRCs">
+                      <property name="toolTip">
+                       <string>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</string>
+                      </property>
+                      <property name="text">
+                       <string>Unique CRCs</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="pageFolders">
+                   <layout class="QGridLayout" name="gridLayout_3">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="labelNoOptions">
+                      <property name="text">
+                       <string>&lt;b&gt;There are no options for this reproduction type&lt;/b&gt;</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </widget>
                 </item>
                </layout>
               </item>
@@ -1460,19 +1568,6 @@
                    </widget>
                   </item>
                   <item>
-                   <spacer name="horizontalSpacer">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>0</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item>
                    <widget class="QToolButton" name="toolButtonCheckSumDbAddPath">
                     <property name="toolTip">
                      <string>Add a path</string>
@@ -2023,11 +2118,12 @@
   <tabstop>checkBoxSetRewriterGoodDumpsOnly</tabstop>
   <tabstop>checkBoxSetRewriterSelfContainedSets</tabstop>
   <tabstop>checkBoxSetRewriterAbortOnError</tabstop>
-  <tabstop>radioButtonSetRewriterZipArchives</tabstop>
-  <tabstop>spinBoxSetRewriterZipLevel</tabstop>
+  <tabstop>comboBoxSetRewriterReproductionType</tabstop>
   <tabstop>checkBoxSetRewriterUniqueCRCs</tabstop>
   <tabstop>checkBoxAddZipComment</tabstop>
-  <tabstop>radioButtonSetRewriterIndividualDirectories</tabstop>
+  <tabstop>spinBoxSetRewriterZipLevel</tabstop>
+  <tabstop>checkBoxSetRewriterLibArchiveUniqueCRCs</tabstop>
+  <tabstop>comboBoxSetRewriterLibArchiveDeflate</tabstop>
   <tabstop>lineEditSetRewriterOutputPath</tabstop>
   <tabstop>toolButtonBrowseSetRewriterOutputPath</tabstop>
   <tabstop>checkBoxSetRewriterUseAdditionalRomPath</tabstop>
@@ -2068,8 +2164,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>86</x>
-     <y>651</y>
+     <x>90</x>
+     <y>696</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
@@ -2084,12 +2180,12 @@
    <slot>animateClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>48</x>
-     <y>602</y>
+     <x>58</x>
+     <y>579</y>
     </hint>
     <hint type="destinationlabel">
-     <x>571</x>
-     <y>602</y>
+     <x>672</x>
+     <y>579</y>
     </hint>
    </hints>
   </connection>
@@ -2100,11 +2196,11 @@
    <slot>animateClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>320</x>
+     <x>422</x>
      <y>18</y>
     </hint>
     <hint type="destinationlabel">
-     <x>559</x>
+     <x>764</x>
      <y>29</y>
     </hint>
    </hints>
@@ -2116,12 +2212,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>324</x>
-     <y>-268</y>
+     <x>377</x>
+     <y>-251</y>
     </hint>
     <hint type="destinationlabel">
-     <x>324</x>
-     <y>-233</y>
+     <x>377</x>
+     <y>-216</y>
     </hint>
    </hints>
   </connection>
@@ -2132,28 +2228,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>127</x>
-     <y>132</y>
+     <x>145</x>
+     <y>149</y>
     </hint>
     <hint type="destinationlabel">
-     <x>126</x>
-     <y>158</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButtonSetRewriterZipArchives</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>checkBoxSetRewriterUniqueCRCs</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>251</x>
-     <y>146</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>295</x>
-     <y>186</y>
+     <x>144</x>
+     <y>175</y>
     </hint>
    </hints>
   </connection>
@@ -2164,12 +2244,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>143</x>
-     <y>-130</y>
+     <x>161</x>
+     <y>-113</y>
     </hint>
     <hint type="destinationlabel">
-     <x>496</x>
-     <y>-124</y>
+     <x>674</x>
+     <y>-119</y>
     </hint>
    </hints>
   </connection>
@@ -2180,12 +2260,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>143</x>
-     <y>-130</y>
+     <x>161</x>
+     <y>-113</y>
     </hint>
     <hint type="destinationlabel">
-     <x>685</x>
-     <y>-124</y>
+     <x>873</x>
+     <y>-119</y>
     </hint>
    </hints>
   </connection>
@@ -2196,12 +2276,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>484</x>
-     <y>175</y>
+     <x>493</x>
+     <y>192</y>
     </hint>
     <hint type="destinationlabel">
-     <x>648</x>
-     <y>181</y>
+     <x>617</x>
+     <y>186</y>
     </hint>
    </hints>
   </connection>
@@ -2212,12 +2292,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>484</x>
-     <y>175</y>
+     <x>493</x>
+     <y>192</y>
     </hint>
     <hint type="destinationlabel">
-     <x>686</x>
-     <y>181</y>
+     <x>874</x>
+     <y>186</y>
     </hint>
    </hints>
   </connection>
@@ -2232,24 +2312,8 @@
      <y>21</y>
     </hint>
     <hint type="destinationlabel">
-     <x>553</x>
+     <x>758</x>
      <y>15</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButtonSetRewriterZipArchives</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>checkBoxAddZipComment</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>251</x>
-     <y>146</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>354</x>
-     <y>212</y>
     </hint>
    </hints>
   </connection>
@@ -2264,7 +2328,7 @@
      <y>115</y>
     </hint>
     <hint type="destinationlabel">
-     <x>660</x>
+     <x>776</x>
      <y>90</y>
     </hint>
    </hints>
@@ -2276,12 +2340,60 @@
    <slot>setVisible(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>323</x>
-     <y>307</y>
+     <x>435</x>
+     <y>338</y>
     </hint>
     <hint type="destinationlabel">
-     <x>360</x>
-     <y>308</y>
+     <x>533</x>
+     <y>338</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBoxSetRewriterReproductionType</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>stackedWidgetReproductionOptions</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>300</x>
+     <y>163</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>353</x>
+     <y>231</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxSetRewriterUniqueCRCs</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxSetRewriterLibArchiveUniqueCRCs</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>446</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>446</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxSetRewriterLibArchiveUniqueCRCs</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxSetRewriterUniqueCRCs</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>446</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>446</y>
     </hint>
    </hints>
   </connection>
