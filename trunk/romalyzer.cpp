@@ -97,6 +97,8 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	toolButtonCheckSumDbDeepScan->disconnect(toolButtonCheckSumDbLibArchive);
 	toolButtonCheckSumDbLibArchive->setChecked(false);
 	toolButtonCheckSumDbLibArchive->setVisible(false);
+	stackedWidgetReproductionOptions->removeWidget(pageZipsLibArchive);
+	comboBoxSetRewriterReproductionType->removeItem(1);
 #endif
 
 	m_checkSumDbQueryStatusPixmap = QPixmap(QString::fromUtf8(":/data/img/database.png"));
@@ -426,11 +428,11 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterSelfContainedSets", checkBoxSetRewriterSelfContainedSets->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterGoodDumpsOnly", checkBoxSetRewriterGoodDumpsOnly->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAbortOnError", checkBoxSetRewriterAbortOnError->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipArchives", radioButtonSetRewriterZipArchives->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterReproductionType", comboBoxSetRewriterReproductionType->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipLevel", spinBoxSetRewriterZipLevel->value());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUniqueCRCs", checkBoxSetRewriterUniqueCRCs->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterLibArchiveDeflate", comboBoxSetRewriterLibArchiveDeflate->currentIndex() == 0);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAddZipComment", checkBoxAddZipComment->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterIndividualDirectories", radioButtonSetRewriterIndividualDirectories->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterOutputPath", lineEditSetRewriterOutputPath->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUseAdditionalRomPath", checkBoxSetRewriterUseAdditionalRomPath->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAdditionalRomPath", lineEditSetRewriterAdditionalRomPath->text());
@@ -510,13 +512,16 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	checkBoxSetRewriterSelfContainedSets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterSelfContainedSets", false).toBool());
 	checkBoxSetRewriterGoodDumpsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterGoodDumpsOnly", true).toBool());
 	checkBoxSetRewriterAbortOnError->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAbortOnError", true).toBool());
-	radioButtonSetRewriterZipArchives->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipArchives", true).toBool());
+	int index = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterReproductionType", QMC2_ROMALYZER_RT_ZIP_BUILTIN).toInt();
+	if ( index > QMC2_ROMALYZER_RT_FOLDERS )
+		index = QMC2_ROMALYZER_RT_FOLDERS;
+	comboBoxSetRewriterReproductionType->setCurrentIndex(index);
 	spinBoxSetRewriterZipLevel->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipLevel", Z_DEFAULT_COMPRESSION).toInt());
 	checkBoxSetRewriterUniqueCRCs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUniqueCRCs", false).toBool());
+	comboBoxSetRewriterLibArchiveDeflate->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterLibArchiveDeflate", true).toBool() ? 0 : 1);
 	checkBoxAddZipComment->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAddZipComment", true).toBool());
 	comboBoxChecksumWizardHashType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardHashType", QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1).toInt());
 	comboBoxChecksumWizardAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardAutomationLevel", QMC2_ROMALYZER_CSWIZ_AMLVL_NONE).toInt());
-	radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterIndividualDirectories", false).toBool());
 	groupBoxCheckSumDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableCheckSumDb", false).toBool());
 	on_groupBoxCheckSumDatabase_toggled(groupBoxCheckSumDatabase->isChecked());
 	bool enable = true;
@@ -2920,7 +2925,7 @@ void ROMAlyzer::runSetRewriter()
 	if ( !outPath.endsWith("/") )
 		outPath += "/";
 
-	if ( radioButtonSetRewriterZipArchives->isChecked() )
+	if ( comboBoxSetRewriterReproductionType->currentIndex() < QMC2_ROMALYZER_RT_FOLDERS )
 		outPath += setName + ".zip";
 	else
 		outPath += setName;
@@ -3029,20 +3034,33 @@ void ROMAlyzer::runSetRewriter()
 		if ( !outputDataMap.isEmpty() ) {
 			log(tr("set rewriter: writing new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
 			labelStatus->setText(tr("Writing '%1' - %2").arg(setRewriterSetName).arg(locale.toString(setRewriterSetCount)));
-			if ( radioButtonSetRewriterZipArchives->isChecked() ) {
-				if ( writeAllZipData(outPath, &outputDataMap, true, progressBar) )
-					log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
-				else {
-					log(tr("set rewriter: FATAL: failed to create new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
-					loadOkay = ignoreErrors ? true : false;
-				}
-			} else {
-				if ( writeAllFileData(outPath, &outputDataMap, true, progressBar) ) {
-					log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
-				} else {
-					log(tr("set rewriter: FATAL: failed to create new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
-					loadOkay = ignoreErrors ? true : false;
-				}
+			switch ( comboBoxSetRewriterReproductionType->currentIndex() ) {
+				case QMC2_ROMALYZER_RT_ZIP_BUILTIN:
+					if ( writeAllZipData(outPath, &outputDataMap, true, progressBar) )
+						log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
+					else {
+						log(tr("set rewriter: FATAL: failed to create new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
+						loadOkay = ignoreErrors ? true : false;
+					}
+					break;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+				case QMC2_ROMALYZER_RT_ZIP_LIBARCHIVE:
+					if ( writeAllArchiveData(outPath, &outputDataMap, true, progressBar) )
+						log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
+					else {
+						log(tr("set rewriter: FATAL: failed to create new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
+						loadOkay = ignoreErrors ? true : false;
+					}
+					break;
+#endif
+				case QMC2_ROMALYZER_RT_FOLDERS:
+					if ( writeAllFileData(outPath, &outputDataMap, true, progressBar) ) {
+						log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
+					} else {
+						log(tr("set rewriter: FATAL: failed to create new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
+						loadOkay = ignoreErrors ? true : false;
+					}
+					break;
 			}
 		} else {
 			log(tr("set rewriter: INFORMATION: no output data available, thus not rewriting set '%1' to '%2'").arg(setRewriterSetName).arg(outPath));
@@ -3527,22 +3545,17 @@ bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 	return success;
 }
 
-// creates the directory 'dirName'
-// and stores the data found in 'fileDataMap' into individual files
-// - 'fileDataMap' maps file names to their data
+// creates the directory 'dirName' and stores the data found in 'fileDataMap' into individual files ('fileDataMap' maps file names to their data)
 bool ROMAlyzer::writeAllFileData(QString dirName, QMap<QString, QByteArray> *fileDataMap, bool writeLog, QProgressBar *pBar)
 {
 	bool success = true;
-
 	if ( pBar ) {
 		pBar->setRange(0, fileDataMap->count());
 		pBar->reset();
 	}
-
 	QDir d(dirName);
 	if ( !d.exists() )
 		success = d.mkdir(dirName);
-
 	QMapIterator<QString, QByteArray> it(*fileDataMap);
 	int count = 0;
 	while ( it.hasNext() && success ) {
@@ -3572,7 +3585,8 @@ bool ROMAlyzer::writeAllFileData(QString dirName, QMap<QString, QByteArray> *fil
 					progressBarFileIO->setValue(bytesWritten);
 					progressBarFileIO->update();
 					progressBar->update();
-					if ( bytesWritten % QMC2_128K == 0 || bytesWritten == (quint64)data.length() ) qApp->processEvents();
+					if ( bytesWritten % QMC2_128K == 0 || bytesWritten == (quint64)data.length() )
+						qApp->processEvents();
 				} else if ( writeLog )
 					log(tr("set rewriter: WARNING: failed to write '%1'").arg(file));
 			}
@@ -3580,7 +3594,6 @@ bool ROMAlyzer::writeAllFileData(QString dirName, QMap<QString, QByteArray> *fil
 		} else
 			success = false;
 	}
-
 	if ( pBar )
 		pBar->reset();
 	progressBarFileIO->reset();
@@ -3588,21 +3601,16 @@ bool ROMAlyzer::writeAllFileData(QString dirName, QMap<QString, QByteArray> *fil
 	return success;
 }
 
-// creates the new ZIP 'fileName'
-// and stores the data found in 'fileDataMap' into the ZIP:
-// - 'fileDataMap' maps file names to their data
+// creates the new ZIP 'fileName' through minizip and stores the data found in 'fileDataMap' into the ZIP ('fileDataMap' maps file names to their data)
 bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fileDataMap, bool writeLog, QProgressBar *pBar)
 {
 	bool success = true;
-
 	QFile f(fileName);
 	if ( f.exists() )
 		success = createBackup(fileName) && f.remove();
-
 	zipFile zip = NULL;
 	if ( success )
 		zip = zipOpen(fileName.toUtf8().constData(), APPEND_STATUS_CREATE);
-
 	if ( zip ) {
 		zip_fileinfo zipInfo;
 		QDateTime cDT = QDateTime::currentDateTime();
@@ -3646,7 +3654,8 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 						progressBarFileIO->setValue(bytesWritten);
 						progressBarFileIO->update();
 						progressBar->update();
-						if ( bytesWritten % QMC2_128K == 0 || bytesWritten == (quint64)data.length() ) qApp->processEvents();
+						if ( bytesWritten % QMC2_128K == 0 || bytesWritten == (quint64)data.length() )
+							qApp->processEvents();
 					} else if ( writeLog )
 						log(tr("set rewriter: WARNING: failed to deflate '%1'").arg(file));
 				}
@@ -3660,16 +3669,78 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 			zipClose(zip, "");
 	} else
 		success = false;
-
 	if ( pBar ) {
 		pBar->reset();
 		pBar->setFormat(QString());
 	}
-
 	progressBarFileIO->reset();
 	progressBarFileIO->setInvertedAppearance(false);
 	return success;
 }
+
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+// creates the new ZIP 'fileName' through libarchive and stores the data found in 'fileDataMap' into the ZIP ('fileDataMap' maps file names to their data)
+bool ROMAlyzer::writeAllArchiveData(QString fileName, QMap<QString, QByteArray> *fileDataMap, bool writeLog, QProgressBar *pBar)
+{
+	bool success = true;
+	QFile f(fileName);
+	if ( f.exists() )
+		success = createBackup(fileName) && f.remove();
+        ArchiveFile af(fileName, true, comboBoxSetRewriterLibArchiveDeflate->currentIndex() == 0);
+	if ( success && af.open(QIODevice::WriteOnly) ) {
+		if ( pBar ) {
+			pBar->setRange(0, fileDataMap->count());
+			pBar->reset();
+		}
+		QMapIterator<QString, QByteArray> it(*fileDataMap);
+		int count = 0;
+		while ( it.hasNext() && success ) {
+			if ( pBar ) {
+				pBar->setValue(++count);
+				pBar->setFormat(QString("%1 / %2").arg(count).arg(fileDataMap->count()));
+			}
+			it.next();
+			QString file = it.key();
+			QByteArray data = it.value();
+			if ( writeLog )
+				log(tr("set rewriter: deflating '%1' (uncompressed size: %2)").arg(file).arg(humanReadable(data.length())));
+				if ( af.createEntry(file, data.size()) ) {
+				quint64 bytesWritten = 0;
+				progressBarFileIO->setInvertedAppearance(true);
+				progressBarFileIO->setRange(0, data.length());
+				progressBarFileIO->reset();
+				qApp->processEvents();
+				while ( bytesWritten < (quint64)data.length() && success ) {
+					quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
+					if ( bytesWritten + bufferLength > (quint64)data.length() )
+						bufferLength = data.length() - bytesWritten;
+					QByteArray writeBuffer = data.mid(bytesWritten, bufferLength);
+					success = af.writeEntryData(writeBuffer);
+					if ( success ) {
+						bytesWritten += bufferLength;
+						progressBarFileIO->setValue(bytesWritten);
+						progressBarFileIO->update();
+						progressBar->update();
+						if ( bytesWritten % QMC2_128K == 0 || bytesWritten == (quint64)data.length() )
+							qApp->processEvents();
+					} else if ( writeLog )
+						log(tr("set rewriter: WARNING: failed to deflate '%1'").arg(file));
+				}
+				af.closeEntry();
+                        } else
+				success = false;
+		}
+	} else
+		success = false;
+	if ( pBar ) {
+		pBar->reset();
+		pBar->setFormat(QString());
+	}
+	progressBarFileIO->reset();
+	progressBarFileIO->setInvertedAppearance(false);
+	return success;
+}
+#endif
 
 void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 {

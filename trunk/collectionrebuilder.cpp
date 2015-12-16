@@ -17,6 +17,7 @@
 #include "unzip.h"
 #include "zip.h"
 #include "sevenzipfile.h"
+#include "archivefile.h"
 #include "machinelist.h"
 #include "macros.h"
 #include "softwarelist.h"
@@ -1237,10 +1238,16 @@ bool CollectionRebuilderThread::rewriteSet(QString *setKey, QStringList *romName
 		}
 	} else
 		set = *setKey;
-	if ( rebuilderDialog()->romAlyzer()->radioButtonSetRewriterZipArchives->isChecked() )
-		return writeAllZipData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
-	else
-		return writeAllFileData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
+	switch ( rebuilderDialog()->romAlyzer()->comboBoxSetRewriterReproductionType->currentIndex() ) {
+		case QMC2_ROMALYZER_RT_ZIP_BUILTIN:
+			return writeAllZipData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+		case QMC2_ROMALYZER_RT_ZIP_LIBARCHIVE:
+			return writeAllArchiveData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
+#endif
+		case QMC2_ROMALYZER_RT_FOLDERS:
+			return writeAllFileData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
+	}
 }
 
 bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList * /*diskNameList*/, QStringList * /*diskSha1List*/)
@@ -1252,6 +1259,9 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 		success = d.mkdir(QDir::cleanPath(baseDir + "/" + id));
 	int reproducedDumps = 0;
 	bool ignoreErrors = !rebuilderDialog()->romAlyzer()->checkBoxSetRewriterAbortOnError->isChecked();
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	bool useLibArchive = rebuilderDialog()->romAlyzer()->comboBoxSetRewriterReproductionType->currentIndex() == QMC2_ROMALYZER_RT_ZIP_LIBARCHIVE;
+#endif
 	for (int i = 0; i < romNameList->count() && !exitThread && success; i++) {
 		QString fileName = d.absoluteFilePath(romNameList->at(i));
 		if ( !createBackup(fileName) ) {
@@ -1346,6 +1356,9 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 	bool uniqueCRCs = rebuilderDialog()->romAlyzer()->checkBoxSetRewriterUniqueCRCs->isChecked();
 	bool ignoreErrors = !rebuilderDialog()->romAlyzer()->checkBoxSetRewriterAbortOnError->isChecked();
 	int zipLevel = rebuilderDialog()->romAlyzer()->spinBoxSetRewriterZipLevel->value();
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	bool useLibArchive = rebuilderDialog()->romAlyzer()->comboBoxSetRewriterReproductionType->currentIndex() == QMC2_ROMALYZER_RT_ZIP_LIBARCHIVE;
+#endif
 	zipFile zip = zipOpen(fileName.toUtf8().constData(), APPEND_STATUS_CREATE);
 	if ( zip ) {
 		emit log(tr("creating new ZIP archive '%1'").arg(fileName));
@@ -1437,6 +1450,97 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 	}
 	return success;
 }
+
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+bool CollectionRebuilderThread::writeAllArchiveData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList * /*diskNameList*/, QStringList * /*diskSha1List*/)
+{
+	// FIXME: no support for disks
+	QDir d(QDir::cleanPath(baseDir));
+	if ( !d.exists() )
+		if ( !d.mkdir(QDir::cleanPath(baseDir)) )
+			return false;
+	QString fileName = QDir::cleanPath(baseDir) + "/" + id + ".zip";
+	if ( !createBackup(fileName) ) {
+		emit log(tr("FATAL: backup creation failed"));
+		return false;
+	}
+	QFile f(fileName);
+	if ( f.exists() )
+		if ( !f.remove() )
+			return false;
+	bool success = true;
+	bool uniqueCRCs = rebuilderDialog()->romAlyzer()->checkBoxSetRewriterUniqueCRCs->isChecked();
+	bool ignoreErrors = !rebuilderDialog()->romAlyzer()->checkBoxSetRewriterAbortOnError->isChecked();
+	ArchiveFile af(fileName, true, rebuilderDialog()->romAlyzer()->comboBoxSetRewriterLibArchiveDeflate->currentIndex() == 0);
+	if ( af.open(QIODevice::WriteOnly) ) {
+		emit log(tr("creating new ZIP archive '%1'").arg(fileName));
+		QStringList storedCRCs;
+		int reproducedDumps = 0;
+		for (int i = 0; i < romNameList->count() && !exitThread && success; i++) {
+			if ( uniqueCRCs && storedCRCs.contains(romCrcList->at(i)) ) {
+				emit log(tr("skipping '%1'").arg(romNameList->at(i)) + " ("+ tr("a dump with CRC '%1' already exists").arg(romCrcList->at(i)) + ")");
+				continue;
+			}
+			QString file = romNameList->at(i);
+			QByteArray data;
+			quint64 size = romSizeList->at(i).toULongLong();
+			QString path, member, type;
+			QString errorReason = tr("file error");
+			if ( checkSumDb()->getData(romSha1List->at(i), romCrcList->at(i), &size, &path, &member, &type) ) {
+				switch ( m_fileTypes.indexOf(type) ) {
+					case QMC2_COLLECTIONREBUILDER_FILETYPE_ZIP:
+						success = readZipFileData(path, romCrcList->at(i), &data);
+						break;
+					case QMC2_COLLECTIONREBUILDER_FILETYPE_7Z:
+						success = readSevenZipFileData(path, romCrcList->at(i), &data);
+						break;
+					case QMC2_COLLECTIONREBUILDER_FILETYPE_FILE:
+						success = readFileData(path, &data);
+						break;
+					case QMC2_COLLECTIONREBUILDER_FILETYPE_CHD:
+						// FIXME: add support for disks
+						break;
+					default:
+						success = false;
+						errorReason = tr("unknown file type '%1'").arg(type);
+						break;
+				}
+				if ( success && af.createEntry(file, data.size()) ) {
+					emit log(tr("writing '%1' to ZIP archive '%2' (uncompressed size: %3)").arg(file).arg(fileName).arg(ROMAlyzer::humanReadable(data.length())));
+					if ( !af.writeEntryData(data) ) {
+						emit log(tr("FATAL: failed writing '%1' to ZIP archive '%2'").arg(file).arg(fileName));
+						success = false;
+					}
+					storedCRCs << romCrcList->at(i);
+					af.closeEntry();
+					if ( success )
+						reproducedDumps++;
+				}
+			}
+			if ( !success ) {
+				emit statusUpdated(setsProcessed, ++missingROMs, missingDisks);
+				emit newMissing(id, tr("ROM"), romNameList->at(i), romSizeList->at(i), romCrcList->at(i), romSha1List->at(i), errorReason);
+			}
+			if ( ignoreErrors )
+				success = true;
+			else if ( !success ) {
+				for (int j = i + 1; j < romNameList->count() && !exitThread; j++) {
+					emit statusUpdated(setsProcessed, ++missingROMs, missingDisks);
+					emit newMissing(id, tr("ROM"), romNameList->at(j), romSizeList->at(j), romCrcList->at(j), romSha1List->at(j), errorReason);
+				}
+			}
+		}
+		af.close();
+		if ( reproducedDumps == 0 )
+			f.remove();
+		emit log(tr("done (creating new ZIP archive '%1')").arg(fileName));
+	} else {
+		emit log(tr("FATAL: failed creating ZIP archive '%1'").arg(fileName));
+		success = false;
+	}
+	return success;
+}
+#endif
 
 bool CollectionRebuilderThread::readFileData(QString fileName, QByteArray *data)
 {

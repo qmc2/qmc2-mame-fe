@@ -8,8 +8,10 @@
 #include <QStringList>
 #include <QDateTime>
 #include <QByteArray>
+#include <QIODevice>
 
 #include <archive.h>
+#include <archive_entry.h>
 #include "macros.h"
 
 class ArchiveEntryMetaData
@@ -40,20 +42,25 @@ class ArchiveFile : public QObject
 	Q_OBJECT
 
 	public:
-		explicit ArchiveFile(QString fileName = QString(), bool sequential = false, QObject *parent = 0);
+		explicit ArchiveFile(QString fileName = QString(), bool sequential = false, bool deflate = true, QObject *parent = 0);
 		~ArchiveFile();
 
 		QString fileName() { return m_fileName; }
 		QList<ArchiveEntryMetaData> &entryList() { return m_entryList; }
 		bool isOpen() { return m_archive != 0; }
-		bool open(QString fileName = QString());
+		bool open(QIODevice::OpenMode openMode = QIODevice::ReadOnly, QString fileName = QString());
 		void close();
+		bool readMode() { return m_openMode == QIODevice::ReadOnly; }
+		bool writeMode() { return m_openMode == QIODevice::WriteOnly; }
 		bool seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset = 0);
 		bool seekEntry(uint index);
 		bool seekEntry(QString name) { int index = indexOfName(name); return index >= 0 ? seekEntry(index) : false; }
 		bool hasError() { return errorCode() == ARCHIVE_FATAL; }
 		bool hasWarning() { return errorCode() == ARCHIVE_WARN; }
 		qint64 readEntry(QByteArray &buffer);
+		bool createEntry(QString name, size_t size);
+		qint64 writeEntryData(QByteArray &buffer) { return archive_write_data(m_archive, buffer.constData(), buffer.size()); }
+		void closeEntry();
 		QString errorString() { return isOpen() ? QString(archive_error_string(m_archive)) : QString(); }
 		int errorCode() { return isOpen() ? archive_errno(m_archive) : ARCHIVE_OK; }
 		void createEntryList();
@@ -67,6 +74,8 @@ class ArchiveFile : public QObject
 		QHash<QString, int> m_nameToIndexCache;
 		QString m_fileName;
 		bool m_sequential;
+		bool m_deflate;
+		QIODevice::OpenMode m_openMode;
 };
 
 #endif
