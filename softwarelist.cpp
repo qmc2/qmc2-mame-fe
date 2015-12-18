@@ -4361,7 +4361,6 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 
 	zoom = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapZoom", 100).toInt();
 
-	reloadActiveFormats();
 	openSource();
 }
 
