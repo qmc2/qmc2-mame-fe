@@ -4361,8 +4361,13 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 
 	zoom = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapZoom", 100).toInt();
 
-
 	reloadActiveFormats();
+	openSource();
+}
+
+SoftwareSnap::~SoftwareSnap()
+{
+	closeSource();
 }
 
 void SoftwareSnap::openSource()
@@ -4423,20 +4428,6 @@ void SoftwareSnap::closeSource()
 	}
 	snapArchiveMap.clear();
 #endif
-}
-
-SoftwareSnap::~SoftwareSnap()
-{
-	if ( qmc2UseSoftwareSnapFile ) {
-		foreach (unzFile snapFile, snapFileMap)
-			unzClose(snapFile);
-		foreach (SevenZipFile *snapFile, snapFileMap7z) {
-			snapFile->close();
-			delete snapFile;
-		}
-		snapFileMap.clear();
-		snapFileMap7z.clear();
-	}
 }
 
 QString SoftwareSnap::primaryPathFor(QString list, QString name)
