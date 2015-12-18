@@ -5790,11 +5790,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
 	// search box options
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/NegateSearch", actionNegateSearch->isChecked());
 
-	if ( qmc2SoftwareSnap ) {
-		qmc2SoftwareSnap->close();
-		delete qmc2SoftwareSnap;
-	}
-
 	if ( qmc2SystemNotesEditor ) {
 		qmc2SystemNotesEditor->stopLoading = true;
 		qmc2SystemNotesEditor->save();
