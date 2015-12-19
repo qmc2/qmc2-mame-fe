@@ -432,7 +432,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipLevel", spinBoxSetRewriterZipLevel->value());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUniqueCRCs", checkBoxSetRewriterUniqueCRCs->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterLibArchiveDeflate", comboBoxSetRewriterLibArchiveDeflate->currentIndex() == 0);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAddZipComment", checkBoxAddZipComment->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAddZipComment", checkBoxSetRewriterAddZipComment->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterOutputPath", lineEditSetRewriterOutputPath->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUseAdditionalRomPath", checkBoxSetRewriterUseAdditionalRomPath->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAdditionalRomPath", lineEditSetRewriterAdditionalRomPath->text());
@@ -519,7 +519,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	spinBoxSetRewriterZipLevel->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipLevel", Z_DEFAULT_COMPRESSION).toInt());
 	checkBoxSetRewriterUniqueCRCs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUniqueCRCs", false).toBool());
 	comboBoxSetRewriterLibArchiveDeflate->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterLibArchiveDeflate", true).toBool() ? 0 : 1);
-	checkBoxAddZipComment->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAddZipComment", true).toBool());
+	checkBoxSetRewriterAddZipComment->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAddZipComment", true).toBool());
 	comboBoxChecksumWizardHashType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardHashType", QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1).toInt());
 	comboBoxChecksumWizardAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardAutomationLevel", QMC2_ROMALYZER_CSWIZ_AMLVL_NONE).toInt());
 	groupBoxCheckSumDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableCheckSumDb", false).toBool());
@@ -3663,7 +3663,7 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 			} else
 				success = false;
 		}
-		if ( checkBoxAddZipComment->isChecked() )
+		if ( checkBoxSetRewriterAddZipComment->isChecked() )
 			zipClose(zip, tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toUtf8().constData());
 		else
 			zipClose(zip, "");
@@ -3949,7 +3949,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 								}
 							}
 							if ( saveOkay )
-								if ( checkBoxAddZipComment->isChecked() ) {
+								if ( checkBoxSetRewriterAddZipComment->isChecked() ) {
 									if ( appendType == APPEND_STATUS_ADDINZIP )
 										zipClose(zip, tr("Fixed by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toUtf8().constData());
 									else
