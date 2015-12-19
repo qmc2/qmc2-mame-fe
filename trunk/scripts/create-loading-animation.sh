@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-# Creates the loading animation data/img/classic/loadanim.gif from the single
-# base image data/img/classic/animbase.png.
+# Creates the rotating loading animation data/img/classic/loadanim.gif from the single base
+# image data/img/classic/animbase.png.
 #
 # Requires ImageMagick's convert tool!
 #
