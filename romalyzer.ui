@@ -355,7 +355,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>-198</y>
             <width>779</width>
             <height>968</height>
            </rect>
@@ -683,12 +683,6 @@
                     </property>
                     <item row="2" column="1">
                      <widget class="QSpinBox" name="spinBoxSetRewriterZipLevel">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
                       <property name="toolTip">
                        <string>Select the ZIP compression level (0 = lowest / fastest, 9 = highest / slowest)</string>
                       </property>
@@ -730,7 +724,7 @@
                      </widget>
                     </item>
                     <item row="1" column="0" colspan="2">
-                     <widget class="QCheckBox" name="checkBoxAddZipComment">
+                     <widget class="QCheckBox" name="checkBoxSetRewriterAddZipComment">
                       <property name="toolTip">
                        <string>When enabled, QMC2 will add a comment to the ZIP containing its version and the archive creation- or fixing-date</string>
                       </property>
@@ -810,6 +804,9 @@
                   </widget>
                   <widget class="QWidget" name="pageFolders">
                    <layout class="QGridLayout" name="gridLayout_3">
+                    <property name="margin">
+                     <number>0</number>
+                    </property>
                     <item row="0" column="0">
                      <widget class="QLabel" name="labelNoOptions">
                       <property name="text">
@@ -2120,7 +2117,7 @@
   <tabstop>checkBoxSetRewriterAbortOnError</tabstop>
   <tabstop>comboBoxSetRewriterReproductionType</tabstop>
   <tabstop>checkBoxSetRewriterUniqueCRCs</tabstop>
-  <tabstop>checkBoxAddZipComment</tabstop>
+  <tabstop>checkBoxSetRewriterAddZipComment</tabstop>
   <tabstop>spinBoxSetRewriterZipLevel</tabstop>
   <tabstop>checkBoxSetRewriterLibArchiveUniqueCRCs</tabstop>
   <tabstop>comboBoxSetRewriterLibArchiveDeflate</tabstop>
