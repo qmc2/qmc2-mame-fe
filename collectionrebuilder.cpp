@@ -17,7 +17,9 @@
 #include "unzip.h"
 #include "zip.h"
 #include "sevenzipfile.h"
+#if defined(QMC2_LIBARCHIVE_ENABLED)
 #include "archivefile.h"
+#endif
 #include "machinelist.h"
 #include "macros.h"
 #include "softwarelist.h"
