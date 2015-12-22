@@ -7061,21 +7061,15 @@ void MainWindow::processFifoData()
 {
 	if ( qmc2CleaningUp )
 		return;
-
-	if ( !qmc2FifoFile )
+	if ( !qmc2FifoIsOpen )
 		return;
-
 #if defined(QMC2_SDLMAME)
 	QTextStream ts(qmc2FifoFile);
 	QString data = ts.readAll();
-	int i;
-
 	if ( data.isEmpty() )
 		return;
-
 	QStringList sl = data.split("\n", QString::SkipEmptyParts);
-
-	for (i = 0; i < sl.count(); i++) { 
+	for (int i = 0; i < sl.count(); i++) { 
 		if ( !sl[i].isEmpty() ) {
 			QString msgClass, msgPid, msgWhat, msgState;
 			QStringList words = sl[i].trimmed().split(" ");
