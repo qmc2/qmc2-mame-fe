@@ -2419,11 +2419,15 @@ void Options::applyDelayed()
 		qmc2MainWindow->labelLoadingHierarchy->setMovie(qmc2MainWindow->loadAnimMovie);
 		qmc2MainWindow->labelCreatingCategoryView->setMovie(qmc2MainWindow->loadAnimMovie);
 		qmc2MainWindow->labelCreatingVersionView->setMovie(qmc2MainWindow->loadAnimMovie);
+		if ( qmc2SoftwareList )
+			qmc2SoftwareList->labelLoadingSoftwareLists->setMovie(qmc2SoftwareList->loadAnimMovie);
 	} else {
 		qmc2MainWindow->labelLoadingMachineList->setMovie(qmc2MainWindow->nullMovie);
 		qmc2MainWindow->labelLoadingHierarchy->setMovie(qmc2MainWindow->nullMovie);
 		qmc2MainWindow->labelCreatingCategoryView->setMovie(qmc2MainWindow->nullMovie);
 		qmc2MainWindow->labelCreatingVersionView->setMovie(qmc2MainWindow->nullMovie);
+		if ( qmc2SoftwareList )
+			qmc2SoftwareList->labelLoadingSoftwareLists->setMovie(qmc2MainWindow->nullMovie);
 	}
 	cancelClicked = false;
 }

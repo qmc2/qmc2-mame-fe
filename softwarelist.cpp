@@ -22,6 +22,7 @@
 #include "iconlineedit.h"
 #include "romalyzer.h"
 #include "processmanager.h"
+#include "aspectratiolabel.h"
 #include "macros.h"
 
 // external global variables
@@ -77,6 +78,26 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 	setupUi(this);
 
+	// loading animation
+	loadAnimMovie = new QMovie(QString::fromUtf8(":/data/img/loadanim.gif"), QByteArray(), this);
+	loadAnimMovie->setCacheMode(QMovie::CacheAll);
+	loadAnimMovie->setSpeed(50);
+	loadAnimMovie->stop();
+
+	// replace loading animation label with an aspect-ratio keeping one
+	verticalLayout->removeWidget(labelLoadingSoftwareLists);
+	delete labelLoadingSoftwareLists;
+	labelLoadingSoftwareLists = new AspectRatioLabel(this);
+	labelLoadingSoftwareLists->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::MinimumExpanding);
+	labelLoadingSoftwareLists->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
+		labelLoadingSoftwareLists->setMovie(loadAnimMovie);
+	else
+		labelLoadingSoftwareLists->setMovie(qmc2MainWindow->nullMovie);
+	verticalLayout->insertWidget(1, labelLoadingSoftwareLists);
+	labelLoadingSoftwareLists->setVisible(false);
+
+	// hide progress bars
 	progressBar->setVisible(false);
 	progressBarSearch->setVisible(false);
 
@@ -477,6 +498,7 @@ SoftwareList::~SoftwareList()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ShowSoftwareStates", toolButtonSoftwareStates->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/NegateSearch", actionNegateSearch->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ViewTree", viewTree());
+	delete loadAnimMovie;
 }
 
 void SoftwareList::adjustSnapnamePattern()
@@ -1208,10 +1230,12 @@ bool SoftwareList::load()
 		oldMax = qmc2MainWindow->progressBarMachineList->maximum();
 		oldFmt = qmc2MainWindow->progressBarMachineList->format();
           	qmc2MainWindow->tabSoftwareList->setUpdatesEnabled(true);
-		labelLoadingSoftwareLists->setText(tr("Loading software-lists, please wait..."));
-		labelLoadingSoftwareLists->setVisible(true);
+		((AspectRatioLabel *)labelLoadingSoftwareLists)->setLabelText(tr("Loading software-lists, please wait..."));
 		toolBoxSoftwareList->setVisible(false);
+		labelLoadingSoftwareLists->setVisible(true);
 		show();
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
+			loadAnimMovie->start();
 		qApp->processEvents();
 		loadTimer.start();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML software list data and recreating cache"));
@@ -1270,6 +1294,7 @@ bool SoftwareList::load()
 			toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search") + " | " + tr("no data available"));
 			labelLoadingSoftwareLists->setVisible(false);
 			toolBoxSoftwareList->setVisible(true);
+			loadAnimMovie->setPaused(true);
 			isLoading = false;
 			isInitialLoad = false;
 			emit loadFinished(false);
@@ -1279,6 +1304,7 @@ bool SoftwareList::load()
 
 	labelLoadingSoftwareLists->setVisible(false);
 	toolBoxSoftwareList->setVisible(true);
+	loadAnimMovie->setPaused(true);
 
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): validData = %1").arg(validData));
@@ -1296,10 +1322,12 @@ bool SoftwareList::load()
 			if ( interruptLoad )
 				break;
 			if ( softwareListXml.size() > QMC2_SWLIST_SIZE_THRESHOLD ) {
+				((AspectRatioLabel *)labelLoadingSoftwareLists)->setLabelText(tr("Loading software-list '%1', please wait...").arg(swList));
 				toolBoxSoftwareList->setVisible(false);
-				labelLoadingSoftwareLists->setText(tr("Loading software-list '%1', please wait...").arg(swList));
 				labelLoadingSoftwareLists->setVisible(true);
 				qmc2MainWindow->tabSoftwareList->update();
+				if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
+					loadAnimMovie->start();
 				qApp->processEvents();
 			}
 			if ( !softwareListXml.isEmpty() ) {
@@ -1328,8 +1356,9 @@ bool SoftwareList::load()
 		if ( viewTree() )
 			QTimer::singleShot(0, this, SLOT(loadTree()));
 
-		QTimer::singleShot(0, labelLoadingSoftwareLists, SLOT(hide()));
-		QTimer::singleShot(0, toolBoxSoftwareList, SLOT(show()));
+		labelLoadingSoftwareLists->setVisible(false);
+		toolBoxSoftwareList->setVisible(true);
+		loadAnimMovie->setPaused(true);
 
 		// load favorites / migrate from qmc2.ini to user data database if required
 		QStringList softwareNames;
@@ -1836,11 +1865,12 @@ void SoftwareList::checkSoftwareStates()
 	qmc2MainWindow->toolbar->setEnabled(false);
 	actionCheckSoftwareStates->setEnabled(false);
 
-	if ( treeWidgetKnownSoftware->topLevelItemCount() > QMC2_SWLIST_COUNT_THRESHOLD ) {
-		labelLoadingSoftwareLists->setText(tr("Checking software-states, please wait..."));
-		labelLoadingSoftwareLists->setVisible(true);
-		toolBoxSoftwareList->setVisible(false);
-	}
+	((AspectRatioLabel *)labelLoadingSoftwareLists)->setLabelText(tr("Checking software-states, please wait..."));
+	toolBoxSoftwareList->setVisible(false);
+	labelLoadingSoftwareLists->setVisible(true);
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
+		loadAnimMovie->start();
+	qApp->processEvents();
 
 	numSoftwareCorrect = numSoftwareIncorrect = numSoftwareMostlyCorrect = numSoftwareNotFound = numSoftwareUnknown = 0;
 	updateStats();
@@ -1917,6 +1947,7 @@ void SoftwareList::checkSoftwareStates()
 
 	labelLoadingSoftwareLists->setVisible(false);
 	toolBoxSoftwareList->setVisible(true);
+	loadAnimMovie->setPaused(true);
 
 	qmc2MainWindow->tabWidgetMachineList->setEnabled(true);
 	qmc2MainWindow->menuBar()->setEnabled(true);
@@ -2038,6 +2069,10 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
 void SoftwareList::verifyReadyReadStandardOutput()
 {
+	// this makes the GUI much more responsive, but is HAS to be called before verifyProc->readAllStandardOutput()!
+	if ( QCoreApplication::hasPendingEvents() )
+		qApp->processEvents();
+
 	verifyReadingStdout = true;
 
 	QString s = swStatesLastLine + verifyProc->readAllStandardOutput();

@@ -10,6 +10,7 @@
 #include <QTextStream>
 #include <QXmlDefaultHandler>
 #include <QMenu>
+#include <QMovie>
 #include <QMap>
 #include <QWidgetAction>
 
@@ -250,6 +251,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		SoftwareStateFilter *stateFilter;
 		QWidgetAction *stateFilterAction;
 		QToolButton *toolBoxButtonKnownSoftware;
+		QMovie *loadAnimMovie;
 
 		static bool isInitialLoad;
 		static bool swlSupported;
