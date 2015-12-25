@@ -3896,10 +3896,10 @@ QString SoftwareList::softwareStatus(QString listName, QString softwareName, boo
 	}
 }
 
-QString SoftwareList::status(SoftwareListXmlHandler *handler)
+QString &SoftwareList::status(SoftwareListXmlHandler *handler)
 {
 	QLocale locale;
-	QString statusString = "<b>";
+	statusString = "<b>";
 	if ( handler ) {
 		statusString += "<font color=black>" + tr("L:") + locale.toString(numSoftwareTotal + handler->numTotal) + "</font> ";
 		if ( toolButtonSoftwareStates->isChecked() ) {

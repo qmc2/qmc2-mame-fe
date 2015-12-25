@@ -65,6 +65,7 @@ class MachineList : public QObject
 		QStringList emulatorIdentifiers;
 		QStringList verifiedList;
 		QString xmlLineBuffer;
+		QString statusString;
 		QHash<QString, QString> driverNameHash;
 		QHash<QString, char> machineStatusHash;
 		QHash<QString, QString *> categoryNames;
@@ -84,6 +85,7 @@ class MachineList : public QObject
 
 		QString lookupDriverName(QString);
 		QString romStatus(QString, bool translated = false);
+		QString &status();
 		char romState(QString);
 		bool isBios(QString systemName) { return biosSets.contains(systemName); }
 		bool isDevice(QString systemName) { return deviceSets.contains(systemName); }
@@ -110,7 +112,6 @@ class MachineList : public QObject
 		void saveFavorites();
 		void loadPlayHistory();
 		void savePlayHistory();
-		QString status();
 
 		// process management
 		void loadStarted();
