@@ -1440,14 +1440,14 @@ void MachineList::parse()
 						case 'C': 
 							numCorrectGames++;
 							switch ( machineType ) {
-								case 0:
+								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
 										QString *categoryString = categoryHash[machineName];
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
 									break;
-								case 1:
+								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
 									if ( !showBiosSets )
@@ -1456,7 +1456,7 @@ void MachineList::parse()
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
 									biosSets.insert(machineName, true);
 									break;
-								case 2:
+								case QMC2_MACHINETYPE_DEVICE:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectDeviceImageIcon);
 									if ( !showDeviceSets )
@@ -1471,14 +1471,14 @@ void MachineList::parse()
 						case 'M': 
 							numMostlyCorrectGames++;
 							switch ( machineType ) {
-								case 0:
+								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
 										QString *categoryString = categoryHash[machineName];
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
 									break;
-								case 1:
+								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectBIOSImageIcon);
 									if ( !showBiosSets )
@@ -1487,7 +1487,7 @@ void MachineList::parse()
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
 									biosSets.insert(machineName, true);
 									break;
-								case 2:
+								case QMC2_MACHINETYPE_DEVICE:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectDeviceImageIcon);
 									if ( !showDeviceSets )
@@ -1502,14 +1502,14 @@ void MachineList::parse()
 						case 'I':
 							numIncorrectGames++;
 							switch ( machineType ) {
-								case 0:
+								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
 										QString *categoryString = categoryHash[machineName];
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
 									break;
-								case 1:
+								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectBIOSImageIcon);
 									if ( !showBiosSets )
@@ -1518,7 +1518,7 @@ void MachineList::parse()
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
 									biosSets.insert(machineName, true);
 									break;
-								case 2:
+								case QMC2_MACHINETYPE_DEVICE:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectDeviceImageIcon);
 									if ( !showDeviceSets )
@@ -1533,14 +1533,14 @@ void MachineList::parse()
 						case 'N':
 							numNotFoundGames++;
 							switch ( machineType ) {
-								case 0:
+								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
 										QString *categoryString = categoryHash[machineName];
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
 									break;
-								case 1:
+								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundBIOSImageIcon);
 									if ( !showBiosSets )
@@ -1549,7 +1549,7 @@ void MachineList::parse()
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
 									biosSets.insert(machineName, true);
 									break;
-								case 2:
+								case QMC2_MACHINETYPE_DEVICE:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundDeviceImageIcon);
 									if ( !showDeviceSets )
@@ -1565,14 +1565,14 @@ void MachineList::parse()
 							numUnknownGames++;
 							machineStatusHash[machineName] = 'U';
 							switch ( machineType ) {
-								case 0:
+								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
 										QString *categoryString = categoryHash[machineName];
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
 									break;
-								case 1:
+								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownBIOSImageIcon);
 									if ( !showBiosSets )
@@ -1581,7 +1581,7 @@ void MachineList::parse()
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
 									biosSets.insert(machineName, true);
 									break;
-								case 2:
+								case QMC2_MACHINETYPE_DEVICE:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownDeviceImageIcon);
 									if ( !showDeviceSets )
@@ -2140,7 +2140,6 @@ void MachineList::filter(bool initial)
 		qmc2MainWindow->labelLoadingMachineList->setVisible(true);
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
 			qmc2MainWindow->loadAnimMovie->start();
-		qApp->processEvents();
 		int filterResponse = itemCount / QMC2_STATEFILTER_UPDATES;
 		for (int i = 0; i < itemCount && !qmc2StopParser; i++) {
 			QTreeWidgetItem *item = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
@@ -2277,10 +2276,10 @@ void MachineList::savePlayHistory()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (saving play history)"));
 }
 
-QString MachineList::status()
+QString &MachineList::status()
 {
 	QLocale locale;
-	QString statusString = "<b>";
+	statusString = "<b>";
 	statusString += "<font color=\"black\">" + tr("L:") + QString(numGames > -1 ? locale.toString(numGames) : tr("?")) + "</font> ";
 	statusString += "<font color=\"#00cc00\">" + tr("C:") + QString(numCorrectGames > -1 ? locale.toString(numCorrectGames) : tr("?")) + "</font> ";
 	statusString += "<font color=\"#799632\">" + tr("M:") + QString(numMostlyCorrectGames > -1 ? locale.toString(numMostlyCorrectGames) : tr("?")) + "</font> ";

@@ -171,6 +171,11 @@
 #define QMC2_MACHINELIST_COLUMN_CATEGORY	11
 #define QMC2_MACHINELIST_COLUMN_VERSION		12
 
+// machine types used when loading the machine list
+#define QMC2_MACHINETYPE_NORMAL			0
+#define QMC2_MACHINETYPE_BIOS			1
+#define QMC2_MACHINETYPE_DEVICE			2
+
 // rank update delay in milliseconds (added to the general 'update delay')
 #define QMC2_RANK_UPDATE_DELAY			50
 
@@ -440,7 +445,7 @@
 // indirectly controls the state filter / loading responsiveness (number of updates)
 #define QMC2_STATEFILTER_UPDATES		50
 #define QMC2_GENERAL_LOADING_UPDATES		100
-#define QMC2_TAGGING_UPDATES			200
+#define QMC2_TAGGING_UPDATES			50
 
 // default machine list responsiveness
 #define QMC2_DEFAULT_MACHINELIST_RESPONSE	1000

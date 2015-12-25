@@ -8650,7 +8650,7 @@ void MainWindow::on_actionTagAll_triggered(bool)
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	QString id;
-	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_STATEFILTER_UPDATES;
+	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_TAGGING_UPDATES;
 	int count = 0;
 	while ( it.hasNext() ) {
 		it.next();
@@ -8700,7 +8700,7 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	QString id;
-	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_STATEFILTER_UPDATES;
+	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_TAGGING_UPDATES;
 	int count = 0;
 	while ( it.hasNext() ) {
 		it.next();
@@ -8750,7 +8750,7 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	QString id;
-	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_STATEFILTER_UPDATES;
+	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_TAGGING_UPDATES;
 	int count = 0;
 	while ( it.hasNext() ) {
 		it.next();
@@ -8803,7 +8803,7 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	QString id;
-	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_STATEFILTER_UPDATES;
+	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_TAGGING_UPDATES;
 	int count = 0;
 	while ( it.hasNext() ) {
 		it.next();
@@ -8853,7 +8853,7 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	QString id;
-	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_STATEFILTER_UPDATES;
+	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_TAGGING_UPDATES;
 	int count = 0;
 	while ( it.hasNext() ) {
 		it.next();
@@ -8903,7 +8903,7 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	QString id;
-	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_STATEFILTER_UPDATES;
+	int taggingResponse = qmc2MachineListItemHash.count() / QMC2_TAGGING_UPDATES;
 	int count = 0;
 	while ( it.hasNext() ) {
 		it.next();

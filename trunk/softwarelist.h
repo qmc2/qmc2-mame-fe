@@ -233,6 +233,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QString swlLastLine;
 		QString softwareListName;
 		QString oldFmt;
+		QString statusString;
 		QStringList successfulLookups;
 		QStringList mountedSoftware;
 		QStringList swlLines;
@@ -263,6 +264,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QString &lookupMountDevice(QString, QString, QStringList *mountList = NULL);
 		QStringList &arguments(QStringList *softwareLists = NULL, QStringList *softwareNames = NULL);
 		QString softwareStatus(QString, QString, bool translated = false);
+		QString &status(SoftwareListXmlHandler *handler = NULL);
 
 		bool viewTree() { return m_viewTree; }
 		void setViewTree(bool viewTree) { m_viewTree = viewTree; }
@@ -277,7 +279,6 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool save();
 		void updateMountDevices();
 		void checkSoftwareStates();
-		QString status(SoftwareListXmlHandler *handler = NULL);
 		void updateStats(SoftwareListXmlHandler *handler = NULL);
 		void loadTree();
 
