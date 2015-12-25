@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QCache>
+#include <QApplication>
 #include <QInputDialog>
 #include <QWidgetAction>
 #include <QLocale>

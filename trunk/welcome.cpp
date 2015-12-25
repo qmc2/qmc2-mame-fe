@@ -8,6 +8,7 @@
 #include <QDir>
 #include <QMap>
 #include <QStyleFactory>
+#include <QApplication>
 
 #include "welcome.h"
 #include "macros.h"

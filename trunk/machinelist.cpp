@@ -20,6 +20,7 @@
 #include <QBitArray>
 #include <QByteArray>
 #include <QCryptographicHash>
+#include <QApplication>
 
 #include "machinelist.h"
 #include "imagewidget.h"

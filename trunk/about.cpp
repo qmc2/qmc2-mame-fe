@@ -1,5 +1,6 @@
 #include <QProcess>
 #include <QThread>
+#include <QApplication>
 
 #include "about.h"
 #include "macros.h"
