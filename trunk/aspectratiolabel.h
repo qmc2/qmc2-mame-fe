@@ -12,7 +12,10 @@ class AspectRatioLabel : public QLabel
 	Q_OBJECT
 
 	public:
-		explicit AspectRatioLabel(QWidget *parent = 0);
+		explicit AspectRatioLabel(QWidget *parent = 0, qreal scale = 0.5);
+
+		void setScale(qreal scale) { m_scale = scale; }
+		qreal scale() { return m_scale; }
 
 	public slots:
 		void adjustMovieSize();
@@ -26,6 +29,7 @@ class AspectRatioLabel : public QLabel
 	private:
 		QString m_labelText;
 		QPainter m_painter;
+		qreal m_scale;
 };
 
 #endif

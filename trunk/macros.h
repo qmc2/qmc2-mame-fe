@@ -710,9 +710,8 @@
 #define QMC2_SWINFO_INFO_PAGE			3
 #define QMC2_SWINFO_USEROFFSET_PAGE		4
 
-// size-/count-thresholds for displaying alternate label when loading or checking software-lists
-#define QMC2_SWLIST_SIZE_THRESHOLD		QMC2_1M
-#define QMC2_SWLIST_COUNT_THRESHOLD		2500
+// size-threshold for displaying an alternate label when loading software-lists
+#define QMC2_SWLIST_SIZE_THRESHOLD		QMC2_512K
 
 // when loading software-lists, be 'responsive' on every n'th start of an XML element
 #define QMC2_SWLIST_LOAD_RESPONSE		1000

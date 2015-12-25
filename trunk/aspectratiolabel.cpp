@@ -8,11 +8,12 @@
 
 #include "aspectratiolabel.h"
 
-AspectRatioLabel::AspectRatioLabel(QWidget *parent)
+AspectRatioLabel::AspectRatioLabel(QWidget *parent, qreal scale)
 	: QLabel(parent)
 {
 	setAlignment(Qt::AlignCenter);
 	setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+	m_scale = scale;
 }
 
 void AspectRatioLabel::adjustMovieSize()
@@ -22,7 +23,7 @@ void AspectRatioLabel::adjustMovieSize()
 	int frame = movie()->currentFrameNumber();
 	movie()->setFileName(movie()->fileName());
 	QSize sz(250, 250);
-	sz.scale(size() * 0.5, Qt::KeepAspectRatio);
+	sz.scale(size() * m_scale, Qt::KeepAspectRatio);
 	movie()->setScaledSize(sz);
 	movie()->jumpToFrame(frame);
 	switch ( state ) {
