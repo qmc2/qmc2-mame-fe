@@ -448,9 +448,6 @@
 // responsiveness while reading the XML machine list cache
 #define QMC2_XMLCACHE_RESPONSIVENESS		50
 
-// responsiveness while reading the ROM state cache
-#define QMC2_ROMCACHE_RESPONSIVENESS		500
-
 // responsiveness while pre-caching icons
 #define QMC2_ICONCACHE_RESPONSIVENESS		250
 
