@@ -1342,10 +1342,6 @@ void MachineList::parse()
 			if ( words.count() > 1 ) {
 				machineStatusHash.insert(words[0], words[1].at(0).toLatin1());
 				cachedGamesCounter++;
-				if ( cachedGamesCounter % QMC2_ROMCACHE_RESPONSIVENESS == 0 ) {
-					qmc2MainWindow->progressBarMachineList->setValue(cachedGamesCounter);
-					qApp->processEvents();
-				}
 			}
 		}
 		numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numNotFoundGames = 0;
