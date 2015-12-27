@@ -126,6 +126,7 @@ QHash<QString, QString> MachineList::machineStateTranslations;
 QHash<QString, QStringList> qmc2HierarchyHash;
 bool MachineList::creatingCatView = false;
 bool MachineList::creatingVerView = false;
+Qt::ItemFlags MachineList::defaultItemFlags = Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled;
 
 MachineList::MachineList(QObject *parent)
 	: QObject(parent)
@@ -1421,7 +1422,7 @@ void MachineList::parse()
 					int machineType = int(machineData[QMC2_GLC_INDEX_ISBIOS] == "1") + int(machineData[QMC2_GLC_INDEX_ISDEVICE] == "1") * 2; // 0: normal, 1: BIOS, 2: device
 					MachineListItem *machineItem = new MachineListItem();
 					qmc2MachineListItemHash.insert(machineName, machineItem);
-					machineItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+					machineItem->setFlags(defaultItemFlags);
 					machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 					if ( !machineCloneOf.isEmpty() )
 						qmc2HierarchyHash[machineCloneOf].append(machineName);
@@ -1671,7 +1672,7 @@ void MachineList::parse()
 					QString machineDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
 					MachineListItem *machineItem = new MachineListItem();
 					qmc2MachineListItemHash.insert(machineName, machineItem);
-					machineItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+					machineItem->setFlags(defaultItemFlags);
 					machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 					if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
 						hideList << machineItem;
@@ -1860,13 +1861,13 @@ void MachineList::parse()
 			qmc2MainWindow->progressBarMachineList->setValue(counter);
 		QString iValue = i.key();
 		QTreeWidgetItem *baseItem = qmc2MachineListItemHash[iValue];
-		if ( !baseItem )
-			continue;
+		//if ( !baseItem )
+		//	continue;
 		MachineListItem *hierarchyItem = new MachineListItem();
 		qmc2HierarchyItemHash.insert(iValue, hierarchyItem);
 		if ( (!showBiosSets && isBios(iValue)) || (!showDeviceSets && isDevice(iValue)) )
 			hideList << hierarchyItem;
-		hierarchyItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+		hierarchyItem->setFlags(defaultItemFlags);
 		hierarchyItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 		hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 		hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
@@ -1891,13 +1892,13 @@ void MachineList::parse()
 			}
 			QString jValue = i.value().at(j);
 			baseItem = qmc2MachineListItemHash[jValue];
-			if ( !baseItem )
-				continue;
+			//if ( !baseItem )
+			//	continue;
 			MachineListItem *hierarchySubItem = new MachineListItem(hierarchyItem);
 			qmc2HierarchyItemHash.insert(jValue, hierarchySubItem);
 			if ( (!showBiosSets && isBios(jValue)) || (!showDeviceSets && isDevice(jValue)) )
 				hideList << hierarchySubItem;
-			hierarchySubItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+			hierarchySubItem->setFlags(defaultItemFlags);
 			hierarchySubItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
@@ -3399,7 +3400,7 @@ void MachineList::createCategoryView()
 				hideList << machineItem;
 				childCountHash[categoryItem]--;
 			}
-			machineItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+			machineItem->setFlags(defaultItemFlags);
 			machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, baseItem->checkState(QMC2_MACHINELIST_COLUMN_TAG));
 			machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 			machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
@@ -3632,7 +3633,7 @@ void MachineList::createVersionView()
 				hideList << machineItem;
 				childCountHash[versionItem]--;
 			}
-			machineItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+			machineItem->setFlags(defaultItemFlags);
 			machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, baseItem->checkState(QMC2_MACHINELIST_COLUMN_TAG));
 			machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 			machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
