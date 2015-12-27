@@ -2106,7 +2106,6 @@ void MachineList::filter(bool initial)
 		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 	int itemCount = qmc2MainWindow->treeWidgetMachineList->topLevelItemCount();
 	qmc2MainWindow->progressBarMachineList->setRange(0, itemCount - 1);
-	qApp->processEvents();
 	if ( verifyCurrentOnly && checkedItem ) {
 		QString machineName = checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 		if ( !showBiosSets && isBios(machineName) )
