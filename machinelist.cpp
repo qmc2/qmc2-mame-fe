@@ -1861,8 +1861,8 @@ void MachineList::parse()
 			qmc2MainWindow->progressBarMachineList->setValue(counter);
 		QString iValue = i.key();
 		QTreeWidgetItem *baseItem = qmc2MachineListItemHash[iValue];
-		//if ( !baseItem )
-		//	continue;
+		if ( !baseItem )
+			continue;
 		MachineListItem *hierarchyItem = new MachineListItem();
 		qmc2HierarchyItemHash.insert(iValue, hierarchyItem);
 		if ( (!showBiosSets && isBios(iValue)) || (!showDeviceSets && isDevice(iValue)) )
@@ -1892,8 +1892,8 @@ void MachineList::parse()
 			}
 			QString jValue = i.value().at(j);
 			baseItem = qmc2MachineListItemHash[jValue];
-			//if ( !baseItem )
-			//	continue;
+			if ( !baseItem )
+				continue;
 			MachineListItem *hierarchySubItem = new MachineListItem(hierarchyItem);
 			qmc2HierarchyItemHash.insert(jValue, hierarchySubItem);
 			if ( (!showBiosSets && isBios(jValue)) || (!showDeviceSets && isDevice(jValue)) )
