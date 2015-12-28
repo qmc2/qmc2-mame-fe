@@ -1681,6 +1681,7 @@ void SoftwareList::checkSoftwareSnap()
 void SoftwareList::updateDetail()
 {
 	qmc2MainWindow->tabWidgetSoftwareDetail_updateCurrent();
+	detailUpdateTimer.stop();
 }
 
 void SoftwareList::resizeEvent(QResizeEvent *e)
