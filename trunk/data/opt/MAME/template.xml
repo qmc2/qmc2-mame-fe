@@ -1537,6 +1537,10 @@
 			<description lang="pt" text="Altura do snapshot HLSL (upscale)"/>
 			<description lang="es" text="Altura de snapshot HLSL (upscale)"/>
 		</option>
+		<option default="0" name="shadow_mask_tile_mode" type="int">
+			<description lang="us" text="Shadow mask tile mode (0 for screen based, 1 for source based)"/>
+			<description lang="de" text="'Shadow Mask Tile Mode' (0 für Bildschirm-basiert, 1 für Quellen-basiert)"/>
+		</option>
 		<option default="0" name="shadow_mask_alpha" type="float">
 			<description lang="us" text="Shadow mask alpha-blend value (1.0 is fully blended, 0.0 is no mask)"/>
 			<description lang="de" text="Wert für 'Shadow Mask Alpha Blending' (1.0 = volle Überlagerung, 0.0 = keine Maske)"/>
@@ -1841,6 +1845,10 @@
 		<option default="500.0" name="vector_length_ratio" type="float">
 			<description lang="us" text="Vector fade length (4.0 means vectors fade the most at and above 4 pixels, etc.)"/>
 			<description lang="de" text="Vektor-Fade Länge (4.0 bedeutet, dass Vektoren am Meisten bei und oberhald von 4 Pixeln ein-/ausgeblendet werden)"/>
+		</option>
+		<option default="0" name="bloom_blend_mode" type="int">
+			<description lang="us" text="Bloom blend mode (0 for addition, 1 for darken)"/>
+			<description lang="de" text="Glanz Blendmodus (0 für Addition, 1 zum Abdunkeln)"/>
 		</option>
 		<option default="0.25" name="bloom_scale" type="float">
 			<description lang="us" text="Intensity factor for bloom"/>
