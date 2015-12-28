@@ -3381,7 +3381,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 		return;
 	int left, top, right, bottom;
 	gridLayout->getContentsMargins(&left, &top, &right, &bottom);
-	SoftwareImageWidget::updateArtwork();
 	switch ( componentInfo->appliedFeatureList()[currentIndex] ) {
 		case QMC2_SWINFO_SNAPSHOT_PAGE:
 			if ( qmc2SoftwareNotesEditor )
