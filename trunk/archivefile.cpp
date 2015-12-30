@@ -128,7 +128,11 @@ qint64 ArchiveFile::readEntry(QByteArray &buffer)
 #endif
 	if ( size > 0 ) {
 		char *data = new char[size];
+#if defined(QMC2_OS_WIN) && defined(_MSC_VER)
+		SSIZE_T len = archive_read_data(m_archive, data, size);
+#else
 		ssize_t len = archive_read_data(m_archive, data, size);
+#endif
 		if ( len > 0 ) {
 			buffer = QByteArray(data, len);
 			delete [] data;
