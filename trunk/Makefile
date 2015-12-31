@@ -265,21 +265,6 @@ ifndef DISTCC
 DISTCC = 0
 endif
 
-# >>> QT_TRANSLATION <<<
-#
-# This is used by the 'make install' target to define the Qt translations QMC2
-# should use.
-#
-# If this is set to 'qmc2' (the default), the Qt translation files which are
-# redistributed with QMC2 will be installed and used. If you would like to use
-# different 'qt_<lang>.qm' files, set this to the absolute path where those
-# translation files are installed (without the trailing '/') -- the install
-# target will then create symbolic links instead of installing files.
-#
-ifndef QT_TRANSLATION
-QT_TRANSLATION = qmc2
-endif
-
 # >>> BROWSER_EXTRAS <<<
 #
 # Enable (1) or disable (0) extra browser features such as QtWebKit's 'Web
@@ -1117,16 +1102,6 @@ else
 	@$(RSYNC) --exclude '*svn*' "./$(TARGET_NAME)" "$(DESTDIR)/$(BINDIR)"
 	@(cd "$(DESTDIR)/$(BINDIR)" && $(LN) -s "$(TARGET_NAME)" "$(PROJECT)")
 endif
-	@$(RSYNC) --exclude '*svn*' ./data/lng/qmc2_*.qm "$(GLOBAL_DATADIR)/$(PROJECT)/lng/"
-	@if [ "$(QT_TRANSLATION)" = "qmc2" ] ; then \
-	  $(RSYNC) --exclude '*svn*' ./data/lng/qt_*.qm "$(GLOBAL_DATADIR)/$(PROJECT)/lng/" ; \
-	else \
-	  $(ECHO) "Using Qt translation files from $(QT_TRANSLATION)" ; \
-	  $(RM) -f "$(GLOBAL_DATADIR)/$(PROJECT)/lng/"qt_*.qm ; \
-	  for i in $(QT_TRANSLATIONS) ; do \
-	    $(LN) -s "$(QT_TRANSLATION)/qt_$$i.qm" "$(GLOBAL_DATADIR)/$(PROJECT)/lng/qt_$$i.qm" ; \
-	  done \
-	fi
 	@$(RSYNC) --exclude '*svn*' ./data/opt "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(RSYNC) --exclude '*svn*' ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(RSYNC) --exclude '*svn*' ./data/doc "$(GLOBAL_DATADIR)/$(PROJECT)/"
@@ -1415,7 +1390,6 @@ endif
 	@$(ECHO) "PREFIX                 Prefix directory for install target           $(PREFIX)"
 	@$(ECHO) "QMAKE                  Qt make (qmake) command                       $(QMAKE)"
 	@$(ECHO) "QMAKEFILE              Qt generated Makefile name                    $(QMAKEFILE)"
-	@$(ECHO) "QT_TRANSLATION         Specify path to Qt translations or 'qmc2'     $(QT_TRANSLATION)"
 ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) "QT_LIBVERSION          Version of the Qt library in use              $(QT_LIBVERSION)"
 endif

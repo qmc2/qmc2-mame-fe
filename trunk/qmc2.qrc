@@ -297,6 +297,22 @@
         <file>data/img/zoom-in.png</file>
         <file>data/img/zoom-none.png</file>
         <file>data/img/zoom-out.png</file>
+	<file>data/lng/qmc2_de.qm</file>
+	<file>data/lng/qmc2_el.qm</file>
+	<file>data/lng/qmc2_es.qm</file>
+	<file>data/lng/qmc2_fr.qm</file>
+	<file>data/lng/qmc2_it.qm</file>
+	<file>data/lng/qmc2_pl.qm</file>
+	<file>data/lng/qmc2_pt.qm</file>
+	<file>data/lng/qmc2_ro.qm</file>
+	<file>data/lng/qmc2_sv.qm</file>
+	<file>data/lng/qmc2_us.qm</file>
+	<file>data/lng/qt_de.qm</file>
+	<file>data/lng/qt_es.qm</file>
+	<file>data/lng/qt_fr.qm</file>
+	<file>data/lng/qt_pl.qm</file>
+	<file>data/lng/qt_pt.qm</file>
+	<file>data/lng/qt_sv.qm</file>
         <file>htmleditor/images/document-new.png</file>
         <file>htmleditor/images/document-open.png</file>
         <file>htmleditor/images/document-save.png</file>
