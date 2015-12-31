@@ -111,8 +111,6 @@ extern bool qmc2ShowGameNameOnlyWhenRequired;
 extern bool qmc2StatesTogglesEnabled;
 extern int qmc2MachineListResponsiveness;
 extern int qmc2UpdateDelay;
-extern QTranslator *qmc2Translator;
-extern QTranslator *qmc2QtTranslator;
 extern EmulatorOptions *qmc2GlobalEmulatorOptions;
 extern EmulatorOptions *qmc2EmulatorOptions;
 extern Preview *qmc2Preview;

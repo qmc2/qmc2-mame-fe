@@ -227,14 +227,14 @@ void Welcome::setupLanguage()
 		delete qmc2QtTranslator;
 	}
 	qmc2QtTranslator = new QTranslator(0);
-	qmc2QtTranslator->load(directory + QString("qt_") + lang + ".qm");
+	qmc2QtTranslator->load(QString(":/data/lng/qt_%1.qm").arg(lang));
 	qApp->installTranslator(qmc2QtTranslator);
 	if ( qmc2Translator ) {
 		qApp->removeTranslator(qmc2Translator);
 		delete qmc2Translator;
 	}
 	qmc2Translator = new QTranslator(0);
-	qmc2Translator->load(directory + QString("qmc2_") + lang + ".qm");
+	qmc2Translator->load(QString(":/data/lng/qmc2_%1.qm").arg(lang));
 	qApp->installTranslator(qmc2Translator);
 }
 
@@ -290,8 +290,6 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList[1].toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 56, osr, 6907) )
-			startupConfig->remove("/Frontend/GUI/MemoryIndicator");
 		if ( QMC2_TEST_VERSION(omv, 57, osr, 6989) ) {
 			QStringList oldKeys = QStringList() << "/MAME/DatInfoDatabase/GameInfoImportFiles"
 							    << "/MAME/DatInfoDatabase/GameInfoImportDates";
