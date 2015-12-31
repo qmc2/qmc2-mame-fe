@@ -301,12 +301,12 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		# platform specific stuff
 		macx {
 			QMAKESPEC = macx-xcode
-			OBJECTIVE_SOURCES += SDLMain_tmpl.m
-			HEADERS += SDLMain_tmpl.h
 			greaterThan(SDL, 1) {
 				LIBS += -framework SDL2 -framework Cocoa -F/Library/Frameworks
 				INCLUDEPATH += /Library/Frameworks/SDL2.framework/Headers
 			} else {
+				OBJECTIVE_SOURCES += SDLMain_tmpl.m
+				HEADERS += SDLMain_tmpl.h
 				LIBS += -framework SDL -framework Cocoa -F/Library/Frameworks
 				INCLUDEPATH += /Library/Frameworks/SDL.framework/Headers
 			}
