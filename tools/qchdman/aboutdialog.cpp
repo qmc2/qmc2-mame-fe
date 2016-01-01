@@ -21,7 +21,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     QString credits = "<p><font size=\"+2\"><b>" + QCHDMAN_APP_TITLE + " " + QCHDMAN_APP_VERSION + QString(" (SVN r%1)").arg(QCHDMAN_SVN_REV) + "</b></font></p>" +
 #endif
                       "<p>" + tr("Qt based graphical user interface to CHDMAN, the MAME CHD management tool") + "</p>" +
-                      "<p>" + tr("Copyright") + " &copy; 2012 - 2015, R. Reucher. " + tr("All Rights Reserved.") + "</p>" +
+                      "<p>" + tr("Copyright") + " &copy; 2012 - 2016, R. Reucher. " + tr("All Rights Reserved.") + "</p>" +
                       "<p>" + tr("This program is free software; you can redistribute it and/or modify it under the terms of "
                                  "the GNU General Public License as published by the Free Software Foundation; either version "
                                  "2 of the license, or (at your option) any later version.") + "<p>" +
