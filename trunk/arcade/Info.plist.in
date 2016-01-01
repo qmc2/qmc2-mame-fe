@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>qmc2-arcade</string>
 	<key>CFBundleGetInfoString</key>
-	<string>@SHORT_VERSION@, Copyright © 2012 - 2015 R. Reucher, Germany</string>
+	<string>@SHORT_VERSION@, Copyright © 2012 - 2016 R. Reucher, Germany</string>
 	<key>CFBundleIconFile</key>
 	<string>@ICON@</string>
 	<key>CFBundleIdentifier</key>
@@ -29,7 +29,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.4</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2012 - 2015 R. Reucher, Germany</string>
+	<string>Copyright © 2012 - 2016 R. Reucher, Germany</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
