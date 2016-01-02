@@ -844,9 +844,9 @@ qchdman:
 
 qchdman-clean:
 	@$(CD) tools/qchdman && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(QCHDMAN_DEFINES)" && $(MAKE) distclean
-	@$(RMDIR) /s /q tools\qchdman\release
-	@$(RMDIR) /s /q tools\qchdman\debug
-	@$(RM) tools\qchdman\object_script.qchdman.Release tools\qchdman\object_script.qchdman.Debug
+	@$(RMDIR) tools/qchdman/release
+	@$(RMDIR) tools/qchdman/debug
+	@$(RM) tools/qchdman/object_script.qchdman.Release tools/qchdman/object_script.qchdman.Debug
 
 tools: qchdman
 tools-clean: qchdman-clean
@@ -915,9 +915,9 @@ arcade-bin:
 arcade-clean:
 	@$(CD) arcade && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(ARCADE_CONF) $(ARCADE_QMAKE_DEFS) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(ARCADE_DEFINES)" && $(MAKE) distclean
 ifeq '$(ARCH)' 'Windows'
-	@$(RMDIR) /s /q arcade\release
-	@$(RMDIR) /s /q arcade\debug
-	@$(RM) arcade\object_script.qmc2-arcade.Release arcade\object_script.qmc2-arcade.Debug
+	@$(RMDIR) arcade/release
+	@$(RMDIR) arcade/debug
+	@$(RM) arcade/object_script.qmc2-arcade.Release arcade/object_script.qmc2-arcade.Debug
 endif
 ifeq '$(ARCH)' 'Darwin'
 	@$(RM) arcade/Info.plist
@@ -1170,9 +1170,9 @@ ifneq '$(ARCH)' 'Windows'
 	@$(MAKE) -f $(QMAKEFILE) distclean
 else
 	@$(MAKE) -f $(QMAKEFILE) distclean
-	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc scripts\subwcrev.out qmc2-mame.rc qmc2-mess.rc qmc2-ume.rc
-	@$(RMDIR) /s /q release > NUL
-	@$(RMDIR) /s /q debug > NUL
+	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc scripts/subwcrev.out qmc2-mame.rc
+	@$(RMDIR) release
+	@$(RMDIR) debug
 endif
 endif
 ifneq '$(ARCH)' 'Windows'
@@ -1204,10 +1204,10 @@ else
 ifneq '$(ARCH)' 'Windows'
 	@$(MAKE) -f $(QMAKEFILE) distclean > /dev/null
 else
-	@$(MAKE) -f $(QMAKEFILE) distclean > NUL
-	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc scripts\subwcrev.out > NUL
-	@$(RMDIR) /s /q release > NUL
-	@$(RMDIR) /s /q debug > NUL
+	@$(MAKE) -f $(QMAKEFILE) distclean > /dev/null
+	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc scripts/subwcrev.out > /dev/null
+	@$(RMDIR) release > /dev/null
+	@$(RMDIR) debug > /dev/null
 endif
 endif
 ifneq '$(ARCH)' 'Windows'
