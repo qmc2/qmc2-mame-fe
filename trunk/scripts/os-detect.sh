@@ -35,15 +35,13 @@ if [ "${OS}" = "Linux" ] ; then
   fi
 fi
 
-OSCFG="arch/$(echo ${OS} | tr '/' '_').cfg"
-OSCFG=$(echo ${OSCFG} | tr " " '_')
+OSCFG="arch/$(echo ${OS} | sed -e 's/[\ \\\/\(\)]/_/g').cfg"
 if [ -f ${OSCFG} ] ; then
   OSCFG="System cfg-file (ok) ........ `echo ${OSCFG}`"
 else
   OSCFG="System cfg-file (?) ......... `echo ${OSCFG}`"
 fi
-DISTCFG="arch/${OS}/$DIST.cfg"
-DISTCFG="`echo ${DISTCFG} | tr " " '_'`"
+DISTCFG="arch/$(echo ${OS} | sed -e 's/[\ \\\/\(\)]/_/g')/$(echo ${DIST} | sed -e 's/[\ \\\/\(\)]/_/g').cfg"
 if [ -f ${DISTCFG} ] ; then
   DISTCFG="Distribution cfg-file (ok) .. `echo ${DISTCFG}`"
 else
