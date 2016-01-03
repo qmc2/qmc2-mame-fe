@@ -35,8 +35,8 @@ if [ "${OS}" = "Linux" ] ; then
   fi
 fi
 
-OSCFG="arch/${OS}.cfg"
-OSCFG="`echo ${OSCFG} | tr " " '_'`"
+OSCFG="arch/$(echo ${OS} | tr '/' '_').cfg"
+OSCFG=$(echo ${OSCFG} | tr " " '_')
 if [ -f ${OSCFG} ] ; then
   OSCFG="System cfg-file (ok) ........ `echo ${OSCFG}`"
 else
