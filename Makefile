@@ -565,7 +565,6 @@ endif
 
 ifneq '$(QMAKEV)' '1'
 
-ifneq '$(ARCH)' 'Windows'
 QT_LIBVERSION = $(shell $(QMAKE) -v | $(GREP) "Qt version" | $(AWK) '{print $$4}')
 ifeq '$(ARCH)' 'Darwin'
 QMAKEFILE = Makefile.qmake
@@ -575,7 +574,6 @@ QT_LIBMIN = $(shell $(ECHO) $(QT_LIBTMP) | $(AWK) '{ print $$2 }')
 QT_LIB48PLUS = $(shell (([ $(QT_LIBMAJ) -ge 4 ] && [ $(QT_LIBMIN) -ge 8 ]) || [ $(QT_LIBMAJ) -ge 5 ]) && $(ECHO) true)
 ifneq '$(QT_LIB48PLUS)' 'true'
 $(error Sorry, Qt 4.8+ not found!)
-endif
 endif
 endif
 
@@ -1239,7 +1237,6 @@ all:
 endif
 
 ifneq '$(ARCH)' 'Windows'
-
 xl: exclude-list
 xlist: exclude-list
 svn-exclude-list: exclude-list
@@ -1250,12 +1247,11 @@ exclude-list:
 	$(ECHO) "$(PROJECT)/exclude.list" >> $(PROJECT)/exclude.list.new ; \
 	$(CAT) $(PROJECT)/exclude.list.new | env LOCALE=C sort > $(PROJECT)/exclude.list ; \
 	$(RM) $(PROJECT)/exclude.list.new
+endif
 
 detect-os: os-detect
 os-detect:
 	@scripts/os-detect.sh
-
-endif
 
 ?: help
 help:
@@ -1280,8 +1276,8 @@ ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) "install          Install QMC2 main GUI binaries and data files for system-wide use"
 endif
 	@$(ECHO) "lang             Recreate QMC2 main GUI translation files only (if not up to date)"
-ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) "os-detect        Detect host OS and distribution / version"
+ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) "snap             Create source distribution archives with date and time stamp"
 endif
 	@$(ECHO) "arcade           Build the QMC2 Arcade binary (qmc2-arcade)"
@@ -1373,9 +1369,7 @@ endif
 	@$(ECHO) "PREFIX                 Prefix directory for install target           $(PREFIX)"
 	@$(ECHO) "QMAKE                  Qt make (qmake) command                       $(QMAKE)"
 	@$(ECHO) "QMAKEFILE              Qt generated Makefile name                    $(QMAKEFILE)"
-ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) "QT_LIBVERSION          Version of the Qt library in use              $(QT_LIBVERSION)"
-endif
 	@$(ECHO) "QUIET                  Suppress output of compile/link (0, 1)        $(QUIET)"
 	@$(ECHO) "RM                     UNIX command rm                               $(RM)"
 	@$(ECHO) "RMDIR                  UNIX command rmdir                            $(RMDIR)"
