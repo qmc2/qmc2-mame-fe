@@ -516,6 +516,7 @@ include $(DISTCFGFILE)
 endif
 endif
 else
+include arch/default.cfg
 include arch/Windows.cfg
 endif
 
