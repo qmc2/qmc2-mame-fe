@@ -530,33 +530,19 @@ ifeq '$(ARCH)' 'Darwin'
 MYAPPICON = mame.icns
 endif
 
-ifndef SVN_REV
 # determine the SVN revision (if any)
-ifneq '$(ARCH)' 'Windows'
+ifndef SVN_REV
 SVN_REV=$(shell $(SVNVERSION) 2>&1 | $(SED) -e "s/[MS]//g" -e "s/^[[:digit:]]*://" | $(GREP) "^[0-9]*$$")
-else
-# this assumes Tortoise SVN!
-SVN_SUBWCREV_CMD=$(shell arch\Windows\which.bat subwcrev)
-ifneq '$(SVN_SUBWCREV_CMD)' ''
-SVN_REV=$(shell arch\Windows\svnversion.bat)
-else
-SVN_REV=
 endif
-endif
-endif
-
 ifeq '$(SVN_REV)' ''
 SVN_REV=0
 endif
 
 ifneq '$(ARCH)' 'Windows' 
-
 # global QMC2 configuration file
 GLOBAL_QMC2_INI=$(shell $(ECHO) $(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)/$(PROJECT).ini | $(SED) -e "s*//*/*g")
-
 # global data directory
 GLOBAL_DATADIR=$(shell $(ECHO) $(DESTDIR)/$(DATADIR) | $(SED) -e "s*//*/*g")
-
 endif
 
 # qmake version check (major release)
