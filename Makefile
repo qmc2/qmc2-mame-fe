@@ -109,7 +109,7 @@ endif
 #
 ifndef OSREL
 ifeq '$(FORCE_MINGW)' '1'
-OSREL = $(shell arch\Windows\osrel.bat)
+OSREL = $(shell arch/Windows/osrel.bat)
 else
 OSREL = $(shell uname -r)
 endif
@@ -691,7 +691,7 @@ endif
 # setup library and include paths for MinGW environment
 ifeq '$(ARCH)' 'Windows'
 TEST_FILE=$(shell gcc -print-file-name=libSDL2.a)
-MINGW_LIBDIR=$(shell arch\Windows\dirname.bat $(TEST_FILE))
+MINGW_LIBDIR=$(shell arch/Windows/dirname.bat $(TEST_FILE))
 ifeq '$(SDL)' '2'
 QMAKE_CONF += QMC2_LIBS+=-L$(MINGW_LIBDIR) QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL2
 ARCADE_QMAKE_CONF += QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL2
@@ -991,7 +991,7 @@ ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
 	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(FORCE_MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
 else
-	@$(shell scripts\\setup_imgset.bat $(IMGSET)) 
+	@$(shell scripts/setup_imgset.bat $(IMGSET)) 
 	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(FORCE_MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 ifeq '$(ARCH)' 'Darwin'
@@ -1003,16 +1003,10 @@ endif
 endif
 else
 ifeq '$(ARCH)' 'Windows'
-rcgen: qmc2-mame.rc qmc2-mess.rc qmc2-ume.rc
+rcgen: qmc2-mame.rc
 
 qmc2-mame.rc:
-	@arch\Windows\rcgen.bat
-
-qmc2-mess.rc:
-	@arch\Windows\rcgen.bat
-
-qmc2-ume.rc:
-	@arch\Windows\rcgen.bat
+	@arch/Windows/rcgen.bat
 
 $(PROJECT)-bin: lang $(QMAKEFILE) rcgen
 else
