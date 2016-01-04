@@ -940,16 +940,10 @@ endif
 
 ifeq '$(QUIET)' '1'
 ifeq '$(ARCH)' 'Windows'
-rcgen: qmc2-mame.rc qmc2-mess.rc qmc2-ume.rc
+rcgen: qmc2-mame.rc
 
 qmc2-mame.rc:
-	@arch\Windows\rcgen.bat
-
-qmc2-mess.rc:
-	@arch\Windows\rcgen.bat
-
-qmc2-ume.rc:
-	@arch\Windows\rcgen.bat
+	@arch/Windows/rcgen.bat
 
 $(PROJECT)-bin: lang $(QMAKEFILE) rcgen
 else
