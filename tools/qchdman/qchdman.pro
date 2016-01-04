@@ -5,7 +5,13 @@ TARGET = qchdman
 TEMPLATE = app
 
 # copy Qt translations from base project
-system(cp ../../data/lng/qt_*.qm translations > /dev/null): QMAKE_CLEAN += translations/qt_*.qm
+win32 {
+    system(copy ..\\..\\data\\lng\\qt_*.qm translations > NUL)
+    QMAKE_CLEAN += translations\\qt_*.qm
+} else {
+    system(cp ../../data/lng/qt_*.qm translations > /dev/null)
+    QMAKE_CLEAN += translations/qt_*.qm
+}
 
 greaterThan(DEBUG, 0) | contains(DEFINES, "QCHDMAN_DEBUG") {
     !contains(DEFINES, "QCHDMAN_DEBUG"): DEFINES += QCHDMAN_DEBUG
