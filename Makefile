@@ -1141,7 +1141,6 @@ endif
 else
 	@$(MAKE) -f $(QMAKEFILE) distclean
 ifeq '$(ARCH)' 'Windows'
-	@$(MAKE) -f $(QMAKEFILE) distclean
 	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc qmc2-mame.rc
 	@$(RMDIR) release
 	@$(RMDIR) debug
