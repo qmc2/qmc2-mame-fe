@@ -1037,7 +1037,7 @@ endif
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)") 
 else
-	@$(shell scripts\\setup_imgset.bat $(IMGSET)) 
+	@$(shell scripts/setup_imgset.bat $(IMGSET)) 
 endif
 ifeq '$(ARCH)' 'Darwin'
 ifneq '$(QT_LIB48PLUS)' 'true'
@@ -1139,11 +1139,10 @@ else
 	@$(RM) arch/Darwin/Info.plist Info.plist
 endif
 else
-ifneq '$(ARCH)' 'Windows'
 	@$(MAKE) -f $(QMAKEFILE) distclean
-else
+ifeq '$(ARCH)' 'Windows'
 	@$(MAKE) -f $(QMAKEFILE) distclean
-	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc scripts/subwcrev.out qmc2-mame.rc
+	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc qmc2-mame.rc
 	@$(RMDIR) release
 	@$(RMDIR) debug
 endif
@@ -1151,7 +1150,7 @@ endif
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "classic" "$(RM)" "$(LN)" "$(BASENAME)") 
 else
-	@$(shell scripts\\setup_imgset.bat classic)
+	@$(shell scripts/setup_imgset.bat classic)
 endif
 else
 ifneq '$(ARCH)' 'Windows'
@@ -1174,11 +1173,9 @@ else
 	@$(RM) arch/Darwin/Info.plist Info.plist > /dev/null
 endif
 else
-ifneq '$(ARCH)' 'Windows'
 	@$(MAKE) -f $(QMAKEFILE) distclean > /dev/null
-else
-	@$(MAKE) -f $(QMAKEFILE) distclean > /dev/null
-	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc scripts/subwcrev.out > /dev/null
+ifeq '$(ARCH)' 'Windows'
+	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc > /dev/null
 	@$(RMDIR) release > /dev/null
 	@$(RMDIR) debug > /dev/null
 endif
@@ -1186,7 +1183,7 @@ endif
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "classic" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
 else
-	@$(shell scripts\\setup_imgset.bat classic)
+	@$(shell scripts/setup_imgset.bat classic)
 endif
 endif
 
