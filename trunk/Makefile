@@ -1424,16 +1424,10 @@ man-install:
 endif
 
 # process translations
-ifneq '$(ARCH)' 'Windows'
 LBINARIES = $(addsuffix .qm, $(addprefix data/lng/qmc2_, $(QMC2_TRANSLATIONS))) $(addsuffix .qm, $(addprefix data/lng/qt_, $(QT_TRANSLATIONS)))
-else
-LBINARIES = $(addsuffix .qm, $(addprefix data\lng\qmc2_, $(QMC2_TRANSLATIONS))) $(addsuffix .qm, $(addprefix data\lng\qt_, $(QT_TRANSLATIONS)))
-endif
 LREL = $(LRELEASE) $<
 
 lang: $(LBINARIES)
-
-ifneq '$(ARCH)' 'Windows'
 
 # QMC2 translations
 
@@ -1498,74 +1492,5 @@ data/lng/qt_sv.qm: data/lng/qt_sv.ts
 
 #data/lng/qt_us.qm: data/lng/qt_us.ts
 #	$(LREL)
-
-else
-
-# QMC2 translations
-
-data\lng\qmc2_de.qm: data\lng\qmc2_de.ts
-	$(LREL)
-
-data\lng\qmc2_el.qm: data\lng\qmc2_el.ts
-	$(LREL)
-
-data\lng\qmc2_es.qm: data\lng\qmc2_es.ts
-	$(LREL)
-
-data\lng\qmc2_fr.qm: data\lng\qmc2_fr.ts
-	$(LREL)
-
-data\lng\qmc2_it.qm: data\lng\qmc2_it.ts
-	$(LREL)
-
-data\lng\qmc2_pl.qm: data\lng\qmc2_pl.ts
-	$(LREL)
-
-data\lng\qmc2_pt.qm: data\lng\qmc2_pt.ts
-	$(LREL)
-
-data\lng\qmc2_ro.qm: data\lng\qmc2_ro.ts
-	$(LREL)
-
-data\lng\qmc2_sv.qm: data\lng\qmc2_sv.ts
-	$(LREL)
-
-data\lng\qmc2_us.qm: data\lng\qmc2_us.ts
-	$(LREL)
-
-# Qt translations
-
-data\lng\qt_de.qm: data\lng\qt_de.ts
-	$(LREL)
-
-#data\lng\qt_el.qm: data\lng\qt_el.ts
-#	$(LREL)
-
-data\lng\qt_es.qm: data\lng\qt_es.ts
-	$(LREL)
-
-data\lng\qt_fr.qm: data\lng\qt_fr.ts
-	$(LREL)
-
-#data\lng\qt_it.qm: data\lng\qt_it.ts
-#	$(LREL)
-
-data\lng\qt_pl.qm: data\lng\qt_pl.ts
-	$(LREL)
-
-data\lng\qt_pt.qm: data\lng\qt_pt.ts
-	$(LREL)
-
-#data\lng\qt_ro.qm: data\lng\qt_ro.ts
-#	$(LREL)
-
-data\lng\qt_sv.qm: data\lng\qt_sv.ts
-	$(LREL)
-
-#data\lng\qt_us.qm: data\lng\qt_us.ts
-#	$(LREL)
-
-
-endif
 
 # end of file
