@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>About</name>
     <message>
@@ -113,7 +113,7 @@
         <source>Project details</source>
         <translation>Informations sur le projet</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1403,7 +1403,7 @@ p, li { white-space: pre-wrap; }
         <source>Angle</source>
         <translation>Angle</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation>°</translation>
@@ -1653,16 +1653,16 @@ p, li { white-space: pre-wrap; }
         <location filename="../../romalyzer.cpp" line="4544"/>
         <source>%n obsolete path(s) removed from database</source>
         <translation>
-            <numerusform>%n chemin(s) obsolète(s) retirés de la base de données</numerusform>
-            <numerusform></numerusform>
+            <numerusform>%n chemin obsolète retiré de la base de données</numerusform>
+            <numerusform>%n chemins obsolètes retirés de la base de données</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="4594"/>
         <source>%n outdated path(s) removed from database</source>
         <translation>
-            <numerusform>%n chemin(s) périmé(s) retirés de la base de données</numerusform>
-            <numerusform></numerusform>
+            <numerusform>%n chemin périmé retiré de la base de données</numerusform>
+            <numerusform>%n chemins périmés retirés de la base de données</numerusform>
         </translation>
     </message>
     <message>
@@ -1684,8 +1684,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../../romalyzer.cpp" line="4705"/>
         <source>found %n file(s) for path &apos;%1&apos;</source>
         <translation>
-            <numerusform>%n fichier(s) trouvé(s) pour le chemin &apos;%1&apos;</numerusform>
-            <numerusform></numerusform>
+            <numerusform>%n fichier trouvé pour le chemin &apos;%1&apos;</numerusform>
+            <numerusform>%n fichiers trouvés pour le chemin &apos;%1&apos;</numerusform>
         </translation>
     </message>
     <message>
@@ -1883,8 +1883,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../../romalyzer.cpp" line="4563"/>
         <source>%n unchanged file(s) removed from scan</source>
         <translation>
-            <numerusform>%n fichier(s) inchangé(s) ignoré(s) durant l&apos;analyse</numerusform>
-            <numerusform></numerusform>
+            <numerusform>%n fichier inchangé ignoré durant l&apos;analyse</numerusform>
+            <numerusform>%n fichiers inchangés ignorés durant l&apos;analyse</numerusform>
         </translation>
     </message>
     <message>
@@ -3241,44 +3241,44 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cookiejar.cpp" line="23"/>
         <source>WARNING: failed to open cookie database: error = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec d&apos;ouverture de la base de données des témoins de connexion : erreur = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="58"/>
         <source>WARNING: failed to create cookie database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la création de la base de données des témoins de connexion : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="50"/>
         <source>WARNING: failed to remove cookie database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la suppression de la base de données des témoins de connexion : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="123"/>
         <location filename="../../cookiejar.cpp" line="132"/>
         <location filename="../../cookiejar.cpp" line="206"/>
         <source>WARNING: failed to remove expired cookie from database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la suppression du témoin de connexion expiré depuis la base de données : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="142"/>
         <source>WARNING: failed to update cookie in database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la mise à jour du témoin de connexion dans la base de données : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="155"/>
         <source>WARNING: failed to add cookie to database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;ajout du témoin de connexion à la base de données : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="161"/>
         <source>WARNING: failed to query cookie database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la requête à la base de données des témoins de connexion : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="183"/>
         <source>WARNING: failed to fetch cookies from database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la récupération des témoins de connexion depuis la base de données : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -3286,67 +3286,67 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cookiemanager.ui" line="14"/>
         <source>Manage stored cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Gérer les témoins de connexion enregistrés</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="20"/>
         <source>Stored cookies in database</source>
-        <translation type="unfinished"></translation>
+        <translation>Témoins de connexion enregistrés dans la base de données</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="48"/>
         <source>Remove</source>
-        <translation type="unfinished">Enlever</translation>
+        <translation>Enlever</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="78"/>
         <source>Close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer la fenêtre</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="81"/>
         <source>Close</source>
-        <translation type="unfinished">Fermer</translation>
+        <translation>Fermer</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="36"/>
         <source>Name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="37"/>
         <source>Domain</source>
-        <translation type="unfinished"></translation>
+        <translation>Domaine</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="38"/>
         <source>Path</source>
-        <translation type="unfinished">Chemin</translation>
+        <translation>Chemin d&apos;accès</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="39"/>
         <source>Value</source>
-        <translation type="unfinished">Valeur</translation>
+        <translation>Valeur</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="40"/>
         <source>Expiry date</source>
-        <translation type="unfinished"></translation>
+        <translation>Date d&apos;expiration</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="41"/>
         <source>Secure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sécurisé ?</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="42"/>
         <source>HTTP only?</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP simple ?</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="86"/>
         <source>WARNING: failed to remove cookie from database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la suppression du témoin de connexion depuis la base de données : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -4542,7 +4542,7 @@ Voulez-vous choisir un nom différent?</translation>
         <location filename="../../deviceconfigurator.cpp" line="54"/>
         <location filename="../../deviceconfigurator.cpp" line="74"/>
         <source>All files</source>
-        <translation type="unfinished">Tous les fichiers</translation>
+        <translation>Tous les fichiers</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="57"/>
@@ -4797,23 +4797,23 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="155"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tous les fichiers (*)</translation>
+        <translation>Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="160"/>
         <location filename="../../emuopt.cpp" line="172"/>
         <source>Browse: </source>
-        <translation type="unfinished">Parcourir:</translation>
+        <translation>Parcourir :</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="208"/>
         <source>enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>activé</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="210"/>
         <source>disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>désactivé</translation>
     </message>
 </context>
 <context>
@@ -6661,8 +6661,8 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../imagechecker.cpp" line="163"/>
         <source>Thread[%1]: processing work unit with %n entries</source>
         <translation>
+            <numerusform>Processus [%1] : traitement de l&apos;unité de travail avec %n entrée</numerusform>
             <numerusform>Processus [%1] : traitement de l&apos;unité de travail avec %n entrées</numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -15865,178 +15865,178 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../paletteeditor.ui" line="14"/>
         <source>Color palette editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Editeur de la palette de couleurs</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="237"/>
         <source>Cancel palette editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuler l&apos;édition de la palette</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="240"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Annuler</translation>
+        <translation>&amp;Annuler</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="214"/>
         <source>Apply new palette and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Appliquer la nouvelle palette et fermer la fenêtre</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="217"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="33"/>
         <source>Color role</source>
-        <translation type="unfinished"></translation>
+        <translation>Rôle de la couleur</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="38"/>
         <location filename="../../paletteeditor.cpp" line="28"/>
         <location filename="../../paletteeditor.cpp" line="29"/>
         <source>Active</source>
-        <translation type="unfinished"></translation>
+        <translation>Active</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="43"/>
         <location filename="../../paletteeditor.cpp" line="33"/>
         <location filename="../../paletteeditor.cpp" line="34"/>
         <source>Inactive</source>
-        <translation type="unfinished"></translation>
+        <translation>Inactive</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="48"/>
         <location filename="../../paletteeditor.cpp" line="38"/>
         <location filename="../../paletteeditor.cpp" line="39"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactivée</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="56"/>
         <source>General background color</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur générale d&apos;arrière-plan</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="64"/>
         <source>General foreground (text) color</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur générale du premier plan (texte)</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="72"/>
         <source>Used mainly as the background color for text entry widgets, but can also be used for other painting - such as the background of combobox drop-down lists and toolbar-handles</source>
-        <translation type="unfinished"></translation>
+        <translation>Principalement utilisée comme couleur d&apos;arrière-plan pour les widgets d&apos;entrée de texte, mais peut également être utilisée pour d&apos;autres usages, comme l&apos;arrière-plan des listes déroulantes ou des barres d&apos;outils</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="80"/>
         <source>Alternate background color in views with alternating row colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur d&apos;arrière-plan alternative pour les vues alternant les couleurs de ligne</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="88"/>
         <source>Foreground (text) color used with Base</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur de premier-plan (texte) utilisée avec Base</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="96"/>
         <source>A text color that is very different from WindowText and contrasts well with e.g. Dark (typically used for text that needs to be drawn where Text or WindowText would give poor contrast, such as on pressed push buttons)</source>
-        <translation type="unfinished"></translation>
+        <translation>Une couleur de texte qui est très différente de WindowText et constraste bien avec, par exemple, Dark (typiquement utilisée pour les textes devant être affichés là où Text ou WindowText donnerait un contraste peu élevé, comme sur les boutons pressés)</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="104"/>
         <source>Background color used for buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur d&apos;arrière-plan utilisée pour les boutons</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="112"/>
         <source>Foreground (text) color used for buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur de premier-plan (texte) utilisée pour les boutons</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="120"/>
         <source>Background color used for tool-tips</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur d&apos;arrière-plan utilisée pour les infobulles</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="128"/>
         <source>Foreground (text) color used for tool-tips</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur de premier-plan (texte) utilisée pour les infobulles</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="136"/>
         <source>For 3D bevels and shadow effects: Lighter than Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Pour les effets 3D de biseaux et d&apos;ombre : plus clair que Button</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="144"/>
         <source>For 3D bevels and shadow effects: Between Button and Light</source>
-        <translation type="unfinished"></translation>
+        <translation>Pour les effets 3D de biseaux et d&apos;ombre : entre Button et Light</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="152"/>
         <source>For 3D bevels and shadow effects: Darker than Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Pour les effets 3D de biseaux et d&apos;ombre : plus sombre que Button</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="160"/>
         <source>For 3D bevels and shadow effects: Between Button and Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>Pour les effets 3D de biseaux et d&apos;ombre : entre Button et Dark</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="168"/>
         <source>For 3D bevels and shadow effects: Very dark color used for shadows</source>
-        <translation type="unfinished"></translation>
+        <translation>Pour les effets 3D de biseaux et d&apos;ombre : couleur très sombre utilisée pour les ombres</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="176"/>
         <source>Color used to indicate a selected / the current item</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur utilisée pour désigner un objet indiqué ou courant</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="184"/>
         <source>Text color that contrasts with Highlight</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur de texte contrastant avec Highlight</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="192"/>
         <source>Text color used for unvisited hyperlinks</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur du texte utilisé pour les hyperliens non-visités</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="200"/>
         <source>Text color used for already visited hyperlinks</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur du texte utilisé pour les hyperliens visités</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="263"/>
         <source>Restore palette settings from currently active palette</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurer les réglages de palette depuis la palette actuellement active</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="266"/>
         <source>&amp;Restore</source>
-        <translation type="unfinished">&amp;Restaurer</translation>
+        <translation>&amp;Restaurer</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="309"/>
         <source>Preview the current palette (without applying it)</source>
-        <translation type="unfinished"></translation>
+        <translation>Prévisualiser la palette actuelle (sans l&apos;appliquer)</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="312"/>
         <source>&amp;Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aperçu</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="293"/>
         <source>When enabled, colors for Inactive and Disabled states are calculated, otherwise you can edit them individually</source>
-        <translation type="unfinished"></translation>
+        <translation>Si activé, les couleurs pour les états inactifs et désactivés sont calculées, sinon vous pouvez les éditer individuellement</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="296"/>
         <source>Calculate details</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculer les détails</translation>
     </message>
 </context>
 <context>
@@ -22196,7 +22196,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../welcome.cpp" line="147"/>
         <source>Choose ROM path</source>
-        <translation>Choisir le chemin d&apos;accès aux ROMS</translation>
+        <translation>Choisir le chemin d&apos;accès aux ROM</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="155"/>
@@ -22206,7 +22206,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../welcome.cpp" line="163"/>
         <source>Choose hash path</source>
-        <translation type="unfinished">Choisir le répertoire de Hash</translation>
+        <translation>Choisir le chemin d&apos;accès aux hachages</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="269"/>
@@ -22227,12 +22227,12 @@ Quitter maintenant, accepter cette fois-ci ou ignorer complètement ?</translati
     <message>
         <location filename="../../welcome.ui" line="30"/>
         <source>Browse sample path</source>
-        <translation type="unfinished">Parcourir pour le répertoire de samples</translation>
+        <translation>Parcourir le répertoire d&apos;échantillons</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="195"/>
         <source>Browse ROM path</source>
-        <translation type="unfinished">Parcourir pour le répertoire de ROMS</translation>
+        <translation>Parcourir le répertoire de ROM</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="251"/>
@@ -22256,17 +22256,17 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
     <message>
         <location filename="../../welcome.ui" line="185"/>
         <source>Hash path</source>
-        <translation type="unfinished">Répertoire de Hash</translation>
+        <translation>Répertoire de hachage</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="120"/>
         <source>Path to hash files</source>
-        <translation type="unfinished">Chemin vers les fichiers Hash</translation>
+        <translation>Chemin vers les fichiers de hachage</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="127"/>
         <source>Browse hash path</source>
-        <translation type="unfinished">Parcourir pour le répertoire de Hash</translation>
+        <translation>Parcourir le répertoire de hachage</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="265"/>
@@ -22281,7 +22281,7 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
     <message>
         <location filename="../../welcome.ui" line="54"/>
         <source>Browse working directory</source>
-        <translation type="unfinished">Parcourir le répertoire de travail</translation>
+        <translation>Parcourir le répertoire de travail</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="47"/>
@@ -22301,12 +22301,12 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
     <message>
         <location filename="../../welcome.ui" line="164"/>
         <source>Browse emulator executable file</source>
-        <translation type="unfinished">Parcourir pour l&apos;exécutable de l&apos;émulateur</translation>
+        <translation>Parcourir l&apos;exécutable de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="268"/>
         <source>Single-instance check</source>
-        <translation type="unfinished">Test d&apos;instance unique</translation>
+        <translation>Vérification d&apos;instance unique</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="270"/>
@@ -22316,7 +22316,7 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
     <message>
         <location filename="../../welcome.cpp" line="270"/>
         <source>&amp;Once</source>
-        <translation type="unfinished">&amp;Une fois</translation>
+        <translation>&amp;Une fois</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="270"/>
