@@ -639,7 +639,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="195"/>
         <source>Working directory</source>
-        <translation type="unfinished">Répertoire de travail</translation>
+        <translation>Répertoire de travail</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="208"/>
@@ -679,17 +679,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="234"/>
         <source>Executable file</source>
-        <translation type="unfinished">Exécutable</translation>
+        <translation>Fichier exécutable</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="247"/>
         <source>Configuration path</source>
-        <translation type="unfinished"></translation>
+        <translation>Chemin de configuration</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="303"/>
         <source>Configuration path for QMC2 Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>Chemin de configuration pour QMC2 Arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="76"/>
@@ -719,12 +719,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="700"/>
         <source>Tag</source>
-        <translation type="unfinished">Tag</translation>
+        <translation>Étiquette</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="725"/>
         <source>Players</source>
-        <translation type="unfinished">Joueurs</translation>
+        <translation>Joueurs</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="901"/>
@@ -766,22 +766,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="558"/>
         <source>ROM state filter</source>
-        <translation type="unfinished">filtre d&apos;état de ROM</translation>
+        <translation>Filtre d&apos;état de ROM</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="686"/>
         <source>Select sort criteria</source>
-        <translation type="unfinished">Sélectionner le critère de tri</translation>
+        <translation>Sélectionner le critère de tri</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="690"/>
         <source>Description</source>
-        <translation type="unfinished">Description</translation>
+        <translation>Description</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="695"/>
         <source>ROM state</source>
-        <translation type="unfinished">statut de ROM</translation>
+        <translation>Etat de ROM</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="705"/>
@@ -796,12 +796,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="715"/>
         <source>Name (ID)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom (ID)</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="720"/>
         <source>ROM types</source>
-        <translation type="unfinished"></translation>
+        <translation>Types de ROM</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="438"/>
@@ -1099,7 +1099,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="534"/>
         <source>System / BIOS</source>
-        <translation type="unfinished"></translation>
+        <translation>Système / BIOS</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="540"/>
@@ -1111,7 +1111,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="650"/>
         <source>Choose QMC2 Arcade&apos;s executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le fichier exécutable de QMC2 Arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="650"/>
@@ -1122,47 +1122,47 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="657"/>
         <source>Choose QMC2 Arcade&apos;s working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner le répertoire de travail de QMC2 Arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="664"/>
         <source>Choose QMC2 Arcade&apos;s configuration path</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le chemin de configuration de QMC2 Arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="671"/>
         <source>Choose filtered list file for export</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir une liste triée à exporter</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="681"/>
         <source>FATAL: arcade mode: cannot open &apos;%1&apos; for writing</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL : mode arcade: impossible d&apos;ouvrir &apos;%1&apos; pour l&apos;écrire</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="700"/>
         <source>WARNING: arcade mode: the name filter regular expression is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : mode arcade : l&apos;expression rationnelle du filtre nominatif est invalide</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="702"/>
         <source>Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>Triage</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="761"/>
         <source>imperfect</source>
-        <translation type="unfinished">imparfait</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="796"/>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Triage</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="804"/>
         <source>Exporting</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportation</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="815"/>
@@ -1178,8 +1178,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.cpp" line="827"/>
         <source>arcade mode: exported %n filtered set(s) to &apos;%1&apos;</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+            <numerusform>mode arcade : exporté %n set trié vers &apos;%1&apos;</numerusform>
+            <numerusform>mode arcade : exporté %n sets triés vers &apos;%1&apos;</numerusform>
         </translation>
     </message>
 </context>
@@ -21710,58 +21710,58 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarestatefilter.ui" line="44"/>
         <location filename="../../softwarestatefilter.ui" line="47"/>
         <source>Toggle software-state &apos;correct&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer l&apos;état logiciel &apos;correct&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="73"/>
         <location filename="../../softwarestatefilter.ui" line="76"/>
         <source>Toggle software-state &apos;unknown&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer l&apos;état logiciel &apos;inconnu&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="102"/>
         <location filename="../../softwarestatefilter.ui" line="105"/>
         <source>Toggle software-state &apos;mostly correct&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer l&apos;état logiciel &apos;globalement correct&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="131"/>
         <location filename="../../softwarestatefilter.ui" line="134"/>
         <source>Toggle software-state &apos;not found&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer l&apos;état logiciel &apos;introuvable&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="160"/>
         <location filename="../../softwarestatefilter.ui" line="163"/>
         <source>Toggle software-state &apos;incorrect&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer l&apos;état logiciel &apos;incorrect&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="186"/>
         <location filename="../../softwarestatefilter.ui" line="189"/>
         <source>Toggle filtering by software-states</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer le filtrage par état logiciel</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="192"/>
         <source>State filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtre d&apos;état</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.cpp" line="65"/>
         <source>State filter - %p%</source>
-        <translation type="unfinished">Filtre d&apos;état - %p%</translation>
+        <translation>Filtre d&apos;état - %p%</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.cpp" line="115"/>
         <location filename="../../softwarestatefilter.cpp" line="117"/>
         <source>filtered</source>
-        <translation type="unfinished"></translation>
+        <translation>filtré</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.cpp" line="159"/>
         <source>State filter settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Réglages des filtres d&apos;état</translation>
     </message>
 </context>
 <context>
