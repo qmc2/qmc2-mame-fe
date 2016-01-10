@@ -1582,7 +1582,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 									QString chdTempFilePath = QDir::cleanPath(lineEditTemporaryWorkingDirectory->text());
 									if ( !chdTempFilePath.endsWith("/") )
 										chdTempFilePath += "/";
-									chdTempFilePath += fi.baseName() + "-chdman-update.chd";
+									chdTempFilePath += fi.completeBaseName() + "-chdman-update.chd";
 									if ( chdManagerEnabled ) {
 										romFile.close();
 										chdManagerCurrentHunk = 0;
@@ -1888,7 +1888,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 		} else {
 			if ( isCHD ) {
 				if ( romPathCount == actualRomPaths.count() ) {
-					QString baseName = QFileInfo(filePath).baseName();
+					QString baseName = QFileInfo(filePath).completeBaseName();
 					QStringList chdPaths = actualRomPaths;
 					for (int i = 0; i < chdPaths.count(); i++)
 						chdPaths[i] = chdPaths[i] + QDir::separator() + gameName + QDir::separator() + baseName + ".chd";
