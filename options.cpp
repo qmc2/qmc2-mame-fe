@@ -2118,7 +2118,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	lineEditEmulatorLogFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/LogFile", userScopePath + "/mame.log").toString());
 	lineEditXmlCacheDatabase->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/XmlCacheDatabase", userScopePath + "/mame-xml-cache.db").toString());
 	lineEditUserDataDatabase->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/UserDataDatabase", userScopePath + "/mame-user-data.db").toString());
-	lineEditMachineListCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MachineListCacheFile", userScopePath + "/mame.glc").toString());
+	lineEditMachineListCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MachineListCacheFile", userScopePath + "/mame.mlc").toString());
 	lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
 	lineEditSlotInfoCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString());
 	lineEditSoftwareListCacheDb->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareListCacheDatabase", userScopePath + "/mame-swl-cache.db").toString());

@@ -433,10 +433,10 @@ void TweakedQmlApplicationViewer::loadMachineList()
             int lineCounter = 0;
             while ( !tsGameListCache.atEnd() ) {
                 QStringList words = tsGameListCache.readLine().split("\t");
-                if ( words[QMC2_ARCADE_GLC_DEVICE] != "1" ) {
-                    QString gameId = words[QMC2_ARCADE_GLC_ID];
-                    QString parentId = words[QMC2_ARCADE_GLC_PARENT];
-                    gameList.append(new MachineObject(gameId, parentId, words[QMC2_ARCADE_GLC_DESCRIPTION], romStateCharToInt(rscHash[gameId])));
+                if ( words[QMC2_ARCADE_MLC_DEVICE] != "1" ) {
+                    QString gameId = words[QMC2_ARCADE_MLC_ID];
+                    QString parentId = words[QMC2_ARCADE_MLC_PARENT];
+                    gameList.append(new MachineObject(gameId, parentId, words[QMC2_ARCADE_MLC_DESCRIPTION], romStateCharToInt(rscHash[gameId])));
                     m_parentHash.insert(gameId, parentId);
                 }
                 if ( lineCounter++ % QMC2_ARCADE_LOAD_RESPONSE == 0 )

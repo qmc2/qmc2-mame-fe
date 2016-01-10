@@ -1385,8 +1385,7 @@ void MachineList::parse()
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFORMATION: the machine list cache will now be updated due to a new format"));
 					reparseMachineList = true;
 				} else {
-					int cacheGlcVersion = words[3].toInt();
-					if ( cacheGlcVersion < QMC2_GLC_VERSION ) {
+					if ( words[3].toInt() < QMC2_MLC_VERSION ) {
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFORMATION: the machine list cache will now be updated due to a new format"));
 						reparseMachineList = true;
 					}
@@ -1415,11 +1414,11 @@ void MachineList::parse()
 				int lc = endsWithNewLine ? lines.count() : lines.count() - 1;
 				for (int l = 0; l < lc; l++) {
 					QStringList machineData = lines[l].split("\t");
-					QString machineName(machineData[QMC2_GLC_INDEX_NAME]);
-					QString machineCloneOf(machineData[QMC2_GLC_INDEX_CLONEOF]);
-					QString machinePlayers(machineData[QMC2_GLC_INDEX_PLAYERS]);
-					QString machineDrvStat(machineData[QMC2_GLC_INDEX_DRVSTAT]);
-					int machineType = int(machineData[QMC2_GLC_INDEX_ISBIOS] == "1") + int(machineData[QMC2_GLC_INDEX_ISDEVICE] == "1") * 2; // 0: normal, 1: BIOS, 2: device
+					QString machineName(machineData[QMC2_MLC_INDEX_NAME]);
+					QString machineCloneOf(machineData[QMC2_MLC_INDEX_CLONEOF]);
+					QString machinePlayers(machineData[QMC2_MLC_INDEX_PLAYERS]);
+					QString machineDrvStat(machineData[QMC2_MLC_INDEX_DRVSTAT]);
+					int machineType = int(machineData[QMC2_MLC_INDEX_IS_BIOS] == "1") + int(machineData[QMC2_MLC_INDEX_IS_DEVICE] == "1") * 2; // 0: normal, 1: BIOS, 2: device
 					MachineListItem *machineItem = new MachineListItem();
 					qmc2MachineListItemHash.insert(machineName, machineItem);
 					machineItem->setFlags(defaultItemFlags);
@@ -1428,12 +1427,12 @@ void MachineList::parse()
 						qmc2HierarchyHash[machineCloneOf].append(machineName);
 					else if ( !qmc2HierarchyHash.contains(machineName) )
 						qmc2HierarchyHash.insert(machineName, QStringList());
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, machineData[QMC2_GLC_INDEX_MACHINE]);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, machineData[QMC2_GLC_INDEX_YEAR]);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineData[QMC2_GLC_INDEX_MANU]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, machineData[QMC2_MLC_INDEX_MACHINE]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, machineData[QMC2_MLC_INDEX_YEAR]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineData[QMC2_MLC_INDEX_MANU]);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_NAME, machineName);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, machineData[QMC2_GLC_INDEX_SRCFILE]);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(machineData[QMC2_GLC_INDEX_HASROM] == "1") + int(machineData[QMC2_GLC_INDEX_HASCHD] == "1") * 2]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, machineData[QMC2_MLC_INDEX_SRCFILE]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(machineData[QMC2_MLC_INDEX_HAS_ROM] == "1") + int(machineData[QMC2_MLC_INDEX_HAS_CHD] == "1") * 2]);
 					if ( useCatverIni ) {
 						QString *versionString = versionHash[machineName];
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
@@ -1639,7 +1638,7 @@ void MachineList::parse()
 			tsMachineListCache.setCodec(QTextCodec::codecForName("UTF-8"));
 			tsMachineListCache.reset();
 			tsMachineListCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
-			tsMachineListCache << "MAME_VERSION\t" + emulatorVersion + "\tGLC_VERSION\t" + QString::number(QMC2_GLC_VERSION) + "\n";
+			tsMachineListCache << "MAME_VERSION\t" + emulatorVersion + "\tMLC_VERSION\t" + QString::number(QMC2_MLC_VERSION) + "\n";
 		}
 		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool();
 		bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();

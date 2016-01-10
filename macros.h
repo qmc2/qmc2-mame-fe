@@ -104,22 +104,22 @@
 #define QMC2_AUDIOPLAYER_INDEX			3
 #define QMC2_DOWNLOADS_INDEX			4
 
-// current format version of the GLC (machine list cache)
-#define QMC2_GLC_VERSION			6
+// current format version of the MLC (machine list cache)
+#define QMC2_MLC_VERSION			6
 
-// GLC data indexes
-#define QMC2_GLC_INDEX_NAME			0
-#define QMC2_GLC_INDEX_MACHINE			1
-#define QMC2_GLC_INDEX_MANU			2
-#define QMC2_GLC_INDEX_YEAR			3
-#define QMC2_GLC_INDEX_CLONEOF			4
-#define QMC2_GLC_INDEX_ISBIOS			5
-#define QMC2_GLC_INDEX_HASROM			6
-#define QMC2_GLC_INDEX_HASCHD			7
-#define QMC2_GLC_INDEX_PLAYERS			8
-#define QMC2_GLC_INDEX_DRVSTAT			9
-#define QMC2_GLC_INDEX_ISDEVICE			10
-#define QMC2_GLC_INDEX_SRCFILE			11
+// MLC data indexes
+#define QMC2_MLC_INDEX_NAME			0
+#define QMC2_MLC_INDEX_MACHINE			1
+#define QMC2_MLC_INDEX_MANU			2
+#define QMC2_MLC_INDEX_YEAR			3
+#define QMC2_MLC_INDEX_CLONEOF			4
+#define QMC2_MLC_INDEX_IS_BIOS			5
+#define QMC2_MLC_INDEX_HAS_ROM			6
+#define QMC2_MLC_INDEX_HAS_CHD			7
+#define QMC2_MLC_INDEX_PLAYERS			8
+#define QMC2_MLC_INDEX_DRVSTAT			9
+#define QMC2_MLC_INDEX_IS_DEVICE		10
+#define QMC2_MLC_INDEX_SRCFILE			11
 
 // current format version of the XML cache database schema
 #define QMC2_XMLCACHE_VERSION			1

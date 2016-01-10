@@ -687,7 +687,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 
 	QTextStream ts(&filteredListFile);
 	ts << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
-	ts << "MAME_VERSION\t" + qmc2MachineList->emulatorVersion + "\tGLC_VERSION\t" + QString::number(QMC2_GLC_VERSION) + "\n";
+	ts << "MAME_VERSION\t" + qmc2MachineList->emulatorVersion + "\tMLC_VERSION\t" + QString::number(QMC2_MLC_VERSION) + "\n";
 
 	QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExcludedCategories", QStringList()).toStringList();
 	int minDrvStatus = comboBoxDriverStatus->currentIndex();
