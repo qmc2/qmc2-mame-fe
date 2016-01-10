@@ -51,11 +51,11 @@
 #define QMC2_ARCADE_APP_NAME			QMC2_ARCADE_ORG_NAME
 
 // relevant game list cache data columns
-#define QMC2_ARCADE_GLC_ID			0
-#define QMC2_ARCADE_GLC_DESCRIPTION		1
-#define QMC2_ARCADE_GLC_PARENT			4
-#define QMC2_ARCADE_GLC_BIOS			5
-#define QMC2_ARCADE_GLC_DEVICE			10
+#define QMC2_ARCADE_MLC_ID			0
+#define QMC2_ARCADE_MLC_DESCRIPTION		1
+#define QMC2_ARCADE_MLC_PARENT			4
+#define QMC2_ARCADE_MLC_BIOS			5
+#define QMC2_ARCADE_MLC_DEVICE			10
 
 // dot-path related
 #if defined(Q_OS_MAC)

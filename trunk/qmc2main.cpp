@@ -2539,10 +2539,8 @@ void MainWindow::on_actionClearROMStateCache_triggered(bool)
 			return;
 		}
 	}
-
 	QString userScopePath = Options::configPath();
 	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString();
-
 	QFile f(fileName);
 	if ( f.exists() ) {
 		if ( f.remove() )
@@ -2550,7 +2548,6 @@ void MainWindow::on_actionClearROMStateCache_triggered(bool)
 		else
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the ROM state cache file '%1', please check permissions").arg(fileName));
 	}
-
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/AutoTriggerROMCheck").toBool() ) {
 		qmc2MachineList->autoRomCheck = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/AutoTriggerROMCheck").toBool();
 		log(QMC2_LOG_FRONTEND, tr("triggering an automatic ROM check on next reload"));
@@ -2565,10 +2562,8 @@ void MainWindow::on_actionClearMachineListCache_triggered(bool)
 			return;
 		}
 	}
-
 	QString userScopePath = Options::configPath();
-	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/MachineListCacheFile", userScopePath + "/mame.glc").toString();
-
+	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/MachineListCacheFile", userScopePath + "/mame.mlc").toString();
 	QFile f(fileName);
 	if ( f.exists() ) {
 		if ( f.remove() )
@@ -2599,10 +2594,8 @@ void MainWindow::on_actionClearSlotInfoCache_triggered(bool)
 			return;
 		}
 	}
-
 	QString userScopePath = Options::configPath();
 	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString();
-
 	QFile f(fileName);
 	if ( f.exists() ) {
 		if ( f.remove() )
@@ -2620,7 +2613,6 @@ void MainWindow::on_actionClearSoftwareListCache_triggered(bool)
 			return;
 		}
 	}
-
 	if ( !swlDb ) {
 		swlDb = new SoftwareListXmlDatabaseManager(qmc2MainWindow);
 		swlDb->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
@@ -2662,7 +2654,6 @@ void MainWindow::on_actionOptions_triggered(bool)
 		qmc2Options->show();
 	else if ( qmc2Options->isMinimized() )
 		qmc2Options->showNormal();
-
 	QTimer::singleShot(0, qmc2Options, SLOT(raise()));
 }
 

@@ -356,6 +356,24 @@ bool Welcome::checkConfig()
 				index = QMC2_ROMALYZER_RT_ZIP_BUILTIN;
 			startupConfig->setValue(newkey, index);
 		}
+		if ( QMC2_TEST_VERSION(omv, 60, osr, 7285) ) {
+			QString oldMlcName = startupConfig->value("MAME/FilesAndDirectories/MachineListCacheFile", Options::configPath() + "/mame.glc").toString();
+			QString newMlcName = oldMlcName;
+			newMlcName.replace(oldMlcName.length() - 4, 4, ".mlc");
+			if ( oldMlcName.endsWith(".glc") ) {
+				QFile f(oldMlcName);
+				f.rename(newMlcName);
+				startupConfig->setValue("MAME/FilesAndDirectories/MachineListCacheFile", newMlcName);
+			}
+			QString oldFilteredMlcName = oldMlcName + ".filtered";
+			QFile f(oldFilteredMlcName);
+			if ( f.exists() ) {
+				QString newFilteredMlcName = newMlcName + ".filtered";
+				f.rename(newFilteredMlcName);
+				startupConfig->setValue(QMC2_ARCADE_PREFIX + "FilteredListFile", newFilteredMlcName);
+			} else
+				startupConfig->remove(QMC2_ARCADE_PREFIX + "FilteredListFile");
+		}
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

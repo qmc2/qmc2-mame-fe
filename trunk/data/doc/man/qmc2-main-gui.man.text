@@ -35,9 +35,9 @@ FILES
 
   CONFIG_PATH/mame-user-data.db  User data database (SQLite 3) containing rank information and personal comments per machine
 
-  CONFIG_PATH/mame.glc  Machine list cache
+  CONFIG_PATH/mame.mlc  Machine list cache
 
-  CONFIG_PATH/mame.glc.filtered  Filtered version of the machine list cache used by qmc2-arcade(6) (optional)
+  CONFIG_PATH/mame.mlc.filtered  Filtered version of the machine list cache used by qmc2-arcade(6) (optional)
 
   CONFIG_PATH/mame-swl-cache.db  Software-list XML cache database (SQLite 3)
 
