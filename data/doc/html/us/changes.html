@@ -17,6 +17,7 @@ inf: informational only
 <p><b>v0.60, 10-JAN-2016:</b></p>
 <ul>
 	<li>fix: Mac OS X build: SDLmain_tmpl.m/.h aren't necessary for SDL2</li>
+	<li>fix: ROMAlyzer: use QFileInfo::completeBaseName() instead of QFileInfo::baseName() to correctly query CHD names with multiple dots (minor)</li>
 	<li>imp: main GUI translations are now also part of the Qt resource and no longer loaded from external .qm files (the make option QT_TRANSLATION has been removed due to this)</li>
 	<li>imp: updated category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MAME 'git latest'</li>
 	<li>imp: emulator configuration templates updated to MAME 'git latest' (readded 'console')</li>
