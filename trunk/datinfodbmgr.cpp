@@ -43,6 +43,8 @@ DatInfoDatabaseManager::DatInfoDatabaseManager(QObject *parent)
 					upgradeDatabaseFormat(1, 2);
 					tables = m_db.driver()->tables(QSql::Tables);
 					break;
+				default:
+					break;
 			}
 		}
 		if ( tables.count() != 4 || !tables.contains(m_metaDataTableName) || !tables.contains(m_softwareInfoTableName) || !tables.contains(m_emuInfoTableName) || !tables.contains(m_machineInfoTableName) )
